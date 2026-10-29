@@ -95,6 +95,8 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     recallMaxChars: config.recallMaxChars ?? 600,
     autoRecall: config.autoRecall ?? true,
     autoArchive: config.autoArchive ?? true,
+    materializer: config.materializer ?? 'off',
+    materializerMaxTokens: Number.isSafeInteger(config.materializerMaxTokens) ? config.materializerMaxTokens : 1800,
   }
   /** sessionId -> Map<seq, event>, bounded live fallback. */
   const buffers = new Map()
@@ -102,6 +104,8 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
   const receipts = new Map()
   /** sessionId -> last catalog digest injected. */
   const catalogDigest = new Map()
+  /** sessionId -> last materialized-window digest injected. */
+  const materializerDigest = new Map()
   /** sessionId -> Set<recordId> already shown to this session. */
   const shown = new Map()
   /** sessionId -> last recall query, avoiding duplicate recall messages. */
@@ -364,6 +368,23 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     }
   }
 
+  /** Build a materialized resident window message, or undefined. */
+  async function materializedMessage(session, workspaceKey, levels) {
+    if (policyConfig.materializer === 'off') return undefined
+    if (typeof memory.materializeContext !== 'function') return undefined
+    const filter = { workspaceKey, scopes: memoryVisibleScopes(levels), sessionId: session.id }
+    const result = await memory.materializeContext({
+      ...filter,
+      budgetTokens: policyConfig.materializerMaxTokens,
+      variant: policyConfig.materializer,
+    })
+    if (result === undefined || typeof result.text !== 'string' || result.text.length === 0) return undefined
+    const digest = createHash('sha256').update(result.text).digest('hex')
+    if (materializerDigest.get(session.id) === digest) return undefined
+    materializerDigest.set(session.id, digest)
+    return createMemoryMessage('materialized-context', result.text, { workspaceKey, levels, recordIds: result.includedIds ?? [] })
+  }
+
   /** Build the bounded catalog message for one session, or undefined when unchanged/empty. */
   async function catalogMessage(session, workspaceKey, levels) {
     const maxChars = Math.max(600, Number.isSafeInteger(policyConfig.catalogMaxChars) ? policyConfig.catalogMaxChars : 2200)
@@ -503,14 +524,24 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
         additions.push(createMemoryMessage('checkpoint', clip(text, 1600), { recordIds: pending.map((receipt) => receipt.recordId) }))
       }
 
-      const catalog = await catalogMessage(session, workspaceKey, levels)
-      if (catalog !== undefined) additions.push(catalog)
+      let materialized = false
+      if (policyConfig.materializer !== 'off') {
+        const window = await materializedMessage(session, workspaceKey, levels)
+        if (window !== undefined) {
+          additions.push(window)
+          materialized = true
+        }
+      }
+      if (!materialized) {
+        const catalog = await catalogMessage(session, workspaceKey, levels)
+        if (catalog !== undefined) additions.push(catalog)
+      }
 
       const capacity = await capacityNotice(session, workspaceKey, levels)
       if (capacity !== undefined) additions.push(capacity)
 
       const direct = [...decision.messages].reverse().find((message) => message.role === 'user' && (message.source?.kind === 'user' || message.source?.kind === 'user-rpc'))
-      if (direct !== undefined) {
+      if (!materialized && direct !== undefined) {
         const recall = await recallMessage(session, workspaceKey, messageText(direct), levels)
         if (recall !== undefined) additions.push(recall)
       }
@@ -530,6 +561,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     buffers.delete(sessionId)
     receipts.delete(sessionId)
     catalogDigest.delete(sessionId)
+    materializerDigest.delete(sessionId)
     capacityNoticed.delete(sessionId)
     shown.delete(sessionId)
     lastRecall.delete(sessionId)

@@ -25,6 +25,10 @@ export const Config = z.object({
   recallMaxChars: z.number().step(1).min(200).default(600),
   /** `auto` asks the routed model for higher-quality cards; `off` keeps deterministic cards. */
   cardModel: z.string().default('auto'),
+  /** Materializer mode: `off` keeps catalog/recall injection; `timeline-exact`/`edge-attention` injects a materialized resident window instead. */
+  materializer: z.string().default('off'),
+  /** Token budget for the materialized resident window. */
+  materializerMaxTokens: z.number().step(1).min(400).default(1800),
   /** Hot-pool usage ratio at which the model is told to ask the user about compression. */
   capacityNoticeRatio: z.number().min(0.05).max(0.99).default(0.8),
   /** Minimum time between capacity notices for one session, in ms. */
@@ -38,11 +42,16 @@ export function apply(ctx, config = {}) {
     catalogMaxChars: config.catalogMaxChars ?? 2400,
     recallMaxChars: config.recallMaxChars ?? 600,
     cardModel: config.cardModel ?? 'auto',
+    materializer: config.materializer ?? 'off',
+    materializerMaxTokens: config.materializerMaxTokens ?? 1800,
     capacityNoticeRatio: config.capacityNoticeRatio ?? 0.8,
     capacityNoticeCooldownMs: config.capacityNoticeCooldownMs ?? 10 * 60 * 1000,
   }
   if (resolved.cardModel !== 'auto' && resolved.cardModel !== 'off') {
     throw new TypeError(`memory-checkpoint: cardModel must be "auto" or "off", got ${JSON.stringify(resolved.cardModel)}`)
+  }
+  if (!['off', 'timeline-exact', 'edge-attention'].includes(resolved.materializer)) {
+    throw new TypeError(`memory-checkpoint: materializer must be off/timeline-exact/edge-attention, got ${JSON.stringify(resolved.materializer)}`)
   }
   if (!resolved.autoArchive) return
   const policy = registerCheckpointPolicy(ctx, ctx.memory, resolved)

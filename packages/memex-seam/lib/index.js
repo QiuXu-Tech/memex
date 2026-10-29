@@ -115,6 +115,13 @@ export class MemoryStore extends Service {
    */
   async appendContextEvents(_input) { return 0 }
 
+  /**
+   * Materialize a resident extra-context window (pager/materializer).
+   * Backends that do not implement it stay compatible with `undefined`.
+   * @returns {Promise<object|undefined>}
+   */
+  async materializeContext(_request) { return undefined }
+
   /** @returns {Promise<void>} Flush pending durable state. */
   async flush() {}
 }

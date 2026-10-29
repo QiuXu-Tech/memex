@@ -67,33 +67,32 @@ These are **separate specialist components around the model**, not a replacement
 - Fallback: text-only materializer when the host exposes no KV seam.
 - This is the only path that can recover the **attention/positional** part of true context; API-only agents cannot reach it.
 
-## Implemented today (offline, v0.12.0)
+## Implemented today (v0.13.0)
 
 **1. Canonical event capture**
-- `packages/memex-core/lib/context-events.js`: role/type/content/tool-call/tool-result/attachment envelope, deterministic checksum, DSH-event adapter, materializer-page adapter.
-- `context_events` table + `appendContextEvents`/`listContextEvents` in the store; seam/default no-op, local backend forwarding.
-- Checkpoint now captures canonical events alongside the rendered card (best-effort; no-op for backends without support).
-- U27 verifies round-trip, checksum and persistence.
+- `context-events.js`: role/type/content/tool-call/tool-result/attachment envelope, deterministic checksum, DSH adapter, materializer-page adapter.
+- `context_events` store table + `appendContextEvents`/`listContextEvents`; seam/default no-op, local backend forwarding.
+- Checkpoint captures canonical events alongside rendered cards; U27 verifies round-trip/persistence.
 
-**2. Pager + materializer**
-- `context-materializer.js`: deterministic chronology, stable index prefix/hash, budget, pinned pages, omitted ids, variants.
-- `context-pager.js` + `AgentMemory.materializeContext()`: selects pinned/open/recent resident pages, prefers canonical events over rendered bodies, and materializes the window.
-- U28 verifies canonical replay and sequence order.
+**2. Pager + materializer + runtime injection**
+- `context-materializer.js`: chronology, stable prefix/hash, budget, pinned pages, omitted ids, variants.
+- `context-pager.js` + `AgentMemory.materializeContext()`.
+- **DSH runtime switch**: checkpoint config `materializer: 'off' | 'timeline-exact' | 'edge-attention'` (default off for compatibility). When enabled, the pre-step injects a materialized resident window instead of catalog+recall; capacity notices/receipts stay. U28 covers pager replay.
 
-**3. Encoder specialist baseline**
-- `context-encoder.js`: feature extractor, deterministic heuristic encoder, trainable **linear logistic baseline** implementing the same `score()/rank()` interface a transformer cross-encoder would use.
-- U29 verifies salience preference and offline training.
-- **Not a transformer**: it is the interface + measurable surrogate; a real context encoder needs training/inference infrastructure.
+**3. Transformer context encoder (trained reference)**
+- `training/context_encoder.py` trains a tiny real transformer encoder (token embeddings, 2-head self-attention, FFN, mean pooling, relevance head) on synthetic context-page/query data.
+- Exports `docs/assets/benchmarks/context-encoder-weights.json` + metrics; `context-transformer.js` loads the weights and reproduces the Python logits exactly in pure JS (U31 parity + ranking).
+- Honest scope: **tiny synthetic-data reference**, not a production per-family model; interface is replaceable.
 
-**4. KV/prefix host seam**
-- `context-kv.js`: explicit capability contract (`paged-kv`, `attention-sinks`, `prefix-cache`, `token-spans`), negotiation, mock host, and fail-closed text fallback.
-- U30 verifies capability negotiation and KV paging mode.
-- **No real host is probed or induced**; unsupported hosts stay on text materialization.
+**4. KV/prefix host (runnable reference)**
+- `context-kv-host.js`: `PagedKvContextHost` with real bounded paged blocks, LRU eviction, prefix cache and page table; `context-kv.js` capability negotiation + fail-closed fallback.
+- `scripts/context-kv-host.mjs`: HTTP reference host (`/health`, `/capabilities`, `/prefix`, `/page-in`, `/page-out`, `/stats`).
+- U32 covers paging/prefix/eviction. **This is a host-side reference, not a model runtime**; true KV tensors require an inference engine (vLLM/SGLang/DSH host).
 
 **5. Structural fidelity evaluation**
-- `scripts/context-fidelity-eval.mjs` → `docs/assets/benchmarks/context-fidelity.json`: event round-trip, chronology, stable-prefix determinism, canonical pager coverage, KV negotiation/fallback. Latest run: all structural checks true; KV mock paging path exercised.
+- `scripts/context-fidelity-eval.mjs` → `docs/assets/benchmarks/context-fidelity.json`: event round-trip, chronology, stable prefix, pager canonical coverage, KV capacity/paging. All checks pass.
 
-**Still not done (explicit):** runtime DSH injection switch, a trained transformer encoder/assembler, and a real KV/prefix-cache host. These are the next engineering steps, not claimed.
+**Still external (not fakeable here):** production training on live traces/GPUs, native vLLM/DSH KV-cache integration, and enabling `materializer` by default in the DSH bundle. The interfaces and reference implementations are in place.
 
 ## How it gets wired next
 

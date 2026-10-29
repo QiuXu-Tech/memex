@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.13.0
+
+### Implemented — materialization runtime + specialists
+- **DSH runtime injection switch**: checkpoint config `materializer: 'off' | 'timeline-exact' | 'edge-attention'` (default off); when enabled the pre-step injects a materialized resident window instead of catalog+recall, while receipts/capacity notices remain. Config validated and documented.
+- **Trained transformer context encoder reference**: `training/context_encoder.py` trains a tiny 2-head self-attention encoder on synthetic page/query pairs; weights + metrics exported; `context-transformer.js` reproduces Python logits in JS (U31 parity + ranking). Validation accuracy/ranking 1.0 on its synthetic set; explicitly a reference, not a production model.
+- **Runnable paged-KV/prefix host**: `PagedKvContextHost` (bounded paged blocks, LRU eviction, prefix map, page table) plus `scripts/context-kv-host.mjs` HTTP reference service; U32 covers paging/prefix/eviction. True KV tensors still require an inference runtime.
+- Structural fidelity eval remains green; harness **129/129**.
+- **Explicit external work**: production training on live traces/GPUs, native vLLM/DSH KV-cache integration, enabling the materializer by default.
+
 ## 0.12.0
 
 ### Implemented — context materialization steps 1–5

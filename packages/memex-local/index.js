@@ -123,6 +123,10 @@ export default class LocalMemoryStore extends MemoryStore {
     return this.core.listContextEvents(recordId)
   }
 
+  async materializeContext(request) {
+    return materializeStoreContext({ store: this.core, ...request })
+  }
+
   async getLevels(sessionId) {
     return this.core.getLevels(sessionId)
   }

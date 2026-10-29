@@ -1,0 +1,64 @@
+{
+  "format": 1,
+  "kind": "context-encoder-training",
+  "model": "memex-context-encoder-transformer-v0",
+  "architecture": {
+    "vocab": 1024,
+    "dim": 32,
+    "heads": 2,
+    "max_len": 64,
+    "layers": 1,
+    "activation": "gelu",
+    "tokenizer": "fnv1a32-word"
+  },
+  "train": {
+    "groups": 400,
+    "samples": 2000,
+    "epochs": 16,
+    "seed": 42
+  },
+  "validation": {
+    "groups": 100,
+    "samples": 500,
+    "accuracy": 1.0,
+    "pairwiseRanking": 1.0
+  },
+  "references": [
+    {
+      "query": "which option did we choose for auth token rotation?",
+      "page": {
+        "title": "decision record",
+        "summary": "auth token rotation decision",
+        "body": "The auth token rotation decision is FACT-91255; keep it for the auth token rotation question.",
+        "fact": "FACT-91255"
+      },
+      "label": 1.0,
+      "logit": 8.426834106445312
+    },
+    {
+      "query": "which option did we choose for auth token rotation?",
+      "page": {
+        "title": "telemetry sampling rate note",
+        "summary": "weekly telemetry sampling rate",
+        "body": "General telemetry sampling rate notes. Nothing decided."
+      },
+      "label": 0.0,
+      "logit": -9.502772331237793
+    },
+    {
+      "query": "which option did we choose for auth token rotation?",
+      "page": {
+        "title": "database migration window note",
+        "summary": "weekly database migration window",
+        "body": "General database migration window notes. Nothing decided."
+      },
+      "label": 0.0,
+      "logit": -9.505459785461426
+    }
+  ],
+  "caveats": [
+    "Tiny transformer trained on synthetic fixtures, not production traces.",
+    "Reference/JS-parity model; not trained on live provider token distributions.",
+    "The interface is deliberately replaceable by a larger per-family context encoder."
+  ]
+}

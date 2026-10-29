@@ -1293,7 +1293,7 @@ await test('K2', 'checkpoint row alone registers the policy listeners and no sur
     assert.deepEqual(ctx.sections, [], 'checkpoint row must register no prompt sections')
     assert.equal(checkpointRow.name, 'memory-checkpoint')
     assert.deepEqual(checkpointRow.inject, ['memory'])
-    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
+    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'materializer', 'materializerMaxTokens', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
   } finally {
     await ctx.dispose()
   }
@@ -4334,6 +4334,43 @@ await test('U30', 'KV host capability negotiation fails closed and pages when fu
   const fallback = materializeWithHost({ text: 'materialized' }, { capabilities: [] })
   assert.equal(fallback.mode, 'text-fallback')
   assert.ok(Object.values(CONTEXT_HOST_CAPABILITIES).includes('paged-kv'))
+})
+
+
+await test('U31', 'trained transformer context encoder matches Python reference and ranks pages', async () => {
+  const { TransformerContextEncoder } = await import('../packages/memex-core/lib/context-transformer.js')
+  const { readFileSync } = await import('node:fs')
+  const report = JSON.parse(readFileSync(new URL('../docs/assets/benchmarks/context-encoder.json', import.meta.url), 'utf8'))
+  const encoder = TransformerContextEncoder.load()
+  for (const reference of report.references) {
+    const score = encoder.score(reference.page, reference.query)
+    assert.ok(Math.abs(score - reference.logit) < 0.01, `JS transformer parity ${score} vs ${reference.logit}`)
+  }
+  const relevant = { title: 'decision record', summary: 'billing retry policy decision', body: 'The billing retry policy decision is FACT-1; keep it.' }
+  const irrelevant = { title: 'weekly note', summary: 'weekly note', body: 'Routine note. Nothing decided.' }
+  const ranked = encoder.rank([irrelevant, relevant], 'what did we decide about the billing retry policy?')
+  assert.equal(ranked[0].page, relevant, 'transformer encoder must rank the relevant context page first')
+})
+
+
+await test('U32', 'reference paged-KV host pages blocks, caches prefixes and evicts by capacity', async () => {
+  const { PagedKvContextHost } = await import('../packages/memex-core/lib/context-kv-host.js')
+  const host = new PagedKvContextHost({ capacityBlocks: 2 })
+  assert.equal(host.negotiation().canPageKV, true)
+  const ids = host.registerPrefix('prefix-a', ['first block', 'second block', 'third block'])
+  assert.ok(ids.length <= 2, 'capacity must bound the block number')
+  assert.equal(host.stats().blocks, 2)
+  assert.equal(host.stats().prefixes, 1)
+  const current = host.resolvePrefix('prefix-a')
+  assert.ok(current.length > 0)
+  host.pageIn('span-1', current)
+  assert.equal(host.stats().pages, 1)
+  assert.deepEqual(host.pageIn('span-1', current), current)
+  assert.equal(host.pageOut('span-1'), true)
+  assert.equal(host.stats().pages, 0)
+  const again = host.registerPrefix('prefix-a', ['one', 'two'])
+  assert.equal(again.length, 2)
+  assert.equal(host.negotiation().canPrefix, true)
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────
