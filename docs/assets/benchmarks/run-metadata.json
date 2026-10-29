@@ -55,7 +55,7 @@
   },
   "limitations": [
     "Shared machine; sampled load includes benchmark work and is not complete isolation.",
-    "All benchmark searches use LocalStoreCore default rerank weights; model-specific AgentMemory profiles and live agents were not benchmarked.",
+    "Offline benchmark searches use LocalStoreCore default rerank weights; those workloads do not benchmark model-specific AgentMemory profiles or live agents.",
     "Token counts use character-based estimates; no memory_open call or model answer is timed.",
     "Capacity bodies contain only x; card-field numbers are indexed but identifier-bearing body index overhead is not represented."
   ],
