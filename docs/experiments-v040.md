@@ -45,6 +45,12 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 
 ### DeepSeek Flash validation (first live data)
 
+The 8-probe and multi-seed rows below are recorded synthetic-fixture results. A
+later check found that the harness's retained-tail selection can include
+archived older turns; the original tail membership was not saved. Their reported
+evicted subsets and comparison with a recent tail are therefore unverified. See
+the [methodology warning](https://github.com/QiuXu-Tech/memex/blob/main/docs/live-testing.md#deepseek-flash-results-2026-10-29).
+
 | Experiment | Result |
 |---|---|
 | Evidence-in-prompt, 8 probes / 120 turns | control **1/8** (evicted **0/7**) → treatment **8/8** (evicted **7/7**) |

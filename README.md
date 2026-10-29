@@ -168,11 +168,11 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | Metric | Result |
 |---|---|
 | Private archive re-check (40 curated questions; v0.5.1) | hit@1 **68%** / hit@3 90% / hit@5 **93%**, cold recall 94%, p50 **1.5 ms** — anchor rework trades ~2pp real-archive recall for cold natural-language coverage 0/30 → 30/30; public fixture cannot reproduce this private archive |
-| Synthetic recall suite (v0.3.0 rerun) | 80/80 target-record hits at rank 1 |
-| 10k records / 100M assigned tokens (v0.3.0, synthetic, quiet-start gate) | write 3.2 s; cold spill 5,000 records/50M tokens in 2.50 s; cold GC 2,500 records/25M tokens in 0.31 s |
-| FTS storage (body-less card+abstract index) | Synthetic v0.3.0 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill; x-only bodies do not measure identifier-index overhead |
+| Synthetic recall suite (v0.5.0 rerun) | 80/80 target-record hits at rank 1 |
+| 10k records / 100M assigned tokens (v0.5.0, synthetic, quiet-start gate) | write 3.8 s; cold spill 5,000 records/50M tokens in 3.03 s; cold GC 2,500 records/25M tokens in 0.31 s |
+| SQLite index (synthetic v0.5.0 100M-token pool) | 10.5 MiB after writing, 28.0 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
 
-**Synthetic 160K history / 80K window, on v0.3.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
+**Synthetic 160K history / 80K window, on v0.5.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
 
 Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
 

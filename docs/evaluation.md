@@ -5,8 +5,8 @@ layout: default
 
 # Evaluation
 
-The public synthetic workloads were rerun on v0.3.0, commit
-[`3373ec6`](https://github.com/QiuXu-Tech/memex/commit/3373ec6ed46ea3b571a798c95714bd5d226f1ddb),
+The public synthetic workloads were rerun on v0.5.0, commit
+[`5d2746e`](https://github.com/QiuXu-Tech/memex/commit/5d2746e9307721a70df0bbc740a9086ef0a6426e),
 on 2026-10-29. The Apple M4 / Node 24.21.0 machine met a quiet-start gate;
 it remained shared and load was sampled during the longer stages. See the
 [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md)
@@ -31,25 +31,23 @@ A previous run against a private, curated 40-question archive reported hit@1
 baseline was reported as 67% hit@5. That archive and its raw probes are not
 public.
 
-**v0.5.1 re-check (same private 40-question archive):** hit@1 **68%**,
-hit@3 **90%**, hit@5 **93%**, cold recall **94%**, p50 **1.5 ms**. This is the
-deliberate trade-off of the v0.5 anchor rework — exact numeric/identifier
-anchors cost ~2pp on the old real-archive ranking, while cold natural-language
-facts went from **0/30 to 30/30** and the DeepSeek multi-seed live treatment
-reached **60/60**. These private-archive numbers cannot be independently
-reproduced from the public fixture.
+**Reported v0.5.1 re-check (same private 40-question archive):** hit@1
+**68%**, hit@3 **90%**, hit@5 **93%**, cold recall **94%**, p50 **1.5 ms**.
+These private-archive numbers cannot be independently reproduced from the
+public fixture. The separate reported DeepSeek multi-seed results have a
+[retained-tail methodology caveat](https://github.com/QiuXu-Tech/memex/blob/main/docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
 ## Capacity and storage
 
 | Synthetic pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M in 0.33 s | 350 records / 3.5M in 0.03 s |
-| 10,000 records / 100M assigned tokens | 3.2 s | 5,000 records / 50M in 2.50 s | 2,500 records / 25M in 0.31 s |
+| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M in 0.32 s | 350 records / 3.5M in 0.03 s |
+| 10,000 records / 100M assigned tokens | 3.8 s | 5,000 records / 50M in 3.03 s | 2,500 records / 25M in 0.31 s |
 
-The 100M run used 384.8 MiB of original body files and a 9.0 MiB SQLite index
-after writing, growing to 26.6 MiB after cold spill. Token counts are assigned
+The 100M run used 384.8 MiB of original body files and a 10.5 MiB SQLite index
+after writing, growing to 28.0 MiB after cold spill. Token counts are assigned
 synthetic values. The x-only bodies do not measure identifier-body index
-overhead; a one-record spot check produced zero `record_terms` rows. Cold GC
+overhead; numeric anchors in the card fields are indexed in v0.5.0. Cold GC
 deletes the removed records. The read-path timings and raw output are included
 in the [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md).
 
@@ -66,6 +64,6 @@ current public-fixture measurement.
 - The capacity helper's printed `p95` is based on five samples and selects the
   second-largest value. It is not a reliable 95th percentile. This rerun does
   not establish that the former `p95 < 50 ms` target is met.
-- The offline harness passed 112/112 tests at the tested commit after building
+- The offline harness passed 117/117 tests at the tested commit after building
   the bundle; this validates its test cases, not production or real-agent
   performance.

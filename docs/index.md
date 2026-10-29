@@ -29,7 +29,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
-- [Benchmark report](benchmark.html) — long-horizon A/B vs no extra context, with charts.
+- [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
 - [Extra context, not just memory](context-layer.html) — the concept: a context hierarchy between history and the model window.
 - [Integrations](integrations.html) — Claude Code, Codex, Gemini CLI, Cursor, Cline, Windsurf, DSH.
 - [Model profiles](model-profiles.html) — per-family budgets, injection formats and digest prompts.
@@ -46,7 +46,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 |---|---|
 | **L1 eviction** | Uses the shipped `compaction/prune` + surface-replace seam — no custom session events, no replacement of the compaction backend. |
 | **Sticky context pools** | Session-private L2 vs workspace-shared L3; capture deepest enabled level; capacities 10M/100M. |
-| **Context paging** | Shared query-term extractor, FTS + cold abstracts + exact numeric/identifier anchors + lexical rerank; pages are injected only when budget allows. Real-archive recall@5 **93%** / cold recall 94% after the v0.5 anchor rework (pre-rework 95%/100%); cold natural-language probes **0/30 → 30/30**; live DeepSeek Flash multi-seed treatment **60/60**; anchor-free natural-language recall **0/3 → 3/3** in a small live run. |
+| **Context paging** | Shared query-term extractor, FTS + cold abstracts + exact numeric/identifier anchors + lexical rerank; pages are injected only when budget allows. Real-archive recall@5 **93%** / cold recall 94% after the v0.5 anchor rework (pre-rework 95%/100%); reported synthetic DeepSeek Flash cold probes **0/30 → 30/30**, multi-seed treatment **60/60** ([retained-tail caveat](live-testing.html#deepseek-flash-results-2026-10-29)); anchor-free natural-language recall **0/3 → 3/3** in a small live run. |
 | **Capacity compression** | Cold tier (lossless, zero LLM) and bounded map-reduce digests (2-way concurrency, retry/fallback, `ids:` enforcement, quota GC) — after the model asks the user. |
 | **Surfaces** | Seven model tools, `/memory` command set, nine `/api/memory.*` routes, Web panel + context ring, sensitive-content policy, backup/verify/restore. |
 

@@ -62,7 +62,7 @@ def save(fig, name):
     plt.close(fig)
 
 
-# Availability counts for the first two methods and target-record hits for DSH.
+# Availability counts for the first two methods and target-record hits for Memex.
 fig, ax = plt.subplots(figsize=(12.8, 6.8))
 heading(fig, "Synthetic long-horizon probes", f"v{metadata['testedVersion']} · 160K estimated-token history · 80K window · 40 probes")
 fig.subplots_adjust(left=0.085, right=0.965, top=0.79, bottom=0.23)
@@ -85,7 +85,7 @@ ax.set_ylim(0, 120)
 ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))
 ax.legend(["All 40 probes", "20 probes in old span"], loc="upper left", ncol=2,
           frameon=False, labelcolor="#dbe4f4")
-footnote(fig, "First two bars: fact/cue availability. DSH bars: target-record hit@5; not model answer accuracy.")
+footnote(fig, "Tail/summary: fact/cue availability. Memex: target-record hit@5, not model answer accuracy.")
 save(fig, "fact-recall.png")
 
 # Window/history is a ratio, not an observed no-memory recall score.
@@ -167,5 +167,5 @@ axes[1].set_xlim(0, max(operations) * 1.35)
 axes[1].set_xlabel("Seconds")
 for i, value in enumerate(operations):
     axes[1].text(value + max(operations) * 0.025, i, f"{value:.2f}", va="center", fontsize=11)
-footnote(fig, "X-only bodies do not measure identifier-index overhead. Cold spill moves records; cold GC deletes them.")
+footnote(fig, "X-only bodies do not measure identifier-bearing body index overhead. Cold spill moves records; cold GC deletes them.")
 save(fig, "capacity.png")

@@ -1,1 +1,32 @@
-{"fixture":"scale-bench x-only body","records":1,"bodyCharacters":40000,"recordTermsRows":0}
+{
+  "testedCommit": "5d2746e9307721a70df0bbc740a9086ef0a6426e",
+  "fixture": "two records with identical number-bearing card fields; x-only body vs same body with INC-70891",
+  "card": {
+    "title": "bench record 123 topic 23",
+    "summary": "synthetic summary 123 alpha beta gamma",
+    "useWhen": "read when continuing topic 23"
+  },
+  "xOnly": {
+    "bodyCharacters": 40000,
+    "termHashRows": 2,
+    "termHashes": [
+      1916298011,
+      2398264082
+    ]
+  },
+  "identified": {
+    "bodyCharacters": 39990,
+    "termHashRows": 4,
+    "termHashes": [
+      1303207253,
+      1916298011,
+      2398264082,
+      2778239964
+    ]
+  },
+  "additionalIdentifierHashes": [
+    1303207253,
+    2778239964
+  ],
+  "interpretation": "Rows common to both cards arise from card fields; the additional rows arise from adding the identifier-bearing text to the body."
+}

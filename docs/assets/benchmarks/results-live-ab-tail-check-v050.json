@@ -1,0 +1,112 @@
+{
+  "testedCommit": "5d2746e9307721a70df0bbc740a9086ef0a6426e",
+  "method": "Offline --emit-prompts for three seeds, 300 turns, tail 20, 20 probes; inspected recent context and probe values. No model or provider call. Results are a new reproduction, not the original live A/B prompts.",
+  "command": "node --import ./test/register.mjs scripts/live-ab.mjs --seed <1|2|3> --turns 300 --tail 20 --probes 20 --emit-prompts <output-directory>",
+  "runs": [
+    {
+      "seed": 1,
+      "generatedAt": "2026-10-29T10:18:41.833Z",
+      "tailTurns": [
+        258,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        279
+      ],
+      "visibleProbeFacts": [
+        {
+          "index": 18,
+          "turn": 270,
+          "expected": "FACT-270-e7fcx"
+        }
+      ],
+      "controlPromptSha256": "baf8cf824425ad44751e79589248c4a36d6df45e03c68ed4f1d6bb6dc361fd4a",
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 279 harbor work\nwork log for harbor\nturn 276 worker work\nwork log for worker\nturn 277 indexer work\nwork log for indexer\nturn 278 bridge work\nwork log for bridge\nturn 273 ledger work\nwork log for ledger\nturn 274 cache work\nwork log for cache\nturn 269 harbor work\nwork log for harbor\nturn 271 parser work\nwork log for parser\nturn 272 scheduler work\nwork log for scheduler\nturn 275 router work\nwork log for router\nturn 265 router work\nwork log for router\nturn 267 indexer work\nwork log for indexer\nturn 268 bridge work\nwork log for bridge\ngateway value at turn 270\nthe gateway value is FACT-270-e7fcx\nturn 262 scheduler work\nwork log for scheduler\nturn 264 cache work\nwork log for cache\nturn 266 worker work\nwork log for worker\nturn 258 bridge work\nwork log for bridge\nturn 261 parser work\nwork log for parser\nturn 263 ledger work\nwork log for ledger\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain."
+    },
+    {
+      "seed": 2,
+      "generatedAt": "2026-10-29T10:18:55.229Z",
+      "tailTurns": [
+        257,
+        261,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        277,
+        278,
+        279,
+        280
+      ],
+      "visibleProbeFacts": [
+        {
+          "index": 18,
+          "turn": 270,
+          "expected": "FACT-270-yz7lh"
+        }
+      ],
+      "controlPromptSha256": "b15e5cd1305a39b9a55b22516ae3fa54e30d31e0c12921ba29fffc17476cdcd2",
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 277 indexer work\nwork log for indexer\nturn 278 bridge work\nwork log for bridge\nturn 280 gateway work\nwork log for gateway\nturn 274 cache work\nwork log for cache\nturn 279 harbor work\nwork log for harbor\nturn 271 parser work\nwork log for parser\nturn 272 scheduler work\nwork log for scheduler\nturn 273 ledger work\nwork log for ledger\nturn 275 router work\nwork log for router\nturn 264 cache work\nwork log for cache\nturn 267 indexer work\nwork log for indexer\nturn 269 harbor work\nwork log for harbor\ngateway value at turn 270\nthe gateway value is FACT-270-yz7lh\nturn 265 router work\nwork log for router\nturn 266 worker work\nwork log for worker\nturn 268 bridge work\nwork log for bridge\nturn 257 indexer work\nwork log for indexer\nturn 261 parser work\nwork log for parser\nturn 262 scheduler work\nwork log for scheduler\nturn 263 ledger work\nwork log for ledger\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain."
+    },
+    {
+      "seed": 3,
+      "generatedAt": "2026-10-29T10:18:59.216Z",
+      "tailTurns": [
+        258,
+        259,
+        262,
+        263,
+        264,
+        265,
+        266,
+        267,
+        268,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275,
+        276,
+        277,
+        278,
+        282
+      ],
+      "visibleProbeFacts": [
+        {
+          "index": 18,
+          "turn": 270,
+          "expected": "FACT-270-abmgy"
+        }
+      ],
+      "controlPromptSha256": "9c76e2647391a4f5bd7aa739113b3a45eda53b97f484163d5d67d030da84edef",
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 276 worker work\nwork log for worker\nturn 278 bridge work\nwork log for bridge\nturn 282 scheduler work\nwork log for scheduler\nturn 275 router work\nwork log for router\nturn 277 indexer work\nwork log for indexer\nturn 267 indexer work\nwork log for indexer\nturn 271 parser work\nwork log for parser\nturn 272 scheduler work\nwork log for scheduler\nturn 273 ledger work\nwork log for ledger\nturn 274 cache work\nwork log for cache\nturn 266 worker work\nwork log for worker\nturn 268 bridge work\nwork log for bridge\nturn 269 harbor work\nwork log for harbor\ngateway value at turn 270\nthe gateway value is FACT-270-abmgy\nturn 259 harbor work\nwork log for harbor\nturn 262 scheduler work\nwork log for scheduler\nturn 263 ledger work\nwork log for ledger\nturn 264 cache work\nwork log for cache\nturn 265 router work\nwork log for router\nturn 258 bridge work\nwork log for bridge\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain."
+    }
+  ]
+}

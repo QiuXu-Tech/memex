@@ -1,7 +1,7 @@
-{"stage": "compaction", "startUtc": "2026-10-29T07:00:58+00:00", "endUtc": "2026-10-29T07:00:58+00:00", "elapsedSeconds": 0.408, "exitCode": 0}
-{"stage": "compaction-repeat", "startUtc": "2026-10-29T07:00:58+00:00", "endUtc": "2026-10-29T07:00:58+00:00", "elapsedSeconds": 0.2, "exitCode": 0}
-{"stage": "scale", "startUtc": "2026-10-29T07:00:58+00:00", "endUtc": "2026-10-29T07:01:11+00:00", "elapsedSeconds": 12.861, "exitCode": 0}
-{"stage": "scale-repeat", "startUtc": "2026-10-29T07:01:11+00:00", "endUtc": "2026-10-29T07:01:23+00:00", "elapsedSeconds": 11.646, "exitCode": 0}
-{"stage": "capacity-10m", "startUtc": "2026-10-29T07:01:23+00:00", "endUtc": "2026-10-29T07:01:24+00:00", "elapsedSeconds": 0.947, "exitCode": 0}
-{"stage": "capacity-100m", "startUtc": "2026-10-29T07:01:24+00:00", "endUtc": "2026-10-29T07:01:31+00:00", "elapsedSeconds": 7.199, "exitCode": 0}
-{"stage": "recall", "startUtc": "2026-10-29T07:01:31+00:00", "endUtc": "2026-10-29T07:01:31+00:00", "elapsedSeconds": 0.316, "exitCode": 0}
+{"stage": "compaction", "startUtc": "2026-10-29T10:27:33+00:00", "endUtc": "2026-10-29T10:27:33+00:00", "elapsedSeconds": 0.426, "exitCode": 0}
+{"stage": "compaction-repeat", "startUtc": "2026-10-29T10:27:33+00:00", "endUtc": "2026-10-29T10:27:34+00:00", "elapsedSeconds": 0.203, "exitCode": 0}
+{"stage": "scale", "startUtc": "2026-10-29T10:27:34+00:00", "endUtc": "2026-10-29T10:27:46+00:00", "elapsedSeconds": 12.803, "exitCode": 0}
+{"stage": "scale-repeat", "startUtc": "2026-10-29T10:27:46+00:00", "endUtc": "2026-10-29T10:28:01+00:00", "elapsedSeconds": 14.726, "exitCode": 0}
+{"stage": "capacity-10m", "startUtc": "2026-10-29T10:28:01+00:00", "endUtc": "2026-10-29T10:28:02+00:00", "elapsedSeconds": 0.873, "exitCode": 0}
+{"stage": "capacity-100m", "startUtc": "2026-10-29T10:28:02+00:00", "endUtc": "2026-10-29T10:28:10+00:00", "elapsedSeconds": 8.056, "exitCode": 0}
+{"stage": "recall", "startUtc": "2026-10-29T10:28:10+00:00", "endUtc": "2026-10-29T10:28:10+00:00", "elapsedSeconds": 0.25, "exitCode": 0}

@@ -1,0 +1,120 @@
+# @qiuxu/memex offline harness · Node v24.21.0 · 9 source packages + bundle + 9 /api/memory.* routes + web client + sticky L2/L3 + L1 eviction + cold tier/compression + hybrid recall/cold abstracts + sensitive evict + backup · stubs: cordis, schemastery, dsh-home-paths, dsh-llm, dsh-tools, dsh-compaction
+ok A1 write then get returns the stored card fields
+ok A2 record file exists on disk with YAML frontmatter
+ok A3 get returns the exact body that was written
+ok B1 search finds a 4-char CJK term in the title
+ok B2 search finds a 4-char CJK term that only exists in the body
+ok B3 search falls back to LIKE for the 2-char term AI
+ok B4 search returns no hits for nonsense
+ok C0a search only returns records of the requested workspace (A)
+ok C0b search only returns records of the requested workspace (B)
+ok D1 list filters by kind
+ok D1b search applies the kind filter to every hit path
+ok D2 list filters by status
+ok D2b search applies the status filter to every hit path
+ok D3 search filters by tag
+ok D4 grep finds literal lines inside stored files
+ok D5 facets reports counts, kinds, statuses and capacity
+ok D6 catalog renders a bounded markdown catalog
+ok D7 forget removes the row, the FTS entry and the markdown file
+ok D8 setStatus updates lifecycle state and catalog pinning
+ok D9 markRead records read usage
+ok E1 archiveRegion persists the card, file and idempotency marker
+ok E2 archiveRegion is idempotent for the same session and compaction
+ok F1 checkpoint archive creates one record for the workspace key
+ok F2 memory_open-style tool read returns the archived body
+ok F3 pre-step injects a checkpoint receipt for the archived record
+ok F4 pre-step injects the memory catalog message
+ok F5 pre-step catalog is deduped by digest on the second run
+ok F6 reconcile archives a persisted compaction discovered through sessionQuery
+ok G1 pre-step auto-recalls a relevant record for the current user text
+ok G2 pre-step does not repeat the recall for identical user text
+ok H1 llm refinement replaces the deterministic card
+ok H2 cardModel off keeps the deterministic card
+ok I1 a second LocalStoreCore on the same root still searches and gets
+ok J1 unknown record kind throws
+ok J2 non-string body is coerced to a string
+ok J2b body size guard is published as 8 MiB (oversize allocation intentionally skipped)
+ok J3 grep rejects invalid patterns with a clear message
+ok J4 corrupt record input throws
+ok K1 backend row alone owns ctx.memory and registers no surfaces
+ok K2 checkpoint row alone registers the policy listeners and no surfaces
+ok K3 tools row registers exactly six memory_* tools and one tool:memory section
+ok K4 commands row registers /memory with sticky-level control and is inert without one
+ok K5 consumer modules use ctx.memory only, and the loader stubs only @deepseek-ai/*
+ok K6 generated bundle modules mount as four rows end-to-end
+ok K7 client module registers composer trigger + shell overlay panel slots
+ok K8 bundle patch declares eight rows including memory-compress
+ok L1a memory API registers eight exact Fetch routes through ctx.effect
+ok L1b index route returns levels, both pools, evictions and the active fields
+ok L1c record route returns records visible through the enabled levels only
+ok L1d search route returns ranked snippets over the visible-level union
+ok L1e status route pins and unpins records visible in the enabled levels
+ok L1f API returns coded JSON errors for unknown sessions
+ok L1g index/search limit fallbacks apply when ?limit is absent
+ok M1 default levels none archive nothing, inject nothing and gate tools/commands
+ok M2 L2 archives privately and stays invisible to another session in the same workspace
+ok M2b record route exposes L2 records only to their own session
+ok M3 L3 shares archives across sessions and keeps L2 records private
+ok M4 facets, /memory status and the index API expose both pools and L1 evictions
+ok M5 level API enables sticky levels and immediately gates the visible pool
+ok M6a client ring bridge hides the arc and labels extra context off
+ok M6b client ring bridge colors and labels the L2 vs L3 capture target
+ok M6c client panel source exposes the sticky level switches and L1 eviction footer
+ok M7 grep applies the enabled-level visibility union
+ok M8 search body fallback respects the enabled-level scopes
+ok M9 search works with L2 and L3 both enabled
+ok N1 fresh backend defaults to no levels and L2/L3 are sticky once enabled
+ok N2 level API enables idempotently and rejects disabling
+ok N3 L2 stays private end-to-end (archive, index, record, tools)
+ok N4 L3 wins the capture scope while L2 records stay session-private
+ok N5 memory-evict moves the oldest balanced L1 span into the enabled level
+ok N6 bundle artifact ships the memory-evict/compress modules and eight-row patch
+ok C1 cold tier releases hot capacity while keeping records retrievable
+ok C1b catalog footer reports the cold tier
+ok C2 memory_compress cold strategy releases hot capacity losslessly
+ok C2b memory_compress gates off sessions and disabled levels
+ok C2c memory_compress respects minAgeMs for very recent records
+ok C3a memory_compress digest runs bounded llm batches and cold-moves originals
+ok C3b memory_compress digest is bounded and leaves originals hot on failure
+ok C4a capacity notice fires above the hot ratio and stays silent below it
+ok C4b capacity notice lists both hot levels and respects the cooldown
+ok C5a L1 eviction never crosses an image-bearing event
+ok C5b a single oversized event stops the eviction batch
+ok C5c captureLevel l2 keeps L1 evictions session-private with L3 enabled
+ok C6 bundle/module/client/manual cover the compress + cold-tier wave
+ok R1 FTS indexes card fields only; body search uses the hot-file fallback and grep
+ok R2 restoreCold moves files back hot and gcCold deletes the oldest cold records
+ok R3 compressCold cold-spills the oldest eligible records to the target ratio
+ok R4a recordCompression/compressionStats persist per-session history
+ok R4b history surfaces in /memory status, memory_index and the index API
+ok R5 new API routes: compress, restore and gc
+ok R6a client source carries the compression / restore / capacity-warning UI
+ok R6b recallTerms builds the search query and the capacity notice is bilingual
+ok R7 record route paginates the body and reports truncation flags
+ok S1 memoryQueryTerms extracts identifiers, quoted spans and CJK n-grams
+ok S2 hybrid search recalls cold abstracts, hot bodies and ranks field matches
+ok S3 GET /api/memory.metrics reports pool/cold/eviction/compression metrics
+ok S4 sensitive eviction forces L2, skips under L3-only and honors sensitivePolicy:off
+ok S5 memory-backup backup/verify/restore round-trips a store with a tamper check
+ok U1 agent-agnostic core has no host dependencies and the DSH seam re-exports it
+ok U2 model profiles resolve per family and tune injection, budgets and digest prompts
+ok U3 generic MCP server speaks JSON-RPC: tools list/call, search, open, index
+ok U4 MCP cold compression frees capacity and cold records remain openable
+ok U5 Claude Code init writes .mcp.json, hooks, and a model-tailored CLAUDE.md
+ok U6 Claude Code hooks inject catalog/recall and archive transcripts before compaction
+ok U7 Codex init writes AGENTS.md and prints a working MCP config snippet
+ok U8 DSH seam and core stay one vocabulary: engine writes are visible to DSH search
+ok U9 per-model rerank weights tune ranking and merge over defaults
+ok U10 engine applies the model profile rerank and accepts per-integration overrides
+ok U11 PreCompact archives transcripts larger than the store body limit instead of failing
+ok U12 injected catalog/recall blocks stay inside each profile budget (wrapper included)
+ok U13 body-term rescue recovers facts that live only in hot bodies
+ok U14 MCP parity tools: list, set-status and forget operate on the shared store
+ok U16 dedicated GPT-6.1 / Opus 5.5 / Sonnet 5.5 / DeepSeek Flash profiles win over family bases
+ok U17 adapter CLIs default to recommended dedicated profiles and advertise them
+ok U18 storage root resolution: MEMEX_HOME wins, legacy env/path fallbacks work
+ok U19 Claude init --session aligns hooks and MCP L2 namespace; approval hint is printed
+ok U20 cold natural-language retrieval uses card/bare-number anchors (turn 15)
+
+# 117/117 passed

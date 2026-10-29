@@ -1,0 +1,864 @@
+{
+  "testedVersion": "0.5.0",
+  "testedCommit": "5d2746e9307721a70df0bbc740a9086ef0a6426e",
+  "role": "First complete pass, retained before the stricter-gate second pass used in the main report.",
+  "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 30% and 1-minute load <= 10.",
+  "execution": [
+    {
+      "stage": "compaction",
+      "startUtc": "2026-10-29T10:23:16+00:00",
+      "endUtc": "2026-10-29T10:23:17+00:00",
+      "elapsedSeconds": 0.234,
+      "exitCode": 0
+    },
+    {
+      "stage": "compaction-repeat",
+      "startUtc": "2026-10-29T10:23:17+00:00",
+      "endUtc": "2026-10-29T10:23:17+00:00",
+      "elapsedSeconds": 0.212,
+      "exitCode": 0
+    },
+    {
+      "stage": "scale",
+      "startUtc": "2026-10-29T10:23:17+00:00",
+      "endUtc": "2026-10-29T10:23:30+00:00",
+      "elapsedSeconds": 13.594,
+      "exitCode": 0
+    },
+    {
+      "stage": "scale-repeat",
+      "startUtc": "2026-10-29T10:23:30+00:00",
+      "endUtc": "2026-10-29T10:23:44+00:00",
+      "elapsedSeconds": 13.19,
+      "exitCode": 0
+    },
+    {
+      "stage": "capacity-10m",
+      "startUtc": "2026-10-29T10:23:44+00:00",
+      "endUtc": "2026-10-29T10:23:45+00:00",
+      "elapsedSeconds": 1.023,
+      "exitCode": 0
+    },
+    {
+      "stage": "capacity-100m",
+      "startUtc": "2026-10-29T10:23:45+00:00",
+      "endUtc": "2026-10-29T10:23:54+00:00",
+      "elapsedSeconds": 9.228,
+      "exitCode": 0
+    },
+    {
+      "stage": "recall",
+      "startUtc": "2026-10-29T10:23:54+00:00",
+      "endUtc": "2026-10-29T10:23:54+00:00",
+      "elapsedSeconds": 0.265,
+      "exitCode": 0
+    }
+  ],
+  "loadSamples": [
+    {
+      "timeUtc": "2026-10-29T10:22:56+00:00",
+      "stage": "preflight",
+      "systemCpuBusyPercent": 53.3,
+      "load1": 5.08154296875,
+      "load5": 3.48681640625,
+      "benchmarkPid": null
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:01+00:00",
+      "stage": "preflight",
+      "systemCpuBusyPercent": 44.0,
+      "load1": 5.15478515625,
+      "load5": 3.5283203125,
+      "benchmarkPid": null
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:06+00:00",
+      "stage": "preflight",
+      "systemCpuBusyPercent": 47.4,
+      "load1": 5.38232421875,
+      "load5": 3.6025390625,
+      "benchmarkPid": null
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:11+00:00",
+      "stage": "preflight",
+      "systemCpuBusyPercent": 28.6,
+      "load1": 5.271484375,
+      "load5": 3.60888671875,
+      "benchmarkPid": null
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:16+00:00",
+      "stage": "preflight",
+      "systemCpuBusyPercent": 30.0,
+      "load1": 5.16943359375,
+      "load5": 3.615234375,
+      "benchmarkPid": null
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:21+00:00",
+      "stage": "scale",
+      "systemCpuBusyPercent": 45.2,
+      "load1": 5.07568359375,
+      "load5": 3.62158203125,
+      "benchmarkPid": 69094
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:26+00:00",
+      "stage": "scale",
+      "systemCpuBusyPercent": 43.0,
+      "load1": 4.9091796875,
+      "load5": 3.61083984375,
+      "benchmarkPid": 69094
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:31+00:00",
+      "stage": "scale-repeat",
+      "systemCpuBusyPercent": 41.7,
+      "load1": 4.755859375,
+      "load5": 3.6005859375,
+      "benchmarkPid": 69136
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:36+00:00",
+      "stage": "scale-repeat",
+      "systemCpuBusyPercent": 38.6,
+      "load1": 4.775390625,
+      "load5": 3.62353515625,
+      "benchmarkPid": 69136
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:41+00:00",
+      "stage": "scale-repeat",
+      "systemCpuBusyPercent": 38.9,
+      "load1": 4.6328125,
+      "load5": 3.61279296875,
+      "benchmarkPid": 69136
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:46+00:00",
+      "stage": "capacity-100m",
+      "systemCpuBusyPercent": 44.2,
+      "load1": 5.142578125,
+      "load5": 3.7353515625,
+      "benchmarkPid": 69153
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:51+00:00",
+      "stage": "capacity-100m",
+      "systemCpuBusyPercent": 32.9,
+      "load1": 5.291015625,
+      "load5": 3.7890625,
+      "benchmarkPid": 69153
+    },
+    {
+      "timeUtc": "2026-10-29T10:23:56+00:00",
+      "stage": "finished",
+      "systemCpuBusyPercent": 36.0,
+      "load1": 5.34765625,
+      "load5": 3.82568359375,
+      "benchmarkPid": null
+    }
+  ],
+  "compaction": {
+    "mode": "compaction",
+    "historyTokens": 160473,
+    "windowTokens": 80000,
+    "records": 107,
+    "coldRecords": 53,
+    "tailRecords": 54,
+    "oldSpanTokens": 79490,
+    "truncation": {
+      "facts": 40,
+      "available": 20,
+      "accuracy": 0.5
+    },
+    "compaction": {
+      "facts": 40,
+      "tailFacts": 20,
+      "oldFacts": 20,
+      "survivedOld": 4,
+      "oldFactRecovery": 0.2,
+      "accuracy": 0.6,
+      "reportTokens": 570
+    },
+    "dshMemory": {
+      "facts": 40,
+      "hit1": 1,
+      "hit3": 1,
+      "hit5": 1,
+      "medianLatencyMs": 1.7585829999999874,
+      "tokensPerQuestion": 1693,
+      "details": [
+        {
+          "fact": "FACT-000-367k8",
+          "topic": "gateway",
+          "recordIndex": 0,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-002-9xd8t",
+          "topic": "scheduler",
+          "recordIndex": 2,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-004-9n03z",
+          "topic": "cache",
+          "recordIndex": 4,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-008-yg9ka",
+          "topic": "bridge",
+          "recordIndex": 8,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-010-7eqom",
+          "topic": "harbor",
+          "recordIndex": 10,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-012-4n2i8",
+          "topic": "cobalt",
+          "recordIndex": 12,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-016-1pl2k",
+          "topic": "onboarding",
+          "recordIndex": 16,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-018-9mvvo",
+          "topic": "migration",
+          "recordIndex": 18,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-020-vsv8i",
+          "topic": "quota",
+          "recordIndex": 20,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-024-zu7pl",
+          "topic": "ledger",
+          "recordIndex": 24,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-026-g1nc4",
+          "topic": "parser",
+          "recordIndex": 26,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-028-5o07y",
+          "topic": "router",
+          "recordIndex": 28,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-032-q7rv0",
+          "topic": "queen",
+          "recordIndex": 32,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-034-9ztgv",
+          "topic": "orchid",
+          "recordIndex": 34,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-036-n5fgu",
+          "topic": "ember",
+          "recordIndex": 36,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-040-ff6rz",
+          "topic": "telemetry",
+          "recordIndex": 40,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-042-jshn6",
+          "topic": "rollback",
+          "recordIndex": 42,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-044-1znh3",
+          "topic": "sandbox",
+          "recordIndex": 44,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-048-mwv0n",
+          "topic": "scheduler",
+          "recordIndex": 48,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-050-9bxsc",
+          "topic": "cache",
+          "recordIndex": 50,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-054-7h9p5",
+          "topic": "bridge",
+          "recordIndex": 54,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-056-z3277",
+          "topic": "harbor",
+          "recordIndex": 56,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-058-0irjy",
+          "topic": "cobalt",
+          "recordIndex": 58,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-062-mpm05",
+          "topic": "onboarding",
+          "recordIndex": 62,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-064-8691s",
+          "topic": "migration",
+          "recordIndex": 64,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-066-ao21z",
+          "topic": "quota",
+          "recordIndex": 66,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-070-e4vle",
+          "topic": "ledger",
+          "recordIndex": 70,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-072-rf4s2",
+          "topic": "parser",
+          "recordIndex": 72,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-074-91b5d",
+          "topic": "router",
+          "recordIndex": 74,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-078-sbb6n",
+          "topic": "queen",
+          "recordIndex": 78,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-080-iy4rm",
+          "topic": "orchid",
+          "recordIndex": 80,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-082-xqvaz",
+          "topic": "ember",
+          "recordIndex": 82,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-086-utvas",
+          "topic": "telemetry",
+          "recordIndex": 86,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-088-3s3jz",
+          "topic": "rollback",
+          "recordIndex": 88,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-090-77n0f",
+          "topic": "sandbox",
+          "recordIndex": 90,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-094-r8ule",
+          "topic": "scheduler",
+          "recordIndex": 94,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-096-kfy5m",
+          "topic": "cache",
+          "recordIndex": 96,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-098-lasri",
+          "topic": "worker",
+          "recordIndex": 98,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-102-yre8o",
+          "topic": "harbor",
+          "recordIndex": 102,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-104-3l0of",
+          "topic": "cobalt",
+          "recordIndex": 104,
+          "rank": 0,
+          "cold": false
+        }
+      ]
+    }
+  },
+  "compactionRepeat": {
+    "mode": "compaction",
+    "historyTokens": 160473,
+    "windowTokens": 80000,
+    "records": 107,
+    "coldRecords": 53,
+    "tailRecords": 54,
+    "oldSpanTokens": 79490,
+    "truncation": {
+      "facts": 40,
+      "available": 20,
+      "accuracy": 0.5
+    },
+    "compaction": {
+      "facts": 40,
+      "tailFacts": 20,
+      "oldFacts": 20,
+      "survivedOld": 4,
+      "oldFactRecovery": 0.2,
+      "accuracy": 0.6,
+      "reportTokens": 570
+    },
+    "dshMemory": {
+      "facts": 40,
+      "hit1": 1,
+      "hit3": 1,
+      "hit5": 1,
+      "medianLatencyMs": 1.8057080000000099,
+      "tokensPerQuestion": 1693,
+      "details": [
+        {
+          "fact": "FACT-000-367k8",
+          "topic": "gateway",
+          "recordIndex": 0,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-002-9xd8t",
+          "topic": "scheduler",
+          "recordIndex": 2,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-004-9n03z",
+          "topic": "cache",
+          "recordIndex": 4,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-008-yg9ka",
+          "topic": "bridge",
+          "recordIndex": 8,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-010-7eqom",
+          "topic": "harbor",
+          "recordIndex": 10,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-012-4n2i8",
+          "topic": "cobalt",
+          "recordIndex": 12,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-016-1pl2k",
+          "topic": "onboarding",
+          "recordIndex": 16,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-018-9mvvo",
+          "topic": "migration",
+          "recordIndex": 18,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-020-vsv8i",
+          "topic": "quota",
+          "recordIndex": 20,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-024-zu7pl",
+          "topic": "ledger",
+          "recordIndex": 24,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-026-g1nc4",
+          "topic": "parser",
+          "recordIndex": 26,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-028-5o07y",
+          "topic": "router",
+          "recordIndex": 28,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-032-q7rv0",
+          "topic": "queen",
+          "recordIndex": 32,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-034-9ztgv",
+          "topic": "orchid",
+          "recordIndex": 34,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-036-n5fgu",
+          "topic": "ember",
+          "recordIndex": 36,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-040-ff6rz",
+          "topic": "telemetry",
+          "recordIndex": 40,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-042-jshn6",
+          "topic": "rollback",
+          "recordIndex": 42,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-044-1znh3",
+          "topic": "sandbox",
+          "recordIndex": 44,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-048-mwv0n",
+          "topic": "scheduler",
+          "recordIndex": 48,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-050-9bxsc",
+          "topic": "cache",
+          "recordIndex": 50,
+          "rank": 0,
+          "cold": true
+        },
+        {
+          "fact": "FACT-054-7h9p5",
+          "topic": "bridge",
+          "recordIndex": 54,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-056-z3277",
+          "topic": "harbor",
+          "recordIndex": 56,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-058-0irjy",
+          "topic": "cobalt",
+          "recordIndex": 58,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-062-mpm05",
+          "topic": "onboarding",
+          "recordIndex": 62,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-064-8691s",
+          "topic": "migration",
+          "recordIndex": 64,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-066-ao21z",
+          "topic": "quota",
+          "recordIndex": 66,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-070-e4vle",
+          "topic": "ledger",
+          "recordIndex": 70,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-072-rf4s2",
+          "topic": "parser",
+          "recordIndex": 72,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-074-91b5d",
+          "topic": "router",
+          "recordIndex": 74,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-078-sbb6n",
+          "topic": "queen",
+          "recordIndex": 78,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-080-iy4rm",
+          "topic": "orchid",
+          "recordIndex": 80,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-082-xqvaz",
+          "topic": "ember",
+          "recordIndex": 82,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-086-utvas",
+          "topic": "telemetry",
+          "recordIndex": 86,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-088-3s3jz",
+          "topic": "rollback",
+          "recordIndex": 88,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-090-77n0f",
+          "topic": "sandbox",
+          "recordIndex": 90,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-094-r8ule",
+          "topic": "scheduler",
+          "recordIndex": 94,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-096-kfy5m",
+          "topic": "cache",
+          "recordIndex": 96,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-098-lasri",
+          "topic": "worker",
+          "recordIndex": 98,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-102-yre8o",
+          "topic": "harbor",
+          "recordIndex": 102,
+          "rank": 0,
+          "cold": false
+        },
+        {
+          "fact": "FACT-104-3l0of",
+          "topic": "cobalt",
+          "recordIndex": 104,
+          "rank": 0,
+          "cold": false
+        }
+      ]
+    }
+  },
+  "scale": {
+    "mode": "scale",
+    "windowTokens": 1000000,
+    "results": [
+      {
+        "historyTokens": 1000811,
+        "records": 667,
+        "windowTokens": 1000000,
+        "noMemoryAvailability": 0.9991896571880206,
+        "dshMemoryHit5": 1,
+        "dshMemoryHit3": 1,
+        "tokensPerQuestion": 1707,
+        "medianLatencyMs": 1.6225409999999556
+      },
+      {
+        "historyTokens": 5004369,
+        "records": 3333,
+        "windowTokens": 1000000,
+        "noMemoryAvailability": 0.1998253925719706,
+        "dshMemoryHit5": 1,
+        "dshMemoryHit3": 1,
+        "tokensPerQuestion": 1710,
+        "medianLatencyMs": 24.60924999999952
+      },
+      {
+        "historyTokens": 10011439,
+        "records": 6667,
+        "windowTokens": 1000000,
+        "noMemoryAvailability": 0.09988574070121188,
+        "dshMemoryHit5": 1,
+        "dshMemoryHit3": 1,
+        "tokensPerQuestion": 1710,
+        "medianLatencyMs": 52.91120799999953
+      }
+    ]
+  },
+  "scaleRepeat": {
+    "mode": "scale",
+    "windowTokens": 1000000,
+    "results": [
+      {
+        "historyTokens": 1000811,
+        "records": 667,
+        "windowTokens": 1000000,
+        "noMemoryAvailability": 0.9991896571880206,
+        "dshMemoryHit5": 1,
+        "dshMemoryHit3": 1,
+        "tokensPerQuestion": 1707,
+        "medianLatencyMs": 1.6567499999999882
+      },
+      {
+        "historyTokens": 5004369,
+        "records": 3333,
+        "windowTokens": 1000000,
+        "noMemoryAvailability": 0.1998253925719706,
+        "dshMemoryHit5": 1,
+        "dshMemoryHit3": 1,
+        "tokensPerQuestion": 1710,
+        "medianLatencyMs": 24.253083999999944
+      },
+      {
+        "historyTokens": 10011439,
+        "records": 6667,
+        "windowTokens": 1000000,
+        "noMemoryAvailability": 0.09988574070121188,
+        "dshMemoryHit5": 1,
+        "dshMemoryHit3": 1,
+        "tokensPerQuestion": 1710,
+        "medianLatencyMs": 53.48041600000033
+      }
+    ]
+  },
+  "capacity10MRaw": "scale: 1000 records \u00d7 10000 tokens (10.0M tokens), pool capacity 10.0M, target ratio 0.3, gc keep 0.5\nwrite: 1000 records / 10.0M tokens in 0.4s\ndb after write: 1.1 MiB, records dir 38.5 MiB\n== reads ==\nfacets: median 0.46ms p95 0.48ms\nlist 20: median 0.57ms p95 0.58ms\ncatalog: median 1.07ms p95 1.08ms\nsearch title term \"topic 7\": median 1.69ms p95 2.03ms\nsearch ascii \"alpha beta\": median 1.49ms p95 1.53ms\nsearch CJK \"\u8bb0\u5fc6\": median 0.20ms p95 0.21ms\ngrep body \"xxxxxxxx\": median 5.34ms p95 6.07ms\nget record: median 0.04ms p95 0.04ms\n== compression ==\ncompressCold: moved 700 records, freed 7.00M tokens in 0.40s\nhot 3.00M / cold 7.00M tokens; cold files 26.9 MiB; db 3.6 MiB\nsearch after cold (card fields): median 2.62ms p95 2.68ms\ncatalog after cold: median 0.90ms p95 0.94ms\n== cold gc ==\ngcCold: removed 350 records, freed 3.50M cold tokens in 0.04s\ndb after gc: 3.6 MiB\n",
+  "capacity100MRaw": "scale: 10000 records \u00d7 10000 tokens (100.0M tokens), pool capacity 100.0M, target ratio 0.5, gc keep 0.5\nwrite: 10000 records / 100.0M tokens in 5.4s\ndb after write: 10.5 MiB, records dir 384.8 MiB\n== reads ==\nfacets: median 6.42ms p95 6.57ms\nlist 20: median 5.84ms p95 6.00ms\ncatalog: median 13.01ms p95 13.26ms\nsearch title term \"topic 7\": median 7.70ms p95 8.01ms\nsearch ascii \"alpha beta\": median 7.42ms p95 7.69ms\nsearch CJK \"\u8bb0\u5fc6\": median 2.36ms p95 2.70ms\ngrep body \"xxxxxxxx\": median 15.18ms p95 15.21ms\nget record: median 0.04ms p95 0.04ms\n== compression ==\ncompressCold: moved 5000 records, freed 50.00M tokens in 2.60s\nhot 50.00M / cold 50.00M tokens; cold files 192.4 MiB; db 28.0 MiB\nsearch after cold (card fields): median 14.06ms p95 14.22ms\ncatalog after cold: median 16.16ms p95 16.28ms\n== cold gc ==\ngcCold: removed 2500 records, freed 25.00M cold tokens in 0.29s\ndb after gc: 28.2 MiB\n",
+  "recallRaw": "suite=all threshold=0\nsynthetic suite: n=80 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 1.34ms p95 1.92ms\ndemo suite (memory_search): n=16 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 0.26ms p95 0.68ms\ndemo suite (auto-recall query): n=16 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 0.19ms p95 0.34ms\n"
+}

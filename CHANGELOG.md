@@ -1,5 +1,11 @@
 # Changelog
 
+**Measurement note:** the 8-probe and multi-seed live A/B entries below retain their
+reported counts, but the harness's recent-tail construction has a reproducible
+ordering problem. The original tail membership was not saved; see the
+[live-testing methodology warning](docs/live-testing.md#deepseek-flash-results-2026-10-29)
+before interpreting the reported evicted subsets.
+
 ## 0.6.1
 
 ### Added — Codex/GPT contribution bridge
