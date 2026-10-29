@@ -4373,6 +4373,27 @@ await test('U32', 'reference paged-KV host pages blocks, caches prefixes and evi
   assert.equal(host.negotiation().canPrefix, true)
 })
 
+
+await test('U33', 'checkpoint runtime injects a materialized window when enabled', async () => {
+  await withInstance('u33', { checkpoint: { materializer: 'timeline-exact' }, ctx: { services: { llm: undefined } } }, async ({ instance, ctx, root }) => {
+    const session = createSession({ id: 'sess-u33', cwd: '/tmp/ws-u33' })
+    await instance.enableLevel(session.id, 'l3')
+    const compaction = createCompactionEvent()
+    await seedCompaction(instance, ctx, session, compaction)
+    const decision = createPreStepDecision(session, '继续')
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(decision))
+    const materialized = result.messages.filter((message) => message.source?.kind === 'memory-recall' && message.source?.form === 'materialized-context')
+    assert.equal(materialized.length, 1, 'exactly one materialized window must be injected')
+    const text = materialized[0].content.filter((block) => block.type === 'text').map((block) => block.text).join('\n')
+    assertIncludes(text, 'Extra-context materialized window')
+    assertIncludes(text, 'memex-materializer')
+    const trace = join(root, 'materializer-trace.jsonl')
+    assert.ok(existsSync(trace), 'materializer trace file must be written for runtime verification')
+    assertIncludes(readFileSync(trace, 'utf8'), 'materialized-context')
+    assertNoWarnings(ctx)
+  })
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

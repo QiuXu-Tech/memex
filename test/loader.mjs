@@ -21,6 +21,8 @@ const LOCAL_PACKAGES = {
   '@qiuxu/memex-core/model-profiles': new URL('../packages/memex-core/lib/model-profiles.js', import.meta.url).href,
   '@qiuxu/memex-core/manual': new URL('../packages/memex-core/lib/manual.js', import.meta.url).href,
   '@qiuxu/memex-core/engine': new URL('../packages/memex-core/lib/engine.js', import.meta.url).href,
+  '@qiuxu/memex-core/context-pager': new URL('../packages/memex-core/lib/context-pager.js', import.meta.url).href,
+  '@qiuxu/memex-core/context-materializer': new URL('../packages/memex-core/lib/context-materializer.js', import.meta.url).href,
   '@qiuxu/memex-seam': new URL('../packages/memex-seam/index.js', import.meta.url).href,
   '@qiuxu/memex-local': new URL('../packages/memex-local/index.js', import.meta.url).href,
   '@qiuxu/memex-checkpoint': new URL('../packages/memex-checkpoint/index.js', import.meta.url).href,
@@ -77,6 +79,10 @@ export async function resolve(specifier, context, nextResolve) {
   // emitted from inside the generated bundle must resolve to those copies
   // (not to the workspace source packages), mirroring the published bundle.
   const parent = String(context.parentURL ?? '')
+  const subpathRuntime = specifier === '@qiuxu/memex-core/context-pager' ? 'memory-core/lib/context-pager.js' : specifier === '@qiuxu/memex-core/context-materializer' ? 'memory-core/lib/context-materializer.js' : undefined
+  if (subpathRuntime !== undefined && parent.includes('/packages/memex/modules/')) {
+    return { url: new URL(`../packages/memex/modules/${subpathRuntime}`, import.meta.url).href, format: 'module', shortCircuit: true }
+  }
   const runtime = BUNDLE_RUNTIME[specifier]
   if (runtime !== undefined && parent.includes('/packages/memex/modules/')) {
     return {

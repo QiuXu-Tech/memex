@@ -122,6 +122,9 @@ export class MemoryStore extends Service {
    */
   async materializeContext(_request) { return undefined }
 
+  /** Record a materialized-window injection for local verification (no-op by default). */
+  async recordMaterialization(_entry) { return false }
+
   /** @returns {Promise<void>} Flush pending durable state. */
   async flush() {}
 }

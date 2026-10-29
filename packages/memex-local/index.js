@@ -17,6 +17,9 @@ import z from '@deepseek-ai/schemastery'
 import { dshHomePath } from '@deepseek-ai/dsh-home-paths'
 import { MemoryStore } from '@qiuxu/memex-seam'
 import { LocalStoreCore } from './lib/store.js'
+import { appendFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { materializeStoreContext } from '@qiuxu/memex-core/context-pager'
 
 /**
  * Resolve the deployment default levels from config (legacy `defaultMode`
@@ -125,6 +128,15 @@ export default class LocalMemoryStore extends MemoryStore {
 
   async materializeContext(request) {
     return materializeStoreContext({ store: this.core, ...request })
+  }
+
+  async recordMaterialization(entry) {
+    try {
+      appendFileSync(join(this.root, 'materializer-trace.jsonl'), JSON.stringify({ at: new Date().toISOString(), ...entry }) + '\n', { mode: 0o600 })
+      return true
+    } catch {
+      return false
+    }
   }
 
   async getLevels(sessionId) {

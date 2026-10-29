@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.14.1
+
+### Fixed
+- `LocalMemoryStore.materializeContext()` was missing its `materializeStoreContext` import in the generated bundle, so the runtime materializer silently failed and fell back to the old catalog/recall path. Fixed; U33 now mounts the checkpoint with `materializer: timeline-exact` and asserts a real `materialized-context` injection.
+- Added `recordMaterialization` trace to the local backend: enabled injections append to `<memory-root>/materializer-trace.jsonl` for live verification; checkpoint records session/workspace/form/text (best-effort).
+- Harness **130/130**.
+
+### Note
+- The DSH profile uses a compatibility package named `@local/dsh-memory` that points at the upgraded bundle; this avoids changing the profile's bundle/row names (which caused the earlier disappearance when the profile was switched to `@qiuxu/memex`). Restart DSH after updating the link.
+
 ## 0.14.0
 
 ### Changed — materializer is now the default DSH injection path

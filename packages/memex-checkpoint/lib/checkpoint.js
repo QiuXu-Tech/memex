@@ -530,6 +530,11 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
         if (window !== undefined) {
           additions.push(window)
           materialized = true
+          try {
+            await memory.recordMaterialization?.({ sessionId: session.id, workspaceKey, form: 'materialized-context', text: window.content?.find((block) => block.type === 'text')?.text ?? '' })
+          } catch {
+            // Trace is best-effort; never block injection.
+          }
         }
       }
       if (!materialized) {
