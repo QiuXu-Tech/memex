@@ -4,6 +4,18 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.11.0
+
+### Added — context materialization direction + transformer specialist interface
+- **Direction locked**: extra context becomes a context virtualizer/materializer (exact ordered, budgeted window), not only a retrieval layer. New design doc: `docs/context-materialization.md`.
+- `packages/memex-core/lib/context-materializer.js`:
+  - deterministic chronological materialization with stable index prefix (`stablePrefixHash`) and prompt-cache-friendly layout;
+  - variants: `timeline-exact`, `edge-attention`, and `context-specialist-v1` (declares `requiresKV: true`, heuristic fallback);
+  - budgeted inclusion, pinned-page forcing, explicit `omittedIds`, role/sequence metadata.
+- Transformer context-specialist variants specified as pluggable components: **context encoder** (learned salience), **context assembler** (budgeted packing), **KV/paged-attention specialist** (native-context path). Not trained/wired yet; interface and deterministic baseline first.
+- **U26** covers chronology, stable prefix determinism, budget/pinning, and specialist contract; harness **123/123**.
+- Explicit boundary documented: token/text materialization can approach true context structurally; attention/KV-level fidelity requires host paging and is called out as the remaining gap.
+
 ## 0.10.0
 
 ### Fixed — A/B tail-order

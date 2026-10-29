@@ -4221,6 +4221,33 @@ await test('U25', 'live A/B tail follows insertion order when timestamps tie', a
   }
 })
 
+
+await test('U26', 'context materializer: chronology, stable prefix, budget, specialist slot', async () => {
+  const { materializeContext, CONTEXT_VARIANTS, resolveContextVariant } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [
+    { id: 'mem_c', title: 'third', body: 'C body', sequence: 30, createdAt: 30 },
+    { id: 'mem_a', title: 'first', body: 'A body', sequence: 10, createdAt: 10, useWhen: 'read first' },
+    { id: 'mem_b', title: 'second', body: 'B body', sequence: 20, createdAt: 20 },
+  ]
+  const out = materializeContext({ pages, budgetTokens: 2000 })
+  assert.deepEqual(out.includedIds, ['mem_a', 'mem_b', 'mem_c'], 'materializer must preserve sequence order')
+  assert.ok(out.text.indexOf('A body') < out.text.indexOf('B body') && out.text.indexOf('B body') < out.text.indexOf('C body'), 'bodies must be materialized in order')
+  assert.equal(out.variant.id, 'timeline-exact')
+  assert.equal(out.requiresKV, false)
+  assert.ok(out.stablePrefixHash.length >= 12)
+  const again = materializeContext({ pages: [...pages].reverse(), budgetTokens: 2000 })
+  assert.equal(again.stablePrefixHash, out.stablePrefixHash, 'stable prefix must be layout-deterministic')
+  assert.deepEqual(again.includedIds, out.includedIds)
+  const tiny = materializeContext({ pages, budgetTokens: 1, pinnedIds: ['mem_c'] })
+  assert.ok(tiny.includedIds.includes('mem_c'), 'pinned pages must be retained even when the budget is tiny')
+  assert.ok(tiny.omittedIds.length > 0, 'over-budget pages must be reported as omitted')
+  const edge = materializeContext({ pages, budgetTokens: 2000, variant: 'edge-attention' })
+  assert.equal(edge.variant.pinnedEdges, true)
+  const specialist = resolveContextVariant('context-specialist-v1')
+  assert.equal(specialist.requiresKV, true, 'context-specialist variant must declare its KV/paging requirement')
+  assert.ok(CONTEXT_VARIANTS.some((variant) => variant.id === 'context-specialist-v1'))
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

@@ -20,7 +20,7 @@ Memex treats context as a hierarchy, not a notes store: when the native context 
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # offline harness (122 tests)
+node --import ./test/register.mjs ./test/run.mjs   # offline harness (123 tests)
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -31,6 +31,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
 - [Extra context, not just memory](context-layer.html) — the concept: a context hierarchy between history and the model window.
+- [Context materialization](context-materialization.html) — the next direction: exact window materialization and transformer context-specialist variants.
 - [Integrations](integrations.html) — Claude Code, Codex, Gemini CLI, Cursor, Cline, Windsurf, DSH.
 - [Model profiles](model-profiles.html) — per-family budgets, injection formats and digest prompts.
 - [Optimization findings](optimization-findings.html) — retrieval/perf experiments, fixed issues, backlog.
