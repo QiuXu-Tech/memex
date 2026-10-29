@@ -156,7 +156,9 @@ for its historical context.
 
 A separate live run used `gpt-6.1-sol` through Codex CLI, with three synthetic
 300-turn histories and 20 probes each. The bridge used Node 25.9.0 and Codex
-CLI 0.165.0-alpha.1.2. The control received the titles and
+CLI 0.165.0-alpha.1.2. The quiet-start gate and load samples above apply to
+the offline workloads; load was not recorded separately for the Codex calls.
+The control received the titles and
 summaries of the 20 recent tail records, not their full conversation bodies;
 the treatment received the same cards plus evidence selected and opened by the
 fixture before the model call. This tests answers given pre-retrieved evidence,

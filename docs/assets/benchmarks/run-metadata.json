@@ -64,6 +64,7 @@
     "node": "v25.9.0",
     "codexCli": "0.165.0-alpha.1.2",
     "calls": 6,
+    "loadSamples": "NOT_CAPTURED",
     "sessionCompletionsMatched": true,
     "initialBridgeExit": 1,
     "initialFailure": "SQLite ERR_SQLITE_ERROR 5: database is locked while generating seed 3; cause UNKNOWN",
