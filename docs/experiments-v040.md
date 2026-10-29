@@ -61,6 +61,8 @@ evicted 0/57 → 57/57. See the [methodology section](https://github.com/QiuXu-T
 | Cold anchor-free natural-language (n=3, v0.7.0) | control **0/3**; treatment **3/3** (cold archived facts, cold-only FTS leg + full-abstract-coverage boost) |
 | Codex CLI / GPT-6.1 Sol (3 seeds × 20, contributed v0.7.1) | control **3/60 (5%)**; treatment **60/60 (100%)** (pre-fix report: overall answers preserved; reported cold subset unverified) |
 | Codex CLI / GPT-6.1 Terra (3 seeds × 20, v0.8.1) | control **3/60 (5%)**; treatment **60/60 (100%)**; verified evicted **0/57 → 57/57** |
+| Claude Sonnet 5.5 (3 seeds × 20, v0.9.0, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; verified evicted **0/57 → 57/57**; **40,673 tokens** |
+| Claude Opus 5.5 (3 seeds × 20, v0.9.0, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; verified evicted **0/57 → 57/57**; **40,676 tokens** |
 | Cold partial/synonym anchor-free (n=3, v0.8.0) | control **0/3**; treatment **3/3** (morphology-lite + partial coverage; cold bodies not read) |
 
 **Finding (fixed in v0.5.0/v0.5.1):** card-field tokens and bare numbers are now indexed in `record_terms`; cold rescue uses exact anchors, and **body rescue now treats unmatched bare numbers as anchors and attaches body evidence to already-candidate rows**. Cold natural-language probes went 0/30 → 30/30; Q19 (hot body, turn 285) is now recovered; treatment overall **60/60**. The concept is now explicitly **extra-context**, not a notes store — see docs/context-layer.md.

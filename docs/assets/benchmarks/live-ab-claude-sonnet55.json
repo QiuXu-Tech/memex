@@ -1,0 +1,1669 @@
+{
+  "format": 1,
+  "kind": "live-ab-claude-result",
+  "generatedAt": "2026-10-29T11:07:54.594Z",
+  "provider": "apimaster",
+  "baseUrl": "https://apimaster.ai/v1",
+  "model": "claude-sonnet-5-5",
+  "method": "live-ab.mjs --emit-prompts batch prompts; OpenAI-compatible /chat/completions; exact-FACT grading; tail membership saved",
+  "seeds": [
+    {
+      "seed": 1,
+      "turns": 300,
+      "tailCount": 20,
+      "tailIds": [
+        "mem_acd0dc53ad",
+        "mem_c7639f7437",
+        "mem_4d1aafe1cb",
+        "mem_53dda9d9d1",
+        "mem_596bc42c8f",
+        "mem_d99a3b20d1",
+        "mem_4527a6494e",
+        "mem_de9c76c833",
+        "mem_88368d8e18",
+        "mem_a3fb815944",
+        "mem_2f26e10d87",
+        "mem_5b9937cea1",
+        "mem_76d442d908",
+        "mem_7d7a7a3f66",
+        "mem_f2f0a94cd1",
+        "mem_0e3249221d",
+        "mem_7f3367cfe6",
+        "mem_b3727856c1",
+        "mem_e56ed85b79",
+        "mem_9e8d68bc28"
+      ],
+      "probes": 20,
+      "evictedProbes": 19,
+      "control": {
+        "rows": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-mkorf",
+            "id": "mem_f8e9fc939b",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-03jmy",
+            "id": "mem_b4911a4f2d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-izkkh",
+            "id": "mem_c3da9ee47e",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-zbfww",
+            "id": "mem_9a175b718c",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-yv0n0",
+            "id": "mem_51224b4545",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-a4b5x",
+            "id": "mem_e74ca1667d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-m28ly",
+            "id": "mem_b50d448ebb",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-py2zp",
+            "id": "mem_9c261f2f14",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-fbtzd",
+            "id": "mem_9699a58466",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-ztagj",
+            "id": "mem_d21b3d2b7e",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-ge14o",
+            "id": "mem_d5e367e997",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-hlgwo",
+            "id": "mem_f41e6ec158",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-50232",
+            "id": "mem_4856ef9603",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-ej946",
+            "id": "mem_f9cf0dd743",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-8wsh3",
+            "id": "mem_0ea2c9360d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-5k815",
+            "id": "mem_74a520c26f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-hlxhw",
+            "id": "mem_9ab2bcf2b4",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-2fb7j",
+            "id": "mem_4fa618fe3f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-e7fcx",
+            "id": "mem_da18892db1",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-rm66w",
+            "id": "mem_4d1aafe1cb",
+            "inTail": true,
+            "evicted": false,
+            "answer": "FACT-285-rm66w",
+            "correct": true
+          }
+        ],
+        "correct": 1,
+        "total": 20
+      },
+      "treatment": {
+        "rows": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-mkorf",
+            "id": "mem_f8e9fc939b",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-000-mkorf",
+            "correct": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-03jmy",
+            "id": "mem_b4911a4f2d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-015-03jmy",
+            "correct": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-izkkh",
+            "id": "mem_c3da9ee47e",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-030-izkkh",
+            "correct": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-zbfww",
+            "id": "mem_9a175b718c",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-045-zbfww",
+            "correct": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-yv0n0",
+            "id": "mem_51224b4545",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-060-yv0n0",
+            "correct": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-a4b5x",
+            "id": "mem_e74ca1667d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-075-a4b5x",
+            "correct": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-m28ly",
+            "id": "mem_b50d448ebb",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-090-m28ly",
+            "correct": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-py2zp",
+            "id": "mem_9c261f2f14",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-105-py2zp",
+            "correct": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-fbtzd",
+            "id": "mem_9699a58466",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-120-fbtzd",
+            "correct": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-ztagj",
+            "id": "mem_d21b3d2b7e",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-135-ztagj",
+            "correct": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-ge14o",
+            "id": "mem_d5e367e997",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-150-ge14o",
+            "correct": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-hlgwo",
+            "id": "mem_f41e6ec158",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-165-hlgwo",
+            "correct": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-50232",
+            "id": "mem_4856ef9603",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-180-50232",
+            "correct": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-ej946",
+            "id": "mem_f9cf0dd743",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-195-ej946",
+            "correct": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-8wsh3",
+            "id": "mem_0ea2c9360d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-210-8wsh3",
+            "correct": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-5k815",
+            "id": "mem_74a520c26f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-225-5k815",
+            "correct": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-hlxhw",
+            "id": "mem_9ab2bcf2b4",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-240-hlxhw",
+            "correct": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-2fb7j",
+            "id": "mem_4fa618fe3f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-255-2fb7j",
+            "correct": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-e7fcx",
+            "id": "mem_da18892db1",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-270-e7fcx",
+            "correct": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-rm66w",
+            "id": "mem_4d1aafe1cb",
+            "inTail": true,
+            "evicted": false,
+            "answer": "FACT-285-rm66w",
+            "correct": true
+          }
+        ],
+        "correct": 20,
+        "total": 20
+      }
+    },
+    {
+      "seed": 2,
+      "turns": 300,
+      "tailCount": 20,
+      "tailIds": [
+        "mem_aa17200331",
+        "mem_ba60871e70",
+        "mem_e507fc5a49",
+        "mem_4f4b3da371",
+        "mem_51d29ec58e",
+        "mem_6b56a61a26",
+        "mem_f8d13c0766",
+        "mem_038fa541ff",
+        "mem_5d6b86451e",
+        "mem_e067f89d00",
+        "mem_24a8569ba5",
+        "mem_7004baeb61",
+        "mem_87b12f2ce8",
+        "mem_8f2de90fb6",
+        "mem_91358371fe",
+        "mem_931fa26061",
+        "mem_a6765a3c2e",
+        "mem_c5a51e202c",
+        "mem_163c6cd86e",
+        "mem_af6bc41c9c"
+      ],
+      "probes": 20,
+      "evictedProbes": 19,
+      "control": {
+        "rows": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-qfl7m",
+            "id": "mem_aad360a235",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-bp74k",
+            "id": "mem_e06a31c362",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-a9qrt",
+            "id": "mem_3b3df45145",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-jd6u3",
+            "id": "mem_1a99462b43",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-vidfn",
+            "id": "mem_456750f9f8",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-mpk5r",
+            "id": "mem_a538d9e5d8",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hyyqy",
+            "id": "mem_e68c8e97d6",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-cuzlu",
+            "id": "mem_2c87d2f1fe",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-s4xt8",
+            "id": "mem_87ac9b573f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-43s9i",
+            "id": "mem_043b3cc1b0",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-saher",
+            "id": "mem_c5b9f034ec",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-797as",
+            "id": "mem_1639352412",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-f9so7",
+            "id": "mem_d154687fc4",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-u25n2",
+            "id": "mem_6826d8daeb",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-kxe32",
+            "id": "mem_67c37b203e",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-52qt3",
+            "id": "mem_810087af55",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-o77fl",
+            "id": "mem_69d5f2322f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-d78oa",
+            "id": "mem_bda8ada7a4",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-yz7lh",
+            "id": "mem_7a7236b411",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-1esyu",
+            "id": "mem_4f4b3da371",
+            "inTail": true,
+            "evicted": false,
+            "answer": "FACT-285-1esyu",
+            "correct": true
+          }
+        ],
+        "correct": 1,
+        "total": 20
+      },
+      "treatment": {
+        "rows": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-qfl7m",
+            "id": "mem_aad360a235",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-000-qfl7m",
+            "correct": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-bp74k",
+            "id": "mem_e06a31c362",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-015-bp74k",
+            "correct": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-a9qrt",
+            "id": "mem_3b3df45145",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-030-a9qrt",
+            "correct": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-jd6u3",
+            "id": "mem_1a99462b43",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-045-jd6u3",
+            "correct": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-vidfn",
+            "id": "mem_456750f9f8",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-060-vidfn",
+            "correct": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-mpk5r",
+            "id": "mem_a538d9e5d8",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-075-mpk5r",
+            "correct": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hyyqy",
+            "id": "mem_e68c8e97d6",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-090-hyyqy",
+            "correct": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-cuzlu",
+            "id": "mem_2c87d2f1fe",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-105-cuzlu",
+            "correct": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-s4xt8",
+            "id": "mem_87ac9b573f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-120-s4xt8",
+            "correct": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-43s9i",
+            "id": "mem_043b3cc1b0",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-135-43s9i",
+            "correct": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-saher",
+            "id": "mem_c5b9f034ec",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-150-saher",
+            "correct": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-797as",
+            "id": "mem_1639352412",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-165-797as",
+            "correct": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-f9so7",
+            "id": "mem_d154687fc4",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-180-f9so7",
+            "correct": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-u25n2",
+            "id": "mem_6826d8daeb",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-195-u25n2",
+            "correct": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-kxe32",
+            "id": "mem_67c37b203e",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-210-kxe32",
+            "correct": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-52qt3",
+            "id": "mem_810087af55",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-225-52qt3",
+            "correct": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-o77fl",
+            "id": "mem_69d5f2322f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-240-o77fl",
+            "correct": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-d78oa",
+            "id": "mem_bda8ada7a4",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-255-d78oa",
+            "correct": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-yz7lh",
+            "id": "mem_7a7236b411",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-270-yz7lh",
+            "correct": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-1esyu",
+            "id": "mem_4f4b3da371",
+            "inTail": true,
+            "evicted": false,
+            "answer": "FACT-285-1esyu",
+            "correct": true
+          }
+        ],
+        "correct": 20,
+        "total": 20
+      }
+    },
+    {
+      "seed": 3,
+      "turns": 300,
+      "tailCount": 20,
+      "tailIds": [
+        "mem_5337c31d43",
+        "mem_c8566c1ce1",
+        "mem_2c264344ff",
+        "mem_66ed9788d8",
+        "mem_f2d040fd97",
+        "mem_4b9ce4e9d3",
+        "mem_a378a42a0e",
+        "mem_c443ab09d7",
+        "mem_d5f53cbbdc",
+        "mem_09e048d38a",
+        "mem_57ec53c842",
+        "mem_e433e28771",
+        "mem_e6f65715f2",
+        "mem_078ee5f97c",
+        "mem_9737040800",
+        "mem_990c05f840",
+        "mem_a2950889ab",
+        "mem_4fbda0941b",
+        "mem_67a3594184",
+        "mem_766dd41021"
+      ],
+      "probes": 20,
+      "evictedProbes": 19,
+      "control": {
+        "rows": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-pxewf",
+            "id": "mem_7938beed89",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-1e3tl",
+            "id": "mem_ce13e68fd6",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-gf83p",
+            "id": "mem_c1917440f7",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-2p3ua",
+            "id": "mem_6bdfa8e426",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-rgus2",
+            "id": "mem_734a005ed8",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-hblyb",
+            "id": "mem_d2a23d9b72",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hisus",
+            "id": "mem_baa2542765",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-5toyt",
+            "id": "mem_34854d130f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-9h6hf",
+            "id": "mem_fab2ebcd65",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-jw6fx",
+            "id": "mem_799d2af47d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-70m0g",
+            "id": "mem_e97891d8a7",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-30c3x",
+            "id": "mem_cac8182957",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-pp2gq",
+            "id": "mem_6b780dbb71",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-h5u81",
+            "id": "mem_6fc560df1f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-skod2",
+            "id": "mem_6ba05b1520",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-vo6pc",
+            "id": "mem_6ba6f25d2b",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-bnezh",
+            "id": "mem_94130c8ee3",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-ouzrk",
+            "id": "mem_e8069af855",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-abmgy",
+            "id": "mem_18cc835852",
+            "inTail": false,
+            "evicted": true,
+            "answer": "UNKNOWN",
+            "correct": false
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-o73dt",
+            "id": "mem_a378a42a0e",
+            "inTail": true,
+            "evicted": false,
+            "answer": "FACT-285-o73dt",
+            "correct": true
+          }
+        ],
+        "correct": 1,
+        "total": 20
+      },
+      "treatment": {
+        "rows": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-pxewf",
+            "id": "mem_7938beed89",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-000-pxewf",
+            "correct": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-1e3tl",
+            "id": "mem_ce13e68fd6",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-015-1e3tl",
+            "correct": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-gf83p",
+            "id": "mem_c1917440f7",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-030-gf83p",
+            "correct": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-2p3ua",
+            "id": "mem_6bdfa8e426",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-045-2p3ua",
+            "correct": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-rgus2",
+            "id": "mem_734a005ed8",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-060-rgus2",
+            "correct": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-hblyb",
+            "id": "mem_d2a23d9b72",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-075-hblyb",
+            "correct": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hisus",
+            "id": "mem_baa2542765",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-090-hisus",
+            "correct": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-5toyt",
+            "id": "mem_34854d130f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-105-5toyt",
+            "correct": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-9h6hf",
+            "id": "mem_fab2ebcd65",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-120-9h6hf",
+            "correct": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-jw6fx",
+            "id": "mem_799d2af47d",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-135-jw6fx",
+            "correct": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-70m0g",
+            "id": "mem_e97891d8a7",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-150-70m0g",
+            "correct": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-30c3x",
+            "id": "mem_cac8182957",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-165-30c3x",
+            "correct": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-pp2gq",
+            "id": "mem_6b780dbb71",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-180-pp2gq",
+            "correct": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-h5u81",
+            "id": "mem_6fc560df1f",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-195-h5u81",
+            "correct": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-skod2",
+            "id": "mem_6ba05b1520",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-210-skod2",
+            "correct": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-vo6pc",
+            "id": "mem_6ba6f25d2b",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-225-vo6pc",
+            "correct": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-bnezh",
+            "id": "mem_94130c8ee3",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-240-bnezh",
+            "correct": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-ouzrk",
+            "id": "mem_e8069af855",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-255-ouzrk",
+            "correct": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-abmgy",
+            "id": "mem_18cc835852",
+            "inTail": false,
+            "evicted": true,
+            "answer": "FACT-270-abmgy",
+            "correct": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-o73dt",
+            "id": "mem_a378a42a0e",
+            "inTail": true,
+            "evicted": false,
+            "answer": "FACT-285-o73dt",
+            "correct": true
+          }
+        ],
+        "correct": 20,
+        "total": 20
+      }
+    }
+  ],
+  "aggregate": {
+    "control": {
+      "correct": 3,
+      "n": 60,
+      "accuracy": 0.05
+    },
+    "treatment": {
+      "correct": 60,
+      "n": 60,
+      "accuracy": 1
+    },
+    "evictedControl": {
+      "correct": 0,
+      "n": 57,
+      "accuracy": 0
+    },
+    "evictedTreatment": {
+      "correct": 57,
+      "n": 57,
+      "accuracy": 1
+    }
+  },
+  "usage": {
+    "promptTokens": 39025,
+    "completionTokens": 1648,
+    "totalTokens": 40673,
+    "calls": 6
+  },
+  "raw": [
+    {
+      "seed": 1,
+      "label": "control",
+      "textTail": "Q0: UNKNOWN\nQ1: UNKNOWN\nQ2: UNKNOWN\nQ3: UNKNOWN\nQ4: UNKNOWN\nQ5: UNKNOWN\nQ6: UNKNOWN\nQ7: UNKNOWN\nQ8: UNKNOWN\nQ9: UNKNOWN\nQ10: UNKNOWN\nQ11: UNKNOWN\nQ12: UNKNOWN\nQ13: UNKNOWN\nQ14: UNKNOWN\nQ15: UNKNOWN\nQ16: UNKNOWN\nQ17: UNKNOWN\nQ18: UNKNOWN\nQ19: FACT-285-rm66w",
+      "usage": {
+        "prompt_tokens": 1201,
+        "completion_tokens": 244,
+        "total_tokens": 1445,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 1201,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "seed": 1,
+      "label": "treatment",
+      "textTail": "Q0: FACT-000-mkorf\nQ1: FACT-015-03jmy\nQ2: FACT-030-izkkh\nQ3: FACT-045-zbfww\nQ4: FACT-060-yv0n0\nQ5: FACT-075-a4b5x\nQ6: FACT-090-m28ly\nQ7: FACT-105-py2zp\nQ8: FACT-120-fbtzd\nQ9: FACT-135-ztagj\nQ10: FACT-150-ge14o\nQ11: FACT-165-hlgwo\nQ12: FACT-180-50232\nQ13: FACT-195-ej946\nQ14: FACT-210-8wsh3\nQ15: FACT-225-5k815\nQ16: FACT-240-hlxhw\nQ17: FACT-255-2fb7j\nQ18: FACT-270-e7fcx\nQ19: FACT-285-rm66w",
+      "usage": {
+        "prompt_tokens": 11868,
+        "completion_tokens": 305,
+        "total_tokens": 12173,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 11868,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "seed": 2,
+      "label": "control",
+      "textTail": "Q0: UNKNOWN\nQ1: UNKNOWN\nQ2: UNKNOWN\nQ3: UNKNOWN\nQ4: UNKNOWN\nQ5: UNKNOWN\nQ6: UNKNOWN\nQ7: UNKNOWN\nQ8: UNKNOWN\nQ9: UNKNOWN\nQ10: UNKNOWN\nQ11: UNKNOWN\nQ12: UNKNOWN\nQ13: UNKNOWN\nQ14: UNKNOWN\nQ15: UNKNOWN\nQ16: UNKNOWN\nQ17: UNKNOWN\nQ18: UNKNOWN\nQ19: FACT-285-1esyu",
+      "usage": {
+        "prompt_tokens": 1194,
+        "completion_tokens": 244,
+        "total_tokens": 1438,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 1194,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "seed": 2,
+      "label": "treatment",
+      "textTail": "Q0: FACT-000-qfl7m\nQ1: FACT-015-bp74k\nQ2: FACT-030-a9qrt\nQ3: FACT-045-jd6u3\nQ4: FACT-060-vidfn\nQ5: FACT-075-mpk5r\nQ6: FACT-090-hyyqy\nQ7: FACT-105-cuzlu\nQ8: FACT-120-s4xt8\nQ9: FACT-135-43s9i\nQ10: FACT-150-saher\nQ11: FACT-165-797as\nQ12: FACT-180-f9so7\nQ13: FACT-195-u25n2\nQ14: FACT-210-kxe32\nQ15: FACT-225-52qt3\nQ16: FACT-240-o77fl\nQ17: FACT-255-d78oa\nQ18: FACT-270-yz7lh\nQ19: FACT-285-1esyu",
+      "usage": {
+        "prompt_tokens": 11768,
+        "completion_tokens": 305,
+        "total_tokens": 12073,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 11768,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "seed": 3,
+      "label": "control",
+      "textTail": "Q0: UNKNOWN\nQ1: UNKNOWN\nQ2: UNKNOWN\nQ3: UNKNOWN\nQ4: UNKNOWN\nQ5: UNKNOWN\nQ6: UNKNOWN\nQ7: UNKNOWN\nQ8: UNKNOWN\nQ9: UNKNOWN\nQ10: UNKNOWN\nQ11: UNKNOWN\nQ12: UNKNOWN\nQ13: UNKNOWN\nQ14: UNKNOWN\nQ15: UNKNOWN\nQ16: UNKNOWN\nQ17: UNKNOWN\nQ18: UNKNOWN\nQ19: FACT-285-o73dt",
+      "usage": {
+        "prompt_tokens": 1194,
+        "completion_tokens": 244,
+        "total_tokens": 1438,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 1194,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "seed": 3,
+      "label": "treatment",
+      "textTail": "Q0: FACT-000-pxewf\nQ1: FACT-015-1e3tl\nQ2: FACT-030-gf83p\nQ3: FACT-045-2p3ua\nQ4: FACT-060-rgus2\nQ5: FACT-075-hblyb\nQ6: FACT-090-hisus\nQ7: FACT-105-5toyt\nQ8: FACT-120-9h6hf\nQ9: FACT-135-jw6fx\nQ10: FACT-150-70m0g\nQ11: FACT-165-30c3x\nQ12: FACT-180-pp2gq\nQ13: FACT-195-h5u81\nQ14: FACT-210-skod2\nQ15: FACT-225-vo6pc\nQ16: FACT-240-bnezh\nQ17: FACT-255-ouzrk\nQ18: FACT-270-abmgy\nQ19: FACT-285-o73dt",
+      "usage": {
+        "prompt_tokens": 11800,
+        "completion_tokens": 306,
+        "total_tokens": 12106,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 11800,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    }
+  ],
+  "caveats": [
+    "Control/treatment prompts use synthetic fixtures; no private data is sent.",
+    "Batch prompts ask the model to answer only from the supplied context; this is evidence-in-prompt, not a tool-calling loop.",
+    "Usage comes from the gateway response; verify with your own APIMaster dashboard if needed.",
+    "Tail membership is saved explicitly; evicted subset is verified.",
+    "Synthetic fixture and evidence-in-prompt; no private prompts or keys are stored."
+  ],
+  "contributedBy": "DSH APIMaster Claude run",
+  "runBy": "local APIMaster OpenAI-compatible gateway",
+  "verifiedTail": true,
+  "seedsRun": "3 seeds x 20 probes"
+}

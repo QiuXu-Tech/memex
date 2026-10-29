@@ -13,6 +13,15 @@ retain their reported counts; their original tail membership was not saved.
 - Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
 - Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
 
+## 0.9.0
+
+### Added — Claude 5.5 live validation (APIMaster)
+- Added `scripts/claude-ab.mjs`: batch Claude runner over an OpenAI-compatible gateway, fixed-tail fixture, exact-FACT grading, per-call usage capture, no keys stored.
+- **claude-sonnet-5-5** and **claude-opus-5-5** (3 seeds × 20 probes each, APIMaster): control **3/60 (5%)**, treatment **60/60 (100%)**, verified evicted **0/57 → 57/57**.
+- **Measured token cost: 40,673 (Sonnet) / 40,676 (Opus) tokens**, 6 calls each, prompt-dominated; the Sonnet+Opus pair cost ~81.3k tokens.
+- Datasets: `docs/assets/benchmarks/live-ab-claude-sonnet55.json`, `live-ab-claude-opus55.json`; summary in docs/live-testing.md §H.
+- Harness **121/121**; real-archive guard unchanged from 0.8.1.
+
 ## 0.8.1
 
 ### Added — GPT family comparison

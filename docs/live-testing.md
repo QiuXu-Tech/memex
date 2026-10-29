@@ -103,6 +103,26 @@ Mechanism: stopword-filtered content terms, prefix ≥4 loose matching, cold-onl
 
 **Trade-off:** the partial boost is on by default and costs ~3pp real-archive hit@1 (68% → 65%) while hit@5 stays 93%; set `coldPartial: 0` in rerank for the precision-first behavior.
 
+### H. Claude family: Sonnet 5.5 vs Opus 5.5 (verified, v0.9.0)
+
+Both Claude 5.5 models were run through the **APIMaster** OpenAI-compatible gateway with the fixed batch bridge (`scripts/claude-ab.mjs`), 3 seeds × 20 probes, 6 calls each.
+
+| Model | Control | Treatment | Verified evicted | Usage (6 calls) |
+|---|---|---|---|---|
+| `claude-sonnet-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,673 tokens** (prompt 39,025 / completion 1,648) |
+| `claude-opus-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,676 tokens** (prompt 39,028 / completion 1,648) |
+
+- Tail membership is saved (`tailIds` / per-probe `inTail`/`evicted`); the evicted subset is verified.
+- The two Claude models are indistinguishable on this synthetic fixture, mirroring the Sol/Terra result.
+- **Measured cost of a Claude validation: ~40.7k tokens per model** (6 batch calls), ~81.3k tokens for the Sonnet+Opus pair.
+- Raw: [Sonnet](assets/benchmarks/live-ab-claude-sonnet55.json) · [Opus](assets/benchmarks/live-ab-claude-opus55.json).
+
+Run it yourself (key is read from env, never committed):
+
+```bash
+APIMASTER_API_KEY=... node scripts/claude-ab.mjs --model claude-sonnet-5-5
+```
+
 ## How to contribute
 
 1. Clone and run the dry-run sanity check (no network):
