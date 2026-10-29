@@ -1,0 +1,36 @@
+{
+  "mode": "scale",
+  "windowTokens": 1000000,
+  "results": [
+    {
+      "historyTokens": 1000811,
+      "records": 667,
+      "windowTokens": 1000000,
+      "noMemoryAvailability": 0.9991896571880206,
+      "dshMemoryHit5": 1,
+      "dshMemoryHit3": 1,
+      "tokensPerQuestion": 1707,
+      "medianLatencyMs": 7.472458000000188
+    },
+    {
+      "historyTokens": 5004369,
+      "records": 3333,
+      "windowTokens": 1000000,
+      "noMemoryAvailability": 0.1998253925719706,
+      "dshMemoryHit5": 1,
+      "dshMemoryHit3": 1,
+      "tokensPerQuestion": 1710,
+      "medianLatencyMs": 110.30908400000044
+    },
+    {
+      "historyTokens": 10011439,
+      "records": 6667,
+      "windowTokens": 1000000,
+      "noMemoryAvailability": 0.09988574070121188,
+      "dshMemoryHit5": 1,
+      "dshMemoryHit3": 1,
+      "tokensPerQuestion": 1710,
+      "medianLatencyMs": 177.1828749999986
+    }
+  ]
+}

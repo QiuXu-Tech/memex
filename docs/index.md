@@ -20,7 +20,7 @@ An extra-context layer for agent sessions: when the native context window fills 
 git clone https://github.com/QiuXu-Tech/dsh-memory.git
 cd dsh-memory
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # 98/98
+node --import ./test/register.mjs ./test/run.mjs   # offline harness (110 tests)
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -42,7 +42,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 |---|---|
 | **L1 eviction** | Uses the shipped `compaction/prune` + surface-replace seam — no custom session events, no replacement of the compaction backend. |
 | **Sticky L2/L3** | Session-private vs workspace-shared archives; capture deepest enabled level; capacities 10M/100M. |
-| **Hybrid recall** | Shared query-term extractor, FTS + cold abstracts + lexical rerank; real-archive recall@5 **95%** vs 67% baseline, cold recall 100%. |
+| **Hybrid recall** | Shared query-term extractor, FTS + cold abstracts + lexical rerank. A historical private-archive run reported recall@5 **95%** vs a 67% baseline; that archive was not rerun in the public benchmark. |
 | **Capacity compression** | Cold tier (lossless, zero LLM) and bounded map-reduce digests (2-way concurrency, retry/fallback, `ids:` enforcement, quota GC) — after the model asks the user. |
 | **Surfaces** | Seven model tools, `/memory` command set, nine `/api/memory.*` routes, Web panel + context ring, sensitive-content policy, backup/verify/restore. |
 

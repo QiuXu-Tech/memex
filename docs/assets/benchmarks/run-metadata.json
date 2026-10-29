@@ -1,0 +1,41 @@
+{
+  "testedCommit": "4e9720d6ba61f88126fde3f5ce62baab20758c22",
+  "date": "2026-10-29",
+  "timezone": "Asia/Shanghai",
+  "os": "macOS 27.2 (26B123)",
+  "architecture": "arm64",
+  "cpu": "Apple M4",
+  "logicalProcessors": 10,
+  "memoryBytes": 17179869184,
+  "node": "v24.21.0",
+  "loadAverage1mSamples": [
+    {
+      "time": "14:04",
+      "value": 98.18
+    },
+    {
+      "time": "14:05",
+      "value": 113.85
+    },
+    {
+      "time": "14:07",
+      "value": 107.15
+    },
+    {
+      "time": "14:14",
+      "value": 57.43
+    }
+  ],
+  "summary": "Pre-existing compaction-summary.txt; no model invoked during rerun.",
+  "sourceSha256": {
+    "scripts/long-horizon-eval.mjs": "6e2df076249de22be82813799d77957c5bef188aafabd5758c7e4ac4672aee29",
+    "scripts/scale-bench.mjs": "39fc22b3eea246c3c76f9e1dc3ef6af13f81d1df82cbfc4fc0eadce7e4b042df",
+    "scripts/recall-eval.mjs": "b8008151627e638d16e0dd8b631fca770ebdd3521741079d4d88346287670b06",
+    "docs/assets/benchmarks/compaction-summary.txt": "5df3b0d2540dc3e70f8662b18e6e79a832a92019aa3fbd1d6411f7e6baab75f7"
+  },
+  "limitations": [
+    "Shared machine under high load; repeated timings are not a controlled comparison.",
+    "All benchmark searches use LocalStoreCore default rerank weights; model-specific AgentMemory profiles and live agents were not benchmarked.",
+    "Token counts use character-based estimates; no memory_open call or model answer is timed."
+  ]
+}

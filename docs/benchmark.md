@@ -3,96 +3,169 @@ title: Benchmark report
 layout: default
 ---
 
-# Benchmark report: long-horizon tasks with vs without extra context
+# Benchmark report: synthetic long-horizon retrieval on v0.2.1
 
-**Question:** in a long-horizon task, what do you actually gain and what does it cost when dsh-memory moves old context into L2/L3 instead of letting the harness truncate/summarize it?
+This report reruns the published synthetic workloads against commit
+[`4e9720d`](https://github.com/QiuXu-Tech/dsh-memory/commit/4e9720d6ba61f88126fde3f5ce62baab20758c22)
+on 2026-10-29. The machine was an Apple M4 (10 logical CPUs, 16 GiB), running
+macOS 27.2 and Node 24.21.0. It was heavily loaded: sampled one-minute load
+averages ranged from 57 to 114. Timings describe these runs, not a controlled
+comparison with earlier versions. The [run metadata](assets/benchmarks/run-metadata.json)
+records the tested commit and input hashes.
 
-**Short answer:** on a 160K-token project history with an 80K-token window, facts in the evicted region were recovered **100%** of the time with dsh-memory, versus **60%** with a model-written compaction summary (+ retained tail) and **50%** with plain truncation. At 10M tokens with a 1M-token window, the no-memory ceiling is **10%**, dsh-memory stays at **100%** hit@5; the price is ~**1.7K tokens and 6–160 ms per answered question**, plus ~689 tokens of catalog injection when memory changes.
+GitHub `main` advanced to v0.2.2 after this measurement. The results below are
+for v0.2.1 and do not measure v0.2.2.
 
-![Fact recall by strategy](assets/benchmarks/fact-recall.png)
+**Result in brief:** in a synthetic 160K-token history with an 80K-token
+window, 20/40 target facts were present in the retained tail and 24/40 were
+present under the supplied summary-plus-tail baseline. The dsh-memory search
+returned the target record for 40/40 probes at rank 1. For the 20 probes
+whose records were outside the window, the corresponding counts were 0/20,
+4/20 and 20/20. The first two numbers are availability checks; the third is a
+retrieval hit, not an end-to-end model answer.
 
-## 1. Fact-recall A/B (compaction vs archive)
+## 1. Compaction and retrieval comparison
 
-**Workload:** a deterministic synthetic 107-turn project history (~160K tokens): technical work logs (file paths, commands, test outcomes) plus 40 injected facts at different depths (`CTX-… → FACT-…` pairs). L1 window 80K tokens; everything older is either truncated, replaced by a compaction summary, or archived.
+![All-probe and old-span counts for truncation, the saved summary, and dsh-memory search](assets/benchmarks/fact-recall.png)
 
-| Strategy | Model-visible context for old facts | Fact recall (40 probes) | Old-fact recovery | Context tokens |
-|---|---|---|---|---|
-| **No extra context** — truncate to window | recent 80K tokens only | **50%** (20/40) | 0% | 0 extra |
-| **DSH compaction** — model summary + tail | 570-token model-written summary + recent 80K | **60%** (24/40) | **20%** (4/20) | ~570 tokens |
-| **dsh-memory** — raw archive + retrieval | nothing unless the model searches | **100%** (40/40, hit@1 = 100%) | **100%** (20/20) | 0 idle; ~1.7K/answer |
+The fixture creates 107 synthetic turns (160,473 estimated tokens) with 40
+evenly spaced probes. It retains a tail near 80K tokens; the older span contains
+79,490 estimated tokens and 20 of the probes. Each question includes a unique
+`CTX-…` cue, which also appears in the corresponding record's title; its
+summary contains the cue-to-`FACT-…` pair.
 
-The compaction summary was produced by a capable model given the same 79K-token evicted span and an 800-token budget (target 450–650 tokens, measured 570). It kept 6 of 27 identifier pairs (~22%) — selecting the anchor pair, a midpoint, and the freshest pairs, which is what a real summarizer does under a token budget. The truncation baseline is the ideal no-memory case; real truncation is usually worse because it also loses the tail's surrounding structure.
+| Strategy | All 40 probes | 20 probes in old span | What is counted |
+|---|---:|---:|---|
+| Truncate to retained tail | 20/40 (50%) | 0/20 (0%) | Target fact in the tail |
+| Supplied summary + tail | 24/40 (60%) | 4/20 (20%) | Tail facts plus old probes matched in the summary |
+| dsh-memory search | 40/40 (100%) | 20/20 (100%) | Target record in search results; all were rank 1 |
 
-## 2. Scaling: recall vs history size
+The summary is the previously committed [compaction-summary.txt](assets/benchmarks/compaction-summary.txt).
+No model was invoked to create a new summary in this rerun, and its original
+model/provider and generation transcript are not recorded here. The script
+counts an old probe if **either** its cue or value appears in the summary. An
+independent check of this particular summary found both the cue and value for
+each of the four counted old probes. This does not establish that an arbitrary
+summary preserves the relationship between a cue and its value.
 
-![Recall vs history size](assets/benchmarks/recall-scaling.png)
+The summary's 570-token size and the history/window sizes are character-based
+estimates, not measurements with a model tokenizer. The supplied summary is
+one simulated baseline, not a run of DSH's native compaction implementation.
 
-| History | Window | No-memory availability (window/history) | dsh-memory hit@5 | Retrieval p50 |
-|---|---|---|---|---|
-| 1M tokens | 1M | 99.9% | **100%** | 6 ms |
-| 5M tokens | 1M | 20.0% | **100%** | 82 ms |
-| 10M tokens | 1M | 10.0% | **100%** | 159 ms |
+## 2. Scaling the synthetic history
 
-The no-memory ceiling is generous: it assumes every fact inside the window is answerable and costs nothing to find. Even so, it collapses linearly as history grows, while retrieval stays flat.
+![Window-to-history ratio and target-record hit rate at three history sizes](assets/benchmarks/recall-scaling.png)
 
-## 3. Cost and latency
+| Estimated history | Records | Window / history | Search hit@5, both runs | Search p50, first / repeat |
+|---|---:|---:|---:|---:|
+| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 20.8 / 7.5 ms |
+| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 229.1 / 110.3 ms |
+| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 289.9 / 177.2 ms |
 
-![Cost and latency](assets/benchmarks/cost-latency.png)
+The window/history column is an arithmetic coverage ratio, not measured
+no-memory recall and not a universal ceiling. Actual availability depends on
+where queried facts occur. Each hit@5 is a search for a known synthetic cue;
+the workload does not measure whether an agent chooses a useful query or
+answers correctly.
 
-| Cost | Measurement |
-|---|---|
-| Tokens per answered question | **~1.7K** (search result cards + one `memory_open` body of ~1.5K tokens) |
-| Idle context overhead | **0** while nothing changes; **~689 tokens** catalog injection when the index changed; ~400 tokens for an auto-recall injection |
-| Search latency | **6 ms** at 1M tokens, **82 ms** at 5M, **159 ms** at 10M (synthetic card+abstract index) |
-| Compression (cold spill) | 7M tokens in **0.10 s**; 50M tokens in **2.56 s** |
-| Cold GC | 25M cold tokens in **0.31 s** |
-| No memory | fact unavailable — no bounded cost, unbounded re-derivation/guess |
+## 3. Search time and estimated context cost
 
-For comparison, reading the lost span back into context would cost ~80K tokens per pass; dsh-memory answers a question for ~1.7K tokens (51× cheaper than re-ingesting the span) and keeps the index itself small: a 100M-token pool is a 9MB SQLite index (26.6MB after cold abstracts) over 384.8MB of verbatim markdown.
+![Search medians at three scales and two repeated 160K runs](assets/benchmarks/cost-latency.png)
 
-## 4. Capacity and compression
+The 160K comparison's search p50 was **22.0 ms** on the first run and
+**6.3 ms** on a repeat with the same fixture and supplied summary. Each p50 is
+the median of 40 searches. The scaling sweep was also repeated; both sets of
+measurements show why shared-machine timings should not be treated as a stable
+performance estimate.
 
-![Capacity and compression](assets/benchmarks/capacity.png)
+The script estimates **1,693 tokens per probe** for result cards plus one
+assumed target-record body. It does not call `memory_open` or measure model
+reasoning. Comparing this estimate with the 79,490-token old span yields
+approximately **47×** (79,490 / 1,693), as a token-count proxy, not a measured
+cost saving. Search timing excludes record opening and model execution. Catalog
+and auto-recall injection costs were not measured in this rerun.
 
-| Measurement | Value |
-|---|---|
-| SQLite index, real 1.9M-token archive before/after body-less FTS | **18.19 MB → 0.25 MB** (−98.6%) |
-| 10,000 records / 100M tokens synthetic pool | write **2.8 s**, index **9.0 MiB**, bodies **384.8 MiB** |
-| Read paths at 100M tokens | facets 11.3 ms, catalog 17.5 ms, search 16.7–28.8 ms, grep 14.6 ms |
-| Cold spill 5,000 records / 50M tokens | **2.56 s** (filesystem-bound, zero LLM) |
-| Cold GC 2,500 records / 25M tokens | **0.31 s** |
+## 4. Synthetic capacity and cold operations
 
-## 5. What this means for a long-horizon task
+![Synthetic 100M-token storage footprint and operation times](assets/benchmarks/capacity.png)
 
-- **Old instructions stay executable.** With truncation, 50% of the probed facts were simply gone; with compaction, 80% of evicted facts were unrecoverable in a later turn. dsh-memory made all 40 probes recoverable, including 20 facts that existed only in the cold archive.
-- **Compaction is a budget trade, not a substitute for an archive.** A 570-token summary is excellent for orientation (file paths, open threads, recent state) but structurally cannot keep every identifier. dsh-memory keeps the verbatim span and retrieves the specific fact on demand, which is cheaper both in tokens and in losses.
-- **The cost is bounded and small.** Search is milliseconds; each answered question pays for exactly the evidence it needs (~1.7K tokens), not for re-reading history. Capacity compression keeps L2/L3 within their 10M/100M budgets at filesystem speed.
-- **The failure mode is different.** Without extra context you fail by *absence* (the model cannot know). With dsh-memory you fail by *retrieval miss* — measured separately: real-archive natural-language recall@5 is 95%, cold-record recall 100% (see [evaluation](evaluation.html)); the remaining 5% is the retrieval gap the model can compensate for with `memory_grep`/`memory_open`.
+The capacity fixture assigns 10,000 estimated tokens to each record and uses
+repeated-character bodies; it is not a tokenizer-derived natural-language
+corpus. The two runs use different cold target ratios to reproduce the prior
+7M and 50M spill sizes.
 
-## Fairness and limitations
+| Pool | Write | Cold spill | Cold GC |
+|---|---:|---:|---:|
+| 1,000 records / 10M assigned tokens | 6.5 s | 700 records / 7M tokens in 7.35 s | 350 records / 3.5M tokens in 0.62 s |
+| 10,000 records / 100M assigned tokens | 59.2 s | 5,000 records / 50M tokens in 41.77 s | 2,500 records / 25M tokens in 1.15 s |
 
-- **Synthetic workload.** Facts are injected identifiers in a templated history; the model-side benefit is measured as *fact availability/retrieval*, not end-to-end answer accuracy. Real tasks have messy facts, multi-hop references and implicit history.
-- **Compaction simulation.** The summary was written by one capable model with the same-class compaction prompt and a token cap; DSH's built-in compaction implementation may summarize differently. The truncation baseline is the ideal no-memory case (it keeps the entire recent tail), so the no-memory numbers are an *upper bound*.
-- **dsh-memory measurement is the retrieval layer.** It assumes the model actually searches (the memory manual + auto-recall make this the default behavior). Token cost counts search cards + one `memory_open`; it excludes the model's reasoning tokens, as does the baseline.
-- **Deterministic.** The fixture generator uses a seeded PRNG; results in this report were produced by the commands below on Node 24 / SQLite `node:sqlite`, macOS Apple Silicon.
+In the 100M run, the SQLite index was 9.0 MiB after writing and 26.6 MiB after
+cold spill; the original body files totalled 384.8 MiB. Cold spill moves the
+records, while **cold GC deletes** the records it removes. Both were exercised
+only on throwaway stores. These are single-run times under the load noted above.
+
+## 5. Complementary recall suite
+
+The public `recall-eval.mjs --suite all` run reported 80/80 synthetic probes
+at hit@1 and hit@5, and 16/16 demo probes at hit@1 for both direct search and
+the auto-recall query path. The synthetic identifiers use `Math.random()`;
+the questions are synthetic, and the auto-recall path requests only three
+results. See the [raw output](assets/benchmarks/results-recall.txt).
+
+The earlier 95% hit@5 figure came from a private, curated 40-question archive.
+It was **not rerun** here and cannot be independently reproduced from the
+public fixtures. See [evaluation](https://github.com/QiuXu-Tech/dsh-memory/blob/main/docs/evaluation.md) for its historical context.
+
+## Scope and limitations
+
+- All measured searches here call `LocalStoreCore` with default rerank
+  weights. They do not benchmark v0.2.1's model-specific `AgentMemory`
+  profiles, MCP/DSH integration, transcript capture, or an agent's end-to-end
+  answers. The offline tests cover some of those code paths but are not an
+  agent benchmark.
+- Exact synthetic cues and prefilled card summaries make these retrieval
+  probes easier to locate than many real project questions. The results do not
+  establish recall on paraphrases, multi-hop tasks, or missing cues.
+- Timings, including the two repeated 160K results, were collected on a
+  shared, heavily loaded machine. The capacity script prints a `p95` from
+  only five samples using its own index rule; this report does not treat that
+  field as a reliable 95th percentile or declare the former p95 target passed.
+- The supplied summary is reused; no independent model-summary generation or
+  private-archive test was performed. No live memory store was accessed.
 
 ## Reproduce
 
+Use Node 24+ and a separate checkout of the tested commit. The commands below
+create dedicated temporary output directories; the scripts also create and
+remove throwaway stores. The summary must be passed explicitly for the
+comparison.
+
 ```bash
-# Compaction A/B fixture (writes old-span.txt/tail-span.txt/results.json to /tmp/lh-compaction)
+git clone https://github.com/QiuXu-Tech/dsh-memory.git dsh-memory-benchmark-v021
+cd dsh-memory-benchmark-v021
+git checkout --detach 4e9720d6ba61f88126fde3f5ce62baab20758c22
+out_dir="$(mktemp -d "${TMPDIR:-/tmp}/dsh-benchmark.XXXXXX")"
 node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \
-  --tokens 160000 --window 80000 --out /tmp/lh-compaction
-
-# Optional: plug in a model-written summary of /tmp/lh-compaction/old-span.txt
-node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \
-  --tokens 160000 --window 80000 --summary /tmp/lh-compaction/summary.txt --out /tmp/lh-compaction
-
-# Scaling sweep (1M / 5M / 10M-token histories, 1M window)
+  --tokens 160000 --window 80000 --summary docs/assets/benchmarks/compaction-summary.txt \
+  --out "$out_dir/compaction"
 node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode scale \
-  --sizes 1000000,5000000,10000000 --window 1000000 --out /tmp/lh-scale
-
-# Complementary retrieval-quality suites
+  --sizes 1000000,5000000,10000000 --window 1000000 --out "$out_dir/scale"
+node --import ./test/register.mjs scripts/scale-bench.mjs \
+  --records 1000 --tokens 10000 --target 0.3 --gc 0.5
+node --import ./test/register.mjs scripts/scale-bench.mjs \
+  --records 10000 --tokens 10000 --target 0.5 --gc 0.5
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 ```
 
-Charts in this report were rendered from `docs/assets/benchmarks/results-*.json` (raw measured output). The model-written compaction summary used for the table is committed verbatim as `docs/assets/benchmarks/compaction-summary.txt` so the baseline is auditable.
+The checked-in [compaction results](assets/benchmarks/results-compaction.json),
+[repeat](assets/benchmarks/results-compaction-repeat.json),
+[probe manifest](assets/benchmarks/results-probes.json),
+[scaling results](assets/benchmarks/results-scale.json),
+[scaling repeat](assets/benchmarks/results-scale-repeat.json),
+[capacity data](assets/benchmarks/results-capacity.json), and raw capacity
+outputs ([10M](assets/benchmarks/results-capacity-10m.txt),
+[100M](assets/benchmarks/results-capacity-100m.txt)) are from this run.
+Earlier results remain available in Git history. In a checkout containing this
+report, install Matplotlib 3.10.7 in a Python environment and run
+`python scripts/plot-benchmarks.py` to regenerate the PNGs. That script reads
+the checked-in snapshot, not a new temporary run.

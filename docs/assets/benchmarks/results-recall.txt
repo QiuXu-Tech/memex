@@ -1,0 +1,4 @@
+suite=all threshold=0
+synthetic suite: n=80 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 15.44ms p95 36.06ms
+demo suite (memory_search): n=16 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 1.52ms p95 4.76ms
+demo suite (auto-recall query): n=16 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 0.91ms p95 6.03ms

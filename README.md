@@ -15,7 +15,7 @@ It started as a [DeepSeek Harness](https://github.com/deepseek-ai) plugin and is
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/dsh-memory-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/dsh-memory-core`) |
 
-> Status: **0.2.0** — agent-agnostic core, MCP server, Claude Code/Codex adapters, **model profiles for Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Llama**, 110/110 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.2.2** — agent-agnostic core, MCP server, Claude Code/Codex adapters, **model profiles for Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Llama**, 110/110 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -164,14 +164,14 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 | Metric | Result |
 |---|---|
-| Real natural-language recall (40 curated questions) | hit@5 **95%** (baseline 67%), cold-record recall **100%**, p50 1.3 ms |
-| Synthetic recall suite | 100% |
-| 10k records / 100M tokens (synthetic) | write 2.8 s; facets 11 ms, catalog 18 ms, search 17–29 ms, grep 15 ms; compression of 5,000 records/50M tokens 2.6 s; cold GC 2,500 records/25M 0.3 s |
-| FTS storage (body-less card+abstract index) | 100M-token pool ≈ 9–27 MiB index vs GB-scale trigram-body indexing |
+| Historical private archive (40 curated questions; not rerun) | reported hit@5 **95%** (baseline 67%); not reproducible from the public fixture |
+| Synthetic recall suite (v0.2.1 rerun) | 80/80 target-record hits at rank 1 |
+| 10k records / 100M assigned tokens (v0.2.1, synthetic, high-load machine) | write 59.2 s; cold spill 5,000 records/50M tokens in 41.77 s; cold GC 2,500 records/25M tokens in 1.15 s |
+| FTS storage (body-less card+abstract index) | Synthetic v0.2.1 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill |
 
-**A/B against no extra context** (160K-token history, 80K window): fact recall **100%** with dsh-memory vs **60%** with a model-written compaction summary (+tail) and **50%** with plain truncation; at 10M tokens the no-memory window covers only 10% of history while retrieval stays at 100% hit@5. Full charts and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
+**Synthetic 160K history / 80K window, on v0.2.1:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. dsh-memory search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
 
-Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite all`, `node --import ./test/register.mjs scripts/scale-bench.mjs --records 10000 --tokens 10000`, and `node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction` / `--mode scale`. Details in [docs/evaluation.md](docs/evaluation.md).
+Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
 
 ## Privacy
 
