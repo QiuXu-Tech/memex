@@ -1,8 +1,8 @@
 {
   "name": "@qiuxu/memex-core",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
-  "description": "Agent-agnostic memory core: record vocabulary, workspace identity, query-term extraction, token accounting, markdown+SQLite store with hot/cold tiers, hybrid retrieval and capacity compression. No host dependencies.",
+  "description": "Agent-agnostic extra-context core: context page vocabulary, workspace identity, query-term extraction, token accounting, markdown+SQLite store with hot/cold tiers, context paging and capacity compression.",
   "type": "module",
   "main": "index.js",
   "exports": {

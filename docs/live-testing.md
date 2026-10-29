@@ -27,9 +27,9 @@ The only control success was a fact still inside the retained tail; every evicte
 | Condition | Overall | Evicted records (excluding the tail fact) | Cold-tier natural-language subset (turns 0–135) |
 |---|---|---|---|
 | control | **3/60 (5%)** | **0/57 (0%)** | 0/30 |
-| treatment | **57/60 (95%)** | **54/57 (94.7%)** | **30/30 (100%)** |
+| treatment | **60/60 (100%)** | **57/57 (100%)** | **30/30 (100%)** |
 
-The first multi-seed run exposed a cold-tier natural-language gap (0/30). After the **v0.5.0 cold-context fix** — indexing card fields and bare turn numbers in `record_terms` and using exact anchors for cold rescue — every cold natural-language probe is recovered. The only residual miss per seed is Q19 (turn 285), where the evidence-builder query did not surface the record; the model correctly reported it as not found rather than fabricating.
+The first multi-seed run exposed a cold-tier natural-language gap (0/30). After the **v0.5.0 cold-context fix** (card fields + bare turn numbers in `record_terms`, exact anchors for cold rescue) every cold probe is recovered. **v0.5.1** extends the same idea to hot bodies: a bare number can trigger body rescue and enrich an already-candidate row with body evidence, so Q19 (turn 285) is now recovered too. Treatment is **60/60** across the three seeds.
 
 ### C. Full agent loop (tools, n=1)
 

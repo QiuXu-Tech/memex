@@ -711,6 +711,55 @@ export class LocalStoreCore {
         }
       }
     }
+    // Rare-number body rescue: a bare turn/step number can be the only
+    // selective anchor ("turn 285") while all word terms are common. Only
+    // anchors with a tiny posting list are used, so ordinary queries do not
+    // pay file-read cost and shared numbers cannot flood rerank.
+    const numericAnchors = [...new Set(keyTerms.filter((term) => /^\d{1,6}$/.test(term)))]
+    if (numericAnchors.length > 0 && rowsById.size > 0) {
+      const numericHashes = [...new Set(numericAnchors.map((term) => fnv1a32(term)))]
+      const numericPlaceholders = numericHashes.map(() => '?').join(', ')
+      const counts = this.database().prepare(`
+        SELECT term_hash AS hash, COUNT(*) AS count FROM record_terms
+        WHERE term_hash IN (${numericPlaceholders}) GROUP BY term_hash
+      `).all(...numericHashes)
+      const rareHashes = counts.filter((entry) => Number(entry.count) <= 2).map((entry) => Number(entry.hash))
+      if (rareHashes.length > 0) {
+        const rarePlaceholders = rareHashes.map(() => '?').join(', ')
+        const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0 }, { alias: 'r.' })
+        const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
+        const candidates = this.database().prepare(`
+          SELECT t.record_id AS recordId, COUNT(*) AS matches
+          FROM record_terms t JOIN records r ON r.id = t.record_id
+          WHERE t.term_hash IN (${rarePlaceholders}) ${where}
+          GROUP BY t.record_id ORDER BY matches DESC LIMIT 24
+        `).all(...rareHashes, ...params)
+        const scoreTerms = [...new Set([...lowerTerms, ...keyTerms])]
+        for (const candidate of candidates) {
+          const existing = rowsById.get(candidate.recordId)
+          const row = existing ?? this.rowById(candidate.recordId)
+          if (row === undefined) continue
+          let body = ''
+          try {
+            body = recordBodyFromFile(readFileSync(row.path, 'utf8'))
+          } catch {
+            continue
+          }
+          const lowerBody = body.toLowerCase()
+          const anchorHitsInBody = numericAnchors.filter((term) => termMatchesText(lowerBody, term)).length
+          if (anchorHitsInBody === 0) continue
+          const bodyHits = scoreTerms.filter((term) => termMatchesText(lowerBody, term)).length
+          if (existing !== undefined) {
+            if (Number(existing.bodyHits) >= bodyHits) continue
+            existing.bodyHits = bodyHits
+            existing.snippet = makeSnippet(body, query.query)
+            existing.rank = undefined
+          } else {
+            rowsById.set(candidate.recordId, { ...row, snippet: makeSnippet(body, query.query), rank: undefined, bodyHits })
+          }
+        }
+      }
+    }
     // Cold-anchor rescue: cold records only expose a bounded abstract, but
     // `record_terms` now indexes card fields and bare numbers too. Use the
     // exact anchors (identifiers / turn numbers) to find cold candidates even

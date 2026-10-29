@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.5.1
+
+### Fixed
+- **Hot body-only facts with bare-number anchors**: body rescue now triggers on unmatched numeric anchors and attaches body evidence to rows that are already card candidates (only when the anchor appears in the body). This closes the last DeepSeek multi-seed miss: Q19 (turn 285) is recovered, treatment **60/60 (100%)** across 3 seeds; evicted records **0/57 → 57/57**.
+- Cold natural-language subset remains **30/30**; U20/U21 cover cold card-anchor and hot body-anchor retrieval. Harness **118/118**. Real-archive guard: hit@5 **93%**, cold recall **94%**, p50 **1.5 ms** (was 95%/100%/1.3 ms before the anchor rework — an explicit trade-off for cold natural-language coverage 0/30 → 30/30).
+
+### Changed
+- **Extra-context terminology synced to UI/site**: panel title/trigger/aria use "额外上下文 / 上下文页"; homepage title and description position Memex as *the extra-context layer for AI agents*, with the context hierarchy/paging explanation and updated live numbers.
+- Package descriptions updated (root/core/local).
+
 ## 0.5.0 — extra-context layer + cold natural-language retrieval
 
 ### Changed — concept

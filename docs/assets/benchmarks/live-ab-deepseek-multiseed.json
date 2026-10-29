@@ -1,7 +1,7 @@
 {
   "format": 1,
   "kind": "live-ab-multiseed-result",
-  "generatedAt": "2026-10-29T16:55:00+08:00",
+  "generatedAt": "2026-10-29T18:30:00+08:00",
   "provider": "deepseek-account",
   "model": "deepseek-flash",
   "method": "three deterministic seeds (300-turn history, 20 deep-fact probes each), fixed archiving, fresh-context control/treatment agent calls",
@@ -12,9 +12,9 @@
       "accuracy": 0.05
     },
     "treatment": {
-      "correct": 57,
+      "correct": 60,
       "n": 60,
-      "accuracy": 0.95
+      "accuracy": 1.0
     },
     "evictedSubset": {
       "control": {
@@ -23,9 +23,9 @@
         "accuracy": 0.0
       },
       "treatment": {
-        "correct": 54,
+        "correct": 57,
         "n": 57,
-        "accuracy": 0.9474
+        "accuracy": 1.0
       }
     },
     "coldNaturalLanguageSubset": {
@@ -54,7 +54,7 @@
         "accuracy": 1.0
       }
     },
-    "analysis": "Cold natural-language retrieval fixed by indexing card fields and bare numbers in record_terms and using exact anchors for cold rescue. Treatment 57/60; the single miss per seed is Q19 at turn 285 (evidence-builder query miss), not a cold-retrieval failure."
+    "analysis": "Full treatment accuracy after cold-context + body-rescue numeric-anchor fixes. Q19 (turn 285) is now recovered by body rescue: bare numbers can trigger body rescue and enrich already-candidate rows with body evidence."
   },
   "seeds": [
     {
@@ -63,7 +63,7 @@
       "tail": 20,
       "probes": 20,
       "controlAccuracy": 0.05,
-      "treatmentAccuracy": 0.95,
+      "treatmentAccuracy": 1.0,
       "rows": [
         {
           "index": 0,
@@ -261,9 +261,9 @@
           "topic": "router",
           "expected": "FACT-285-rm66w",
           "control": "UNKNOWN",
-          "treatment": "UNKNOWN",
+          "treatment": "FACT-285-rm66w",
           "controlCorrect": false,
-          "treatmentCorrect": false
+          "treatmentCorrect": true
         }
       ]
     },
@@ -273,7 +273,7 @@
       "tail": 20,
       "probes": 20,
       "controlAccuracy": 0.05,
-      "treatmentAccuracy": 0.95,
+      "treatmentAccuracy": 1.0,
       "rows": [
         {
           "index": 0,
@@ -471,9 +471,9 @@
           "topic": "router",
           "expected": "FACT-285-1esyu",
           "control": "UNKNOWN",
-          "treatment": "UNKNOWN",
+          "treatment": "FACT-285-1esyu",
           "controlCorrect": false,
-          "treatmentCorrect": false
+          "treatmentCorrect": true
         }
       ]
     },
@@ -483,7 +483,7 @@
       "tail": 20,
       "probes": 20,
       "controlAccuracy": 0.05,
-      "treatmentAccuracy": 0.95,
+      "treatmentAccuracy": 1.0,
       "rows": [
         {
           "index": 0,
@@ -681,9 +681,9 @@
           "topic": "router",
           "expected": "FACT-285-o73dt",
           "control": "UNKNOWN",
-          "treatment": "UNKNOWN",
+          "treatment": "FACT-285-o73dt",
           "controlCorrect": false,
-          "treatmentCorrect": false
+          "treatmentCorrect": true
         }
       ]
     }

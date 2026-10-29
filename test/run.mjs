@@ -4063,6 +4063,35 @@ await test('U20', 'cold natural-language retrieval uses card/bare-number anchors
   }
 })
 
+
+await test('U21', 'hot body rescue: a bare turn number anchors a body-only fact', async () => {
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
+  const root = makeRoot('u21')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    const records = []
+    for (let index = 0; index < 40; index += 1) {
+      const isFact = index === 25
+      records.push(store.write({
+        kind: 'episode',
+        title: `turn ${index} note`,
+        summary: `work log for turn ${index}`,
+        useWhen: 'read when continuing work',
+        body: isFact ? `Turn ${index}: hidden durable value is FACT-025-body; keep it.` : `Turn ${index}: reviewed config.`,
+        workspaceKey: 'wk-u21', scope: 'workspace', tokens: 30,
+      }))
+    }
+    const all = store.database().prepare('SELECT id FROM records ORDER BY created_at ASC, id ASC').all()
+    for (const row of all.slice(0, all.length - 20)) store.archiveCold(row.id)
+    const expected = records[25]
+    const hits = store.search({ query: 'what hidden durable value was recorded at turn 25?', workspaceKey: 'wk-u21', scope: 'workspace', limit: 5 }).hits
+    assert.equal(hits[0].id, expected.id, 'bare turn-number anchors must trigger body rescue for hot body-only facts')
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

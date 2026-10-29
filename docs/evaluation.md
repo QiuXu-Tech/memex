@@ -29,8 +29,15 @@ contains a cold record, so it is not evidence of cold-record retrieval.
 A previous run against a private, curated 40-question archive reported hit@1
 73%, hit@3/hit@5 95%, cold recall 100%, and search p50 1.3 ms; a prior
 baseline was reported as 67% hit@5. That archive and its raw probes are not
-public, and the run was **not repeated** for v0.3.0. These historical numbers
-cannot be independently reproduced using the public fixture.
+public.
+
+**v0.5.1 re-check (same private 40-question archive):** hit@1 **68%**,
+hit@3 **90%**, hit@5 **93%**, cold recall **94%**, p50 **1.5 ms**. This is the
+deliberate trade-off of the v0.5 anchor rework — exact numeric/identifier
+anchors cost ~2pp on the old real-archive ranking, while cold natural-language
+facts went from **0/30 to 30/30** and the DeepSeek multi-seed live treatment
+reached **60/60**. These private-archive numbers cannot be independently
+reproduced from the public fixture.
 
 ## Capacity and storage
 

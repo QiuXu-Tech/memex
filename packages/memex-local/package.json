@@ -1,8 +1,8 @@
 {
   "name": "@qiuxu/memex-local",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "private": true,
-  "description": "DSH backend for the extra-context memory subsystem: Cordis service over the agent-agnostic core store; owns ctx.memory.",
+  "description": "DSH backend for the extra-context layer: Cordis service over the agent-agnostic core store; owns ctx.memory.",
   "type": "module",
   "main": "index.js",
   "exports": {

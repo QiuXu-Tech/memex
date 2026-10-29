@@ -48,11 +48,12 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 | Experiment | Result |
 |---|---|
 | Evidence-in-prompt, 8 probes / 120 turns | control **1/8** (evicted **0/7**) → treatment **8/8** (evicted **7/7**) |
-| Multi-seed (3 seeds × 20 probes / 300 turns) | control **3/60 (5%)**; treatment **57/60 (95%)**; evicted **0/57 → 54/57 (94.7%)** |
+| Multi-seed (3 seeds × 20 probes / 300 turns) | control **3/60 (5%)**; treatment **60/60 (100%)**; evicted **0/57 → 57/57 (100%)** |
 | Cold-tier natural-language subset (30 probes) | control 0/30; treatment **30/30 (100%)** after the v0.5.0 cold-context fix |
+| Hot body-only Q19 (turn 285) | v0.5.1 body-rescue numeric anchor recovers it; no residual miss |
 | Full agent loop (n=1) | control `UNKNOWN`; treatment: 3 real MCP tool calls → correct `FACT-025-r6h18` |
 
-**Finding (fixed in v0.5.0):** card-field tokens and bare numbers are now indexed in `record_terms`, so cold records can be anchored by natural-language turn references. Cold natural-language probes went 0/30 → 30/30; treatment overall 57/60. The residual Q19 miss is a harness evidence-query miss (turn-285 record not surfaced), not a memory failure. The concept is now explicitly **extra-context**, not a notes store — see docs/context-layer.md.
+**Finding (fixed in v0.5.0/v0.5.1):** card-field tokens and bare numbers are now indexed in `record_terms`; cold rescue uses exact anchors, and **body rescue now treats unmatched bare numbers as anchors and attaches body evidence to already-candidate rows**. Cold natural-language probes went 0/30 → 30/30; Q19 (hot body, turn 285) is now recovered; treatment overall **60/60**. The concept is now explicitly **extra-context**, not a notes store — see docs/context-layer.md.
 
 The client integration is verified (Claude Code parses the generated config): `claude mcp list` after `memex-claude init`:
 

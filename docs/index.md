@@ -1,18 +1,18 @@
 ---
-title: Memex
+title: Memex — the extra-context layer for AI agents
 layout: default
 ---
 
-# Memex
+# Memex — the extra-context layer for AI agents
 
-Persistent, lossless long-horizon memory for any coding agent.
+A high-performance context hierarchy between an agent's history and its model window.
 
 [![CI](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/QiuXu-Tech/memex/blob/main/LICENSE)
 
 ![memex demo](assets/demo.gif)
 
-An extra-context layer for agent sessions: when the native context window fills up, older spans are moved out verbatim into sticky **L2 (10M, session-private)** / **L3 (100M, workspace-shared)** archives; capacity is managed through a lossless cold tier plus bounded batch digests; and anything can be retrieved later with cheap hybrid search.
+Memex treats context as a hierarchy, not a notes store: when the native context window fills up, older spans are moved out **verbatim** into sticky **L2 (10M, session-private)** / **L3 (100M, workspace-shared)** context pools; capacity is managed through a lossless cold tier plus bounded batch digests; and any context page can be paged back in with millisecond hybrid retrieval and per-model context budgets.
 
 ## Quick start
 
@@ -20,7 +20,7 @@ An extra-context layer for agent sessions: when the native context window fills 
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # offline harness (110 tests)
+node --import ./test/register.mjs ./test/run.mjs   # offline harness (118 tests)
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -45,8 +45,8 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 | | |
 |---|---|
 | **L1 eviction** | Uses the shipped `compaction/prune` + surface-replace seam — no custom session events, no replacement of the compaction backend. |
-| **Sticky L2/L3** | Session-private vs workspace-shared archives; capture deepest enabled level; capacities 10M/100M. |
-| **Hybrid recall** | Shared query-term extractor, FTS + cold abstracts + lexical rerank. A historical private-archive run reported recall@5 **95%** vs a 67% baseline; that archive was not rerun in the public benchmark. |
+| **Sticky context pools** | Session-private L2 vs workspace-shared L3; capture deepest enabled level; capacities 10M/100M. |
+| **Context paging** | Shared query-term extractor, FTS + cold abstracts + exact numeric/identifier anchors + lexical rerank; pages are injected only when budget allows. Real-archive recall@5 **93%** / cold recall 94% after the v0.5 anchor rework (pre-rework 95%/100%); cold natural-language probes **0/30 → 30/30**; live DeepSeek Flash multi-seed treatment **60/60**. |
 | **Capacity compression** | Cold tier (lossless, zero LLM) and bounded map-reduce digests (2-way concurrency, retry/fallback, `ids:` enforcement, quota GC) — after the model asks the user. |
 | **Surfaces** | Seven model tools, `/memory` command set, nine `/api/memory.*` routes, Web panel + context ring, sensitive-content policy, backup/verify/restore. |
 

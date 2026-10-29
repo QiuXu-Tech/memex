@@ -1,5 +1,5 @@
 /**
- * Memory panel — browser half of the extra-context memory subsystem.
+ * Extra-context panel — browser half of the context-layer subsystem.
  *
  * Hand-written client module (same factory format the built client bundles use):
  * a trigger button in the composer tool row and a floating panel rendered in the
@@ -191,7 +191,7 @@ window.__ModuleLoader__.load({
         {
           type: 'button',
           className: 'memex-trigger',
-          title: '打开记忆面板：浏览/搜索额外上下文归档',
+          title: '打开上下文面板：浏览/搜索额外上下文页',
           'aria-pressed': active ? 'true' : 'false',
           onClick: () => {
             if (sessionId === undefined) return
@@ -199,7 +199,7 @@ window.__ModuleLoader__.load({
           },
         },
         h('span', { className: 'memex-trigger-dot' }),
-        '记忆',
+        '上下文',
       )
     }
 
@@ -408,11 +408,11 @@ window.__ModuleLoader__.load({
         h('div', { className: 'memex-backdrop', onClick: () => panelStore.close() }),
         h(
           'div',
-          { className: 'memex-panel', role: 'dialog', 'aria-label': '记忆面板', 'data-memex-panel': '' },
+          { className: 'memex-panel', role: 'dialog', 'aria-label': '额外上下文面板', 'data-memex-panel': '' },
           h(
             'div',
             { className: 'memex-head' },
-            h('span', { className: 'memex-title' }, '额外上下文记忆'),
+            h('span', { className: 'memex-title' }, '额外上下文'),
             h(
               'span',
               { className: 'memex-count' },
@@ -473,7 +473,7 @@ window.__ModuleLoader__.load({
             h('input', {
               className: 'memex-search',
               value: query,
-              placeholder: !anyLevel ? 'L1 额外上下文尚未开启 — 开启 L2/L3 后可搜索' : '搜索归档（文件名、报错、标识符…）',
+              placeholder: !anyLevel ? 'L1 额外上下文尚未开启 — 开启 L2/L3 后可搜索' : '搜索上下文页（文件名、报错、标识符…）',
               onChange: (event) => setQuery(event.target.value),
               disabled: searching || !anyLevel,
             }),
