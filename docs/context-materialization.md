@@ -94,6 +94,30 @@ These are **separate specialist components around the model**, not a replacement
 
 **Updated default (v0.14):** the DSH bundle now enables `materializer: timeline-exact` by default. **Still external:** production training on live traces/GPUs and native vLLM/SGLang/DSH KV-cache integration; the interfaces and reference implementations are in place, but no inference runtime with real KV tensors is available in this environment.
 
+## A-route validation: real vLLM paged-KV prefix cache (v0.15.0)
+
+A first **A-route** milestone ran on the GPU host:
+
+- GPU: **NVIDIA RTX PRO 6000 Blackwell Server Edition, 96GB**, driver 590.44.01
+- Torch 2.8.0+cu128 / CUDA 12.8 / compute capability (12, 0)
+- **vLLM 0.10.2**, Qwen2.5-0.5B-Instruct, `--enable-prefix-caching`
+- Two requests sharing a **stable ~2,498-token context prefix**, differing only in the final question
+
+Result from vLLM `/metrics`:
+
+```text
+prefix_cache_queries_total = 4997
+prefix_cache_hits_total    = 2480
+second-request prefix hit ratio ≈ 2480 / 2499 = 99.2%
+overall hit ratio              ≈ 49.6%
+```
+
+The second request reused the materialized stable prefix through vLLM's **native paged-KV prefix cache**. This is the first real-runtime confirmation of the materializer's stable-prefix contract.
+
+Raw: [vllm-prefix-cache.json](assets/benchmarks/vllm-prefix-cache.json); probe: `training/vllm_prefix_cache_eval.py`.
+
+**Boundary:** this is vLLM-native prefix caching, not yet a custom external paged-KV connector that maps materializer spans to hand-managed KV blocks. Production training and the custom connector remain next steps.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

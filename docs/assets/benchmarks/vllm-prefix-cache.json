@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "kind": "vllm-prefix-cache-validation",
+  "generatedAt": "2026-10-29T15:55:38.647691+00:00",
+  "route": "A (local vLLM paged-KV prefix cache)",
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memoryMiB": 97887,
+    "driver": "590.44.01",
+    "cpuCount": 208,
+    "systemMemory": "1.0TiB"
+  },
+  "software": {
+    "python": "3.12.3",
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8",
+    "computeCapability": [
+      12,
+      0
+    ],
+    "vllm": "0.10.2",
+    "transformers": "4.57.1"
+  },
+  "server": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "servedModelName": "qwen",
+    "maxModelLen": 4096,
+    "enablePrefixCaching": true
+  },
+  "experiment": {
+    "description": "Two requests share a long stable prefix (~2498 tokens) and differ only in the final question.",
+    "requests": [
+      {
+        "promptTokens": 2498,
+        "completionTokens": 8,
+        "suffix": "Question one: what did we decide about component 7?"
+      },
+      {
+        "promptTokens": 2499,
+        "completionTokens": 8,
+        "suffix": "Question two: what did we decide about component 42?"
+      }
+    ]
+  },
+  "metrics": {
+    "prefixCacheQueriesTokens": 4997,
+    "prefixCacheHitsTokens": 2480,
+    "overallHitRatio": 0.4963,
+    "secondRequestPrefixHitRatio": 0.9924
+  },
+  "interpretation": "vLLM reused the materialized stable prefix through its native paged-KV prefix cache on the second request (2480 cached prompt tokens). This validates the stable-prefix contract of the materializer against a real inference runtime.",
+  "caveats": [
+    "Small 0.5B model and one synthetic prefix; not a production workload.",
+    "This is vLLM-native prefix caching, not an external paged-KV connector with custom block paging.",
+    "Single run on one GPU; no statistical claims.",
+    "Server credentials and host details are intentionally not stored in the repository."
+  ]
+}

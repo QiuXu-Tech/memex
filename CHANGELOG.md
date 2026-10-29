@@ -4,12 +4,20 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
-## Unreleased
+## 0.15.0
 
-### Fixed
+### Fixed — SQLite/file consistency
 - Serialize file-backed record mutations with SQLite, retain staged data across interrupted operations, and never overwrite a cold file after a failed move. Missing legacy bodies now raise an explicit error.
 - Snapshot backups under the writer lock, include retained recovery files, and rebase restored record paths to the destination after validating them.
 - Added multi-process lock, interruption, retry, backup and recovery tests. Process-crash recovery is covered; sudden power-loss durability is not established.
+
+### Added — A-route GPU validation (vLLM paged-KV prefix cache)
+- Connected to an NVIDIA RTX PRO 6000 Blackwell Server Edition (96GB, driver 590.44.01); torch 2.8.0+cu128 / CUDA 12.8 / compute capability (12,0).
+- Installed and ran **vLLM 0.10.2** with Qwen2.5-0.5B-Instruct and `--enable-prefix-caching`.
+- Two requests sharing a ~2,498-token materialized stable prefix: vLLM metrics reported **prefix_cache_queries_total=4997**, **prefix_cache_hits_total=2480** → **99.2% second-request prefix hit ratio**.
+- Added `training/vllm_prefix_cache_eval.py` and `docs/assets/benchmarks/vllm-prefix-cache.json`; docs/context-materialization.md updated.
+- **Boundary:** vLLM-native prefix caching, not a custom external paged-KV connector yet; small model/single run.
+- Harness **130/130**; SQLite consistency **36/36**.
 
 ## 0.14.1
 
