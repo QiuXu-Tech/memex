@@ -17,7 +17,7 @@ The [tail-order fix](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa
 uses the fixture's actual insertion order. In the new GPT-6.1 Sol run, saved
 plans and prompts confirm turns 280–299 in order for all three seeds.
 [Results and evidence](assets/benchmarks/live-ab-codex-sol-tail-fixed-evidence.json)
-are available below. Earlier DeepSeek and Terra counts remain historical;
+are available below. Earlier DeepSeek, Terra and Claude counts remain historical;
 see the [tail audit](assets/benchmarks/results-tail-history-v080.json) before
 interpreting their claimed chronological tails.
 
@@ -113,6 +113,26 @@ Questions are anchor-free and the records are cold. They exercise morphology-lit
 Mechanism: stopword-filtered content terms, prefix ≥4 loose matching, cold-only FTS variants + cold abstract prefix LIKE, and a cold partial-coverage boost (`coldPartial`) gated to protect fully-covered hot cards. Cold bodies are not read. Raw: [evidence](assets/benchmarks/live-ab-deepseek-cold-partial.json).
 
 **Trade-off:** the partial boost is on by default and costs ~3pp real-archive hit@1 (68% → 65%) while hit@5 stays 93%; set `coldPartial: 0` in rerank for the precision-first behavior.
+
+### H. Claude family: Sonnet 5.5 vs Opus 5.5 (reported, v0.9.0)
+
+Both Claude 5.5 models were run through the **APIMaster** OpenAI-compatible gateway with the pre-tail-order-fix batch bridge (`scripts/claude-ab.mjs`), 3 seeds × 20 probes, 6 calls each.
+
+| Model | Control | Treatment | Reported evicted | Gateway-reported usage (6 calls) |
+|---|---|---|---|---|
+| `claude-sonnet-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,673 tokens** (prompt 39,025 / completion 1,648) |
+| `claude-opus-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,676 tokens** (prompt 39,028 / completion 1,648) |
+
+- Tail IDs and per-probe `inTail`/`evicted` flags are saved, but the complete tail record titles and prompts are not; strict chronological-tail membership cannot be independently confirmed for these historical runs.
+- The reported aggregate counts match on this synthetic fixture; they do not establish that the two Claude models behave identically in other settings.
+- The gateway reported ~40.7k tokens per model (six batch calls), ~81.3k for the pair. Monetary cost and billing receipts were not captured.
+- Raw: [Sonnet](assets/benchmarks/live-ab-claude-sonnet55.json) · [Opus](assets/benchmarks/live-ab-claude-opus55.json).
+
+Run it yourself (key is read from env, never committed):
+
+```bash
+APIMASTER_API_KEY=... node scripts/claude-ab.mjs --model claude-sonnet-5-5
+```
 
 ## How to contribute
 

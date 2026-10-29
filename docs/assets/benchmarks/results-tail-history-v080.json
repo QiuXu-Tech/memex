@@ -183,5 +183,6 @@
     }
   ],
   "priorCodexAuditSha256": "b2ce3cff28a00dc2def904733da0d5a192efff28fb899d06e7c5359ad95dc9e4",
-  "terraChronologicalTail": "UNKNOWN: the published Terra report saves tail IDs and probe flags but not full tail record titles or prompts."
+  "terraChronologicalTail": "UNKNOWN: the published Terra report saves tail IDs and probe flags but not full tail record titles or prompts.",
+  "claudeChronologicalTail": "UNKNOWN: the published v0.9.0 Sonnet and Opus reports save tail IDs and probe flags but not the full tail record titles or prompts; they used the same pre-fix fixture."
 }

@@ -192,8 +192,8 @@ In the earlier v0.8.0 Codex run, saved prompts for two seeds included turn
 278 or 279 and omitted turn 281. The previously published DeepSeek tail records
 also differ from turns 280–299 in two seeds. The historical result counts are
 preserved, but the full old DeepSeek provider prompts were not saved, and the
-published Terra result has tail IDs without all tail record titles, so exact
-chronological tails cannot be established for those calls. See the
+published Terra and Claude results have tail IDs without all tail record
+titles, so exact chronological tails cannot be established for those calls. See the
 [historical tail audit](assets/benchmarks/results-tail-history-v080.json) and
 [prior Codex prompt evidence](assets/benchmarks/results-tail-history-v080-codex-prompts.json).
 
