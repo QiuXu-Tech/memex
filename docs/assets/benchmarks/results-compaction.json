@@ -1,0 +1,313 @@
+{
+  "mode": "compaction",
+  "historyTokens": 160473,
+  "windowTokens": 80000,
+  "records": 107,
+  "coldRecords": 53,
+  "tailRecords": 54,
+  "oldSpanTokens": 79490,
+  "truncation": {
+    "facts": 40,
+    "available": 20,
+    "accuracy": 0.5
+  },
+  "compaction": {
+    "facts": 40,
+    "tailFacts": 20,
+    "oldFacts": 20,
+    "survivedOld": 4,
+    "oldFactRecovery": 0.2,
+    "accuracy": 0.6,
+    "reportTokens": 570
+  },
+  "dshMemory": {
+    "facts": 40,
+    "hit1": 1,
+    "hit3": 1,
+    "hit5": 1,
+    "medianLatencyMs": 7.953457999999955,
+    "tokensPerQuestion": 1693,
+    "details": [
+      {
+        "fact": "FACT-000-367k8",
+        "topic": "gateway",
+        "recordIndex": 0,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-002-9xd8t",
+        "topic": "scheduler",
+        "recordIndex": 2,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-004-9n03z",
+        "topic": "cache",
+        "recordIndex": 4,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-008-yg9ka",
+        "topic": "bridge",
+        "recordIndex": 8,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-010-7eqom",
+        "topic": "harbor",
+        "recordIndex": 10,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-012-4n2i8",
+        "topic": "cobalt",
+        "recordIndex": 12,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-016-1pl2k",
+        "topic": "onboarding",
+        "recordIndex": 16,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-018-9mvvo",
+        "topic": "migration",
+        "recordIndex": 18,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-020-vsv8i",
+        "topic": "quota",
+        "recordIndex": 20,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-024-zu7pl",
+        "topic": "ledger",
+        "recordIndex": 24,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-026-g1nc4",
+        "topic": "parser",
+        "recordIndex": 26,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-028-5o07y",
+        "topic": "router",
+        "recordIndex": 28,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-032-q7rv0",
+        "topic": "queen",
+        "recordIndex": 32,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-034-9ztgv",
+        "topic": "orchid",
+        "recordIndex": 34,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-036-n5fgu",
+        "topic": "ember",
+        "recordIndex": 36,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-040-ff6rz",
+        "topic": "telemetry",
+        "recordIndex": 40,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-042-jshn6",
+        "topic": "rollback",
+        "recordIndex": 42,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-044-1znh3",
+        "topic": "sandbox",
+        "recordIndex": 44,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-048-mwv0n",
+        "topic": "scheduler",
+        "recordIndex": 48,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-050-9bxsc",
+        "topic": "cache",
+        "recordIndex": 50,
+        "rank": 0,
+        "cold": true
+      },
+      {
+        "fact": "FACT-054-7h9p5",
+        "topic": "bridge",
+        "recordIndex": 54,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-056-z3277",
+        "topic": "harbor",
+        "recordIndex": 56,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-058-0irjy",
+        "topic": "cobalt",
+        "recordIndex": 58,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-062-mpm05",
+        "topic": "onboarding",
+        "recordIndex": 62,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-064-8691s",
+        "topic": "migration",
+        "recordIndex": 64,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-066-ao21z",
+        "topic": "quota",
+        "recordIndex": 66,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-070-e4vle",
+        "topic": "ledger",
+        "recordIndex": 70,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-072-rf4s2",
+        "topic": "parser",
+        "recordIndex": 72,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-074-91b5d",
+        "topic": "router",
+        "recordIndex": 74,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-078-sbb6n",
+        "topic": "queen",
+        "recordIndex": 78,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-080-iy4rm",
+        "topic": "orchid",
+        "recordIndex": 80,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-082-xqvaz",
+        "topic": "ember",
+        "recordIndex": 82,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-086-utvas",
+        "topic": "telemetry",
+        "recordIndex": 86,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-088-3s3jz",
+        "topic": "rollback",
+        "recordIndex": 88,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-090-77n0f",
+        "topic": "sandbox",
+        "recordIndex": 90,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-094-r8ule",
+        "topic": "scheduler",
+        "recordIndex": 94,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-096-kfy5m",
+        "topic": "cache",
+        "recordIndex": 96,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-098-lasri",
+        "topic": "worker",
+        "recordIndex": 98,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-102-yre8o",
+        "topic": "harbor",
+        "recordIndex": 102,
+        "rank": 0,
+        "cold": false
+      },
+      {
+        "fact": "FACT-104-3l0of",
+        "topic": "cobalt",
+        "recordIndex": 104,
+        "rank": 0,
+        "cold": false
+      }
+    ]
+  }
+}

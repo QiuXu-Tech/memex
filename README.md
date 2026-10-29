@@ -126,7 +126,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 **A/B against no extra context** (160K-token history, 80K window): fact recall **100%** with dsh-memory vs **60%** with a model-written compaction summary (+tail) and **50%** with plain truncation; at 10M tokens the no-memory window covers only 10% of history while retrieval stays at 100% hit@5. Full charts and methodology: **[docs/benchmark.md](docs/benchmark.md)**.
 
-Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite all`, `node --import ./test/register.mjs scripts/scale-bench.mjs --records 10000 --tokens 10000`, and `node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode all`. Details in [docs/evaluation.md](docs/evaluation.md).
+Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite all`, `node --import ./test/register.mjs scripts/scale-bench.mjs --records 10000 --tokens 10000`, and `node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction` / `--mode scale`. Details in [docs/evaluation.md](docs/evaluation.md).
 
 ## Privacy
 

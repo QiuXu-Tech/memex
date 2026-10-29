@@ -95,4 +95,4 @@ node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode scale \
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 ```
 
-Charts in this report were rendered from the resulting `results.json` files. The compaction summary used for the table is a model-written artifact committed as evidence in the repository history (not shipped as a fixture so the baseline cannot leak).
+Charts in this report were rendered from `docs/assets/benchmarks/results-*.json` (raw measured output). The model-written compaction summary used for the table is committed verbatim as `docs/assets/benchmarks/compaction-summary.txt` so the baseline is auditable.
