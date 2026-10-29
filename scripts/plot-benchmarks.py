@@ -146,7 +146,7 @@ save(fig, "cost-latency.png")
 
 # 100M-token synthetic pool: timed cold GC deletes the removed records.
 fig, axes = plt.subplots(1, 2, figsize=(12.8, 6.8), gridspec_kw={"width_ratios": [1.18, 1]})
-heading(fig, "Synthetic 100M-token pool", f"v{metadata['testedVersion']} · 10,000 records · recovery after SQLite lock · quiet-start gate met")
+heading(fig, "Synthetic 100M-token pool", f"v{metadata['testedVersion']} · 10,000 records · quiet-start gate met")
 fig.subplots_adjust(left=0.2, right=0.955, top=0.75, bottom=0.19, wspace=0.45)
 storage_names = ["Index after write", "Index after cold spill", "Original body files"]
 storage = [capacity["indexAfterWriteMiB"], capacity["indexAfterColdMiB"], capacity["bodyFilesMiB"]]
@@ -171,9 +171,9 @@ footnote(fig, "X-only bodies do not measure identifier-bearing body index overhe
 save(fig, "capacity.png")
 
 # Live model answers on the separately run synthetic Codex A/B fixture.
-live = load("live-ab-codex-sol-v014.json")["aggregate"]
+live = load("live-ab-codex-sol-sqlite-fixed.json")["aggregate"]
 fig, ax = plt.subplots(figsize=(12.8, 6.8))
-heading(fig, "Codex A/B: exact-answer counts", "v0.14.0 · GPT-6.1 Sol · 3 synthetic seeds · 300 turns each")
+heading(fig, "Codex A/B: exact-answer counts", "v0.14.1 + SQLite fix · GPT-6.1 Sol · 3 synthetic seeds · 300 turns each")
 fig.subplots_adjust(left=0.085, right=0.965, top=0.79, bottom=0.22)
 setup(ax)
 for x, (control, treatment) in enumerate([

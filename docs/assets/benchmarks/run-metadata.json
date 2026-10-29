@@ -1,8 +1,8 @@
 {
-  "testedVersion": "0.14.0",
-  "testedCommit": "48034b1fcb1eb28e88173f3568e4b09cf6670b1d",
-  "executionCheckout": "48034b1fcb1eb28e88173f3568e4b09cf6670b1d",
-  "executionCheckoutNote": "Clean detached checkout at the v0.14.0 tag; product code was not modified.",
+  "testedVersion": "0.14.1 + SQLite fix",
+  "testedCommit": "9fb13bb80038eb79b239a96186ced2ccfd93eb31",
+  "executionCheckout": "9fb13bb80038eb79b239a96186ced2ccfd93eb31",
+  "executionCheckoutNote": "Clean detached checkout of the post-v0.14.1 SQLite consistency fix.",
   "date": "2026-10-29",
   "timezone": "Asia/Shanghai",
   "os": "macOS 27.2 (26B123)",
@@ -11,68 +11,37 @@
   "logicalProcessors": 10,
   "memoryBytes": 17179869184,
   "node": "v24.21.0",
-  "loadMonitor": "psutil 7.2.2 cpu_percent(interval=5) and os.getloadavg; machine-wide including benchmark work. Stage label is recorded at the end of each sampling interval.",
+  "loadMonitor": "psutil 7.2.2 cpu_percent(interval=5) and os.getloadavg; machine-wide including benchmark work; stage labels recorded at sample completion.",
   "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 20% and load1 <= 4.5.",
   "quietStartGateMet": true,
+  "quietGateFallback": false,
   "quietGateSamples": [
     {
-      "timeUtc": "2026-10-29T13:35:43+00:00",
+      "timeUtc": "2026-10-29T15:25:00+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 19.3,
-      "load1": 3.64990234375,
-      "load5": 3.890625,
+      "systemCpuBusyPercent": 14.2,
+      "load1": 3.1826171875,
+      "load5": 3.39892578125,
       "benchmarkPid": null
     },
     {
-      "timeUtc": "2026-10-29T13:35:48+00:00",
+      "timeUtc": "2026-10-29T15:25:05+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 16.2,
-      "load1": 3.517578125,
-      "load5": 3.85888671875,
+      "systemCpuBusyPercent": 16.9,
+      "load1": 3.0078125,
+      "load5": 3.35888671875,
       "benchmarkPid": null
     }
   ],
   "benchmarkLoadSamples": {
-    "count": 7,
-    "cpuBusyPercentMin": 33.1,
-    "cpuBusyPercentMax": 47.2,
-    "cpuBusyPercentMedian": 38.4,
-    "load1Min": 3.7412109375,
-    "load1Max": 4.17138671875
+    "count": 20,
+    "cpuBusyPercentMin": 26.7,
+    "cpuBusyPercentMax": 40.9,
+    "cpuBusyPercentMedian": 31.95,
+    "load1Min": 3.1533203125,
+    "load1Max": 4.421875
   },
-  "recovery": {
-    "why": "Initial 100M capacity stage failed with SQLITE_BUSY at BEGIN IMMEDIATE; recall stage had not started.",
-    "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 25% and load1 <= 5.",
-    "quietStartGateMet": true,
-    "quietGateSamples": [
-      {
-        "timeUtc": "2026-10-29T13:41:14+00:00",
-        "stage": "preflight",
-        "systemCpuBusyPercent": 24.7,
-        "load1": 4.96044921875,
-        "load5": 5.91259765625,
-        "benchmarkPid": null
-      },
-      {
-        "timeUtc": "2026-10-29T13:41:19+00:00",
-        "stage": "preflight",
-        "systemCpuBusyPercent": 22.2,
-        "load1": 4.72314453125,
-        "load5": 5.84716796875,
-        "benchmarkPid": null
-      }
-    ],
-    "loadSamples": {
-      "count": 1,
-      "cpuBusyPercentMin": 29.8,
-      "cpuBusyPercentMax": 29.8,
-      "cpuBusyPercentMedian": 29.8,
-      "load1Min": 4.7451171875,
-      "load1Max": 4.7451171875
-    },
-    "temporaryLocation": "fresh subdirectory of macOS system temporary directory",
-    "note": "Only missing 100M capacity and recall stages were run again; initial error and interrupted preflight are retained."
-  },
+  "temporaryLocation": "fresh macOS system temporary directory",
   "summary": "Pre-existing compaction-summary.txt; no model invoked for offline benchmark.",
   "sourceSha256": {
     "scripts/long-horizon-eval.mjs": "cec6e2db72fa182328131e230cb1b3cf89ef601a92215246deb9022727c2b144",
@@ -80,64 +49,70 @@
     "scripts/recall-eval.mjs": "563c8718ef432d54f4115be0c1ab6e96808f81784bf99d7e83b4d093b098c8e1",
     "docs/assets/benchmarks/compaction-summary.txt": "5df3b0d2540dc3e70f8662b18e6e79a832a92019aa3fbd1d6411f7e6baab75f7",
     "test/register.mjs": "b6651a0d8d119cb6fc843d7ca54529a0f30746615bc68348b6a069e06c22124f",
-    "test/run.mjs": "a7a7d26a7f1703d21e57f8f9d9450c677cec85f58c21042076057491b58b2cc8",
+    "test/run.mjs": "1d802d761c286965e33747fac6b11aed1519189cf29d445865948a17b767cd45",
+    "test/sqlite-consistency.mjs": "1337dbe69688f5f2846fd312e0063320c5ec049798179f25f7cba4ec4ccf7524",
     "packages/memex-core/index.js": "ac504c96cc6f01612b74db0003f5e7bd3d84b5ed7964f991c61dc1c2ea6b79ef",
-    "packages/memex-core/lib/store.js": "52af808eb1c22d811d8bfde9dee73b2f5e3da440e552f741badf310d846eb06b",
+    "packages/memex-core/lib/store.js": "2f02be75d4d608e8d52878cc09de6319925d851b0fbac3d1cd18a841756cfd78",
+    "packages/memex-core/lib/file-transactions.js": "a51df23d7365e06bac9a8a0ae40e54221e98b52919cbc783615a89f5e76bc8b8",
     "packages/memex-local/lib/store.js": "22a6497741e4708daa1a2ba257e09486b39de3b68a4d7ddf5597377513f6bb57",
+    "scripts/memory-backup.mjs": "4e82067ceaa67ded543404ca5e222d156efdf3b617b9962f6479b0b7dbc778cd",
     "scripts/live-ab.mjs": "5d59b31be6b2e5bfb8d44a0d1221f0a235210821cbad182d25e59cabb6d69334",
     "scripts/codex-ab.mjs": "b7132815278fb371b9efb10aedadccac6c007e02c8326ed88de760cdb20c101a"
   },
   "limitations": [
-    "Shared machine; sampled load includes benchmark work and is not full isolation.",
-    "Offline searches use LocalStoreCore default rerank weights; they do not benchmark live agents.",
+    "Shared machine; sampled load includes benchmark work, not full isolation.",
+    "Offline searches use LocalStoreCore default rerank weights and do not benchmark live agents.",
     "Token counts use character-based estimates; no memory_open call or model answer is timed.",
-    "Capacity bodies contain only x; card-field numbers are indexed but identifier-bearing body index overhead is not represented."
+    "Capacity bodies contain only x; card-field numbers are indexed but identifier-bearing body index overhead is not represented.",
+    "Process-interruption recovery is tested; sudden power-loss or hardware-failure durability is not established."
   ],
   "liveAB": {
     "node": "v25.9.0",
     "codexCli": "0.165.0-alpha.1.2",
+    "reasoningEffort": "max",
     "bridgeExitCode": 0,
     "calls": 6,
     "allExitZero": true,
     "sessionCompletionsMatched": true,
     "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 25% and load1 <= 5.",
+    "quietStartGateFallback": false,
     "quietStartGateMet": true,
     "quietGateSamples": [
       {
-        "timeUtc": "2026-10-29T13:42:32+00:00",
+        "timeUtc": "2026-10-29T15:27:07+00:00",
         "stage": "preflight",
-        "systemCpuBusyPercent": 21.1,
-        "load1": 4.60693359375,
-        "load5": 5.51904296875,
+        "systemCpuBusyPercent": 14.3,
+        "load1": 3.20166015625,
+        "load5": 3.45849609375,
         "benchmarkPid": null
       },
       {
-        "timeUtc": "2026-10-29T13:42:37+00:00",
+        "timeUtc": "2026-10-29T15:27:12+00:00",
         "stage": "preflight",
-        "systemCpuBusyPercent": 21.3,
-        "load1": 4.39794921875,
-        "load5": 5.46044921875,
+        "systemCpuBusyPercent": 15.8,
+        "load1": 3.02490234375,
+        "load5": 3.41748046875,
         "benchmarkPid": null
       }
     ],
     "loadSamples": {
-      "count": 27,
-      "cpuBusyPercentMin": 13.7,
-      "cpuBusyPercentMax": 34.0,
-      "cpuBusyPercentMedian": 19.3,
-      "load1Min": 2.919921875,
-      "load1Max": 4.12548828125
+      "count": 44,
+      "cpuBusyPercentMin": 15.8,
+      "cpuBusyPercentMax": 33.5,
+      "cpuBusyPercentMedian": 20.25,
+      "load1Min": 2.3212890625,
+      "load1Max": 3.2802734375
     },
     "sessionTokenUsage": {
-      "input_tokens": 163265,
-      "cached_input_tokens": 86912,
+      "input_tokens": 164688,
+      "cached_input_tokens": 65920,
       "cache_write_input_tokens": 0,
-      "output_tokens": 1789,
-      "reasoning_output_tokens": 797,
-      "total_tokens": 165054
+      "output_tokens": 1882,
+      "reasoning_output_tokens": 890,
+      "total_tokens": 166570
     },
     "billedCost": "UNKNOWN",
-    "nativeReportSha256": "848ece3ed321b1f9a284e34744df36b76d732e076d4d5bfd897effa741f268ca",
+    "nativeReportSha256": "9849b3ba873a67e9336a7875cb96927f444770f1bb2375dd7fa5b52959a2bf2f",
     "note": "Separate from offline benchmark; diagnostic tails and local session logs retained locally."
   }
 }

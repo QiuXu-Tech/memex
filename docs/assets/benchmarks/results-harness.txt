@@ -128,5 +128,6 @@ ok U29 context encoder baseline ranks overlapping pages and trains offline
 ok U30 KV host capability negotiation fails closed and pages when fully capable
 ok U31 trained transformer context encoder matches Python reference and ranks pages
 ok U32 reference paged-KV host pages blocks, caches prefixes and evicts by capacity
+ok U33 checkpoint runtime injects a materialized window when enabled
 
-# 129/129 passed
+# 130/130 passed

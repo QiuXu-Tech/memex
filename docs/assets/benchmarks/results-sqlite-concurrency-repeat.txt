@@ -1,0 +1,69 @@
+Run 1
+✔ backup while another process writes captures matching body and metadata (576.185917ms)
+✔ a competing writer is waited for before a mutation begins (398.179667ms)
+✔ concurrent processes update one record without mixing body and metadata (94.364584ms)
+✔ concurrent archive and update preserve the latest body and cold state (42.684083ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1166.951084
+
+Run 2
+✔ backup while another process writes captures matching body and metadata (575.322208ms)
+✔ a competing writer is waited for before a mutation begins (388.978042ms)
+✔ concurrent processes update one record without mixing body and metadata (87.711584ms)
+✔ concurrent archive and update preserve the latest body and cold state (39.735166ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1146.994583
+
+Run 3
+✔ backup while another process writes captures matching body and metadata (580.079625ms)
+✔ a competing writer is waited for before a mutation begins (406.921041ms)
+✔ concurrent processes update one record without mixing body and metadata (93.421375ms)
+✔ concurrent archive and update preserve the latest body and cold state (39.842375ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1173.130375
+
+Run 4
+✔ backup while another process writes captures matching body and metadata (493.2805ms)
+✔ a competing writer is waited for before a mutation begins (485.992834ms)
+✔ concurrent processes update one record without mixing body and metadata (93.702666ms)
+✔ concurrent archive and update preserve the latest body and cold state (40.264541ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1168.968333
+
+Run 5
+✔ backup while another process writes captures matching body and metadata (592.336584ms)
+✔ a competing writer is waited for before a mutation begins (395.151959ms)
+✔ concurrent processes update one record without mixing body and metadata (84.36ms)
+✔ concurrent archive and update preserve the latest body and cold state (41.475833ms)
+ℹ tests 4
+ℹ suites 0
+ℹ pass 4
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1166.613708

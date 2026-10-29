@@ -5,8 +5,8 @@ layout: default
 
 # Evaluation
 
-The public synthetic workloads were rerun on v0.14.0, commit
-[`48034b1`](https://github.com/QiuXu-Tech/memex/commit/48034b1fcb1eb28e88173f3568e4b09cf6670b1d),
+The public synthetic workloads were rerun on v0.14.1 plus the SQLite
+consistency fix, commit [`9fb13bb`](https://github.com/QiuXu-Tech/memex/commit/9fb13bb80038eb79b239a96186ced2ccfd93eb31),
 on 2026-10-29. The Apple M4 / Node 24.21.0 machine met a quiet-start gate;
 it remained shared and load was sampled during the longer stages. See the
 [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md)
@@ -41,12 +41,12 @@ public fixture. The separate reported DeepSeek multi-seed results have a
 
 | Synthetic pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M in 0.31 s | 350 records / 3.5M in 0.03 s |
-| 10,000 records / 100M assigned tokens | 3.6 s | 5,000 records / 50M in 2.36 s | 2,500 records / 25M in 0.29 s |
+| 1,000 records / 10M assigned tokens | 1.0 s | 700 records / 7M in 1.03 s | 350 records / 3.5M in 0.23 s |
+| 10,000 records / 100M assigned tokens | 11.0 s | 5,000 records / 50M in 14.83 s | 2,500 records / 25M in 5.56 s |
 
-The 100M recovery run used 384.8 MiB of original body files and a 10.9 MiB SQLite index
-after writing, growing to 28.2 MiB after cold spill. The initial 100M attempt
-failed with a SQLite lock; see the [investigation](benchmark.html#7-sqlite-lock-investigation).
+The 100M run used 384.8 MiB of original body files and a 10.9 MiB SQLite index
+after writing, growing to 28.2 MiB after cold spill. The earlier v0.14.0 run
+had a SQLite lock failure; see the [fix and investigation](benchmark.html#7-sqlite-lock-fix-and-recovery).
 Token counts are assigned synthetic values. The x-only bodies do not measure identifier-body index
 overhead; numeric anchors in the card fields are indexed in v0.5.0. Cold GC
 deletes the removed records. The read-path timings and raw output are included
@@ -65,6 +65,6 @@ current public-fixture measurement.
 - The capacity helper's printed `p95` is based on five samples and selects the
   second-largest value. It is not a reliable 95th percentile. This rerun does
   not establish that the former `p95 < 50 ms` target is met.
-- The offline harness passed 129/129 tests at the tested commit after building
+- The offline harness passed 130/130 tests at the tested commit after building
   the bundle; this validates its test cases, not production or real-agent
   performance.

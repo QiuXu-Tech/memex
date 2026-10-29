@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.14.1 plus unreleased SQLite consistency fix (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), 130/130 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.14.1 plus unreleased SQLite consistency fix (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), 130/130 offline tests and 36/36 SQLite consistency tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -168,12 +168,12 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | Metric | Result |
 |---|---|
 | Private archive re-check (40 curated questions; v0.5.1) | Reported hit@1 **68%** / hit@3 90% / hit@5 **93%**, cold recall 94%, p50 **1.5 ms**; this private archive cannot be independently reproduced from the public fixture |
-| Synthetic recall suite (v0.14.0) | 80/80 target-record hits at rank 1 |
-| Codex / GPT-6.1 Sol A/B (v0.14.0; 3 synthetic histories) | exact answers: control with tail titles/summaries 3/60, treatment with pre-retrieved evidence 60/60; evicted subset 0/57 → 57/57. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
-| 10k records / 100M assigned tokens (v0.14.0, synthetic, quiet-start gate) | recovery run: write 3.6 s; cold spill 5,000 records/50M tokens in 2.36 s; cold GC 2,500 records/25M tokens in 0.29 s. The initial attempt failed with a SQLite lock. |
-| SQLite index (synthetic v0.14.0 100M-token pool) | 10.9 MiB after writing, 28.2 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
+| Synthetic recall suite (v0.14.1 + SQLite fix) | 80/80 target-record hits at rank 1 |
+| Codex / GPT-6.1 Sol A/B (v0.14.1 + SQLite fix; 3 synthetic histories) | Exact answers: control with tail titles/summaries **3/60**, treatment with pre-retrieved evidence **60/60**; evicted subset **0/57 → 57/57**. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
+| 10k records / 100M assigned tokens (v0.14.1 + SQLite fix, synthetic, quiet-start gate) | write 11.0 s; cold spill 5,000 records/50M tokens in 14.83 s; cold GC 2,500 records/25M tokens in 5.56 s. [Timing context](docs/benchmark.md#4-synthetic-capacity-and-cold-operations) |
+| SQLite index (synthetic v0.14.1 + SQLite fix 100M-token pool) | 10.9 MiB after writing, 28.2 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
 
-**Synthetic 160K history / 80K window, on v0.14.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
+**Synthetic 160K history / 80K window, on v0.14.1 + SQLite fix:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
 
 **SQLite consistency:** the post-v0.14.1 fix serializes file-backed operations with SQLite and recovers process-interrupted transactions without overwriting existing records. Previously damaged legacy stores require inspection; process-crash recovery and its limits are described in [SQLite and file consistency](docs/storage-consistency.md).
 

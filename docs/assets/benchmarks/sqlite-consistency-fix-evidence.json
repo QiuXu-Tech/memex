@@ -1,0 +1,62 @@
+{
+  "testedVersion": "0.14.1 + SQLite fix",
+  "testedCommit": "9fb13bb80038eb79b239a96186ced2ccfd93eb31",
+  "previousIncident": "The previous v0.14.0 investigation and retained synthetic failure evidence remain separate.",
+  "archiveUnderHeldWriteLock": {
+    "sqliteBusyTimeoutMs": 5000,
+    "error": {
+      "code": "ERR_SQLITE_ERROR",
+      "sqliteCode": 5,
+      "message": "database is locked"
+    },
+    "elapsedMs": 5199,
+    "indexedBodyExistsAfterFailure": true,
+    "databaseStillMarksHot": true,
+    "coldBodyMatchesOriginalAfterFailure": false,
+    "lockHolderExitCode": 0,
+    "readFallsBackToSummary": false,
+    "coldBodyBytesAfterRetry": 329,
+    "originalBodyPreservedAfterRetry": true
+  },
+  "updateUnderHeldWriteLock": {
+    "error": {
+      "code": "ERR_SQLITE_ERROR",
+      "sqliteCode": 5,
+      "message": "database is locked"
+    },
+    "lockHolderExitCode": 0,
+    "storedSummary": "old summary",
+    "bodyChangedDespiteFailedWrite": false
+  },
+  "lockDiagnostics": "Controlled competing writer; Node 25.9.0; no live memory store accessed.",
+  "regressionSuite": {
+    "node": "v24.21.0",
+    "tests": 36,
+    "passed": 36,
+    "failed": 0,
+    "cases": [
+      "SQLite contention and timeout",
+      "blocked writes, archive, restore, cold GC",
+      "legacy missing source and collision preservation",
+      "process interruption before and after commit",
+      "interruption during recovery",
+      "lost commit acknowledgement and record ID",
+      "concurrent writers",
+      "concurrent archive/update",
+      "hardlink fallback",
+      "backup under concurrent writes and restore without source root"
+    ],
+    "rawOutputSha256": "b6ba502c6b4ba8dcd4d98653dd8bea5e40fe42a21e070cf4fe841e45b01544fa"
+  },
+  "legacyFailureFixtureCopy": {
+    "missingIndexedBodyReported": true,
+    "coldCandidatePreservedByteForByte": true,
+    "note": "A relocated copy of the prior synthetic failure was inspected; original evidence was not modified."
+  },
+  "limitations": [
+    "Historical lock holder remains UNKNOWN.",
+    "Pre-existing ambiguous missing-file cases are reported without guessing or overwriting.",
+    "Tests exercise process interruption, not sudden power loss or storage hardware failure.",
+    "External programs that do not honor the SQLite writer lock may still modify files concurrently."
+  ]
+}
