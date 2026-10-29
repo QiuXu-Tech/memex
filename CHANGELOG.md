@@ -1,5 +1,19 @@
 # Changelog
 
+## 0.2.0
+
+### Added
+- **Agent-agnostic core** `@qiuxu/dsh-memory-core` (no host dependencies): vocabulary, workspace identity, query terms, markdown+SQLite store with hot/cold tiers, hybrid retrieval, capacity compression, `AgentMemory` facade, model profiles and model-tailored manual. The DSH seam now re-exports it.
+- **Universal MCP server** `@qiuxu/dsh-memory-mcp`: dependency-free stdio JSON-RPC; 7 tools, `memory://catalog` resource, profile `instructions`.
+- **Claude Code adapter** `@qiuxu/dsh-memory-claude`: `init` writes `.mcp.json`, merges `.claude/settings.json` hooks (`SessionStart`, `UserPromptSubmit`, `PreCompact`, `SessionEnd`), injects a model-tailored `CLAUDE.md`; `PreCompact` archives the raw transcript verbatim.
+- **Codex adapter** `@qiuxu/dsh-memory-codex`: `AGENTS.md` manual, `codex mcp add` command and `config.toml` writer with backup.
+- **Model profiles** for Claude, GPT/o-series, Gemini, DeepSeek, Qwen, Kimi, GLM, Llama and a generic fallback: windows, token-estimation ratios, injection formats (XML/Markdown/plain), catalog/recall/open budgets, bilingual CJK manuals, digest prompts.
+- Offline coverage: U1–U8 test the core/DSH parity, profile resolution, MCP JSON-RPC end-to-end, Claude init/hooks (incl. transcript archiving), Codex init/config, and cold compression through MCP (106 tests total).
+- Docs: integrations matrix, Claude Code / Codex / generic MCP guides, model profiles, README repositioned as universal memory.
+
+### Fixed
+- Catalog now reports cold-only stores instead of claiming "no archived records" when every record is in the cold tier.
+
 ## Unreleased
 
 ### Added

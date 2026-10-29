@@ -1,8 +1,8 @@
 {
   "name": "@qiuxu/dsh-memory-seam",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Memory seam: abstract ctx.memory service, record vocabulary, Cordis-free helpers, and the model-visible memory message shape.",
+  "description": "Memory seam for DSH: `ctx.memory` service on top of the agent-agnostic @qiuxu/dsh-memory-core (re-exported vocabulary and helpers).",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -14,5 +14,8 @@
   ],
   "peerDependencies": {
     "@deepseek-ai/cordis": "~4.0.5"
+  },
+  "dependencies": {
+    "@qiuxu/dsh-memory-core": "file:../dsh-memory-core"
   }
 }

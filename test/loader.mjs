@@ -16,6 +16,11 @@
 /** Map `@qiuxu/dsh-memory-*` package names to their source entries. */
 const LOCAL_PACKAGES = {
   '@qiuxu/dsh-memory': new URL('../packages/dsh-memory/index.js', import.meta.url).href,
+  '@qiuxu/dsh-memory-core': new URL('../packages/dsh-memory-core/index.js', import.meta.url).href,
+  '@qiuxu/dsh-memory-core/store': new URL('../packages/dsh-memory-core/lib/store.js', import.meta.url).href,
+  '@qiuxu/dsh-memory-core/model-profiles': new URL('../packages/dsh-memory-core/lib/model-profiles.js', import.meta.url).href,
+  '@qiuxu/dsh-memory-core/manual': new URL('../packages/dsh-memory-core/lib/manual.js', import.meta.url).href,
+  '@qiuxu/dsh-memory-core/engine': new URL('../packages/dsh-memory-core/lib/engine.js', import.meta.url).href,
   '@qiuxu/dsh-memory-seam': new URL('../packages/dsh-memory-seam/index.js', import.meta.url).href,
   '@qiuxu/dsh-memory-local': new URL('../packages/dsh-memory-local/index.js', import.meta.url).href,
   '@qiuxu/dsh-memory-checkpoint': new URL('../packages/dsh-memory-checkpoint/index.js', import.meta.url).href,
@@ -26,6 +31,7 @@ const LOCAL_PACKAGES = {
   '@qiuxu/dsh-memory-evict': new URL('../packages/dsh-memory-evict/index.js', import.meta.url).href,
   '@qiuxu/dsh-memory-compress': new URL('../packages/dsh-memory-compress/index.js', import.meta.url).href,
   // Bundle subpath exports point at the generated modules (run scripts/build-bundle.mjs first).
+  '@qiuxu/dsh-memory/core': new URL('../packages/dsh-memory/modules/memory-core/index.js', import.meta.url).href,
   '@qiuxu/dsh-memory/local': new URL('../packages/dsh-memory/modules/memory-local/index.js', import.meta.url).href,
   '@qiuxu/dsh-memory/checkpoint': new URL('../packages/dsh-memory/modules/memory-checkpoint/index.js', import.meta.url).href,
   '@qiuxu/dsh-memory/tools': new URL('../packages/dsh-memory/modules/memory-tool/index.js', import.meta.url).href,
@@ -38,6 +44,7 @@ const LOCAL_PACKAGES = {
 
 /** Package name -> generated module directory inside the built bundle. */
 const BUNDLE_RUNTIME = {
+  '@qiuxu/dsh-memory-core': 'memory-core',
   '@qiuxu/dsh-memory-seam': 'memory-seam',
   '@qiuxu/dsh-memory-local': 'memory-local',
   '@qiuxu/dsh-memory-checkpoint': 'memory-checkpoint',

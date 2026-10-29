@@ -1495,6 +1495,7 @@ await test('K6', 'generated bundle modules mount as four rows end-to-end', async
   }
 
   const bundleExpectations = [
+    ['memory-core', '@qiuxu/dsh-memory-core'],
     ['memory-seam', '@qiuxu/dsh-memory-seam'],
     ['memory-local', '@qiuxu/dsh-memory-local'],
     ['memory-checkpoint', '@qiuxu/dsh-memory-checkpoint'],
@@ -2664,12 +2665,13 @@ await test('N6', 'bundle artifact ships the memory-evict/compress modules and ei
     'memory-checkpoint',
     'memory-command',
     'memory-compress',
+    'memory-core',
     'memory-evict',
     'memory-local',
     'memory-seam',
     'memory-tool',
     'memory-ui',
-  ], 'generated bundle must carry nine runtime modules')
+  ], 'generated bundle must carry ten runtime modules')
   for (const directory of moduleDirs) {
     assert.ok(existsSync(new URL(`${directory}/package.json`, bundleModulesUrl)), `${directory}/package.json must exist`)
   }
@@ -2735,7 +2737,9 @@ await test('C1', 'cold tier releases hot capacity while keeping records retrieva
     assert.equal(core.archiveCold(cold.id).path, archived.path, 'archiveCold is idempotent')
 
     core.archiveCold(hot.id)
-    assert.match(core.catalog({ workspaceKey: 'wk-c1' }), /no archived records in the enabled extra-context levels yet/)
+    const allCold = core.catalog({ workspaceKey: 'wk-c1' })
+    assertIncludes(allCold, '## Memory catalog')
+    assert.match(allCold, /Capacity \(hot\): 0 \/ 100000 tokens across 0 records, 2 cold records \(100 tokens, retrievable via memory_open\)/)
   })
 })
 
@@ -3051,12 +3055,13 @@ await test('C6', 'bundle/module/client/manual cover the compress + cold-tier wav
     'memory-checkpoint',
     'memory-command',
     'memory-compress',
+    'memory-core',
     'memory-evict',
     'memory-local',
     'memory-seam',
     'memory-tool',
     'memory-ui',
-  ], 'generated bundle must carry nine runtime modules')
+  ], 'generated bundle must carry ten runtime modules')
   assertIncludes(uiClientSource, '冷存')
   assertIncludes(uiClientSource, '接近容量时模型会先询问')
   assertIncludes(uiClientSource, 'hotTokens')
@@ -3495,6 +3500,252 @@ await test('S5', 'memory-backup backup/verify/restore round-trips a store with a
   const tampered = runBackup('verify', '--dir', backupDir)
   assert.equal(tampered.status, 1)
   assertIncludes(tampered.stderr, 'verify FAILED')
+})
+
+
+// ── v0.2.0: agent-agnostic core, MCP server, Claude Code / Codex adapters ───
+
+const core = await import('@qiuxu/dsh-memory-core')
+const profiles = await import('@qiuxu/dsh-memory-core/model-profiles')
+const manual = await import('@qiuxu/dsh-memory-core/manual')
+const { AgentMemory } = await import('@qiuxu/dsh-memory-core/engine')
+const REGISTER = fileURLToPath(new URL('./register.mjs', import.meta.url))
+const MCP_SERVER = fileURLToPath(new URL('../packages/dsh-memory-mcp/bin/server.mjs', import.meta.url))
+const CLAUDE_CLI = fileURLToPath(new URL('../packages/dsh-memory-claude/bin/cli.mjs', import.meta.url))
+const CODEX_CLI = fileURLToPath(new URL('../packages/dsh-memory-codex/bin/cli.mjs', import.meta.url))
+
+/** Run a Node CLI with the offline loader so `@qiuxu/*` resolves without node_modules. */
+function runNode(script, args, options = {}) {
+  return spawnSync(process.execPath, ['--import', REGISTER, script, ...args], {
+    input: options.input ?? '',
+    encoding: 'utf8',
+    timeout: 60000,
+    env: { ...process.env, ...(options.env ?? {}) },
+  })
+}
+
+/** Send newline-delimited JSON-RPC messages to the MCP server; return parsed replies keyed by id. */
+function mcpExchange(root, args, messages) {
+  const result = runNode(MCP_SERVER, ['--root', root, ...args], { input: `${messages.map((message) => JSON.stringify(message)).join('\n')}\n` })
+  assert.equal(result.status, 0, `MCP server must exit 0 (stderr: ${result.stderr})`)
+  assert.ok(result.stdout.trim().length > 0, `MCP server produced no stdout (stderr: ${result.stderr}, status: ${result.status}, signal: ${result.signal})`)
+  if (process.env.DEBUG_MCP) console.error('MCP stdout:', JSON.stringify(result.stdout.slice(0, 1200)), 'stderr:', result.stderr)
+  const replies = new Map()
+  for (const line of result.stdout.split('\n')) {
+    if (line.trim().length === 0) continue
+    const message = JSON.parse(line)
+    if (message.id !== undefined) replies.set(message.id, message)
+  }
+  return replies
+}
+
+await test('U1', 'agent-agnostic core has no host dependencies and the DSH seam re-exports it', async () => {
+  const coreFiles = ['index.js', 'lib/store.js', 'lib/model-profiles.js', 'lib/manual.js', 'lib/engine.js']
+  for (const file of coreFiles) {
+    const source = readFileSync(new URL(`../packages/dsh-memory-core/${file}`, import.meta.url), 'utf8')
+    assert.doesNotMatch(source, /@deepseek-ai\//, `core/${file} must not import DSH host packages`)
+  }
+  assert.equal(core.MemoryStore, undefined, 'the core exposes vocabulary/helpers, not the Cordis service')
+  assert.equal(typeof seam.MemoryStore, 'function', 'the DSH seam still exposes the Service subclass')
+  assert.equal(seam.MEMORY_LEVELS, core.MEMORY_LEVELS, 'the seam re-exports the core bindings')
+  assert.deepEqual(seam.memoryQueryTerms('如何恢复额外上下文 memory_search'), core.memoryQueryTerms('如何恢复额外上下文 memory_search'))
+  const bundlePkg = JSON.parse(readFileSync(new URL('../packages/dsh-memory/package.json', import.meta.url), 'utf8'))
+  assert.equal(bundlePkg.exports['./core'], './modules/memory-core/index.js', 'bundle must expose the core module')
+})
+
+await test('U2', 'model profiles resolve per family and tune injection, budgets and digest prompts', async () => {
+  const cases = [
+    ['claude-sonnet-4-20250514', 'claude'],
+    ['gpt-5-codex', 'openai'],
+    ['gemini-2.5-pro', 'gemini'],
+    ['deepseek-chat', 'deepseek'],
+    ['qwen-max', 'qwen'],
+    ['kimi-k2', 'kimi'],
+    ['glm-4.6', 'glm'],
+    ['llama-3.1-70b', 'llama'],
+    ['some-unknown-7b', 'generic'],
+  ]
+  for (const [modelId, expected] of cases) {
+    const profile = profiles.resolveModelProfile(modelId)
+    assert.equal(profile.id, expected, `${modelId} must resolve to ${expected}`)
+    assert.ok(profile.windowTokens > 0 && profile.catalogTokens > 0, `${modelId} profile must carry budgets`)
+  }
+  const claude = profiles.resolveModelProfile('claude-sonnet-4')
+  assert.equal(claude.injectionStyle, 'xml')
+  assert.equal(profiles.profileTokens('x'.repeat(3600), claude), 1000, 'claude profile estimates 3.6 chars/token')
+  assert.ok(profiles.formatMemoryInjection(claude, 'catalog', 'hello').startsWith('<memory-catalog>'))
+  const gpt = profiles.resolveModelProfile('gpt-5')
+  assert.equal(gpt.injectionStyle, 'markdown')
+  assert.ok(profiles.formatMemoryInjection(gpt, 'recall', 'hit').includes('## Memory recall'))
+  const llama = profiles.resolveModelProfile('llama-3.1')
+  assert.ok(profiles.formatMemoryInjection(llama, 'catalog', 'x').startsWith('[MEMORY CATALOG]'))
+  const digest = profiles.digestPrompt(claude, { ids: ['mem_a', 'mem_b'], maxTokens: 200, text: 'batch' })
+  assert.ok(digest.system.includes('ids:'), 'digest prompt must require an ids line')
+  assert.ok(digest.system.includes('200'), 'digest prompt must carry the token budget')
+  assert.ok(digest.user.includes('mem_a'))
+  const overridden = profiles.resolveModelProfile('claude', { windowTokens: 12345 })
+  assert.equal(overridden.windowTokens, 12345)
+  const claudeManual = manual.buildMemoryManual(claude, { agent: 'Claude Code', root: '/tmp/mem', levels: ['l2', 'l3'] })
+  assertIncludes(claudeManual, 'Anthropic Claude profile')
+  assertIncludes(claudeManual, 'memory_search')
+  assertIncludes(claudeManual, 'data')
+  assertIncludes(claudeManual, String(claude.catalogTokens))
+  assertIncludes(claudeManual, 'Claude Code')
+})
+
+await test('U3', 'generic MCP server speaks JSON-RPC: tools list/call, search, open, index', async () => {
+  const root = makeRoot('u3')
+  const replies = mcpExchange(root, ['--agent', 'test', '--model', 'claude-sonnet-4', '--levels', 'l2,l3', '--session', 'u3-session'], [
+    { jsonrpc: '2.0', id: 1, method: 'initialize', params: {} },
+    { jsonrpc: '2.0', method: 'notifications/initialized' },
+    { jsonrpc: '2.0', id: 2, method: 'tools/list' },
+    { jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'fact', title: 'MCP smoke fact', body: 'The deploy id is FOO-42 and the retry budget is 3.', summary: 'deploy id FOO-42', useWhen: 'read when continuing the deployment work' } } },
+    { jsonrpc: '2.0', id: 4, method: 'tools/call', params: { name: 'memory_search', arguments: { query: 'deploy id FOO-42' } } },
+    { jsonrpc: '2.0', id: 5, method: 'tools/call', params: { name: 'memory_index', arguments: {} } },
+    { jsonrpc: '2.0', id: 6, method: 'resources/read', params: { uri: 'memory://catalog' } },
+    { jsonrpc: '2.0', id: 7, method: 'ping' },
+  ])
+  const init = replies.get(1).result
+  assert.equal(init.serverInfo.name, 'dsh-memory')
+  assert.equal(init.protocolVersion, '2024-11-05')
+  assertIncludes(init.instructions, 'Anthropic Claude')
+  const tools = replies.get(2).result.tools.map((tool) => tool.name).sort()
+  assert.deepEqual(tools, ['memory_compress', 'memory_grep', 'memory_index', 'memory_open', 'memory_restore', 'memory_search', 'memory_write'])
+  const writeText = replies.get(3).result.content[0].text
+  assertIncludes(writeText, 'Stored mem_')
+  const recordId = writeText.match(/mem_[0-9a-f]{10}/)[0]
+  const searchText = replies.get(4).result.content[0].text
+  assertIncludes(searchText, recordId)
+  assertIncludes(searchText, 'MCP smoke fact')
+  assertIncludes(replies.get(5).result.content[0].text, 'Memory catalog')
+  assertIncludes(replies.get(6).result.contents[0].text, 'Memory catalog')
+  assert.deepEqual(replies.get(7).result, {})
+  const files = readdirSync(join(root, 'records'), { recursive: true }).filter((entry) => String(entry).endsWith('.md'))
+  assert.equal(files.length, 1, 'the MCP write must persist one markdown record')
+  // open returns the body and paging metadata.
+  const opened = mcpExchange(root, ['--agent', 'test', '--model', 'claude-sonnet-4', '--levels', 'l2,l3', '--session', 'u3-session'], [
+    { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_open', arguments: { id: recordId, maxChars: 500 } } },
+  ]).get(1).result.content[0].text
+  assertIncludes(opened, 'FOO-42')
+  assertIncludes(opened, 'body')
+})
+
+await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
+  const root = makeRoot('u4')
+  const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))
+  const replies = mcpExchange(root, ['--agent', 'test', '--model', 'deepseek-chat', '--levels', 'l3', '--session', 'u4-session', '--capacity', '120'], [
+    ...writes,
+    { jsonrpc: '2.0', id: 9, method: 'tools/call', params: { name: 'memory_compress', arguments: { level: 'l3', targetRatio: 0.3, minAgeMs: 0 } } },
+    { jsonrpc: '2.0', id: 10, method: 'tools/call', params: { name: 'memory_index', arguments: {} } },
+  ])
+  assert.match(replies.get(9).result.content[0].text, /cold-moved [1-9]/)
+  assertIncludes(replies.get(10).result.content[0].text, 'cold records')
+})
+
+await test('U5', 'Claude Code init writes .mcp.json, hooks, and a model-tailored CLAUDE.md', async () => {
+  const project = makeRoot('u5-project')
+  const root = makeRoot('u5-mem')
+  const result = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'])
+  assert.equal(result.status, 0, result.stderr)
+  const mcp = JSON.parse(readFileSync(join(project, '.mcp.json'), 'utf8'))
+  const server = mcp.mcpServers['dsh-memory']
+  assert.equal(server.command, process.execPath)
+  assert.ok(server.args[0].endsWith('dsh-memory-mcp/bin/server.mjs'))
+  assert.deepEqual(server.args.slice(1, 3), ['--root', root])
+  assertIncludes(server.args.join(' '), '--agent claude-code')
+  const settings = JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8'))
+  for (const event of ['SessionStart', 'UserPromptSubmit', 'PreCompact', 'SessionEnd']) {
+    assert.ok(Array.isArray(settings.hooks[event]) && settings.hooks[event].length > 0, `${event} hook must be registered`)
+    assertIncludes(settings.hooks[event][0].hooks[0].command, 'dsh-memory-claude/bin/cli.mjs')
+    assertIncludes(settings.hooks[event][0].hooks[0].command, `hook ${event}`)
+  }
+  const claudeMd = readFileSync(join(project, 'CLAUDE.md'), 'utf8')
+  assertIncludes(claudeMd, '<!-- dsh-memory:start -->')
+  assertIncludes(claudeMd, 'Anthropic Claude profile')
+  assertIncludes(claudeMd, 'memory_search')
+  // Idempotent: re-running init must not duplicate the manual or the hooks.
+  const again = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'])
+  assert.equal(again.status, 0, again.stderr)
+  assert.equal((readFileSync(join(project, 'CLAUDE.md'), 'utf8').match(/dsh-memory:start/g) ?? []).length, 1)
+  assert.equal(JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8')).hooks.PreCompact.length, 1)
+})
+
+await test('U6', 'Claude Code hooks inject catalog/recall and archive transcripts before compaction', async () => {
+  const project = makeRoot('u6-project')
+  const root = makeRoot('u6-mem')
+  const session = 'u6-session'
+  const engine = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l2', 'l3'], model: 'claude-sonnet-4', agent: 'test' })
+  try {
+    engine.write({ kind: 'fact', title: 'Deployment identifier fact', body: 'DEPLOY_ID=abc123; rollback keeps the previous deployment id.', summary: 'deploy id abc123', useWhen: 'read when continuing deployment work' })
+  } finally {
+    engine.close()
+  }
+  const start = runNode(CLAUDE_CLI, ['hook', 'session-start', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: session, cwd: project }) })
+  assert.equal(start.status, 0, start.stderr)
+  const startPayload = JSON.parse(start.stdout.trim())
+  assertIncludes(startPayload.hookSpecificOutput.additionalContext, '<memory-catalog>')
+  assertIncludes(startPayload.hookSpecificOutput.additionalContext, 'Deployment identifier fact')
+  const prompt = runNode(CLAUDE_CLI, ['hook', 'user-prompt', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: session, cwd: project, prompt: 'what is the deployment id we must keep?' }) })
+  assert.equal(prompt.status, 0, prompt.stderr)
+  const recall = JSON.parse(prompt.stdout.trim()).hookSpecificOutput.additionalContext
+  assertIncludes(recall, '<memory-recall>')
+  assertIncludes(recall, 'Deployment identifier fact')
+  const transcript = join(project, 'transcript.jsonl')
+  writeFileSync(transcript, [JSON.stringify({ type: 'user', message: { role: 'user', content: 'remember DEPLOY_ID=abc123' } }), JSON.stringify({ type: 'assistant', message: { role: 'assistant', content: 'noted' } })].join('\n'))
+  const compact = runNode(CLAUDE_CLI, ['hook', 'pre-compact', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: session, cwd: project, transcript_path: transcript, trigger: 'auto' }) })
+  assert.equal(compact.status, 0, compact.stderr)
+  const receipt = JSON.parse(compact.stdout.trim()).hookSpecificOutput.additionalContext
+  assertIncludes(receipt, 'ids:')
+  const check = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l2', 'l3'], model: 'claude-sonnet-4', agent: 'test' })
+  try {
+    const found = check.search({ query: 'Claude Code transcript' })
+    assert.ok(found.hits.length >= 1, 'the pre-compact hook must archive the transcript')
+  } finally {
+    check.close()
+  }
+})
+
+await test('U7', 'Codex init writes AGENTS.md and prints a working MCP config snippet', async () => {
+  const project = makeRoot('u7-project')
+  const root = makeRoot('u7-mem')
+  const result = runNode(CODEX_CLI, ['init', '--project', project, '--root', root, '--model', 'gpt-5-codex', '--levels', 'l3'])
+  assert.equal(result.status, 0, result.stderr)
+  assertIncludes(result.stdout, 'mcp_servers.dsh-memory')
+  assertIncludes(result.stdout, 'codex mcp add')
+  const agents = readFileSync(join(project, 'AGENTS.md'), 'utf8')
+  assertIncludes(agents, '<!-- dsh-memory:start -->')
+  assertIncludes(agents, 'OpenAI Codex ·')
+  assertIncludes(agents, 'memory_search')
+  const snippet = runNode(CODEX_CLI, ['config', '--project', project, '--root', root, '--model', 'gpt-5-codex', '--levels', 'l3'])
+  assert.equal(snippet.status, 0, snippet.stderr)
+  assertIncludes(snippet.stdout, '[mcp_servers.dsh-memory]')
+  assertIncludes(snippet.stdout, 'dsh-memory-mcp/bin/server.mjs')
+  assertIncludes(snippet.stdout, '--agent')
+  assertIncludes(snippet.stdout, 'codex')
+})
+
+await test('U8', 'DSH seam and core stay one vocabulary: engine writes are visible to DSH search', async () => {
+  const root = makeRoot('u8')
+  const cwd = '/tmp/u8-workspace'
+  const engine = new AgentMemory({ root, cwd, sessionId: 'u8-session', levels: ['l2', 'l3'], model: 'deepseek-chat', agent: 'test' })
+  let record
+  try {
+    record = engine.write({ kind: 'decision', title: 'Core/DSH vocabulary parity decision', body: 'The agent-agnostic core and the DSH seam share one record vocabulary.', summary: 'shared vocabulary', useWhen: 'read when checking adapter parity' })
+    const hit = engine.search({ query: 'shared vocabulary parity' })
+    assert.ok(hit.hits.some((card) => card.id === record.id))
+    const index = engine.index()
+    assert.ok(index.catalog.includes(record.id))
+    const opened = engine.open({ id: record.id })
+    assertIncludes(opened.body, 'agent-agnostic core')
+  } finally {
+    engine.close()
+  }
+  const reload = new AgentMemory({ root, cwd, sessionId: 'u8-session', levels: ['l2', 'l3'], model: 'deepseek-chat', agent: 'dsh-test' })
+  try {
+    assert.equal(reload.open({ id: record.id }).title, 'Core/DSH vocabulary parity decision')
+  } finally {
+    reload.close()
+  }
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

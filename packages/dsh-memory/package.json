@@ -1,8 +1,8 @@
 {
   "name": "@qiuxu/dsh-memory",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Extra-context memory subsystem bundle: L1 raw eviction, sticky L2/L3 archives with capacity compression (cold tier + bounded batch digests), model retrieval tools, /memory command, owner-authenticated HTTP routes, and a Web memory panel.",
+  "description": "DeepSeek Harness bundle for the extra-context memory subsystem (agent-agnostic core, L1 eviction, sticky L2/L3, cold tier, Web panel).",
   "type": "module",
   "main": "index.js",
   "exports": {
@@ -16,7 +16,8 @@
     "./api": "./modules/memory-api/index.js",
     "./ui": "./modules/memory-ui/index.js",
     "./evict": "./modules/memory-evict/index.js",
-    "./compress": "./modules/memory-compress/index.js"
+    "./compress": "./modules/memory-compress/index.js",
+    "./core": "./modules/memory-core/index.js"
   },
   "files": [
     "index.js",

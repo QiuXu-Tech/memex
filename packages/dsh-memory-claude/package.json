@@ -1,0 +1,25 @@
+{
+  "name": "@qiuxu/dsh-memory-claude",
+  "version": "0.2.0",
+  "private": false,
+  "description": "Claude Code integration for dsh-memory: MCP server registration, SessionStart/UserPromptSubmit/PreCompact hooks, CLAUDE.md memory manual and verbatim transcript archiving.",
+  "type": "module",
+  "bin": {
+    "dsh-memory-claude": "bin/cli.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT",
+  "author": "QiuXu-Tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QiuXu-Tech/dsh-memory.git"
+  },
+  "dependencies": {
+    "@qiuxu/dsh-memory-core": "file:../dsh-memory-core"
+  }
+}

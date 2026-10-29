@@ -33,6 +33,7 @@ const arg = (name, fallback) => {
 }
 const out = resolve(here, arg('out', 'dist/upstream'))
 const packages = [
+  'dsh-memory-core',
   'dsh-memory-seam',
   'dsh-memory-local',
   'dsh-memory-checkpoint',

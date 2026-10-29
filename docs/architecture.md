@@ -626,3 +626,16 @@ file: URL 是 path-like，`expectedName` 未定义，`nearestPackage` 命中的�
 - **scale bench（Lead 实测）**：1000×10k tokens → DB 1.0 MiB/records 38.5 MiB、facets 0.63ms、list 0.55ms、catalog 1.21ms、search 1.2–5.6ms、grep 4.5ms、get 0.03ms；compressCold 700 条/7.00M tokens 0.10s；gcCold 350 条/0.02s。**Phase-3 10k×10k（100M tokens）**：write 2.8s、DB 9.0 MiB、records 384.8 MiB；facets 11.28ms、list 5.80ms、catalog 17.52ms、search 16.70–17.67ms（CJK 1.94ms）、grep 14.59ms、get 0.04ms；compressCold 5000 条/50M 2.56s（cold 文件 192.4 MiB、DB 26.6 MiB）、压缩后 search 28.77ms/catalog 26.28ms；gcCold 2500 条/25M 0.31s。**验收：card p95<50ms、grep<2s 达标。**
 - **备份**：`scripts/memory-backup.mjs` 已对 live 根执行 backup：30 个文件、db 268 KiB，`verify: OK`（`VACUUM INTO` + records/cold + sha256 manifest；restore 需 `--force` 覆盖非空目标）。
 - **仍未经 agent 操作验证**：面板/圆环的压缩/回热按钮、`⚠ 热池 N%`/`⚠ 接近容量`、`已压缩 N 次`/L3 敏感提示、热冷 figures 与视觉——需要用户点开确认。圆环是 DOM 装饰（选择器 + 600ms 补装饰），DSH UI 升级可能失效。
+
+
+## 12. Agent-agnostic adapters (v0.2.0)
+
+The original subsystem was DSH-only: the seam (`ctx.memory` Service), the local backend, policies, tools, routes and Web UI. v0.2.0 splits it into:
+
+- **`@qiuxu/dsh-memory-core`** — zero-host-dependency core: record vocabulary, workspace identity, query-term extraction, token accounting, the markdown+SQLite store (hot/cold, FTS, compression history), **model profiles**, the model-tailored **manual**, and an `AgentMemory` facade (`lib/engine.js`). No Cordis, no DSH packages.
+- **`@qiuxu/dsh-memory-seam`** — DSH `ctx.memory` service; re-exports the core vocabulary so existing DSH consumers keep one import.
+- **`@qiuxu/dsh-memory-mcp`** — dependency-free stdio MCP server: 7 tools, a `memory://catalog` resource, `initialize.instructions` from the profile manual.
+- **`@qiuxu/dsh-memory-claude`** — Claude Code adapter: `.mcp.json`, merged `.claude/settings.json` hooks (`SessionStart` catalog, `UserPromptSubmit` recall, `PreCompact` verbatim transcript archive, `SessionEnd`), `CLAUDE.md` manual section.
+- **`@qiuxu/dsh-memory-codex`** — Codex adapter: `AGENTS.md` manual, `codex mcp add` command and `config.toml` writer.
+
+Invariants preserved across adapters: one record vocabulary and workspace key derivation (`memoryWorkspaceKey`), sticky L2/L3 semantics, deepest-enabled-level capture, hybrid retrieval (`memoryQueryTerms` + FTS/LIKE/cold abstract/rerank), lossless cold tier with optional digests, and the ability to share one storage root (`$DSH_MEMORY_HOME`, DSH defaults to `$DSH_HOME/memories`) across agents.

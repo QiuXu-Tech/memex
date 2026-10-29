@@ -3,9 +3,19 @@
 [![CI](https://github.com/QiuXu-Tech/dsh-memory/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/dsh-memory/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**Lossless long-horizon memory for [DeepSeek Harness](https://github.com/deepseek-ai).** dsh-memory adds an extra-context layer to an agent session: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and the model can retrieve anything later with cheap hybrid search.
+**Persistent, lossless long-horizon memory for any coding agent.** dsh-memory adds an extra-context layer to an agent session: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and the model can retrieve anything later with cheap hybrid search.
 
-> Status: **0.1.0** — nine packages, 98/98 offline tests, nine HTTP routes, seven model tools, a Web panel, and a context-ring integration. Built for DSH `0.2.1-rc.3`; no telemetry, everything stays on your machine.
+It started as a [DeepSeek Harness](https://github.com/deepseek-ai) plugin and is now **agent-agnostic**:
+
+| Agent | Integration |
+|---|---|
+| **DeepSeek Harness** | native Cordis bundle (L1 eviction seam, Web panel, 9 HTTP routes, 7 tools) |
+| **Claude Code** | MCP server + `SessionStart` / `UserPromptSubmit` / `PreCompact` hooks + `CLAUDE.md` manual |
+| **OpenAI Codex** | MCP server + `AGENTS.md` manual + `config.toml` snippet |
+| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/dsh-memory-mcp`), 7 tools + catalog resource |
+| **Any HTTP agent** | the same core can be embedded (`@qiuxu/dsh-memory-core`) |
+
+> Status: **0.2.0** — agent-agnostic core, MCP server, Claude Code/Codex adapters, **model profiles for Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Llama**, 106/106 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -21,9 +31,15 @@ Long conversations and long-running projects hit the same wall: the native conte
 - **Lossless by default**: raw conversation/tool output is stored verbatim (markdown files + SQLite index) — no LLM summarization on the critical path.
 - **Capacity compression on demand**: when a pool is near full the model asks the user first; compression then applies a **cold tier** (lossless, zero-LLM) and optionally **bounded map-reduce digests** (batched, resumable, never one giant prompt).
 - **Cheap recall**: hybrid keyword retrieval (FTS + card fields + bounded cold abstracts + lexical rerank), ~1–5 ms on realistic archives, tens of tokens per hit.
+- **Model-specific adaptation**: profiles tuned per model family (context window, chars/token ratio, injection format XML/markdown/plain, catalog/recall budgets, digest prompt style, bilingual CJK guidance) — see [docs/model-profiles.md](docs/model-profiles.md).
 
 ## Features
 
+- **Agent-agnostic core** (`@qiuxu/dsh-memory-core`): markdown + SQLite store, hot/cold tiers, hybrid retrieval and capacity compression with zero host dependencies. DSH, MCP and CLI adapters share one record vocabulary.
+- **MCP server** (`@qiuxu/dsh-memory-mcp`): stdio JSON-RPC, 7 tools (`memory_search/open/grep/write/index/restore/compress`) + `memory://catalog` resource, model-tailored `instructions`.
+- **Claude Code adapter** (`@qiuxu/dsh-memory-claude`): one command writes `.mcp.json`, merges `.claude/settings.json` hooks and injects a model-tailored `CLAUDE.md` manual; `PreCompact` archives the raw transcript verbatim before summary loss, `UserPromptSubmit` auto-recalls relevant records.
+- **Codex adapter** (`@qiuxu/dsh-memory-codex`): `AGENTS.md` manual + `codex mcp add` / `config.toml` entry.
+- **Model profiles**: per-family windows, token-estimation ratios, injection budgets and digest prompts; overridable by the integration.
 - **L1 eviction** through the shipped `compaction/prune` + surface-replace seam; no custom session events, no replacement of the compaction backend.
 - **Sticky L2/L3 levels** with a session-private/shared split, capture policy (deepest enabled level wins) and per-level capacities.
 - **Hybrid retrieval** shared by `memory_search` and auto-recall: latin identifiers, quoted spans, CJK n-grams, stopword filtering, FTS + LIKE legs, bounded cold abstracts, lexical rerank with recency.
@@ -43,6 +59,11 @@ Long conversations and long-running projects hit the same wall: the native conte
 ## Architecture (short version)
 
 ```
+Any agent (DSH · Claude Code · Codex · Cursor · …)
+ ├─ adapters: DSH bundle / MCP server / Claude hooks / Codex CLI
+ │      • one shared agent-agnostic core, one record vocabulary
+ │      • model profile → budgets, injection format, manual, digest prompt
+ │
 DSH agent session
  ├─ L1 (native window) ── evict oldest balanced span ──► extra context
  │      • compaction/prune shadow price + user/message surfaceOp replace
@@ -62,7 +83,11 @@ Full design: [docs/architecture.md](docs/architecture.md). Measured results: [do
 | Path | Purpose |
 |---|---|
 | `packages/dsh-memory` | installable DSH bundle (patch + exports; `modules/` is generated and git-ignored) |
-| `packages/dsh-memory-seam` | Cordis-free service API, record vocabulary, shared query-term extractor |
+| `packages/dsh-memory-core` | **agent-agnostic core**: vocabulary, query terms, store/retrieval/compression, model profiles, manual + engine facade |
+| `packages/dsh-memory-mcp` | **universal MCP stdio server** (Claude Code, Codex, Gemini CLI, Cursor, Cline, …) |
+| `packages/dsh-memory-claude` | Claude Code integration: `init` (MCP+hooks+CLAUDE.md) and hook handlers |
+| `packages/dsh-memory-codex` | Codex integration: `AGENTS.md` manual + MCP config snippet/writer |
+| `packages/dsh-memory-seam` | DSH `ctx.memory` service over the core (re-exports its vocabulary) |
 | `packages/dsh-memory-local` | SQLite + markdown store: hot/cold tiers, FTS, compression history |
 | `packages/dsh-memory-checkpoint` | checkpoint policy: archive/receipt/catalog/recall, capacity notice |
 | `packages/dsh-memory-tool` | seven model tools + the stable memory manual prompt section |
@@ -71,16 +96,36 @@ Full design: [docs/architecture.md](docs/architecture.md). Measured results: [do
 | `packages/dsh-memory-compress` | capacity compression (cold + digest) and compression history |
 | `packages/dsh-memory-api` | nine `/api/memory.*` HTTP routes for the panel |
 | `packages/dsh-memory-ui` | Web client half: panel + context-ring bridge |
-| `test/` | offline harness (98 tests, no `node_modules`; stubs for host packages) |
+| `test/` | offline harness (106 tests, no `node_modules`; stubs for host packages) |
 | `scripts/` | build/check bundle, scale & recall benchmarks, backup/verify/restore |
 
 ## Requirements
 
-- **DeepSeek Harness `0.2.1-rc.3`** (the host runtime; this repo is an extension, not a fork).
-- **Node.js 24+** (`node:sqlite`, ESM).
-- No npm dependencies for the offline test suite.
+- **Node.js 24+** (`node:sqlite`, ESM) — for every integration.
+- **DeepSeek Harness `0.2.1-rc.3`** only for DSH mode (this repo is an extension, not a fork).
+- **An MCP-capable agent** for universal mode (Claude Code, Codex, Gemini CLI, Cursor, Cline, Windsurf, Zed, …).
+- No npm dependencies for the offline test suite; the MCP server and adapters need only the core package.
 
-## Install (local bundle)
+## Quick start — any MCP agent
+
+```bash
+git clone https://github.com/QiuXu-Tech/dsh-memory.git
+cd dsh-memory
+node scripts/build-bundle.mjs        # only needed for DSH mode; MCP/adapters read the source packages
+
+# Claude Code: registers MCP + hooks + CLAUDE.md manual in this project
+node packages/dsh-memory-claude/bin/cli.mjs init --model claude-sonnet-4
+
+# Codex: writes AGENTS.md + prints/installs the MCP config
+node packages/dsh-memory-codex/bin/cli.mjs init --model gpt-5-codex --write-config
+
+# Any MCP client: point it at the stdio server
+node packages/dsh-memory-mcp/bin/server.mjs --root ~/.dsh-memory --model <model-id> --levels l3
+```
+
+See [docs/integrations.md](docs/integrations.md), [Claude Code](docs/integrations/claude-code.md), [Codex](docs/integrations/codex.md), [generic MCP clients](docs/integrations/mcp.md) and [model profiles](docs/model-profiles.md).
+
+## Install (DSH local bundle)
 
 dsh-memory ships as a DSH **bundle** (a patch plus runtime modules). It is not published to npm; install it as a linked local bundle in a DSH profile:
 
@@ -139,12 +184,12 @@ Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite al
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (98 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (106 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```
 
-The test harness stubs the host packages (`@deepseek-ai/*`) with ESM loader hooks, so it needs no `node_modules` and no DSH install. See [test/README.md](test/README.md) and [CONTRIBUTING.md](CONTRIBUTING.md). Upstream package export: `node scripts/export-upstream.mjs` (see [docs/upstream.md](docs/upstream.md)).
+The test harness stubs the host packages (`@deepseek-ai/*`) with ESM loader hooks, so it needs no `node_modules` and no DSH install; it spawns the MCP server and adapter CLIs to test the universal path end-to-end. See [test/README.md](test/README.md) and [CONTRIBUTING.md](CONTRIBUTING.md). Upstream package export: `node scripts/export-upstream.mjs` (see [docs/upstream.md](docs/upstream.md)).
 
 ## License
 

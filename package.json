@@ -1,8 +1,8 @@
 {
   "name": "@qiuxu/dsh-memory-workspace",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Workspace for the dsh-memory DSH bundle: nine packages, offline harness, benchmarks and operations scripts.",
+  "description": "Workspace for dsh-memory: agent-agnostic memory core, DSH bundle, universal MCP server, Claude Code / Codex adapters, model profiles, offline harness and benchmarks.",
   "type": "module",
   "engines": {
     "node": ">=24"
@@ -12,9 +12,12 @@
     "check": "node scripts/check-bundle.mjs",
     "test": "node --import ./test/register.mjs ./test/run.mjs",
     "eval:recall": "node --import ./test/register.mjs ./scripts/recall-eval.mjs --suite all",
+    "eval:long-horizon": "node --import ./test/register.mjs ./scripts/long-horizon-eval.mjs --mode compaction --tokens 160000 --window 80000 --out /tmp/lh-compaction",
     "bench:scale": "node --import ./test/register.mjs ./scripts/scale-bench.mjs",
     "backup": "node --import ./test/register.mjs ./scripts/memory-backup.mjs backup",
-    "eval:long-horizon": "node --import ./test/register.mjs ./scripts/long-horizon-eval.mjs --mode compaction --tokens 160000 --window 80000 --out /tmp/lh-compaction"
+    "mcp": "node --import ./test/register.mjs ./packages/dsh-memory-mcp/bin/server.mjs",
+    "claude:init": "node --import ./test/register.mjs ./packages/dsh-memory-claude/bin/cli.mjs init",
+    "codex:init": "node --import ./test/register.mjs ./packages/dsh-memory-codex/bin/cli.mjs init"
   },
   "license": "MIT"
 }

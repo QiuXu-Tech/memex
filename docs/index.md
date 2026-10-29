@@ -30,6 +30,9 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — long-horizon A/B vs no extra context, with charts.
+- [Integrations](integrations.html) — Claude Code, Codex, Gemini CLI, Cursor, Cline, Windsurf, DSH.
+- [Model profiles](model-profiles.html) — per-family budgets, injection formats and digest prompts.
+- [Claude Code](integrations/claude-code.html) · [Codex](integrations/codex.html) · [Generic MCP clients](integrations/mcp.html)
 - [Install guide](install.html) — profile registration, config rows, local fallback.
 
 ## Highlights

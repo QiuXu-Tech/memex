@@ -31,6 +31,7 @@ const bundleNodeModules = join(bundle, 'node_modules', '@qiuxu')
 
 /** Source package directory → runtime module directory inside the bundle. */
 const MODULES = [
+  ['dsh-memory-core', 'memory-core'],
   ['dsh-memory-seam', 'memory-seam'],
   ['dsh-memory-local', 'memory-local'],
   ['dsh-memory-checkpoint', 'memory-checkpoint'],
