@@ -682,7 +682,7 @@ export class LocalStoreCore {
           .map((term) => fnv1a32(term))
         if (anchors.length > 0) {
           const placeholders = anchors.map(() => '?').join(', ')
-          const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0 }, { alias: 'r.' })
+          const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0, kind: query.kind, status: query.status }, { alias: 'r.' })
           const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
           const candidateRows = this.database().prepare(`
             SELECT t.record_id AS recordId, COUNT(*) AS matches
@@ -726,7 +726,7 @@ export class LocalStoreCore {
       const rareHashes = counts.filter((entry) => Number(entry.count) <= 2).map((entry) => Number(entry.hash))
       if (rareHashes.length > 0) {
         const rarePlaceholders = rareHashes.map(() => '?').join(', ')
-        const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0 }, { alias: 'r.' })
+        const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0, kind: query.kind, status: query.status }, { alias: 'r.' })
         const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
         const candidates = this.database().prepare(`
           SELECT t.record_id AS recordId, COUNT(*) AS matches
@@ -767,7 +767,7 @@ export class LocalStoreCore {
     if (keyTerms.length > 0) {
       const hashes = [...new Set(keyTerms.map((term) => fnv1a32(term)))]
       const placeholders = hashes.map(() => '?').join(', ')
-      const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 1 }, { alias: 'r.' })
+      const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 1, kind: query.kind, status: query.status }, { alias: 'r.' })
       const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
       const coldRows = this.database().prepare(`
         SELECT r.*, '' AS snippet, 0 AS rank, COUNT(*) AS anchorHits
@@ -778,6 +778,48 @@ export class LocalStoreCore {
       for (const row of coldRows) {
         if (rowsById.has(row.id)) continue
         rowsById.set(row.id, { ...row, rank: 0 })
+      }
+    }
+    // Anchor-free natural-language rescue: when a query has no number/ID
+    // anchor and the card legs only provide weak lexical coverage, scan the
+    // bounded hot tier bodies (the context tail is small by construction) for
+    // query-term coverage. Cold records are handled by abstract FTS/cold rescue.
+    const meaningfulTerms = [...new Set(lowerTerms.filter((term) => term.length >= 3))]
+    const hasAnchorTerm = keyTerms.length > 0
+    if (!hasAnchorTerm && meaningfulTerms.length >= 2) {
+      let bestCoverage = 0
+      for (const row of rowsById.values()) {
+        const text = `${row.title} ${row.summary} ${row.use_when} ${row.tags_json} ${row.abstract ?? ''}`.toLowerCase()
+        bestCoverage = Math.max(bestCoverage, meaningfulTerms.filter((term) => termMatchesText(text, term)).length)
+      }
+      const requiredCoverage = Math.max(2, Math.ceil(meaningfulTerms.length * 0.5))
+      if (bestCoverage === 0) {
+        const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0, kind: query.kind, status: query.status }, { alias: 'r.' })
+        const where = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : ''
+        const hotRows = this.database().prepare(`
+          SELECT r.*, '' AS snippet, 0 AS rank FROM records r ${where}
+          ORDER BY r.updated_at DESC LIMIT 240
+        `).all(...params)
+        for (const row of hotRows) {
+          if (rowsById.has(row.id) && Number(rowsById.get(row.id).bodyHits) > 0) continue
+          let body = ''
+          try {
+            body = recordBodyFromFile(readFileSync(row.path, 'utf8'))
+          } catch {
+            continue
+          }
+          const lowerBody = body.toLowerCase()
+          const coverage = meaningfulTerms.filter((term) => termMatchesText(lowerBody, term)).length
+          if (coverage < requiredCoverage) continue
+          const existing = rowsById.get(row.id)
+          if (existing !== undefined) {
+            existing.bodyHits = coverage
+            existing.snippet = makeSnippet(body, query.query)
+            existing.rank = undefined
+          } else {
+            rowsById.set(row.id, { ...row, snippet: makeSnippet(body, query.query), rank: undefined, bodyHits: coverage })
+          }
+        }
       }
     }
     // Hybrid rerank: lexical field matches + body evidence + cold abstract + recency.

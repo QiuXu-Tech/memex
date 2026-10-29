@@ -44,6 +44,17 @@ Raw data: [evidence-in-prompt 8 probes](assets/benchmarks/live-ab-deepseek.json)
 
 **Caveats:** one model; synthetic fixtures; multi-seed runs are agent-mediated (no provider usage tokens captured); the original cold-tier gap was real and is now fixed (see B), while Q19 remains a harness-query miss.
 
+### D. Anchor-free natural-language recall (n=3)
+
+Questions contain **no turn numbers or IDs**; the three facts live only in hot bodies whose card titles/summaries are generic (`release note N`).
+
+| Condition | Result |
+|---|---|
+| control (recent tail only) | **0/3** — all UNKNOWN |
+| treatment (memex evidence) | **3/3** — `FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU` |
+
+This exercises the new **anchor-free hot-body coverage rescue**: it runs only when no card field shares a meaningful query term, then scans at most 240 hot bodies. Cold anchor-free facts still rely on abstract FTS/card summaries. Raw: [evidence](assets/benchmarks/live-ab-deepseek-anchor-free.json).
+
 ## How to contribute
 
 1. Clone and run the dry-run sanity check (no network):

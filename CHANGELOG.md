@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0
+
+### Added — anchor-free natural-language recall
+- New **hot-body coverage rescue**: when a query has no number/ID anchor and no card field shares a meaningful query term, scan at most 240 hot bodies and page in the records with the best query-term coverage. Cold anchor-free facts continue to use abstract FTS/card summaries.
+- Live DeepSeek Flash anchor-free run (n=3): control **0/3**, treatment **3/3** for body-only decisions with generic card titles (`FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU`).
+- **U22** covers anchor-free hot-body recall; harness **119/119**.
+- Real-archive guard unchanged: hit@5 **93%**, cold recall **94%**, p50 **1.7 ms**.
+
 ## 0.5.1
 
 ### Fixed

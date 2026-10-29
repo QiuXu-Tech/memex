@@ -4092,6 +4092,33 @@ await test('U21', 'hot body rescue: a bare turn number anchors a body-only fact'
   }
 })
 
+
+await test('U22', 'anchor-free natural-language recall scans bounded hot bodies', async () => {
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
+  const root = makeRoot('u22')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    const records = []
+    for (let index = 0; index < 40; index += 1) {
+      const isFact = index === 20
+      records.push(store.write({
+        kind: 'episode',
+        title: `release note ${index}`,
+        summary: `weekly note ${index}`,
+        useWhen: 'read when continuing release work',
+        body: isFact ? 'The billing retry policy decision is FACT-BILLING-OK; keep it for the billing question.' : `Routine weekly note ${index}: no special decision.`,
+        workspaceKey: 'wk-u22', scope: 'workspace', tokens: 30,
+      }))
+    }
+    const expected = records[20]
+    const hits = store.search({ query: 'what was the billing retry policy decision?', workspaceKey: 'wk-u22', scope: 'workspace', limit: 5 }).hits
+    assert.equal(hits[0].id, expected.id, 'anchor-free semantic body rescue must page the billing decision first')
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

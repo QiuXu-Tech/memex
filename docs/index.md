@@ -20,7 +20,7 @@ Memex treats context as a hierarchy, not a notes store: when the native context 
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # offline harness (118 tests)
+node --import ./test/register.mjs ./test/run.mjs   # offline harness (119 tests)
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -46,7 +46,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 |---|---|
 | **L1 eviction** | Uses the shipped `compaction/prune` + surface-replace seam — no custom session events, no replacement of the compaction backend. |
 | **Sticky context pools** | Session-private L2 vs workspace-shared L3; capture deepest enabled level; capacities 10M/100M. |
-| **Context paging** | Shared query-term extractor, FTS + cold abstracts + exact numeric/identifier anchors + lexical rerank; pages are injected only when budget allows. Real-archive recall@5 **93%** / cold recall 94% after the v0.5 anchor rework (pre-rework 95%/100%); cold natural-language probes **0/30 → 30/30**; live DeepSeek Flash multi-seed treatment **60/60**. |
+| **Context paging** | Shared query-term extractor, FTS + cold abstracts + exact numeric/identifier anchors + lexical rerank; pages are injected only when budget allows. Real-archive recall@5 **93%** / cold recall 94% after the v0.5 anchor rework (pre-rework 95%/100%); cold natural-language probes **0/30 → 30/30**; live DeepSeek Flash multi-seed treatment **60/60**; anchor-free natural-language recall **0/3 → 3/3** in a small live run. |
 | **Capacity compression** | Cold tier (lossless, zero LLM) and bounded map-reduce digests (2-way concurrency, retry/fallback, `ids:` enforcement, quota GC) — after the model asks the user. |
 | **Surfaces** | Seven model tools, `/memory` command set, nine `/api/memory.*` routes, Web panel + context ring, sensitive-content policy, backup/verify/restore. |
 

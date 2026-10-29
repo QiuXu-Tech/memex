@@ -1,0 +1,42 @@
+{
+  "format": 1,
+  "kind": "live-ab-anchor-free-result",
+  "generatedAt": "2026-10-29T18:50:00+08:00",
+  "provider": "deepseek-account",
+  "model": "deepseek-flash",
+  "method": "anchor-free natural-language questions (no turn number, no ID); evidence-in-prompt control/treatment; bounded hot-body coverage rescue enabled in treatment",
+  "fixture": {
+    "records": 40,
+    "facts": 3,
+    "cardTitles": "generic release note N",
+    "questions": [
+      "billing retry policy",
+      "auth token rotation",
+      "cache eviction policy"
+    ]
+  },
+  "control": {
+    "correct": 0,
+    "n": 3,
+    "answers": [
+      "UNKNOWN",
+      "UNKNOWN",
+      "UNKNOWN"
+    ]
+  },
+  "treatment": {
+    "correct": 3,
+    "n": 3,
+    "answers": [
+      "FACT-BILL-OK",
+      "FACT-AUTH-30D",
+      "FACT-CACHE-LRU"
+    ]
+  },
+  "notes": [
+    "No numbers or identifiers appear in the questions; expected records are hot body-only facts with generic card titles/summaries.",
+    "The anchor-free rescue only runs when no card field shares a meaningful query term, and scans at most 240 hot bodies.",
+    "Cold anchor-free facts still rely on abstract FTS/card summaries; this run covers the hot tier.",
+    "n=3 probes, one model; mechanism/data point, not statistical evidence."
+  ]
+}
