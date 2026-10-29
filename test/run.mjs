@@ -3412,7 +3412,7 @@ await test('S3', 'GET /api/memory.metrics reports pool/cold/eviction/compression
 })
 
 await test('S4', 'sensitive eviction forces L2, skips under L3-only and honors sensitivePolicy:off', async () => {
-  const secret = 'api_key: sk-SECRET0123456789ABCDEFGHIJ'
+  const secret = 'api_key: DUMMY-SECRET-VALUE-1234'
   const events = new Map()
   events.set(1, { seq: 1, type: 'system/message', data: { text: 'system head' } })
   events.set(2, { seq: 2, type: 'user/message', data: { text: `deployment credential ${secret}` } })
