@@ -1,7 +1,7 @@
-{"stage": "compaction", "startUtc": "2026-10-29T11:04:49+00:00", "endUtc": "2026-10-29T11:04:50+00:00", "elapsedSeconds": 0.417, "exitCode": 0}
-{"stage": "compaction-repeat", "startUtc": "2026-10-29T11:04:50+00:00", "endUtc": "2026-10-29T11:04:50+00:00", "elapsedSeconds": 0.242, "exitCode": 0}
-{"stage": "scale", "startUtc": "2026-10-29T11:04:50+00:00", "endUtc": "2026-10-29T11:05:02+00:00", "elapsedSeconds": 12.364, "exitCode": 0}
-{"stage": "scale-repeat", "startUtc": "2026-10-29T11:05:02+00:00", "endUtc": "2026-10-29T11:05:14+00:00", "elapsedSeconds": 12.213, "exitCode": 0}
-{"stage": "capacity-10m", "startUtc": "2026-10-29T11:05:14+00:00", "endUtc": "2026-10-29T11:05:15+00:00", "elapsedSeconds": 0.818, "exitCode": 0}
-{"stage": "capacity-100m", "startUtc": "2026-10-29T11:05:15+00:00", "endUtc": "2026-10-29T11:05:23+00:00", "elapsedSeconds": 7.529, "exitCode": 0}
-{"stage": "recall", "startUtc": "2026-10-29T11:05:23+00:00", "endUtc": "2026-10-29T11:05:23+00:00", "elapsedSeconds": 0.298, "exitCode": 0}
+{"stage": "compaction", "startUtc": "2026-10-29T12:50:46+00:00", "endUtc": "2026-10-29T12:50:46+00:00", "elapsedSeconds": 0.243, "exitCode": 0}
+{"stage": "compaction-repeat", "startUtc": "2026-10-29T12:50:46+00:00", "endUtc": "2026-10-29T12:50:47+00:00", "elapsedSeconds": 0.211, "exitCode": 0}
+{"stage": "scale", "startUtc": "2026-10-29T12:50:47+00:00", "endUtc": "2026-10-29T12:51:01+00:00", "elapsedSeconds": 14.814, "exitCode": 0}
+{"stage": "scale-repeat", "startUtc": "2026-10-29T12:51:01+00:00", "endUtc": "2026-10-29T12:51:16+00:00", "elapsedSeconds": 14.542, "exitCode": 0}
+{"stage": "capacity-10m", "startUtc": "2026-10-29T12:51:16+00:00", "endUtc": "2026-10-29T12:51:17+00:00", "elapsedSeconds": 0.934, "exitCode": 0}
+{"stage": "capacity-100m", "startUtc": "2026-10-29T12:51:17+00:00", "endUtc": "2026-10-29T12:51:25+00:00", "elapsedSeconds": 8.417, "exitCode": 0}
+{"stage": "recall", "startUtc": "2026-10-29T12:51:25+00:00", "endUtc": "2026-10-29T12:51:26+00:00", "elapsedSeconds": 0.298, "exitCode": 0}

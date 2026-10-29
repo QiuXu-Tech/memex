@@ -1,8 +1,8 @@
 {
-  "testedVersion": "0.8.1 + tail fix",
-  "testedCommit": "c1cda8ba1ba931fa4db9acdf6787cb0a80872c00",
-  "executionCheckout": "c1cda8ba1ba931fa4db9acdf6787cb0a80872c00",
-  "executionCheckoutNote": "Clean checkout of the fixed v0.8.1-derived commit. The fix commit is retained as an ancestor of the report commit.",
+  "testedVersion": "0.9.1 + tail fix",
+  "testedCommit": "72ba8fc338e79e46121d44c8757594c773ed3b6b",
+  "executionCheckout": "72ba8fc338e79e46121d44c8757594c773ed3b6b",
+  "executionCheckoutNote": "Clean detached checkout at 72ba8fc: v0.9.1 release code plus the post-release tail-order fix. The v0.9.1 tag is 1bd3a4e; packages and offline benchmark scripts are identical between these commits.",
   "date": "2026-10-29",
   "timezone": "Asia/Shanghai",
   "os": "macOS 27.2 (26B123)",
@@ -16,28 +16,28 @@
   "quietStartGateMet": true,
   "quietGateSamples": [
     {
-      "timeUtc": "2026-10-29T11:04:44+00:00",
+      "timeUtc": "2026-10-29T12:50:41+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 10.1,
-      "load1": 2.71435546875,
-      "load5": 3.7119140625,
+      "systemCpuBusyPercent": 24.8,
+      "load1": 3.25146484375,
+      "load5": 2.7744140625,
       "benchmarkPid": null
     },
     {
-      "timeUtc": "2026-10-29T11:04:49+00:00",
+      "timeUtc": "2026-10-29T12:50:46+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 14.6,
-      "load1": 2.73681640625,
-      "load5": 3.69970703125,
+      "systemCpuBusyPercent": 21.6,
+      "load1": 3.39111328125,
+      "load5": 2.81103515625,
       "benchmarkPid": null
     }
   ],
   "benchmarkLoadSamples": {
-    "count": 6,
-    "load1Min": 2.46435546875,
-    "load1Max": 3.42041015625,
-    "cpuBusyPercentMin": 26.2,
-    "cpuBusyPercentMedian": 30.6,
+    "count": 7,
+    "load1Min": 3.0439453125,
+    "load1Max": 3.234375,
+    "cpuBusyPercentMin": 23.2,
+    "cpuBusyPercentMedian": 27.7,
     "cpuBusyPercentMax": 35.7
   },
   "summary": "Pre-existing compaction-summary.txt; no model invoked during rerun.",
@@ -64,18 +64,24 @@
     "node": "v25.9.0",
     "codexCli": "0.165.0-alpha.1.2",
     "calls": 6,
-    "allExitZero": true,
-    "cliReportedTokens": [
-      10096,
-      16682,
-      10112,
-      16723,
-      10157,
-      16682
+    "sessionCompletionsMatched": true,
+    "initialBridgeExit": 1,
+    "initialFailure": "SQLite ERR_SQLITE_ERROR 5: database is locked while generating seed 3; cause UNKNOWN",
+    "firstFourProcessExitCodes": "NOT_RETAINED",
+    "seed3RecoveryExitCodes": [
+      0,
+      0
     ],
-    "providerUsage": "unknown",
-    "billedCost": "unknown",
-    "note": "Separate from offline benchmark; CLI diagnostic tails were redacted in the public result and retained locally."
+    "sessionTokenUsage": {
+      "input_tokens": 157473,
+      "cached_input_tokens": 79104,
+      "cache_write_input_tokens": 0,
+      "output_tokens": 1838,
+      "reasoning_output_tokens": 846,
+      "total_tokens": 159311
+    },
+    "billedCost": "UNKNOWN",
+    "note": "Separate from offline benchmark; seed 3 resumed without repeating completed calls. Diagnostics and session logs retained locally, not published."
   },
   "historicalAssets": {
     "results-harness-unbuilt.txt": "v0.5.0 historical run; not from this benchmark"

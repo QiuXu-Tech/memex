@@ -3,19 +3,22 @@ title: Benchmark report
 layout: default
 ---
 
-# Benchmark report: synthetic long-horizon retrieval on v0.8.1 with the tail-order fix
+# Benchmark report: synthetic long-horizon retrieval on v0.9.1 with the tail-order fix
 
-The public synthetic workloads were run against the fixed commit
-[`c1cda8b`](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa4db9acdf6787cb0a80872c00),
-based on v0.8.1. The defect was present in v0.8.0 and its A/B scripts are
-unchanged in v0.8.1. This is a post-fix measurement, not a claim that the
-unmodified v0.8.0 release was tested.
+The public synthetic workloads were run against commit
+[`72ba8fc`](https://github.com/QiuXu-Tech/memex/commit/72ba8fc338e79e46121d44c8757594c773ed3b6b),
+which uses the v0.9.1 release's package code plus the post-release A/B
+tail-order fix. The [v0.9.1 tag](https://github.com/QiuXu-Tech/memex/tree/v0.9.1)
+itself predates that fix. The package tree and three offline benchmark scripts
+are identical between the tag and tested commit; the A/B fixture differs.
+When this work began, repository `main` was already on v0.12.0 and advanced
+further during reporting. This report does not measure those later releases.
 
 On 2026-10-29 the test machine was an Apple M4 (10 logical CPUs, 16 GiB),
 running macOS 27.2 and Node 24.21.0. Before starting, two consecutive five-second
-samples showed CPU busy **10.1% / 14.6%** and one-minute load **2.71 / 2.74**
-(quiet-start thresholds ≤25% and ≤5). During longer stages, six five-second
-samples showed CPU busy **26.2%–35.7%** and one-minute load **2.46–3.42**,
+samples showed CPU busy **24.8% / 21.6%** and one-minute load **3.25 / 3.39**
+(quiet-start thresholds ≤25% and ≤5). During longer stages, seven five-second
+samples showed CPU busy **23.2%–35.7%** and one-minute load **3.04–3.23**,
 including the benchmark itself. Samples can cross stage boundaries; short
 stages may have no dedicated sample. This was a shared machine, not an isolated
 host. The [run metadata](assets/benchmarks/run-metadata.json),
@@ -23,9 +26,9 @@ host. The [run metadata](assets/benchmarks/run-metadata.json),
 [execution records](assets/benchmarks/results-execution.jsonl) record the
 method and tested input hashes.
 
-The earlier [v0.5.0 report](https://github.com/QiuXu-Tech/memex/blob/4ab6d6b35d643ce38e638769c1332e2d56a0b807/docs/benchmark.md)
-and its [first pass](assets/benchmarks/results-v050-first-pass.json), along with
-the [v0.3.0 report](https://github.com/QiuXu-Tech/memex/blob/0555d45b64d6de4c1001960187a5a87d1422b6d5/docs/benchmark.md),
+The earlier [v0.8.1 + tail-fix report](https://github.com/QiuXu-Tech/memex/blob/72ba8fc338e79e46121d44c8757594c773ed3b6b/docs/benchmark.md),
+[v0.5.0 report](https://github.com/QiuXu-Tech/memex/blob/4ab6d6b35d643ce38e638769c1332e2d56a0b807/docs/benchmark.md),
+and [v0.3.0 report](https://github.com/QiuXu-Tech/memex/blob/0555d45b64d6de4c1001960187a5a87d1422b6d5/docs/benchmark.md)
 remain available. Separate shared-machine timings do not isolate version or
 load effects and do not establish a performance change.
 
@@ -72,9 +75,9 @@ one simulated baseline, not a run of DSH's native compaction implementation.
 
 | Estimated history | Records | Window / history | Search hit@5, both runs | Search p50, first / repeat |
 |---|---:|---:|---:|---:|
-| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 1.91 / 1.92 ms |
-| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 23.38 / 23.41 ms |
-| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 50.37 / 50.53 ms |
+| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 2.01 / 1.92 ms |
+| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 24.26 / 25.60 ms |
+| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 52.37 / 52.17 ms |
 
 The window/history column is an arithmetic coverage ratio, not measured
 no-memory recall and not a universal ceiling. Actual availability depends on
@@ -86,8 +89,8 @@ answers correctly.
 
 ![Search medians at three scales and two repeated 160K runs](assets/benchmarks/cost-latency.png)
 
-The 160K comparison's search p50 was **1.87 ms** on the first run and
-**2.32 ms** on a repeat with the same fixture and supplied summary. Each p50
+The 160K comparison's search p50 was **2.15 ms** on the first run and
+**2.11 ms** on a repeat with the same fixture and supplied summary. Each p50
 comes from 40 searches. The script selects sorted element `floor(n / 2)`;
 for 40 observations this is the upper of the two middle values, rather than
 their average. The scaling sweep was also repeated; these observations are not
@@ -111,8 +114,8 @@ corpus. The two sizes use different cold target ratios to reproduce the prior
 
 | Pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.3 s | 700 records / 7M tokens in 0.29 s | 350 records / 3.5M tokens in 0.03 s |
-| 10,000 records / 100M assigned tokens | 3.5 s | 5,000 records / 50M tokens in 2.42 s | 2,500 records / 25M tokens in 0.58 s |
+| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M tokens in 0.30 s | 350 records / 3.5M tokens in 0.03 s |
+| 10,000 records / 100M assigned tokens | 4.5 s | 5,000 records / 50M tokens in 2.66 s | 2,500 records / 25M tokens in 0.29 s |
 
 In the 100M run, the SQLite index was 10.5 MiB after writing and 28.0 MiB
 after cold spill; the original body files totalled 384.8 MiB. Cold spill moves
@@ -152,33 +155,48 @@ for its historical context.
 ![Codex A/B exact-answer counts for all probes and evicted probes](assets/benchmarks/codex-ab.png)
 
 A separate live run used `gpt-6.1-sol` through Codex CLI, with three synthetic
-300-turn histories and 20 probes each. The control received the titles and
+300-turn histories and 20 probes each. The bridge used Node 25.9.0 and Codex
+CLI 0.165.0-alpha.1.2. The control received the titles and
 summaries of the 20 recent tail records, not their full conversation bodies;
 the treatment received the same cards plus evidence selected and opened by the
-fixture before the model call. This tests model answers given retrieval
-evidence, not whether a model autonomously chooses or executes memory tools.
+fixture before the model call. This tests answers given pre-retrieved evidence,
+not whether a model autonomously chooses memory tools.
 
 | Condition | All probes | 57 evicted probes |
 |---|---:|---:|
 | Control: tail titles and summaries | 3/60 (5%) | 0/57 (0%) |
 | Treatment: tail cards + retrieved evidence | 60/60 (100%) | 57/57 (100%) |
 
-All six Codex calls exited zero. The [published result](assets/benchmarks/live-ab-codex-sol-tail-fixed.json)
-retains the answer strings, scores, call statuses and tail IDs. The
-[fixture evidence](assets/benchmarks/live-ab-codex-sol-tail-fixed-evidence.json)
-retains each actual plan and both synthetic prompts. In all three seeds, the
-tail contains **turns 280–299 in order**, both prompts contain exactly those
-records, and all 57 evicted-probe flags match the recorded tail. A complete
-provider transcript was not captured, so compliance with the prompt's request
-to avoid tools was not independently established.
+**Interrupted run and recovery:** the original bridge completed the first two
+seeds but exited while generating the third seed with SQLite `ERR_SQLITE_ERROR`
+(code 5, `database is locked`). No third-seed model call had started. We kept
+the failed temporary database, plans and answers, generated seed 3 in a new
+temporary directory, and ran only its two missing calls with the same Codex
+arguments. The cause of the database lock is **unknown**. The bridge did not
+write a final report, so the displayed aggregate was reconstructed from the
+saved plans and exact answers; it is not an uninterrupted bridge run.
 
-The CLI printed total token counts of 10,096 / 16,682, 10,112 / 16,723 and
-10,157 / 16,682 for control / treatment (80,452 in total). These are CLI
-reports, not a provider usage breakdown or billing receipt; cost is **unknown**.
-The diagnostic tails included initialization warnings in all six calls and
-analytics-send warnings in three. Their contents may include sensitive data, so
-they are redacted from the public result; their hashes and the original report
-hash are retained. The unredacted original remains local.
+The four original calls' process exit codes were not retained; their local
+Codex session logs contain `task_complete` events and final messages matching
+the saved answer files. Both recovery calls exited zero and have matching
+completion events. The [reconstructed result](assets/benchmarks/live-ab-codex-sol-v091.json)
+records those distinctions and the failure. The [fixture evidence](assets/benchmarks/live-ab-codex-sol-v091-evidence.json)
+contains each actual plan and both synthetic prompts. All three tails are
+**turns 280–299 in order**, both prompt contexts match their recorded tail,
+and all 57 evicted-probe flags match that tail. The six recorded Codex sessions
+contain no model-issued tool calls; this observation is limited to those logs.
+
+The six local Codex `token_count` events report **157,473 input tokens**
+(including 79,104 cached input), **1,838 output tokens**, and **159,311 total**.
+The 846 reasoning-output tokens are included in output, not additional. These
+are local session usage counts, not a provider billing receipt; monetary cost
+is **unknown**. Diagnostics for the initial four calls were not retained; the
+two recovery calls reported initialization warnings. Recovery diagnostics may
+contain sensitive data and remain local, with hashes in the published result.
+The failed original run's diagnostic tail and SQLite files also remain local.
+
+The earlier [v0.8.1 + tail-fix Codex result](https://github.com/QiuXu-Tech/memex/blob/72ba8fc338e79e46121d44c8757594c773ed3b6b/docs/assets/benchmarks/live-ab-codex-sol-tail-fixed.json)
+remains in Git history; it is a separate run.
 
 ### Historical tail-order limitation
 
@@ -230,7 +248,7 @@ separately if comparing shared-machine timings.
 ```bash
 git clone https://github.com/QiuXu-Tech/memex.git memex-benchmark-tail-fix
 cd memex-benchmark-tail-fix
-git checkout --detach c1cda8ba1ba931fa4db9acdf6787cb0a80872c00
+git checkout --detach 72ba8fc338e79e46121d44c8757594c773ed3b6b
 out_dir="$(mktemp -d "${TMPDIR:-/tmp}/memex-benchmark.XXXXXX")"
 for run in first repeat; do
   node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \
@@ -249,6 +267,14 @@ node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node scripts/build-bundle.mjs
 node scripts/check-bundle.mjs
 node --import ./test/register.mjs test/run.mjs
+```
+
+With a logged-in Codex CLI, a new live A/B attempt can be run from the same
+checkout with the command below. It makes live model calls; the reconstructed
+run above includes a separate recovery of seed 3.
+
+```bash
+node scripts/codex-ab.mjs --model gpt-6.1-sol --keep --out "$out_dir/codex-ab.json"
 ```
 
 The checked-in [compaction results](assets/benchmarks/results-compaction.json),

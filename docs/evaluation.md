@@ -5,8 +5,8 @@ layout: default
 
 # Evaluation
 
-The public synthetic workloads were rerun on v0.8.1 plus the tail-order fix, commit
-[`c1cda8b`](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa4db9acdf6787cb0a80872c00),
+The public synthetic workloads were rerun on v0.9.1 plus the tail-order fix, commit
+[`72ba8fc`](https://github.com/QiuXu-Tech/memex/commit/72ba8fc338e79e46121d44c8757594c773ed3b6b),
 on 2026-10-29. The Apple M4 / Node 24.21.0 machine met a quiet-start gate;
 it remained shared and load was sampled during the longer stages. See the
 [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md)
@@ -41,8 +41,8 @@ public fixture. The separate reported DeepSeek multi-seed results have a
 
 | Synthetic pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.3 s | 700 records / 7M in 0.29 s | 350 records / 3.5M in 0.03 s |
-| 10,000 records / 100M assigned tokens | 3.5 s | 5,000 records / 50M in 2.42 s | 2,500 records / 25M in 0.58 s |
+| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M in 0.30 s | 350 records / 3.5M in 0.03 s |
+| 10,000 records / 100M assigned tokens | 4.5 s | 5,000 records / 50M in 2.66 s | 2,500 records / 25M in 0.29 s |
 
 The 100M run used 384.8 MiB of original body files and a 10.5 MiB SQLite index
 after writing, growing to 28.0 MiB after cold spill. Token counts are assigned
