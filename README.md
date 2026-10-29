@@ -124,7 +124,9 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | 10k records / 100M tokens (synthetic) | write 2.8 s; facets 11 ms, catalog 18 ms, search 17–29 ms, grep 15 ms; compression of 5,000 records/50M tokens 2.6 s; cold GC 2,500 records/25M 0.3 s |
 | FTS storage (body-less card+abstract index) | 100M-token pool ≈ 9–27 MiB index vs GB-scale trigram-body indexing |
 
-Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite all` and `node --import ./test/register.mjs scripts/scale-bench.mjs --records 10000 --tokens 10000`. Details in [docs/evaluation.md](docs/evaluation.md).
+**A/B against no extra context** (160K-token history, 80K window): fact recall **100%** with dsh-memory vs **60%** with a model-written compaction summary (+tail) and **50%** with plain truncation; at 10M tokens the no-memory window covers only 10% of history while retrieval stays at 100% hit@5. Full charts and methodology: **[docs/benchmark.md](docs/benchmark.md)**.
+
+Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite all`, `node --import ./test/register.mjs scripts/scale-bench.mjs --records 10000 --tokens 10000`, and `node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode all`. Details in [docs/evaluation.md](docs/evaluation.md).
 
 ## Privacy
 

@@ -29,6 +29,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
+- [Benchmark report](benchmark.html) — long-horizon A/B vs no extra context, with charts.
 - [Install guide](install.html) — profile registration, config rows, local fallback.
 
 ## Highlights

@@ -3,6 +3,7 @@
 ## Unreleased
 
 ### Added
+- Long-horizon A/B benchmark report (`docs/benchmark.md`, charts) + `scripts/long-horizon-eval.mjs`: dsh-memory 100% fact recall vs 60% compaction and 50% truncation (160K-token history, 80K window); 100% vs 10% window availability at 10M tokens.
 - Animated demo (`docs/assets/demo.gif`) and social preview image (`.github/social-preview.png`).
 - GitHub Pages documentation site (`docs/index.md` + Jekyll config): <https://qiuxu-tech.github.io/dsh-memory/>.
 - Issue forms (bug/feature), PR template, and `SECURITY.md` with private vulnerability reporting.

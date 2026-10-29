@@ -13,7 +13,8 @@
     "test": "node --import ./test/register.mjs ./test/run.mjs",
     "eval:recall": "node --import ./test/register.mjs ./scripts/recall-eval.mjs --suite all",
     "bench:scale": "node --import ./test/register.mjs ./scripts/scale-bench.mjs",
-    "backup": "node --import ./test/register.mjs ./scripts/memory-backup.mjs backup"
+    "backup": "node --import ./test/register.mjs ./scripts/memory-backup.mjs backup",
+    "eval:long-horizon": "node --import ./test/register.mjs ./scripts/long-horizon-eval.mjs --mode compaction --tokens 160000 --window 80000 --out /tmp/lh-compaction"
   },
   "license": "MIT"
 }
