@@ -1,0 +1,678 @@
+{
+  "format": 1,
+  "kind": "live-ab-multiseed-result",
+  "generatedAt": "2026-10-29T16:30:00+08:00",
+  "provider": "deepseek-account",
+  "model": "deepseek-flash",
+  "method": "three deterministic seeds (300-turn history, 20 deep-fact probes each), fresh-context agent calls for control/treatment",
+  "aggregate": {
+    "control": {
+      "correct": 3,
+      "n": 60,
+      "accuracy": 0.05
+    },
+    "treatment": {
+      "correct": 30,
+      "n": 60,
+      "accuracy": 0.5
+    },
+    "evictedSubset": {
+      "control": {
+        "correct": 0,
+        "n": 57,
+        "accuracy": 0.0
+      },
+      "treatment": {
+        "correct": 27,
+        "n": 57,
+        "accuracy": 0.4737
+      }
+    },
+    "coldNaturalLanguageSubset": {
+      "turns": "0-135",
+      "control": {
+        "correct": 0,
+        "n": 30,
+        "accuracy": 0.0
+      },
+      "treatment": {
+        "correct": 0,
+        "n": 30,
+        "accuracy": 0.0
+      }
+    },
+    "analysis": "All treatment failures are cold-tier facts queried without an identifier-like anchor; hot-region probes (turns 150+) and the tail probe are answered. This is a genuine cold natural-language retrieval limitation to improve."
+  },
+  "seeds": [
+    {
+      "seed": 1,
+      "turns": 300,
+      "tail": 20,
+      "probes": 20,
+      "controlAccuracy": 0.05,
+      "treatmentAccuracy": 0.5,
+      "rows": [
+        {
+          "index": 0,
+          "turn": 0,
+          "topic": "gateway",
+          "expected": "FACT-000-mkorf",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 1,
+          "turn": 15,
+          "topic": "router",
+          "expected": "FACT-015-03jmy",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 2,
+          "turn": 30,
+          "topic": "gateway",
+          "expected": "FACT-030-izkkh",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 3,
+          "turn": 45,
+          "topic": "router",
+          "expected": "FACT-045-zbfww",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 4,
+          "turn": 60,
+          "topic": "gateway",
+          "expected": "FACT-060-yv0n0",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 5,
+          "turn": 75,
+          "topic": "router",
+          "expected": "FACT-075-a4b5x",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 6,
+          "turn": 90,
+          "topic": "gateway",
+          "expected": "FACT-090-m28ly",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 7,
+          "turn": 105,
+          "topic": "router",
+          "expected": "FACT-105-py2zp",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 8,
+          "turn": 120,
+          "topic": "gateway",
+          "expected": "FACT-120-fbtzd",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 9,
+          "turn": 135,
+          "topic": "router",
+          "expected": "FACT-135-ztagj",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 10,
+          "turn": 150,
+          "topic": "gateway",
+          "expected": "FACT-150-ge14o",
+          "control": "UNKNOWN",
+          "treatment": "FACT-150-ge14o",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 11,
+          "turn": 165,
+          "topic": "router",
+          "expected": "FACT-165-hlgwo",
+          "control": "UNKNOWN",
+          "treatment": "FACT-165-hlgwo",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 12,
+          "turn": 180,
+          "topic": "gateway",
+          "expected": "FACT-180-50232",
+          "control": "UNKNOWN",
+          "treatment": "FACT-180-50232",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 13,
+          "turn": 195,
+          "topic": "router",
+          "expected": "FACT-195-ej946",
+          "control": "UNKNOWN",
+          "treatment": "FACT-195-ej946",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 14,
+          "turn": 210,
+          "topic": "gateway",
+          "expected": "FACT-210-8wsh3",
+          "control": "UNKNOWN",
+          "treatment": "FACT-210-8wsh3",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 15,
+          "turn": 225,
+          "topic": "router",
+          "expected": "FACT-225-5k815",
+          "control": "UNKNOWN",
+          "treatment": "FACT-225-5k815",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 16,
+          "turn": 240,
+          "topic": "gateway",
+          "expected": "FACT-240-hlxhw",
+          "control": "UNKNOWN",
+          "treatment": "FACT-240-hlxhw",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 17,
+          "turn": 255,
+          "topic": "router",
+          "expected": "FACT-255-2fb7j",
+          "control": "UNKNOWN",
+          "treatment": "FACT-255-2fb7j",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 18,
+          "turn": 270,
+          "topic": "gateway",
+          "expected": "FACT-270-e7fcx",
+          "control": "FACT-270-e7fcx",
+          "treatment": "FACT-270-e7fcx",
+          "controlCorrect": true,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 19,
+          "turn": 285,
+          "topic": "router",
+          "expected": "FACT-285-rm66w",
+          "control": "UNKNOWN",
+          "treatment": "FACT-285-rm66w",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "turns": 300,
+      "tail": 20,
+      "probes": 20,
+      "controlAccuracy": 0.05,
+      "treatmentAccuracy": 0.5,
+      "rows": [
+        {
+          "index": 0,
+          "turn": 0,
+          "topic": "gateway",
+          "expected": "FACT-000-qfl7m",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 1,
+          "turn": 15,
+          "topic": "router",
+          "expected": "FACT-015-bp74k",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 2,
+          "turn": 30,
+          "topic": "gateway",
+          "expected": "FACT-030-a9qrt",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 3,
+          "turn": 45,
+          "topic": "router",
+          "expected": "FACT-045-jd6u3",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 4,
+          "turn": 60,
+          "topic": "gateway",
+          "expected": "FACT-060-vidfn",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 5,
+          "turn": 75,
+          "topic": "router",
+          "expected": "FACT-075-mpk5r",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 6,
+          "turn": 90,
+          "topic": "gateway",
+          "expected": "FACT-090-hyyqy",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 7,
+          "turn": 105,
+          "topic": "router",
+          "expected": "FACT-105-cuzlu",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 8,
+          "turn": 120,
+          "topic": "gateway",
+          "expected": "FACT-120-s4xt8",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 9,
+          "turn": 135,
+          "topic": "router",
+          "expected": "FACT-135-43s9i",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 10,
+          "turn": 150,
+          "topic": "gateway",
+          "expected": "FACT-150-saher",
+          "control": "UNKNOWN",
+          "treatment": "FACT-150-saher",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 11,
+          "turn": 165,
+          "topic": "router",
+          "expected": "FACT-165-797as",
+          "control": "UNKNOWN",
+          "treatment": "FACT-165-797as",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 12,
+          "turn": 180,
+          "topic": "gateway",
+          "expected": "FACT-180-f9so7",
+          "control": "UNKNOWN",
+          "treatment": "FACT-180-f9so7",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 13,
+          "turn": 195,
+          "topic": "router",
+          "expected": "FACT-195-u25n2",
+          "control": "UNKNOWN",
+          "treatment": "FACT-195-u25n2",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 14,
+          "turn": 210,
+          "topic": "gateway",
+          "expected": "FACT-210-kxe32",
+          "control": "UNKNOWN",
+          "treatment": "FACT-210-kxe32",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 15,
+          "turn": 225,
+          "topic": "router",
+          "expected": "FACT-225-52qt3",
+          "control": "UNKNOWN",
+          "treatment": "FACT-225-52qt3",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 16,
+          "turn": 240,
+          "topic": "gateway",
+          "expected": "FACT-240-o77fl",
+          "control": "UNKNOWN",
+          "treatment": "FACT-240-o77fl",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 17,
+          "turn": 255,
+          "topic": "router",
+          "expected": "FACT-255-d78oa",
+          "control": "UNKNOWN",
+          "treatment": "FACT-255-d78oa",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 18,
+          "turn": 270,
+          "topic": "gateway",
+          "expected": "FACT-270-yz7lh",
+          "control": "FACT-270-yz7lh",
+          "treatment": "FACT-270-yz7lh",
+          "controlCorrect": true,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 19,
+          "turn": 285,
+          "topic": "router",
+          "expected": "FACT-285-1esyu",
+          "control": "UNKNOWN",
+          "treatment": "FACT-285-1esyu",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "turns": 300,
+      "tail": 20,
+      "probes": 20,
+      "controlAccuracy": 0.05,
+      "treatmentAccuracy": 0.5,
+      "rows": [
+        {
+          "index": 0,
+          "turn": 0,
+          "topic": "gateway",
+          "expected": "FACT-000-pxewf",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 1,
+          "turn": 15,
+          "topic": "router",
+          "expected": "FACT-015-1e3tl",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 2,
+          "turn": 30,
+          "topic": "gateway",
+          "expected": "FACT-030-gf83p",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 3,
+          "turn": 45,
+          "topic": "router",
+          "expected": "FACT-045-2p3ua",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 4,
+          "turn": 60,
+          "topic": "gateway",
+          "expected": "FACT-060-rgus2",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 5,
+          "turn": 75,
+          "topic": "router",
+          "expected": "FACT-075-hblyb",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 6,
+          "turn": 90,
+          "topic": "gateway",
+          "expected": "FACT-090-hisus",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 7,
+          "turn": 105,
+          "topic": "router",
+          "expected": "FACT-105-5toyt",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 8,
+          "turn": 120,
+          "topic": "gateway",
+          "expected": "FACT-120-9h6hf",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 9,
+          "turn": 135,
+          "topic": "router",
+          "expected": "FACT-135-jw6fx",
+          "control": "UNKNOWN",
+          "treatment": "UNKNOWN",
+          "controlCorrect": false,
+          "treatmentCorrect": false
+        },
+        {
+          "index": 10,
+          "turn": 150,
+          "topic": "gateway",
+          "expected": "FACT-150-70m0g",
+          "control": "UNKNOWN",
+          "treatment": "FACT-150-70m0g",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 11,
+          "turn": 165,
+          "topic": "router",
+          "expected": "FACT-165-30c3x",
+          "control": "UNKNOWN",
+          "treatment": "FACT-165-30c3x",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 12,
+          "turn": 180,
+          "topic": "gateway",
+          "expected": "FACT-180-pp2gq",
+          "control": "UNKNOWN",
+          "treatment": "FACT-180-pp2gq",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 13,
+          "turn": 195,
+          "topic": "router",
+          "expected": "FACT-195-h5u81",
+          "control": "UNKNOWN",
+          "treatment": "FACT-195-h5u81",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 14,
+          "turn": 210,
+          "topic": "gateway",
+          "expected": "FACT-210-skod2",
+          "control": "UNKNOWN",
+          "treatment": "FACT-210-skod2",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 15,
+          "turn": 225,
+          "topic": "router",
+          "expected": "FACT-225-vo6pc",
+          "control": "UNKNOWN",
+          "treatment": "FACT-225-vo6pc",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 16,
+          "turn": 240,
+          "topic": "gateway",
+          "expected": "FACT-240-bnezh",
+          "control": "UNKNOWN",
+          "treatment": "FACT-240-bnezh",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 17,
+          "turn": 255,
+          "topic": "router",
+          "expected": "FACT-255-ouzrk",
+          "control": "UNKNOWN",
+          "treatment": "FACT-255-ouzrk",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 18,
+          "turn": 270,
+          "topic": "gateway",
+          "expected": "FACT-270-abmgy",
+          "control": "FACT-270-abmgy",
+          "treatment": "FACT-270-abmgy",
+          "controlCorrect": true,
+          "treatmentCorrect": true
+        },
+        {
+          "index": 19,
+          "turn": 285,
+          "topic": "router",
+          "expected": "FACT-285-o73dt",
+          "control": "UNKNOWN",
+          "treatment": "FACT-285-o73dt",
+          "controlCorrect": false,
+          "treatmentCorrect": true
+        }
+      ]
+    }
+  ]
+}

@@ -43,16 +43,16 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 
 ## 4. Live data collection
 
-### First live result: DeepSeek Flash
+### DeepSeek Flash validation (first live data)
 
-Provider/model: **`deepseek-account/deepseek-flash`**; two independent fresh-context calls; synthetic 120-turn/8-fact fixture.
+| Experiment | Result |
+|---|---|
+| Evidence-in-prompt, 8 probes / 120 turns | control **1/8** (evicted **0/7**) → treatment **8/8** (evicted **7/7**) |
+| Multi-seed (3 seeds × 20 probes / 300 turns) | control **3/60 (5%)**; treatment **30/60 (50%)**; evicted **0/57 → 27/57 (47.4%)** |
+| Cold-tier natural-language subset (30 probes) | control 0/30; treatment **0/30** — exposed cold retrieval gap |
+| Full agent loop (n=1) | control `UNKNOWN`; treatment: 3 real MCP tool calls → correct `FACT-025-r6h18` |
 
-| Condition | Overall | Evicted facts (7) |
-|---|---|---|
-| control (recent tail only) | 1/8 (12.5%) | 0/7 (0%) |
-| treatment (tail + memex evidence) | **8/8 (100%)** | **7/7 (100%)** |
-
-Raw: `docs/assets/benchmarks/live-ab-deepseek.json`. Caveats: n=8, one run, agent-mediated route; token usage not captured.
+**Finding:** hot-region and tail facts are recovered reliably; cold-tier facts asked in natural language without identifier anchors are not. This is the next concrete retrieval improvement target (cold natural-language indexing/recall), and it is now labeled as such rather than assumed.
 
 The client integration is verified (Claude Code parses the generated config): `claude mcp list` after `memex-claude init`:
 

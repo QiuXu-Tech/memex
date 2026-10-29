@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.4.3
+
+### Validation
+- **DeepSeek Flash multi-seed live A/B** (3 seeds × 300-turn history × 20 probes): control **3/60 (5%)** vs treatment **30/60 (50%)**; evicted records **0/57 → 27/57 (47.4%)**. Raw: `docs/assets/benchmarks/live-ab-deepseek-multiseed.json`.
+- **Full agent-loop validation** (n=1): model emitted `memory_search` → refined search → `memory_open`; harness executed the calls against the real memex MCP server; treatment answered correctly where control answered `UNKNOWN`. Raw: `docs/assets/benchmarks/live-ab-deepseek-agent-loop.json`.
+- **Finding:** all multi-seed treatment failures are cold-tier facts queried in natural language without an identifier anchor (0/30 cold subset); hot/tail facts are recovered. This is now the top retrieval improvement target.
+- `scripts/live-ab.mjs` gained `--seed`, `--turns`, `--tail`, and earlier `--emit-prompts`; docs/live-testing.md and docs/experiments-v040.md updated with the live results and caveats.
+
 ## 0.4.2
 
 ### Validation

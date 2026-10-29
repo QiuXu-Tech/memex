@@ -9,30 +9,40 @@ Offline validation (retrieval, profiles, cold start, 100M scale) is complete. Th
 
 Tracking request and discussion: [issue #1](https://github.com/QiuXu-Tech/memex/issues/1).
 
-## First live result: DeepSeek Flash (2026-10-29)
+## DeepSeek Flash results (2026-10-29)
 
-Two independent fresh-context calls on **DeepSeek Flash** (via DSH's DeepSeek Account route), same synthetic 120-turn fixture, 8 deep-fact questions (7 outside the retained tail):
+### A. Evidence-in-prompt A/B
+
+Two independent fresh-context calls on **DeepSeek Flash** (via DSH's DeepSeek Account route), synthetic 120-turn fixture, 8 deep-fact questions (7 outside the retained tail):
 
 | Condition | Overall | Evicted-fact subset |
 |---|---|---|
 | control (recent tail only) | **1/8 (12.5%)** | **0/7 (0%)** |
 | treatment (tail + memex evidence) | **8/8 (100%)** | **7/7 (100%)** |
 
-The only control success was Q6, whose fact was still inside the retained tail; every evicted fact was answered correctly only with memex evidence. Raw answers: [`docs/assets/benchmarks/live-ab-deepseek.json`](assets/benchmarks/live-ab-deepseek.json).
+The only control success was a fact still inside the retained tail; every evicted fact was answered correctly only with memex evidence.
 
-Caveats: n=8 probes, one model/one run; agent-mediated route (prompt overhead not provider latency); token usage was not captured. It is a first data point, not a statistically strong result — more models and repeats are exactly what [issue #1](https://github.com/QiuXu-Tech/memex/issues/1) is asking for.
+### B. Multi-seed replication (3 seeds × 300-turn history × 20 probes)
 
-## What data we need
+| Condition | Overall | Evicted records (excluding the one tail fact) | Cold-tier natural-language subset (turns 0–135) |
+|---|---|---|---|
+| control | **3/60 (5%)** | **0/57 (0%)** | 0/30 |
+| treatment | **30/60 (50%)** | **27/57 (47.4%)** | **0/30** |
 
-| Data | Why it matters |
-|---|---|
-| `accuracy.control` vs `accuracy.treatment` per model | proves the memory layer's value on evicted facts |
-| provider `usage` (input/output tokens) and latency | calibrates `charsPerToken`, catalog/recall budgets |
-| exact model id + profile id used | attributes gains to the right dedicated profile |
-| at least a few answers per model family | separates real signal from single-sample noise |
+All three seeds showed the same pattern. Hot-region probes (turns 150+) and the tail probe were answered; **all 30 failures are cold-tier facts queried with natural language and no identifier-like anchor** — a concrete retrieval gap this validation exposed.
 
-**Coverage targets** (any subset is useful):
-`claude-opus-5-5`, `claude-sonnet-5-5`, `claude-fable-5-1`, `claude-haiku-5-5`, `gpt-6.1-sol`, `gpt-6.1-terra`, `gpt-6-astra`, `deepseek-flash`, `deepseek-v4-pro`, Gemini 2.5/3, Qwen 3, Kimi K2, GLM 4.6, Llama 4/Mistral, and older families for comparison.
+### C. Full agent loop (tools, n=1)
+
+A mediated tool protocol: the model emits JSON tool calls, the harness executes them against the real memex MCP server.
+
+- control (no tools): `UNKNOWN` — wrong.
+- treatment: `memory_search` (noisy query) → refined `memory_search` (expected record at rank 10) → `memory_open` → **`FACT-025-r6h18`** — correct, 3 tool calls, 4 turns.
+
+This shows the loop can search, refine, open and answer end-to-end; n=1 is a mechanism check, not a statistical result.
+
+Raw data: [evidence-in-prompt 8 probes](assets/benchmarks/live-ab-deepseek.json) · [multi-seed](assets/benchmarks/live-ab-deepseek-multiseed.json) · [agent loop](assets/benchmarks/live-ab-deepseek-agent-loop.json).
+
+**Caveats:** one model; synthetic fixtures; multi-seed runs are agent-mediated (no provider usage tokens captured); the cold-tier gap in B is a real limitation to fix, not a scoring artifact — the model correctly reported `UNKNOWN` rather than hallucinating.
 
 ## How to contribute
 

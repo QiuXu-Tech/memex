@@ -1,0 +1,73 @@
+{
+  "format": 1,
+  "kind": "live-ab-agent-loop-result",
+  "generatedAt": "2026-10-29T16:35:00+08:00",
+  "provider": "deepseek-account",
+  "model": "deepseek-flash",
+  "method": "Model emits JSON tool calls (virtual protocol); harness executes them against the real memex MCP server (JSON-RPC stdio). n=1 probe.",
+  "fixture": {
+    "turns": 40,
+    "hotRecords": 25,
+    "tailRecords": 10,
+    "probes": 1,
+    "expected": "FACT-025-r6h18"
+  },
+  "control": {
+    "tools": false,
+    "answer": "UNKNOWN",
+    "correct": false
+  },
+  "treatment": {
+    "tools": true,
+    "steps": [
+      {
+        "turn": 1,
+        "request": {
+          "tool": "memory_search",
+          "arguments": {
+            "query": "turn 25 router work log durable value",
+            "limit": 10
+          }
+        },
+        "outcome": "work-log cards only; expected turn-25 fact absent"
+      },
+      {
+        "turn": 2,
+        "request": {
+          "tool": "memory_search",
+          "arguments": {
+            "query": "turn 25 router",
+            "limit": 20
+          }
+        },
+        "outcome": "expected record mem_fd80a3a8f0 visible at rank 10"
+      },
+      {
+        "turn": 3,
+        "request": {
+          "tool": "memory_open",
+          "arguments": {
+            "id": "mem_fd80a3a8f0"
+          }
+        },
+        "outcome": "body contains FACT-025-r6h18"
+      },
+      {
+        "turn": 4,
+        "request": {
+          "answer": "FACT-025-r6h18"
+        },
+        "outcome": "final answer"
+      }
+    ],
+    "toolCalls": 3,
+    "answer": "FACT-025-r6h18",
+    "correct": true
+  },
+  "notes": [
+    "The model first chose a noisy query, refined it after seeing the result, then opened the record and answered correctly.",
+    "One earlier attempt tried the subagent built-in memory tools (disabled for that session); the validated run uses the explicit virtual-tool JSON protocol.",
+    "n=1 probe: demonstrates the tool loop works end-to-end, not a statistical claim.",
+    "No provider usage tokens were captured; latency includes agent/harness overhead."
+  ]
+}

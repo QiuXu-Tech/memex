@@ -35,9 +35,14 @@ const PROVIDER = arg('provider', 'all')
 const PROBES = Number(arg('probes', 6))
 const OUT = arg('out', join(tmpdir(), 'memex-live-ab.json'))
 const EMIT_DIR = arg('emit-prompts')
+const SEED = Number(arg('seed', 1))
+const TURNS = Number(arg('turns', 120))
+const TAIL_RECORDS = Number(arg('tail', 20))
 const DRY_RUN = process.argv.includes('--dry-run')
 const MODEL_OVERRIDE = arg('model')
 
+function mulberry32(seed) { let state = seed >>> 0; return () => { state = (state + 0x6D2B79F5) >>> 0; let t = state; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296 } }
+const random = mulberry32(SEED)
 const CWD = join(tmpdir(), 'memex-live-ws')
 const SESSION = 'live-ab'
 const WS = memoryWorkspaceKey(CWD, SESSION)
@@ -47,10 +52,10 @@ const store = new LocalStoreCore({ root: ROOT, capacityTokens: 1_000_000_000, se
 // Long history: many technical turns, a few facts deep inside.
 const facts = []
 const topics = ['gateway', 'parser', 'scheduler', 'ledger', 'cache', 'router', 'worker', 'indexer', 'bridge', 'harbor']
-for (let index = 0; index < 120; index += 1) {
-  const isFact = index % 15 === 0 && facts.length < 12
+for (let index = 0; index < TURNS; index += 1) {
+  const isFact = index % 15 === 0 && facts.length < 60
   const topic = topics[index % topics.length]
-  const fact = isFact ? `FACT-${String(index).padStart(3, '0')}-${Math.random().toString(36).slice(2, 7)}` : undefined
+  const fact = isFact ? `FACT-${String(index).padStart(3, '0')}-${random().toString(36).slice(2, 7)}` : undefined
   const body = isFact
     ? `Turn ${index} (${topic}): the durable value is ${fact}; keep it for the ${topic} question. ` + 'technical notes '.repeat(120)
     : `Turn ${index} (${topic}): reviewed the ${topic} config, retried the job, adjusted backoff. ` + 'technical notes '.repeat(120)
@@ -63,8 +68,8 @@ for (const card of cards.slice(facts.length > 0 ? 0 : 0)) {
   if (Number(card.updatedAt) < 0) break
 }
 const oldestFirst = [...cards].sort((left, right) => left.createdAt - right.createdAt)
-for (const card of oldestFirst.slice(0, Math.max(0, oldestFirst.length - 20))) store.archiveCold(card.id)
-const tailCards = store.list({ workspaceKey: WS, scopes: ['workspace'], limit: 20 })
+for (const card of oldestFirst.slice(0, Math.max(0, oldestFirst.length - TAIL_RECORDS))) store.archiveCold(card.id)
+const tailCards = store.list({ workspaceKey: WS, scopes: ['workspace'], limit: TAIL_RECORDS })
 const tailText = tailCards.map((card) => `${card.title}\n${card.summary}`).join('\n')
 store.close()
 const evidenceCore = new LocalStoreCore({ root: ROOT, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
@@ -173,7 +178,7 @@ if (EMIT_DIR !== undefined) {
   mkdirSync(EMIT_DIR, { recursive: true })
   writeFileSync(join(EMIT_DIR, 'control.txt'), buildBatchPrompt(false))
   writeFileSync(join(EMIT_DIR, 'treatment.txt'), buildBatchPrompt(true))
-  writeFileSync(join(EMIT_DIR, 'plan.json'), JSON.stringify({ generatedAt: new Date().toISOString(), probes: probes.map((probe, index) => ({ index, turn: probe.turn, topic: probe.topic, expected: probe.fact, id: probe.id })) }, null, 2))
+  writeFileSync(join(EMIT_DIR, 'plan.json'), JSON.stringify({ generatedAt: new Date().toISOString(), seed: SEED, turns: TURNS, tail: TAIL_RECORDS, probes: probes.map((probe, index) => ({ index, turn: probe.turn, topic: probe.topic, expected: probe.fact, id: probe.id })) }, null, 2))
   console.log(JSON.stringify({ emitted: EMIT_DIR, probes: probes.length, controlBytes: buildBatchPrompt(false).length, treatmentBytes: buildBatchPrompt(true).length }, null, 2))
   evidenceCore.close()
   rmSync(ROOT, { recursive: true, force: true })
