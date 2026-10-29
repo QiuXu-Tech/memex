@@ -23,6 +23,7 @@ repeat = load("results-compaction-repeat.json")
 scale = load("results-scale.json")["results"]
 scale_repeat = load("results-scale-repeat.json")["results"]
 capacity = load("results-capacity.json")["runs"][1]
+metadata = load("run-metadata.json")
 
 plt.rcParams.update({
     "font.family": "DejaVu Sans",
@@ -63,7 +64,7 @@ def save(fig, name):
 
 # Availability counts for the first two methods and target-record hits for DSH.
 fig, ax = plt.subplots(figsize=(12.8, 6.8))
-heading(fig, "Synthetic long-horizon probes", "160K estimated-token history · 80K window · 40 probes")
+heading(fig, "Synthetic long-horizon probes", f"v{metadata['testedVersion']} · 160K estimated-token history · 80K window · 40 probes")
 fig.subplots_adjust(left=0.085, right=0.965, top=0.79, bottom=0.23)
 setup(ax)
 all_values = [compaction["truncation"]["accuracy"] * 100,
@@ -89,7 +90,7 @@ save(fig, "fact-recall.png")
 
 # Window/history is a ratio, not an observed no-memory recall score.
 fig, axes = plt.subplots(1, 2, figsize=(12.8, 6.8))
-heading(fig, "Synthetic scaling: two different measures", "1M estimated-token window · 40 identifier-based probes per history size")
+heading(fig, "Synthetic scaling: two different measures", f"v{metadata['testedVersion']} · 1M window · 40 identifier-based probes per history size")
 fig.subplots_adjust(left=0.08, right=0.965, top=0.75, bottom=0.19, wspace=0.26)
 labels = ["1M", "5M", "10M"]
 for ax, title in [(axes[0], "Window / history ratio"), (axes[1], "Target-record hit@5")]:
@@ -115,7 +116,7 @@ save(fig, "recall-scaling.png")
 
 # Search latency excludes opening a record or a model call.
 fig, axes = plt.subplots(1, 2, figsize=(12.8, 6.8), gridspec_kw={"width_ratios": [1.35, 1]})
-heading(fig, "Search latency and estimated context cost", "v0.2.1 · single shared machine under high load · search only")
+heading(fig, "Search latency and estimated context cost", f"v{metadata['testedVersion']} · quiet-start gate met · shared machine · search only")
 fig.subplots_adjust(left=0.08, right=0.965, top=0.75, bottom=0.21, wspace=0.3)
 latencies = [r["medianLatencyMs"] for r in scale]
 latencies_repeat = [r["medianLatencyMs"] for r in scale_repeat]
@@ -124,7 +125,8 @@ axes[0].set_title("Scaling: p50 of 40 searches per run", loc="left", pad=12, fon
 for i, (first, second) in enumerate(zip(latencies, latencies_repeat)):
     for offset, value, color in [(-0.17, first, BLUE), (0.17, second, TEAL)]:
         axes[0].bar(i + offset, value, color=color, width=0.32)
-        axes[0].text(i + offset, value + 7, f"{value:.1f}", ha="center", fontsize=10)
+        axes[0].text(i + offset, value + max(latencies + latencies_repeat) * 0.035,
+                     f"{value:.1f}", ha="center", fontsize=10)
 axes[0].set_xticks(range(3), labels)
 axes[0].legend(["First", "Repeat"], loc="upper left", ncol=2, frameon=False, labelcolor="#dbe4f4")
 axes[0].set_ylim(0, max(latencies + latencies_repeat) * 1.3)
@@ -135,7 +137,7 @@ setup(axes[1])
 axes[1].set_title("160K run: two repeats", loc="left", pad=12, fontsize=13)
 axes[1].bar(["First", "Repeat"], repeats, color=[BLUE, TEAL], width=0.48)
 for i, value in enumerate(repeats):
-    axes[1].text(i, value + 0.6, f"{value:.1f} ms", ha="center", fontsize=11)
+    axes[1].text(i, value + max(repeats) * 0.035, f"{value:.2f} ms", ha="center", fontsize=11)
 axes[1].set_ylim(0, max(repeats) * 1.3)
 axes[1].set_ylabel("Search p50 (ms)")
 footnote(fig, f"Estimated cards + one hypothetical body: {compaction['dshMemory']['tokensPerQuestion']:,} tokens/probe; "
@@ -144,7 +146,7 @@ save(fig, "cost-latency.png")
 
 # 100M-token synthetic pool: timed cold GC deletes the removed records.
 fig, axes = plt.subplots(1, 2, figsize=(12.8, 6.8), gridspec_kw={"width_ratios": [1.18, 1]})
-heading(fig, "Synthetic 100M-token pool", "10,000 records · 10,000 assigned tokens per record · shared machine under high load")
+heading(fig, "Synthetic 100M-token pool", "10,000 records · 10,000 assigned tokens per record · quiet-start gate met")
 fig.subplots_adjust(left=0.2, right=0.955, top=0.75, bottom=0.19, wspace=0.45)
 storage_names = ["Index after write", "Index after cold spill", "Original body files"]
 storage = [capacity["indexAfterWriteMiB"], capacity["indexAfterColdMiB"], capacity["bodyFilesMiB"]]
@@ -164,6 +166,6 @@ axes[1].invert_yaxis()
 axes[1].set_xlim(0, max(operations) * 1.35)
 axes[1].set_xlabel("Seconds")
 for i, value in enumerate(operations):
-    axes[1].text(value + 0.8, i, f"{value:.2f}", va="center", fontsize=11)
+    axes[1].text(value + max(operations) * 0.025, i, f"{value:.2f}", va="center", fontsize=11)
 footnote(fig, "Cold spill moves records; cold GC deletes them. Token sizes are assigned synthetic values.")
 save(fig, "capacity.png")

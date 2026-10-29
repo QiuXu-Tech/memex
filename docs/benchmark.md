@@ -3,18 +3,29 @@ title: Benchmark report
 layout: default
 ---
 
-# Benchmark report: synthetic long-horizon retrieval on v0.2.1
+# Benchmark report: synthetic long-horizon retrieval on v0.2.2
 
 This report reruns the published synthetic workloads against commit
-[`4e9720d`](https://github.com/QiuXu-Tech/dsh-memory/commit/4e9720d6ba61f88126fde3f5ce62baab20758c22)
+[`c4e2d38`](https://github.com/QiuXu-Tech/dsh-memory/commit/c4e2d381729e885c7d720713e325cc58938f4203)
 on 2026-10-29. The machine was an Apple M4 (10 logical CPUs, 16 GiB), running
-macOS 27.2 and Node 24.21.0. It was heavily loaded: sampled one-minute load
-averages ranged from 57 to 114. Timings describe these runs, not a controlled
-comparison with earlier versions. The [run metadata](assets/benchmarks/run-metadata.json)
-records the tested commit and input hashes.
+macOS 27.2 and Node 24.21.0. Before starting, two consecutive five-second
+samples met the quiet-start gate: CPU busy **14.6% / 14.7%** and one-minute
+load **9.96 / 9.24**. During the longer benchmark stages, six samples showed
+one-minute load **6.85–8.90** and CPU busy **22.2%–32.1%**, including the
+benchmark itself. Sampling intervals can cross stage boundaries; short stages
+may have no dedicated sample. The machine was shared, not isolated. The
+[run metadata](assets/benchmarks/run-metadata.json) and
+[load samples](assets/benchmarks/results-load-samples.jsonl) record the method,
+tested commit and input hashes.
 
-GitHub `main` advanced to v0.2.2 after this measurement. The results below are
-for v0.2.1 and do not measure v0.2.2.
+The execution checkout was `41b47e4`, a report-only descendant of v0.2.2;
+its package and test trees and the three benchmark scripts matched `c4e2d38`.
+GitHub `main` advanced to v0.3.0 during this work; these measurements do not
+evaluate v0.3.0.
+
+The earlier [v0.2.1 report and its high-load measurements](https://github.com/QiuXu-Tech/dsh-memory/blob/41b47e43f0f58b6d46dfe1cfe7baae1630c6a242/docs/benchmark.md)
+remain in Git history. The two runs were not conducted under comparable load,
+so their timing differences do not establish a version performance change.
 
 **Result in brief:** in a synthetic 160K-token history with an 80K-token
 window, 20/40 target facts were present in the retained tail and 24/40 were
@@ -58,9 +69,9 @@ one simulated baseline, not a run of DSH's native compaction implementation.
 
 | Estimated history | Records | Window / history | Search hit@5, both runs | Search p50, first / repeat |
 |---|---:|---:|---:|---:|
-| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 20.8 / 7.5 ms |
-| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 229.1 / 110.3 ms |
-| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 289.9 / 177.2 ms |
+| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 1.33 / 1.33 ms |
+| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 13.32 / 13.28 ms |
+| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 27.89 / 27.63 ms |
 
 The window/history column is an arithmetic coverage ratio, not measured
 no-memory recall and not a universal ceiling. Actual availability depends on
@@ -72,11 +83,11 @@ answers correctly.
 
 ![Search medians at three scales and two repeated 160K runs](assets/benchmarks/cost-latency.png)
 
-The 160K comparison's search p50 was **22.0 ms** on the first run and
-**6.3 ms** on a repeat with the same fixture and supplied summary. Each p50 is
-the median of 40 searches. The scaling sweep was also repeated; both sets of
-measurements show why shared-machine timings should not be treated as a stable
-performance estimate.
+The 160K comparison's search p50 was **1.20 ms** on the first run and
+**1.18 ms** on a repeat with the same fixture and supplied summary. Each p50 is
+the median of 40 searches. The scaling sweep was also repeated; two runs on a
+shared machine are not enough to establish a latency distribution or
+production performance.
 
 The script estimates **1,693 tokens per probe** for result cards plus one
 assumed target-record body. It does not call `memory_open` or measure model
@@ -96,13 +107,14 @@ corpus. The two runs use different cold target ratios to reproduce the prior
 
 | Pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 6.5 s | 700 records / 7M tokens in 7.35 s | 350 records / 3.5M tokens in 0.62 s |
-| 10,000 records / 100M assigned tokens | 59.2 s | 5,000 records / 50M tokens in 41.77 s | 2,500 records / 25M tokens in 1.15 s |
+| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M tokens in 0.32 s | 350 records / 3.5M tokens in 0.03 s |
+| 10,000 records / 100M assigned tokens | 4.5 s | 5,000 records / 50M tokens in 2.48 s | 2,500 records / 25M tokens in 0.31 s |
 
 In the 100M run, the SQLite index was 9.0 MiB after writing and 26.6 MiB after
 cold spill; the original body files totalled 384.8 MiB. Cold spill moves the
 records, while **cold GC deletes** the records it removes. Both were exercised
-only on throwaway stores. These are single-run times under the load noted above.
+only on throwaway stores. These are single-run times under the sampled load
+noted above.
 
 ## 5. Complementary recall suite
 
@@ -119,15 +131,18 @@ public fixtures. See [evaluation](https://github.com/QiuXu-Tech/dsh-memory/blob/
 ## Scope and limitations
 
 - All measured searches here call `LocalStoreCore` with default rerank
-  weights. They do not benchmark v0.2.1's model-specific `AgentMemory`
+  weights. They do not benchmark v0.2.2's model-specific `AgentMemory`
   profiles, MCP/DSH integration, transcript capture, or an agent's end-to-end
   answers. The offline tests cover some of those code paths but are not an
   agent benchmark.
 - Exact synthetic cues and prefilled card summaries make these retrieval
   probes easier to locate than many real project questions. The results do not
-  establish recall on paraphrases, multi-hop tasks, or missing cues.
-- Timings, including the two repeated 160K results, were collected on a
-  shared, heavily loaded machine. The capacity script prints a `p95` from
+  establish recall on paraphrases, multi-hop tasks, or missing cues. The
+  separate [body-only retrieval findings documented in v0.2.2](https://github.com/QiuXu-Tech/dsh-memory/blob/c4e2d381729e885c7d720713e325cc58938f4203/docs/optimization-findings.md)
+  were not rerun by this benchmark.
+- Timings were collected on a shared machine after the quiet-start gate, with
+  five-second load samples during longer stages; this is not full isolation.
+  The capacity script prints a `p95` from
   only five samples using its own index rule; this report does not treat that
   field as a reliable 95th percentile or declare the former p95 target passed.
 - The supplied summary is reused; no independent model-summary generation or
@@ -141,9 +156,9 @@ remove throwaway stores. The summary must be passed explicitly for the
 comparison.
 
 ```bash
-git clone https://github.com/QiuXu-Tech/dsh-memory.git dsh-memory-benchmark-v021
-cd dsh-memory-benchmark-v021
-git checkout --detach 4e9720d6ba61f88126fde3f5ce62baab20758c22
+git clone https://github.com/QiuXu-Tech/dsh-memory.git dsh-memory-benchmark-v022
+cd dsh-memory-benchmark-v022
+git checkout --detach c4e2d381729e885c7d720713e325cc58938f4203
 out_dir="$(mktemp -d "${TMPDIR:-/tmp}/dsh-benchmark.XXXXXX")"
 node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \
   --tokens 160000 --window 80000 --summary docs/assets/benchmarks/compaction-summary.txt \
@@ -164,7 +179,9 @@ The checked-in [compaction results](assets/benchmarks/results-compaction.json),
 [scaling repeat](assets/benchmarks/results-scale-repeat.json),
 [capacity data](assets/benchmarks/results-capacity.json), and raw capacity
 outputs ([10M](assets/benchmarks/results-capacity-10m.txt),
-[100M](assets/benchmarks/results-capacity-100m.txt)) are from this run.
+[100M](assets/benchmarks/results-capacity-100m.txt)),
+[execution records](assets/benchmarks/results-execution.jsonl), and
+[load samples](assets/benchmarks/results-load-samples.jsonl) are from this run.
 Earlier results remain available in Git history. In a checkout containing this
 report, install Matplotlib 3.10.7 in a Python environment and run
 `python scripts/plot-benchmarks.py` to regenerate the PNGs. That script reads

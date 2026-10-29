@@ -5,12 +5,12 @@ layout: default
 
 # Evaluation
 
-The public synthetic workloads were rerun on v0.2.1, commit
-[`4e9720d`](https://github.com/QiuXu-Tech/dsh-memory/commit/4e9720d6ba61f88126fde3f5ce62baab20758c22),
-on 2026-10-29. The Apple M4 / Node 24.21.0 machine was heavily loaded; timings
-are observations from that run, not controlled comparisons with the historical
-figures. See the [benchmark report](https://github.com/QiuXu-Tech/dsh-memory/blob/main/docs/benchmark.md) for the full methodology,
-raw results, charts and reproduction commands.
+The public synthetic workloads were rerun on v0.2.2, commit
+[`c4e2d38`](https://github.com/QiuXu-Tech/dsh-memory/commit/c4e2d381729e885c7d720713e325cc58938f4203),
+on 2026-10-29. The Apple M4 / Node 24.21.0 machine met a quiet-start gate;
+it remained shared and load was sampled during the longer stages. See the
+[benchmark report](https://github.com/QiuXu-Tech/dsh-memory/blob/main/docs/benchmark.md)
+for methodology, load samples, raw results, charts and reproduction commands.
 
 ## Retrieval quality
 
@@ -29,15 +29,15 @@ contains a cold record, so it is not evidence of cold-record retrieval.
 A previous run against a private, curated 40-question archive reported hit@1
 73%, hit@3/hit@5 95%, cold recall 100%, and search p50 1.3 ms; a prior
 baseline was reported as 67% hit@5. That archive and its raw probes are not
-public, and the run was **not repeated** for v0.2.1. These historical numbers
+public, and the run was **not repeated** for v0.2.2. These historical numbers
 cannot be independently reproduced using the public fixture.
 
 ## Capacity and storage
 
 | Synthetic pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 6.5 s | 700 records / 7M in 7.35 s | 350 records / 3.5M in 0.62 s |
-| 10,000 records / 100M assigned tokens | 59.2 s | 5,000 records / 50M in 41.77 s | 2,500 records / 25M in 1.15 s |
+| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M in 0.32 s | 350 records / 3.5M in 0.03 s |
+| 10,000 records / 100M assigned tokens | 4.5 s | 5,000 records / 50M in 2.48 s | 2,500 records / 25M in 0.31 s |
 
 The 100M run used 384.8 MiB of original body files and a 9.0 MiB SQLite index
 after writing, growing to 26.6 MiB after cold spill. Token counts are assigned
@@ -57,6 +57,6 @@ current public-fixture measurement.
 - The capacity helper's printed `p95` is based on five samples and selects the
   second-largest value. It is not a reliable 95th percentile. This rerun does
   not establish that the former `p95 < 50 ms` target is met.
-- The offline harness passed 108/108 tests at the tested commit after building
+- The offline harness passed 110/110 tests at the tested commit after building
   the bundle; this validates its test cases, not production or real-agent
   performance.

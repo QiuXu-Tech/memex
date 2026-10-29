@@ -166,11 +166,11 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | Metric | Result |
 |---|---|
 | Historical private archive (40 curated questions; not rerun) | reported hit@5 **95%** (baseline 67%); not reproducible from the public fixture |
-| Synthetic recall suite (v0.2.1 rerun) | 80/80 target-record hits at rank 1 |
-| 10k records / 100M assigned tokens (v0.2.1, synthetic, high-load machine) | write 59.2 s; cold spill 5,000 records/50M tokens in 41.77 s; cold GC 2,500 records/25M tokens in 1.15 s |
-| FTS storage (body-less card+abstract index) | Synthetic v0.2.1 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill |
+| Synthetic recall suite (v0.2.2 rerun) | 80/80 target-record hits at rank 1 |
+| 10k records / 100M assigned tokens (v0.2.2, synthetic, quiet-start gate) | write 4.5 s; cold spill 5,000 records/50M tokens in 2.48 s; cold GC 2,500 records/25M tokens in 0.31 s |
+| FTS storage (body-less card+abstract index) | Synthetic v0.2.2 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill |
 
-**Synthetic 160K history / 80K window, on v0.2.1:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. dsh-memory search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
+**Synthetic 160K history / 80K window, on v0.2.2:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. dsh-memory search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
 
 Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
 
