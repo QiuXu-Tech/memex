@@ -188,7 +188,7 @@ ax.set_xticks([0, 1], ["All probes", "Evicted probes"])
 ax.set_ylabel("Exact-answer accuracy")
 ax.set_ylim(0, 120)
 ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))
-ax.legend(["Control: tail only", "Treatment: tail + retrieved evidence"],
+ax.legend(["Control: tail cards", "Treatment: cards + retrieved evidence"],
           loc="upper left", ncol=2, frameon=False, labelcolor="#dbe4f4")
-footnote(fig, "Synthetic fixture; treatment receives pre-retrieved evidence. This is not an autonomous agent workflow.")
+footnote(fig, "Tail cards are titles + summaries; treatment receives pre-retrieved evidence. Not an autonomous agent workflow.")
 save(fig, "codex-ab.png")

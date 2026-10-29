@@ -152,15 +152,16 @@ for its historical context.
 ![Codex A/B exact-answer counts for all probes and evicted probes](assets/benchmarks/codex-ab.png)
 
 A separate live run used `gpt-6.1-sol` through Codex CLI, with three synthetic
-300-turn histories and 20 probes each. The control received the recent tail;
-the treatment received the same tail plus evidence selected and opened by the
+300-turn histories and 20 probes each. The control received the titles and
+summaries of the 20 recent tail records, not their full conversation bodies;
+the treatment received the same cards plus evidence selected and opened by the
 fixture before the model call. This tests model answers given retrieval
 evidence, not whether a model autonomously chooses or executes memory tools.
 
 | Condition | All probes | 57 evicted probes |
 |---|---:|---:|
-| Control: tail only | 3/60 (5%) | 0/57 (0%) |
-| Treatment: tail + retrieved evidence | 60/60 (100%) | 57/57 (100%) |
+| Control: tail titles and summaries | 3/60 (5%) | 0/57 (0%) |
+| Treatment: tail cards + retrieved evidence | 60/60 (100%) | 57/57 (100%) |
 
 All six Codex calls exited zero. The [published result](assets/benchmarks/live-ab-codex-sol-tail-fixed.json)
 retains the answer strings, scores, call statuses and tail IDs. The

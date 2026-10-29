@@ -87,8 +87,10 @@ Limits kept explicit: the boost requires the cold abstract to cover **every** me
 | Sol, v0.8.1 + tail-order fix | **3/60** | **60/60** | **0/57 → 57/57** | Actual plans and both prompts saved; turns 280–299 in order |
 
 The new Sol run uses three synthetic 300-turn histories and 20 probes per
-seed. The fixture searches and opens records before inserting evidence into the
-treatment prompt; it does not test an autonomous model choosing memory tools.
+seed. Both conditions see the titles and summaries of the 20 tail records,
+not their full conversation bodies. The fixture searches and opens records
+before inserting evidence into the treatment prompt; it does not test an
+autonomous model choosing memory tools.
 All six calls exited zero. CLI stderr reported 80,452 total tokens across the
 calls, but structured provider usage and billing cost are unknown; initialization
 and analytics-send warnings occurred. Diagnostic tails are redacted from the
@@ -178,8 +180,8 @@ The bridge saves tail IDs and probe `inTail`/`evicted` flags. Use `--keep` to re
 
 The intended comparison for each synthetic long-horizon question uses two conditions on the same model. The fixed harness selects the tail by fixture insertion order and records its membership:
 
-- **control** — only the most recent tail is in context; older facts are evicted;
-- **treatment** — tail + Memex `memory_search`/`memory_open` evidence for that question.
+- **control** — titles and summaries of the retained tail records are in context; older records are evicted;
+- **treatment** — the same tail cards plus fixture-generated Memex search/open evidence for that question.
 
 Answers are graded by exact `FACT-###` token. The output reports per-probe `correct`, latency, provider usage, and aggregate `accuracy.control` / `accuracy.treatment`.
 

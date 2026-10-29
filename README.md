@@ -169,7 +169,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 |---|---|
 | Private archive re-check (40 curated questions; v0.5.1) | Reported hit@1 **68%** / hit@3 90% / hit@5 **93%**, cold recall 94%, p50 **1.5 ms**; this private archive cannot be independently reproduced from the public fixture |
 | Synthetic recall suite (v0.8.1 + tail fix) | 80/80 target-record hits at rank 1 |
-| Codex / GPT-6.1 Sol A/B (v0.8.1 + tail fix; 3 synthetic histories) | exact answers: control 3/60, treatment with retrieved evidence 60/60; evicted subset 0/57 → 57/57. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
+| Codex / GPT-6.1 Sol A/B (v0.8.1 + tail fix; 3 synthetic histories) | exact answers: control with tail titles/summaries 3/60, treatment with retrieved evidence 60/60; evicted subset 0/57 → 57/57. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
 | 10k records / 100M assigned tokens (v0.8.1 + tail fix, synthetic, quiet-start gate) | write 3.5 s; cold spill 5,000 records/50M tokens in 2.42 s; cold GC 2,500 records/25M tokens in 0.58 s |
 | SQLite index (synthetic v0.8.1 + tail fix 100M-token pool) | 10.5 MiB after writing, 28.0 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
 
