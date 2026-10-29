@@ -8,8 +8,8 @@ layout: default
 The MCP server is dependency-free stdio JSON-RPC 2.0; if a client supports MCP tools it works.
 
 ```bash
-node packages/dsh-memory-mcp/bin/server.mjs \
-  --root ~/.dsh-memory --model deepseek-flash --agent <agent-name> --levels l3
+node packages/memex-mcp/bin/server.mjs \
+  --root ~/.memex --model deepseek-flash --agent <agent-name> --levels l3
 ```
 
 Options: `--root DIR`, `--levels l2,l3`, `--model ID`, `--agent NAME`, `--session ID`, `--cwd DIR`, `--capacity N`, `--session-capacity N`. stdout is protocol-only; diagnostics go to stderr.
@@ -36,17 +36,17 @@ Plus a `memory://catalog` resource and model-tailored `instructions` on `initial
 **Gemini CLI** (`~/.gemini/settings.json`):
 
 ```json
-{ "mcpServers": { "dsh-memory": { "command": "node", "args": ["/path/to/server.mjs", "--root", "/Users/you/.dsh-memory", "--model", "gemini-2.5-pro", "--levels", "l3"] } } }
+{ "mcpServers": { "memex": { "command": "node", "args": ["/path/to/server.mjs", "--root", "/Users/you/.memex", "--model", "gemini-2.5-pro", "--levels", "l3"] } } }
 ```
 
 **Cursor** (`.cursor/mcp.json`):
 
 ```json
-{ "mcpServers": { "dsh-memory": { "command": "node", "args": ["/path/to/server.mjs", "--root", "/Users/you/.dsh-memory", "--levels", "l3"] } } }
+{ "mcpServers": { "memex": { "command": "node", "args": ["/path/to/server.mjs", "--root", "/Users/you/.memex", "--levels", "l3"] } } }
 ```
 
 **Cline / Windsurf / Zed** — same `mcpServers` command/args shape; use the model id you run so the profile (budgets, injection format, manual) matches.
 
 ## Sharing one store
 
-All agents can share `~/.dsh-memory` (or `$DSH_MEMORY_HOME`). Use `--session ID` for L2 isolation; without it, the session is treated as `default-session`. Workspace keys are derived from `--cwd`, so a project opened by Claude Code and Codex sees the same L3 records.
+All agents can share `~/.memex` (or `$MEMEX_HOME`). Use `--session ID` for L2 isolation; without it, the session is treated as `default-session`. Workspace keys are derived from `--cwd`, so a project opened by Claude Code and Codex sees the same L3 records.

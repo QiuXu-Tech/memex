@@ -3,9 +3,9 @@ title: Upstreaming
 layout: default
 ---
 
-# Upstreaming dsh-memory
+# Upstreaming memex
 
-dsh-memory is currently a **standalone DSH bundle** (this repository). Upstreaming means contributing its nine packages in the shape the DSH runtime expects.
+memex is currently a **standalone DSH bundle** (this repository). Upstreaming means contributing its nine packages in the shape the DSH runtime expects.
 
 ## Status (2026-10-29)
 
@@ -21,16 +21,16 @@ node scripts/export-upstream.mjs          # -> dist/upstream/ (git-ignored)
 
 | This repo | Upstream proposal | Role |
 |---|---|---|
-| `dsh-memory-seam` | `@deepseek-ai/dsh-memory-seam` | service contract, vocabulary, query-term extractor |
-| `dsh-memory-local` | `@deepseek-ai/dsh-memory-local` | SQLite+markdown backend, hot/cold, FTS, history |
-| `dsh-memory-checkpoint` | `@deepseek-ai/dsh-memory-checkpoint` | checkpoint policy + capacity notice |
-| `dsh-memory-tool` | `@deepseek-ai/dsh-memory-tool` | seven model tools + prompt section |
-| `dsh-memory-command` | `@deepseek-ai/dsh-memory-command` | `/memory` command set |
-| `dsh-memory-api` | `@deepseek-ai/dsh-memory-api` | nine HTTP routes |
-| `dsh-memory-ui` | `@deepseek-ai/dsh-memory-ui` | Web client half |
-| `dsh-memory-evict` | `@deepseek-ai/dsh-memory-evict` | L1 eviction policy |
-| `dsh-memory-compress` | `@deepseek-ai/dsh-memory-compress` | capacity compression |
-| `dsh-memory` (bundle) | *stay local* | installable bundle patch for local profiles |
+| `memex-seam` | `@deepseek-ai/memex-seam` | service contract, vocabulary, query-term extractor |
+| `memex-local` | `@deepseek-ai/memex-local` | SQLite+markdown backend, hot/cold, FTS, history |
+| `memex-checkpoint` | `@deepseek-ai/memex-checkpoint` | checkpoint policy + capacity notice |
+| `memex-tool` | `@deepseek-ai/memex-tool` | seven model tools + prompt section |
+| `memex-command` | `@deepseek-ai/memex-command` | `/memory` command set |
+| `memex-api` | `@deepseek-ai/memex-api` | nine HTTP routes |
+| `memex-ui` | `@deepseek-ai/memex-ui` | Web client half |
+| `memex-evict` | `@deepseek-ai/memex-evict` | L1 eviction policy |
+| `memex-compress` | `@deepseek-ai/memex-compress` | capacity compression |
+| `memex` (bundle) | *stay local* | installable bundle patch for local profiles |
 
 ## PR checklist
 
@@ -42,6 +42,6 @@ node scripts/export-upstream.mjs          # -> dist/upstream/ (git-ignored)
 
 ## What stays out of upstream
 
-- The local **bundle patch** (`packages/dsh-memory/cordis.patch.yml`) — deployment-specific row wiring.
+- The local **bundle patch** (`packages/memex/cordis.patch.yml`) — deployment-specific row wiring.
 - The Web client row's `file:` URL fallback documented in [install](install.html).
 - Private benchmark fixtures; only synthetic/demo suites are published.

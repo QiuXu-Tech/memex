@@ -4,20 +4,20 @@ import { tmpdir, loadavg } from 'node:os'
 import { join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { performance } from 'node:perf_hooks'
-import { LocalStoreCore } from '../packages/dsh-memory-core/lib/store.js'
-import { memoryWorkspaceKey } from '../packages/dsh-memory-core/index.js'
-import { resolveModelProfile, profileTokens } from '../packages/dsh-memory-core/lib/model-profiles.js'
-import { buildCatalogInjection, buildMemoryManual } from '../packages/dsh-memory-core/lib/manual.js'
+import { LocalStoreCore } from '../packages/memex-core/lib/store.js'
+import { memoryWorkspaceKey } from '../packages/memex-core/index.js'
+import { resolveModelProfile, profileTokens } from '../packages/memex-core/lib/model-profiles.js'
+import { buildCatalogInjection, buildMemoryManual } from '../packages/memex-core/lib/manual.js'
 
 const N = process.execPath
-const OUT = process.argv[2] ?? join(tmpdir(), 'dsh-memory-profile-validation.json')
+const OUT = process.argv[2] ?? join(tmpdir(), 'memex-profile-validation.json')
 const ROOT_GIT = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const REG = join(ROOT_GIT, 'test/register.mjs')
-const MCP = join(ROOT_GIT, 'packages/dsh-memory-mcp/bin/server.mjs')
-const CWD = join(tmpdir(), 'dsh-memory-profile-ws')
+const MCP = join(ROOT_GIT, 'packages/memex-mcp/bin/server.mjs')
+const CWD = join(tmpdir(), 'memex-profile-ws')
 const SESSION = 'val-session'
 const WS = memoryWorkspaceKey(CWD, SESSION)
-const ROOT = join(tmpdir(), 'dsh-memory-profile-root')
+const ROOT = join(tmpdir(), 'memex-profile-root')
 const profiles = ['claude', 'claude-opus-5-5', 'claude-sonnet-5-5', 'claude-fable-5-1', 'claude-haiku-5-5', 'openai', 'gpt-6.1', 'gpt-6.1-terra', 'gpt-6-astra', 'deepseek', 'deepseek-flash', 'generic']
 
 rmSync(ROOT, { recursive: true, force: true })

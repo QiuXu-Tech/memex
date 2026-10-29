@@ -1,7 +1,7 @@
 /**
  * Verify that the generated bundle modules match their source packages.
  *
- * The bundle under `packages/dsh-memory/modules/` is a copy produced by
+ * The bundle under `packages/memex/modules/` is a copy produced by
  * `scripts/build-bundle.mjs`; editing a source package without rebuilding the
  * bundle would make the deployed rows run stale code. This check compares every
  * runtime file and exits non-zero on drift, so it can run before a redeploy.
@@ -14,20 +14,20 @@ import { fileURLToPath } from 'node:url'
 
 const here = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const packages = join(here, 'packages')
-const modules = join(packages, 'dsh-memory', 'modules')
+const modules = join(packages, 'memex', 'modules')
 
 /** Source package directory → runtime module directory inside the bundle. */
 const MODULES = [
-  ['dsh-memory-core', 'memory-core'],
-  ['dsh-memory-seam', 'memory-seam'],
-  ['dsh-memory-local', 'memory-local'],
-  ['dsh-memory-checkpoint', 'memory-checkpoint'],
-  ['dsh-memory-tool', 'memory-tool'],
-  ['dsh-memory-command', 'memory-command'],
-  ['dsh-memory-api', 'memory-api'],
-  ['dsh-memory-ui', 'memory-ui'],
-  ['dsh-memory-evict', 'memory-evict'],
-  ['dsh-memory-compress', 'memory-compress'],
+  ['memex-core', 'memory-core'],
+  ['memex-seam', 'memory-seam'],
+  ['memex-local', 'memory-local'],
+  ['memex-checkpoint', 'memory-checkpoint'],
+  ['memex-tool', 'memory-tool'],
+  ['memex-command', 'memory-command'],
+  ['memex-api', 'memory-api'],
+  ['memex-ui', 'memory-ui'],
+  ['memex-evict', 'memory-evict'],
+  ['memex-compress', 'memory-compress'],
 ]
 
 /** List runtime files (index.js, lib/**, package.json) of one package directory. */

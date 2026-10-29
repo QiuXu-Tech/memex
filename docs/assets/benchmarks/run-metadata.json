@@ -46,9 +46,9 @@
     "scripts/scale-bench.mjs": "39fc22b3eea246c3c76f9e1dc3ef6af13f81d1df82cbfc4fc0eadce7e4b042df",
     "scripts/recall-eval.mjs": "b8008151627e638d16e0dd8b631fca770ebdd3521741079d4d88346287670b06",
     "docs/assets/benchmarks/compaction-summary.txt": "5df3b0d2540dc3e70f8662b18e6e79a832a92019aa3fbd1d6411f7e6baab75f7",
-    "packages/dsh-memory-core/index.js": "7583df5b3f2e47afb96867417e9a90fa8a6057e0c3cb4c88f5d91fac942cd58a",
-    "packages/dsh-memory-core/lib/store.js": "4f5f58c5253244d08062ac125cbfdb73f8a451c0a1bb46b3a457e821aceb26e3",
-    "packages/dsh-memory-local/lib/store.js": "6b9d0814ff43680a17fddc133b779cb4e754984d3a1b897959cd8bb2c5204686"
+    "packages/memex-core/index.js": "7583df5b3f2e47afb96867417e9a90fa8a6057e0c3cb4c88f5d91fac942cd58a",
+    "packages/memex-core/lib/store.js": "4f5f58c5253244d08062ac125cbfdb73f8a451c0a1bb46b3a457e821aceb26e3",
+    "packages/memex-local/lib/store.js": "6b9d0814ff43680a17fddc133b779cb4e754984d3a1b897959cd8bb2c5204686"
   },
   "limitations": [
     "Shared machine; sampled load includes benchmark work and is not complete isolation.",

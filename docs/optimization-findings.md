@@ -64,7 +64,7 @@ Claude Code `PreCompact` stored a generic summary ("Verbatim Claude Code transcr
 ## P2 — model profile coverage & validation (partly fixed in 0.3.0)
 
 - Added profiles for **xAI Grok, Cohere Command, Google Gemma, Microsoft Phi** (9 → 13 families); `nova-pro` and other unmapped ids still fall back to `generic`.
-- Real Claude Code acceptance: `claude mcp list` in a generated project **recognizes the dsh-memory server**, but project-scoped `.mcp.json` requires a one-time interactive approval ("Pending approval — run claude to approve"). Codex CLI was not installed on this machine, so Codex acceptance remains manual.
+- Real Claude Code acceptance: `claude mcp list` in a generated project **recognizes the memex server**, but project-scoped `.mcp.json` requires a one-time interactive approval ("Pending approval — run claude to approve"). Codex CLI was not installed on this machine, so Codex acceptance remains manual.
 - Windows/token ratios are conservative estimates, not vendor tokenizers.
 - Rerank weights: currently no evidence they improve ranking on real data (see P0); consider validating on a real archive or reducing to 2–3 validated profiles.
 

@@ -9,7 +9,7 @@
 - **Operations**: backup/verify/restore scripts.
 - **Universal adapters (v0.2.0)**: agent-agnostic core parity with the DSH seam, model-profile resolution/formatting/digest prompts, MCP stdio server end-to-end (init/tools/search/open/index/resources/compression), Claude Code init + hooks (catalog/recall/transcript archiving), Codex init/config, and cold compression through MCP.
 
-The host packages (`@deepseek-ai/cordis`, `schemastery`, `dsh-llm`, `dsh-tools`, `dsh-home-paths`, `dsh-compaction`) are replaced by ESM loader stubs in `stubs/`; the fixture session/agent/measurement fakes live in `fake-ctx.mjs` / `fixtures.mjs`. Nothing touches `$DSH_HOME` — every test uses a throwaway temp root. The loader also resolves this repo's `@qiuxu/dsh-memory-*` packages (core, bundle subpaths) so the agent-agnostic path runs without `node_modules`.
+The host packages (`@deepseek-ai/cordis`, `schemastery`, `dsh-llm`, `dsh-tools`, `dsh-home-paths`, `dsh-compaction`) are replaced by ESM loader stubs in `stubs/`; the fixture session/agent/measurement fakes live in `fake-ctx.mjs` / `fixtures.mjs`. Nothing touches `$DSH_HOME` — every test uses a throwaway temp root. The loader also resolves this repo's `@qiuxu/memex-*` packages (core, bundle subpaths) so the agent-agnostic path runs without `node_modules`.
 
 ```bash
 node --import ./test/register.mjs ./test/run.mjs

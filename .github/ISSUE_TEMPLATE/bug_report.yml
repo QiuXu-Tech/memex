@@ -1,5 +1,5 @@
 name: Bug report
-description: Something in dsh-memory behaves incorrectly
+description: Something in memex behaves incorrectly
 labels: ["bug"]
 body:
   - type: markdown
@@ -8,7 +8,7 @@ body:
   - type: input
     id: version
     attributes:
-      label: dsh-memory version / commit
+      label: memex version / commit
       placeholder: "0.1.0 / 56fa217"
     validations:
       required: true

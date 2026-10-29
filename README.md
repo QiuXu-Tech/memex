@@ -1,25 +1,25 @@
-# dsh-memory
+# Memex
 
-[![CI](https://github.com/QiuXu-Tech/dsh-memory/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/dsh-memory/actions/workflows/ci.yml)
+[![CI](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**Persistent, lossless long-horizon memory for any coding agent.** dsh-memory adds an extra-context layer to an agent session: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and the model can retrieve anything later with cheap hybrid search.
+**Persistent, lossless long-horizon memory for any coding agent.** Memex adds an extra-context layer to an agent session: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and the model can retrieve anything later with cheap hybrid search.
 
-It started as a [DeepSeek Harness](https://github.com/deepseek-ai) plugin and is now **agent-agnostic**:
+It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 
 | Agent | Integration |
 |---|---|
 | **DeepSeek Harness** | native Cordis bundle (L1 eviction seam, Web panel, 9 HTTP routes, 7 tools) |
 | **Claude Code** | MCP server + `SessionStart` / `UserPromptSubmit` / `PreCompact` hooks + `CLAUDE.md` manual |
 | **OpenAI Codex** | MCP server + `AGENTS.md` manual + `config.toml` snippet |
-| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/dsh-memory-mcp`), 7 tools + catalog resource |
-| **Any HTTP agent** | the same core can be embedded (`@qiuxu/dsh-memory-core`) |
+| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
+| **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
 > Status: **0.3.1** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), 113/113 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
-Long conversations and long-running projects hit the same wall: the native context window is finite. The usual answers are lossy — truncate, or summarize and lose the details that turn out to matter later. dsh-memory treats conversation history like a cache hierarchy instead:
+Long conversations and long-running projects hit the same wall: the native context window is finite. The usual answers are lossy — truncate, or summarize and lose the details that turn out to matter later. memex treats conversation history like a cache hierarchy instead:
 
 | Level | What it is | Capacity | Semantics |
 |---|---|---|---|
@@ -36,10 +36,10 @@ Long conversations and long-running projects hit the same wall: the native conte
 
 ## Features
 
-- **Agent-agnostic core** (`@qiuxu/dsh-memory-core`): markdown + SQLite store, hot/cold tiers, hybrid retrieval and capacity compression with zero host dependencies. DSH, MCP and CLI adapters share one record vocabulary.
-- **MCP server** (`@qiuxu/dsh-memory-mcp`): stdio JSON-RPC, **10 tools** (`memory_search/open/grep/write/index/list/forget/set_status/restore/compress`) + `memory://catalog` resource, model-tailored `instructions`.
-- **Claude Code adapter** (`@qiuxu/dsh-memory-claude`): one command writes `.mcp.json`, merges `.claude/settings.json` hooks and injects a model-tailored `CLAUDE.md` manual; `PreCompact` archives the raw transcript verbatim before summary loss, `UserPromptSubmit` auto-recalls relevant records.
-- **Codex adapter** (`@qiuxu/dsh-memory-codex`): `AGENTS.md` manual + `codex mcp add` / `config.toml` entry.
+- **Agent-agnostic core** (`@qiuxu/memex-core`): markdown + SQLite store, hot/cold tiers, hybrid retrieval and capacity compression with zero host dependencies. DSH, MCP and CLI adapters share one record vocabulary.
+- **MCP server** (`@qiuxu/memex-mcp`): stdio JSON-RPC, **10 tools** (`memory_search/open/grep/write/index/list/forget/set_status/restore/compress`) + `memory://catalog` resource, model-tailored `instructions`.
+- **Claude Code adapter** (`@qiuxu/memex-claude`): one command writes `.mcp.json`, merges `.claude/settings.json` hooks and injects a model-tailored `CLAUDE.md` manual; `PreCompact` archives the raw transcript verbatim before summary loss, `UserPromptSubmit` auto-recalls relevant records.
+- **Codex adapter** (`@qiuxu/memex-codex`): `AGENTS.md` manual + `codex mcp add` / `config.toml` entry.
 - **Model profiles**: per-family windows, token-estimation ratios, injection budgets and digest prompts; overridable by the integration.
 - **L1 eviction** through the shipped `compaction/prune` + surface-replace seam; no custom session events, no replacement of the compaction backend.
 - **Sticky L2/L3 levels** with a session-private/shared split, capture policy (deepest enabled level wins) and per-level capacities.
@@ -53,7 +53,7 @@ Long conversations and long-running projects hit the same wall: the native conte
 
 ## Demo
 
-![dsh-memory panel and compression flow](docs/assets/demo.gif)
+![memex panel and compression flow](docs/assets/demo.gif)
 
 *A condensed illustration of the context-ring popover, the capacity notice, a lossless compression run, and the memory panel (rendered animation, not a screen recording).*
 
@@ -77,26 +77,26 @@ DSH agent session
  └─ Web: context ring + memory panel via /api/memory.* (9 owner-scoped routes)
 ```
 
-Full design: [docs/architecture.md](docs/architecture.md). Measured results: [docs/evaluation.md](docs/evaluation.md). Hosted docs: <https://qiuxu-tech.github.io/dsh-memory/>. Security policy: [SECURITY.md](SECURITY.md). Upstreaming plan: [docs/upstream.md](docs/upstream.md).
+Full design: [docs/architecture.md](docs/architecture.md). Measured results: [docs/evaluation.md](docs/evaluation.md). Hosted docs: <https://qiuxu-tech.github.io/memex/>. Security policy: [SECURITY.md](SECURITY.md). Upstreaming plan: [docs/upstream.md](docs/upstream.md).
 
 ## Repository layout
 
 | Path | Purpose |
 |---|---|
-| `packages/dsh-memory` | installable DSH bundle (patch + exports; `modules/` is generated and git-ignored) |
-| `packages/dsh-memory-core` | **agent-agnostic core**: vocabulary, query terms, store/retrieval/compression, model profiles, manual + engine facade |
-| `packages/dsh-memory-mcp` | **universal MCP stdio server** (Claude Code, Codex, Gemini CLI, Cursor, Cline, …) |
-| `packages/dsh-memory-claude` | Claude Code integration: `init` (MCP+hooks+CLAUDE.md) and hook handlers |
-| `packages/dsh-memory-codex` | Codex integration: `AGENTS.md` manual + MCP config snippet/writer |
-| `packages/dsh-memory-seam` | DSH `ctx.memory` service over the core (re-exports its vocabulary) |
-| `packages/dsh-memory-local` | SQLite + markdown store: hot/cold tiers, FTS, compression history |
-| `packages/dsh-memory-checkpoint` | checkpoint policy: archive/receipt/catalog/recall, capacity notice |
-| `packages/dsh-memory-tool` | seven model tools + the stable memory manual prompt section |
-| `packages/dsh-memory-command` | `/memory on|off|status|compress|restore|gc|search|remember|pin|…` |
-| `packages/dsh-memory-evict` | L1 → L2/L3 eviction policy (sensitive-content aware) |
-| `packages/dsh-memory-compress` | capacity compression (cold + digest) and compression history |
-| `packages/dsh-memory-api` | nine `/api/memory.*` HTTP routes for the panel |
-| `packages/dsh-memory-ui` | Web client half: panel + context-ring bridge |
+| `packages/memex` | installable DSH bundle (patch + exports; `modules/` is generated and git-ignored) |
+| `packages/memex-core` | **agent-agnostic core**: vocabulary, query terms, store/retrieval/compression, model profiles, manual + engine facade |
+| `packages/memex-mcp` | **universal MCP stdio server** (Claude Code, Codex, Gemini CLI, Cursor, Cline, …) |
+| `packages/memex-claude` | Claude Code integration: `init` (MCP+hooks+CLAUDE.md) and hook handlers |
+| `packages/memex-codex` | Codex integration: `AGENTS.md` manual + MCP config snippet/writer |
+| `packages/memex-seam` | DSH `ctx.memory` service over the core (re-exports its vocabulary) |
+| `packages/memex-local` | SQLite + markdown store: hot/cold tiers, FTS, compression history |
+| `packages/memex-checkpoint` | checkpoint policy: archive/receipt/catalog/recall, capacity notice |
+| `packages/memex-tool` | seven model tools + the stable memory manual prompt section |
+| `packages/memex-command` | `/memory on|off|status|compress|restore|gc|search|remember|pin|…` |
+| `packages/memex-evict` | L1 → L2/L3 eviction policy (sensitive-content aware) |
+| `packages/memex-compress` | capacity compression (cold + digest) and compression history |
+| `packages/memex-api` | nine `/api/memory.*` HTTP routes for the panel |
+| `packages/memex-ui` | Web client half: panel + context-ring bridge |
 | `test/` | offline harness (106 tests, no `node_modules`; stubs for host packages) |
 | `scripts/` | build/check bundle, scale & recall benchmarks, backup/verify/restore |
 
@@ -110,38 +110,38 @@ Full design: [docs/architecture.md](docs/architecture.md). Measured results: [do
 ## Quick start — any MCP agent
 
 ```bash
-git clone https://github.com/QiuXu-Tech/dsh-memory.git
-cd dsh-memory
+git clone https://github.com/QiuXu-Tech/memex.git
+cd memex
 node scripts/build-bundle.mjs        # only needed for DSH mode; MCP/adapters read the source packages
 
 # Claude Code: registers MCP + hooks + CLAUDE.md manual in this project
-node packages/dsh-memory-claude/bin/cli.mjs init --model claude-sonnet-5-5
+node packages/memex-claude/bin/cli.mjs init --model claude-sonnet-5-5
 
 # Codex: writes AGENTS.md + prints/installs the MCP config
-node packages/dsh-memory-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
+node packages/memex-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
 
 # Any MCP client: point it at the stdio server
-node packages/dsh-memory-mcp/bin/server.mjs --root ~/.dsh-memory --model deepseek-flash --levels l3
+node packages/memex-mcp/bin/server.mjs --root ~/.memex --model deepseek-flash --levels l3
 ```
 
 See [docs/integrations.md](docs/integrations.md), [Claude Code](docs/integrations/claude-code.md), [Codex](docs/integrations/codex.md), [generic MCP clients](docs/integrations/mcp.md) and [model profiles](docs/model-profiles.md).
 
 ## Install (DSH local bundle)
 
-dsh-memory ships as a DSH **bundle** (a patch plus runtime modules). It is not published to npm; install it as a linked local bundle in a DSH profile:
+memex ships as a DSH **bundle** (a patch plus runtime modules). It is not published to npm; install it as a linked local bundle in a DSH profile:
 
 ```bash
-git clone https://github.com/QiuXu-Tech/dsh-memory.git
-cd dsh-memory
-node scripts/build-bundle.mjs        # generates packages/dsh-memory/modules
+git clone https://github.com/QiuXu-Tech/memex.git
+cd memex
+node scripts/build-bundle.mjs        # generates packages/memex/modules
 node scripts/check-bundle.mjs        # verifies generated modules match sources
 ```
 
-1. Register `packages/dsh-memory` as an installed bundle in your DSH profile (see [docs/install.md](docs/install.md) for the profile/plugin-manager and manual-patch options).
-2. Reload the profile. It contributes eight rows (`memory`, `memory-checkpoint`, `memory-tools`, `memory-evict`, `memory-compress`, `memory-api`, `memory-ui`, `memory-commands`) with the config in `packages/dsh-memory/cordis.patch.yml`.
+1. Register `packages/memex` as an installed bundle in your DSH profile (see [docs/install.md](docs/install.md) for the profile/plugin-manager and manual-patch options).
+2. Reload the profile. It contributes eight rows (`memory`, `memory-checkpoint`, `memory-tools`, `memory-evict`, `memory-compress`, `memory-api`, `memory-ui`, `memory-commands`) with the config in `packages/memex/cordis.patch.yml`.
 3. Open a session: the composer context ring gains an “额外上下文” popover row with **L2 / L3** switches (off by default; sticky once on).
 
-> Some local DSH builds require the client row to be addressed by a `file:` URL instead of the `@qiuxu/dsh-memory/ui` subpath; docs/install.md has the fallback row.
+> Some local DSH builds require the client row to be addressed by a `file:` URL instead of the `@qiuxu/memex/ui` subpath; docs/install.md has the fallback row.
 
 ## Use
 
@@ -170,7 +170,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | 10k records / 100M assigned tokens (v0.3.0, synthetic, quiet-start gate) | write 3.2 s; cold spill 5,000 records/50M tokens in 2.50 s; cold GC 2,500 records/25M tokens in 0.31 s |
 | FTS storage (body-less card+abstract index) | Synthetic v0.3.0 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill; x-only bodies do not measure identifier-index overhead |
 
-**Synthetic 160K history / 80K window, on v0.3.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. dsh-memory search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
+**Synthetic 160K history / 80K window, on v0.3.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
 
 Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
 

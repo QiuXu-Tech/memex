@@ -4,7 +4,7 @@
  * Two jobs, both dependency-free:
  *  - redirect the DSH host packages (`@deepseek-ai/*`) to the stubs in
  *    `./stubs/`;
- *  - resolve this repo's own packages (`@qiuxu/dsh-memory-*`) directly to
+ *  - resolve this repo's own packages (`@qiuxu/memex-*`) directly to
  *    `packages/<name>/index.js`, so the harness needs no `node_modules`
  *    and no workspace-linking step (the bundle build creates its own
  *    internal @qiuxu links for runtime use).
@@ -13,47 +13,47 @@
  */
 
 /** Map bare specifier -> stub module URL. */
-/** Map `@qiuxu/dsh-memory-*` package names to their source entries. */
+/** Map `@qiuxu/memex-*` package names to their source entries. */
 const LOCAL_PACKAGES = {
-  '@qiuxu/dsh-memory': new URL('../packages/dsh-memory/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-core': new URL('../packages/dsh-memory-core/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-core/store': new URL('../packages/dsh-memory-core/lib/store.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-core/model-profiles': new URL('../packages/dsh-memory-core/lib/model-profiles.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-core/manual': new URL('../packages/dsh-memory-core/lib/manual.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-core/engine': new URL('../packages/dsh-memory-core/lib/engine.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-seam': new URL('../packages/dsh-memory-seam/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-local': new URL('../packages/dsh-memory-local/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-checkpoint': new URL('../packages/dsh-memory-checkpoint/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-tool': new URL('../packages/dsh-memory-tool/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-command': new URL('../packages/dsh-memory-command/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-api': new URL('../packages/dsh-memory-api/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-ui': new URL('../packages/dsh-memory-ui/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-evict': new URL('../packages/dsh-memory-evict/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory-compress': new URL('../packages/dsh-memory-compress/index.js', import.meta.url).href,
+  '@qiuxu/memex': new URL('../packages/memex/index.js', import.meta.url).href,
+  '@qiuxu/memex-core': new URL('../packages/memex-core/index.js', import.meta.url).href,
+  '@qiuxu/memex-core/store': new URL('../packages/memex-core/lib/store.js', import.meta.url).href,
+  '@qiuxu/memex-core/model-profiles': new URL('../packages/memex-core/lib/model-profiles.js', import.meta.url).href,
+  '@qiuxu/memex-core/manual': new URL('../packages/memex-core/lib/manual.js', import.meta.url).href,
+  '@qiuxu/memex-core/engine': new URL('../packages/memex-core/lib/engine.js', import.meta.url).href,
+  '@qiuxu/memex-seam': new URL('../packages/memex-seam/index.js', import.meta.url).href,
+  '@qiuxu/memex-local': new URL('../packages/memex-local/index.js', import.meta.url).href,
+  '@qiuxu/memex-checkpoint': new URL('../packages/memex-checkpoint/index.js', import.meta.url).href,
+  '@qiuxu/memex-tool': new URL('../packages/memex-tool/index.js', import.meta.url).href,
+  '@qiuxu/memex-command': new URL('../packages/memex-command/index.js', import.meta.url).href,
+  '@qiuxu/memex-api': new URL('../packages/memex-api/index.js', import.meta.url).href,
+  '@qiuxu/memex-ui': new URL('../packages/memex-ui/index.js', import.meta.url).href,
+  '@qiuxu/memex-evict': new URL('../packages/memex-evict/index.js', import.meta.url).href,
+  '@qiuxu/memex-compress': new URL('../packages/memex-compress/index.js', import.meta.url).href,
   // Bundle subpath exports point at the generated modules (run scripts/build-bundle.mjs first).
-  '@qiuxu/dsh-memory/core': new URL('../packages/dsh-memory/modules/memory-core/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/local': new URL('../packages/dsh-memory/modules/memory-local/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/checkpoint': new URL('../packages/dsh-memory/modules/memory-checkpoint/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/tools': new URL('../packages/dsh-memory/modules/memory-tool/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/commands': new URL('../packages/dsh-memory/modules/memory-command/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/api': new URL('../packages/dsh-memory/modules/memory-api/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/ui': new URL('../packages/dsh-memory/modules/memory-ui/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/evict': new URL('../packages/dsh-memory/modules/memory-evict/index.js', import.meta.url).href,
-  '@qiuxu/dsh-memory/compress': new URL('../packages/dsh-memory/modules/memory-compress/index.js', import.meta.url).href,
+  '@qiuxu/memex/core': new URL('../packages/memex/modules/memory-core/index.js', import.meta.url).href,
+  '@qiuxu/memex/local': new URL('../packages/memex/modules/memory-local/index.js', import.meta.url).href,
+  '@qiuxu/memex/checkpoint': new URL('../packages/memex/modules/memory-checkpoint/index.js', import.meta.url).href,
+  '@qiuxu/memex/tools': new URL('../packages/memex/modules/memory-tool/index.js', import.meta.url).href,
+  '@qiuxu/memex/commands': new URL('../packages/memex/modules/memory-command/index.js', import.meta.url).href,
+  '@qiuxu/memex/api': new URL('../packages/memex/modules/memory-api/index.js', import.meta.url).href,
+  '@qiuxu/memex/ui': new URL('../packages/memex/modules/memory-ui/index.js', import.meta.url).href,
+  '@qiuxu/memex/evict': new URL('../packages/memex/modules/memory-evict/index.js', import.meta.url).href,
+  '@qiuxu/memex/compress': new URL('../packages/memex/modules/memory-compress/index.js', import.meta.url).href,
 }
 
 /** Package name -> generated module directory inside the built bundle. */
 const BUNDLE_RUNTIME = {
-  '@qiuxu/dsh-memory-core': 'memory-core',
-  '@qiuxu/dsh-memory-seam': 'memory-seam',
-  '@qiuxu/dsh-memory-local': 'memory-local',
-  '@qiuxu/dsh-memory-checkpoint': 'memory-checkpoint',
-  '@qiuxu/dsh-memory-tool': 'memory-tool',
-  '@qiuxu/dsh-memory-command': 'memory-command',
-  '@qiuxu/dsh-memory-api': 'memory-api',
-  '@qiuxu/dsh-memory-ui': 'memory-ui',
-  '@qiuxu/dsh-memory-evict': 'memory-evict',
-  '@qiuxu/dsh-memory-compress': 'memory-compress',
+  '@qiuxu/memex-core': 'memory-core',
+  '@qiuxu/memex-seam': 'memory-seam',
+  '@qiuxu/memex-local': 'memory-local',
+  '@qiuxu/memex-checkpoint': 'memory-checkpoint',
+  '@qiuxu/memex-tool': 'memory-tool',
+  '@qiuxu/memex-command': 'memory-command',
+  '@qiuxu/memex-api': 'memory-api',
+  '@qiuxu/memex-ui': 'memory-ui',
+  '@qiuxu/memex-evict': 'memory-evict',
+  '@qiuxu/memex-compress': 'memory-compress',
 }
 
 const STUBS = {
@@ -78,9 +78,9 @@ export async function resolve(specifier, context, nextResolve) {
   // (not to the workspace source packages), mirroring the published bundle.
   const parent = String(context.parentURL ?? '')
   const runtime = BUNDLE_RUNTIME[specifier]
-  if (runtime !== undefined && parent.includes('/packages/dsh-memory/modules/')) {
+  if (runtime !== undefined && parent.includes('/packages/memex/modules/')) {
     return {
-      url: new URL(`../packages/dsh-memory/modules/${runtime}/index.js`, import.meta.url).href,
+      url: new URL(`../packages/memex/modules/${runtime}/index.js`, import.meta.url).href,
       format: 'module',
       shortCircuit: true,
     }

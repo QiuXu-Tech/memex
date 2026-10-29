@@ -6,7 +6,7 @@ layout: default
 # Benchmark report: synthetic long-horizon retrieval on v0.3.0
 
 This report reruns the published synthetic workloads against commit
-[`3373ec6`](https://github.com/QiuXu-Tech/dsh-memory/commit/3373ec6ed46ea3b571a798c95714bd5d226f1ddb)
+[`3373ec6`](https://github.com/QiuXu-Tech/memex/commit/3373ec6ed46ea3b571a798c95714bd5d226f1ddb)
 on 2026-10-29. The machine was an Apple M4 (10 logical CPUs, 16 GiB), running
 macOS 27.2 and Node 24.21.0. Before starting, two consecutive five-second
 samples met the quiet-start gate: CPU busy **16.4% / 25.5%** and one-minute
@@ -23,14 +23,14 @@ its package and test trees and the three benchmark scripts matched `3373ec6`.
 GitHub `main` advanced to v0.3.1 during this work; these measurements do not
 evaluate v0.3.1.
 
-The earlier [v0.2.1 report](https://github.com/QiuXu-Tech/dsh-memory/blob/41b47e43f0f58b6d46dfe1cfe7baae1630c6a242/docs/benchmark.md)
-and [v0.2.2 report](https://github.com/QiuXu-Tech/dsh-memory/blob/8d5a6f2a93da5b838ef60f1a21853f4e388b62b5/docs/benchmark.md)
+The earlier [v0.2.1 report](https://github.com/QiuXu-Tech/memex/blob/41b47e43f0f58b6d46dfe1cfe7baae1630c6a242/docs/benchmark.md)
+and [v0.2.2 report](https://github.com/QiuXu-Tech/memex/blob/8d5a6f2a93da5b838ef60f1a21853f4e388b62b5/docs/benchmark.md)
 remain in Git history. These were separate shared-machine runs, so their timing
 differences alone do not establish a version performance change.
 
 **Result in brief:** in a synthetic 160K-token history with an 80K-token
 window, 20/40 target facts were present in the retained tail and 24/40 were
-present under the supplied summary-plus-tail baseline. The dsh-memory search
+present under the supplied summary-plus-tail baseline. The memex search
 returned the target record for 40/40 probes at rank 1. For the 20 probes
 whose records were outside the window, the corresponding counts were 0/20,
 4/20 and 20/20. The first two numbers are availability checks; the third is a
@@ -38,7 +38,7 @@ retrieval hit, not an end-to-end model answer.
 
 ## 1. Compaction and retrieval comparison
 
-![All-probe and old-span counts for truncation, the saved summary, and dsh-memory search](assets/benchmarks/fact-recall.png)
+![All-probe and old-span counts for truncation, the saved summary, and memex search](assets/benchmarks/fact-recall.png)
 
 The fixture creates 107 synthetic turns (160,473 estimated tokens) with 40
 evenly spaced probes. It retains a tail near 80K tokens; the older span contains
@@ -50,7 +50,7 @@ summary contains the cue-to-`FACT-…` pair.
 |---|---:|---:|---|
 | Truncate to retained tail | 20/40 (50%) | 0/20 (0%) | Target fact in the tail |
 | Supplied summary + tail | 24/40 (60%) | 4/20 (20%) | Tail facts plus old probes matched in the summary |
-| dsh-memory search | 40/40 (100%) | 20/20 (100%) | Target record in search results; all were rank 1 |
+| memex search | 40/40 (100%) | 20/20 (100%) | Target record in search results; all were rank 1 |
 
 The summary is the previously committed [compaction-summary.txt](assets/benchmarks/compaction-summary.txt).
 No model was invoked to create a new summary in this rerun, and its original
@@ -133,9 +133,9 @@ results. See the [raw output](assets/benchmarks/results-recall.txt).
 
 The earlier 95% hit@5 figure came from a private, curated 40-question archive.
 It was **not rerun** here and cannot be independently reproduced from the
-public fixtures. See [evaluation](https://github.com/QiuXu-Tech/dsh-memory/blob/main/docs/evaluation.md) for its historical context.
+public fixtures. See [evaluation](https://github.com/QiuXu-Tech/memex/blob/main/docs/evaluation.md) for its historical context.
 
-The v0.3.0 offline harness also passed [U13](https://github.com/QiuXu-Tech/dsh-memory/blob/3373ec6ed46ea3b571a798c95714bd5d226f1ddb/test/run.mjs#L3849),
+The v0.3.0 offline harness also passed [U13](https://github.com/QiuXu-Tech/memex/blob/3373ec6ed46ea3b571a798c95714bd5d226f1ddb/test/run.mjs#L3849),
 a separate hot-body identifier-rescue test. Its assertions require at least
 24/30 hit@1 and 27/30 hit@5 and check identifier boundaries; the actual counts
 are not printed, and this is not a latency benchmark.
@@ -167,8 +167,8 @@ remove throwaway stores. The summary must be passed explicitly for the
 comparison.
 
 ```bash
-git clone https://github.com/QiuXu-Tech/dsh-memory.git dsh-memory-benchmark-v030
-cd dsh-memory-benchmark-v030
+git clone https://github.com/QiuXu-Tech/memex.git memex-benchmark-v030
+cd memex-benchmark-v030
 git checkout --detach 3373ec6ed46ea3b571a798c95714bd5d226f1ddb
 out_dir="$(mktemp -d "${TMPDIR:-/tmp}/dsh-benchmark.XXXXXX")"
 node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \

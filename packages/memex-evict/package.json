@@ -1,0 +1,19 @@
+{
+  "name": "@qiuxu/memex-evict",
+  "version": "0.4.0",
+  "private": true,
+  "type": "module",
+  "description": "L1 eviction policy: move the oldest balanced span of the native context window into the enabled L2/L3 extra-context levels through the shipped compaction/prune + surface-replace seam, without LLM summarization.",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js"
+  ],
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5",
+    "@deepseek-ai/dsh-compaction": "0.2.1-rc.3",
+    "@deepseek-ai/dsh-llm": "0.2.1-rc.3",
+    "@deepseek-ai/schemastery": "~3.18.5"
+  }
+}

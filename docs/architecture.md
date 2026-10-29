@@ -5,7 +5,7 @@ layout: default
 
 # 记忆子系统架构
 
-本文描述 `@qiuxu/dsh-memory` 子系统的精确实现：三级缓存模型（L1 = 模型原生上下文窗口，不存储；L2 = 会话私有归档 10M；L3 = 工作区共享归档 100M）、L2/L3 两个独立**粘性**开关、热池/冷存（cold）容量生命周期（回热/GC/配额/cold abstract）、按启用层级门控，以及 L1 驱逐（含敏感策略）、compaction 兜底、共享查询词与**混合检索**（FTS+LIKE+cold abstract+重排）、召回、双语容量提示、容量压缩（2 路并发 digest + 压缩历史）、metrics API、备份/校验/恢复、记录注入、持久化与 Web 面板/composer 圆环/HTTP API 语义。源码分为九个平级包（`packages/dsh-memory-seam`、`dsh-memory-local`、`dsh-memory-checkpoint`、`dsh-memory-evict`、`dsh-memory-compress`、`dsh-tool-memory`、`dsh-command-memory`、`dsh-memory-api`、`dsh-memory-ui`）；一个自包含 bundle（`packages/dsh-memory`，`scripts/build-bundle.mjs` 生成 `modules/`）在运行时组合**八条**独立插件行（`memory` / `memory-checkpoint` / `memory-tools` / `memory-evict` / `memory-compress` / `memory-api` / `memory-ui` / `memory-commands`），各自拥有 Config（或没有）与 fiber；除 seam 库外，消费者只使用异步 `ctx.memory` 服务，Web 客户端只使用 `/api/memory.*`。下文路径均相对 `memory-subsystem/packages/`；上游 DSH 侧的事件/服务契约来自随附 0.2.1-rc.3 构建（`dsh-compaction`、`dsh-session`、`dsh-session-query`、`dsh-llm`、`dsh-token-meter`、`dsh-client-modules`、`dsh-client-connection`、`dsh-api-remote-access` 的类型声明与 README）。
+本文描述 `@qiuxu/memex` 子系统的精确实现：三级缓存模型（L1 = 模型原生上下文窗口，不存储；L2 = 会话私有归档 10M；L3 = 工作区共享归档 100M）、L2/L3 两个独立**粘性**开关、热池/冷存（cold）容量生命周期（回热/GC/配额/cold abstract）、按启用层级门控，以及 L1 驱逐（含敏感策略）、compaction 兜底、共享查询词与**混合检索**（FTS+LIKE+cold abstract+重排）、召回、双语容量提示、容量压缩（2 路并发 digest + 压缩历史）、metrics API、备份/校验/恢复、记录注入、持久化与 Web 面板/composer 圆环/HTTP API 语义。源码分为九个平级包（`packages/memex-seam`、`memex-local`、`memex-checkpoint`、`memex-evict`、`memex-compress`、`dsh-tool-memory`、`dsh-command-memory`、`memex-api`、`memex-ui`）；一个自包含 bundle（`packages/memex`，`scripts/build-bundle.mjs` 生成 `modules/`）在运行时组合**八条**独立插件行（`memory` / `memory-checkpoint` / `memory-tools` / `memory-evict` / `memory-compress` / `memory-api` / `memory-ui` / `memory-commands`），各自拥有 Config（或没有）与 fiber；除 seam 库外，消费者只使用异步 `ctx.memory` 服务，Web 客户端只使用 `/api/memory.*`。下文路径均相对 `memory-subsystem/packages/`；上游 DSH 侧的事件/服务契约来自随附 0.2.1-rc.3 构建（`dsh-compaction`、`dsh-session`、`dsh-session-query`、`dsh-llm`、`dsh-token-meter`、`dsh-client-modules`、`dsh-client-connection`、`dsh-api-remote-access` 的类型声明与 README）。
 
 ## 1. 设计边界与不变量
 
@@ -32,20 +32,20 @@ layout: default
 
 ### 2.0 插件行组合
 
-一个安装单元（bundle `@qiuxu/dsh-memory`，源码为九个包）通过 bundle 自己的 `cordis.patch.yml` 插入**八条**行；行的 module 名指向 bundle 的 subpath exports（`@qiuxu/dsh-memory/local` 等），实际代码来自 `modules/<runtime>/`（`memory-ui` 行是例外：name 为指向 `modules/memory-ui/index.js` 的 file: URL，原因见 §11.4）。每条行是独立 fiber，拥有自己的 Config（或没有）、生命周期与可独立覆盖/禁用的 id：
+一个安装单元（bundle `@qiuxu/memex`，源码为九个包）通过 bundle 自己的 `cordis.patch.yml` 插入**八条**行；行的 module 名指向 bundle 的 subpath exports（`@qiuxu/memex/local` 等），实际代码来自 `modules/<runtime>/`（`memory-ui` 行是例外：name 为指向 `modules/memory-ui/index.js` 的 file: URL，原因见 §11.4）。每条行是独立 fiber，拥有自己的 Config（或没有）、生命周期与可独立覆盖/禁用的 id：
 
 | 行 id | 源码包 → bundle 模块 | 职责 | Config | 依赖注入 |
 |---|---|---|---|---|
-| `memory` | `dsh-memory-local` → `modules/memory-local` | 后端：注册 `ctx.memory`，文件 + SQLite/FTS5（card 字段 + **cold abstract**）、**混合检索/重排**、L2/L3 两层池、**冷存/回热/GC/热冷分账**、粘性层级表 + TTL、L1 驱逐审计、**压缩历史** | `root`、`capacityTokens`（L3，默认 100M）、`sessionCapacityTokens`（L2，默认 10M）、`defaultLevels`（默认 `none`；兼容 `defaultMode`）、`settingsTtlDays`（默认 90） | `inject: []` |
-| `memory-checkpoint` | `dsh-memory-checkpoint` → `modules/memory-checkpoint` | compaction 兜底归档、回执/目录/召回（共享 `memoryQueryTerms`）、**双语容量提示**、恢复对账、卡片精修 | `autoArchive`、`autoRecall`、`catalogMaxChars`、`recallMaxChars`、`cardModel`、`capacityNoticeRatio`、`capacityNoticeCooldownMs` | `inject: ['memory']` |
+| `memory` | `memex-local` → `modules/memory-local` | 后端：注册 `ctx.memory`，文件 + SQLite/FTS5（card 字段 + **cold abstract**）、**混合检索/重排**、L2/L3 两层池、**冷存/回热/GC/热冷分账**、粘性层级表 + TTL、L1 驱逐审计、**压缩历史** | `root`、`capacityTokens`（L3，默认 100M）、`sessionCapacityTokens`（L2，默认 10M）、`defaultLevels`（默认 `none`；兼容 `defaultMode`）、`settingsTtlDays`（默认 90） | `inject: []` |
+| `memory-checkpoint` | `memex-checkpoint` → `modules/memory-checkpoint` | compaction 兜底归档、回执/目录/召回（共享 `memoryQueryTerms`）、**双语容量提示**、恢复对账、卡片精修 | `autoArchive`、`autoRecall`、`catalogMaxChars`、`recallMaxChars`、`cardModel`、`capacityNoticeRatio`、`capacityNoticeCooldownMs` | `inject: ['memory']` |
 | `memory-tools` | `dsh-tool-memory` → `modules/memory-tool` | 6 个工具（search/open/grep/write/index/**restore**）+ `tool:memory` 系统提示段落（order 950） | `maxInlineChars` | `inject: ['tools','systemPrompt','memory']` |
-| `memory-evict` | `dsh-memory-evict` → `modules/memory-evict` | L1→L2/L3 原样驱逐（阈值/平衡 span/图片与超限加固/`captureLevel`/**敏感策略**/`compaction/prune` + surface replace/审计/失败回滚） | `evictAtRatio`、`retainRatio`、`maxChars`、`captureLevel`（`deepest`\|`l2`）、`sensitivePolicy`（`auto`\|`off`） | `inject: ['memory','tokenMeter','llm']` |
-| `memory-compress` | `dsh-memory-compress` → `modules/memory-compress` | 注册 `memory_compress`（cold / digest **2 路并发**、**ids 强制**、重试/回退、配额 GC、历史） | `batchRecords`、`batchChars`、`maxBatches`、`minAgeMs`、`minDigestTokens`、`coldQuotaTokens` | `inject: ['memory','llm','tools']` |
-| `memory-api` | `dsh-memory-api` → `modules/memory-api` | **9 条** owner 认证 `/api/memory.*` Fetch 路由（index/record/search/status/level/compress/restore/gc/**metrics**；record 分页） | 无 | `inject: ['memory','connection','sessions']` |
-| `memory-ui` | `dsh-memory-ui` → `modules/memory-ui`（file: URL 行） | Web 客户端半侧：composer 触发按钮 + `shell.overlay` 面板（压缩/回热/⚠/已压缩 N 次/L3 敏感提示）+ 上下文圆环装饰 | 无 | 客户端 `inject: ['slots', 'uiSession']` |
+| `memory-evict` | `memex-evict` → `modules/memory-evict` | L1→L2/L3 原样驱逐（阈值/平衡 span/图片与超限加固/`captureLevel`/**敏感策略**/`compaction/prune` + surface replace/审计/失败回滚） | `evictAtRatio`、`retainRatio`、`maxChars`、`captureLevel`（`deepest`\|`l2`）、`sensitivePolicy`（`auto`\|`off`） | `inject: ['memory','tokenMeter','llm']` |
+| `memory-compress` | `memex-compress` → `modules/memory-compress` | 注册 `memory_compress`（cold / digest **2 路并发**、**ids 强制**、重试/回退、配额 GC、历史） | `batchRecords`、`batchChars`、`maxBatches`、`minAgeMs`、`minDigestTokens`、`coldQuotaTokens` | `inject: ['memory','llm','tools']` |
+| `memory-api` | `memex-api` → `modules/memory-api` | **9 条** owner 认证 `/api/memory.*` Fetch 路由（index/record/search/status/level/compress/restore/gc/**metrics**；record 分页） | 无 | `inject: ['memory','connection','sessions']` |
+| `memory-ui` | `memex-ui` → `modules/memory-ui`（file: URL 行） | Web 客户端半侧：composer 触发按钮 + `shell.overlay` 面板（压缩/回热/⚠/已压缩 N 次/L3 敏感提示）+ 上下文圆环装饰 | 无 | 客户端 `inject: ['slots', 'uiSession']` |
 | `memory-commands` | `dsh-command-memory` → `modules/memory-command` | `/memory` 人类命令（**restore / gc**；无压缩子命令） | 无 | `inject: ['memory']`；`commands` 服务经 `ctx.get` 可选使用 |
 
-seam（`dsh-memory-seam` → `modules/memory-seam`）没有行：它只被其他模块 import，源码包之间用 `@qiuxu/dsh-memory-seam` 包名解析。策略/工具/命令/API 四类消费行只通过异步 `ctx.memory` 调用后端（`await memory.search(...)` 等），不访问 `.store`/`.core`；`memory-commands` 在缺失 `commands` 服务时静默无操作。后端包 `dsh-memory-local` 的默认导出是后端类（允许只挂载 `memory` 单行的“纯存储”部署），bundle 根 `index.js` 仅 `export {}`。行 id 与 Config 形状设计为在上游拆包后保持不变。
+seam（`memex-seam` → `modules/memory-seam`）没有行：它只被其他模块 import，源码包之间用 `@qiuxu/memex-seam` 包名解析。策略/工具/命令/API 四类消费行只通过异步 `ctx.memory` 调用后端（`await memory.search(...)` 等），不访问 `.store`/`.core`；`memory-commands` 在缺失 `commands` 服务时静默无操作。后端包 `memex-local` 的默认导出是后端类（允许只挂载 `memory` 单行的“纯存储”部署），bundle 根 `index.js` 仅 `export {}`。行 id 与 Config 形状设计为在上游拆包后保持不变。
 
 ### 2.1 压缩标记对与 `compaction/summary`
 
@@ -93,13 +93,13 @@ seam（`dsh-memory-seam` → `modules/memory-seam`）没有行：它只被其他
 
 ### 2.3 部署产物：source packages → build-bundle → bundle modules
 
-源码真源是九个平级包（`dsh-memory-seam`、`dsh-memory-local`、`dsh-memory-checkpoint`、`dsh-memory-evict`、`dsh-memory-compress`、`dsh-tool-memory`、`dsh-command-memory`、`dsh-memory-api`、`dsh-memory-ui`）；运行时只安装一个 bundle `packages/dsh-memory`。`node scripts/build-bundle.mjs` 负责：
+源码真源是九个平级包（`memex-seam`、`memex-local`、`memex-checkpoint`、`memex-evict`、`memex-compress`、`dsh-tool-memory`、`dsh-command-memory`、`memex-api`、`memex-ui`）；运行时只安装一个 bundle `packages/memex`。`node scripts/build-bundle.mjs` 负责：
 
-1. 把九个源码包复制到 `packages/dsh-memory/modules/<runtime>/`（runtime 名：`memory-seam` / `memory-local` / `memory-checkpoint` / `memory-tool` / `memory-command` / `memory-api` / `memory-ui` / `memory-evict` / `memory-compress`；复制 `index.js`、`lib/`、`client.js`、`package.json`，跳过 `test/`、`node_modules/`、`*.test.js`）；
-2. 在 `packages/dsh-memory/node_modules/@qiuxu/` 建立 `<source-package-name>` → `../../modules/<runtime>` 的 symlink；
+1. 把九个源码包复制到 `packages/memex/modules/<runtime>/`（runtime 名：`memory-seam` / `memory-local` / `memory-checkpoint` / `memory-tool` / `memory-command` / `memory-api` / `memory-ui` / `memory-evict` / `memory-compress`；复制 `index.js`、`lib/`、`client.js`、`package.json`，跳过 `test/`、`node_modules/`、`*.test.js`）；
+2. 在 `packages/memex/node_modules/@qiuxu/` 建立 `<source-package-name>` → `../../modules/<runtime>` 的 symlink；
 3. 写 `modules/.gitignore`（内容 `*`；生成的 `package.json` 还会删掉指向源码目录的 `dependencies` 字段）。
 
-**为什么必须这样做**：profile 以 `link:` 安装 bundle，pnpm 不会为 linked package 安装 dependencies（bundle 的 `package.json` 没有 dependencies）；宿主的 linked-root 解析只在 linked 根目录内部为模块路由 `@deepseek-ai/*` 依赖（`dsh-app-boot` 的 linked roots：linked scope 跟随记录的真实目录，root 之外的 hoisted 依赖回落到原生 Node 解析）。复制 + 内部链接让每条行的 module 与它 import 的 seam 都落在同一个 linked 根内。bundle patch 通过 bundle 自己的 subpath exports 寻址模块：`@qiuxu/dsh-memory/local` / `…/checkpoint` / `…/tools`（`modules/memory-tool`）/ `…/api`（`modules/memory-api`）/ `…/commands`（`modules/memory-command`）；`memory-ui` 行用 file: URL（§11.5）。
+**为什么必须这样做**：profile 以 `link:` 安装 bundle，pnpm 不会为 linked package 安装 dependencies（bundle 的 `package.json` 没有 dependencies）；宿主的 linked-root 解析只在 linked 根目录内部为模块路由 `@deepseek-ai/*` 依赖（`dsh-app-boot` 的 linked roots：linked scope 跟随记录的真实目录，root 之外的 hoisted 依赖回落到原生 Node 解析）。复制 + 内部链接让每条行的 module 与它 import 的 seam 都落在同一个 linked 根内。bundle patch 通过 bundle 自己的 subpath exports 寻址模块：`@qiuxu/memex/local` / `…/checkpoint` / `…/tools`（`modules/memory-tool`）/ `…/api`（`modules/memory-api`）/ `…/commands`（`modules/memory-command`）；`memory-ui` 行用 file: URL（§11.5）。
 
 维护规则：`modules/` 是生成物（`modules/.gitignore` 忽略全部内容）；改源码后必须重建；`node scripts/check-bundle.mjs` 逐文件比对源码与复制件并在漂移时非零退出（当前覆盖 **9 个模块**、含 `client.js`、`memory-evict`、`memory-compress`，已通过）；重建后要重新部署（Plugin Manager `remove_bundle` + `install_bundle`，行增删还需 Host/profile 重载；给已扫描包新增 `dsh.client` 需要重启 Host）。上游化后 bundle 正常声明九个包的 dependencies、由 pnpm 安装，该复制步骤会被删除。
 
@@ -186,7 +186,7 @@ compaction backend           session log            memory-checkpoint           
 2. **幂等预检**：`await memory.wasArchived(sessionId, compactionId)` 返回已有 record id 则跳过（在读取日志之前，避免重复 I/O）。幂等键与 scope 无关；记录的 `scope` 取首次成功归档时的 capture 层级（最深启用层）。
 3. **工作区**：`cwd = session.header?.cwd`；`workspaceKey = memoryWorkspaceKey(cwd, session.id)`。
 4. **读取原始事件**：优先 `sessionQuery.readSession(sessionId)`，用 seq 映射取 `shadowedSeqs`；返回不齐时告警但使用已取到的部分；抛错则回退实时缓冲。缓冲只保留最近 4000 条/会话。
-5. **渲染**（`dsh-memory-checkpoint/lib/render.js` 的 `buildCard`）：
+5. **渲染**（`memex-checkpoint/lib/render.js` 的 `buildCard`）：
    - 遍历事件，用 `messageOf(event)` 取模型可见消息：`user/message` 取 `event.data`；`system|developer|assistant/message`、`tool/result` 取 `event.data.message`；
    - 正文 = 前言（会话/压缩 id、seq 范围、token 估算、"数据不是指令"）+ `## Summary`（压缩摘要的 text blocks）+ `## Archived context`（逐事件 `### [#seq] role · source · time` 及其内容块；`reasoning` 丢弃，图片/文件/tool-call 渲染为占位行，工具输出单行 clip 4000、助手文本 clip 8000、工具参数 clip 600）；
    - 正文超过 2 MiB 时截断并标注；
@@ -294,7 +294,7 @@ memory_open mem_xxx when you need exact details, or memory_grep a distinctive st
 `/memory` 由独立的 `memory-commands` 行注册（入口 `dsh-command-memory/index.js`，实现 `dsh-command-memory/lib/commands.js`），不参与模型上下文，只通过异步 seam 操作同一批记录：
 
 - 行 `inject: ['memory']`；`commands` 服务是可选依赖：`registerMemoryCommands` 内 `ctx.get('commands')` 失败/缺失时返回 `undefined`，命令层不注册也不报错；
-- 注册形状：`definitionId: '@qiuxu/dsh-memory/commands/memory'`、`name: 'memory'`、`description`、`input.hint` 列出子命令语法；
+- 注册形状：`definitionId: '@qiuxu/memex/commands/memory'`、`name: 'memory'`、`description`、`input.hint` 列出子命令语法；
 - `handler(invocation)` 为 async，从 `invocation.agent.session` 解析 cwd/session id → 同一 `workspaceKey` 作用域；
 - 层级命令：`/memory on l2|l3|both`（裸 `/memory on`=both）对 `memory.enableLevel()` 幂等调用；`/memory off` 返回“L2/L3 是粘性的，不能关闭”的错误（不改变状态）；`/memory status` 显示 L1/L2/L3、两池 **hot/cold** 记录数/tokens、L1 已转移 count/tokens、**compression runs（次数 + last 摘要）**、存储根；`/memory compress [l2|l3] [targetRatio]` 已补（cold-only，写历史）；
 - 冷生命周期命令：`/memory restore <id>` 把冷记录回热（先 `visibleRecord` 校验）；`/memory gc <keepTokens>` 对每个启用层删除最老冷记录直到 ≤ 预算；`search`/`remember`/`restore`/`gc`/`forget` 在两层都关时返回错误；
@@ -321,7 +321,7 @@ memoryMessage({
 
 `form='l1-eviction'` 的 receipt 由 `memory-evict` 在 `compaction/prune` 之后追加，并配 `surfaceOp:{op:'replace'}` 与 `sourceEventSeqs` 真正替换 L1 surface（§2.5）；`form='capacity-notice'` 由 checkpoint 的容量提示注入（§4.3），只携带 `{levels}`。
 
-`dsh-memory-seam/lib/index.js` 同时导出常量 `MEMORY_SOURCE_KIND = 'memory-recall'`，backend/策略/命令共用该词汇。会话格式 v4 的 native admission 规则：解释型消息槽要求 source 是对象、`kind` 非空且不为 `'plugin'`；未知 attribution 与自有 JSON 元数据会被保留（“不授予生产者运行时权限”）。`memory-recall` 属于这类 producer-owned kind，因此可持久化、重放、fork，且不会引入未知事件类型。
+`memex-seam/lib/index.js` 同时导出常量 `MEMORY_SOURCE_KIND = 'memory-recall'`，backend/策略/命令共用该词汇。会话格式 v4 的 native admission 规则：解释型消息槽要求 source 是对象、`kind` 非空且不为 `'plugin'`；未知 attribution 与自有 JSON 元数据会被保留（“不授予生产者运行时权限”）。`memory-recall` 属于这类 producer-owned kind，因此可持久化、重放、fork，且不会引入未知事件类型。
 
 ## 6. 幂等、恢复与失败语义
 
@@ -497,11 +497,11 @@ CREATE TABLE compression_runs (
 
 | 预算 | 值 | 所属行与位置 |
 |---|---|---|
-| 目录消息 | `catalogMaxChars`（默认 2400，配置下限 600；backend `catalog` 再保底 400） | `memory-checkpoint` 行 Config → `dsh-memory-checkpoint/lib/checkpoint.js` |
-| 回执消息 | 1600 字符（多条合并后 clip） | `memory-checkpoint` 行 → `dsh-memory-checkpoint/lib/checkpoint.js` |
-| 召回消息 | `recallMaxChars`（默认 600，下限 200） | `memory-checkpoint` 行 Config → `dsh-memory-checkpoint/lib/checkpoint.js` |
+| 目录消息 | `catalogMaxChars`（默认 2400，配置下限 600；backend `catalog` 再保底 400） | `memory-checkpoint` 行 Config → `memex-checkpoint/lib/checkpoint.js` |
+| 回执消息 | 1600 字符（多条合并后 clip） | `memory-checkpoint` 行 → `memex-checkpoint/lib/checkpoint.js` |
+| 召回消息 | `recallMaxChars`（默认 600，下限 200） | `memory-checkpoint` 行 Config → `memex-checkpoint/lib/checkpoint.js` |
 | 工具内联 | `maxInlineChars`（默认 14_000，≥400，仅结果渲染上限）与 `memory_open` 的 `maxChars`（默认 30_000，2000-60000）分页上限 | `memory-tools` 行 Config → `dsh-tool-memory/lib/tools.js` |
-| 归档正文字节 | 2 MiB，超出截断 | `memory-checkpoint` 行归档渲染 `dsh-memory-checkpoint/lib/render.js` |
+| 归档正文字节 | 2 MiB，超出截断 | `memory-checkpoint` 行归档渲染 `memex-checkpoint/lib/render.js` |
 | L3 池容量 | `capacityTokens`（默认 100M）≈ 400 MB 文本；正文 trigram ≈13 bytes/token（旧方案 100M 池可达 GB 级），card-only FTS 降到 MB 级 | `memory` 行 Config；**热池**软目标，冷存不计 |
 | L2 池容量 | `sessionCapacityTokens`（默认 10M / 会话）≈ 40 MB 文本；SQLite+FTS 约 2 倍 | `memory` 行 Config；**热池**软目标，冷存不计 |
 | 冷存 | 无软容量；文件在 `cold/` 下，仅检索/打开时读盘；可选 `coldQuotaTokens` 配额 | `memory` 行；`records.cold` |
@@ -550,7 +550,7 @@ Web 面板 = `memory-ui`（客户端半侧，跑在浏览器）+ `memory-api`（
  │        ├ POST api/memory.gc       {sessionId,keepTokens}
  │        └ GET  api/memory.metrics?sessionId=…   （只读观测）
  ▼ 同源 document-relative fetch（browser-session cookie；同 /api/session.export）
-row memory-api（packages/dsh-memory-api/index.js）
+row memory-api（packages/memex-api/index.js）
  └ resolveWorkspace(ctx, sessionId, cwd) —— 只查 ctx.sessions.list() 的 live session
       ├ memory.getLevels(sessionId) → visibleFilter（scopes 并集 + sessionId）
       └ 异步 ctx.memory（row memory）→ SQLite/FTS5(card-only) + md 文件（L2 session / L3 workspace / cold 冷存）
@@ -558,11 +558,11 @@ row memory-api（packages/dsh-memory-api/index.js）
 
 ### 11.2 客户端模块格式与 Slots
 
-`packages/dsh-memory-ui/client.js` 是**手写经典脚本**，不是 ESM/JSX：
+`packages/memex-ui/client.js` 是**手写经典脚本**，不是 ESM/JSX：
 
 ```js
 window.__ModuleLoader__.load({
-  id: '@qiuxu/dsh-memory-ui',
+  id: '@qiuxu/memex-ui',
   factory(require) {
     const React = require('react')        // 唯一外部依赖
     // ...
@@ -573,16 +573,16 @@ window.__ModuleLoader__.load({
 
 `apply(ctx)` 做四件事：
 
-1. `ctx.effect` 注入一个 `<style data-plugin="@qiuxu/dsh-memory-ui" data-plugin-css="…">`（面板/按钮的全部 CSS；颜色优先使用宿主主题 token（`--dsw-alias-bg-layer-1`/`--dsw-alias-label-primary`/`--dsw-alias-brand-primary` 等，带字面量 fallback），仅在部署未提供 token 表时用 `@supports not` + `prefers-color-scheme` 兜底暗色）。
+1. `ctx.effect` 注入一个 `<style data-plugin="@qiuxu/memex-ui" data-plugin-css="…">`（面板/按钮的全部 CSS；颜色优先使用宿主主题 token（`--dsw-alias-bg-layer-1`/`--dsw-alias-label-primary`/`--dsw-alias-brand-primary` 等，带字面量 fallback），仅在部署未提供 token 表时用 `@supports not` + `prefers-color-scheme` 兜底暗色）。
 2. `ctx.slots.inject('conversation.input.left', () => ctx.slots.register({ name, id:'memory-panel-trigger', order: 30 }, MemoryTrigger))`。该 slot 是 session 域（随附 client 契约：`kind: 'list'`、`scope: 'session'`、summary “Compact controls at the left of the composer tool row.”），组件通过标准 prop 拿到 `sessionId`。
 3. `ctx.slots.inject('shell.overlay', () => ctx.slots.register({ name, id:'memory-panel', order: 10 }, MemoryPanel))`。面板是 `role="dialog"` 的浮动层：顶部有两个**粘性**按钮「L2 本会话 10M」「L3 工作区 100M」（点击 `POST api/memory.level` 后重载；已启用显示 🔒、点击无效、title 说明不可关闭）；头部显示 `L2|L3|L2+L3 · N 条热 · hotTokens/capacity tokens [· 冷存 N]`，两层都关时显示 “额外上下文：关闭”；off 时列表位置显示关闭 CTA；开启层级时头部有「压缩」按钮 → `POST api/memory.compress {level,strategy:'cold',targetRatio:0.6}`（无损 cold；digest 只能由模型工具），结果以 notice 行显示“已冷移 N 条记录/无需压缩”；冷行显示「回热」按钮 → `POST api/memory.restore`；hot 比 ≥0.8 时 footer 显示 `⚠ 热池 N%`；footer 还显示 `已压缩 N 次`（compression 历史）与 `L3 共享（敏感内容自动留在 L2）`、`接近容量时模型会先询问` 提示；记录行带 scope 徽标「本会话」/「工作区」、kind、status/置顶、tokens、时间、useWhen；点击行按需 GET 单条 body（冷记录也可按 id 打开；支持 offset/limit 分页参数）；行内置顶；kind chips 显示热池按 kind 的 token 占比；搜索框在两层关时禁用。Esc/×/遮罩关闭。按钮与面板通过模块内小 store（`Set` listeners）共享 open/session 状态。
-4. `ctx.effect(() => installContextRingBridge(ctx), …)`：ui-conversation 的 `ContextMeter` 是内联渲染、没有 slot，因此用 DOM 装饰：在 `button[aria-haspopup="dialog"]` 内的 `svg[viewBox="0 0 14 14"]` 追加 `circle[data-dsh-memory-arc]`（r=3.2、stroke 1.4、`rotate(-90 7 7)`，`stroke-dasharray = 2πr × hotTokens / 启用层容量之和`；颜色取 capture 层：L2 → teal `--dsw-static-teal-450`、L3（含 L2+L3）→ `--dsw-alias-brand-primary`，两层都关时 opacity 0）；给按钮 `aria-label` 追加 `· 额外上下文 N%（L2|L3|L2+L3）` 或 `· 额外上下文 关`（保存 base label，卸载恢复）；在打开的 ContextMeter 弹层尾部追加 `[data-dsh-memory-meter-row]`：「额外上下文」+ 色块 + 两个粘性按钮「L2 本会话 / L3 工作区」（开启后 🔒）+ figures（开启时 `hot/capacity · L1↓X · 冷存 N`，hot 比 ≥0.8 追加 `· ⚠ 接近容量`；关闭时 `关闭 · L2 x/10M · L3 y/100M`）+「查看记录 →」；行下方还有按 kind 的 token 占比块。数据来自 `/api/memory.index?sessionId=…&limit=1`（含 `compression` 对象），会话切换（`ctx.uiSession.adapter.current`）立即刷新，600ms 补装饰（React 重渲染会丢节点）、15s 轮询；卸载清节点/属性/定时器。纯展示级桥接，只写自己创建的 DOM。
+4. `ctx.effect(() => installContextRingBridge(ctx), …)`：ui-conversation 的 `ContextMeter` 是内联渲染、没有 slot，因此用 DOM 装饰：在 `button[aria-haspopup="dialog"]` 内的 `svg[viewBox="0 0 14 14"]` 追加 `circle[data-memex-arc]`（r=3.2、stroke 1.4、`rotate(-90 7 7)`，`stroke-dasharray = 2πr × hotTokens / 启用层容量之和`；颜色取 capture 层：L2 → teal `--dsw-static-teal-450`、L3（含 L2+L3）→ `--dsw-alias-brand-primary`，两层都关时 opacity 0）；给按钮 `aria-label` 追加 `· 额外上下文 N%（L2|L3|L2+L3）` 或 `· 额外上下文 关`（保存 base label，卸载恢复）；在打开的 ContextMeter 弹层尾部追加 `[data-memex-meter-row]`：「额外上下文」+ 色块 + 两个粘性按钮「L2 本会话 / L3 工作区」（开启后 🔒）+ figures（开启时 `hot/capacity · L1↓X · 冷存 N`，hot 比 ≥0.8 追加 `· ⚠ 接近容量`；关闭时 `关闭 · L2 x/10M · L3 y/100M`）+「查看记录 →」；行下方还有按 kind 的 token 占比块。数据来自 `/api/memory.index?sessionId=…&limit=1`（含 `compression` 对象），会话切换（`ctx.uiSession.adapter.current`）立即刷新，600ms 补装饰（React 重渲染会丢节点）、15s 轮询；卸载清节点/属性/定时器。纯展示级桥接，只写自己创建的 DOM。
 
 面板的数据辅助函数是 `api(path, options)`：`fetch(path)` 后解析 JSON，HTTP 非 2xx 或 `{ok:false}` 时抛出 `data.message`，由面板红条显示。路径全部 document-relative（`api/memory.index` 等），因此与页面同源并复用 browser-session cookie。
 
 ### 11.3 HTTP API 路由与作用域
 
-`packages/dsh-memory-api/index.js` 在 `ctx.effect` 中为每个路由调用
+`packages/memex-api/index.js` 在 `ctx.effect` 中为每个路由调用
 `ctx.connection.fetch.register({ path, methods, requestBody: 'buffered', fetch })`（exact path，无通配）：
 
 | 方法 | 路径 | 输入 | 成功响应 |
@@ -608,10 +608,10 @@ window.__ModuleLoader__.load({
 ### 11.4 `memory-ui` 的 file: URL 组合约束
 
 `memory-ui` 行在 bundle patch 中不是裸包名，而是
-`name: 'file:///…/packages/dsh-memory/modules/memory-ui/index.js'`。原因来自 DSH client-modules 的两条行为（本次实测）：
+`name: 'file:///…/packages/memex/modules/memory-ui/index.js'`。原因来自 DSH client-modules 的两条行为（本次实测）：
 
 1. **只有已启用的 Loader 行会进 client 扫描**：纯 patch bundle 本身没有客户端半侧；客户端半侧必须来自某个带 `dsh.client` 声明的 Loader 行。
-2. **subpath specifier 会被归因到外层包**：`locatePkgJson` 用 `exactPackageSpecifier('@qiuxu/dsh-memory/ui') = '@qiuxu/dsh-memory'`，`nearestPackage(url, expected)` 会跳过 `modules/memory-ui/package.json`（name 是 `@qiuxu/dsh-memory-ui`），继续向上找到 bundle 的 `@qiuxu/dsh-memory/package.json`——它没有 `dsh.client`，于是该行被静默忽略。
+2. **subpath specifier 会被归因到外层包**：`locatePkgJson` 用 `exactPackageSpecifier('@qiuxu/memex/ui') = '@qiuxu/memex'`，`nearestPackage(url, expected)` 会跳过 `modules/memory-ui/package.json`（name 是 `@qiuxu/memex-ui`），继续向上找到 bundle 的 `@qiuxu/memex/package.json`——它没有 `dsh.client`，于是该行被静默忽略。
 
 file: URL 是 path-like，`expectedName` 未定义，`nearestPackage` 命中的就是生成的 `modules/memory-ui/package.json`：其 `dsh.client = { platform: 'web', immediately: true }`、`exports['./client'] = './client.js'`，于是客户端半侧被组合。代价是**绝对路径写死在 patch 里（机器相关）**；上游应改为真实包依赖 + 裸包名行。另外 client-modules 对一个包元数据的负结果缓存不会失效：给已经被扫描过的包事后加 `dsh.client` 需要重启 Host 才能生效。
 
@@ -632,10 +632,10 @@ file: URL 是 path-like，`expectedName` 未定义，`nearestPackage` 命中的�
 
 The original subsystem was DSH-only: the seam (`ctx.memory` Service), the local backend, policies, tools, routes and Web UI. v0.2.0 splits it into:
 
-- **`@qiuxu/dsh-memory-core`** — zero-host-dependency core: record vocabulary, workspace identity, query-term extraction, token accounting, the markdown+SQLite store (hot/cold, FTS, compression history), **model profiles**, the model-tailored **manual**, and an `AgentMemory` facade (`lib/engine.js`). No Cordis, no DSH packages.
-- **`@qiuxu/dsh-memory-seam`** — DSH `ctx.memory` service; re-exports the core vocabulary so existing DSH consumers keep one import.
-- **`@qiuxu/dsh-memory-mcp`** — dependency-free stdio MCP server: 7 tools, a `memory://catalog` resource, `initialize.instructions` from the profile manual.
-- **`@qiuxu/dsh-memory-claude`** — Claude Code adapter: `.mcp.json`, merged `.claude/settings.json` hooks (`SessionStart` catalog, `UserPromptSubmit` recall, `PreCompact` verbatim transcript archive, `SessionEnd`), `CLAUDE.md` manual section.
-- **`@qiuxu/dsh-memory-codex`** — Codex adapter: `AGENTS.md` manual, `codex mcp add` command and `config.toml` writer.
+- **`@qiuxu/memex-core`** — zero-host-dependency core: record vocabulary, workspace identity, query-term extraction, token accounting, the markdown+SQLite store (hot/cold, FTS, compression history), **model profiles**, the model-tailored **manual**, and an `AgentMemory` facade (`lib/engine.js`). No Cordis, no DSH packages.
+- **`@qiuxu/memex-seam`** — DSH `ctx.memory` service; re-exports the core vocabulary so existing DSH consumers keep one import.
+- **`@qiuxu/memex-mcp`** — dependency-free stdio MCP server: 7 tools, a `memory://catalog` resource, `initialize.instructions` from the profile manual.
+- **`@qiuxu/memex-claude`** — Claude Code adapter: `.mcp.json`, merged `.claude/settings.json` hooks (`SessionStart` catalog, `UserPromptSubmit` recall, `PreCompact` verbatim transcript archive, `SessionEnd`), `CLAUDE.md` manual section.
+- **`@qiuxu/memex-codex`** — Codex adapter: `AGENTS.md` manual, `codex mcp add` command and `config.toml` writer.
 
-Invariants preserved across adapters: one record vocabulary and workspace key derivation (`memoryWorkspaceKey`), sticky L2/L3 semantics, deepest-enabled-level capture, hybrid retrieval (`memoryQueryTerms` + FTS/LIKE/cold abstract/rerank), lossless cold tier with optional digests, and the ability to share one storage root (`$DSH_MEMORY_HOME`, DSH defaults to `$DSH_HOME/memories`) across agents.
+Invariants preserved across adapters: one record vocabulary and workspace key derivation (`memoryWorkspaceKey`), sticky L2/L3 semantics, deepest-enabled-level capture, hybrid retrieval (`memoryQueryTerms` + FTS/LIKE/cold abstract/rerank), lossless cold tier with optional digests, and the ability to share one storage root (`$MEMEX_HOME`, DSH defaults to `$DSH_HOME/memories`) across agents.

@@ -3,47 +3,47 @@ title: Install guide
 layout: default
 ---
 
-# Installing dsh-memory into a DSH profile
+# Installing memex into a DSH profile
 
-dsh-memory is a **bundle** for DeepSeek Harness `0.2.1-rc.3`. It is installed into a DSH profile as a linked local package; it is not published to npm.
+memex is a **bundle** for DeepSeek Harness `0.2.1-rc.3`. It is installed into a DSH profile as a linked local package; it is not published to npm.
 
 ## 1. Build the runtime modules
 
 ```bash
-git clone https://github.com/QiuXu-Tech/dsh-memory.git
-cd dsh-memory
-node scripts/build-bundle.mjs   # writes packages/dsh-memory/modules + @qiuxu/* symlinks
+git clone https://github.com/QiuXu-Tech/memex.git
+cd memex
+node scripts/build-bundle.mjs   # writes packages/memex/modules + @qiuxu/* symlinks
 node scripts/check-bundle.mjs   # sources and generated modules must match
 ```
 
-`packages/dsh-memory/modules/` and `packages/dsh-memory/node_modules/` are generated; do not commit or edit them.
+`packages/memex/modules/` and `packages/memex/node_modules/` are generated; do not commit or edit them.
 
 ## 2. Register the bundle
 
 Use your DSH profile's plugin manager to install the **bundle package path**:
 
 ```
-/absolute/path/to/dsh-memory/packages/dsh-memory
+/absolute/path/to/memex/packages/memex
 ```
 
-The profile links the package and reads its `dsh.bundle.patch` (`packages/dsh-memory/cordis.patch.yml`), which contributes eight rows:
+The profile links the package and reads its `dsh.bundle.patch` (`packages/memex/cordis.patch.yml`), which contributes eight rows:
 
 | Row | Module | Purpose |
 |---|---|---|
-| `memory` | `@qiuxu/dsh-memory/local` | backend (`ctx.memory`) |
-| `memory-checkpoint` | `@qiuxu/dsh-memory/checkpoint` | archive/receipt/catalog/recall, capacity notice |
-| `memory-tools` | `@qiuxu/dsh-memory/tools` | seven model tools + manual section |
-| `memory-evict` | `@qiuxu/dsh-memory/evict` | L1 eviction policy |
-| `memory-compress` | `@qiuxu/dsh-memory/compress` | cold/digest compression |
-| `memory-api` | `@qiuxu/dsh-memory/api` | nine `/api/memory.*` routes |
-| `memory-ui` | `@qiuxu/dsh-memory/ui` | Web panel + ring bridge |
-| `memory-commands` | `@qiuxu/dsh-memory/commands` | `/memory` command |
+| `memory` | `@qiuxu/memex/local` | backend (`ctx.memory`) |
+| `memory-checkpoint` | `@qiuxu/memex/checkpoint` | archive/receipt/catalog/recall, capacity notice |
+| `memory-tools` | `@qiuxu/memex/tools` | seven model tools + manual section |
+| `memory-evict` | `@qiuxu/memex/evict` | L1 eviction policy |
+| `memory-compress` | `@qiuxu/memex/compress` | cold/digest compression |
+| `memory-api` | `@qiuxu/memex/api` | nine `/api/memory.*` routes |
+| `memory-ui` | `@qiuxu/memex/ui` | Web panel + ring bridge |
+| `memory-commands` | `@qiuxu/memex/commands` | `/memory` command |
 
 If your client-plugin loader requests a manifest whose package name must match the row specifier, some local DSH builds need the UI row addressed as a file URL instead of the subpath:
 
 ```yaml
 - id: memory-ui
-  name: 'file:///absolute/path/to/dsh-memory/packages/dsh-memory/modules/memory-ui/index.js'
+  name: 'file:///absolute/path/to/memex/packages/memex/modules/memory-ui/index.js'
   config: {}
 ```
 
@@ -58,5 +58,5 @@ Reload the profile (or restart DSH). In a session:
 ## 4. Verify
 
 - `/memory status` shows the two pools, cold counts and compression history.
-- `node --import ../dsh-memory/test/register.mjs ../dsh-memory/test/run.mjs` from the repo passes 98/98.
+- `node --import ../memex/test/register.mjs ../memex/test/run.mjs` from the repo passes 98/98.
 - Data lives under `$DSH_HOME/memories` (`index.db`, `records/`, `cold/`).

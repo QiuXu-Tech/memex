@@ -1,0 +1,25 @@
+{
+  "name": "@qiuxu/memex-codex",
+  "version": "0.4.0",
+  "private": false,
+  "description": "OpenAI Codex CLI integration for memex: MCP server registration (config.toml), AGENTS.md memory manual, and a config snippet printer.",
+  "type": "module",
+  "bin": {
+    "memex-codex": "bin/cli.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT",
+  "author": "QiuXu-Tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QiuXu-Tech/memex.git"
+  },
+  "dependencies": {
+    "@qiuxu/memex-core": "file:../memex-core"
+  }
+}

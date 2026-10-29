@@ -4,7 +4,7 @@
  * harness types documented for the package.
  */
 import { createUserMessage } from '@deepseek-ai/dsh-llm'
-import { memoryWorkspaceKey } from '@qiuxu/dsh-memory-seam'
+import { memoryWorkspaceKey } from '@qiuxu/memex-seam'
 
 /** Fixed timestamp so archived record frontmatter is deterministic. */
 export const BASE_TIME = 1_700_000_000_000

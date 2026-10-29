@@ -12,7 +12,7 @@ import { mkdirSync } from 'node:fs'
 
 /** @returns {string} The test-only DSH home root. */
 export function stubHome() {
-  return process.env.DSH_STUB_HOME ?? join(tmpdir(), `dsh-memory-stub-home-${process.pid}`)
+  return process.env.DSH_STUB_HOME ?? join(tmpdir(), `memex-stub-home-${process.pid}`)
 }
 
 /**

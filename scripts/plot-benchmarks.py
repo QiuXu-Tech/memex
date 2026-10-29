@@ -79,7 +79,7 @@ for x, overall, old in zip(positions, all_values, old_values):
     ax.bar(x + width / 2, old, width, color=TEAL)
     ax.text(x - width / 2, overall + 2, f"{overall:.0f}%", ha="center", fontsize=12)
     ax.text(x + width / 2, old + 2, f"{old:.0f}%", ha="center", fontsize=12)
-ax.set_xticks(positions, ["Truncated tail", "Prior summary + tail", "dsh-memory search"])
+ax.set_xticks(positions, ["Truncated tail", "Prior summary + tail", "memex search"])
 ax.set_ylabel("Share of probes")
 ax.set_ylim(0, 120)
 ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))

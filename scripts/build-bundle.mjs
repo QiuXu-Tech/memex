@@ -1,20 +1,20 @@
 /**
- * Build the self-contained runtime modules of the `@qiuxu/dsh-memory` bundle.
+ * Build the self-contained runtime modules of the `@qiuxu/memex` bundle.
  *
  * The subsystem's source is nine sibling packages under `packages/` (the
  * upstream-shaped layout). A DSH profile installs one linked bundle, and Node
  * module resolution for a linked package does not install that package's local
  * dependencies, so the bundle must carry its runtime modules itself.
  *
- * This script copies each source package into `packages/dsh-memory/modules/`
+ * This script copies each source package into `packages/memex/modules/`
  * (keeping its package.json, so peer declarations stay visible to the host's
  * linked-package resolver) and links the package names under
- * `packages/dsh-memory/node_modules/@qiuxu/`. The resulting paths live inside
+ * `packages/memex/node_modules/@qiuxu/`. The resulting paths live inside
  * the linked bundle root, which is exactly what the host's resolver requires to
  * route `@deepseek-ai/*` imports of those modules to the installation copy.
  *
  * The bundle patch addresses the modules through the bundle's own subpath
- * exports (`@qiuxu/dsh-memory/local`, …), so a row's module is `./modules/...`
+ * exports (`@qiuxu/memex/local`, …), so a row's module is `./modules/...`
  * and everything it imports stays inside the same linked root.
  *
  * Usage: node scripts/build-bundle.mjs
@@ -25,22 +25,22 @@ import { fileURLToPath } from 'node:url'
 
 const here = resolve(fileURLToPath(new URL('..', import.meta.url)))
 const packages = join(here, 'packages')
-const bundle = join(packages, 'dsh-memory')
+const bundle = join(packages, 'memex')
 const modules = join(bundle, 'modules')
 const bundleNodeModules = join(bundle, 'node_modules', '@qiuxu')
 
 /** Source package directory → runtime module directory inside the bundle. */
 const MODULES = [
-  ['dsh-memory-core', 'memory-core'],
-  ['dsh-memory-seam', 'memory-seam'],
-  ['dsh-memory-local', 'memory-local'],
-  ['dsh-memory-checkpoint', 'memory-checkpoint'],
-  ['dsh-memory-tool', 'memory-tool'],
-  ['dsh-memory-command', 'memory-command'],
-  ['dsh-memory-api', 'memory-api'],
-  ['dsh-memory-ui', 'memory-ui'],
-  ['dsh-memory-evict', 'memory-evict'],
-  ['dsh-memory-compress', 'memory-compress'],
+  ['memex-core', 'memory-core'],
+  ['memex-seam', 'memory-seam'],
+  ['memex-local', 'memory-local'],
+  ['memex-checkpoint', 'memory-checkpoint'],
+  ['memex-tool', 'memory-tool'],
+  ['memex-command', 'memory-command'],
+  ['memex-api', 'memory-api'],
+  ['memex-ui', 'memory-ui'],
+  ['memex-evict', 'memory-evict'],
+  ['memex-compress', 'memory-compress'],
 ]
 
 /**

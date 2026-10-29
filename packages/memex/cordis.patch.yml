@@ -1,0 +1,48 @@
+# Extra-context memory subsystem bundle. One installed bundle contributes eight
+# independent plugin rows, each backed by its own runtime package under
+# ./modules/ (sources are the sibling packages in this workspace) and each with
+# its own Config. Later profile patches may override or disable any row.
+#
+#   memory            @qiuxu/memex/local       backend  — owns ctx.memory
+#   memory-checkpoint @qiuxu/memex/checkpoint  policy   — archive/receipt/catalog/recall
+#   memory-tools      @qiuxu/memex/tools       surface  — 6 model tools + manual section
+#   memory-api        @qiuxu/memex/api         surface  — owner-authenticated /api/memory.* HTTP routes
+#   memory-ui         @qiuxu/memex/ui           surface  — Web client half (panel trigger + overlay)
+#     Local-deployment note: the Web client half must resolve to a manifest whose
+#     package root name matches the row specifier. A subpath row (`@qiuxu/memex/ui`)
+#     is misattributed to the outer bundle manifest, so this bundle patch addresses the
+#     generated module by file: URL. Upstream uses the bare `@qiuxu/memex-ui` package
+#     name with a real node_modules dependency instead.
+#   memory-commands   @qiuxu/memex/commands    surface  — human /memory command
+#   memory-evict      @qiuxu/memex/evict       policy   — L1 → L2/L3 raw eviction (no LLM)
+#   memory-compress   @qiuxu/memex/compress    policy   — capacity compression (cold tier + batch digests)
+#
+# Generation: `node scripts/build-bundle.mjs` copies the sibling packages into
+# ./modules and links their names under ./node_modules/@qiuxu. Everything the
+# rows import then resolves inside this bundle root, which is what the host's
+# linked-package resolver needs to route @deepseek-ai/* imports correctly.
+- insert:
+    - id: memory
+      name: '@qiuxu/memex/local'
+      config: {}
+    - id: memory-checkpoint
+      name: '@qiuxu/memex/checkpoint'
+      config: {}
+    - id: memory-tools
+      name: '@qiuxu/memex/tools'
+      config: {}
+    - id: memory-evict
+      name: '@qiuxu/memex/evict'
+      config: {}
+    - id: memory-compress
+      name: '@qiuxu/memex/compress'
+      config: {}
+    - id: memory-api
+      name: '@qiuxu/memex/api'
+      config: {}
+    - id: memory-ui
+      name: '@qiuxu/memex/ui'
+      config: {}
+    - id: memory-commands
+      name: '@qiuxu/memex/commands'
+      config: {}

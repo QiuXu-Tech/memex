@@ -1,0 +1,24 @@
+{
+  "name": "@qiuxu/memex-local",
+  "version": "0.4.0",
+  "private": true,
+  "description": "DSH backend for the extra-context memory subsystem: Cordis service over the agent-agnostic core store; owns ctx.memory.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "dependencies": {
+    "@qiuxu/memex-seam": "file:../memex-seam",
+    "@qiuxu/memex-core": "file:../memex-core"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5",
+    "@deepseek-ai/schemastery": "~3.18.5",
+    "@deepseek-ai/dsh-home-paths": "0.2.1-rc.3"
+  }
+}

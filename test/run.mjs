@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 /**
- * Offline integration harness for `@qiuxu/dsh-memory`.
+ * Offline integration harness for `@qiuxu/memex`.
  *
  * The subsystem source is eight sibling packages: seam / local backend /
  * checkpoint / tools / commands / HTTP api / web ui client / **memory-evict**
- * (L1 eviction policy), plus the `@qiuxu/dsh-memory` bundle artifact (generated
+ * (L1 eviction policy), plus the `@qiuxu/memex` bundle artifact (generated
  * `modules/`). The cache-level model is L1 = native context window, L2 =
  * session-private archive (10M), L3 = workspace-shared archive (100M); L2/L3
  * are independent **sticky** switches (enable-only, no disable) and L1 overflow
@@ -53,25 +53,25 @@ import { DatabaseSync } from 'node:sqlite'
 
 // Must be set before the package (its `dsh-home-paths` stub) resolves a path.
 // The whole suite is offline: this directory is throwaway and never `~/.dsh`.
-const stubHomeRoot = mkdtempSync(join(tmpdir(), 'dsh-memory-stub-home-'))
+const stubHomeRoot = mkdtempSync(join(tmpdir(), 'memex-stub-home-'))
 process.env.DSH_STUB_HOME = stubHomeRoot
 
 // `@qiuxu/*` resolves natively through ./node_modules/@qiuxu symlinks created by
 // scripts/link-workspace.sh; the loader only stubs `@deepseek-ai/*`.
-const seam = await import('@qiuxu/dsh-memory-seam')
+const seam = await import('@qiuxu/memex-seam')
 const { archiveRecordId, MEMORY_TEXT_LIMITS } = seam
-const { default: LocalMemoryStore } = await import('@qiuxu/dsh-memory-local')
-const checkpointRow = await import('@qiuxu/dsh-memory-checkpoint')
-const toolsRow = await import('@qiuxu/dsh-memory-tool')
-const commandsRow = await import('@qiuxu/dsh-memory-command')
-const apiRow = await import('@qiuxu/dsh-memory-api')
-// NOTE: `scripts/link-workspace.sh` has not been updated with dsh-memory-evict,
+const { default: LocalMemoryStore } = await import('@qiuxu/memex-local')
+const checkpointRow = await import('@qiuxu/memex-checkpoint')
+const toolsRow = await import('@qiuxu/memex-tool')
+const commandsRow = await import('@qiuxu/memex-command')
+const apiRow = await import('@qiuxu/memex-api')
+// NOTE: `scripts/link-workspace.sh` has not been updated with memex-evict,
 // so the workspace @qiuxu symlink is missing; import the source package directly.
-const evictRow = await import('../packages/dsh-memory-evict/index.js')
-// `scripts/link-workspace.sh` also lacks dsh-memory-compress; import by path.
-const compressRow = await import('../packages/dsh-memory-compress/index.js')
-const { LocalStoreCore } = await import('../packages/dsh-memory-local/lib/store.js')
-const { buildCard } = await import('../packages/dsh-memory-checkpoint/lib/render.js')
+const evictRow = await import('../packages/memex-evict/index.js')
+// `scripts/link-workspace.sh` also lacks memex-compress; import by path.
+const compressRow = await import('../packages/memex-compress/index.js')
+const { LocalStoreCore } = await import('../packages/memex-local/lib/store.js')
+const { buildCard } = await import('../packages/memex-checkpoint/lib/render.js')
 const { createFakeContext, createLlmMock, createSessionQueryMock, formatLogs } = await import('./fake-ctx.mjs')
 const {
   createSession,
@@ -97,7 +97,7 @@ tempDirs.push(stubHomeRoot)
  * @returns {string} Absolute temp directory path.
  */
 function makeRoot(label) {
-  const root = mkdtempSync(join(tmpdir(), `dsh-memory-${label}-`))
+  const root = mkdtempSync(join(tmpdir(), `memex-${label}-`))
   tempDirs.push(root)
   return root
 }
@@ -632,7 +632,7 @@ function archiveFixture(core) {
 
 // ── suite ────────────────────────────────────────────────────────────────────
 
-console.log(`# @qiuxu/dsh-memory offline harness · Node ${process.version} · 9 source packages + bundle + 9 /api/memory.* routes + web client + sticky L2/L3 + L1 eviction + cold tier/compression + hybrid recall/cold abstracts + sensitive evict + backup · stubs: cordis, schemastery, dsh-home-paths, dsh-llm, dsh-tools, dsh-compaction`)
+console.log(`# @qiuxu/memex offline harness · Node ${process.version} · 9 source packages + bundle + 9 /api/memory.* routes + web client + sticky L2/L3 + L1 eviction + cold tier/compression + hybrid recall/cold abstracts + sensitive evict + backup · stubs: cordis, schemastery, dsh-home-paths, dsh-llm, dsh-tools, dsh-compaction`)
 
 // A. write / get ─────────────────────────────────────────────────────────────
 
@@ -1243,7 +1243,7 @@ await test('J4', 'corrupt record input throws', async () => {
 //
 // K1–K5 mount rows from their own source packages and pin what each owns.
 // K6 mounts the four rows from the generated bundle artifact (copies under
-// `packages/dsh-memory/modules/`, gitignored), which is the layer the host
+// `packages/memex/modules/`, gitignored), which is the layer the host
 // loads; it skips cleanly when `node scripts/build-bundle.mjs` has not run.
 
 const MEMORY_TOOL_NAMES = ['memory_grep', 'memory_index', 'memory_open', 'memory_restore', 'memory_search', 'memory_write']
@@ -1252,10 +1252,10 @@ await test('K1', 'backend row alone owns ctx.memory and registers no surfaces', 
   const root = makeRoot('k1')
   const ctx = createFakeContext({ services: { llm: undefined } })
   try {
-    assert.equal(typeof LocalMemoryStore, 'function', 'dsh-memory-local default export must be the backend plugin class')
+    assert.equal(typeof LocalMemoryStore, 'function', 'memex-local default export must be the backend plugin class')
     assert.equal(LocalMemoryStore.name, 'LocalMemoryStore')
-    assert.match(import.meta.resolve('@qiuxu/dsh-memory-local'), /dsh-memory-local/)
-    assert.match(import.meta.resolve('@qiuxu/dsh-memory-seam'), /dsh-memory-seam/)
+    assert.match(import.meta.resolve('@qiuxu/memex-local'), /memex-local/)
+    assert.match(import.meta.resolve('@qiuxu/memex-seam'), /memex-seam/)
     assert.deepEqual(LocalMemoryStore.inject, [], 'backend row must not inject other services')
     assert.deepEqual(Object.keys(LocalMemoryStore.Config.properties), ['root', 'capacityTokens', 'sessionCapacityTokens', 'defaultLevels', 'settingsTtlDays'])
     const instance = new LocalMemoryStore(ctx, { root })
@@ -1368,7 +1368,7 @@ await test('K4', 'commands row registers /memory with sticky-level control and i
     commandsRow.apply(ctx)
     assert.equal(registered.length, 1, 'commands row must register exactly one command')
     assert.equal(registered[0].name, 'memory')
-    assert.equal(registered[0].definitionId, '@qiuxu/dsh-memory/commands/memory')
+    assert.equal(registered[0].definitionId, '@qiuxu/memex/commands/memory')
     assert.equal(typeof registered[0].handler, 'function')
     const invocation = { agent: { session: { id: 'sess-k', header: { cwd: '/tmp/ws-k' } } } }
     const status = await registered[0].handler({ ...invocation, rawInput: 'status' })
@@ -1424,14 +1424,14 @@ await test('K4', 'commands row registers /memory with sticky-level control and i
 
 await test('K5', 'consumer modules use ctx.memory only, and the loader stubs only @deepseek-ai/*', async () => {
   const consumerFiles = [
-    'dsh-memory-tool/lib/tools.js',
-    'dsh-memory-tool/index.js',
-    'dsh-memory-checkpoint/lib/checkpoint.js',
-    'dsh-memory-checkpoint/index.js',
-    'dsh-memory-command/lib/commands.js',
-    'dsh-memory-command/index.js',
-    'dsh-memory-evict/index.js',
-    'dsh-memory-compress/index.js',
+    'memex-tool/lib/tools.js',
+    'memex-tool/index.js',
+    'memex-checkpoint/lib/checkpoint.js',
+    'memex-checkpoint/index.js',
+    'memex-command/lib/commands.js',
+    'memex-command/index.js',
+    'memex-evict/index.js',
+    'memex-compress/index.js',
   ]
   for (const fileName of consumerFiles) {
     const url = new URL(`../packages/${fileName}`, import.meta.url)
@@ -1443,24 +1443,24 @@ await test('K5', 'consumer modules use ctx.memory only, and the loader stubs onl
   // The public repo has no node_modules: the loader resolves @qiuxu/* to the
   // source/generated entries, and must keep stubbing only the DSH packages.
   const loaderSource = readFileSync(new URL('./loader.mjs', import.meta.url), 'utf8')
-  assert.ok(loaderSource.includes("'@qiuxu/dsh-memory-seam':"), 'loader must resolve @qiuxu packages without node_modules')
+  assert.ok(loaderSource.includes("'@qiuxu/memex-seam':"), 'loader must resolve @qiuxu packages without node_modules')
   const stubsBlock = loaderSource.slice(loaderSource.indexOf('const STUBS = {'), loaderSource.indexOf('}', loaderSource.indexOf('const STUBS = {')))
   const stubbed = [...stubsBlock.matchAll(/'(?<specifier>@[^']+)'\s*:/g)].map((match) => match.groups.specifier)
   assert.ok(stubbed.length >= 6, 'loader must define the six DSH stubs')
   assert.ok(stubbed.every((specifier) => specifier.startsWith('@deepseek-ai/')), `loader may only stub @deepseek-ai/*, got ${stubbed.join(', ')}`)
 
   // memory-api row: service-mediated only; it must not reach into the store.
-  const apiSource = readFileSync(new URL('../packages/dsh-memory-api/index.js', import.meta.url), 'utf8')
+  const apiSource = readFileSync(new URL('../packages/memex-api/index.js', import.meta.url), 'utf8')
   const apiImports = [...apiSource.matchAll(/^import .* from '([^']+)'/gm)].map((match) => match[1])
-  assert.deepEqual(apiImports, ['@qiuxu/dsh-memory-seam'], 'memory-api may only import the seam package')
+  assert.deepEqual(apiImports, ['@qiuxu/memex-seam'], 'memory-api may only import the seam package')
   assert.doesNotMatch(apiSource, /lib\/store|LocalStoreCore/, 'memory-api must not import the store implementation')
-  const evictSource = readFileSync(new URL('../packages/dsh-memory-evict/index.js', import.meta.url), 'utf8')
+  const evictSource = readFileSync(new URL('../packages/memex-evict/index.js', import.meta.url), 'utf8')
   const evictImports = [...evictSource.matchAll(/^import .* from '([^']+)'/gm)].map((match) => match[1])
   assert.deepEqual(evictImports.sort(), [
     '@deepseek-ai/dsh-compaction',
     '@deepseek-ai/dsh-llm',
     '@deepseek-ai/schemastery',
-    '@qiuxu/dsh-memory-seam',
+    '@qiuxu/memex-seam',
     'node:crypto',
   ].sort(), 'memory-evict may only import the seam, the compaction/llm helpers and node:crypto')
   assert.doesNotMatch(evictSource, /lib\/store|LocalStoreCore|\.store\b/, 'memory-evict must not reach into the store')
@@ -1470,22 +1470,22 @@ await test('K5', 'consumer modules use ctx.memory only, and the loader stubs onl
 
   // memory-ui client half: classic module id matches the package name, and the
   // manifest declares a web client + the ./client export.
-  const uiManifest = JSON.parse(readFileSync(new URL('../packages/dsh-memory-ui/package.json', import.meta.url), 'utf8'))
-  assert.equal(uiManifest.name, '@qiuxu/dsh-memory-ui')
+  const uiManifest = JSON.parse(readFileSync(new URL('../packages/memex-ui/package.json', import.meta.url), 'utf8'))
+  assert.equal(uiManifest.name, '@qiuxu/memex-ui')
   assert.equal(uiManifest.dsh?.client?.platform, 'web', 'memory-ui must declare dsh.client.platform=web')
   assert.equal(uiManifest.exports['./client'], './client.js')
-  const uiClientSource = readFileSync(new URL('../packages/dsh-memory-ui/client.js', import.meta.url), 'utf8')
+  const uiClientSource = readFileSync(new URL('../packages/memex-ui/client.js', import.meta.url), 'utf8')
   assertIncludes(uiClientSource, `id: '${uiManifest.name}'`, 'client module id must match the package name')
-  const uiHostSource = readFileSync(new URL('../packages/dsh-memory-ui/index.js', import.meta.url), 'utf8')
+  const uiHostSource = readFileSync(new URL('../packages/memex-ui/index.js', import.meta.url), 'utf8')
   assert.match(uiHostSource, /export function apply\(\)/, 'memory-ui host entry must stay a no-op apply')
 })
 
 
-// Bundle artifact: `packages/dsh-memory` is a pure bundle whose runtime modules
+// Bundle artifact: `packages/memex` is a pure bundle whose runtime modules
 // are generated copies of the seven source packages under `modules/`. The
 // directory is gitignored, so a fresh checkout skips K6/K8's artifact checks
 // instead of failing.
-const bundleRootUrl = new URL('../packages/dsh-memory/', import.meta.url)
+const bundleRootUrl = new URL('../packages/memex/', import.meta.url)
 const bundleModulesUrl = new URL('modules/', bundleRootUrl)
 const bundleBuilt = existsSync(new URL('memory-local/index.js', bundleModulesUrl))
 
@@ -1495,20 +1495,20 @@ await test('K6', 'generated bundle modules mount as four rows end-to-end', async
   }
 
   const bundleExpectations = [
-    ['memory-core', '@qiuxu/dsh-memory-core'],
-    ['memory-seam', '@qiuxu/dsh-memory-seam'],
-    ['memory-local', '@qiuxu/dsh-memory-local'],
-    ['memory-checkpoint', '@qiuxu/dsh-memory-checkpoint'],
-    ['memory-tool', '@qiuxu/dsh-memory-tool'],
-    ['memory-command', '@qiuxu/dsh-memory-command'],
-    ['memory-api', '@qiuxu/dsh-memory-api'],
-    ['memory-ui', '@qiuxu/dsh-memory-ui'],
-    ['memory-evict', '@qiuxu/dsh-memory-evict'],
-    ['memory-compress', '@qiuxu/dsh-memory-compress'],
+    ['memory-core', '@qiuxu/memex-core'],
+    ['memory-seam', '@qiuxu/memex-seam'],
+    ['memory-local', '@qiuxu/memex-local'],
+    ['memory-checkpoint', '@qiuxu/memex-checkpoint'],
+    ['memory-tool', '@qiuxu/memex-tool'],
+    ['memory-command', '@qiuxu/memex-command'],
+    ['memory-api', '@qiuxu/memex-api'],
+    ['memory-ui', '@qiuxu/memex-ui'],
+    ['memory-evict', '@qiuxu/memex-evict'],
+    ['memory-compress', '@qiuxu/memex-compress'],
   ]
 
   // The bundle root itself is code-free: it only carries patch/locale/icon.
-  const bundleRootModule = await import('@qiuxu/dsh-memory')
+  const bundleRootModule = await import('@qiuxu/memex')
   assert.deepEqual(Object.keys(bundleRootModule), [], 'bundle index.js must be code-free (export {})')
 
   for (const [dir, packageName] of bundleExpectations) {
@@ -1561,12 +1561,12 @@ await test('K6', 'generated bundle modules mount as four rows end-to-end', async
   assert.equal(typeof bundleApi.apply, 'function')
   assert.equal(bundleUiHost.name, 'memory-ui')
   assert.equal(typeof bundleUiHost.apply, 'function')
-  assertIncludes(readFileSync(new URL('memory-ui/client.js', bundleModulesUrl), 'utf8'), "id: '@qiuxu/dsh-memory-ui'")
+  assertIncludes(readFileSync(new URL('memory-ui/client.js', bundleModulesUrl), 'utf8'), "id: '@qiuxu/memex-ui'")
   // The bundle carries its own seam copy: internal @qiuxu imports must resolve
   // inside the bundle root, not back to the workspace source packages.
   assert.notEqual(bundleSeam.MemoryStore, seam.MemoryStore, 'bundle modules must resolve their own seam copy')
   // The package subpath exports must point at those same generated modules.
-  const viaSubpath = await import('@qiuxu/dsh-memory/local')
+  const viaSubpath = await import('@qiuxu/memex/local')
   assert.equal(viaSubpath.default, bundleLocal.default, 'bundle ./local subpath must export the generated module')
 
   // Mount the four generated rows like the Loader would, then prove the
@@ -1623,7 +1623,7 @@ await test('K6', 'generated bundle modules mount as four rows end-to-end', async
 // there is no build step in this harness, so it is executed verbatim in a
 // `node:vm` sandbox with a minimal React/document/fetch/DOM surface.
 
-const uiPackageUrl = new URL('../packages/dsh-memory-ui/', import.meta.url)
+const uiPackageUrl = new URL('../packages/memex-ui/', import.meta.url)
 const uiPackageManifest = JSON.parse(readFileSync(new URL('package.json', uiPackageUrl), 'utf8'))
 const uiClientSource = readFileSync(new URL('client.js', uiPackageUrl), 'utf8')
 
@@ -1810,7 +1810,7 @@ await test('K7', 'client module registers composer trigger + shell overlay panel
   assert.doesNotMatch(sourceText, /^\s*</m, 'client.js must not contain top-level JSX')
   assert.match(sourceText, /window\.__ModuleLoader__\.load\(/)
 
-  assert.equal(harness.definition.id, '@qiuxu/dsh-memory-ui')
+  assert.equal(harness.definition.id, '@qiuxu/memex-ui')
   assert.equal(harness.definition.id, uiPackageManifest.name, 'client module id must match its package name')
   assert.equal(typeof harness.definition.factory, 'function')
   assert.deepEqual(harness.required, ['react'])
@@ -1828,8 +1828,8 @@ await test('K7', 'client module registers composer trigger + shell overlay panel
   assert.deepEqual(harness.effects.map((entry) => entry.label), ['memory-panel: styles', 'memory-panel: context ring bridge'])
   assert.equal(harness.appended.length, 1, 'the style effect must append one <style> tag')
   assert.equal(harness.appended[0].tagName, 'style')
-  assert.equal(harness.appended[0].dataset.plugin, '@qiuxu/dsh-memory-ui')
-  assertIncludes(harness.appended[0].textContent, '.dsh-memory-panel')
+  assert.equal(harness.appended[0].dataset.plugin, '@qiuxu/memex-ui')
+  assertIncludes(harness.appended[0].textContent, '.memex-panel')
 
   // The ring bridge fetches the archive reading asynchronously, then decorates
   // the fake composer ContextMeter: an inner memory arc inside its 14px ring
@@ -1839,7 +1839,7 @@ await test('K7', 'client module registers composer trigger + shell overlay panel
   assert.ok(harness.fetchCalls[0].url.startsWith('api/memory.index?sessionId=session-k7'))
   assert.equal(harness.appendedArc.length, 1, 'the bridge must add exactly one inner memory arc')
   assert.equal(harness.appendedArc[0].namespace, 'http://www.w3.org/2000/svg')
-  assert.equal(harness.appendedArc[0].attrs['data-dsh-memory-arc'], '')
+  assert.equal(harness.appendedArc[0].attrs['data-memex-arc'], '')
   assert.equal(harness.appendedArc[0].attrs.stroke, 'var(--dsw-alias-brand-primary, #4c6fff)', 'L3 capture paints the brand-blue arc')
   const innerCircumference = 2 * Math.PI * 3.2
   const percent = (1_000_000 / 100_000_000) * 100
@@ -1865,7 +1865,7 @@ await test('K7', 'client module registers composer trigger + shell overlay panel
 // K8. bundle patch: eight rows, client half addressed by a file: module URL ──
 
 await test('K8', 'bundle patch declares eight rows including memory-compress', async () => {
-  const patchText = readFileSync(new URL('../packages/dsh-memory/cordis.patch.yml', import.meta.url), 'utf8')
+  const patchText = readFileSync(new URL('../packages/memex/cordis.patch.yml', import.meta.url), 'utf8')
   const rows = [...patchText.matchAll(/^\s*-\s+id:\s*([\w-]+)\s*\n\s+name:\s*'([^']+)'/gm)]
     .map((match) => ({ id: match[1], name: match[2] }))
   assert.equal(rows.length, 8, `bundle patch must insert eight rows (got ${rows.map((row) => row.id).join(', ')})`)
@@ -1874,18 +1874,18 @@ await test('K8', 'bundle patch declares eight rows including memory-compress', a
     ['memory', 'memory-checkpoint', 'memory-tools', 'memory-evict', 'memory-compress', 'memory-api', 'memory-ui', 'memory-commands'],
   )
   const byId = Object.fromEntries(rows.map((row) => [row.id, row.name]))
-  assert.equal(byId.memory, '@qiuxu/dsh-memory/local')
-  assert.equal(byId['memory-checkpoint'], '@qiuxu/dsh-memory/checkpoint')
-  assert.equal(byId['memory-tools'], '@qiuxu/dsh-memory/tools')
-  assert.equal(byId['memory-evict'], '@qiuxu/dsh-memory/evict')
-  assert.equal(byId['memory-compress'], '@qiuxu/dsh-memory/compress')
-  assert.equal(byId['memory-api'], '@qiuxu/dsh-memory/api')
-  assert.equal(byId['memory-commands'], '@qiuxu/dsh-memory/commands')
+  assert.equal(byId.memory, '@qiuxu/memex/local')
+  assert.equal(byId['memory-checkpoint'], '@qiuxu/memex/checkpoint')
+  assert.equal(byId['memory-tools'], '@qiuxu/memex/tools')
+  assert.equal(byId['memory-evict'], '@qiuxu/memex/evict')
+  assert.equal(byId['memory-compress'], '@qiuxu/memex/compress')
+  assert.equal(byId['memory-api'], '@qiuxu/memex/api')
+  assert.equal(byId['memory-commands'], '@qiuxu/memex/commands')
   const uiName = byId['memory-ui']
   // The public repo addresses the client half through the bundle's own
   // subpath export. (Some local DSH builds want a `file:` URL instead; see
   // docs/install.md for that fallback.)
-  assert.equal(uiName, '@qiuxu/dsh-memory/ui')
+  assert.equal(uiName, '@qiuxu/memex/ui')
   if (bundleBuilt) {
     const target = new URL('modules/memory-ui/index.js', bundleRootUrl)
     assert.ok(existsSync(target), `memory-ui module must exist in the built bundle: ${target}`)
@@ -2385,10 +2385,10 @@ await test('M6b', 'client ring bridge colors and labels the L2 vs L3 capture tar
 
 await test('M6c', 'client panel source exposes the sticky level switches and L1 eviction footer', async () => {
   assertIncludes(uiClientSource, 'api/memory.level')
-  assertIncludes(uiClientSource, 'data-dsh-memory-meter-mode')
+  assertIncludes(uiClientSource, 'data-memex-meter-mode')
   for (const label of ['L2 本会话', 'L3 工作区', '🔒']) assertIncludes(uiClientSource, label)
   assertIncludes(uiClientSource, 'L1 额外上下文当前关闭')
-  assertIncludes(uiClientSource, 'data-dsh-memory-panel')
+  assertIncludes(uiClientSource, 'data-memex-panel')
   assertIncludes(uiClientSource, 'L1 已转移')
   assert.match(uiClientSource, /disabled: searching \|\| !anyLevel/)
 })
@@ -2651,13 +2651,13 @@ await test('N5', 'memory-evict moves the oldest balanced L1 span into the enable
 })
 
 await test('N6', 'bundle artifact ships the memory-evict/compress modules and eight-row patch', async () => {
-  const patchText = readFileSync(new URL('../packages/dsh-memory/cordis.patch.yml', import.meta.url), 'utf8')
+  const patchText = readFileSync(new URL('../packages/memex/cordis.patch.yml', import.meta.url), 'utf8')
   const rows = [...patchText.matchAll(/^\s*-\s+id:\s*([\w-]+)\s*\n\s+name:\s*'([^']+)'/gm)]
     .map((match) => ({ id: match[1], name: match[2] }))
   assert.equal(rows.length, 8)
   assert.deepEqual(rows.map((row) => row.id), ['memory', 'memory-checkpoint', 'memory-tools', 'memory-evict', 'memory-compress', 'memory-api', 'memory-ui', 'memory-commands'])
-  assert.equal(rows.find((row) => row.id === 'memory-evict').name, '@qiuxu/dsh-memory/evict')
-  assert.equal(rows.find((row) => row.id === 'memory-compress').name, '@qiuxu/dsh-memory/compress')
+  assert.equal(rows.find((row) => row.id === 'memory-evict').name, '@qiuxu/memex/evict')
+  assert.equal(rows.find((row) => row.id === 'memory-compress').name, '@qiuxu/memex/compress')
   if (!bundleBuilt) throw new Skip('bundle not built')
   const moduleDirs = readdirSync(bundleModulesUrl).filter((entry) => entry !== '.gitignore').sort()
   assert.deepEqual(moduleDirs, [
@@ -2680,14 +2680,14 @@ await test('N6', 'bundle artifact ships the memory-evict/compress modules and ei
   assert.deepEqual(evictModule.inject, ['memory', 'tokenMeter', 'llm'])
   assert.equal(typeof evictModule.apply, 'function')
   const evictManifest = JSON.parse(readFileSync(new URL('memory-evict/package.json', bundleModulesUrl), 'utf8'))
-  assert.equal(evictManifest.name, '@qiuxu/dsh-memory-evict')
-  assert.ok(existsSync(new URL('node_modules/@qiuxu/dsh-memory-evict/', bundleRootUrl)), 'bundle symlink for the evict module must resolve')
+  assert.equal(evictManifest.name, '@qiuxu/memex-evict')
+  assert.ok(existsSync(new URL('node_modules/@qiuxu/memex-evict/', bundleRootUrl)), 'bundle symlink for the evict module must resolve')
   const compressModule = await import(new URL('memory-compress/index.js', bundleModulesUrl).href)
   assert.equal(compressModule.name, 'memory-compress')
   assert.equal(typeof compressModule.apply, 'function')
   const compressManifest = JSON.parse(readFileSync(new URL('memory-compress/package.json', bundleModulesUrl), 'utf8'))
-  assert.equal(compressManifest.name, '@qiuxu/dsh-memory-compress')
-  assert.ok(existsSync(new URL('node_modules/@qiuxu/dsh-memory-compress/', bundleRootUrl)), 'bundle symlink for the compress module must resolve')
+  assert.equal(compressManifest.name, '@qiuxu/memex-compress')
+  assert.ok(existsSync(new URL('node_modules/@qiuxu/memex-compress/', bundleRootUrl)), 'bundle symlink for the compress module must resolve')
 })
 
 
@@ -3042,12 +3042,12 @@ await test('C5c', 'captureLevel l2 keeps L1 evictions session-private with L3 en
 })
 
 await test('C6', 'bundle/module/client/manual cover the compress + cold-tier wave', async () => {
-  const patchText = readFileSync(new URL('../packages/dsh-memory/cordis.patch.yml', import.meta.url), 'utf8')
+  const patchText = readFileSync(new URL('../packages/memex/cordis.patch.yml', import.meta.url), 'utf8')
   const rows = [...patchText.matchAll(/^\s*-\s+id:\s*([\w-]+)\s*\n\s+name:\s*'([^']+)'/gm)]
     .map((match) => ({ id: match[1], name: match[2] }))
   assert.equal(rows.length, 8)
   assert.deepEqual(rows.map((row) => row.id), ['memory', 'memory-checkpoint', 'memory-tools', 'memory-evict', 'memory-compress', 'memory-api', 'memory-ui', 'memory-commands'])
-  assert.equal(rows.find((row) => row.id === 'memory-compress').name, '@qiuxu/dsh-memory/compress')
+  assert.equal(rows.find((row) => row.id === 'memory-compress').name, '@qiuxu/memex/compress')
   if (!bundleBuilt) throw new Skip('bundle not built')
   const moduleDirs = readdirSync(bundleModulesUrl).filter((entry) => entry !== '.gitignore').sort()
   assert.deepEqual(moduleDirs, [
@@ -3065,7 +3065,7 @@ await test('C6', 'bundle/module/client/manual cover the compress + cold-tier wav
   assertIncludes(uiClientSource, '冷存')
   assertIncludes(uiClientSource, '接近容量时模型会先询问')
   assertIncludes(uiClientSource, 'hotTokens')
-  const toolsSource = readFileSync(new URL('../packages/dsh-memory-tool/lib/tools.js', import.meta.url), 'utf8')
+  const toolsSource = readFileSync(new URL('../packages/memex-tool/lib/tools.js', import.meta.url), 'utf8')
   assertIncludes(toolsSource, 'memory_compress')
   assertIncludes(toolsSource, '[EXTRA CONTEXT CAPACITY]')
   assertIncludes(toolsSource, 'ask the user')
@@ -3505,14 +3505,14 @@ await test('S5', 'memory-backup backup/verify/restore round-trips a store with a
 
 // ── v0.2.0: agent-agnostic core, MCP server, Claude Code / Codex adapters ───
 
-const core = await import('@qiuxu/dsh-memory-core')
-const profiles = await import('@qiuxu/dsh-memory-core/model-profiles')
-const manual = await import('@qiuxu/dsh-memory-core/manual')
-const { AgentMemory } = await import('@qiuxu/dsh-memory-core/engine')
+const core = await import('@qiuxu/memex-core')
+const profiles = await import('@qiuxu/memex-core/model-profiles')
+const manual = await import('@qiuxu/memex-core/manual')
+const { AgentMemory } = await import('@qiuxu/memex-core/engine')
 const REGISTER = fileURLToPath(new URL('./register.mjs', import.meta.url))
-const MCP_SERVER = fileURLToPath(new URL('../packages/dsh-memory-mcp/bin/server.mjs', import.meta.url))
-const CLAUDE_CLI = fileURLToPath(new URL('../packages/dsh-memory-claude/bin/cli.mjs', import.meta.url))
-const CODEX_CLI = fileURLToPath(new URL('../packages/dsh-memory-codex/bin/cli.mjs', import.meta.url))
+const MCP_SERVER = fileURLToPath(new URL('../packages/memex-mcp/bin/server.mjs', import.meta.url))
+const CLAUDE_CLI = fileURLToPath(new URL('../packages/memex-claude/bin/cli.mjs', import.meta.url))
+const CODEX_CLI = fileURLToPath(new URL('../packages/memex-codex/bin/cli.mjs', import.meta.url))
 
 /** Run a Node CLI with the offline loader so `@qiuxu/*` resolves without node_modules. */
 function runNode(script, args, options = {}) {
@@ -3541,14 +3541,14 @@ function mcpExchange(root, args, messages) {
 await test('U1', 'agent-agnostic core has no host dependencies and the DSH seam re-exports it', async () => {
   const coreFiles = ['index.js', 'lib/store.js', 'lib/model-profiles.js', 'lib/manual.js', 'lib/engine.js']
   for (const file of coreFiles) {
-    const source = readFileSync(new URL(`../packages/dsh-memory-core/${file}`, import.meta.url), 'utf8')
+    const source = readFileSync(new URL(`../packages/memex-core/${file}`, import.meta.url), 'utf8')
     assert.doesNotMatch(source, /@deepseek-ai\//, `core/${file} must not import DSH host packages`)
   }
   assert.equal(core.MemoryStore, undefined, 'the core exposes vocabulary/helpers, not the Cordis service')
   assert.equal(typeof seam.MemoryStore, 'function', 'the DSH seam still exposes the Service subclass')
   assert.equal(seam.MEMORY_LEVELS, core.MEMORY_LEVELS, 'the seam re-exports the core bindings')
   assert.deepEqual(seam.memoryQueryTerms('如何恢复额外上下文 memory_search'), core.memoryQueryTerms('如何恢复额外上下文 memory_search'))
-  const bundlePkg = JSON.parse(readFileSync(new URL('../packages/dsh-memory/package.json', import.meta.url), 'utf8'))
+  const bundlePkg = JSON.parse(readFileSync(new URL('../packages/memex/package.json', import.meta.url), 'utf8'))
   assert.equal(bundlePkg.exports['./core'], './modules/memory-core/index.js', 'bundle must expose the core module')
 })
 
@@ -3610,7 +3610,7 @@ await test('U3', 'generic MCP server speaks JSON-RPC: tools list/call, search, o
     { jsonrpc: '2.0', id: 7, method: 'ping' },
   ])
   const init = replies.get(1).result
-  assert.equal(init.serverInfo.name, 'dsh-memory')
+  assert.equal(init.serverInfo.name, 'memex')
   assert.equal(init.protocolVersion, '2024-11-05')
   assertIncludes(init.instructions, 'Anthropic Claude')
   const tools = replies.get(2).result.tools.map((tool) => tool.name).sort()
@@ -3652,25 +3652,25 @@ await test('U5', 'Claude Code init writes .mcp.json, hooks, and a model-tailored
   const result = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'])
   assert.equal(result.status, 0, result.stderr)
   const mcp = JSON.parse(readFileSync(join(project, '.mcp.json'), 'utf8'))
-  const server = mcp.mcpServers['dsh-memory']
+  const server = mcp.mcpServers['memex']
   assert.equal(server.command, process.execPath)
-  assert.ok(server.args[0].endsWith('dsh-memory-mcp/bin/server.mjs'))
+  assert.ok(server.args[0].endsWith('memex-mcp/bin/server.mjs'))
   assert.deepEqual(server.args.slice(1, 3), ['--root', root])
   assertIncludes(server.args.join(' '), '--agent claude-code')
   const settings = JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8'))
   for (const event of ['SessionStart', 'UserPromptSubmit', 'PreCompact', 'SessionEnd']) {
     assert.ok(Array.isArray(settings.hooks[event]) && settings.hooks[event].length > 0, `${event} hook must be registered`)
-    assertIncludes(settings.hooks[event][0].hooks[0].command, 'dsh-memory-claude/bin/cli.mjs')
+    assertIncludes(settings.hooks[event][0].hooks[0].command, 'memex-claude/bin/cli.mjs')
     assertIncludes(settings.hooks[event][0].hooks[0].command, `hook ${event}`)
   }
   const claudeMd = readFileSync(join(project, 'CLAUDE.md'), 'utf8')
-  assertIncludes(claudeMd, '<!-- dsh-memory:start -->')
+  assertIncludes(claudeMd, '<!-- memex:start -->')
   assertIncludes(claudeMd, 'Anthropic Claude profile')
   assertIncludes(claudeMd, 'memory_search')
   // Idempotent: re-running init must not duplicate the manual or the hooks.
   const again = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'])
   assert.equal(again.status, 0, again.stderr)
-  assert.equal((readFileSync(join(project, 'CLAUDE.md'), 'utf8').match(/dsh-memory:start/g) ?? []).length, 1)
+  assert.equal((readFileSync(join(project, 'CLAUDE.md'), 'utf8').match(/memex:start/g) ?? []).length, 1)
   assert.equal(JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8')).hooks.PreCompact.length, 1)
 })
 
@@ -3716,16 +3716,16 @@ await test('U7', 'Codex init writes AGENTS.md and prints a working MCP config sn
   const root = makeRoot('u7-mem')
   const result = runNode(CODEX_CLI, ['init', '--project', project, '--root', root, '--model', 'gpt-5-codex', '--levels', 'l3'])
   assert.equal(result.status, 0, result.stderr)
-  assertIncludes(result.stdout, 'mcp_servers.dsh-memory')
+  assertIncludes(result.stdout, 'mcp_servers.memex')
   assertIncludes(result.stdout, 'codex mcp add')
   const agents = readFileSync(join(project, 'AGENTS.md'), 'utf8')
-  assertIncludes(agents, '<!-- dsh-memory:start -->')
+  assertIncludes(agents, '<!-- memex:start -->')
   assertIncludes(agents, 'OpenAI Codex ·')
   assertIncludes(agents, 'memory_search')
   const snippet = runNode(CODEX_CLI, ['config', '--project', project, '--root', root, '--model', 'gpt-5-codex', '--levels', 'l3'])
   assert.equal(snippet.status, 0, snippet.stderr)
-  assertIncludes(snippet.stdout, '[mcp_servers.dsh-memory]')
-  assertIncludes(snippet.stdout, 'dsh-memory-mcp/bin/server.mjs')
+  assertIncludes(snippet.stdout, '[mcp_servers.memex]')
+  assertIncludes(snippet.stdout, 'memex-mcp/bin/server.mjs')
   assertIncludes(snippet.stdout, '--agent')
   assertIncludes(snippet.stdout, 'codex')
 })
@@ -3762,7 +3762,7 @@ await test('U9', 'per-model rerank weights tune ranking and merge over defaults'
   assert.equal(profiles.resolveModelProfile('deepseek-chat').rerank.abstract, 1.3)
   assert.equal(profiles.resolveModelProfile('llama-3.1').rerank.abstract, 0.7)
   assert.equal(profiles.resolveModelProfile('unknown').rerank.title, 3)
-  const { LocalStoreCore } = await import('../packages/dsh-memory-core/lib/store.js')
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
   const root = makeRoot('u9')
   const store = new LocalStoreCore({ root, capacityTokens: 1_000_000, sessionCapacityTokens: 100_000, defaultLevels: { l2: false, l3: false } })
   try {
@@ -3840,14 +3840,14 @@ await test('U12', 'injected catalog/recall blocks stay inside each profile budge
     assert.ok(profiles.profileTokens(catalog, profile) <= profile.catalogTokens, `${profileId} catalog ${profiles.profileTokens(catalog, profile)} > ${profile.catalogTokens}`)
     assert.ok(profiles.profileTokens(recall, profile) <= profile.recallTokens, `${profileId} recall ${profiles.profileTokens(recall, profile)} > ${profile.recallTokens}`)
   }
-  const pkg = JSON.parse(readFileSync(new URL('../packages/dsh-memory-mcp/package.json', import.meta.url), 'utf8'))
+  const pkg = JSON.parse(readFileSync(new URL('../packages/memex-mcp/package.json', import.meta.url), 'utf8'))
   const replies = mcpExchange(makeRoot('u12'), ['--agent', 'test', '--model', 'claude-sonnet-4'], [{ jsonrpc: '2.0', id: 1, method: 'initialize', params: {} }])
   assert.equal(replies.get(1).result.serverInfo.version, pkg.version, 'MCP server version must follow its package.json')
 })
 
 
 await test('U13', 'body-term rescue recovers facts that live only in hot bodies', async () => {
-  const { LocalStoreCore } = await import('../packages/dsh-memory-core/lib/store.js')
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
   const root = makeRoot('u13')
   const store = new LocalStoreCore({ root, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
   try {
@@ -3947,6 +3947,40 @@ await test('U16', 'dedicated GPT-6.1 / Opus 5.5 / Sonnet 5.5 / DeepSeek Flash pr
   assert.equal(profiles.resolveModelProfile('gpt-6-astra').catalogTokens, 2200)
   // Overrides still win, including on a dedicated variant.
   assert.equal(profiles.resolveModelProfile('gpt-6.1-sol', { windowTokens: 500_000 }).windowTokens, 500_000)
+})
+
+
+await test('U17', 'adapter CLIs default to recommended dedicated profiles and advertise them', async () => {
+  const project = makeRoot('u17-claude')
+  const root = makeRoot('u17-mem')
+  const init = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root])
+  assert.equal(init.status, 0, init.stderr)
+  const mcp = JSON.parse(readFileSync(join(project, '.mcp.json'), 'utf8'))
+  const args = mcp.mcpServers['memex'].args
+  const modelIndex = args.indexOf('--model')
+  assert.equal(args[modelIndex + 1], 'claude-sonnet-5-5', 'Claude init default model must be claude-sonnet-5-5')
+  assertIncludes(init.stdout, 'claude-sonnet-5-5')
+  assertIncludes(init.stdout, 'claude-opus-5-5')
+  assertIncludes(init.stdout, 'Model profile: claude-sonnet-5-5')
+  const help = runNode(CLAUDE_CLI, ['help'])
+  assertIncludes(help.stdout, 'claude-fable-5-1')
+  assertIncludes(help.stdout, 'claude-haiku-5-5')
+
+  const project2 = makeRoot('u17-codex')
+  const root2 = makeRoot('u17-mem2')
+  const codex = runNode(CODEX_CLI, ['init', '--project', project2, '--root', root2])
+  assert.equal(codex.status, 0, codex.stderr)
+  assertIncludes(codex.stdout, '"gpt-6.1-sol"')
+  assertIncludes(codex.stdout, 'gpt-6.1-terra')
+  assertIncludes(codex.stdout, 'gpt-6-astra')
+  assertIncludes(codex.stdout, 'Model profile: gpt-6.1')
+  const codexHelp = runNode(CODEX_CLI, ['help'])
+  assertIncludes(codexHelp.stdout, 'gpt-6-astra')
+
+  const mcpList = runNode(MCP_SERVER, ['--list-profiles'])
+  assert.equal(mcpList.status, 0)
+  const listing = `${mcpList.stdout}${mcpList.stderr}`
+  for (const profileId of ['deepseek-flash', 'claude-sonnet-5-5', 'gpt-6.1-sol']) assertIncludes(listing, profileId)
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

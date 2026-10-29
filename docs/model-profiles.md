@@ -5,7 +5,7 @@ layout: default
 
 # Model profiles
 
-Every integration resolves a **profile** from the running model id, then tunes memory behavior per family. Profiles are data in `packages/dsh-memory-core/lib/model-profiles.js`; no host dependency is involved.
+Every integration resolves a **profile** from the running model id, then tunes memory behavior per family. Profiles are data in `packages/memex-core/lib/model-profiles.js`; no host dependency is involved.
 
 | Family profile | Match examples | Window | Est. chars/token | Injection | Catalog / recall budget | Digest style |
 |---|---|---|---|---|---|---|
@@ -42,6 +42,18 @@ Sources: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol
 
 The variants are checked in this order before the base families, so `claude-opus-5-5` never silently falls back to the generic `claude` profile. Cold-start + long-horizon validation for all eight: [profile validation](profile-validation.html). Overrides still apply on top (`resolveModelProfile('gpt-6.1-sol', { windowTokens: 500_000 })` for the Codex default context, for example).
 
+## Adapter defaults (written by `init`)
+
+The CLIs write a recommended dedicated profile by default; the integration can override with `--model` or `MEMEX_MODEL`:
+
+| Adapter | Default `--model` | Recommended alternatives (printed by `init`/`help`) |
+|---|---|---|
+| Claude Code (`memex-claude init`) | `claude-sonnet-5-5` | `claude-opus-5-5`, `claude-fable-5-1`, `claude-haiku-5-5` |
+| Codex (`memex-codex init`) | `gpt-6.1-sol` | `gpt-6.1-terra` (fast/cheap), `gpt-6-astra` (most capable) |
+| MCP server (`memex-mcp`) | unset → `generic` | `memex-mcp --list-profiles` → `deepseek-flash`, `claude-sonnet-5-5`, `gpt-6.1-sol`, `claude-opus-5-5` |
+
+`init` prints the resolved profile (`Model profile: claude-sonnet-5-5`) and the recommended list, so the written configuration is auditable.
+
 ## What a profile changes
 
 - **Budgets** — how many tokens of catalog and auto-recall are injected, and how much body `memory_open` returns by default.
@@ -74,10 +86,10 @@ new AgentMemory({ model: 'claude-sonnet-4', profileOverrides: { rerank: { tags: 
 
 ```bash
 # MCP or adapters
-node packages/dsh-memory-mcp/bin/server.mjs --model my-custom-model --levels l2,l3
+node packages/memex-mcp/bin/server.mjs --model my-custom-model --levels l2,l3
 
 # programmatically
-import { resolveModelProfile } from '@qiuxu/dsh-memory-core/model-profiles'
+import { resolveModelProfile } from '@qiuxu/memex-core/model-profiles'
 const profile = resolveModelProfile('my-model', { windowTokens: 64_000, catalogTokens: 500 })
 ```
 

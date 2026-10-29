@@ -1,0 +1,25 @@
+{
+  "name": "@qiuxu/memex-claude",
+  "version": "0.4.0",
+  "private": false,
+  "description": "Claude Code integration for memex: MCP server registration, SessionStart/UserPromptSubmit/PreCompact hooks, CLAUDE.md memory manual and verbatim transcript archiving.",
+  "type": "module",
+  "bin": {
+    "memex-claude": "bin/cli.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT",
+  "author": "QiuXu-Tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QiuXu-Tech/memex.git"
+  },
+  "dependencies": {
+    "@qiuxu/memex-core": "file:../memex-core"
+  }
+}

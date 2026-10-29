@@ -1,5 +1,5 @@
 /**
- * Long-horizon A/B evaluation: dsh-memory vs "no extra context" baselines.
+ * Long-horizon A/B evaluation: memex vs "no extra context" baselines.
  *
  * Modes:
  *  - `compaction` (default): builds a 120K-token synthetic project history with
@@ -8,10 +8,10 @@
  *      * tail-span.txt       the retained tail the model would still see
  *      * facts.json          fact records (id, fact token, topic, depth)
  *      * queries.json        natural-language questions for retrieval eval
- *      * results.json        truncation baseline + dsh-memory retrieval metrics
+ *      * results.json        truncation baseline + memex retrieval metrics
  *    A model-written compaction summary is produced separately (see report);
  *    `--summary <file>` measures how many facts survive it.
- *  - `scale`: for each history size, measures dsh-memory retrieval recall and
+ *  - `scale`: for each history size, measures memex retrieval recall and
  *    the no-memory availability ceiling (window / history), then writes
  *    results to `results.json`.
  *
@@ -25,7 +25,7 @@ import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { performance } from 'node:perf_hooks'
-import { LocalStoreCore } from '../packages/dsh-memory-local/lib/store.js'
+import { LocalStoreCore } from '../packages/memex-local/lib/store.js'
 
 const arg = (name, fallback) => {
   const index = process.argv.indexOf(`--${name}`)

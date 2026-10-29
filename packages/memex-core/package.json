@@ -1,0 +1,28 @@
+{
+  "name": "@qiuxu/memex-core",
+  "version": "0.4.0",
+  "private": true,
+  "description": "Agent-agnostic memory core: record vocabulary, workspace identity, query-term extraction, token accounting, markdown+SQLite store with hot/cold tiers, hybrid retrieval and capacity compression. No host dependencies.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./store": "./lib/store.js",
+    "./model-profiles": "./lib/model-profiles.js",
+    "./manual": "./lib/manual.js",
+    "./engine": "./lib/engine.js"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT",
+  "author": "QiuXu-Tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QiuXu-Tech/memex.git"
+  }
+}

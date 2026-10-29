@@ -1,0 +1,28 @@
+{
+  "name": "@qiuxu/memex-mcp",
+  "version": "0.4.0",
+  "private": false,
+  "description": "Universal MCP (stdio) memory server: expose the agent-agnostic memex core to Claude Code, OpenAI Codex, Gemini CLI, Cursor, Cline and any MCP-capable agent.",
+  "type": "module",
+  "bin": {
+    "memex-mcp": "bin/server.mjs"
+  },
+  "exports": {
+    "./server": "./bin/server.mjs"
+  },
+  "files": [
+    "bin"
+  ],
+  "engines": {
+    "node": ">=24"
+  },
+  "license": "MIT",
+  "author": "QiuXu-Tech",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/QiuXu-Tech/memex.git"
+  },
+  "dependencies": {
+    "@qiuxu/memex-core": "file:../memex-core"
+  }
+}

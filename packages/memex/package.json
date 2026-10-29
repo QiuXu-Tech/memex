@@ -1,0 +1,37 @@
+{
+  "name": "@qiuxu/memex",
+  "version": "0.4.0",
+  "private": true,
+  "description": "DeepSeek Harness bundle for the extra-context memory subsystem (agent-agnostic core, L1 eviction, sticky L2/L3, cold tier, Web panel).",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js",
+    "./local": "./modules/memory-local/index.js",
+    "./checkpoint": "./modules/memory-checkpoint/index.js",
+    "./tools": "./modules/memory-tool/index.js",
+    "./commands": "./modules/memory-command/index.js",
+    "./locale/*.json": "./locale/*.json",
+    "./icon": "./icon.svg",
+    "./api": "./modules/memory-api/index.js",
+    "./ui": "./modules/memory-ui/index.js",
+    "./evict": "./modules/memory-evict/index.js",
+    "./compress": "./modules/memory-compress/index.js",
+    "./core": "./modules/memory-core/index.js"
+  },
+  "files": [
+    "index.js",
+    "cordis.patch.yml",
+    "modules",
+    "locale/*.json",
+    "icon.svg"
+  ],
+  "engines": {
+    "dsh": "0.2.1-rc.3"
+  },
+  "dsh": {
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    }
+  }
+}

@@ -18,8 +18,8 @@ import { mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { performance } from 'node:perf_hooks'
-import { LocalStoreCore } from '../packages/dsh-memory-local/lib/store.js'
-import { memoryQueryTerms } from '../packages/dsh-memory-seam/lib/index.js'
+import { LocalStoreCore } from '../packages/memex-local/lib/store.js'
+import { memoryQueryTerms } from '../packages/memex-seam/lib/index.js'
 
 const arg = (name, fallback) => {
   const index = process.argv.indexOf(`--${name}`)

@@ -1,24 +1,24 @@
 ---
-title: dsh-memory
+title: Memex
 layout: default
 ---
 
-# dsh-memory
+# Memex
 
-Lossless long-horizon memory for **DeepSeek Harness**.
+Persistent, lossless long-horizon memory for any coding agent.
 
-[![CI](https://github.com/QiuXu-Tech/dsh-memory/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/dsh-memory/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/QiuXu-Tech/dsh-memory/blob/main/LICENSE)
+[![CI](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/QiuXu-Tech/memex/blob/main/LICENSE)
 
-![dsh-memory demo](assets/demo.gif)
+![memex demo](assets/demo.gif)
 
 An extra-context layer for agent sessions: when the native context window fills up, older spans are moved out verbatim into sticky **L2 (10M, session-private)** / **L3 (100M, workspace-shared)** archives; capacity is managed through a lossless cold tier plus bounded batch digests; and anything can be retrieved later with cheap hybrid search.
 
 ## Quick start
 
 ```bash
-git clone https://github.com/QiuXu-Tech/dsh-memory.git
-cd dsh-memory
+git clone https://github.com/QiuXu-Tech/memex.git
+cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
 node --import ./test/register.mjs ./test/run.mjs   # offline harness (110 tests)
 ```

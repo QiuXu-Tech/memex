@@ -6,10 +6,10 @@ layout: default
 # Evaluation
 
 The public synthetic workloads were rerun on v0.3.0, commit
-[`3373ec6`](https://github.com/QiuXu-Tech/dsh-memory/commit/3373ec6ed46ea3b571a798c95714bd5d226f1ddb),
+[`3373ec6`](https://github.com/QiuXu-Tech/memex/commit/3373ec6ed46ea3b571a798c95714bd5d226f1ddb),
 on 2026-10-29. The Apple M4 / Node 24.21.0 machine met a quiet-start gate;
 it remained shared and load was sampled during the longer stages. See the
-[benchmark report](https://github.com/QiuXu-Tech/dsh-memory/blob/main/docs/benchmark.md)
+[benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md)
 for methodology, load samples, raw results, charts and reproduction commands.
 
 ## Retrieval quality
@@ -44,7 +44,7 @@ after writing, growing to 26.6 MiB after cold spill. Token counts are assigned
 synthetic values. The x-only bodies do not measure identifier-body index
 overhead; a one-record spot check produced zero `record_terms` rows. Cold GC
 deletes the removed records. The read-path timings and raw output are included
-in the [benchmark report](https://github.com/QiuXu-Tech/dsh-memory/blob/main/docs/benchmark.md).
+in the [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md).
 
 An older private 1.9M-token archive was reported to shrink from 18.19 MB to
 0.25 MB after the body-less FTS migration and `VACUUM`. That migration was not

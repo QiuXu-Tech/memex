@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.4.0 — project renamed to Memex
+
+### Changed
+- **Renamed the project from `dsh-memory` to `Memex`** (repository `QiuXu-Tech/memex`): packages are now `@qiuxu/memex*`, adapter binaries `memex-claude` / `memex-codex` / `memex-mcp`, storage default `~/.memex` (legacy `~/.dsh-memory` and legacy `DSH_MEMORY_*` env vars still work), docs/Pages URLs updated.
+- **Adapter defaults now write recommended dedicated profiles**: Claude Code defaults to `claude-sonnet-5-5` (recommended: opus-5-5 / fable-5-1 / haiku-5-5), Codex defaults to `gpt-6.1-sol` (recommended: terra / astra), and `memex-mcp --list-profiles` lists MCP recommendations.
+- U17 covers the defaults and advertisement (114 tests).
+
+### Added
+- `RECOMMENDED_PROFILES` registry in the core; `init`/`help` print the resolved profile.
+
 ## 0.3.3
 
 ### Added
@@ -62,10 +72,10 @@
 ## 0.2.0
 
 ### Added
-- **Agent-agnostic core** `@qiuxu/dsh-memory-core` (no host dependencies): vocabulary, workspace identity, query terms, markdown+SQLite store with hot/cold tiers, hybrid retrieval, capacity compression, `AgentMemory` facade, model profiles and model-tailored manual. The DSH seam now re-exports it.
-- **Universal MCP server** `@qiuxu/dsh-memory-mcp`: dependency-free stdio JSON-RPC; 7 tools, `memory://catalog` resource, profile `instructions`.
-- **Claude Code adapter** `@qiuxu/dsh-memory-claude`: `init` writes `.mcp.json`, merges `.claude/settings.json` hooks (`SessionStart`, `UserPromptSubmit`, `PreCompact`, `SessionEnd`), injects a model-tailored `CLAUDE.md`; `PreCompact` archives the raw transcript verbatim.
-- **Codex adapter** `@qiuxu/dsh-memory-codex`: `AGENTS.md` manual, `codex mcp add` command and `config.toml` writer with backup.
+- **Agent-agnostic core** `@qiuxu/memex-core` (no host dependencies): vocabulary, workspace identity, query terms, markdown+SQLite store with hot/cold tiers, hybrid retrieval, capacity compression, `AgentMemory` facade, model profiles and model-tailored manual. The DSH seam now re-exports it.
+- **Universal MCP server** `@qiuxu/memex-mcp`: dependency-free stdio JSON-RPC; 7 tools, `memory://catalog` resource, profile `instructions`.
+- **Claude Code adapter** `@qiuxu/memex-claude`: `init` writes `.mcp.json`, merges `.claude/settings.json` hooks (`SessionStart`, `UserPromptSubmit`, `PreCompact`, `SessionEnd`), injects a model-tailored `CLAUDE.md`; `PreCompact` archives the raw transcript verbatim.
+- **Codex adapter** `@qiuxu/memex-codex`: `AGENTS.md` manual, `codex mcp add` command and `config.toml` writer with backup.
 - **Model profiles** for Claude, GPT/o-series, Gemini, DeepSeek, Qwen, Kimi, GLM, Llama and a generic fallback: windows, token-estimation ratios, injection formats (XML/Markdown/plain), catalog/recall/open budgets, bilingual CJK manuals, digest prompts.
 - Offline coverage: U1–U8 test the core/DSH parity, profile resolution, MCP JSON-RPC end-to-end, Claude init/hooks (incl. transcript archiving), Codex init/config, and cold compression through MCP (106 tests total).
 - Docs: integrations matrix, Claude Code / Codex / generic MCP guides, model profiles, README repositioned as universal memory.
@@ -76,9 +86,9 @@
 ## Unreleased
 
 ### Added
-- Long-horizon A/B benchmark report (`docs/benchmark.md`, charts) + `scripts/long-horizon-eval.mjs`: dsh-memory 100% fact recall vs 60% compaction and 50% truncation (160K-token history, 80K window); 100% vs 10% window availability at 10M tokens.
+- Long-horizon A/B benchmark report (`docs/benchmark.md`, charts) + `scripts/long-horizon-eval.mjs`: memex 100% fact recall vs 60% compaction and 50% truncation (160K-token history, 80K window); 100% vs 10% window availability at 10M tokens.
 - Animated demo (`docs/assets/demo.gif`) and social preview image (`.github/social-preview.png`).
-- GitHub Pages documentation site (`docs/index.md` + Jekyll config): <https://qiuxu-tech.github.io/dsh-memory/>.
+- GitHub Pages documentation site (`docs/index.md` + Jekyll config): <https://qiuxu-tech.github.io/memex/>.
 - Issue forms (bug/feature), PR template, and `SECURITY.md` with private vulnerability reporting.
 - Upstream export tool `scripts/export-upstream.mjs` and [docs/upstream.md](docs/upstream.md) (DSH-shaped package tree + PR checklist).
 

@@ -6,8 +6,8 @@ layout: default
 # OpenAI Codex
 
 ```bash
-node packages/dsh-memory-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
-# or print the config only:  node packages/dsh-memory-codex/bin/cli.mjs config
+node packages/memex-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
+# or print the config only:  node packages/memex-codex/bin/cli.mjs config
 ```
 
 Codex has **no hook surface**, so the integration is:
@@ -15,12 +15,12 @@ Codex has **no hook surface**, so the integration is:
 1. **MCP server** for tools. `--write-config` appends (and backs up) `~/.codex/config.toml`:
 
    ```toml
-   [mcp_servers.dsh-memory]
+   [mcp_servers.memex]
    command = "/path/to/node"
-   args = ["/path/to/packages/dsh-memory-mcp/bin/server.mjs", "--root", "/Users/you/.dsh-memory", "--agent", "codex", "--model", "gpt-6.1-sol", "--levels", "l3"]
+   args = ["/path/to/packages/memex-mcp/bin/server.mjs", "--root", "/Users/you/.memex", "--agent", "codex", "--model", "gpt-6.1-sol", "--levels", "l3"]
    ```
 
-   Equivalent one-liner: `codex mcp add dsh-memory -- node <server.mjs> --root ~/.dsh-memory --agent codex --model gpt-6.1-sol --levels l3`
+   Equivalent one-liner: `codex mcp add memex -- node <server.mjs> --root ~/.memex --agent codex --model gpt-6.1-sol --levels l3`
 
 2. **AGENTS.md** manual in the project: tells Codex when to search/open/write memory, with the profile-tuned budget guidance.
 
