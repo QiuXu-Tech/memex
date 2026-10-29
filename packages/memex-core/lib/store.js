@@ -30,12 +30,13 @@ function abstractOfBody(body) {
 //
 // Card legs only index title/summary/useWhen/tags/abstract. A fact that lives
 // only in a record body is otherwise invisible when card matches fill the
-// candidate limit. Only **identifier-like** body tokens (digits, hyphens,
-// underscores, paths, versions) are indexed into `record_terms`
-// (record_id, term_hash). Those are what body rescues key on — the token set
-// stays tiny (a few rows per record, DB stays small), while a query that has
-// such a term can rank body candidates exactly with one indexed GROUP BY.
-// Natural-language-only facts still rely on card summaries / memory_grep.
+// candidate limit. Identifier-like tokens (digits, hyphens, underscores,
+// paths, versions) and bare numbers are indexed into `record_terms`
+// (record_id, term_hash) from the body **and the card fields**. Those are what
+// the body/cold rescues key on — the token set stays small (a few rows per
+// record, DB stays small), while a query that has such an anchor can rank
+// candidates exactly with one indexed GROUP BY. Natural-language-only facts
+// without any number/identifier still rely on card summaries / memory_grep.
 
 const BODY_TERM_LIMIT = 2000
 const BODY_TERM_CHARS = 262_144
@@ -63,6 +64,12 @@ function bodyTokens(body) {
     const token = match[0].toLowerCase()
     if (!isIdentifierToken(token)) continue
     tokens.add(token)
+    if (tokens.size >= BODY_TERM_LIMIT) return tokens
+  }
+  // Bare turn/step numbers (“turn 25”, “step 3”) are the natural-language
+  // anchors users actually type; index them exactly as tokens.
+  for (const match of text.matchAll(/\b\d{1,6}\b/g)) {
+    tokens.add(match[0])
     if (tokens.size >= BODY_TERM_LIMIT) return tokens
   }
   return tokens
@@ -293,6 +300,32 @@ export class LocalStoreCore {
         // Missing file: card fields remain searchable.
       }
     }
+    // v2 term index: card fields + bare numbers are indexed too (cold
+    // natural-language anchors). Rebuild once for databases created before v2.
+    const termIndexVersion = Number(db.prepare('PRAGMA user_version').get()?.user_version ?? 0)
+    if (termIndexVersion < 2) {
+      const rows = db.prepare('SELECT id, path, title, summary, use_when, tags_json FROM records').all()
+      const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
+      db.exec('BEGIN IMMEDIATE')
+      try {
+        db.exec('DELETE FROM record_terms')
+        for (const row of rows) {
+          const cardText = `${row.title} ${row.summary} ${row.use_when} ${row.tags_json ?? ''}`
+          const hashes = new Set(bodyTermHashes(cardText))
+          try {
+            for (const hash of bodyTermHashes(recordBodyFromFile(readFileSync(row.path, 'utf8')))) hashes.add(hash)
+          } catch {
+            // Missing file: card terms still get indexed.
+          }
+          for (const hash of hashes) insertTerm.run(row.id, hash)
+        }
+        db.exec('PRAGMA user_version = 2')
+        db.exec('COMMIT')
+      } catch (error) {
+        db.exec('ROLLBACK')
+        throw error
+      }
+    }
     // Backfill the body-term index for records whose bodies were written
     // before `record_terms` existed (one-time migration).
     const missingTerms = db.prepare('SELECT id, path FROM records WHERE bytes > 0 AND id NOT IN (SELECT record_id FROM record_terms)').all()
@@ -422,7 +455,8 @@ export class LocalStoreCore {
         .run(row.rowid, record.title, record.summary, record.useWhen, tagsText(record.tags), '')
       db.prepare('DELETE FROM record_terms WHERE record_id = ?').run(record.id)
       const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
-      for (const hash of bodyTermHashes(record.body)) insertTerm.run(record.id, hash)
+      const cardText = `${record.title} ${record.summary} ${record.useWhen} ${tagsText(record.tags)}`
+      for (const hash of new Set([...bodyTermHashes(record.body), ...bodyTermHashes(cardText)])) insertTerm.run(record.id, hash)
       db.exec('COMMIT')
     } catch (error) {
       db.exec('ROLLBACK')
@@ -552,6 +586,11 @@ export class LocalStoreCore {
     const terms = memoryQueryTerms(query.query, query.maxTerms)
     if (terms.length === 0) return { hits: [], total: 0 }
     const lowerTerms = terms.map((term) => term.toLowerCase())
+    const anchorTerms = [...new Set([
+      ...lowerTerms,
+      ...[...String(query.query).matchAll(/\b\d{1,6}\b/g)].map((match) => match[0]),
+    ])]
+    const keyTerms = anchorTerms.filter((term) => term.length >= 1 && isIdentifierToken(term))
     const { clauses, params } = this.workspaceClause(query, { alias: 'r.' })
     const where = clauses.map((clause) => `AND ${clause}`).join(' ')
     const rowsById = new Map()
@@ -672,25 +711,24 @@ export class LocalStoreCore {
         }
       }
     }
-    // Cold-anchor rescue: cold records only expose a bounded abstract, so an
-    // identifier-like query term can point at a cold record that card ranking
-    // leaves out. Scan the bounded abstract column for those anchors and add
-    // the matches with an anchor-evidence bonus (no body read).
-    const coldAnchorTerms = lowerTerms.filter((term) => term.length >= 2 && (/[0-9]/.test(term) || /[-_.:/]/.test(term)))
-    if (coldAnchorTerms.length > 0) {
+    // Cold-anchor rescue: cold records only expose a bounded abstract, but
+    // `record_terms` now indexes card fields and bare numbers too. Use the
+    // exact anchors (identifiers / turn numbers) to find cold candidates even
+    // when the card legs rank them out of the top limit.
+    if (keyTerms.length > 0) {
+      const hashes = [...new Set(keyTerms.map((term) => fnv1a32(term)))]
+      const placeholders = hashes.map(() => '?').join(', ')
       const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 1 }, { alias: 'r.' })
-      const likeClauses = coldAnchorTerms.slice(0, 3).map(() => 'r.abstract LIKE ?')
       const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
       const coldRows = this.database().prepare(`
-        SELECT r.*, '' AS snippet, 0 AS rank
-        FROM records r WHERE (${likeClauses.join(' OR ')}) ${where} LIMIT 40
-      `).all(...coldAnchorTerms.slice(0, 3).map((term) => `%${term}%`), ...params)
+        SELECT r.*, '' AS snippet, 0 AS rank, COUNT(*) AS anchorHits
+        FROM record_terms t JOIN records r ON r.id = t.record_id
+        WHERE t.term_hash IN (${placeholders}) ${where}
+        GROUP BY t.record_id ORDER BY anchorHits DESC LIMIT 40
+      `).all(...hashes, ...params)
       for (const row of coldRows) {
         if (rowsById.has(row.id)) continue
-        const abstractText = String(row.abstract ?? '').toLowerCase()
-        const anchorHits = coldAnchorTerms.filter((term) => termMatchesText(abstractText, term)).length
-        if (anchorHits === 0) continue
-        rowsById.set(row.id, { ...row, rank: 0, coldAnchorHits: anchorHits })
+        rowsById.set(row.id, { ...row, rank: 0 })
       }
     }
     // Hybrid rerank: lexical field matches + body evidence + cold abstract + recency.
@@ -714,7 +752,9 @@ export class LocalStoreCore {
         + fieldHits(card.useWhen, sweep.useWhen)
         + fieldHits(tagsText(card.tags), sweep.tags)
         + fieldHits(row.abstract, sweep.abstract)
-        + (card.cold === true ? coldAnchorTerms.filter((term) => termMatchesText(String(row.abstract ?? '').toLowerCase(), term)).length * (sweep.coldAnchor ?? 0) : 0)
+        + (card.cold === true
+          ? keyTerms.filter((term) => termMatchesText(`${row.title} ${row.summary} ${row.use_when} ${row.abstract ?? ''}`.toLowerCase(), term)).length * (sweep.coldAnchor ?? 0)
+          : 0)
         + (Number(row.bodyHits) || 0) * sweep.body
         + Math.max(0, 1 - ageDays / 60) * sweep.recency
         - (card.cold === true ? sweep.coldPenalty : 0)

@@ -48,11 +48,11 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 | Experiment | Result |
 |---|---|
 | Evidence-in-prompt, 8 probes / 120 turns | control **1/8** (evicted **0/7**) → treatment **8/8** (evicted **7/7**) |
-| Multi-seed (3 seeds × 20 probes / 300 turns) | control **3/60 (5%)**; treatment **30/60 (50%)**; evicted **0/57 → 27/57 (47.4%)** |
-| Cold-tier natural-language subset (30 probes) | control 0/30; treatment **0/30** — exposed cold retrieval gap |
+| Multi-seed (3 seeds × 20 probes / 300 turns) | control **3/60 (5%)**; treatment **57/60 (95%)**; evicted **0/57 → 54/57 (94.7%)** |
+| Cold-tier natural-language subset (30 probes) | control 0/30; treatment **30/30 (100%)** after the v0.5.0 cold-context fix |
 | Full agent loop (n=1) | control `UNKNOWN`; treatment: 3 real MCP tool calls → correct `FACT-025-r6h18` |
 
-**Finding:** hot-region and tail facts are recovered reliably; cold-tier facts asked in natural language without identifier anchors are not. This is the next concrete retrieval improvement target (cold natural-language indexing/recall), and it is now labeled as such rather than assumed.
+**Finding (fixed in v0.5.0):** card-field tokens and bare numbers are now indexed in `record_terms`, so cold records can be anchored by natural-language turn references. Cold natural-language probes went 0/30 → 30/30; treatment overall 57/60. The residual Q19 miss is a harness evidence-query miss (turn-285 record not surfaced), not a memory failure. The concept is now explicitly **extra-context**, not a notes store — see docs/context-layer.md.
 
 The client integration is verified (Claude Code parses the generated config): `claude mcp list` after `memex-claude init`:
 

@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.5.0 — extra-context layer + cold natural-language retrieval
+
+### Changed — concept
+- Repositioned the project as an **extra-context layer between agent history and the model window**, not a notes/memory app: context hierarchy (L1 → L2/L3 → cold), context paging, context budgets, context ring. New concept doc: `docs/context-layer.md`; README/manual wording updated; project remains **Memex**.
+
+### Fixed — cold natural-language retrieval
+- `record_terms` now indexes **card fields and bare turn numbers** in addition to identifier-like body tokens, and cold-anchor rescue uses exact term anchors from `record_terms` instead of a broad abstract LIKE scan.
+- Live DeepSeek Flash multi-seed after the fix: control **3/60 (5%)**, treatment **57/60 (95%)**; evicted records **0/57 → 54/57 (94.7%)**; cold-tier natural-language subset **0/30 → 30/30**. Residual: one Q19 evidence-query miss per seed (turn 285), correctly reported as not found.
+- `scripts/live-ab.mjs` archiving fixed for fixtures >100 turns (DB-driven archive, exact tail).
+- Harness **117/117** (U20 cold natural-language retrieval).
+
 ## 0.4.3
 
 ### Validation

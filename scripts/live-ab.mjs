@@ -62,13 +62,10 @@ for (let index = 0; index < TURNS; index += 1) {
   const card = store.write({ kind: isFact ? 'fact' : 'episode', title: isFact ? `${topic} value at turn ${index}` : `turn ${index} ${topic} work`, summary: isFact ? `the ${topic} value is ${fact}` : `work log for ${topic}`, useWhen: `read when continuing ${topic} work`, body, workspaceKey: WS, scope: 'workspace', tokens: Math.round(body.length / 4) })
   if (isFact) facts.push({ turn: index, topic, fact, id: card.id })
 }
-// Keep the newest ~15 turns hot; archive the older region (simulates L1 eviction).
-const cards = store.list({ workspaceKey: WS, scopes: ['workspace'], limit: 100 })
-for (const card of cards.slice(facts.length > 0 ? 0 : 0)) {
-  if (Number(card.updatedAt) < 0) break
-}
-const oldestFirst = [...cards].sort((left, right) => left.createdAt - right.createdAt)
-for (const card of oldestFirst.slice(0, Math.max(0, oldestFirst.length - TAIL_RECORDS))) store.archiveCold(card.id)
+// Keep only the newest TAIL_RECORDS hot; archive everything older (simulates
+// L1 eviction). list() clamps to 100 rows, so read all ids from the DB.
+const allRows = store.database().prepare('SELECT id FROM records ORDER BY created_at ASC, id ASC').all()
+for (const row of allRows.slice(0, Math.max(0, allRows.length - TAIL_RECORDS))) store.archiveCold(row.id)
 const tailCards = store.list({ workspaceKey: WS, scopes: ['workspace'], limit: TAIL_RECORDS })
 const tailText = tailCards.map((card) => `${card.title}\n${card.summary}`).join('\n')
 store.close()

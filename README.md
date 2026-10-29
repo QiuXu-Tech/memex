@@ -1,9 +1,11 @@
-# Memex
+# Memex — the extra-context layer for AI agents
 
 [![CI](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**Persistent, lossless long-horizon memory for any coding agent.** Memex adds an extra-context layer to an agent session: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and the model can retrieve anything later with cheap hybrid search.
+**A high-performance extra-context layer between an agent's history and its model window.** Memex treats context as a hierarchy — not a notes app: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and the model can retrieve anything later with cheap hybrid search.
+
+**Context, not just memory.** Raw session history is evicted verbatim from L1 into sticky L2/L3 context pools, paged back in with budget-aware retrieval, and compacted to a lossless cold tier — so the model reasons over the right context instead of losing it or re-reading everything. Read the concept: [Extra context, not just memory](docs/context-layer.md).
 
 It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 
@@ -15,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.4.1 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), 116/116 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.5.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), 117/117 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -185,7 +187,7 @@ Reproduction commands, including the required saved summary and cold target rati
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (116 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (117 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```

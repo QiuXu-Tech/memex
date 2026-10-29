@@ -24,12 +24,12 @@ The only control success was a fact still inside the retained tail; every evicte
 
 ### B. Multi-seed replication (3 seeds × 300-turn history × 20 probes)
 
-| Condition | Overall | Evicted records (excluding the one tail fact) | Cold-tier natural-language subset (turns 0–135) |
+| Condition | Overall | Evicted records (excluding the tail fact) | Cold-tier natural-language subset (turns 0–135) |
 |---|---|---|---|
 | control | **3/60 (5%)** | **0/57 (0%)** | 0/30 |
-| treatment | **30/60 (50%)** | **27/57 (47.4%)** | **0/30** |
+| treatment | **57/60 (95%)** | **54/57 (94.7%)** | **30/30 (100%)** |
 
-All three seeds showed the same pattern. Hot-region probes (turns 150+) and the tail probe were answered; **all 30 failures are cold-tier facts queried with natural language and no identifier-like anchor** — a concrete retrieval gap this validation exposed.
+The first multi-seed run exposed a cold-tier natural-language gap (0/30). After the **v0.5.0 cold-context fix** — indexing card fields and bare turn numbers in `record_terms` and using exact anchors for cold rescue — every cold natural-language probe is recovered. The only residual miss per seed is Q19 (turn 285), where the evidence-builder query did not surface the record; the model correctly reported it as not found rather than fabricating.
 
 ### C. Full agent loop (tools, n=1)
 
@@ -42,7 +42,7 @@ This shows the loop can search, refine, open and answer end-to-end; n=1 is a mec
 
 Raw data: [evidence-in-prompt 8 probes](assets/benchmarks/live-ab-deepseek.json) · [multi-seed](assets/benchmarks/live-ab-deepseek-multiseed.json) · [agent loop](assets/benchmarks/live-ab-deepseek-agent-loop.json).
 
-**Caveats:** one model; synthetic fixtures; multi-seed runs are agent-mediated (no provider usage tokens captured); the cold-tier gap in B is a real limitation to fix, not a scoring artifact — the model correctly reported `UNKNOWN` rather than hallucinating.
+**Caveats:** one model; synthetic fixtures; multi-seed runs are agent-mediated (no provider usage tokens captured); the original cold-tier gap was real and is now fixed (see B), while Q19 remains a harness-query miss.
 
 ## How to contribute
 

@@ -4032,6 +4032,37 @@ await test('U19', 'Claude init --session aligns hooks and MCP L2 namespace; appr
   assert.ok(mismatched.stdout.trim() === '' || !mismatched.stdout.includes('Project-session L2 fact'), 'without --session the L2 record must be out of scope')
 })
 
+
+await test('U20', 'cold natural-language retrieval uses card/bare-number anchors (turn 15)', async () => {
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
+  const root = makeRoot('u20')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    const records = []
+    for (let index = 0; index < 120; index += 1) {
+      const isFact = index % 15 === 0
+      const topic = index % 2 === 0 ? 'gateway' : 'router'
+      const fact = isFact ? `FACT-${String(index).padStart(3, '0')}-u20` : undefined
+      records.push(store.write({
+        kind: isFact ? 'fact' : 'episode',
+        title: isFact ? `${topic} value at turn ${index}` : `turn ${index} ${topic} work`,
+        summary: isFact ? `the ${topic} value is ${fact}` : `work log for ${topic}`,
+        useWhen: `read when continuing ${topic} work`,
+        body: isFact ? `Turn ${index} (${topic}): the durable value is ${fact}; keep it.` : `Turn ${index} work notes.`,
+        workspaceKey: 'wk-u20', scope: 'workspace', tokens: 30,
+      }))
+    }
+    const all = store.database().prepare('SELECT id FROM records ORDER BY created_at ASC, id ASC').all()
+    for (const row of all.slice(0, all.length - 20)) store.archiveCold(row.id)
+    const expected = records[15]
+    const hits = store.search({ query: 'what durable value was recorded at turn 15 for router?', workspaceKey: 'wk-u20', scope: 'workspace', limit: 5 }).hits
+    assert.equal(hits[0].id, expected.id, 'cold natural-language retrieval must page the turn-15 fact first')
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

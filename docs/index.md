@@ -30,6 +30,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — long-horizon A/B vs no extra context, with charts.
+- [Extra context, not just memory](context-layer.html) — the concept: a context hierarchy between history and the model window.
 - [Integrations](integrations.html) — Claude Code, Codex, Gemini CLI, Cursor, Cline, Windsurf, DSH.
 - [Model profiles](model-profiles.html) — per-family budgets, injection formats and digest prompts.
 - [Optimization findings](optimization-findings.html) — retrieval/perf experiments, fixed issues, backlog.
