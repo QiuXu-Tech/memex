@@ -6,9 +6,10 @@ layout: default
 # SQLite and file consistency
 
 The SQLite consistency fix after v0.14.1 serializes file-backed mutations with
-SQLite's writer lock and a five-second busy timeout. A write, cold archive,
-restore or deletion installs a separate file before committing the index
-change. A per-operation manifest lets the next writer or a reopened store
+SQLite's writer lock and a five-second busy timeout. A write, cold archive
+or restore installs a separate file before committing the index change;
+deletion keeps the old file until its index change commits. A per-operation
+manifest lets the next writer or a reopened store
 finish cleanup or roll back an interrupted operation according to the committed
 SQLite path. Existing files are never replaced merely because a move failed.
 
