@@ -1,6 +1,6 @@
 {
   "name": "@qiuxu/memex-compress",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "private": true,
   "description": "Capacity compression for the extra-context pools: cold-tier spill (lossless, zero LLM) and batched map-reduce digests designed for very large pools (10M/100M tokens).",
   "type": "module",

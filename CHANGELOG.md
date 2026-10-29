@@ -13,6 +13,14 @@ retain their reported counts; their original tail membership was not saved.
 - Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
 - Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
 
+## 0.8.1
+
+### Added — GPT family comparison
+- Ran **gpt-6.1-terra** through the fixed Codex bridge (3 seeds × 20 probes): control **3/60 (5%)**, treatment **60/60 (100%)**, verified evicted **0/57 → 57/57** with saved tail membership.
+- GPT family comparison on the synthetic fixture: Sol (pre-fix report, overall 3/60 → 60/60) vs Terra (verified, 3/60 → 60/60) — indistinguishable here; Terra supplies the verified tail comparison.
+- Dataset: `docs/assets/benchmarks/live-ab-codex-terra.json`; summary in docs/live-testing.md §F.
+- Harness **121/121**; real-archive guard unchanged from 0.8.0.
+
 ## 0.8.0
 
 ### Fixed — retained-tail harness + verified multi-seed rerun

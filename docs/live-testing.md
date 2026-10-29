@@ -77,18 +77,18 @@ Questions contain **no turn numbers or IDs** and the answer-bearing records are 
 
 Limits kept explicit: the boost requires the cold abstract to cover **every** meaningful query term (partial overlap is ignored), and morphology must match (`decision`, not `decide`). Raw: [evidence](assets/benchmarks/live-ab-deepseek-cold-anchor-free.json).
 
-### F. Codex CLI / GPT-6.1 Sol live A/B (contributed, v0.7.1)
+### F. Codex CLI / GPT family: Sol vs Terra
 
-A Codex CLI contribution (`gpt-6.1-sol`) ran the same bridge: **3 seeds × 20 probes**.
+Two Codex CLI contributions on the same fixture (3 seeds × 20 probes):
 
-| Condition | Overall | Reported cold subset |
-|---|---|---|
-| control (recent tail only) | **3/60 (5%)** | 3/57 (5.3%) |
-| treatment (memex evidence) | **60/60 (100%)** | 57/57 (100%) |
+| Model | Harness | Control | Treatment | Verified evicted subset |
+|---|---|---|---|---|
+| `gpt-6.1-sol` (v0.7.1) | pre-fix | 3/60 (5%) | 60/60 (100%) | not verified (pre-fix report) |
+| `gpt-6.1-terra` (v0.8.1) | v0.8.0 fixed tail | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** |
 
-All 20 treatment answers per seed were exact FACT ids; each control success was the one fact present in the shown tail. This is the **second model family** showing the same evidence-in-prompt pattern (DeepSeek Flash: 3/60 → 60/60; GPT-6.1 Sol: 3/60 → 60/60).
-
-**Caveat:** this report was collected before the harness fix; its overall control/treatment answers are preserved, but the reported `cold` subset is not a verified recently-evicted subset. Rerun the fixed `scripts/codex-ab.mjs` to verify it. Raw: [live-ab-codex-gpt.json](assets/benchmarks/live-ab-codex-gpt.json).
+- **Terra verification:** exact tail ids and per-probe `inTail`/`evicted` flags are saved; controls answer only the one in-tail fact per seed (turn 285), and all 19 evicted probes per seed are recovered by memex evidence.
+- **Family comparison:** Sol and Terra are indistinguishable on this synthetic fixture (both 5% → 100% overall); Terra provides the verified tail comparison. The Sol report predates the harness fix, so its cold subset remains caveated.
+- Raw: [Sol](assets/benchmarks/live-ab-codex-gpt.json) · [Terra](assets/benchmarks/live-ab-codex-terra.json).
 
 ### G. Cold anchor-free morphology/synonym + partial coverage (n=3, v0.8.0)
 
