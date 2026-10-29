@@ -20,6 +20,14 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 - Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
 - Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
 
+## 0.9.1
+
+### Added — Claude 5.5 family completion
+- **claude-fable-5-1** and **claude-haiku-5-5** run through the pre-tail-order-fix APIMaster batch bridge (3 seeds × 20 probes each): control **3/60 (5%)**, treatment **60/60 (100%)**, reported evicted **0/57 → 57/57**. Full chronological tails were not saved.
+- Gateway-reported usage: Fable **40,663 tokens**, Haiku **39,677 tokens** (6 calls each); all four Claude models total **161,689 tokens** across 24 calls. Monetary cost is unknown.
+- Datasets: `docs/assets/benchmarks/live-ab-claude-fable51.json`, `live-ab-claude-haiku55.json`; summary docs/live-testing.md §H.
+- Harness **121/121**; real-archive guard unchanged.
+
 ## 0.9.0
 
 ### Added — Claude 5.5 live validation (APIMaster)

@@ -114,19 +114,21 @@ Mechanism: stopword-filtered content terms, prefix ≥4 loose matching, cold-onl
 
 **Trade-off:** the partial boost is on by default and costs ~3pp real-archive hit@1 (68% → 65%) while hit@5 stays 93%; set `coldPartial: 0` in rerank for the precision-first behavior.
 
-### H. Claude family: Sonnet 5.5 vs Opus 5.5 (reported, v0.9.0)
+### H. Claude family: Sonnet, Opus, Fable and Haiku (reported, v0.9.0–v0.9.1)
 
-Both Claude 5.5 models were run through the **APIMaster** OpenAI-compatible gateway with the pre-tail-order-fix batch bridge (`scripts/claude-ab.mjs`), 3 seeds × 20 probes, 6 calls each.
+The four Claude models were run through the **APIMaster** OpenAI-compatible gateway with the pre-tail-order-fix batch bridge (`scripts/claude-ab.mjs`), 3 seeds × 20 probes, 6 calls each.
 
 | Model | Control | Treatment | Reported evicted | Gateway-reported usage (6 calls) |
 |---|---|---|---|---|
 | `claude-sonnet-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,673 tokens** (prompt 39,025 / completion 1,648) |
 | `claude-opus-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,676 tokens** (prompt 39,028 / completion 1,648) |
+| `claude-fable-5-1` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,663 tokens** (prompt 39,015 / completion 1,648) |
+| `claude-haiku-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **39,677 tokens** (prompt 37,631 / completion 2,046) |
 
 - Tail IDs and per-probe `inTail`/`evicted` flags are saved, but the complete tail record titles and prompts are not; strict chronological-tail membership cannot be independently confirmed for these historical runs.
-- The reported aggregate counts match on this synthetic fixture; they do not establish that the two Claude models behave identically in other settings.
-- The gateway reported ~40.7k tokens per model (six batch calls), ~81.3k for the pair. Monetary cost and billing receipts were not captured.
-- Raw: [Sonnet](assets/benchmarks/live-ab-claude-sonnet55.json) · [Opus](assets/benchmarks/live-ab-claude-opus55.json).
+- The reported aggregate counts match on this synthetic fixture; they do not establish that the four Claude models behave identically in other settings.
+- The gateway reported 39,677–40,676 tokens per model (six calls each), 161,689 across all 24 calls. Monetary cost and billing receipts were not captured.
+- Raw: [Sonnet](assets/benchmarks/live-ab-claude-sonnet55.json) · [Opus](assets/benchmarks/live-ab-claude-opus55.json) · [Fable](assets/benchmarks/live-ab-claude-fable51.json) · [Haiku](assets/benchmarks/live-ab-claude-haiku55.json).
 
 Run it yourself (key is read from env, never committed):
 
