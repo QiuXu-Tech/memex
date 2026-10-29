@@ -6,7 +6,8 @@ layout: default
 # Claude Code
 
 ```bash
-node packages/dsh-memory-claude/bin/cli.mjs init --model claude-sonnet-4
+node packages/dsh-memory-claude/bin/cli.mjs init --model claude-sonnet-5-5
+# or: --model claude-opus-5-5  (1M context, adaptive thinking)
 # or: --project /path/to/project  --root ~/.dsh-memory --levels l2,l3
 ```
 
@@ -30,7 +31,7 @@ Hooks never break a session: failures are logged to stderr and the exit code sta
 ## Recommended settings
 
 - Use `--levels l2,l3` for both session-private and project-shared memory, or `l3` for shared project memory only.
-- Set `--model` to the model you actually run (e.g. `claude-sonnet-4`, `claude-opus-4`) so budgets/manual match the family.
+- Set `--model` to the model you actually run (e.g. `claude-sonnet-5-5`, `claude-opus-5-5`) so budgets/manual match the family. The dedicated 5.5 profiles use the current 2.6 chars/token estimate and Opus/Sonnet-specific budgets; older ids keep the base `claude` profile.
 - Restart Claude Code after `init` so the MCP server and hooks load (check `/mcp`).
 - Project-scoped `.mcp.json` servers require a **one-time approval**: `claude mcp list` shows `dsh-memory … Pending approval (run claude to approve)` until you run `claude` in the project and approve it. This is Claude Code's security gate, not a config error.
 - L2-only setups: hooks use the client session id, MCP tools use `default-session`; `init` prints a warning. Prefer `--levels l2,l3` or `l3` (shared project memory), or start hooks/MCP with the same `--session`."")

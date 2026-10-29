@@ -1,5 +1,15 @@
 # Changelog
 
+## 0.3.2
+
+### Added
+- **Dedicated current-model profiles** (checked before family bases, with vendor-verified specs):
+  - `gpt-6.1` — GPT-6.1 Sol: 1,050,000 context / 922k max input / 128k output (Codex default 500k), reasoning effort low→max, Responses-API tooling, 1800/700 budgets.
+  - `claude-opus-5-5` — Claude Opus 5.5: 1M context, adaptive thinking always on (default medium), current tokenizer estimate 2.6 chars/token, 2000/800 budgets, XML injection + archive-first compaction guidance.
+  - `claude-sonnet-5-5` — Claude Sonnet 5.5: 1M context, adaptive thinking (default high), 1600/650 budgets for the speed/intelligence balance.
+  - `deepseek-flash` — DeepSeek Flash: model id `deepseek-flash` (legacy `deepseek-v4-flash`), 1M context / 384k output, thinking/non-thinking default thinking, latency-sensitive bilingual profile, 1200/500 budgets.
+- Variant registry (`MODEL_VARIANTS`) + resolution precedence; overrides (`profileOverrides`) still win. Docs table with vendor sources; harness U16 covers resolution/precedence/budgets/manual/digest (113 tests).
+
 ## 0.3.1
 
 ### Performance

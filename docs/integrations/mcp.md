@@ -9,7 +9,7 @@ The MCP server is dependency-free stdio JSON-RPC 2.0; if a client supports MCP t
 
 ```bash
 node packages/dsh-memory-mcp/bin/server.mjs \
-  --root ~/.dsh-memory --model <model-id> --agent <agent-name> --levels l3
+  --root ~/.dsh-memory --model deepseek-flash --agent <agent-name> --levels l3
 ```
 
 Options: `--root DIR`, `--levels l2,l3`, `--model ID`, `--agent NAME`, `--session ID`, `--cwd DIR`, `--capacity N`, `--session-capacity N`. stdout is protocol-only; diagnostics go to stderr.

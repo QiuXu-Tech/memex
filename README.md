@@ -15,7 +15,7 @@ It started as a [DeepSeek Harness](https://github.com/deepseek-ai) plugin and is
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/dsh-memory-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/dsh-memory-core`) |
 
-> Status: **0.3.1** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **13 model families** (Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Grok / Command / Gemma / Phi / Llama / generic), 112/112 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.3.1** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **17 model profiles** (family bases for Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Grok / Command / Gemma / Phi / Llama / generic + dedicated **GPT-6.1 Sol, Claude Opus 5.5, Claude Sonnet 5.5, DeepSeek Flash** variants), 113/113 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -31,7 +31,7 @@ Long conversations and long-running projects hit the same wall: the native conte
 - **Lossless by default**: raw conversation/tool output is stored verbatim (markdown files + SQLite index) — no LLM summarization on the critical path.
 - **Capacity compression on demand**: when a pool is near full the model asks the user first; compression then applies a **cold tier** (lossless, zero-LLM) and optionally **bounded map-reduce digests** (batched, resumable, never one giant prompt).
 - **Cheap recall**: hybrid keyword retrieval (FTS + card fields + bounded cold abstracts + lexical rerank), ~1–5 ms on realistic archives, tens of tokens per hit.
-- **Model-specific adaptation**: profiles tuned per model family — context window, chars/token ratio, injection format (XML/Markdown/plain), catalog/recall budgets, digest prompt style, bilingual CJK guidance **and retrieval rerank weights** (title/tags/summary/useWhen/abstract/body/recency/bm25) passed into hybrid search — 13 families incl. Claude, GPT, Gemini, DeepSeek, Qwen, Kimi, GLM, Grok, Command, Gemma, Phi, Llama. See [docs/model-profiles.md](docs/model-profiles.md).
+- **Model-specific adaptation**: profiles tuned per model family — context window, chars/token ratio, injection format (XML/Markdown/plain), catalog/recall budgets, digest prompt style, bilingual CJK guidance **and retrieval rerank weights** (title/tags/summary/useWhen/abstract/body/recency/bm25) passed into hybrid search. 13 family bases plus **dedicated GPT-6.1 Sol / Claude Opus 5.5 / Claude Sonnet 5.5 / DeepSeek Flash** profiles with vendor-current context limits and reasoning-mode guidance. See [docs/model-profiles.md](docs/model-profiles.md).
 - **Hot-body rescue**: identifier-like body tokens are indexed (`record_terms`) so facts that never made it into a title/summary are still found when card matches fill the limit; a `body` rerank weight ranks them. On the controlled fixture this took hot-body hit@1/@5 from **0%/0% to 100%/100%**.
 
 ## Features
@@ -115,13 +115,13 @@ cd dsh-memory
 node scripts/build-bundle.mjs        # only needed for DSH mode; MCP/adapters read the source packages
 
 # Claude Code: registers MCP + hooks + CLAUDE.md manual in this project
-node packages/dsh-memory-claude/bin/cli.mjs init --model claude-sonnet-4
+node packages/dsh-memory-claude/bin/cli.mjs init --model claude-sonnet-5-5
 
 # Codex: writes AGENTS.md + prints/installs the MCP config
-node packages/dsh-memory-codex/bin/cli.mjs init --model gpt-5-codex --write-config
+node packages/dsh-memory-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
 
 # Any MCP client: point it at the stdio server
-node packages/dsh-memory-mcp/bin/server.mjs --root ~/.dsh-memory --model <model-id> --levels l3
+node packages/dsh-memory-mcp/bin/server.mjs --root ~/.dsh-memory --model deepseek-flash --levels l3
 ```
 
 See [docs/integrations.md](docs/integrations.md), [Claude Code](docs/integrations/claude-code.md), [Codex](docs/integrations/codex.md), [generic MCP clients](docs/integrations/mcp.md) and [model profiles](docs/model-profiles.md).
@@ -185,7 +185,7 @@ Reproduction commands, including the required saved summary and cold target rati
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (112 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (113 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```

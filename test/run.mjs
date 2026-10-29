@@ -3833,7 +3833,7 @@ await test('U11', 'PreCompact archives transcripts larger than the store body li
 
 await test('U12', 'injected catalog/recall blocks stay inside each profile budget (wrapper included)', async () => {
   const hugeCatalog = `## Memory catalog\n${'- mem_abc · a title · when to read\n'.repeat(400)}`
-  for (const profileId of ['claude', 'openai', 'gemini', 'deepseek', 'qwen', 'kimi', 'glm', 'llama', 'generic']) {
+  for (const profileId of ['claude', 'openai', 'gemini', 'deepseek', 'qwen', 'kimi', 'glm', 'llama', 'generic', 'gpt-6.1', 'claude-opus-5-5', 'claude-sonnet-5-5', 'deepseek-flash']) {
     const profile = profiles.resolveModelProfile(profileId)
     const catalog = manual.buildCatalogInjection(profile, hugeCatalog)
     const recall = manual.buildRecallInjection(profile, Array.from({ length: 40 }, (_, i) => ({ id: `mem_${i}`, title: 'title '.repeat(10), useWhen: 'when '.repeat(10) })))
@@ -3896,6 +3896,45 @@ await test('U14', 'MCP parity tools: list, set-status and forget operate on the 
   assertIncludes(replies.get(3).result.content[0].text, recordId)
   assertIncludes(replies.get(4).result.content[0].text, 'Deleted')
   assertIncludes(replies.get(5).result.content[0].text, 'No memory records')
+})
+
+
+await test('U16', 'dedicated GPT-6.1 / Opus 5.5 / Sonnet 5.5 / DeepSeek Flash profiles win over family bases', async () => {
+  assert.equal(profiles.MODEL_VARIANTS.length, 4)
+  const cases = [
+    ['gpt-6.1-sol', 'gpt-6.1', 1_050_000, 4.0],
+    ['gpt-6.1', 'gpt-6.1', 1_050_000, 4.0],
+    ['claude-opus-5-5', 'claude-opus-5-5', 1_000_000, 2.6],
+    ['claude-opus-5.5', 'claude-opus-5-5', 1_000_000, 2.6],
+    ['claude-sonnet-5-5', 'claude-sonnet-5-5', 1_000_000, 2.6],
+    ['claude-sonnet-5.5', 'claude-sonnet-5-5', 1_000_000, 2.6],
+    ['deepseek-flash', 'deepseek-flash', 1_048_576, 3.0],
+    ['deepseek-v4-flash', 'deepseek-flash', 1_048_576, 3.0],
+  ]
+  for (const [modelId, expectedId, window, ratio] of cases) {
+    const profile = profiles.resolveModelProfile(modelId)
+    assert.equal(profile.id, expectedId, `${modelId} must resolve to the dedicated profile`)
+    assert.equal(profile.windowTokens, window, `${modelId} window`)
+    assert.equal(profile.charsPerToken, ratio, `${modelId} tokenizer estimate`)
+    assert.equal(typeof profile.manualStyle, 'string')
+    assert.ok(profile.catalogTokens >= 1_000 && profile.recallTokens >= 500, `${modelId} budgets`)
+  }
+  // Variants must not swallow older family ids.
+  assert.equal(profiles.resolveModelProfile('gpt-5-codex').id, 'openai')
+  assert.equal(profiles.resolveModelProfile('claude-opus-4-1').id, 'claude')
+  assert.equal(profiles.resolveModelProfile('deepseek-reasoner').id, 'deepseek')
+  // Model-specific tuning is real: dedicated manual + digest prompt + budgets.
+  const opus = profiles.resolveModelProfile('claude-opus-5-5')
+  assert.equal(opus.injectionStyle, 'xml')
+  assert.equal(opus.digestStyle, 'bullet-ids')
+  assert.equal(opus.rerank.title, 3.4)
+  assert.ok(manual.buildMemoryManual(opus, { agent: 'Claude Code' }).includes('Opus 5.5'))
+  const flash = profiles.resolveModelProfile('deepseek-flash')
+  assert.equal(flash.digestStyle, 'bilingual')
+  assert.ok(manual.buildMemoryManual(flash, { agent: 'MCP' }).includes('DeepSeek Flash'))
+  assert.ok(profiles.digestPrompt(flash, { ids: ['a'], text: 'x' }).system.includes('ids:'))
+  // Overrides still win, including on a dedicated variant.
+  assert.equal(profiles.resolveModelProfile('gpt-6.1-sol', { windowTokens: 500_000 }).windowTokens, 500_000)
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────
