@@ -12,10 +12,11 @@
  * @module @qiuxu/memex-core/store
  */
 import { DatabaseSync } from 'node:sqlite'
-import { mkdirSync, readFileSync, writeFileSync, renameSync, unlinkSync, existsSync } from 'node:fs'
+import { mkdirSync, readFileSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash, randomUUID } from 'node:crypto'
 import { canonicalContextEvent, checksumContextEvent } from './context-events.js'
+import { recoverOnOpen, withFileTransaction } from './file-transactions.js'
 import {
   MEMORY_KINDS, MEMORY_STATUSES, MEMORY_TRUST, MEMORY_TEXT_LIMITS,
   MEMORY_LEVELS, MEMORY_MODES, MEMORY_SCOPES, MEMORY_LEVEL_SCOPE, memoryCaptureScope, memoryLevelsFromRow, memoryVisibleScopes,
@@ -179,6 +180,7 @@ export class LocalStoreCore {
     if (this.ready) return this
     mkdirSync(join(this.root, RECORDS_DIR), { recursive: true, mode: 0o700 })
     const db = new DatabaseSync(join(this.root, DB_FILE))
+    db.exec('PRAGMA busy_timeout = 5000')
     db.exec('PRAGMA journal_mode = WAL')
     db.exec('PRAGMA synchronous = NORMAL')
     db.exec(`
@@ -272,6 +274,12 @@ export class LocalStoreCore {
         updated_at INTEGER NOT NULL
       );
     `)
+    try {
+      recoverOnOpen(this.root, db)
+    } catch (error) {
+      try { db.close() } catch {}
+      throw error
+    }
     // Migration: earlier rounds stored a single `mode`; the sticky L2/L3 levels
     // replaced it. Add the level columns to an existing table and backfill once.
     const columns = db.prepare('PRAGMA table_info(session_settings)').all().map((row) => row.name)
@@ -435,60 +443,69 @@ export class LocalStoreCore {
     }
   }
 
-  /** Persist one record and its index projection atomically enough for single-process use. */
-  write(input) {
+  /** Persist a record and its index without replacing the previously indexed file. */
+  write(input, options = {}) {
     const record = this.normalize(input)
-    const file = this.recordPath(record.workspaceKey, record.id)
-    mkdirSync(join(this.root, RECORDS_DIR, record.workspaceKey), { recursive: true, mode: 0o700 })
-    const text = renderRecordFile(record)
-    const tmp = `${file}.${process.pid}.tmp`
-    writeFileSync(tmp, text, { mode: 0o600 })
-    renameSync(tmp, file)
-    const db = this.database()
-    const bytes = Buffer.byteLength(text, 'utf8')
-    db.exec('BEGIN IMMEDIATE')
     try {
-      const existing = db.prepare('SELECT rowid FROM records WHERE id = ?').get(record.id)
-      db.prepare(`
-        INSERT INTO records (
-          id, workspace_key, workspace, scope, session_id, kind, title, summary, use_when,
-          tags_json, links_json, provenance_json, path, tokens, bytes, trust, status,
-          created_at, updated_at, read_count, last_read_at
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NULL)
-        ON CONFLICT(id) DO UPDATE SET
-          workspace_key = excluded.workspace_key, workspace = excluded.workspace,
-          scope = excluded.scope, session_id = excluded.session_id, kind = excluded.kind,
-          title = excluded.title, summary = excluded.summary, use_when = excluded.use_when,
-          tags_json = excluded.tags_json, links_json = excluded.links_json,
-          provenance_json = excluded.provenance_json, path = excluded.path,
-          tokens = excluded.tokens, bytes = excluded.bytes, trust = excluded.trust,
-          status = excluded.status, updated_at = excluded.updated_at
-      `).run(
-        record.id, record.workspaceKey, record.workspace, record.scope, record.sessionId,
-        record.kind, record.title, record.summary, record.useWhen,
-        safeJson(record.tags), safeJson(record.links), safeJson(record.provenance),
-        file, record.tokens, bytes, record.trust, record.status,
-        record.createdAt, record.updatedAt,
-      )
-      const row = db.prepare('SELECT rowid FROM records WHERE id = ?').get(record.id)
-      if (existing !== undefined) db.prepare('DELETE FROM records_fts WHERE rowid = ?').run(row.rowid)
-      db.prepare('INSERT INTO records_fts (rowid, title, summary, use_when, tags, abstract) VALUES (?, ?, ?, ?, ?, ?)')
-        .run(row.rowid, record.title, record.summary, record.useWhen, tagsText(record.tags), '')
-      db.prepare('DELETE FROM record_terms WHERE record_id = ?').run(record.id)
-      const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
-      const cardText = `${record.title} ${record.summary} ${record.useWhen} ${tagsText(record.tags)}`
-      for (const hash of new Set([...bodyTermHashes(record.body), ...bodyTermHashes(cardText)])) insertTerm.run(record.id, hash)
-      db.exec('COMMIT')
+      const db = this.database()
+      return withFileTransaction(this.root, db, (stage) => {
+        const existing = db.prepare('SELECT rowid, path, cold, created_at FROM records WHERE id = ?').get(record.id)
+        if (options.expectedPath !== undefined && existing?.path !== options.expectedPath) {
+          throw new Error('memory: record changed during update; retry after re-reading it')
+        }
+        if (existing !== undefined && !existsSync(existing.path)) {
+          throw new Error('memory: record file missing; original and candidate files were preserved: ' + existing.path)
+        }
+        if (existing !== undefined) record.createdAt = existing.created_at
+        const text = renderRecordFile(record)
+        const cold = Number(existing?.cold ?? 0) === 1
+        const abstract = cold ? abstractOfBody(record.body) : ''
+        const preferred = cold
+          ? join(this.root, 'cold', record.workspaceKey, record.id + '.md')
+          : this.recordPath(record.workspaceKey, record.id)
+        const file = stage('write', record.id, existing?.path ?? null, preferred, text).path
+        const bytes = Buffer.byteLength(text, 'utf8')
+        db.prepare(`
+          INSERT INTO records (
+            id, workspace_key, workspace, scope, session_id, kind, title, summary, use_when,
+            tags_json, links_json, provenance_json, path, tokens, bytes, trust, status,
+            created_at, updated_at, read_count, last_read_at, cold, abstract
+          ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 0, NULL, ?, ?)
+          ON CONFLICT(id) DO UPDATE SET
+            workspace_key = excluded.workspace_key, workspace = excluded.workspace,
+            scope = excluded.scope, session_id = excluded.session_id, kind = excluded.kind,
+            title = excluded.title, summary = excluded.summary, use_when = excluded.use_when,
+            tags_json = excluded.tags_json, links_json = excluded.links_json,
+            provenance_json = excluded.provenance_json, path = excluded.path,
+            tokens = excluded.tokens, bytes = excluded.bytes, trust = excluded.trust,
+            status = excluded.status, updated_at = excluded.updated_at,
+            cold = excluded.cold, abstract = excluded.abstract
+        `).run(
+          record.id, record.workspaceKey, record.workspace, record.scope, record.sessionId,
+          record.kind, record.title, record.summary, record.useWhen,
+          safeJson(record.tags), safeJson(record.links), safeJson(record.provenance),
+          file, record.tokens, bytes, record.trust, record.status,
+          record.createdAt, record.updatedAt, cold ? 1 : 0, abstract,
+        )
+        const row = db.prepare('SELECT rowid FROM records WHERE id = ?').get(record.id)
+        if (existing !== undefined) db.prepare('DELETE FROM records_fts WHERE rowid = ?').run(row.rowid)
+        db.prepare('INSERT INTO records_fts (rowid, title, summary, use_when, tags, abstract) VALUES (?, ?, ?, ?, ?, ?)')
+          .run(row.rowid, record.title, record.summary, record.useWhen, tagsText(record.tags), abstract)
+        db.prepare('DELETE FROM record_terms WHERE record_id = ?').run(record.id)
+        const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
+        const cardText = [record.title, record.summary, record.useWhen, tagsText(record.tags)].join(' ')
+        for (const hash of new Set([...bodyTermHashes(record.body), ...bodyTermHashes(cardText)])) insertTerm.run(record.id, hash)
+        return { ...record, path: file }
+      }, (error) => this.logger?.()?.warn?.('memory: file cleanup deferred: ' + error.message))
     } catch (error) {
-      db.exec('ROLLBACK')
-      try {
-        unlinkSync(file)
-      } catch {
-        // The index write failed; a leftover file is harmless and reindexable.
+      if (error !== null && typeof error === 'object') {
+        try {
+          error.recordId = record.id
+          error.message += ' (record id ' + record.id + '; inspect before retry)'
+        } catch {}
       }
       throw error
     }
-    return { ...record, path: file }
   }
 
   /** Read one stored row as a card, without the body. */
@@ -571,16 +588,20 @@ export class LocalStoreCore {
 
   /** Load one record including its body read from the file. */
   get(id) {
-    const row = this.database().prepare('SELECT * FROM records WHERE id = ?').get(id)
-    if (row === undefined) return undefined
-    const card = this.cardFromRow(row)
-    let body = ''
-    try {
-      body = recordBodyFromFile(readFileSync(row.path, 'utf8'))
-    } catch {
-      body = card.summary
+    const db = this.database()
+    for (let attempt = 0; attempt < 3; attempt += 1) {
+      const row = db.prepare('SELECT * FROM records WHERE id = ?').get(id)
+      if (row === undefined) return undefined
+      try {
+        return { ...this.cardFromRow(row), body: recordBodyFromFile(readFileSync(row.path, 'utf8')) }
+      } catch (error) {
+        const latest = db.prepare('SELECT path FROM records WHERE id = ?').get(id)
+        if (latest === undefined) return undefined
+        if (error?.code === 'ENOENT' && latest.path !== row.path) continue
+        throw new Error('memory: record file missing or unreadable; files were preserved: ' + row.path, { cause: error })
+      }
     }
-    return { ...card, body }
+    throw new Error('memory: record changed repeatedly while reading: ' + id)
   }
 
   /**
@@ -1081,29 +1102,18 @@ export class LocalStoreCore {
    */
   archiveCold(id) {
     const db = this.database()
-    const row = db.prepare('SELECT * FROM records WHERE id = ?').get(id)
-    if (row === undefined) return undefined
-    if (Number(row.cold) === 1) return this.cardFromRow(row)
-    const coldDir = join(this.root, 'cold', row.workspace_key)
-    mkdirSync(coldDir, { recursive: true, mode: 0o700 })
-    const target = join(coldDir, `${id}.md`)
-    let abstract = row.abstract ?? ''
-    try {
-      abstract = abstractOfBody(recordBodyFromFile(readFileSync(row.path, 'utf8')))
-    } catch {
-      abstract = row.abstract ?? ''
-    }
-    try {
-      renameSync(row.path, target)
-    } catch {
-      // A missing source file is tolerable: the record still moves cold and the
-      // summary stays readable from the cards table.
-      writeFileSync(target, recordBodyFromFile(''), { mode: 0o600 })
-    }
-    const now = Date.now()
-    db.prepare('UPDATE records SET cold = 1, path = ?, updated_at = ?, abstract = ? WHERE id = ?').run(target, now, abstract, id)
-    db.prepare('UPDATE records_fts SET abstract = ? WHERE rowid = (SELECT rowid FROM records WHERE id = ?)').run(abstract, id)
-    return this.cardFromRow(db.prepare('SELECT * FROM records WHERE id = ?').get(id))
+    return withFileTransaction(this.root, db, (stage) => {
+      const row = db.prepare('SELECT * FROM records WHERE id = ?').get(id)
+      if (row === undefined) return undefined
+      if (Number(row.cold) === 1) return this.cardFromRow(row)
+      if (!existsSync(row.path)) throw new Error('memory: record file missing; original and candidate files were preserved: ' + row.path)
+      const abstract = abstractOfBody(recordBodyFromFile(readFileSync(row.path, 'utf8')))
+      const preferred = join(this.root, 'cold', row.workspace_key, id + '.md')
+      const target = stage('move', id, row.path, preferred).path
+      db.prepare('UPDATE records SET cold = 1, path = ?, updated_at = ?, abstract = ? WHERE id = ?').run(target, Date.now(), abstract, id)
+      db.prepare('UPDATE records_fts SET abstract = ? WHERE rowid = (SELECT rowid FROM records WHERE id = ?)').run(abstract, id)
+      return this.cardFromRow(db.prepare('SELECT * FROM records WHERE id = ?').get(id))
+    }, (error) => this.logger?.()?.warn?.('memory: file cleanup deferred: ' + error.message))
   }
 
   /**
@@ -1113,21 +1123,17 @@ export class LocalStoreCore {
    */
   restoreCold(id) {
     const db = this.database()
-    const row = db.prepare('SELECT * FROM records WHERE id = ?').get(id)
-    if (row === undefined) return undefined
-    if (Number(row.cold) !== 1) return this.cardFromRow(row)
-    const hotDir = join(this.root, RECORDS_DIR, row.workspace_key)
-    mkdirSync(hotDir, { recursive: true, mode: 0o700 })
-    const target = join(hotDir, `${id}.md`)
-    try {
-      renameSync(row.path, target)
-    } catch {
-      writeFileSync(target, recordBodyFromFile(''), { mode: 0o600 })
-    }
-    const now = Date.now()
-    db.prepare("UPDATE records SET cold = 0, path = ?, updated_at = ?, abstract = '' WHERE id = ?").run(target, now, id)
-    db.prepare("UPDATE records_fts SET abstract = '' WHERE rowid = (SELECT rowid FROM records WHERE id = ?)").run(id)
-    return this.cardFromRow(db.prepare('SELECT * FROM records WHERE id = ?').get(id))
+    return withFileTransaction(this.root, db, (stage) => {
+      const row = db.prepare('SELECT * FROM records WHERE id = ?').get(id)
+      if (row === undefined) return undefined
+      if (Number(row.cold) !== 1) return this.cardFromRow(row)
+      if (!existsSync(row.path)) throw new Error('memory: record file missing; original and candidate files were preserved: ' + row.path)
+      const preferred = this.recordPath(row.workspace_key, id)
+      const target = stage('move', id, row.path, preferred).path
+      db.prepare("UPDATE records SET cold = 0, path = ?, updated_at = ?, abstract = '' WHERE id = ?").run(target, Date.now(), id)
+      db.prepare("UPDATE records_fts SET abstract = '' WHERE rowid = (SELECT rowid FROM records WHERE id = ?)").run(id)
+      return this.cardFromRow(db.prepare('SELECT * FROM records WHERE id = ?').get(id))
+    }, (error) => this.logger?.()?.warn?.('memory: file cleanup deferred: ' + error.message))
   }
 
   /**
@@ -1193,16 +1199,11 @@ export class LocalStoreCore {
       if (rows.length === 0) break
       for (const card of rows) {
         if (coldTotal <= keepTokens) break
-        const path = this.database().prepare('SELECT path FROM records WHERE id = ?').get(card.id)?.path
-        try {
-          if (path !== undefined) unlinkSync(path)
-        } catch {
-          // Missing file: the row still goes away.
-        }
-        this.database().prepare('DELETE FROM records WHERE id = ?').run(card.id)
+        const deleted = this.removeRecord(card.id, true)
+        if (deleted === undefined) continue
         removed.push(card.id)
-        coldTotal -= card.tokens
-        freed += card.tokens
+        coldTotal -= deleted.tokens
+        freed += deleted.tokens
       }
     }
     report.freedTokens = freed
@@ -1449,26 +1450,23 @@ export class LocalStoreCore {
     return { count: row?.count ?? 0, tokens: row?.tokens ?? 0 }
   }
 
+  /** Remove a record after atomically committing the index deletion. */
+  removeRecord(id, coldOnly = false) {
+    const db = this.database()
+    return withFileTransaction(this.root, db, (stage) => {
+      const row = db.prepare('SELECT rowid, path, cold, tokens FROM records WHERE id = ?').get(id)
+      if (row === undefined || (coldOnly && Number(row.cold) !== 1)) return undefined
+      stage('delete', id, row.path, null)
+      db.prepare('DELETE FROM records_fts WHERE rowid = ?').run(row.rowid)
+      db.prepare('DELETE FROM record_terms WHERE record_id = ?').run(id)
+      db.prepare('DELETE FROM records WHERE id = ?').run(id)
+      return { tokens: Number(row.tokens) }
+    }, (error) => this.logger?.()?.warn?.('memory: file cleanup deferred: ' + error.message))
+  }
+
   /** Remove one record and its index projection. */
   forget(id) {
-    const db = this.database()
-    const row = db.prepare('SELECT rowid, path FROM records WHERE id = ?').get(id)
-    if (row === undefined) return false
-    db.exec('BEGIN IMMEDIATE')
-    try {
-      db.prepare('DELETE FROM records_fts WHERE rowid = ?').run(row.rowid)
-      db.prepare('DELETE FROM records WHERE id = ?').run(id)
-      db.exec('COMMIT')
-    } catch (error) {
-      db.exec('ROLLBACK')
-      throw error
-    }
-    try {
-      unlinkSync(row.path)
-    } catch {
-      // A missing file after the index row is already gone is harmless.
-    }
-    return true
+    return this.removeRecord(id) !== undefined
   }
 
   /**
@@ -1480,7 +1478,7 @@ export class LocalStoreCore {
     if (!MEMORY_STATUSES.includes(status)) throw new Error(`memory: unknown status "${status}"`)
     const record = this.get(id)
     if (record === undefined) return undefined
-    return this.write({ ...record, id, status, createdAt: record.createdAt, body: record.body })
+    return this.write({ ...record, id, status, createdAt: record.createdAt, body: record.body }, { expectedPath: record.path })
   }
 
   /** Record read usage for ranking later. */
@@ -1500,6 +1498,11 @@ export class LocalStoreCore {
 
   /** Persist an archived compaction and its idempotency marker. */
   archiveRegion(input) {
+    const existingId = this.wasArchived(input.sessionId, input.compactionId)
+    if (existingId !== undefined) {
+      const existing = this.get(existingId)
+      if (existing !== undefined) return existing
+    }
     const record = this.normalize(input.record)
     const stored = this.write(record)
     this.database().prepare('INSERT OR IGNORE INTO archived_compactions (session_id, compaction_id, record_id, created_at) VALUES (?, ?, ?, ?)')

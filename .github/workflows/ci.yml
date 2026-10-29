@@ -20,6 +20,8 @@ jobs:
         run: node scripts/check-bundle.mjs
       - name: Run offline harness
         run: node --import ./test/register.mjs ./test/run.mjs
+      - name: SQLite concurrency and recovery
+        run: node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs
       - name: Recall evaluation (synthetic)
         run: node --import ./test/register.mjs ./scripts/recall-eval.mjs --suite synthetic --threshold 0.9
       - name: Scale smoke (1k records)

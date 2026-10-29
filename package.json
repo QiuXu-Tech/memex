@@ -11,6 +11,7 @@
     "build": "node scripts/build-bundle.mjs",
     "check": "node scripts/check-bundle.mjs",
     "test": "node --import ./test/register.mjs ./test/run.mjs",
+    "test:sqlite": "node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs",
     "eval:recall": "node --import ./test/register.mjs ./scripts/recall-eval.mjs --suite all",
     "eval:long-horizon": "node --import ./test/register.mjs ./scripts/long-horizon-eval.mjs --mode compaction --tokens 160000 --window 80000 --out /tmp/lh-compaction",
     "bench:scale": "node --import ./test/register.mjs ./scripts/scale-bench.mjs",

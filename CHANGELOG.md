@@ -4,6 +4,13 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## Unreleased
+
+### Fixed
+- Serialize file-backed record mutations with SQLite, retain staged data across interrupted operations, and never overwrite a cold file after a failed move. Missing legacy bodies now raise an explicit error.
+- Snapshot backups under the writer lock, include retained recovery files, and rebase restored record paths to the destination after validating them.
+- Added multi-process lock, interruption, retry, backup and recovery tests. Process-crash recovery is covered; sudden power-loss durability is not established.
+
 ## 0.14.1
 
 ### Fixed
