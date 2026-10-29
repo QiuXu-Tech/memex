@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.1
+
+### Added — Codex/GPT contribution bridge
+- `scripts/codex-ab.mjs`: generates the synthetic fixture via `live-ab.mjs --emit-prompts`, runs `codex exec` (read-only sandbox, isolated work dirs) for control/treatment, grades exact FACT ids, and writes a shareable JSON report. No API key read or stored.
+- Docs: docs/live-testing.md "Run it with Codex CLI (GPT models)" with the one-command contribution path; README pointer.
+- Output includes per-seed rows, control/treatment/cold accuracy, raw reply tails and explicit caveats. Requires Node >= 22 and a logged-in `codex` CLI.
+
 ## 0.6.0
 
 ### Added — anchor-free natural-language recall

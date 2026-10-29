@@ -77,6 +77,20 @@ This exercises the new **anchor-free hot-body coverage rescue**: it runs only wh
 
 **Privacy:** the fixtures are synthetic — no private conversations are sent or stored. When sharing results, remove API keys, auth headers, and any local paths you do not want public; the harness output contains only prompts from the synthetic fixture, model answers, usage, and timings. Never paste provider keys into the repository or an issue.
 
+## Run it with Codex CLI (GPT models)
+
+If you use Codex CLI with GPT models, you can contribute without an OpenAI API key. The bridge generates the same synthetic fixture, asks `codex exec` for the control and treatment answers, grades exact FACT ids, and writes a shareable JSON report (no keys, no private data):
+
+```bash
+git clone https://github.com/QiuXu-Tech/memex.git
+cd memex
+node scripts/codex-ab.mjs --model gpt-6.1-sol
+```
+
+Requirements: Node >= 22 (`node -v`; `npx -y node@22 scripts/codex-ab.mjs ...` works as a fallback) and a logged-in `codex` CLI. Options: `--model gpt-6.1-terra`, `--seeds 3`, `--probes 20`, `--turns 300`, `--out /tmp/codex-ab.json`, `--keep` (keep prompts). The script prints the report path; attach that JSON to [issue #1](https://github.com/QiuXu-Tech/memex/issues/1) or open a PR under `docs/assets/benchmarks/`.
+
+The control/treatment prompts are synthetic; review the `raw` replies before publishing. Codex has its own tools, so the prompts ask it not to use them — the per-run work directories are isolated and `--sandbox read-only` is used.
+
 ## What the harness measures
 
 For each synthetic long-horizon question it runs two conditions on the same model:
