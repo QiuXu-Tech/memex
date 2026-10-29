@@ -1,3 +1,8 @@
+---
+title: Evaluation
+layout: default
+---
+
 # Evaluation
 
 All numbers below are reproducible with the scripts in `scripts/`. They were measured on a 10-core Apple Silicon machine with Node 24, SQLite `node:sqlite`, and synthetic or throwaway archives (never the live store).

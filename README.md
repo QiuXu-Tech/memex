@@ -34,6 +34,12 @@ Long conversations and long-running projects hit the same wall: the native conte
 - **Operations**: restore/回热, cold GC, backup/verify/restore (SQLite `VACUUM INTO` + sha256 manifest).
 - **UI**: composer context-ring inner arc (teal = L2 capture, blue = L3), a popover mode row, a full memory panel with compression/restore buttons and capacity warnings.
 
+## Demo
+
+![dsh-memory panel and compression flow](docs/assets/demo.gif)
+
+*A condensed illustration of the context-ring popover, the capacity notice, a lossless compression run, and the memory panel (rendered animation, not a screen recording).*
+
 ## Architecture (short version)
 
 ```
@@ -49,7 +55,7 @@ DSH agent session
  └─ Web: context ring + memory panel via /api/memory.* (9 owner-scoped routes)
 ```
 
-Full design: [docs/architecture.md](docs/architecture.md). Measured results: [docs/evaluation.md](docs/evaluation.md).
+Full design: [docs/architecture.md](docs/architecture.md). Measured results: [docs/evaluation.md](docs/evaluation.md). Hosted docs: <https://qiuxu-tech.github.io/dsh-memory/>. Security policy: [SECURITY.md](SECURITY.md). Upstreaming plan: [docs/upstream.md](docs/upstream.md).
 
 ## Repository layout
 
@@ -136,7 +142,7 @@ node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```
 
-The test harness stubs the host packages (`@deepseek-ai/*`) with ESM loader hooks, so it needs no `node_modules` and no DSH install. See [test/README.md](test/README.md) and [CONTRIBUTING.md](CONTRIBUTING.md).
+The test harness stubs the host packages (`@deepseek-ai/*`) with ESM loader hooks, so it needs no `node_modules` and no DSH install. See [test/README.md](test/README.md) and [CONTRIBUTING.md](CONTRIBUTING.md). Upstream package export: `node scripts/export-upstream.mjs` (see [docs/upstream.md](docs/upstream.md)).
 
 ## License
 

@@ -1,3 +1,8 @@
+---
+title: Architecture
+layout: default
+---
+
 # 记忆子系统架构
 
 本文描述 `@qiuxu/dsh-memory` 子系统的精确实现：三级缓存模型（L1 = 模型原生上下文窗口，不存储；L2 = 会话私有归档 10M；L3 = 工作区共享归档 100M）、L2/L3 两个独立**粘性**开关、热池/冷存（cold）容量生命周期（回热/GC/配额/cold abstract）、按启用层级门控，以及 L1 驱逐（含敏感策略）、compaction 兜底、共享查询词与**混合检索**（FTS+LIKE+cold abstract+重排）、召回、双语容量提示、容量压缩（2 路并发 digest + 压缩历史）、metrics API、备份/校验/恢复、记录注入、持久化与 Web 面板/composer 圆环/HTTP API 语义。源码分为九个平级包（`packages/dsh-memory-seam`、`dsh-memory-local`、`dsh-memory-checkpoint`、`dsh-memory-evict`、`dsh-memory-compress`、`dsh-tool-memory`、`dsh-command-memory`、`dsh-memory-api`、`dsh-memory-ui`）；一个自包含 bundle（`packages/dsh-memory`，`scripts/build-bundle.mjs` 生成 `modules/`）在运行时组合**八条**独立插件行（`memory` / `memory-checkpoint` / `memory-tools` / `memory-evict` / `memory-compress` / `memory-api` / `memory-ui` / `memory-commands`），各自拥有 Config（或没有）与 fiber；除 seam 库外，消费者只使用异步 `ctx.memory` 服务，Web 客户端只使用 `/api/memory.*`。下文路径均相对 `memory-subsystem/packages/`；上游 DSH 侧的事件/服务契约来自随附 0.2.1-rc.3 构建（`dsh-compaction`、`dsh-session`、`dsh-session-query`、`dsh-llm`、`dsh-token-meter`、`dsh-client-modules`、`dsh-client-connection`、`dsh-api-remote-access` 的类型声明与 README）。

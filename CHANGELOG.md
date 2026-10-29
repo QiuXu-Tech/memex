@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+### Added
+- Animated demo (`docs/assets/demo.gif`) and social preview image (`.github/social-preview.png`).
+- GitHub Pages documentation site (`docs/index.md` + Jekyll config): <https://qiuxu-tech.github.io/dsh-memory/>.
+- Issue forms (bug/feature), PR template, and `SECURITY.md` with private vulnerability reporting.
+- Upstream export tool `scripts/export-upstream.mjs` and [docs/upstream.md](docs/upstream.md) (DSH-shaped package tree + PR checklist).
+
 ## 0.1.0
 
 Initial open-source release.

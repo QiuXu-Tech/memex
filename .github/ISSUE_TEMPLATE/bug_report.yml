@@ -1,0 +1,63 @@
+name: Bug report
+description: Something in dsh-memory behaves incorrectly
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: Please search existing issues first. For security reports use SECURITY.md instead.
+  - type: input
+    id: version
+    attributes:
+      label: dsh-memory version / commit
+      placeholder: "0.1.0 / 56fa217"
+    validations:
+      required: true
+  - type: input
+    id: dsh
+    attributes:
+      label: DSH version
+      placeholder: "0.2.1-rc.3 (desktop/web profile)"
+    validations:
+      required: true
+  - type: input
+    id: node
+    attributes:
+      label: Node.js version
+      placeholder: "24.x"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      options:
+        - L1 eviction
+        - L2/L3 levels & capture
+        - retrieval (search/open/grep)
+        - capacity compression / cold tier
+        - checkpoint injection (catalog/recall/notice)
+        - Web panel / context ring
+        - HTTP API
+        - offline harness / benchmarks
+        - other
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      description: Minimal steps or a fixture script (synthetic data only).
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected vs actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant output
+      description: Harness output, command text, API response. Remove personal data first.
+      render: text

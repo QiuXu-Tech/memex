@@ -1,3 +1,8 @@
+---
+title: Install guide
+layout: default
+---
+
 # Installing dsh-memory into a DSH profile
 
 dsh-memory is a **bundle** for DeepSeek Harness `0.2.1-rc.3`. It is installed into a DSH profile as a linked local package; it is not published to npm.
