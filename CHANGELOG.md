@@ -4,29 +4,17 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
-## Unreleased — A/B tail-order fix
-
-- The live A/B fixture now archives and selects records in actual write order;
-  U25 deterministically covers tied timestamps, reverse IDs, empty tails and
-  tails longer than the history. Offline harness: 122/122.
-- A fresh GPT-6.1 Sol A/B reported control 3/60, treatment 60/60, evicted
-  0/57 → 57/57. All three saved prompts and plans were checked against turns
-  280–299 in order. This is a synthetic, evidence-in-prompt comparison.
-
-## 0.7.1
-
-### Added — Codex/GPT live dataset
-- **Codex CLI / GPT-6.1 Sol live A/B (contributed)**: 3 seeds × 20 probes; control **3/60 (5%)**, treatment **60/60 (100%)**; reported cold subset 3/57 → 57/57. This is the second model family reproducing the evidence-in-prompt pattern (DeepSeek Flash also 3/60 → 60/60).
-- Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
-- Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
-
 ## 0.10.0
+
+### Fixed — A/B tail-order
+- The live A/B fixture now archives and selects records in actual write order; U25 deterministically covers tied timestamps, reverse IDs, empty tails and tails longer than the history. Offline harness: **122/122**.
+- A fresh GPT-6.1 Sol A/B reported control **3/60**, treatment **60/60**, evicted **0/57 → 57/57**. All three saved prompts and plans were checked against turns 280–299 in order. This is a synthetic, evidence-in-prompt comparison.
 
 ### Added — Claude real tool-calling loop
 - `scripts/claude-tool-loop.mjs`: native OpenAI-style tool definitions (`memory_search`, `memory_open`), model-chosen tool calls, execution against the **real memex MCP server**, final exact-FACT grading, usage capture.
 - Claude Sonnet 5.5 (3 probes): control **0/3** (no tools), treatment **3/3**; the model searched, refined queries, opened cold records and answered. Usage **15,649 tokens / 12 API calls**.
 - First end-to-end tool-calling validation (not evidence pre-injected); dataset `docs/assets/benchmarks/live-ab-claude-tool-loop.json`; summary docs/live-testing.md §I.
-- Harness **121/121**; real-archive guard unchanged.
+- Real-archive guard unchanged.
 
 ## 0.9.1
 
@@ -65,6 +53,13 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 - Live DeepSeek cold anchor-free morphology/synonym/partial run (n=3): control **0/3**, treatment **3/3** (`FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU`). Evidence: `docs/assets/benchmarks/live-ab-deepseek-cold-partial.json`.
 - **U24** covers morphology + partial coverage; harness **121/121**.
 - Trade-off documented: real-archive hit@1 **68% → 65%**, hit@5 **93%**, cold recall 94%, p50 ~2.9 ms; set `coldPartial: 0` for precision-first behavior.
+
+## 0.7.1
+
+### Added — Codex/GPT live dataset
+- **Codex CLI / GPT-6.1 Sol live A/B (contributed)**: 3 seeds × 20 probes; control **3/60 (5%)**, treatment **60/60 (100%)**; reported cold subset 3/57 → 57/57. This is the second model family reproducing the evidence-in-prompt pattern (DeepSeek Flash also 3/60 → 60/60).
+- Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
+- Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
 
 ## 0.7.0
 
@@ -224,15 +219,6 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 
 ### Fixed
 - Catalog now reports cold-only stores instead of claiming "no archived records" when every record is in the cold tier.
-
-## Unreleased
-
-### Added
-- Long-horizon A/B benchmark report (`docs/benchmark.md`, charts) + `scripts/long-horizon-eval.mjs`: memex 100% fact recall vs 60% compaction and 50% truncation (160K-token history, 80K window); 100% vs 10% window availability at 10M tokens.
-- Animated demo (`docs/assets/demo.gif`) and social preview image (`.github/social-preview.png`).
-- GitHub Pages documentation site (`docs/index.md` + Jekyll config): <https://qiuxu-tech.github.io/memex/>.
-- Issue forms (bug/feature), PR template, and `SECURITY.md` with private vulnerability reporting.
-- Upstream export tool `scripts/export-upstream.mjs` and [docs/upstream.md](docs/upstream.md) (DSH-shaped package tree + PR checklist).
 
 ## 0.1.0
 
