@@ -111,11 +111,14 @@ Both Claude 5.5 models were run through the **APIMaster** OpenAI-compatible gate
 |---|---|---|---|---|
 | `claude-sonnet-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,673 tokens** (prompt 39,025 / completion 1,648) |
 | `claude-opus-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,676 tokens** (prompt 39,028 / completion 1,648) |
+| `claude-fable-5-1` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **40,663 tokens** (prompt 39,015 / completion 1,648) |
+| `claude-haiku-5-5` | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** | **39,677 tokens** (prompt 37,631 / completion 2,046) |
 
 - Tail membership is saved (`tailIds` / per-probe `inTail`/`evicted`); the evicted subset is verified.
 - The two Claude models are indistinguishable on this synthetic fixture, mirroring the Sol/Terra result.
-- **Measured cost of a Claude validation: ~40.7k tokens per model** (6 batch calls), ~81.3k tokens for the Sonnet+Opus pair.
-- Raw: [Sonnet](assets/benchmarks/live-ab-claude-sonnet55.json) · [Opus](assets/benchmarks/live-ab-claude-opus55.json).
+- **Measured cost: 39.7k–40.7k tokens per Claude model** (6 batch calls); all four models cost **161,689 tokens** total (~24 calls).
+- All four Claude 5.5 models are indistinguishable on this synthetic fixture; every one reproduces control 3/60 and treatment 60/60 with verified evicted 57/57.
+- Raw: [Sonnet](assets/benchmarks/live-ab-claude-sonnet55.json) · [Opus](assets/benchmarks/live-ab-claude-opus55.json) · [Fable](assets/benchmarks/live-ab-claude-fable51.json) · [Haiku](assets/benchmarks/live-ab-claude-haiku55.json).
 
 Run it yourself (key is read from env, never committed):
 
