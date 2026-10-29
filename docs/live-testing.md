@@ -3,48 +3,59 @@ title: Live endpoint A/B
 layout: default
 ---
 
-# Live endpoint A/B: status and how to run
+# Live endpoint A/B: help us collect multi-model data
 
-The live model-in-the-loop experiment is prepared but **blocked by credentials on this machine**. Tracking request for help: [issue #1 — run the live A/B](https://github.com/QiuXu-Tech/memex/issues/1). The harness is committed and its dry-run plan is reproducible; once a provider key (or a logged-in agent CLI) is available, it runs end-to-end.
+Offline validation (retrieval, profiles, cold start, 100M scale) is complete. The next step needs **real usage data from many people running many models**: quality and token-usage differ per model family, and we want to validate and tune the dedicated profiles (Claude 5.5 series, GPT-6.1 series, GPT-6 Astra, DeepSeek Flash, and the family profiles) against actual model behavior rather than synthetic proxies.
 
-## Harness
+Tracking request and discussion: [issue #1](https://github.com/QiuXu-Tech/memex/issues/1).
 
-`scripts/live-ab.mjs` builds a deterministic 120-turn project history with 8 deep facts, keeps the newest 20 turns as "recent tail" and archives the rest (simulating L1 eviction). For each question it asks the same model in two conditions:
+## What data we need
 
-- **control** — only the recent tail is in the prompt; old facts are gone;
-- **treatment** — the tail plus the memex `memory_search` + `memory_open` evidence for that turn.
-
-Answers are graded by exact `FACT-###` token; latency and provider usage are recorded.
-
-```bash
-# dry run (no network): prompts + sizes only
-node --import ./test/register.mjs scripts/live-ab.mjs --dry-run --probes 4 --out /tmp/live-ab-dry.json
-
-# live run per provider (keys from env; missing providers are skipped, not fatal)
-ANTHROPIC_API_KEY=... node --import ./test/register.mjs scripts/live-ab.mjs --provider anthropic --probes 6 --out docs/assets/benchmarks/live-ab.json
-OPENAI_API_KEY=...    node --import ./test/register.mjs scripts/live-ab.mjs --provider openai    --probes 6 --out docs/assets/benchmarks/live-ab.json
-DEEPSEEK_API_KEY=...  node --import ./test/register.mjs scripts/live-ab.mjs --provider deepseek  --probes 6 --out docs/assets/benchmarks/live-ab.json
-```
-
-Default models: `claude-sonnet-5-5`, `gpt-6.1-sol`, `deepseek-flash` (override with `--model` or `ANTHROPIC_MODEL` / `OPENAI_MODEL` / `DEEPSEEK_MODEL`).
-
-## Current status (2026-10-29)
-
-| Check | Result |
+| Data | Why it matters |
 |---|---|
-| Dry run (4 probes) | ✅ prompts built: control ≈1,081 chars, treatment ≈3,586 chars per question; plan committed as `docs/assets/benchmarks/live-ab.json` |
-| `ANTHROPIC_API_KEY` | ❌ not set in the environment |
-| `OPENAI_API_KEY` | ❌ not set in the environment |
-| `DEEPSEEK_API_KEY` | ❌ not set in the environment |
-| Codex CLI | ❌ not installed on this machine |
-| Claude Code CLI (2.1.283) | ✅ installed; **OAuth session expired** (`Failed to authenticate: OAuth session expired`) → live model calls blocked |
-| Claude Code MCP config (renamed `memex`) | ✅ `claude mcp list` recognizes `memex` with the generated `--model claude-sonnet-5-5`, project approval pending as expected |
+| `accuracy.control` vs `accuracy.treatment` per model | proves the memory layer's value on evicted facts |
+| provider `usage` (input/output tokens) and latency | calibrates `charsPerToken`, catalog/recall budgets |
+| exact model id + profile id used | attributes gains to the right dedicated profile |
+| at least a few answers per model family | separates real signal from single-sample noise |
 
-So the integration surface is verified live (client parses the generated config and starts the server), but **no model endpoint answered a prompt**. We deliberately did not fake or proxy live results.
+**Coverage targets** (any subset is useful):
+`claude-opus-5-5`, `claude-sonnet-5-5`, `claude-fable-5-1`, `claude-haiku-5-5`, `gpt-6.1-sol`, `gpt-6.1-terra`, `gpt-6-astra`, `deepseek-flash`, `deepseek-v4-pro`, Gemini 2.5/3, Qwen 3, Kimi K2, GLM 4.6, Llama 4/Mistral, and older families for comparison.
 
-## What to do next
+## How to contribute
 
-1. Set one of the API keys above (or `claude login` to refresh the CLI session) and re-run the matching command.
-2. The script appends provider results to the output JSON: per-probe `correct`, `ms`, `usage`, and aggregate `accuracy.control` vs `accuracy.treatment`.
-3. Success criterion: treatment accuracy meaningfully above control (the offline evidence fixtures put control at 0% for evicted facts), with a bounded token/latency overhead.
-4. Repeat with the 8 dedicated profiles (`--model claude-opus-5-5`, `gpt-6-astra`, `deepseek-flash`, …) to tune per-model budgets against real answers.
+1. Clone and run the dry-run sanity check (no network):
+
+   ```bash
+   git clone https://github.com/QiuXu-Tech/memex.git
+   cd memex
+   node --import ./test/register.mjs scripts/live-ab.mjs --dry-run --probes 4 --out /tmp/live-ab-dry.json
+   ```
+
+2. Run the harness with your own provider access **in your own environment**, for one or more models:
+
+   ```bash
+   ANTHROPIC_API_KEY=... node --import ./test/register.mjs scripts/live-ab.mjs --provider anthropic --model claude-opus-5-5 --probes 6 --out /tmp/live-ab-opus55.json
+   OPENAI_API_KEY=...    node --import ./test/register.mjs scripts/live-ab.mjs --provider openai    --model gpt-6.1-sol --probes 6 --out /tmp/live-ab-gpt61.json
+   DEEPSEEK_API_KEY=... node --import ./test/register.mjs scripts/live-ab.mjs --provider deepseek --model deepseek-flash --probes 6 --out /tmp/live-ab-dsflash.json
+   ```
+
+3. Share the produced JSON (comment on [issue #1](https://github.com/QiuXu-Tech/memex/issues/1) or open a PR adding it under `docs/assets/benchmarks/live-ab-<model>.json`).
+
+**Privacy:** the fixtures are synthetic — no private conversations are sent or stored. When sharing results, remove API keys, auth headers, and any local paths you do not want public; the harness output contains only prompts from the synthetic fixture, model answers, usage, and timings. Never paste provider keys into the repository or an issue.
+
+## What the harness measures
+
+For each synthetic long-horizon question it runs two conditions on the same model:
+
+- **control** — only the most recent tail is in context; older facts are evicted;
+- **treatment** — tail + Memex `memory_search`/`memory_open` evidence for that question.
+
+Answers are graded by exact `FACT-###` token. The output reports per-probe `correct`, latency, provider usage, and aggregate `accuracy.control` / `accuracy.treatment`.
+
+A contribution template and the current dry-run plan live at [`docs/assets/benchmarks/live-ab.json`](assets/benchmarks/live-ab.json).
+
+## What we do with the data
+
+- Validate whether the dedicated profiles (Claude 5.5 / GPT-6.1 / DeepSeek Flash) actually improve long-horizon answers.
+- Calibrate `charsPerToken`, catalog/recall/open budgets, and rerank weights per family with real token usage.
+- Publish an aggregated table in this document (no contributor-identifying data unless explicitly offered).

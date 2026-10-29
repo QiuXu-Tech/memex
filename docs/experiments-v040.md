@@ -5,7 +5,7 @@ layout: default
 
 # v0.4.0 experiments: rename, adapter defaults, live readiness
 
-Post-rename validation and experiments for **Memex 0.4.0** (2026-10-29). Every number below was produced in this repository; live model calls are the one item blocked by credentials (see [live testing](live-testing.html)).
+Post-rename validation and experiments for **Memex 0.4.0** (2026-10-29). Every number below was produced in this repository; live model results are being collected from the community across model families (see [live testing](live-testing.html)).
 
 ## 1. Rename + defaults verification
 
@@ -41,15 +41,15 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 - **Retrieval parity:** hot-body/cold/title hit@5 identical at 100% / 63% / 95%; dedicated Claude 5.5 profiles keep 100% hot-body hit@1 while base `claude` loses rank-1 (0%) due to its lower body weight.
 - **Long-horizon overhead:** catalog injection 340–520 tokens/turn; 50 turns = 17k–26k tokens (1.7–2.6% of a 1M window). Catalog budgets are caps, not targets.
 
-## 4. Live integration status
+## 4. Live data collection
 
-`claude mcp list` (Claude Code 2.1.283) after `memex-claude init`:
+The client integration is verified (Claude Code parses the generated config): `claude mcp list` after `memex-claude init`:
 
 ```
 memex: node .../memex-mcp/bin/server.mjs --root ... --model claude-sonnet-5-5 --levels l2,l3 --cwd ... - ⏸ Pending approval
 ```
 
-The renamed client config is recognized; the one-time project approval is expected. **Model calls are blocked:** no provider API keys, Codex CLI absent, and the local Claude Code OAuth session expired. The [live A/B harness](live-testing.html) is ready and its dry-run plan is committed; a [help-wanted issue #1](https://github.com/QiuXu-Tech/memex/issues/1) tracks the credential-assisted live run.
+The renamed client config is recognized; the one-time project approval is expected. We are now collecting **multi-model usage data** from contributors: run the [live A/B harness](live-testing.html) with your own model access and share the anonymized results (issue #1). The synthetic dry-run plan is committed.
 
 ## 5. v0.4.1 improvements (executed in order)
 
@@ -82,7 +82,7 @@ The renamed client config is recognized; the one-time project approval is expect
 
 | Priority | Finding | Status |
 |---|---|---|
-| P1 | Live endpoint A/B blocked by credentials | open — tracked in issue #1; harness ready |
+| P1 | Live endpoint A/B: need multi-model usage data | open — tracked in issue #1; harness ready, contributions welcome |
 | P1 | Cold-body recall stuck at 63% | **fixed in v0.4.1** (cold-anchor rescue; 100% on the profile fixture, real hit@5 95%) |
 | P2 | Catalog budgets underused | **fixed in v0.4.1** (depth scales with budget; 893–1439 injected tokens) |
 | P2 | MCP `default-session` vs hook session id | **fixed in v0.4.1** (`init --session` aligns hooks+MCP; U19) |

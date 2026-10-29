@@ -64,7 +64,7 @@ Claude Code `PreCompact` stored a generic summary ("Verbatim Claude Code transcr
 ## P2 — model profile coverage & validation (partly fixed in 0.3.0)
 
 - Added profiles for **xAI Grok, Cohere Command, Google Gemma, Microsoft Phi** (9 → 13 families); `nova-pro` and other unmapped ids still fall back to `generic`.
-- Real Claude Code acceptance: `claude mcp list` in a generated project **recognizes the memex server**, but project-scoped `.mcp.json` requires a one-time interactive approval ("Pending approval — run claude to approve"). Codex CLI was not installed on this machine, so Codex acceptance remains manual.
+- Real Claude Code acceptance: `claude mcp list` in a generated project **recognizes the memex server**, but project-scoped `.mcp.json` requires a one-time interactive approval ("Pending approval — run claude to approve"). Codex client acceptance awaits community reports (the generated config is validated by TOML/parse tests).
 - Windows/token ratios are conservative estimates, not vendor tokenizers.
 - Rerank weights: currently no evidence they improve ranking on real data (see P0); consider validating on a real archive or reducing to 2–3 validated profiles.
 
@@ -116,6 +116,6 @@ Remaining perf work: LIKE/facets are now cheap relative to FTS bm25 ranking; the
 | P0 | ~~Body rescue + body rerank~~ (0.3.0) | hot-body hit@1/@5 0% → 100% on fixture; U13 |
 | P0 | PreCompact/budget/Codex fixes (0.2.2) | harness 110/110 |
 | P1 | MCP parity tools + session handling (0.3.0) | 10 tools; L2 warning; U14 |
-| P1 | Real-client acceptance | Claude Code recognizes the MCP server (approval pending); Codex CLI not installed |
+| P1 | Real-client acceptance | Claude Code recognizes the MCP server (approval pending); Codex usage reports welcome |
 | P2 | Retrieval perf pass (LIKE/fallback/facets) — **done in 0.3.1**: facets −47%, long search −48%, real hit@5 95% preserved | 100M-pool quiet rerun still open |
 | P2 | Profile coverage/validation | 13 families covered; rerank weights still unvalidated on real data |

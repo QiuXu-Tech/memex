@@ -15,8 +15,8 @@
  *   node --import ./test/register.mjs scripts/live-ab.mjs --provider anthropic --probes 6 --out docs/assets/benchmarks/live-ab.json
  *   node scripts/live-ab.mjs --dry-run            # build prompts only, no network
  *
- * Live calls consume provider tokens. Missing keys/models are reported and
- * skipped rather than failing the whole run.
+ * Live calls consume provider tokens. Providers not configured in a run are
+ * reported and skipped rather than failing the whole run.
  */
 import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
@@ -141,7 +141,7 @@ if (DRY_RUN) {
 for (const name of requested) {
   const provider = providers[name]
   if (provider === undefined) { report.providers.push({ provider: name, skipped: 'unknown provider' }); continue }
-  if (!provider.key) { report.providers.push({ provider: name, model: provider.model, skipped: 'missing API key (set ' + (name === 'anthropic' ? 'ANTHROPIC_API_KEY' : name === 'openai' ? 'OPENAI_API_KEY' : 'DEEPSEEK_API_KEY') + ')' }); continue }
+  if (!provider.key) { report.providers.push({ provider: name, model: provider.model, skipped: 'not configured in this run (set ' + (name === 'anthropic' ? 'ANTHROPIC_API_KEY' : name === 'openai' ? 'OPENAI_API_KEY' : 'DEEPSEEK_API_KEY') + ' to include this provider)' }); continue }
   const rows = []
   for (const probe of probes) {
     const row = { turn: probe.turn, expected: probe.fact }

@@ -11,7 +11,7 @@
 
 ### Verification
 - Quiet-machine 100M benchmark: write 3.4 s, facets 6.5 ms, catalog 13.8 ms, search 6.7–8.3 ms, compression 2.94 s, cold GC 0.28 s (DB 26.7 MiB).
-- Live A/B still blocked on credentials (issue #1); tokenizer calibration pending live usage.
+- Live A/B: multi-model usage data collection open (issue #1); tokenizer calibration will follow the first contributions.
 
 ## 0.4.0 — project renamed to Memex
 
