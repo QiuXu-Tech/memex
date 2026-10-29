@@ -49,7 +49,7 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 memex: node .../memex-mcp/bin/server.mjs --root ... --model claude-sonnet-5-5 --levels l2,l3 --cwd ... - ⏸ Pending approval
 ```
 
-The renamed client config is recognized; the one-time project approval is expected. **Model calls are blocked:** no provider API keys, Codex CLI absent, and the local Claude Code OAuth session expired. The [live A/B harness](live-testing.html) is ready and its dry-run plan is committed.
+The renamed client config is recognized; the one-time project approval is expected. **Model calls are blocked:** no provider API keys, Codex CLI absent, and the local Claude Code OAuth session expired. The [live A/B harness](live-testing.html) is ready and its dry-run plan is committed; a [help-wanted issue #1](https://github.com/QiuXu-Tech/memex/issues/1) tracks the credential-assisted live run.
 
 ## 5. Improvement points found this round
 

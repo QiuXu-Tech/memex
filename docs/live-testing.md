@@ -5,7 +5,7 @@ layout: default
 
 # Live endpoint A/B: status and how to run
 
-The live model-in-the-loop experiment is prepared but **blocked by credentials on this machine**. The harness is committed and its dry-run plan is reproducible; once a provider key (or a logged-in agent CLI) is available, it runs end-to-end.
+The live model-in-the-loop experiment is prepared but **blocked by credentials on this machine**. Tracking request for help: [issue #1 — run the live A/B](https://github.com/QiuXu-Tech/memex/issues/1). The harness is committed and its dry-run plan is reproducible; once a provider key (or a logged-in agent CLI) is available, it runs end-to-end.
 
 ## Harness
 
