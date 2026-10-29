@@ -16,7 +16,7 @@ import { AgentMemory, defaultMemoryRoot } from '@qiuxu/dsh-memory-core/engine'
 import { buildCatalogInjection, buildMemoryManual } from '@qiuxu/dsh-memory-core/manual'
 import { MEMORY_KINDS, MEMORY_STATUSES } from '@qiuxu/dsh-memory-core'
 
-const VERSION = '0.2.0'
+const VERSION = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version
 const PROTOCOL = '2024-11-05'
 
 function parseArgs(argv) {

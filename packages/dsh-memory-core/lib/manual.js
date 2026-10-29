@@ -70,7 +70,10 @@ export function buildMemoryManual(profile, options = {}) {
 /** Clip a catalog/injection to the profile budget for its form. */
 export function clipForForm(profile, form, text) {
   const budgets = { catalog: profile.catalogTokens, recall: profile.recallTokens, receipt: Math.max(120, Math.floor(profile.recallTokens / 2)), 'capacity-notice': 300 }
-  return clipToProfileTokens(text, budgets[form] ?? 400, profile)
+  // Reserve room for the wrapper tags/heading so the *injected* block respects
+  // the profile budget rather than only the body.
+  const wrapperReserve = profile.injectionStyle === 'xml' ? 16 : profile.injectionStyle === 'plain' ? 8 : 12
+  return clipToProfileTokens(text, Math.max(120, (budgets[form] ?? 400) - wrapperReserve), profile)
 }
 
 /**

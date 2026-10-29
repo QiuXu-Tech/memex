@@ -19,6 +19,7 @@ import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { AgentMemory, defaultMemoryRoot } from '@qiuxu/dsh-memory-core/engine'
+import { MEMORY_TEXT_LIMITS } from '@qiuxu/dsh-memory-core'
 import { buildCatalogInjection, buildMemoryManual, buildRecallInjection, buildReceipt } from '@qiuxu/dsh-memory-core/manual'
 import { resolveModelProfile } from '@qiuxu/dsh-memory-core/model-profiles'
 
@@ -26,7 +27,7 @@ const HERE = dirname(fileURLToPath(import.meta.url))
 const CLAUDE_PKG = resolve(HERE, '..')
 const REPO_PACKAGES = resolve(CLAUDE_PKG, '..')
 const MCP_SERVER = process.env.DSH_MEMORY_MCP_SERVER ?? resolve(REPO_PACKAGES, 'dsh-memory-mcp', 'bin', 'server.mjs')
-const VERSION = '0.2.0'
+const VERSION = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version
 
 function parseArgs(argv) {
   const args = { _: [], root: defaultMemoryRoot(), model: process.env.DSH_MEMORY_MODEL ?? 'claude', project: process.cwd(), levels: 'l2,l3', session: undefined, user: false }
@@ -165,11 +166,21 @@ async function hook() {
       const transcriptPath = payload.transcript_path
       if (typeof transcriptPath !== 'string' || !existsSync(transcriptPath)) return
       const raw = readFileSync(transcriptPath, 'utf8')
-      const body = raw.length > 8 * 1024 * 1024 ? `${raw.slice(0, 8 * 1024 * 1024)}\n… (transcript clipped at 8MB)` : raw
+      // The store accepts at most MEMORY_TEXT_LIMITS.body code units; leave
+      // room for the explicit clipping marker so an oversized transcript never
+      // fails the hook.
+      const marker = '\n… (transcript clipped at the memory body limit)'
+      const body = raw.length > MEMORY_TEXT_LIMITS.body - marker.length
+        ? `${raw.slice(0, MEMORY_TEXT_LIMITS.body - marker.length)}${marker}`
+        : raw
+      // Keep a bounded, searchable summary of the transcript head: the raw
+      // body is verbatim but only card fields are indexed, so a generic summary
+      // would make this archive nearly unsearchable.
+      const summaryText = raw.replace(/\s+/g, ' ').trim().slice(0, 900)
       const record = engine.write({
         kind: 'episode',
         title: `Claude Code transcript ${String(payload.session_id ?? session ?? '').slice(0, 8)} · ${new Date().toISOString()}`,
-        summary: 'Verbatim Claude Code transcript archived before compaction.',
+        summary: summaryText,
         useWhen: 'read when recovering context that Claude Code compacted or when earlier turns matter',
         body,
         status: 'open',

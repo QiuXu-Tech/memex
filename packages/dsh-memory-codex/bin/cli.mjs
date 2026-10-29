@@ -22,7 +22,7 @@ import { resolveModelProfile } from '@qiuxu/dsh-memory-core/model-profiles'
 const HERE = dirname(fileURLToPath(import.meta.url))
 const REPO_PACKAGES = resolve(HERE, '..', '..')
 const MCP_SERVER = process.env.DSH_MEMORY_MCP_SERVER ?? resolve(REPO_PACKAGES, 'dsh-memory-mcp', 'bin', 'server.mjs')
-const VERSION = '0.2.0'
+const VERSION = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version
 
 function parseArgs(argv) {
   const args = { _: [], root: defaultMemoryRoot(), model: process.env.DSH_MEMORY_MODEL ?? 'gpt-5-codex', project: process.cwd(), levels: 'l3', writeConfig: false }
@@ -50,7 +50,8 @@ command = ${JSON.stringify(process.execPath)}
 args = [${[MCP_SERVER, '--root', args.root, '--agent', 'codex', '--model', args.model, '--levels', levels.join(','), '--cwd', args.project].map((value) => JSON.stringify(value)).join(', ')}]`
 }
 
-const CONFIG_PATH = join(homedir(), '.codex', 'config.toml')
+const CONFIG_DIR = process.env.CODEX_HOME !== undefined && process.env.CODEX_HOME.length > 0 ? resolve(process.env.CODEX_HOME) : join(homedir(), '.codex')
+const CONFIG_PATH = join(CONFIG_DIR, 'config.toml')
 
 function manualSection(profile) {
   const manual = buildMemoryManual(profile, { agent: 'OpenAI Codex', root: args.root, levels })
@@ -61,6 +62,7 @@ ${manual}
 
 function init() {
   const profile = resolveModelProfile(args.model)
+  mkdirSync(args.project, { recursive: true })
   const agentsPath = join(args.project, 'AGENTS.md')
   const existing = existsSync(agentsPath) ? readFileSync(agentsPath, 'utf8') : ''
   const section = manualSection(profile)
@@ -72,7 +74,7 @@ function init() {
   }
   writeFileSync(agentsPath, next)
   if (args.writeConfig) {
-    mkdirSync(dirname(CONFIG_PATH), { recursive: true })
+    mkdirSync(CONFIG_DIR, { recursive: true })
     const current = existsSync(CONFIG_PATH) ? readFileSync(CONFIG_PATH, 'utf8') : ''
     if (!current.includes('[mcp_servers.dsh-memory]')) {
       if (current.length > 0) copyFileSync(CONFIG_PATH, `${CONFIG_PATH}.bak`)

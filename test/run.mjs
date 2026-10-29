@@ -3529,7 +3529,6 @@ function mcpExchange(root, args, messages) {
   const result = runNode(MCP_SERVER, ['--root', root, ...args], { input: `${messages.map((message) => JSON.stringify(message)).join('\n')}\n` })
   assert.equal(result.status, 0, `MCP server must exit 0 (stderr: ${result.stderr})`)
   assert.ok(result.stdout.trim().length > 0, `MCP server produced no stdout (stderr: ${result.stderr}, status: ${result.status}, signal: ${result.signal})`)
-  if (process.env.DEBUG_MCP) console.error('MCP stdout:', JSON.stringify(result.stdout.slice(0, 1200)), 'stderr:', result.stderr)
   const replies = new Map()
   for (const line of result.stdout.split('\n')) {
     if (line.trim().length === 0) continue
@@ -3700,6 +3699,8 @@ await test('U6', 'Claude Code hooks inject catalog/recall and archive transcript
   try {
     const found = check.search({ query: 'Claude Code transcript' })
     assert.ok(found.hits.length >= 1, 'the pre-compact hook must archive the transcript')
+    const contentSearch = check.search({ query: 'remember DEPLOY_ID abc123' })
+    assert.ok(contentSearch.hits.length >= 1, 'the transcript head must remain searchable through the archived summary')
   } finally {
     check.close()
   }
@@ -3798,6 +3799,45 @@ await test('U10', 'engine applies the model profile rerank and accepts per-integ
   } finally {
     overridden.close()
   }
+})
+
+
+await test('U11', 'PreCompact archives transcripts larger than the store body limit instead of failing', async () => {
+  const project = makeRoot('u11-project')
+  const root = makeRoot('u11-mem')
+  const transcript = join(project, 'transcript-big.jsonl')
+  const line = JSON.stringify({ type: 'assistant', message: { role: 'assistant', content: 'x'.repeat(180) } })
+  const targetBytes = MEMORY_TEXT_LIMITS.body + 1024
+  writeFileSync(transcript, Array.from({ length: Math.ceil(targetBytes / line.length) }, () => line).join('\n'))
+  const result = runNode(CLAUDE_CLI, ['hook', 'pre-compact', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l3'], { input: JSON.stringify({ session_id: 'u11-session', cwd: project, transcript_path: transcript, trigger: 'auto' }) })
+  assert.equal(result.status, 0, result.stderr)
+  const payload = JSON.parse(result.stdout.trim())
+  const receipt = payload.hookSpecificOutput.additionalContext
+  assertIncludes(receipt, 'ids:')
+  const recordId = receipt.match(/mem_[0-9a-f]{10}/)[0]
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u11-session', levels: ['l3'], model: 'claude-sonnet-4', agent: 'test' })
+  try {
+    const record = engine.store.get(recordId)
+    assert.ok(record !== undefined, 'the oversized transcript must still be archived')
+    assert.ok(record.body.length <= MEMORY_TEXT_LIMITS.body, 'archived body must respect the store limit')
+    assert.ok(record.body.includes('clipped at the memory body limit'), 'the archive must be explicitly clipped')
+  } finally {
+    engine.close()
+  }
+})
+
+await test('U12', 'injected catalog/recall blocks stay inside each profile budget (wrapper included)', async () => {
+  const hugeCatalog = `## Memory catalog\n${'- mem_abc · a title · when to read\n'.repeat(400)}`
+  for (const profileId of ['claude', 'openai', 'gemini', 'deepseek', 'qwen', 'kimi', 'glm', 'llama', 'generic']) {
+    const profile = profiles.resolveModelProfile(profileId)
+    const catalog = manual.buildCatalogInjection(profile, hugeCatalog)
+    const recall = manual.buildRecallInjection(profile, Array.from({ length: 40 }, (_, i) => ({ id: `mem_${i}`, title: 'title '.repeat(10), useWhen: 'when '.repeat(10) })))
+    assert.ok(profiles.profileTokens(catalog, profile) <= profile.catalogTokens, `${profileId} catalog ${profiles.profileTokens(catalog, profile)} > ${profile.catalogTokens}`)
+    assert.ok(profiles.profileTokens(recall, profile) <= profile.recallTokens, `${profileId} recall ${profiles.profileTokens(recall, profile)} > ${profile.recallTokens}`)
+  }
+  const pkg = JSON.parse(readFileSync(new URL('../packages/dsh-memory-mcp/package.json', import.meta.url), 'utf8'))
+  const replies = mcpExchange(makeRoot('u12'), ['--agent', 'test', '--model', 'claude-sonnet-4'], [{ jsonrpc: '2.0', id: 1, method: 'initialize', params: {} }])
+  assert.equal(replies.get(1).result.serverInfo.version, pkg.version, 'MCP server version must follow its package.json')
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

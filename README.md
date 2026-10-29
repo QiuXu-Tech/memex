@@ -15,7 +15,7 @@ It started as a [DeepSeek Harness](https://github.com/deepseek-ai) plugin and is
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/dsh-memory-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/dsh-memory-core`) |
 
-> Status: **0.2.0** — agent-agnostic core, MCP server, Claude Code/Codex adapters, **model profiles for Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Llama**, 106/106 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.2.0** — agent-agnostic core, MCP server, Claude Code/Codex adapters, **model profiles for Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Llama**, 110/110 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -169,7 +169,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | 10k records / 100M tokens (synthetic) | write 2.8 s; facets 11 ms, catalog 18 ms, search 17–29 ms, grep 15 ms; compression of 5,000 records/50M tokens 2.6 s; cold GC 2,500 records/25M 0.3 s |
 | FTS storage (body-less card+abstract index) | 100M-token pool ≈ 9–27 MiB index vs GB-scale trigram-body indexing |
 
-**A/B against no extra context** (160K-token history, 80K window): fact recall **100%** with dsh-memory vs **60%** with a model-written compaction summary (+tail) and **50%** with plain truncation; at 10M tokens the no-memory window covers only 10% of history while retrieval stays at 100% hit@5. Full charts and methodology: **[docs/benchmark.md](docs/benchmark.md)**.
+**A/B against no extra context** (160K-token history, 80K window): fact recall **100%** with dsh-memory vs **60%** with a model-written compaction summary (+tail) and **50%** with plain truncation; at 10M tokens the no-memory window covers only 10% of history while retrieval stays at 100% hit@5. Full charts and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
 
 Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite all`, `node --import ./test/register.mjs scripts/scale-bench.mjs --records 10000 --tokens 10000`, and `node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction` / `--mode scale`. Details in [docs/evaluation.md](docs/evaluation.md).
 
@@ -184,7 +184,7 @@ Reproduce: `node --import ./test/register.mjs scripts/recall-eval.mjs --suite al
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (106 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (110 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```
