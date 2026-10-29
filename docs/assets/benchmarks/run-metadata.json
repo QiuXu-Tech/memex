@@ -1,8 +1,8 @@
 {
-  "testedVersion": "0.2.2",
-  "testedCommit": "c4e2d381729e885c7d720713e325cc58938f4203",
-  "executionCheckout": "41b47e43f0f58b6d46dfe1cfe7baae1630c6a242",
-  "executionCheckoutNote": "The packages and test trees, and the three benchmark scripts, are identical to the tested v0.2.2 commit; the checkout adds report and plotting files only.",
+  "testedVersion": "0.3.0",
+  "testedCommit": "3373ec6ed46ea3b571a798c95714bd5d226f1ddb",
+  "executionCheckout": "8d5a6f2a93da5b838ef60f1a21853f4e388b62b5",
+  "executionCheckoutNote": "The packages and test trees, and the three benchmark scripts, are identical to the tested v0.3.0 commit; the checkout adds report and plotting files only.",
   "date": "2026-10-29",
   "timezone": "Asia/Shanghai",
   "os": "macOS 27.2 (26B123)",
@@ -16,29 +16,29 @@
   "quietStartGateMet": true,
   "quietGateSamples": [
     {
-      "timeUtc": "2026-10-29T06:39:40+00:00",
+      "timeUtc": "2026-10-29T07:00:53+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 14.6,
-      "load1": 9.96142578125,
-      "load5": 31.09765625,
+      "systemCpuBusyPercent": 16.4,
+      "load1": 1.80859375,
+      "load5": 2.22900390625,
       "benchmarkPid": null
     },
     {
-      "timeUtc": "2026-10-29T06:39:45+00:00",
+      "timeUtc": "2026-10-29T07:00:58+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 14.7,
-      "load1": 9.24365234375,
-      "load5": 30.59765625,
+      "systemCpuBusyPercent": 25.5,
+      "load1": 1.90380859375,
+      "load5": 2.24169921875,
       "benchmarkPid": null
     }
   ],
   "benchmarkLoadSamples": {
     "count": 6,
-    "load1Min": 6.85400390625,
-    "load1Max": 8.90380859375,
-    "cpuBusyPercentMin": 22.2,
-    "cpuBusyPercentMedian": 28.05,
-    "cpuBusyPercentMax": 32.1
+    "load1Min": 2.3916015625,
+    "load1Max": 3.4853515625,
+    "cpuBusyPercentMin": 26.7,
+    "cpuBusyPercentMedian": 31.799999999999997,
+    "cpuBusyPercentMax": 36.8
   },
   "summary": "Pre-existing compaction-summary.txt; no model invoked during rerun.",
   "sourceSha256": {
@@ -46,13 +46,14 @@
     "scripts/scale-bench.mjs": "39fc22b3eea246c3c76f9e1dc3ef6af13f81d1df82cbfc4fc0eadce7e4b042df",
     "scripts/recall-eval.mjs": "b8008151627e638d16e0dd8b631fca770ebdd3521741079d4d88346287670b06",
     "docs/assets/benchmarks/compaction-summary.txt": "5df3b0d2540dc3e70f8662b18e6e79a832a92019aa3fbd1d6411f7e6baab75f7",
-    "packages/dsh-memory-core/index.js": "569592db8d989a1b0a5ad324e510755a8327dac726c764c46aa96d8a695989c9",
-    "packages/dsh-memory-core/lib/store.js": "677f4fe9b2f01b293cef1476e9bceed53eaf39c2aba68a2610ee85b48fb91299",
+    "packages/dsh-memory-core/index.js": "7583df5b3f2e47afb96867417e9a90fa8a6057e0c3cb4c88f5d91fac942cd58a",
+    "packages/dsh-memory-core/lib/store.js": "4f5f58c5253244d08062ac125cbfdb73f8a451c0a1bb46b3a457e821aceb26e3",
     "packages/dsh-memory-local/lib/store.js": "6b9d0814ff43680a17fddc133b779cb4e754984d3a1b897959cd8bb2c5204686"
   },
   "limitations": [
     "Shared machine; sampled load includes benchmark work and is not complete isolation.",
     "All benchmark searches use LocalStoreCore default rerank weights; model-specific AgentMemory profiles and live agents were not benchmarked.",
-    "Token counts use character-based estimates; no memory_open call or model answer is timed."
+    "Token counts use character-based estimates; no memory_open call or model answer is timed.",
+    "The capacity fixture uses x-only bodies; a one-record spot check inserted zero record_terms rows, so identifier-body index overhead is not represented."
   ]
 }

@@ -1,7 +1,7 @@
-{"stage": "compaction", "startUtc": "2026-10-29T06:39:45+00:00", "endUtc": "2026-10-29T06:39:46+00:00", "elapsedSeconds": 0.367, "exitCode": 0}
-{"stage": "compaction-repeat", "startUtc": "2026-10-29T06:39:46+00:00", "endUtc": "2026-10-29T06:39:46+00:00", "elapsedSeconds": 0.182, "exitCode": 0}
-{"stage": "scale", "startUtc": "2026-10-29T06:39:46+00:00", "endUtc": "2026-10-29T06:39:57+00:00", "elapsedSeconds": 11.321, "exitCode": 0}
-{"stage": "scale-repeat", "startUtc": "2026-10-29T06:39:57+00:00", "endUtc": "2026-10-29T06:40:07+00:00", "elapsedSeconds": 9.761, "exitCode": 0}
-{"stage": "capacity-10m", "startUtc": "2026-10-29T06:40:07+00:00", "endUtc": "2026-10-29T06:40:08+00:00", "elapsedSeconds": 0.89, "exitCode": 0}
-{"stage": "capacity-100m", "startUtc": "2026-10-29T06:40:08+00:00", "endUtc": "2026-10-29T06:40:16+00:00", "elapsedSeconds": 8.431, "exitCode": 0}
-{"stage": "recall", "startUtc": "2026-10-29T06:40:16+00:00", "endUtc": "2026-10-29T06:40:17+00:00", "elapsedSeconds": 0.314, "exitCode": 0}
+{"stage": "compaction", "startUtc": "2026-10-29T07:00:58+00:00", "endUtc": "2026-10-29T07:00:58+00:00", "elapsedSeconds": 0.408, "exitCode": 0}
+{"stage": "compaction-repeat", "startUtc": "2026-10-29T07:00:58+00:00", "endUtc": "2026-10-29T07:00:58+00:00", "elapsedSeconds": 0.2, "exitCode": 0}
+{"stage": "scale", "startUtc": "2026-10-29T07:00:58+00:00", "endUtc": "2026-10-29T07:01:11+00:00", "elapsedSeconds": 12.861, "exitCode": 0}
+{"stage": "scale-repeat", "startUtc": "2026-10-29T07:01:11+00:00", "endUtc": "2026-10-29T07:01:23+00:00", "elapsedSeconds": 11.646, "exitCode": 0}
+{"stage": "capacity-10m", "startUtc": "2026-10-29T07:01:23+00:00", "endUtc": "2026-10-29T07:01:24+00:00", "elapsedSeconds": 0.947, "exitCode": 0}
+{"stage": "capacity-100m", "startUtc": "2026-10-29T07:01:24+00:00", "endUtc": "2026-10-29T07:01:31+00:00", "elapsedSeconds": 7.199, "exitCode": 0}
+{"stage": "recall", "startUtc": "2026-10-29T07:01:31+00:00", "endUtc": "2026-10-29T07:01:31+00:00", "elapsedSeconds": 0.316, "exitCode": 0}

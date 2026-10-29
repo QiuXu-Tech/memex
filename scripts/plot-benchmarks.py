@@ -146,7 +146,7 @@ save(fig, "cost-latency.png")
 
 # 100M-token synthetic pool: timed cold GC deletes the removed records.
 fig, axes = plt.subplots(1, 2, figsize=(12.8, 6.8), gridspec_kw={"width_ratios": [1.18, 1]})
-heading(fig, "Synthetic 100M-token pool", "10,000 records · 10,000 assigned tokens per record · quiet-start gate met")
+heading(fig, "Synthetic 100M-token pool", f"v{metadata['testedVersion']} · 10,000 records · 10,000 assigned tokens each · quiet-start gate met")
 fig.subplots_adjust(left=0.2, right=0.955, top=0.75, bottom=0.19, wspace=0.45)
 storage_names = ["Index after write", "Index after cold spill", "Original body files"]
 storage = [capacity["indexAfterWriteMiB"], capacity["indexAfterColdMiB"], capacity["bodyFilesMiB"]]
@@ -167,5 +167,5 @@ axes[1].set_xlim(0, max(operations) * 1.35)
 axes[1].set_xlabel("Seconds")
 for i, value in enumerate(operations):
     axes[1].text(value + max(operations) * 0.025, i, f"{value:.2f}", va="center", fontsize=11)
-footnote(fig, "Cold spill moves records; cold GC deletes them. Token sizes are assigned synthetic values.")
+footnote(fig, "X-only bodies do not measure identifier-index overhead. Cold spill moves records; cold GC deletes them.")
 save(fig, "capacity.png")

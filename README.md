@@ -15,7 +15,7 @@ It started as a [DeepSeek Harness](https://github.com/deepseek-ai) plugin and is
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/dsh-memory-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/dsh-memory-core`) |
 
-> Status: **0.3.0** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **13 model families** (Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Grok / Command / Gemma / Phi / Llama / generic), 112/112 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.3.1** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **13 model families** (Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Grok / Command / Gemma / Phi / Llama / generic), 112/112 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -166,11 +166,11 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | Metric | Result |
 |---|---|
 | Historical private archive (40 curated questions; not rerun) | reported hit@5 **95%** (baseline 67%); not reproducible from the public fixture |
-| Synthetic recall suite (v0.2.2 rerun) | 80/80 target-record hits at rank 1 |
-| 10k records / 100M assigned tokens (v0.2.2, synthetic, quiet-start gate) | write 4.5 s; cold spill 5,000 records/50M tokens in 2.48 s; cold GC 2,500 records/25M tokens in 0.31 s |
-| FTS storage (body-less card+abstract index) | Synthetic v0.2.2 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill |
+| Synthetic recall suite (v0.3.0 rerun) | 80/80 target-record hits at rank 1 |
+| 10k records / 100M assigned tokens (v0.3.0, synthetic, quiet-start gate) | write 3.2 s; cold spill 5,000 records/50M tokens in 2.50 s; cold GC 2,500 records/25M tokens in 0.31 s |
+| FTS storage (body-less card+abstract index) | Synthetic v0.3.0 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill; x-only bodies do not measure identifier-index overhead |
 
-**Synthetic 160K history / 80K window, on v0.2.2:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. dsh-memory search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
+**Synthetic 160K history / 80K window, on v0.3.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. dsh-memory search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
 
 Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
 

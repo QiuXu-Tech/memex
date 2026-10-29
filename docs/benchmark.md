@@ -3,29 +3,30 @@ title: Benchmark report
 layout: default
 ---
 
-# Benchmark report: synthetic long-horizon retrieval on v0.2.2
+# Benchmark report: synthetic long-horizon retrieval on v0.3.0
 
 This report reruns the published synthetic workloads against commit
-[`c4e2d38`](https://github.com/QiuXu-Tech/dsh-memory/commit/c4e2d381729e885c7d720713e325cc58938f4203)
+[`3373ec6`](https://github.com/QiuXu-Tech/dsh-memory/commit/3373ec6ed46ea3b571a798c95714bd5d226f1ddb)
 on 2026-10-29. The machine was an Apple M4 (10 logical CPUs, 16 GiB), running
 macOS 27.2 and Node 24.21.0. Before starting, two consecutive five-second
-samples met the quiet-start gate: CPU busy **14.6% / 14.7%** and one-minute
-load **9.96 / 9.24**. During the longer benchmark stages, six samples showed
-one-minute load **6.85–8.90** and CPU busy **22.2%–32.1%**, including the
+samples met the quiet-start gate: CPU busy **16.4% / 25.5%** and one-minute
+load **1.81 / 1.90**. During the longer benchmark stages, six samples showed
+one-minute load **2.39–3.49** and CPU busy **26.7%–36.8%**, including the
 benchmark itself. Sampling intervals can cross stage boundaries; short stages
 may have no dedicated sample. The machine was shared, not isolated. The
 [run metadata](assets/benchmarks/run-metadata.json) and
 [load samples](assets/benchmarks/results-load-samples.jsonl) record the method,
 tested commit and input hashes.
 
-The execution checkout was `41b47e4`, a report-only descendant of v0.2.2;
-its package and test trees and the three benchmark scripts matched `c4e2d38`.
-GitHub `main` advanced to v0.3.0 during this work; these measurements do not
-evaluate v0.3.0.
+The execution checkout was `8d5a6f2`, a report-only descendant of v0.3.0;
+its package and test trees and the three benchmark scripts matched `3373ec6`.
+GitHub `main` advanced to v0.3.1 during this work; these measurements do not
+evaluate v0.3.1.
 
-The earlier [v0.2.1 report and its high-load measurements](https://github.com/QiuXu-Tech/dsh-memory/blob/41b47e43f0f58b6d46dfe1cfe7baae1630c6a242/docs/benchmark.md)
-remain in Git history. The two runs were not conducted under comparable load,
-so their timing differences do not establish a version performance change.
+The earlier [v0.2.1 report](https://github.com/QiuXu-Tech/dsh-memory/blob/41b47e43f0f58b6d46dfe1cfe7baae1630c6a242/docs/benchmark.md)
+and [v0.2.2 report](https://github.com/QiuXu-Tech/dsh-memory/blob/8d5a6f2a93da5b838ef60f1a21853f4e388b62b5/docs/benchmark.md)
+remain in Git history. These were separate shared-machine runs, so their timing
+differences alone do not establish a version performance change.
 
 **Result in brief:** in a synthetic 160K-token history with an 80K-token
 window, 20/40 target facts were present in the retained tail and 24/40 were
@@ -69,9 +70,9 @@ one simulated baseline, not a run of DSH's native compaction implementation.
 
 | Estimated history | Records | Window / history | Search hit@5, both runs | Search p50, first / repeat |
 |---|---:|---:|---:|---:|
-| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 1.33 / 1.33 ms |
-| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 13.32 / 13.28 ms |
-| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 27.89 / 27.63 ms |
+| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 1.63 / 1.65 ms |
+| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 15.74 / 15.62 ms |
+| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 33.00 / 31.36 ms |
 
 The window/history column is an arithmetic coverage ratio, not measured
 no-memory recall and not a universal ceiling. Actual availability depends on
@@ -83,8 +84,8 @@ answers correctly.
 
 ![Search medians at three scales and two repeated 160K runs](assets/benchmarks/cost-latency.png)
 
-The 160K comparison's search p50 was **1.20 ms** on the first run and
-**1.18 ms** on a repeat with the same fixture and supplied summary. Each p50 is
+The 160K comparison's search p50 was **1.78 ms** on the first run and
+**1.73 ms** on a repeat with the same fixture and supplied summary. Each p50 is
 the median of 40 searches. The scaling sweep was also repeated; two runs on a
 shared machine are not enough to establish a latency distribution or
 production performance.
@@ -107,14 +108,20 @@ corpus. The two runs use different cold target ratios to reproduce the prior
 
 | Pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M tokens in 0.32 s | 350 records / 3.5M tokens in 0.03 s |
-| 10,000 records / 100M assigned tokens | 4.5 s | 5,000 records / 50M tokens in 2.48 s | 2,500 records / 25M tokens in 0.31 s |
+| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M tokens in 0.33 s | 350 records / 3.5M tokens in 0.03 s |
+| 10,000 records / 100M assigned tokens | 3.2 s | 5,000 records / 50M tokens in 2.50 s | 2,500 records / 25M tokens in 0.31 s |
 
 In the 100M run, the SQLite index was 9.0 MiB after writing and 26.6 MiB after
 cold spill; the original body files totalled 384.8 MiB. Cold spill moves the
 records, while **cold GC deletes** the records it removes. Both were exercised
 only on throwaway stores. These are single-run times under the sampled load
 noted above.
+
+The fixture's bodies consist only of repeated `x` characters. A separate
+[one-record spot check](assets/benchmarks/results-body-index-probe.json)
+produced zero `record_terms` rows for that body. These capacity and index-size
+figures therefore do not measure the overhead of indexing identifier-bearing
+real-world bodies introduced in v0.3.0.
 
 ## 5. Complementary recall suite
 
@@ -128,18 +135,22 @@ The earlier 95% hit@5 figure came from a private, curated 40-question archive.
 It was **not rerun** here and cannot be independently reproduced from the
 public fixtures. See [evaluation](https://github.com/QiuXu-Tech/dsh-memory/blob/main/docs/evaluation.md) for its historical context.
 
+The v0.3.0 offline harness also passed [U13](https://github.com/QiuXu-Tech/dsh-memory/blob/3373ec6ed46ea3b571a798c95714bd5d226f1ddb/test/run.mjs#L3849),
+a separate hot-body identifier-rescue test. Its assertions require at least
+24/30 hit@1 and 27/30 hit@5 and check identifier boundaries; the actual counts
+are not printed, and this is not a latency benchmark.
+
 ## Scope and limitations
 
 - All measured searches here call `LocalStoreCore` with default rerank
-  weights. They do not benchmark v0.2.2's model-specific `AgentMemory`
+  weights. They do not benchmark v0.3.0's model-specific `AgentMemory`
   profiles, MCP/DSH integration, transcript capture, or an agent's end-to-end
   answers. The offline tests cover some of those code paths but are not an
   agent benchmark.
 - Exact synthetic cues and prefilled card summaries make these retrieval
   probes easier to locate than many real project questions. The results do not
   establish recall on paraphrases, multi-hop tasks, or missing cues. The
-  separate [body-only retrieval findings documented in v0.2.2](https://github.com/QiuXu-Tech/dsh-memory/blob/c4e2d381729e885c7d720713e325cc58938f4203/docs/optimization-findings.md)
-  were not rerun by this benchmark.
+  long-horizon fixture itself does not isolate the new hot-body rescue path.
 - Timings were collected on a shared machine after the quiet-start gate, with
   five-second load samples during longer stages; this is not full isolation.
   The capacity script prints a `p95` from
@@ -156,9 +167,9 @@ remove throwaway stores. The summary must be passed explicitly for the
 comparison.
 
 ```bash
-git clone https://github.com/QiuXu-Tech/dsh-memory.git dsh-memory-benchmark-v022
-cd dsh-memory-benchmark-v022
-git checkout --detach c4e2d381729e885c7d720713e325cc58938f4203
+git clone https://github.com/QiuXu-Tech/dsh-memory.git dsh-memory-benchmark-v030
+cd dsh-memory-benchmark-v030
+git checkout --detach 3373ec6ed46ea3b571a798c95714bd5d226f1ddb
 out_dir="$(mktemp -d "${TMPDIR:-/tmp}/dsh-benchmark.XXXXXX")"
 node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \
   --tokens 160000 --window 80000 --summary docs/assets/benchmarks/compaction-summary.txt \
