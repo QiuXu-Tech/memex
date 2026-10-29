@@ -3983,6 +3983,25 @@ await test('U17', 'adapter CLIs default to recommended dedicated profiles and ad
   for (const profileId of ['deepseek-flash', 'claude-sonnet-5-5', 'gpt-6.1-sol']) assertIncludes(listing, profileId)
 })
 
+
+await test('U18', 'storage root resolution: MEMEX_HOME wins, legacy env/path fallbacks work', async () => {
+  const { defaultMemoryRoot } = await import('@qiuxu/memex-core/engine')
+  const saved = { memex: process.env.MEMEX_HOME, legacy: process.env.DSH_MEMORY_HOME }
+  try {
+    process.env.MEMEX_HOME = '/tmp/memex-root'
+    process.env.DSH_MEMORY_HOME = '/tmp/legacy-root'
+    assert.equal(defaultMemoryRoot(), '/tmp/memex-root')
+    delete process.env.MEMEX_HOME
+    assert.equal(defaultMemoryRoot(), '/tmp/legacy-root', 'legacy DSH_MEMORY_HOME must still work')
+    delete process.env.DSH_MEMORY_HOME
+    const fallback = defaultMemoryRoot()
+    assert.ok(fallback.endsWith('.memex') || fallback.endsWith('.dsh-memory'), 'falls back to a default directory')
+  } finally {
+    if (saved.memex !== undefined) process.env.MEMEX_HOME = saved.memex; else delete process.env.MEMEX_HOME
+    if (saved.legacy !== undefined) process.env.DSH_MEMORY_HOME = saved.legacy; else delete process.env.DSH_MEMORY_HOME
+  }
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

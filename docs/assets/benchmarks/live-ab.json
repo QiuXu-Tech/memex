@@ -1,0 +1,51 @@
+{
+  "generatedAt": "2026-10-29T07:35:47.852Z",
+  "dryRun": false,
+  "probes": [
+    {
+      "turn": 0,
+      "topic": "gateway",
+      "expected": "FACT-000-gjsis",
+      "controlChars": 1083,
+      "treatmentChars": 3588
+    },
+    {
+      "turn": 15,
+      "topic": "router",
+      "expected": "FACT-015-fywn9",
+      "controlChars": 1083,
+      "treatmentChars": 3583
+    },
+    {
+      "turn": 30,
+      "topic": "gateway",
+      "expected": "FACT-030-d4jg7",
+      "controlChars": 1084,
+      "treatmentChars": 3591
+    },
+    {
+      "turn": 45,
+      "topic": "router",
+      "expected": "FACT-045-j5kow",
+      "controlChars": 1083,
+      "treatmentChars": 3583
+    }
+  ],
+  "providers": [
+    {
+      "provider": "anthropic",
+      "model": "claude-sonnet-5-5",
+      "skipped": "missing API key (set ANTHROPIC_API_KEY)"
+    },
+    {
+      "provider": "openai",
+      "model": "gpt-6.1-sol",
+      "skipped": "missing API key (set OPENAI_API_KEY)"
+    },
+    {
+      "provider": "deepseek",
+      "model": "deepseek-flash",
+      "skipped": "missing API key (set DEEPSEEK_API_KEY)"
+    }
+  ]
+}

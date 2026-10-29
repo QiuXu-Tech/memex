@@ -15,7 +15,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.3.1** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), 113/113 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.4.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), 115/115 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -170,7 +170,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | 10k records / 100M assigned tokens (v0.3.0, synthetic, quiet-start gate) | write 3.2 s; cold spill 5,000 records/50M tokens in 2.50 s; cold GC 2,500 records/25M tokens in 0.31 s |
 | FTS storage (body-less card+abstract index) | Synthetic v0.3.0 100M-token pool: 9.0 MiB after writing, 26.6 MiB after cold spill; x-only bodies do not measure identifier-index overhead |
 
-**Synthetic 160K history / 80K window, on v0.3.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md).
+**Synthetic 160K history / 80K window, on v0.3.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
 
 Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
 
@@ -185,7 +185,7 @@ Reproduction commands, including the required saved summary and cold target rati
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (113 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (115 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```

@@ -5,7 +5,9 @@
 ### Changed
 - **Renamed the project from `dsh-memory` to `Memex`** (repository `QiuXu-Tech/memex`): packages are now `@qiuxu/memex*`, adapter binaries `memex-claude` / `memex-codex` / `memex-mcp`, storage default `~/.memex` (legacy `~/.dsh-memory` and legacy `DSH_MEMORY_*` env vars still work), docs/Pages URLs updated.
 - **Adapter defaults now write recommended dedicated profiles**: Claude Code defaults to `claude-sonnet-5-5` (recommended: opus-5-5 / fable-5-1 / haiku-5-5), Codex defaults to `gpt-6.1-sol` (recommended: terra / astra), and `memex-mcp --list-profiles` lists MCP recommendations.
-- U17 covers the defaults and advertisement (114 tests).
+- U17 covers the defaults and advertisement; U18 covers storage-root/env fallbacks (115 tests).
+- `scripts/live-ab.mjs` live endpoint A/B harness (Anthropic / OpenAI / DeepSeek, dry-run supported) + `docs/live-testing.md`.
+- `docs/experiments-v040.md`: post-rename verification, real-archive recall re-check (hit@5 95%, cold 100%), profile validation rerun and improvement points.
 
 ### Added
 - `RECOMMENDED_PROFILES` registry in the core; `init`/`help` print the resolved profile.

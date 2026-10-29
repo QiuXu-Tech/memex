@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "generatedAt": "2026-10-29T07:21:41.326Z",
+  "generatedAt": "2026-10-29T07:36:15.548Z",
   "load": [
-    4.15380859375,
-    3.63623046875,
-    4.81640625
+    3.2802734375,
+    3.82666015625,
+    4.1962890625
   ],
   "results": {
     "profiles": [
@@ -17,7 +17,7 @@
         "recallTokens": 600,
         "injectedCatalogTokens": 379,
         "injectedCatalogBytes": 1377,
-        "manualTokens": 749,
+        "manualTokens": 748,
         "bodyProbes": {
           "hit1": 0,
           "hit5": 1,
@@ -52,7 +52,7 @@
         "recallTokens": 800,
         "injectedCatalogTokens": 524,
         "injectedCatalogBytes": 1377,
-        "manualTokens": 1055,
+        "manualTokens": 1054,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -87,7 +87,7 @@
         "recallTokens": 650,
         "injectedCatalogTokens": 524,
         "injectedCatalogBytes": 1377,
-        "manualTokens": 1017,
+        "manualTokens": 1015,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -122,7 +122,7 @@
         "recallTokens": 900,
         "injectedCatalogTokens": 524,
         "injectedCatalogBytes": 1377,
-        "manualTokens": 1073,
+        "manualTokens": 1071,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -157,7 +157,7 @@
         "recallTokens": 400,
         "injectedCatalogTokens": 524,
         "injectedCatalogBytes": 1377,
-        "manualTokens": 1014,
+        "manualTokens": 1012,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -192,7 +192,7 @@
         "recallTokens": 500,
         "injectedCatalogTokens": 337,
         "injectedCatalogBytes": 1361,
-        "manualTokens": 658,
+        "manualTokens": 657,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -227,7 +227,7 @@
         "recallTokens": 700,
         "injectedCatalogTokens": 337,
         "injectedCatalogBytes": 1361,
-        "manualTokens": 669,
+        "manualTokens": 668,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -262,7 +262,7 @@
         "recallTokens": 500,
         "injectedCatalogTokens": 337,
         "injectedCatalogBytes": 1361,
-        "manualTokens": 648,
+        "manualTokens": 646,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -297,7 +297,7 @@
         "recallTokens": 900,
         "injectedCatalogTokens": 337,
         "injectedCatalogBytes": 1361,
-        "manualTokens": 678,
+        "manualTokens": 677,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -332,7 +332,7 @@
         "recallTokens": 400,
         "injectedCatalogTokens": 396,
         "injectedCatalogBytes": 1361,
-        "manualTokens": 740,
+        "manualTokens": 739,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -367,7 +367,7 @@
         "recallTokens": 500,
         "injectedCatalogTokens": 449,
         "injectedCatalogBytes": 1361,
-        "manualTokens": 842,
+        "manualTokens": 840,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -402,7 +402,7 @@
         "recallTokens": 400,
         "injectedCatalogTokens": 337,
         "injectedCatalogBytes": 1361,
-        "manualTokens": 640,
+        "manualTokens": 639,
         "bodyProbes": {
           "hit1": 1,
           "hit5": 1,
@@ -435,20 +435,20 @@
         "runs": [
           {
             "initMs": 46.6,
-            "firstSearchMs": 2.5,
-            "totalMs": 51,
+            "firstSearchMs": 2.4,
+            "totalMs": 50.2,
+            "searchTextChars": 382
+          },
+          {
+            "initMs": 46.7,
+            "firstSearchMs": 2.4,
+            "totalMs": 49.6,
             "searchTextChars": 382
           },
           {
             "initMs": 45.4,
             "firstSearchMs": 2.3,
             "totalMs": 48.2,
-            "searchTextChars": 382
-          },
-          {
-            "initMs": 46.9,
-            "firstSearchMs": 2.3,
-            "totalMs": 49.7,
             "searchTextChars": 382
           }
         ]
@@ -457,21 +457,21 @@
         "profile": "claude-opus-5-5",
         "runs": [
           {
-            "initMs": 46.1,
-            "firstSearchMs": 2.4,
-            "totalMs": 48.9,
+            "initMs": 46.9,
+            "firstSearchMs": 2.5,
+            "totalMs": 49.8,
             "searchTextChars": 700
           },
           {
-            "initMs": 47.5,
-            "firstSearchMs": 2.4,
-            "totalMs": 50.3,
+            "initMs": 47.4,
+            "firstSearchMs": 2.5,
+            "totalMs": 50.2,
             "searchTextChars": 700
           },
           {
-            "initMs": 48,
-            "firstSearchMs": 2.4,
-            "totalMs": 50.8,
+            "initMs": 49.1,
+            "firstSearchMs": 2.5,
+            "totalMs": 52.1,
             "searchTextChars": 700
           }
         ]
@@ -480,21 +480,21 @@
         "profile": "claude-sonnet-5-5",
         "runs": [
           {
-            "initMs": 46,
+            "initMs": 47.3,
             "firstSearchMs": 2.3,
-            "totalMs": 48.7,
+            "totalMs": 50.1,
             "searchTextChars": 382
           },
           {
-            "initMs": 44.9,
-            "firstSearchMs": 2.4,
-            "totalMs": 47.7,
+            "initMs": 45.5,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.3,
             "searchTextChars": 382
           },
           {
-            "initMs": 46.8,
+            "initMs": 46.2,
             "firstSearchMs": 2.3,
-            "totalMs": 49.5,
+            "totalMs": 48.9,
             "searchTextChars": 382
           }
         ]
@@ -503,21 +503,21 @@
         "profile": "claude-fable-5-1",
         "runs": [
           {
-            "initMs": 46.3,
-            "firstSearchMs": 2.4,
-            "totalMs": 49.2,
+            "initMs": 52.3,
+            "firstSearchMs": 2.8,
+            "totalMs": 55.5,
             "searchTextChars": 700
           },
           {
-            "initMs": 45.5,
-            "firstSearchMs": 2.4,
-            "totalMs": 48.2,
+            "initMs": 51,
+            "firstSearchMs": 2.5,
+            "totalMs": 54,
             "searchTextChars": 700
           },
           {
-            "initMs": 47,
+            "initMs": 49.7,
             "firstSearchMs": 2.4,
-            "totalMs": 49.8,
+            "totalMs": 52.8,
             "searchTextChars": 700
           }
         ]
@@ -526,21 +526,21 @@
         "profile": "claude-haiku-5-5",
         "runs": [
           {
-            "initMs": 45.1,
-            "firstSearchMs": 2.2,
-            "totalMs": 47.8,
+            "initMs": 48.4,
+            "firstSearchMs": 2.4,
+            "totalMs": 51.2,
             "searchTextChars": 310
           },
           {
-            "initMs": 45.7,
+            "initMs": 48.9,
             "firstSearchMs": 2.2,
-            "totalMs": 48.3,
+            "totalMs": 51.5,
             "searchTextChars": 310
           },
           {
-            "initMs": 45.5,
+            "initMs": 46.5,
             "firstSearchMs": 2.2,
-            "totalMs": 48.1,
+            "totalMs": 49.1,
             "searchTextChars": 310
           }
         ]
@@ -549,21 +549,21 @@
         "profile": "openai",
         "runs": [
           {
-            "initMs": 46.1,
-            "firstSearchMs": 2.2,
-            "totalMs": 48.7,
+            "initMs": 47.9,
+            "firstSearchMs": 2.3,
+            "totalMs": 50.5,
             "searchTextChars": 346
           },
           {
-            "initMs": 47.3,
-            "firstSearchMs": 2.2,
-            "totalMs": 49.9,
+            "initMs": 46.5,
+            "firstSearchMs": 2.3,
+            "totalMs": 49.2,
             "searchTextChars": 346
           },
           {
-            "initMs": 46.2,
+            "initMs": 46,
             "firstSearchMs": 2.2,
-            "totalMs": 48.7,
+            "totalMs": 48.6,
             "searchTextChars": 346
           }
         ]
@@ -572,21 +572,21 @@
         "profile": "gpt-6.1",
         "runs": [
           {
-            "initMs": 45.6,
-            "firstSearchMs": 2.3,
-            "totalMs": 48.2,
-            "searchTextChars": 700
-          },
-          {
-            "initMs": 45.3,
+            "initMs": 47.3,
             "firstSearchMs": 2.5,
-            "totalMs": 48.1,
+            "totalMs": 50.1,
             "searchTextChars": 700
           },
           {
-            "initMs": 44.9,
+            "initMs": 46.6,
             "firstSearchMs": 2.4,
-            "totalMs": 47.7,
+            "totalMs": 49.4,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 45.9,
+            "firstSearchMs": 2.4,
+            "totalMs": 48.8,
             "searchTextChars": 700
           }
         ]
@@ -595,21 +595,21 @@
         "profile": "gpt-6.1-terra",
         "runs": [
           {
-            "initMs": 45.8,
+            "initMs": 47,
             "firstSearchMs": 2.3,
-            "totalMs": 48.5,
+            "totalMs": 49.7,
             "searchTextChars": 346
           },
           {
-            "initMs": 47.7,
-            "firstSearchMs": 2.4,
-            "totalMs": 50.5,
+            "initMs": 46.3,
+            "firstSearchMs": 2.2,
+            "totalMs": 49,
             "searchTextChars": 346
           },
           {
-            "initMs": 46.7,
+            "initMs": 46.4,
             "firstSearchMs": 2.3,
-            "totalMs": 49.4,
+            "totalMs": 49.1,
             "searchTextChars": 346
           }
         ]
@@ -618,21 +618,21 @@
         "profile": "gpt-6-astra",
         "runs": [
           {
-            "initMs": 45.4,
+            "initMs": 45.7,
+            "firstSearchMs": 2.4,
+            "totalMs": 48.5,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 45.2,
+            "firstSearchMs": 2.4,
+            "totalMs": 48,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 46.3,
             "firstSearchMs": 2.5,
-            "totalMs": 48.3,
-            "searchTextChars": 700
-          },
-          {
-            "initMs": 48.2,
-            "firstSearchMs": 2.4,
-            "totalMs": 51,
-            "searchTextChars": 700
-          },
-          {
-            "initMs": 44.8,
-            "firstSearchMs": 2.4,
-            "totalMs": 47.7,
+            "totalMs": 49.2,
             "searchTextChars": 700
           }
         ]
@@ -642,20 +642,20 @@
         "runs": [
           {
             "initMs": 45.8,
-            "firstSearchMs": 2.2,
-            "totalMs": 48.4,
-            "searchTextChars": 346
-          },
-          {
-            "initMs": 45.9,
             "firstSearchMs": 2.3,
             "totalMs": 48.6,
             "searchTextChars": 346
           },
           {
-            "initMs": 45,
-            "firstSearchMs": 2.2,
-            "totalMs": 47.6,
+            "initMs": 47,
+            "firstSearchMs": 2.3,
+            "totalMs": 49.7,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 47.6,
+            "firstSearchMs": 2.6,
+            "totalMs": 50.6,
             "searchTextChars": 346
           }
         ]
@@ -664,21 +664,21 @@
         "profile": "deepseek-flash",
         "runs": [
           {
-            "initMs": 47.3,
-            "firstSearchMs": 2.3,
-            "totalMs": 50,
+            "initMs": 47.6,
+            "firstSearchMs": 2.5,
+            "totalMs": 50.5,
             "searchTextChars": 382
           },
           {
-            "initMs": 47.1,
-            "firstSearchMs": 2.3,
-            "totalMs": 49.7,
+            "initMs": 49.8,
+            "firstSearchMs": 2.4,
+            "totalMs": 52.7,
             "searchTextChars": 382
           },
           {
-            "initMs": 46.1,
-            "firstSearchMs": 2.3,
-            "totalMs": 48.8,
+            "initMs": 49.3,
+            "firstSearchMs": 2.4,
+            "totalMs": 52.1,
             "searchTextChars": 382
           }
         ]
@@ -687,21 +687,21 @@
         "profile": "generic",
         "runs": [
           {
-            "initMs": 45.9,
+            "initMs": 48.5,
             "firstSearchMs": 2.3,
-            "totalMs": 48.6,
+            "totalMs": 51.2,
             "searchTextChars": 346
           },
           {
-            "initMs": 50.3,
-            "firstSearchMs": 2.6,
-            "totalMs": 53.3,
+            "initMs": 48.9,
+            "firstSearchMs": 2.5,
+            "totalMs": 51.8,
             "searchTextChars": 346
           },
           {
-            "initMs": 95,
-            "firstSearchMs": 3,
-            "totalMs": 98.5,
+            "initMs": 47.8,
+            "firstSearchMs": 2.3,
+            "totalMs": 50.5,
             "searchTextChars": 346
           }
         ]

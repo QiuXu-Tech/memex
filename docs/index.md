@@ -34,6 +34,8 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Model profiles](model-profiles.html) — per-family budgets, injection formats and digest prompts.
 - [Optimization findings](optimization-findings.html) — retrieval/perf experiments, fixed issues, backlog.
 - [Profile validation](profile-validation.html) — cold-start + long-horizon A/B for the dedicated model profiles.
+- [Live endpoint A/B](live-testing.html) — harness, status and how to run it with provider keys.
+- [v0.4.0 experiments](experiments-v040.html) — rename/defaults verification, recall re-check and improvement points.
 - [Claude Code](integrations/claude-code.html) · [Codex](integrations/codex.html) · [Generic MCP clients](integrations/mcp.html)
 - [Install guide](install.html) — profile registration, config rows, local fallback.
 
