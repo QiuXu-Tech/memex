@@ -51,6 +51,7 @@ const store = new LocalStoreCore({ root: ROOT, capacityTokens: 1_000_000_000, se
 
 // Long history: many technical turns, a few facts deep inside.
 const facts = []
+const writtenIds = []
 const topics = ['gateway', 'parser', 'scheduler', 'ledger', 'cache', 'router', 'worker', 'indexer', 'bridge', 'harbor']
 for (let index = 0; index < TURNS; index += 1) {
   const isFact = index % 15 === 0 && facts.length < 60
@@ -60,17 +61,14 @@ for (let index = 0; index < TURNS; index += 1) {
     ? `Turn ${index} (${topic}): the durable value is ${fact}; keep it for the ${topic} question. ` + 'technical notes '.repeat(120)
     : `Turn ${index} (${topic}): reviewed the ${topic} config, retried the job, adjusted backoff. ` + 'technical notes '.repeat(120)
   const card = store.write({ kind: isFact ? 'fact' : 'episode', title: isFact ? `${topic} value at turn ${index}` : `turn ${index} ${topic} work`, summary: isFact ? `the ${topic} value is ${fact}` : `work log for ${topic}`, useWhen: `read when continuing ${topic} work`, body, workspaceKey: WS, scope: 'workspace', tokens: Math.round(body.length / 4) })
+  writtenIds.push(card.id)
   if (isFact) facts.push({ turn: index, topic, fact, id: card.id })
 }
-// Keep only the newest TAIL_RECORDS hot; archive everything older (simulates
-// L1 eviction). list() clamps to 100 rows, so read all ids from the DB.
-const allRows = store.database().prepare('SELECT id FROM records ORDER BY created_at ASC, id ASC').all()
-for (const row of allRows.slice(0, Math.max(0, allRows.length - TAIL_RECORDS))) store.archiveCold(row.id)
-// v0.7.2: record the exact tail membership instead of re-querying list() (whose
-// ordering was not guaranteed to match the archived region). Tail ids are the
-// newest TAIL_RECORDS by insertion order; the control prompt is built from
-// exactly these rows and the plan records inTail/evicted for verification.
-const tailIds = allRows.slice(-TAIL_RECORDS).map((row) => row.id)
+// Preserve the fixture's insertion order explicitly: created_at can tie within
+// a millisecond, and sorting tied rows by random id does not preserve turn order.
+const tailStart = Math.max(0, writtenIds.length - TAIL_RECORDS)
+for (const id of writtenIds.slice(0, tailStart)) store.archiveCold(id)
+const tailIds = writtenIds.slice(tailStart)
 const tailIdsSet = new Set(tailIds)
 const tailRows = tailIds.map((id) => store.database().prepare('SELECT * FROM records WHERE id = ?').get(id)).filter(Boolean)
 const tailText = tailRows.map((row) => `${row.title}\n${row.summary}`).join('\n')
@@ -181,7 +179,7 @@ if (EMIT_DIR !== undefined) {
   mkdirSync(EMIT_DIR, { recursive: true })
   writeFileSync(join(EMIT_DIR, 'control.txt'), buildBatchPrompt(false))
   writeFileSync(join(EMIT_DIR, 'treatment.txt'), buildBatchPrompt(true))
-  writeFileSync(join(EMIT_DIR, 'plan.json'), JSON.stringify({ generatedAt: new Date().toISOString(), seed: SEED, turns: TURNS, tailCount: TAIL_RECORDS, tailIds, tailRecords: tailRows.map((row) => ({ id: row.id, title: row.title, summary: row.summary })), probes: probes.map((probe, index) => ({ index, turn: probe.turn, topic: probe.topic, expected: probe.fact, id: probe.id, inTail: probe.inTail, evicted: probe.evicted })) }, null, 2))
+  writeFileSync(join(EMIT_DIR, 'plan.json'), JSON.stringify({ generatedAt: new Date().toISOString(), seed: SEED, turns: TURNS, tailCount: tailIds.length, tailIds, tailRecords: tailRows.map((row) => ({ id: row.id, title: row.title, summary: row.summary })), probes: probes.map((probe, index) => ({ index, turn: probe.turn, topic: probe.topic, expected: probe.fact, id: probe.id, inTail: probe.inTail, evicted: probe.evicted })) }, null, 2))
   console.log(JSON.stringify({ emitted: EMIT_DIR, probes: probes.length, controlBytes: buildBatchPrompt(false).length, treatmentBytes: buildBatchPrompt(true).length }, null, 2))
   evidenceCore.close()
   rmSync(ROOT, { recursive: true, force: true })

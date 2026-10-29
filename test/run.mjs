@@ -4183,6 +4183,44 @@ await test('U24', 'cold morphology-lite and partial coverage recall (decide/deci
   }
 })
 
+await test('U25', 'live A/B tail follows insertion order when timestamps tie', async () => {
+  const root = makeRoot('u25')
+  const preload = join(root, 'same-time.mjs')
+  writeFileSync(preload, [
+    "import crypto from 'node:crypto'",
+    "import { syncBuiltinESMExports } from 'node:module'",
+    'let counter = 0',
+    "crypto.randomUUID = () => (0xffffffff - counter++).toString(16).padStart(8, '0') + '-0000-4000-8000-000000000000'",
+    'syncBuiltinESMExports()',
+    'Date.now = () => 1700000000000',
+  ].join('\n'))
+  const register = fileURLToPath(new URL('./register.mjs', import.meta.url))
+  const script = fileURLToPath(new URL('../scripts/live-ab.mjs', import.meta.url))
+  for (const tail of [20, 0, 50]) {
+    const output = join(root, `tail-${tail}`)
+    const child = spawnSync(process.execPath, [
+      '--import', register, '--import', preload, script,
+      '--turns', '40', '--tail', String(tail), '--probes', '3', '--emit-prompts', output,
+    ], { encoding: 'utf8' })
+    assert.equal(child.status, 0, child.stderr)
+    const plan = JSON.parse(readFileSync(join(output, 'plan.json'), 'utf8'))
+    const expectedTurns = Array.from({ length: Math.min(tail, 40) }, (_, index) => 40 - Math.min(tail, 40) + index)
+    const actualTurns = plan.tailRecords.map((row) => Number(row.title.match(/\bturn (\d+)\b/)[1]))
+    assert.deepEqual(actualTurns, expectedTurns, 'tail must contain the newest turns in insertion order')
+    assert.equal(plan.tailCount, expectedTurns.length)
+    const ids = new Set(plan.tailIds)
+    assert.equal(ids.size, expectedTurns.length)
+    assert.deepEqual(plan.tailRecords.map((row) => row.id), plan.tailIds)
+    for (const probe of plan.probes) {
+      assert.equal(probe.inTail, ids.has(probe.id))
+      assert.equal(probe.evicted, !ids.has(probe.id))
+    }
+    const control = readFileSync(join(output, 'control.txt'), 'utf8')
+    const context = control.split('Recent context:\n')[1].split('\n\nQuestions:')[0]
+    assert.equal(context, plan.tailRecords.map((row) => `${row.title}\n${row.summary}`).join('\n'))
+  }
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()
