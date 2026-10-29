@@ -591,19 +591,36 @@ export class LocalStoreCore {
       ...[...String(query.query).matchAll(/\b\d{1,6}\b/g)].map((match) => match[0]),
     ])]
     const keyTerms = anchorTerms.filter((term) => term.length >= 1 && isIdentifierToken(term))
+    const meaningfulTerms = [...new Set(lowerTerms.filter((term) => term.length >= 3))]
     const { clauses, params } = this.workspaceClause(query, { alias: 'r.' })
     const where = clauses.map((clause) => `AND ${clause}`).join(' ')
     const rowsById = new Map()
+    const candidateLimit = limit * 8
     const ftsTerms = terms.filter((term) => Array.from(term).length >= 3).slice(0, 12)
-    if (ftsTerms.length > 0) {
-      const match = ftsTerms.map((term) => `"${term.replaceAll('"', '""')}"`).join(' OR ')
+    const ftsMatch = ftsTerms.length > 0
+      ? ftsTerms.map((term) => `"${term.replaceAll('"', '""')}"`).join(' OR ')
+      : undefined
+    if (ftsMatch !== undefined) {
       const rows = db.prepare(`
         SELECT r.*, snippet(records_fts, 1, '[', ']', '…', 16) AS snippet, bm25(records_fts) AS rank
         FROM records_fts JOIN records r ON r.rowid = records_fts.rowid
         WHERE records_fts MATCH ? ${where}
         ORDER BY rank, r.updated_at DESC LIMIT ?
-      `).all(match, ...params, limit * 8)
+      `).all(ftsMatch, ...params, candidateLimit)
       for (const row of rows) rowsById.set(row.id, row)
+    }
+    // Cold-only FTS leg for anchor-free questions: a cold page whose abstract
+    // carries the answer must be in the rerank set even when hot cards fill the
+    // primary candidate pool. Bounded and cold-only; cheap.
+    const hasFullyCoveredColdCandidate = meaningfulTerms.length >= 2 && [...rowsById.values()].some((row) => row.cold === 1 && meaningfulTerms.every((term) => termMatchesText(`${row.title} ${row.summary} ${row.use_when} ${row.abstract ?? ''}`.toLowerCase(), term)))
+    if (ftsMatch !== undefined && keyTerms.length === 0 && !hasFullyCoveredColdCandidate) {
+      const coldRows = db.prepare(`
+        SELECT r.*, snippet(records_fts, 1, '[', ']', '…', 16) AS snippet, bm25(records_fts) AS rank
+        FROM records_fts JOIN records r ON r.rowid = records_fts.rowid
+        WHERE records_fts MATCH ? ${where} AND r.cold = 1
+        ORDER BY rank, r.updated_at DESC LIMIT ?
+      `).all(ftsMatch, ...params, Math.max(limit * 8, 40))
+      for (const row of coldRows) if (!rowsById.has(row.id)) rowsById.set(row.id, row)
     }
     // LIKE acts as the second retrieval leg for terms FTS trigrams cannot
     // tokenize (short terms and CJK bigrams). For terms of 3+ characters the
@@ -622,7 +639,7 @@ export class LocalStoreCore {
         SELECT r.*, '' AS snippet, 0 AS rank FROM records r
         WHERE (${like}) ${where}
         ORDER BY r.updated_at DESC LIMIT ?
-      `).all(...likeTerms.flatMap((term) => [`%${term}%`, `%${term}%`, `%${term}%`, `%${term}%`]), ...params, limit * 8)
+      `).all(...likeTerms.flatMap((term) => [`%${term}%`, `%${term}%`, `%${term}%`, `%${term}%`]), ...params, candidateLimit)
       for (const row of rows) if (!rowsById.has(row.id)) rowsById.set(row.id, row)
     }
     // Body-only fallback: the FTS/LIKE legs cover card fields and cold
@@ -784,7 +801,6 @@ export class LocalStoreCore {
     // anchor and the card legs only provide weak lexical coverage, scan the
     // bounded hot tier bodies (the context tail is small by construction) for
     // query-term coverage. Cold records are handled by abstract FTS/cold rescue.
-    const meaningfulTerms = [...new Set(lowerTerms.filter((term) => term.length >= 3))]
     const hasAnchorTerm = keyTerms.length > 0
     if (!hasAnchorTerm && meaningfulTerms.length >= 2) {
       let bestCoverage = 0
@@ -845,6 +861,15 @@ export class LocalStoreCore {
         + fieldHits(row.abstract, sweep.abstract)
         + (card.cold === true
           ? keyTerms.filter((term) => termMatchesText(`${row.title} ${row.summary} ${row.use_when} ${row.abstract ?? ''}`.toLowerCase(), term)).length * (sweep.coldAnchor ?? 0)
+          : 0)
+        + (card.cold === true && keyTerms.length === 0
+          ? (() => {
+              const coldAbstractHits = meaningfulTerms.filter((term) => termMatchesText(String(row.abstract ?? '').toLowerCase(), term)).length
+              // Only a *fully covered* cold abstract gets the explicit cold-rescue
+              // boost: partial keyword overlap is common and must not displace a
+              // precise hot card.
+              return coldAbstractHits >= meaningfulTerms.length && meaningfulTerms.length >= 2 ? coldAbstractHits * (sweep.coldAbstract ?? 4) : 0
+            })()
           : 0)
         + (Number(row.bodyHits) || 0) * sweep.body
         + Math.max(0, 1 - ageDays / 60) * sweep.recency

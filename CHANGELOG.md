@@ -6,6 +6,16 @@ ordering problem. The original tail membership was not saved; see the
 [live-testing methodology warning](docs/live-testing.md#deepseek-flash-results-2026-10-29)
 before interpreting the reported evicted subsets.
 
+## 0.7.0
+
+### Added — cold-side anchor-free recall
+- **Cold-only FTS candidate leg** for anchor-free queries: when the primary candidate pool is dominated by hot cards, fetch cold pages whose abstracts match the query, without reading cold bodies.
+- **Full-abstract-coverage cold rescue boost**: only cold rows whose abstract covers *every* meaningful query term receive the cold-abstract boost; partial keyword overlap is ignored so precise hot cards are not displaced.
+- Live DeepSeek Flash cold anchor-free run (n=3): control **0/3**, treatment **3/3** for body-only decisions archived cold (`FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU`).
+- **U23** cold anchor-free retrieval test; harness **120/120**.
+- Real-archive guard unchanged: hit@5 **93%**, cold recall **94%**, p50 ~**2.0 ms** (cold-only FTS leg; up from 1.7 ms).
+- Limits: full-term coverage required; morphology matches exactly (no stemming); cold bodies are not scanned.
+
 ## 0.6.1
 
 ### Added — Codex/GPT contribution bridge

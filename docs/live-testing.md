@@ -67,6 +67,17 @@ Questions contain **no turn numbers or IDs**; the three facts live only in hot b
 
 This exercises the new **anchor-free hot-body coverage rescue**: it runs only when no card field shares a meaningful query term, then scans at most 240 hot bodies. Cold anchor-free facts still rely on abstract FTS/card summaries. Raw: [evidence](assets/benchmarks/live-ab-deepseek-anchor-free.json).
 
+### E. Cold anchor-free natural-language recall (n=3)
+
+Questions contain **no turn numbers or IDs** and the answer-bearing records are **archived cold**, with generic card titles (`decision record N`). The retrieval path used is the v0.7.0 cold rescue: a cold-only FTS candidate leg + full-abstract-coverage boost, without reading cold bodies.
+
+| Condition | Result |
+|---|---|
+| control (recent tail only) | **0/3** — all UNKNOWN |
+| treatment (memex evidence) | **3/3** — `FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU` |
+
+Limits kept explicit: the boost requires the cold abstract to cover **every** meaningful query term (partial overlap is ignored), and morphology must match (`decision`, not `decide`). Raw: [evidence](assets/benchmarks/live-ab-deepseek-cold-anchor-free.json).
+
 ## How to contribute
 
 1. Clone and run the dry-run sanity check (no network):

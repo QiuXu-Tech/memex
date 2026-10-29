@@ -1,0 +1,40 @@
+{
+  "format": 1,
+  "kind": "live-ab-cold-anchor-free-result",
+  "generatedAt": "2026-10-29T18:40:00+08:00",
+  "provider": "deepseek-account",
+  "model": "deepseek-flash",
+  "method": "cold anchor-free natural-language questions (no turn number, no ID); body-only facts archived cold with generic card titles; evidence-in-prompt control/treatment",
+  "fixture": {
+    "records": 80,
+    "facts": 3,
+    "factTitles": "decision record 20/21/22",
+    "cold": true,
+    "hotDistractors": "billing/auth/cache notes with partial card matches"
+  },
+  "control": {
+    "correct": 0,
+    "n": 3,
+    "answers": [
+      "UNKNOWN",
+      "UNKNOWN",
+      "UNKNOWN"
+    ]
+  },
+  "treatment": {
+    "correct": 3,
+    "n": 3,
+    "answers": [
+      "FACT-BILL-OK",
+      "FACT-AUTH-30D",
+      "FACT-CACHE-LRU"
+    ]
+  },
+  "mechanism": "cold-only FTS candidate leg for anchor-free queries + full-abstract-coverage cold rescue boost (candidate limit unchanged; no cold body reads)",
+  "notes": [
+    "Questions contain no numbers or identifiers; expected records are cold, body-only facts with generic titles.",
+    "The cold rescue only boosts cold rows whose abstract fully covers every meaningful query term; partial overlap is ignored.",
+    "Morphology must match (decision vs decide); stemming is not implemented.",
+    "n=3 probes, one model; a data point, not statistical evidence."
+  ]
+}
