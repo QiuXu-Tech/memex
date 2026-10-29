@@ -14,9 +14,9 @@ Tracking request and discussion: [issue #1](https://github.com/QiuXu-Tech/memex/
 **Tail-membership status:** v0.8.0 recorded tail IDs and probe flags, but
 its `created_at, id` sort could reorder turns written in the same millisecond.
 The [tail-order fix](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa4db9acdf6787cb0a80872c00)
-uses the fixture's actual insertion order. In the v0.9.1 + fix GPT-6.1 Sol run, saved
+uses the fixture's actual insertion order. In the v0.14.0 GPT-6.1 Sol run, saved
 plans and prompts confirm turns 280–299 in order for all three seeds.
-[Results and evidence](assets/benchmarks/live-ab-codex-sol-v091-evidence.json)
+[Results and evidence](assets/benchmarks/live-ab-codex-sol-v014-evidence.json)
 are available below. Earlier DeepSeek, Terra and Claude counts remain historical;
 see the [tail audit](assets/benchmarks/results-tail-history-v080.json) before
 interpreting their claimed chronological tails.
@@ -85,15 +85,16 @@ Limits kept explicit: the boost requires the cold abstract to cover **every** me
 | Sol, prior v0.7.1 contribution | 3/60 | 60/60 | 3/57 → 57/57 reported | Older tail selection; subset not verified |
 | Terra, v0.8.1 contribution | 3/60 | 60/60 | 0/57 → 57/57 reported | IDs/flags saved; full chronological tail not saved |
 | Sol, v0.8.1 + tail-order fix | 3/60 | 60/60 | 0/57 → 57/57 | Actual plans and both prompts saved; turns 280–299 in order |
-| Sol, v0.9.1 + tail-order fix | **3/60** | **60/60** | **0/57 → 57/57** | Plans and prompts saved; turns 280–299 in order; seed 3 resumed after fixture error |
+| Sol, v0.9.1 + tail-order fix | 3/60 | 60/60 | 0/57 → 57/57 | Plans and prompts saved; turns 280–299 in order; seed 3 resumed after fixture error |
+| Sol, v0.14.0 | **3/60** | **60/60** | **0/57 → 57/57** | All three actual prompt tails verified in order; bridge and six calls exited zero |
 
-The v0.9.1 + fix run uses three synthetic 300-turn histories and 20 probes per
-seed. Both conditions see the titles and summaries of the 20 tail records,
+The v0.9.1 + fix and v0.14.0 runs use three synthetic 300-turn histories and
+20 probes per seed. Both conditions see the titles and summaries of the 20 tail records,
 not their full conversation bodies. The fixture searches and opens records
 before inserting evidence into the treatment prompt; it does not test an
 autonomous model choosing memory tools.
 
-The original bridge completed seeds 1–2, then failed to generate seed 3 with
+In the v0.9.1 run, the original bridge completed seeds 1–2, then failed to generate seed 3 with
 SQLite `database is locked` before any seed-3 model call. Only the two missing
 seed-3 calls were run in a fresh temporary directory. The result is
 **reconstructed** from the saved plans and answers, not a completed single
@@ -102,6 +103,16 @@ local Codex `task_complete` events and final messages matched the saved
 answers. Both recovery calls exited zero. The lock's cause and monetary cost
 remain unknown. Local session usage records total **159,311 tokens**, including
 79,104 cached input; they are not a billing receipt.
+
+[The v0.14.0 bridge](assets/benchmarks/live-ab-codex-sol-v014.json) completed
+all six calls with exit code zero. The [actual plans and prompts](assets/benchmarks/live-ab-codex-sol-v014-evidence.json)
+confirm each chronological tail and probe flag; local Codex completion events
+matched all saved answers, and no model-issued tool calls appear in those logs.
+The local session counts total **165,054 tokens**, including 86,912 cached
+input; billing cost remains unknown. Before the run CPU busy was
+21.1% / 21.3%; 27 samples during it ranged 13.7%–34.0% on a shared machine.
+For the separate offline capacity failure and controlled contention tests, see
+the [SQLite lock investigation](benchmark.html#7-sqlite-lock-investigation).
 
 [v0.9.1 result](assets/benchmarks/live-ab-codex-sol-v091.json) ·
 [v0.9.1 actual plans and prompts](assets/benchmarks/live-ab-codex-sol-v091-evidence.json) ·

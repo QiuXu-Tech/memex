@@ -1,8 +1,8 @@
 {
-  "testedVersion": "0.9.1 + tail fix",
-  "testedCommit": "72ba8fc338e79e46121d44c8757594c773ed3b6b",
-  "executionCheckout": "72ba8fc338e79e46121d44c8757594c773ed3b6b",
-  "executionCheckoutNote": "Clean detached checkout at 72ba8fc: v0.9.1 release code plus the post-release tail-order fix. The v0.9.1 tag is 1bd3a4e; packages and offline benchmark scripts are identical between these commits.",
+  "testedVersion": "0.14.0",
+  "testedCommit": "48034b1fcb1eb28e88173f3568e4b09cf6670b1d",
+  "executionCheckout": "48034b1fcb1eb28e88173f3568e4b09cf6670b1d",
+  "executionCheckoutNote": "Clean detached checkout at the v0.14.0 tag; product code was not modified.",
   "date": "2026-10-29",
   "timezone": "Asia/Shanghai",
   "os": "macOS 27.2 (26B123)",
@@ -12,79 +12,132 @@
   "memoryBytes": 17179869184,
   "node": "v24.21.0",
   "loadMonitor": "psutil 7.2.2 cpu_percent(interval=5) and os.getloadavg; machine-wide including benchmark work. Stage label is recorded at the end of each sampling interval.",
-  "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 25% and 1-minute load <= 5.",
+  "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 20% and load1 <= 4.5.",
   "quietStartGateMet": true,
   "quietGateSamples": [
     {
-      "timeUtc": "2026-10-29T12:50:41+00:00",
+      "timeUtc": "2026-10-29T13:35:43+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 24.8,
-      "load1": 3.25146484375,
-      "load5": 2.7744140625,
+      "systemCpuBusyPercent": 19.3,
+      "load1": 3.64990234375,
+      "load5": 3.890625,
       "benchmarkPid": null
     },
     {
-      "timeUtc": "2026-10-29T12:50:46+00:00",
+      "timeUtc": "2026-10-29T13:35:48+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 21.6,
-      "load1": 3.39111328125,
-      "load5": 2.81103515625,
+      "systemCpuBusyPercent": 16.2,
+      "load1": 3.517578125,
+      "load5": 3.85888671875,
       "benchmarkPid": null
     }
   ],
   "benchmarkLoadSamples": {
     "count": 7,
-    "load1Min": 3.0439453125,
-    "load1Max": 3.234375,
-    "cpuBusyPercentMin": 23.2,
-    "cpuBusyPercentMedian": 27.7,
-    "cpuBusyPercentMax": 35.7
+    "cpuBusyPercentMin": 33.1,
+    "cpuBusyPercentMax": 47.2,
+    "cpuBusyPercentMedian": 38.4,
+    "load1Min": 3.7412109375,
+    "load1Max": 4.17138671875
   },
-  "summary": "Pre-existing compaction-summary.txt; no model invoked during rerun.",
+  "recovery": {
+    "why": "Initial 100M capacity stage failed with SQLITE_BUSY at BEGIN IMMEDIATE; recall stage had not started.",
+    "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 25% and load1 <= 5.",
+    "quietStartGateMet": true,
+    "quietGateSamples": [
+      {
+        "timeUtc": "2026-10-29T13:41:14+00:00",
+        "stage": "preflight",
+        "systemCpuBusyPercent": 24.7,
+        "load1": 4.96044921875,
+        "load5": 5.91259765625,
+        "benchmarkPid": null
+      },
+      {
+        "timeUtc": "2026-10-29T13:41:19+00:00",
+        "stage": "preflight",
+        "systemCpuBusyPercent": 22.2,
+        "load1": 4.72314453125,
+        "load5": 5.84716796875,
+        "benchmarkPid": null
+      }
+    ],
+    "loadSamples": {
+      "count": 1,
+      "cpuBusyPercentMin": 29.8,
+      "cpuBusyPercentMax": 29.8,
+      "cpuBusyPercentMedian": 29.8,
+      "load1Min": 4.7451171875,
+      "load1Max": 4.7451171875
+    },
+    "temporaryLocation": "fresh subdirectory of macOS system temporary directory",
+    "note": "Only missing 100M capacity and recall stages were run again; initial error and interrupted preflight are retained."
+  },
+  "summary": "Pre-existing compaction-summary.txt; no model invoked for offline benchmark.",
   "sourceSha256": {
     "scripts/long-horizon-eval.mjs": "cec6e2db72fa182328131e230cb1b3cf89ef601a92215246deb9022727c2b144",
     "scripts/scale-bench.mjs": "8a9d849fc9ea62028d755cd0a61e6d8c0191d36f1c375e29ca4bf7c0e78bc99c",
     "scripts/recall-eval.mjs": "563c8718ef432d54f4115be0c1ab6e96808f81784bf99d7e83b4d093b098c8e1",
     "docs/assets/benchmarks/compaction-summary.txt": "5df3b0d2540dc3e70f8662b18e6e79a832a92019aa3fbd1d6411f7e6baab75f7",
     "test/register.mjs": "b6651a0d8d119cb6fc843d7ca54529a0f30746615bc68348b6a069e06c22124f",
-    "packages/memex-core/index.js": "aca5e2defda24e9d2a5f69ed695170e0c3df86e8de0672fc1337cbb422226b19",
-    "packages/memex-core/lib/store.js": "2c85830ff82ba11bc8facad243fe9001f8ddf0e4c2ee61311424dc9713e22fcb",
+    "test/run.mjs": "a7a7d26a7f1703d21e57f8f9d9450c677cec85f58c21042076057491b58b2cc8",
+    "packages/memex-core/index.js": "ac504c96cc6f01612b74db0003f5e7bd3d84b5ed7964f991c61dc1c2ea6b79ef",
+    "packages/memex-core/lib/store.js": "52af808eb1c22d811d8bfde9dee73b2f5e3da440e552f741badf310d846eb06b",
     "packages/memex-local/lib/store.js": "22a6497741e4708daa1a2ba257e09486b39de3b68a4d7ddf5597377513f6bb57",
     "scripts/live-ab.mjs": "5d59b31be6b2e5bfb8d44a0d1221f0a235210821cbad182d25e59cabb6d69334",
     "scripts/codex-ab.mjs": "b7132815278fb371b9efb10aedadccac6c007e02c8326ed88de760cdb20c101a"
   },
   "limitations": [
-    "Shared machine; sampled load includes benchmark work and is not complete isolation.",
-    "Offline benchmark searches use LocalStoreCore default rerank weights; those workloads do not benchmark model-specific AgentMemory profiles or live agents.",
+    "Shared machine; sampled load includes benchmark work and is not full isolation.",
+    "Offline searches use LocalStoreCore default rerank weights; they do not benchmark live agents.",
     "Token counts use character-based estimates; no memory_open call or model answer is timed.",
     "Capacity bodies contain only x; card-field numbers are indexed but identifier-bearing body index overhead is not represented."
   ],
   "liveAB": {
-    "model": "gpt-6.1-sol",
     "node": "v25.9.0",
     "codexCli": "0.165.0-alpha.1.2",
+    "bridgeExitCode": 0,
     "calls": 6,
-    "loadSamples": "NOT_CAPTURED",
+    "allExitZero": true,
     "sessionCompletionsMatched": true,
-    "initialBridgeExit": 1,
-    "initialFailure": "SQLite ERR_SQLITE_ERROR 5: database is locked while generating seed 3; cause UNKNOWN",
-    "firstFourProcessExitCodes": "NOT_RETAINED",
-    "seed3RecoveryExitCodes": [
-      0,
-      0
+    "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 25% and load1 <= 5.",
+    "quietStartGateMet": true,
+    "quietGateSamples": [
+      {
+        "timeUtc": "2026-10-29T13:42:32+00:00",
+        "stage": "preflight",
+        "systemCpuBusyPercent": 21.1,
+        "load1": 4.60693359375,
+        "load5": 5.51904296875,
+        "benchmarkPid": null
+      },
+      {
+        "timeUtc": "2026-10-29T13:42:37+00:00",
+        "stage": "preflight",
+        "systemCpuBusyPercent": 21.3,
+        "load1": 4.39794921875,
+        "load5": 5.46044921875,
+        "benchmarkPid": null
+      }
     ],
+    "loadSamples": {
+      "count": 27,
+      "cpuBusyPercentMin": 13.7,
+      "cpuBusyPercentMax": 34.0,
+      "cpuBusyPercentMedian": 19.3,
+      "load1Min": 2.919921875,
+      "load1Max": 4.12548828125
+    },
     "sessionTokenUsage": {
-      "input_tokens": 157473,
-      "cached_input_tokens": 79104,
+      "input_tokens": 163265,
+      "cached_input_tokens": 86912,
       "cache_write_input_tokens": 0,
-      "output_tokens": 1838,
-      "reasoning_output_tokens": 846,
-      "total_tokens": 159311
+      "output_tokens": 1789,
+      "reasoning_output_tokens": 797,
+      "total_tokens": 165054
     },
     "billedCost": "UNKNOWN",
-    "note": "Separate from offline benchmark; seed 3 resumed without repeating completed calls. Diagnostics and session logs retained locally, not published."
-  },
-  "historicalAssets": {
-    "results-harness-unbuilt.txt": "v0.5.0 historical run; not from this benchmark"
+    "nativeReportSha256": "848ece3ed321b1f9a284e34744df36b76d732e076d4d5bfd897effa741f268ca",
+    "note": "Separate from offline benchmark; diagnostic tails and local session logs retained locally."
   }
 }

@@ -121,5 +121,12 @@ ok U22 anchor-free natural-language recall scans bounded hot bodies
 ok U23 cold anchor-free recall pages a fully covered cold abstract
 ok U24 cold morphology-lite and partial coverage recall (decide/decision + extra term)
 ok U25 live A/B tail follows insertion order when timestamps tie
+ok U26 context materializer: chronology, stable prefix, budget, specialist slot
+ok U27 canonical context events round-trip with checksums and store persistence
+ok U28 context pager replays canonical events through the materializer
+ok U29 context encoder baseline ranks overlapping pages and trains offline
+ok U30 KV host capability negotiation fails closed and pages when fully capable
+ok U31 trained transformer context encoder matches Python reference and ranks pages
+ok U32 reference paged-KV host pages blocks, caches prefixes and evicts by capacity
 
-# 122/122 passed
+# 129/129 passed

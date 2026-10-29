@@ -1,0 +1,164 @@
+{
+  "testedVersion": "0.14.0",
+  "testedCommit": "48034b1fcb1eb28e88173f3568e4b09cf6670b1d",
+  "priorV091Fixture": {
+    "failure": {
+      "code": "ERR_SQLITE_ERROR",
+      "sqliteCode": 5,
+      "operation": "archiveCold UPDATE records"
+    },
+    "cause": "UNKNOWN",
+    "audit": {
+      "snapshotHashMatches": true,
+      "snapshotSha256": {
+        "index.db": "8416e98ec3ca14d4296f9916f8c5a1d357a3d7fd31dcc6d22a787a9d89303614",
+        "index.db-wal": "6c0c86266b7f41ca3b6b963722cd7a77d861351670b293a755f17e66959b1272",
+        "index.db-shm": "74ae80431d600e2b703de57f81335fa780a6dc7473557fe1e962515d20aebaf9"
+      },
+      "integrityCheck": [
+        "ok"
+      ],
+      "recordCount": 300,
+      "coldCount": 109,
+      "hotCount": 191,
+      "missingIndexedBodyPaths": 1,
+      "missingWithColdAlternative": 1,
+      "missingWithHotAlternative": 0,
+      "pathsOutsideOriginalFixture": 0,
+      "originalCause": "UNKNOWN"
+    },
+    "missingIndexedBodyHasOneColdAlternative": true,
+    "alternativeBytes": 2337,
+    "alternativeContainsSyntheticTurnText": true,
+    "note": "Original failure files were copied and hash-checked; original store was not retried or repaired."
+  },
+  "v014InitialBenchmarkFailure": {
+    "failure": {
+      "code": "ERR_SQLITE_ERROR",
+      "sqliteCode": 5,
+      "operation": "write BEGIN IMMEDIATE"
+    },
+    "failureLogSha256": "df91e0b42aa0643f71d9b38de2bd61ff3b74996cc6f14dc68e86b267dee7f684",
+    "fixture": "workspace temporary directory",
+    "storeRetention": "The unmodified scale-bench finally block removed its throwaway store after the exception."
+  },
+  "v014InstrumentedReproduction": {
+    "audit": {
+      "integrityCheck": [
+        "ok"
+      ],
+      "indexedRecords": 2440,
+      "recordFiles": 2441,
+      "unindexedRecordFiles": 1,
+      "missingIndexedBodyFiles": 0,
+      "lsofCommandsAtError": [
+        "node"
+      ],
+      "lsofStatus": 0,
+      "lsofLimitation": "Snapshot after error; a short-lived lock holder could have exited before capture.",
+      "errorOperation": "exec: BEGIN IMMEDIATE",
+      "sqliteCode": 5,
+      "message": "database is locked"
+    },
+    "note": "Independent synthetic 100M capacity attempt with a diagnostic preload that captures lsof after SQLITE_BUSY and preserves the fixture. Not a performance measurement.",
+    "cause": "UNKNOWN"
+  },
+  "forcedContentionArchive": {
+    "sqliteBusyTimeoutMs": 0,
+    "error": {
+      "code": "ERR_SQLITE_ERROR",
+      "sqliteCode": 5,
+      "message": "database is locked"
+    },
+    "elapsedMs": 1,
+    "databaseStillPointsToOriginalPath": true,
+    "databaseStillMarksHot": true,
+    "indexedBodyExists": false,
+    "coldBodyExists": true,
+    "coldBodyMatchesOriginal": true,
+    "rootCauseOfHistoricalIncident": "UNKNOWN",
+    "lockHolderExitCode": 0,
+    "readFallsBackToSummary": true,
+    "originalColdBodyPresentBeforeRetry": true,
+    "coldBodyBytesAfterRetry": 0,
+    "originalBodyPreservedAfterRetry": false
+  },
+  "forcedContentionWrite": {
+    "error": {
+      "code": "ERR_SQLITE_ERROR",
+      "sqliteCode": 5,
+      "message": "database is locked"
+    },
+    "lockHolderExitCode": 0,
+    "storedSummary": "old summary",
+    "bodyChangedDespiteFailedWrite": true
+  },
+  "portableDiagnostics": {
+    "node24": {
+      "archive": {
+        "sqliteBusyTimeoutMs": 0,
+        "error": {
+          "code": "ERR_SQLITE_ERROR",
+          "sqliteCode": 5,
+          "message": "database is locked"
+        },
+        "elapsedMs": 0,
+        "indexedBodyExistsAfterFailure": false,
+        "databaseStillMarksHot": true,
+        "coldBodyMatchesOriginalAfterFailure": true,
+        "lockHolderExitCode": 0,
+        "readFallsBackToSummary": true,
+        "coldBodyBytesAfterRetry": 0,
+        "originalBodyPreservedAfterRetry": false
+      },
+      "write": {
+        "error": {
+          "code": "ERR_SQLITE_ERROR",
+          "sqliteCode": 5,
+          "message": "database is locked"
+        },
+        "lockHolderExitCode": 0,
+        "storedSummary": "old summary",
+        "bodyChangedDespiteFailedWrite": true
+      }
+    },
+    "node25": {
+      "archive": {
+        "sqliteBusyTimeoutMs": 0,
+        "error": {
+          "code": "ERR_SQLITE_ERROR",
+          "sqliteCode": 5,
+          "message": "database is locked"
+        },
+        "elapsedMs": 0,
+        "indexedBodyExistsAfterFailure": false,
+        "databaseStillMarksHot": true,
+        "coldBodyMatchesOriginalAfterFailure": true,
+        "lockHolderExitCode": 0,
+        "readFallsBackToSummary": true,
+        "coldBodyBytesAfterRetry": 0,
+        "originalBodyPreservedAfterRetry": false
+      },
+      "write": {
+        "error": {
+          "code": "ERR_SQLITE_ERROR",
+          "sqliteCode": 5,
+          "message": "database is locked"
+        },
+        "lockHolderExitCode": 0,
+        "storedSummary": "old summary",
+        "bodyChangedDespiteFailedWrite": true
+      }
+    }
+  },
+  "diagnosticScriptsSha256": {
+    "scripts/sqlite-lock-diagnostic.mjs": "d4384c4a3ba63fde59828e3dc1e37cd4aa34c1851f6f06ff46b5e4bb988df27f",
+    "scripts/sqlite-write-lock-diagnostic.mjs": "497182d16da3af407afa4ab6a74c65a75f38ae00577d3e6810ad97a3d0970ec1"
+  },
+  "limitations": [
+    "lsof was sampled after the error, so a transient prior lock holder could be absent.",
+    "The intentional competing-writer tests establish failure behavior, not the actual historical lock owner.",
+    "SQLite integrity_check does not test whether indexed paths and record files agree.",
+    "The v0.14.0 product code has not been changed by this investigation."
+  ]
+}

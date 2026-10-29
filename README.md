@@ -168,12 +168,14 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 | Metric | Result |
 |---|---|
 | Private archive re-check (40 curated questions; v0.5.1) | Reported hit@1 **68%** / hit@3 90% / hit@5 **93%**, cold recall 94%, p50 **1.5 ms**; this private archive cannot be independently reproduced from the public fixture |
-| Synthetic recall suite (v0.9.1 + tail fix) | 80/80 target-record hits at rank 1 |
-| Codex / GPT-6.1 Sol A/B (v0.9.1 + tail fix; 3 synthetic histories) | exact answers: control with tail titles/summaries 3/60, treatment with retrieved evidence 60/60; evicted subset 0/57 → 57/57. The third seed was resumed after a fixture lock. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
-| 10k records / 100M assigned tokens (v0.9.1 + tail fix, synthetic, quiet-start gate) | write 4.5 s; cold spill 5,000 records/50M tokens in 2.66 s; cold GC 2,500 records/25M tokens in 0.29 s |
-| SQLite index (synthetic v0.9.1 + tail fix 100M-token pool) | 10.5 MiB after writing, 28.0 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
+| Synthetic recall suite (v0.14.0) | 80/80 target-record hits at rank 1 |
+| Codex / GPT-6.1 Sol A/B (v0.14.0; 3 synthetic histories) | exact answers: control with tail titles/summaries 3/60, treatment with pre-retrieved evidence 60/60; evicted subset 0/57 → 57/57. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
+| 10k records / 100M assigned tokens (v0.14.0, synthetic, quiet-start gate) | recovery run: write 3.6 s; cold spill 5,000 records/50M tokens in 2.36 s; cold GC 2,500 records/25M tokens in 0.29 s. The initial attempt failed with a SQLite lock. |
+| SQLite index (synthetic v0.14.0 100M-token pool) | 10.9 MiB after writing, 28.2 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
 
-**Synthetic 160K history / 80K window, on v0.9.1 + tail fix:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
+**Synthetic 160K history / 80K window, on v0.14.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
+
+**Known v0.14.0 SQLite contention risk:** a failed archive or update can leave record files inconsistent with the database; retrying a failed archive can overwrite its cold body. The [lock investigation](docs/benchmark.md#7-sqlite-lock-investigation) records the evidence and recovery precautions.
 
 Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
 
