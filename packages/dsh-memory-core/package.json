@@ -1,6 +1,6 @@
 {
   "name": "@qiuxu/dsh-memory-core",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "private": true,
   "description": "Agent-agnostic memory core: record vocabulary, workspace identity, query-term extraction, token accounting, markdown+SQLite store with hot/cold tiers, hybrid retrieval and capacity compression. No host dependencies.",
   "type": "module",

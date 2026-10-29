@@ -32,7 +32,8 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Benchmark report](benchmark.html) — long-horizon A/B vs no extra context, with charts.
 - [Integrations](integrations.html) — Claude Code, Codex, Gemini CLI, Cursor, Cline, Windsurf, DSH.
 - [Model profiles](model-profiles.html) — per-family budgets, injection formats and digest prompts.
-- [Optimization findings](optimization-findings.html) — v0.2.1 experiments: body-only recall gap, fixed adapter bugs, backlog.
+- [Optimization findings](optimization-findings.html) — retrieval/perf experiments, fixed issues, backlog.
+- [Profile validation](profile-validation.html) — cold-start + long-horizon A/B for the dedicated model profiles.
 - [Claude Code](integrations/claude-code.html) · [Codex](integrations/codex.html) · [Generic MCP clients](integrations/mcp.html)
 - [Install guide](install.html) — profile registration, config rows, local fallback.
 

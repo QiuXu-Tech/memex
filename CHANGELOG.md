@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.3.3
+
+### Added
+- **More dedicated profiles**: `claude-fable-5-1`, `claude-haiku-5-5`, `gpt-6.1-terra`, `gpt-6-astra` (8 variants / 21 profiles total), each with vendor-verified context/output limits, tokenizer estimates, budgets, rerank weights and reasoning-mode guidance.
+- **Profile validation report** `docs/profile-validation.md` + committed fixture script `scripts/profile-validation.mjs` and raw data `docs/assets/benchmarks/profile-validation.json`: cold-start parity (45–50 ms init, 2–3 ms first search), long-horizon retrieval parity, token overhead per 50 turns, and the Fable 5.1 body/useWhen tie-break fix discovered by the A/B.
+- Harness U16 extended to 8 variants (113 tests).
+
 ## 0.3.2
 
 ### Added

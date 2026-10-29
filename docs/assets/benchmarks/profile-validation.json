@@ -1,0 +1,711 @@
+{
+  "format": 1,
+  "generatedAt": "2026-10-29T07:21:41.326Z",
+  "load": [
+    4.15380859375,
+    3.63623046875,
+    4.81640625
+  ],
+  "results": {
+    "profiles": [
+      {
+        "profile": "claude",
+        "profileId": "claude",
+        "window": 200000,
+        "charsPerToken": 3.6,
+        "catalogTokens": 1400,
+        "recallTokens": 600,
+        "injectedCatalogTokens": 379,
+        "injectedCatalogBytes": 1377,
+        "manualTokens": 749,
+        "bodyProbes": {
+          "hit1": 0,
+          "hit5": 1,
+          "tokensPerAnswer": 58
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 111
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 258
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 379,
+          "cumulativeCatalogTokens": 18950
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "claude-opus-5-5",
+        "profileId": "claude-opus-5-5",
+        "window": 1000000,
+        "charsPerToken": 2.6,
+        "catalogTokens": 2000,
+        "recallTokens": 800,
+        "injectedCatalogTokens": 524,
+        "injectedCatalogBytes": 1377,
+        "manualTokens": 1055,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 80
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 153
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 358
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 524,
+          "cumulativeCatalogTokens": 26200
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "claude-sonnet-5-5",
+        "profileId": "claude-sonnet-5-5",
+        "window": 1000000,
+        "charsPerToken": 2.6,
+        "catalogTokens": 1600,
+        "recallTokens": 650,
+        "injectedCatalogTokens": 524,
+        "injectedCatalogBytes": 1377,
+        "manualTokens": 1017,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 80
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 153
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 358
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 524,
+          "cumulativeCatalogTokens": 26200
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "claude-fable-5-1",
+        "profileId": "claude-fable-5-1",
+        "window": 1000000,
+        "charsPerToken": 2.6,
+        "catalogTokens": 2200,
+        "recallTokens": 900,
+        "injectedCatalogTokens": 524,
+        "injectedCatalogBytes": 1377,
+        "manualTokens": 1073,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 80
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 153
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 358
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 524,
+          "cumulativeCatalogTokens": 26200
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "claude-haiku-5-5",
+        "profileId": "claude-haiku-5-5",
+        "window": 1000000,
+        "charsPerToken": 2.6,
+        "catalogTokens": 900,
+        "recallTokens": 400,
+        "injectedCatalogTokens": 524,
+        "injectedCatalogBytes": 1377,
+        "manualTokens": 1014,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 80
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 153
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 358
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 524,
+          "cumulativeCatalogTokens": 26200
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "openai",
+        "profileId": "openai",
+        "window": 400000,
+        "charsPerToken": 4,
+        "catalogTokens": 1200,
+        "recallTokens": 500,
+        "injectedCatalogTokens": 337,
+        "injectedCatalogBytes": 1361,
+        "manualTokens": 658,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 52
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 100
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 232
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 337,
+          "cumulativeCatalogTokens": 16850
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "gpt-6.1",
+        "profileId": "gpt-6.1",
+        "window": 1050000,
+        "charsPerToken": 4,
+        "catalogTokens": 1800,
+        "recallTokens": 700,
+        "injectedCatalogTokens": 337,
+        "injectedCatalogBytes": 1361,
+        "manualTokens": 669,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 52
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 100
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 232
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 337,
+          "cumulativeCatalogTokens": 16850
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "gpt-6.1-terra",
+        "profileId": "gpt-6.1-terra",
+        "window": 1050000,
+        "charsPerToken": 4,
+        "catalogTokens": 1200,
+        "recallTokens": 500,
+        "injectedCatalogTokens": 337,
+        "injectedCatalogBytes": 1361,
+        "manualTokens": 648,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 52
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 100
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 232
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 337,
+          "cumulativeCatalogTokens": 16850
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "gpt-6-astra",
+        "profileId": "gpt-6-astra",
+        "window": 1050000,
+        "charsPerToken": 4,
+        "catalogTokens": 2200,
+        "recallTokens": 900,
+        "injectedCatalogTokens": 337,
+        "injectedCatalogBytes": 1361,
+        "manualTokens": 678,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 52
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 100
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 232
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 337,
+          "cumulativeCatalogTokens": 16850
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "deepseek",
+        "profileId": "deepseek",
+        "window": 160000,
+        "charsPerToken": 3.4,
+        "catalogTokens": 900,
+        "recallTokens": 400,
+        "injectedCatalogTokens": 396,
+        "injectedCatalogBytes": 1361,
+        "manualTokens": 740,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 61
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 117
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 273
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 396,
+          "cumulativeCatalogTokens": 19800
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "deepseek-flash",
+        "profileId": "deepseek-flash",
+        "window": 1048576,
+        "charsPerToken": 3,
+        "catalogTokens": 1200,
+        "recallTokens": 500,
+        "injectedCatalogTokens": 449,
+        "injectedCatalogBytes": 1361,
+        "manualTokens": 842,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 69
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 132
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 310
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 449,
+          "cumulativeCatalogTokens": 22450
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      },
+      {
+        "profile": "generic",
+        "profileId": "generic",
+        "window": 131072,
+        "charsPerToken": 4,
+        "catalogTokens": 900,
+        "recallTokens": 400,
+        "injectedCatalogTokens": 337,
+        "injectedCatalogBytes": 1361,
+        "manualTokens": 640,
+        "bodyProbes": {
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 52
+        },
+        "coldBodyProbes": {
+          "hit1": 0,
+          "hit5": 0.6333333333333333,
+          "tokensPerAnswer": 100
+        },
+        "titleProbes": {
+          "hit1": 0.95,
+          "hit5": 0.95,
+          "tokensPerAnswer": 232
+        },
+        "longHorizon": {
+          "turns": 50,
+          "catalogTokensPerTurn": 337,
+          "cumulativeCatalogTokens": 16850
+        },
+        "facets": {
+          "hot": 210,
+          "cold": 90
+        }
+      }
+    ],
+    "coldStart": [
+      {
+        "profile": "claude",
+        "runs": [
+          {
+            "initMs": 46.6,
+            "firstSearchMs": 2.5,
+            "totalMs": 51,
+            "searchTextChars": 382
+          },
+          {
+            "initMs": 45.4,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.2,
+            "searchTextChars": 382
+          },
+          {
+            "initMs": 46.9,
+            "firstSearchMs": 2.3,
+            "totalMs": 49.7,
+            "searchTextChars": 382
+          }
+        ]
+      },
+      {
+        "profile": "claude-opus-5-5",
+        "runs": [
+          {
+            "initMs": 46.1,
+            "firstSearchMs": 2.4,
+            "totalMs": 48.9,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 47.5,
+            "firstSearchMs": 2.4,
+            "totalMs": 50.3,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 48,
+            "firstSearchMs": 2.4,
+            "totalMs": 50.8,
+            "searchTextChars": 700
+          }
+        ]
+      },
+      {
+        "profile": "claude-sonnet-5-5",
+        "runs": [
+          {
+            "initMs": 46,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.7,
+            "searchTextChars": 382
+          },
+          {
+            "initMs": 44.9,
+            "firstSearchMs": 2.4,
+            "totalMs": 47.7,
+            "searchTextChars": 382
+          },
+          {
+            "initMs": 46.8,
+            "firstSearchMs": 2.3,
+            "totalMs": 49.5,
+            "searchTextChars": 382
+          }
+        ]
+      },
+      {
+        "profile": "claude-fable-5-1",
+        "runs": [
+          {
+            "initMs": 46.3,
+            "firstSearchMs": 2.4,
+            "totalMs": 49.2,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 45.5,
+            "firstSearchMs": 2.4,
+            "totalMs": 48.2,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 47,
+            "firstSearchMs": 2.4,
+            "totalMs": 49.8,
+            "searchTextChars": 700
+          }
+        ]
+      },
+      {
+        "profile": "claude-haiku-5-5",
+        "runs": [
+          {
+            "initMs": 45.1,
+            "firstSearchMs": 2.2,
+            "totalMs": 47.8,
+            "searchTextChars": 310
+          },
+          {
+            "initMs": 45.7,
+            "firstSearchMs": 2.2,
+            "totalMs": 48.3,
+            "searchTextChars": 310
+          },
+          {
+            "initMs": 45.5,
+            "firstSearchMs": 2.2,
+            "totalMs": 48.1,
+            "searchTextChars": 310
+          }
+        ]
+      },
+      {
+        "profile": "openai",
+        "runs": [
+          {
+            "initMs": 46.1,
+            "firstSearchMs": 2.2,
+            "totalMs": 48.7,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 47.3,
+            "firstSearchMs": 2.2,
+            "totalMs": 49.9,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 46.2,
+            "firstSearchMs": 2.2,
+            "totalMs": 48.7,
+            "searchTextChars": 346
+          }
+        ]
+      },
+      {
+        "profile": "gpt-6.1",
+        "runs": [
+          {
+            "initMs": 45.6,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.2,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 45.3,
+            "firstSearchMs": 2.5,
+            "totalMs": 48.1,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 44.9,
+            "firstSearchMs": 2.4,
+            "totalMs": 47.7,
+            "searchTextChars": 700
+          }
+        ]
+      },
+      {
+        "profile": "gpt-6.1-terra",
+        "runs": [
+          {
+            "initMs": 45.8,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.5,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 47.7,
+            "firstSearchMs": 2.4,
+            "totalMs": 50.5,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 46.7,
+            "firstSearchMs": 2.3,
+            "totalMs": 49.4,
+            "searchTextChars": 346
+          }
+        ]
+      },
+      {
+        "profile": "gpt-6-astra",
+        "runs": [
+          {
+            "initMs": 45.4,
+            "firstSearchMs": 2.5,
+            "totalMs": 48.3,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 48.2,
+            "firstSearchMs": 2.4,
+            "totalMs": 51,
+            "searchTextChars": 700
+          },
+          {
+            "initMs": 44.8,
+            "firstSearchMs": 2.4,
+            "totalMs": 47.7,
+            "searchTextChars": 700
+          }
+        ]
+      },
+      {
+        "profile": "deepseek",
+        "runs": [
+          {
+            "initMs": 45.8,
+            "firstSearchMs": 2.2,
+            "totalMs": 48.4,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 45.9,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.6,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 45,
+            "firstSearchMs": 2.2,
+            "totalMs": 47.6,
+            "searchTextChars": 346
+          }
+        ]
+      },
+      {
+        "profile": "deepseek-flash",
+        "runs": [
+          {
+            "initMs": 47.3,
+            "firstSearchMs": 2.3,
+            "totalMs": 50,
+            "searchTextChars": 382
+          },
+          {
+            "initMs": 47.1,
+            "firstSearchMs": 2.3,
+            "totalMs": 49.7,
+            "searchTextChars": 382
+          },
+          {
+            "initMs": 46.1,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.8,
+            "searchTextChars": 382
+          }
+        ]
+      },
+      {
+        "profile": "generic",
+        "runs": [
+          {
+            "initMs": 45.9,
+            "firstSearchMs": 2.3,
+            "totalMs": 48.6,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 50.3,
+            "firstSearchMs": 2.6,
+            "totalMs": 53.3,
+            "searchTextChars": 346
+          },
+          {
+            "initMs": 95,
+            "firstSearchMs": 3,
+            "totalMs": 98.5,
+            "searchTextChars": 346
+          }
+        ]
+      }
+    ]
+  }
+}

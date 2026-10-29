@@ -23,9 +23,9 @@ Every integration resolves a **profile** from the running model id, then tunes m
 | `phi` | `phi-4`, `phi-4-mini` | 128K | 4.0 | Markdown | 800 / 350 | numbered + `ids:` |
 | `generic` | anything else | 128K | 4.0 | Markdown | 900 / 400 | numbered + `ids:` |
 
-## Dedicated current-model variants (v0.3.2)
+## Dedicated current-model variants (v0.3.2 → v0.3.3)
 
-These four are first-class profiles registered **before** their family base, so they win resolution while older ids keep the family defaults. Specs verified 2026-10-29 from the vendor docs:
+These eight are first-class profiles registered **before** their family base, so they win resolution while older ids keep the family defaults. Specs verified 2026-10-29 from vendor docs (OpenAI model pages, Anthropic models overview, DeepSeek pricing):
 
 | Variant | Model ids | Context | Chars/token | Injection | Catalog / recall | Reasoning mode | Why it differs |
 |---|---|---|---|---|---|---|---|
@@ -33,10 +33,14 @@ These four are first-class profiles registered **before** their family base, so 
 | `claude-opus-5-5` | `claude-opus-5-5` / `claude-opus-5.5` | **1,000,000** (128K out; 300K batch) | **2.6** | XML tags | 2000 / 800 | adaptive thinking always on, default medium | current tokenizer ≈2.5M chars/1M tokens; decision-oriented XML injection, useWhen boost, archive-first compaction |
 | `claude-sonnet-5-5` | `claude-sonnet-5-5` / `claude-sonnet-5.5` | **1,000,000** (128K out; 300K batch) | **2.6** | XML tags | 1600 / 650 | adaptive thinking, default high | speed/intelligence balance; smaller budgets than Opus, still citation-first |
 | `deepseek-flash` | `deepseek-flash`, legacy `deepseek-v4-flash` | **1,048,576** (384K out) | 3.0 | Markdown | 1200 / 500 | thinking / non-thinking (thinking default), 2500 concurrency | latency-sensitive and cheap; bilingual manual, compact structured digests, body/cold-abstract boosts |
+| `gpt-6.1-terra` | `gpt-6.1-terra` | **1,050,000** | 4.0 | Markdown | 1200 / 500 | effort none→max (default medium) | fast/cheap visual+writing work; shallow memory calls, latency-first |
+| `gpt-6-astra` | `gpt-6-astra`, `gpt-6.1-astra` | **1,050,000** (922k in / 128K out) | 4.0 | Markdown | 2200 / 900 | effort low→max | most capable/expensive; one decisive search/open, compact decision-oriented context |
+| `claude-fable-5-1` | `claude-fable-5-1` | **1,000,000** (128K out) | **2.6** | XML tags | 2200 / 900 | adaptive thinking always on, default high | demanding reasoning / long-horizon agentic; archive-first, exact ids, body 5.2 |
+| `claude-haiku-5-5` | `claude-haiku-5-5` | **1,000,000** (128K out) | **2.6** | XML tags | 900 / 400 | adaptive thinking, default medium | high-volume latency-sensitive; terse injections, one search/open per step |
 
-Sources: [GPT-6.1 Sol model card](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [Claude models overview](https://platform.claude.com/docs/en/models/overview) (Opus 5.5 / Sonnet 5.5), [DeepSeek models & pricing](https://api-docs.deepseek.com/quick_start/pricing/).
+Sources: [GPT-6.1 Sol](https://developers.openai.com/api/docs/models/gpt-6.1-sol), [GPT-6.1 Terra](https://developers.openai.com/api/docs/models/gpt-6.1-terra), [GPT-6 Astra](https://developers.openai.com/api/docs/models/gpt-6-astra), [Claude models overview](https://platform.claude.com/docs/en/models/overview) (Opus 5.5 / Sonnet 5.5 / Fable 5.1 / Haiku 5.5), [DeepSeek models & pricing](https://api-docs.deepseek.com/quick_start/pricing/).
 
-The variants are checked in this order before the base families, so `claude-opus-5-5` never silently falls back to the generic `claude` profile. Overrides still apply on top (`resolveModelProfile('gpt-6.1-sol', { windowTokens: 500_000 })` for the Codex default context, for example).
+The variants are checked in this order before the base families, so `claude-opus-5-5` never silently falls back to the generic `claude` profile. Cold-start + long-horizon validation for all eight: [profile validation](profile-validation.html). Overrides still apply on top (`resolveModelProfile('gpt-6.1-sol', { windowTokens: 500_000 })` for the Codex default context, for example).
 
 ## What a profile changes
 
