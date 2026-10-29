@@ -9,6 +9,19 @@ Offline validation (retrieval, profiles, cold start, 100M scale) is complete. Th
 
 Tracking request and discussion: [issue #1](https://github.com/QiuXu-Tech/memex/issues/1).
 
+## First live result: DeepSeek Flash (2026-10-29)
+
+Two independent fresh-context calls on **DeepSeek Flash** (via DSH's DeepSeek Account route), same synthetic 120-turn fixture, 8 deep-fact questions (7 outside the retained tail):
+
+| Condition | Overall | Evicted-fact subset |
+|---|---|---|
+| control (recent tail only) | **1/8 (12.5%)** | **0/7 (0%)** |
+| treatment (tail + memex evidence) | **8/8 (100%)** | **7/7 (100%)** |
+
+The only control success was Q6, whose fact was still inside the retained tail; every evicted fact was answered correctly only with memex evidence. Raw answers: [`docs/assets/benchmarks/live-ab-deepseek.json`](assets/benchmarks/live-ab-deepseek.json).
+
+Caveats: n=8 probes, one model/one run; agent-mediated route (prompt overhead not provider latency); token usage was not captured. It is a first data point, not a statistically strong result — more models and repeats are exactly what [issue #1](https://github.com/QiuXu-Tech/memex/issues/1) is asking for.
+
 ## What data we need
 
 | Data | Why it matters |

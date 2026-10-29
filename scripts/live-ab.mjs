@@ -18,7 +18,7 @@
  * Live calls consume provider tokens. Providers not configured in a run are
  * reported and skipped rather than failing the whole run.
  */
-import { mkdtempSync, rmSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { performance } from 'node:perf_hooks'
@@ -34,6 +34,7 @@ const arg = (name, fallback) => {
 const PROVIDER = arg('provider', 'all')
 const PROBES = Number(arg('probes', 6))
 const OUT = arg('out', join(tmpdir(), 'memex-live-ab.json'))
+const EMIT_DIR = arg('emit-prompts')
 const DRY_RUN = process.argv.includes('--dry-run')
 const MODEL_OVERRIDE = arg('model')
 
@@ -124,6 +125,61 @@ const providers = {
 }
 
 const requested = PROVIDER === 'all' ? Object.keys(providers) : [PROVIDER]
+const buildBatchPrompt = (withMemory) => {
+  const lines = probes.map((probe, index) => `Q${index} (turn ${probe.turn}, topic ${probe.topic}): what durable value was recorded then?`)
+  if (!withMemory) {
+    return [
+      'You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.',
+      '',
+      'Recent context:',
+      tailText,
+      '',
+      'Questions:',
+      ...lines,
+      '',
+      'Answer each question on its own line exactly as "Q<index>: <FACT id>" (or "Q<index>: UNKNOWN" when the value is not present). Do not use tools. Do not explain.',
+    ].join('\n')
+  }
+  const evidenceBlocks = []
+  const openedBlocks = []
+  for (const [index, probe] of probes.entries()) {
+    const profile = resolveModelProfile(MODEL_OVERRIDE ?? 'deepseek-flash')
+    const result = evidenceCore.search({ query: `turn ${probe.turn} ${probe.topic} durable value FACT`, workspaceKey: WS, scope: 'workspace', limit: 5, rerank: profile.rerank, maxTerms: profile.queryTerms?.maxTerms })
+    const hit = result.hits.find((card) => card.id === probe.id)
+    const opened = hit === undefined ? undefined : evidenceCore.get(hit.id)
+    evidenceBlocks.push(`Evidence for Q${index}: ${buildRecallInjection(profile, result.hits, `turn ${probe.turn} ${probe.topic}`)}`)
+    openedBlocks.push(`Record for Q${index} (memex ${opened?.id ?? 'not found'}):\n${String(opened?.body ?? '').slice(0, 1200)}`)
+  }
+  return [
+    'You are continuing a long software project. Earlier context was evicted, but memex archived it verbatim and you have retrieval evidence.',
+    '',
+    'Recent context:',
+    tailText,
+    '',
+    'Memory evidence:',
+    ...evidenceBlocks,
+    '',
+    'Opened records:',
+    ...openedBlocks,
+    '',
+    'Questions:',
+    ...lines,
+    '',
+    'Answer each question on its own line exactly as "Q<index>: <FACT id>" from the evidence. Do not use tools. Do not explain.',
+  ].join('\n')
+}
+
+if (EMIT_DIR !== undefined) {
+  mkdirSync(EMIT_DIR, { recursive: true })
+  writeFileSync(join(EMIT_DIR, 'control.txt'), buildBatchPrompt(false))
+  writeFileSync(join(EMIT_DIR, 'treatment.txt'), buildBatchPrompt(true))
+  writeFileSync(join(EMIT_DIR, 'plan.json'), JSON.stringify({ generatedAt: new Date().toISOString(), probes: probes.map((probe, index) => ({ index, turn: probe.turn, topic: probe.topic, expected: probe.fact, id: probe.id })) }, null, 2))
+  console.log(JSON.stringify({ emitted: EMIT_DIR, probes: probes.length, controlBytes: buildBatchPrompt(false).length, treatmentBytes: buildBatchPrompt(true).length }, null, 2))
+  evidenceCore.close()
+  rmSync(ROOT, { recursive: true, force: true })
+  process.exit(0)
+}
+
 const report = { generatedAt: new Date().toISOString(), dryRun: DRY_RUN, probes: probePlan(), providers: [] }
 function probePlan() {
   return probes.map((probe) => ({ turn: probe.turn, topic: probe.topic, expected: probe.fact, controlChars: buildPrompt(probe, false).length, treatmentChars: buildPrompt(probe, true).length }))

@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.4.2
+
+### Validation
+- **First live A/B data point (DeepSeek Flash)**: two fresh-context calls on the 120-turn synthetic fixture, 8 deep-fact probes. Control (recent tail only) answered 1/8 overall and **0/7 evicted facts**; treatment (tail + memex evidence) answered **8/8 overall and 7/7 evicted facts**. Raw answers in `docs/assets/benchmarks/live-ab-deepseek.json`; summary in `docs/live-testing.md` and `docs/experiments-v040.md`.
+- `scripts/live-ab.mjs` gained `--emit-prompts <dir>` for agent-mediated validation (used for this run).
+- Caveats kept explicit: n=8, single model/run, agent-mediated route, usage not captured; more model families welcome via issue #1.
+
 ## 0.4.1
 
 ### Fixed / improved

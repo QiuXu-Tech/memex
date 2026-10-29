@@ -43,6 +43,17 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 
 ## 4. Live data collection
 
+### First live result: DeepSeek Flash
+
+Provider/model: **`deepseek-account/deepseek-flash`**; two independent fresh-context calls; synthetic 120-turn/8-fact fixture.
+
+| Condition | Overall | Evicted facts (7) |
+|---|---|---|
+| control (recent tail only) | 1/8 (12.5%) | 0/7 (0%) |
+| treatment (tail + memex evidence) | **8/8 (100%)** | **7/7 (100%)** |
+
+Raw: `docs/assets/benchmarks/live-ab-deepseek.json`. Caveats: n=8, one run, agent-mediated route; token usage not captured.
+
 The client integration is verified (Claude Code parses the generated config): `claude mcp list` after `memex-claude init`:
 
 ```
@@ -82,7 +93,7 @@ The renamed client config is recognized; the one-time project approval is expect
 
 | Priority | Finding | Status |
 |---|---|---|
-| P1 | Live endpoint A/B: need multi-model usage data | open — tracked in issue #1; harness ready, contributions welcome |
+| P1 | Live endpoint A/B: need multi-model usage data | open — first DeepSeek Flash data point landed (0/7 → 7/7 on evicted facts); more models/repeats welcome in issue #1 |
 | P1 | Cold-body recall stuck at 63% | **fixed in v0.4.1** (cold-anchor rescue; 100% on the profile fixture, real hit@5 95%) |
 | P2 | Catalog budgets underused | **fixed in v0.4.1** (depth scales with budget; 893–1439 injected tokens) |
 | P2 | MCP `default-session` vs hook session id | **fixed in v0.4.1** (`init --session` aligns hooks+MCP; U19) |

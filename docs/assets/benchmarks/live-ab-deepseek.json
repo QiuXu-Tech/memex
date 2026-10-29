@@ -1,0 +1,148 @@
+{
+  "format": 1,
+  "kind": "live-ab-result",
+  "generatedAt": "2026-10-29T16:20:00+08:00",
+  "provider": "deepseek-account",
+  "model": "deepseek-flash",
+  "interface": "DSH DeepSeek Account model route; two independent fresh-context agent calls (control, treatment)",
+  "fixture": {
+    "source": "scripts/live-ab.mjs --emit-prompts --probes 8 --model deepseek-flash",
+    "historyTurns": 120,
+    "tailRecords": 20,
+    "probes": 8,
+    "controlPromptChars": 1686,
+    "treatmentPromptChars": 15207,
+    "note": "Synthetic project history; answers graded by exact FACT id."
+  },
+  "rows": [
+    {
+      "index": 0,
+      "turn": 0,
+      "topic": "gateway",
+      "expected": "FACT-000-qto8z",
+      "control": {
+        "answer": "UNKNOWN",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-000-qto8z",
+        "correct": true
+      }
+    },
+    {
+      "index": 1,
+      "turn": 15,
+      "topic": "router",
+      "expected": "FACT-015-xc4r1",
+      "control": {
+        "answer": "UNKNOWN",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-015-xc4r1",
+        "correct": true
+      }
+    },
+    {
+      "index": 2,
+      "turn": 30,
+      "topic": "gateway",
+      "expected": "FACT-030-msivd",
+      "control": {
+        "answer": "UNKNOWN",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-030-msivd",
+        "correct": true
+      }
+    },
+    {
+      "index": 3,
+      "turn": 45,
+      "topic": "router",
+      "expected": "FACT-045-cyvqv",
+      "control": {
+        "answer": "UNKNOWN",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-045-cyvqv",
+        "correct": true
+      }
+    },
+    {
+      "index": 4,
+      "turn": 60,
+      "topic": "gateway",
+      "expected": "FACT-060-tqhez",
+      "control": {
+        "answer": "UNKNOWN",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-060-tqhez",
+        "correct": true
+      }
+    },
+    {
+      "index": 5,
+      "turn": 75,
+      "topic": "router",
+      "expected": "FACT-075-u3vae",
+      "control": {
+        "answer": "UNKNOWN",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-075-u3vae",
+        "correct": true
+      }
+    },
+    {
+      "index": 6,
+      "turn": 90,
+      "topic": "gateway",
+      "expected": "FACT-090-eie52",
+      "control": {
+        "answer": "FACT-090-eie52",
+        "correct": true
+      },
+      "treatment": {
+        "answer": "FACT-090-eie52",
+        "correct": true
+      }
+    },
+    {
+      "index": 7,
+      "turn": 105,
+      "topic": "router",
+      "expected": "FACT-105-o971e",
+      "control": {
+        "answer": "UNKNOWN",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-105-o971e",
+        "correct": true
+      }
+    }
+  ],
+  "accuracy": {
+    "overall": {
+      "control": 0.125,
+      "treatment": 1.0
+    },
+    "evictedFacts": {
+      "probes": 7,
+      "control": 0.0,
+      "treatment": 1.0,
+      "excluded": "Q6 (turn 90) was still inside the retained tail, so the control condition could answer it; Q0-Q5 and Q7 are evicted-fact probes."
+    }
+  },
+  "notes": [
+    "Two runs per condition were not repeated; n=8 probes (7 evicted) is a first data point, not a statistically strong result.",
+    "Usage/token counts were not captured by this agent-mediated interface; latency includes agent harness overhead and is not reported as provider latency.",
+    "The model saw only the synthetic prompt; no private data was involved."
+  ]
+}
