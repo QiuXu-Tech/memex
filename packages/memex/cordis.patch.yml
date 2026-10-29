@@ -27,7 +27,11 @@
       config: {}
     - id: memory-checkpoint
       name: '@qiuxu/memex/checkpoint'
-      config: {}
+      # v0.14: materialize the resident extra-context window by default instead
+      # of catalog+recall. Set `materializer: off` to restore the old injection.
+      config:
+        materializer: timeline-exact
+        materializerMaxTokens: 1800
     - id: memory-tools
       name: '@qiuxu/memex/tools'
       config: {}

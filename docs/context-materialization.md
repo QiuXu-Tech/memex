@@ -77,7 +77,7 @@ These are **separate specialist components around the model**, not a replacement
 **2. Pager + materializer + runtime injection**
 - `context-materializer.js`: chronology, stable prefix/hash, budget, pinned pages, omitted ids, variants.
 - `context-pager.js` + `AgentMemory.materializeContext()`.
-- **DSH runtime switch**: checkpoint config `materializer: 'off' | 'timeline-exact' | 'edge-attention'` (default off for compatibility). When enabled, the pre-step injects a materialized resident window instead of catalog+recall; capacity notices/receipts stay. U28 covers pager replay.
+- **DSH runtime switch**: checkpoint config `materializer: 'off' | 'timeline-exact' | 'edge-attention'` (default off for compatibility). **Enabled by default in the v0.14 bundle** (`materializer: timeline-exact`); set `materializer: off` to restore catalog+recall. The pre-step injects a materialized resident window instead of catalog+recall; capacity notices/receipts stay. U28 covers pager replay.
 
 **3. Transformer context encoder (trained reference)**
 - `training/context_encoder.py` trains a tiny real transformer encoder (token embeddings, 2-head self-attention, FFN, mean pooling, relevance head) on synthetic context-page/query data.
@@ -92,7 +92,7 @@ These are **separate specialist components around the model**, not a replacement
 **5. Structural fidelity evaluation**
 - `scripts/context-fidelity-eval.mjs` → `docs/assets/benchmarks/context-fidelity.json`: event round-trip, chronology, stable prefix, pager canonical coverage, KV capacity/paging. All checks pass.
 
-**Still external (not fakeable here):** production training on live traces/GPUs, native vLLM/DSH KV-cache integration, and enabling `materializer` by default in the DSH bundle. The interfaces and reference implementations are in place.
+**Updated default (v0.14):** the DSH bundle now enables `materializer: timeline-exact` by default. **Still external:** production training on live traces/GPUs and native vLLM/SGLang/DSH KV-cache integration; the interfaces and reference implementations are in place, but no inference runtime with real KV tensors is available in this environment.
 
 ## How it gets wired next
 

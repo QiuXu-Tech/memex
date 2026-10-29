@@ -4,6 +4,17 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.14.0
+
+### Changed — materializer is now the default DSH injection path
+- The bundle's checkpoint row now ships `materializer: timeline-exact` (plus `materializerMaxTokens: 1800`). The pre-step injects a materialized resident window instead of catalog+recall; receipts and capacity notices remain. Set `materializer: off` to restore the old behavior.
+- The materialized window contains canonical event content when available, otherwise rendered record bodies, with a stable index prefix and explicit budget/omission metadata.
+- Harness **129/129**; bundle patch updated (reinstall/rebuild the bundle to apply).
+
+### Still external (not claimed)
+- Production transformer training on live traces/GPU and per-family adapters; the shipped transformer is a small synthetic-data reference.
+- Native vLLM/SGLang/DSH KV-cache integration; the paged-KV host is a runnable reference, not a model runtime.
+
 ## 0.13.0
 
 ### Implemented — materialization runtime + specialists
