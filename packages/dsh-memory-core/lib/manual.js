@@ -18,6 +18,9 @@ const TOOL_LINES = [
   ['memory_grep', 'literal/regex line search across stored bodies'],
   ['memory_write', 'persist a durable decision/fact/procedure (title, body, summary, useWhen)'],
   ['memory_index', 'bounded catalog + capacity accounting for the visible levels'],
+  ['memory_list', 'list recent cards (kind/status filters)'],
+  ['memory_forget', 'delete an obsolete or wrongly captured record'],
+  ['memory_set_status', 'mark a record open/resolved/superseded/pinned'],
   ['memory_restore', 'move a cold record back into the hot prompt pool'],
   ['memory_compress', 'lossless cold-tier capacity compression (no LLM)'],
 ]

@@ -15,7 +15,7 @@ It started as a [DeepSeek Harness](https://github.com/deepseek-ai) plugin and is
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/dsh-memory-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/dsh-memory-core`) |
 
-> Status: **0.2.2** — agent-agnostic core, MCP server, Claude Code/Codex adapters, **model profiles for Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Llama**, 110/110 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.3.0** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **13 model families** (Claude / GPT / Gemini / DeepSeek / Qwen / Kimi / GLM / Grok / Command / Gemma / Phi / Llama / generic), 112/112 offline tests. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## Why
 
@@ -31,12 +31,13 @@ Long conversations and long-running projects hit the same wall: the native conte
 - **Lossless by default**: raw conversation/tool output is stored verbatim (markdown files + SQLite index) — no LLM summarization on the critical path.
 - **Capacity compression on demand**: when a pool is near full the model asks the user first; compression then applies a **cold tier** (lossless, zero-LLM) and optionally **bounded map-reduce digests** (batched, resumable, never one giant prompt).
 - **Cheap recall**: hybrid keyword retrieval (FTS + card fields + bounded cold abstracts + lexical rerank), ~1–5 ms on realistic archives, tens of tokens per hit.
-- **Model-specific adaptation**: profiles tuned per model family — context window, chars/token ratio, injection format (XML/Markdown/plain), catalog/recall budgets, digest prompt style, bilingual CJK guidance **and retrieval rerank weights** (title/tags/summary/useWhen/abstract/recency/bm25) passed into hybrid search — see [docs/model-profiles.md](docs/model-profiles.md).
+- **Model-specific adaptation**: profiles tuned per model family — context window, chars/token ratio, injection format (XML/Markdown/plain), catalog/recall budgets, digest prompt style, bilingual CJK guidance **and retrieval rerank weights** (title/tags/summary/useWhen/abstract/body/recency/bm25) passed into hybrid search — 13 families incl. Claude, GPT, Gemini, DeepSeek, Qwen, Kimi, GLM, Grok, Command, Gemma, Phi, Llama. See [docs/model-profiles.md](docs/model-profiles.md).
+- **Hot-body rescue**: identifier-like body tokens are indexed (`record_terms`) so facts that never made it into a title/summary are still found when card matches fill the limit; a `body` rerank weight ranks them. On the controlled fixture this took hot-body hit@1/@5 from **0%/0% to 100%/100%**.
 
 ## Features
 
 - **Agent-agnostic core** (`@qiuxu/dsh-memory-core`): markdown + SQLite store, hot/cold tiers, hybrid retrieval and capacity compression with zero host dependencies. DSH, MCP and CLI adapters share one record vocabulary.
-- **MCP server** (`@qiuxu/dsh-memory-mcp`): stdio JSON-RPC, 7 tools (`memory_search/open/grep/write/index/restore/compress`) + `memory://catalog` resource, model-tailored `instructions`.
+- **MCP server** (`@qiuxu/dsh-memory-mcp`): stdio JSON-RPC, **10 tools** (`memory_search/open/grep/write/index/list/forget/set_status/restore/compress`) + `memory://catalog` resource, model-tailored `instructions`.
 - **Claude Code adapter** (`@qiuxu/dsh-memory-claude`): one command writes `.mcp.json`, merges `.claude/settings.json` hooks and injects a model-tailored `CLAUDE.md` manual; `PreCompact` archives the raw transcript verbatim before summary loss, `UserPromptSubmit` auto-recalls relevant records.
 - **Codex adapter** (`@qiuxu/dsh-memory-codex`): `AGENTS.md` manual + `codex mcp add` / `config.toml` entry.
 - **Model profiles**: per-family windows, token-estimation ratios, injection budgets and digest prompts; overridable by the integration.
@@ -184,7 +185,7 @@ Reproduction commands, including the required saved summary and cold target rati
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (110 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (112 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```

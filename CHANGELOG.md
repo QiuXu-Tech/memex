@@ -1,5 +1,18 @@
 # Changelog
 
+## 0.3.0
+
+### Added
+- **Hot-body rescue**: identifier-like body tokens are indexed in `record_terms`; a rare-anchor rescue query ranks body candidates by exact query-term count and a `body: 5` rerank weight ranks them. Hot-body hit@1/@5 on the controlled fixture went **0%/0% → 100%/100%** (U13). Boundary-aware term matching fixes `inc-1` matching `inc-161`.
+- **MCP parity tools**: `memory_list`, `memory_forget`, `memory_set_status` (10 tools total) + manual entries (U14).
+- **Model profiles for xAI Grok, Cohere Command, Google Gemma, Microsoft Phi** (13 families); tables in docs/model-profiles.
+- **Real Claude Code check**: `claude mcp list` recognizes the generated server (project-scoped approval is required by Claude Code); docs updated.
+- Test harness now **112/112** (U13 body rescue, U14 MCP parity).
+
+### Changed
+- Claude `init` warns when configured L2-only (hooks vs MCP session-id mismatch).
+- `docs/optimization-findings.md` rewritten with the fixed P0/P1 items and the remaining backlog.
+
 ## 0.2.2
 
 ### Fixed

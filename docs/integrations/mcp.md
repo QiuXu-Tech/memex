@@ -23,6 +23,9 @@ Options: `--root DIR`, `--levels l2,l3`, `--model ID`, `--agent NAME`, `--sessio
 | `memory_grep` | literal/regex line search across bodies |
 | `memory_write` | persist decision/fact/procedure/incident/episode |
 | `memory_index` | catalog + hot/cold capacity |
+| `memory_list` | recent cards with kind/status filters |
+| `memory_forget` | delete an obsolete/wrong record |
+| `memory_set_status` | active/open/resolved/superseded/pinned |
 | `memory_restore` | cold record → hot pool |
 | `memory_compress` | lossless cold-tier compression (no LLM) |
 

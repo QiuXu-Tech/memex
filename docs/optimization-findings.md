@@ -7,7 +7,22 @@ layout: default
 
 Experiments run on the open-source repo at commit `4e9720d` (v0.2.1), offline harness + ad-hoc integration benches. **Environment note:** the machine was under very heavy load during these runs (load average ≈ 72, raw file+fsync ≈ 8.4 ms/op), so **wall-clock latencies below are not representative** — use the miss rates, relative costs and structural findings. Quiet-machine numbers remain in [evaluation](evaluation.html).
 
-## P0 — hot-body facts are effectively unretrievable (open)
+## P0 — hot-body facts are effectively unretrievable (fixed in 0.3.0)
+
+**Fix:** every record now indexes its identifier-like body tokens into a
+`record_terms(record_id, term_hash)` table (~1.5 rows/record on the test
+fixture). When a query term never matched any card candidate and the query has
+an identifier-like anchor (digits, hyphens, underscores, paths), the store runs
+one indexed `GROUP BY` to rank body candidates by exact query-term count, reads
+only those candidates, and adds `bodyHits × 5` to the rerank score. Measured on
+the same fixture: hot-body hit@1/hit@5 **0% → 100%/100%** (40/40 probes),
+identifier prefix confusion (`INC-1` vs `INC-161`) removed by boundary-aware
+matching, and the DB grows only ~0.6 MB for the 10k-record synthetic pool.
+Natural-language-only facts with no identifier anchor still rely on card
+summaries / `memory_grep`; `PreCompact` now writes a searchable summary head for
+this reason.
+
+Original measurement (for the record):
 
 **Fixture:** 200 distractor records whose title/summary match the topic words (`deployment retry budget incident INC-n`), 200 answer records whose *card is generic* and whose answer token lives only in the hot body, 100 cold answer records whose first ~1 KB is indexed as the cold abstract. 30 probes each.
 
@@ -19,10 +34,7 @@ Experiments run on the open-source repo at commit `4e9720d` (v0.2.1), offline ha
 
 Card legs fill the candidate limit, so the hot-body fallback never runs; and even when it does run, body matches only get the fallback base score. **Per-model rerank weights do not change this**: running the same cold probes under all 7 profile rerank variants (generic/claude/openai/gemini/deepseek/qwen/llama) produced identical hit@1 0% / hit@5 77.5% on that harder cold corpus. The bottleneck is evidence representation, not weight tuning.
 
-**Recommended fixes (in order):**
-1. **Searchable write-summary**: when a record is created by an adapter, put a bounded excerpt of the body (first 400–900 chars) into `summary` so card retrieval can see it. Already applied to Claude Code `PreCompact` archives (was: generic summary → unsearchable; now: transcript head summary, covered by harness U6).
-2. **Bloom-filtered body rescue**: store a 64-bit body bloom per record; when a query term is unmatched by card fields, scan blooms (no file reads), read only selective candidates, and add a `bodyHits` rerank term (e.g. `+0.9 × matched terms`). Acceptance: body probes hit@5 ≥ 80% with ≤ 10 ms p50 added at 10k records.
-3. If a full solution slips: manual guidance to put facts in title/summary and use `memory_grep` for identifiers.
+**Implemented (0.3.0):** body-term index rescue with identifier anchors, a `body: 5` rerank weight, and a searchable `summary` head for Claude Code `PreCompact` archives. Acceptance met on the fixture; see the top of this section.
 
 ## P0 — PreCompact failed on transcripts > 8 MB (fixed in 0.2.2)
 
@@ -42,22 +54,23 @@ Claude Code `PreCompact` stored a generic summary ("Verbatim Claude Code transcr
 - Config path ignored `CODEX_HOME`; now `CODEX_HOME` overrides `~/.codex`.
 - Verified: `config.toml` snippet parses with Python `tomllib`, including paths with spaces; `--write-config` creates a `.bak` and is idempotent (second run reports the block already exists).
 
-## P1 — MCP/adapters parity gaps (open)
+## P1 — MCP/adapters parity gaps (fixed in 0.3.0)
 
-- Tools: only `memory_search/open/grep/write/index/restore/compress`. Missing parity tools: `memory_list`, `memory_forget`, `memory_set_status` (DSH has them).
-- **L2 session mismatch (verified):** a Claude hook writes with the client's `session_id` (`session-AAA`); the MCP server in the same project has no session id and defaults to `default-session`, so session-scoped records are invisible to MCP tools unless the server is started with `--session` (tested: match → 1 hit; mismatch → no hits). Recommendation: default MCP captures to L3, or pass a session id via project config/env; document the limitation.
+- ~~Tools: only 7~~ — MCP now also exposes `memory_list`, `memory_forget` and `memory_set_status` (10 tools total).
+- **L2 session mismatch (verified, documented):** hooks write with the client session id while MCP tools use `default-session`; the Claude `init` now warns on L2-only setups and recommends `--levels l2,l3`/`l3` or `--session`. L3 remains the shared path.
 - Compression: MCP/Codex support cold only; digest summaries remain a DSH-tool/agent responsibility.
 - Codex has no hooks: no automatic transcript capture (manual `memory_write` only).
 
-## P2 — model profile coverage & validation (open)
+## P2 — model profile coverage & validation (partly fixed in 0.3.0)
 
-- 32 real model ids tested: `grok-4`, `command-r-plus`, `phi-4`, `gemma-3-27b`, `nova-pro` fall back to `generic` (matching is family-name based); decide whether to add xAI/Cohere/Microsoft/Gemma profiles or document the generic fallback.
+- Added profiles for **xAI Grok, Cohere Command, Google Gemma, Microsoft Phi** (9 → 13 families); `nova-pro` and other unmapped ids still fall back to `generic`.
+- Real Claude Code acceptance: `claude mcp list` in a generated project **recognizes the dsh-memory server**, but project-scoped `.mcp.json` requires a one-time interactive approval ("Pending approval — run claude to approve"). Codex CLI was not installed on this machine, so Codex acceptance remains manual.
 - Windows/token ratios are conservative estimates, not vendor tokenizers.
 - Rerank weights: currently no evidence they improve ranking on real data (see P0); consider validating on a real archive or reducing to 2–3 validated profiles.
 
 ## P2 — retrieval performance (open; needs a quiet-machine rerun)
 
-Loaded-machine observations (relative only): long ASCII queries pay the LIKE leg (~52 ms at 2k records, 375 ms via MCP at 11k); body fallback is expensive (~82 ms p50 at 2k); `memory_index` aggregates facets + 3 lists (400 ms p50 at 11k under load). Candidate optimizations:
+Re-ran on the same loaded machine (load avg ~14–32; still not a quiet baseline): 10k/100M-token pool wrote in **60.5 s** vs the published 2.8 s quiet-machine number, search 101–165 ms, catalog 118 ms, `compressCold` 23.8 s, cold GC 2.57 s. Relative bottlenecks identified earlier (loaded): long ASCII queries pay the LIKE leg (~52 ms at 2k; 375 ms via MCP at 11k), body fallback ~82 ms p50 at 2k, `memory_index` aggregates facets + 3 lists. Candidate optimizations:
 1. LIKE leg: only for terms `<3` chars (CJK bigrams) or cap to 4 terms × title/summary/abstract; measure recall delta.
 2. Body fallback: early exit once enough matches are found; cap candidates (currently scans 400 hot records and reads bodies).
 3. Facets: cache hot/cold accounting or combine COUNT queries; catalog currently recomputes facets per call.
@@ -75,9 +88,9 @@ Malformed JSON → `-32700`; unknown method → `-32601`; unknown tool → `isEr
 
 | Priority | Item | Acceptance |
 |---|---|---|
-| P0 | Bloom-filtered body rescue + body rerank weight | body probes hit@5 ≥ 80%, ≤ 10 ms p50 added at 10k |
-| P0 | Ship the PreCompact/budget/Codex fixes (done in 0.2.2) | harness 110/110 |
-| P1 | MCP parity tools + session handling | list/forget/status work; documented L2 behavior |
-| P1 | Real-client Claude Code / Codex acceptance | PreCompact archive + SessionStart catalog observed live |
-| P2 | Retrieval perf pass (LIKE/fallback/facets) | quiet-machine p50 search < 50 ms at 10k |
-| P2 | Profile coverage/validation | all main families map; rerank validated or simplified |
+| P0 | ~~Body rescue + body rerank~~ (0.3.0) | hot-body hit@1/@5 0% → 100% on fixture; U13 |
+| P0 | PreCompact/budget/Codex fixes (0.2.2) | harness 110/110 |
+| P1 | MCP parity tools + session handling (0.3.0) | 10 tools; L2 warning; U14 |
+| P1 | Real-client acceptance | Claude Code recognizes the MCP server (approval pending); Codex CLI not installed |
+| P2 | Retrieval perf pass (LIKE/fallback/facets) | needs a quiet-machine rerun; current absolute numbers are load-inflated |
+| P2 | Profile coverage/validation | 13 families covered; rerank weights still unvalidated on real data |

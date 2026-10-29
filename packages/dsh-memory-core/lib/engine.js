@@ -172,6 +172,30 @@ export class AgentMemory {
     return { catalog, facets, levels: this.levels, scopes: this.scopes, profile: this.profile.id, root: this.root }
   }
 
+  /** Card-level listing over the visible levels. */
+  list({ kind, status, limit, sort, includeStatus } = {}) {
+    return this.store.list({
+      workspaceKey: this.workspaceKey,
+      scopes: this.scopes,
+      sessionId: this.sessionId,
+      ...(kind === undefined ? {} : { kind }),
+      ...(status === undefined ? {} : { status }),
+      ...(limit === undefined ? {} : { limit }),
+      ...(sort === undefined ? {} : { sort }),
+      ...(includeStatus === undefined ? {} : { includeStatus }),
+    })
+  }
+
+  /** Remove a record (hot or cold) and its index rows. */
+  forget(id) {
+    return this.store.forget(id)
+  }
+
+  /** Update lifecycle status (pinned records are always catalogued). */
+  setStatus(id, status) {
+    return this.store.setStatus(id, status)
+  }
+
   /** Move a cold record back to the hot pool. */
   restore(id) {
     return this.store.restoreCold(id)

@@ -3562,6 +3562,11 @@ await test('U2', 'model profiles resolve per family and tune injection, budgets 
     ['kimi-k2', 'kimi'],
     ['glm-4.6', 'glm'],
     ['llama-3.1-70b', 'llama'],
+    ['grok-4', 'xai'],
+    ['command-r-plus', 'cohere'],
+    ['gemma-3-27b', 'gemma'],
+    ['phi-4', 'phi'],
+    ['nova-pro', 'generic'],
     ['some-unknown-7b', 'generic'],
   ]
   for (const [modelId, expected] of cases) {
@@ -3609,7 +3614,7 @@ await test('U3', 'generic MCP server speaks JSON-RPC: tools list/call, search, o
   assert.equal(init.protocolVersion, '2024-11-05')
   assertIncludes(init.instructions, 'Anthropic Claude')
   const tools = replies.get(2).result.tools.map((tool) => tool.name).sort()
-  assert.deepEqual(tools, ['memory_compress', 'memory_grep', 'memory_index', 'memory_open', 'memory_restore', 'memory_search', 'memory_write'])
+  assert.deepEqual(tools, ['memory_compress', 'memory_forget', 'memory_grep', 'memory_index', 'memory_list', 'memory_open', 'memory_restore', 'memory_search', 'memory_set_status', 'memory_write'])
   const writeText = replies.get(3).result.content[0].text
   assertIncludes(writeText, 'Stored mem_')
   const recordId = writeText.match(/mem_[0-9a-f]{10}/)[0]
@@ -3751,7 +3756,7 @@ await test('U8', 'DSH seam and core stay one vocabulary: engine writes are visib
 
 
 await test('U9', 'per-model rerank weights tune ranking and merge over defaults', async () => {
-  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
+  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, body: 5, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
   assert.equal(profiles.resolveModelProfile('claude').rerank.title, 3.2)
   assert.equal(profiles.resolveModelProfile('gemini').rerank.tags, 2)
   assert.equal(profiles.resolveModelProfile('deepseek-chat').rerank.abstract, 1.3)
@@ -3838,6 +3843,59 @@ await test('U12', 'injected catalog/recall blocks stay inside each profile budge
   const pkg = JSON.parse(readFileSync(new URL('../packages/dsh-memory-mcp/package.json', import.meta.url), 'utf8'))
   const replies = mcpExchange(makeRoot('u12'), ['--agent', 'test', '--model', 'claude-sonnet-4'], [{ jsonrpc: '2.0', id: 1, method: 'initialize', params: {} }])
   assert.equal(replies.get(1).result.serverInfo.version, pkg.version, 'MCP server version must follow its package.json')
+})
+
+
+await test('U13', 'body-term rescue recovers facts that live only in hot bodies', async () => {
+  const { LocalStoreCore } = await import('../packages/dsh-memory-core/lib/store.js')
+  const root = makeRoot('u13')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    for (let index = 0; index < 120; index += 1) {
+      store.write({ kind: 'episode', title: `deployment retry budget incident INC-${index} report`, summary: `deployment retry budget incident INC-${index} review`, useWhen: 'read when continuing deployment retry budget work', body: 'generic retrospective notes with no answer token', workspaceKey: 'wk-u13', scope: 'workspace', tokens: 30 })
+    }
+    const answers = []
+    for (let index = 0; index < 120; index += 1) {
+      answers.push(store.write({ kind: 'fact', title: `turn ${index} note`, body: `The retry budget for incident INC-${index} is ANSWER-${index}-zq. Deployment retry budget context follows.`, workspaceKey: 'wk-u13', scope: 'workspace', tokens: 30 }))
+    }
+    let hit1 = 0
+    let hit5 = 0
+    for (let index = 0; index < 30; index += 1) {
+      const hits = store.search({ query: `incident INC-${index} deployment retry budget answer token`, workspaceKey: 'wk-u13', scope: 'workspace', limit: 5 }).hits
+      const rank = hits.findIndex((card) => card.id === answers[index].id)
+      if (rank === 0) hit1 += 1
+      if (rank >= 0) hit5 += 1
+    }
+    assert.ok(hit5 / 30 >= 0.9, `body rescue must recover hot-body facts (hit@5 ${hit5}/30)`)
+    assert.ok(hit1 / 30 >= 0.8, `body rescue must rank them first (hit@1 ${hit1}/30)`)
+    // IDs must not be treated as prefixes: INC-1 must not match INC-161.
+    const prefixHits = store.search({ query: 'incident INC-1 deployment retry budget answer', workspaceKey: 'wk-u13', scope: 'workspace', limit: 5 }).hits
+    assert.equal(prefixHits[0].id, answers[1].id, 'identifier matching must be boundary-aware')
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+
+await test('U14', 'MCP parity tools: list, set-status and forget operate on the shared store', async () => {
+  const root = makeRoot('u14')
+  const write = mcpExchange(root, ['--agent', 'test', '--model', 'claude-sonnet-4', '--levels', 'l3'], [
+    { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'fact', title: 'Parity record', body: 'parity body content', useWhen: 'read when testing parity tools' } } },
+  ])
+  const recordId = write.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const replies = mcpExchange(root, ['--agent', 'test', '--model', 'claude-sonnet-4', '--levels', 'l3'], [
+    { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_list', arguments: { limit: 10 } } },
+    { jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'memory_set_status', arguments: { id: recordId, status: 'pinned' } } },
+    { jsonrpc: '2.0', id: 3, method: 'tools/call', params: { name: 'memory_list', arguments: { status: 'pinned' } } },
+    { jsonrpc: '2.0', id: 4, method: 'tools/call', params: { name: 'memory_forget', arguments: { id: recordId } } },
+    { jsonrpc: '2.0', id: 5, method: 'tools/call', params: { name: 'memory_list', arguments: {} } },
+  ])
+  assertIncludes(replies.get(1).result.content[0].text, recordId)
+  assertIncludes(replies.get(2).result.content[0].text, 'pinned')
+  assertIncludes(replies.get(3).result.content[0].text, recordId)
+  assertIncludes(replies.get(4).result.content[0].text, 'Deleted')
+  assertIncludes(replies.get(5).result.content[0].text, 'No memory records')
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

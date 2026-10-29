@@ -126,6 +126,11 @@ function init() {
   console.log(`  Hooks:         ${settingsPath}`)
   console.log(`  Memory manual: ${claudeMdPath}`)
   console.log(`  Memory root:   ${args.root}`)
+  if (!levels.includes('l3')) {
+    console.log('  Note: L2-only mode — hooks use the client session id while MCP tools use')
+    console.log('        default-session, so session-scoped records may not be visible across')
+    console.log('        both paths. Prefer --levels l2,l3 or l3 for shared project memory.')
+  }
   console.log('Restart Claude Code in this project to load the MCP server and hooks.')
 }
 

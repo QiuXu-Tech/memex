@@ -104,6 +104,25 @@ const TOOLS = [
     type: 'object',
     properties: { maxChars: { type: 'integer', minimum: 400, maximum: 20000 } },
   }),
+  tool('memory_list', 'List recent memory cards (hot pool) with optional kind/status filters. Use memory_search for ranked lookup instead.', {
+    type: 'object',
+    properties: {
+      kind: { type: 'string', enum: MEMORY_KINDS },
+      status: { type: 'string', enum: MEMORY_STATUSES },
+      limit: { type: 'integer', minimum: 1, maximum: 50 },
+      sort: { type: 'string', enum: ['newest', 'oldest'] },
+    },
+  }),
+  tool('memory_forget', 'Delete one memory record permanently (hot or cold). Use for obsolete or wrongly captured records; prefer memory_set_status for history you may still need.', {
+    type: 'object',
+    properties: { id: { type: 'string' } },
+    required: ['id'],
+  }),
+  tool('memory_set_status', 'Update a record lifecycle status (active/open/resolved/superseded/pinned). Pinned records always appear in the catalog.', {
+    type: 'object',
+    properties: { id: { type: 'string' }, status: { type: 'string', enum: MEMORY_STATUSES } },
+    required: ['id', 'status'],
+  }),
   tool('memory_restore', 'Move a cold record back into the hot prompt pool (回热).', {
     type: 'object',
     properties: { id: { type: 'string' } },
@@ -157,6 +176,20 @@ function callTool(name, input = {}) {
     case 'memory_index': {
       const result = engine.index({ maxChars: input.maxChars })
       return textResult(buildCatalogInjection(profile, result.catalog))
+    }
+    case 'memory_list': {
+      const cards = engine.list({ kind: input.kind, status: input.status, limit: input.limit, sort: input.sort, includeStatus: true })
+      const lines = cards.map((card) => `${card.id} · ${card.kind} · ${card.status} · ${card.title}${card.cold ? ' · cold' : ''}`)
+      return textResult(lines.length === 0 ? 'No memory records in the visible levels.' : lines.join('\n'))
+    }
+    case 'memory_forget': {
+      const removed = engine.forget(input.id)
+      return textResult(removed ? `Deleted ${input.id}.` : `No record ${input.id}; nothing deleted.`)
+    }
+    case 'memory_set_status': {
+      const record = engine.setStatus(input.id, input.status)
+      if (record === undefined) throw new Error(`memory_set_status: no record ${input.id}`)
+      return textResult(`Updated ${record.id} status to ${record.status}.`)
     }
     case 'memory_restore': {
       const record = engine.restore(input.id)

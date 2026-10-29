@@ -26,6 +26,53 @@ function abstractOfBody(body) {
   return clipText(String(body ?? '').replace(/\s+/g, ' ').trim(), 1000)
 }
 
+// ── Body term index: exact, cheap hot-body rescue ────────────────────────────
+//
+// Card legs only index title/summary/useWhen/tags/abstract. A fact that lives
+// only in a record body is otherwise invisible when card matches fill the
+// candidate limit. Only **identifier-like** body tokens (digits, hyphens,
+// underscores, paths, versions) are indexed into `record_terms`
+// (record_id, term_hash). Those are what body rescues key on — the token set
+// stays tiny (a few rows per record, DB stays small), while a query that has
+// such a term can rank body candidates exactly with one indexed GROUP BY.
+// Natural-language-only facts still rely on card summaries / memory_grep.
+
+const BODY_TERM_LIMIT = 2000
+const BODY_TERM_CHARS = 262_144
+
+/** FNV-1a 32-bit hash (deterministic, dependency-free). */
+function fnv1a32(text) {
+  let hash = 0x811c9dc5
+  for (let index = 0; index < text.length; index += 1) {
+    hash ^= text.charCodeAt(index)
+    hash = Math.imul(hash, 0x01000193) >>> 0
+  }
+  return hash >>> 0
+}
+
+/** Whether a body token is identifier-like enough to index for rescue. */
+function isIdentifierToken(token) {
+  return /[0-9]/.test(token) || /[-_./:]/.test(token)
+}
+
+/** Bounded **identifier-like** token set for one body (term-index rows). */
+function bodyTokens(body) {
+  const text = String(body ?? '').slice(0, BODY_TERM_CHARS)
+  const tokens = new Set()
+  for (const match of text.matchAll(/[A-Za-z][A-Za-z0-9_.:/-]{1,}/g)) {
+    const token = match[0].toLowerCase()
+    if (!isIdentifierToken(token)) continue
+    tokens.add(token)
+    if (tokens.size >= BODY_TERM_LIMIT) return tokens
+  }
+  return tokens
+}
+
+/** The term hashes to index for one body. */
+function bodyTermHashes(body) {
+  return [...bodyTokens(body)].map((term) => fnv1a32(term))
+}
+
 const DB_FILE = 'index.db'
 const RECORDS_DIR = 'records'
 
@@ -151,6 +198,12 @@ export class LocalStoreCore {
       );
       CREATE INDEX IF NOT EXISTS records_ws_index ON records(workspace_key, kind, status, updated_at);
       CREATE INDEX IF NOT EXISTS records_scope_index ON records(workspace_key, scope, session_id, updated_at);
+      CREATE TABLE IF NOT EXISTS record_terms (
+        record_id TEXT NOT NULL,
+        term_hash INTEGER NOT NULL,
+        PRIMARY KEY (record_id, term_hash)
+      );
+      CREATE INDEX IF NOT EXISTS record_terms_hash ON record_terms(term_hash);
       CREATE VIRTUAL TABLE IF NOT EXISTS records_fts USING fts5(
         title, summary, use_when, tags, abstract, tokenize = 'trigram'
       );
@@ -238,6 +291,26 @@ export class LocalStoreCore {
         db.prepare('UPDATE records_fts SET abstract = ? WHERE rowid = (SELECT rowid FROM records WHERE id = ?)').run(abstract, row.id)
       } catch {
         // Missing file: card fields remain searchable.
+      }
+    }
+    // Backfill the body-term index for records whose bodies were written
+    // before `record_terms` existed (one-time migration).
+    const missingTerms = db.prepare('SELECT id, path FROM records WHERE bytes > 0 AND id NOT IN (SELECT record_id FROM record_terms)').all()
+    if (missingTerms.length > 0) {
+      const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
+      db.exec('BEGIN IMMEDIATE')
+      try {
+        for (const row of missingTerms) {
+          try {
+            for (const hash of bodyTermHashes(recordBodyFromFile(readFileSync(row.path, 'utf8')))) insertTerm.run(row.id, hash)
+          } catch {
+            // Missing file: card fields remain searchable; rescue treats it as empty.
+          }
+        }
+        db.exec('COMMIT')
+      } catch (error) {
+        db.exec('ROLLBACK')
+        throw error
       }
     }
     // TTL prune for sticky-level settings rows of long-dead sessions.
@@ -347,6 +420,9 @@ export class LocalStoreCore {
       if (existing !== undefined) db.prepare('DELETE FROM records_fts WHERE rowid = ?').run(row.rowid)
       db.prepare('INSERT INTO records_fts (rowid, title, summary, use_when, tags, abstract) VALUES (?, ?, ?, ?, ?, ?)')
         .run(row.rowid, record.title, record.summary, record.useWhen, tagsText(record.tags), '')
+      db.prepare('DELETE FROM record_terms WHERE record_id = ?').run(record.id)
+      const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
+      for (const hash of bodyTermHashes(record.body)) insertTerm.run(record.id, hash)
       db.exec('COMMIT')
     } catch (error) {
       db.exec('ROLLBACK')
@@ -527,13 +603,67 @@ export class LocalStoreCore {
         }
       }
     }
-    // Hybrid rerank: lexical field matches + cold-abstract evidence + recency.
+    // Body rescue: some query terms never matched any card candidate. Use the
+    // exact body-term index to rank candidate bodies by how many query terms
+    // they contain, then read only those bodies and add a body-hit score. This
+    // is what makes facts that live only in a hot body retrievable without
+    // scanning every file.
+    if (rowsById.size > 0 && terms.length >= 2) {
+      const cardSearchText = (row) => `${row.title} ${row.summary} ${row.use_when} ${row.tags_json} ${row.abstract ?? ''}`.toLowerCase()
+      const matchedByCards = new Set()
+      for (const row of rowsById.values()) {
+        const text = cardSearchText(row)
+        for (const term of lowerTerms) if (term.length >= 2 && termMatchesText(text, term)) matchedByCards.add(term)
+      }
+      const unmatched = lowerTerms.filter((term) => term.length >= 2 && !matchedByCards.has(term))
+      if (unmatched.length > 0) {
+        // Rare-anchor rescue: identifier-like query terms (digits, hyphens,
+        // paths) select a small, precise body candidate set. Natural-language
+        // queries without such a term skip this cheaply instead of scanning
+        // every body-term posting.
+        const anchors = lowerTerms
+          .filter((term) => term.length >= 2 && /[0-9]/.test(term) || /[-_./:]/.test(term))
+          .filter((term, index, all) => all.indexOf(term) === index)
+          .slice(0, 3)
+          .map((term) => fnv1a32(term))
+        if (anchors.length > 0) {
+          const placeholders = anchors.map(() => '?').join(', ')
+          const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0 }, { alias: 'r.' })
+          const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
+          const candidateRows = this.database().prepare(`
+            SELECT t.record_id AS recordId, COUNT(*) AS matches
+            FROM record_terms t JOIN records r ON r.id = t.record_id
+            WHERE t.term_hash IN (${placeholders}) ${where}
+            GROUP BY t.record_id ORDER BY matches DESC LIMIT 120
+          `).all(...anchors, ...params)
+          let rescued = 0
+          for (const candidate of candidateRows) {
+            if (rescued >= limit * 5) break
+            if (rowsById.has(candidate.recordId)) continue
+            const row = this.rowById(candidate.recordId)
+            if (row === undefined) continue
+            let body = ''
+            try {
+              body = recordBodyFromFile(readFileSync(row.path, 'utf8'))
+            } catch {
+              continue
+            }
+            const lowerBody = body.toLowerCase()
+            const bodyHits = lowerTerms.filter((term) => termMatchesText(lowerBody, term)).length
+            if (bodyHits === 0) continue
+            rowsById.set(candidate.recordId, { ...row, snippet: makeSnippet(body, query.query), rank: undefined, bodyHits })
+            rescued += 1
+          }
+        }
+      }
+    }
+    // Hybrid rerank: lexical field matches + body evidence + cold abstract + recency.
     const now = Date.now()
     const fieldHits = (value, weight) => {
       const text = String(value ?? '').toLowerCase()
       if (text.length === 0) return 0
       let hits = 0
-      for (const term of lowerTerms) if (text.includes(term)) hits += 1
+      for (const term of lowerTerms) if (termMatchesText(text, term)) hits += 1
       return hits * weight
     }
     const ranked = []
@@ -548,11 +678,13 @@ export class LocalStoreCore {
         + fieldHits(card.useWhen, sweep.useWhen)
         + fieldHits(tagsText(card.tags), sweep.tags)
         + fieldHits(row.abstract, sweep.abstract)
+        + (Number(row.bodyHits) || 0) * sweep.body
         + Math.max(0, 1 - ageDays / 60) * sweep.recency
         - (card.cold === true ? sweep.coldPenalty : 0)
       ranked.push({ card, row, score })
     }
     ranked.sort((left, right) => right.score - left.score || (right.card.updatedAt ?? 0) - (left.card.updatedAt ?? 0))
+    if (process.env.DEBUG_RESCUE) console.error('DBG top', ranked.slice(0,8).map(e=>({title:e.card.title, score:+e.score.toFixed(1), body:e.row.bodyHits})))
     const tagFilter = Array.isArray(query.tags) ? query.tags.filter((tag) => typeof tag === 'string' && tag.length > 0) : []
     const hits = []
     for (const { card, row } of ranked) {
@@ -1035,6 +1167,26 @@ export class LocalStoreCore {
 
   /** No-op hook: SQLite WAL commits synchronously enough for this store. */
   flush() {}
+}
+
+/** Escape a term for a regex boundary test. */
+function escapeTerm(term) {
+  return term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
+}
+
+/**
+ * Whether one lowercased query term occurs in a lowercased text.
+ *
+ * ASCII identifier-ish terms use word boundaries so `inc-1` does not match the
+ * prefix of `inc-161` (a real ranking bug for id queries); punctuation/CJK terms
+ * keep substring semantics (CJK has no word boundaries, quotes/paths are exact).
+ */
+export function termMatchesText(text, term) {
+  if (text.length === 0 || term.length === 0) return false
+  if (/^[a-z0-9][a-z0-9_-]*$/.test(term)) {
+    return new RegExp(`(?<![a-z0-9])${escapeTerm(term)}(?![a-z0-9])`).test(text)
+  }
+  return text.includes(term)
 }
 
 /** Build the searchable tag text from a tag facet object. */

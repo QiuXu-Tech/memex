@@ -17,6 +17,10 @@ Every integration resolves a **profile** from the running model id, then tunes m
 | `kimi` | `kimi-k2`, `moonshot-v1` | 128K–256K | 3.5 | Markdown | 900 / 400 | bilingual + `ids:` |
 | `glm` | `glm-4.6`, `chatglm` | 128K–200K | 3.6 | Markdown | 900 / 400 | bilingual + `ids:` |
 | `llama` | `llama-3.1`, `mistral`, `mixtral` | 128K–1M | 4.1 | Plain text | 800 / 350 | numbered + `ids:` |
+| `xai` | `grok-4`, `grok-3` | 256K–2M | 3.8 | Markdown | 1000 / 450 | numbered + `ids:` |
+| `cohere` | `command-r-plus`, `command-a` | 128K | 4.0 | Markdown | 900 / 400 | numbered + `ids:` |
+| `gemma` | `gemma-3-27b` | 128K | 4.0 | Markdown | 800 / 350 | numbered + `ids:` |
+| `phi` | `phi-4`, `phi-4-mini` | 128K | 4.0 | Markdown | 800 / 350 | numbered + `ids:` |
 | `generic` | anything else | 128K | 4.0 | Markdown | 900 / 400 | numbered + `ids:` |
 
 ## What a profile changes
@@ -29,7 +33,7 @@ Every integration resolves a **profile** from the running model id, then tunes m
 
 ## Retrieval reranking
 
-Each profile also carries **rerank weights** for the hybrid search: the store merges them over `DEFAULT_RERANK_WEIGHTS` (`title 3.0, tags 1.6, summary 1.4, useWhen 1.2, abstract 0.9, recency 0.4, coldPenalty 0.1, bm25 0.8`). This is the ranking half of model-specific adaptation; the fields above tune injection and prompting.
+Each profile also carries **rerank weights** for the hybrid search: the store merges them over `DEFAULT_RERANK_WEIGHTS` (`title 3.0, tags 1.6, summary 1.4, useWhen 1.2, abstract 0.9, body 5.0, recency 0.4, coldPenalty 0.1, bm25 0.8`). The `body` weight applies to body-rescue hits (identifier-like terms found only in a record body). This is the ranking half of model-specific adaptation; the fields above tune injection and prompting.
 
 | Profile | Rerank override | Why |
 |---|---|---|
