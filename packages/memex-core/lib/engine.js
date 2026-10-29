@@ -15,6 +15,7 @@ import { existsSync } from 'node:fs'
 import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { LocalStoreCore } from './store.js'
+import { materializeStoreContext } from './context-pager.js'
 import { memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
 import { clipToProfileTokens, profileTokens, resolveModelProfile } from './model-profiles.js'
 
@@ -166,6 +167,24 @@ export class AgentMemory {
   }
 
   /** Catalog text + accounting for the visible levels. */
+  /**
+   * Materialize a resident extra-context window from the current store.
+   * This is the pager API; DSH injection can opt in later without changing
+   * non-DSH adapters.
+   */
+  materializeContext(options = {}) {
+    return materializeStoreContext({
+      store: this.store,
+      workspaceKey: options.workspaceKey ?? this.workspaceKey,
+      scopes: options.scopes ?? ['session', 'workspace'],
+      sessionId: options.sessionId ?? this.sessionId,
+      budgetTokens: options.budgetTokens,
+      variant: options.variant,
+      pinnedIds: options.pinnedIds,
+      reserveTokens: options.reserveTokens,
+    })
+  }
+
   index({ maxChars } = {}) {
     // Use the profile's catalog budget (tokens × chars/token) as the default
     // prompt-space allocation instead of a fixed 2.4k chars.

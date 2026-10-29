@@ -14,7 +14,7 @@
  * @module @qiuxu/memex-checkpoint/checkpoint
  */
 import { createHash } from 'node:crypto'
-import { archiveRecordId, memoryCaptureScope, memoryMessage, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
+import { archiveRecordId, canonicalEventsFromDsh, memoryCaptureScope, memoryMessage, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
 import { buildCard } from './render.js'
 
 /** Bound on buffered live events per session (fallback when no query service exists). */
@@ -311,6 +311,13 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
       },
     }
     const stored = await memory.archiveRegion({ sessionId: session.id, compactionId, record })
+    // Context-materialization step 1: keep the exact role/tool/sequence
+    // envelope alongside the rendered card. A backend without support no-ops.
+    try {
+      await memory.appendContextEvents({ recordId: stored.id, events: canonicalEventsFromDsh(events, { sessionId: session.id, recordId: stored.id }) })
+    } catch (error) {
+      warn(`canonical context-event capture skipped: ${String(error?.message ?? error)}`)
+    }
     const list = receipts.get(session.id) ?? []
     list.push({
       recordId: stored.id,

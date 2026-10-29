@@ -115,6 +115,14 @@ export default class LocalMemoryStore extends MemoryStore {
     return this.core.markRead(ids)
   }
 
+  async appendContextEvents(input) {
+    return this.core.appendContextEvents(input)
+  }
+
+  async listContextEvents(recordId) {
+    return this.core.listContextEvents(recordId)
+  }
+
   async getLevels(sessionId) {
     return this.core.getLevels(sessionId)
   }

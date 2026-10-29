@@ -4248,6 +4248,94 @@ await test('U26', 'context materializer: chronology, stable prefix, budget, spec
   assert.ok(CONTEXT_VARIANTS.some((variant) => variant.id === 'context-specialist-v1'))
 })
 
+
+await test('U27', 'canonical context events round-trip with checksums and store persistence', async () => {
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
+  const { canonicalEventsFromDsh, serializeContextEvent, deserializeContextEvent } = await import('../packages/memex-core/lib/context-events.js')
+  const root = makeRoot('u27')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000, sessionCapacityTokens: 1_000_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    const record = store.write({ kind: 'episode', title: 'canonical capture', body: 'rendered card', workspaceKey: 'wk-u27', scope: 'workspace', tokens: 10 })
+    const raw = [
+      { seq: 2, message: { role: 'user', content: [{ type: 'text', text: 'exact user text' }] } },
+      { seq: 3, message: { role: 'assistant', content: [{ type: 'tool-call', id: 'call-1', name: 'memory_search', arguments: { query: 'billing' } }] } },
+      { seq: 4, message: { role: 'tool', content: [{ type: 'text', text: 'tool result text' }] } },
+    ]
+    const events = canonicalEventsFromDsh(raw, { sessionId: 's', recordId: record.id })
+    assert.equal(events.length, 3)
+    assert.equal(events[0].content, 'exact user text')
+    assert.equal(events[1].type, 'tool_call')
+    assert.equal(events[1].toolName, 'memory_search')
+    const count = store.appendContextEvents({ recordId: record.id, events })
+    assert.equal(count, 3)
+    const listed = store.listContextEvents(record.id)
+    assert.equal(listed.length, 3, 'canonical events must persist in sequence')
+    assert.deepEqual(listed.map((event) => event.role), ['user', 'assistant', 'tool'])
+    for (const event of listed) {
+      const round = deserializeContextEvent(serializeContextEvent(event))
+      assert.equal(round.checksum, event.checksum)
+      assert.equal(round.content, event.content)
+    }
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+await test('U28', 'context pager replays canonical events through the materializer', async () => {
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  const root = makeRoot('u28')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000, sessionCapacityTokens: 1_000_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    const first = store.write({ kind: 'episode', title: 'first card', body: 'first rendered body', workspaceKey: 'wk-u28', scope: 'workspace', tokens: 10 })
+    const second = store.write({ kind: 'episode', title: 'second card', body: 'second rendered body', workspaceKey: 'wk-u28', scope: 'workspace', tokens: 10 })
+    store.appendContextEvents({ recordId: first.id, events: [{ id: `${first.id}:a`, role: 'user', type: 'message', sequence: 10, content: 'exact first event' }] })
+    store.appendContextEvents({ recordId: second.id, events: [{ id: `${second.id}:b`, role: 'assistant', type: 'message', sequence: 20, content: 'exact second event' }] })
+    const out = materializeStoreContext({ store, workspaceKey: 'wk-u28', scopes: ['workspace'], budgetTokens: 2000 })
+    assert.ok(out.text.includes('exact first event') && out.text.includes('exact second event'), 'pager must replay canonical event content')
+    assert.ok(out.text.indexOf('exact first event') < out.text.indexOf('exact second event'), 'canonical events must preserve sequence order')
+    assert.ok(out.sources.filter((source) => source.source === 'canonical').length >= 2)
+    assert.equal(out.variant.id, 'timeline-exact')
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+await test('U29', 'context encoder baseline ranks overlapping pages and trains offline', async () => {
+  const { HeuristicContextEncoder, LinearContextEncoder, encoderFeatures } = await import('../packages/memex-core/lib/context-encoder.js')
+  const relevant = { title: 'billing retry decision', summary: 'billing retry', body: 'the billing retry decision is FACT-1', createdAt: Date.now() - 1000 }
+  const irrelevant = { title: 'routine weekly note', summary: 'weekly log', body: 'nothing special', createdAt: Date.now() - 20 * 86_400_000 }
+  const features = encoderFeatures(relevant, 'billing retry decision')
+  assert.ok(features.titleOverlap > 0.5)
+  const heuristic = new HeuristicContextEncoder()
+  assert.ok(heuristic.score(relevant, 'billing retry decision') > heuristic.score(irrelevant, 'billing retry decision'))
+  const encoder = LinearContextEncoder.train([
+    { page: relevant, query: 'billing retry decision', label: 1 },
+    { page: relevant, query: 'billing retry decision', label: 1 },
+    { page: irrelevant, query: 'billing retry decision', label: 0 },
+    { page: irrelevant, query: 'billing retry decision', label: 0 },
+  ], { epochs: 300, learningRate: 1 })
+  assert.ok(encoder.probability(relevant, 'billing retry decision') > encoder.probability(irrelevant, 'billing retry decision'), 'linear baseline must learn salience preference')
+})
+
+await test('U30', 'KV host capability negotiation fails closed and pages when fully capable', async () => {
+  const { MockKvContextHost, negotiateContextHost, materializeWithHost, CONTEXT_HOST_CAPABILITIES } = await import('../packages/memex-core/lib/context-kv.js')
+  const capable = new MockKvContextHost()
+  const negotiation = negotiateContextHost(capable)
+  assert.equal(negotiation.canPageKV, true)
+  assert.equal(negotiation.canPrefix, true)
+  const paged = materializeWithHost({ text: 'materialized', stablePrefixHash: 'abc' }, capable, { prefixKey: 'prefix-1', spans: [{ id: 'span-1', text: 'exact span' }] })
+  assert.equal(paged.mode, 'kv-paging')
+  assert.equal(capable.resolvePrefix('prefix-1').length, 1)
+  const textOnly = negotiateContextHost({ capabilities: [] })
+  assert.equal(textOnly.canPageKV, false)
+  const fallback = materializeWithHost({ text: 'materialized' }, { capabilities: [] })
+  assert.equal(fallback.mode, 'text-fallback')
+  assert.ok(Object.values(CONTEXT_HOST_CAPABILITIES).includes('paged-kv'))
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

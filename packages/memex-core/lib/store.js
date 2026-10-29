@@ -15,6 +15,7 @@ import { DatabaseSync } from 'node:sqlite'
 import { mkdirSync, readFileSync, writeFileSync, renameSync, unlinkSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash, randomUUID } from 'node:crypto'
+import { canonicalContextEvent, checksumContextEvent } from './context-events.js'
 import {
   MEMORY_KINDS, MEMORY_STATUSES, MEMORY_TRUST, MEMORY_TEXT_LIMITS,
   MEMORY_LEVELS, MEMORY_MODES, MEMORY_SCOPES, MEMORY_LEVEL_SCOPE, memoryCaptureScope, memoryLevelsFromRow, memoryVisibleScopes,
@@ -214,6 +215,23 @@ export class LocalStoreCore {
         PRIMARY KEY (record_id, term_hash)
       );
       CREATE INDEX IF NOT EXISTS record_terms_hash ON record_terms(term_hash);
+      CREATE TABLE IF NOT EXISTS context_events (
+        event_id TEXT PRIMARY KEY,
+        record_id TEXT NOT NULL,
+        session_id TEXT,
+        sequence INTEGER NOT NULL,
+        role TEXT NOT NULL,
+        type TEXT NOT NULL,
+        content TEXT NOT NULL,
+        content_format TEXT NOT NULL,
+        tool_name TEXT,
+        tool_call_id TEXT,
+        tool_arguments TEXT,
+        attachments_json TEXT NOT NULL,
+        checksum TEXT NOT NULL,
+        created_at INTEGER NOT NULL
+      );
+      CREATE INDEX IF NOT EXISTS context_events_record ON context_events(record_id, sequence);
       CREATE VIRTUAL TABLE IF NOT EXISTS records_fts USING fts5(
         title, summary, use_when, tags, abstract, tokenize = 'trigram'
       );
@@ -499,6 +517,56 @@ export class LocalStoreCore {
       lastReadAt: row.last_read_at ?? undefined,
       cold: Number(row.cold) === 1,
     }
+  }
+
+  /**
+   * Persist canonical context events for one record (context-materialization
+   * step 1). Old databases get the table lazily; calls are idempotent.
+   * @param {{recordId:string, events:object[]}} input
+   * @returns {number} number of persisted events
+   */
+  appendContextEvents({ recordId, events } = {}) {
+    if (typeof recordId !== 'string' || recordId.length === 0) throw new TypeError('appendContextEvents: recordId is required')
+    const db = this.database()
+    const insert = db.prepare(`
+      INSERT INTO context_events (event_id, record_id, session_id, sequence, role, type, content, content_format, tool_name, tool_call_id, tool_arguments, attachments_json, checksum, created_at)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      ON CONFLICT(event_id) DO UPDATE SET
+        record_id=excluded.record_id, sequence=excluded.sequence, role=excluded.role, type=excluded.type,
+        content=excluded.content, content_format=excluded.content_format, tool_name=excluded.tool_name,
+        tool_call_id=excluded.tool_call_id, tool_arguments=excluded.tool_arguments,
+        attachments_json=excluded.attachments_json, checksum=excluded.checksum, created_at=excluded.created_at
+    `)
+    db.exec('BEGIN IMMEDIATE')
+    try {
+      let count = 0
+      for (const input of Array.isArray(events) ? events : []) {
+        const event = canonicalContextEvent({ ...input, recordId })
+        insert.run(event.id, recordId, event.sessionId ?? null, event.sequence, event.role, event.type, event.content, event.contentFormat, event.toolName ?? null, event.toolCallId ?? null, event.toolArguments === undefined ? null : event.toolArguments, JSON.stringify(event.attachments), checksumContextEvent(event), event.createdAt ?? 0)
+        count += 1
+      }
+      db.exec('COMMIT')
+      return count
+    } catch (error) {
+      db.exec('ROLLBACK')
+      throw error
+    }
+  }
+
+  /** @returns {object[]} canonical context events for one record, in sequence order. */
+  listContextEvents(recordId) {
+    const rows = this.database().prepare('SELECT * FROM context_events WHERE record_id = ? ORDER BY sequence ASC, event_id ASC').all(recordId)
+    return rows.map((row) => {
+      const event = canonicalContextEvent({
+        id: row.event_id, role: row.role, type: row.type, sequence: row.sequence, sessionId: row.session_id ?? undefined,
+        content: row.content, contentFormat: row.content_format, toolName: row.tool_name ?? undefined,
+        toolCallId: row.tool_call_id ?? undefined, toolArguments: row.tool_arguments ?? undefined,
+        attachments: JSON.parse(row.attachments_json ?? '[]'), recordId: row.record_id, createdAt: row.created_at,
+      })
+      const checksum = checksumContextEvent(event)
+      if (row.checksum !== checksum) throw new Error(`context event checksum mismatch: ${row.event_id}`)
+      return { ...event, checksum }
+    })
   }
 
   /** Load one record including its body read from the file. */

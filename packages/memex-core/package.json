@@ -1,6 +1,6 @@
 {
   "name": "@qiuxu/memex-core",
-  "version": "0.11.0",
+  "version": "0.12.0",
   "private": true,
   "description": "Agent-agnostic extra-context core: context page vocabulary, workspace identity, query-term extraction, token accounting, markdown+SQLite store with hot/cold tiers, context paging and capacity compression.",
   "type": "module",
@@ -11,7 +11,11 @@
     "./model-profiles": "./lib/model-profiles.js",
     "./manual": "./lib/manual.js",
     "./engine": "./lib/engine.js",
-    "./context-materializer": "./lib/context-materializer.js"
+    "./context-materializer": "./lib/context-materializer.js",
+    "./context-events": "./lib/context-events.js",
+    "./context-pager": "./lib/context-pager.js",
+    "./context-encoder": "./lib/context-encoder.js",
+    "./context-kv": "./lib/context-kv.js"
   },
   "files": [
     "index.js",

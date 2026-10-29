@@ -108,6 +108,13 @@ export class MemoryStore extends Service {
     throw new Error('memory: archiveRegion() is not implemented by this backend')
   }
 
+  /**
+   * Persist canonical context events for one record (materialization step 1).
+   * Backends that do not support it stay compatible with a no-op.
+   * @returns {Promise<number>} number of persisted events
+   */
+  async appendContextEvents(_input) { return 0 }
+
   /** @returns {Promise<void>} Flush pending durable state. */
   async flush() {}
 }

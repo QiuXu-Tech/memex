@@ -4,6 +4,17 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.12.0
+
+### Implemented — context materialization steps 1–5
+- **Canonical events**: `context-events.js` (role/type/content/tool-call/tool-result/attachment, checksum, DSH adapter), `context_events` store table + `append/listContextEvents`, checkpoint capture alongside rendered cards, seam/local backend forwarding. U27.
+- **Pager/materializer**: `context-pager.js` selects resident pinned/open/recent pages, prefers canonical events, and materializes through `context-materializer.js`; `AgentMemory.materializeContext()` API. U28.
+- **Encoder baseline**: `context-encoder.js` feature extractor + heuristic and trainable linear logistic encoder sharing the transformer `score()/rank()` interface; offline training test. U29. (Not a trained transformer.)
+- **KV/prefix host seam**: `context-kv.js` explicit capability contract, negotiation, mock paged-KV host, fail-closed text fallback; no undocumented host probing/induction. U30.
+- **Structural fidelity eval**: `scripts/context-fidelity-eval.mjs` → `docs/assets/benchmarks/context-fidelity.json`; canonical round-trip, chronology, stable prefix, pager canonical coverage, KV mock path all pass.
+- Harness **127/127**.
+- Explicitly pending: runtime DSH injection switch, real transformer encoder/assembler training, real KV/prefix-cache host.
+
 ## 0.11.0
 
 ### Added — context materialization direction + transformer specialist interface

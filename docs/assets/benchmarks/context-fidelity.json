@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-10-29T12:42:43.206Z",
+  "kind": "context-fidelity-offline",
+  "checks": {
+    "canonicalEvents": 4,
+    "persistedEvents": 4,
+    "eventRoundTripExact": true,
+    "chronologyExact": true,
+    "stablePrefixDeterministic": true,
+    "pagerCanonicalSources": 1,
+    "pagerUsesCanonicalEvents": true
+  },
+  "kv": {
+    "capableCanPageKV": true,
+    "capableCanPrefix": true,
+    "textOnlyFailsClosed": true,
+    "mockBlocks": 4,
+    "mockMode": "kv-paging"
+  },
+  "caveats": [
+    "Offline structural fidelity only; no provider/model calls.",
+    "Transformer context specialist is an interface slot (heuristic/linear baseline), not a trained model.",
+    "KV paging is a mock host contract; real hosts must opt in."
+  ]
+}

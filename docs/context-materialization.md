@@ -67,22 +67,33 @@ These are **separate specialist components around the model**, not a replacement
 - Fallback: text-only materializer when the host exposes no KV seam.
 - This is the only path that can recover the **attention/positional** part of true context; API-only agents cannot reach it.
 
-## Implemented today (offline)
+## Implemented today (offline, v0.12.0)
 
-`packages/memex-core/lib/context-materializer.js`:
+**1. Canonical event capture**
+- `packages/memex-core/lib/context-events.js`: role/type/content/tool-call/tool-result/attachment envelope, deterministic checksum, DSH-event adapter, materializer-page adapter.
+- `context_events` table + `appendContextEvents`/`listContextEvents` in the store; seam/default no-op, local backend forwarding.
+- Checkpoint now captures canonical events alongside the rendered card (best-effort; no-op for backends without support).
+- U27 verifies round-trip, checksum and persistence.
 
-- `CONTEXT_VARIANTS`:
-  - `timeline-exact` — chronological verbatim pages + stable index prefix
-  - `edge-attention` — chronology with pinned attention edges
-  - `context-specialist-v1` — interface slot; `requiresKV: true`; heuristic fallback
-- `materializeContext({ pages, budgetTokens, variant, pinnedIds, reserveTokens })`
-  - deterministic ordering by `sequence`/`createdAt`
-  - stable prefix hash (prompt-cache key)
-  - budgeted inclusion, pinned-page forcing, explicit `omittedIds`
-  - returned metadata: `tokens`, `includedIds`, `order`, `requiresKV`
-- U26 covers chronology, determinism, budget, pinning, and the specialist variant contract.
+**2. Pager + materializer**
+- `context-materializer.js`: deterministic chronology, stable index prefix/hash, budget, pinned pages, omitted ids, variants.
+- `context-pager.js` + `AgentMemory.materializeContext()`: selects pinned/open/recent resident pages, prefers canonical events over rendered bodies, and materializes the window.
+- U28 verifies canonical replay and sequence order.
 
-**Not implemented yet:** training the encoder/assembler, wiring the pager into the host runtime, KV-block paging. This is deliberate: the interface and deterministic baseline come first.
+**3. Encoder specialist baseline**
+- `context-encoder.js`: feature extractor, deterministic heuristic encoder, trainable **linear logistic baseline** implementing the same `score()/rank()` interface a transformer cross-encoder would use.
+- U29 verifies salience preference and offline training.
+- **Not a transformer**: it is the interface + measurable surrogate; a real context encoder needs training/inference infrastructure.
+
+**4. KV/prefix host seam**
+- `context-kv.js`: explicit capability contract (`paged-kv`, `attention-sinks`, `prefix-cache`, `token-spans`), negotiation, mock host, and fail-closed text fallback.
+- U30 verifies capability negotiation and KV paging mode.
+- **No real host is probed or induced**; unsupported hosts stay on text materialization.
+
+**5. Structural fidelity evaluation**
+- `scripts/context-fidelity-eval.mjs` → `docs/assets/benchmarks/context-fidelity.json`: event round-trip, chronology, stable-prefix determinism, canonical pager coverage, KV negotiation/fallback. Latest run: all structural checks true; KV mock paging path exercised.
+
+**Still not done (explicit):** runtime DSH injection switch, a trained transformer encoder/assembler, and a real KV/prefix-cache host. These are the next engineering steps, not claimed.
 
 ## How it gets wired next
 
