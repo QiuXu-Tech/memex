@@ -1,0 +1,11 @@
+# Generated bundle runtime modules (built by scripts/build-bundle.mjs)
+packages/dsh-memory/modules/
+
+# Local install / dependency artifacts
+node_modules/
+*.log
+
+# OS / editor noise
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,26 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  offline:
+    name: offline harness + bundle parity
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+      - name: Build generated bundle modules
+        run: node scripts/build-bundle.mjs
+      - name: Check source/bundle parity
+        run: node scripts/check-bundle.mjs
+      - name: Run offline harness
+        run: node --import ./test/register.mjs ./test/run.mjs
+      - name: Recall evaluation (synthetic)
+        run: node --import ./test/register.mjs ./scripts/recall-eval.mjs --suite synthetic --threshold 0.9
+      - name: Scale smoke (1k records)
+        run: node --import ./test/register.mjs ./scripts/scale-bench.mjs --records 1000 --tokens 1000

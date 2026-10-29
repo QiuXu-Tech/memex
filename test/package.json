@@ -1,0 +1,13 @@
+{
+  "name": "@qiuxu/dsh-memory-offline-tests",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Offline Node-ESM test harness for the nine-package memory subsystem: L1/L2/L3 levels, cold tier + memory_compress, restore/GC, compression history, hybrid recall with cold abstracts, sensitive eviction policy, nine /api/memory.* routes, body-less FTS, bundle, web client and backup/verify/restore. Uses ESM loader stubs instead of node_modules.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "test": "node --import ./register.mjs ./run.mjs"
+  }
+}

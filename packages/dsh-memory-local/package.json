@@ -1,0 +1,23 @@
+{
+  "name": "@qiuxu/dsh-memory-local",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local filesystem + SQLite FTS5 backend for the extra-context memory subsystem; owns ctx.memory.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "dependencies": {
+    "@qiuxu/dsh-memory-seam": "file:../dsh-memory-seam"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5",
+    "@deepseek-ai/schemastery": "~3.18.5",
+    "@deepseek-ai/dsh-home-paths": "0.2.1-rc.3"
+  }
+}

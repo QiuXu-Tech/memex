@@ -1,0 +1,21 @@
+{
+  "name": "@qiuxu/dsh-memory-api",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Owner-authenticated HTTP API (/api/memory.*) for the Web memory panel, backed by ctx.memory.",
+  "type": "module",
+  "main": "index.js",
+  "exports": {
+    ".": "./index.js"
+  },
+  "files": [
+    "index.js",
+    "lib"
+  ],
+  "dependencies": {
+    "@qiuxu/dsh-memory-seam": "file:../dsh-memory-seam"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "~4.0.5"
+  }
+}
