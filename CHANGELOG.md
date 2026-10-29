@@ -6,6 +6,13 @@ ordering problem. The original tail membership was not saved; see the
 [live-testing methodology warning](docs/live-testing.md#deepseek-flash-results-2026-10-29)
 before interpreting the reported evicted subsets.
 
+## 0.7.1
+
+### Added — Codex/GPT live dataset
+- **Codex CLI / GPT-6.1 Sol live A/B (contributed)**: 3 seeds × 20 probes; control **3/60 (5%)**, treatment **60/60 (100%)**; reported cold subset 3/57 → 57/57. This is the second model family reproducing the evidence-in-prompt pattern (DeepSeek Flash also 3/60 → 60/60).
+- Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
+- Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
+
 ## 0.7.0
 
 ### Added — cold-side anchor-free recall

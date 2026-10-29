@@ -78,6 +78,19 @@ Questions contain **no turn numbers or IDs** and the answer-bearing records are 
 
 Limits kept explicit: the boost requires the cold abstract to cover **every** meaningful query term (partial overlap is ignored), and morphology must match (`decision`, not `decide`). Raw: [evidence](assets/benchmarks/live-ab-deepseek-cold-anchor-free.json).
 
+### F. Codex CLI / GPT-6.1 Sol live A/B (contributed, v0.7.1)
+
+A Codex CLI contribution (`gpt-6.1-sol`) ran the same bridge: **3 seeds × 20 probes**.
+
+| Condition | Overall | Reported cold subset |
+|---|---|---|
+| control (recent tail only) | **3/60 (5%)** | 3/57 (5.3%) |
+| treatment (memex evidence) | **60/60 (100%)** | 57/57 (100%) |
+
+All 20 treatment answers per seed were exact FACT ids; each control success was the one fact present in the shown tail. This is the **second model family** showing the same evidence-in-prompt pattern (DeepSeek Flash: 3/60 → 60/60; GPT-6.1 Sol: 3/60 → 60/60).
+
+**Caveat:** the `cold` subset is a reported classification, not a verified recently-evicted subset — the existing `live-ab.mjs` recent-tail construction has the ordering issue described above. Raw report: [live-ab-codex-gpt.json](assets/benchmarks/live-ab-codex-gpt.json).
+
 ## How to contribute
 
 1. Clone and run the dry-run sanity check (no network):
