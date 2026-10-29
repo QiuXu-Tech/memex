@@ -1,0 +1,1049 @@
+{
+  "generatedAt": "2026-10-29T11:01:00.060656+00:00",
+  "testedCommit": "4f9ca86c8a1666bb82520812902f02a58d75835a",
+  "reportSha256": "3239453603a016cda37f2d02c62f29b3f9c125491098601037932166886d218b",
+  "method": "Saved actual synthetic plan and control prompt before the script removed its temporary directory. Compared prompt with recorded tail IDs and turn numbers, then checked probe flags and aggregate counts.",
+  "allSixCodexCallsSucceeded": true,
+  "allPromptTailsMatchPlans": true,
+  "allProbeFlagsMatchActualTail": true,
+  "allProbeEvictionFlagsMatchTurnBelow280": true,
+  "runs": [
+    {
+      "seed": 1,
+      "tailTurns": [
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "missingFromLast20Turns": [],
+      "outsideLast20Turns": [],
+      "promptMatchesTailRecords": true,
+      "probeMembershipMatchesTailIds": true,
+      "controlPromptSha256": "d471810a30a342aafde033e29a26875c94e84f8b80a8cf74891bae32549f3ee3",
+      "plan": {
+        "generatedAt": "2026-10-29T10:57:22.247Z",
+        "seed": 1,
+        "turns": 300,
+        "tailCount": 20,
+        "tailIds": [
+          "mem_29d0de62b6",
+          "mem_6f941c29b3",
+          "mem_8d78ddbebc",
+          "mem_62b6c1bacc",
+          "mem_b0e51c2038",
+          "mem_cb7cea34e2",
+          "mem_41ba5f0028",
+          "mem_e327167b7e",
+          "mem_b6a0f7fbd5",
+          "mem_fa0713654d",
+          "mem_0e01ed628d",
+          "mem_1aa63367f5",
+          "mem_314c059a47",
+          "mem_341c022c8e",
+          "mem_dc82c4658f",
+          "mem_e94f21c260",
+          "mem_f853c0d2fd",
+          "mem_3513faef5a",
+          "mem_357d117d35",
+          "mem_401d34d809"
+        ],
+        "tailRecords": [
+          {
+            "id": "mem_29d0de62b6",
+            "title": "turn 281 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_6f941c29b3",
+            "title": "turn 280 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_8d78ddbebc",
+            "title": "turn 282 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_62b6c1bacc",
+            "title": "turn 283 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_b0e51c2038",
+            "title": "router value at turn 285",
+            "summary": "the router value is FACT-285-rm66w"
+          },
+          {
+            "id": "mem_cb7cea34e2",
+            "title": "turn 284 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_41ba5f0028",
+            "title": "turn 287 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_e327167b7e",
+            "title": "turn 286 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_b6a0f7fbd5",
+            "title": "turn 288 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_fa0713654d",
+            "title": "turn 289 harbor work",
+            "summary": "work log for harbor"
+          },
+          {
+            "id": "mem_0e01ed628d",
+            "title": "turn 291 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_1aa63367f5",
+            "title": "turn 292 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_314c059a47",
+            "title": "turn 293 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_341c022c8e",
+            "title": "turn 290 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_dc82c4658f",
+            "title": "turn 295 router work",
+            "summary": "work log for router"
+          },
+          {
+            "id": "mem_e94f21c260",
+            "title": "turn 294 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_f853c0d2fd",
+            "title": "turn 296 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_3513faef5a",
+            "title": "turn 298 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_357d117d35",
+            "title": "turn 297 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_401d34d809",
+            "title": "turn 299 harbor work",
+            "summary": "work log for harbor"
+          }
+        ],
+        "probes": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-mkorf",
+            "id": "mem_a5bc545c68",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-03jmy",
+            "id": "mem_25e7f58449",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-izkkh",
+            "id": "mem_0cd406166f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-zbfww",
+            "id": "mem_73f5639ff7",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-yv0n0",
+            "id": "mem_41f81901a0",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-a4b5x",
+            "id": "mem_218a85c792",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-m28ly",
+            "id": "mem_b329b42b3e",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-py2zp",
+            "id": "mem_3301f0bf17",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-fbtzd",
+            "id": "mem_3c990845ab",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-ztagj",
+            "id": "mem_2236b1bd2f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-ge14o",
+            "id": "mem_e988cce1ab",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-hlgwo",
+            "id": "mem_75bd23e1b9",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-50232",
+            "id": "mem_617a740e47",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-ej946",
+            "id": "mem_b82920914f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-8wsh3",
+            "id": "mem_d1d6ff4e04",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-5k815",
+            "id": "mem_6b1ecedac4",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-hlxhw",
+            "id": "mem_ab581f8751",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-2fb7j",
+            "id": "mem_c687e66d4f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-e7fcx",
+            "id": "mem_feb59c5d8f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-rm66w",
+            "id": "mem_b0e51c2038",
+            "inTail": true,
+            "evicted": false
+          }
+        ]
+      },
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 281 parser work\nwork log for parser\nturn 280 gateway work\nwork log for gateway\nturn 282 scheduler work\nwork log for scheduler\nturn 283 ledger work\nwork log for ledger\nrouter value at turn 285\nthe router value is FACT-285-rm66w\nturn 284 cache work\nwork log for cache\nturn 287 indexer work\nwork log for indexer\nturn 286 worker work\nwork log for worker\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 291 parser work\nwork log for parser\nturn 292 scheduler work\nwork log for scheduler\nturn 293 ledger work\nwork log for ledger\nturn 290 gateway work\nwork log for gateway\nturn 295 router work\nwork log for router\nturn 294 cache work\nwork log for cache\nturn 296 worker work\nwork log for worker\nturn 298 bridge work\nwork log for bridge\nturn 297 indexer work\nwork log for indexer\nturn 299 harbor work\nwork log for harbor\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain."
+    },
+    {
+      "seed": 2,
+      "tailTurns": [
+        278,
+        280,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "missingFromLast20Turns": [
+        281
+      ],
+      "outsideLast20Turns": [
+        278
+      ],
+      "promptMatchesTailRecords": true,
+      "probeMembershipMatchesTailIds": true,
+      "controlPromptSha256": "63132aca626d85de810a2e2aef1694bf1b026eb5f584ba79e67dd90a29b28806",
+      "plan": {
+        "generatedAt": "2026-10-29T10:58:39.851Z",
+        "seed": 2,
+        "turns": 300,
+        "tailCount": 20,
+        "tailIds": [
+          "mem_95cfd4545c",
+          "mem_d4f5bbb57a",
+          "mem_150ecfaaa0",
+          "mem_29f6201b4a",
+          "mem_564645fc71",
+          "mem_d1c514b45a",
+          "mem_46f027a970",
+          "mem_dd9cfb6e07",
+          "mem_edec648ed3",
+          "mem_7aa69bd37f",
+          "mem_871e478ebc",
+          "mem_87889e3dc2",
+          "mem_95df19de86",
+          "mem_c1846a045a",
+          "mem_38141ec5fb",
+          "mem_63b4d42fbe",
+          "mem_aba9dc70f2",
+          "mem_d5b1672893",
+          "mem_7bf81e168c",
+          "mem_b2c78bdc53"
+        ],
+        "tailRecords": [
+          {
+            "id": "mem_95cfd4545c",
+            "title": "turn 278 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_d4f5bbb57a",
+            "title": "turn 280 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_150ecfaaa0",
+            "title": "turn 283 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_29f6201b4a",
+            "title": "turn 284 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_564645fc71",
+            "title": "turn 282 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_d1c514b45a",
+            "title": "router value at turn 285",
+            "summary": "the router value is FACT-285-1esyu"
+          },
+          {
+            "id": "mem_46f027a970",
+            "title": "turn 287 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_dd9cfb6e07",
+            "title": "turn 286 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_edec648ed3",
+            "title": "turn 288 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_7aa69bd37f",
+            "title": "turn 289 harbor work",
+            "summary": "work log for harbor"
+          },
+          {
+            "id": "mem_871e478ebc",
+            "title": "turn 293 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_87889e3dc2",
+            "title": "turn 292 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_95df19de86",
+            "title": "turn 290 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_c1846a045a",
+            "title": "turn 291 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_38141ec5fb",
+            "title": "turn 294 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_63b4d42fbe",
+            "title": "turn 295 router work",
+            "summary": "work log for router"
+          },
+          {
+            "id": "mem_aba9dc70f2",
+            "title": "turn 296 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_d5b1672893",
+            "title": "turn 297 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_7bf81e168c",
+            "title": "turn 298 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_b2c78bdc53",
+            "title": "turn 299 harbor work",
+            "summary": "work log for harbor"
+          }
+        ],
+        "probes": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-qfl7m",
+            "id": "mem_b2bc435f6a",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-bp74k",
+            "id": "mem_537f3224bb",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-a9qrt",
+            "id": "mem_794a35c30c",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-jd6u3",
+            "id": "mem_266c6ef01c",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-vidfn",
+            "id": "mem_7af0195634",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-mpk5r",
+            "id": "mem_df3ccd0bb3",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hyyqy",
+            "id": "mem_4cdc95de7b",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-cuzlu",
+            "id": "mem_c49ccc512a",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-s4xt8",
+            "id": "mem_62fb60e8f4",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-43s9i",
+            "id": "mem_a6ae2715dc",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-saher",
+            "id": "mem_f8d256fd55",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-797as",
+            "id": "mem_23bfd466b8",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-f9so7",
+            "id": "mem_2d1ab4e7fe",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-u25n2",
+            "id": "mem_cb35fb020c",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-kxe32",
+            "id": "mem_ec21ef538b",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-52qt3",
+            "id": "mem_c2e9f3ca27",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-o77fl",
+            "id": "mem_157f936f46",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-d78oa",
+            "id": "mem_d86b24ffdf",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-yz7lh",
+            "id": "mem_cd49860a93",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-1esyu",
+            "id": "mem_d1c514b45a",
+            "inTail": true,
+            "evicted": false
+          }
+        ]
+      },
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 278 bridge work\nwork log for bridge\nturn 280 gateway work\nwork log for gateway\nturn 283 ledger work\nwork log for ledger\nturn 284 cache work\nwork log for cache\nturn 282 scheduler work\nwork log for scheduler\nrouter value at turn 285\nthe router value is FACT-285-1esyu\nturn 287 indexer work\nwork log for indexer\nturn 286 worker work\nwork log for worker\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 293 ledger work\nwork log for ledger\nturn 292 scheduler work\nwork log for scheduler\nturn 290 gateway work\nwork log for gateway\nturn 291 parser work\nwork log for parser\nturn 294 cache work\nwork log for cache\nturn 295 router work\nwork log for router\nturn 296 worker work\nwork log for worker\nturn 297 indexer work\nwork log for indexer\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain."
+    },
+    {
+      "seed": 3,
+      "tailTurns": [
+        279,
+        280,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "missingFromLast20Turns": [
+        281
+      ],
+      "outsideLast20Turns": [
+        279
+      ],
+      "promptMatchesTailRecords": true,
+      "probeMembershipMatchesTailIds": true,
+      "controlPromptSha256": "c15e29a7bf2d32071bde7a2e13bea6788f9fa12174fb5d3a89d584a0fcfd182c",
+      "plan": {
+        "generatedAt": "2026-10-29T10:59:52.372Z",
+        "seed": 3,
+        "turns": 300,
+        "tailCount": 20,
+        "tailIds": [
+          "mem_620da5bbd0",
+          "mem_a1b853bfc1",
+          "mem_ef2846a73c",
+          "mem_fe5027c736",
+          "mem_320351cc44",
+          "mem_4ec4d8b135",
+          "mem_7454a84fa8",
+          "mem_8a2d34b4e4",
+          "mem_0d33174969",
+          "mem_384de45f6e",
+          "mem_8a673673ef",
+          "mem_a474f9f753",
+          "mem_34376fa28f",
+          "mem_b7f7245245",
+          "mem_edf1063c5f",
+          "mem_f7d393c37b",
+          "mem_0f4d405898",
+          "mem_768ed3649b",
+          "mem_a64865f896",
+          "mem_a6b57ec9ba"
+        ],
+        "tailRecords": [
+          {
+            "id": "mem_620da5bbd0",
+            "title": "turn 280 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_a1b853bfc1",
+            "title": "turn 283 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_ef2846a73c",
+            "title": "turn 282 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_fe5027c736",
+            "title": "turn 279 harbor work",
+            "summary": "work log for harbor"
+          },
+          {
+            "id": "mem_320351cc44",
+            "title": "router value at turn 285",
+            "summary": "the router value is FACT-285-o73dt"
+          },
+          {
+            "id": "mem_4ec4d8b135",
+            "title": "turn 286 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_7454a84fa8",
+            "title": "turn 284 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_8a2d34b4e4",
+            "title": "turn 287 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_0d33174969",
+            "title": "turn 291 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_384de45f6e",
+            "title": "turn 289 harbor work",
+            "summary": "work log for harbor"
+          },
+          {
+            "id": "mem_8a673673ef",
+            "title": "turn 288 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_a474f9f753",
+            "title": "turn 290 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_34376fa28f",
+            "title": "turn 294 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_b7f7245245",
+            "title": "turn 293 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_edf1063c5f",
+            "title": "turn 292 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_f7d393c37b",
+            "title": "turn 295 router work",
+            "summary": "work log for router"
+          },
+          {
+            "id": "mem_0f4d405898",
+            "title": "turn 297 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_768ed3649b",
+            "title": "turn 296 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_a64865f896",
+            "title": "turn 298 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_a6b57ec9ba",
+            "title": "turn 299 harbor work",
+            "summary": "work log for harbor"
+          }
+        ],
+        "probes": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-pxewf",
+            "id": "mem_c55326a332",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-1e3tl",
+            "id": "mem_b662cfa768",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-gf83p",
+            "id": "mem_2c4359f500",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-2p3ua",
+            "id": "mem_8d9e8fe7b1",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-rgus2",
+            "id": "mem_234320de8f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-hblyb",
+            "id": "mem_0e418a1a5c",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hisus",
+            "id": "mem_17ac34c528",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-5toyt",
+            "id": "mem_53d859ea36",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-9h6hf",
+            "id": "mem_374f149f07",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-jw6fx",
+            "id": "mem_e5bd9ff8ee",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-70m0g",
+            "id": "mem_f5acb84a1a",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-30c3x",
+            "id": "mem_557973f590",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-pp2gq",
+            "id": "mem_2991a774cc",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-h5u81",
+            "id": "mem_5a28d940d3",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-skod2",
+            "id": "mem_d9d2ee99b3",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-vo6pc",
+            "id": "mem_4e874f1602",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-bnezh",
+            "id": "mem_1615e07d0e",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-ouzrk",
+            "id": "mem_35c991197f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-abmgy",
+            "id": "mem_0fd807727e",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-o73dt",
+            "id": "mem_320351cc44",
+            "inTail": true,
+            "evicted": false
+          }
+        ]
+      },
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 280 gateway work\nwork log for gateway\nturn 283 ledger work\nwork log for ledger\nturn 282 scheduler work\nwork log for scheduler\nturn 279 harbor work\nwork log for harbor\nrouter value at turn 285\nthe router value is FACT-285-o73dt\nturn 286 worker work\nwork log for worker\nturn 284 cache work\nwork log for cache\nturn 287 indexer work\nwork log for indexer\nturn 291 parser work\nwork log for parser\nturn 289 harbor work\nwork log for harbor\nturn 288 bridge work\nwork log for bridge\nturn 290 gateway work\nwork log for gateway\nturn 294 cache work\nwork log for cache\nturn 293 ledger work\nwork log for ledger\nturn 292 scheduler work\nwork log for scheduler\nturn 295 router work\nwork log for router\nturn 297 indexer work\nwork log for indexer\nturn 296 worker work\nwork log for worker\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain."
+    }
+  ]
+}

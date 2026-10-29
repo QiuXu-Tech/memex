@@ -3,40 +3,31 @@ title: Benchmark report
 layout: default
 ---
 
-# Benchmark report: synthetic long-horizon retrieval on v0.5.0
+# Benchmark report: synthetic long-horizon retrieval on v0.8.1 with the tail-order fix
 
-This report reruns the public synthetic workloads against the exact v0.5.0
-commit [`5d2746e`](https://github.com/QiuXu-Tech/memex/commit/5d2746e9307721a70df0bbc740a9086ef0a6426e)
-on 2026-10-29. The machine was an Apple M4 (10 logical CPUs, 16 GiB), running
-macOS 27.2 and Node 24.21.0. The test checkout was detached at that commit;
-the report was prepared separately on a later `main`. These measurements do
-not evaluate v0.5.1 or later code.
+The public synthetic workloads were run against the fixed commit
+[`c1cda8b`](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa4db9acdf6787cb0a80872c00),
+based on v0.8.1. The defect was present in v0.8.0 and its A/B scripts are
+unchanged in v0.8.1. This is a post-fix measurement, not a claim that the
+unmodified v0.8.0 release was tested.
 
-Two complete passes were run on the shared machine. The report and charts use
-the second pass because it used a stricter quiet-start gate: two consecutive
-five-second samples with CPU busy **23.6% / 24.0%** and one-minute load
-**3.59 / 3.38** (thresholds ≤25% and ≤5). During longer stages, seven
-five-second samples showed CPU busy **27.1%–38.8%** and one-minute load
-**3.36–4.10**, including the benchmark itself. Samples can cross stage
-boundaries; short stages may have no dedicated sample. This was not an
-isolated machine. The [run metadata](assets/benchmarks/run-metadata.json),
+On 2026-10-29 the test machine was an Apple M4 (10 logical CPUs, 16 GiB),
+running macOS 27.2 and Node 24.21.0. Before starting, two consecutive five-second
+samples showed CPU busy **10.1% / 14.6%** and one-minute load **2.71 / 2.74**
+(quiet-start thresholds ≤25% and ≤5). During longer stages, six five-second
+samples showed CPU busy **26.2%–35.7%** and one-minute load **2.46–3.42**,
+including the benchmark itself. Samples can cross stage boundaries; short
+stages may have no dedicated sample. This was a shared machine, not an isolated
+host. The [run metadata](assets/benchmarks/run-metadata.json),
 [load samples](assets/benchmarks/results-load-samples.jsonl), and
-[execution records](assets/benchmarks/results-execution.jsonl) document the
+[execution records](assets/benchmarks/results-execution.jsonl) record the
 method and tested input hashes.
 
-The [first complete pass](assets/benchmarks/results-v050-first-pass.json) is
-preserved as well. Its two quiet-start samples were 28.6% / 30.0% CPU busy and
-5.27 / 5.17 load, meeting the earlier ≤30% CPU / ≤10 load gate. Its two
-search p50 values for 1M, 5M, and 10M were respectively 1.62 / 1.66,
-24.61 / 24.25, and 52.91 / 53.48 ms. Two shared-machine passes do not isolate
-all load effects or establish a latency distribution.
-
-Earlier reports remain in Git history for
-[v0.2.1](https://github.com/QiuXu-Tech/memex/blob/41b47e43f0f58b6d46dfe1cfe7baae1630c6a242/docs/benchmark.md),
-[v0.2.2](https://github.com/QiuXu-Tech/memex/blob/8d5a6f2a93da5b838ef60f1a21853f4e388b62b5/docs/benchmark.md), and
-[v0.3.0](https://github.com/QiuXu-Tech/memex/blob/0555d45b64d6de4c1001960187a5a87d1422b6d5/docs/benchmark.md).
-These are separate shared-machine runs; timing differences alone do not
-establish a version performance change.
+The earlier [v0.5.0 report](https://github.com/QiuXu-Tech/memex/blob/4ab6d6b35d643ce38e638769c1332e2d56a0b807/docs/benchmark.md)
+and its [first pass](assets/benchmarks/results-v050-first-pass.json), along with
+the [v0.3.0 report](https://github.com/QiuXu-Tech/memex/blob/0555d45b64d6de4c1001960187a5a87d1422b6d5/docs/benchmark.md),
+remain available. Separate shared-machine timings do not isolate version or
+load effects and do not establish a performance change.
 
 **Result in brief:** in a synthetic 160K-token history with an 80K-token
 window, 20/40 target facts were present in the retained tail and 24/40 were
@@ -44,7 +35,8 @@ present under the supplied summary-plus-tail baseline. Memex search returned
 the target record for 40/40 probes at rank 1. For the 20 probes whose records
 were outside the window, the corresponding counts were 0/20, 4/20 and 20/20.
 The first two are availability checks; the third is a retrieval hit, not an
-end-to-end model answer. No model was called for this benchmark.
+end-to-end model answer. No model was called for these offline measurements;
+the separate live Codex A/B is described in section 6.
 
 ## 1. Compaction and retrieval comparison
 
@@ -80,9 +72,9 @@ one simulated baseline, not a run of DSH's native compaction implementation.
 
 | Estimated history | Records | Window / history | Search hit@5, both runs | Search p50, first / repeat |
 |---|---:|---:|---:|---:|
-| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 1.57 / 1.56 ms |
-| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 23.72 / 23.60 ms |
-| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 51.04 / 51.47 ms |
+| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 1.91 / 1.92 ms |
+| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 23.38 / 23.41 ms |
+| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 50.37 / 50.53 ms |
 
 The window/history column is an arithmetic coverage ratio, not measured
 no-memory recall and not a universal ceiling. Actual availability depends on
@@ -94,8 +86,8 @@ answers correctly.
 
 ![Search medians at three scales and two repeated 160K runs](assets/benchmarks/cost-latency.png)
 
-The 160K comparison's search p50 was **1.70 ms** on the first run and
-**1.61 ms** on a repeat with the same fixture and supplied summary. Each p50
+The 160K comparison's search p50 was **1.87 ms** on the first run and
+**2.32 ms** on a repeat with the same fixture and supplied summary. Each p50
 comes from 40 searches. The script selects sorted element `floor(n / 2)`;
 for 40 observations this is the upper of the two middle values, rather than
 their average. The scaling sweep was also repeated; these observations are not
@@ -119,8 +111,8 @@ corpus. The two sizes use different cold target ratios to reproduce the prior
 
 | Pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M tokens in 0.32 s | 350 records / 3.5M tokens in 0.03 s |
-| 10,000 records / 100M assigned tokens | 3.8 s | 5,000 records / 50M tokens in 3.03 s | 2,500 records / 25M tokens in 0.31 s |
+| 1,000 records / 10M assigned tokens | 0.3 s | 700 records / 7M tokens in 0.29 s | 350 records / 3.5M tokens in 0.03 s |
+| 10,000 records / 100M assigned tokens | 3.5 s | 5,000 records / 50M tokens in 2.42 s | 2,500 records / 25M tokens in 0.58 s |
 
 In the 100M run, the SQLite index was 10.5 MiB after writing and 28.0 MiB
 after cold spill; the original body files totalled 384.8 MiB. Cold spill moves
@@ -128,7 +120,7 @@ the records, while **cold GC deletes** the records it removes. Both were
 exercised only on throwaway stores. These are single-run times under the sampled
 load noted above.
 
-The fixture's bodies consist only of repeated `x` characters. In v0.5.0,
+The fixture's bodies consist only of repeated `x` characters. In this version,
 `record_terms` also indexes numeric anchors from card fields. A separate
 [two-record spot check](assets/benchmarks/results-body-index-probe.json),
 using identical number-bearing cards, found two indexed hashes with an
@@ -144,54 +136,78 @@ the auto-recall query path. The synthetic identifiers use `Math.random()`;
 the questions are synthetic, and the auto-recall path requests only three
 results. See the [raw output](assets/benchmarks/results-recall.txt).
 
-After the timing runs, the v0.5.0 bundle was built in the isolated checkout;
-bundle parity passed and the offline harness reported [117/117 passed](assets/benchmarks/results-harness.txt),
-including U20's cold natural-language anchor test. The earlier
-[unbuilt-bundle run](assets/benchmarks/results-harness-unbuilt.txt) also
-reported 117/117, with three bundle checks skipped. These checks are not a
-live agent benchmark.
+The bundle was built in the isolated checkout; bundle parity passed and the
+Node 24 offline harness reported [122/122 passed](assets/benchmarks/results-harness.txt),
+including U25's fixed-timestamp, reverse-ID tail-order test. Before the fix,
+that test [failed as expected](assets/benchmarks/results-tail-regression.json).
+These checks are not a live agent benchmark.
 
 The earlier 95% hit@5 figure came from a private, curated 40-question archive.
 It was **not rerun** here and cannot be independently reproduced from the
 public fixtures. See [evaluation](https://github.com/QiuXu-Tech/memex/blob/main/docs/evaluation.md)
 for its historical context.
 
-## 6. Live A/B qualification
+## 6. Codex A/B and retained-tail verification
 
-This offline benchmark does not rerun the separately published DeepSeek Flash
-A/B. The historical v0.5.0 results reported 3/60 control and 57/60 treatment;
-those are stored in the [v0.5.0 snapshot](https://github.com/QiuXu-Tech/memex/blob/5d2746e9307721a70df0bbc740a9086ef0a6426e/docs/assets/benchmarks/live-ab-deepseek-multiseed.json),
-not in this benchmark's retrieval counts.
+![Codex A/B exact-answer counts for all probes and evicted probes](assets/benchmarks/codex-ab.png)
 
-There **was** a reproducible problem in the A/B harness's retained-tail setup:
-it archived older records (changing `updated_at`) and then selected the supposed
-recent tail using `list()`'s updated-time order. In a reproduction of three
-300-turn seeds, each generated context included turn 270 and omitted turn 285
-instead of preserving the last 20 turns (see the [reproduction evidence](assets/benchmarks/results-live-ab-tail-check-v050.json)).
+A separate live run used `gpt-6.1-sol` through Codex CLI, with three synthetic
+300-turn histories and 20 probes each. The control received the recent tail;
+the treatment received the same tail plus evidence selected and opened by the
+fixture before the model call. This tests model answers given retrieval
+evidence, not whether a model autonomously chooses or executes memory tools.
 
-**v0.8.0 fixes this:** `scripts/live-ab.mjs` now saves the exact newest-tail
-record ids (`tailIds`) and per-probe `inTail`/`evicted` flags in `plan.json`,
-and builds the control prompt from exactly those rows. A fresh three-seed
-DeepSeek Flash rerun is verified: control **3/60**, treatment **60/60**,
-evicted subset **0/57 → 57/57** ([verified evidence](assets/benchmarks/live-ab-deepseek-multiseed.json)).
-The original published A/B JSON does not preserve its actual tail or provider
-transcripts, so those original prompt contents and the “evicted” subset cannot
-be independently reconstructed from it. Its arithmetic counts remain
-reported, but they should not be treated as a verified comparison against the
-last 20 turns. A corrected harness, saved prompts/tail membership, and new
-live calls are needed to establish that comparison. The snapshot's
-`generatedAt` is 16:55 +08:00 while the commit containing it is timestamped
-16:41:13 +08:00. The later [v0.5.1 snapshot](https://github.com/QiuXu-Tech/memex/blob/ce64e5c6c057557cfdc9774b0384712b518b3a23/docs/assets/benchmarks/live-ab-deepseek-multiseed.json)
-says 18:30 +08:00, while its containing commit is timestamped 18:20:29 +08:00.
-These timestamp discrepancies
-also require reconciliation; they alone do not establish why the times differ.
-The [live-testing report](https://github.com/QiuXu-Tech/memex/blob/main/docs/live-testing.md) retains its data with this caveat.
+| Condition | All probes | 57 evicted probes |
+|---|---:|---:|
+| Control: tail only | 3/60 (5%) | 0/57 (0%) |
+| Treatment: tail + retrieved evidence | 60/60 (100%) | 57/57 (100%) |
+
+All six Codex calls exited zero. The [published result](assets/benchmarks/live-ab-codex-sol-tail-fixed.json)
+retains the answer strings, scores, call statuses and tail IDs. The
+[fixture evidence](assets/benchmarks/live-ab-codex-sol-tail-fixed-evidence.json)
+retains each actual plan and both synthetic prompts. In all three seeds, the
+tail contains **turns 280–299 in order**, both prompts contain exactly those
+records, and all 57 evicted-probe flags match the recorded tail. A complete
+provider transcript was not captured, so compliance with the prompt's request
+to avoid tools was not independently established.
+
+The CLI printed total token counts of 10,096 / 16,682, 10,112 / 16,723 and
+10,157 / 16,682 for control / treatment (80,452 in total). These are CLI
+reports, not a provider usage breakdown or billing receipt; cost is **unknown**.
+The diagnostic tails included initialization warnings in all six calls and
+analytics-send warnings in three. Their contents may include sensitive data, so
+they are redacted from the public result; their hashes and the original report
+hash are retained. The unredacted original remains local.
+
+### Historical tail-order limitation
+
+The original harness first selected `list()` by updated time after archiving.
+v0.8.0 improved membership recording but still sorted by `created_at, id`:
+records written in the same millisecond can be reordered by their random IDs.
+The fixed fixture uses the order in which `store.write` returned each ID for
+both archiving and constructing the tail. U25 freezes the clock and reverses
+IDs to reproduce the defect deterministically.
+
+In the earlier v0.8.0 Codex run, saved prompts for two seeds included turn
+278 or 279 and omitted turn 281. The previously published DeepSeek tail records
+also differ from turns 280–299 in two seeds. The historical result counts are
+preserved, but the full old DeepSeek provider prompts were not saved, and the
+published Terra result has tail IDs without all tail record titles, so exact
+chronological tails cannot be established for those calls. See the
+[historical tail audit](assets/benchmarks/results-tail-history-v080.json) and
+[prior Codex prompt evidence](assets/benchmarks/results-tail-history-v080-codex-prompts.json).
+
+The old v0.5.0 and v0.5.1 result snapshots also contain `generatedAt` values
+later than their respective Git commit timestamps. The reason remains unknown;
+those historical time discrepancies are not evidence of when calls occurred.
+
 
 ## Scope and limitations
 
-- All measured searches here call `LocalStoreCore` with default rerank
-  weights. They do not benchmark model-specific `AgentMemory` profiles,
-  MCP/DSH integration, transcript capture, or an agent's end-to-end answers.
+- The offline search timings call `LocalStoreCore` with default rerank weights;
+  they do not benchmark model-specific `AgentMemory` profiles, MCP/DSH
+  integration, transcript capture, or an agent's end-to-end answers. The
+  separate Codex A/B uses a model-specific profile to construct evidence.
 - Exact synthetic cues and prefilled card summaries make these retrieval
   probes easier to locate than many real project questions. The results do not
   establish recall on paraphrases, multi-hop tasks, or missing cues. The
@@ -211,9 +227,9 @@ remove throwaway stores. The summary must be passed explicitly. Record load
 separately if comparing shared-machine timings.
 
 ```bash
-git clone https://github.com/QiuXu-Tech/memex.git memex-benchmark-v050
-cd memex-benchmark-v050
-git checkout --detach 5d2746e9307721a70df0bbc740a9086ef0a6426e
+git clone https://github.com/QiuXu-Tech/memex.git memex-benchmark-tail-fix
+cd memex-benchmark-tail-fix
+git checkout --detach c1cda8ba1ba931fa4db9acdf6787cb0a80872c00
 out_dir="$(mktemp -d "${TMPDIR:-/tmp}/memex-benchmark.XXXXXX")"
 for run in first repeat; do
   node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \
@@ -241,7 +257,7 @@ The checked-in [compaction results](assets/benchmarks/results-compaction.json),
 [scaling repeat](assets/benchmarks/results-scale-repeat.json),
 [capacity data](assets/benchmarks/results-capacity.json), and raw capacity
 outputs ([10M](assets/benchmarks/results-capacity-10m.txt),
-[100M](assets/benchmarks/results-capacity-100m.txt)) are from the second pass.
+[100M](assets/benchmarks/results-capacity-100m.txt)) are from this run.
 Earlier results remain available in Git history. In a checkout containing this
 report, install Matplotlib 3.10.7 and run `python scripts/plot-benchmarks.py`
 to regenerate the PNGs. The plotting script reads the checked-in snapshot,

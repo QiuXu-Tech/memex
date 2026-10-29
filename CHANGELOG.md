@@ -1,10 +1,17 @@
 # Changelog
 
-**Measurement note (historical):** the pre-v0.8.0 8-probe and multi-seed entries
-retain their reported counts; their original tail membership was not saved.
-**v0.8.0 fixes the harness and the DeepSeek multi-seed rerun is verified**
-(control 3/60, treatment 60/60, evicted 0/57 → 57/57); see
+**Measurement note:** v0.8.0 recorded tail membership but could still reorder
+same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
+
+## Unreleased — A/B tail-order fix
+
+- The live A/B fixture now archives and selects records in actual write order;
+  U25 deterministically covers tied timestamps, reverse IDs, empty tails and
+  tails longer than the history. Offline harness: 122/122.
+- A fresh GPT-6.1 Sol A/B reported control 3/60, treatment 60/60, evicted
+  0/57 → 57/57. All three saved prompts and plans were checked against turns
+  280–299 in order. This is a synthetic, evidence-in-prompt comparison.
 
 ## 0.7.1
 
@@ -16,16 +23,16 @@ retain their reported counts; their original tail membership was not saved.
 ## 0.8.1
 
 ### Added — GPT family comparison
-- Ran **gpt-6.1-terra** through the fixed Codex bridge (3 seeds × 20 probes): control **3/60 (5%)**, treatment **60/60 (100%)**, verified evicted **0/57 → 57/57** with saved tail membership.
-- GPT family comparison on the synthetic fixture: Sol (pre-fix report, overall 3/60 → 60/60) vs Terra (verified, 3/60 → 60/60) — indistinguishable here; Terra supplies the verified tail comparison.
+- Ran **gpt-6.1-terra** through the v0.8.0 Codex bridge (3 seeds × 20 probes): control **3/60 (5%)**, treatment **60/60 (100%)**, reported evicted **0/57 → 57/57** with saved IDs/flags; full chronological tail records were not saved.
+- GPT family comparison on the synthetic fixture: Sol (pre-fix report, overall 3/60 → 60/60) vs Terra (3/60 → 60/60); neither historical report establishes the full chronological tail.
 - Dataset: `docs/assets/benchmarks/live-ab-codex-terra.json`; summary in docs/live-testing.md §F.
 - Harness **121/121**; real-archive guard unchanged from 0.8.0.
 
 ## 0.8.0
 
-### Fixed — retained-tail harness + verified multi-seed rerun
-- `scripts/live-ab.mjs` now records the exact newest-tail ids (`tailIds`, `tailRecords`) and per-probe `inTail`/`evicted` flags in `plan.json`; the control prompt is built from exactly those rows. `scripts/codex-ab.mjs` grades the verified evicted subset.
-- Fresh DeepSeek Flash 3-seed rerun: control **3/60 (5%)**, treatment **60/60 (100%)**, verified evicted **0/57 → 57/57** — no longer a "reported" number. Evidence: `docs/assets/benchmarks/live-ab-deepseek-multiseed.json`.
+### Changed — retained-tail membership + multi-seed rerun
+- `scripts/live-ab.mjs` records selected tail IDs (`tailIds`, `tailRecords`) and per-probe `inTail`/`evicted` flags in `plan.json`; ties in creation time could still reorder turns until the unreleased fix above.
+- DeepSeek Flash 3-seed rerun: control **3/60 (5%)**, treatment **60/60 (100%)**, reported evicted **0/57 → 57/57**. Two recorded tails did not exactly match the newest 20 turns. Evidence: `docs/assets/benchmarks/live-ab-deepseek-multiseed.json`.
 - The older GPT-6.1 Sol report (v0.7.1) predates the fix; its overall answers are preserved and its cold subset stays caveated.
 
 ### Added — cold partial/synonym anchor-free recall

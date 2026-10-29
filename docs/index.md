@@ -20,7 +20,7 @@ Memex treats context as a hierarchy, not a notes store: when the native context 
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # offline harness (120 tests)
+node --import ./test/register.mjs ./test/run.mjs   # offline harness (122 tests)
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -46,7 +46,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 |---|---|
 | **L1 eviction** | Uses the shipped `compaction/prune` + surface-replace seam — no custom session events, no replacement of the compaction backend. |
 | **Sticky context pools** | Session-private L2 vs workspace-shared L3; capture deepest enabled level; capacities 10M/100M. |
-| **Context paging** | Shared query-term extractor, FTS + cold abstracts + exact numeric/identifier anchors + lexical rerank; pages are injected only when budget allows. Real-archive recall@5 **93%**, cold recall 94%; hit@1 65% with the default partial-cold boost (opt out via `coldPartial: 0` for 68%), p50 ~2.9 ms. **Verified** DeepSeek multi-seed treatment **60/60**, evicted **57/57** with saved tail membership; Codex/GPT family: Sol **60/60** overall (pre-fix cold caveat) and Terra **60/60** with verified evicted **57/57**. Anchor-free natural-language: **0/3 → 3/3** hot, **0/3 → 3/3** cold, and **0/3 → 3/3** cold partial/synonym in small live runs. |
+| **Context paging** | Shared query-term extractor, FTS + cold abstracts + exact numeric/identifier anchors + lexical rerank; pages are injected only when budget allows. A private archive previously reported recall@5 **93%**, cold recall 94%, hit@1 65% (68% with `coldPartial: 0`), and p50 ~2.9 ms. In the [new synthetic Codex Sol A/B](live-testing.html#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun), control answered **3/60**, treatment **60/60**, and evicted probes **0/57 → 57/57**; all three actual tails were checked in order. Earlier DeepSeek and Terra results have a [tail-order caveat](live-testing.html#deepseek-flash-results-2026-10-29). Small historical anchor-free runs reported **0/3 → 3/3** for hot, cold and cold partial/synonym cases. |
 | **Capacity compression** | Cold tier (lossless, zero LLM) and bounded map-reduce digests (2-way concurrency, retry/fallback, `ids:` enforcement, quota GC) — after the model asks the user. |
 | **Surfaces** | Seven model tools, `/memory` command set, nine `/api/memory.*` routes, Web panel + context ring, sensitive-content policy, backup/verify/restore. |
 

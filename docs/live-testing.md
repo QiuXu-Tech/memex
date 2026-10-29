@@ -11,16 +11,15 @@ Tracking request and discussion: [issue #1](https://github.com/QiuXu-Tech/memex/
 
 ## DeepSeek Flash results (2026-10-29)
 
-**Tail-membership status:** v0.8.0 fixes the harness: the exact newest-tail
-record ids are saved in `plan.json`, every probe carries `inTail`/`evicted`,
-and the control prompt is built from those exact rows. A fresh three-seed
-DeepSeek Flash rerun is now **verified**: control **3/60**, treatment **60/60**,
-evicted subset **0/57 → 57/57**. Raw: [verified multi-seed evidence](assets/benchmarks/live-ab-deepseek-multiseed.json).
-
-The older GPT-6.1 Sol contribution was collected before the fix; its overall
-control/treatment answers are preserved, but its reported “cold” subset remains
-unverified. Rerun `scripts/codex-ab.mjs` with the fixed bridge to verify it.
-See the [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md#6-live-ab-qualification) for the historical caveat.
+**Tail-membership status:** v0.8.0 recorded tail IDs and probe flags, but
+its `created_at, id` sort could reorder turns written in the same millisecond.
+The [tail-order fix](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa4db9acdf6787cb0a80872c00)
+uses the fixture's actual insertion order. In the new GPT-6.1 Sol run, saved
+plans and prompts confirm turns 280–299 in order for all three seeds.
+[Results and evidence](assets/benchmarks/live-ab-codex-sol-tail-fixed-evidence.json)
+are available below. Earlier DeepSeek and Terra counts remain historical;
+see the [tail audit](assets/benchmarks/results-tail-history-v080.json) before
+interpreting their claimed chronological tails.
 
 ### A. Evidence-in-prompt A/B
 
@@ -31,16 +30,16 @@ Historical pre-fix 8-probe run (the 3-seed rerun below supersedes it). Two fresh
 | control (recent tail only) | **1/8 (12.5%)** | **0/7 (0%)** |
 | treatment (tail + memex evidence) | **8/8 (100%)** | **7/7 (100%)** |
 
-This 8-probe table is historical; the verified three-seed rerun is below.
+This 8-probe table is historical; a later three-seed rerun is below.
 
 ### B. Multi-seed replication (3 seeds × 300-turn history × 20 probes)
 
-| Condition | Overall | **Verified** evicted records (inTail=false) | Verified cold natural-language subset |
+| Condition | Overall | Reported evicted records (inTail=false) | Reported cold natural-language subset |
 |---|---|---|---|
 | control | **3/60 (5%)** | **0/57 (0%)** | 0/30 |
 | treatment | **60/60 (100%)** | **57/57 (100%)** | **30/30 (100%)** |
 
-Harness v0.8.0 saves the exact tail ids and probe `inTail`/`evicted` flags. In this verified rerun the newest tail contains one queried fact (turn 285), so controls answer exactly that one per seed (3/60); all **19 evicted probes per seed (57 total)** are answered only with memex evidence (57/57). The first multi-seed run had exposed the cold natural-language gap; the v0.5/v0.7 anchors and rescues close it on this fixture.
+The v0.8.0 result saves tail IDs, tail records and probe flags. Two of its three recorded tail lists are not exactly turns 280–299; the original provider prompts were not retained. The three queried tail facts and 57 reported evicted probes are recorded in the result, but this historical run should not be described as a verified comparison using the strictly newest 20 turns. The first multi-seed run exposed a cold natural-language gap; the later results remain synthetic-fixture observations.
 
 ### C. Full agent loop (tools, n=1)
 
@@ -53,7 +52,7 @@ This shows the loop can search, refine, open and answer end-to-end; n=1 is a mec
 
 Raw data: [evidence-in-prompt 8 probes](assets/benchmarks/live-ab-deepseek.json) · [multi-seed](assets/benchmarks/live-ab-deepseek-multiseed.json) · [agent loop](assets/benchmarks/live-ab-deepseek-agent-loop.json).
 
-**Caveats:** one model; synthetic fixtures; multi-seed runs are agent-mediated and did not capture provider usage tokens or raw provider transcripts. The v0.5.0 data recorded Q19 as a miss; the later v0.5.1 result file records an answer for it. Tail membership and the “evicted” classification remain unverified as explained above.
+**Caveats:** synthetic fixtures; these DeepSeek runs were agent-mediated and did not capture provider usage tokens or complete provider transcripts. Earlier tail chronology has the limitation described above.
 
 ### D. Anchor-free natural-language recall (n=3)
 
@@ -77,18 +76,30 @@ Questions contain **no turn numbers or IDs** and the answer-bearing records are 
 
 Limits kept explicit: the boost requires the cold abstract to cover **every** meaningful query term (partial overlap is ignored), and morphology must match (`decision`, not `decide`). Raw: [evidence](assets/benchmarks/live-ab-deepseek-cold-anchor-free.json).
 
-### F. Codex CLI / GPT family: Sol vs Terra
+### F. Codex CLI / GPT family: historical results and fixed Sol rerun
 
-Two Codex CLI contributions on the same fixture (3 seeds × 20 probes):
+![Codex Sol A/B exact-answer counts](assets/benchmarks/codex-ab.png)
 
-| Model | Harness | Control | Treatment | Verified evicted subset |
+| Model / fixture | Control | Treatment | Evicted probes | Tail evidence |
 |---|---|---|---|---|
-| `gpt-6.1-sol` (v0.7.1) | pre-fix | 3/60 (5%) | 60/60 (100%) | not verified (pre-fix report) |
-| `gpt-6.1-terra` (v0.8.1) | v0.8.0 fixed tail | **3/60 (5%)** | **60/60 (100%)** | **0/57 → 57/57** |
+| Sol, prior v0.7.1 contribution | 3/60 | 60/60 | 3/57 → 57/57 reported | Older tail selection; subset not verified |
+| Terra, v0.8.1 contribution | 3/60 | 60/60 | 0/57 → 57/57 reported | IDs/flags saved; full chronological tail not saved |
+| Sol, v0.8.1 + tail-order fix | **3/60** | **60/60** | **0/57 → 57/57** | Actual plans and both prompts saved; turns 280–299 in order |
 
-- **Terra verification:** exact tail ids and per-probe `inTail`/`evicted` flags are saved; controls answer only the one in-tail fact per seed (turn 285), and all 19 evicted probes per seed are recovered by memex evidence.
-- **Family comparison:** Sol and Terra are indistinguishable on this synthetic fixture (both 5% → 100% overall); Terra provides the verified tail comparison. The Sol report predates the harness fix, so its cold subset remains caveated.
-- Raw: [Sol](assets/benchmarks/live-ab-codex-gpt.json) · [Terra](assets/benchmarks/live-ab-codex-terra.json).
+The new Sol run uses three synthetic 300-turn histories and 20 probes per
+seed. The fixture searches and opens records before inserting evidence into the
+treatment prompt; it does not test an autonomous model choosing memory tools.
+All six calls exited zero. CLI stderr reported 80,452 total tokens across the
+calls, but structured provider usage and billing cost are unknown; initialization
+and analytics-send warnings occurred. Diagnostic tails are redacted from the
+public result, and their hashes and the original-report hash are retained.
+
+[New Sol result](assets/benchmarks/live-ab-codex-sol-tail-fixed.json) ·
+[actual plans and prompts](assets/benchmarks/live-ab-codex-sol-tail-fixed-evidence.json) ·
+[prior Sol](assets/benchmarks/live-ab-codex-gpt.json) ·
+[prior Terra](assets/benchmarks/live-ab-codex-terra.json).
+The earlier results remain distinct observations; matching aggregate scores do
+not establish equality across models or real projects.
 
 ### G. Cold anchor-free morphology/synonym + partial coverage (n=3, v0.8.0)
 
@@ -135,15 +146,15 @@ cd memex
 node scripts/codex-ab.mjs --model gpt-6.1-sol
 ```
 
-Requirements: Node >= 22 (`node -v`; `npx -y node@22 scripts/codex-ab.mjs ...` works as a fallback) and a logged-in `codex` CLI. Options: `--model gpt-6.1-terra`, `--seeds 3`, `--probes 20`, `--turns 300`, `--out /tmp/codex-ab.json`, `--keep` (keep prompts). The script prints the report path; attach that JSON to [issue #1](https://github.com/QiuXu-Tech/memex/issues/1) or open a PR under `docs/assets/benchmarks/`.
+Requirements: Node >= 24 (the project engine requirement) and a logged-in `codex` CLI. Options: `--model gpt-6.1-terra`, `--seeds 3`, `--probes 20`, `--turns 300`, `--out /tmp/codex-ab.json`, `--keep` (keep prompts). The script prints the report path; attach that JSON to [issue #1](https://github.com/QiuXu-Tech/memex/issues/1) or open a PR under `docs/assets/benchmarks/`.
 
 The control/treatment prompts are synthetic; review the `raw` replies before publishing. Codex has its own tools, so the prompts ask it not to use them — the per-run work directories are isolated and `--sandbox read-only` is used.
 
-The bridge now saves exact tail ids and probe `inTail`/`evicted` flags; reports are verified against the actual control prompt. Existing pre-fix reports (e.g. GPT-6.1 Sol v0.7.1) remain caveated.
+The bridge saves tail IDs and probe `inTail`/`evicted` flags. Use `--keep` to retain generated prompts and plans for an independent comparison; the bridge does not automatically verify the full chronological tail or retain a complete provider transcript. Earlier reports remain caveated as described above.
 
 ## What the harness measures
 
-The intended comparison for each synthetic long-horizon question uses two conditions on the same model. The v0.8.0 harness saves exact tail membership:
+The intended comparison for each synthetic long-horizon question uses two conditions on the same model. The fixed harness selects the tail by fixture insertion order and records its membership:
 
 - **control** — only the most recent tail is in context; older facts are evicted;
 - **treatment** — tail + Memex `memory_search`/`memory_open` evidence for that question.

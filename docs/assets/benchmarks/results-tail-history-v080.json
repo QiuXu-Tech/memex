@@ -1,0 +1,187 @@
+{
+  "note": "The recorded v0.8.0 datasets used creation-time/ID sorting. These observations describe the saved tail records; the old DeepSeek provider prompt itself is not in the dataset.",
+  "deepseekReportedTailRecords": [
+    {
+      "seed": 1,
+      "tailTurns": [
+        279,
+        280,
+        281,
+        282,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "outsideNewest20": [
+        279
+      ],
+      "missingFromNewest20": [
+        283
+      ]
+    },
+    {
+      "seed": 2,
+      "tailTurns": [
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "outsideNewest20": [],
+      "missingFromNewest20": []
+    },
+    {
+      "seed": 3,
+      "tailTurns": [
+        279,
+        280,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "outsideNewest20": [
+        279
+      ],
+      "missingFromNewest20": [
+        281
+      ]
+    }
+  ],
+  "priorCodexActualPrompts": [
+    {
+      "seed": 1,
+      "tailTurns": [
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "outsideNewest20": [],
+      "missingFromNewest20": []
+    },
+    {
+      "seed": 2,
+      "tailTurns": [
+        278,
+        280,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "outsideNewest20": [
+        278
+      ],
+      "missingFromNewest20": [
+        281
+      ]
+    },
+    {
+      "seed": 3,
+      "tailTurns": [
+        279,
+        280,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "outsideNewest20": [
+        279
+      ],
+      "missingFromNewest20": [
+        281
+      ]
+    }
+  ],
+  "priorCodexAuditSha256": "b2ce3cff28a00dc2def904733da0d5a192efff28fb899d06e7c5359ad95dc9e4",
+  "terraChronologicalTail": "UNKNOWN: the published Terra report saves tail IDs and probe flags but not full tail record titles or prompts."
+}

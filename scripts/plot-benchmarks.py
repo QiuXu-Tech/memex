@@ -169,3 +169,26 @@ for i, value in enumerate(operations):
     axes[1].text(value + max(operations) * 0.025, i, f"{value:.2f}", va="center", fontsize=11)
 footnote(fig, "X-only bodies do not measure identifier-bearing body index overhead. Cold spill moves records; cold GC deletes them.")
 save(fig, "capacity.png")
+
+# Live model answers on the separately run synthetic Codex A/B fixture.
+live = load("live-ab-codex-sol-tail-fixed.json")["aggregate"]
+fig, ax = plt.subplots(figsize=(12.8, 6.8))
+heading(fig, "Codex A/B: exact-answer counts", "GPT-6.1 Sol · synthetic fixture · 3 seeds · 300 turns each")
+fig.subplots_adjust(left=0.085, right=0.965, top=0.79, bottom=0.22)
+setup(ax)
+for x, (control, treatment) in enumerate([
+    (live["control"], live["treatment"]),
+    (live["evictedControl"], live["evictedTreatment"]),
+]):
+    for offset, result, color in [(-0.17, control, BLUE), (0.17, treatment, TEAL)]:
+        value = result["accuracy"] * 100
+        ax.bar(x + offset, value, width=0.32, color=color)
+        ax.text(x + offset, value + 2, f"{result['correct']}/{result['n']}", ha="center", fontsize=12)
+ax.set_xticks([0, 1], ["All probes", "Evicted probes"])
+ax.set_ylabel("Exact-answer accuracy")
+ax.set_ylim(0, 120)
+ax.yaxis.set_major_formatter(PercentFormatter(xmax=100))
+ax.legend(["Control: tail only", "Treatment: tail + retrieved evidence"],
+          loc="upper left", ncol=2, frameon=False, labelcolor="#dbe4f4")
+footnote(fig, "Synthetic fixture; treatment receives pre-retrieved evidence. This is not an autonomous agent workflow.")
+save(fig, "codex-ab.png")

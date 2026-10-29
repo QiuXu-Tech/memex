@@ -45,22 +45,23 @@ The hit@1 delta is the body-rescue tie-break trade-off documented in the optimiz
 
 ### DeepSeek Flash validation (first live data)
 
-The 8-probe row is historical (pre-fix; its tail was not saved). The multi-seed
-row below was **rerun with harness v0.8.0**, which saves exact tail ids and
-per-probe `inTail`/`evicted` flags: control 3/60, treatment 60/60, verified
-evicted 0/57 → 57/57. See the [methodology section](https://github.com/QiuXu-Tech/memex/blob/main/docs/live-testing.md#deepseek-flash-results-2026-10-29).
+The 8-probe row is historical (its tail was not saved). The v0.8.0 multi-seed
+run saved tail records and probe flags, but two of its three recorded tails
+were not exactly the newest 20 turns. Its counts are retained below as reported;
+see the [methodology section](https://github.com/QiuXu-Tech/memex/blob/main/docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
 | Experiment | Result |
 |---|---|
 | Evidence-in-prompt, 8 probes / 120 turns | control **1/8** (evicted **0/7**) → treatment **8/8** (evicted **7/7**) |
-| Multi-seed (3 seeds × 20 probes / 300 turns, **verified tail**) | control **3/60 (5%)**; treatment **60/60 (100%)**; evicted **0/57 → 57/57 (100%)** |
+| Multi-seed (3 seeds × 20 probes / 300 turns, reported v0.8.0) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57 (100%)** |
 | Cold-tier natural-language subset (30 probes) | control 0/30; treatment **30/30 (100%)** after the v0.5.0 cold-context fix |
 | Hot body-only Q19 (turn 285) | v0.5.1 body-rescue numeric anchor recovers it; no residual miss |
 | Full agent loop (n=1) | control `UNKNOWN`; treatment: 3 real MCP tool calls → correct `FACT-025-r6h18` |
 | Anchor-free natural-language (n=3, v0.6.0) | control **0/3**; treatment **3/3** (generic card titles, body-only facts, bounded hot-body scan) |
 | Cold anchor-free natural-language (n=3, v0.7.0) | control **0/3**; treatment **3/3** (cold archived facts, cold-only FTS leg + full-abstract-coverage boost) |
 | Codex CLI / GPT-6.1 Sol (3 seeds × 20, contributed v0.7.1) | control **3/60 (5%)**; treatment **60/60 (100%)** (pre-fix report: overall answers preserved; reported cold subset unverified) |
-| Codex CLI / GPT-6.1 Terra (3 seeds × 20, v0.8.1) | control **3/60 (5%)**; treatment **60/60 (100%)**; verified evicted **0/57 → 57/57** |
+| Codex CLI / GPT-6.1 Terra (3 seeds × 20, v0.8.1) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57**; full chronological tail not saved |
+| Codex CLI / GPT-6.1 Sol (3 seeds × 20, v0.8.1 + tail fix) | control **3/60 (5%)**; treatment **60/60 (100%)**; evicted **0/57 → 57/57**; all actual prompt tails checked in order |
 | Cold partial/synonym anchor-free (n=3, v0.8.0) | control **0/3**; treatment **3/3** (morphology-lite + partial coverage; cold bodies not read) |
 
 **Finding (fixed in v0.5.0/v0.5.1):** card-field tokens and bare numbers are now indexed in `record_terms`; cold rescue uses exact anchors, and **body rescue now treats unmatched bare numbers as anchors and attaches body evidence to already-candidate rows**. Cold natural-language probes went 0/30 → 30/30; Q19 (hot body, turn 285) is now recovered; treatment overall **60/60**. The concept is now explicitly **extra-context**, not a notes store — see docs/context-layer.md.

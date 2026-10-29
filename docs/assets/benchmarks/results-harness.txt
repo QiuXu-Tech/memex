@@ -116,5 +116,10 @@ ok U17 adapter CLIs default to recommended dedicated profiles and advertise them
 ok U18 storage root resolution: MEMEX_HOME wins, legacy env/path fallbacks work
 ok U19 Claude init --session aligns hooks and MCP L2 namespace; approval hint is printed
 ok U20 cold natural-language retrieval uses card/bare-number anchors (turn 15)
+ok U21 hot body rescue: a bare turn number anchors a body-only fact
+ok U22 anchor-free natural-language recall scans bounded hot bodies
+ok U23 cold anchor-free recall pages a fully covered cold abstract
+ok U24 cold morphology-lite and partial coverage recall (decide/decision + extra term)
+ok U25 live A/B tail follows insertion order when timestamps tie
 
-# 117/117 passed
+# 122/122 passed

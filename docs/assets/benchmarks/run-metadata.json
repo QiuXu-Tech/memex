@@ -1,8 +1,8 @@
 {
-  "testedVersion": "0.5.0",
-  "testedCommit": "5d2746e9307721a70df0bbc740a9086ef0a6426e",
-  "executionCheckout": "5d2746e9307721a70df0bbc740a9086ef0a6426e",
-  "executionCheckoutNote": "Detached clean checkout of the exact v0.5.0 commit. Report changes were prepared separately on the later main branch.",
+  "testedVersion": "0.8.1 + tail fix",
+  "testedCommit": "c1cda8ba1ba931fa4db9acdf6787cb0a80872c00",
+  "executionCheckout": "c1cda8ba1ba931fa4db9acdf6787cb0a80872c00",
+  "executionCheckoutNote": "Clean checkout of the fixed v0.8.1-derived commit. The fix commit is retained as an ancestor of the report commit.",
   "date": "2026-10-29",
   "timezone": "Asia/Shanghai",
   "os": "macOS 27.2 (26B123)",
@@ -12,50 +12,72 @@
   "memoryBytes": 17179869184,
   "node": "v24.21.0",
   "loadMonitor": "psutil 7.2.2 cpu_percent(interval=5) and os.getloadavg; machine-wide including benchmark work. Stage label is recorded at the end of each sampling interval.",
-  "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 25% and 1-minute load <= 5. This stricter gate was used for the second full pass; the first pass is preserved separately.",
+  "quietStartGate": "Two consecutive 5-second samples with CPU busy <= 25% and 1-minute load <= 5.",
   "quietStartGateMet": true,
   "quietGateSamples": [
     {
-      "timeUtc": "2026-10-29T10:27:28+00:00",
+      "timeUtc": "2026-10-29T11:04:44+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 23.6,
-      "load1": 3.591796875,
-      "load5": 3.72412109375,
+      "systemCpuBusyPercent": 10.1,
+      "load1": 2.71435546875,
+      "load5": 3.7119140625,
       "benchmarkPid": null
     },
     {
-      "timeUtc": "2026-10-29T10:27:33+00:00",
+      "timeUtc": "2026-10-29T11:04:49+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 24.0,
-      "load1": 3.3837890625,
-      "load5": 3.6787109375,
+      "systemCpuBusyPercent": 14.6,
+      "load1": 2.73681640625,
+      "load5": 3.69970703125,
       "benchmarkPid": null
     }
   ],
   "benchmarkLoadSamples": {
-    "count": 7,
-    "load1Min": 3.35986328125,
-    "load1Max": 4.09765625,
-    "cpuBusyPercentMin": 27.1,
-    "cpuBusyPercentMedian": 34.5,
-    "cpuBusyPercentMax": 38.8
+    "count": 6,
+    "load1Min": 2.46435546875,
+    "load1Max": 3.42041015625,
+    "cpuBusyPercentMin": 26.2,
+    "cpuBusyPercentMedian": 30.6,
+    "cpuBusyPercentMax": 35.7
   },
   "summary": "Pre-existing compaction-summary.txt; no model invoked during rerun.",
-  "passSelection": "Second full pass selected because its predefined start gate was stricter. First pass retained in results-v050-first-pass.json.",
   "sourceSha256": {
     "scripts/long-horizon-eval.mjs": "cec6e2db72fa182328131e230cb1b3cf89ef601a92215246deb9022727c2b144",
     "scripts/scale-bench.mjs": "8a9d849fc9ea62028d755cd0a61e6d8c0191d36f1c375e29ca4bf7c0e78bc99c",
     "scripts/recall-eval.mjs": "563c8718ef432d54f4115be0c1ab6e96808f81784bf99d7e83b4d093b098c8e1",
     "docs/assets/benchmarks/compaction-summary.txt": "5df3b0d2540dc3e70f8662b18e6e79a832a92019aa3fbd1d6411f7e6baab75f7",
     "test/register.mjs": "b6651a0d8d119cb6fc843d7ca54529a0f30746615bc68348b6a069e06c22124f",
-    "packages/memex-core/index.js": "0939eee5383432537674eb2b3f9bc1ce9e33d6053116b1b8de7b79e46af87d0a",
-    "packages/memex-core/lib/store.js": "d11c604d00211a2f00081099eb347017d916e6f7595560a30e18f1239e4fc2fb",
-    "packages/memex-local/lib/store.js": "22a6497741e4708daa1a2ba257e09486b39de3b68a4d7ddf5597377513f6bb57"
+    "packages/memex-core/index.js": "aca5e2defda24e9d2a5f69ed695170e0c3df86e8de0672fc1337cbb422226b19",
+    "packages/memex-core/lib/store.js": "2c85830ff82ba11bc8facad243fe9001f8ddf0e4c2ee61311424dc9713e22fcb",
+    "packages/memex-local/lib/store.js": "22a6497741e4708daa1a2ba257e09486b39de3b68a4d7ddf5597377513f6bb57",
+    "scripts/live-ab.mjs": "5d59b31be6b2e5bfb8d44a0d1221f0a235210821cbad182d25e59cabb6d69334",
+    "scripts/codex-ab.mjs": "b7132815278fb371b9efb10aedadccac6c007e02c8326ed88de760cdb20c101a"
   },
   "limitations": [
     "Shared machine; sampled load includes benchmark work and is not complete isolation.",
     "All benchmark searches use LocalStoreCore default rerank weights; model-specific AgentMemory profiles and live agents were not benchmarked.",
     "Token counts use character-based estimates; no memory_open call or model answer is timed.",
     "Capacity bodies contain only x; card-field numbers are indexed but identifier-bearing body index overhead is not represented."
-  ]
+  ],
+  "liveAB": {
+    "model": "gpt-6.1-sol",
+    "node": "v25.9.0",
+    "codexCli": "0.165.0-alpha.1.2",
+    "calls": 6,
+    "allExitZero": true,
+    "cliReportedTokens": [
+      10096,
+      16682,
+      10112,
+      16723,
+      10157,
+      16682
+    ],
+    "providerUsage": "unknown",
+    "billedCost": "unknown",
+    "note": "Separate from offline benchmark; CLI diagnostic tails were redacted in the public result and retained locally."
+  },
+  "historicalAssets": {
+    "results-harness-unbuilt.txt": "v0.5.0 historical run; not from this benchmark"
+  }
 }

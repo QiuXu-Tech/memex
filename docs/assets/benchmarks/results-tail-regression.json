@@ -1,0 +1,63 @@
+{
+  "baseCommit": "03a8b2de782d7a0d8d00b319da74582f282b97b3",
+  "fixedCommit": "c1cda8ba1ba931fa4db9acdf6787cb0a80872c00",
+  "case": "U25: freeze Date.now and generate descending record IDs, then validate tail ordering and membership for tail lengths 20, 0 and 50 over 40 turns",
+  "before": {
+    "exitCode": 1,
+    "passed": 121,
+    "total": 122,
+    "tail20Actual": [
+      19,
+      18,
+      17,
+      16,
+      15,
+      14,
+      13,
+      12,
+      11,
+      10,
+      9,
+      8,
+      7,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0
+    ],
+    "tail20Expected": [
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39
+    ],
+    "fullLogSha256": "a11a611b9a1efc7a849df1bd3726d40290f34bf74438d2ddca7c3de5402d48fd",
+    "runtime": "Node v25.9.0"
+  },
+  "after": {
+    "exitCode": 0,
+    "passed": 122,
+    "total": 122,
+    "runtime": "Node v24.21.0",
+    "fullLogSha256": "9c34f123f554f0c7417b6e1a9d010a3f66010a5cb72b77f9073b6a0c4a902fba"
+  }
+}

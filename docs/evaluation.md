@@ -5,8 +5,8 @@ layout: default
 
 # Evaluation
 
-The public synthetic workloads were rerun on v0.5.0, commit
-[`5d2746e`](https://github.com/QiuXu-Tech/memex/commit/5d2746e9307721a70df0bbc740a9086ef0a6426e),
+The public synthetic workloads were rerun on v0.8.1 plus the tail-order fix, commit
+[`c1cda8b`](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa4db9acdf6787cb0a80872c00),
 on 2026-10-29. The Apple M4 / Node 24.21.0 machine met a quiet-start gate;
 it remained shared and load was sampled during the longer stages. See the
 [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md)
@@ -41,8 +41,8 @@ public fixture. The separate reported DeepSeek multi-seed results have a
 
 | Synthetic pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.4 s | 700 records / 7M in 0.32 s | 350 records / 3.5M in 0.03 s |
-| 10,000 records / 100M assigned tokens | 3.8 s | 5,000 records / 50M in 3.03 s | 2,500 records / 25M in 0.31 s |
+| 1,000 records / 10M assigned tokens | 0.3 s | 700 records / 7M in 0.29 s | 350 records / 3.5M in 0.03 s |
+| 10,000 records / 100M assigned tokens | 3.5 s | 5,000 records / 50M in 2.42 s | 2,500 records / 25M in 0.58 s |
 
 The 100M run used 384.8 MiB of original body files and a 10.5 MiB SQLite index
 after writing, growing to 28.0 MiB after cold spill. Token counts are assigned
@@ -64,6 +64,6 @@ current public-fixture measurement.
 - The capacity helper's printed `p95` is based on five samples and selects the
   second-largest value. It is not a reliable 95th percentile. This rerun does
   not establish that the former `p95 < 50 ms` target is met.
-- The offline harness passed 117/117 tests at the tested commit after building
+- The offline harness passed 122/122 tests at the tested commit after building
   the bundle; this validates its test cases, not production or real-agent
   performance.
