@@ -64,7 +64,7 @@ The CLIs write a recommended dedicated profile by default; the integration can o
 
 ## Retrieval reranking
 
-Each profile also carries **rerank weights** for the hybrid search: the store merges them over `DEFAULT_RERANK_WEIGHTS` (`title 3.0, tags 1.6, summary 1.4, useWhen 1.2, abstract 0.9, body 4.5, recency 0.4, coldPenalty 0.1, bm25 0.8`). The `body` weight applies to body-rescue hits (identifier-like terms found only in a record body). This is the ranking half of model-specific adaptation; the fields above tune injection and prompting.
+Each profile also carries **rerank weights** for the hybrid search: the store merges them over `DEFAULT_RERANK_WEIGHTS` (`title 3.0, tags 1.6, summary 1.4, useWhen 1.2, abstract 0.9, body 4.5, coldAnchor 30, recency 0.4, coldPenalty 0.1, bm25 0.8`). The `body` weight applies to body-rescue hits (identifier-like terms found only in a record body). This is the ranking half of model-specific adaptation; the fields above tune injection and prompting.
 
 | Profile | Rerank override | Why |
 |---|---|---|

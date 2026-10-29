@@ -3756,7 +3756,7 @@ await test('U8', 'DSH seam and core stay one vocabulary: engine writes are visib
 
 
 await test('U9', 'per-model rerank weights tune ranking and merge over defaults', async () => {
-  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, body: 4.5, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
+  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, body: 4.5, coldAnchor: 30, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
   assert.equal(profiles.resolveModelProfile('claude').rerank.title, 3.2)
   assert.equal(profiles.resolveModelProfile('gemini').rerank.tags, 2)
   assert.equal(profiles.resolveModelProfile('deepseek-chat').rerank.abstract, 1.3)
@@ -4000,6 +4000,36 @@ await test('U18', 'storage root resolution: MEMEX_HOME wins, legacy env/path fal
     if (saved.memex !== undefined) process.env.MEMEX_HOME = saved.memex; else delete process.env.MEMEX_HOME
     if (saved.legacy !== undefined) process.env.DSH_MEMORY_HOME = saved.legacy; else delete process.env.DSH_MEMORY_HOME
   }
+})
+
+
+await test('U19', 'Claude init --session aligns hooks and MCP L2 namespace; approval hint is printed', async () => {
+  const project = makeRoot('u19-project')
+  const root = makeRoot('u19-mem')
+  const init = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-opus-5-5', '--levels', 'l2,l3', '--session', 'proj-session'])
+  assert.equal(init.status, 0, init.stderr)
+  assertIncludes(init.stdout, 'claude mcp list')
+  assertIncludes(init.stdout, 'approve')
+  const mcp = JSON.parse(readFileSync(join(project, '.mcp.json'), 'utf8'))
+  const args = mcp.mcpServers['memex'].args
+  assert.deepEqual(args.slice(args.indexOf('--session'), args.indexOf('--session') + 2), ['--session', 'proj-session'])
+  const settings = JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8'))
+  assertIncludes(settings.hooks.SessionStart[0].hooks[0].command, '--session "proj-session"')
+  // Seed a session-scoped (L2) record; the hook must use the explicit --session
+  // rather than the payload's client session id.
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'proj-session', levels: ['l2', 'l3'], model: 'claude-opus-5-5', agent: 'test' })
+  try {
+    engine.write({ kind: 'fact', title: 'Project-session L2 fact', body: 'visible only through the aligned L2 namespace', scope: 'session', useWhen: 'read when testing session alignment' })
+  } finally {
+    engine.close()
+  }
+  const aligned = runNode(CLAUDE_CLI, ['hook', 'session-start', '--root', root, '--project', project, '--model', 'claude-opus-5-5', '--levels', 'l2,l3', '--session', 'proj-session'], { input: JSON.stringify({ session_id: 'client-session', cwd: project }) })
+  assert.equal(aligned.status, 0, aligned.stderr)
+  assertIncludes(JSON.parse(aligned.stdout.trim()).hookSpecificOutput.additionalContext, 'Project-session L2 fact')
+  // Without --session, the payload client session id is used and cannot see the project-session record.
+  const mismatched = runNode(CLAUDE_CLI, ['hook', 'session-start', '--root', root, '--project', project, '--model', 'claude-opus-5-5', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: 'client-session', cwd: project }) })
+  assert.equal(mismatched.status, 0, mismatched.stderr)
+  assert.ok(mismatched.stdout.trim() === '' || !mismatched.stdout.includes('Project-session L2 fact'), 'without --session the L2 record must be out of scope')
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

@@ -97,13 +97,13 @@ function init() {
   const mcpPath = join(base, '.mcp.json')
   const claudeMdPath = join(base, 'CLAUDE.md')
   const nodeBin = process.execPath
-  const hookCommandFor = (event) => `"${nodeBin}" "${resolve(HERE, 'cli.mjs')}" hook ${event} --root "${args.root}" --project "${base}" --model "${args.model}" --levels ${levels.join(',')}`
+  const hookCommandFor = (event) => `"${nodeBin}" "${resolve(HERE, 'cli.mjs')}" hook ${event} --root "${args.root}" --project "${base}" --model "${args.model}" --levels ${levels.join(',')}${args.session ? ` --session "${args.session}"` : ''}`
   // .mcp.json — register the stdio server for this project.
   const mcp = readJson(mcpPath, {})
   mcp.mcpServers = mcp.mcpServers ?? {}
   mcp.mcpServers['memex'] = {
     command: nodeBin,
-    args: [MCP_SERVER, '--root', args.root, '--agent', 'claude-code', '--model', args.model, '--levels', levels.join(','), '--cwd', base],
+    args: [MCP_SERVER, '--root', args.root, '--agent', 'claude-code', '--model', args.model, '--levels', levels.join(','), ...(args.session ? ['--session', args.session] : []), '--cwd', base],
   }
   writeJson(mcpPath, mcp)
   // .claude/settings.json — hooks.
@@ -128,12 +128,13 @@ function init() {
   console.log(`  Memory root:   ${args.root}`)
   console.log(`  Model profile: ${profile.id} (${profile.label})`)
   console.log(`  Recommended:   ${RECOMMENDED_PROFILES['claude-code'].join(' · ')}`)
-  if (!levels.includes('l3')) {
-    console.log('  Note: L2-only mode — hooks use the client session id while MCP tools use')
-    console.log('        default-session, so session-scoped records may not be visible across')
-    console.log('        both paths. Prefer --levels l2,l3 or l3 for shared project memory.')
+  if (levels.includes('l2') && !args.session) {
+    console.log('  Note: hooks use the client session id while MCP tools use default-session.')
+    console.log('        Pass --session <stable-project-id> to init so hooks and MCP share one')
+    console.log('        L2 namespace, or use --levels l3 for shared project memory.')
   }
-  console.log('Restart Claude Code in this project to load the MCP server and hooks.')
+  console.log('Next: restart Claude Code in this project; run `claude` once and approve')
+  console.log('      the MCP server when prompted, or check with `claude mcp list`.')
 }
 
 function emitHook(eventName, additionalContext) {
@@ -151,7 +152,7 @@ async function hook() {
     payload = {}
   }
   const cwd = payload.cwd ?? args.project
-  const session = payload.session_id ?? args.session
+  const session = args.session ?? payload.session_id
   const engine = engineFor(cwd, session)
   try {
     if (event === 'session-start') {

@@ -672,6 +672,27 @@ export class LocalStoreCore {
         }
       }
     }
+    // Cold-anchor rescue: cold records only expose a bounded abstract, so an
+    // identifier-like query term can point at a cold record that card ranking
+    // leaves out. Scan the bounded abstract column for those anchors and add
+    // the matches with an anchor-evidence bonus (no body read).
+    const coldAnchorTerms = lowerTerms.filter((term) => term.length >= 2 && (/[0-9]/.test(term) || /[-_.:/]/.test(term)))
+    if (coldAnchorTerms.length > 0) {
+      const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 1 }, { alias: 'r.' })
+      const likeClauses = coldAnchorTerms.slice(0, 3).map(() => 'r.abstract LIKE ?')
+      const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
+      const coldRows = this.database().prepare(`
+        SELECT r.*, '' AS snippet, 0 AS rank
+        FROM records r WHERE (${likeClauses.join(' OR ')}) ${where} LIMIT 40
+      `).all(...coldAnchorTerms.slice(0, 3).map((term) => `%${term}%`), ...params)
+      for (const row of coldRows) {
+        if (rowsById.has(row.id)) continue
+        const abstractText = String(row.abstract ?? '').toLowerCase()
+        const anchorHits = coldAnchorTerms.filter((term) => termMatchesText(abstractText, term)).length
+        if (anchorHits === 0) continue
+        rowsById.set(row.id, { ...row, rank: 0, coldAnchorHits: anchorHits })
+      }
+    }
     // Hybrid rerank: lexical field matches + body evidence + cold abstract + recency.
     const now = Date.now()
     const fieldHits = (value, weight) => {
@@ -693,6 +714,7 @@ export class LocalStoreCore {
         + fieldHits(card.useWhen, sweep.useWhen)
         + fieldHits(tagsText(card.tags), sweep.tags)
         + fieldHits(row.abstract, sweep.abstract)
+        + (card.cold === true ? coldAnchorTerms.filter((term) => termMatchesText(String(row.abstract ?? '').toLowerCase(), term)).length * (sweep.coldAnchor ?? 0) : 0)
         + (Number(row.bodyHits) || 0) * sweep.body
         + Math.max(0, 1 - ageDays / 60) * sweep.recency
         - (card.cold === true ? sweep.coldPenalty : 0)
@@ -1038,13 +1060,21 @@ export class LocalStoreCore {
     }
     const capacityTokens = (scopes ?? ['workspace']).reduce((sum, scope) => sum + (scope === 'session' ? this.sessionCapacityTokens : this.capacityTokens), 0)
     const maxChars = Math.max(400, request.maxChars ?? 2400)
+    // Scale the catalog depth with the caller's prompt budget instead of always
+    // showing a fixed 18 cards: a 2.4k-char default stays as before, larger
+    // profile budgets get more pinned/open/recent cards, and the final clip
+    // still enforces maxChars.
+    const cardBudget = Math.max(8, Math.min(48, Math.floor(maxChars / 160)))
+    const pinnedLimit = Math.max(6, Math.min(12, Math.floor(cardBudget * 0.3)))
+    const openLimit = Math.max(4, Math.min(8, Math.floor(cardBudget * 0.2)))
+    const recentLimit = Math.max(8, Math.min(36, cardBudget - pinnedLimit - openLimit))
     const sections = []
     // Footer accounting is hot+cold: compute it without the cold:0 filter so
     // cold records are still reported; listings above stay hot-only.
     const facets = this.facets({ ...filter, cold: undefined })
-    const pinned = this.list({ ...filter, status: 'pinned', limit: 6, includeStatus: true })
-    const open = this.list({ ...filter, status: 'open', limit: 4 })
-    const recent = this.list({ ...filter, limit: 8 })
+    const pinned = this.list({ ...filter, status: 'pinned', limit: pinnedLimit, includeStatus: true })
+    const open = this.list({ ...filter, status: 'open', limit: openLimit })
+    const recent = this.list({ ...filter, limit: recentLimit })
     const seen = new Set()
     const line = (card) => {
       if (seen.has(card.id)) return ''

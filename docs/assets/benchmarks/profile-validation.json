@@ -1,10 +1,10 @@
 {
   "format": 1,
-  "generatedAt": "2026-10-29T07:36:15.548Z",
+  "generatedAt": "2026-10-29T07:48:19.039Z",
   "load": [
-    3.2802734375,
-    3.82666015625,
-    4.1962890625
+    4.49609375,
+    4.68212890625,
+    4.37646484375
   ],
   "results": {
     "profiles": [
@@ -15,8 +15,8 @@
         "charsPerToken": 3.6,
         "catalogTokens": 1400,
         "recallTokens": 600,
-        "injectedCatalogTokens": 379,
-        "injectedCatalogBytes": 1377,
+        "injectedCatalogTokens": 1040,
+        "injectedCatalogBytes": 3797,
         "manualTokens": 748,
         "bodyProbes": {
           "hit1": 0,
@@ -24,19 +24,19 @@
           "tokensPerAnswer": 58
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 111
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 97
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 258
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 259
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 379,
-          "cumulativeCatalogTokens": 18950
+          "catalogTokensPerTurn": 1040,
+          "cumulativeCatalogTokens": 52000
         },
         "facets": {
           "hot": 210,
@@ -50,8 +50,8 @@
         "charsPerToken": 2.6,
         "catalogTokens": 2000,
         "recallTokens": 800,
-        "injectedCatalogTokens": 524,
-        "injectedCatalogBytes": 1377,
+        "injectedCatalogTokens": 1439,
+        "injectedCatalogBytes": 3797,
         "manualTokens": 1054,
         "bodyProbes": {
           "hit1": 1,
@@ -59,19 +59,19 @@
           "tokensPerAnswer": 80
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 153
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 135
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 358
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 359
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 524,
-          "cumulativeCatalogTokens": 26200
+          "catalogTokensPerTurn": 1439,
+          "cumulativeCatalogTokens": 71950
         },
         "facets": {
           "hot": 210,
@@ -85,8 +85,8 @@
         "charsPerToken": 2.6,
         "catalogTokens": 1600,
         "recallTokens": 650,
-        "injectedCatalogTokens": 524,
-        "injectedCatalogBytes": 1377,
+        "injectedCatalogTokens": 1439,
+        "injectedCatalogBytes": 3797,
         "manualTokens": 1015,
         "bodyProbes": {
           "hit1": 1,
@@ -94,19 +94,19 @@
           "tokensPerAnswer": 80
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 153
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 135
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 358
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 359
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 524,
-          "cumulativeCatalogTokens": 26200
+          "catalogTokensPerTurn": 1439,
+          "cumulativeCatalogTokens": 71950
         },
         "facets": {
           "hot": 210,
@@ -120,8 +120,8 @@
         "charsPerToken": 2.6,
         "catalogTokens": 2200,
         "recallTokens": 900,
-        "injectedCatalogTokens": 524,
-        "injectedCatalogBytes": 1377,
+        "injectedCatalogTokens": 1439,
+        "injectedCatalogBytes": 3797,
         "manualTokens": 1071,
         "bodyProbes": {
           "hit1": 1,
@@ -129,19 +129,19 @@
           "tokensPerAnswer": 80
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 153
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 135
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 358
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 359
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 524,
-          "cumulativeCatalogTokens": 26200
+          "catalogTokensPerTurn": 1439,
+          "cumulativeCatalogTokens": 71950
         },
         "facets": {
           "hot": 210,
@@ -155,8 +155,8 @@
         "charsPerToken": 2.6,
         "catalogTokens": 900,
         "recallTokens": 400,
-        "injectedCatalogTokens": 524,
-        "injectedCatalogBytes": 1377,
+        "injectedCatalogTokens": 898,
+        "injectedCatalogBytes": 2370,
         "manualTokens": 1012,
         "bodyProbes": {
           "hit1": 1,
@@ -164,19 +164,19 @@
           "tokensPerAnswer": 80
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 153
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 135
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 358
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 359
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 524,
-          "cumulativeCatalogTokens": 26200
+          "catalogTokensPerTurn": 898,
+          "cumulativeCatalogTokens": 44900
         },
         "facets": {
           "hot": 210,
@@ -190,8 +190,8 @@
         "charsPerToken": 4,
         "catalogTokens": 1200,
         "recallTokens": 500,
-        "injectedCatalogTokens": 337,
-        "injectedCatalogBytes": 1361,
+        "injectedCatalogTokens": 932,
+        "injectedCatalogBytes": 3781,
         "manualTokens": 657,
         "bodyProbes": {
           "hit1": 1,
@@ -199,19 +199,19 @@
           "tokensPerAnswer": 52
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 100
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 88
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 232
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 233
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 337,
-          "cumulativeCatalogTokens": 16850
+          "catalogTokensPerTurn": 932,
+          "cumulativeCatalogTokens": 46600
         },
         "facets": {
           "hot": 210,
@@ -225,8 +225,8 @@
         "charsPerToken": 4,
         "catalogTokens": 1800,
         "recallTokens": 700,
-        "injectedCatalogTokens": 337,
-        "injectedCatalogBytes": 1361,
+        "injectedCatalogTokens": 932,
+        "injectedCatalogBytes": 3781,
         "manualTokens": 668,
         "bodyProbes": {
           "hit1": 1,
@@ -234,19 +234,19 @@
           "tokensPerAnswer": 52
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 100
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 88
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 232
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 233
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 337,
-          "cumulativeCatalogTokens": 16850
+          "catalogTokensPerTurn": 932,
+          "cumulativeCatalogTokens": 46600
         },
         "facets": {
           "hot": 210,
@@ -260,8 +260,8 @@
         "charsPerToken": 4,
         "catalogTokens": 1200,
         "recallTokens": 500,
-        "injectedCatalogTokens": 337,
-        "injectedCatalogBytes": 1361,
+        "injectedCatalogTokens": 932,
+        "injectedCatalogBytes": 3781,
         "manualTokens": 646,
         "bodyProbes": {
           "hit1": 1,
@@ -269,19 +269,19 @@
           "tokensPerAnswer": 52
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 100
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 88
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 232
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 233
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 337,
-          "cumulativeCatalogTokens": 16850
+          "catalogTokensPerTurn": 932,
+          "cumulativeCatalogTokens": 46600
         },
         "facets": {
           "hot": 210,
@@ -295,8 +295,8 @@
         "charsPerToken": 4,
         "catalogTokens": 2200,
         "recallTokens": 900,
-        "injectedCatalogTokens": 337,
-        "injectedCatalogBytes": 1361,
+        "injectedCatalogTokens": 932,
+        "injectedCatalogBytes": 3781,
         "manualTokens": 677,
         "bodyProbes": {
           "hit1": 1,
@@ -304,19 +304,19 @@
           "tokensPerAnswer": 52
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 100
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 88
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 232
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 233
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 337,
-          "cumulativeCatalogTokens": 16850
+          "catalogTokensPerTurn": 932,
+          "cumulativeCatalogTokens": 46600
         },
         "facets": {
           "hot": 210,
@@ -330,8 +330,8 @@
         "charsPerToken": 3.4,
         "catalogTokens": 900,
         "recallTokens": 400,
-        "injectedCatalogTokens": 396,
-        "injectedCatalogBytes": 1361,
+        "injectedCatalogTokens": 894,
+        "injectedCatalogBytes": 3087,
         "manualTokens": 739,
         "bodyProbes": {
           "hit1": 1,
@@ -339,19 +339,19 @@
           "tokensPerAnswer": 61
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 117
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 103
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 273
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 274
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 396,
-          "cumulativeCatalogTokens": 19800
+          "catalogTokensPerTurn": 894,
+          "cumulativeCatalogTokens": 44700
         },
         "facets": {
           "hot": 210,
@@ -365,8 +365,8 @@
         "charsPerToken": 3,
         "catalogTokens": 1200,
         "recallTokens": 500,
-        "injectedCatalogTokens": 449,
-        "injectedCatalogBytes": 1361,
+        "injectedCatalogTokens": 1195,
+        "injectedCatalogBytes": 3641,
         "manualTokens": 840,
         "bodyProbes": {
           "hit1": 1,
@@ -374,19 +374,19 @@
           "tokensPerAnswer": 69
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 132
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 117
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 310
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 311
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 449,
-          "cumulativeCatalogTokens": 22450
+          "catalogTokensPerTurn": 1195,
+          "cumulativeCatalogTokens": 59750
         },
         "facets": {
           "hot": 210,
@@ -400,8 +400,8 @@
         "charsPerToken": 4,
         "catalogTokens": 900,
         "recallTokens": 400,
-        "injectedCatalogTokens": 337,
-        "injectedCatalogBytes": 1361,
+        "injectedCatalogTokens": 893,
+        "injectedCatalogBytes": 3629,
         "manualTokens": 639,
         "bodyProbes": {
           "hit1": 1,
@@ -409,19 +409,19 @@
           "tokensPerAnswer": 52
         },
         "coldBodyProbes": {
-          "hit1": 0,
-          "hit5": 0.6333333333333333,
-          "tokensPerAnswer": 100
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 88
         },
         "titleProbes": {
-          "hit1": 0.95,
-          "hit5": 0.95,
-          "tokensPerAnswer": 232
+          "hit1": 1,
+          "hit5": 1,
+          "tokensPerAnswer": 233
         },
         "longHorizon": {
           "turns": 50,
-          "catalogTokensPerTurn": 337,
-          "cumulativeCatalogTokens": 16850
+          "catalogTokensPerTurn": 893,
+          "cumulativeCatalogTokens": 44650
         },
         "facets": {
           "hot": 210,
@@ -434,21 +434,21 @@
         "profile": "claude",
         "runs": [
           {
-            "initMs": 46.6,
-            "firstSearchMs": 2.4,
-            "totalMs": 50.2,
+            "initMs": 52.2,
+            "firstSearchMs": 2.7,
+            "totalMs": 56.1,
             "searchTextChars": 382
           },
           {
-            "initMs": 46.7,
-            "firstSearchMs": 2.4,
-            "totalMs": 49.6,
+            "initMs": 50.2,
+            "firstSearchMs": 3.4,
+            "totalMs": 54.3,
             "searchTextChars": 382
           },
           {
-            "initMs": 45.4,
-            "firstSearchMs": 2.3,
-            "totalMs": 48.2,
+            "initMs": 50.5,
+            "firstSearchMs": 2.8,
+            "totalMs": 53.9,
             "searchTextChars": 382
           }
         ]
@@ -457,21 +457,21 @@
         "profile": "claude-opus-5-5",
         "runs": [
           {
-            "initMs": 46.9,
-            "firstSearchMs": 2.5,
-            "totalMs": 49.8,
+            "initMs": 50.9,
+            "firstSearchMs": 2.7,
+            "totalMs": 54.1,
             "searchTextChars": 700
           },
           {
-            "initMs": 47.4,
-            "firstSearchMs": 2.5,
-            "totalMs": 50.2,
+            "initMs": 49.5,
+            "firstSearchMs": 2.7,
+            "totalMs": 52.6,
             "searchTextChars": 700
           },
           {
-            "initMs": 49.1,
-            "firstSearchMs": 2.5,
-            "totalMs": 52.1,
+            "initMs": 50.8,
+            "firstSearchMs": 3.1,
+            "totalMs": 54.4,
             "searchTextChars": 700
           }
         ]
@@ -480,21 +480,21 @@
         "profile": "claude-sonnet-5-5",
         "runs": [
           {
-            "initMs": 47.3,
-            "firstSearchMs": 2.3,
-            "totalMs": 50.1,
+            "initMs": 50.6,
+            "firstSearchMs": 2.9,
+            "totalMs": 54,
             "searchTextChars": 382
           },
           {
-            "initMs": 45.5,
-            "firstSearchMs": 2.3,
-            "totalMs": 48.3,
+            "initMs": 50.4,
+            "firstSearchMs": 2.7,
+            "totalMs": 53.6,
             "searchTextChars": 382
           },
           {
-            "initMs": 46.2,
-            "firstSearchMs": 2.3,
-            "totalMs": 48.9,
+            "initMs": 52.9,
+            "firstSearchMs": 2.6,
+            "totalMs": 55.9,
             "searchTextChars": 382
           }
         ]
@@ -503,21 +503,21 @@
         "profile": "claude-fable-5-1",
         "runs": [
           {
-            "initMs": 52.3,
-            "firstSearchMs": 2.8,
+            "initMs": 51.3,
+            "firstSearchMs": 3.7,
             "totalMs": 55.5,
             "searchTextChars": 700
           },
           {
-            "initMs": 51,
-            "firstSearchMs": 2.5,
-            "totalMs": 54,
+            "initMs": 57.1,
+            "firstSearchMs": 4.7,
+            "totalMs": 62.3,
             "searchTextChars": 700
           },
           {
-            "initMs": 49.7,
-            "firstSearchMs": 2.4,
-            "totalMs": 52.8,
+            "initMs": 62.4,
+            "firstSearchMs": 8.7,
+            "totalMs": 71.6,
             "searchTextChars": 700
           }
         ]
@@ -526,21 +526,21 @@
         "profile": "claude-haiku-5-5",
         "runs": [
           {
-            "initMs": 48.4,
-            "firstSearchMs": 2.4,
-            "totalMs": 51.2,
+            "initMs": 77.2,
+            "firstSearchMs": 6.6,
+            "totalMs": 84.7,
             "searchTextChars": 310
           },
           {
-            "initMs": 48.9,
-            "firstSearchMs": 2.2,
-            "totalMs": 51.5,
+            "initMs": 93,
+            "firstSearchMs": 6.2,
+            "totalMs": 100,
             "searchTextChars": 310
           },
           {
-            "initMs": 46.5,
-            "firstSearchMs": 2.2,
-            "totalMs": 49.1,
+            "initMs": 71.6,
+            "firstSearchMs": 2.6,
+            "totalMs": 74.8,
             "searchTextChars": 310
           }
         ]
@@ -549,21 +549,21 @@
         "profile": "openai",
         "runs": [
           {
-            "initMs": 47.9,
-            "firstSearchMs": 2.3,
-            "totalMs": 50.5,
+            "initMs": 63.1,
+            "firstSearchMs": 2.6,
+            "totalMs": 66.1,
             "searchTextChars": 346
           },
           {
-            "initMs": 46.5,
-            "firstSearchMs": 2.3,
-            "totalMs": 49.2,
+            "initMs": 61.5,
+            "firstSearchMs": 2.6,
+            "totalMs": 64.5,
             "searchTextChars": 346
           },
           {
-            "initMs": 46,
-            "firstSearchMs": 2.2,
-            "totalMs": 48.6,
+            "initMs": 61.5,
+            "firstSearchMs": 3,
+            "totalMs": 64.9,
             "searchTextChars": 346
           }
         ]
@@ -572,21 +572,21 @@
         "profile": "gpt-6.1",
         "runs": [
           {
-            "initMs": 47.3,
-            "firstSearchMs": 2.5,
-            "totalMs": 50.1,
+            "initMs": 58.3,
+            "firstSearchMs": 3.3,
+            "totalMs": 62.1,
             "searchTextChars": 700
           },
           {
-            "initMs": 46.6,
-            "firstSearchMs": 2.4,
-            "totalMs": 49.4,
+            "initMs": 54.4,
+            "firstSearchMs": 2.9,
+            "totalMs": 57.8,
             "searchTextChars": 700
           },
           {
-            "initMs": 45.9,
-            "firstSearchMs": 2.4,
-            "totalMs": 48.8,
+            "initMs": 60.8,
+            "firstSearchMs": 3,
+            "totalMs": 64.3,
             "searchTextChars": 700
           }
         ]
@@ -595,21 +595,21 @@
         "profile": "gpt-6.1-terra",
         "runs": [
           {
-            "initMs": 47,
-            "firstSearchMs": 2.3,
-            "totalMs": 49.7,
+            "initMs": 55.7,
+            "firstSearchMs": 4.9,
+            "totalMs": 61,
             "searchTextChars": 346
           },
           {
-            "initMs": 46.3,
-            "firstSearchMs": 2.2,
-            "totalMs": 49,
+            "initMs": 56.7,
+            "firstSearchMs": 2.5,
+            "totalMs": 59.9,
             "searchTextChars": 346
           },
           {
-            "initMs": 46.4,
-            "firstSearchMs": 2.3,
-            "totalMs": 49.1,
+            "initMs": 55,
+            "firstSearchMs": 2.9,
+            "totalMs": 58.3,
             "searchTextChars": 346
           }
         ]
@@ -618,21 +618,21 @@
         "profile": "gpt-6-astra",
         "runs": [
           {
-            "initMs": 45.7,
-            "firstSearchMs": 2.4,
-            "totalMs": 48.5,
+            "initMs": 53.2,
+            "firstSearchMs": 2.7,
+            "totalMs": 56.4,
             "searchTextChars": 700
           },
           {
-            "initMs": 45.2,
-            "firstSearchMs": 2.4,
-            "totalMs": 48,
+            "initMs": 49.3,
+            "firstSearchMs": 2.7,
+            "totalMs": 52.4,
             "searchTextChars": 700
           },
           {
-            "initMs": 46.3,
-            "firstSearchMs": 2.5,
-            "totalMs": 49.2,
+            "initMs": 49.8,
+            "firstSearchMs": 3.5,
+            "totalMs": 53.7,
             "searchTextChars": 700
           }
         ]
@@ -641,21 +641,21 @@
         "profile": "deepseek",
         "runs": [
           {
-            "initMs": 45.8,
-            "firstSearchMs": 2.3,
-            "totalMs": 48.6,
+            "initMs": 50.9,
+            "firstSearchMs": 2.7,
+            "totalMs": 54.1,
             "searchTextChars": 346
           },
           {
-            "initMs": 47,
-            "firstSearchMs": 2.3,
-            "totalMs": 49.7,
+            "initMs": 49.8,
+            "firstSearchMs": 2.5,
+            "totalMs": 52.8,
             "searchTextChars": 346
           },
           {
-            "initMs": 47.6,
-            "firstSearchMs": 2.6,
-            "totalMs": 50.6,
+            "initMs": 50,
+            "firstSearchMs": 2.5,
+            "totalMs": 52.9,
             "searchTextChars": 346
           }
         ]
@@ -664,21 +664,21 @@
         "profile": "deepseek-flash",
         "runs": [
           {
-            "initMs": 47.6,
-            "firstSearchMs": 2.5,
-            "totalMs": 50.5,
+            "initMs": 50.3,
+            "firstSearchMs": 2.6,
+            "totalMs": 53.3,
             "searchTextChars": 382
           },
           {
-            "initMs": 49.8,
-            "firstSearchMs": 2.4,
-            "totalMs": 52.7,
+            "initMs": 50.2,
+            "firstSearchMs": 3.4,
+            "totalMs": 53.9,
             "searchTextChars": 382
           },
           {
-            "initMs": 49.3,
-            "firstSearchMs": 2.4,
-            "totalMs": 52.1,
+            "initMs": 53.7,
+            "firstSearchMs": 2.6,
+            "totalMs": 56.7,
             "searchTextChars": 382
           }
         ]
@@ -687,21 +687,21 @@
         "profile": "generic",
         "runs": [
           {
-            "initMs": 48.5,
-            "firstSearchMs": 2.3,
-            "totalMs": 51.2,
+            "initMs": 49.9,
+            "firstSearchMs": 2.6,
+            "totalMs": 52.9,
             "searchTextChars": 346
           },
           {
-            "initMs": 48.9,
-            "firstSearchMs": 2.5,
-            "totalMs": 51.8,
+            "initMs": 50.3,
+            "firstSearchMs": 2.6,
+            "totalMs": 53.4,
             "searchTextChars": 346
           },
           {
-            "initMs": 47.8,
-            "firstSearchMs": 2.3,
-            "totalMs": 50.5,
+            "initMs": 51.2,
+            "firstSearchMs": 3,
+            "totalMs": 54.6,
             "searchTextChars": 346
           }
         ]

@@ -167,11 +167,15 @@ export class AgentMemory {
 
   /** Catalog text + accounting for the visible levels. */
   index({ maxChars } = {}) {
+    // Use the profile's catalog budget (tokens × chars/token) as the default
+    // prompt-space allocation instead of a fixed 2.4k chars.
+    const budgetChars = Math.round((this.profile.catalogTokens ?? 900) * (this.profile.charsPerToken ?? 4))
+    const effectiveMaxChars = Math.max(2400, Math.min(24_000, maxChars ?? budgetChars))
     const catalog = this.store.catalog({
       workspaceKey: this.workspaceKey,
       scopes: this.scopes,
       sessionId: this.sessionId,
-      maxChars,
+      maxChars: effectiveMaxChars,
     })
     const facets = this.store.facets({ workspaceKey: this.workspaceKey, scopes: this.scopes, sessionId: this.sessionId })
     return { catalog, facets, levels: this.levels, scopes: this.scopes, profile: this.profile.id, root: this.root }

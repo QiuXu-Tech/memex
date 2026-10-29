@@ -51,13 +51,41 @@ memex: node .../memex-mcp/bin/server.mjs --root ... --model claude-sonnet-5-5 --
 
 The renamed client config is recognized; the one-time project approval is expected. **Model calls are blocked:** no provider API keys, Codex CLI absent, and the local Claude Code OAuth session expired. The [live A/B harness](live-testing.html) is ready and its dry-run plan is committed; a [help-wanted issue #1](https://github.com/QiuXu-Tech/memex/issues/1) tracks the credential-assisted live run.
 
-## 5. Improvement points found this round
+## 5. v0.4.1 improvements (executed in order)
 
-| Priority | Finding | Suggested action |
+### P1 cold-body recall: 63% → 100%
+- Added **cold-anchor rescue**: when a query has identifier-like anchors (digits/hyphens/paths), the bounded cold `abstract` column is scanned directly and matching cold records join the rerank with a `coldAnchor` evidence bonus (default 30).
+- Profile validation after the change: **cold hit@5 = 100% for all 12 comparison profiles** (was 63%); hot-body hit@1 100% for dedicated Claude 5.5 profiles; title hit@5 100%.
+- Real-archive guard: hit@5 **95%** and cold recall **100%** preserved; hit@1 70% (unchanged from the pre-fix measurement).
+- The rescue only triggers for identifier-like queries, so ordinary natural-language searches pay no extra scan.
+
+### P2 catalog budgets: now actually used
+- Catalog depth scales with the caller's `maxChars` (profile catalog budget × chars/token) instead of a fixed 18 cards.
+- Injected catalog tokens per session: **893–1439** (previously 340–524); 50-turn cumulative catalog tokens 44.9k–72.0k ≈ **4.5–7.2% of a 1M window**.
+- Trade-off is explicit: larger profiles (Opus/Fable/GPT-6 Astra) spend more prompt space for deeper catalog visibility; Haiku/Terra keep compact budgets. All still clipped by `maxChars`.
+
+### P2 session alignment
+- `memex-claude init --session <stable-id>` now writes the same `--session` into `.mcp.json` **and** every hook command; hooks prefer the explicit session over the client payload.
+- U19 proves an L2 project-session record written by the hook path is visible through the aligned namespace and invisible without `--session`.
+- `init` now prints the MCP approval hint (`claude mcp list` / approve once).
+
+### P3 tokenizer calibration
+- Still pending: needs a live provider response with usage numbers; the harness reports usage when keys are available.
+
+### Quiet-machine 100M benchmark (load ≈4.4)
+- write 10,000 records / 100.0M tokens in **3.4 s**; DB 9.0 MiB, bodies 384.8 MiB.
+- facets **6.5 ms**, list 7.0 ms, catalog **13.8 ms**, search 6.7–8.3 ms (CJK 2.3 ms), grep 16.2 ms, get 0.05 ms.
+- `compressCold` 5,000 records / 50M tokens in **2.94 s**; cold GC 2,500 / 25M in **0.28 s**; post-cold search 14.0 ms / catalog 15.6 ms; DB 26.7 MiB.
+- Harness **116/116** (U19 added; U18 env fallbacks).
+
+## 6. Improvement points found this round
+
+| Priority | Finding | Status |
 |---|---|---|
-| P1 | Live endpoint A/B blocked by credentials | provide `ANTHROPIC_API_KEY` / `OPENAI_API_KEY` / `DEEPSEEK_API_KEY` or refresh `claude login`; then run `scripts/live-ab.mjs` |
-| P1 | Cold-body recall stuck at **63%** for every profile | index a bounded cold-body excerpt (e.g. first/last 2 KB) or automatically suggest `memory_grep` in the recall injection |
-| P2 | Catalog budgets are underused (content 340–520 vs 900–2200 caps) | scale pinned/recent card counts with the profile budget; measure catalog visibility vs tokens |
-| P2 | MCP tools still use `default-session` while hooks use the client session id | allow project-level session mapping or default MCP captures to L3 (already warned by `init` for L2-only) |
-| P3 | One-time MCP approval is easy to miss | print the `claude mcp list` approval hint in `init` output (partially documented) |
-| P3 | Tokenizer estimates are conservative and unverified | once live keys exist, compare request token usage against `profileTokens()` and adjust `charsPerToken` |
+| P1 | Live endpoint A/B blocked by credentials | open — tracked in issue #1; harness ready |
+| P1 | Cold-body recall stuck at 63% | **fixed in v0.4.1** (cold-anchor rescue; 100% on the profile fixture, real hit@5 95%) |
+| P2 | Catalog budgets underused | **fixed in v0.4.1** (depth scales with budget; 893–1439 injected tokens) |
+| P2 | MCP `default-session` vs hook session id | **fixed in v0.4.1** (`init --session` aligns hooks+MCP; U19) |
+| P3 | One-time MCP approval easy to miss | **fixed** (init prints approval hint) |
+| P3 | Tokenizer estimates unverified | open — needs live provider usage |
+| P2 | 100M pool quiet rerun | **done** (write 3.4 s, search 6.7–14.0 ms, compression 2.94 s; load ≈4.4) |
