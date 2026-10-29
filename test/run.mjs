@@ -3756,7 +3756,7 @@ await test('U8', 'DSH seam and core stay one vocabulary: engine writes are visib
 
 
 await test('U9', 'per-model rerank weights tune ranking and merge over defaults', async () => {
-  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, body: 5, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
+  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, body: 4.5, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
   assert.equal(profiles.resolveModelProfile('claude').rerank.title, 3.2)
   assert.equal(profiles.resolveModelProfile('gemini').rerank.tags, 2)
   assert.equal(profiles.resolveModelProfile('deepseek-chat').rerank.abstract, 1.3)

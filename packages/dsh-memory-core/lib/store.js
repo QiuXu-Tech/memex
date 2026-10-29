@@ -566,9 +566,17 @@ export class LocalStoreCore {
       `).all(match, ...params, limit * 8)
       for (const row of rows) rowsById.set(row.id, row)
     }
-    // LIKE acts as the second retrieval leg (CJK bigrams, short terms and
-    // cold abstracts that FTS trigrams cannot tokenize).
-    const likeTerms = terms.slice(0, 8)
+    // LIKE acts as the second retrieval leg for terms FTS trigrams cannot
+    // tokenize (short terms and CJK bigrams). For terms of 3+ characters the
+    // trigram index already matches substrings, so the LIKE OR-scan is only
+    // worth its cost when the FTS leg is sparse.
+    const likeTerms = rowsById.size < limit * 2
+      ? terms.slice(0, 8)
+      // Dense FTS result: skip the expensive OR-scan for ordinary English
+      // words (trigram FTS already covers substrings), but keep CJK terms —
+      // Chinese has no word boundaries, so LIKE phrase/run evidence still adds
+      // recall that the trigram tokenizer cannot reproduce.
+      : terms.filter((term) => Array.from(term).length < 3 || /[\u4e00-\u9fff]/.test(term)).slice(0, 8)
     if (likeTerms.length > 0) {
       const like = likeTerms.map(() => '(r.title LIKE ? OR r.summary LIKE ? OR r.use_when LIKE ? OR r.abstract LIKE ?)').join(' OR ')
       const rows = db.prepare(`
@@ -584,6 +592,7 @@ export class LocalStoreCore {
     if (rowsById.size < limit) {
       const pattern = terms.filter((term) => term.length >= 3).slice(0, 4).map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
       if (pattern.length > 0) {
+        const expression = new RegExp(pattern, 'i')
         const candidates = this.list({
           workspaceKey: query.workspaceKey,
           scopes: query.scopes,
@@ -592,14 +601,20 @@ export class LocalStoreCore {
           sessionId: query.sessionId,
           includeStatus: query.status !== undefined || query.scope !== undefined || query.scopes !== undefined,
           cold: 0,
-          limit: 400,
+          limit: 200,
         })
         for (const card of candidates) {
           if (rowsById.size >= limit * 4) break
           if (rowsById.has(card.id)) continue
-          const hit = this.grep({ pattern, workspaceKey: query.workspaceKey, id: card.id, limit: 1 })[0]
-          if (hit === undefined) continue
-          rowsById.set(card.id, { ...this.rowById(card.id), snippet: hit.text, rank: 0 })
+          let text
+          try {
+            text = readFileSync(card.path, 'utf8')
+          } catch {
+            continue
+          }
+          const line = text.split('\n').find((entry) => expression.test(entry))
+          if (line === undefined) continue
+          rowsById.set(card.id, { ...this.rowById(card.id), snippet: clipText(line.trim(), 240), rank: 0 })
         }
       }
     }
@@ -613,7 +628,7 @@ export class LocalStoreCore {
       const matchedByCards = new Set()
       for (const row of rowsById.values()) {
         const text = cardSearchText(row)
-        for (const term of lowerTerms) if (term.length >= 2 && termMatchesText(text, term)) matchedByCards.add(term)
+        for (const term of lowerTerms) if (term.length >= 2 && text.includes(term)) matchedByCards.add(term)
       }
       const unmatched = lowerTerms.filter((term) => term.length >= 2 && !matchedByCards.has(term))
       if (unmatched.length > 0) {
@@ -663,7 +678,7 @@ export class LocalStoreCore {
       const text = String(value ?? '').toLowerCase()
       if (text.length === 0) return 0
       let hits = 0
-      for (const term of lowerTerms) if (termMatchesText(text, term)) hits += 1
+      for (const term of lowerTerms) if (text.includes(term)) hits += 1
       return hits * weight
     }
     const ranked = []
@@ -949,31 +964,60 @@ export class LocalStoreCore {
     const db = this.database()
     const { clauses, params } = this.workspaceClause(filter)
     const where = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : ''
-    const totals = db.prepare(`SELECT COUNT(*) AS count, COALESCE(SUM(tokens), 0) AS tokens, COALESCE(SUM(bytes), 0) AS bytes FROM records ${where}`).get(...params)
-    const byKind = db.prepare(`SELECT kind, COUNT(*) AS count FROM records ${where} GROUP BY kind ORDER BY count DESC`).all(...params)
-    const tokensByKind = db.prepare(`SELECT kind, COALESCE(SUM(tokens), 0) AS tokens FROM records ${where} GROUP BY kind ORDER BY tokens DESC`).all(...params)
-    const byStatus = db.prepare(`SELECT status, COUNT(*) AS count FROM records ${where} GROUP BY status ORDER BY count DESC`).all(...params)
-    const bounds = db.prepare(`SELECT MIN(created_at) AS oldest, MAX(updated_at) AS newest FROM records ${where}`).get(...params)
-    const levelRows = db.prepare(`SELECT scope, COUNT(*) AS count, COALESCE(SUM(tokens), 0) AS tokens FROM records ${where} GROUP BY scope`).all(...params)
-    const coldWhere = where.length > 0 ? `${where} AND cold = 1` : 'WHERE cold = 1'
-    const coldTotals = db.prepare(`SELECT COUNT(*) AS count, COALESCE(SUM(tokens), 0) AS tokens FROM records ${coldWhere}`).get(...params)
-    const levels = Object.fromEntries(levelRows.map((row) => [row.scope === 'session' ? 'l2' : 'l3', { count: row.count, tokens: row.tokens }]))
+    // One table pass: aggregate by the few dimensions the callers need, then
+    // fold the groups in JS. Reading the table 7 times was the hot cost.
+    const rows = db.prepare(`
+      SELECT kind, status, scope, cold,
+        COUNT(*) AS count,
+        COALESCE(SUM(tokens), 0) AS tokens,
+        COALESCE(SUM(bytes), 0) AS bytes,
+        MIN(created_at) AS oldest,
+        MAX(updated_at) AS newest
+      FROM records ${where}
+      GROUP BY kind, status, scope, cold
+    `).all(...params)
+    let count = 0
+    let tokens = 0
+    let bytes = 0
+    let coldCount = 0
+    let coldTokens = 0
+    let oldest
+    let newest
+    const byKind = {}
+    const byKindTokens = {}
+    const byStatus = {}
+    const levels = {}
+    for (const row of rows) {
+      const rowCount = Number(row.count)
+      const rowTokens = Number(row.tokens)
+      count += rowCount
+      tokens += rowTokens
+      bytes += Number(row.bytes)
+      if (Number(row.cold) === 1) { coldCount += rowCount; coldTokens += rowTokens }
+      byKind[row.kind] = (byKind[row.kind] ?? 0) + rowCount
+      byKindTokens[row.kind] = (byKindTokens[row.kind] ?? 0) + rowTokens
+      byStatus[row.status] = (byStatus[row.status] ?? 0) + rowCount
+      const level = row.scope === 'session' ? 'l2' : 'l3'
+      levels[level] = { count: (levels[level]?.count ?? 0) + rowCount, tokens: (levels[level]?.tokens ?? 0) + rowTokens }
+      if (oldest === undefined || Number(row.oldest) < oldest) oldest = Number(row.oldest)
+      if (newest === undefined || Number(row.newest) > newest) newest = Number(row.newest)
+    }
     return {
-      count: totals.count,
-      tokens: totals.tokens,
-      bytes: totals.bytes,
-      coldCount: coldTotals.count,
-      coldTokens: coldTotals.tokens,
-      hotCount: totals.count - coldTotals.count,
-      hotTokens: Math.max(0, totals.tokens - coldTotals.tokens),
+      count,
+      tokens,
+      bytes,
+      coldCount,
+      coldTokens,
+      hotCount: count - coldCount,
+      hotTokens: Math.max(0, tokens - coldTokens),
       levels,
       capacityTokens: this.capacityTokens,
       sessionCapacityTokens: this.sessionCapacityTokens,
-      byKind: Object.fromEntries(byKind.map((row) => [row.kind, row.count])),
-      byKindTokens: Object.fromEntries(tokensByKind.map((row) => [row.kind, row.tokens])),
-      byStatus: Object.fromEntries(byStatus.map((row) => [row.status, row.count])),
-      oldest: bounds.oldest ?? undefined,
-      newest: bounds.newest ?? undefined,
+      byKind,
+      byKindTokens,
+      byStatus,
+      oldest,
+      newest,
     }
   }
 

@@ -84,6 +84,31 @@ Plain-node (no test loader) startup: `session-start` hook **282–413 ms**, MCP 
 
 Malformed JSON → `-32700`; unknown method → `-32601`; unknown tool → `isError` text; missing args → `isError`; unknown resource → `-32602`; duplicate `initialize` accepted; no crashes observed.
 
+## Performance pass (v0.3.1)
+
+Measured on the **same seeded 10,000-record store** (mixed ASCII/CJK cards, ~1.5 KB bodies) on a quiet pass (load avg ≈3), medians of 7 runs, CPU and wall time agreeing. Before/after:
+
+| Operation | Before | After | Δ |
+|---|---|---|---|
+| `facets` | 9.82 ms | **5.18 ms** | −47% |
+| `catalog` | 16.32 ms | **11.87 ms** | −27% |
+| search: long ASCII | 20.65 ms | **10.70 ms** | −48% |
+| search: short ASCII | 13.33 ms | **5.69 ms** | −57% |
+| search: generic NL | 20.92 ms | **10.45 ms** | −50% |
+| search: rescue (id anchor) | 23.87 ms | **12.92 ms** | −46% |
+| search: body fallback | 14.92 ms | **13.42 ms** | −10% |
+| search: CJK 2/3-char | 4.58 / 11.96 ms | 4.63 / 11.99 ms | ~0 |
+
+Changes:
+1. **Adaptive LIKE leg** — trigram FTS already matches substrings for terms ≥3 chars, so the 4-field leading-wildcard LIKE OR-scan only runs when the FTS leg is sparse; CJK terms always keep LIKE (no word boundaries in Chinese).
+2. **One-pass facets** — the 7 separate aggregate scans were replaced by a single `GROUP BY kind,status,scope,cold` pass folded in JS.
+3. **Single-read body fallback** — reads each candidate file once and reuses a precompiled regex instead of calling `grep()` per row; candidate cap 400 → 200.
+4. **Body-term rescue** is now anchored to identifier terms only (v0.3.0) — no full body scans.
+
+Recall guard (same 40-question real-archive suite): hit@5 **95% → 95%**, cold recall **100% → 100%**, hit@1 73% → 70% (a rescue-hit tie-break trade-off; synthetic/demo suites stay 100%). Raw numbers: [`docs/assets/benchmarks/perf-optimization.json`](assets/benchmarks/perf-optimization.json).
+
+Remaining perf work: LIKE/facets are now cheap relative to FTS bm25 ranking; the next candidates are caching facets per store epoch and a quiet-machine 100M-pool rerun.
+
 ## Suggested backlog
 
 | Priority | Item | Acceptance |
@@ -92,5 +117,5 @@ Malformed JSON → `-32700`; unknown method → `-32601`; unknown tool → `isEr
 | P0 | PreCompact/budget/Codex fixes (0.2.2) | harness 110/110 |
 | P1 | MCP parity tools + session handling (0.3.0) | 10 tools; L2 warning; U14 |
 | P1 | Real-client acceptance | Claude Code recognizes the MCP server (approval pending); Codex CLI not installed |
-| P2 | Retrieval perf pass (LIKE/fallback/facets) | needs a quiet-machine rerun; current absolute numbers are load-inflated |
+| P2 | Retrieval perf pass (LIKE/fallback/facets) — **done in 0.3.1**: facets −47%, long search −48%, real hit@5 95% preserved | 100M-pool quiet rerun still open |
 | P2 | Profile coverage/validation | 13 families covered; rerank weights still unvalidated on real data |

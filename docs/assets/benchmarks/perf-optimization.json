@@ -1,0 +1,56 @@
+{
+  "workload": "10,000 mixed ASCII/CJK records (~1.5 KB body each), same seeded store for both runs",
+  "measuredOn": "2026-10-29, load average ~3 (quiet pass; wall and CPU medians of 7)",
+  "operations": {
+    "facets": {
+      "beforeMs": 9.82,
+      "afterMs": 5.18,
+      "deltaPct": -47.3
+    },
+    "catalog": {
+      "beforeMs": 16.32,
+      "afterMs": 11.87,
+      "deltaPct": -27.3
+    },
+    "list20": {
+      "beforeMs": 5.65,
+      "afterMs": 5.63,
+      "deltaPct": -0.4
+    },
+    "searchAsciiLong": {
+      "beforeMs": 20.65,
+      "afterMs": 10.7,
+      "deltaPct": -48.2
+    },
+    "searchAsciiShort": {
+      "beforeMs": 13.33,
+      "afterMs": 5.69,
+      "deltaPct": -57.3
+    },
+    "searchCjk2": {
+      "beforeMs": 4.58,
+      "afterMs": 4.63,
+      "deltaPct": 1.1
+    },
+    "searchCjk3": {
+      "beforeMs": 11.96,
+      "afterMs": 11.99,
+      "deltaPct": 0.3
+    },
+    "searchBodyFallback": {
+      "beforeMs": 14.92,
+      "afterMs": 13.42,
+      "deltaPct": -10.1
+    },
+    "searchRescue": {
+      "beforeMs": 23.87,
+      "afterMs": 12.92,
+      "deltaPct": -45.9
+    },
+    "searchGeneric": {
+      "beforeMs": 20.92,
+      "afterMs": 10.45,
+      "deltaPct": -50.0
+    }
+  }
+}

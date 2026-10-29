@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.3.1
+
+### Performance
+- **Adaptive LIKE leg**: trigram FTS covers substrings for terms ≥3 chars, so the 4-field leading-wildcard OR-scan only runs when the FTS leg is sparse; CJK terms always keep LIKE.
+- **One-pass facets**: 7 aggregate scans → 1 `GROUP BY kind,status,scope,cold` pass folded in JS.
+- **Single-read body fallback**: candidates read once with a precompiled regex (no `grep()` per row); cap 400 → 200.
+- Measured on a 10k-record mixed store (quiet pass): facets **−47%**, catalog **−27%**, long-ASCII search **−48%**, generic search **−50%**, rescue search **−46%**, body fallback **−10%**; CJK unchanged. Real-archive hit@5 **95% → 95%**, cold **100%**, hit@1 73% → 70% (rescue tie-break); synthetic/demo 100%. Raw: `docs/assets/benchmarks/perf-optimization.json`.
+
 ## 0.3.0
 
 ### Added

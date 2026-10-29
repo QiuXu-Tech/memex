@@ -211,7 +211,7 @@ export const DEFAULT_RERANK_WEIGHTS = Object.freeze({
   useWhen: 1.2,
   tags: 1.6,
   abstract: 0.9,
-  body: 5,
+  body: 4.5,
   recency: 0.4,
   coldPenalty: 0.1,
   bm25: 0.8,
