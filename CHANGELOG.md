@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.2.1
+
+### Added
+- **Model-specific retrieval reranking**: profiles now carry rerank weights (title/tags/summary/useWhen/abstract/recency/coldPenalty/bm25) that the MCP server, Claude Code hooks and Codex adapter pass into `store.search`, plus `queryTerms.maxTerms` (16–24). `AgentMemory` accepts `profileOverrides` so an integration can tune ranking without forking a profile.
+- Tests U9–U10 cover the rerank merge and the engine → store propagation (108 tests total).
+
+### Fixed
+- (none)
+
 ## 0.2.0
 
 ### Added

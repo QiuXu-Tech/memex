@@ -197,6 +197,25 @@ export function memoryQueryTerms(text, maxTerms = 20) {
   return terms.slice(0, maxTerms)
 }
 
+/**
+ * Default retrieval rerank weights (see store.search).
+ *
+ * Profiles may override individual weights to tune ranking for a model family:
+ * e.g. CJK-heavy models boost the cold `abstract` field, tool-oriented models
+ * boost `useWhen`, long-context models damp `recency`. The store merges these
+ * with `query.rerank`.
+ */
+export const DEFAULT_RERANK_WEIGHTS = Object.freeze({
+  title: 3,
+  summary: 1.4,
+  useWhen: 1.2,
+  tags: 1.6,
+  abstract: 0.9,
+  recency: 0.4,
+  coldPenalty: 0.1,
+  bm25: 0.8,
+})
+
 /** Approximate token count used for accounting when the caller has no exact number. */
 export function estimateTokens(text) {
   return Math.max(1, Math.ceil(String(text ?? '').length / 4))

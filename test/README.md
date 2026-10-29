@@ -15,4 +15,4 @@ The host packages (`@deepseek-ai/cordis`, `schemastery`, `dsh-llm`, `dsh-tools`,
 node --import ./test/register.mjs ./test/run.mjs
 ```
 
-Expected output ends with `# 106/106 passed`. The suite prints one `ok <id> …` line per test.
+Expected output ends with `# 108/108 passed`. The suite prints one `ok <id> …` line per test.

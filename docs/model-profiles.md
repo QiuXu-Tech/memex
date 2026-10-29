@@ -27,6 +27,26 @@ Every integration resolves a **profile** from the running model id, then tunes m
 - **Digest prompt** — the compaction-summary prompt used by digest flows, tailored per family, always requiring an `ids:` line so evicted facts stay retrievable.
 - **Defaults** — e.g. Claude/DSH keep both L2+L3, Codex/Gemini default to L3 project memory.
 
+## Retrieval reranking
+
+Each profile also carries **rerank weights** for the hybrid search: the store merges them over `DEFAULT_RERANK_WEIGHTS` (`title 3.0, tags 1.6, summary 1.4, useWhen 1.2, abstract 0.9, recency 0.4, coldPenalty 0.1, bm25 0.8`). This is the ranking half of model-specific adaptation; the fields above tune injection and prompting.
+
+| Profile | Rerank override | Why |
+|---|---|---|
+| `claude` | title 3.2 · useWhen 1.6 · recency 0.3 | tool-oriented; "when to read" matters more than freshness |
+| `openai` | tags 1.8 · summary 1.5 · recency 0.55 | codex-style agents surface fresh labels and concise summaries |
+| `gemini` | tags 2.0 · summary 1.6 · title 2.8 | large-context models tolerate broader recall; tag/summary anchors help |
+| `deepseek` | abstract 1.3 · summary 1.5 · recency 0.35 | CJK sessions rely on bounded cold abstracts |
+| `qwen` / `kimi` / `glm` | abstract 1.2 · summary 1.4 · recency 0.3 | CJK + long-context; damp recency |
+| `llama` | title 3.4 · abstract 0.7 · recency 0.25 | lean ranking, less field noise |
+| `generic` | defaults | fallback |
+
+Integrations pass `profile.rerank` into `store.search` automatically (MCP, Claude Code hooks, Codex), and `profile.queryTerms.maxTerms` bounds query extraction (16–24 terms). Override per integration:
+
+```js
+new AgentMemory({ model: 'claude-sonnet-4', profileOverrides: { rerank: { tags: 2.2 }, windowTokens: 128_000 } })
+```
+
 ## Override
 
 ```bash

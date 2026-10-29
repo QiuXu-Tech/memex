@@ -37,6 +37,8 @@ export class AgentMemory {
    * @param {string} [options.agent] - Integration name recorded in provenance.
    * @param {number} [options.capacityTokens] - L3 capacity (default 100M).
    * @param {number} [options.sessionCapacityTokens] - L2 capacity (default 10M).
+   * @param {object} [options.profileOverrides] - Per-integration model-profile overrides
+   *   (e.g. `{ rerank: { tags: 1.9 }, windowTokens: 128000 }`).
    */
   constructor(options = {}) {
     this.root = options.root ?? defaultMemoryRoot()
@@ -45,7 +47,7 @@ export class AgentMemory {
     this.workspaceKey = options.workspaceKey ?? memoryWorkspaceKey(this.cwd, this.sessionId)
     this.agent = options.agent ?? 'generic-agent'
     this.modelId = options.model ?? ''
-    this.profile = resolveModelProfile(this.modelId)
+    this.profile = resolveModelProfile(this.modelId, options.profileOverrides ?? {})
     this.store = new LocalStoreCore({
       root: this.root,
       capacityTokens: options.capacityTokens ?? 100_000_000,
@@ -115,6 +117,8 @@ export class AgentMemory {
       scopes: this.scopes,
       sessionId: this.sessionId,
       limit: limit ?? this.profile.maxSearchResults,
+      rerank: this.profile.rerank,
+      maxTerms: this.profile.queryTerms?.maxTerms,
       ...(kind === undefined ? {} : { kind }),
       ...(status === undefined ? {} : { status }),
     })

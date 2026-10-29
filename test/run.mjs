@@ -3748,6 +3748,58 @@ await test('U8', 'DSH seam and core stay one vocabulary: engine writes are visib
   }
 })
 
+
+await test('U9', 'per-model rerank weights tune ranking and merge over defaults', async () => {
+  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
+  assert.equal(profiles.resolveModelProfile('claude').rerank.title, 3.2)
+  assert.equal(profiles.resolveModelProfile('gemini').rerank.tags, 2)
+  assert.equal(profiles.resolveModelProfile('deepseek-chat').rerank.abstract, 1.3)
+  assert.equal(profiles.resolveModelProfile('llama-3.1').rerank.abstract, 0.7)
+  assert.equal(profiles.resolveModelProfile('unknown').rerank.title, 3)
+  const { LocalStoreCore } = await import('../packages/dsh-memory-core/lib/store.js')
+  const root = makeRoot('u9')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000, sessionCapacityTokens: 100_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    const titleRecord = store.write({ kind: 'fact', title: 'Needle title record', body: 'title asks about needle', workspaceKey: 'wk-u9' })
+    const tagRecord = store.write({ kind: 'fact', title: 'Tag match record', body: 'tagged evidence', tags: { needle: ['true'] }, workspaceKey: 'wk-u9' })
+    const byDefault = store.search({ query: 'needle', workspaceKey: 'wk-u9', scope: 'workspace', limit: 5 })
+    assert.equal(byDefault.hits[0].id, titleRecord.id, 'default weights prefer the title hit')
+    const byTags = store.search({ query: 'needle', workspaceKey: 'wk-u9', scope: 'workspace', limit: 5, rerank: { tags: 6, title: 0.2 } })
+    assert.equal(byTags.hits[0].id, tagRecord.id, 'tag-boosted rerank prefers the tag hit')
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+await test('U10', 'engine applies the model profile rerank and accepts per-integration overrides', async () => {
+  const root = makeRoot('u10')
+  const writer = new AgentMemory({ root, cwd: '/tmp/u10-ws', sessionId: 'u10', levels: ['l3'], model: 'claude-sonnet-4', agent: 'test' })
+  let titleId
+  let tagId
+  try {
+    titleId = writer.write({ kind: 'fact', title: 'Needle title record', body: 'title asks about needle', workspaceKey: 'wk-u10' }).id
+    tagId = writer.write({ kind: 'fact', title: 'Tag match record', body: 'tagged evidence', tags: { needle: ['true'] }, workspaceKey: 'wk-u10' }).id
+  } finally {
+    writer.close()
+  }
+  const defaultEngine = new AgentMemory({ root, cwd: '/tmp/u10-ws', sessionId: 'u10', levels: ['l3'], model: 'claude-sonnet-4', agent: 'test' })
+  try {
+    assert.equal(defaultEngine.search({ query: 'needle' }).hits[0].id, titleId, 'claude profile keeps title-first ranking')
+  } finally {
+    defaultEngine.close()
+  }
+  const overridden = new AgentMemory({ root, cwd: '/tmp/u10-ws', sessionId: 'u10', levels: ['l3'], model: 'gpt-5', agent: 'test', profileOverrides: { rerank: { tags: 6, title: 0.2 } } })
+  try {
+    const hits = overridden.search({ query: 'needle' }).hits
+    assert.equal(hits[0].id, tagId, 'profileOverrides.rerank reaches store.search')
+    assert.equal(overridden.profile.id, 'openai')
+    assert.equal(overridden.profile.rerank.tags, 6)
+  } finally {
+    overridden.close()
+  }
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

@@ -31,7 +31,7 @@ Long conversations and long-running projects hit the same wall: the native conte
 - **Lossless by default**: raw conversation/tool output is stored verbatim (markdown files + SQLite index) — no LLM summarization on the critical path.
 - **Capacity compression on demand**: when a pool is near full the model asks the user first; compression then applies a **cold tier** (lossless, zero-LLM) and optionally **bounded map-reduce digests** (batched, resumable, never one giant prompt).
 - **Cheap recall**: hybrid keyword retrieval (FTS + card fields + bounded cold abstracts + lexical rerank), ~1–5 ms on realistic archives, tens of tokens per hit.
-- **Model-specific adaptation**: profiles tuned per model family (context window, chars/token ratio, injection format XML/markdown/plain, catalog/recall budgets, digest prompt style, bilingual CJK guidance) — see [docs/model-profiles.md](docs/model-profiles.md).
+- **Model-specific adaptation**: profiles tuned per model family — context window, chars/token ratio, injection format (XML/Markdown/plain), catalog/recall budgets, digest prompt style, bilingual CJK guidance **and retrieval rerank weights** (title/tags/summary/useWhen/abstract/recency/bm25) passed into hybrid search — see [docs/model-profiles.md](docs/model-profiles.md).
 
 ## Features
 

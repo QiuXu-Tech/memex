@@ -1,6 +1,6 @@
 {
   "name": "@qiuxu/dsh-memory-checkpoint",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "private": true,
   "description": "Compaction checkpoint policy: lossless archive of shadowed regions, tagged cards, bounded catalog/receipt/recall injection.",
   "type": "module",

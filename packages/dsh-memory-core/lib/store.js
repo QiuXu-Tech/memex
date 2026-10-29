@@ -18,7 +18,7 @@ import { createHash, randomUUID } from 'node:crypto'
 import {
   MEMORY_KINDS, MEMORY_STATUSES, MEMORY_TRUST, MEMORY_TEXT_LIMITS,
   MEMORY_LEVELS, MEMORY_MODES, MEMORY_SCOPES, MEMORY_LEVEL_SCOPE, memoryCaptureScope, memoryLevelsFromRow, memoryVisibleScopes,
-  archiveRecordId, clipText, estimateTokens, memoryQueryTerms,
+  archiveRecordId, clipText, estimateTokens, memoryQueryTerms, DEFAULT_RERANK_WEIGHTS,
 } from '../index.js'
 
 /** Bounded prompt-free abstract of a raw body, used for cold-tier search. */
@@ -473,7 +473,7 @@ export class LocalStoreCore {
     const limit = clampLimit(query.limit, 12)
     // Natural-language queries are decomposed into bounded retrieval terms; the
     // same extractor drives auto-recall so both paths agree.
-    const terms = memoryQueryTerms(query.query)
+    const terms = memoryQueryTerms(query.query, query.maxTerms)
     if (terms.length === 0) return { hits: [], total: 0 }
     const lowerTerms = terms.map((term) => term.toLowerCase())
     const { clauses, params } = this.workspaceClause(query, { alias: 'r.' })
@@ -541,14 +541,15 @@ export class LocalStoreCore {
       const card = this.cardFromRow(row)
       const ageDays = Math.max(0, (now - (card.updatedAt ?? now)) / 86_400_000)
       const rankScore = row.rank === 0 || row.rank === undefined ? 0.35 : 1 / (1 + Math.max(0, Number(row.rank)))
-      const score = rankScore * 0.8
-        + fieldHits(card.title, 3)
-        + fieldHits(card.summary, 1.4)
-        + fieldHits(card.useWhen, 1.2)
-        + fieldHits(tagsText(card.tags), 1.6)
-        + fieldHits(row.abstract, 0.9)
-        + Math.max(0, 1 - ageDays / 60) * 0.4
-        - (card.cold === true ? 0.1 : 0)
+      const sweep = { ...DEFAULT_RERANK_WEIGHTS, ...(query.rerank ?? {}) }
+      const score = rankScore * sweep.bm25
+        + fieldHits(card.title, sweep.title)
+        + fieldHits(card.summary, sweep.summary)
+        + fieldHits(card.useWhen, sweep.useWhen)
+        + fieldHits(tagsText(card.tags), sweep.tags)
+        + fieldHits(row.abstract, sweep.abstract)
+        + Math.max(0, 1 - ageDays / 60) * sweep.recency
+        - (card.cold === true ? sweep.coldPenalty : 0)
       ranked.push({ card, row, score })
     }
     ranked.sort((left, right) => right.score - left.score || (right.card.updatedAt ?? 0) - (left.card.updatedAt ?? 0))
