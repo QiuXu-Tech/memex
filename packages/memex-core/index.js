@@ -214,6 +214,7 @@ export const DEFAULT_RERANK_WEIGHTS = Object.freeze({
   body: 4.5,
   coldAnchor: 30,
   coldAbstract: 4,
+  coldPartial: 2,
   recency: 0.4,
   coldPenalty: 0.1,
   bm25: 0.8,

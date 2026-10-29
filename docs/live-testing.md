@@ -11,37 +11,36 @@ Tracking request and discussion: [issue #1](https://github.com/QiuXu-Tech/memex/
 
 ## DeepSeek Flash results (2026-10-29)
 
-**Methodology warning for sections A and B and the current harness:** the
-published runs report model answers, but the harness does not reliably construct the stated most-recent tail. It archives
-older records and then selects the tail by updated time, which archiving also
-changes. A [three-seed offline reproduction](assets/benchmarks/results-live-ab-tail-check-v050.json)
-of the 300-turn v0.5.0 fixture included turn 270 and omitted turn 285 from all
-three generated contexts. The original actual tail and provider transcripts
-were not saved in the result JSON, so their exact membership cannot be verified
-from that file. The reported “evicted” subsets and comparisons with the last
-20 turns require a corrected harness and a new live run. See the
-[benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md#6-live-ab-qualification) for the scope and
-timestamp discrepancy. The corrected live run has **not** been performed.
+**Tail-membership status:** v0.8.0 fixes the harness: the exact newest-tail
+record ids are saved in `plan.json`, every probe carries `inTail`/`evicted`,
+and the control prompt is built from those exact rows. A fresh three-seed
+DeepSeek Flash rerun is now **verified**: control **3/60**, treatment **60/60**,
+evicted subset **0/57 → 57/57**. Raw: [verified multi-seed evidence](assets/benchmarks/live-ab-deepseek-multiseed.json).
+
+The older GPT-6.1 Sol contribution was collected before the fix; its overall
+control/treatment answers are preserved, but its reported “cold” subset remains
+unverified. Rerun `scripts/codex-ab.mjs` with the fixed bridge to verify it.
+See the [benchmark report](https://github.com/QiuXu-Tech/memex/blob/main/docs/benchmark.md#6-live-ab-qualification) for the historical caveat.
 
 ### A. Evidence-in-prompt A/B
 
-Two fresh-context calls on **DeepSeek Flash** (via DSH's DeepSeek Account route), synthetic 120-turn fixture and 8 deep-fact questions. The result file classifies seven as outside the tail; actual tail membership was not saved.
+Historical pre-fix 8-probe run (the 3-seed rerun below supersedes it). Two fresh-context calls on **DeepSeek Flash** (via DSH's DeepSeek Account route), synthetic 120-turn fixture and 8 deep-fact questions. Actual tail membership was not saved; treat this table as historical.
 
-| Condition | Overall | Reported evicted-fact subset |
+| Condition | Overall | Reported evicted-fact subset (historical, unverified) |
 |---|---|---|
 | control (recent tail only) | **1/8 (12.5%)** | **0/7 (0%)** |
 | treatment (tail + memex evidence) | **8/8 (100%)** | **7/7 (100%)** |
 
-The classification of the single control success and the seven reported evicted facts is subject to the warning above.
+This 8-probe table is historical; the verified three-seed rerun is below.
 
 ### B. Multi-seed replication (3 seeds × 300-turn history × 20 probes)
 
-| Condition | Overall | Reported evicted records (excluding one fact per seed) | Reported cold-tier natural-language subset (turns 0–135) |
+| Condition | Overall | **Verified** evicted records (inTail=false) | Verified cold natural-language subset |
 |---|---|---|---|
 | control | **3/60 (5%)** | **0/57 (0%)** | 0/30 |
 | treatment | **60/60 (100%)** | **57/57 (100%)** | **30/30 (100%)** |
 
-The first multi-seed run exposed a cold-tier natural-language gap (0/30). After the **v0.5.0 cold-context fix** (card fields + bare turn numbers in `record_terms`, exact anchors for cold rescue) every cold probe is recovered. **v0.5.1** extends the same idea to hot bodies: a bare number can trigger body rescue and enrich an already-candidate row with body evidence, so Q19 (turn 285) is now recovered too. Treatment is **60/60** across the three seeds.
+Harness v0.8.0 saves the exact tail ids and probe `inTail`/`evicted` flags. In this verified rerun the newest tail contains one queried fact (turn 285), so controls answer exactly that one per seed (3/60); all **19 evicted probes per seed (57 total)** are answered only with memex evidence (57/57). The first multi-seed run had exposed the cold natural-language gap; the v0.5/v0.7 anchors and rescues close it on this fixture.
 
 ### C. Full agent loop (tools, n=1)
 
@@ -89,7 +88,20 @@ A Codex CLI contribution (`gpt-6.1-sol`) ran the same bridge: **3 seeds × 20 pr
 
 All 20 treatment answers per seed were exact FACT ids; each control success was the one fact present in the shown tail. This is the **second model family** showing the same evidence-in-prompt pattern (DeepSeek Flash: 3/60 → 60/60; GPT-6.1 Sol: 3/60 → 60/60).
 
-**Caveat:** the `cold` subset is a reported classification, not a verified recently-evicted subset — the existing `live-ab.mjs` recent-tail construction has the ordering issue described above. Raw report: [live-ab-codex-gpt.json](assets/benchmarks/live-ab-codex-gpt.json).
+**Caveat:** this report was collected before the harness fix; its overall control/treatment answers are preserved, but the reported `cold` subset is not a verified recently-evicted subset. Rerun the fixed `scripts/codex-ab.mjs` to verify it. Raw: [live-ab-codex-gpt.json](assets/benchmarks/live-ab-codex-gpt.json).
+
+### G. Cold anchor-free morphology/synonym + partial coverage (n=3, v0.8.0)
+
+Questions are anchor-free and the records are cold. They exercise morphology-lite (`decide` ↔ `decision`), synonym phrasing, and a partial-coverage case with an extra query term.
+
+| Condition | Result |
+|---|---|
+| control (recent tail only) | **0/3** — all UNKNOWN |
+| treatment (memex evidence) | **3/3** — `FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU` |
+
+Mechanism: stopword-filtered content terms, prefix ≥4 loose matching, cold-only FTS variants + cold abstract prefix LIKE, and a cold partial-coverage boost (`coldPartial`) gated to protect fully-covered hot cards. Cold bodies are not read. Raw: [evidence](assets/benchmarks/live-ab-deepseek-cold-partial.json).
+
+**Trade-off:** the partial boost is on by default and costs ~3pp real-archive hit@1 (68% → 65%) while hit@5 stays 93%; set `coldPartial: 0` in rerank for the precision-first behavior.
 
 ## How to contribute
 
@@ -127,11 +139,11 @@ Requirements: Node >= 22 (`node -v`; `npx -y node@22 scripts/codex-ab.mjs ...` w
 
 The control/treatment prompts are synthetic; review the `raw` replies before publishing. Codex has its own tools, so the prompts ask it not to use them — the per-run work directories are isolated and `--sandbox read-only` is used.
 
-The generated prompts inherit the [retained-tail issue](#deepseek-flash-results-2026-10-29) described above; they should not be interpreted as a verified recent-tail comparison until it is fixed.
+The bridge now saves exact tail ids and probe `inTail`/`evicted` flags; reports are verified against the actual control prompt. Existing pre-fix reports (e.g. GPT-6.1 Sol v0.7.1) remain caveated.
 
 ## What the harness measures
 
-The intended comparison for each synthetic long-horizon question uses two conditions on the same model. The current retained-tail construction has the limitation described above:
+The intended comparison for each synthetic long-horizon question uses two conditions on the same model. The v0.8.0 harness saves exact tail membership:
 
 - **control** — only the most recent tail is in context; older facts are evicted;
 - **treatment** — tail + Memex `memory_search`/`memory_open` evidence for that question.

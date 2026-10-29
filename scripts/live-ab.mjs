@@ -66,12 +66,18 @@ for (let index = 0; index < TURNS; index += 1) {
 // L1 eviction). list() clamps to 100 rows, so read all ids from the DB.
 const allRows = store.database().prepare('SELECT id FROM records ORDER BY created_at ASC, id ASC').all()
 for (const row of allRows.slice(0, Math.max(0, allRows.length - TAIL_RECORDS))) store.archiveCold(row.id)
-const tailCards = store.list({ workspaceKey: WS, scopes: ['workspace'], limit: TAIL_RECORDS })
-const tailText = tailCards.map((card) => `${card.title}\n${card.summary}`).join('\n')
+// v0.7.2: record the exact tail membership instead of re-querying list() (whose
+// ordering was not guaranteed to match the archived region). Tail ids are the
+// newest TAIL_RECORDS by insertion order; the control prompt is built from
+// exactly these rows and the plan records inTail/evicted for verification.
+const tailIds = allRows.slice(-TAIL_RECORDS).map((row) => row.id)
+const tailIdsSet = new Set(tailIds)
+const tailRows = tailIds.map((id) => store.database().prepare('SELECT * FROM records WHERE id = ?').get(id)).filter(Boolean)
+const tailText = tailRows.map((row) => `${row.title}\n${row.summary}`).join('\n')
 store.close()
 const evidenceCore = new LocalStoreCore({ root: ROOT, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
 
-const probes = facts.slice(0, PROBES)
+const probes = facts.slice(0, PROBES).map((probe) => ({ ...probe, inTail: tailIdsSet.has(probe.id), evicted: !tailIdsSet.has(probe.id) }))
 const buildPrompt = (probe, withMemory) => {
   const control = `You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\n${tailText}\n\nQuestion: what durable value was recorded at turn ${probe.turn} for ${probe.topic}? Answer with the exact FACT id only.`
   if (!withMemory) return control
@@ -175,7 +181,7 @@ if (EMIT_DIR !== undefined) {
   mkdirSync(EMIT_DIR, { recursive: true })
   writeFileSync(join(EMIT_DIR, 'control.txt'), buildBatchPrompt(false))
   writeFileSync(join(EMIT_DIR, 'treatment.txt'), buildBatchPrompt(true))
-  writeFileSync(join(EMIT_DIR, 'plan.json'), JSON.stringify({ generatedAt: new Date().toISOString(), seed: SEED, turns: TURNS, tail: TAIL_RECORDS, probes: probes.map((probe, index) => ({ index, turn: probe.turn, topic: probe.topic, expected: probe.fact, id: probe.id })) }, null, 2))
+  writeFileSync(join(EMIT_DIR, 'plan.json'), JSON.stringify({ generatedAt: new Date().toISOString(), seed: SEED, turns: TURNS, tailCount: TAIL_RECORDS, tailIds, tailRecords: tailRows.map((row) => ({ id: row.id, title: row.title, summary: row.summary })), probes: probes.map((probe, index) => ({ index, turn: probe.turn, topic: probe.topic, expected: probe.fact, id: probe.id, inTail: probe.inTail, evicted: probe.evicted })) }, null, 2))
   console.log(JSON.stringify({ emitted: EMIT_DIR, probes: probes.length, controlBytes: buildBatchPrompt(false).length, treatmentBytes: buildBatchPrompt(true).length }, null, 2))
   evidenceCore.close()
   rmSync(ROOT, { recursive: true, force: true })
@@ -184,7 +190,7 @@ if (EMIT_DIR !== undefined) {
 
 const report = { generatedAt: new Date().toISOString(), dryRun: DRY_RUN, probes: probePlan(), providers: [] }
 function probePlan() {
-  return probes.map((probe) => ({ turn: probe.turn, topic: probe.topic, expected: probe.fact, controlChars: buildPrompt(probe, false).length, treatmentChars: buildPrompt(probe, true).length }))
+  return probes.map((probe) => ({ turn: probe.turn, topic: probe.topic, expected: probe.fact, inTail: probe.inTail, evicted: probe.evicted, controlChars: buildPrompt(probe, false).length, treatmentChars: buildPrompt(probe, true).length }))
 }
 
 if (DRY_RUN) {

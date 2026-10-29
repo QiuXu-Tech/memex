@@ -1,0 +1,37 @@
+{
+  "format": 1,
+  "kind": "live-ab-cold-partial-result",
+  "generatedAt": "2026-10-29T19:15:00+08:00",
+  "provider": "deepseek-account",
+  "model": "deepseek-flash",
+  "method": "cold anchor-free questions with morphology/synonym and partial coverage; evidence-in-prompt control/treatment",
+  "fixture": {
+    "records": 80,
+    "facts": 3,
+    "cold": true,
+    "questions": [
+      "what did we decide about the billing retry policy?",
+      "what did we decide about auth token rotation schedule?",
+      "which way did we go on the cache eviction policy?"
+    ],
+    "expected": [
+      "FACT-BILL-OK",
+      "FACT-AUTH-30D",
+      "FACT-CACHE-LRU"
+    ]
+  },
+  "control": {
+    "correct": 0,
+    "n": 3
+  },
+  "treatment": {
+    "correct": 3,
+    "n": 3
+  },
+  "mechanism": "morphology-lite (decide\u2194decision, prefix \u22654), cold-only FTS variants, cold abstract prefix LIKE candidate leg, stopword-filtered full/partial cold coverage boost (coldPartial, opt-out available)",
+  "notes": [
+    "n=3 probes, one model; synthetic fixture; evidence-in-prompt.",
+    "Cold body files are not read.",
+    "Real-archive guard: hit@1 65% / hit@5 93% / cold 94% / p50 ~2.9ms; partial boost costs ~3pp hit@1 vs conservative coldPartial=0 (68%)."
+  ]
+}

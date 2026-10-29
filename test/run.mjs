@@ -3756,7 +3756,7 @@ await test('U8', 'DSH seam and core stay one vocabulary: engine writes are visib
 
 
 await test('U9', 'per-model rerank weights tune ranking and merge over defaults', async () => {
-  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, body: 4.5, coldAnchor: 30, coldAbstract: 4, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
+  assert.deepEqual(core.DEFAULT_RERANK_WEIGHTS, { title: 3, summary: 1.4, useWhen: 1.2, tags: 1.6, abstract: 0.9, body: 4.5, coldAnchor: 30, coldAbstract: 4, coldPartial: 2, recency: 0.4, coldPenalty: 0.1, bm25: 0.8 })
   assert.equal(profiles.resolveModelProfile('claude').rerank.title, 3.2)
   assert.equal(profiles.resolveModelProfile('gemini').rerank.tags, 2)
   assert.equal(profiles.resolveModelProfile('deepseek-chat').rerank.abstract, 1.3)
@@ -4144,6 +4144,39 @@ await test('U23', 'cold anchor-free recall pages a fully covered cold abstract',
     for (const row of all.slice(0, all.length - 20)) store.archiveCold(row.id)
     const hits = store.search({ query: 'what was the billing retry policy decision?', workspaceKey: 'wk-u23', scope: 'workspace', limit: 5 }).hits
     assert.equal(hits[0].title, 'decision record 20', 'cold anchor-free recall must page the decision record first')
+  } finally {
+    store.close()
+    rmSync(root, { recursive: true, force: true })
+  }
+})
+
+
+await test('U24', 'cold morphology-lite and partial coverage recall (decide/decision + extra term)', async () => {
+  const { LocalStoreCore } = await import('../packages/memex-core/lib/store.js')
+  const root = makeRoot('u24')
+  const store = new LocalStoreCore({ root, capacityTokens: 1_000_000_000, sessionCapacityTokens: 100_000_000, defaultLevels: { l2: false, l3: false } })
+  try {
+    for (let index = 0; index < 80; index += 1) {
+      let title = `work note ${index}`
+      let summary = `weekly log ${index}`
+      let body = `Routine weekly note ${index}.`
+      if (index === 20) {
+        title = 'decision record 20'
+        summary = 'decision record'
+        body = 'The billing retry policy decision is FACT-BILL-OK; keep it. ' + 'technical notes '.repeat(40)
+      } else if (index >= 40) {
+        title = `billing note ${index}`
+        summary = `retry note ${index}`
+        body = 'General billing retry notes.'
+      }
+      store.write({ kind: 'episode', title, summary, useWhen: 'read when continuing work', body, workspaceKey: 'wk-u24', scope: 'workspace', tokens: 30 })
+    }
+    const all = store.database().prepare('SELECT id FROM records ORDER BY created_at ASC, id ASC').all()
+    for (const row of all.slice(0, all.length - 20)) store.archiveCold(row.id)
+    const synonym = store.search({ query: 'what did we decide about the billing retry policy?', workspaceKey: 'wk-u24', scope: 'workspace', limit: 5 }).hits
+    assert.equal(synonym[0].title, 'decision record 20', 'morphology-lite (decide/decision) must page the cold decision first')
+    const partial = store.search({ query: 'what did we decide about billing retry policy latency?', workspaceKey: 'wk-u24', scope: 'workspace', limit: 5 }).hits
+    assert.equal(partial[0].title, 'decision record 20', 'partial cold coverage (extra query term) must still page the decision first')
   } finally {
     store.close()
     rmSync(root, { recursive: true, force: true })

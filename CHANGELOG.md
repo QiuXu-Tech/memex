@@ -1,10 +1,10 @@
 # Changelog
 
-**Measurement note:** the 8-probe and multi-seed live A/B entries below retain their
-reported counts, but the harness's recent-tail construction has a reproducible
-ordering problem. The original tail membership was not saved; see the
-[live-testing methodology warning](docs/live-testing.md#deepseek-flash-results-2026-10-29)
-before interpreting the reported evicted subsets.
+**Measurement note (historical):** the pre-v0.8.0 8-probe and multi-seed entries
+retain their reported counts; their original tail membership was not saved.
+**v0.8.0 fixes the harness and the DeepSeek multi-seed rerun is verified**
+(control 3/60, treatment 60/60, evicted 0/57 → 57/57); see
+[docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
 ## 0.7.1
 
@@ -12,6 +12,19 @@ before interpreting the reported evicted subsets.
 - **Codex CLI / GPT-6.1 Sol live A/B (contributed)**: 3 seeds × 20 probes; control **3/60 (5%)**, treatment **60/60 (100%)**; reported cold subset 3/57 → 57/57. This is the second model family reproducing the evidence-in-prompt pattern (DeepSeek Flash also 3/60 → 60/60).
 - Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
 - Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
+
+## 0.8.0
+
+### Fixed — retained-tail harness + verified multi-seed rerun
+- `scripts/live-ab.mjs` now records the exact newest-tail ids (`tailIds`, `tailRecords`) and per-probe `inTail`/`evicted` flags in `plan.json`; the control prompt is built from exactly those rows. `scripts/codex-ab.mjs` grades the verified evicted subset.
+- Fresh DeepSeek Flash 3-seed rerun: control **3/60 (5%)**, treatment **60/60 (100%)**, verified evicted **0/57 → 57/57** — no longer a "reported" number. Evidence: `docs/assets/benchmarks/live-ab-deepseek-multiseed.json`.
+- The older GPT-6.1 Sol report (v0.7.1) predates the fix; its overall answers are preserved and its cold subset stays caveated.
+
+### Added — cold partial/synonym anchor-free recall
+- Morphology-lite matching (`decide` ↔ `decision`), cold-only FTS prefix variants, cold abstract prefix LIKE candidates, stopword-filtered content terms, and a default partial-coverage cold boost (`coldPartial: 2`).
+- Live DeepSeek cold anchor-free morphology/synonym/partial run (n=3): control **0/3**, treatment **3/3** (`FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU`). Evidence: `docs/assets/benchmarks/live-ab-deepseek-cold-partial.json`.
+- **U24** covers morphology + partial coverage; harness **121/121**.
+- Trade-off documented: real-archive hit@1 **68% → 65%**, hit@5 **93%**, cold recall 94%, p50 ~2.9 ms; set `coldPartial: 0` for precision-first behavior.
 
 ## 0.7.0
 

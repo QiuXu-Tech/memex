@@ -39,6 +39,9 @@ function abstractOfBody(body) {
 // without any number/identifier still rely on card summaries / memory_grep.
 
 const BODY_TERM_LIMIT = 2000
+// Query scaffolding words should not count toward cold natural-language
+// coverage; otherwise "what did we decide..." can never look "fully covered".
+const CONTENT_STOPWORDS = new Set(['what', 'did', 'does', 'do', 'we', 'you', 'i', 'the', 'a', 'an', 'about', 'was', 'were', 'is', 'are', 'be', 'been', 'of', 'to', 'for', 'in', 'on', 'with', 'which', 'that', 'this', 'it', 'how', 'when', 'where', 'who', 'why', 'and', 'or', 'not', 'no', 'yes', 'way', 'go', 'went'])
 const BODY_TERM_CHARS = 262_144
 
 /** FNV-1a 32-bit hash (deterministic, dependency-free). */
@@ -592,6 +595,8 @@ export class LocalStoreCore {
     ])]
     const keyTerms = anchorTerms.filter((term) => term.length >= 1 && isIdentifierToken(term))
     const meaningfulTerms = [...new Set(lowerTerms.filter((term) => term.length >= 3))]
+    const contentColdTerms = [...new Set(meaningfulTerms.filter((term) => !CONTENT_STOPWORDS.has(term)))]
+    const coldTerms = contentColdTerms.length >= 2 ? contentColdTerms : meaningfulTerms
     const { clauses, params } = this.workspaceClause(query, { alias: 'r.' })
     const where = clauses.map((clause) => `AND ${clause}`).join(' ')
     const rowsById = new Map()
@@ -612,15 +617,41 @@ export class LocalStoreCore {
     // Cold-only FTS leg for anchor-free questions: a cold page whose abstract
     // carries the answer must be in the rerank set even when hot cards fill the
     // primary candidate pool. Bounded and cold-only; cheap.
-    const hasFullyCoveredColdCandidate = meaningfulTerms.length >= 2 && [...rowsById.values()].some((row) => row.cold === 1 && meaningfulTerms.every((term) => termMatchesText(`${row.title} ${row.summary} ${row.use_when} ${row.abstract ?? ''}`.toLowerCase(), term)))
-    if (ftsMatch !== undefined && keyTerms.length === 0 && !hasFullyCoveredColdCandidate) {
+    const coldTextOf = (row) => `${row.title} ${row.summary} ${row.use_when} ${row.abstract ?? ''}`.toLowerCase()
+    const hasFullyCoveredColdCandidate = coldTerms.length >= 2 && [...rowsById.values()].some((row) => row.cold === 1 && coldTerms.every((term) => termMatchesLoose(coldTextOf(row), term)))
+    const coldFtsTerms = [...new Set([
+      ...ftsTerms,
+      // Morphology-lite variants for cold-only candidate discovery (decide → deci).
+      ...ftsTerms.filter((term) => term.length >= 5).map((term) => term.slice(0, 4)),
+    ])]
+    const coldFtsMatch = coldFtsTerms.length > 0 ? coldFtsTerms.map((term) => `"${term.replaceAll('"', '""')}"`).join(' OR ') : undefined
+    if (coldFtsMatch !== undefined && keyTerms.length === 0 && !hasFullyCoveredColdCandidate) {
       const coldRows = db.prepare(`
         SELECT r.*, snippet(records_fts, 1, '[', ']', '…', 16) AS snippet, bm25(records_fts) AS rank
         FROM records_fts JOIN records r ON r.rowid = records_fts.rowid
         WHERE records_fts MATCH ? ${where} AND r.cold = 1
         ORDER BY rank, r.updated_at DESC LIMIT ?
-      `).all(ftsMatch, ...params, Math.max(limit * 8, 40))
+      `).all(coldFtsMatch, ...params, Math.max(limit * 16, 80))
       for (const row of coldRows) if (!rowsById.has(row.id)) rowsById.set(row.id, row)
+    }
+    // Cold abstract LIKE rescue for morphology-lite/synonym queries: FTS
+    // trigrams can miss decide ↔ decision, so probe the bounded abstract
+    // column with 4-char prefixes of longer English query terms. Only when no
+    // fully covered cold candidate exists; cold-tier abstracts are in the DB,
+    // so this never reads cold body files.
+    if (keyTerms.length === 0 && coldTerms.length >= 2 && !hasFullyCoveredColdCandidate) {
+      const likeTerms = [...new Set(coldTerms.filter((term) => term.length >= 5 && /[a-z]/.test(term)).map((term) => term.slice(0, 4)))].slice(0, 4)
+      if (likeTerms.length > 0) {
+        const { clauses: coldClauses, params: coldParams } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 1, kind: query.kind, status: query.status }, { alias: 'r.' })
+        const coldWhere = coldClauses.length > 0 ? `AND ${coldClauses.join(' AND ')}` : ''
+        const likeSql = likeTerms.map(() => 'r.abstract LIKE ?').join(' OR ')
+        const coldLikes = db.prepare(`
+          SELECT r.*, '' AS snippet, 0 AS rank FROM records r
+          WHERE (${likeSql}) ${coldWhere}
+          ORDER BY r.updated_at DESC LIMIT 40
+        `).all(...likeTerms.map((term) => `%${term}%`), ...coldParams)
+        for (const row of coldLikes) if (!rowsById.has(row.id)) rowsById.set(row.id, row)
+      }
     }
     // LIKE acts as the second retrieval leg for terms FTS trigrams cannot
     // tokenize (short terms and CJK bigrams). For terms of 3+ characters the
@@ -838,6 +869,14 @@ export class LocalStoreCore {
         }
       }
     }
+    // Partial cold boosts are suppressed when a hot card already covers every
+    // meaningful term: the hot card is the precise answer, and a partial cold
+    // match must not displace it just because it is older.
+    const hotHasFullCoverage = coldTerms.length >= 2 && [...rowsById.values()].some((row) => row.cold === 0 && coldTerms.every((term) => termMatchesLoose(`${row.title} ${row.summary} ${row.use_when} ${row.tags_json} ${row.abstract ?? ''}`.toLowerCase(), term)))
+    const bestHotCoverage = [...rowsById.values()].filter((row) => row.cold === 0).reduce((best, row) => {
+      const text = `${row.title} ${row.summary} ${row.use_when} ${row.tags_json} ${row.abstract ?? ''}`.toLowerCase()
+      return Math.max(best, coldTerms.filter((term) => termMatchesLoose(text, term)).length)
+    }, 0)
     // Hybrid rerank: lexical field matches + body evidence + cold abstract + recency.
     const now = Date.now()
     const fieldHits = (value, weight) => {
@@ -864,11 +903,16 @@ export class LocalStoreCore {
           : 0)
         + (card.cold === true && keyTerms.length === 0
           ? (() => {
-              const coldAbstractHits = meaningfulTerms.filter((term) => termMatchesText(String(row.abstract ?? '').toLowerCase(), term)).length
-              // Only a *fully covered* cold abstract gets the explicit cold-rescue
-              // boost: partial keyword overlap is common and must not displace a
-              // precise hot card.
-              return coldAbstractHits >= meaningfulTerms.length && meaningfulTerms.length >= 2 ? coldAbstractHits * (sweep.coldAbstract ?? 4) : 0
+              const abstract = String(row.abstract ?? '').toLowerCase()
+              const coldAbstractHits = coldTerms.filter((term) => termMatchesLoose(abstract, term)).length
+              if (coldTerms.length < 2) return 0
+              if (coldAbstractHits >= coldTerms.length) return coldAbstractHits * (sweep.coldAbstract ?? 4)
+              // Partial/synonym coverage: only a conservative majority gets a
+              // smaller boost, so partial keyword overlap cannot displace a
+              // precise hot card on its own.
+              return coldTerms.every((term) => /^[a-z][a-z0-9_-]*$/.test(term)) && !hotHasFullCoverage && coldAbstractHits > bestHotCoverage && coldAbstractHits >= 3 && coldAbstractHits / coldTerms.length >= 0.75
+                ? coldAbstractHits * (sweep.coldPartial ?? 2)
+                : 0
             })()
           : 0)
         + (Number(row.bodyHits) || 0) * sweep.body
@@ -1411,7 +1455,32 @@ function escapeTerm(term) {
  * prefix of `inc-161` (a real ranking bug for id queries); punctuation/CJK terms
  * keep substring semantics (CJK has no word boundaries, quotes/paths are exact).
  */
-export function termMatchesText(text, term) {
+export function longestCommonPrefix(left, right) {
+  const limit = Math.min(left.length, right.length)
+  let index = 0
+  while (index < limit && left[index] === right[index]) index += 1
+  return index
+}
+
+/**
+ * Exact-or-morphology-lite term match: English inflections such as
+ * decide/decision or rotate/rotation share a >=4-char prefix. Deliberately
+ * conservative (no short terms, no wildcards) so it only helps cold
+ * natural-language recall instead of broadening ordinary keyword matching.
+ */
+function termMatchesLoose(text, term) {
+  if (termMatchesText(text, term)) return true
+  if (term.length < 5 || !/[a-z]/.test(term) || /[^\x00-\x7f]/.test(term)) return false
+  for (const match of text.matchAll(/[a-z][a-z0-9_.:/-]{2,}/g)) {
+    const word = match[0]
+    if (Math.abs(word.length - term.length) > 4) continue
+    const prefix = longestCommonPrefix(term, word)
+    if (prefix >= Math.max(4, Math.floor(Math.min(term.length, word.length) * 0.5))) return true
+  }
+  return false
+}
+
+function termMatchesText(text, term) {
   if (text.length === 0 || term.length === 0) return false
   if (/^[a-z0-9][a-z0-9_-]*$/.test(term)) {
     return new RegExp(`(?<![a-z0-9])${escapeTerm(term)}(?![a-z0-9])`).test(text)

@@ -163,14 +163,17 @@ A/B. The historical v0.5.0 results reported 3/60 control and 57/60 treatment;
 those are stored in the [v0.5.0 snapshot](https://github.com/QiuXu-Tech/memex/blob/5d2746e9307721a70df0bbc740a9086ef0a6426e/docs/assets/benchmarks/live-ab-deepseek-multiseed.json),
 not in this benchmark's retrieval counts.
 
-There is a reproducible problem in the A/B harness's retained-tail setup:
-it archives older records, which changes their `updated_at`, and then selects
-the supposed recent tail using `list()`'s default updated-time order. In a
-new offline reproduction of three 300-turn seeds, each generated 20-card
-context included the fact at turn 270 and omitted the fact at turn 285,
-instead of preserving the last 20 turns. The [reproduction evidence](assets/benchmarks/results-live-ab-tail-check-v050.json)
-contains the generated control prompts; no provider was called.
+There **was** a reproducible problem in the A/B harness's retained-tail setup:
+it archived older records (changing `updated_at`) and then selected the supposed
+recent tail using `list()`'s updated-time order. In a reproduction of three
+300-turn seeds, each generated context included turn 270 and omitted turn 285
+instead of preserving the last 20 turns (see the [reproduction evidence](assets/benchmarks/results-live-ab-tail-check-v050.json)).
 
+**v0.8.0 fixes this:** `scripts/live-ab.mjs` now saves the exact newest-tail
+record ids (`tailIds`) and per-probe `inTail`/`evicted` flags in `plan.json`,
+and builds the control prompt from exactly those rows. A fresh three-seed
+DeepSeek Flash rerun is verified: control **3/60**, treatment **60/60**,
+evicted subset **0/57 → 57/57** ([verified evidence](assets/benchmarks/live-ab-deepseek-multiseed.json)).
 The original published A/B JSON does not preserve its actual tail or provider
 transcripts, so those original prompt contents and the “evicted” subset cannot
 be independently reconstructed from it. Its arithmetic counts remain

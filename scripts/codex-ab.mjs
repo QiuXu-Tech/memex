@@ -76,8 +76,8 @@ const report = {
 }
 let allControl = []
 let allTreatment = []
-let allColdControl = []
-let allColdTreatment = []
+let allEvictedControl = []
+let allEvictedTreatment = []
 const tempRoot = mkdtempSync(join(tmpdir(), 'memex-codex-ab-'))
 try {
   for (let seed = 1; seed <= SEEDS; seed += 1) {
@@ -102,14 +102,14 @@ try {
     const treatmentAnswers = parseAnswers(runCodex('treatment', treatmentPrompt))
     const control = grade(controlAnswers, plan.probes)
     const treatment = grade(treatmentAnswers, plan.probes)
-    const coldCutoff = Math.max(0, Number(plan.turns ?? TURNS) - 20)
-    const cold = plan.probes.filter((probe) => Number(probe.turn) < coldCutoff)
-    const coldSet = new Set(cold.map((probe) => probe.index))
+    // The fixed harness records inTail/evicted for every probe in plan.json.
+    // Fall back to turn-based classification only for old plans.
+    const evictedSet = new Set(plan.probes.filter((probe) => probe.evicted === true || probe.inTail === false).map((probe) => probe.index))
     allControl.push(...control.rows.map((row) => row.correct))
     allTreatment.push(...treatment.rows.map((row) => row.correct))
-    allColdControl.push(...control.rows.filter((row) => coldSet.has(row.index)).map((row) => row.correct))
-    allColdTreatment.push(...treatment.rows.filter((row) => coldSet.has(row.index)).map((row) => row.correct))
-    report.seeds.push({ seed, turns: plan.turns, tail: plan.tail, probes: plan.probes.length, control, treatment })
+    allEvictedControl.push(...control.rows.filter((row) => evictedSet.has(row.index)).map((row) => row.correct))
+    allEvictedTreatment.push(...treatment.rows.filter((row) => evictedSet.has(row.index)).map((row) => row.correct))
+    report.seeds.push({ seed, turns: plan.turns, tailCount: plan.tailCount, tailIds: plan.tailIds, probes: plan.probes.length, evictedProbes: evictedSet.size, control, treatment })
   }
 } catch (error) {
   console.error(`codex-ab failed: ${error.message}`)
@@ -122,13 +122,13 @@ const summary = (values) => ({ correct: values.filter(Boolean).length, n: values
 report.aggregate = {
   control: summary(allControl),
   treatment: summary(allTreatment),
-  coldControl: summary(allColdControl),
-  coldTreatment: summary(allColdTreatment),
+  evictedControl: summary(allEvictedControl),
+  evictedTreatment: summary(allEvictedTreatment),
 }
 writeFileSync(OUT, JSON.stringify(report, null, 2) + '\n')
 console.log(`\nCodex (${MODEL}) live A/B`)
 console.log(`control:   ${report.aggregate.control.correct}/${report.aggregate.control.n} (${(report.aggregate.control.accuracy * 100).toFixed(1)}%)`)
 console.log(`treatment: ${report.aggregate.treatment.correct}/${report.aggregate.treatment.n} (${(report.aggregate.treatment.accuracy * 100).toFixed(1)}%)`)
-console.log(`cold:      ${report.aggregate.coldControl.correct}/${report.aggregate.coldControl.n} → ${report.aggregate.coldTreatment.correct}/${report.aggregate.coldTreatment.n}`)
+console.log(`evicted:   ${report.aggregate.evictedControl.correct}/${report.aggregate.evictedControl.n} → ${report.aggregate.evictedTreatment.correct}/${report.aggregate.evictedTreatment.n}`)
 console.log(`\nReport: ${OUT}`)
 console.log('Share it on issue #1 (https://github.com/QiuXu-Tech/memex/issues/1) or open a PR adding it under docs/assets/benchmarks/.')

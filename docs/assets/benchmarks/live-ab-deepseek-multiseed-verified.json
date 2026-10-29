@@ -1,0 +1,1235 @@
+{
+  "format": 1,
+  "kind": "live-ab-multiseed-verified-result",
+  "generatedAt": "2026-10-29T19:10:00+08:00",
+  "provider": "deepseek-account",
+  "model": "deepseek-flash",
+  "method": "three deterministic seeds (300-turn history, 20 probes each) with explicit tail membership saved in plan.json; fresh-context control/treatment agent calls; harness v0.8.0",
+  "verifiedTail": true,
+  "aggregate": {
+    "control": {
+      "correct": 3,
+      "n": 60,
+      "accuracy": 0.05
+    },
+    "treatment": {
+      "correct": 60,
+      "n": 60,
+      "accuracy": 1.0
+    },
+    "evictedSubset": {
+      "control": {
+        "correct": 0,
+        "n": 57,
+        "accuracy": 0.0
+      },
+      "treatment": {
+        "correct": 57,
+        "n": 57,
+        "accuracy": 1.0
+      }
+    },
+    "coldNaturalLanguageSubset": {
+      "turns": "0-135 (all archived cold in this fixture)",
+      "control": {
+        "correct": 0,
+        "n": 30,
+        "accuracy": 0.0
+      },
+      "treatment": {
+        "correct": 30,
+        "n": 30,
+        "accuracy": 1.0
+      }
+    }
+  },
+  "seeds": [
+    {
+      "seed": 1,
+      "turns": 300,
+      "tailCount": 20,
+      "tailIds": [
+        "mem_50d48091dc",
+        "mem_683f80a111",
+        "mem_c2653077d7",
+        "mem_e9ff089b79",
+        "mem_0efdd783da",
+        "mem_7293f9d23a",
+        "mem_73eed27201",
+        "mem_80d6bb80b7",
+        "mem_822652ef37",
+        "mem_c7b11c2360",
+        "mem_1b0b21926c",
+        "mem_5a63bf6231",
+        "mem_6b1bab166a",
+        "mem_8d80e79d28",
+        "mem_fe52a639e5",
+        "mem_2f0970e844",
+        "mem_49a7ea4581",
+        "mem_88b8dc226f",
+        "mem_a2c8d06e7e",
+        "mem_acda4191af"
+      ],
+      "tailRecords": [
+        {
+          "id": "mem_50d48091dc",
+          "title": "turn 282 scheduler work",
+          "summary": "work log for scheduler"
+        },
+        {
+          "id": "mem_683f80a111",
+          "title": "turn 279 harbor work",
+          "summary": "work log for harbor"
+        },
+        {
+          "id": "mem_c2653077d7",
+          "title": "turn 281 parser work",
+          "summary": "work log for parser"
+        },
+        {
+          "id": "mem_e9ff089b79",
+          "title": "turn 280 gateway work",
+          "summary": "work log for gateway"
+        },
+        {
+          "id": "mem_0efdd783da",
+          "title": "turn 284 cache work",
+          "summary": "work log for cache"
+        },
+        {
+          "id": "mem_7293f9d23a",
+          "title": "turn 286 worker work",
+          "summary": "work log for worker"
+        },
+        {
+          "id": "mem_73eed27201",
+          "title": "router value at turn 285",
+          "summary": "the router value is FACT-285-rm66w"
+        },
+        {
+          "id": "mem_80d6bb80b7",
+          "title": "turn 287 indexer work",
+          "summary": "work log for indexer"
+        },
+        {
+          "id": "mem_822652ef37",
+          "title": "turn 288 bridge work",
+          "summary": "work log for bridge"
+        },
+        {
+          "id": "mem_c7b11c2360",
+          "title": "turn 289 harbor work",
+          "summary": "work log for harbor"
+        },
+        {
+          "id": "mem_1b0b21926c",
+          "title": "turn 293 ledger work",
+          "summary": "work log for ledger"
+        },
+        {
+          "id": "mem_5a63bf6231",
+          "title": "turn 291 parser work",
+          "summary": "work log for parser"
+        },
+        {
+          "id": "mem_6b1bab166a",
+          "title": "turn 292 scheduler work",
+          "summary": "work log for scheduler"
+        },
+        {
+          "id": "mem_8d80e79d28",
+          "title": "turn 290 gateway work",
+          "summary": "work log for gateway"
+        },
+        {
+          "id": "mem_fe52a639e5",
+          "title": "turn 294 cache work",
+          "summary": "work log for cache"
+        },
+        {
+          "id": "mem_2f0970e844",
+          "title": "turn 297 indexer work",
+          "summary": "work log for indexer"
+        },
+        {
+          "id": "mem_49a7ea4581",
+          "title": "turn 298 bridge work",
+          "summary": "work log for bridge"
+        },
+        {
+          "id": "mem_88b8dc226f",
+          "title": "turn 295 router work",
+          "summary": "work log for router"
+        },
+        {
+          "id": "mem_a2c8d06e7e",
+          "title": "turn 296 worker work",
+          "summary": "work log for worker"
+        },
+        {
+          "id": "mem_acda4191af",
+          "title": "turn 299 harbor work",
+          "summary": "work log for harbor"
+        }
+      ],
+      "probes": 20,
+      "controlAccuracy": 0.05,
+      "treatmentAccuracy": 1.0,
+      "rows": [
+        {
+          "index": 0,
+          "turn": 0,
+          "topic": "gateway",
+          "expected": "FACT-000-mkorf",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-000-mkorf",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 1,
+          "turn": 15,
+          "topic": "router",
+          "expected": "FACT-015-03jmy",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-015-03jmy",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 2,
+          "turn": 30,
+          "topic": "gateway",
+          "expected": "FACT-030-izkkh",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-030-izkkh",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 3,
+          "turn": 45,
+          "topic": "router",
+          "expected": "FACT-045-zbfww",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-045-zbfww",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 4,
+          "turn": 60,
+          "topic": "gateway",
+          "expected": "FACT-060-yv0n0",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-060-yv0n0",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 5,
+          "turn": 75,
+          "topic": "router",
+          "expected": "FACT-075-a4b5x",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-075-a4b5x",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 6,
+          "turn": 90,
+          "topic": "gateway",
+          "expected": "FACT-090-m28ly",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-090-m28ly",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 7,
+          "turn": 105,
+          "topic": "router",
+          "expected": "FACT-105-py2zp",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-105-py2zp",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 8,
+          "turn": 120,
+          "topic": "gateway",
+          "expected": "FACT-120-fbtzd",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-120-fbtzd",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 9,
+          "turn": 135,
+          "topic": "router",
+          "expected": "FACT-135-ztagj",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-135-ztagj",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 10,
+          "turn": 150,
+          "topic": "gateway",
+          "expected": "FACT-150-ge14o",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-150-ge14o",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 11,
+          "turn": 165,
+          "topic": "router",
+          "expected": "FACT-165-hlgwo",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-165-hlgwo",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 12,
+          "turn": 180,
+          "topic": "gateway",
+          "expected": "FACT-180-50232",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-180-50232",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 13,
+          "turn": 195,
+          "topic": "router",
+          "expected": "FACT-195-ej946",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-195-ej946",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 14,
+          "turn": 210,
+          "topic": "gateway",
+          "expected": "FACT-210-8wsh3",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-210-8wsh3",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 15,
+          "turn": 225,
+          "topic": "router",
+          "expected": "FACT-225-5k815",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-225-5k815",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 16,
+          "turn": 240,
+          "topic": "gateway",
+          "expected": "FACT-240-hlxhw",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-240-hlxhw",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 17,
+          "turn": 255,
+          "topic": "router",
+          "expected": "FACT-255-2fb7j",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-255-2fb7j",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 18,
+          "turn": 270,
+          "topic": "gateway",
+          "expected": "FACT-270-e7fcx",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-270-e7fcx",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 19,
+          "turn": 285,
+          "topic": "router",
+          "expected": "FACT-285-rm66w",
+          "inTail": true,
+          "evicted": false,
+          "control": "FACT-285-rm66w",
+          "treatment": "FACT-285-rm66w",
+          "controlCorrect": true,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        }
+      ]
+    },
+    {
+      "seed": 2,
+      "turns": 300,
+      "tailCount": 20,
+      "tailIds": [
+        "mem_c9708ab0f5",
+        "mem_cb26a8d141",
+        "mem_8ca26db7e4",
+        "mem_bc508b9427",
+        "mem_c4cd62a13b",
+        "mem_0879a6ea0c",
+        "mem_4c4ccd745e",
+        "mem_52d6f2fe34",
+        "mem_0846d68394",
+        "mem_184bdc9fff",
+        "mem_b874c13a96",
+        "mem_be56e159bb",
+        "mem_25ebfb6933",
+        "mem_50dc203b78",
+        "mem_c9e91896b1",
+        "mem_d871b35c85",
+        "mem_f89022661d",
+        "mem_122dde3e35",
+        "mem_bbf1f28096",
+        "mem_d0add4801c"
+      ],
+      "tailRecords": [
+        {
+          "id": "mem_c9708ab0f5",
+          "title": "turn 280 gateway work",
+          "summary": "work log for gateway"
+        },
+        {
+          "id": "mem_cb26a8d141",
+          "title": "turn 281 parser work",
+          "summary": "work log for parser"
+        },
+        {
+          "id": "mem_8ca26db7e4",
+          "title": "turn 282 scheduler work",
+          "summary": "work log for scheduler"
+        },
+        {
+          "id": "mem_bc508b9427",
+          "title": "turn 283 ledger work",
+          "summary": "work log for ledger"
+        },
+        {
+          "id": "mem_c4cd62a13b",
+          "title": "turn 284 cache work",
+          "summary": "work log for cache"
+        },
+        {
+          "id": "mem_0879a6ea0c",
+          "title": "router value at turn 285",
+          "summary": "the router value is FACT-285-1esyu"
+        },
+        {
+          "id": "mem_4c4ccd745e",
+          "title": "turn 287 indexer work",
+          "summary": "work log for indexer"
+        },
+        {
+          "id": "mem_52d6f2fe34",
+          "title": "turn 286 worker work",
+          "summary": "work log for worker"
+        },
+        {
+          "id": "mem_0846d68394",
+          "title": "turn 289 harbor work",
+          "summary": "work log for harbor"
+        },
+        {
+          "id": "mem_184bdc9fff",
+          "title": "turn 291 parser work",
+          "summary": "work log for parser"
+        },
+        {
+          "id": "mem_b874c13a96",
+          "title": "turn 288 bridge work",
+          "summary": "work log for bridge"
+        },
+        {
+          "id": "mem_be56e159bb",
+          "title": "turn 290 gateway work",
+          "summary": "work log for gateway"
+        },
+        {
+          "id": "mem_25ebfb6933",
+          "title": "turn 295 router work",
+          "summary": "work log for router"
+        },
+        {
+          "id": "mem_50dc203b78",
+          "title": "turn 296 worker work",
+          "summary": "work log for worker"
+        },
+        {
+          "id": "mem_c9e91896b1",
+          "title": "turn 293 ledger work",
+          "summary": "work log for ledger"
+        },
+        {
+          "id": "mem_d871b35c85",
+          "title": "turn 292 scheduler work",
+          "summary": "work log for scheduler"
+        },
+        {
+          "id": "mem_f89022661d",
+          "title": "turn 294 cache work",
+          "summary": "work log for cache"
+        },
+        {
+          "id": "mem_122dde3e35",
+          "title": "turn 297 indexer work",
+          "summary": "work log for indexer"
+        },
+        {
+          "id": "mem_bbf1f28096",
+          "title": "turn 299 harbor work",
+          "summary": "work log for harbor"
+        },
+        {
+          "id": "mem_d0add4801c",
+          "title": "turn 298 bridge work",
+          "summary": "work log for bridge"
+        }
+      ],
+      "probes": 20,
+      "controlAccuracy": 0.05,
+      "treatmentAccuracy": 1.0,
+      "rows": [
+        {
+          "index": 0,
+          "turn": 0,
+          "topic": "gateway",
+          "expected": "FACT-000-qfl7m",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-000-qfl7m",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 1,
+          "turn": 15,
+          "topic": "router",
+          "expected": "FACT-015-bp74k",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-015-bp74k",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 2,
+          "turn": 30,
+          "topic": "gateway",
+          "expected": "FACT-030-a9qrt",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-030-a9qrt",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 3,
+          "turn": 45,
+          "topic": "router",
+          "expected": "FACT-045-jd6u3",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-045-jd6u3",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 4,
+          "turn": 60,
+          "topic": "gateway",
+          "expected": "FACT-060-vidfn",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-060-vidfn",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 5,
+          "turn": 75,
+          "topic": "router",
+          "expected": "FACT-075-mpk5r",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-075-mpk5r",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 6,
+          "turn": 90,
+          "topic": "gateway",
+          "expected": "FACT-090-hyyqy",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-090-hyyqy",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 7,
+          "turn": 105,
+          "topic": "router",
+          "expected": "FACT-105-cuzlu",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-105-cuzlu",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 8,
+          "turn": 120,
+          "topic": "gateway",
+          "expected": "FACT-120-s4xt8",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-120-s4xt8",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 9,
+          "turn": 135,
+          "topic": "router",
+          "expected": "FACT-135-43s9i",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-135-43s9i",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 10,
+          "turn": 150,
+          "topic": "gateway",
+          "expected": "FACT-150-saher",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-150-saher",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 11,
+          "turn": 165,
+          "topic": "router",
+          "expected": "FACT-165-797as",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-165-797as",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 12,
+          "turn": 180,
+          "topic": "gateway",
+          "expected": "FACT-180-f9so7",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-180-f9so7",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 13,
+          "turn": 195,
+          "topic": "router",
+          "expected": "FACT-195-u25n2",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-195-u25n2",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 14,
+          "turn": 210,
+          "topic": "gateway",
+          "expected": "FACT-210-kxe32",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-210-kxe32",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 15,
+          "turn": 225,
+          "topic": "router",
+          "expected": "FACT-225-52qt3",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-225-52qt3",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 16,
+          "turn": 240,
+          "topic": "gateway",
+          "expected": "FACT-240-o77fl",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-240-o77fl",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 17,
+          "turn": 255,
+          "topic": "router",
+          "expected": "FACT-255-d78oa",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-255-d78oa",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 18,
+          "turn": 270,
+          "topic": "gateway",
+          "expected": "FACT-270-yz7lh",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-270-yz7lh",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 19,
+          "turn": 285,
+          "topic": "router",
+          "expected": "FACT-285-1esyu",
+          "inTail": true,
+          "evicted": false,
+          "control": "FACT-285-1esyu",
+          "treatment": "FACT-285-1esyu",
+          "controlCorrect": true,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        }
+      ]
+    },
+    {
+      "seed": 3,
+      "turns": 300,
+      "tailCount": 20,
+      "tailIds": [
+        "mem_d8dfaf7e9a",
+        "mem_ed7e3d75f4",
+        "mem_66cb4133e6",
+        "mem_7541ad1331",
+        "mem_d51a8cf0b2",
+        "mem_d9feffae28",
+        "mem_76989c4405",
+        "mem_857b5c9c89",
+        "mem_676a9d05d9",
+        "mem_7eac68d879",
+        "mem_f1c5d1fe72",
+        "mem_262ae0fb70",
+        "mem_fdb5905777",
+        "mem_28a4d465e2",
+        "mem_f0ec961ddc",
+        "mem_351cbb7fbe",
+        "mem_49aef43685",
+        "mem_4d8eb41831",
+        "mem_891ff59dc9",
+        "mem_f90abbb5d8"
+      ],
+      "tailRecords": [
+        {
+          "id": "mem_d8dfaf7e9a",
+          "title": "turn 280 gateway work",
+          "summary": "work log for gateway"
+        },
+        {
+          "id": "mem_ed7e3d75f4",
+          "title": "turn 279 harbor work",
+          "summary": "work log for harbor"
+        },
+        {
+          "id": "mem_66cb4133e6",
+          "title": "turn 283 ledger work",
+          "summary": "work log for ledger"
+        },
+        {
+          "id": "mem_7541ad1331",
+          "title": "turn 282 scheduler work",
+          "summary": "work log for scheduler"
+        },
+        {
+          "id": "mem_d51a8cf0b2",
+          "title": "turn 284 cache work",
+          "summary": "work log for cache"
+        },
+        {
+          "id": "mem_d9feffae28",
+          "title": "router value at turn 285",
+          "summary": "the router value is FACT-285-o73dt"
+        },
+        {
+          "id": "mem_76989c4405",
+          "title": "turn 287 indexer work",
+          "summary": "work log for indexer"
+        },
+        {
+          "id": "mem_857b5c9c89",
+          "title": "turn 286 worker work",
+          "summary": "work log for worker"
+        },
+        {
+          "id": "mem_676a9d05d9",
+          "title": "turn 290 gateway work",
+          "summary": "work log for gateway"
+        },
+        {
+          "id": "mem_7eac68d879",
+          "title": "turn 288 bridge work",
+          "summary": "work log for bridge"
+        },
+        {
+          "id": "mem_f1c5d1fe72",
+          "title": "turn 289 harbor work",
+          "summary": "work log for harbor"
+        },
+        {
+          "id": "mem_262ae0fb70",
+          "title": "turn 291 parser work",
+          "summary": "work log for parser"
+        },
+        {
+          "id": "mem_fdb5905777",
+          "title": "turn 292 scheduler work",
+          "summary": "work log for scheduler"
+        },
+        {
+          "id": "mem_28a4d465e2",
+          "title": "turn 293 ledger work",
+          "summary": "work log for ledger"
+        },
+        {
+          "id": "mem_f0ec961ddc",
+          "title": "turn 294 cache work",
+          "summary": "work log for cache"
+        },
+        {
+          "id": "mem_351cbb7fbe",
+          "title": "turn 298 bridge work",
+          "summary": "work log for bridge"
+        },
+        {
+          "id": "mem_49aef43685",
+          "title": "turn 296 worker work",
+          "summary": "work log for worker"
+        },
+        {
+          "id": "mem_4d8eb41831",
+          "title": "turn 295 router work",
+          "summary": "work log for router"
+        },
+        {
+          "id": "mem_891ff59dc9",
+          "title": "turn 297 indexer work",
+          "summary": "work log for indexer"
+        },
+        {
+          "id": "mem_f90abbb5d8",
+          "title": "turn 299 harbor work",
+          "summary": "work log for harbor"
+        }
+      ],
+      "probes": 20,
+      "controlAccuracy": 0.05,
+      "treatmentAccuracy": 1.0,
+      "rows": [
+        {
+          "index": 0,
+          "turn": 0,
+          "topic": "gateway",
+          "expected": "FACT-000-pxewf",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-000-pxewf",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 1,
+          "turn": 15,
+          "topic": "router",
+          "expected": "FACT-015-1e3tl",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-015-1e3tl",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 2,
+          "turn": 30,
+          "topic": "gateway",
+          "expected": "FACT-030-gf83p",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-030-gf83p",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 3,
+          "turn": 45,
+          "topic": "router",
+          "expected": "FACT-045-2p3ua",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-045-2p3ua",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 4,
+          "turn": 60,
+          "topic": "gateway",
+          "expected": "FACT-060-rgus2",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-060-rgus2",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 5,
+          "turn": 75,
+          "topic": "router",
+          "expected": "FACT-075-hblyb",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-075-hblyb",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 6,
+          "turn": 90,
+          "topic": "gateway",
+          "expected": "FACT-090-hisus",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-090-hisus",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 7,
+          "turn": 105,
+          "topic": "router",
+          "expected": "FACT-105-5toyt",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-105-5toyt",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 8,
+          "turn": 120,
+          "topic": "gateway",
+          "expected": "FACT-120-9h6hf",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-120-9h6hf",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 9,
+          "turn": 135,
+          "topic": "router",
+          "expected": "FACT-135-jw6fx",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-135-jw6fx",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": true
+        },
+        {
+          "index": 10,
+          "turn": 150,
+          "topic": "gateway",
+          "expected": "FACT-150-70m0g",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-150-70m0g",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 11,
+          "turn": 165,
+          "topic": "router",
+          "expected": "FACT-165-30c3x",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-165-30c3x",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 12,
+          "turn": 180,
+          "topic": "gateway",
+          "expected": "FACT-180-pp2gq",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-180-pp2gq",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 13,
+          "turn": 195,
+          "topic": "router",
+          "expected": "FACT-195-h5u81",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-195-h5u81",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 14,
+          "turn": 210,
+          "topic": "gateway",
+          "expected": "FACT-210-skod2",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-210-skod2",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 15,
+          "turn": 225,
+          "topic": "router",
+          "expected": "FACT-225-vo6pc",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-225-vo6pc",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 16,
+          "turn": 240,
+          "topic": "gateway",
+          "expected": "FACT-240-bnezh",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-240-bnezh",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 17,
+          "turn": 255,
+          "topic": "router",
+          "expected": "FACT-255-ouzrk",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-255-ouzrk",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 18,
+          "turn": 270,
+          "topic": "gateway",
+          "expected": "FACT-270-abmgy",
+          "inTail": false,
+          "evicted": true,
+          "control": "UNKNOWN",
+          "treatment": "FACT-270-abmgy",
+          "controlCorrect": false,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        },
+        {
+          "index": 19,
+          "turn": 285,
+          "topic": "router",
+          "expected": "FACT-285-o73dt",
+          "inTail": true,
+          "evicted": false,
+          "control": "FACT-285-o73dt",
+          "treatment": "FACT-285-o73dt",
+          "controlCorrect": true,
+          "treatmentCorrect": true,
+          "coldNaturalLanguage": false
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "Tail membership is saved explicitly (tailIds/tailRecords) and each probe has inTail/evicted; this supersedes the earlier unverified multi-seed report.",
+    "Controls answer only the one in-tail fact per seed; all 19 evicted probes per seed are recovered by treatment.",
+    "n=60 probes, one model; evidence-in-prompt, not a full tool-calling loop."
+  ]
+}
