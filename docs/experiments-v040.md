@@ -66,6 +66,7 @@ see the [methodology section](https://github.com/QiuXu-Tech/memex/blob/main/docs
 | Claude Opus 5.5 (3 seeds × 20, v0.9.0, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57**; **40,676 gateway-reported tokens**; full chronological tail not saved |
 | Claude Fable 5.1 (3 seeds × 20, v0.9.1, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57**; **40,663 gateway-reported tokens**; full chronological tail not saved |
 | Claude Haiku 5.5 (3 seeds × 20, v0.9.1, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57**; **39,677 gateway-reported tokens**; full chronological tail not saved |
+| Claude Sonnet 5.5 real tool loop (3 probes, v0.10.0) | control **0/3**; treatment **3/3**; native tool_calls against real MCP server; **15,649 tokens / 12 calls** |
 | Cold partial/synonym anchor-free (n=3, v0.8.0) | control **0/3**; treatment **3/3** (morphology-lite + partial coverage; cold bodies not read) |
 
 **Finding (fixed in v0.5.0/v0.5.1):** card-field tokens and bare numbers are now indexed in `record_terms`; cold rescue uses exact anchors, and **body rescue now treats unmatched bare numbers as anchors and attaches body evidence to already-candidate rows**. Cold natural-language probes went 0/30 → 30/30; Q19 (hot body, turn 285) is now recovered; treatment overall **60/60**. The concept is now explicitly **extra-context**, not a notes store — see docs/context-layer.md.

@@ -1,0 +1,155 @@
+{
+  "format": 1,
+  "kind": "live-ab-claude-tool-loop-result",
+  "generatedAt": "2026-10-29T11:19:52.668Z",
+  "provider": "apimaster",
+  "baseUrl": "https://apimaster.ai/v1",
+  "model": "claude-sonnet-5-5",
+  "method": "native OpenAI-style tool_calls against the real memex MCP server; control has no tools",
+  "usage": {
+    "promptTokens": 14640,
+    "completionTokens": 1009,
+    "totalTokens": 15649,
+    "calls": 12
+  },
+  "probes": [
+    {
+      "index": 0,
+      "question": "what did we decide about the billing retry policy?",
+      "expected": "FACT-BILL-OK",
+      "control": {
+        "answer": "",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-BILL-OK",
+        "correct": true,
+        "steps": [
+          {
+            "turn": 1,
+            "tool": "memory_search",
+            "arguments": {
+              "limit": 10,
+              "query": "billing retry policy"
+            },
+            "resultTail": "Memory search \"billing retry policy\" (2 hits, +0 more)\n1. mem_3c904718ec \u00b7 decision record 20 \u00b7 read when continuing work\n2. mem_428c7cde3e \u00b7 decision record 22 \u00b7 read when continuing work"
+          },
+          {
+            "turn": 2,
+            "tool": "memory_open",
+            "arguments": {
+              "id": "mem_3c904718ec"
+            },
+            "resultTail": "# decision record 20 (mem_3c904718ec)\nkind=episode \u00b7 scope=workspace \u00b7 status=active \u00b7 tokens=30 \u00b7 body 1-60 of 60\n\nThe billing retry policy decision is FACT-BILL-OK; keep it. "
+          },
+          {
+            "turn": 2,
+            "tool": "memory_open",
+            "arguments": {
+              "id": "mem_428c7cde3e"
+            },
+            "resultTail": "# decision record 22 (mem_428c7cde3e)\nkind=episode \u00b7 scope=workspace \u00b7 status=active \u00b7 tokens=30 \u00b7 body 1-63 of 63\n\nThe cache eviction policy decision is FACT-CACHE-LRU; keep it. "
+          }
+        ],
+        "turns": 3
+      }
+    },
+    {
+      "index": 1,
+      "question": "what did we decide about auth token rotation schedule?",
+      "expected": "FACT-AUTH-30D",
+      "control": {
+        "answer": "",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-AUTH-30D",
+        "correct": true,
+        "steps": [
+          {
+            "turn": 1,
+            "tool": "memory_search",
+            "arguments": {
+              "limit": 10,
+              "query": "auth token rotation schedule"
+            },
+            "resultTail": "Memory search \"auth token rotation schedule\" (10 hits, +0 more)\n1. mem_eb446deda0 \u00b7 decision record 21 \u00b7 read when continuing work\n2. mem_fbb8ad1e0b \u00b7 work note 79 \u00b7 read when continuing work\n3. mem_a9f97f2c5e \u00b7 work note 78 \u00b7 read when continuing work\n4. mem_0c3e190104 \u00b7 work note 75 \u00b7 read when continuing work\n5. mem_2471091b53 \u00b7 work note 76 \u00b7 read when continuing work\n6. mem_4ee4f6d225 \u00b7 work note 77 \u00b7 read when continuing work\n7. mem_fa62802d62 \u00b7 work note 72 \u00b7 read when continuing work\n8. mem_d1163778b0 \u00b7 work note 73 \u00b7 read when continuing work\n9. mem_a2cd092008 \u00b7 work note 74 \u00b7 read when continuing work\n10. mem_6034e80b4c \u00b7 work note 70 \u00b7 read when continuing work"
+          },
+          {
+            "turn": 2,
+            "tool": "memory_open",
+            "arguments": {
+              "id": "mem_eb446deda0"
+            },
+            "resultTail": "# decision record 21 (mem_eb446deda0)\nkind=episode \u00b7 scope=workspace \u00b7 status=active \u00b7 tokens=30 \u00b7 body 1-60 of 60\n\nThe auth token rotation decision is FACT-AUTH-30D; keep it. "
+          }
+        ],
+        "turns": 3
+      }
+    },
+    {
+      "index": 2,
+      "question": "which way did we go on the cache eviction policy?",
+      "expected": "FACT-CACHE-LRU",
+      "control": {
+        "answer": "",
+        "correct": false
+      },
+      "treatment": {
+        "answer": "FACT-CACHE-LRU",
+        "correct": true,
+        "steps": [
+          {
+            "turn": 1,
+            "tool": "memory_search",
+            "arguments": {
+              "limit": 10,
+              "query": "cache eviction policy"
+            },
+            "resultTail": "Memory search \"cache eviction policy\" (2 hits, +0 more)\n1. mem_428c7cde3e \u00b7 decision record 22 \u00b7 read when continuing work\n2. mem_3c904718ec \u00b7 decision record 20 \u00b7 read when continuing work"
+          },
+          {
+            "turn": 2,
+            "tool": "memory_open",
+            "arguments": {
+              "id": "mem_428c7cde3e"
+            },
+            "resultTail": "# decision record 22 (mem_428c7cde3e)\nkind=episode \u00b7 scope=workspace \u00b7 status=active \u00b7 tokens=30 \u00b7 body 1-63 of 63\n\nThe cache eviction policy decision is FACT-CACHE-LRU; keep it. "
+          },
+          {
+            "turn": 2,
+            "tool": "memory_open",
+            "arguments": {
+              "id": "mem_3c904718ec"
+            },
+            "resultTail": "# decision record 20 (mem_3c904718ec)\nkind=episode \u00b7 scope=workspace \u00b7 status=active \u00b7 tokens=30 \u00b7 body 1-60 of 60\n\nThe billing retry policy decision is FACT-BILL-OK; keep it. "
+          }
+        ],
+        "turns": 3
+      }
+    }
+  ],
+  "caveats": [
+    "Synthetic fixture; tool results are from the real MCP server; one model/one run.",
+    "Usage from gateway response.",
+    "Native tool_calls were executed against the real MCP server; this is the first end-to-end tool-calling loop.",
+    "Control conditions produced no answer (counted incorrect); they did not have memory tools.",
+    "n=3 probes, one model/run; usage from gateway response."
+  ],
+  "aggregate": {
+    "control": {
+      "correct": 0,
+      "n": 3,
+      "accuracy": 0
+    },
+    "treatment": {
+      "correct": 3,
+      "n": 3,
+      "accuracy": 1
+    }
+  },
+  "contributedBy": "DSH APIMaster Claude run",
+  "runBy": "local APIMaster OpenAI-compatible gateway; real memex MCP server",
+  "verifiedToolUse": true,
+  "seedsRun": "1 fixture x 3 probes x 2 conditions"
+}

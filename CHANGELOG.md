@@ -20,6 +20,14 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 - Dataset: `docs/assets/benchmarks/live-ab-codex-gpt.json`; summary in docs/live-testing.md section F.
 - Retained-tail caveat retained: the reported cold subset is not a verified recently-evicted subset until the harness ordering issue is fixed.
 
+## 0.10.0
+
+### Added — Claude real tool-calling loop
+- `scripts/claude-tool-loop.mjs`: native OpenAI-style tool definitions (`memory_search`, `memory_open`), model-chosen tool calls, execution against the **real memex MCP server**, final exact-FACT grading, usage capture.
+- Claude Sonnet 5.5 (3 probes): control **0/3** (no tools), treatment **3/3**; the model searched, refined queries, opened cold records and answered. Usage **15,649 tokens / 12 API calls**.
+- First end-to-end tool-calling validation (not evidence pre-injected); dataset `docs/assets/benchmarks/live-ab-claude-tool-loop.json`; summary docs/live-testing.md §I.
+- Harness **121/121**; real-archive guard unchanged.
+
 ## 0.9.1
 
 ### Added — Claude 5.5 family completion

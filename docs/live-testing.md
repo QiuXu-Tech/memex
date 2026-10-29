@@ -138,6 +138,21 @@ Run it yourself (key is read from env, never committed):
 APIMASTER_API_KEY=... node scripts/claude-ab.mjs --model claude-sonnet-5-5
 ```
 
+### I. Claude real tool-calling loop (n=3, v0.10.0)
+
+Unlike the batch evidence-in-prompt bridge, this lets the model decide when to call tools. Claude Sonnet 5.5 received native OpenAI-style `memory_search` / `memory_open` function definitions; the harness executed every requested `tool_calls` against the **real memex MCP server**, appended results, and graded the final FACT id.
+
+| Condition | Result |
+|---|---|
+| control (no memory tools) | **0/3** — no answer |
+| treatment (tool loop) | **3/3** — `FACT-BILL-OK`, `FACT-AUTH-30D`, `FACT-CACHE-LRU` |
+
+- The model searched, opened the right cold record, and answered; examples include a noisy first query followed by a refined search, and opening two records before selecting the right one.
+- Usage: **15,649 tokens / 12 API calls** for 3 probes × 2 conditions.
+- This is the **first end-to-end tool-calling validation** (not evidence pre-injected). Raw: [evidence](assets/benchmarks/live-ab-claude-tool-loop.json).
+
+**Caveats:** n=3 probes, one model/run; control produced empty answers (counted incorrect); usage from the gateway response; synthetic fixture, no private data.
+
 ## How to contribute
 
 1. Clone and run the dry-run sanity check (no network):
