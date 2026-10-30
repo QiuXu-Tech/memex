@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.64.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **144/144 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.65.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **144/144 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## 7B KV strategy comparison (latest)
 
@@ -83,6 +83,21 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 ## Long-horizon memex A/B (v0.44.0)
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
+
+## 10M-token controlled long-context experiment (2026-10-31)
+
+Synthetic **10,000,000-token archive** (2,000 records ×5,000 tokens; 50% cold), 40 probes whose facts exist only in the archive:
+
+| condition | DeepSeek Flash | Claude Haiku | avg prompt tokens |
+|---|---:|---:|---:|
+| recent tail only | **0/40** | **0/40** | 536 / 548 |
+| **memex retrieved evidence** | **40/40** | **40/40** | 234 / 216 |
+| same-size distractor | **0/40** | **0/40** | 234 / 216 |
+
+- Retrieval hit@1: **40/40 = 100%**, median **4.94 ms**
+- Store: 10M tokens written in **1.65 s**; cold archive **1.32 s**; DB **6.0 MB**
+- Wilson 95% CI for memex accuracy: **91.2–100%**; baseline/distractor: **0–8.8%**
+- Exact FACT-id metric; synthetic, one seed, 40 probes. Full methods, limitations, and reproduction: [docs/long-context-10m.md](docs/long-context-10m.md), raw aggregate: [long-context-10m.json](docs/assets/benchmarks/long-context-10m.json)
 
 ## Why
 

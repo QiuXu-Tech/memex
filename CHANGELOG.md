@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.65.0
+
+### Added — 10M-token controlled long-context experiment
+- Synthetic 10,000,000-token archive (2,000×5,000; 50% cold), 40 probes; baseline tail vs memex retrieval vs same-size distractor.
+- Both DeepSeek Flash and Claude Haiku: baseline **0/40**, memex **40/40**, distractor **0/40**; retrieval hit@1 100%, median 4.94 ms; storage write 1.65 s, cold 1.32 s, DB 6.0 MB.
+- Memex used fewer prompt tokens than the tail baseline (234/216 vs 536/548) while answering correctly.
+- Wilson 95% CI: memex 91.2–100%; baseline/distractor 0–8.8%. Exact FACT-id metric; synthetic one-seed pilot with declared limitations.
+- Report: `docs/long-context-10m.md`; aggregate: `docs/assets/benchmarks/long-context-10m.json`; scripts: `scripts/long-context-10m.mjs`, `training/long_context_10m_ab.py`.
+- README updated with the 10M experiment. Repo **147/147**; active **98/98**.
+
 ## 0.64.0
 
 ### Added — full performance pass

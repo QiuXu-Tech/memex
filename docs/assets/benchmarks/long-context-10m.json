@@ -1,0 +1,148 @@
+{
+  "format": 1,
+  "kind": "long-context-10m-controlled",
+  "generatedAt": "2026-10-31T01:00:00+08:00",
+  "title": "10M-token long-horizon memory: controlled retrieval and answer experiment",
+  "environment": {
+    "node": "v24.21.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "dataset": {
+    "synthetic": true,
+    "records": 2000,
+    "tokensPerRecord": 5000,
+    "totalTokens": 10000000,
+    "capacityTokens": 10000000,
+    "hotRecords": 1000,
+    "coldRecords": 1000,
+    "hotTokens": 5000000,
+    "coldTokens": 5000000,
+    "writeSeconds": 1.6454600419999998,
+    "coldArchiveSeconds": 1.3217497089999999,
+    "dbBytes": 6017024,
+    "dirBytes": 10718040,
+    "probes": 40,
+    "coldProbes": 25
+  },
+  "retrieval": {
+    "probes": 40,
+    "hit1": 1,
+    "hit3": 1,
+    "hit5": 1,
+    "medianMs": 4.940415999999914,
+    "p95Ms": 5.310707999999977
+  },
+  "models": [
+    "deepseek-flash",
+    "claude-haiku-4-5"
+  ],
+  "conditions": [
+    "baseline (recent tail only)",
+    "memex (retrieved evidence)",
+    "distractor (same-size unrelated evidence)"
+  ],
+  "primaryMetric": "exact FACT id in answer",
+  "results": {
+    "deepseek-flash|baseline": {
+      "n": 40,
+      "correct": 0,
+      "accuracy": 0.0,
+      "avgPrompt": 536.4,
+      "avgCompletion": 52.4,
+      "avgLatency": 3.531,
+      "avgCostUSD": 4.5e-05,
+      "ci95": [
+        0,
+        0.0876
+      ]
+    },
+    "deepseek-flash|memex": {
+      "n": 40,
+      "correct": 40,
+      "accuracy": 1.0,
+      "avgPrompt": 234.3,
+      "avgCompletion": 75.8,
+      "avgLatency": 3.27,
+      "avgCostUSD": 3.2e-05,
+      "ci95": [
+        0.9124,
+        1
+      ]
+    },
+    "deepseek-flash|distractor": {
+      "n": 40,
+      "correct": 0,
+      "accuracy": 0.0,
+      "avgPrompt": 234.3,
+      "avgCompletion": 136.1,
+      "avgLatency": 3.912,
+      "avgCostUSD": 4.7e-05,
+      "ci95": [
+        0,
+        0.0876
+      ]
+    },
+    "claude-haiku-4-5|baseline": {
+      "n": 40,
+      "correct": 0,
+      "accuracy": 0.0,
+      "avgPrompt": 548.4,
+      "avgCompletion": 5.0,
+      "avgLatency": 5.088,
+      "avgCostUSD": 0.000573,
+      "ci95": [
+        0,
+        0.0876
+      ]
+    },
+    "claude-haiku-4-5|memex": {
+      "n": 40,
+      "correct": 40,
+      "accuracy": 1.0,
+      "avgPrompt": 216.2,
+      "avgCompletion": 16.5,
+      "avgLatency": 5.295,
+      "avgCostUSD": 0.000299,
+      "ci95": [
+        0.9124,
+        1
+      ]
+    },
+    "claude-haiku-4-5|distractor": {
+      "n": 40,
+      "correct": 0,
+      "accuracy": 0.0,
+      "avgPrompt": 216.3,
+      "avgCompletion": 11.8,
+      "avgLatency": 5.582,
+      "avgCostUSD": 0.000275,
+      "ci95": [
+        0,
+        0.0876
+      ]
+    }
+  },
+  "paired": {
+    "deepseek-flash": {
+      "memexOnly": 40,
+      "baselineOnly": 0
+    },
+    "claude-haiku-4-5": {
+      "memexOnly": 40,
+      "baselineOnly": 0
+    }
+  },
+  "conclusion": "At 10M archive tokens, direct retrieval exposed the target fact for 40/40 probes. With the fact in context both models answered 40/40; baseline and same-size distractor answered 0/40. Memex used fewer prompt tokens than the tail-only baseline. This is a synthetic, one-seed, 40-probe controlled experiment, not a human-labelled production benchmark.",
+  "limitations": [
+    "Synthetic unique-fact archive with filler text.",
+    "One seed and 40 probes; Wilson CIs reported.",
+    "APIMaster routing/pricing vary; cost uses reference rates.",
+    "No human relevance labels; exact FACT-id metric only.",
+    "No 10M raw text is sent to models; only retrieved evidence."
+  ],
+  "reproduce": [
+    "node --import ./test/register.mjs scripts/long-context-10m.mjs --probes 40 --out /tmp/tenm-data.json",
+    "python3 training/long_context_10m_ab.py --data /tmp/tenm-data.json --out /tmp/tenm-quality.json"
+  ]
+}
