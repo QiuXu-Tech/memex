@@ -1293,7 +1293,7 @@ await test('K2', 'checkpoint row alone registers the policy listeners and no sur
     assert.deepEqual(ctx.sections, [], 'checkpoint row must register no prompt sections')
     assert.equal(checkpointRow.name, 'memory-checkpoint')
     assert.deepEqual(checkpointRow.inject, ['memory'])
-    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'materializer', 'materializerMaxTokens', 'materializerPageTokenCap', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
+    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'materializer', 'materializerMaxTokens', 'materializerPageTokenCap', 'materializerHybridRerank', 'materializerLearnedTopK', 'materializerLearnedPageMaxTokens', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
   } finally {
     await ctx.dispose()
   }
@@ -4704,6 +4704,151 @@ await test('U56', 'archive cards are built from the actual stored episode body',
     assertIncludes(out.text, 'ARCHIVE_BODY_FACT')
     assertIncludes(out.text, `archive card; source: ${row.id}`)
     assert.equal(store.get(row.id).body, body)
+  })
+})
+
+await test('U57', 'pager retrieves old cold query targets into both bounded strategies', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  const { readFileSync } = await import('node:fs')
+  const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
+  await withCore('u57', async (store) => {
+    const target = store.write({ kind: 'fact', title: 'cardcue713 decision', summary: 'cardcue713', body: 'cardcue713 TARGET_COLD_FACT ' + 'filler '.repeat(800), workspaceKey: 'wk-u57', scope: 'workspace' })
+    store.archiveCold(target.id)
+    for (let index = 0; index < 45; index += 1) store.write({ kind: 'fact', title: `distractor ${index}`, body: 'unrelated text '.repeat(50), workspaceKey: 'wk-u57', scope: 'workspace' })
+    const base = { store, workspaceKey: 'wk-u57', scopes: ['workspace'], query: 'What was decided for cardcue713?', budgetTokens: 320, pageTokenCap: 80 }
+    for (const extra of [{}, { learnedRerank: weights, learnedTopK: 8 }]) {
+      const out = materializeStoreContext({ ...base, ...extra })
+      assert.ok(out.sources.some(source => source.recordId === target.id), 'query hit must enter candidates')
+      assert.ok(out.includedIds.includes(target.id), 'query hit must be selected')
+      assertIncludes(out.text, 'TARGET_COLD_FACT')
+      assert.ok(out.tokens <= 320)
+    }
+  })
+})
+
+await test('U58', 'hybrid ranking does not penalize distinctive query coverage', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const { readFileSync } = await import('node:fs')
+  const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
+  const pages = Array.from({ length: 8 }, (_, index) => ({ id: `other-${index}`, title: `turn ${index} cardcue${index}`, body: 'Historical note. Unique answer: filler ' + 'x'.repeat(1600), useWhen: `read for cardcue${index}`, sequence: index }))
+  pages.push({ id: 'target', title: 'turn 713 cardcue713', body: 'Historical note cardcue713. Unique answer TARGET_FACT ' + 'x'.repeat(1600), useWhen: 'read for cardcue713', sequence: 20 })
+  const out = materializeContext({ pages, query: 'What unique answer was recorded for cardcue713?', learnedRerank: weights, learnedTopK: 1, budgetTokens: 500, pageTokenCap: 100, diversify: false })
+  assert.ok(out.includedIds.includes('target'), `distinctive match must win under budget: ${out.includedIds}`)
+  assertIncludes(out.text, 'TARGET_FACT')
+})
+
+await test('U59', 'checkpoint query retrieves a nonresident record through the complete path', async () => {
+  await withInstance('u59', { checkpoint: { materializer: 'timeline-exact', materializerMaxTokens: 500, materializerPageTokenCap: 80 }, ctx: { services: { llm: undefined } } }, async ({ instance, ctx }) => {
+    const session = createSession({ id: 'sess-u59', cwd: '/tmp/ws-u59' })
+    await instance.enableLevel(session.id, 'l3')
+    const workspaceKey = workspaceKeyFor(session)
+    const target = await instance.write({ kind: 'fact', title: 'recallneedle713', summary: 'recallneedle713', body: 'recallneedle713 CHECKPOINT_RECALL_FACT', workspaceKey, scope: 'workspace' })
+    for (let index = 0; index < 45; index += 1) await instance.write({ kind: 'fact', title: `other ${index}`, body: 'unrelated '.repeat(60), workspaceKey, scope: 'workspace' })
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(createPreStepDecision(session, 'What is recallneedle713?')))
+    const message = result.messages.find(item => item.source?.kind === 'memory-recall' && item.source?.form === 'materialized-context')
+    assert.ok(message)
+    assertIncludes(message.content.filter(block => block.type === 'text').map(block => block.text).join('\n'), 'CHECKPOINT_RECALL_FACT')
+    assert.ok(message.source.recordIds.includes(target.id))
+  })
+})
+
+await test('U60', 'pager query recall respects workspace, session and superseded visibility', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  await withCore('u60', async (store) => {
+    const visible = store.write({ kind: 'fact', title: 'scopequery713 visible', body: 'VISIBLE_FACT', workspaceKey: 'wk-u60', scope: 'workspace' })
+    store.write({ kind: 'fact', title: 'scopequery713 secret', body: 'OTHER_WORKSPACE_SECRET', workspaceKey: 'other-wk', scope: 'workspace' })
+    store.write({ kind: 'fact', title: 'scopequery713 session', body: 'OTHER_SESSION_SECRET', workspaceKey: 'wk-u60', scope: 'session', sessionId: 'other-session' })
+    const superseded = store.write({ kind: 'fact', title: 'scopequery713 superseded', body: 'SUPERSEDED_SECRET', workspaceKey: 'wk-u60', scope: 'workspace' })
+    store.setStatus(superseded.id, 'superseded')
+    const out = materializeStoreContext({ store, workspaceKey: 'wk-u60', scopes: ['workspace', 'session'], sessionId: 'current-session', query: 'scopequery713', budgetTokens: 1000 })
+    assert.ok(out.includedIds.includes(visible.id))
+    for (const text of ['OTHER_WORKSPACE_SECRET', 'OTHER_SESSION_SECRET', 'SUPERSEDED_SECRET']) assert.ok(!out.text.includes(text), text)
+  })
+})
+
+await test('U61', 'pager retrieves an old Chinese topic from a natural query', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  const { readFileSync } = await import('node:fs')
+  const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
+  await withCore('u61', async (store) => {
+    const target = store.write({ kind: 'decision', title: '计费重试策略', summary: '计费错误时使用指数退避', body: '计费失败后采用指数退避，最多重试三次。', workspaceKey: 'wk-u61', scope: 'workspace' })
+    for (let index = 0; index < 45; index += 1) store.write({ kind: 'fact', title: `缓存杂项 ${index}`, body: '无关内容 '.repeat(40), workspaceKey: 'wk-u61', scope: 'workspace' })
+    for (const extra of [{}, { learnedRerank: weights, learnedTopK: 4 }]) {
+      const out = materializeStoreContext({ store, workspaceKey: 'wk-u61', scopes: ['workspace'], query: '计费失败的重试退避策略是什么？', budgetTokens: 200, pageTokenCap: 80, ...extra })
+      assert.ok(out.includedIds.includes(target.id), `Chinese topic should be selected: ${out.includedIds}`)
+      assertIncludes(out.text, '最多重试三次')
+    }
+  })
+})
+
+await test('U62', 'pager does not search or expose records when no scopes are visible', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  const store = { list: () => { throw new Error('must not list') }, search: () => { throw new Error('must not search') } }
+  const out = materializeStoreContext({ store, workspaceKey: 'wk-u62', scopes: [], query: 'anything', budgetTokens: 200 })
+  assert.deepEqual(out.includedIds, [])
+  assert.equal(out.text, '')
+})
+
+await test('U63', 'checkpoint opt-in hybrid forwards weights and retrieves a relevant old record', async () => {
+  await withInstance('u63', { checkpoint: { materializer: 'timeline-exact', materializerMaxTokens: 500, materializerPageTokenCap: 80, materializerHybridRerank: true, materializerLearnedTopK: 4, materializerLearnedPageMaxTokens: 200 }, ctx: { services: { llm: undefined } } }, async ({ instance, ctx }) => {
+    const session = createSession({ id: 'sess-u63', cwd: '/tmp/ws-u63' })
+    await instance.enableLevel(session.id, 'l3')
+    const workspaceKey = workspaceKeyFor(session)
+    await instance.write({ kind: 'fact', title: 'hybridneedle713', summary: 'hybridneedle713', body: 'hybridneedle713 HYBRID_RECALL_FACT', workspaceKey, scope: 'workspace' })
+    for (let index = 0; index < 45; index += 1) await instance.write({ kind: 'fact', title: `other ${index}`, body: 'unrelated '.repeat(60), workspaceKey, scope: 'workspace' })
+    const materialize = instance.materializeContext.bind(instance)
+    let request
+    instance.materializeContext = async (input) => { request = input; return materialize(input) }
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(createPreStepDecision(session, 'What is hybridneedle713?')))
+    const message = result.messages.find(item => item.source?.kind === 'memory-recall' && item.source?.form === 'materialized-context')
+    assert.ok(message)
+    assertIncludes(message.content.filter(block => block.type === 'text').map(block => block.text).join('\n'), 'HYBRID_RECALL_FACT')
+    assert.ok(Array.isArray(request.learnedRerank.weights))
+    assert.equal(request.learnedTopK, 4)
+    assert.equal(request.learnedPageMaxTokens, 200)
+  })
+})
+
+await test('U64', 'generated bundle resolves hybrid weights through the checkpoint and local service', async () => {
+  const entry = new URL('../packages/memex/modules/memory-checkpoint/index.js', import.meta.url)
+  if (!existsSync(entry)) throw new Skip('bundle not built')
+  const checkpoint = await import(entry.href)
+  const { default: BundleStore } = await import('../packages/memex/modules/memory-local/index.js')
+  const root = makeRoot('u64')
+  const ctx = createFakeContext({ services: { llm: undefined } })
+  const instance = new BundleStore(ctx, { root, defaultLevels: 'l3' })
+  ctx.provideService('memory', instance)
+  try {
+    checkpoint.apply(ctx, { materializer: 'timeline-exact', materializerMaxTokens: 500, materializerHybridRerank: true })
+    const session = createSession({ id: 'sess-u64', cwd: '/tmp/ws-u64' })
+    await instance.enableLevel(session.id, 'l3')
+    await instance.write({ kind: 'fact', title: 'bundlecue713', summary: 'bundlecue713', body: 'bundlecue713 BUNDLE_FACT', workspaceKey: workspaceKeyFor(session), scope: 'workspace' })
+    let request
+    const materialize = instance.materializeContext.bind(instance)
+    instance.materializeContext = async (input) => { request = input; return materialize(input) }
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(createPreStepDecision(session, 'bundlecue713')))
+    const message = result.messages.find(item => item.source?.kind === 'memory-recall' && item.source?.form === 'materialized-context')
+    assert.ok(message)
+    assertIncludes(message.content.filter(block => block.type === 'text').map(block => block.text).join('\n'), 'BUNDLE_FACT')
+    assert.ok(Array.isArray(request.learnedRerank.weights))
+  } finally {
+    await ctx.dispose()
+  }
+})
+
+await test('U65', 'superseded search matches cannot crowd a visible old target out of pager recall', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  await withCore('u65', async (store) => {
+    const target = store.write({ kind: 'fact', title: 'samecue713', summary: 'samecue713', body: 'VISIBLE_TARGET_FACT', workspaceKey: 'wk-u65', scope: 'workspace' })
+    for (let index = 0; index < 12; index += 1) {
+      const obsolete = store.write({ kind: 'fact', title: 'samecue713', summary: 'samecue713', body: 'OBSOLETE_FACT', workspaceKey: 'wk-u65', scope: 'workspace' })
+      store.setStatus(obsolete.id, 'superseded')
+    }
+    for (let index = 0; index < 45; index += 1) store.write({ kind: 'fact', title: `other ${index}`, body: 'filler', workspaceKey: 'wk-u65', scope: 'workspace' })
+    const out = materializeStoreContext({ store, workspaceKey: 'wk-u65', scopes: ['workspace'], query: 'samecue713', budgetTokens: 500 })
+    assert.ok(out.includedIds.includes(target.id))
+    assertIncludes(out.text, 'VISIBLE_TARGET_FACT')
+    assert.ok(!out.text.includes('OBSOLETE_FACT'))
   })
 })
 

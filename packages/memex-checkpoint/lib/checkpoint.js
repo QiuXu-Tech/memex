@@ -14,6 +14,7 @@
  * @module @qiuxu/memex-checkpoint/checkpoint
  */
 import { createHash } from 'node:crypto'
+import { readFileSync } from 'node:fs'
 import { archiveRecordId, canonicalEventsFromDsh, memoryCaptureScope, memoryMessage, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
 import { buildCard } from './render.js'
 
@@ -98,7 +99,13 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     materializer: config.materializer ?? 'off',
     materializerMaxTokens: Number.isSafeInteger(config.materializerMaxTokens) ? config.materializerMaxTokens : 1800,
     materializerPageTokenCap: Number.isSafeInteger(config.materializerPageTokenCap) ? config.materializerPageTokenCap : 0,
+    materializerHybridRerank: config.materializerHybridRerank === true,
+    materializerLearnedTopK: Number.isSafeInteger(config.materializerLearnedTopK) ? config.materializerLearnedTopK : 1,
+    materializerLearnedPageMaxTokens: Number.isSafeInteger(config.materializerLearnedPageMaxTokens) ? config.materializerLearnedPageMaxTokens : 0,
   }
+  const lexicalReranker = policyConfig.materializerHybridRerank
+    ? JSON.parse(readFileSync(new URL('./lexical-reranker.json', import.meta.resolve('@qiuxu/memex-core/context-materializer')), 'utf8'))
+    : undefined
   /** sessionId -> Map<seq, event>, bounded live fallback. */
   const buffers = new Map()
   /** sessionId -> {recordId, title, text}[] pending receipt lines. */
@@ -380,6 +387,9 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
       variant: policyConfig.materializer,
       query,
       pageTokenCap: policyConfig.materializerPageTokenCap,
+      learnedRerank: query ? lexicalReranker : undefined,
+      learnedTopK: policyConfig.materializerLearnedTopK,
+      learnedPageMaxTokens: policyConfig.materializerLearnedPageMaxTokens,
     })
     if (result === undefined || typeof result.text !== 'string' || result.text.length === 0) return undefined
     const digest = createHash('sha256').update(result.text).digest('hex')

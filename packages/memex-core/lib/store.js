@@ -626,6 +626,8 @@ export class LocalStoreCore {
     if (filter.status !== undefined) {
       clauses.push(`${col('status')} = ?`)
       params.push(filter.status)
+    } else if (filter.excludeSuperseded === true) {
+      clauses.push(`${col('status')} != 'superseded'`)
     }
     if (filter.cold !== undefined) {
       clauses.push(`${col('cold')} = ?`)
@@ -1014,6 +1016,7 @@ export class LocalStoreCore {
     const tagFilter = Array.isArray(query.tags) ? query.tags.filter((tag) => typeof tag === 'string' && tag.length > 0) : []
     const hits = []
     for (const { card, row } of ranked) {
+      if (query.excludeSuperseded === true && card.status === 'superseded') continue
       if (tagFilter.length > 0 && !tagFilter.every((tag) => tagsText(card.tags).includes(tag))) continue
       hits.push({
         ...card,

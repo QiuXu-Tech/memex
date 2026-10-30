@@ -31,6 +31,10 @@ export const Config = z.object({
   materializerMaxTokens: z.number().step(1).min(400).default(1800),
   /** Optional body excerpt limit for resident pages (zero disables it). */
   materializerPageTokenCap: z.number().step(1).min(0).default(0),
+  /** Optional query-aware hybrid ordering; disabled by default. */
+  materializerHybridRerank: z.boolean().default(false),
+  materializerLearnedTopK: z.number().step(1).min(1).default(1),
+  materializerLearnedPageMaxTokens: z.number().step(1).min(0).default(0),
   /** Hot-pool usage ratio at which the model is told to ask the user about compression. */
   capacityNoticeRatio: z.number().min(0.05).max(0.99).default(0.8),
   /** Minimum time between capacity notices for one session, in ms. */
@@ -47,6 +51,9 @@ export function apply(ctx, config = {}) {
     materializer: config.materializer ?? 'off',
     materializerMaxTokens: config.materializerMaxTokens ?? 1800,
     materializerPageTokenCap: config.materializerPageTokenCap ?? 0,
+    materializerHybridRerank: config.materializerHybridRerank ?? false,
+    materializerLearnedTopK: config.materializerLearnedTopK ?? 1,
+    materializerLearnedPageMaxTokens: config.materializerLearnedPageMaxTokens ?? 0,
     capacityNoticeRatio: config.capacityNoticeRatio ?? 0.8,
     capacityNoticeCooldownMs: config.capacityNoticeCooldownMs ?? 10 * 60 * 1000,
   }

@@ -9,7 +9,7 @@
 import { materializeContext, resolveContextVariant } from './context-materializer.js'
 import { eventsToMaterializerPages } from './context-events.js'
 
-export const CONTEXT_PAGER_VERSION = '0.12.0'
+export const CONTEXT_PAGER_VERSION = '0.13.0'
 
 const byId = (rows) => {
   const map = new Map()
@@ -26,7 +26,7 @@ const byId = (rows) => {
  * @param {number} [input.budgetTokens]
  * @param {string} [input.variant]
  * @param {string[]} [input.pinnedIds]
- * @param {string} [input.query] - Current user query for optional learned reranking.
+ * @param {string} [input.query] - Current query used for bounded search and optional learned reranking.
  * @param {object} [input.learnedRerank] - Optional learned reranker weights.
  * @param {string[]} [input.alwaysIncludeIds] - Core-fact records always included.
  * @param {number} [input.learnedPageMaxTokens] - Skip learned candidates above this token size.
@@ -68,10 +68,22 @@ export function materializeStoreContext(input = {}) {
     kind: input.kind,
     status: undefined,
   }
-  const rows = byId([
+  const noVisibleScopes = Array.isArray(input.scopes) && !input.scopes.some((scope) => scope === 'workspace' || scope === 'session')
+  const queryHits = !noVisibleScopes && typeof input.query === 'string' && input.query.trim() !== '' && typeof store.search === 'function'
+    ? store.search({ ...filter, query: input.query, limit: 8, excludeSuperseded: true }).hits.filter((row) => {
+      if (row.status === 'superseded') return false
+      if (input.workspaceKey !== undefined && row.workspaceKey !== input.workspaceKey) return false
+      if (input.kind !== undefined && row.kind !== input.kind) return false
+      if (Array.isArray(input.scopes) && !input.scopes.includes(row.scope)) return false
+      if (row.scope === 'session' && row.sessionId !== input.sessionId) return false
+      return true
+    })
+    : []
+  const rows = noVisibleScopes ? [] : byId([
     ...store.list({ ...filter, status: 'pinned', limit: 24, includeStatus: true }),
     ...store.list({ ...filter, status: 'open', limit: 16 }),
     ...store.list({ ...filter, limit: 40 }),
+    ...queryHits,
   ])
   const pinnedIds = new Set(Array.isArray(input.pinnedIds) ? input.pinnedIds : rows.filter((row) => row.status === 'pinned').map((row) => row.id))
   const pages = []
@@ -117,6 +129,7 @@ export function materializeStoreContext(input = {}) {
     learnedTopK: input.learnedTopK,
     alwaysIncludeIds: input.alwaysIncludeIds,
     learnedPageMaxTokens: input.learnedPageMaxTokens,
+    retrievedIds: queryHits.map((row) => row.id),
     pageTokenCap: input.pageTokenCap,
     tokenCounter: input.tokenCounter,
     tokenizerName: input.tokenizerName,

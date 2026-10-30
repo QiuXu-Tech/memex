@@ -13,6 +13,7 @@
     "lib"
   ],
   "dependencies": {
+    "@qiuxu/memex-core": "file:../memex-core",
     "@qiuxu/memex-seam": "file:../memex-seam"
   },
   "peerDependencies": {

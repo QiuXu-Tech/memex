@@ -11,7 +11,7 @@
 import { createHash } from 'node:crypto'
 import { estimateTokens } from '../index.js'
 
-export const CONTEXT_MATERIALIZER_VERSION = '0.11.0'
+export const CONTEXT_MATERIALIZER_VERSION = '0.12.0'
 
 /**
  * Variants are *layout / specialist* descriptors, not trained models yet.
@@ -96,7 +96,7 @@ function learnedRerankPages(pages, query, reranker) {
     // Explicit title/useWhen relevance fallback: learned weights are not yet retrained
     // for CJK data, so exact title/useWhen overlap keeps Chinese queries from losing.
     score += 2 * features[2] + features[3]
-    return { page, score }
+    return { page, score, coverage: features[0] }
   }).sort((left, right) => right.score - left.score)
 }
 
@@ -136,6 +136,7 @@ function stableHash(text) {
  * @param {number} [input.budgetTokens=2400] - Budget for the materialized window.
  * @param {string} [input.variant='timeline-exact'] - One of CONTEXT_VARIANTS.
  * @param {string[]} [input.pinnedIds=[]] - Pages forced into the window.
+ * @param {string[]} [input.retrievedIds=[]] - Search-ordered record IDs preferred by rule selection, within budget.
  * @param {number} [input.reserveTokens=0] - Space reserved for the live question/tail.
  * @returns {{text:string, prefixText:string, stablePrefixHash:string, includedIds:string[], omittedIds:string[], tokens:number, budgetTokens:number, variant:object, order:string[], requiresKV:boolean}}
  */
@@ -238,9 +239,10 @@ export function materializeContext(input = {}) {
     const topK = Math.max(1, Number.isSafeInteger(input.learnedTopK) ? input.learnedTopK : 1)
     const maxPageTokens = Math.max(0, Number.isSafeInteger(input.learnedPageMaxTokens) ? input.learnedPageMaxTokens : 0)
     const diversify = input.diversify !== false
-    // Objective: maximize relevance score first; break ties by lower page cost.
-    // Budget remains a hard constraint checked on the final rendered order.
+    // Prefer greater query-term coverage; learned weights break coverage ties.
+    // Negative learned coefficients must not penalize a distinctive match.
     ranked.sort((left, right) => {
+      if (left.coverage !== right.coverage) return right.coverage - left.coverage
       const leftScore = Number(left.score) || 0
       const rightScore = Number(right.score) || 0
       if (leftScore !== rightScore) return rightScore - leftScore
@@ -255,6 +257,11 @@ export function materializeContext(input = {}) {
         added += 1
         if (added >= topK) break
       }
+    }
+  } else if (Array.isArray(input.retrievedIds)) {
+    // Rule selection uses search order before filling the remaining budget by chronology.
+    for (const id of input.retrievedIds) {
+      for (const page of sorted) if ((page.recordId ?? page.id) === id) tryAdd(page)
     }
   }
   for (const page of sorted) {
