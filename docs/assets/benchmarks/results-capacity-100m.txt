@@ -1,20 +1,20 @@
 scale: 10000 records × 10000 tokens (100.0M tokens), pool capacity 100.0M, target ratio 0.5, gc keep 0.5
-write: 10000 records / 100.0M tokens in 11.0s
-db after write: 10.9 MiB, records dir 384.8 MiB
+write: 10000 records / 100.0M tokens in 9.7s
+db after write: 10.8 MiB, records dir 384.8 MiB
 == reads ==
-facets: median 5.91ms p95 6.02ms
-list 20: median 6.03ms p95 6.14ms
-catalog: median 12.94ms p95 12.97ms
-search title term "topic 7": median 7.84ms p95 7.99ms
-search ascii "alpha beta": median 11.31ms p95 11.83ms
-search CJK "记忆": median 2.13ms p95 2.17ms
-grep body "xxxxxxxx": median 14.15ms p95 14.89ms
-get record: median 0.04ms p95 0.07ms
+facets: median 5.77ms p95 5.94ms
+list 20: median 5.57ms p95 5.72ms
+catalog: median 11.67ms p95 11.83ms
+search title term "topic 7": median 7.08ms p95 7.51ms
+search ascii "alpha beta": median 10.89ms p95 11.14ms
+search CJK "记忆": median 2.04ms p95 2.13ms
+grep body "xxxxxxxx": median 13.85ms p95 14.11ms
+get record: median 0.04ms p95 0.04ms
 == compression ==
-compressCold: moved 5000 records, freed 50.00M tokens in 14.83s
-hot 50.00M / cold 50.00M tokens; cold files 192.4 MiB; db 28.2 MiB
-search after cold (card fields): median 28.96ms p95 29.85ms
-catalog after cold: median 14.03ms p95 14.34ms
+compressCold: moved 5000 records, freed 50.00M tokens in 14.61s
+hot 50.00M / cold 50.00M tokens; cold files 192.4 MiB; db 28.3 MiB
+search after cold (card fields): median 27.63ms p95 27.99ms
+catalog after cold: median 13.56ms p95 13.69ms
 == cold gc ==
-gcCold: removed 2500 records, freed 25.00M cold tokens in 5.56s
+gcCold: removed 2500 records, freed 25.00M cold tokens in 5.58s
 db after gc: 28.3 MiB

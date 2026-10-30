@@ -129,5 +129,6 @@ ok U30 KV host capability negotiation fails closed and pages when fully capable
 ok U31 trained transformer context encoder matches Python reference and ranks pages
 ok U32 reference paged-KV host pages blocks, caches prefixes and evicts by capacity
 ok U33 checkpoint runtime injects a materialized window when enabled
+ok U34 GPU-trained 2-layer transformer encoder matches Python logits in JS
 
-# 130/130 passed
+# 131/131 passed

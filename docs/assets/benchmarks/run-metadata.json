@@ -1,9 +1,9 @@
 {
-  "testedVersion": "0.14.1 + SQLite fix",
-  "testedCommit": "9fb13bb80038eb79b239a96186ced2ccfd93eb31",
-  "executionCheckout": "9fb13bb80038eb79b239a96186ced2ccfd93eb31",
-  "executionCheckoutNote": "Clean detached checkout of the post-v0.14.1 SQLite consistency fix.",
-  "date": "2026-10-29",
+  "testedVersion": "0.26.0",
+  "testedCommit": "0b39791d144c8ebdf7a4f3ddc283550438b4c8d4",
+  "executionCheckout": "0b39791d144c8ebdf7a4f3ddc283550438b4c8d4",
+  "executionCheckoutNote": "Clean detached checkout of the v0.26.0 release.",
+  "date": "2026-10-30",
   "timezone": "Asia/Shanghai",
   "os": "macOS 27.2 (26B123)",
   "architecture": "arm64",
@@ -17,29 +17,29 @@
   "quietGateFallback": false,
   "quietGateSamples": [
     {
-      "timeUtc": "2026-10-29T15:25:00+00:00",
+      "timeUtc": "2026-10-30T09:25:25+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 14.2,
-      "load1": 3.1826171875,
-      "load5": 3.39892578125,
+      "systemCpuBusyPercent": 19.1,
+      "load1": 3.82177734375,
+      "load5": 4.01025390625,
       "benchmarkPid": null
     },
     {
-      "timeUtc": "2026-10-29T15:25:05+00:00",
+      "timeUtc": "2026-10-30T09:25:30+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 16.9,
-      "load1": 3.0078125,
-      "load5": 3.35888671875,
+      "systemCpuBusyPercent": 17.6,
+      "load1": 3.67578125,
+      "load5": 3.9765625,
       "benchmarkPid": null
     }
   ],
   "benchmarkLoadSamples": {
     "count": 20,
-    "cpuBusyPercentMin": 26.7,
-    "cpuBusyPercentMax": 40.9,
-    "cpuBusyPercentMedian": 31.95,
-    "load1Min": 3.1533203125,
-    "load1Max": 4.421875
+    "cpuBusyPercentMin": 26.1,
+    "cpuBusyPercentMax": 40.1,
+    "cpuBusyPercentMedian": 33.4,
+    "load1Min": 3.46142578125,
+    "load1Max": 5.0390625
   },
   "temporaryLocation": "fresh macOS system temporary directory",
   "summary": "Pre-existing compaction-summary.txt; no model invoked for offline benchmark.",
@@ -49,7 +49,7 @@
     "scripts/recall-eval.mjs": "563c8718ef432d54f4115be0c1ab6e96808f81784bf99d7e83b4d093b098c8e1",
     "docs/assets/benchmarks/compaction-summary.txt": "5df3b0d2540dc3e70f8662b18e6e79a832a92019aa3fbd1d6411f7e6baab75f7",
     "test/register.mjs": "b6651a0d8d119cb6fc843d7ca54529a0f30746615bc68348b6a069e06c22124f",
-    "test/run.mjs": "1d802d761c286965e33747fac6b11aed1519189cf29d445865948a17b767cd45",
+    "test/run.mjs": "1dc9cac90541601bd33e8e8fd1875e79dcec977dcf7c9e75b11d60a7b032748e",
     "test/sqlite-consistency.mjs": "1337dbe69688f5f2846fd312e0063320c5ec049798179f25f7cba4ec4ccf7524",
     "packages/memex-core/index.js": "ac504c96cc6f01612b74db0003f5e7bd3d84b5ed7964f991c61dc1c2ea6b79ef",
     "packages/memex-core/lib/store.js": "2f02be75d4d608e8d52878cc09de6319925d851b0fbac3d1cd18a841756cfd78",
@@ -68,8 +68,8 @@
   ],
   "liveAB": {
     "node": "v25.9.0",
-    "codexCli": "0.165.0-alpha.1.2",
-    "reasoningEffort": "max",
+    "codexCli": "0.166.0-alpha.5.1",
+    "reasoningEffort": "xhigh",
     "bridgeExitCode": 0,
     "calls": 6,
     "allExitZero": true,
@@ -79,40 +79,40 @@
     "quietStartGateMet": true,
     "quietGateSamples": [
       {
-        "timeUtc": "2026-10-29T15:27:07+00:00",
+        "timeUtc": "2026-10-30T09:27:47+00:00",
         "stage": "preflight",
-        "systemCpuBusyPercent": 14.3,
-        "load1": 3.20166015625,
-        "load5": 3.45849609375,
+        "systemCpuBusyPercent": 24.6,
+        "load1": 4.1142578125,
+        "load5": 4.22802734375,
         "benchmarkPid": null
       },
       {
-        "timeUtc": "2026-10-29T15:27:12+00:00",
+        "timeUtc": "2026-10-30T09:27:52+00:00",
         "stage": "preflight",
-        "systemCpuBusyPercent": 15.8,
-        "load1": 3.02490234375,
-        "load5": 3.41748046875,
+        "systemCpuBusyPercent": 24.0,
+        "load1": 4.26513671875,
+        "load5": 4.25732421875,
         "benchmarkPid": null
       }
     ],
     "loadSamples": {
-      "count": 44,
-      "cpuBusyPercentMin": 15.8,
-      "cpuBusyPercentMax": 33.5,
-      "cpuBusyPercentMedian": 20.25,
-      "load1Min": 2.3212890625,
-      "load1Max": 3.2802734375
+      "count": 33,
+      "cpuBusyPercentMin": 15.5,
+      "cpuBusyPercentMax": 34.3,
+      "cpuBusyPercentMedian": 20.6,
+      "load1Min": 3.05810546875,
+      "load1Max": 5.3642578125
     },
     "sessionTokenUsage": {
-      "input_tokens": 164688,
-      "cached_input_tokens": 65920,
+      "input_tokens": 164253,
+      "cached_input_tokens": 87040,
       "cache_write_input_tokens": 0,
-      "output_tokens": 1882,
-      "reasoning_output_tokens": 890,
-      "total_tokens": 166570
+      "output_tokens": 1540,
+      "reasoning_output_tokens": 548,
+      "total_tokens": 165793
     },
     "billedCost": "UNKNOWN",
-    "nativeReportSha256": "9849b3ba873a67e9336a7875cb96927f444770f1bb2375dd7fa5b52959a2bf2f",
+    "nativeReportSha256": "27058af6a873c9aeaced3622af1ddf33391b389c5cd767ce28096f89862d9b99",
     "note": "Separate from offline benchmark; diagnostic tails and local session logs retained locally."
   }
 }

@@ -14,9 +14,8 @@ Tracking request and discussion: [issue #1](https://github.com/QiuXu-Tech/memex/
 **Tail-membership status:** v0.8.0 recorded tail IDs and probe flags, but
 its `created_at, id` sort could reorder turns written in the same millisecond.
 The [tail-order fix](https://github.com/QiuXu-Tech/memex/commit/c1cda8ba1ba931fa4db9acdf6787cb0a80872c00)
-uses the fixture's actual insertion order. In the v0.14.1 + SQLite fix GPT-6.1
-Sol run, saved plans and prompts confirm turns 280–299 in order for all three
-seeds. [Results and evidence](assets/benchmarks/live-ab-codex-sol-sqlite-fixed-evidence.json)
+uses the fixture's actual insertion order. In the v0.26.0 GPT-6.1 Sol run, saved plans and prompts confirm turns 280–299 in order for all three
+seeds. [Results and evidence](assets/benchmarks/live-ab-codex-sol-v026-evidence.json)
 are available below. Earlier DeepSeek, Terra and Claude counts remain historical;
 see the [tail audit](assets/benchmarks/results-tail-history-v080.json) before
 interpreting their claimed chronological tails.
@@ -87,9 +86,10 @@ Limits kept explicit: the boost requires the cold abstract to cover **every** me
 | Sol, v0.8.1 + tail-order fix | 3/60 | 60/60 | 0/57 → 57/57 | Actual plans and both prompts saved; turns 280–299 in order |
 | Sol, v0.9.1 + tail-order fix | 3/60 | 60/60 | 0/57 → 57/57 | Plans and prompts saved; turns 280–299 in order; seed 3 resumed after fixture error |
 | Sol, v0.14.0 | **3/60** | **60/60** | **0/57 → 57/57** | All three actual prompt tails verified in order; bridge and six calls exited zero |
-| Sol, v0.14.1 + unreleased SQLite fix | **3/60** | **60/60** | **0/57 → 57/57** | All three actual prompt tails verified in order; bridge and six calls exited zero |
+| Sol, v0.14.1 + SQLite fix | **3/60** | **60/60** | **0/57 → 57/57** | All three actual prompt tails verified in order; bridge and six calls exited zero |
+| Sol, v0.26.0 | **3/60** | **60/60** | **0/57 → 57/57** | All three actual prompt tails verified in order; bridge and six calls exited zero |
 
-The v0.9.1 + tail fix, v0.14.0, and v0.14.1 + SQLite fix runs use three synthetic 300-turn histories and
+The v0.9.1 + tail fix, v0.14.0, v0.14.1 + SQLite fix and v0.26.0 runs use three synthetic 300-turn histories and
 20 probes per seed. Both conditions see the titles and summaries of the 20 tail records,
 not their full conversation bodies. The fixture searches and opens records
 before inserting evidence into the treatment prompt; it does not test an
@@ -125,6 +125,14 @@ model-issued tool calls appear in those session logs. Local session counts total
 quiet-start CPU samples were 14.3% / 15.8%; 44 samples during the run ranged
 15.8%–33.5% on the shared machine. See the [full benchmark](benchmark.html#6-codex-ab-and-retained-tail-verification)
 for conditions and measurement limits.
+
+[The v0.26.0 bridge](assets/benchmarks/live-ab-codex-sol-v026.json) completed
+all six calls with exit code zero; [plans and prompts](assets/benchmarks/live-ab-codex-sol-v026-evidence.json)
+confirm the three chronological tails and probe flags. Session counts total
+**165,793 tokens**, including 87,040 cached input; monetary cost is unknown.
+The measured model received pre-retrieved evidence and issued no memory-tool
+calls. See the [benchmark](benchmark.html#6-codex-ab-and-retained-tail-verification)
+for load and other limits.
 
 [v0.9.1 result](assets/benchmarks/live-ab-codex-sol-v091.json) ·
 [v0.9.1 actual plans and prompts](assets/benchmarks/live-ab-codex-sol-v091-evidence.json) ·
