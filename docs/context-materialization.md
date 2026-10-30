@@ -503,6 +503,23 @@ Rollback:
 - weights backup: `modules/memory-core/lib/lexical-reranker.json.bak-*`
 - disable with `materializerHybridRerank: false`
 
+## Online A/B trace (v0.43.0)
+
+The active checkpoint now records both selections for every hybrid materialization:
+
+- `form: materializer-ab`
+- `query`, `budgetTokens`
+- `ruleIds`, `hybridIds`
+- `ruleTokens`, `hybridTokens`
+- `addedIds`, `removedIds`
+
+This double materialization is best-effort and does not change the injected window. Analyze with:
+
+```bash
+python3 scripts/materializer-ab-report.py
+```
+
+Next: restart DSH once, accumulate real turns, then compare rule vs hybrid page/token deltas online.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

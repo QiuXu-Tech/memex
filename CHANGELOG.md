@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.43.0
+
+### Added — online materializer A/B trace
+- Active checkpoint records rule-only and hybrid selections per materialized turn (`form: materializer-ab`): query, rule/hybrid IDs, tokens, added/removed IDs.
+- Injected window unchanged; A/B trace is best-effort.
+- Analysis helper: `scripts/materializer-ab-report.py`.
+- Active memory tests **98/98**; repo harness **133/133**.
+- Requires one final DSH restart to activate the trace code.
+
 ## 0.42.0
 
 ### Changed — production hybrid config at 2,400 tokens
