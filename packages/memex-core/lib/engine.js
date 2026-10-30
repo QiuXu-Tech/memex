@@ -184,6 +184,11 @@ export class AgentMemory {
       reserveTokens: options.reserveTokens,
       query: options.query,
       learnedRerank: options.learnedRerank,
+      learnedTopK: options.learnedTopK,
+      alwaysIncludeIds: options.alwaysIncludeIds,
+      learnedPageMaxTokens: options.learnedPageMaxTokens,
+      enforceTotalBudget: options.enforceTotalBudget,
+      diversify: options.diversify,
     })
   }
 

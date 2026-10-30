@@ -97,6 +97,16 @@ function learnedRerankPages(pages, query, reranker) {
   }).sort((left, right) => right.score - left.score)
 }
 
+function isNearDuplicate(left, right) {
+  const terms = (page) => new Set(String(`${page.title ?? ''} ${page.summary ?? ''}`).toLowerCase().match(/[a-z0-9_\u4e00-\u9fff]+/g) ?? [])
+  const a = terms(left)
+  const b = terms(right)
+  if (a.size === 0 || b.size === 0) return false
+  let shared = 0
+  for (const term of a) if (b.has(term)) shared += 1
+  return shared / Math.min(a.size, b.size) >= 0.8
+}
+
 function stableHash(text) {
   return createHash('sha256').update(String(text), 'utf8').digest('hex').slice(0, 16)
 }
@@ -129,6 +139,7 @@ export function materializeContext(input = {}) {
   const selected = []
   const omitted = []
   let used = 0
+  const coreIds = new Set(Array.isArray(input.alwaysIncludeIds) ? input.alwaysIncludeIds : [])
   const tryAdd = (page, force = false) => {
     if (selected.some((entry) => entry.id === page.id)) return true
     const tokens = pageTokens(page)
@@ -137,7 +148,9 @@ export function materializeContext(input = {}) {
     used += tokens
     return true
   }
-  // Pinned pages first (they are the orientation anchors), then chronology.
+  // Core-fact pages are guaranteed before ordinary pinned/chronology selection.
+  for (const page of sorted) if (coreIds.has(page.id)) tryAdd(page, true)
+  // Pinned pages next (they are the orientation anchors), then chronology.
   for (const page of sorted) if (pinned.has(page.id)) tryAdd(page, true)
   if (variant.pinnedEdges) {
     const first = sorted.find((page) => !selected.some((entry) => entry.id === page.id))
@@ -147,9 +160,21 @@ export function materializeContext(input = {}) {
   if (input.query !== undefined && input.learnedRerank !== undefined) {
     const ranked = learnedRerankPages(sorted, String(input.query), input.learnedRerank)
     const topK = Math.max(1, Number.isSafeInteger(input.learnedTopK) ? input.learnedTopK : 1)
+    const maxPageTokens = Math.max(0, Number.isSafeInteger(input.learnedPageMaxTokens) ? input.learnedPageMaxTokens : 0)
+    const diversify = input.diversify !== false
+    // Budget-aware: prefer relevance per token; skip huge/near-duplicate pages that would evict key records.
+    ranked.sort((left, right) => {
+      const leftTokens = Math.max(1, pageTokens(left.page))
+      const rightTokens = Math.max(1, pageTokens(right.page))
+      return (right.score / rightTokens) - (left.score / leftTokens)
+    })
     let added = 0
     for (const { page } of ranked) {
       if (selected.some((entry) => entry.id === page.id)) continue
+      const tokens = pageTokens(page)
+      if (maxPageTokens > 0 && tokens > maxPageTokens) continue
+      if (diversify && selected.some((entry) => isNearDuplicate(entry, page))) continue
+      if (used + tokens > usable) continue
       if (tryAdd(page)) {
         added += 1
         if (added >= topK) break
@@ -160,6 +185,15 @@ export function materializeContext(input = {}) {
     if (!tryAdd(page)) omitted.push(page.id)
   }
   selected.sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
+  if (input.enforceTotalBudget === true) {
+    const prefixFor = (entries) => [`## Extra-context materialized window (${variant.id})`, `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`, ...entries.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`)].join('\n')
+    const totalFor = (entries) => entries.reduce((sum, page) => sum + pageTokens(page), 0) + estimateTokens(prefixFor(entries))
+    while (totalFor(selected) > budgetTokens) {
+      const removable = [...selected].reverse().find((page) => !coreIds.has(page.id) && !pinned.has(page.id))
+      if (removable === undefined) break
+      selected.splice(selected.indexOf(removable), 1)
+    }
+  }
   const indexLines = selected.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`)
   const prefixText = [
     `## Extra-context materialized window (${variant.id})`,

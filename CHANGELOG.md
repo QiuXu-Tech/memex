@@ -4,6 +4,17 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.50.0
+
+### Added — all materializer optimizations
+- Core-fact tier (`alwaysIncludeIds`): architecture/KV/DSH/priorities summaries guaranteed.
+- Budget-aware learned rerank by score/token; `learnedPageMaxTokens` skips oversized candidates.
+- `enforceTotalBudget`: returned tokens <= budget; near-duplicate diversity guard.
+- Multi-query matrix on 41 records: all core facts hit; optimized hybrid tokens 1,428–1,753.
+- Optimized answer quality: DeepSeek 7/6/7, Claude 7/6/9 (coverage/correctness/focus).
+- Remaining: BGE/semantic reranker, full multi-query answer A/B, human-verified labels.
+- Active config synced; DSH restart required. Harness **137/137**; active **98/98**.
+
 ## 0.49.0
 
 ### Added — selection matrix + optimization directions

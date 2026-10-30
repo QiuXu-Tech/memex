@@ -28,6 +28,10 @@ const byId = (rows) => {
  * @param {string[]} [input.pinnedIds]
  * @param {string} [input.query] - Current user query for optional learned reranking.
  * @param {object} [input.learnedRerank] - Optional learned reranker weights.
+ * @param {string[]} [input.alwaysIncludeIds] - Core-fact records always included.
+ * @param {number} [input.learnedPageMaxTokens] - Skip learned candidates above this token size.
+ * @param {boolean} [input.enforceTotalBudget] - Enforce total returned tokens <= budget.
+ * @param {boolean} [input.diversify] - Skip near-duplicate learned candidates.
  * @param {boolean} [input.includeCanonicalEvents=true]
  */
 export function materializeStoreContext(input = {}) {
@@ -76,6 +80,11 @@ export function materializeStoreContext(input = {}) {
     reserveTokens: input.reserveTokens,
     query: input.query,
     learnedRerank: input.learnedRerank,
+    learnedTopK: input.learnedTopK,
+    alwaysIncludeIds: input.alwaysIncludeIds,
+    learnedPageMaxTokens: input.learnedPageMaxTokens,
+    enforceTotalBudget: input.enforceTotalBudget,
+    diversify: input.diversify,
   })
   return { ...materialized, sources, pages: pages.length, pager: CONTEXT_PAGER_VERSION }
 }

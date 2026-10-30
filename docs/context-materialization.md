@@ -618,6 +618,24 @@ Active config was therefore set to **1,800 + topK8**, not 2,400 + topK8.
 Optimization directions: budget-aware reranking with per-page caps; core-fact always-include tier; diversity/coverage constraints; semantic/BGE reranker or query routing; multi-query human-verified benchmark; validate with real DSH trace.
 
 Raw: `selection-matrix.json`, `selection-matrix-optimization.json`.
+## All materializer optimizations + multi-query matrix (v0.50.0)
+
+Implemented:
+
+1. **Core-fact tier** — `alwaysIncludeIds` guarantees architecture, KV 7B, DSH default model, next-priorities summaries before ordinary selection.
+2. **Budget-aware rerank** — learned candidates ranked by score/token; oversized pages skipped via `learnedPageMaxTokens`.
+3. **Total budget enforcement** — removable non-core pages dropped until returned tokens <= budget.
+4. **Diversity** — near-duplicate learned candidates skipped (title/summary Jaccard >= 0.8).
+
+Multi-query matrix on 41 real records, optimized config (1,800 budget, topK8, page cap 700, core tier): all core facts hit; tokens 1,428–1,753.
+
+Optimized answer quality (multi query, 1,496-token context): DeepSeek Flash coverage 7 / correctness 6 / focus 7; Claude Haiku 7 / 6 / 9.
+
+Not yet done: BGE/semantic reranker (current lexical + core tier), full answer-quality A/B on all five query types, human-verified labels.
+
+Active bundle config is synced; **DSH restart required**. Tests: repo **137/137**, active **98/98**.
+
+Raw: `all-optimizations-materializer.json`.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

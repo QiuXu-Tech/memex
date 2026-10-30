@@ -4459,6 +4459,38 @@ await test('U38', 'materializer learnedTopK adds multiple query-relevant candida
   assert.ok(result.includedIds.includes('b') || result.includedIds.includes('c'), `expected query-relevant candidates: ${result.includedIds}`)
 })
 
+
+await test('U39', 'materializer alwaysIncludeIds guarantees core-fact records', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [
+    { id: 'a', title: 'billing', body: 'billing retry', useWhen: 'billing', sequence: 1 },
+    { id: 'b', title: 'cache', body: 'cache eviction', useWhen: 'cache', sequence: 2 },
+    { id: 'core', title: 'kv connector benchmark', body: 'kv connector results', useWhen: 'kv', sequence: 3 },
+  ]
+  const result = materializeContext({ pages, budgetTokens: 60, alwaysIncludeIds: ['core'] })
+  assert.ok(result.includedIds.includes('core'), `core page must be included: ${result.includedIds}`)
+})
+
+await test('U40', 'materializer enforceTotalBudget keeps returned tokens within budget', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = Array.from({ length: 6 }, (_, index) => ({ id: `p${index}`, title: `page ${index}`, body: `body ${index} `.repeat(30), useWhen: '', sequence: index }))
+  const result = materializeContext({ pages, budgetTokens: 400, enforceTotalBudget: true })
+  assert.ok(result.tokens <= 400, `tokens ${result.tokens} should be <= 400`)
+})
+
+
+await test('U41', 'context pager forwards core-fact/budget options', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  const rows = [
+    { id: 'a', title: 'a', body: 'a', createdAt: 1 },
+    { id: 'b', title: 'b', body: 'b', createdAt: 2 },
+    { id: 'core', title: 'core', body: 'core fact', createdAt: 3 },
+  ]
+  const store = { list: ({ limit }) => rows.slice(0, limit), listContextEvents: () => [] }
+  const result = materializeStoreContext({ store, workspaceKey: 'test', scopes: ['workspace'], alwaysIncludeIds: ['core'], budgetTokens: 120, enforceTotalBudget: true })
+  assert.ok(result.includedIds.includes('core'))
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

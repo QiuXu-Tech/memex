@@ -1,0 +1,63 @@
+{
+  "format": 1,
+  "kind": "all-optimizations-materializer",
+  "generatedAt": "2026-10-30T22:10:00+08:00",
+  "implemented": {
+    "coreFactTier": "alwaysIncludeIds guaranteed before pinned/chronology; active core IDs: architecture, KV 7B, DSH default model, next priorities",
+    "budgetAwareRerank": "learned candidates ranked by score/token; learnedPageMaxTokens skips oversized pages; candidates skipped when they cannot fit",
+    "totalBudgetEnforcement": "enforceTotalBudget removes removable non-core/non-pinned pages until returned tokens <= budget",
+    "diversity": "learned candidates skip near-duplicate title/summary pages (Jaccard >= 0.8)",
+    "multiQueryMatrix": "5 query types x optimized config; all core facts hit; tokens under budget"
+  },
+  "matrix": {
+    "multi": {
+      "ruleHits": 4,
+      "hybridHits": 4,
+      "hybridTokens": 1496
+    },
+    "kv": {
+      "ruleHits": 1,
+      "hybridHits": 1,
+      "hybridTokens": 1428
+    },
+    "dsh": {
+      "ruleHits": 1,
+      "hybridHits": 1,
+      "hybridTokens": 1496
+    },
+    "arch": {
+      "ruleHits": 2,
+      "hybridHits": 1,
+      "hybridTokens": 1753
+    },
+    "next": {
+      "ruleHits": 1,
+      "hybridHits": 1,
+      "hybridTokens": 1428
+    }
+  },
+  "optimizedQuality": {
+    "context": "core IDs + topK8 + page cap700 + enforce budget + diversify; 1496 tokens",
+    "deepseek-flash": {
+      "coverage": 7,
+      "correctness": 6,
+      "focus": 7
+    },
+    "claude-haiku-4-5": {
+      "coverage": 7,
+      "correctness": 6,
+      "focus": 9
+    }
+  },
+  "notYetDone": [
+    "BGE/semantic reranker (current lexical + core tier)",
+    "full answer-quality A/B across all 5 optimized query types",
+    "human-verified real-query labels"
+  ],
+  "interpretation": "Core-fact tier guarantees the four key summaries; budget-aware selection and total enforcement keep windows under budget; optimized hybrid quality scores improved to 7/6/7 and 7/6/9, though some details still missing. Semantic/BGE reranker and full multi-query answer A/B remain.",
+  "caveats": [
+    "Single optimized query for answer quality; matrix is coverage proxy.",
+    "Real content sent to APIMaster; aggregate only stored.",
+    "Active bundle synced but requires DSH restart."
+  ]
+}
