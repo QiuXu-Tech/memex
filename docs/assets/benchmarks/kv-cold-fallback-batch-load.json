@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "kind": "kv-cold-fallback-batch-load",
+  "generatedAt": "2026-10-30T18:39:00+08:00",
+  "model": "Qwen/Qwen2.5-7B-Instruct-AWQ (real 4bit)",
+  "gpu": "RTX PRO 6000 Blackwell 96GB; gpu-memory-utilization=0.5",
+  "tests": {
+    "forcedColdHybrid": {
+      "description": "native cache empty, external KV present; hybrid native+connector",
+      "first_request": "external hit, inject 1488 tokens, 0.431s",
+      "second_request": "native cache, 0.025s",
+      "externalHits": 1
+    },
+    "batchParallelVsSequential": {
+      "sequentialFirst": 0.414,
+      "parallelFirst": 0.384,
+      "improvementPercent": 7.2,
+      "note": "single run each, cold external load; modest/variance-limited"
+    },
+    "coldGzip": {
+      "storeSeconds": 3.334,
+      "note": "gzip store overhead measured; clean cold-load comparison was not obtained due overlapping test servers, so not claimed"
+    }
+  },
+  "caveats": [
+    "Single-run timings; API/network overhead included.",
+    "Gzip cold-load comparison incomplete; only store overhead measured.",
+    "Hybrid external fallback works when native cache is truly empty."
+  ]
+}

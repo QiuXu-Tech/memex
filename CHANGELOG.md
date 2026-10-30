@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.33.0
+
+### Added — forced-cold external fallback + batch-load A/B
+- Hybrid native+connector with native cache empty: first request external hit (1,488 tokens injected, **0.431s**), second native **0.025s**.
+- Batch external load: sequential 0.414s vs parallel 0.384s (~7%, single run).
+- gzip store overhead 3.334s; clean compressed cold-load comparison not completed.
+- Raw: `kv-cold-fallback-batch-load.json`; harness **131/131**.
+
 ## 0.32.0
 
 ### Added — prefix-length crossover experiment

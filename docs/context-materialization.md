@@ -359,6 +359,15 @@ Real Qwen2.5-7B-AWQ, unique random prefixes, 2 requests per length, 50% GPU KV r
 - Cold external fallback was not reliably observed in the native+connector hybrid; it needs a forced-cold test.
 - Raw: `kv-length-crossover.json`.
 
+## Forced-cold fallback + batch load (v0.33.0)
+
+- **Forced-cold hybrid**: with native cache empty and external KV present, first request took the external path (**1 external hit, 1,488 KV tokens injected, 0.431s**); second request used native cache (**0.025s**). This closes the earlier cold-fallback gap.
+- **Batch load A/B**: cold external first request **0.414s sequential vs 0.384s parallel** (~7% in one run; variance-limited).
+- **gzip store overhead**: compressed store measured **3.334s**; a clean compressed cold-load comparison was not completed because overlapping test servers interfered, so no compressed hit claim.
+
+Raw: `kv-cold-fallback-batch-load.json`.
+Boundary: single-run timings, API overhead included; gzip cold-load comparison incomplete.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

@@ -121,6 +121,8 @@ class MemexKVConnector(KVConnectorBase_V1):
             "compress_level", 9) or 9)
         self._min_prefix_tokens = int(transfer_config.get_from_extra_config(
             "min_prefix_tokens", 0) or 0)
+        self._parallel_load = bool(transfer_config.get_from_extra_config(
+            "parallel_load", True))
         logger.info(vllm_config.kv_transfer_config)
         logger.info("Shared storage path is %s", self._storage_path)
 
@@ -224,8 +226,11 @@ class MemexKVConnector(KVConnectorBase_V1):
                         return safetensors.torch.load(handle.read())["kv_cache"].cuda()
                 return safetensors.torch.load_file(filename)["kv_cache"].cuda()
             # Batch/parallel layer-file load; helps many-layer models.
-            with ThreadPoolExecutor(max_workers=8) as pool:
-                tensors = list(pool.map(load_one, filenames))
+            if self._parallel_load:
+                with ThreadPoolExecutor(max_workers=8) as pool:
+                    tensors = list(pool.map(load_one, filenames))
+            else:
+                tensors = [load_one(filename) for filename in filenames]
             for (_layer_name, kv_cache_layer), kv_cache in zip(layers, tensors):
                 inject_kv_into_layer(kv_cache_layer, kv_cache, request.slot_mapping)
 
