@@ -1,0 +1,98 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-multiprefix",
+  "generatedAt": "2026-10-30T14:10:00+08:00",
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memoryMiB": 97887
+  },
+  "software": {
+    "vllm": "0.10.2",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1"
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "alignedPrefixTokens": 1488,
+    "nativePrefixCaching": false,
+    "storage": "/root/memex-kv"
+  },
+  "workload": {
+    "prefixes": 8,
+    "requests": 16,
+    "promptTokens": 2815,
+    "note": "two requests per prefix; second differs only in final question"
+  },
+  "results": {
+    "requests": 16,
+    "pairs": [
+      {
+        "prefix": 0,
+        "store_seconds": 0.0812,
+        "hit_seconds": 0.0405,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 1,
+        "store_seconds": 0.0595,
+        "hit_seconds": 0.0374,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 2,
+        "store_seconds": 0.0584,
+        "hit_seconds": 0.0384,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 3,
+        "store_seconds": 0.0567,
+        "hit_seconds": 0.0388,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 4,
+        "store_seconds": 0.0561,
+        "hit_seconds": 0.0364,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 5,
+        "store_seconds": 0.0615,
+        "hit_seconds": 0.0392,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 6,
+        "store_seconds": 0.0602,
+        "hit_seconds": 0.0418,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 7,
+        "store_seconds": 0.0601,
+        "hit_seconds": 0.0394,
+        "prompt_tokens": 2815
+      }
+    ],
+    "mean_store": 0.0617,
+    "mean_hit": 0.039
+  },
+  "storage": {
+    "diskMiB": 141,
+    "prefixFolders": 8,
+    "kvFilesPerPrefix": 24
+  },
+  "verification": {
+    "externalCacheHitsObserved": 8,
+    "secondRequestHitRate": 1.0
+  },
+  "caveats": [
+    "Prototype connector adapted from vLLM SharedStorageConnector; fixed prefix length.",
+    "0.5B model, synthetic prefixes, single GPU/process.",
+    "Disk safetensors; no eviction/compression beyond directory deletion.",
+    "Latency includes API overhead and is not a production benchmark."
+  ]
+}

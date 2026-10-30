@@ -159,6 +159,17 @@ Raw: [vllm-memex-kv-connector.json](assets/benchmarks/vllm-memex-kv-connector.js
 
 **Boundary:** prototype uses a fixed prefix length, local-disk safetensors, and vLLM's debug connector semantics; block eviction/compression, multi-tenant isolation, and production hardening remain.
 
+## Multi-prefix connector benchmark (v0.18.0)
+
+Following the single-prefix validation, the same `MemexKVConnector` was exercised with **8 independent materialized prefixes** (2 requests each, different final questions):
+
+- native prefix caching disabled; connector-only KV path
+- **8/8 second requests** hit the external cache
+- disk: **141MB** for 8 prefix folders (24 layer files each)
+- mean latency in this run: **store 0.0617s → hit 0.0390s** (~1.6× faster; includes API overhead, not a production benchmark)
+
+Raw: [vllm-memex-kv-connector-multiprefix.json](assets/benchmarks/vllm-memex-kv-connector-multiprefix.json).
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

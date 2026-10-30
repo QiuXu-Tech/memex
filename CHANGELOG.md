@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.18.0
+
+### Added — multi-prefix vLLM KV connector benchmark
+- Ran the `MemexKVConnector` prototype with 8 independent materialized prefixes (2 requests each), native prefix caching disabled.
+- **8/8 second requests external-cache hits**; disk 141MB for 8 prefix folders; mean latency store **0.0617s** → hit **0.0390s** in this run.
+- Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-multiprefix.json`.
+- Boundary: fixed prefix length, disk safetensors, 0.5B model, no eviction/compression; prototype.
+
 ## 0.17.0
 
 ### Added — custom vLLM KV connector (prototype)
