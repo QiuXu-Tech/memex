@@ -7,5 +7,5 @@ episodes={e['id']:e for e in json.loads((pathlib.Path(a.frozen)/'episodes.json')
 for r in runs:
  if r['arm']!='pager_tools_write':continue
  q=episodes[r['episode']]['question'];events=[x for x in r['trace'] if x['kind']=='model' and x.get('stage')=='intake'];matches=sum(any(q in str(m.get('content') or '') for m in x.get('requestMessages',[])) for x in events);rows.append({'trial':r['trial'],'intakeRequestsChecked':len(events),'exactFutureQuestionMatches':matches})
-assert len(rows)==4
+assert len(rows)==len(episodes)
 result={'runs':rows,'intakeRequestsChecked':sum(x['intakeRequestsChecked'] for x in rows),'exactFutureQuestionMatches':sum(x['exactFutureQuestionMatches'] for x in rows),'note':'Exact-string check only; it does not establish absence of semantic leakage.'};out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))
