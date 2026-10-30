@@ -1,0 +1,128 @@
+{
+  "format": 1,
+  "kind": "quality-ab-materializer",
+  "generatedAt": "2026-10-30T21:35:00+08:00",
+  "query": "multi-topic memex query (same as pressure test)",
+  "contexts": {
+    "rule": {
+      "chars": 2903,
+      "records": "3"
+    },
+    "hybrid": {
+      "chars": 4542,
+      "records": "16"
+    }
+  },
+  "answers": {
+    "deepseek-flash|rule": {
+      "chars": 536,
+      "completion_tokens": 254,
+      "seconds": 8.168
+    },
+    "deepseek-flash|hybrid": {
+      "chars": 1134,
+      "completion_tokens": 614,
+      "seconds": 7.435
+    },
+    "claude-haiku-4-5|rule": {
+      "chars": 208,
+      "completion_tokens": 460,
+      "seconds": 9.061
+    },
+    "claude-haiku-4-5|hybrid": {
+      "chars": 117,
+      "completion_tokens": 325,
+      "seconds": 8.108
+    }
+  },
+  "judge": {
+    "model": "gpt-6-astra",
+    "orders": 2,
+    "winners": {
+      "deepseek-flash": {
+        "forward": "hybrid",
+        "reverse": "hybrid"
+      },
+      "claude-haiku-4-5": {
+        "forward": "hybrid",
+        "reverse": "hybrid"
+      }
+    },
+    "scores": {
+      "deepseek-flash": {
+        "forward": {
+          "A": {
+            "coverage": 0,
+            "correctness": 1,
+            "focus": 4,
+            "citations": 0
+          },
+          "B": {
+            "coverage": 2,
+            "correctness": 2,
+            "focus": 4,
+            "citations": 0
+          },
+          "winner": "B",
+          "reason": "B\u7565\u8986\u76d6\u5de5\u4f5c\u533a\u4f5c\u7528\u57df\u3001\u5f52\u6863\u4e0e\u538b\u7f29\uff0c\u4f46\u5927\u91cf\u7ec6\u8282\u548c\u5f15\u7528\u65e0\u53c2\u8003\u4f9d\u636e\uff1b\u4e24\u8005\u5747\u9057\u6f0fKV\u5b9e\u6d4b\u3001\u9ed8\u8ba4\u6a21\u578b\u53ca\u6b63\u786e\u4f18\u5148\u7ea7\uff0c\u5e76\u9519\u8bef\u58f0\u79f0\u4fe1\u606f\u7f3a\u5931\u3002"
+        },
+        "reverse": {
+          "A": {
+            "coverage": 2,
+            "correctness": 2,
+            "focus": 4,
+            "citations": 0
+          },
+          "B": {
+            "coverage": 0,
+            "correctness": 1,
+            "focus": 5,
+            "citations": 0
+          },
+          "winner": "A",
+          "reason": "A\u81f3\u5c11\u6d89\u53ca\u5de5\u4f5c\u533a\u4f5c\u7528\u57df\u3001\u5f52\u6863\u4e0e\u538b\u7f29\uff0c\u4f46\u5927\u91cf\u7ec6\u8282\u548c\u5f15\u6587\u65e0\u53c2\u8003\u4f9d\u636e\uff1bB\u51e0\u4e4e\u5b8c\u5168\u62d2\u7b54\u3002\u4e24\u8005\u5747\u9057\u6f0fKV\u5b9e\u6d4b\u3001\u9ed8\u8ba4\u6a21\u578b\u548c\u6b63\u786e\u4f18\u5148\u7ea7\u3002"
+        }
+      },
+      "claude-haiku-4-5": {
+        "forward": {
+          "A": {
+            "coverage": 0,
+            "correctness": 0,
+            "focus": 2,
+            "citations": 0
+          },
+          "B": {
+            "coverage": 0,
+            "correctness": 1,
+            "focus": 2,
+            "citations": 0
+          },
+          "winner": "B",
+          "reason": "\u4e24\u8005\u5747\u672a\u8986\u76d6\u53c2\u8003\u4e8b\u5b9e\uff0c\u4e5f\u672a\u7ed9\u51fa\u4e09\u9879\u4f18\u5148\u5de5\u4f5c\uff1bA\u989d\u5916\u5f15\u7528\u65e0\u6cd5\u6838\u5b9e\u7684\u8bb0\u5fc6\u7f16\u53f7\u5e76\u58f0\u79f0\u65e0\u5173\u4ea4\u4ed8\u5386\u53f2\uff0cB\u7684\u65e0\u4f9d\u636e\u9648\u8ff0\u8f83\u5c11\u3002"
+        },
+        "reverse": {
+          "A": {
+            "coverage": 0,
+            "correctness": 1,
+            "focus": 3,
+            "citations": 0
+          },
+          "B": {
+            "coverage": 0,
+            "correctness": 0,
+            "focus": 3,
+            "citations": 0
+          },
+          "winner": "A",
+          "reason": "\u4e24\u8005\u5747\u672a\u8986\u76d6\u53c2\u8003\u4e8b\u5b9e\u53ca\u4e09\u4e2a\u540e\u7eed\u4f18\u5148\u9879\uff1bA\u7565\u4f18\uff0cB\u989d\u5916\u5f15\u7528\u65e0\u6cd5\u6838\u5b9e\u7684\u8bb0\u5fc6\u7f16\u53f7\u5e76\u58f0\u79f0\u65e0\u5173\u4ea4\u4ed8\u5386\u53f2\u3002"
+        }
+      }
+    }
+  },
+  "interpretation": "Hybrid context was preferred by the judge in both answer orderings for both answerers, but both answers still missed the KV 7B results, DSH default model strategy, and concrete priorities. Hybrid improves breadth, not yet sufficient coverage.",
+  "caveats": [
+    "Real memory content sent to APIMaster for this A/B; aggregate results only are stored.",
+    "Judge scores are low for both conditions; preference is relative.",
+    "One query, one context pair; not a benchmark."
+  ]
+}

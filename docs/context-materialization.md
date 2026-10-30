@@ -540,6 +540,22 @@ Controlled synthetic long-horizon benchmark (60 archived decisions, recent tail 
 Raw: `long-horizon-memex-ab.json`; script: `training/long_horizon_memex_ab.py`.
 Boundary: synthetic facts, all-fact archive, API models, not a real DSH session; tests 133/133.
 
+## Answer-quality A/B for hybrid materializer (v0.45.0)
+
+Real memory pages, multi-topic query, rule vs hybrid contexts, two answer models, blind judge with two answer orders:
+
+| answerer | order | judge winner |
+|---|---|---|
+| deepseek-flash | forward | **hybrid** |
+| deepseek-flash | reverse | **hybrid** |
+| claude-haiku-4-5 | forward | **hybrid** |
+| claude-haiku-4-5 | reverse | **hybrid** |
+
+- Rule context: 3 records / 2,903 chars; hybrid: 16 records / 4,542 chars.
+- Hybrid answers were longer (DeepSeek 1,134 vs 536 chars) and more complete on memex architecture and priorities.
+- However both missed the real KV 7B results and the DSH default-model facts; judge scores are low for both. **Hybrid improves breadth, not yet sufficient coverage.**
+- Raw: `quality-ab-materializer.json`; aggregate only; real memory content was not committed.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

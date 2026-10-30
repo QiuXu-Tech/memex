@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.45.0
+
+### Added — answer-quality A/B for hybrid materializer
+- Real memory pages, multi-topic query, rule vs hybrid contexts; two answerers (DeepSeek Flash, Claude Haiku) and blind GPT-6 judge with both answer orders.
+- Judge preferred hybrid in **4/4** orderings; hybrid answers were longer and covered more memex architecture/priorities.
+- Both conditions still missed KV 7B results and DSH default-model facts; hybrid improves breadth but not sufficient coverage.
+- Raw: `quality-ab-materializer.json` (aggregate only); harness **133/133**.
+
 ## 0.44.0
 
 ### Added — long-horizon memex vs no-memex A/B proof
