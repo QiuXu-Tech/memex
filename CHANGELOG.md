@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.51.0
+
+### Added — real budget semantics, CJK tokenization, trace metadata
+- Budget now covers page content + index prefix (+ reserve); every candidate addition checks total; empty/forced-over-budget statuses explicit; `overBudgetBy`, `overBudgetReason`, `forcedIds`, `omittedIds`, tokenizer/estimator metadata exposed.
+- U42/U43 cover empty/forced/estimator behavior; 60-combination regression reports **0 silent over-budget results**.
+- CJK/mixed tokenizer adds CJK unigrams/bigrams/trigrams; U44; weights not yet retrained on CJK data.
+- Active trace now records budget status, over-budget reason, omitted IDs, tokenizer, config version.
+- Remaining: BGE/semantic reranker, CJK weight retraining + English/Chinese comparison, human-verified labels, full multi-query answer A/B.
+- Repo harness **140/140**; active memory **98/98**. Active DSH restart required.
+
 ## 0.50.0
 
 ### Added — all materializer optimizations

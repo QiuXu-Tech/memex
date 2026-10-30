@@ -636,6 +636,32 @@ Not yet done: BGE/semantic reranker (current lexical + core tier), full answer-q
 Active bundle config is synced; **DSH restart required**. Tests: repo **137/137**, active **98/98**.
 
 Raw: `all-optimizations-materializer.json`.
+## Budget semantics + CJK + observability (v0.51.0)
+
+### Budget accounting
+Budget now covers **page content + index prefix** (plus `reserveTokens` headroom) and is checked on every candidate addition. Results expose:
+
+- `budgetStatus`: `ok | empty | empty-budget | exceeded`
+- `overBudgetBy`, `overBudgetReason`: `core | pinned | forced`
+- `forcedIds`, `omittedIds`
+- `budgetBreakdown`: page tokens, prefix tokens, reserved tokens, total, tokenizer, chars, estimate error note
+- optional `tokenCounter` / `tokenizerName` for exact model tokenizer; default is chars/4 heuristic
+
+Tests U42/U43 cover empty budget, forced-over-budget status, and estimator metadata. A 60-combination regression (5 queries x 3 budgets x 4 topK) now reports **0 silent over-budget results**.
+
+### Selection optimizations
+- Core-fact tier (`alwaysIncludeIds`, experimental/configurable — not a universal hardcode).
+- Budget-aware learned rerank by score/token; `learnedPageMaxTokens` skips oversized candidates.
+- Diversity guard for near-duplicate pages.
+- The non-monotonic matrix is kept in `selection-matrix.json` as a regression case.
+
+### CJK / mixed-language input
+Lexical reranker now uses one tokenizer for ASCII words plus CJK unigrams/bigrams/trigrams (U44). Weights have not yet been retrained on CJK-specific data; that remains a validation item.
+
+### Observability
+Active checkpoint A/B trace now includes `budgetStatus`, `overBudgetBy`, `overBudgetReason`, `omittedIds`, `tokenizer`, and `configVersion`. Materialized-context trace includes the same budget metadata. Privacy: traces contain query/memory IDs and local content; retain locally, do not ship to third parties.
+
+Active config remains 1,800 / topK8 / core IDs / page cap 700 / total enforcement; **DSH restart required**.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

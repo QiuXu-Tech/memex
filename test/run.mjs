@@ -4420,8 +4420,8 @@ await test('U36', 'materializer optional learned rerank adds the query-relevant 
     { id: 'b', title: 'provider reasoning levels', body: 'provider reasoning levels official settings', useWhen: 'model reasoning', sequence: 2 },
     { id: 'c', title: 'cache note', body: 'cache eviction unrelated content', useWhen: 'cache', sequence: 3 },
   ]
-  const rule = materializeContext({ pages, budgetTokens: 60 })
-  const hybrid = materializeContext({ pages, budgetTokens: 60, query: 'provider reasoning levels', learnedRerank: weights })
+  const rule = materializeContext({ pages, budgetTokens: 300 })
+  const hybrid = materializeContext({ pages, budgetTokens: 300, query: 'provider reasoning levels', learnedRerank: weights })
   assert.ok(rule.includedIds.length >= 1)
   assert.ok(hybrid.includedIds.includes('b'), `hybrid should add query-relevant page: ${hybrid.includedIds}`)
 })
@@ -4440,7 +4440,7 @@ await test('U37', 'context pager forwards query/learnedRerank to the materialize
     list: ({ status, limit }) => status === undefined ? rows.slice(0, limit) : rows.filter((row) => (row.status ?? 'active') === status).slice(0, limit),
     listContextEvents: () => [],
   }
-  const result = materializeStoreContext({ store, workspaceKey: 'test', scopes: ['workspace'], query: 'provider reasoning levels', learnedRerank: weights, budgetTokens: 60 })
+  const result = materializeStoreContext({ store, workspaceKey: 'test', scopes: ['workspace'], query: 'provider reasoning levels', learnedRerank: weights, budgetTokens: 300 })
   assert.ok(result.includedIds.includes('b'), `pager should forward query/rerank: ${result.includedIds}`)
 })
 
@@ -4489,6 +4489,43 @@ await test('U41', 'context pager forwards core-fact/budget options', async () =>
   const store = { list: ({ limit }) => rows.slice(0, limit), listContextEvents: () => [] }
   const result = materializeStoreContext({ store, workspaceKey: 'test', scopes: ['workspace'], alwaysIncludeIds: ['core'], budgetTokens: 120, enforceTotalBudget: true })
   assert.ok(result.includedIds.includes('core'))
+})
+
+
+await test('U42', 'materializer reports empty and forced-over-budget statuses', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const empty = materializeContext({ pages: [{ id: 'a', title: 'a', body: 'a', sequence: 1 }], budgetTokens: 0 })
+  assert.equal(empty.budgetStatus, 'empty')
+  assert.equal(empty.tokens, 0)
+  const pages = [{ id: 'core', title: 'core', body: 'core fact '.repeat(200), useWhen: '', sequence: 1 }]
+  const forced = materializeContext({ pages, budgetTokens: 10, alwaysIncludeIds: ['core'] })
+  assert.ok(forced.includedIds.includes('core'))
+  assert.equal(forced.budgetStatus, 'exceeded')
+  assert.equal(forced.overBudgetReason, 'core')
+  assert.ok(forced.overBudgetBy > 0)
+})
+
+await test('U43', 'materializer separates token estimator metadata', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [{ id: 'a', title: 'a', body: 'one two three four', sequence: 1 }]
+  const result = materializeContext({ pages, budgetTokens: 100, tokenCounter: (text) => String(text).split(/\s+/).filter(Boolean).length, tokenizerName: 'word-count' })
+  assert.equal(result.budgetBreakdown.tokenizer, 'word-count')
+  assert.ok(result.budgetBreakdown.chars > 0)
+  assert.ok(result.budgetBreakdown.estimateError.includes('custom'))
+})
+
+
+await test('U44', 'CJK/mixed query tokenization can select Chinese-relevant page', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const { readFileSync } = await import('node:fs')
+  const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
+  const pages = [
+    { id: 'a', title: '计费重试策略', body: '计费重试策略与退避算法说明', useWhen: '计费', sequence: 1 },
+    { id: 'b', title: 'KV 连接器实验结果', body: 'KV 连接器八次外部命中，六百五十二兆显存', useWhen: 'KV 实验结果', sequence: 2 },
+    { id: 'c', title: '缓存淘汰策略', body: '缓存淘汰与租户隔离说明', useWhen: '缓存', sequence: 3 },
+  ]
+  const result = materializeContext({ pages, budgetTokens: 400, query: 'KV 连接器的实验结果是什么？', learnedRerank: weights, learnedTopK: 2 })
+  assert.ok(result.includedIds.includes('b'), `CJK query should select b: ${result.includedIds}`)
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

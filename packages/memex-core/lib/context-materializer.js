@@ -57,7 +57,7 @@ const pageSequence = (page, index) => Number.isFinite(page.sequence) ? Number(pa
 const pageBody = (page) => String(page.body ?? page.summary ?? '')
 
 function lexicalFeatures(query, page, idf) {
-  const tokenize = (value) => String(value ?? '').toLowerCase().match(/[a-z0-9_]+/g) ?? []
+  const tokenize = tokenizeText
   const queryTerms = [...new Set(tokenize(query))]
   const pageTerms = tokenize(`${page.title ?? ''} ${page.body ?? ''} ${page.useWhen ?? ''}`)
   const pageSet = new Set(pageTerms)
@@ -82,7 +82,7 @@ function lexicalFeatures(query, page, idf) {
 
 function learnedRerankPages(pages, query, reranker) {
   if (!query || !reranker || !Array.isArray(reranker.weights)) return []
-  const tokenize = (value) => String(value ?? '').toLowerCase().match(/[a-z0-9_]+/g) ?? []
+  const tokenize = tokenizeText
   const documents = pages.map((page) => [...new Set(tokenize(`${page.title ?? ''} ${page.body ?? ''} ${page.useWhen ?? ''}`))])
   const documentFrequency = new Map()
   for (const document of documents) for (const term of document) documentFrequency.set(term, (documentFrequency.get(term) ?? 0) + 1)
@@ -97,8 +97,22 @@ function learnedRerankPages(pages, query, reranker) {
   }).sort((left, right) => right.score - left.score)
 }
 
+function tokenizeText(value) {
+  const text = String(value ?? '').toLowerCase()
+  const tokens = text.match(/[a-z0-9_]+/g) ?? []
+  const cjkRuns = text.match(/[\u3400-\u9fff]+/g) ?? []
+  for (const run of cjkRuns) {
+    for (let index = 0; index < run.length; index += 1) {
+      tokens.push(run[index])
+      if (index + 1 < run.length) tokens.push(run.slice(index, index + 2))
+      if (index + 2 < run.length) tokens.push(run.slice(index, index + 3))
+    }
+  }
+  return tokens
+}
+
 function isNearDuplicate(left, right) {
-  const terms = (page) => new Set(String(`${page.title ?? ''} ${page.summary ?? ''}`).toLowerCase().match(/[a-z0-9_\u4e00-\u9fff]+/g) ?? [])
+  const terms = (page) => new Set(tokenizeText(`${page.title ?? ''} ${page.summary ?? ''}`))
   const a = terms(left)
   const b = terms(right)
   if (a.size === 0 || b.size === 0) return false
@@ -126,31 +140,44 @@ export function materializeContext(input = {}) {
   const variant = resolveContextVariant(input.variant)
   const budgetTokens = Math.max(0, Number(input.budgetTokens ?? 2400))
   const reserveTokens = Math.max(0, Number(input.reserveTokens ?? 0))
-  const usable = Math.max(0, budgetTokens - reserveTokens)
+  const available = Math.max(0, budgetTokens - reserveTokens)
   const pinned = new Set(Array.isArray(input.pinnedIds) ? input.pinnedIds : [])
-  // Stable de-duplication: keep the last occurrence of an id, then sort by the
-  // original page sequence/creation time.
+  const coreIds = new Set(Array.isArray(input.alwaysIncludeIds) ? input.alwaysIncludeIds : [])
+  const counter = typeof input.tokenCounter === 'function' ? input.tokenCounter : undefined
+  const tokenizerName = typeof input.tokenizerName === 'string' ? input.tokenizerName : (counter === undefined ? 'chars/4' : 'custom')
+  const tokenCost = (text) => counter === undefined ? estimateTokens(text) : counter(String(text))
+  const pageCost = (page) => Number.isFinite(page.tokenCount) ? Math.max(1, Number(page.tokenCount)) : Math.max(1, tokenCost(pageText(page)))
+
   const byId = new Map()
   for (const [index, page] of (Array.isArray(input.pages) ? input.pages : []).entries()) {
     if (page === null || typeof page !== 'object' || typeof page.id !== 'string' || page.id.length === 0) continue
     byId.set(page.id, { ...page, sequence: pageSequence(page, index) })
   }
   const sorted = [...byId.values()].sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
+  const prefixFor = (entries) => [
+    `## Extra-context materialized window (${variant.id})`,
+    `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`,
+    ...entries.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`),
+  ].join('\n')
+  const costFor = (entries) => entries.reduce((sum, page) => sum + pageCost(page), 0) + tokenCost(prefixFor(entries))
   const selected = []
+  const forced = []
   const omitted = []
-  let used = 0
-  const coreIds = new Set(Array.isArray(input.alwaysIncludeIds) ? input.alwaysIncludeIds : [])
+  let overBudgetReason = undefined
   const tryAdd = (page, force = false) => {
     if (selected.some((entry) => entry.id === page.id)) return true
-    const tokens = pageTokens(page)
-    if (!force && used + tokens > usable) return false
+    const forceIt = force === true
+    if (!forceIt && costFor([...selected, page]) > available) return false
     selected.push(page)
-    used += tokens
+    if (forceIt) {
+      forced.push(page.id)
+      const reason = coreIds.has(page.id) ? 'core' : pinned.has(page.id) ? 'pinned' : 'forced'
+      if (costFor(selected) > available) overBudgetReason = reason
+    }
     return true
   }
   // Core-fact pages are guaranteed before ordinary pinned/chronology selection.
   for (const page of sorted) if (coreIds.has(page.id)) tryAdd(page, true)
-  // Pinned pages next (they are the orientation anchors), then chronology.
   for (const page of sorted) if (pinned.has(page.id)) tryAdd(page, true)
   if (variant.pinnedEdges) {
     const first = sorted.find((page) => !selected.some((entry) => entry.id === page.id))
@@ -162,19 +189,16 @@ export function materializeContext(input = {}) {
     const topK = Math.max(1, Number.isSafeInteger(input.learnedTopK) ? input.learnedTopK : 1)
     const maxPageTokens = Math.max(0, Number.isSafeInteger(input.learnedPageMaxTokens) ? input.learnedPageMaxTokens : 0)
     const diversify = input.diversify !== false
-    // Budget-aware: prefer relevance per token; skip huge/near-duplicate pages that would evict key records.
     ranked.sort((left, right) => {
-      const leftTokens = Math.max(1, pageTokens(left.page))
-      const rightTokens = Math.max(1, pageTokens(right.page))
-      return (right.score / rightTokens) - (left.score / leftTokens)
+      const leftCost = Math.max(1, pageCost(left.page))
+      const rightCost = Math.max(1, pageCost(right.page))
+      return (right.score / rightCost) - (left.score / leftCost)
     })
     let added = 0
     for (const { page } of ranked) {
       if (selected.some((entry) => entry.id === page.id)) continue
-      const tokens = pageTokens(page)
-      if (maxPageTokens > 0 && tokens > maxPageTokens) continue
+      if (maxPageTokens > 0 && pageCost(page) > maxPageTokens) continue
       if (diversify && selected.some((entry) => isNearDuplicate(entry, page))) continue
-      if (used + tokens > usable) continue
       if (tryAdd(page)) {
         added += 1
         if (added >= topK) break
@@ -185,21 +209,8 @@ export function materializeContext(input = {}) {
     if (!tryAdd(page)) omitted.push(page.id)
   }
   selected.sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
-  if (input.enforceTotalBudget === true) {
-    const prefixFor = (entries) => [`## Extra-context materialized window (${variant.id})`, `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`, ...entries.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`)].join('\n')
-    const totalFor = (entries) => entries.reduce((sum, page) => sum + pageTokens(page), 0) + estimateTokens(prefixFor(entries))
-    while (totalFor(selected) > budgetTokens) {
-      const removable = [...selected].reverse().find((page) => !coreIds.has(page.id) && !pinned.has(page.id))
-      if (removable === undefined) break
-      selected.splice(selected.indexOf(removable), 1)
-    }
-  }
   const indexLines = selected.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`)
-  const prefixText = [
-    `## Extra-context materialized window (${variant.id})`,
-    `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`,
-    ...indexLines,
-  ].join('\n')
+  const prefixText = selected.length === 0 ? '' : [`## Extra-context materialized window (${variant.id})`, `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`, ...indexLines].join('\n')
   const timelineLines = []
   for (const page of selected) {
     const header = page.role === undefined ? `### context page ${page.id}` : `### context page ${page.id} [role=${page.role}]`
@@ -209,16 +220,36 @@ export function materializeContext(input = {}) {
     timelineLines.push('')
   }
   const timelineText = timelineLines.join('\n').trimEnd()
-  const text = `${prefixText}\n\n${timelineText}`.trimEnd()
-  const actualTokens = selected.reduce((sum, page) => sum + pageTokens(page), 0) + estimateTokens(prefixText)
+  const text = selected.length === 0 ? '' : `${prefixText}\n\n${timelineText}`.trimEnd()
+  const chars = selected.reduce((sum, page) => sum + pageText(page).length, 0) + prefixText.length + timelineText.length
+  const actualTokens = selected.reduce((sum, page) => sum + pageCost(page), 0) + (prefixText.length === 0 ? 0 : tokenCost(prefixText))
+  const overBudgetBy = Math.max(0, actualTokens - available)
+  const budgetStatus = selected.length === 0
+    ? (available === 0 ? 'empty' : 'empty-budget')
+    : (overBudgetBy > 0 ? 'exceeded' : 'ok')
   return {
     text,
     prefixText,
     stablePrefixHash: stableHash(prefixText),
     includedIds: selected.map((page) => page.id),
     omittedIds: omitted,
+    forcedIds: forced,
     tokens: actualTokens,
     budgetTokens,
+    reserveTokens,
+    availableTokens: available,
+    overBudgetBy,
+    overBudgetReason: overBudgetBy > 0 ? (overBudgetReason ?? 'forced') : undefined,
+    budgetStatus,
+    budgetBreakdown: {
+      pageTokens: selected.reduce((sum, page) => sum + pageCost(page), 0),
+      prefixTokens: prefixText.length === 0 ? 0 : tokenCost(prefixText),
+      reservedTokens: reserveTokens,
+      totalTokens: actualTokens,
+      tokenizer: tokenizerName,
+      chars,
+      estimateError: counter === undefined ? 'chars/4 heuristic; tokenizer-specific error not measured' : 'custom tokenizer supplied',
+    },
     variant,
     order: selected.map((page) => page.id),
     requiresKV: variant.requiresKV,
