@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.34.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.35.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## 7B KV strategy comparison (latest)
 
@@ -58,6 +58,15 @@ Real 7B-AWQ, unique prefixes, 50% GPU reservation: native prefix cache is fastes
 ## Learned real-trace cross-encoder (v0.34.0)
 
 Fine-tuned BGE-small cross-encoder on the real archive split: **0.963 sample accuracy / pairwise ranking** (vs 0.593 bi-encoder), but on a small, record-shared, templated-query split. Key next step: record-disjoint real-query evaluation and query-aware materializer integration.
+
+## Learned materializer prototype (v0.35.0)
+
+Query-aware BGE cross-encoder selector vs current rule materializer on real archive split (27 val groups, 500-token budget):
+
+- rule materializer positive recall **0.519** (327 tokens avg)
+- learned selector **0.963** (388 tokens avg), **8.64ms/query** on GPU
+
+Caveat: templated queries and record-shared split; not production generalization, not yet integrated into JS/DSH.
 
 ## Why
 

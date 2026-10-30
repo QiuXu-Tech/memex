@@ -382,6 +382,21 @@ The jump is real **on this split**, but the split shares records and query templ
 Raw: `real-trace-cross-encoder.json`; code: `training/real_trace_cross_encoder.py`.
 Boundary: 36-record corpus, templated queries, no JS/DSH integration yet.
 
+## Learned materializer prototype (v0.35.0)
+
+A query-aware selector was evaluated against the current rule/budget materializer on the real archive dataset (27 held-out query groups, 500-token budget):
+
+| selector | positive recall | avg selected tokens | latency |
+|---|---:|---:|---:|
+| current rule materializer | 0.5185 | 326.9 | — |
+| **learned BGE cross-encoder** | **0.963** | 387.8 | **8.64ms/query** |
+
+- The learned selector ranks candidate pages by a fine-tuned BGE cross-encoder and greedily fills the budget.
+- This is the first evidence that a **query-aware learned policy** materially beats the rule materializer on the real archive split.
+- Caveats: templated queries, record-shared split, small corpus, GPU scoring; not yet integrated into JS/DSH.
+
+Raw: `learned-materializer-eval.json`; code: `training/learned_materializer_eval.py`.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

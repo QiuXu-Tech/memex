@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.35.0
+
+### Added — learned materializer prototype
+- Trained a BGE-small cross-encoder on real archive train groups; evaluated query-aware budgeted selection against the actual JS rule materializer (500-token budget, 27 val groups).
+- Learned selector **positive recall 0.963 vs 0.518** for rule materializer; avg selected tokens 387.8 vs 326.9; **8.64ms/query** on GPU.
+- This is first evidence a learned query-aware policy materially beats the rule/budget materializer on the archive split.
+- Caveats: templated queries, record-shared split, small corpus; not integrated into JS/DSH yet.
+- Raw: `learned-materializer-eval.json`; code: `training/learned_materializer_eval.py`; harness **131/131**.
+
 ## 0.34.0
 
 ### Added — learned real-trace cross-encoder

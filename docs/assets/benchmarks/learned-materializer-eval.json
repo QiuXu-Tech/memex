@@ -1,0 +1,26 @@
+{
+  "val_groups": 27,
+  "budget_tokens": 500,
+  "learned_materializer": {
+    "positive_recall": 0.9629629629629629,
+    "avg_selected_tokens": 387.77777777777777,
+    "avg_score_ms": 8.63704499271181
+  },
+  "rule_materializer": {
+    "positive_recall": 0.5185185185185185,
+    "avg_selected_tokens": 326.9259259259259
+  },
+  "format": 1,
+  "kind": "learned-materializer-eval",
+  "generatedAt": "2026-10-30T19:09:00+08:00",
+  "model": "BGE-small cross-encoder fine-tuned on train groups",
+  "dataset": "36 real archive records; 108 templated query groups; 27 val groups",
+  "budgetTokens": 500,
+  "result": "learned query-aware selector reaches 96.3% positive recall vs 51.9% for rule materializer at similar token budget (388 vs 327 avg tokens); 8.64ms/query on GPU.",
+  "caveats": [
+    "Queries are templated; records shared across train/val groups.",
+    "No real user query set yet; not production generalization.",
+    "Rule baseline selected by actual JS materializer at 500-token budget.",
+    "Not integrated into JS/DSH runtime yet."
+  ]
+}
