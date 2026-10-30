@@ -1,6 +1,6 @@
 {
   "format": 1,
-  "kind": "lexical-reranker",
+  "kind": "lexical-reranker-llm-labels",
   "features": [
     "idf_overlap_norm",
     "idf_overlap_body",
@@ -11,13 +11,13 @@
     "bias"
   ],
   "weights": [
-    0.064594,
-    15.815102,
-    2.64907,
-    -1.051985,
-    -0.244507,
+    -1.927891,
+    -19.53594,
+    4.986165,
+    1.436127,
+    0.342085,
     0.0,
-    -0.708913
+    -0.689971
   ],
-  "bias": -0.708913
+  "bias": -0.689971
 }

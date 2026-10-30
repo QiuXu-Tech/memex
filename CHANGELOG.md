@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.42.0
+
+### Changed — production hybrid config at 2,400 tokens
+- Active DSH bundle now uses the LLM-labeled lexical reranker weights.
+- Active materializer budget raised 1,800 → **2,400**; hybrid rerank remains enabled.
+- LLM-labeled real-query val: rule **0.348** → hybrid **0.783** at 2,400 tokens (23 groups).
+- Active tests **98/98**; repo harness **133/133**.
+- Requires DSH restart; rollback config/weights backups documented.
+
 ## 0.41.0
 
 ### Added — LLM-labeled real-query evaluation

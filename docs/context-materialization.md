@@ -488,6 +488,21 @@ Conclusion: **budget-sensitive**. Hybrid is not safe as default at the current 1
 Raw: `llm-labeled-real-query-eval.json`.
 Boundary: LLM labels not human-verified; small val; lexical reranker; active DSH config unchanged.
 
+## Production config: LLM-labeled hybrid at 2,400 tokens (v0.42.0)
+
+Deployed the LLM-labeled real-query setup to the active DSH bundle:
+
+- active `lexical-reranker.json` replaced with the LLM-labeled-trained weights
+- active `materializerMaxTokens` raised **1,800 → 2,400**
+- `materializerHybridRerank: true` remains enabled
+- active memory tests **98/98**; repo harness **133/133**
+- validation on 23 LLM-labeled real-query groups: rule recall **0.348** → hybrid **0.783** at 2,400 tokens
+
+Rollback:
+- config backups: `dsh-memory-next/cordis.patch.yml.bak-pre2400-*`
+- weights backup: `modules/memory-core/lib/lexical-reranker.json.bak-*`
+- disable with `materializerHybridRerank: false`
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
