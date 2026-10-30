@@ -1,0 +1,84 @@
+{
+  "kind": "historical-session-semantic-replay-aggregate",
+  "baselineCommit": "13b93010ed69b87892e89e1696781cd4162df0a9",
+  "testedSource": "caa4b0316451d52618bf06bdf7cc1964ee95b4ed",
+  "sessionCount": 1,
+  "sessionSpanHours": 73.39,
+  "questions": 10,
+  "malformedSourceLinesSkipped": 10,
+  "comparison": {
+    "rule": "baseline rule without rewrite",
+    "hybrid": "repaired rule with model rewrite; hybrid is only an internal answer-script label",
+    "selectedIdsChanged": 9,
+    "allWindowsWithinBudget": true
+  },
+  "rewrite": {
+    "model": "claude-haiku-4-5",
+    "calls": 10,
+    "successful": 10,
+    "promptTokens": 1299,
+    "completionTokens": 606,
+    "latencyMedianSeconds": 4.9205000000000005,
+    "latencyMaxSeconds": 6.718
+  },
+  "answerSettings": {
+    "models": [
+      "deepseek-flash",
+      "claude-haiku-4-5"
+    ],
+    "maxTokens": 2500,
+    "temperature": 0,
+    "calls": 40,
+    "possiblePairs": 20,
+    "validPairs": 18,
+    "perModel": {
+      "deepseek-flash": {
+        "calls": 20,
+        "successfulHttp": 20,
+        "empty": 2,
+        "responseModels": {
+          "deepseek-v4-1-flash-261017": 20
+        },
+        "promptTokens": 71070,
+        "completionTokens": 36759
+      },
+      "claude-haiku-4-5": {
+        "calls": 20,
+        "successfulHttp": 20,
+        "empty": 0,
+        "responseModels": {
+          "claude-haiku-4-5": 20
+        },
+        "promptTokens": 95460,
+        "completionTokens": 30970
+      }
+    }
+  },
+  "machineJudgement": {
+    "model": "gpt-6-astra",
+    "calls": 36,
+    "ordersPerValidPair": 2,
+    "validPairResults": {
+      "complete": 18,
+      "order_conflict": 6,
+      "stable_rule": 3,
+      "stable_hybrid": 8,
+      "stable_tie": 1
+    },
+    "problems": {},
+    "promptTokens": 692478,
+    "completionTokens": 11729,
+    "referenceBodyExcerptChars": 1000
+  },
+  "humanLabels": 0,
+  "billedCost": "UNKNOWN",
+  "limitations": [
+    "single reconstructed historical session",
+    "successful write snapshots only, not full store state",
+    "ten malformed lines skipped",
+    "no human ratings",
+    "reference evidence clipped for machine judges",
+    "not autonomous agent or live production tasks",
+    "raw session and answers remain private"
+  ]
+}

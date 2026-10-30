@@ -84,13 +84,21 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
-## Query-aware pager and hybrid ranking repair (2026-10-31)
+## Synonym and archive excerpt retest (2026-10-31)
+
+The pager can optionally ask the configured model for search paraphrases (`materializerQueryExpansion: true`, **off by default**) and can extract a query-relevant excerpt from an oversized archive body before building its card. The option sends the question to that provider and adds model latency and cost. In ten seeded layouts of 12 handcrafted questions, rule included target facts **4/120 → 91/120** and hybrid **0/120 → 104/120** with rewriting enabled; the same 12 questions were reused across seeds. One English question failed across all layouts. A deep-archive probe now includes its fact, but complete recall is not guaranteed. Ten exact-cue 10M assigned-token stores retained **400/400** rule and hybrid fact availability without rewriting; none of the quiet-start gates passed. [Results, charts and limitations](docs/pager-semantic-evaluation.md).
+
+A one-session replay compared the prior rule against the repaired rule with query rewriting: two-order machine judging favored the prior rule in 3/18 valid pairs, the expanded rule in 8/18, tied in 1/18, and changed with order in 6/18; two of 20 pairs were excluded for empty answers. Neither synthetic fact availability nor a single-session replay establishes production accuracy, cost savings or autonomous memory management. The [production validation protocol](docs/production-validation-plan.md) specifies randomized controls, independent human review and complete cost accounting.
+
+![Synthetic query expansion diagnostic across seeded layouts](docs/assets/benchmarks/pager-semantic-comparison.png)
+
+## Historical query-aware pager and hybrid ranking repair (2026-10-31)
 
 At [repair commit `a0a33db`](https://github.com/QiuXu-Tech/memex/commit/a0a33db5319ead359b089b3f5fb585212245e044), the pager adds scoped search hits to its candidates, and hybrid ranking prioritizes query-term coverage before using learned scores as a tie-breaker. Query-aware rule selection now tries search hits within the budget; hybrid remains opt-in. On 400 **paired exact-cue synthetic** 10M assigned-token probes, rule fact availability changed **22/400 → 400/400** and hybrid **0/400 → 400/400**. With identical post-fix candidates, the hybrid ranking ablation was **0/400 → 400/400**. All ten quiet-start gates failed; this is not a production or low-load performance claim.
 
 A separate 20-question synthetic topic diagnostic found the target fact **16/16** when searchable vocabulary overlapped, but **0/4** for lexically disjoint synonym questions. The system therefore still needs broader, human-verified evaluation. [Methods, raw data, replay and limitations](docs/pager-recall-evaluation.md).
 
-In a retrospective replay of 10 questions from one real session, two-order machine judging of 20 question/model pairs favored rule in both orders for 6, hybrid for 10, tied in 1 and changed with order in 3. These are not human labels or proof of production accuracy; a separate synthetic probe also shows that an archive card can omit a deep fact even after its record is selected.
+In a retrospective replay of 10 questions from one real session, two-order machine judging of 20 question/model pairs favored rule in both orders for 6, hybrid for 10, tied in 1 and changed with order in 3. These are not human labels or proof of production accuracy; at that historical commit a synthetic archive card omitted a deep fact even after its record was selected; the reproduced case is fixed in the newer retest above.
 
 ![Paired 10M synthetic pager results before and after repair](docs/assets/benchmarks/pager-recall-comparison.png)
 
@@ -255,7 +263,7 @@ node scripts/check-bundle.mjs        # verifies generated modules match sources
 | Row | Config fields |
 |---|---|
 | `memory` (backend) | `root`, `capacityTokens` (L3, 100M), `sessionCapacityTokens` (L2, 10M), `defaultLevels` (`none|l2|l3|both`), `settingsTtlDays` (90) |
-| `memory-checkpoint` | `autoArchive`, `autoRecall`, `catalogMaxChars`, `recallMaxChars`, `cardModel`, `materializer`, `materializerMaxTokens`, `materializerPageTokenCap`, `materializerHybridRerank`, `materializerLearnedTopK`, `materializerLearnedPageMaxTokens`, `capacityNoticeRatio` (0.8), `capacityNoticeCooldownMs` (10 min) |
+| `memory-checkpoint` | `autoArchive`, `autoRecall`, `catalogMaxChars`, `recallMaxChars`, `cardModel`, `materializer`, `materializerMaxTokens`, `materializerPageTokenCap`, `materializerHybridRerank`, `materializerQueryExpansion`, `materializerLearnedTopK`, `materializerLearnedPageMaxTokens`, `capacityNoticeRatio` (0.8), `capacityNoticeCooldownMs` (10 min) |
 | `memory-evict` | `evictAtRatio` (0.6), `retainRatio` (0.35), `maxChars` (250k), `captureLevel` (`deepest|l2`), `sensitivePolicy` (`auto|off`) |
 | `memory-compress` | `batchRecords` (20), `batchChars` (120k), `maxBatches` (6), `minAgeMs` (1h), `minDigestTokens` (2000), `coldQuotaTokens` (0 = unlimited) |
 
@@ -263,7 +271,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **161/161 offline**, **36/36 SQLite consistency**.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **165/165 offline**, **36/36 SQLite consistency**.
 
 | Metric | Result |
 |---|---|

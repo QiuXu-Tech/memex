@@ -1,0 +1,572 @@
+{
+  "kind": "synthetic-synonym-paired-diagnostic",
+  "baselineCommit": "13b9301",
+  "seed": 304,
+  "design": "12 handcrafted questions, same 12 targets and 60 partly topical distractors across seeds; targets always older; half cold; model paraphrases generated once from question alone; no human labels; no production claim",
+  "probes": [
+    {
+      "id": "release",
+      "query": "How do we undo the launch?",
+      "alternatives": [
+        "how to cancel a product launch",
+        "roll back a launch or release",
+        "revert launched feature deployment"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 418
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 416
+        }
+      }
+    },
+    {
+      "id": "database",
+      "query": "Which persistence engine implements write-ahead logging?",
+      "alternatives": [
+        "write-ahead logging persistence engine",
+        "WAL implementation storage engine",
+        "which database engines use write-ahead log"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 423
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 423
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 461
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 456
+        }
+      }
+    },
+    {
+      "id": "review",
+      "query": "Which approval criteria govern code acceptance?",
+      "alternatives": [
+        "code acceptance approval criteria",
+        "code review approval requirements",
+        "definition of done code merge criteria"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 422
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 422
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 454
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 452
+        }
+      }
+    },
+    {
+      "id": "privacy",
+      "query": "Where do confidential credentials belong?",
+      "alternatives": [
+        "where to store secrets and credentials",
+        "secrets management best practices",
+        "secure storage for API keys and passwords"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 495
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 492
+        }
+      }
+    },
+    {
+      "id": "billing",
+      "query": "How do we handle failed charges?",
+      "alternatives": [
+        "failed payment retry best practices",
+        "dunning management failed charges",
+        "how to handle declined credit card payments"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 426
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 420
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 426
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 420
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 465
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 463
+        }
+      }
+    },
+    {
+      "id": "backup",
+      "query": "How many recovery copies are kept?",
+      "alternatives": [
+        "how many recovery copies retained",
+        "number of backup copies kept retention policy",
+        "recovery point copies count replication"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 497
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 495
+        }
+      }
+    },
+    {
+      "id": "outage",
+      "query": "Who gets notified during an outage?",
+      "alternatives": [
+        "outage notification recipients",
+        "who is alerted during service downtime",
+        "incident alert escalation contact list"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 464
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 458
+        }
+      }
+    },
+    {
+      "id": "cache",
+      "query": "How long do stored responses remain fresh?",
+      "alternatives": [
+        "cached response TTL expiration time",
+        "how long do cached responses stay valid",
+        "prompt response caching retention duration"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 494
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 494
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 454
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 458
+        }
+      }
+    },
+    {
+      "id": "auth",
+      "query": "Who is allowed to enter the project?",
+      "alternatives": [
+        "project access permissions who can enter",
+        "project membership eligibility restrictions",
+        "who is permitted to join a project"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 498
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 494
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 498
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 494
+        },
+        "after-expanded-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 498
+        },
+        "after-expanded-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 494
+        }
+      }
+    },
+    {
+      "id": "queue",
+      "query": "How should repeated events be processed?",
+      "alternatives": [
+        "repeated events processing idempotency",
+        "duplicate event handling event sourcing",
+        "recurring events processing pattern"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 465
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 459
+        }
+      }
+    },
+    {
+      "id": "zh-deploy",
+      "query": "出问题后如何撤销部署？",
+      "alternatives": [
+        "部署回滚 方法",
+        "rollback deployment 步骤",
+        "失败发布 撤销部署 命令"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": true,
+          "selected": false,
+          "fact": false,
+          "tokens": 498
+        },
+        "after-expanded-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 440
+        }
+      }
+    },
+    {
+      "id": "zh-billing",
+      "query": "支付出错以后怎么办？",
+      "alternatives": [
+        "支付失败 处理方法",
+        "付款出错 扣款异常 怎么办",
+        "支付异常 退款 客服 处理流程"
+      ],
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-default-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-default-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 495
+        },
+        "after-expanded-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 498
+        },
+        "after-expanded-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 496
+        }
+      }
+    }
+  ]
+}

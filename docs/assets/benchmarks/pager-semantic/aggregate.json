@@ -1,0 +1,170 @@
+{
+  "priorSource": "13b93010ed69b87892e89e1696781cd4162df0a9",
+  "testedSource": "caa4b0316451d52618bf06bdf7cc1964ee95b4ed",
+  "seedCount": 10,
+  "quietGateMet": 0,
+  "bodyFilesCompared": 20000,
+  "bodyMismatches": 0,
+  "synonym": {
+    "probes": 120,
+    "uniqueQuestions": 12,
+    "conditions": {
+      "before-rule": {
+        "fact": 4,
+        "candidate": 4,
+        "selected": 4
+      },
+      "before-hybrid": {
+        "fact": 0,
+        "candidate": 4,
+        "selected": 0
+      },
+      "after-default-rule": {
+        "fact": 4,
+        "candidate": 4,
+        "selected": 4
+      },
+      "after-default-hybrid": {
+        "fact": 0,
+        "candidate": 4,
+        "selected": 0
+      },
+      "after-expanded-rule": {
+        "fact": 91,
+        "candidate": 104,
+        "selected": 91
+      },
+      "after-expanded-hybrid": {
+        "fact": 104,
+        "candidate": 104,
+        "selected": 104
+      }
+    },
+    "byQuestion": {
+      "release": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "database": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "review": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "privacy": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 7,
+        "after-expanded-hybrid": 10
+      },
+      "billing": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "backup": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "outage": {
+        "before-rule": 4,
+        "before-hybrid": 0,
+        "after-default-rule": 4,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "cache": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "auth": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 0,
+        "after-expanded-hybrid": 0
+      },
+      "queue": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 10,
+        "after-expanded-hybrid": 10
+      },
+      "zh-deploy": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 0,
+        "after-expanded-hybrid": 10
+      },
+      "zh-billing": {
+        "before-rule": 0,
+        "before-hybrid": 0,
+        "after-default-rule": 0,
+        "after-default-hybrid": 0,
+        "after-expanded-rule": 4,
+        "after-expanded-hybrid": 4
+      }
+    },
+    "rewriteModel": "claude-haiku-4-5 via APIMaster",
+    "rewriteCalls": 12,
+    "rewritePromptTokens": 652,
+    "rewriteCompletionTokens": 374,
+    "rewriteLatencyMedianSeconds": 4.229,
+    "rewriteLatencyMaxSeconds": 4.933
+  },
+  "exactCue10M": {
+    "probes": 400,
+    "assignedTokensPerStore": 10000000,
+    "priorRule": 400,
+    "newRule": 400,
+    "priorHybrid": 400,
+    "newHybrid": 400,
+    "priorSearchHit1": 400,
+    "newSearchHit1": 400
+  },
+  "archiveProbe": {
+    "kind": "synthetic-archive-card-omission",
+    "candidate": true,
+    "included": true,
+    "factPresent": true,
+    "source": "record-card",
+    "originalBodyHasFact": true,
+    "budgetTokens": 600,
+    "pageTokenCap": 100,
+    "note": "Query cue and fact occur deep in an oversized episode body; the card should retain a source-marked query-relevant excerpt."
+  },
+  "billing": "UNKNOWN"
+}

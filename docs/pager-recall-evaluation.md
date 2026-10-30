@@ -5,6 +5,8 @@ layout: default
 
 # Pager recall and hybrid ranking evaluation — 2026-10-31
 
+**Historical report:** the reproduced archive-card omission and optional synonym query expansion are addressed in the [later retest](pager-semantic-evaluation.md). Its remaining limits and the original results below are preserved.
+
 **Scope:** v0.65.0 plus the preceding pager repair (`c05dd12`), compared with query-recall and ranking repair [`a0a33db`](https://github.com/QiuXu-Tech/memex/commit/a0a33db5319ead359b089b3f5fb585212245e044). The synthetic tests below measure evidence availability, not human-rated answer accuracy or real-world productivity.
 
 ## What changed

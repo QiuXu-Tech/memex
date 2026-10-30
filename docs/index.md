@@ -12,7 +12,7 @@ A high-performance context hierarchy between an agent's history and its model wi
 
 ![memex demo](assets/demo.gif)
 
-Memex treats context as a hierarchy, not a notes store: when the native context window fills up, older spans are moved out **verbatim** into sticky **L2 (10M, session-private)** / **L3 (100M, workspace-shared)** context pools; capacity is managed through a lossless cold tier plus bounded batch digests; and any context page can be paged back in with millisecond hybrid retrieval and per-model context budgets.
+Memex treats context as a hierarchy, not a notes store: when the native context window fills up, older spans are moved out **verbatim** into sticky **L2 (10M, session-private)** / **L3 (100M, workspace-shared)** context pools; capacity is managed through a lossless cold tier plus bounded batch digests; and selected context pages can be retrieved under per-model context budgets. Retrieval and excerpting do not guarantee every relevant fact is included.
 
 ## Quick start
 
@@ -20,7 +20,7 @@ Memex treats context as a hierarchy, not a notes store: when the native context 
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # offline harness (161 tests)
+node --import ./test/register.mjs ./test/run.mjs   # offline harness (165 tests)
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -30,6 +30,8 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
+- [Synonym and archive excerpt retest](pager-semantic-evaluation.html) — paired seeded diagnostics and historical replay.
+- [Production validation protocol](production-validation-plan.html) — proposed evidence for correctness, cost and autonomous memory claims.
 - [Pager recall and ranking retest](pager-recall-evaluation.html) — paired synthetic results, lexical limits and historical-session replay.
 - [Pager retest](pager-retest.html) — pager repair, synthetic multi-seed rule/hybrid comparison, and replay limits.
 - [SQLite and file consistency](storage-consistency.html) — lock handling, interrupted-operation recovery and backup scope.

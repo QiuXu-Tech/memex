@@ -1,0 +1,38 @@
+---
+title: Protocol for validating Memex's production value
+layout: default
+---
+
+# Protocol for validating Memex's production value
+
+**Status: proposed, not executed.** The synthetic tests and single-session replay in this repository do not establish production task correctness, cost savings, or autonomous memory management. This protocol specifies the evidence needed to test those claims. Register the population, tasks, comparisons, outcome definitions, minimum detectable effects, sample-size calculation, analysis, exclusions, and stop rules before examining the experiment outcomes. Thresholds below are example decisions, not achieved results.
+
+## Population and comparisons
+
+Recruit consenting users and projects with genuinely long-running agent work, across several teams, task types, languages, and providers. Record the eligible population, coverage, exclusions, and consent. Freeze a time cutoff for each task, with no future information or answer-bearing instruction in the prompt. Archive the task, environment, model version, system prompt, tool permissions, storage state, and scoring rubric. Keep synthetic fixtures, replay, shadow traffic, and live results separately labelled.
+
+Randomize at the **project/workspace level** when users or agents can share memory: task-level assignment in a shared writable store can contaminate the control. For isolated copies, pair the same task and frozen starting state across arms, randomize execution order, and prevent writes crossing arms. Record and analyze by randomized unit; do not treat multiple questions from one session as independent users. Stratify by task type, language, project size and prior memory size. Balance model, tool permissions, token budgets, timeouts and available information across arms, except for the intervention being tested.
+
+At minimum compare (A) recent context and existing compaction/summary, (B) the ordinary retrieval baseline that the deployment would otherwise use, and (C) Memex. To isolate mechanisms, include D: Memex with autonomous writes disabled, and E: Memex with autonomous reads and writes enabled. The precise baseline and whether model query expansion is enabled must be specified in advance. If comparing hybrid with rule, add a separate randomized contrast rather than mixing it into the main Memex versus control comparison. Preserve all failures, rejected actions, incomplete runs and retries; analyze by original assignment.
+
+## Correctness and evidence
+
+The primary endpoint is **task success per independently defined real task**, judged against a frozen task-specific acceptance rubric and verifiable artifacts, not merely retrieval hit rate, answer length, or a model judge's preference. Define whether partially correct results count before randomization. Retain source IDs, timestamps and tool transcripts; verify that cited evidence existed before the task and supports the claim. Prespecify unsupported claims, harmful actions, privacy boundary violations, error and abandonment rates as guardrails.
+
+At least two independent human reviewers, blinded to assignment and presentation order, score each open-ended answer or resulting artifact against the same rubric and source evidence. Record disagreement, agreement statistics, adjudication and UNKNOWN separately. Reviewers must have access to enough original evidence to judge support; clipped excerpts cannot establish absence. Machine judges may help triage but cannot be represented as human labels. Protect confidential material with an access-controlled review environment.
+
+## Total cost and reliability
+
+Measure **total cost per attempted task and per human-verified successful task**, including all answer, rewrite, embedding, retrieval and judge-model calls; prompt, completion and cached tokens by provider/model; storage, indexing, compute, network, tool calls, retries, failed or abandoned attempts; and incremental human review or correction time valued under a declared rate. Reconcile usage with actual invoices and record provider discounts, currency and observation window. Report p50/p95 end-to-end latency and service failure rates. Do not infer a dollar saving from token counts alone. Report cost by arm even when success rates differ; a low cost per attempt can conceal a higher cost per successful result.
+
+## Autonomous memory management
+
+For E, the agent decides when to write, retrieve, open, revise or abstain without a scripted target ID, supplied evidence, or human instruction selecting the memory action. Expose equivalent tool capabilities to other appropriate arms and log decisions, tool inputs, scoped IDs, outputs, timestamps, permissions, model calls and failures. A successful autonomous lifecycle requires a necessary and authorized write, faithful stored content, later retrieval/open when needed, correct use of evidence in the final result, and safe handling of missing, stale, superseded or conflicting memory. Human reviewers inspect whether the operation was necessary and correctly scoped; count missing writes, false recalls, unsupported claims, scope breaches, stale memories and prohibited writes. Safe abstention counts when evidence is insufficient. Only claim a production capability if the lifecycle is observed in actual consenting tasks, not merely a synthetic tool loop.
+
+## Analysis and decisions
+
+An illustrative decision rule is: the lower bound of a prespecified 95% confidence interval for Memex's absolute task-success improvement over the chosen baseline is above zero and the observed improvement is at least the pre-agreed meaningful threshold; no safety or privacy guardrail breaches its limit. To claim cost savings, require a prespecified confidence interval for total cost per successful task to show an economically meaningful reduction without a material loss of success or safety. To claim autonomy, report the full lifecycle success rate and failures on tasks where memory use was independently judged necessary, alongside the effect on final task success. These are distinct claims and may reach different conclusions.
+
+Calculate power for the actual cluster or paired design, anticipated within-workspace correlation, attrition and multiple comparisons. As an **illustration only**, comparing 60% to 70% independent task success with two-sided 5% significance and 80% power needs roughly 350–360 tasks per arm; clustering, unequal cluster sizes, multiple arms, rare safety events and missing outcomes can require substantially more. Use a cluster-aware calculator or simulation with pilot estimates; see [NIH cluster-design calculators](https://researchmethodsresources.nih.gov/Calculators) and [cluster randomized design considerations](https://academic.oup.com/ije/article/52/5/1648/7172835). One session with ten questions is nowhere near that evidence. Report confidence intervals and absolute effects, not only p-values. Use predetermined stopping rules or a valid sequential design; do not stop just because a favorable result appears.
+
+Begin with an instrumentation and rubric pilot that makes no efficacy claim. Then freeze the protocol, run an independent randomized evaluation, publish aggregate results and denominators, and retain private evidence for authorized audit. Expand to live traffic only under an agreed rollout, monitoring, rollback and incident procedure. A review of [experiment guardrails and interference](https://www.microsoft.com/en-us/research/articles/patterns-of-trustworthy-experimentation-pre-experiment-stage/) provides additional context.

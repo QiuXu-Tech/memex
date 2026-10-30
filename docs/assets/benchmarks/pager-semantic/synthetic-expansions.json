@@ -1,0 +1,434 @@
+[
+  {
+    "group": "synthetic",
+    "id": "release",
+    "status": "ok",
+    "queries": [
+      "how to cancel a product launch",
+      "roll back a launch or release",
+      "revert launched feature deployment"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 54,
+      "completion_tokens": 28,
+      "total_tokens": 82,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 54,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 3.95
+  },
+  {
+    "group": "synthetic",
+    "id": "database",
+    "status": "ok",
+    "queries": [
+      "write-ahead logging persistence engine",
+      "WAL implementation storage engine",
+      "which database engines use write-ahead log"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 55,
+      "completion_tokens": 30,
+      "total_tokens": 85,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 55,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 3.899
+  },
+  {
+    "group": "synthetic",
+    "id": "review",
+    "status": "ok",
+    "queries": [
+      "code acceptance approval criteria",
+      "code review approval requirements",
+      "definition of done code merge criteria"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 53,
+      "completion_tokens": 25,
+      "total_tokens": 78,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 53,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 3.278
+  },
+  {
+    "group": "synthetic",
+    "id": "privacy",
+    "status": "ok",
+    "queries": [
+      "where to store secrets and credentials",
+      "secrets management best practices",
+      "secure storage for API keys and passwords"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 53,
+      "completion_tokens": 28,
+      "total_tokens": 81,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 53,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.303
+  },
+  {
+    "group": "synthetic",
+    "id": "billing",
+    "status": "ok",
+    "queries": [
+      "failed payment retry best practices",
+      "dunning management failed charges",
+      "how to handle declined credit card payments"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 53,
+      "completion_tokens": 28,
+      "total_tokens": 81,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 53,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 3.534
+  },
+  {
+    "group": "synthetic",
+    "id": "backup",
+    "status": "ok",
+    "queries": [
+      "how many recovery copies retained",
+      "number of backup copies kept retention policy",
+      "recovery point copies count replication"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 53,
+      "completion_tokens": 29,
+      "total_tokens": 82,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 53,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.155
+  },
+  {
+    "group": "synthetic",
+    "id": "outage",
+    "status": "ok",
+    "queries": [
+      "outage notification recipients",
+      "who is alerted during service downtime",
+      "incident alert escalation contact list"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 55,
+      "completion_tokens": 29,
+      "total_tokens": 84,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 55,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.933
+  },
+  {
+    "group": "synthetic",
+    "id": "cache",
+    "status": "ok",
+    "queries": [
+      "cached response TTL expiration time",
+      "how long do cached responses stay valid",
+      "prompt response caching retention duration"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 54,
+      "completion_tokens": 31,
+      "total_tokens": 85,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 54,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.532
+  },
+  {
+    "group": "synthetic",
+    "id": "auth",
+    "status": "ok",
+    "queries": [
+      "project access permissions who can enter",
+      "project membership eligibility restrictions",
+      "who is permitted to join a project"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 54,
+      "completion_tokens": 29,
+      "total_tokens": 83,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 54,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.643
+  },
+  {
+    "group": "synthetic",
+    "id": "queue",
+    "status": "ok",
+    "queries": [
+      "repeated events processing idempotency",
+      "duplicate event handling event sourcing",
+      "recurring events processing pattern"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 53,
+      "completion_tokens": 28,
+      "total_tokens": 81,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 53,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.377
+  },
+  {
+    "group": "synthetic",
+    "id": "zh-deploy",
+    "status": "ok",
+    "queries": [
+      "部署回滚 方法",
+      "rollback deployment 步骤",
+      "失败发布 撤销部署 命令"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 58,
+      "completion_tokens": 39,
+      "total_tokens": 97,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 58,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.058
+  },
+  {
+    "group": "synthetic",
+    "id": "zh-billing",
+    "status": "ok",
+    "queries": [
+      "支付失败 处理方法",
+      "付款出错 扣款异常 怎么办",
+      "支付异常 退款 客服 处理流程"
+    ],
+    "responseModel": "claude-haiku-4-5",
+    "usage": {
+      "prompt_tokens": 57,
+      "completion_tokens": 50,
+      "total_tokens": 107,
+      "usage_semantic": "openai",
+      "usage_source": "anthropic",
+      "prompt_tokens_details": {
+        "cached_tokens": 0,
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0
+      },
+      "completion_tokens_details": {
+        "text_tokens": 0,
+        "audio_tokens": 0,
+        "image_tokens": 0,
+        "reasoning_tokens": 0
+      },
+      "input_tokens": 57,
+      "output_tokens": 0,
+      "input_tokens_details": null,
+      "claude_cache_creation_5_m_tokens": 0,
+      "claude_cache_creation_1_h_tokens": 0
+    },
+    "latencySeconds": 4.372
+  }
+]

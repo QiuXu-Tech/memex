@@ -5,7 +5,13 @@ layout: default
 
 # Benchmark report
 
-## 2026-10-31 query recall and hybrid ranking repair
+## 2026-10-31 synonym and archive excerpt retest
+
+On 12 handcrafted English/Chinese questions repeated over ten seeded layouts, optional model query expansion changed target-fact availability from **4/120 to 91/120** for rule and **0/120 to 104/120** for hybrid; the 120 observations are not independent questions. Without rewriting, the new pager matched the prior results. One English access-control question failed for all ten layouts. The prior deep-archive omission probe now retains its fact, but long-document completeness is not guaranteed. A separate exact-cue regression retained **400/400** for both policies on synthetic 10M assigned-token stores. No quiet-start gate passed. [Methods, raw data, real-session replay and caveats](pager-semantic-evaluation.md).
+
+![Synthetic query expansion diagnostic across seeded layouts](assets/benchmarks/pager-semantic-comparison.png)
+
+## 2026-10-31 historical query recall and hybrid ranking repair
 
 On the same ten synthetic 10M assigned-token stores and 400 exact-cue probes used in the previous retest, query-aware rule windows contained target facts **22/400 → 400/400** and hybrid windows **0/400 → 400/400**. Both candidate generation and selection changed. An ablation using the same post-fix candidate pages found hybrid **0/400 → 400/400**. These are synthetic availability checks, not answer accuracy.
 
