@@ -93,6 +93,9 @@ function learnedRerankPages(pages, query, reranker) {
     const features = lexicalFeatures(query, page, idf)
     let score = bias
     for (let index = 0; index < features.length; index += 1) score += features[index] * Number(reranker.weights[index] ?? 0)
+    // Explicit title/useWhen relevance fallback: learned weights are not yet retrained
+    // for CJK data, so exact title/useWhen overlap keeps Chinese queries from losing.
+    score += 2 * features[2] + features[3]
     return { page, score }
   }).sort((left, right) => right.score - left.score)
 }
@@ -172,7 +175,8 @@ export function materializeContext(input = {}) {
     const text = entries.length === 0 ? '' : `${prefixText}\n\n${timelineText}`.trimEnd()
     return { text, prefixText, timelineText }
   }
-  const costFor = (entries) => tokenCost(renderEntries(entries).text)
+  const canonicalEntries = (entries) => [...entries].sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
+  const costFor = (entries) => tokenCost(renderEntries(canonicalEntries(entries)).text)
   const selected = []
   const forced = []
   const omitted = []
@@ -202,10 +206,13 @@ export function materializeContext(input = {}) {
     const topK = Math.max(1, Number.isSafeInteger(input.learnedTopK) ? input.learnedTopK : 1)
     const maxPageTokens = Math.max(0, Number.isSafeInteger(input.learnedPageMaxTokens) ? input.learnedPageMaxTokens : 0)
     const diversify = input.diversify !== false
+    // Objective: maximize relevance score first; break ties by lower page cost.
+    // Budget remains a hard constraint checked on the final rendered order.
     ranked.sort((left, right) => {
-      const leftCost = Math.max(1, pageCost(left.page))
-      const rightCost = Math.max(1, pageCost(right.page))
-      return (right.score / rightCost) - (left.score / leftCost)
+      const leftScore = Number(left.score) || 0
+      const rightScore = Number(right.score) || 0
+      if (leftScore !== rightScore) return rightScore - leftScore
+      return Math.max(1, pageCost(left.page)) - Math.max(1, pageCost(right.page))
     })
     let added = 0
     for (const { page } of ranked) {
@@ -244,7 +251,7 @@ export function materializeContext(input = {}) {
     reserveTokens,
     availableTokens: available,
     overBudgetBy,
-    overBudgetReason: overBudgetBy > 0 ? (overBudgetReason ?? 'forced') : undefined,
+    overBudgetReason: overBudgetBy > 0 ? (overBudgetReason ?? (forced.length > 0 ? 'forced' : 'budget')) : undefined,
     budgetStatus,
     budgetBreakdown: {
       pageTokens,

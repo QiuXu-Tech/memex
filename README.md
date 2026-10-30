@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.53.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **142/142 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.53.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **144/144 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## 7B KV strategy comparison (latest)
 
@@ -230,7 +230,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **142/142 offline**, **36/36 SQLite consistency**.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **144/144 offline**, **36/36 SQLite consistency**.
 
 | Metric | Result |
 |---|---|

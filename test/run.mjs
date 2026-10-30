@@ -4524,8 +4524,10 @@ await test('U44', 'CJK/mixed query tokenization can select Chinese-relevant page
     { id: 'b', title: 'KV 连接器实验结果', body: 'KV 连接器八次外部命中，六百五十二兆显存', useWhen: 'KV 实验结果', sequence: 2 },
     { id: 'c', title: '缓存淘汰策略', body: '缓存淘汰与租户隔离说明', useWhen: '缓存', sequence: 3 },
   ]
-  const result = materializeContext({ pages, budgetTokens: 400, query: 'KV 连接器的实验结果是什么？', learnedRerank: weights, learnedTopK: 2 })
-  assert.ok(result.includedIds.includes('b'), `CJK query should select b: ${result.includedIds}`)
+  const result = materializeContext({ pages, budgetTokens: 45, query: 'KV 连接器的实验结果是什么？', learnedRerank: weights, learnedTopK: 2 })
+  assert.ok(result.includedIds.includes('b'), `CJK query should select b under pressure: ${result.includedIds}`)
+  const control = materializeContext({ pages, budgetTokens: 45 })
+  assert.ok(!control.includedIds.includes('b'), `no-query control should not select b: ${control.includedIds}`)
 })
 
 
@@ -4552,8 +4554,9 @@ await test('U46', 'materializer sorting handles negative/tied scores and partial
     { id: 'other', title: 'other note', body: 'other body', useWhen: '', sequence: 3 },
   ]
   const zeroWeights = { weights: [0, 0, 0, 0, 0, 0, 0], bias: 0 }
+  const positiveWeights = { weights: [10, 0, 0, 0, 0, 0, 0], bias: 0 }
   const negativeWeights = { weights: [-1, -1, -1, -1, -1, -1, 0], bias: -1 }
-  const partial = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: zeroWeights, learnedTopK: 2, learnedPageMaxTokens: 400 })
+  const partial = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: positiveWeights, learnedTopK: 2, learnedPageMaxTokens: 400 })
   assert.ok(partial.tokens <= 50)
   assert.ok(partial.includedIds.includes('small'), `small page should fit: ${partial.includedIds}`)
   const tieA = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: zeroWeights, learnedTopK: 2 })
@@ -4562,6 +4565,34 @@ await test('U46', 'materializer sorting handles negative/tied scores and partial
   const negative = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: negativeWeights, learnedTopK: 2 })
   assert.ok(Array.isArray(negative.includedIds))
   assert.ok(negative.tokens <= 50)
+})
+
+
+await test('U47', 'order-sensitive tokenizer cannot silently exceed budget after final ordering', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [
+    { id: 'a', title: 'alpha', body: 'alpha body', useWhen: 'alpha', sequence: 1 },
+    { id: 'b', title: 'beta', body: 'beta body', useWhen: 'beta', sequence: 2 },
+  ]
+  const orderSensitive = (text) => String(text).length + (String(text).indexOf('alpha') >= 0 && String(text).indexOf('alpha') < String(text).indexOf('beta') ? 300 : 0)
+  const positiveB = { weights: [1, 0, 0, 0, 0, 0, 0], bias: 0 }
+  const result = materializeContext({ pages, budgetTokens: 200, query: 'beta', learnedRerank: positiveB, learnedTopK: 1, tokenCounter: orderSensitive, tokenizerName: 'order-sensitive' })
+  assert.equal(result.tokens, orderSensitive(result.text))
+  assert.ok(result.tokens <= 200, `final rendered tokens ${result.tokens} should fit`)
+  assert.notEqual(result.budgetStatus, 'exceeded')
+  assert.notEqual(result.overBudgetReason, 'forced')
+})
+
+await test('U48', 'equal negative scores prefer cheaper page under tight budget', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [
+    { id: 'long', title: 'long page', body: 'long page body '.repeat(40), useWhen: '', sequence: 1 },
+    { id: 'short', title: 'short page', body: 'short page body', useWhen: '', sequence: 2 },
+  ]
+  const negative = { weights: [-1, -1, -1, -1, -1, -1, 0], bias: -1 }
+  const result = materializeContext({ pages, budgetTokens: 120, query: 'long page', learnedRerank: negative, learnedTopK: 2 })
+  assert.ok(result.includedIds.includes('short'), `cheaper equal-negative page should be selected: ${result.includedIds}`)
+  assert.ok(result.tokens <= 120)
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.54.0
+
+### Fixed — final-order budget, negative sorting, pressure tests, protocol
+- Budget checks now use the final chronological rendered text, including format/header/prefix; U47 order-sensitive custom counter regression. Non-forced overflow reason is `budget`, not `forced`.
+- Learned ordering objective: relevance score first, cheaper page on ties; equal negative scores no longer favor larger pages (`U48`, `U46`).
+- `U44` now has real selection pressure: budget fits one page; Chinese query selects the KV page, no-query control selects chronology page.
+- `training/quality_ab_protocol.py` hardened: human-verified labels, disjoint train/test keys, explicit real-memory authorization, non-zero cost model, both answer orders, raw answers, judge rationale, latency, selection recall, answer+judge cost.
+- No default strategy change. Runtime: process 22:20:49; final materializer mtime 23:06:34 not loaded — restart required.
+- Repo **144/144 offline**, **36/36 SQLite**, active **98/98**.
+
 ## 0.53.0
 
 ### Fixed — final rendered budget contract + sorting/quality protocols

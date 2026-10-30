@@ -677,6 +677,31 @@ Conclusion: **core-fact tier is the main coverage win; hybrid topK8 adds noise i
 
 Raw: `multiquery-answer-quality.json`.
 Boundary: one context per query, no human labels, judge variance; real memory content sent to APIMaster (aggregate only retained).
+## Final-order budget, negative sorting, pressure tests, protocol (v0.54.0)
+
+### Budget ordering
+Budget is now evaluated on the **final chronological rendered text**, not the order in which pages were selected. A custom order-sensitive tokenizer regression (U47) confirms no silent over-budget result. Non-forced overflow reason is `budget`, not `forced`; forced core/pinned reasons remain explicit.
+
+### Sorting objective
+The learned candidate order is now: **highest relevance score first; ties prefer the cheaper page**. Equal negative scores therefore do not favor larger pages. U48 asserts the cheaper equal-negative page is selected under a tight budget; U46 covers negative/tied scores and partial budgets.
+
+### Chinese pressure test
+U44 now uses a budget that fits only one page. The Chinese query selects the KV page; the no-query control selects a different chronology page. This demonstrates query-driven selection, not just "function executes".
+
+### Quality A/B protocol
+`training/quality_ab_protocol.py` now checks:
+
+- human-verified labels unless `--exploratory`
+- disjoint train/test keys
+- explicit `--authorize-real-memory` for real memory
+- non-zero cost model required unless exploratory
+- both answer orders, with condition mapping
+- per-question raw answers, judge rationale, latency, selected-window recall, answer/judge cost
+
+### Runtime state
+Process started 22:20:49; active config loaded; final sorting/budget materializer has mtime 23:06:34 and is **not loaded** until DSH restart. No default strategy change.
+
+Repo **144/144 offline**, **36/36 SQLite**, active **98/98**.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
