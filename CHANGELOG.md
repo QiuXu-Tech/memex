@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.60.0
+
+### Added — replay selection test + source-marked page excerpts
+- Ran local replay selection on 28 provisional episodes; no third-party API calls.
+- Relevant-record hit rates: rule 3.6%, rule+core 7.1%, hybrid 28.6%, hybrid+core 32.1%; with `pageTokenCap=400` excerpts, hybrid+core **42.9%**, all windows ≤1,800 tokens.
+- Materializer now turns oversized pages into source-marked excerpts, preserving the original archive; U49 tests truncation marker/source and no mutation.
+- Active config adds `materializerPageTokenCap: 400`; requires DSH restart.
+- Labels are provisional; this is selection, not answer quality. No default change.
+- Repo **145/145**; active **98/98**.
+
 ## 0.59.0
 
 ### Added — local replay episode extraction

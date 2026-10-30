@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "kind": "replay-local-selection",
+  "generatedAt": "2026-10-31T00:10:00+08:00",
+  "episodes": 28,
+  "labels": "provisional; not human-verified",
+  "conditions": {
+    "rule": {
+      "hitRate": 0.036
+    },
+    "rule_core": {
+      "hitRate": 0.071
+    },
+    "hybrid": {
+      "hitRate": 0.286
+    },
+    "hybrid_core": {
+      "hitRate": 0.321
+    },
+    "hybrid_core_pageCap400": {
+      "hitRate": 0.429
+    }
+  },
+  "interpretation": "Local replay selection is still weak: raw L1 archive records are enormous and do not fit unchanged. Adding source-marked page excerpts at a 400-token cap raised hybrid_core relevant-record hit rate from ~0.32 to ~0.43, with tokens under 1,800 and no over-budget. Rule-only hit rate remains low. Labels are provisional.",
+  "caveats": [
+    "No third-party API or content transfer; local materializer only.",
+    "Relevant record labels come from extraction, not human review.",
+    "Candidate set is availableBefore + relevant records; this is a selection test, not answer-quality."
+  ]
+}

@@ -4595,6 +4595,18 @@ await test('U48', 'equal negative scores prefer cheaper page under tight budget'
   assert.ok(result.tokens <= 120)
 })
 
+
+await test('U49', 'oversized pages become source-marked excerpts without mutating archive', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const originalBody = 'archive fact '.repeat(2000)
+  const pages = [{ id: 'archive', title: 'archive', body: originalBody, useWhen: 'archive', sequence: 1 }]
+  const result = materializeContext({ pages, budgetTokens: 400, pageTokenCap: 80 })
+  assert.ok(result.truncatedIds.includes('archive'), `truncatedIds: ${result.truncatedIds}`)
+  assert.ok(result.text.includes('truncated excerpt; source: archive'))
+  assert.ok(result.tokens <= 400)
+  assert.equal(pages[0].body, originalBody)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

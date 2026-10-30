@@ -150,13 +150,27 @@ export function materializeContext(input = {}) {
   const tokenizerName = typeof input.tokenizerName === 'string' ? input.tokenizerName : (counter === undefined ? 'chars/4' : 'custom')
   const tokenCost = (text) => counter === undefined ? estimateTokens(text) : counter(String(text))
   const pageCost = (page) => Number.isFinite(page.tokenCount) ? Math.max(1, Number(page.tokenCount)) : Math.max(1, tokenCost(pageText(page)))
+  const pageTokenCap = Math.max(0, Number.isSafeInteger(input.pageTokenCap) ? input.pageTokenCap : 0)
+  const preparePage = (page) => {
+    if (pageTokenCap === 0 || pageCost(page) <= pageTokenCap) return page
+    const originalBody = pageBody(page)
+    const source = page.sourceId ?? page.id
+    const maxChars = Math.max(80, pageTokenCap * 4)
+    const excerpt = originalBody.slice(0, maxChars).trimEnd()
+    return {
+      ...page,
+      body: excerpt,
+      truncated: true,
+      sourceId: source,
+    }
+  }
 
   const byId = new Map()
   for (const [index, page] of (Array.isArray(input.pages) ? input.pages : []).entries()) {
     if (page === null || typeof page !== 'object' || typeof page.id !== 'string' || page.id.length === 0) continue
     byId.set(page.id, { ...page, sequence: pageSequence(page, index) })
   }
-  const sorted = [...byId.values()].sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
+  const sorted = [...byId.values()].sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id)).map(preparePage)
   const renderEntries = (entries) => {
     const prefixText = entries.length === 0 ? '' : [
       `## Extra-context materialized window (${variant.id})`,
@@ -169,6 +183,7 @@ export function materializeContext(input = {}) {
       timelineLines.push(header)
       if (page.title !== undefined) timelineLines.push(`Title: ${page.title}`)
       timelineLines.push(pageBody(page))
+      if (page.truncated === true) timelineLines.push(`> [truncated excerpt; source: ${page.sourceId ?? page.id}]`)
       timelineLines.push('')
     }
     const timelineText = timelineLines.join('\n').trimEnd()
@@ -247,6 +262,7 @@ export function materializeContext(input = {}) {
     includedIds: selected.map((page) => page.id),
     omittedIds: omitted,
     forcedIds: forced,
+    truncatedIds: selected.filter((page) => page.truncated === true).map((page) => page.sourceId ?? page.id),
     tokens: actualTokens,
     budgetTokens,
     reserveTokens,
