@@ -520,6 +520,26 @@ python3 scripts/materializer-ab-report.py
 ```
 
 Next: restart DSH once, accumulate real turns, then compare rule vs hybrid page/token deltas online.
+## Long-horizon memex vs no-memex A/B (v0.44.0)
+
+Controlled synthetic long-horizon benchmark (60 archived decisions, recent tail only; 10 probes for facts only present in the archive) with two real API models:
+
+| model | condition | correct | accuracy | avg prompt tokens |
+|---|---|---:|---:|---:|
+| claude-haiku-4-5 | baseline: recent tail only | 0/10 | **0.0** | 3,222 |
+| claude-haiku-4-5 | memex materialized archive | 10/10 | **1.0** | 5,532 |
+| claude-haiku-4-5 | decoy archive (same size, facts replaced) | 0/10 | **0.0** | 5,566 |
+| gpt-6-astra | baseline: recent tail only | 0/10 | **0.0** | 4,317 |
+| gpt-6-astra | memex materialized archive | 10/10 | **1.0** | 7,905 |
+| gpt-6-astra | decoy archive (same size, facts replaced) | 0/10 | **0.0** | 7,649 |
+
+- memex archive recovers **10/10** long-horizon facts in both models; recent-tail baseline gets **0/10**.
+- The **same-size decoy archive** also scores 0/10, so the gain is not merely extra prompt tokens.
+- Cost: +2.3k (Claude) and +3.6k (GPT) prompt tokens on this synthetic run.
+
+Raw: `long-horizon-memex-ab.json`; script: `training/long_horizon_memex_ab.py`.
+Boundary: synthetic facts, all-fact archive, API models, not a real DSH session; tests 133/133.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

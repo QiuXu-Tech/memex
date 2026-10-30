@@ -1,0 +1,600 @@
+{
+  "summary": [
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "correct": 0,
+      "total": 10,
+      "accuracy": 0.0,
+      "avg_prompt_tokens": 3222.3,
+      "avg_seconds": 6.828
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "correct": 10,
+      "total": 10,
+      "accuracy": 1.0,
+      "avg_prompt_tokens": 5532.2,
+      "avg_seconds": 7.145
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "correct": 0,
+      "total": 10,
+      "accuracy": 0.0,
+      "avg_prompt_tokens": 4316.8,
+      "avg_seconds": 4.395
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "correct": 10,
+      "total": 10,
+      "accuracy": 1.0,
+      "avg_prompt_tokens": 7905.2,
+      "avg_seconds": 4.206
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "correct": 0,
+      "total": 10,
+      "accuracy": 0.0,
+      "avg_prompt_tokens": 5565.6,
+      "avg_seconds": 7.012
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "correct": 0,
+      "total": 10,
+      "accuracy": 0.0,
+      "avg_prompt_tokens": 7648.6,
+      "avg_seconds": 6.391
+    }
+  ],
+  "rows": [
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 3,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 1437,
+      "seconds": 6.411
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 3,
+      "answer": "FACT-0003-9233",
+      "correct": true,
+      "prompt_tokens": 3799,
+      "seconds": 7.821
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 9,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 1437,
+      "seconds": 6.512
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 9,
+      "answer": "FACT-0009-9042",
+      "correct": true,
+      "prompt_tokens": 3799,
+      "seconds": 6.993
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 14,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 5007,
+      "seconds": 6.624
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 14,
+      "answer": "FACT-0014-2814",
+      "correct": true,
+      "prompt_tokens": 3799,
+      "seconds": 7.134
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 21,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 5007,
+      "seconds": 8.772
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 21,
+      "answer": "FACT-0021-4444",
+      "correct": true,
+      "prompt_tokens": 3799,
+      "seconds": 7.675
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 28,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 5007,
+      "seconds": 6.643
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 28,
+      "answer": "FACT-0028-2250",
+      "correct": true,
+      "prompt_tokens": 8132,
+      "seconds": 6.911
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 35,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 5007,
+      "seconds": 6.304
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 35,
+      "answer": "FACT-0035-3308",
+      "correct": true,
+      "prompt_tokens": 8132,
+      "seconds": 6.76
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 42,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 1438,
+      "seconds": 6.508
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 42,
+      "answer": "FACT-0042-2485",
+      "correct": true,
+      "prompt_tokens": 3799,
+      "seconds": 7.025
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 49,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 1438,
+      "seconds": 7.299
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 49,
+      "answer": "FACT-0049-7523",
+      "correct": true,
+      "prompt_tokens": 3799,
+      "seconds": 6.877
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 56,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 1438,
+      "seconds": 6.806
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 56,
+      "answer": "FACT-0056-1415",
+      "correct": true,
+      "prompt_tokens": 8132,
+      "seconds": 6.601
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "baseline",
+      "item": 57,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 5007,
+      "seconds": 6.4
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "memex",
+      "item": 57,
+      "answer": "FACT-0057-4678",
+      "correct": true,
+      "prompt_tokens": 8132,
+      "seconds": 7.656
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 3,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 596,
+      "seconds": 4.192
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 3,
+      "answer": "FACT-0003-9233",
+      "correct": true,
+      "prompt_tokens": 8922,
+      "seconds": 3.986
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 9,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 4808,
+      "seconds": 3.792
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 9,
+      "answer": "FACT-0009-9042",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 3.866
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 14,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 596,
+      "seconds": 9.87
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 14,
+      "answer": "FACT-0014-2814",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 3.198
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 21,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 4808,
+      "seconds": 4.095
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 21,
+      "answer": "FACT-0021-4444",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 5.201
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 28,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 4808,
+      "seconds": 4.002
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 28,
+      "answer": "FACT-0028-2250",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 3.563
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 35,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 4808,
+      "seconds": 4.035
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 35,
+      "answer": "FACT-0035-3308",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 4.166
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 42,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 6564,
+      "seconds": 3.172
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 42,
+      "answer": "FACT-0042-2485",
+      "correct": true,
+      "prompt_tokens": 8922,
+      "seconds": 3.749
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 49,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 4808,
+      "seconds": 3.312
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 49,
+      "answer": "FACT-0049-7523",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 3.161
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 56,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 4808,
+      "seconds": 3.926
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 56,
+      "answer": "FACT-0056-1415",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 5.814
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "baseline",
+      "item": 57,
+      "answer": "UNKNOWN",
+      "correct": false,
+      "prompt_tokens": 6564,
+      "seconds": 3.554
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "memex",
+      "item": 57,
+      "answer": "FACT-0057-4678",
+      "correct": true,
+      "prompt_tokens": 7651,
+      "seconds": 5.36
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 3,
+      "answer": "DECOY-0003-9233",
+      "correct": false,
+      "prompt_tokens": 3814,
+      "seconds": 7.115
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 9,
+      "answer": "DECOY-0009-9042",
+      "correct": false,
+      "prompt_tokens": 3814,
+      "seconds": 7.11
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 14,
+      "answer": "DECOY-0014-2814",
+      "correct": false,
+      "prompt_tokens": 3814,
+      "seconds": 6.977
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 21,
+      "answer": "DECOY-0021-4444",
+      "correct": false,
+      "prompt_tokens": 3814,
+      "seconds": 6.817
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 28,
+      "answer": "DECOY-0028-2250",
+      "correct": false,
+      "prompt_tokens": 8193,
+      "seconds": 6.929
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 35,
+      "answer": "DECOY-0035-3308",
+      "correct": false,
+      "prompt_tokens": 8193,
+      "seconds": 6.9
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 42,
+      "answer": "DECOY-0042-2485",
+      "correct": false,
+      "prompt_tokens": 8193,
+      "seconds": 7.145
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 49,
+      "answer": "DECOY-0049-7523",
+      "correct": false,
+      "prompt_tokens": 8193,
+      "seconds": 7.105
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 56,
+      "answer": "DECOY-0056-1415",
+      "correct": false,
+      "prompt_tokens": 3814,
+      "seconds": 7.189
+    },
+    {
+      "model": "claude-haiku-4-5",
+      "condition": "decoy_archive",
+      "item": 57,
+      "answer": "DECOY-0057-4678",
+      "correct": false,
+      "prompt_tokens": 3814,
+      "seconds": 6.829
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 3,
+      "answer": "DECOY-0003-9233",
+      "correct": false,
+      "prompt_tokens": 7771,
+      "seconds": 24.152
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 9,
+      "answer": "DECOY-0009-9042",
+      "correct": false,
+      "prompt_tokens": 7935,
+      "seconds": 3.337
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 14,
+      "answer": "DECOY-0014-2814",
+      "correct": false,
+      "prompt_tokens": 7935,
+      "seconds": 3.889
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 21,
+      "answer": "DECOY-0021-4444",
+      "correct": false,
+      "prompt_tokens": 8937,
+      "seconds": 3.923
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 28,
+      "answer": "DECOY-0028-2250",
+      "correct": false,
+      "prompt_tokens": 7935,
+      "seconds": 7.46
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 35,
+      "answer": "DECOY-0035-3308",
+      "correct": false,
+      "prompt_tokens": 7771,
+      "seconds": 3.821
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 42,
+      "answer": "DECOY-0042-2485",
+      "correct": false,
+      "prompt_tokens": 7935,
+      "seconds": 3.087
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 49,
+      "answer": "DECOY-0049-7523",
+      "correct": false,
+      "prompt_tokens": 7771,
+      "seconds": 4.218
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 56,
+      "answer": "DECOY-0056-1415",
+      "correct": false,
+      "prompt_tokens": 8937,
+      "seconds": 4.176
+    },
+    {
+      "model": "gpt-6-astra",
+      "condition": "decoy_archive",
+      "item": 57,
+      "answer": "DECOY-0057-4678",
+      "correct": false,
+      "prompt_tokens": 3559,
+      "seconds": 5.851
+    }
+  ]
+}

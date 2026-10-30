@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.44.0
+
+### Added — long-horizon memex vs no-memex A/B proof
+- Controlled synthetic benchmark: 60 archived decisions, recent tail only, 10 probes whose facts exist only in the archive; two real API models.
+- Baseline **0/10**; memex materialized archive **10/10**; same-size decoy archive **0/10** for both models. The gain is content-specific, not merely extra prompt tokens.
+- Prompt-token cost: +2.3k tokens (Claude Haiku) / +3.6k (GPT-6 Astra) on this synthetic run.
+- Raw: `long-horizon-memex-ab.json`; script: `training/long_horizon_memex_ab.py`; harness **133/133**.
+
 ## 0.43.0
 
 ### Added — online materializer A/B trace
