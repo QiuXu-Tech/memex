@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.22.0
+
+### Added — connector eviction
+- `MemexKVConnector` supports `max_cache_mib` with LRU eviction of oldest prefix folders.
+- Probe with 2MiB cap: 8/8 external hits, **7 evictions**, final cache 1.5MiB; mean store 0.0807s → hit 0.0179s (tiny model).
+- Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-eviction.json`.
+- Boundary: disk safetensors, no compression yet.
+
 ## 0.21.0
 
 ### Added — end-to-end materializer → vLLM connector

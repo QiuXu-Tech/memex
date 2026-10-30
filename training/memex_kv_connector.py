@@ -106,6 +106,8 @@ class MemexKVConnector(KVConnectorBase_V1):
             "memex_kv_path", "/root/memex-kv")
         self._prefix_tokens = int(transfer_config.get_from_extra_config(
             "prefix_tokens", 0) or 0)
+        self._max_cache_mib = int(transfer_config.get_from_extra_config(
+            "max_cache_mib", 2048) or 2048)
         logger.info(vllm_config.kv_transfer_config)
         logger.info("Shared storage path is %s", self._storage_path)
 
@@ -263,7 +265,43 @@ class MemexKVConnector(KVConnectorBase_V1):
                 safetensors.torch.save_file(tensors, filename)
 
     def wait_for_save(self):
-        return
+        self._evict_cache()
+
+    def _evict_cache(self):
+        """Bound the external KV directory by evicting the oldest prefix folders."""
+        if self._max_cache_mib <= 0:
+            return
+        entries = []
+        total = 0
+        for name in os.listdir(self._storage_path):
+            folder = os.path.join(self._storage_path, name)
+            if not os.path.isdir(folder):
+                continue
+            size = 0
+            for root, _dirs, files in os.walk(folder):
+                for filename in files:
+                    try:
+                        size += os.path.getsize(os.path.join(root, filename))
+                    except OSError:
+                        pass
+            entries.append((os.path.getmtime(folder), size, folder))
+            total += size
+        limit = self._max_cache_mib * 1024 * 1024
+        for _mtime, size, folder in sorted(entries):
+            if total <= limit:
+                break
+            logger.warning("MEMEX evict prefix cache %.1f MiB: %s", size / 1024 / 1024, folder)
+            for root, _dirs, files in os.walk(folder, topdown=False):
+                for filename in files:
+                    try:
+                        os.remove(os.path.join(root, filename))
+                    except OSError:
+                        pass
+                try:
+                    os.rmdir(root)
+                except OSError:
+                    pass
+            total -= size
 
     def get_num_new_matched_tokens(
         self,

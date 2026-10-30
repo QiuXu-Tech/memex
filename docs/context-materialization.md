@@ -207,6 +207,17 @@ This closes the loop: a **real `context-materializer` output** (13 pages, 7,585 
 
 This is the first end-to-end **materializer → connector → vLLM KV load** validation. The tiny random Qwen2 model avoids network downloads; connector mechanics are model-size independent (the 3B run covers scale).
 
+## Connector eviction (v0.22.0)
+
+`MemexKVConnector` now supports `max_cache_mib` and LRU prefix-folder eviction. Probe with a 2MiB cap:
+
+- 8 prefixes × 2 requests, **8/8 external hits**
+- **7 evictions**; final cache **1.5MiB**, 1 folder
+- mean store **0.0807s → hit 0.0179s** (tiny random model)
+
+Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-eviction.json`.
+Boundary: disk safetensors, no compression yet; tiny model.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

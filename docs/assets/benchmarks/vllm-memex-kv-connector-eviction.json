@@ -1,0 +1,85 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-eviction",
+  "generatedAt": "2026-10-30T16:55:00+08:00",
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memoryMiB": 97887
+  },
+  "software": {
+    "vllm": "0.10.2",
+    "torch": "2.8.0+cu128"
+  },
+  "model": "tiny Qwen2 model (2 layers, random weights)",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "maxCacheMiB": 2
+  },
+  "workload": {
+    "prefixes": 8,
+    "requests": 16
+  },
+  "results": {
+    "externalHits": 8,
+    "evictions": 7,
+    "finalCacheMiB": 1.5,
+    "meanStoreSeconds": 0.0807,
+    "meanHitSeconds": 0.0179,
+    "pairs": [
+      {
+        "prefix": 0,
+        "store_seconds": 0.5159,
+        "hit_seconds": 0.0224,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 1,
+        "store_seconds": 0.0178,
+        "hit_seconds": 0.0156,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 2,
+        "store_seconds": 0.0181,
+        "hit_seconds": 0.019,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 3,
+        "store_seconds": 0.0173,
+        "hit_seconds": 0.0209,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 4,
+        "store_seconds": 0.0181,
+        "hit_seconds": 0.015,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 5,
+        "store_seconds": 0.0194,
+        "hit_seconds": 0.0161,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 6,
+        "store_seconds": 0.0191,
+        "hit_seconds": 0.0178,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 7,
+        "store_seconds": 0.0196,
+        "hit_seconds": 0.0167,
+        "prompt_tokens": 2815
+      }
+    ]
+  },
+  "caveats": [
+    "LRU eviction tested with a tiny random model; not a production workload.",
+    "Eviction scans the KV directory after each save and removes oldest prefix folders over the configured cap.",
+    "Fixed prefix length; disk safetensors."
+  ]
+}
