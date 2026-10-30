@@ -66,6 +66,7 @@ see the [methodology section](https://github.com/QiuXu-Tech/memex/blob/main/docs
 | Codex CLI / GPT-6.1 Sol (3 seeds × 20, v0.14.0) | control **3/60 (5%)**; treatment **60/60 (100%)**; evicted **0/57 → 57/57**; all six calls exited zero; actual tails checked in order |
 | Codex CLI / GPT-6.1 Sol (3 seeds × 20, v0.14.1 + SQLite fix) | control **3/60 (5%)**; treatment **60/60 (100%)**; evicted **0/57 → 57/57**; all six calls exited zero; actual tails checked in order |
 | Codex CLI / GPT-6.1 Sol (3 seeds × 20, v0.26.0) | control **3/60 (5%)**; treatment **60/60 (100%)**; evicted **0/57 → 57/57**; all six calls exited zero; actual tails checked in order |
+| Codex CLI / GPT-6.1 Sol (3 seeds × 20, v0.27.0) | control **3/60 (5%)**; treatment **60/60 (100%)**; evicted **0/57 → 57/57**; all six calls exited zero; actual tails checked in order |
 | Claude Sonnet 5.5 (3 seeds × 20, v0.9.0, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57**; **40,673 gateway-reported tokens**; full chronological tail not saved |
 | Claude Opus 5.5 (3 seeds × 20, v0.9.0, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57**; **40,676 gateway-reported tokens**; full chronological tail not saved |
 | Claude Fable 5.1 (3 seeds × 20, v0.9.1, APIMaster) | control **3/60 (5%)**; treatment **60/60 (100%)**; reported evicted **0/57 → 57/57**; **40,663 gateway-reported tokens**; full chronological tail not saved |

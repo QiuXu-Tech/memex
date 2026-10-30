@@ -171,9 +171,9 @@ footnote(fig, "X-only bodies do not measure identifier-bearing body index overhe
 save(fig, "capacity.png")
 
 # Live model answers on the separately run synthetic Codex A/B fixture.
-live = load("live-ab-codex-sol-v026.json")["aggregate"]
+live = load("live-ab-codex-sol-v027.json")["aggregate"]
 fig, ax = plt.subplots(figsize=(12.8, 6.8))
-heading(fig, "Codex A/B: exact-answer counts", "v0.26.0 · GPT-6.1 Sol · 3 synthetic seeds · 300 turns each")
+heading(fig, "Codex A/B: exact-answer counts", "v0.27.0 · GPT-6.1 Sol · 3 synthetic seeds · 300 turns each")
 fig.subplots_adjust(left=0.085, right=0.965, top=0.79, bottom=0.22)
 setup(ax)
 for x, (control, treatment) in enumerate([

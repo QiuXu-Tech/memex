@@ -1,0 +1,1036 @@
+{
+  "generatedAt": "2026-10-30T09:47:06.731Z",
+  "testedCommit": "3970ecff39b5e8be8373c50329e16458416ff0c5",
+  "method": "Actual emitted plans and prompts, tail order, probe membership, grades and local Codex completion events were checked.",
+  "allTailsExactlyTurns280To299InOrder": true,
+  "allProbeFlagsMatchTailAndChronology": true,
+  "allSixSessionCompletionsMatchedSavedAnswers": true,
+  "runs": [
+    {
+      "seed": 1,
+      "tailTurns": [
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "controlMatchesRecordedTail": true,
+      "treatmentMatchesRecordedTail": true,
+      "probeFlagsMatchTail": true,
+      "plan": {
+        "generatedAt": "2026-10-30T09:47:07.491Z",
+        "seed": 1,
+        "turns": 300,
+        "tailCount": 20,
+        "tailIds": [
+          "mem_b84fdd80ed",
+          "mem_649a177c73",
+          "mem_7e247b20d0",
+          "mem_3c503d7af4",
+          "mem_9fc4358994",
+          "mem_85f34b5744",
+          "mem_cf444c6eb2",
+          "mem_291a7fa817",
+          "mem_b371418a8b",
+          "mem_5ce7260be4",
+          "mem_d9649962c2",
+          "mem_4de082b9b0",
+          "mem_a4a9e20df2",
+          "mem_cc6dcd504d",
+          "mem_99debc2d00",
+          "mem_bd31f3bf64",
+          "mem_35ecb5dc58",
+          "mem_b40fa74ac6",
+          "mem_97de1ff633",
+          "mem_a7fe87dc24"
+        ],
+        "tailRecords": [
+          {
+            "id": "mem_b84fdd80ed",
+            "title": "turn 280 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_649a177c73",
+            "title": "turn 281 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_7e247b20d0",
+            "title": "turn 282 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_3c503d7af4",
+            "title": "turn 283 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_9fc4358994",
+            "title": "turn 284 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_85f34b5744",
+            "title": "router value at turn 285",
+            "summary": "the router value is FACT-285-rm66w"
+          },
+          {
+            "id": "mem_cf444c6eb2",
+            "title": "turn 286 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_291a7fa817",
+            "title": "turn 287 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_b371418a8b",
+            "title": "turn 288 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_5ce7260be4",
+            "title": "turn 289 harbor work",
+            "summary": "work log for harbor"
+          },
+          {
+            "id": "mem_d9649962c2",
+            "title": "turn 290 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_4de082b9b0",
+            "title": "turn 291 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_a4a9e20df2",
+            "title": "turn 292 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_cc6dcd504d",
+            "title": "turn 293 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_99debc2d00",
+            "title": "turn 294 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_bd31f3bf64",
+            "title": "turn 295 router work",
+            "summary": "work log for router"
+          },
+          {
+            "id": "mem_35ecb5dc58",
+            "title": "turn 296 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_b40fa74ac6",
+            "title": "turn 297 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_97de1ff633",
+            "title": "turn 298 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_a7fe87dc24",
+            "title": "turn 299 harbor work",
+            "summary": "work log for harbor"
+          }
+        ],
+        "probes": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-mkorf",
+            "id": "mem_960745e376",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-03jmy",
+            "id": "mem_745bbc8ff0",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-izkkh",
+            "id": "mem_214361e181",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-zbfww",
+            "id": "mem_a4c5ce87b9",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-yv0n0",
+            "id": "mem_ddd58793aa",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-a4b5x",
+            "id": "mem_d8f3b6dea2",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-m28ly",
+            "id": "mem_603ff2550f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-py2zp",
+            "id": "mem_6038ae0381",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-fbtzd",
+            "id": "mem_a6cf7725cc",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-ztagj",
+            "id": "mem_30b7771edc",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-ge14o",
+            "id": "mem_dba2f6c00a",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-hlgwo",
+            "id": "mem_ab2abdce80",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-50232",
+            "id": "mem_c7c43094a5",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-ej946",
+            "id": "mem_5378604545",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-8wsh3",
+            "id": "mem_59640073ca",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-5k815",
+            "id": "mem_fa58d7cf3a",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-hlxhw",
+            "id": "mem_6d575696df",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-2fb7j",
+            "id": "mem_3afbaafba2",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-e7fcx",
+            "id": "mem_2630b6b8f3",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-rm66w",
+            "id": "mem_85f34b5744",
+            "inTail": true,
+            "evicted": false
+          }
+        ]
+      },
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 280 gateway work\nwork log for gateway\nturn 281 parser work\nwork log for parser\nturn 282 scheduler work\nwork log for scheduler\nturn 283 ledger work\nwork log for ledger\nturn 284 cache work\nwork log for cache\nrouter value at turn 285\nthe router value is FACT-285-rm66w\nturn 286 worker work\nwork log for worker\nturn 287 indexer work\nwork log for indexer\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 290 gateway work\nwork log for gateway\nturn 291 parser work\nwork log for parser\nturn 292 scheduler work\nwork log for scheduler\nturn 293 ledger work\nwork log for ledger\nturn 294 cache work\nwork log for cache\nturn 295 router work\nwork log for router\nturn 296 worker work\nwork log for worker\nturn 297 indexer work\nwork log for indexer\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain.",
+      "treatmentPrompt": "You are continuing a long software project. Earlier context was evicted, but memex archived it verbatim and you have retrieval evidence.\n\nRecent context:\nturn 280 gateway work\nwork log for gateway\nturn 281 parser work\nwork log for parser\nturn 282 scheduler work\nwork log for scheduler\nturn 283 ledger work\nwork log for ledger\nturn 284 cache work\nwork log for cache\nrouter value at turn 285\nthe router value is FACT-285-rm66w\nturn 286 worker work\nwork log for worker\nturn 287 indexer work\nwork log for indexer\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 290 gateway work\nwork log for gateway\nturn 291 parser work\nwork log for parser\nturn 292 scheduler work\nwork log for scheduler\nturn 293 ledger work\nwork log for ledger\nturn 294 cache work\nwork log for cache\nturn 295 router work\nwork log for router\nturn 296 worker work\nwork log for worker\nturn 297 indexer work\nwork log for indexer\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nMemory evidence:\nEvidence for Q0: ## Memory recall\n\nturn 0 gateway\n1. mem_960745e376 · gateway value at turn 0 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n5. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q1: ## Memory recall\n\nturn 15 router\n1. mem_745bbc8ff0 · router value at turn 15 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_5378604545 · router value at turn 195 — read when continuing router work\n5. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\nEvidence for Q2: ## Memory recall\n\nturn 30 gateway\n1. mem_214361e181 · gateway value at turn 30 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n5. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q3: ## Memory recall\n\nturn 45 router\n1. mem_a4c5ce87b9 · router value at turn 45 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_5378604545 · router value at turn 195 — read when continuing router work\n5. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\nEvidence for Q4: ## Memory recall\n\nturn 60 gateway\n1. mem_ddd58793aa · gateway value at turn 60 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n5. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q5: ## Memory recall\n\nturn 75 router\n1. mem_d8f3b6dea2 · router value at turn 75 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_5378604545 · router value at turn 195 — read when continuing router work\n5. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\nEvidence for Q6: ## Memory recall\n\nturn 90 gateway\n1. mem_603ff2550f · gateway value at turn 90 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n5. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q7: ## Memory recall\n\nturn 105 router\n1. mem_6038ae0381 · router value at turn 105 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_5378604545 · router value at turn 195 — read when continuing router work\n5. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\nEvidence for Q8: ## Memory recall\n\nturn 120 gateway\n1. mem_a6cf7725cc · gateway value at turn 120 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n5. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q9: ## Memory recall\n\nturn 135 router\n1. mem_30b7771edc · router value at turn 135 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_5378604545 · router value at turn 195 — read when continuing router work\n5. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\nEvidence for Q10: ## Memory recall\n\nturn 150 gateway\n1. mem_dba2f6c00a · gateway value at turn 150 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n5. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q11: ## Memory recall\n\nturn 165 router\n1. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_5378604545 · router value at turn 195 — read when continuing router work\n5. mem_30b7771edc · router value at turn 135 — read when continuing router work\nEvidence for Q12: ## Memory recall\n\nturn 180 gateway\n1. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n5. mem_dba2f6c00a · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q13: ## Memory recall\n\nturn 195 router\n1. mem_5378604545 · router value at turn 195 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\n5. mem_30b7771edc · router value at turn 135 — read when continuing router work\nEvidence for Q14: ## Memory recall\n\nturn 210 gateway\n1. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n4. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\n5. mem_dba2f6c00a · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q15: ## Memory recall\n\nturn 225 router\n1. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_5378604545 · router value at turn 195 — read when continuing router work\n4. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\n5. mem_30b7771edc · router value at turn 135 — read when continuing router work\nEvidence for Q16: ## Memory recall\n\nturn 240 gateway\n1. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n2. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n3. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n4. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\n5. mem_dba2f6c00a · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q17: ## Memory recall\n\nturn 255 router\n1. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n2. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n3. mem_5378604545 · router value at turn 195 — read when continuing router work\n4. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\n5. mem_30b7771edc · router value at turn 135 — read when continuing router work\nEvidence for Q18: ## Memory recall\n\nturn 270 gateway\n1. mem_2630b6b8f3 · gateway value at turn 270 — read when continuing gateway work\n2. mem_6d575696df · gateway value at turn 240 — read when continuing gateway work\n3. mem_59640073ca · gateway value at turn 210 — read when continuing gateway work\n4. mem_c7c43094a5 · gateway value at turn 180 — read when continuing gateway work\n5. mem_dba2f6c00a · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q19: ## Memory recall\n\nturn 285 router\n1. mem_85f34b5744 · router value at turn 285 — read when continuing router work\n2. mem_3afbaafba2 · router value at turn 255 — read when continuing router work\n3. mem_fa58d7cf3a · router value at turn 225 — read when continuing router work\n4. mem_5378604545 · router value at turn 195 — read when continuing router work\n5. mem_ab2abdce80 · router value at turn 165 — read when continuing router work\n\nOpened records:\nRecord for Q0 (memex mem_960745e376):\nTurn 0 (gateway): the durable value is FACT-000-mkorf; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q1 (memex mem_745bbc8ff0):\nTurn 15 (router): the durable value is FACT-015-03jmy; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q2 (memex mem_214361e181):\nTurn 30 (gateway): the durable value is FACT-030-izkkh; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q3 (memex mem_a4c5ce87b9):\nTurn 45 (router): the durable value is FACT-045-zbfww; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q4 (memex mem_ddd58793aa):\nTurn 60 (gateway): the durable value is FACT-060-yv0n0; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q5 (memex mem_d8f3b6dea2):\nTurn 75 (router): the durable value is FACT-075-a4b5x; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q6 (memex mem_603ff2550f):\nTurn 90 (gateway): the durable value is FACT-090-m28ly; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q7 (memex mem_6038ae0381):\nTurn 105 (router): the durable value is FACT-105-py2zp; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q8 (memex mem_a6cf7725cc):\nTurn 120 (gateway): the durable value is FACT-120-fbtzd; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q9 (memex mem_30b7771edc):\nTurn 135 (router): the durable value is FACT-135-ztagj; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q10 (memex mem_dba2f6c00a):\nTurn 150 (gateway): the durable value is FACT-150-ge14o; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q11 (memex mem_ab2abdce80):\nTurn 165 (router): the durable value is FACT-165-hlgwo; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q12 (memex mem_c7c43094a5):\nTurn 180 (gateway): the durable value is FACT-180-50232; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q13 (memex mem_5378604545):\nTurn 195 (router): the durable value is FACT-195-ej946; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q14 (memex mem_59640073ca):\nTurn 210 (gateway): the durable value is FACT-210-8wsh3; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q15 (memex mem_fa58d7cf3a):\nTurn 225 (router): the durable value is FACT-225-5k815; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q16 (memex mem_6d575696df):\nTurn 240 (gateway): the durable value is FACT-240-hlxhw; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q17 (memex mem_3afbaafba2):\nTurn 255 (router): the durable value is FACT-255-2fb7j; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q18 (memex mem_2630b6b8f3):\nTurn 270 (gateway): the durable value is FACT-270-e7fcx; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q19 (memex mem_85f34b5744):\nTurn 285 (router): the durable value is FACT-285-rm66w; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" from the evidence. Do not use tools. Do not explain."
+    },
+    {
+      "seed": 2,
+      "tailTurns": [
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "controlMatchesRecordedTail": true,
+      "treatmentMatchesRecordedTail": true,
+      "probeFlagsMatchTail": true,
+      "plan": {
+        "generatedAt": "2026-10-30T09:47:47.720Z",
+        "seed": 2,
+        "turns": 300,
+        "tailCount": 20,
+        "tailIds": [
+          "mem_1553fa31e7",
+          "mem_11dea1e80b",
+          "mem_46316833f9",
+          "mem_c1fc3ae0e8",
+          "mem_996e714400",
+          "mem_6dc33a4738",
+          "mem_658990f7fa",
+          "mem_6e8f85d7d9",
+          "mem_027c839a43",
+          "mem_ba76a81d77",
+          "mem_3d0903ad86",
+          "mem_0f571b0243",
+          "mem_473f7bd1c2",
+          "mem_bf08330f9a",
+          "mem_51e2fb0d4d",
+          "mem_a48e8ffc41",
+          "mem_d3c71bb0bc",
+          "mem_3c87500885",
+          "mem_ddd6e3acc2",
+          "mem_a44acc5bc9"
+        ],
+        "tailRecords": [
+          {
+            "id": "mem_1553fa31e7",
+            "title": "turn 280 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_11dea1e80b",
+            "title": "turn 281 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_46316833f9",
+            "title": "turn 282 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_c1fc3ae0e8",
+            "title": "turn 283 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_996e714400",
+            "title": "turn 284 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_6dc33a4738",
+            "title": "router value at turn 285",
+            "summary": "the router value is FACT-285-1esyu"
+          },
+          {
+            "id": "mem_658990f7fa",
+            "title": "turn 286 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_6e8f85d7d9",
+            "title": "turn 287 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_027c839a43",
+            "title": "turn 288 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_ba76a81d77",
+            "title": "turn 289 harbor work",
+            "summary": "work log for harbor"
+          },
+          {
+            "id": "mem_3d0903ad86",
+            "title": "turn 290 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_0f571b0243",
+            "title": "turn 291 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_473f7bd1c2",
+            "title": "turn 292 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_bf08330f9a",
+            "title": "turn 293 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_51e2fb0d4d",
+            "title": "turn 294 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_a48e8ffc41",
+            "title": "turn 295 router work",
+            "summary": "work log for router"
+          },
+          {
+            "id": "mem_d3c71bb0bc",
+            "title": "turn 296 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_3c87500885",
+            "title": "turn 297 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_ddd6e3acc2",
+            "title": "turn 298 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_a44acc5bc9",
+            "title": "turn 299 harbor work",
+            "summary": "work log for harbor"
+          }
+        ],
+        "probes": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-qfl7m",
+            "id": "mem_4bdcf20b14",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-bp74k",
+            "id": "mem_f4e1f2b5de",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-a9qrt",
+            "id": "mem_559a3746b5",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-jd6u3",
+            "id": "mem_3368132bea",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-vidfn",
+            "id": "mem_4d39b2780f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-mpk5r",
+            "id": "mem_187602fb6c",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hyyqy",
+            "id": "mem_c87aaae92b",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-cuzlu",
+            "id": "mem_5aadc93c60",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-s4xt8",
+            "id": "mem_b80b51b656",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-43s9i",
+            "id": "mem_907a62fa9c",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-saher",
+            "id": "mem_a93650c7cf",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-797as",
+            "id": "mem_dba712fd08",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-f9so7",
+            "id": "mem_3ddaa60826",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-u25n2",
+            "id": "mem_b3c5c36161",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-kxe32",
+            "id": "mem_9cc1d4d986",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-52qt3",
+            "id": "mem_775acc0140",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-o77fl",
+            "id": "mem_7316ab3cbb",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-d78oa",
+            "id": "mem_3889b66c6f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-yz7lh",
+            "id": "mem_5add272dc4",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-1esyu",
+            "id": "mem_6dc33a4738",
+            "inTail": true,
+            "evicted": false
+          }
+        ]
+      },
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 280 gateway work\nwork log for gateway\nturn 281 parser work\nwork log for parser\nturn 282 scheduler work\nwork log for scheduler\nturn 283 ledger work\nwork log for ledger\nturn 284 cache work\nwork log for cache\nrouter value at turn 285\nthe router value is FACT-285-1esyu\nturn 286 worker work\nwork log for worker\nturn 287 indexer work\nwork log for indexer\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 290 gateway work\nwork log for gateway\nturn 291 parser work\nwork log for parser\nturn 292 scheduler work\nwork log for scheduler\nturn 293 ledger work\nwork log for ledger\nturn 294 cache work\nwork log for cache\nturn 295 router work\nwork log for router\nturn 296 worker work\nwork log for worker\nturn 297 indexer work\nwork log for indexer\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain.",
+      "treatmentPrompt": "You are continuing a long software project. Earlier context was evicted, but memex archived it verbatim and you have retrieval evidence.\n\nRecent context:\nturn 280 gateway work\nwork log for gateway\nturn 281 parser work\nwork log for parser\nturn 282 scheduler work\nwork log for scheduler\nturn 283 ledger work\nwork log for ledger\nturn 284 cache work\nwork log for cache\nrouter value at turn 285\nthe router value is FACT-285-1esyu\nturn 286 worker work\nwork log for worker\nturn 287 indexer work\nwork log for indexer\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 290 gateway work\nwork log for gateway\nturn 291 parser work\nwork log for parser\nturn 292 scheduler work\nwork log for scheduler\nturn 293 ledger work\nwork log for ledger\nturn 294 cache work\nwork log for cache\nturn 295 router work\nwork log for router\nturn 296 worker work\nwork log for worker\nturn 297 indexer work\nwork log for indexer\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nMemory evidence:\nEvidence for Q0: ## Memory recall\n\nturn 0 gateway\n1. mem_4bdcf20b14 · gateway value at turn 0 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n5. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q1: ## Memory recall\n\nturn 15 router\n1. mem_f4e1f2b5de · router value at turn 15 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n5. mem_dba712fd08 · router value at turn 165 — read when continuing router work\nEvidence for Q2: ## Memory recall\n\nturn 30 gateway\n1. mem_559a3746b5 · gateway value at turn 30 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n5. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q3: ## Memory recall\n\nturn 45 router\n1. mem_3368132bea · router value at turn 45 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n5. mem_dba712fd08 · router value at turn 165 — read when continuing router work\nEvidence for Q4: ## Memory recall\n\nturn 60 gateway\n1. mem_4d39b2780f · gateway value at turn 60 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n5. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q5: ## Memory recall\n\nturn 75 router\n1. mem_187602fb6c · router value at turn 75 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n5. mem_dba712fd08 · router value at turn 165 — read when continuing router work\nEvidence for Q6: ## Memory recall\n\nturn 90 gateway\n1. mem_c87aaae92b · gateway value at turn 90 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n5. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q7: ## Memory recall\n\nturn 105 router\n1. mem_5aadc93c60 · router value at turn 105 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n5. mem_dba712fd08 · router value at turn 165 — read when continuing router work\nEvidence for Q8: ## Memory recall\n\nturn 120 gateway\n1. mem_b80b51b656 · gateway value at turn 120 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n5. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q9: ## Memory recall\n\nturn 135 router\n1. mem_907a62fa9c · router value at turn 135 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n5. mem_dba712fd08 · router value at turn 165 — read when continuing router work\nEvidence for Q10: ## Memory recall\n\nturn 150 gateway\n1. mem_a93650c7cf · gateway value at turn 150 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n5. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q11: ## Memory recall\n\nturn 165 router\n1. mem_dba712fd08 · router value at turn 165 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n5. mem_907a62fa9c · router value at turn 135 — read when continuing router work\nEvidence for Q12: ## Memory recall\n\nturn 180 gateway\n1. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n5. mem_a93650c7cf · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q13: ## Memory recall\n\nturn 195 router\n1. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_dba712fd08 · router value at turn 165 — read when continuing router work\n5. mem_907a62fa9c · router value at turn 135 — read when continuing router work\nEvidence for Q14: ## Memory recall\n\nturn 210 gateway\n1. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n4. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\n5. mem_a93650c7cf · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q15: ## Memory recall\n\nturn 225 router\n1. mem_775acc0140 · router value at turn 225 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n4. mem_dba712fd08 · router value at turn 165 — read when continuing router work\n5. mem_907a62fa9c · router value at turn 135 — read when continuing router work\nEvidence for Q16: ## Memory recall\n\nturn 240 gateway\n1. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n2. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n3. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n4. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\n5. mem_a93650c7cf · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q17: ## Memory recall\n\nturn 255 router\n1. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n2. mem_775acc0140 · router value at turn 225 — read when continuing router work\n3. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n4. mem_dba712fd08 · router value at turn 165 — read when continuing router work\n5. mem_907a62fa9c · router value at turn 135 — read when continuing router work\nEvidence for Q18: ## Memory recall\n\nturn 270 gateway\n1. mem_5add272dc4 · gateway value at turn 270 — read when continuing gateway work\n2. mem_7316ab3cbb · gateway value at turn 240 — read when continuing gateway work\n3. mem_9cc1d4d986 · gateway value at turn 210 — read when continuing gateway work\n4. mem_3ddaa60826 · gateway value at turn 180 — read when continuing gateway work\n5. mem_a93650c7cf · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q19: ## Memory recall\n\nturn 285 router\n1. mem_6dc33a4738 · router value at turn 285 — read when continuing router work\n2. mem_3889b66c6f · router value at turn 255 — read when continuing router work\n3. mem_775acc0140 · router value at turn 225 — read when continuing router work\n4. mem_b3c5c36161 · router value at turn 195 — read when continuing router work\n5. mem_dba712fd08 · router value at turn 165 — read when continuing router work\n\nOpened records:\nRecord for Q0 (memex mem_4bdcf20b14):\nTurn 0 (gateway): the durable value is FACT-000-qfl7m; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q1 (memex mem_f4e1f2b5de):\nTurn 15 (router): the durable value is FACT-015-bp74k; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q2 (memex mem_559a3746b5):\nTurn 30 (gateway): the durable value is FACT-030-a9qrt; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q3 (memex mem_3368132bea):\nTurn 45 (router): the durable value is FACT-045-jd6u3; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q4 (memex mem_4d39b2780f):\nTurn 60 (gateway): the durable value is FACT-060-vidfn; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q5 (memex mem_187602fb6c):\nTurn 75 (router): the durable value is FACT-075-mpk5r; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q6 (memex mem_c87aaae92b):\nTurn 90 (gateway): the durable value is FACT-090-hyyqy; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q7 (memex mem_5aadc93c60):\nTurn 105 (router): the durable value is FACT-105-cuzlu; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q8 (memex mem_b80b51b656):\nTurn 120 (gateway): the durable value is FACT-120-s4xt8; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q9 (memex mem_907a62fa9c):\nTurn 135 (router): the durable value is FACT-135-43s9i; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q10 (memex mem_a93650c7cf):\nTurn 150 (gateway): the durable value is FACT-150-saher; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q11 (memex mem_dba712fd08):\nTurn 165 (router): the durable value is FACT-165-797as; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q12 (memex mem_3ddaa60826):\nTurn 180 (gateway): the durable value is FACT-180-f9so7; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q13 (memex mem_b3c5c36161):\nTurn 195 (router): the durable value is FACT-195-u25n2; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q14 (memex mem_9cc1d4d986):\nTurn 210 (gateway): the durable value is FACT-210-kxe32; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q15 (memex mem_775acc0140):\nTurn 225 (router): the durable value is FACT-225-52qt3; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q16 (memex mem_7316ab3cbb):\nTurn 240 (gateway): the durable value is FACT-240-o77fl; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q17 (memex mem_3889b66c6f):\nTurn 255 (router): the durable value is FACT-255-d78oa; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q18 (memex mem_5add272dc4):\nTurn 270 (gateway): the durable value is FACT-270-yz7lh; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q19 (memex mem_6dc33a4738):\nTurn 285 (router): the durable value is FACT-285-1esyu; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" from the evidence. Do not use tools. Do not explain."
+    },
+    {
+      "seed": 3,
+      "tailTurns": [
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288,
+        289,
+        290,
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299
+      ],
+      "controlMatchesRecordedTail": true,
+      "treatmentMatchesRecordedTail": true,
+      "probeFlagsMatchTail": true,
+      "plan": {
+        "generatedAt": "2026-10-30T09:48:30.953Z",
+        "seed": 3,
+        "turns": 300,
+        "tailCount": 20,
+        "tailIds": [
+          "mem_ed684b83f4",
+          "mem_f1a635833c",
+          "mem_7b678732e1",
+          "mem_fb301fbce9",
+          "mem_478ae8cda8",
+          "mem_98d285b861",
+          "mem_0dddc10a05",
+          "mem_2789d18796",
+          "mem_8de501e75d",
+          "mem_72fc740e37",
+          "mem_ea377af1a1",
+          "mem_2a0696b9f1",
+          "mem_77aa90adde",
+          "mem_2cda2d7766",
+          "mem_e6baaffd87",
+          "mem_a35e408091",
+          "mem_699e85011e",
+          "mem_819483bafe",
+          "mem_737f12dfa0",
+          "mem_844f74c38b"
+        ],
+        "tailRecords": [
+          {
+            "id": "mem_ed684b83f4",
+            "title": "turn 280 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_f1a635833c",
+            "title": "turn 281 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_7b678732e1",
+            "title": "turn 282 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_fb301fbce9",
+            "title": "turn 283 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_478ae8cda8",
+            "title": "turn 284 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_98d285b861",
+            "title": "router value at turn 285",
+            "summary": "the router value is FACT-285-o73dt"
+          },
+          {
+            "id": "mem_0dddc10a05",
+            "title": "turn 286 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_2789d18796",
+            "title": "turn 287 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_8de501e75d",
+            "title": "turn 288 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_72fc740e37",
+            "title": "turn 289 harbor work",
+            "summary": "work log for harbor"
+          },
+          {
+            "id": "mem_ea377af1a1",
+            "title": "turn 290 gateway work",
+            "summary": "work log for gateway"
+          },
+          {
+            "id": "mem_2a0696b9f1",
+            "title": "turn 291 parser work",
+            "summary": "work log for parser"
+          },
+          {
+            "id": "mem_77aa90adde",
+            "title": "turn 292 scheduler work",
+            "summary": "work log for scheduler"
+          },
+          {
+            "id": "mem_2cda2d7766",
+            "title": "turn 293 ledger work",
+            "summary": "work log for ledger"
+          },
+          {
+            "id": "mem_e6baaffd87",
+            "title": "turn 294 cache work",
+            "summary": "work log for cache"
+          },
+          {
+            "id": "mem_a35e408091",
+            "title": "turn 295 router work",
+            "summary": "work log for router"
+          },
+          {
+            "id": "mem_699e85011e",
+            "title": "turn 296 worker work",
+            "summary": "work log for worker"
+          },
+          {
+            "id": "mem_819483bafe",
+            "title": "turn 297 indexer work",
+            "summary": "work log for indexer"
+          },
+          {
+            "id": "mem_737f12dfa0",
+            "title": "turn 298 bridge work",
+            "summary": "work log for bridge"
+          },
+          {
+            "id": "mem_844f74c38b",
+            "title": "turn 299 harbor work",
+            "summary": "work log for harbor"
+          }
+        ],
+        "probes": [
+          {
+            "index": 0,
+            "turn": 0,
+            "topic": "gateway",
+            "expected": "FACT-000-pxewf",
+            "id": "mem_a9859c8bef",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 1,
+            "turn": 15,
+            "topic": "router",
+            "expected": "FACT-015-1e3tl",
+            "id": "mem_58c0eb0ef3",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 2,
+            "turn": 30,
+            "topic": "gateway",
+            "expected": "FACT-030-gf83p",
+            "id": "mem_52ca8dc4d7",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 3,
+            "turn": 45,
+            "topic": "router",
+            "expected": "FACT-045-2p3ua",
+            "id": "mem_42702bb43d",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 4,
+            "turn": 60,
+            "topic": "gateway",
+            "expected": "FACT-060-rgus2",
+            "id": "mem_1a0c1bbd31",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 5,
+            "turn": 75,
+            "topic": "router",
+            "expected": "FACT-075-hblyb",
+            "id": "mem_15c687ffce",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 6,
+            "turn": 90,
+            "topic": "gateway",
+            "expected": "FACT-090-hisus",
+            "id": "mem_4d207591cc",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 7,
+            "turn": 105,
+            "topic": "router",
+            "expected": "FACT-105-5toyt",
+            "id": "mem_e41421ae03",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 8,
+            "turn": 120,
+            "topic": "gateway",
+            "expected": "FACT-120-9h6hf",
+            "id": "mem_a92ac08559",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 9,
+            "turn": 135,
+            "topic": "router",
+            "expected": "FACT-135-jw6fx",
+            "id": "mem_5145ec2609",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 10,
+            "turn": 150,
+            "topic": "gateway",
+            "expected": "FACT-150-70m0g",
+            "id": "mem_fe2e3ff24f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 11,
+            "turn": 165,
+            "topic": "router",
+            "expected": "FACT-165-30c3x",
+            "id": "mem_da38351b3a",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 12,
+            "turn": 180,
+            "topic": "gateway",
+            "expected": "FACT-180-pp2gq",
+            "id": "mem_214a0946e5",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 13,
+            "turn": 195,
+            "topic": "router",
+            "expected": "FACT-195-h5u81",
+            "id": "mem_a65325c42f",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 14,
+            "turn": 210,
+            "topic": "gateway",
+            "expected": "FACT-210-skod2",
+            "id": "mem_ec5b1e4071",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 15,
+            "turn": 225,
+            "topic": "router",
+            "expected": "FACT-225-vo6pc",
+            "id": "mem_5874d95467",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 16,
+            "turn": 240,
+            "topic": "gateway",
+            "expected": "FACT-240-bnezh",
+            "id": "mem_3ae5ba67ee",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 17,
+            "turn": 255,
+            "topic": "router",
+            "expected": "FACT-255-ouzrk",
+            "id": "mem_18480203e6",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 18,
+            "turn": 270,
+            "topic": "gateway",
+            "expected": "FACT-270-abmgy",
+            "id": "mem_c28122e1a9",
+            "inTail": false,
+            "evicted": true
+          },
+          {
+            "index": 19,
+            "turn": 285,
+            "topic": "router",
+            "expected": "FACT-285-o73dt",
+            "id": "mem_98d285b861",
+            "inTail": true,
+            "evicted": false
+          }
+        ]
+      },
+      "controlPrompt": "You are continuing a long software project. The earlier conversation is no longer in context; only the most recent tail is shown.\n\nRecent context:\nturn 280 gateway work\nwork log for gateway\nturn 281 parser work\nwork log for parser\nturn 282 scheduler work\nwork log for scheduler\nturn 283 ledger work\nwork log for ledger\nturn 284 cache work\nwork log for cache\nrouter value at turn 285\nthe router value is FACT-285-o73dt\nturn 286 worker work\nwork log for worker\nturn 287 indexer work\nwork log for indexer\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 290 gateway work\nwork log for gateway\nturn 291 parser work\nwork log for parser\nturn 292 scheduler work\nwork log for scheduler\nturn 293 ledger work\nwork log for ledger\nturn 294 cache work\nwork log for cache\nturn 295 router work\nwork log for router\nturn 296 worker work\nwork log for worker\nturn 297 indexer work\nwork log for indexer\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" (or \"Q<index>: UNKNOWN\" when the value is not present). Do not use tools. Do not explain.",
+      "treatmentPrompt": "You are continuing a long software project. Earlier context was evicted, but memex archived it verbatim and you have retrieval evidence.\n\nRecent context:\nturn 280 gateway work\nwork log for gateway\nturn 281 parser work\nwork log for parser\nturn 282 scheduler work\nwork log for scheduler\nturn 283 ledger work\nwork log for ledger\nturn 284 cache work\nwork log for cache\nrouter value at turn 285\nthe router value is FACT-285-o73dt\nturn 286 worker work\nwork log for worker\nturn 287 indexer work\nwork log for indexer\nturn 288 bridge work\nwork log for bridge\nturn 289 harbor work\nwork log for harbor\nturn 290 gateway work\nwork log for gateway\nturn 291 parser work\nwork log for parser\nturn 292 scheduler work\nwork log for scheduler\nturn 293 ledger work\nwork log for ledger\nturn 294 cache work\nwork log for cache\nturn 295 router work\nwork log for router\nturn 296 worker work\nwork log for worker\nturn 297 indexer work\nwork log for indexer\nturn 298 bridge work\nwork log for bridge\nturn 299 harbor work\nwork log for harbor\n\nMemory evidence:\nEvidence for Q0: ## Memory recall\n\nturn 0 gateway\n1. mem_a9859c8bef · gateway value at turn 0 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n5. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q1: ## Memory recall\n\nturn 15 router\n1. mem_58c0eb0ef3 · router value at turn 15 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_a65325c42f · router value at turn 195 — read when continuing router work\n5. mem_da38351b3a · router value at turn 165 — read when continuing router work\nEvidence for Q2: ## Memory recall\n\nturn 30 gateway\n1. mem_52ca8dc4d7 · gateway value at turn 30 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n5. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q3: ## Memory recall\n\nturn 45 router\n1. mem_42702bb43d · router value at turn 45 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_a65325c42f · router value at turn 195 — read when continuing router work\n5. mem_da38351b3a · router value at turn 165 — read when continuing router work\nEvidence for Q4: ## Memory recall\n\nturn 60 gateway\n1. mem_1a0c1bbd31 · gateway value at turn 60 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n5. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q5: ## Memory recall\n\nturn 75 router\n1. mem_15c687ffce · router value at turn 75 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_a65325c42f · router value at turn 195 — read when continuing router work\n5. mem_da38351b3a · router value at turn 165 — read when continuing router work\nEvidence for Q6: ## Memory recall\n\nturn 90 gateway\n1. mem_4d207591cc · gateway value at turn 90 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n5. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q7: ## Memory recall\n\nturn 105 router\n1. mem_e41421ae03 · router value at turn 105 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_a65325c42f · router value at turn 195 — read when continuing router work\n5. mem_da38351b3a · router value at turn 165 — read when continuing router work\nEvidence for Q8: ## Memory recall\n\nturn 120 gateway\n1. mem_a92ac08559 · gateway value at turn 120 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n5. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q9: ## Memory recall\n\nturn 135 router\n1. mem_5145ec2609 · router value at turn 135 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_a65325c42f · router value at turn 195 — read when continuing router work\n5. mem_da38351b3a · router value at turn 165 — read when continuing router work\nEvidence for Q10: ## Memory recall\n\nturn 150 gateway\n1. mem_fe2e3ff24f · gateway value at turn 150 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n5. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\nEvidence for Q11: ## Memory recall\n\nturn 165 router\n1. mem_da38351b3a · router value at turn 165 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_a65325c42f · router value at turn 195 — read when continuing router work\n5. mem_5145ec2609 · router value at turn 135 — read when continuing router work\nEvidence for Q12: ## Memory recall\n\nturn 180 gateway\n1. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n5. mem_fe2e3ff24f · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q13: ## Memory recall\n\nturn 195 router\n1. mem_a65325c42f · router value at turn 195 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_da38351b3a · router value at turn 165 — read when continuing router work\n5. mem_5145ec2609 · router value at turn 135 — read when continuing router work\nEvidence for Q14: ## Memory recall\n\nturn 210 gateway\n1. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n4. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\n5. mem_fe2e3ff24f · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q15: ## Memory recall\n\nturn 225 router\n1. mem_5874d95467 · router value at turn 225 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_a65325c42f · router value at turn 195 — read when continuing router work\n4. mem_da38351b3a · router value at turn 165 — read when continuing router work\n5. mem_5145ec2609 · router value at turn 135 — read when continuing router work\nEvidence for Q16: ## Memory recall\n\nturn 240 gateway\n1. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n2. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n3. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n4. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\n5. mem_fe2e3ff24f · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q17: ## Memory recall\n\nturn 255 router\n1. mem_18480203e6 · router value at turn 255 — read when continuing router work\n2. mem_5874d95467 · router value at turn 225 — read when continuing router work\n3. mem_a65325c42f · router value at turn 195 — read when continuing router work\n4. mem_da38351b3a · router value at turn 165 — read when continuing router work\n5. mem_5145ec2609 · router value at turn 135 — read when continuing router work\nEvidence for Q18: ## Memory recall\n\nturn 270 gateway\n1. mem_c28122e1a9 · gateway value at turn 270 — read when continuing gateway work\n2. mem_3ae5ba67ee · gateway value at turn 240 — read when continuing gateway work\n3. mem_ec5b1e4071 · gateway value at turn 210 — read when continuing gateway work\n4. mem_214a0946e5 · gateway value at turn 180 — read when continuing gateway work\n5. mem_fe2e3ff24f · gateway value at turn 150 — read when continuing gateway work\nEvidence for Q19: ## Memory recall\n\nturn 285 router\n1. mem_98d285b861 · router value at turn 285 — read when continuing router work\n2. mem_18480203e6 · router value at turn 255 — read when continuing router work\n3. mem_5874d95467 · router value at turn 225 — read when continuing router work\n4. mem_a65325c42f · router value at turn 195 — read when continuing router work\n5. mem_da38351b3a · router value at turn 165 — read when continuing router work\n\nOpened records:\nRecord for Q0 (memex mem_a9859c8bef):\nTurn 0 (gateway): the durable value is FACT-000-pxewf; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q1 (memex mem_58c0eb0ef3):\nTurn 15 (router): the durable value is FACT-015-1e3tl; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q2 (memex mem_52ca8dc4d7):\nTurn 30 (gateway): the durable value is FACT-030-gf83p; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q3 (memex mem_42702bb43d):\nTurn 45 (router): the durable value is FACT-045-2p3ua; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q4 (memex mem_1a0c1bbd31):\nTurn 60 (gateway): the durable value is FACT-060-rgus2; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q5 (memex mem_15c687ffce):\nTurn 75 (router): the durable value is FACT-075-hblyb; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technica\nRecord for Q6 (memex mem_4d207591cc):\nTurn 90 (gateway): the durable value is FACT-090-hisus; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techni\nRecord for Q7 (memex mem_e41421ae03):\nTurn 105 (router): the durable value is FACT-105-5toyt; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q8 (memex mem_a92ac08559):\nTurn 120 (gateway): the durable value is FACT-120-9h6hf; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q9 (memex mem_5145ec2609):\nTurn 135 (router): the durable value is FACT-135-jw6fx; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q10 (memex mem_fe2e3ff24f):\nTurn 150 (gateway): the durable value is FACT-150-70m0g; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q11 (memex mem_da38351b3a):\nTurn 165 (router): the durable value is FACT-165-30c3x; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q12 (memex mem_214a0946e5):\nTurn 180 (gateway): the durable value is FACT-180-pp2gq; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q13 (memex mem_a65325c42f):\nTurn 195 (router): the durable value is FACT-195-h5u81; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q14 (memex mem_ec5b1e4071):\nTurn 210 (gateway): the durable value is FACT-210-skod2; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q15 (memex mem_5874d95467):\nTurn 225 (router): the durable value is FACT-225-vo6pc; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q16 (memex mem_3ae5ba67ee):\nTurn 240 (gateway): the durable value is FACT-240-bnezh; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q17 (memex mem_18480203e6):\nTurn 255 (router): the durable value is FACT-255-ouzrk; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\nRecord for Q18 (memex mem_c28122e1a9):\nTurn 270 (gateway): the durable value is FACT-270-abmgy; keep it for the gateway question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes techn\nRecord for Q19 (memex mem_98d285b861):\nTurn 285 (router): the durable value is FACT-285-o73dt; keep it for the router question. technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technical notes technic\n\nQuestions:\nQ0 (turn 0, topic gateway): what durable value was recorded then?\nQ1 (turn 15, topic router): what durable value was recorded then?\nQ2 (turn 30, topic gateway): what durable value was recorded then?\nQ3 (turn 45, topic router): what durable value was recorded then?\nQ4 (turn 60, topic gateway): what durable value was recorded then?\nQ5 (turn 75, topic router): what durable value was recorded then?\nQ6 (turn 90, topic gateway): what durable value was recorded then?\nQ7 (turn 105, topic router): what durable value was recorded then?\nQ8 (turn 120, topic gateway): what durable value was recorded then?\nQ9 (turn 135, topic router): what durable value was recorded then?\nQ10 (turn 150, topic gateway): what durable value was recorded then?\nQ11 (turn 165, topic router): what durable value was recorded then?\nQ12 (turn 180, topic gateway): what durable value was recorded then?\nQ13 (turn 195, topic router): what durable value was recorded then?\nQ14 (turn 210, topic gateway): what durable value was recorded then?\nQ15 (turn 225, topic router): what durable value was recorded then?\nQ16 (turn 240, topic gateway): what durable value was recorded then?\nQ17 (turn 255, topic router): what durable value was recorded then?\nQ18 (turn 270, topic gateway): what durable value was recorded then?\nQ19 (turn 285, topic router): what durable value was recorded then?\n\nAnswer each question on its own line exactly as \"Q<index>: <FACT id>\" from the evidence. Do not use tools. Do not explain."
+    }
+  ]
+}

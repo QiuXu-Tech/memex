@@ -11,14 +11,14 @@
       "bodyFilesMiB": 38.5,
       "coldMovedRecords": 700,
       "coldMovedTokensM": 7.0,
-      "coldSpillSeconds": 0.98,
+      "coldSpillSeconds": 1.11,
       "hotAfterTokensM": 3.0,
       "coldAfterTokensM": 7.0,
       "coldFilesMiB": 26.9,
       "indexAfterColdMiB": 3.6,
       "gcRemovedRecords": 350,
       "gcRemovedTokensM": 3.5,
-      "gcSeconds": 0.22
+      "gcSeconds": 0.25
     },
     {
       "records": 10000,
@@ -26,19 +26,19 @@
       "totalTokensM": 100.0,
       "targetRatio": 0.5,
       "gcKeepRatio": 0.5,
-      "writeSeconds": 9.7,
-      "indexAfterWriteMiB": 10.8,
+      "writeSeconds": 10.0,
+      "indexAfterWriteMiB": 10.9,
       "bodyFilesMiB": 384.8,
       "coldMovedRecords": 5000,
       "coldMovedTokensM": 50.0,
-      "coldSpillSeconds": 14.61,
+      "coldSpillSeconds": 16.72,
       "hotAfterTokensM": 50.0,
       "coldAfterTokensM": 50.0,
       "coldFilesMiB": 192.4,
       "indexAfterColdMiB": 28.3,
       "gcRemovedRecords": 2500,
       "gcRemovedTokensM": 25.0,
-      "gcSeconds": 5.58
+      "gcSeconds": 7.54
     }
   ]
 }
