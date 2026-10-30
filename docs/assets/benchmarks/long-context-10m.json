@@ -133,13 +133,14 @@
       "baselineOnly": 0
     }
   },
-  "conclusion": "At 10M archive tokens, direct retrieval exposed the target fact for 40/40 probes. With the fact in context both models answered 40/40; baseline and same-size distractor answered 0/40. Memex used fewer prompt tokens than the tail-only baseline. This is a synthetic, one-seed, 40-probe controlled experiment, not a human-labelled production benchmark.",
+  "conclusion": "The historical aggregate reports that direct retrieval exposed the target fact for 40/40 probes. With the fact in context both models answered 40/40; baseline and same-size distractor answered 0/40. Memex used fewer prompt tokens than the tail-only baseline. This is a synthetic, single stochastic run with no recorded seed, not a human-labelled production benchmark.",
   "limitations": [
     "Synthetic unique-fact archive with filler text.",
-    "One seed and 40 probes; Wilson CIs reported.",
+    "One stochastic run and 40 probes; the generator did not record a seed; Wilson CIs reported.",
+    "The generator falls back to the target record on a search miss; published per-probe evidence is unavailable to verify whether the fallback was exercised.",
     "APIMaster routing/pricing vary; cost uses reference rates.",
     "No human relevance labels; exact FACT-id metric only.",
-    "No 10M raw text is sent to models; only retrieved evidence."
+    "The report states that no 10M raw text was sent to models; per-probe request evidence was not published."
   ],
   "reproduce": [
     "node --import ./test/register.mjs scripts/long-context-10m.mjs --probes 40 --out /tmp/tenm-data.json",

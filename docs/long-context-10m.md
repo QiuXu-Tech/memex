@@ -1,6 +1,8 @@
 # 10M-token long-context controlled experiment
 
-**Status:** synthetic, one seed, 40 probes. Reported with Wilson 95% CIs. Not a human-labelled production benchmark.
+**Status:** historical synthetic pilot, one stochastic run, 40 probes. Reported with Wilson 95% CIs. Not a human-labelled production benchmark. The generator uses `Math.random()` and does not accept or record a seed, so the original fixture cannot be exactly reproduced from a seed.
+
+**Reproduction limitation:** the historical generator falls back to the ground-truth target record if search misses (`scripts/long-context-10m.mjs`); its answer condition is therefore not a valid end-to-end retrieval measurement on a miss. The published aggregate reports 40/40 hit@1, under which the fallback would not be exercised, but per-probe evidence for that run was not published. The later [pager retest](pager-retest.md) keeps retrieval and pager selection separate and does not inject target records.
 
 ## Abstract
 
@@ -21,7 +23,7 @@ Both answer models answered **40/40** correct with memex; baseline and distracto
 - Retrieval: `memory_search` by a card cue (`cardcue<turn>`); top-5 returned; target fact located by exact FACT id.
 - Answerers: APIMaster `deepseek-flash` and `claude-haiku-4-5`; `gpt-6-astra` was not used as a judge because the metric is exact FACT-id match.
 - Output constraint: answer only the FACT id or `UNKNOWN`; temperature 0; max_tokens 200 (DeepSeek needs reasoning tokens).
-- Jobs were shuffled; retries were used on transient API failures; no 10M raw text was sent to any model — only the emitted evidence contexts.
+- The original report described shuffled jobs, but the checked-in reproduction script constructs them in fixed order; the original ordering cannot be independently verified from the aggregate. The script retries failures; the report says only emitted evidence contexts, not the full archive, were sent to the models.
 
 ## Results
 
@@ -57,10 +59,10 @@ The memex condition used **fewer prompt tokens** than the tail-only baseline whi
 ## Threats to validity
 
 - Synthetic filler records and unique FACT ids: this measures long-horizon **availability/retrieval**, not natural-language ambiguity or semantic recall.
-- One seed and 40 probes; CIs are wide. This is a controlled experiment, not a leaderboard.
+- One stochastic run and 40 probes; CIs are wide. This is a controlled experiment, not a leaderboard.
 - APIMaster routing and pricing vary; latency includes provider/network variance.
 - The metric is exact FACT-id containment, not human-judged answer quality.
-- No 10M-token prompt is ever sent; the experiment tests retrieval + bounded context, which is the intended memex architecture.
+- The report says no 10M-token prompt was sent; the published aggregate does not contain request-level evidence for independent verification.
 - Cost figures are reference-rate estimates, not invoices.
 
 ## Reproduction

@@ -1,0 +1,148 @@
+{
+  "format": 1,
+  "kind": "synthetic-pager-10m-multiseed",
+  "testedCommit": "bfeee596cc7a06fd304b025b0b031de05bbd2f12",
+  "baseVersion": "0.65.0",
+  "runDate": "2026-10-31",
+  "environment": {
+    "platform": "Darwin arm64",
+    "node": "v25.9.0",
+    "host": "Apple M4, 10 logical CPUs, 16 GiB",
+    "quietGate": "CPU busy <=20%, load1 <=4.5, two consecutive 5s samples",
+    "quietGateMetCount": 0,
+    "quietGateTotal": 5
+  },
+  "design": {
+    "probes": 40,
+    "sampling": "20 resident and 20 nonresident targets",
+    "search": "exact cardcue; evaluated separately and not injected into pager",
+    "budgetTokens": 1800,
+    "pageTokenCap": 400,
+    "learnedPageMaxTokens": 700,
+    "learnedTopK": 8,
+    "counter": "chars/4 estimate",
+    "pinnedOrCoreIds": [],
+    "ruleAndHybridSameQuery": true
+  },
+  "archive": {
+    "recordsPerSeed": 2000,
+    "assignedTokensPerRecord": 5000,
+    "assignedTokens": 10000000,
+    "hot": 1000,
+    "cold": 1000,
+    "fillerCharsPerRecord": 19850,
+    "tokenCount": "assigned; not measured with a model tokenizer"
+  },
+  "seeds": [
+    {
+      "seed": 301,
+      "searchHit1": 40,
+      "ruleFact": 2,
+      "hybridFact": 0,
+      "count": 40
+    },
+    {
+      "seed": 302,
+      "searchHit1": 40,
+      "ruleFact": 3,
+      "hybridFact": 0,
+      "count": 40
+    },
+    {
+      "seed": 303,
+      "searchHit1": 40,
+      "ruleFact": 2,
+      "hybridFact": 0,
+      "count": 40
+    },
+    {
+      "seed": 304,
+      "searchHit1": 40,
+      "ruleFact": 4,
+      "hybridFact": 0,
+      "count": 40
+    },
+    {
+      "seed": 305,
+      "searchHit1": 40,
+      "ruleFact": 1,
+      "hybridFact": 0,
+      "count": 40
+    }
+  ],
+  "metrics": {
+    "resident": {
+      "probes": 100,
+      "searchHit1": 100,
+      "conditions": {
+        "rule": {
+          "targetInCandidates": 100,
+          "targetSelected": 12,
+          "factPresent": 12,
+          "overBudget": 0,
+          "medianLatencyMs": 6.073
+        },
+        "hybrid": {
+          "targetInCandidates": 100,
+          "targetSelected": 0,
+          "factPresent": 0,
+          "overBudget": 0,
+          "medianLatencyMs": 6.831
+        }
+      }
+    },
+    "nonresident": {
+      "probes": 100,
+      "searchHit1": 100,
+      "conditions": {
+        "rule": {
+          "targetInCandidates": 0,
+          "targetSelected": 0,
+          "factPresent": 0,
+          "overBudget": 0,
+          "medianLatencyMs": 5.89
+        },
+        "hybrid": {
+          "targetInCandidates": 0,
+          "targetSelected": 0,
+          "factPresent": 0,
+          "overBudget": 0,
+          "medianLatencyMs": 6.669
+        }
+      }
+    },
+    "all": {
+      "probes": 200,
+      "searchHit1": 200,
+      "conditions": {
+        "rule": {
+          "targetInCandidates": 100,
+          "targetSelected": 12,
+          "factPresent": 12,
+          "overBudget": 0,
+          "medianLatencyMs": 5.98
+        },
+        "hybrid": {
+          "targetInCandidates": 100,
+          "targetSelected": 0,
+          "factPresent": 0,
+          "overBudget": 0,
+          "medianLatencyMs": 6.761
+        }
+      }
+    }
+  },
+  "verification": {
+    "rerunProbes": 200,
+    "mismatches": 0
+  },
+  "caveats": [
+    "synthetic exact cue and repetitive filler",
+    "resident/nonresident targets stratified 50/50, not population prevalence",
+    "search is measured separately; search hits are not passed to pager",
+    "no human labels or answer model calls",
+    "shared host; none of the quiet-start gates passed",
+    "per-probe latency is not an isolated or quiet-host performance result",
+    "rule and hybrid both receive same query and source data; no core or pinned pages"
+  ]
+}

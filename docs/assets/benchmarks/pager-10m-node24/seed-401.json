@@ -1,0 +1,1674 @@
+{
+  "kind": "synthetic-pager-10m",
+  "seed": 401,
+  "environment": {
+    "node": "v24.21.0",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "archive": {
+    "records": 2000,
+    "assignedTokens": 10000000,
+    "tokensPerRecord": 5000,
+    "fillerChars": 19850,
+    "hot": 1000,
+    "cold": 1000,
+    "writeMs": 1822.2877919999999,
+    "coldMs": 1396.210042,
+    "indexBytes": 6250496
+  },
+  "setup": {
+    "probes": 40,
+    "sampling": "20 resident and 20 nonresident targets",
+    "search": "exact cardcue; evaluated separately and not injected into pager",
+    "budgetTokens": 1800,
+    "pageTokenCap": 400,
+    "learnedPageMaxTokens": 700,
+    "learnedTopK": 8,
+    "counter": "chars/4 estimate",
+    "pinnedOrCoreIds": [],
+    "ruleAndHybridSameQuery": true
+  },
+  "probes": [
+    {
+      "index": 0,
+      "targetId": "mem_829545a661",
+      "targetIndex": 984,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 8.194041999999627,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.793666999999914,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 6.3645839999999225,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 1,
+      "targetId": "mem_39b4eea878",
+      "targetIndex": 993,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.694833000000017,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 6.608750000000327,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 6.683125000000018,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 2,
+      "targetId": "mem_7d332b5484",
+      "targetIndex": 973,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.57491600000003,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.966583999999784,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 6.248207999999977,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 3,
+      "targetId": "mem_95512aba06",
+      "targetIndex": 960,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 7.080375000000004,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.725207999999839,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f",
+            "mem_c19af4cb18"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.854916999999659,
+          "targetInCandidates": true,
+          "targetSelected": true,
+          "factPresent": true,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 4,
+      "targetId": "mem_d019b4443f",
+      "targetIndex": 965,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.383458000000246,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.411667000000307,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.367291999999907,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 5,
+      "targetId": "mem_e25e341580",
+      "targetIndex": 998,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.646624999999858,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.645792000000256,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 5.0252919999998085,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 6,
+      "targetId": "mem_e28216b01a",
+      "targetIndex": 986,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.61324999999988,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.296792000000096,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.198291000000154,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 7,
+      "targetId": "mem_1fec512094",
+      "targetIndex": 966,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.495374999999967,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.461249999999836,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.719125000000076,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 8,
+      "targetId": "mem_12eb98f920",
+      "targetIndex": 974,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.03491699999995,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.204750000000331,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.237415999999939,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 9,
+      "targetId": "mem_7a9a61efeb",
+      "targetIndex": 987,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.682624999999916,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.377665999999863,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.884167000000161,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 10,
+      "targetId": "mem_a51d812002",
+      "targetIndex": 996,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 5.986250000000382,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.252124999999978,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.279167000000143,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 11,
+      "targetId": "mem_e86c43e4f1",
+      "targetIndex": 969,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.428750000000036,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.507042000000183,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.775958999999602,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 12,
+      "targetId": "mem_0fcbbde464",
+      "targetIndex": 991,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.050958000000264,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.321042000000034,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.3229160000000775,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 13,
+      "targetId": "mem_e5ec75f206",
+      "targetIndex": 985,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.695042000000285,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.534083999999893,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.848416999999699,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 14,
+      "targetId": "mem_183c376fdb",
+      "targetIndex": 976,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.254041000000143,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.679333000000042,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.405166000000008,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 15,
+      "targetId": "mem_2a0a46508b",
+      "targetIndex": 971,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.489375000000109,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.732874999999694,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 5.115541000000121,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 16,
+      "targetId": "mem_627be49e4a",
+      "targetIndex": 988,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.216792000000169,
+      "choices": {
+        "rule": {
+          "latencyMs": 4.905083000000104,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.4122080000001915,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 17,
+      "targetId": "mem_a59c0e60d9",
+      "targetIndex": 999,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.713334000000032,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.50491699999975,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.600459000000228,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 18,
+      "targetId": "mem_f795f082a4",
+      "targetIndex": 962,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 6.2339170000000195,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.086583999999675,
+          "targetInCandidates": true,
+          "targetSelected": true,
+          "factPresent": true,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.730167000000165,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_cce1e9604f",
+            "mem_c19af4cb18"
+          ]
+        }
+      }
+    },
+    {
+      "index": 19,
+      "targetId": "mem_af2ee42555",
+      "targetIndex": 994,
+      "targetCold": true,
+      "group": "resident",
+      "searchRank": 1,
+      "searchMs": 5.755417000000307,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.379249999999956,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 5.129292000000078,
+          "targetInCandidates": true,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 20,
+      "targetId": "mem_2704655bb0",
+      "targetIndex": 567,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 5.947458000000097,
+      "choices": {
+        "rule": {
+          "latencyMs": 4.851083000000017,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.149249999999938,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 21,
+      "targetId": "mem_94b6b36bb7",
+      "targetIndex": 1162,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.435707999999977,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.849874999999884,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.500667000000249,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 22,
+      "targetId": "mem_2186d47395",
+      "targetIndex": 1056,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 5.648584000000028,
+      "choices": {
+        "rule": {
+          "latencyMs": 4.638374999999996,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.554457999999613,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 23,
+      "targetId": "mem_4f940d6830",
+      "targetIndex": 44,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 1.466207999999824,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.598999999999705,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.656291999999667,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 24,
+      "targetId": "mem_980539c7a3",
+      "targetIndex": 262,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.4692079999999805,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.067290999999841,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.125250000000051,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 25,
+      "targetId": "mem_f61c7e8c34",
+      "targetIndex": 379,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 5.902624999999716,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 6.2902500000000146,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.6817080000000715,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 26,
+      "targetId": "mem_34f6fb225e",
+      "targetIndex": 366,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 5.9318749999997635,
+      "choices": {
+        "rule": {
+          "latencyMs": 4.9854999999997744,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.58987500000012,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 27,
+      "targetId": "mem_09a9e331d5",
+      "targetIndex": 319,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 5.894249999999829,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.670000000000073,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.736374999999953,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 28,
+      "targetId": "mem_c172100978",
+      "targetIndex": 1117,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.037415999999666,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.397375000000011,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.140584000000217,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 29,
+      "targetId": "mem_1368ac8b29",
+      "targetIndex": 476,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 5.781040999999732,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.911125000000084,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.546540999999706,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 30,
+      "targetId": "mem_c68499c419",
+      "targetIndex": 1723,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.030708999999661,
+      "choices": {
+        "rule": {
+          "latencyMs": 4.833458999999948,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.4897500000001855,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 31,
+      "targetId": "mem_5e76db7743",
+      "targetIndex": 1424,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.3344999999999345,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.490375000000313,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.620499999999993,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 32,
+      "targetId": "mem_5f1b9d942f",
+      "targetIndex": 1614,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 5.948457999999846,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.53583400000025,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.188999999999851,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 33,
+      "targetId": "mem_adf8ab4ec3",
+      "targetIndex": 1318,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.328708000000006,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 6.437875000000076,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.828665999999885,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 34,
+      "targetId": "mem_75e78089f5",
+      "targetIndex": 1054,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.313375000000178,
+      "choices": {
+        "rule": {
+          "latencyMs": 5.11987500000032,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.76095899999973,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 35,
+      "targetId": "mem_2dbd6c5ae5",
+      "targetIndex": 41,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 1.3464579999999842,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.471833000000061,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.878291999999874,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 36,
+      "targetId": "mem_0447bc7aca",
+      "targetIndex": 1737,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.169542000000092,
+      "choices": {
+        "rule": {
+          "latencyMs": 4.8117919999999685,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.725792000000183,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 37,
+      "targetId": "mem_71b5e2474c",
+      "targetIndex": 148,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 1.6968749999996362,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.2769170000001395,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 4.600625000000036,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 38,
+      "targetId": "mem_b3b2d450c7",
+      "targetIndex": 1348,
+      "targetCold": false,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 6.530999999999949,
+      "choices": {
+        "rule": {
+          "latencyMs": 4.840541999999914,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "hybrid": {
+          "latencyMs": 5.213207999999668,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    },
+    {
+      "index": 39,
+      "targetId": "mem_fa38174071",
+      "targetIndex": 105,
+      "targetCold": true,
+      "group": "nonresident",
+      "searchRank": 1,
+      "searchMs": 1.5192910000000666,
+      "choices": {
+        "hybrid": {
+          "latencyMs": 5.254542000000129,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        },
+        "rule": {
+          "latencyMs": 5.230916999999863,
+          "targetInCandidates": false,
+          "targetSelected": false,
+          "factPresent": false,
+          "tokens": 1790,
+          "status": "ok",
+          "selectedCount": 4,
+          "selectedIds": [
+            "mem_95512aba06",
+            "mem_da67a56fe6",
+            "mem_f795f082a4",
+            "mem_cce1e9604f"
+          ]
+        }
+      }
+    }
+  ]
+}

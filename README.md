@@ -3,9 +3,9 @@
 [![CI](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**A high-performance extra-context layer between an agent's history and its model window.** Memex treats context as a hierarchy — not a notes app: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and the model can retrieve anything later with cheap hybrid search.
+**A high-performance extra-context layer between an agent's history and its model window.** Memex treats context as a hierarchy — not a notes app: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and a model can retrieve matching records with hybrid search; retrieval and window selection do not guarantee that every relevant fact is included.
 
-**Context, not just memory.** Raw session history is evicted verbatim from L1 into sticky L2/L3 context pools, paged back in with budget-aware retrieval, and compacted to a lossless cold tier — so the model reasons over the right context instead of losing it or re-reading everything. Read the concept: [Extra context, not just memory](docs/context-layer.md). Next direction: [Context materialization](docs/context-materialization.md) — exact window materialization and transformer context-specialist variants. Implemented: canonical events, materialized resident window (default in DSH), trained transformer encoder reference, runnable paged-KV/prefix host, structural fidelity eval. **A-route validated on GPU:** vLLM 0.10.2 + Qwen2.5-0.5B reused a 2,498-token stable prefix via native paged-KV prefix cache (99.2% second-request prefix hit). A separate KV-tensor probe paged 720 blocks CPU↔GPU and reconstructed the cache **exactly** (paged-vs-direct logit diff 0.0). A **custom vLLM KV connector** now stores materialized prefixes externally; 8/8 second requests hit at 0.5B, **Qwen2.5-3B**, and **real Qwen2.5-7B-AWQ** (36 layers, 420MB KV, 91% GPU utilization; steady store 0.147s → hit 0.094s). End-to-end: a real materializer window was stored through the connector and hit on the second request (1,488 KV tokens, 0.018s hit).
+**Context, not just memory.** Raw session history is evicted verbatim from L1 into sticky L2/L3 context pools, paged back in with budget-aware retrieval, and compacted to a lossless cold tier — so selected context can be made available again within a budget; relevant facts can still be omitted. Read the concept: [Extra context, not just memory](docs/context-layer.md). Next direction: [Context materialization](docs/context-materialization.md) — exact window materialization and transformer context-specialist variants. Implemented: canonical events, materialized resident window (default in DSH), trained transformer encoder reference, runnable paged-KV/prefix host, structural fidelity eval. **A-route validated on GPU:** vLLM 0.10.2 + Qwen2.5-0.5B reused a 2,498-token stable prefix via native paged-KV prefix cache (99.2% second-request prefix hit). A separate KV-tensor probe paged 720 blocks CPU↔GPU and reconstructed the cache **exactly** (paged-vs-direct logit diff 0.0). A **custom vLLM KV connector** now stores materialized prefixes externally; 8/8 second requests hit at 0.5B, **Qwen2.5-3B**, and **real Qwen2.5-7B-AWQ** (36 layers, 420MB KV, 91% GPU utilization; steady store 0.147s → hit 0.094s). End-to-end: a real materializer window was stored through the connector and hit on the second request (1,488 KV tokens, 0.018s hit).
 
 It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 
@@ -38,10 +38,10 @@ Takeaways:
 
 Raw data: `docs/assets/benchmarks/kv-strategy-comparison.json`.
 
-## Latest: production benchmark + DSH runtime integration
+## Historical GPU connector experiment and DSH integration
 
 - Real 7B-AWQ + external connector: throughput saturates ~**19 rps**; p50 75.6ms @1 concurrency, 1637ms @32 (single process).
-- DSH profile now has a **`local-memex`** provider backed by the connector vLLM through an SSH tunnel; profile default model set to `qwen-7b-awq` (restart required).
+- A prior DSH profile was configured with a **`local-memex`** provider backed by the connector vLLM through an SSH tunnel; current runtime state has not been verified by this retest.
 - Real-trace encoder: pretrained **BGE-small** lifts real-archive ranking from 0.518 to **0.593** (still small-corpus limited).
 
 ## Six KV optimizations (v0.31.0)
@@ -84,6 +84,14 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
+## Pager repair and 10M materializer retest (2026-10-31)
+
+The pager now loads stored bodies, forwards excerpt/tokenizer options and preserves source-marked excerpts. At v0.65.0 + [pager fix `bfeee59`](https://github.com/QiuXu-Tech/memex/commit/bfeee596cc7a06fd304b025b0b031de05bbd2f12), two five-seed synthetic cohorts each yielded separate search hit@1 **200/200**. Rule/hybrid pager windows contained the target fact **12/200 / 0/200** on Node 25.9, and **10/200 / 0/200** on Node 24.21. Each cohort was deliberately split 50/50 between resident and nonresident targets; these are availability checks, not production answer accuracy. No quiet-start gate passed. [Methods, raw data and limitations](docs/pager-retest.md).
+
+A separate retrospective replay from one real session produced 16 valid question/model answer pairs. In two-order **machine** judging, rule won both orders in 4 pairs, hybrid in 5, ties in 2, and the outcome changed with presentation order in 5. Four pairs were excluded for empty answers. This is not human annotation or a production benchmark; no default strategy change was made.
+
+![10M synthetic pager materializer comparison](docs/assets/benchmarks/pager-10m-comparison.png)
+
 ## 10M-token controlled long-context experiment (2026-10-31)
 
 Synthetic **10,000,000-token archive** (2,000 records ×5,000 tokens; 50% cold), 40 probes whose facts exist only in the archive:
@@ -97,7 +105,7 @@ Synthetic **10,000,000-token archive** (2,000 records ×5,000 tokens; 50% cold),
 - Retrieval hit@1: **40/40 = 100%**, median **4.94 ms**
 - Store: 10M tokens written in **1.65 s**; cold archive **1.32 s**; DB **6.0 MB**
 - Wilson 95% CI for memex accuracy: **91.2–100%**; baseline/distractor: **0–8.8%**
-- Exact FACT-id metric; synthetic, one seed, 40 probes. Full methods, limitations, and reproduction: [docs/long-context-10m.md](docs/long-context-10m.md), raw aggregate: [long-context-10m.json](docs/assets/benchmarks/long-context-10m.json)
+- Exact FACT-id metric; synthetic, one stochastic run, 40 probes; the seed was not recorded. Full methods, limitations, and reproduction: [docs/long-context-10m.md](docs/long-context-10m.md), raw aggregate: [long-context-10m.json](docs/assets/benchmarks/long-context-10m.json)
 
 ## Why
 
@@ -237,7 +245,7 @@ node scripts/check-bundle.mjs        # verifies generated modules match sources
 | Row | Config fields |
 |---|---|
 | `memory` (backend) | `root`, `capacityTokens` (L3, 100M), `sessionCapacityTokens` (L2, 10M), `defaultLevels` (`none|l2|l3|both`), `settingsTtlDays` (90) |
-| `memory-checkpoint` | `autoArchive`, `autoRecall`, `catalogMaxChars`, `recallMaxChars`, `cardModel`, `capacityNoticeRatio` (0.8), `capacityNoticeCooldownMs` (10 min) |
+| `memory-checkpoint` | `autoArchive`, `autoRecall`, `catalogMaxChars`, `recallMaxChars`, `cardModel`, `materializer`, `materializerMaxTokens`, `materializerPageTokenCap`, `capacityNoticeRatio` (0.8), `capacityNoticeCooldownMs` (10 min) |
 | `memory-evict` | `evictAtRatio` (0.6), `retainRatio` (0.35), `maxChars` (250k), `captureLevel` (`deepest|l2`), `sensitivePolicy` (`auto|off`) |
 | `memory-compress` | `batchRecords` (20), `batchChars` (120k), `maxBatches` (6), `minAgeMs` (1h), `minDigestTokens` (2000), `coldQuotaTokens` (0 = unlimited) |
 
@@ -245,7 +253,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **144/144 offline**, **36/36 SQLite consistency**.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **152/152 offline**, **36/36 SQLite consistency**.
 
 | Metric | Result |
 |---|---|

@@ -1,5 +1,7 @@
 # Local replay-evaluation extraction
 
+**Causal validity warning:** the older extractor associates a preceding user question with a later `memory_write` or eviction. Those records may not have existed when the question was asked. In the examined historical snapshot, all 29 extracted targets were created after their paired questions; 13 episodes also included other later-created candidates. The provisional hit rates below are retained as historical exploratory observations, not valid time-cutoff replay results. See the [2026-10-31 pager retest](pager-retest.md) for a timestamp-checked snapshot replay and its limitations.
+
 `training/extract_replay_episodes.py` builds local replay episodes from a DSH session + memex records. It makes **no network calls**.
 
 ## Outputs

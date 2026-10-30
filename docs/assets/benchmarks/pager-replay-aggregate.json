@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "kind": "historical-session-pager-replay-aggregate",
+  "testedCommit": "bfeee596cc7a06fd304b025b0b031de05bbd2f12",
+  "sessionCount": 1,
+  "sessionSpanHours": 73.39,
+  "malformedLinesSkipped": 10,
+  "queries": 10,
+  "asOfPriorWriteSnapshots": 232,
+  "sameCandidateSets": 10,
+  "selectionDiffers": 10,
+  "answerSettings": {
+    "models": [
+      "deepseek-flash",
+      "claude-haiku-4-5"
+    ],
+    "maxTokens": 2500,
+    "temperature": 0,
+    "provider": "APIMaster; real content sent with user authorization",
+    "calls": 40,
+    "validPairs": 16,
+    "possiblePairs": 20,
+    "perModel": {
+      "deepseek-flash": {
+        "calls": 20,
+        "http_ok": 20,
+        "empty_answer": 5,
+        "promptTokensReported": 69896,
+        "completionTokensReported": 39451
+      },
+      "claude-haiku-4-5": {
+        "calls": 20,
+        "http_ok": 20,
+        "empty_answer": 0,
+        "promptTokensReported": 93741,
+        "completionTokensReported": 31857
+      }
+    }
+  },
+  "machineJudgement": {
+    "judge": "gpt-6-astra via APIMaster",
+    "ordersPerPair": 2,
+    "validPairResults": {
+      "complete": 16,
+      "stable_rule": 4,
+      "order_conflict": 5,
+      "stable_tie": 2,
+      "stable_hybrid": 5
+    },
+    "byAnswerModel": {
+      "deepseek-flash": {
+        "complete": 6,
+        "stable_rule": 2,
+        "order_conflict": 2,
+        "stable_tie": 1,
+        "stable_hybrid": 1
+      },
+      "claude-haiku-4-5": {
+        "complete": 10,
+        "stable_rule": 2,
+        "order_conflict": 3,
+        "stable_hybrid": 4,
+        "stable_tie": 1
+      }
+    },
+    "problems": {},
+    "bodyReferenceExcerptChars": 1000,
+    "judgeCalls": 32,
+    "judgePromptTokensReported": 630469,
+    "judgeCompletionTokensReported": 9872
+  },
+  "verification": {
+    "episodes": 10,
+    "reproduced": 10,
+    "mismatches": 0
+  },
+  "humanVerifiedLabels": 0,
+  "invoiceCost": "UNKNOWN",
+  "limitations": [
+    "one historical session, ten questions, not representative",
+    "reconstructed successful memory-write arguments and workspace scope, not full historical store state",
+    "malformed session lines skipped",
+    "no human-verified facts or relevance labels",
+    "reference pages clipped for model judge",
+    "not an autonomous agent/tool-use replay",
+    "raw private inputs and answers are not published",
+    "machine judge order can change the winner"
+  ]
+}

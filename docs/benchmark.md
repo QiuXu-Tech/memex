@@ -3,7 +3,17 @@ title: Benchmark report
 layout: default
 ---
 
-# Benchmark report: v0.30.0 synthetic long-horizon retrieval
+# Benchmark report
+
+## 2026-10-31 pager repair and 10M materializer retest
+
+The v0.65.0 pager repair was tested at commit [`bfeee59`](https://github.com/QiuXu-Tech/memex/commit/bfeee596cc7a06fd304b025b0b031de05bbd2f12). Each of two runtime cohorts used five seeded synthetic 10M **assigned-token** archives and 200 probes. Separate exact-cue search hit the target at rank 1 in 200/200 per cohort, but search results were not injected into the pager. With the same resident candidates and 1,800 estimated-token budget, the final rule/hybrid windows contained the target fact **12/200 and 0/200** on Node 25.9, and **10/200 and 0/200** on Node 24.21. Each cohort deliberately sampled 100 resident and 100 nonresident targets; these are stress cases, not production accuracy estimates.
+
+![Synthetic pager results: separate search, candidate availability and rule/hybrid fact inclusion](assets/benchmarks/pager-10m-comparison.png)
+
+The shared host did **not** meet the quiet-start gate for any of the ten runs, so timings are not low-load performance claims. Methods, raw synthetic data, verification, real-session replay limitations and the strategy decision are in the [pager retest report](pager-retest.md).
+
+## Historical report: v0.30.0 synthetic long-horizon retrieval
 
 The public synthetic workloads were run against v0.30.0, commit
 [`7d81314`](https://github.com/QiuXu-Tech/memex/commit/7d813147e9cc6d3aa9d61ebf321647061f44054d).
