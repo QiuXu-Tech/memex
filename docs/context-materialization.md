@@ -231,6 +231,20 @@ Boundary: disk safetensors, no compression yet; tiny model.
 - Cause: 36 records + templated queries are too small; this is an honest negative baseline, not a production model.
 - Only aggregate metrics are committed; data/weights stay local.
 
+## 7B architecture scale test (v0.24.0)
+
+Real 7B weight downloads kept failing at the CDN, so the connector was exercised with the **Qwen2.5-7B architecture and dummy random weights** (`--load-format dummy`):
+
+- 28 layers, no weight download; 14.2GiB model allocation
+- 8 prefixes × 2 requests: **8/8 external hits**
+- external KV **652MiB / 8 prefixes**
+- GPU **88,939 / 97,887 MiB (~91%)**
+- mean store **0.2673s → hit 0.1348s**
+
+This validates **7B-scale architecture/memory/KV connector mechanics**, not model quality. Real AWQ weights remained in download.
+
+Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-7b-dummy.json`.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

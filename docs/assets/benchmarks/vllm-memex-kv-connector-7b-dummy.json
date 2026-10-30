@@ -1,0 +1,38 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-7b-dummy",
+  "generatedAt": "2026-10-30T17:07:00+08:00",
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memoryMiB": 97887,
+    "usedMiB": 88939
+  },
+  "software": {
+    "vllm": "0.10.2",
+    "torch": "2.8.0+cu128"
+  },
+  "model": "Qwen2.5-7B architecture with dummy random weights (28 layers, no weight download)",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "alignedPrefixTokens": 1488,
+    "nativePrefixCaching": false
+  },
+  "workload": {
+    "prefixes": 8,
+    "requests": 16,
+    "promptTokens": 2815
+  },
+  "results": {
+    "externalHits": 8,
+    "diskMiB": 652,
+    "meanStoreSeconds": 0.2673,
+    "meanHitSeconds": 0.1348
+  },
+  "caveats": [
+    "Dummy random weights: validates 7B architecture/memory/KV connector mechanics, not model quality.",
+    "Real Qwen2.5-7B-AWQ weights were still downloading at test time.",
+    "Prototype connector, fixed prefix length, disk KV.",
+    "Single process."
+  ]
+}

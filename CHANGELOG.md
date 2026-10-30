@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.24.0
+
+### Added — 7B architecture connector scale test (dummy weights)
+- Real 7B weights failed to download cleanly, so ran Qwen2.5-7B architecture with `--load-format dummy` (28 layers, 14.2GiB): **8/8 external hits**, **652MiB** external KV / 8 prefixes, GPU **~91%**, mean store 0.2673s → hit 0.1348s.
+- This validates 7B-scale architecture/memory/connector mechanics, **not model quality**.
+- Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-7b-dummy.json`.
+- Harness **131/131**.
+
 ## 0.23.0
 
 ### Added — KV compression + real-trace encoder baseline
