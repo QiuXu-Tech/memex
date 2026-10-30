@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.46.0
+
+### Added — updated-memory quality A/B
+- The v0.45 A/B showed both contexts missing KV/DSH facts. Added three real memory records: KV 7B results, DSH default model, next priorities.
+- Rebuilt hybrid context with those records pinned. Old hybrid 16 records vs updated 9 records.
+- APIMaster `deepseek-flash` + `claude-haiku-4-5`; blind `gpt-6-astra`, both answer orders: **updated context won 4/4**.
+- Claude updated answer reached 10/10 coverage; DeepSeek improved to 4/6. Missing facts were mainly a memory-content gap.
+- Raw: `quality-ab-updated-memory.json`; harness **133/133**.
+
 ## 0.45.0
 
 ### Added — answer-quality A/B for hybrid materializer

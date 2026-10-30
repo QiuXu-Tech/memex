@@ -1,0 +1,89 @@
+{
+  "format": 1,
+  "kind": "quality-ab-updated-memory",
+  "generatedAt": "2026-10-30T21:42:00+08:00",
+  "setup": "Old hybrid context lacked KV/DSH/priority facts; wrote three new real memory records, then rebuilt a pinned hybrid context containing them. Same two APIMaster answerers, blind GPT-6 judge, both orders.",
+  "contexts": {
+    "old_hybrid_records": 16,
+    "updated_records": 9,
+    "updated_pinned": [
+      "mem_32e0b6ff81",
+      "mem_5c7e6ec3c7",
+      "mem_d31cdf98f1"
+    ]
+  },
+  "answer_chars": {
+    "deepseek-flash|old_hybrid": 1268,
+    "deepseek-flash|updated": 1513,
+    "claude-haiku-4-5|old_hybrid": 602,
+    "claude-haiku-4-5|updated": 1056
+  },
+  "judge": {
+    "deepseek-flash": {
+      "forward": {
+        "A": {
+          "coverage": 2,
+          "correctness": 3,
+          "focus": 4
+        },
+        "B": {
+          "coverage": 4,
+          "correctness": 6,
+          "focus": 6
+        },
+        "winner": "B",
+        "reason": "B\u51c6\u786e\u8986\u76d6KV\u6838\u5fc3\u7ed3\u679c\uff0c\u4f46\u9ed8\u8ba4\u6a21\u578b\u90e8\u5206\u622a\u65ad\u4e14\u7f3a\u5c11\u4e09\u9879\u4f18\u5148\u5de5\u4f5c\uff1b\u4e24\u8005\u5747\u9057\u6f0fL1/L2/L3\u67b6\u6784\uff0c\u5e76\u542b\u65e0\u4f9d\u636e\u7ec6\u8282\u3002"
+      },
+      "reverse": {
+        "A": {
+          "coverage": 4,
+          "correctness": 5,
+          "focus": 5
+        },
+        "B": {
+          "coverage": 3,
+          "correctness": 3,
+          "focus": 4
+        },
+        "winner": "A",
+        "reason": "A\u51c6\u786e\u8986\u76d6\u591a\u6570KV\u5b9e\u9a8c\u4e8b\u5b9e\uff0c\u4f46\u622a\u65ad\u4e14\u7f3a\u9ed8\u8ba4\u7b56\u7565\u548c\u4e09\u9879\u4f18\u5148\u5de5\u4f5c\uff1bB\u9057\u6f0fKV\u7ed3\u679c\uff0c\u4f18\u5148\u4e8b\u9879\u4e0d\u7b26\uff0c\u4e8c\u8005\u5747\u542b\u65e0\u4f9d\u636e\u7ec6\u8282\u3002"
+      }
+    },
+    "claude-haiku-4-5": {
+      "forward": {
+        "A": {
+          "coverage": 2,
+          "correctness": 2,
+          "focus": 3
+        },
+        "B": {
+          "coverage": 10,
+          "correctness": 8,
+          "focus": 9
+        },
+        "winner": "B",
+        "reason": "B \u8986\u76d6\u5168\u90e8\u5173\u952e\u4e8b\u5b9e\uff1b\u867d\u6709\u5c11\u91cf\u672a\u7531\u53c2\u8003\u4e8b\u5b9e\u652f\u6301\u7684\u6269\u5c55\u63cf\u8ff0\uff0c\u6574\u4f53\u660e\u663e\u66f4\u51c6\u786e\u3002"
+      },
+      "reverse": {
+        "A": {
+          "coverage": 7,
+          "correctness": 6,
+          "focus": 8
+        },
+        "B": {
+          "coverage": 3,
+          "correctness": 4,
+          "focus": 5
+        },
+        "winner": "A",
+        "reason": "A\u8986\u76d6\u6838\u5fc3KV\u7ed3\u8bba\u3001\u9ed8\u8ba4\u6a21\u578b\u548c\u4e09\u9879\u4f18\u5148\u7ea7\uff0c\u4f46\u9057\u6f0f\u5206\u5c42\u67b6\u6784\u53ca\u591a\u9879\u5b9e\u9a8c\u6307\u6807\uff0c\u4e14\u542b\u65e0\u636e\u7ec6\u8282\uff1bB\u6f0f\u6389KV\u7ed3\u679c\u548c\u5b9e\u9645\u4f18\u5148\u7ea7\u3002"
+      }
+    }
+  },
+  "interpretation": "After adding the missing KV/DSH/priority records, the updated context was preferred in both answer orders for both APIMaster models. Judge coverage improved (Claude strongest; DeepSeek moderate). Missing facts were primarily a memory-content problem, not only a selection problem. Both still miss some architecture/priority details.",
+  "caveats": [
+    "Real memory content sent to APIMaster; aggregate only stored.",
+    "One query; pinned updated context is not a production selector.",
+    "Judge scores vary with answer order."
+  ]
+}

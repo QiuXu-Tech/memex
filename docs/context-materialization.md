@@ -556,6 +556,22 @@ Real memory pages, multi-topic query, rule vs hybrid contexts, two answer models
 - However both missed the real KV 7B results and the DSH default-model facts; judge scores are low for both. **Hybrid improves breadth, not yet sufficient coverage.**
 - Raw: `quality-ab-materializer.json`; aggregate only; real memory content was not committed.
 
+## Updated-memory quality A/B (v0.46.0)
+
+The previous quality A/B showed both contexts missing KV/DSH facts. Three real memory records were written (KV 7B results, DSH default model, next priorities), then the hybrid context was rebuilt with those records pinned.
+
+- Old hybrid: 16 records, no KV/DSH/priority facts.
+- Updated hybrid: 9 records including the three new records.
+- APIMaster answerers: `deepseek-flash`, `claude-haiku-4-5`; blind `gpt-6-astra` judge; both answer orders.
+
+Result: **updated context won both orders for both models.**
+
+- Claude Haiku updated answer: judge coverage up to **10/10**, correctness 8, focus 9.
+- DeepSeek Flash updated answer: coverage 4/6, correctness 6, focus 6 (improved but still missed some architecture/priority detail).
+- Conclusion: missing key facts were primarily a **memory-content gap**, not only a selection problem.
+
+Raw: `quality-ab-updated-memory.json`.
+Boundary: one query; pinned updated context is not a production selector; aggregates only.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
