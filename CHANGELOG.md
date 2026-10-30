@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.41.0
+
+### Added — LLM-labeled real-query evaluation
+- Extracted 99 real DSH session queries; labeled 52 against 36 real archive records with an LLM judge; record-disjoint val 23 groups / 6 records.
+- Hybrid recall vs rule: 500 **0.087 vs 0.217**; 1,800 **0.522 vs 0.522**; 2,400 **0.783 vs 0.348**.
+- Finding: lexical hybrid is budget-sensitive; not safe as default at 1,800 tokens; needs more labels and budget-aware reranking.
+- Raw: `llm-labeled-real-query-eval.json`; harness **133/133**.
+
 ## 0.40.0
 
 ### Added — DSH live-query hybrid rerank integration

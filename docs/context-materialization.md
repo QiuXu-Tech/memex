@@ -471,6 +471,23 @@ Rollback:
 - bundle config: `dsh-memory-next/cordis.patch.yml.bak-prehybrid-*`
 - disable flag: set `materializerHybridRerank: false` and restart DSH
 
+## LLM-labeled real-query evaluation (v0.41.0)
+
+Extracted 99 real DSH session queries; labeled 52 to real archive records with an LLM judge (top-3 relevance). Record-disjoint validation: 29 train / 23 val groups (6 val records).
+
+| budget | rule recall | hybrid recall |
+|---:|---:|---:|
+| 500 | 0.217 | 0.087 |
+| 1,000 | 0.478 | 0.435 |
+| 1,500 | 0.478 | 0.478 |
+| 1,800 | 0.522 | 0.522 |
+| 2,400 | 0.348 | **0.783** |
+
+Conclusion: **budget-sensitive**. Hybrid is not safe as default at the current 1,800-token budget; it becomes clearly better only at 2,400. Needs more labels and budget-aware reranking before enabling by default.
+
+Raw: `llm-labeled-real-query-eval.json`.
+Boundary: LLM labels not human-verified; small val; lexical reranker; active DSH config unchanged.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

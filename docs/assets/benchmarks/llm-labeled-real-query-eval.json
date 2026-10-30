@@ -1,0 +1,49 @@
+{
+  "format": 1,
+  "kind": "llm-labeled-real-query-eval",
+  "generatedAt": "2026-10-30T19:52:00+08:00",
+  "dataset": {
+    "real_queries_extracted": 99,
+    "labeled_queries": 52,
+    "groups": 52,
+    "train": 29,
+    "val": 23,
+    "val_records": 6,
+    "source": "real DSH session user messages",
+    "labels": "APIMaster claude-haiku-4-5 top-3 relevance over 36 real archive records"
+  },
+  "results": [
+    {
+      "budget": 500,
+      "rule_recall": 0.2174,
+      "hybrid_recall": 0.087
+    },
+    {
+      "budget": 1000,
+      "rule_recall": 0.4783,
+      "hybrid_recall": 0.4348
+    },
+    {
+      "budget": 1500,
+      "rule_recall": 0.4783,
+      "hybrid_recall": 0.4783
+    },
+    {
+      "budget": 1800,
+      "rule_recall": 0.5217,
+      "hybrid_recall": 0.5217
+    },
+    {
+      "budget": 2400,
+      "rule_recall": 0.3478,
+      "hybrid_recall": 0.7826
+    }
+  ],
+  "interpretation": "With LLM-labeled real queries, the lexical hybrid is budget-sensitive: worse at 500, neutral at 1,000\u20131,800, clearly better at 2,400 (0.348 -> 0.783). It is not safe to make hybrid the default at the current 1,800-token budget; larger label sets and budget-aware reranking are needed.",
+  "caveats": [
+    "Labels are LLM-generated, not human-verified; source queries from private sessions.",
+    "Only 23 val groups / 6 val records.",
+    "Lexical reranker, not BGE.",
+    "Active DSH config still uses the previous reranker weights; this experiment does not change it."
+  ]
+}
