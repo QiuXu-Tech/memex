@@ -1,0 +1,17 @@
+{
+  "sourceSha256": "c9e84387bee51b30d1503dac3ce8c9aa90e3566847c020ad7dc19449e546134d",
+  "legacyInvalidFragments": 10,
+  "validJsonLinesSplitByLegacyParser": 4,
+  "splitLineTypes": {
+    "assistant/message": 1,
+    "tool/call": 1,
+    "job/registered": 1,
+    "job/settled": 1
+  },
+  "actualInvalidJsonLines": 0,
+  "priorQuestionCount": 10,
+  "correctedQuestionCount": 10,
+  "sameAllEpisodes": true,
+  "sameCandidateCount": true,
+  "sameSourceSha256": true
+}

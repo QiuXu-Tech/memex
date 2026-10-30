@@ -5,6 +5,9 @@ layout: default
 
 # Pager repair and materializer retest — 2026-10-31
 
+**Parser correction (2026-10-31):** the earlier extractor treated Unicode separators inside valid JSON strings as line breaks, producing ten invalid fragments from four valid JSONL events. Newline-only parsing found **zero** invalid source lines. Re-extraction produced exactly the same ten selected questions, write snapshots and conversation tails as the old extraction; the previously reported replay answers and scores were not rerun or changed. [Verification](assets/benchmarks/production-pilot/old-parser-verification.json). The historical raw JSON retains its original `malformedLinesSkipped` field as provenance.
+
+
 **Scope:** v0.65.0 with pager repair [`bfeee59`](https://github.com/QiuXu-Tech/memex/commit/bfeee596cc7a06fd304b025b0b031de05bbd2f12). These results are a synthetic stress test and a limited private historical replay; they are not a human-labelled production benchmark.
 
 This is the historical pre-query-recall result. The subsequent [paired recall and ranking retest](pager-recall-evaluation.md) uses the same synthetic stores and probes with an updated pager.
@@ -63,7 +66,7 @@ The chart script uses the checked-in aggregate and requires Matplotlib. Store ID
 
 ## Historical session replay
 
-One private historical session spanning about 73.39 hours yielded 10 question snapshots. The extraction retained only successful `memory_write` arguments whose tool results preceded each question, plus the preceding conversation tail. All 232 selected historical write snapshots and all tail entries passed that sequence cutoff. Ten malformed source JSONL lines were skipped; they are a coverage limitation. Each snapshot was reconstructed into a fresh local store and passed through the repaired pager. The two policies had the same candidate set in all 10 cases, selected different IDs in all 10, and stayed within the 1,800 chars/4 window budget.
+One private historical session spanning about 73.39 hours yielded 10 question snapshots. The extraction retained only successful `memory_write` arguments whose tool results preceded each question, plus the preceding conversation tail. All 232 selected historical write snapshots and all tail entries passed that sequence cutoff. The original extractor skipped ten parser fragments; see the correction above. Each snapshot was reconstructed into a fresh local store and passed through the repaired pager. The two policies had the same candidate set in all 10 cases, selected different IDs in all 10, and stayed within the 1,800 chars/4 window budget.
 
 This is a **retrospective snapshot simulation**, not a full agent/tool-use replay: successful write arguments do not reconstruct the entire historical store, workspace scope was reconstructed, and one session cannot establish generalization. There are no human-verified relevance or fact labels. The [aggregate](assets/benchmarks/pager-replay-aggregate.json) is public; raw session content, contexts, model answers and judge rationales remain local.
 

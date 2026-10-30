@@ -1,0 +1,65 @@
+{
+  "categories": {
+    "taskRuns": {
+      "calls": 94,
+      "promptTokensReported": 484596,
+      "completionTokensReported": 39967,
+      "cachedPromptTokensReported": 0,
+      "callsWithoutUsage": 0,
+      "requestBytesRecorded": 1415883,
+      "responseBytesRecorded": 160134
+    },
+    "blindMachineReviews": {
+      "calls": 51,
+      "promptTokensReported": 481468,
+      "completionTokensReported": 61771,
+      "cachedPromptTokensReported": 67200,
+      "callsWithoutUsage": 0,
+      "requestBytesRecorded": 1165680,
+      "responseBytesRecorded": 228166
+    },
+    "postHocAutonomyAudits": {
+      "calls": 12,
+      "promptTokensReported": 133567,
+      "completionTokensReported": 11812,
+      "cachedPromptTokensReported": 0,
+      "callsWithoutUsage": 0,
+      "requestBytesRecorded": 371805,
+      "responseBytesRecorded": 56873
+    },
+    "syntheticPreflight": {
+      "calls": 6,
+      "promptTokensReported": 11316,
+      "completionTokensReported": 417,
+      "cachedPromptTokensReported": null,
+      "callsWithoutUsage": 0,
+      "requestBytesRecorded": null,
+      "responseBytesRecorded": null,
+      "note": "One reviewer smoke did not report cache details; request/response bytes were not retained for all initial setup calls."
+    }
+  },
+  "totals": {
+    "calls": 163,
+    "promptTokensReported": 1110947,
+    "completionTokensReported": 113967,
+    "knownCachedPromptTokens": 67200,
+    "cachedPromptTokensComplete": false
+  },
+  "actualInvoice": "UNKNOWN",
+  "actualPerAttempt": "UNKNOWN",
+  "actualPerVerifiedSuccess": "UNKNOWN",
+  "unpriced": [
+    "provider routes and discounts",
+    "uncaptured historical ingestion and compaction",
+    "local compute and storage",
+    "network and service overhead",
+    "human labor",
+    "engineering and evaluation work"
+  ],
+  "notes": [
+    "Cached tokens can be included in prompt totals; do not add them twice.",
+    "Request/response byte counts omit headers, TLS and transport overhead.",
+    "Provider-reported token counts are not reconciled invoices.",
+    "Evaluation and synthetic setup usage are separated from task runs."
+  ]
+}

@@ -5,6 +5,12 @@ layout: default
 
 # Benchmark report
 
+## 2026-10-31 exploratory production-validation pilot
+
+A five-condition randomized replay of four historical questions from two sessions produced **17/20 nonempty answers**; three runs reached the tool-round limit. In the four write-enabled runs, three wrote before the question and one later searched, opened and cited its own earlier write. This observes a tool chain, not verified correctness or real production autonomy. AI was used instead of human reviewers; only **29/51** blind-machine responses passed the defined format and source-ID checks, and one reviewer was added post hoc. Full invoiced costs are **UNKNOWN**. The small retrospective sample does not demonstrate production accuracy or savings. [Methods, ledger, outcomes and limitations](production-pilot.md).
+
+![Pilot gateway-reported usage and observed memory actions](assets/benchmarks/production-pilot-usage.png)
+
 ## 2026-10-31 synonym and archive excerpt retest
 
 On 12 handcrafted English/Chinese questions repeated over ten seeded layouts, optional model query expansion changed target-fact availability from **4/120 to 91/120** for rule and **0/120 to 104/120** for hybrid; the 120 observations are not independent questions. Without rewriting, the new pager matched the prior results. One English access-control question failed for all ten layouts. The prior deep-archive omission probe now retains its fact, but long-document completeness is not guaranteed. A separate exact-cue regression retained **400/400** for both policies on synthetic 10M assigned-token stores. No quiet-start gate passed. [Methods, raw data, real-session replay and caveats](pager-semantic-evaluation.md).

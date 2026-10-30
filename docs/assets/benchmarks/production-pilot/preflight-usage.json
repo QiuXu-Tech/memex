@@ -1,0 +1,28 @@
+{
+  "kind": "synthetic-preflight-usage",
+  "lookupProbe": {
+    "modelCalls": 1,
+    "promptTokens": 572,
+    "completionTokens": 60,
+    "cachedTokens": 0,
+    "source": "captured gateway response from tool smoke",
+    "cacheCreation5mTokens": 0,
+    "cacheCreation1hTokens": 0
+  },
+  "memoryToolProbe": {
+    "modelCalls": 4,
+    "promptTokens": 6482,
+    "completionTokens": 318,
+    "cachedTokens": 0,
+    "toolSequence": [
+      "memory_write",
+      "memory_search",
+      "memory_open"
+    ],
+    "finalContainedSyntheticFact": true,
+    "cacheCreation5mTokens": 0,
+    "cacheCreation1hTokens": 0
+  },
+  "actualBilledCost": "UNKNOWN",
+  "note": "These synthetic connectivity calls are separate from the real-history pilot and reviewer calls."
+}

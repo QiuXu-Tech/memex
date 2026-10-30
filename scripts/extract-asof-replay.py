@@ -18,7 +18,9 @@ raw = subprocess.run(['zstd', '-dc', str(source)], capture_output=True, text=Tru
 if hashlib.sha256(source.read_bytes()).hexdigest() != source_hash:
     raise SystemExit('session changed during extraction; no output written')
 events, malformed = [], 0
-for line in raw.splitlines():
+for line in raw.split('\n'):
+    if not line:
+        continue
     try:
         events.append(json.loads(line))
     except json.JSONDecodeError:

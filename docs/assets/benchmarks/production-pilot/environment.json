@@ -1,0 +1,15 @@
+{
+  "platform": "Darwin",
+  "release": "27.2.0",
+  "arch": "arm64",
+  "cpu": "Apple M4",
+  "logicalCPUs": 10,
+  "memoryBytes": 17179869184,
+  "node": "v25.9.0",
+  "python": "3.14.3",
+  "caveats": [
+    "Shared host; no exclusive CPU or network allocation",
+    "Host load sampler began after pilot start",
+    "Task latency includes remote gateway latency"
+  ]
+}

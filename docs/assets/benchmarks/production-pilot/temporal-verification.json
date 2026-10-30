@@ -1,0 +1,37 @@
+{
+  "tasks": [
+    {
+      "task": "project-1-task-1",
+      "elapsedWallHoursFromFirstEvent": 43.47,
+      "earlierArchiveMessages": 40,
+      "allArchiveBeforeQuestion": true,
+      "summaryBeforeQuestion": true,
+      "tailBeforeQuestion": true
+    },
+    {
+      "task": "project-1-task-2",
+      "elapsedWallHoursFromFirstEvent": 66.66,
+      "earlierArchiveMessages": 40,
+      "allArchiveBeforeQuestion": true,
+      "summaryBeforeQuestion": true,
+      "tailBeforeQuestion": true
+    },
+    {
+      "task": "project-1-task-3",
+      "elapsedWallHoursFromFirstEvent": 68.83,
+      "earlierArchiveMessages": 40,
+      "allArchiveBeforeQuestion": true,
+      "summaryBeforeQuestion": true,
+      "tailBeforeQuestion": true
+    },
+    {
+      "task": "project-2-task-1",
+      "elapsedWallHoursFromFirstEvent": 191.37,
+      "earlierArchiveMessages": 31,
+      "allArchiveBeforeQuestion": true,
+      "summaryBeforeQuestion": true,
+      "tailBeforeQuestion": true
+    }
+  ],
+  "note": "Elapsed wall time includes inactive periods; it is not active work time."
+}

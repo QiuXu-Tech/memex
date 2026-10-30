@@ -84,6 +84,14 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
+## Exploratory production-validation pilot (2026-10-31)
+
+A preregistered, isolated five-condition replay used four actual historical questions from two sessions, including Memex-related work. **17/20 runs** produced nonempty answers; three reached the tool-round limit. In four write-enabled runs, the agent wrote before the question in three, and in one it later searched, opened and cited its own write. This is a mechanical observation, not verified fidelity or production success.
+
+The user requested AI instead of human review. Only **29/51** blind machine-review responses passed format and historical-source-ID checks; the second useful model was added post hoc after repeated empty DeepSeek responses. The 0/1/2 rubric and clipped evidence limit interpretation. Across task runs, blind reviews, post-hoc audits and synthetic preflight, the gateway reported **1,110,947 prompt / 113,967 completion tokens**; invoices and total cost are **UNKNOWN**. The four questions are not a production benchmark or proof of improved correctness or savings. [Methods, results, cost ledger and limits](docs/production-pilot.md).
+
+![Pilot reported usage and observed memory actions](docs/assets/benchmarks/production-pilot-usage.png)
+
 ## Synonym and archive excerpt retest (2026-10-31)
 
 The pager can optionally ask the configured model for search paraphrases (`materializerQueryExpansion: true`, **off by default**) and can extract a query-relevant excerpt from an oversized archive body before building its card. The option sends the question to that provider and adds model latency and cost. In ten seeded layouts of 12 handcrafted questions, rule included target facts **4/120 → 91/120** and hybrid **0/120 → 104/120** with rewriting enabled; the same 12 questions were reused across seeds. One English question failed across all layouts. A deep-archive probe now includes its fact, but complete recall is not guaranteed. Ten exact-cue 10M assigned-token stores retained **400/400** rule and hybrid fact availability without rewriting; none of the quiet-start gates passed. [Results, charts and limitations](docs/pager-semantic-evaluation.md).

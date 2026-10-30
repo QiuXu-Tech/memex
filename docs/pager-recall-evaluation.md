@@ -5,6 +5,9 @@ layout: default
 
 # Pager recall and hybrid ranking evaluation — 2026-10-31
 
+**Parser correction (2026-10-31):** the earlier extractor treated Unicode separators inside valid JSON strings as line breaks, producing ten invalid fragments from four valid JSONL events. Newline-only parsing found **zero** invalid source lines. Re-extraction produced exactly the same ten selected questions, write snapshots and conversation tails as the old extraction; the previously reported replay answers and scores were not rerun or changed. [Verification](assets/benchmarks/production-pilot/old-parser-verification.json). The historical raw JSON retains its original `malformedLinesSkipped` field as provenance.
+
+
 **Historical report:** the reproduced archive-card omission and optional synonym query expansion are addressed in the [later retest](pager-semantic-evaluation.md). Its remaining limits and the original results below are preserved.
 
 **Scope:** v0.65.0 plus the preceding pager repair (`c05dd12`), compared with query-recall and ranking repair [`a0a33db`](https://github.com/QiuXu-Tech/memex/commit/a0a33db5319ead359b089b3f5fb585212245e044). The synthetic tests below measure evidence availability, not human-rated answer accuracy or real-world productivity.
@@ -65,7 +68,7 @@ There is also a remaining **archive-card content limitation**. In a [synthetic p
 
 ## Historical session replay
 
-The same 10 time-cutoff questions from one private, approximately 73-hour historical session were replayed through the repaired pager. The inputs contain successful write-call snapshots available before each question, plus the preceding conversation tail; ten malformed source lines were skipped. They do not reconstruct the full historical store or an autonomous agent/tool-use run. Rule and hybrid had identical candidate sets for all 10 questions, while their selected IDs differed in all 10. Against the earlier pager, rule selected different IDs in 9/10 and hybrid in 10/10; an independent reconstruction reproduced the new windows in 10/10. No human relevance labels were supplied.
+The same 10 time-cutoff questions from one private, approximately 73-hour historical session were replayed through the repaired pager. The inputs contain successful write-call snapshots available before each question, plus the preceding conversation tail; the original extractor skipped ten parser fragments; see the correction above. They do not reconstruct the full historical store or an autonomous agent/tool-use run. Rule and hybrid had identical candidate sets for all 10 questions, while their selected IDs differed in all 10. Against the earlier pager, rule selected different IDs in 9/10 and hybrid in 10/10; an independent reconstruction reproduced the new windows in 10/10. No human relevance labels were supplied.
 
 With the user's prior authorization, the real contexts were sent via APIMaster to DeepSeek Flash and Claude Haiku 4.5, with a 2,500-token output limit for both policies. All 40 answer calls returned nonempty text. The gateway identified the DeepSeek responses as `deepseek-v4-1-flash-261017`. GPT-6 Astra judged both answer orders for each of the 20 question/model pairs, using reference body excerpts clipped to 1,000 characters. All 40 judge responses parsed, and any listed relevance IDs matched known snapshots; this checks format, not factual correctness:
 

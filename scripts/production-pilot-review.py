@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """Blind machine review of private pilot answers. This does not create human labels."""
 import argparse,collections,concurrent.futures,hashlib,json,os,pathlib,random,subprocess,threading,time,urllib.error,urllib.request
-p=argparse.ArgumentParser();p.add_argument('--frozen',required=True);p.add_argument('--trials',required=True);p.add_argument('--out',required=True);a=p.parse_args();frozen=pathlib.Path(a.frozen).resolve();trials=pathlib.Path(a.trials).resolve();out=pathlib.Path(a.out).resolve()
+p=argparse.ArgumentParser();p.add_argument('--frozen',required=True);p.add_argument('--trials',required=True);p.add_argument('--out',required=True);p.add_argument('--reviewers',nargs='+',default=['gpt-6-astra','deepseek-flash']);a=p.parse_args();frozen=pathlib.Path(a.frozen).resolve();trials=pathlib.Path(a.trials).resolve();out=pathlib.Path(a.out).resolve()
 if out.exists():raise SystemExit('refusing to overwrite reviews')
 out.mkdir(parents=True,mode=0o700);manifest=json.loads((frozen/'preregistered.json').read_text());episodes={x['id']:x for x in json.loads((frozen/'episodes.json').read_text())['episodes']};results=[json.loads(p.read_text()) for p in sorted(trials.glob('pilot-*.json'))];assert len(results)==len(manifest['arms'])*len(manifest['assignments'])
 key=subprocess.run(['ruby','-ryaml','-e','print YAML.load_file(File.expand_path("~/.dsh/.credentials.yaml")).dig("refs","APIMASTER_API_KEY")'],check=True,capture_output=True,text=True).stdout
 if not key:raise SystemExit('missing configured gateway credential')
 randomizer=random.Random(20261031+157);order=list(results);randomizer.shuffle(order);codes={r['trial']:f'blind-{i+1:02d}' for i,r in enumerate(order)};(out/'private-blind-key.json').write_text(json.dumps({codes[r['trial']]:{'trial':r['trial'],'episode':r['episode'],'arm':r['arm']} for r in results},indent=2));(out/'private-blind-key.json').chmod(0o600)
-reviewers=['gpt-6-astra','deepseek-flash'];jobs=[]
+reviewers=a.reviewers;jobs=[]
 for result in order:
  if result['status']!='ok' or not result.get('answer','').strip():continue
  for model in reviewers:jobs.append((result,model))

@@ -5,7 +5,7 @@ layout: default
 
 # Protocol for validating Memex's production value
 
-**Status: proposed, not executed.** The synthetic tests and single-session replay in this repository do not establish production task correctness, cost savings, or autonomous memory management. This protocol specifies the evidence needed to test those claims. Register the population, tasks, comparisons, outcome definitions, minimum detectable effects, sample-size calculation, analysis, exclusions, and stop rules before examining the experiment outcomes. Thresholds below are example decisions, not achieved results.
+**Status: an exploratory retrospective pilot has been run; this full production protocol has not been executed.** See the [pilot results and limitations](production-pilot.md). The synthetic tests and single-session replay in this repository do not establish production task correctness, cost savings, or autonomous memory management. This protocol specifies the evidence needed to test those claims. Register the population, tasks, comparisons, outcome definitions, minimum detectable effects, sample-size calculation, analysis, exclusions, and stop rules before examining the experiment outcomes. Thresholds below are example decisions, not achieved results.
 
 ## Population and comparisons
 

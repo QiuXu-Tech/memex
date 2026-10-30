@@ -26,7 +26,7 @@ if not files: sys.exit('no session file')
 session_file=files[0]
 raw=subprocess.run(['zstd','-dc',str(session_file)],capture_output=True,text=True).stdout
 events=[]
-for line in raw.splitlines():
+for line in raw.split('\n'):
  try: o=json.loads(line)
  except: continue
  if o.get('type')=='user/message':
@@ -52,7 +52,7 @@ def real_user(e):
 users=[e for e in events if real_user(e)]
 l1=[e for e in events if e['kind']=='user' and '<l1-eviction>' in e['text']]
 writes=[]
-for line in raw.splitlines():
+for line in raw.split('\n'):
  try: o=json.loads(line)
  except: continue
  if o.get('type')!='tool/call': continue

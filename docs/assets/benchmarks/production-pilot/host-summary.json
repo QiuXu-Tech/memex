@@ -1,0 +1,19 @@
+{
+  "samples": 157,
+  "cpuBusyPct": {
+    "min": 14.2,
+    "median": 18.56,
+    "max": 41.82
+  },
+  "load1": {
+    "min": 2.16,
+    "median": 2.92,
+    "max": 5.05
+  },
+  "samplesMeetingPriorThreshold": 94,
+  "caveats": [
+    "Sampler started after trial 1 began; not full coverage.",
+    "Samples are not per-run gates; no low-load guarantee.",
+    "Remote gateway latency contributes to task duration."
+  ]
+}
