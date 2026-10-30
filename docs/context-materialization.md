@@ -170,6 +170,18 @@ Following the single-prefix validation, the same `MemexKVConnector` was exercise
 
 Raw: [vllm-memex-kv-connector-multiprefix.json](assets/benchmarks/vllm-memex-kv-connector-multiprefix.json).
 
+## GPU-scaled context encoder (v0.19.0)
+
+A larger single-layer GPU reference (DIM 128 / 4 heads / vocab 2048 / hard negatives) was trained first; then a **2-layer** version:
+
+- data: 3,000 synthetic groups with hard negatives (15k query/page pairs), 500 held-out groups
+- model: 2 encoder layers, dim 128, 4 heads, max length 128
+- result: validation **accuracy 1.0 / pairwise ranking 1.0**
+- weights: `docs/assets/benchmarks/context-encoder-gpu2-weights.json` (14MB); report: `context-encoder-gpu2.json`
+- JS forward now supports multi-layer weights and reproduces the Python logits exactly (U34 parity)
+
+This is a GPU-trained **reference** specialist, not a production per-family model; real traces and larger training remain.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

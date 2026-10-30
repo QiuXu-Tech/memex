@@ -46,6 +46,32 @@ const softmax = (values, mask) => {
   return exps.map((value) => value / total)
 }
 
+function applyEncoderLayer(h, mask, layer) {
+  const dim = h[0].length
+  const heads = layer.heads
+  const headDim = dim / heads
+  const qkv = h.map((vector) => linear(vector, layer.qkv_w, layer.qkv_b))
+  const q = [], k = [], v = []
+  for (let head = 0; head < heads; head += 1) {
+    q.push(qkv.map((vector) => vector.slice(head * headDim, (head + 1) * headDim)))
+    k.push(qkv.map((vector) => vector.slice(dim + head * headDim, dim + (head + 1) * headDim)))
+    v.push(qkv.map((vector) => vector.slice(2 * dim + head * headDim, 2 * dim + (head + 1) * headDim)))
+  }
+  const context = Array.from({ length: h.length }, () => new Array(dim).fill(0))
+  for (let head = 0; head < heads; head += 1) {
+    for (let position = 0; position < h.length; position += 1) {
+      const scores = k[head].map((keyVector, keyIndex) => q[head][position].reduce((sum, value, index) => sum + value * keyVector[index], 0) / Math.sqrt(headDim))
+      const attention = softmax(scores, mask)
+      for (let keyIndex = 0; keyIndex < attention.length; keyIndex += 1) {
+        if (attention[keyIndex] === 0) continue
+        for (let column = 0; column < headDim; column += 1) context[position][head * headDim + column] += attention[keyIndex] * v[head][keyIndex][column]
+      }
+    }
+  }
+  const h1 = h.map((vector, position) => layerNorm(vector.map((value, index) => value + linear(context[position], layer.out_w, layer.out_b)[index]), layer.ln1_w, layer.ln1_b))
+  return h1.map((vector) => layerNorm(vector.map((value, index) => value + linear(geluVector(linear(vector, layer.ff1_w, layer.ff1_b)), layer.ff2_w, layer.ff2_b)[index]), layer.ln2_w, layer.ln2_b))
+}
+
 export class TransformerContextEncoder {
   constructor(weights) {
     this.weights = weights
@@ -66,37 +92,39 @@ export class TransformerContextEncoder {
   /** Forward pass; returns a relevance logit (higher = more relevant). */
   score(page, query) {
     const { tokens, mask } = this.encode(query, page)
-    const dim = this.config.dim
-    const heads = this.config.heads
-    const headDim = dim / heads
     const weights = this.weights
-    const embeddings = tokens.map((token, position) => weights.token_emb[token].map((value, index) => value + weights.pos_emb[position][index]))
-    const qkv = embeddings.map((embedding) => linear(embedding, weights.qkv_w, weights.qkv_b))
-    const q = [], k = [], v = []
-    for (let head = 0; head < heads; head += 1) {
-      q.push(qkv.map((vector) => vector.slice(head * headDim, (head + 1) * headDim)))
-      k.push(qkv.map((vector) => vector.slice(dim + head * headDim, dim + (head + 1) * headDim)))
-      v.push(qkv.map((vector) => vector.slice(2 * dim + head * headDim, 2 * dim + (head + 1) * headDim)))
-    }
-    const context = Array.from({ length: this.config.max_len }, () => new Array(dim).fill(0))
-    for (let head = 0; head < heads; head += 1) {
-      for (let position = 0; position < this.config.max_len; position += 1) {
-        const scores = k[head].map((keyVector, keyIndex) => q[head][position].reduce((sum, value, index) => sum + value * keyVector[index], 0) / Math.sqrt(headDim))
-        const attention = softmax(scores, mask)
-        for (let keyIndex = 0; keyIndex < attention.length; keyIndex += 1) {
-          if (attention[keyIndex] === 0) continue
-          for (let column = 0; column < headDim; column += 1) context[position][head * headDim + column] += attention[keyIndex] * v[head][keyIndex][column]
+    const dim = this.config.dim
+    let h = tokens.map((token, position) => weights.token_emb[token].map((value, index) => value + weights.pos_emb[position][index]))
+    if (Array.isArray(weights.layers) && weights.layers.length > 0) {
+      for (const rawLayer of weights.layers) {
+        const layer = {
+          heads: this.config.heads,
+          qkv_w: rawLayer['qkv.weight'], qkv_b: rawLayer['qkv.bias'],
+          out_w: rawLayer['out.weight'], out_b: rawLayer['out.bias'],
+          ff1_w: rawLayer['ff1.weight'], ff1_b: rawLayer['ff1.bias'],
+          ff2_w: rawLayer['ff2.weight'], ff2_b: rawLayer['ff2.bias'],
+          ln1_w: rawLayer['ln1.weight'], ln1_b: rawLayer['ln1.bias'],
+          ln2_w: rawLayer['ln2.weight'], ln2_b: rawLayer['ln2.bias'],
         }
+        h = applyEncoderLayer(h, mask, layer)
       }
+    } else {
+      h = applyEncoderLayer(h, mask, {
+        heads: this.config.heads,
+        qkv_w: weights.qkv_w, qkv_b: weights.qkv_b,
+        out_w: weights.out_w, out_b: weights.out_b,
+        ff1_w: weights.ff1_w, ff1_b: weights.ff1_b,
+        ff2_w: weights.ff2_w, ff2_b: weights.ff2_b,
+        ln1_w: weights.ln1_w, ln1_b: weights.ln1_b,
+        ln2_w: weights.ln2_w, ln2_b: weights.ln2_b,
+      })
     }
-    const h1 = embeddings.map((embedding, position) => layerNorm(embedding.map((value, index) => value + linear(context[position], weights.out_w, weights.out_b)[index]), weights.ln1_w, weights.ln1_b))
-    const h2 = h1.map((vector) => layerNorm(vector.map((value, index) => value + linear(geluVector(linear(vector, weights.ff1_w, weights.ff1_b)), weights.ff2_w, weights.ff2_b)[index]), weights.ln2_w, weights.ln2_b))
     const pooled = new Array(dim).fill(0)
     let count = 0
     for (let position = 0; position < this.config.max_len; position += 1) {
       if (mask[position] === 0) continue
       count += 1
-      for (let column = 0; column < dim; column += 1) pooled[column] += h2[position][column]
+      for (let column = 0; column < dim; column += 1) pooled[column] += h[position][column]
     }
     if (count > 0) for (let column = 0; column < dim; column += 1) pooled[column] /= count
     return linear(pooled, weights.head_w, weights.head_b)[0]

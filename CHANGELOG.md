@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.19.0
+
+### Added — GPU-scaled 2-layer context encoder
+- Trained a **2-layer, dim-128, 4-head** transformer context encoder on GPU with 3,000 synthetic hard-negative groups (15k query/page pairs).
+- Held-out validation: **accuracy 1.0 / pairwise ranking 1.0**.
+- Exported weights (`context-encoder-gpu2-weights.json`, 14MB) + report.
+- Extended `context-transformer.js` to multi-layer weights; **U34** verifies exact Python↔JS logit parity and ranking.
+- Harness **131/131**; boundary: synthetic data, reference model, not production.
+
 ## 0.18.0
 
 ### Added — multi-prefix vLLM KV connector benchmark

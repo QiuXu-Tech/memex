@@ -4394,6 +4394,22 @@ await test('U33', 'checkpoint runtime injects a materialized window when enabled
   })
 })
 
+
+await test('U34', 'GPU-trained 2-layer transformer encoder matches Python logits in JS', async () => {
+  const { TransformerContextEncoder } = await import('../packages/memex-core/lib/context-transformer.js')
+  const { readFileSync } = await import('node:fs')
+  const report = JSON.parse(readFileSync(new URL('../docs/assets/benchmarks/context-encoder-gpu2.json', import.meta.url), 'utf8'))
+  const encoder = TransformerContextEncoder.load(new URL('../docs/assets/benchmarks/context-encoder-gpu2-weights.json', import.meta.url).pathname)
+  assert.equal(report.architecture.layers, 2)
+  for (const reference of report.references) {
+    const score = encoder.score(reference.page, reference.query)
+    assert.ok(Math.abs(score - reference.logit) < 0.01, `GPU encoder JS parity ${score} vs ${reference.logit}`)
+  }
+  const relevant = { title: 'decision record', summary: 'billing retry policy decision', body: 'The billing retry policy decision is FACT-1; keep it.' }
+  const irrelevant = { title: 'billing retry timeout', summary: 'billing retry notes', body: 'Timeout notes, no decision.' }
+  assert.equal(encoder.rank([irrelevant, relevant], 'what did we decide about the billing retry policy?')[0].page, relevant)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()
