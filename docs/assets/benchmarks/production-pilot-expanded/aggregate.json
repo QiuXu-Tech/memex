@@ -1,0 +1,926 @@
+{
+  "kind": "exploratory-pilot-aggregate",
+  "registrationManifestSha256": "fc4bcf1c07c917d752c90547ae4dad2dd41aab19e5a67995f2eafbbf4784fa06",
+  "sourceBase": "a960d10d563e6dedf4eaaca9fd89a5413296dfae",
+  "sessions": 3,
+  "tasks": 9,
+  "attempts": 45,
+  "randomSeed": 20261031,
+  "arms": {
+    "recent_summary": {
+      "attempts": 9,
+      "statusCounts": {
+        "ok": 7,
+        "truncated": 2
+      },
+      "nonemptyAnswers": 9,
+      "answerFinishLength": 2,
+      "intakeFinishLengthCalls": 0,
+      "intakeProblemRuns": 0,
+      "modelCalls": 9,
+      "failedModelCalls": 0,
+      "gatewayUsage": {
+        "promptTokens": 27320,
+        "completionTokens": 12858,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "cachedPromptTokens": 0,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 80510,
+        "responseBytes": 41869
+      },
+      "toolCalls": {},
+      "executedToolCalls": 0,
+      "duplicateReadsAvoided": 0,
+      "duplicateWritesBlocked": 0,
+      "failedToolCalls": 0,
+      "toolRoundLimits": 0,
+      "finalizationStatusCounts": {},
+      "elapsedSecondsMedian": 25.705,
+      "elapsedSecondsMax": 42.231,
+      "parentCpuSeconds": 0.1073,
+      "childCpuUserSeconds": 0.80195,
+      "childCpuSystemSeconds": 0.18298,
+      "storeBytesTotal": 958464,
+      "machineCorrectnessScores": {
+        "gpt-6-astra": {
+          "1": 4,
+          "UNKNOWN": 3,
+          "0": 1,
+          "2": 1
+        },
+        "deepseek-flash": {
+          "1": 4,
+          "UNKNOWN": 2,
+          "2": 2,
+          "0": 1
+        },
+        "gpt-6.1-sol": {
+          "UNKNOWN": 9
+        }
+      },
+      "machineScoresByDimension": {
+        "gpt-6-astra": {
+          "correctness": {
+            "1": 4,
+            "UNKNOWN": 3,
+            "0": 1,
+            "2": 1
+          },
+          "coverage": {
+            "1": 5,
+            "UNKNOWN": 3,
+            "2": 1
+          },
+          "evidence_support": {
+            "1": 4,
+            "UNKNOWN": 3,
+            "0": 1,
+            "2": 1
+          },
+          "unsupported_claims": {
+            "3": 1,
+            "6": 1,
+            "UNKNOWN": 3,
+            "12": 1,
+            "5": 1,
+            "8": 1,
+            "0": 1
+          }
+        },
+        "deepseek-flash": {
+          "correctness": {
+            "1": 4,
+            "UNKNOWN": 2,
+            "2": 2,
+            "0": 1
+          },
+          "coverage": {
+            "1": 3,
+            "2": 3,
+            "UNKNOWN": 2,
+            "0": 1
+          },
+          "evidence_support": {
+            "1": 5,
+            "UNKNOWN": 2,
+            "2": 2
+          },
+          "unsupported_claims": {
+            "2": 2,
+            "3": 3,
+            "UNKNOWN": 2,
+            "0": 2
+          }
+        },
+        "gpt-6.1-sol": {
+          "correctness": {
+            "UNKNOWN": 9
+          },
+          "coverage": {
+            "UNKNOWN": 9
+          },
+          "evidence_support": {
+            "UNKNOWN": 9
+          },
+          "unsupported_claims": {
+            "UNKNOWN": 9
+          }
+        }
+      },
+      "bothRegisteredJudgesValid": 6,
+      "bothRegisteredNonNullCorrectness": 6,
+      "bothRegisteredSameNonNullCorrectness": 3,
+      "primaryAndReplacementValid": 0,
+      "primaryAndReplacementSameNonNullCorrectness": 0
+    },
+    "keyword_archive": {
+      "attempts": 9,
+      "statusCounts": {
+        "ok": 8,
+        "truncated_after_limit": 1
+      },
+      "nonemptyAnswers": 9,
+      "answerFinishLength": 1,
+      "intakeFinishLengthCalls": 0,
+      "intakeProblemRuns": 0,
+      "modelCalls": 50,
+      "failedModelCalls": 0,
+      "gatewayUsage": {
+        "promptTokens": 338285,
+        "completionTokens": 17687,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "cachedPromptTokens": 0,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 948931,
+        "responseBytes": 82150
+      },
+      "toolCalls": {
+        "archive_search": 61,
+        "archive_open": 18
+      },
+      "executedToolCalls": 79,
+      "duplicateReadsAvoided": 0,
+      "duplicateWritesBlocked": 0,
+      "failedToolCalls": 0,
+      "toolRoundLimits": 6,
+      "finalizationStatusCounts": {
+        "ok": 5,
+        "truncated_after_limit": 1
+      },
+      "elapsedSecondsMedian": 44.03,
+      "elapsedSecondsMax": 90.607,
+      "parentCpuSeconds": 0.34274,
+      "childCpuUserSeconds": 0.96824,
+      "childCpuSystemSeconds": 0.2127,
+      "storeBytesTotal": 958464,
+      "machineCorrectnessScores": {
+        "gpt-6-astra": {
+          "2": 2,
+          "UNKNOWN": 2,
+          "0": 3,
+          "1": 2
+        },
+        "deepseek-flash": {
+          "2": 4,
+          "1": 4,
+          "UNKNOWN": 1
+        },
+        "gpt-6.1-sol": {
+          "UNKNOWN": 9
+        }
+      },
+      "machineScoresByDimension": {
+        "gpt-6-astra": {
+          "correctness": {
+            "2": 2,
+            "UNKNOWN": 2,
+            "0": 3,
+            "1": 2
+          },
+          "coverage": {
+            "2": 4,
+            "UNKNOWN": 2,
+            "1": 3
+          },
+          "evidence_support": {
+            "1": 3,
+            "2": 1,
+            "UNKNOWN": 2,
+            "0": 3
+          },
+          "unsupported_claims": {
+            "3": 2,
+            "0": 1,
+            "UNKNOWN": 2,
+            "9": 1,
+            "14": 1,
+            "2": 1,
+            "12": 1
+          }
+        },
+        "deepseek-flash": {
+          "correctness": {
+            "2": 4,
+            "1": 4,
+            "UNKNOWN": 1
+          },
+          "coverage": {
+            "2": 5,
+            "UNKNOWN": 1,
+            "1": 3
+          },
+          "evidence_support": {
+            "2": 4,
+            "1": 4,
+            "UNKNOWN": 1
+          },
+          "unsupported_claims": {
+            "0": 5,
+            "2": 1,
+            "UNKNOWN": 1,
+            "6": 1,
+            "3": 1
+          }
+        },
+        "gpt-6.1-sol": {
+          "correctness": {
+            "UNKNOWN": 9
+          },
+          "coverage": {
+            "UNKNOWN": 9
+          },
+          "evidence_support": {
+            "UNKNOWN": 9
+          },
+          "unsupported_claims": {
+            "UNKNOWN": 9
+          }
+        }
+      },
+      "bothRegisteredJudgesValid": 7,
+      "bothRegisteredNonNullCorrectness": 7,
+      "bothRegisteredSameNonNullCorrectness": 2,
+      "primaryAndReplacementValid": 0,
+      "primaryAndReplacementSameNonNullCorrectness": 0
+    },
+    "pager_only": {
+      "attempts": 9,
+      "statusCounts": {
+        "ok": 8,
+        "truncated": 1
+      },
+      "nonemptyAnswers": 9,
+      "answerFinishLength": 1,
+      "intakeFinishLengthCalls": 0,
+      "intakeProblemRuns": 0,
+      "modelCalls": 9,
+      "failedModelCalls": 0,
+      "gatewayUsage": {
+        "promptTokens": 53754,
+        "completionTokens": 14133,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "cachedPromptTokens": 0,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 164468,
+        "responseBytes": 43579
+      },
+      "toolCalls": {},
+      "executedToolCalls": 0,
+      "duplicateReadsAvoided": 0,
+      "duplicateWritesBlocked": 0,
+      "failedToolCalls": 0,
+      "toolRoundLimits": 0,
+      "finalizationStatusCounts": {},
+      "elapsedSecondsMedian": 31.373,
+      "elapsedSecondsMax": 44.43,
+      "parentCpuSeconds": 0.07755000000000001,
+      "childCpuUserSeconds": 0.99008,
+      "childCpuSystemSeconds": 0.40841,
+      "storeBytesTotal": 1998776,
+      "machineCorrectnessScores": {
+        "gpt-6-astra": {
+          "1": 6,
+          "2": 2,
+          "UNKNOWN": 1
+        },
+        "deepseek-flash": {
+          "2": 4,
+          "1": 4,
+          "UNKNOWN": 1
+        },
+        "gpt-6.1-sol": {
+          "UNKNOWN": 9
+        }
+      },
+      "machineScoresByDimension": {
+        "gpt-6-astra": {
+          "correctness": {
+            "1": 6,
+            "2": 2,
+            "UNKNOWN": 1
+          },
+          "coverage": {
+            "2": 5,
+            "UNKNOWN": 1,
+            "1": 3
+          },
+          "evidence_support": {
+            "1": 6,
+            "2": 2,
+            "UNKNOWN": 1
+          },
+          "unsupported_claims": {
+            "5": 3,
+            "0": 2,
+            "UNKNOWN": 1,
+            "9": 1,
+            "2": 1,
+            "4": 1
+          }
+        },
+        "deepseek-flash": {
+          "correctness": {
+            "2": 4,
+            "1": 4,
+            "UNKNOWN": 1
+          },
+          "coverage": {
+            "2": 6,
+            "UNKNOWN": 1,
+            "1": 2
+          },
+          "evidence_support": {
+            "2": 4,
+            "1": 4,
+            "UNKNOWN": 1
+          },
+          "unsupported_claims": {
+            "0": 4,
+            "3": 2,
+            "UNKNOWN": 1,
+            "2": 1,
+            "1": 1
+          }
+        },
+        "gpt-6.1-sol": {
+          "correctness": {
+            "UNKNOWN": 9
+          },
+          "coverage": {
+            "UNKNOWN": 9
+          },
+          "evidence_support": {
+            "UNKNOWN": 9
+          },
+          "unsupported_claims": {
+            "UNKNOWN": 9
+          }
+        }
+      },
+      "bothRegisteredJudgesValid": 8,
+      "bothRegisteredNonNullCorrectness": 8,
+      "bothRegisteredSameNonNullCorrectness": 4,
+      "primaryAndReplacementValid": 0,
+      "primaryAndReplacementSameNonNullCorrectness": 0
+    },
+    "pager_tools_readonly": {
+      "attempts": 9,
+      "statusCounts": {
+        "ok": 9
+      },
+      "nonemptyAnswers": 9,
+      "answerFinishLength": 0,
+      "intakeFinishLengthCalls": 0,
+      "intakeProblemRuns": 0,
+      "modelCalls": 36,
+      "failedModelCalls": 0,
+      "gatewayUsage": {
+        "promptTokens": 366408,
+        "completionTokens": 16936,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "cachedPromptTokens": 0,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 1070972,
+        "responseBytes": 67777
+      },
+      "toolCalls": {
+        "memory_search": 38,
+        "memory_open": 10
+      },
+      "executedToolCalls": 48,
+      "duplicateReadsAvoided": 0,
+      "duplicateWritesBlocked": 0,
+      "failedToolCalls": 0,
+      "toolRoundLimits": 3,
+      "finalizationStatusCounts": {
+        "ok": 3
+      },
+      "elapsedSecondsMedian": 46.788,
+      "elapsedSecondsMax": 79.318,
+      "parentCpuSeconds": 0.28062,
+      "childCpuUserSeconds": 1.2454399999999999,
+      "childCpuSystemSeconds": 0.52168,
+      "storeBytesTotal": 1998776,
+      "machineCorrectnessScores": {
+        "gpt-6-astra": {
+          "UNKNOWN": 2,
+          "1": 6,
+          "2": 1
+        },
+        "deepseek-flash": {
+          "2": 3,
+          "1": 5,
+          "0": 1
+        },
+        "gpt-6.1-sol": {
+          "UNKNOWN": 9
+        }
+      },
+      "machineScoresByDimension": {
+        "gpt-6-astra": {
+          "correctness": {
+            "UNKNOWN": 2,
+            "1": 6,
+            "2": 1
+          },
+          "coverage": {
+            "UNKNOWN": 1,
+            "2": 4,
+            "1": 4
+          },
+          "evidence_support": {
+            "UNKNOWN": 1,
+            "1": 7,
+            "0": 1
+          },
+          "unsupported_claims": {
+            "UNKNOWN": 1,
+            "4": 2,
+            "3": 2,
+            "12": 1,
+            "8": 1,
+            "1": 1,
+            "9": 1
+          }
+        },
+        "deepseek-flash": {
+          "correctness": {
+            "2": 3,
+            "1": 5,
+            "0": 1
+          },
+          "coverage": {
+            "2": 5,
+            "1": 3,
+            "0": 1
+          },
+          "evidence_support": {
+            "1": 5,
+            "2": 4
+          },
+          "unsupported_claims": {
+            "2": 3,
+            "0": 4,
+            "3": 1,
+            "6": 1
+          }
+        },
+        "gpt-6.1-sol": {
+          "correctness": {
+            "UNKNOWN": 9
+          },
+          "coverage": {
+            "UNKNOWN": 9
+          },
+          "evidence_support": {
+            "UNKNOWN": 9
+          },
+          "unsupported_claims": {
+            "UNKNOWN": 9
+          }
+        }
+      },
+      "bothRegisteredJudgesValid": 8,
+      "bothRegisteredNonNullCorrectness": 7,
+      "bothRegisteredSameNonNullCorrectness": 6,
+      "primaryAndReplacementValid": 0,
+      "primaryAndReplacementSameNonNullCorrectness": 0
+    },
+    "pager_tools_write": {
+      "attempts": 9,
+      "statusCounts": {
+        "ok": 9
+      },
+      "nonemptyAnswers": 9,
+      "answerFinishLength": 0,
+      "intakeFinishLengthCalls": 21,
+      "intakeProblemRuns": 6,
+      "modelCalls": 121,
+      "failedModelCalls": 0,
+      "gatewayUsage": {
+        "promptTokens": 624649,
+        "completionTokens": 59710,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "cachedPromptTokens": 0,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 1816364,
+        "responseBytes": 222029
+      },
+      "toolCalls": {
+        "memory_search": 109,
+        "memory_write": 15,
+        "memory_open": 17
+      },
+      "executedToolCalls": 141,
+      "duplicateReadsAvoided": 0,
+      "duplicateWritesBlocked": 0,
+      "failedToolCalls": 0,
+      "toolRoundLimits": 8,
+      "finalizationStatusCounts": {
+        "ok": 7,
+        "truncated_after_limit": 1
+      },
+      "elapsedSecondsMedian": 146.385,
+      "elapsedSecondsMax": 196.663,
+      "parentCpuSeconds": 0.73108,
+      "childCpuUserSeconds": 1.25051,
+      "childCpuSystemSeconds": 0.32261,
+      "storeBytesTotal": 1036573,
+      "machineCorrectnessScores": {
+        "gpt-6-astra": {
+          "2": 2,
+          "1": 3,
+          "0": 3,
+          "UNKNOWN": 1
+        },
+        "deepseek-flash": {
+          "1": 6,
+          "2": 3
+        },
+        "gpt-6.1-sol": {
+          "UNKNOWN": 9
+        }
+      },
+      "machineScoresByDimension": {
+        "gpt-6-astra": {
+          "correctness": {
+            "2": 2,
+            "1": 3,
+            "0": 3,
+            "UNKNOWN": 1
+          },
+          "coverage": {
+            "2": 3,
+            "1": 6
+          },
+          "evidence_support": {
+            "1": 6,
+            "0": 2,
+            "2": 1
+          },
+          "unsupported_claims": {
+            "4": 1,
+            "2": 3,
+            "9": 1,
+            "12": 1,
+            "5": 1,
+            "0": 1,
+            "11": 1
+          }
+        },
+        "deepseek-flash": {
+          "correctness": {
+            "1": 6,
+            "2": 3
+          },
+          "coverage": {
+            "1": 4,
+            "2": 5
+          },
+          "evidence_support": {
+            "1": 7,
+            "2": 2
+          },
+          "unsupported_claims": {
+            "1": 3,
+            "2": 1,
+            "3": 3,
+            "0": 2
+          }
+        },
+        "gpt-6.1-sol": {
+          "correctness": {
+            "UNKNOWN": 9
+          },
+          "coverage": {
+            "UNKNOWN": 9
+          },
+          "evidence_support": {
+            "UNKNOWN": 9
+          },
+          "unsupported_claims": {
+            "UNKNOWN": 9
+          }
+        }
+      },
+      "bothRegisteredJudgesValid": 9,
+      "bothRegisteredNonNullCorrectness": 8,
+      "bothRegisteredSameNonNullCorrectness": 2,
+      "primaryAndReplacementValid": 0,
+      "primaryAndReplacementSameNonNullCorrectness": 0
+    }
+  },
+  "autonomyObserved": [
+    {
+      "trial": "pilot-03",
+      "preQuestionWrites": 1,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 0,
+      "answerSearchCalls": 3,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 1,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": true,
+      "openedOwnWrittenRecord": true,
+      "citedOpenedOwnRecord": true
+    },
+    {
+      "trial": "pilot-09",
+      "preQuestionWrites": 0,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 1,
+      "answerSearchCalls": 4,
+      "searchReturnedOwnWrittenRecord": false,
+      "answerOpens": 0,
+      "pagerIncludedOwnWrittenRecord": false,
+      "citedPagerOwnRecord": false,
+      "openedOwnWrittenRecord": false,
+      "citedOpenedOwnRecord": false
+    },
+    {
+      "trial": "pilot-11",
+      "preQuestionWrites": 3,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 0,
+      "answerSearchCalls": 4,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 2,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": true,
+      "openedOwnWrittenRecord": true,
+      "citedOpenedOwnRecord": true
+    },
+    {
+      "trial": "pilot-19",
+      "preQuestionWrites": 2,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 0,
+      "answerSearchCalls": 4,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 0,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": false,
+      "openedOwnWrittenRecord": false,
+      "citedOpenedOwnRecord": false
+    },
+    {
+      "trial": "pilot-21",
+      "preQuestionWrites": 1,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 0,
+      "answerSearchCalls": 2,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 0,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": false,
+      "openedOwnWrittenRecord": false,
+      "citedOpenedOwnRecord": false
+    },
+    {
+      "trial": "pilot-27",
+      "preQuestionWrites": 1,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 0,
+      "answerSearchCalls": 2,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 0,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": true,
+      "openedOwnWrittenRecord": false,
+      "citedOpenedOwnRecord": false
+    },
+    {
+      "trial": "pilot-35",
+      "preQuestionWrites": 1,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 0,
+      "answerSearchCalls": 3,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 3,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": true,
+      "openedOwnWrittenRecord": true,
+      "citedOpenedOwnRecord": true
+    },
+    {
+      "trial": "pilot-37",
+      "preQuestionWrites": 2,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 0,
+      "answerSearchCalls": 4,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 0,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": false,
+      "openedOwnWrittenRecord": false,
+      "citedOpenedOwnRecord": false
+    },
+    {
+      "trial": "pilot-42",
+      "preQuestionWrites": 2,
+      "writeBodiesExactlyPresentInEarlierArchive": 0,
+      "otherWriteFidelity": "UNKNOWN",
+      "answerWrites": 1,
+      "answerSearchCalls": 2,
+      "searchReturnedOwnWrittenRecord": true,
+      "answerOpens": 0,
+      "pagerIncludedOwnWrittenRecord": true,
+      "citedPagerOwnRecord": false,
+      "openedOwnWrittenRecord": false,
+      "citedOpenedOwnRecord": false
+    }
+  ],
+  "reviews": {
+    "plannedRegisteredReviews": 82,
+    "plannedReplacementReviews": 0,
+    "registeredReceived": 82,
+    "replacementReceived": 0,
+    "received": 82,
+    "valid": 79,
+    "validByModel": {
+      "deepseek-flash": 41,
+      "gpt-6-astra": 38
+    },
+    "problems": {
+      "invalid_json": 3
+    },
+    "problemsByModel": {
+      "gpt-6-astra": {
+        "invalid_json": 3
+      }
+    },
+    "usageByModel": {
+      "deepseek-flash": {
+        "calls": 41,
+        "promptTokens": 289484,
+        "completionTokens": 9667,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "cachedPromptTokens": 183296,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 1098589,
+        "responseBytes": 59438
+      },
+      "gpt-6-astra": {
+        "calls": 41,
+        "promptTokens": 474504,
+        "completionTokens": 17623,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "cachedPromptTokens": 64512,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 1097072,
+        "responseBytes": 46357
+      }
+    },
+    "humanLabels": 0
+  },
+  "billing": {
+    "actualInvoice": "UNKNOWN",
+    "historicalIngestion": "UNKNOWN",
+    "providerDiscounts": "UNKNOWN",
+    "localComputePricing": "UNKNOWN",
+    "storagePricing": "UNKNOWN",
+    "humanReviewCost": "UNKNOWN",
+    "costPerAttempt": "UNKNOWN",
+    "costPerVerifiedSuccess": "UNKNOWN"
+  },
+  "limitations": [
+    "prior sessions and previously examined questions are not held-out or representative",
+    "history truncated; actual task execution and future actions are not reproduced",
+    "machine-written memory begins empty; readonly arms index the same historical chat",
+    "human labels and actual invoices unavailable",
+    "no claims about significance, production improvement, or cost savings",
+    "reviewer references clipped to 1000 characters per earlier message",
+    "two model judges are not independent human annotators",
+    "model scores are not factual ground truth",
+    "concurrent task execution means elapsed times are not low-load benchmarks"
+  ],
+  "autonomyMachineAudit": {
+    "plannedInitial": 18,
+    "initialReceived": 18,
+    "replacementReceived": 0,
+    "received": 18,
+    "valid": 8,
+    "validByModel": {
+      "deepseek-flash": 6,
+      "gpt-6-astra": 2
+    },
+    "problems": {
+      "source_ids": 9,
+      "error": 1
+    },
+    "scoresByModel": {
+      "gpt-6-astra": {
+        "memory_needed": {
+          "no": 2
+        },
+        "writes_faithful": {
+          "unknown": 1,
+          "no": 1
+        },
+        "answer_used_prior_write": {
+          "no": 2
+        }
+      },
+      "deepseek-flash": {
+        "memory_needed": {
+          "no": 3,
+          "yes": 3
+        },
+        "writes_faithful": {
+          "yes": 6
+        },
+        "answer_used_prior_write": {
+          "yes": 4,
+          "no": 2
+        }
+      },
+      "gpt-6.1-sol": {
+        "memory_needed": {},
+        "writes_faithful": {},
+        "answer_used_prior_write": {}
+      }
+    },
+    "usageByModel": {
+      "deepseek-flash": {
+        "calls": 9,
+        "promptTokens": 95455,
+        "completionTokens": 2320,
+        "cachedPromptTokens": 18432,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "missingPromptFields": 0,
+        "missingCompletionFields": 0,
+        "callsWithoutUsage": 0,
+        "requestBytes": 360214,
+        "responseBytes": 13468
+      },
+      "gpt-6-astra": {
+        "calls": 9,
+        "promptTokens": 123571,
+        "completionTokens": 2147,
+        "cachedPromptTokens": 0,
+        "cacheCreation5mTokens": 0,
+        "cacheCreation1hTokens": 0,
+        "missingPromptFields": 1,
+        "missingCompletionFields": 1,
+        "callsWithoutUsage": 1,
+        "requestBytes": 359881,
+        "responseBytes": 10612
+      }
+    },
+    "limitations": [
+      "planned and unblinded",
+      "model opinions, not human labels or proof of fidelity",
+      "same historical tasks and clipped evidence"
+    ]
+  }
+}

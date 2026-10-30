@@ -31,6 +31,8 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
 - [Synonym and archive excerpt retest](pager-semantic-evaluation.html) — paired seeded diagnostics and historical replay.
+- [Expanded retrospective validation pilot](production-pilot-expanded.html) — bounded tools, AI blind review, autonomous-memory observations and cost gaps.
+- [Expanded pilot registration](production-pilot-expanded-registration.html) — frozen pre-outcome design and sample limitations.
 - [Exploratory production-validation pilot](production-pilot.html) — randomized retrospective replay, AI review, observed tools and incomplete cost ledger.
 - [Pilot registration](production-pilot-registration.html) — frozen design, model-review scope and later parsing correction.
 - [Production validation protocol](production-validation-plan.html) — proposed evidence for correctness, cost and autonomous memory claims.

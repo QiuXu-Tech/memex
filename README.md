@@ -84,7 +84,15 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
-## Exploratory production-validation pilot (2026-10-31)
+## Expanded retrospective validation pilot (2026-10-31)
+
+A preregistered five-condition replay of nine historical questions from three correlated sessions produced **41/45 complete answers** and four truncated answers. After tool budgets were exhausted, the pilot harness produced complete fallback answers in 8/9 affected answer phases. In the nine write-enabled runs, the agent wrote before the question in eight and searched, opened and cited its own earlier write in three. These are replay observations, not verified production success or proof of faithful memory management.
+
+Two blinded AI reviewers produced **79/82** format- and source-ID-valid ratings; DeepSeek returned 41/41 valid ratings after its thinking mode was disabled. Their correctness scores agreed on **17/36** answers for which both gave a non-null rating. The separately planned unblinded autonomy audit had only **8/18** valid results. The gateway reported **2,409,708 prompt / 153,749 completion tokens** across this follow-up's trials, reviews, audits and six diagnostic calls; one failed call lacked usage and actual costs remain **UNKNOWN**. Sample reuse, clipped evidence and AI review preclude claims of a production accuracy gain or cost savings. [Methods, full results, ledger and limitations](docs/production-pilot-expanded.md).
+
+![Expanded pilot reported usage and observed memory actions](docs/assets/benchmarks/production-pilot-expanded-usage.png)
+
+## Earlier exploratory production-validation pilot (2026-10-31)
 
 A preregistered, isolated five-condition replay used four actual historical questions from two sessions, including Memex-related work. **17/20 runs** produced nonempty answers; three reached the tool-round limit. In four write-enabled runs, the agent wrote before the question in three, and in one it later searched, opened and cited its own write. This is a mechanical observation, not verified fidelity or production success.
 

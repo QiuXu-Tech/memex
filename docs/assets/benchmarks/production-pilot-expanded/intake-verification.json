@@ -1,0 +1,52 @@
+{
+  "runs": [
+    {
+      "trial": "pilot-37",
+      "intakeRequestsChecked": 14,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-21",
+      "intakeRequestsChecked": 8,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-27",
+      "intakeRequestsChecked": 9,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-11",
+      "intakeRequestsChecked": 14,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-09",
+      "intakeRequestsChecked": 6,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-42",
+      "intakeRequestsChecked": 9,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-03",
+      "intakeRequestsChecked": 8,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-19",
+      "intakeRequestsChecked": 12,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-35",
+      "intakeRequestsChecked": 14,
+      "exactFutureQuestionMatches": 0
+    }
+  ],
+  "intakeRequestsChecked": 94,
+  "exactFutureQuestionMatches": 0,
+  "note": "Exact-string check only; it does not establish absence of semantic leakage."
+}

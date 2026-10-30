@@ -1,0 +1,10 @@
+#!/usr/bin/env python3
+"""Compare matched previously used replay questions without publishing them."""
+import argparse,collections,json,pathlib
+p=argparse.ArgumentParser();p.add_argument('--old-frozen',required=True);p.add_argument('--old-trials',required=True);p.add_argument('--new-frozen',required=True);p.add_argument('--new-trials',required=True);p.add_argument('--out',required=True);a=p.parse_args();target=pathlib.Path(a.out)
+if target.exists():raise SystemExit('refusing to overwrite overlap audit')
+def read(frozen,trials):
+ data=json.loads((pathlib.Path(frozen)/'episodes.json').read_text());source={x['project']:x['sha256'] for x in data['sources']};episodes={x['id']:(source[x['project']],x['querySeq']) for x in data['episodes']};runs={(*episodes[r['episode']],r['arm']):r for f in pathlib.Path(trials).glob('pilot-*.json') for r in [json.loads(f.read_text())]};return set(episodes.values()),runs
+old,orr=read(a.old_frozen,a.old_trials);new,nrr=read(a.new_frozen,a.new_trials);matched=old&new;pairkeys=orr.keys()&nrr.keys();transitions=collections.Counter(f"{orr[k]['status']} -> {nrr[k]['status']}" for k in pairkeys);limits=[k for k in pairkeys if orr[k]['status']=='tool_round_limit'];after=collections.Counter(nrr[k]['status'] for k in limits)
+result={'overlappingQuestions':len(matched),'matchedQuestionConditionPairs':len(pairkeys),'statusTransitions':dict(transitions),'priorToolLimitRuns':len(limits),'newStatusForPriorToolLimitRuns':dict(after),'note':'Descriptive repeated historical questions with different model responses, not a randomized pre/post causal estimate.'}
+target.parent.mkdir(parents=True,exist_ok=True);target.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

@@ -1,0 +1,22 @@
+#!/usr/bin/env python3
+"""Summarize every captured model call without publishing source content."""
+import argparse,collections,json,pathlib
+p=argparse.ArgumentParser();p.add_argument('--trials',required=True);p.add_argument('--reviews',required=True);p.add_argument('--autonomy',required=True);p.add_argument('--synthetic-probes',required=True);p.add_argument('--real-probes',required=True);p.add_argument('--out',required=True);a=p.parse_args();out=pathlib.Path(a.out)
+if out.exists():raise SystemExit('refusing to overwrite ledger')
+loads=lambda path:[json.loads(x) for x in pathlib.Path(path).read_text().splitlines()]
+rows={}
+rows['answerAndIntake']=[e for f in sorted(pathlib.Path(a.trials).glob('pilot-*.json')) for e in json.loads(f.read_text())['trace'] if e['kind']=='model']
+rows['blindedReviews']=loads(pathlib.Path(a.reviews)/'judgements.jsonl')
+rows['unblindedAutonomyAudits']=loads(pathlib.Path(a.autonomy)/'autonomy-judgements.jsonl')
+rows['syntheticDevelopmentProbes']=loads(a.synthetic_probes);rows['priorRealDevelopmentProbes']=loads(a.real_probes)
+result={}
+for category,entries in rows.items():
+ c=collections.Counter();statuses=collections.Counter();models=collections.Counter();semantics=collections.Counter();sources=collections.Counter()
+ for entry in entries:
+  u=entry.get('usage') or {};detail=u.get('prompt_tokens_details') or {};c['calls']+=1;c['promptTokensReported']+=u.get('prompt_tokens') or 0;c['completionTokensReported']+=u.get('completion_tokens') or 0;c['cachedPromptTokensReported']+=detail.get('cached_tokens') or 0;c['cacheCreation5mTokensReported']+=u.get('claude_cache_creation_5_m_tokens') or 0;c['cacheCreation1hTokensReported']+=u.get('claude_cache_creation_1_h_tokens') or 0
+  output_detail=u.get('completion_tokens_details') or {};c['reasoningTokensReported']+=output_detail.get('reasoning_tokens') or 0;c['callsMissingReasoningTokens']+=int(output_detail.get('reasoning_tokens') is None);c['totalTokensReported']+=u.get('total_tokens') or 0;c['callsMissingTotalTokens']+=int(u.get('total_tokens') is None);c['inputAliasTokensReported']+=u.get('input_tokens') or 0;c['outputAliasTokensReported']+=u.get('output_tokens') or 0;semantics[str(u.get('usage_semantic') or 'UNKNOWN')]+=1;sources[str(u.get('usage_source') or 'UNKNOWN')]+=1
+  c['callsMissingPromptTokens']+=int(u.get('prompt_tokens') is None);c['callsMissingCompletionTokens']+=int(u.get('completion_tokens') is None);c['callsMissingCachedTokens']+=int(detail.get('cached_tokens') is None);c['requestBytesReported']+=entry.get('requestBytes') or 0;c['responseBytesReported']+=entry.get('responseBytes') or 0;c['callsMissingRequestBytes']+=int(entry.get('requestBytes') is None);c['callsMissingResponseBytes']+=int(entry.get('responseBytes') is None)
+  statuses[str(entry.get('status','UNKNOWN'))]+=1;models[str(entry.get('responseModel') or 'UNKNOWN')]+=1
+ result[category]={**c,'statuses':dict(statuses),'responseModels':dict(models),'usageSemantics':dict(semantics),'usageSources':dict(sources)}
+result={'categories':result,'totals':{field:sum(c.get(field,0) for c in result.values()) for field in ('calls','promptTokensReported','completionTokensReported','cachedPromptTokensReported','reasoningTokensReported','callsMissingReasoningTokens','totalTokensReported','callsMissingTotalTokens','inputAliasTokensReported','outputAliasTokensReported','cacheCreation5mTokensReported','cacheCreation1hTokensReported','callsMissingPromptTokens','callsMissingCompletionTokens','callsMissingCachedTokens','requestBytesReported','responseBytesReported','callsMissingRequestBytes','callsMissingResponseBytes')},'billing':{'gatewayInvoice':'UNKNOWN','providerPricesAndDiscounts':'UNKNOWN','historicalIngestion':'UNKNOWN','engineeringLabor':'UNKNOWN','humanReview':'UNKNOWN','localComputeStorageNetworkPricing':'UNKNOWN','costPerTask':'UNKNOWN','costPerVerifiedSuccess':'UNKNOWN'},'notes':['Cached prompt tokens are part of prompt tokens and must not be added again; reasoning tokens are completion-token details. Input/output aliases may duplicate prompt/completion.','Reported tokens and bytes are not an invoice; failed calls can have missing usage.','Six development probes are separate from registered trial and review scores.']}
+out.parent.mkdir(parents=True,exist_ok=True);out.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result['totals']))

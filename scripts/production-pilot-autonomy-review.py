@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Post-hoc unblinded machine audit of the write-enabled traces, not human review."""
+"""Unblinded machine audit of write-enabled traces; preregistration depends on the manifest."""
 from pilot_review import review_request, review_status
 import argparse,concurrent.futures,json,os,pathlib,re,subprocess,threading,time,urllib.error,urllib.request
 p=argparse.ArgumentParser();p.add_argument('--frozen',required=True);p.add_argument('--trials',required=True);p.add_argument('--out',required=True);p.add_argument('--reviewers',nargs='+',default=['gpt-6-astra','deepseek-flash']);a=p.parse_args();f=pathlib.Path(a.frozen);trials=pathlib.Path(a.trials);out=pathlib.Path(a.out)

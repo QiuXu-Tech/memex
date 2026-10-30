@@ -5,7 +5,13 @@ layout: default
 
 # Benchmark report
 
-## 2026-10-31 exploratory production-validation pilot
+## 2026-10-31 expanded retrospective validation pilot
+
+Nine historical questions from three correlated sessions were replayed in five randomized conditions. **41/45** answers were complete; the bounded tool-loop fallback produced complete answers in **8/9** answer phases that reached the cap. Two blinded AI reviewers returned **79/82** valid ratings, with agreement on **17/36** answers where both correctness scores were non-null. Eight of nine write-enabled runs wrote before the question; three later searched, opened and cited their own write. The **8/18** valid unblinded autonomy audits and incomplete cost data do not prove faithful production memory management or savings. Actual invoice and complete costs are **UNKNOWN**. [Full methods, results and ledger](production-pilot-expanded.md).
+
+![Expanded pilot AI reviewer ratings](assets/benchmarks/production-pilot-expanded-machine-review.png)
+
+## 2026-10-31 earlier exploratory production-validation pilot
 
 A five-condition randomized replay of four historical questions from two sessions produced **17/20 nonempty answers**; three runs reached the tool-round limit. In the four write-enabled runs, three wrote before the question and one later searched, opened and cited its own earlier write. This observes a tool chain, not verified correctness or real production autonomy. AI was used instead of human reviewers; only **29/51** blind-machine responses passed the defined format and source-ID checks, and one reviewer was added post hoc. Full invoiced costs are **UNKNOWN**. The small retrospective sample does not demonstrate production accuracy or savings. [Methods, ledger, outcomes and limitations](production-pilot.md).
 

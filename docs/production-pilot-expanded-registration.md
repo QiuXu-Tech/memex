@@ -1,3 +1,8 @@
+---
+title: Expanded retrospective pilot registration
+layout: default
+---
+
 # Expanded retrospective pilot: registration
 
 Registered before the expanded trial and reviews. The frozen, private assignment manifest has SHA-256 `fc4bcf1c07c917d752c90547ae4dad2dd41aab19e5a67995f2eafbbf4784fa06`; runner and scoring code are pinned to commit `a960d10d563e6dedf4eaaca9fd89a5413296dfae`. Private source text and the assignment key are not published.

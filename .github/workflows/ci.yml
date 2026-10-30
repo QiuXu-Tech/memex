@@ -22,6 +22,15 @@ jobs:
         run: node --import ./test/register.mjs ./test/run.mjs
       - name: SQLite concurrency and recovery
         run: node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs
+      - name: Pilot loop, review and accounting regressions
+        run: |
+          python3 scripts/test-pilot-loop.py
+          python3 scripts/test-pilot-review.py
+          python3 scripts/test-pilot-expanded-ledger.py
+          python3 scripts/test-production-pilot-worker.py
+          python3 scripts/test-production-pilot-analyze.py
+          python3 scripts/test-pilot-autonomy-analyze.py
+          if command -v zstd >/dev/null; then python3 scripts/test-pilot-codex-extract.py; else echo "SKIP Codex extraction test: zstd unavailable"; fi
       - name: Recall evaluation (synthetic)
         run: node --import ./test/register.mjs ./scripts/recall-eval.mjs --suite synthetic --threshold 0.9
       - name: Scale smoke (1k records)
