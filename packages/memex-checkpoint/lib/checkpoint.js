@@ -97,6 +97,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     autoArchive: config.autoArchive ?? true,
     materializer: config.materializer ?? 'off',
     materializerMaxTokens: Number.isSafeInteger(config.materializerMaxTokens) ? config.materializerMaxTokens : 1800,
+    materializerPageTokenCap: Number.isSafeInteger(config.materializerPageTokenCap) ? config.materializerPageTokenCap : 0,
   }
   /** sessionId -> Map<seq, event>, bounded live fallback. */
   const buffers = new Map()
@@ -369,7 +370,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
   }
 
   /** Build a materialized resident window message, or undefined. */
-  async function materializedMessage(session, workspaceKey, levels) {
+  async function materializedMessage(session, workspaceKey, levels, query) {
     if (policyConfig.materializer === 'off') return undefined
     if (typeof memory.materializeContext !== 'function') return undefined
     const filter = { workspaceKey, scopes: memoryVisibleScopes(levels), sessionId: session.id }
@@ -377,6 +378,8 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
       ...filter,
       budgetTokens: policyConfig.materializerMaxTokens,
       variant: policyConfig.materializer,
+      query,
+      pageTokenCap: policyConfig.materializerPageTokenCap,
     })
     if (result === undefined || typeof result.text !== 'string' || result.text.length === 0) return undefined
     const digest = createHash('sha256').update(result.text).digest('hex')
@@ -524,9 +527,10 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
         additions.push(createMemoryMessage('checkpoint', clip(text, 1600), { recordIds: pending.map((receipt) => receipt.recordId) }))
       }
 
+      const direct = [...decision.messages].reverse().find((message) => message.role === 'user' && (message.source?.kind === 'user' || message.source?.kind === 'user-rpc'))
       let materialized = false
       if (policyConfig.materializer !== 'off') {
-        const window = await materializedMessage(session, workspaceKey, levels)
+        const window = await materializedMessage(session, workspaceKey, levels, direct === undefined ? undefined : messageText(direct))
         if (window !== undefined) {
           additions.push(window)
           materialized = true
@@ -545,7 +549,6 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
       const capacity = await capacityNotice(session, workspaceKey, levels)
       if (capacity !== undefined) additions.push(capacity)
 
-      const direct = [...decision.messages].reverse().find((message) => message.role === 'user' && (message.source?.kind === 'user' || message.source?.kind === 'user-rpc'))
       if (!materialized && direct !== undefined) {
         const recall = await recallMessage(session, workspaceKey, messageText(direct), levels)
         if (recall !== undefined) additions.push(recall)

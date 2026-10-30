@@ -30,6 +30,9 @@ const byId = (rows) => {
  * @param {object} [input.learnedRerank] - Optional learned reranker weights.
  * @param {string[]} [input.alwaysIncludeIds] - Core-fact records always included.
  * @param {number} [input.learnedPageMaxTokens] - Skip learned candidates above this token size.
+ * @param {number} [input.pageTokenCap] - Excerpt oversized page bodies before selection.
+ * @param {Function} [input.tokenCounter] - Count tokens in rendered text.
+ * @param {string} [input.tokenizerName] - Name of the supplied token counter.
  * @param {boolean} [input.enforceTotalBudget] - Enforce total returned tokens <= budget.
  * @param {boolean} [input.diversify] - Skip near-duplicate learned candidates.
  * @param {boolean} [input.includeCanonicalEvents=true]
@@ -79,16 +82,21 @@ export function materializeStoreContext(input = {}) {
       sources.push({ recordId: row.id, source: 'canonical', events: canonical.length })
       for (const page of eventsToMaterializerPages(canonical)) pages.push({ ...page, id: `${row.id}:${page.id}`, recordId: row.id, pinned: pinnedIds.has(row.id) })
     } else {
-      const rawBody = String(row.body ?? row.summary ?? '')
+      const record = typeof store.get === 'function' ? store.get(row.id) : row
+      if (record === undefined) continue
+      if (row.workspaceKey !== undefined && record.workspaceKey !== row.workspaceKey) continue
+      if (row.scope !== undefined && record.scope !== row.scope) continue
+      if (row.sessionId !== undefined && record.sessionId !== row.sessionId) continue
+      const rawBody = String(record.body ?? record.summary ?? '')
       const estimated = Number.isFinite(row.tokens) ? Number(row.tokens) : Math.ceil(rawBody.length / 4)
       const isArchive = estimated > ARCHIVE_CARD_TOKENS && (row.kind === 'episode' || rawBody.includes('<compacted-summary>') || /^L1 归档/.test(String(row.title ?? '')))
-      sources.push({ recordId: row.id, source: isArchive ? 'record-card' : 'record', events: 0 })
+      sources.push({ recordId: row.id, source: isArchive ? 'record-card' : record.body === undefined ? 'record-summary' : 'record', events: 0 })
       pages.push({
         id: row.id,
         title: isArchive ? `[card] ${row.title ?? row.id}` : row.title,
         summary: row.summary,
         useWhen: row.useWhen,
-        body: isArchive ? archiveCard(row) : rawBody,
+        body: isArchive ? archiveCard({ ...row, body: rawBody }) : rawBody,
         card: isArchive,
         sourceId: isArchive ? row.id : undefined,
         sequence: Number(row.createdAt ?? 0),
@@ -109,6 +117,9 @@ export function materializeStoreContext(input = {}) {
     learnedTopK: input.learnedTopK,
     alwaysIncludeIds: input.alwaysIncludeIds,
     learnedPageMaxTokens: input.learnedPageMaxTokens,
+    pageTokenCap: input.pageTokenCap,
+    tokenCounter: input.tokenCounter,
+    tokenizerName: input.tokenizerName,
     enforceTotalBudget: input.enforceTotalBudget,
     diversify: input.diversify,
   })

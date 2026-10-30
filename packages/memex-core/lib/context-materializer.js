@@ -175,6 +175,7 @@ export function materializeContext(input = {}) {
     return {
       ...page,
       body: excerpt,
+      tokenCount: undefined,
       truncated: true,
       sourceId: source,
       excerptStart: start,

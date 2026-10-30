@@ -43,7 +43,7 @@
  */
 
 import assert from 'node:assert/strict'
-import { existsSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, unlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -1293,7 +1293,7 @@ await test('K2', 'checkpoint row alone registers the policy listeners and no sur
     assert.deepEqual(ctx.sections, [], 'checkpoint row must register no prompt sections')
     assert.equal(checkpointRow.name, 'memory-checkpoint')
     assert.deepEqual(checkpointRow.inject, ['memory'])
-    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'materializer', 'materializerMaxTokens', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
+    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'materializer', 'materializerMaxTokens', 'materializerPageTokenCap', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
   } finally {
     await ctx.dispose()
   }
@@ -4628,6 +4628,83 @@ await test('U51', 'context pager projects oversized L1 rows into source-marked c
   assert.ok(result.includedIds.includes('l1_huge'))
   assert.ok(result.text.includes('archive card; source: l1_huge'))
   assert.ok(result.text.length < huge.length)
+})
+
+await test('U52', 'real store pager reads hot and cold bodies and forwards excerpt and tokenizer options', async () => {
+  const { AgentMemory } = await import('../packages/memex-core/lib/engine.js')
+  const root = makeRoot('u52')
+  const memory = new AgentMemory({ root, workspaceKey: 'wk-u52', sessionId: 'sess-u52', levels: ['l3'] })
+  try {
+    const hot = memory.store.write({ kind: 'fact', title: 'hot', summary: 'summary only', body: 'HOT_SECRET_FACT', workspaceKey: 'wk-u52', scope: 'workspace' })
+    const coldBody = 'filler '.repeat(1000) + 'COLD_TARGET_FACT evidence' + 'tail '.repeat(500)
+    const cold = memory.store.write({ kind: 'fact', title: 'cold', summary: 'other summary', body: coldBody, workspaceKey: 'wk-u52', scope: 'workspace', tokens: 3000 })
+    memory.store.archiveCold(cold.id)
+    memory.store.write({ kind: 'fact', title: 'other workspace', body: 'DO_NOT_INCLUDE', workspaceKey: 'another-workspace', scope: 'workspace' })
+    const out = memory.materializeContext({ scopes: ['workspace'], budgetTokens: 1000, query: 'COLD_TARGET_FACT', pageTokenCap: 80, tokenCounter: text => text.length, tokenizerName: 'characters' })
+    assert.ok(out.includedIds.includes(hot.id) && out.includedIds.includes(cold.id))
+    assertIncludes(out.text, 'HOT_SECRET_FACT')
+    assertIncludes(out.text, 'COLD_TARGET_FACT')
+    assert.ok(out.truncatedIds.includes(cold.id))
+    assert.equal(out.tokens, out.text.length)
+    assert.equal(out.budgetBreakdown.tokenizer, 'characters')
+    assert.ok(!out.text.includes('DO_NOT_INCLUDE'))
+    assert.equal(memory.store.get(cold.id).body, coldBody)
+  } finally {
+    memory.close()
+  }
+})
+
+await test('U53', 'checkpoint passes query and excerpt cap through local service and pager', async () => {
+  await withInstance('u53', { checkpoint: { materializer: 'timeline-exact', materializerMaxTokens: 500, materializerPageTokenCap: 80 }, ctx: { services: { llm: undefined } } }, async ({ instance, ctx }) => {
+    const session = createSession({ id: 'sess-u53', cwd: '/tmp/ws-u53' })
+    await instance.enableLevel(session.id, 'l3')
+    const body = 'filler '.repeat(1000) + 'CHECKPOINT_TARGET unique fact' + 'tail '.repeat(400)
+    const stored = await instance.write({ kind: 'fact', title: 'archive note', summary: 'not the answer', body, workspaceKey: workspaceKeyFor(session), scope: 'workspace' })
+    const decision = createPreStepDecision(session, 'CHECKPOINT_TARGET')
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(decision))
+    const message = result.messages.find(item => item.source?.kind === 'memory-recall' && item.source?.form === 'materialized-context')
+    assert.ok(message, 'materialized window must be injected')
+    const text = message.content.filter(block => block.type === 'text').map(block => block.text).join('\n')
+    assertIncludes(text, 'CHECKPOINT_TARGET')
+    assertIncludes(text, `truncated excerpt; source: ${stored.id}`)
+    assert.equal((await instance.get(stored.id)).body, body)
+  })
+})
+
+await test('U54', 'excerpted pages use excerpt cost for learned candidate limits', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [
+    { id: 'other', title: 'unrelated', body: 'ordinary text', sequence: 1 },
+    { id: 'target', title: 'target topic', body: 'target topic ' + 'x'.repeat(5000), tokenCount: 5000, sequence: 2 },
+  ]
+  const weights = { weights: [0, 0, 10, 0, 0, 0, 0], bias: 0 }
+  const out = materializeContext({ pages, budgetTokens: 100, pageTokenCap: 40, query: 'target topic', learnedRerank: weights, learnedTopK: 1, learnedPageMaxTokens: 100, diversify: false })
+  assert.ok(out.includedIds.includes('target'), `truncated relevant page should be eligible: ${out.includedIds}`)
+  assert.ok(out.truncatedIds.includes('target'))
+  assert.ok(out.tokens <= 100)
+})
+
+await test('U55', 'pager reports unreadable record bodies instead of silently using a summary', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  await withCore('u55', async (store) => {
+    const row = store.write({ kind: 'fact', title: 'lost', summary: 'summary', body: 'actual body', workspaceKey: 'wk-u55', scope: 'workspace' })
+    unlinkSync(row.path)
+    assert.throws(() => materializeStoreContext({ store, workspaceKey: 'wk-u55', scopes: ['workspace'] }), /record file missing or unreadable/)
+  })
+})
+
+await test('U56', 'archive cards are built from the actual stored episode body', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  await withCore('u56', async (store) => {
+    const body = '## Primary Request and Intent\nARCHIVE_BODY_FACT\n\n## Current Work\n' + 'history '.repeat(2000)
+    const row = store.write({ kind: 'episode', title: 'L1 archive', summary: 'summary without the fact', body, workspaceKey: 'wk-u56', scope: 'workspace', tokens: 5000 })
+    store.archiveCold(row.id)
+    const out = materializeStoreContext({ store, workspaceKey: 'wk-u56', scopes: ['workspace'], budgetTokens: 1800 })
+    assert.ok(out.includedIds.includes(row.id))
+    assertIncludes(out.text, 'ARCHIVE_BODY_FACT')
+    assertIncludes(out.text, `archive card; source: ${row.id}`)
+    assert.equal(store.get(row.id).body, body)
+  })
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

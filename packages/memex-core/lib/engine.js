@@ -187,6 +187,10 @@ export class AgentMemory {
       learnedTopK: options.learnedTopK,
       alwaysIncludeIds: options.alwaysIncludeIds,
       learnedPageMaxTokens: options.learnedPageMaxTokens,
+      pageTokenCap: options.pageTokenCap,
+      tokenCounter: options.tokenCounter,
+      tokenizerName: options.tokenizerName,
+      includeCanonicalEvents: options.includeCanonicalEvents,
       enforceTotalBudget: options.enforceTotalBudget,
       diversify: options.diversify,
     })
