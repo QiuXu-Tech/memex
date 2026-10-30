@@ -1,0 +1,62 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-validation",
+  "generatedAt": "2026-10-30T06:00:29.281513+00:00",
+  "route": "A (custom vLLM KV connector, external disk KV)",
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memoryMiB": 97887,
+    "driver": "590.44.01"
+  },
+  "software": {
+    "torch": "2.8.0+cu128",
+    "cuda": "12.8",
+    "vllm": "0.10.2",
+    "transformers": "4.57.1"
+  },
+  "model": "Qwen/Qwen2.5-0.5B-Instruct (local /root/models/qwen)",
+  "connector": {
+    "class": "MemexKVConnector",
+    "module": "memex_kv_connector",
+    "storage": "/root/memex-kv",
+    "prefixTokens": 1500,
+    "alignedPrefixTokens": 1488,
+    "layers": 24,
+    "blockSize": 16
+  },
+  "experiment": {
+    "description": "Two requests share the same materialized prefix and differ only in the final question; prefix caching disabled so the connector is the only external KV path.",
+    "requests": [
+      {
+        "promptTokens": 2498,
+        "completionTokens": 8,
+        "result": "store 1,488 KV tokens per layer to disk"
+      },
+      {
+        "promptTokens": 2499,
+        "completionTokens": 8,
+        "result": "external cache hit; inject 1,488 KV tokens"
+      }
+    ],
+    "logs": [
+      "MEMEX store KV tokens=1488 layer=model.layers.0..23",
+      "MEMEX EXTERNAL CACHE HIT prefix_tokens=1500",
+      "MEMEX inject KV tokens=1488"
+    ]
+  },
+  "storage": {
+    "kvFiles": 24,
+    "diskMiB": 29
+  },
+  "verification": {
+    "externalCacheHitLog": true,
+    "injectedTokens": 1488,
+    "nativePrefixCaching": false
+  },
+  "caveats": [
+    "Prototype connector adapted from vLLM SharedStorageConnector; fixed prefix length configured explicitly.",
+    "0.5B model and synthetic materialized prefix; not a production workload.",
+    "KV is stored as safetensors on local disk, not in a Memex memory pool; block-level eviction/compression not yet implemented.",
+    "Single request pair; no concurrency/preemption tests."
+  ]
+}

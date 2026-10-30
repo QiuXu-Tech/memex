@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.17.0
+
+### Added — custom vLLM KV connector (prototype)
+- `training/memex_kv_connector.py`: adapted from vLLM 0.10.2 `SharedStorageConnector`; keys external KV by configured materialized-prefix token length.
+- On Qwen2.5-0.5B with native prefix caching disabled: first request stores **1,488 KV tokens × 24 layers** (~29MB safetensors), second request with same prefix + different question gets **external cache hit** and injects **1,488 KV tokens**.
+- Evidence: `docs/assets/benchmarks/vllm-memex-kv-connector.json`; docs updated.
+- **Boundary:** fixed prefix length, disk KV, debug connector semantics; no eviction/compression/multi-tenant hardening yet.
+- Harness **130/130**.
+
 ## 0.16.0
 
 ### Added — custom KV block paging probe on GPU

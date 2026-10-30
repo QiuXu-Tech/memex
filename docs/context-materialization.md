@@ -137,6 +137,28 @@ This validates the **span → KV block → page-in** mechanics on real KV tensor
 
 Raw: [kv-block-paging.json](assets/benchmarks/kv-block-paging.json); probe: `training/kv_block_probe.py`.
 
+## Custom vLLM KV connector (v0.17.0)
+
+A prototype **MemexKVConnector** for vLLM 0.10.2 now maps a materialized prefix to externally stored KV cache:
+
+- adapted from vLLM's `SharedStorageConnector` (Apache-2.0), keyed by a configured materialized-prefix token length instead of the full prompt;
+- first request: **store 1,488 KV tokens × 24 layers** (Qwen2.5-0.5B) to `/root/memex-kv` as safetensors (~29MB);
+- second request with the same materialized prefix but a different final question: **external cache hit**, then **inject 1,488 KV tokens** into vLLM's paged KV buffer;
+- native prefix caching disabled, so the connector is the only external KV path.
+
+Key logs:
+
+```text
+MEMEX store KV tokens=1488 layer=model.layers.0..23
+MEMEX match prefix_len=1488 folder=/root/memex-kv/...
+MEMEX EXTERNAL CACHE HIT prefix_tokens=1500
+MEMEX inject KV tokens=1488
+```
+
+Raw: [vllm-memex-kv-connector.json](assets/benchmarks/vllm-memex-kv-connector.json); connector: `training/memex_kv_connector.py`.
+
+**Boundary:** prototype uses a fixed prefix length, local-disk safetensors, and vLLM's debug connector semantics; block eviction/compression, multi-tenant isolation, and production hardening remain.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
