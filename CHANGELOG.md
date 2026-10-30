@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.55.0
+
+### Fixed — active trace version/format fields
+- Runtime check: process started 23:19:07, final materializer mtime 23:06:34 — final materializer loaded.
+- Active checkpoint trace still said `0.51` and lacked `formatTokens`/`renderedChars`; patched to `0.54` and added breakdown fields.
+- One more DSH restart is required to see updated trace; materializer itself is active.
+- Active memory **98/98**; repo **144/144**.
+
 ## 0.54.0
 
 ### Fixed — final-order budget, negative sorting, pressure tests, protocol

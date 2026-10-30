@@ -702,6 +702,19 @@ U44 now uses a budget that fits only one page. The Chinese query selects the KV 
 Process started 22:20:49; active config loaded; final sorting/budget materializer has mtime 23:06:34 and is **not loaded** until DSH restart. No default strategy change.
 
 Repo **144/144 offline**, **36/36 SQLite**, active **98/98**.
+## Runtime verification after v0.54 restart (v0.55.0)
+
+- DSH process started **23:19:07**; active materializer mtime **23:06:34**, so the final sorting/budget materializer was loaded.
+- Active checkpoint trace was still labeled `0.51` and lacked `formatTokens`/`renderedChars` because the checkpoint trace fields were updated after that process start.
+- Patched active checkpoint trace to `configVersion: 0.54` and to include `formatTokens`, `renderedChars` from the materializer breakdown.
+- One more DSH restart is required to observe those fields; the materializer itself is already loaded.
+- Active memory tests **98/98**.
+
+=== Remaining evaluation requirements ===
+- Human-verified, record/session-isolated labels.
+- Both answer orders saved per question with condition mapping.
+- Selected-window recall, answer correctness, unsupported claims, latency, answer+judge cost.
+- Explicit real-memory authorization before third-party API use.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
