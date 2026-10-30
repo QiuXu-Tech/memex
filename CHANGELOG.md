@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.20.0
+
+### Added — connector scale-up to Qwen2.5-3B
+- Ran `MemexKVConnector` with **Qwen2.5-3B-Instruct** (36 layers), 8 prefixes × 2 requests, native prefix caching disabled.
+- **8/8 external hits**; external KV **420MB** for 8 prefixes; GPU utilization **88,933/97,887 MiB (~91%)**.
+- Warmup first request 65.9s; steady-state **store 0.1553s → hit 0.0964s**.
+- Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-3b.json`.
+- Boundary: prototype connector, fixed prefix length, disk KV, no eviction/compression.
+
 ## 0.19.0
 
 ### Added — GPU-scaled 2-layer context encoder

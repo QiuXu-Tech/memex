@@ -182,6 +182,20 @@ A larger single-layer GPU reference (DIM 128 / 4 heads / vocab 2048 / hard negat
 
 This is a GPU-trained **reference** specialist, not a production per-family model; real traces and larger training remain.
 
+## 3B model + custom connector (v0.20.0)
+
+The same `MemexKVConnector` was run with **Qwen2.5-3B-Instruct** (36 layers) on the 96GB GPU:
+
+- 8 materialized prefixes × 2 requests, native prefix caching disabled
+- **8/8 second requests external-cache hits**; **420MB** external KV for 8 prefixes
+- first request includes torch.compile warmup (65.9s); steady-state (excluding warmup): **store 0.1553s → hit 0.0964s**
+- GPU memory during run: **88,933 / 97,887 MiB** (~91% utilized)
+- KV injection: 1,488 tokens per layer per hit
+
+Raw: [vllm-memex-kv-connector-3b.json](assets/benchmarks/vllm-memex-kv-connector-3b.json).
+
+**Boundary:** prototype connector, fixed prefix length, disk safetensors, no eviction/compression; 3B model, single process.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

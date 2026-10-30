@@ -1,0 +1,92 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-3b",
+  "generatedAt": "2026-10-30T14:25:00+08:00",
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memoryMiB": 97887,
+    "usedMiB": 88933
+  },
+  "software": {
+    "vllm": "0.10.2",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1"
+  },
+  "model": "Qwen/Qwen2.5-3B-Instruct",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "alignedPrefixTokens": 1488,
+    "nativePrefixCaching": false,
+    "layers": 36
+  },
+  "workload": {
+    "prefixes": 8,
+    "requests": 16,
+    "promptTokens": 2815
+  },
+  "results": {
+    "externalCacheHits": 8,
+    "diskMiB": 420,
+    "meanStoreAll": 8.3617,
+    "meanHit": 0.0941,
+    "warmupStoreSeconds": 65.8642,
+    "steadyMeanStore": 0.147,
+    "steadyMeanHit": 0.0937,
+    "pairs": [
+      {
+        "prefix": 0,
+        "store_seconds": 65.8642,
+        "hit_seconds": 0.0964,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 1,
+        "store_seconds": 0.1553,
+        "hit_seconds": 0.0916,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 2,
+        "store_seconds": 0.1486,
+        "hit_seconds": 0.0971,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 3,
+        "store_seconds": 0.1481,
+        "hit_seconds": 0.0988,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 4,
+        "store_seconds": 0.1456,
+        "hit_seconds": 0.0935,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 5,
+        "store_seconds": 0.1445,
+        "hit_seconds": 0.0918,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 6,
+        "store_seconds": 0.1424,
+        "hit_seconds": 0.0919,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 7,
+        "store_seconds": 0.1447,
+        "hit_seconds": 0.0914,
+        "prompt_tokens": 2815
+      }
+    ]
+  },
+  "caveats": [
+    "First request includes torch.compile/warmup (65.9s); steady-state means exclude it.",
+    "Prototype connector, fixed prefix length, disk safetensors, no eviction/compression.",
+    "Single process, 3B model; not a production throughput benchmark."
+  ]
+}
