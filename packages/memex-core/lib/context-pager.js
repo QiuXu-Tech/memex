@@ -34,6 +34,27 @@ const byId = (rows) => {
  * @param {boolean} [input.diversify] - Skip near-duplicate learned candidates.
  * @param {boolean} [input.includeCanonicalEvents=true]
  */
+const ARCHIVE_CARD_TOKENS = 2000
+const CARD_HEADINGS = ['Primary Request and Intent', 'Key Technical Concepts', 'Files and Code', 'Errors and fixes', 'Pending Tasks', 'Current Work', 'Optional Next Step']
+
+/** Project an oversized archive row into a source-marked card; the record file stays intact. */
+function archiveCard(row) {
+  const body = String(row.body ?? row.summary ?? '')
+  const sections = []
+  for (const heading of CARD_HEADINGS) {
+    const start = body.indexOf(`## ${heading}`)
+    if (start < 0) continue
+    let end = body.length
+    for (const other of CARD_HEADINGS) {
+      const next = body.indexOf(`## ${other}`, start + 3)
+      if (next >= 0) end = Math.min(end, next)
+    }
+    sections.push(body.slice(start, end).trim())
+  }
+  const excerpt = sections.length > 0 ? sections.join('\n\n') : body.slice(0, 2000)
+  return `> [archive card; source: ${row.id}; original archive remains intact]\n\n# ${row.title ?? row.id}\n\n${excerpt.slice(0, 4000).trimEnd()}\n\n> [end archive card]`
+}
+
 export function materializeStoreContext(input = {}) {
   const store = input.store
   if (store === undefined || typeof store.list !== 'function') throw new TypeError('materializeStoreContext: store is required')
@@ -58,13 +79,18 @@ export function materializeStoreContext(input = {}) {
       sources.push({ recordId: row.id, source: 'canonical', events: canonical.length })
       for (const page of eventsToMaterializerPages(canonical)) pages.push({ ...page, id: `${row.id}:${page.id}`, recordId: row.id, pinned: pinnedIds.has(row.id) })
     } else {
-      sources.push({ recordId: row.id, source: 'record', events: 0 })
+      const rawBody = String(row.body ?? row.summary ?? '')
+      const estimated = Number.isFinite(row.tokens) ? Number(row.tokens) : Math.ceil(rawBody.length / 4)
+      const isArchive = estimated > ARCHIVE_CARD_TOKENS && (row.kind === 'episode' || rawBody.includes('<compacted-summary>') || /^L1 归档/.test(String(row.title ?? '')))
+      sources.push({ recordId: row.id, source: isArchive ? 'record-card' : 'record', events: 0 })
       pages.push({
         id: row.id,
-        title: row.title,
+        title: isArchive ? `[card] ${row.title ?? row.id}` : row.title,
         summary: row.summary,
         useWhen: row.useWhen,
-        body: row.body ?? row.summary ?? '',
+        body: isArchive ? archiveCard(row) : rawBody,
+        card: isArchive,
+        sourceId: isArchive ? row.id : undefined,
         sequence: Number(row.createdAt ?? 0),
         createdAt: Number(row.createdAt ?? 0),
         pinned: pinnedIds.has(row.id),

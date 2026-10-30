@@ -4618,6 +4618,18 @@ await test('U50', 'oversized excerpt is centered on query terms with source mark
   assert.equal(pages[0].body, originalBody)
 })
 
+
+await test('U51', 'context pager projects oversized L1 rows into source-marked cards', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  const huge = '## Primary Request and Intent\n- build the system\n\n## Key Technical Concepts\n- L1/L2/L3\n\n' + 'raw event '.repeat(4000)
+  const rows = [{ id: 'l1_huge', title: 'L1 archive', body: huge, kind: 'episode', createdAt: 1 }]
+  const store = { list: ({ limit }) => rows.slice(0, limit), listContextEvents: () => [] }
+  const result = materializeStoreContext({ store, workspaceKey: 'test', scopes: ['workspace'], budgetTokens: 1500 })
+  assert.ok(result.includedIds.includes('l1_huge'))
+  assert.ok(result.text.includes('archive card; source: l1_huge'))
+  assert.ok(result.text.length < huge.length)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

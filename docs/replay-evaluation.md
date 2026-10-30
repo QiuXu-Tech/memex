@@ -37,3 +37,7 @@ For oversized records the materializer now searches for the earliest query-term 
 ## L1 archive cards
 
 `training/build_l1_cards.py` builds local, source-marked cards from the compacted-summary sections of L1 archive records; original archives are untouched. In the 28-episode replay selection with L1 cards (`pageTokenCap=400`): rule+core hit rate **32.1%** (from 7.1%), hybrid+core **42.9%**, all windows ≤1,800. L1 raw-archive pages were mostly unselected without cards; cards help rule notably, but hybrid gains are limited and labels remain provisional.
+
+## Production pager cards
+
+The context pager now projects oversized L1/episode rows into source-marked archive cards before materialization (U51). The record file remains intact; the card starts with `> [archive card; source: id; original archive remains intact]`. This was motivated by replay results where raw L1 rows were not card-sized pages.

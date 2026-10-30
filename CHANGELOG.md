@@ -4,6 +4,13 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.63.0
+
+### Added — production pager archive cards
+- Context pager projects oversized L1/episode rows into source-marked archive cards before materialization; record files remain intact.
+- Cards reuse compacted-summary sections, with `> [archive card; source: id; original archive remains intact]` and `> [end archive card]`; U51 covers it.
+- This addresses the replay finding that raw L1 rows are not card-sized pages; rule+core replay hit rate had risen from 7.1% to 32.1% with offline cards.
+- Active pager synced; restart required. Repo **147/147**; active **98/98**; no default change.
 ## 0.62.0
 
 ### Added — L1 archive cards for replay selection
