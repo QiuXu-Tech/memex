@@ -196,6 +196,17 @@ Raw: [vllm-memex-kv-connector-3b.json](assets/benchmarks/vllm-memex-kv-connector
 
 **Boundary:** prototype connector, fixed prefix length, disk safetensors, no eviction/compression; 3B model, single process.
 
+## End-to-end materializer → vLLM connector (v0.21.0)
+
+This closes the loop: a **real `context-materializer` output** (13 pages, 7,585 chars, stable hash `1498be8fc3ceb951`) was used as the prompt prefix and passed through `MemexKVConnector`:
+
+- prompt tokens 2,037; first request stores 1,488 KV tokens (warmup 48.8s)
+- second request with a different final question: **external cache hit**, injects 1,488 KV tokens, **0.018s**
+- no native prefix caching; connector-only path
+- generated artifact: `docs/assets/benchmarks/materialized-window-e2e.txt`; report: `vllm-materialized-window-e2e.json`
+
+This is the first end-to-end **materializer → connector → vLLM KV load** validation. The tiny random Qwen2 model avoids network downloads; connector mechanics are model-size independent (the 3B run covers scale).
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

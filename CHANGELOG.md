@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.21.0
+
+### Added — end-to-end materializer → vLLM connector
+- Generated a real materialized window with `context-materializer` (13 pages, 7,585 chars, stable hash `1498be8fc3ceb951`) and used it as the prompt prefix.
+- First request stored **1,488 KV tokens**; second request with a different final question got an **external cache hit** and injected 1,488 KV tokens in **0.018s** (first request includes warmup 48.8s).
+- Native prefix caching disabled; connector-only path.
+- Artifacts: `docs/assets/benchmarks/materialized-window-e2e.txt`, `vllm-materialized-window-e2e.json`.
+- Tiny random Qwen2 model avoids network downloads; connector mechanics are model-size independent (3B run covers scale).
+- Harness **131/131**.
+
 ## 0.20.0
 
 ### Added — connector scale-up to Qwen2.5-3B
