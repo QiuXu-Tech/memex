@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.52.0
+
+### Added — multi-query answer-quality evaluation
+- 5 query types x optimized materializer (core tier, 1,800, topK8) x APIMaster DeepSeek/Claude x blind GPT-6 judge, both orders.
+- Hybrid not consistently preferred: rule won/tied most cases; DeepSeek favored hybrid on DSH query; Claude split. TopK8 preferred by DeepSeek, topK1 by Claude.
+- Conclusion: core-fact tier is the main coverage win; topK8 hybrid adds noise in several queries. Rule+core is safer default; hybrid opt-in until selective gating is validated.
+- Raw: `multiquery-answer-quality.json`; harness **140/140**; active **98/98**.
+
 ## 0.51.0
 
 ### Added — real budget semantics, CJK tokenization, trace metadata

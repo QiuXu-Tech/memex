@@ -1,0 +1,393 @@
+{
+  "format": 1,
+  "kind": "multiquery-answer-quality",
+  "generatedAt": "2026-10-30T22:40:00+08:00",
+  "setup": "5 query types (multi, KV, architecture, DSH, next); optimized materializer (core tier, 1800 budget, topK8); APIMaster deepseek-flash and claude-haiku-4-5; blind gpt-6-astra judge, both answer orders.",
+  "cases": [
+    {
+      "id": "multi",
+      "chars": {
+        "deepseek-flash": {
+          "rule": 1462,
+          "hybrid": 1397
+        },
+        "claude-haiku-4-5": {
+          "rule": 1043,
+          "hybrid": 1095
+        }
+      },
+      "winners": {
+        "deepseek-flash": {
+          "forward": "A",
+          "reverse": "B",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 9,
+                "correctness": 9,
+                "focus": 9
+              },
+              {
+                "coverage": 9,
+                "correctness": 8,
+                "focus": 9
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 9,
+                "correctness": 9,
+                "focus": 9
+              },
+              {
+                "coverage": 10,
+                "correctness": 9,
+                "focus": 9
+              }
+            ]
+          }
+        },
+        "claude-haiku-4-5": {
+          "forward": "A",
+          "reverse": "A",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 9,
+                "correctness": 8,
+                "focus": 9
+              },
+              {
+                "coverage": 9,
+                "correctness": 7,
+                "focus": 9
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 9,
+                "correctness": 8,
+                "focus": 9
+              },
+              {
+                "coverage": 8,
+                "correctness": 7,
+                "focus": 9
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "kv",
+      "chars": {
+        "deepseek-flash": {
+          "rule": 611,
+          "hybrid": 620
+        },
+        "claude-haiku-4-5": {
+          "rule": 432,
+          "hybrid": 418
+        }
+      },
+      "winners": {
+        "deepseek-flash": {
+          "forward": "tie",
+          "reverse": "A",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 8
+              },
+              {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 8
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 8
+              },
+              {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              }
+            ]
+          }
+        },
+        "claude-haiku-4-5": {
+          "forward": "A",
+          "reverse": "A",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 8,
+                "correctness": 6,
+                "focus": 7
+              },
+              {
+                "coverage": 7,
+                "correctness": 6,
+                "focus": 8
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 6,
+                "correctness": 7,
+                "focus": 8
+              },
+              {
+                "coverage": 7,
+                "correctness": 6,
+                "focus": 7
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "arch",
+      "chars": {
+        "deepseek-flash": {
+          "rule": 1154,
+          "hybrid": 889
+        },
+        "claude-haiku-4-5": {
+          "rule": 644,
+          "hybrid": 573
+        }
+      },
+      "winners": {
+        "deepseek-flash": {
+          "forward": "A",
+          "reverse": "B",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 7
+              },
+              {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 9,
+                "correctness": 7,
+                "focus": 7
+              },
+              {
+                "coverage": 10,
+                "correctness": 9,
+                "focus": 9
+              }
+            ]
+          }
+        },
+        "claude-haiku-4-5": {
+          "forward": "tie",
+          "reverse": "tie",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 9,
+                "correctness": 7,
+                "focus": 8
+              },
+              {
+                "coverage": 9,
+                "correctness": 7,
+                "focus": 9
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "dsh",
+      "chars": {
+        "deepseek-flash": {
+          "rule": 459,
+          "hybrid": 761
+        },
+        "claude-haiku-4-5": {
+          "rule": 415,
+          "hybrid": 451
+        }
+      },
+      "winners": {
+        "deepseek-flash": {
+          "forward": "B",
+          "reverse": "A",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 8,
+                "correctness": 6,
+                "focus": 8
+              },
+              {
+                "coverage": 10,
+                "correctness": 5,
+                "focus": 7
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 10,
+                "correctness": 9,
+                "focus": 8
+              },
+              {
+                "coverage": 8,
+                "correctness": 9,
+                "focus": 9
+              }
+            ]
+          }
+        },
+        "claude-haiku-4-5": {
+          "forward": "A",
+          "reverse": "tie",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 6,
+                "correctness": 5,
+                "focus": 8
+              },
+              {
+                "coverage": 6,
+                "correctness": 4,
+                "focus": 8
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 6,
+                "correctness": 5,
+                "focus": 8
+              },
+              {
+                "coverage": 6,
+                "correctness": 5,
+                "focus": 8
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "id": "next",
+      "chars": {
+        "deepseek-flash": {
+          "rule": 470,
+          "hybrid": 458
+        },
+        "claude-haiku-4-5": {
+          "rule": 376,
+          "hybrid": 418
+        }
+      },
+      "winners": {
+        "deepseek-flash": {
+          "forward": "A",
+          "reverse": "B",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 9
+              },
+              {
+                "coverage": 10,
+                "correctness": 5,
+                "focus": 9
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 9
+              },
+              {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 9
+              }
+            ]
+          }
+        },
+        "claude-haiku-4-5": {
+          "forward": "A",
+          "reverse": "A",
+          "scores": {
+            "forward": [
+              {
+                "coverage": 10,
+                "correctness": 10,
+                "focus": 10
+              },
+              {
+                "coverage": 10,
+                "correctness": 9,
+                "focus": 10
+              }
+            ],
+            "reverse": [
+              {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 9
+              },
+              {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 9
+              }
+            ]
+          }
+        }
+      }
+    }
+  ],
+  "interpretation": "After adding the core-fact tier, rule and hybrid both cover key facts. Across 5 queries x2 models x2 orders, hybrid was not consistently preferred; rule won or tied most cases, while DeepSeek favored hybrid on the DSH query. Core tier is the main coverage win; topK8 hybrid adds noise in some queries. Recommend rule+core as safe default and hybrid as opt-in until a selective gate is validated.",
+  "topKComparison": {
+    "deepseek-flash": "topK8 preferred in both orders",
+    "claude-haiku-4-5": "topK1 preferred in both orders"
+  },
+  "caveats": [
+    "One context per query; no human labels; judge order variance.",
+    "Real memory content sent to APIMaster; aggregate only stored.",
+    "CJK weights not retrained; BGE not integrated."
+  ]
+}

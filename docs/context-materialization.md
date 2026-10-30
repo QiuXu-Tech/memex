@@ -662,6 +662,21 @@ Lexical reranker now uses one tokenizer for ASCII words plus CJK unigrams/bigram
 Active checkpoint A/B trace now includes `budgetStatus`, `overBudgetBy`, `overBudgetReason`, `omittedIds`, `tokenizer`, and `configVersion`. Materialized-context trace includes the same budget metadata. Privacy: traces contain query/memory IDs and local content; retain locally, do not ship to third parties.
 
 Active config remains 1,800 / topK8 / core IDs / page cap 700 / total enforcement; **DSH restart required**.
+## Multi-query answer quality: hybrid is not universally better (v0.52.0)
+
+After adding the core-fact tier, five query types were tested with optimized selection (1,800, topK8), APIMaster DeepSeek/Claude, blind GPT-6 judge, both orders:
+
+- Multi: DeepSeek preferred rule 2/2; Claude split.
+- KV: mostly rule/tie; hybrid only on one order.
+- Architecture: rule/tie.
+- DSH: DeepSeek preferred hybrid 2/2; Claude split.
+- Next priorities: DeepSeek rule 2/2; Claude split.
+- TopK comparison: DeepSeek preferred topK8; Claude preferred topK1.
+
+Conclusion: **core-fact tier is the main coverage win; hybrid topK8 adds noise in several queries and is not consistently preferred.** Rule + core tier is the safer default; hybrid should be opt-in until a selective/query-aware gate is validated. This also shows why selection metrics alone are insufficient.
+
+Raw: `multiquery-answer-quality.json`.
+Boundary: one context per query, no human labels, judge variance; real memory content sent to APIMaster (aggregate only retained).
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
