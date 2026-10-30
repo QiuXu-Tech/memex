@@ -19,6 +19,7 @@ debug implementation; not production-ready.
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
 import gzip
+from concurrent.futures import ThreadPoolExecutor
 import hashlib
 import json
 import os
@@ -118,6 +119,8 @@ class MemexKVConnector(KVConnectorBase_V1):
             "tenant_id", "default"))
         self._compress_level = int(transfer_config.get_from_extra_config(
             "compress_level", 9) or 9)
+        self._min_prefix_tokens = int(transfer_config.get_from_extra_config(
+            "min_prefix_tokens", 0) or 0)
         logger.info(vllm_config.kv_transfer_config)
         logger.info("Shared storage path is %s", self._storage_path)
 
@@ -126,6 +129,10 @@ class MemexKVConnector(KVConnectorBase_V1):
         limit = len(request.prompt_token_ids) - 1
         want = self._prefix_tokens if self._prefix_tokens > 0 else limit
         return min(limit, want)
+
+    def _external_enabled(self, request) -> bool:
+        """Hybrid routing: short prompts stay on the native prefix cache."""
+        return len(request.prompt_token_ids) >= self._min_prefix_tokens
 
     def _prefix_block_ids(self, request, block_ids):
         prefix = self._prefix_tokens
@@ -201,28 +208,26 @@ class MemexKVConnector(KVConnectorBase_V1):
             if request.is_store:
                 continue
             logger.warning("MEMEX inject KV tokens=%d", len(request.slot_mapping))
+            layers = []
             for layer_name in forward_context.no_compile_layers:
                 layer = forward_context.no_compile_layers[layer_name]
-
-                # Only process layers that have kv_cache
-                # attribute (attention layers) Skip non-attention
-                # layers like FusedMoE/MLP etc.
                 kv_cache_attr = getattr(layer, 'kv_cache', None)
                 if kv_cache_attr is None:
                     continue
-
-                kv_cache_layer = kv_cache_attr[ \
-                        forward_context.virtual_engine]
-
-                filename = self._generate_filename_debug(
-                    layer_name, request.token_ids, request.mm_hashes)
+                layers.append((layer_name, kv_cache_attr[forward_context.virtual_engine]))
+            if not layers:
+                continue
+            filenames = [self._generate_filename_debug(name, request.token_ids, request.mm_hashes) for name, _ in layers]
+            def load_one(filename):
                 if self._compress:
                     with gzip.open(filename, "rb") as handle:
-                        kv_cache = safetensors.torch.load(handle.read())["kv_cache"].cuda()
-                else:
-                    kv_cache = safetensors.torch.load_file(filename)["kv_cache"].cuda()
-                inject_kv_into_layer(kv_cache_layer, kv_cache,
-                                     request.slot_mapping)
+                        return safetensors.torch.load(handle.read())["kv_cache"].cuda()
+                return safetensors.torch.load_file(filename)["kv_cache"].cuda()
+            # Batch/parallel layer-file load; helps many-layer models.
+            with ThreadPoolExecutor(max_workers=8) as pool:
+                tensors = list(pool.map(load_one, filenames))
+            for (_layer_name, kv_cache_layer), kv_cache in zip(layers, tensors):
+                inject_kv_into_layer(kv_cache_layer, kv_cache, request.slot_mapping)
 
     def wait_for_layer_load(self, layer_name: str) -> None:
         """Blocking until the KV for a specific layer is loaded into vLLM's
@@ -364,8 +369,10 @@ class MemexKVConnector(KVConnectorBase_V1):
         # NOTE: in current v1 scheduler, the num_computed_tokens is aligned
         # with the block granularity. And it expects the returned blocks and
         # num_computed_tokens to also be aligned with the block granularity.
-        if not self._found_match_for_request(request):
-            logger.warning("MEMEX no match")
+        if num_computed_tokens > 0:
+            # Native prefix cache already serves this prefix; avoid external disk load.
+            return 0, False
+        if not self._external_enabled(request) or not self._found_match_for_request(request):
             return 0, False
 
         logger.warning("MEMEX EXTERNAL CACHE HIT prefix_tokens=%s", self._prefix_tokens)
@@ -418,7 +425,7 @@ class MemexKVConnector(KVConnectorBase_V1):
                 # but a single request can have both store and load.
                 # NOTE(rob): for this debug implementation, we only cache
                 # the original prompt tokens.
-                if not self._found_match_for_request(new_req):
+                if self._external_enabled(new_req) and not self._found_match_for_request(new_req):
                     prefix_len = align_to_block_size(self._prefix_len(new_req), self._block_size)
                     meta.add_request(token_ids=new_req.prompt_token_ids[:prefix_len],
                                      block_ids=self._prefix_block_ids(new_req, new_req.block_ids[0]),
@@ -468,8 +475,9 @@ class MemexKVConnector(KVConnectorBase_V1):
         self,
         request: "Request",
     ) -> bool:
-        """Check if the cache is hit for the request.
-        """
+        """Check if the cache is hit for the request."""
+        if not self._external_enabled(request):
+            return False
         num_tokens_to_check = align_to_block_size(
             self._prefix_len(request), self._block_size)
         foldername = self._generate_foldername_debug(torch.tensor(
