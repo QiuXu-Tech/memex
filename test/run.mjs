@@ -4426,6 +4426,24 @@ await test('U36', 'materializer optional learned rerank adds the query-relevant 
   assert.ok(hybrid.includedIds.includes('b'), `hybrid should add query-relevant page: ${hybrid.includedIds}`)
 })
 
+
+await test('U37', 'context pager forwards query/learnedRerank to the materializer', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  const { readFileSync } = await import('node:fs')
+  const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
+  const rows = [
+    { id: 'a', title: 'billing note', body: 'billing retry policy unrelated', useWhen: 'billing', createdAt: 1 },
+    { id: 'b', title: 'provider reasoning levels', body: 'provider reasoning levels official', useWhen: 'model reasoning', createdAt: 2 },
+    { id: 'c', title: 'cache note', body: 'cache eviction unrelated', useWhen: 'cache', createdAt: 3 },
+  ]
+  const store = {
+    list: ({ status, limit }) => status === undefined ? rows.slice(0, limit) : rows.filter((row) => (row.status ?? 'active') === status).slice(0, limit),
+    listContextEvents: () => [],
+  }
+  const result = materializeStoreContext({ store, workspaceKey: 'test', scopes: ['workspace'], query: 'provider reasoning levels', learnedRerank: weights, budgetTokens: 60 })
+  assert.ok(result.includedIds.includes('b'), `pager should forward query/rerank: ${result.includedIds}`)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

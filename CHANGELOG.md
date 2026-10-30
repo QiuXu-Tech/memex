@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.39.0
+
+### Added — production API wiring for hybrid rerank
+- `materializeStoreContext` and `engine.materializeContext` accept optional `query` + `learnedRerank` and forward them through the pager.
+- Default rule path unchanged when options are absent.
+- **U37** validates pager forwarding; **U36** validates hook; harness **133/133**.
+- Next deployment step: pass the live user query from DSH checkpoint into this API.
+
 ## 0.38.0
 
 ### Added — optional JS hybrid materializer hook

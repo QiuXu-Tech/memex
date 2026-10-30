@@ -439,6 +439,20 @@ Boundary: small/noisy labels; union measured offline; not yet integrated in JS.
 The learned reranker is a lexical-feature logistic model (exported `lexical-reranker.json`); the default rule path is unchanged. U36 verifies the hook. Raw: `js-hybrid-materializer.json`.
 Boundary: noisy nearest-query labels; lexical model; optional path only.
 
+## Production API wiring for hybrid rerank (v0.39.0)
+
+The learned rerank hook is now wired through the production materializer API path:
+
+- `context-pager.materializeStoreContext({ query, learnedRerank })`
+- `engine.materializeContext({ query, learnedRerank })`
+- local backend forwards the same request
+- default behavior remains unchanged when query/weights are absent
+- **U37** validates pager forwarding; **U36** validates the hook
+- 133/133 tests pass
+
+This makes the hybrid path callable by DSH/adapters without changing the default rule path.
+Boundary: DSH's active checkpoint call does not yet pass a live query; enabling it there is the next deployment step.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

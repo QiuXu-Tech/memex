@@ -26,6 +26,8 @@ const byId = (rows) => {
  * @param {number} [input.budgetTokens]
  * @param {string} [input.variant]
  * @param {string[]} [input.pinnedIds]
+ * @param {string} [input.query] - Current user query for optional learned reranking.
+ * @param {object} [input.learnedRerank] - Optional learned reranker weights.
  * @param {boolean} [input.includeCanonicalEvents=true]
  */
 export function materializeStoreContext(input = {}) {
@@ -72,6 +74,8 @@ export function materializeStoreContext(input = {}) {
     variant: variant.id,
     pinnedIds: pages.filter((page) => page.pinned === true).map((page) => page.id),
     reserveTokens: input.reserveTokens,
+    query: input.query,
+    learnedRerank: input.learnedRerank,
   })
   return { ...materialized, sources, pages: pages.length, pager: CONTEXT_PAGER_VERSION }
 }

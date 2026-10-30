@@ -182,6 +182,8 @@ export class AgentMemory {
       variant: options.variant,
       pinnedIds: options.pinnedIds,
       reserveTokens: options.reserveTokens,
+      query: options.query,
+      learnedRerank: options.learnedRerank,
     })
   }
 
