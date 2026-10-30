@@ -33,3 +33,7 @@ python3 training/extract_replay_episodes.py /path/to/output
 ### Query-aware excerpt
 
 For oversized records the materializer now searches for the earliest query-term occurrence and excerpts around it (U50), instead of always taking the head. On the 28 provisional replay episodes, `hybrid+core+pageTokenCap400` relevant-record hit rate rose from 42.9% to **46.4%**, with all windows ≤1,800 tokens. L1 raw-archive episodes remain mostly unselected because a full archived span is not a card-sized page; labels still need human review.
+
+## L1 archive cards
+
+`training/build_l1_cards.py` builds local, source-marked cards from the compacted-summary sections of L1 archive records; original archives are untouched. In the 28-episode replay selection with L1 cards (`pageTokenCap=400`): rule+core hit rate **32.1%** (from 7.1%), hybrid+core **42.9%**, all windows ≤1,800. L1 raw-archive pages were mostly unselected without cards; cards help rule notably, but hybrid gains are limited and labels remain provisional.

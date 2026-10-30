@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.62.0
+
+### Added — L1 archive cards for replay selection
+- `training/build_l1_cards.py` builds local source-marked cards from compacted-summary sections; original L1 archives untouched.
+- Replay selection with cards (`pageTokenCap=400`): rule+core hit rate **32.1%** (from 7.1%), hybrid+core **42.9%**, all windows ≤1,800.
+- L1 cards help rule notably but hybrid gains limited; labels provisional; no third-party transfer.
+- Repo **146/146**; active **98/98**; no default change.
+
 ## 0.61.0
 
 ### Added — query-aware excerpts for oversized pages
