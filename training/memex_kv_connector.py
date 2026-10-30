@@ -20,7 +20,9 @@ debug implementation; not production-ready.
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
 import gzip
 import hashlib
+import json
 import os
+import shutil
 from dataclasses import dataclass
 from typing import TYPE_CHECKING, Optional
 
@@ -111,6 +113,7 @@ class MemexKVConnector(KVConnectorBase_V1):
             "max_cache_mib", 2048) or 2048)
         self._compress = bool(transfer_config.get_from_extra_config(
             "compress", False))
+        self._saved_folders = set()
         logger.info(vllm_config.kv_transfer_config)
         logger.info("Shared storage path is %s", self._storage_path)
 
@@ -273,9 +276,27 @@ class MemexKVConnector(KVConnectorBase_V1):
                         handle.write(safetensors.torch.save(tensors))
                 else:
                     safetensors.torch.save_file(tensors, filename)
+                self._saved_folders.add(os.path.dirname(filename))
 
     def wait_for_save(self):
+        for folder in list(self._saved_folders):
+            self._write_manifest(folder)
+        self._saved_folders.clear()
         self._evict_cache()
+
+    def _write_manifest(self, folder):
+        if not os.path.isdir(folder):
+            return
+        files = {}
+        for name in os.listdir(folder):
+            if name.endswith('.safetensors') or name.endswith('.safetensors.gz'):
+                files[name] = os.path.getsize(os.path.join(folder, name))
+        manifest = {'version': 1, 'token_count': self._prefix_tokens, 'files': files}
+        try:
+            with open(os.path.join(folder, 'manifest.json'), 'w') as handle:
+                json.dump(manifest, handle)
+        except OSError:
+            pass
 
     def _evict_cache(self):
         """Bound the external KV directory by evicting the oldest prefix folders."""
@@ -451,6 +472,21 @@ class MemexKVConnector(KVConnectorBase_V1):
                                                      request.mm_hashes,
                                                      create_folder=False)
         exists = os.path.exists(foldername)
+        if exists:
+            try:
+                manifest = json.load(open(os.path.join(foldername, 'manifest.json')))
+                for name, size in manifest.get('files', {}).items():
+                    path = os.path.join(foldername, name)
+                    if not os.path.exists(path) or os.path.getsize(path) != size:
+                        raise ValueError(f'bad {name}')
+                    if name.endswith('.gz'):
+                        with open(path, 'rb') as handle:
+                            if handle.read(2) != b'\x1f\x8b':
+                                raise ValueError('bad gzip magic')
+            except Exception as error:
+                logger.warning("MEMEX invalid cache %s: %s; evicting", foldername, error)
+                shutil.rmtree(foldername, ignore_errors=True)
+                exists = False
         logger.warning("MEMEX match prefix_len=%d folder=%s exists=%s", num_tokens_to_check, foldername, exists)
         return exists
 

@@ -1,0 +1,44 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-7b-hardening",
+  "generatedAt": "2026-10-30T17:22:00+08:00",
+  "model": "Qwen2.5-7B architecture, dummy random weights (28 layers)",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "compressed": true,
+    "maxCacheMiB": 100
+  },
+  "tests": {
+    "compression": {
+      "prefixes": 8,
+      "externalHits": 8,
+      "compressedMiB": 222,
+      "uncompressedMiB": 652,
+      "diskReductionRatio": 0.66,
+      "meanStoreSeconds": 3.6276,
+      "meanHitSeconds": 0.4268,
+      "note": "gzip CPU cost increases latency vs uncompressed 0.267/0.135s"
+    },
+    "eviction": {
+      "capMiB": 100,
+      "promptPrefixes": 8,
+      "externalHits": 8,
+      "evictions": 5,
+      "finalMiB": 84,
+      "finalFolders": 3
+    },
+    "corruptionFallback": {
+      "corruptedFile": "model.layers.0...gz",
+      "detected": true,
+      "action": "evicted invalid prefix folder",
+      "requestStatus": 200,
+      "fallback": "recomputed/stored; no HTTP 500"
+    }
+  },
+  "caveats": [
+    "Dummy weights; architecture/memory/connector only.",
+    "gzip level default; latency overhead significant.",
+    "Single process; not a production benchmark."
+  ]
+}

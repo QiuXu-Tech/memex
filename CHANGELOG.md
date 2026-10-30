@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.26.0
+
+### Added — 7B connector hardening
+- gzip compression at 7B dummy scale: **222MiB vs 652MiB** (~66% disk reduction), 8/8 hits; latency overhead measured (store 3.63s / hit 0.43s vs uncompressed 0.27s / 0.14s).
+- Eviction with 100MiB cap: 5 evictions, final 84MiB/3 folders, 8/8 hits.
+- Per-prefix `manifest.json` with file sizes + gzip magic validation; corrupted KV is detected, invalid folder evicted, request falls back to recompute with **HTTP 200** instead of 500.
+- Raw: `vllm-memex-kv-connector-7b-hardening.json`; harness **131/131**.
+
 ## 0.25.0
 
 ### Added — 7B concurrency + real materialized window

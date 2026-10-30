@@ -255,6 +255,17 @@ On the 7B dummy-weight server (28 layers, ~91% GPU):
 
 Raw: `vllm-memex-kv-connector-7b-concurrency.json`.
 
+## 7B connector hardening (v0.26.0)
+
+On the 7B dummy-weight server:
+
+- **gzip compression:** 8 prefixes → **222MiB vs 652MiB (~66% disk reduction)**, 8/8 hits; however gzip CPU cost raised latency (mean store 3.63s / hit 0.43s vs uncompressed 0.27s / 0.14s).
+- **Eviction:** 100MiB cap → 5 evictions, final 84MiB/3 folders, 8/8 hits.
+- **Corruption fallback:** corrupted one `.gz` layer file → manifest validation detected it, evicted the invalid prefix, request returned **HTTP 200** (recomputed) instead of HTTP 500.
+
+Raw: `vllm-memex-kv-connector-7b-hardening.json`.
+Boundary: dummy weights; gzip level not tuned; single process.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
