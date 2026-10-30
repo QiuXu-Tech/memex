@@ -425,6 +425,20 @@ Takeaway: **rule-only is a weak baseline; learned alone is unstable; hybrid unio
 Raw: `hybrid-materializer-eval.json`.
 Boundary: small/noisy labels; union measured offline; not yet integrated in JS.
 
+## JS hybrid materializer hook (v0.38.0)
+
+`materializeContext` now accepts optional `query` + `learnedRerank`; when present it adds the learned top candidate before chronological fill. On 18 held-out real session-query groups:
+
+| budget | rule recall | hybrid recall |
+|---:|---:|---:|
+| 500 | 0.222 | **0.333** |
+| 1,000 | 0.722 | **0.833** |
+| 1,500 | 0.778 | **0.889** |
+| 2,400 | 0.778 | **0.889** |
+
+The learned reranker is a lexical-feature logistic model (exported `lexical-reranker.json`); the default rule path is unchanged. U36 verifies the hook. Raw: `js-hybrid-materializer.json`.
+Boundary: noisy nearest-query labels; lexical model; optional path only.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

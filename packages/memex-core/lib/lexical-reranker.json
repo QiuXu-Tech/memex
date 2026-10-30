@@ -1,0 +1,23 @@
+{
+  "format": 1,
+  "kind": "lexical-reranker",
+  "features": [
+    "idf_overlap_norm",
+    "idf_overlap_body",
+    "title_overlap",
+    "use_overlap",
+    "body_len_norm",
+    "is_decision",
+    "bias"
+  ],
+  "weights": [
+    0.064594,
+    15.815102,
+    2.64907,
+    -1.051985,
+    -0.244507,
+    0.0,
+    -0.708913
+  ],
+  "bias": -0.708913
+}

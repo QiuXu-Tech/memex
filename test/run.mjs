@@ -4410,6 +4410,22 @@ await test('U34', 'GPU-trained 2-layer transformer encoder matches Python logits
   assert.equal(encoder.rank([irrelevant, relevant], 'what did we decide about the billing retry policy?')[0].page, relevant)
 })
 
+
+await test('U36', 'materializer optional learned rerank adds the query-relevant candidate', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const { readFileSync } = await import('node:fs')
+  const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
+  const pages = [
+    { id: 'a', title: 'billing note', body: 'billing retry policy unrelated content', useWhen: 'billing', sequence: 1 },
+    { id: 'b', title: 'provider reasoning levels', body: 'provider reasoning levels official settings', useWhen: 'model reasoning', sequence: 2 },
+    { id: 'c', title: 'cache note', body: 'cache eviction unrelated content', useWhen: 'cache', sequence: 3 },
+  ]
+  const rule = materializeContext({ pages, budgetTokens: 60 })
+  const hybrid = materializeContext({ pages, budgetTokens: 60, query: 'provider reasoning levels', learnedRerank: weights })
+  assert.ok(rule.includedIds.length >= 1)
+  assert.ok(hybrid.includedIds.includes('b'), `hybrid should add query-relevant page: ${hybrid.includedIds}`)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

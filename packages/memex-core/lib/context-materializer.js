@@ -56,6 +56,47 @@ const pageTokens = (page) => Number.isFinite(page.tokenCount) ? Math.max(1, Numb
 const pageSequence = (page, index) => Number.isFinite(page.sequence) ? Number(page.sequence) : (Number.isFinite(page.createdAt) ? Number(page.createdAt) : index)
 const pageBody = (page) => String(page.body ?? page.summary ?? '')
 
+function lexicalFeatures(query, page, idf) {
+  const tokenize = (value) => String(value ?? '').toLowerCase().match(/[a-z0-9_]+/g) ?? []
+  const queryTerms = [...new Set(tokenize(query))]
+  const pageTerms = tokenize(`${page.title ?? ''} ${page.body ?? ''} ${page.useWhen ?? ''}`)
+  const pageSet = new Set(pageTerms)
+  const titleSet = new Set(tokenize(page.title))
+  const useSet = new Set(tokenize(page.useWhen))
+  let overlap = 0
+  let queryNorm = 0
+  let bodyNorm = 0
+  for (const term of queryTerms) queryNorm += idf.get(term) ?? 0
+  for (const term of pageTerms) bodyNorm += idf.get(term) ?? 0
+  for (const term of queryTerms) if (pageSet.has(term)) overlap += idf.get(term) ?? 0
+  return [
+    overlap / (queryNorm || 1),
+    overlap / (bodyNorm || 1),
+    [...queryTerms].filter((term) => titleSet.has(term)).length / Math.max(1, titleSet.size),
+    [...queryTerms].filter((term) => useSet.has(term)).length / Math.max(1, useSet.size),
+    Math.min(1, String(page.body ?? '').length / 4000),
+    page.kind === 'decision' ? 1 : 0,
+    1,
+  ]
+}
+
+function learnedRerankPages(pages, query, reranker) {
+  if (!query || !reranker || !Array.isArray(reranker.weights)) return []
+  const tokenize = (value) => String(value ?? '').toLowerCase().match(/[a-z0-9_]+/g) ?? []
+  const documents = pages.map((page) => [...new Set(tokenize(`${page.title ?? ''} ${page.body ?? ''} ${page.useWhen ?? ''}`))])
+  const documentFrequency = new Map()
+  for (const document of documents) for (const term of document) documentFrequency.set(term, (documentFrequency.get(term) ?? 0) + 1)
+  const idf = new Map()
+  for (const [term, frequency] of documentFrequency) idf.set(term, Math.log((pages.length + 1) / (frequency + 0.5)))
+  const bias = Number(reranker.bias ?? 0)
+  return pages.map((page) => {
+    const features = lexicalFeatures(query, page, idf)
+    let score = bias
+    for (let index = 0; index < features.length; index += 1) score += features[index] * Number(reranker.weights[index] ?? 0)
+    return { page, score }
+  }).sort((left, right) => right.score - left.score)
+}
+
 function stableHash(text) {
   return createHash('sha256').update(String(text), 'utf8').digest('hex').slice(0, 16)
 }
@@ -102,6 +143,13 @@ export function materializeContext(input = {}) {
     const first = sorted.find((page) => !selected.some((entry) => entry.id === page.id))
     const last = [...sorted].reverse().find((page) => !selected.some((entry) => entry.id === page.id))
     for (const page of [first, last]) if (page !== undefined) tryAdd(page)
+  }
+  if (input.query !== undefined && input.learnedRerank !== undefined) {
+    const ranked = learnedRerankPages(sorted, String(input.query), input.learnedRerank)
+    for (const { page } of ranked) {
+      if (selected.some((entry) => entry.id === page.id)) continue
+      if (tryAdd(page)) break
+    }
   }
   for (const page of sorted) {
     if (!tryAdd(page)) omitted.push(page.id)

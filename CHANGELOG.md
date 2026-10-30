@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.38.0
+
+### Added — optional JS hybrid materializer hook
+- `materializeContext` accepts optional `query` + `learnedRerank`; adds the learned top candidate before chronological fill.
+- 18 held-out real session-query groups: rule 0.222 → hybrid **0.333** at 500 tokens; 0.722 → **0.833** at 1,000; 0.778 → **0.889** at 1,500–2,400.
+- Learned reranker is a lexical-feature logistic model (`packages/memex-core/lib/lexical-reranker.json`); default rule path unchanged; U36 verifies the hook.
+- Raw: `js-hybrid-materializer.json`; harness **132/132**.
+
 ## 0.37.0
 
 ### Added — hybrid rule + learned materializer evaluation

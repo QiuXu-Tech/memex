@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.37.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.38.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## 7B KV strategy comparison (latest)
 
@@ -75,6 +75,10 @@ Real DSH session queries, record-disjoint validation (4 val groups): rule materi
 ## Hybrid rule + learned materializer (v0.37.0)
 
 On real session-query validation, rule recall 0.222 → learned top-1 0.500 → **rule ∪ learned 0.667**. On the small manual real-query set: 0.500 → 0.750. Learned alone is unstable; the hybrid keeps rules as a safety net and adds the learned candidate.
+
+## JS hybrid materializer hook (v0.38.0)
+
+Optional `query` + `learnedRerank` adds a learned candidate to the materialized window. Real session-query val: rule 0.222 → hybrid 0.333 at 500 tokens; 0.722 → 0.833 at 1,000; 0.778 → 0.889 at 1,500–2,400. Default rule path unchanged.
 
 ## Why
 
