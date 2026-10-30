@@ -1,0 +1,58 @@
+{
+  "format": 1,
+  "kind": "production-throughput-benchmark",
+  "generatedAt": "2026-10-30T17:53:00+08:00",
+  "model": "Qwen/Qwen2.5-7B-Instruct-AWQ (real)",
+  "connector": "MemexKVConnector (external KV)",
+  "gpu": "RTX PRO 6000 Blackwell 96GB",
+  "workload": {
+    "prefixes": 8,
+    "requests_per_level": 64,
+    "promptTokens": 1856,
+    "maxTokens": 1
+  },
+  "results": [
+    {
+      "concurrency": 1,
+      "ok": 64,
+      "throughput_rps": 13.1,
+      "p50_ms": 75.6,
+      "p95_ms": 82.3,
+      "wall_seconds": 4.885
+    },
+    {
+      "concurrency": 8,
+      "ok": 64,
+      "throughput_rps": 18.91,
+      "p50_ms": 419.9,
+      "p95_ms": 444.0,
+      "wall_seconds": 3.384
+    },
+    {
+      "concurrency": 16,
+      "ok": 64,
+      "throughput_rps": 19.13,
+      "p50_ms": 826.7,
+      "p95_ms": 842.6,
+      "wall_seconds": 3.346
+    },
+    {
+      "concurrency": 32,
+      "ok": 64,
+      "throughput_rps": 18.93,
+      "p50_ms": 1637.4,
+      "p95_ms": 1779.4,
+      "wall_seconds": 3.382
+    }
+  ],
+  "analysis": {
+    "throughputSaturationRps": 19.1,
+    "bottleneckLikely": "CPU connector metadata/disk + single vLLM process; latency scales with concurrency",
+    "gpuUsedMiB": 89023
+  },
+  "caveats": [
+    "Single process, one GPU; synthetic prefix workload.",
+    "External connector uncompressed disk path.",
+    "p50/p95 include API/network overhead."
+  ]
+}

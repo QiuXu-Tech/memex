@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.30.0
+
+### Added — production benchmark, DSH runtime path, improved real-trace encoder
+- Production throughput on real 7B-AWQ + connector: 13.1 rps @1, ~19 rps @8–32; p50 75.6ms → 1637ms as concurrency rises; single-process bottleneck.
+- DSH desktop profile: added `local-memex` provider (tunnel → remote vLLM + MemexKVConnector), set profile default model to `qwen-7b-awq`; validated long-prompt requests and external-hit delta. Restart required; profile backup exists.
+- Real-trace encoder: pretrained **BGE-small + linear head 0.5926** vs scratch 0.518 vs TF-IDF 0.444; still limited by 36 records/templated queries.
+- Raw: `production-throughput-benchmark.json`, `dsh-local-memex-integration.json`, `real-trace-encoder-pretrained.json`; harness **131/131**.
+
 ## 0.29.0
 
 ### Added — KV strategy comparison and optimization directions

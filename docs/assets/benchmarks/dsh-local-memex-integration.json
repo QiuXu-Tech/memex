@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "kind": "dsh-local-memex-runtime-integration",
+  "generatedAt": "2026-10-30T17:53:00+08:00",
+  "profile": {
+    "provider": "local-memex",
+    "defaultModel": "qwen-7b-awq",
+    "baseURL": "http://127.0.0.1:18000/v1",
+    "tunnel": "ssh -L 18000:127.0.0.1:8000",
+    "backup": "~/.dsh/profiles/desktop/cordis.patch.yml.bak-*"
+  },
+  "remote": {
+    "model": "Qwen2.5-7B-AWQ",
+    "vllm": "0.10.2",
+    "connector": "MemexKVConnector",
+    "nativePrefixCaching": false
+  },
+  "verification": {
+    "tunnelModelsEndpoint": true,
+    "longPromptRequests": 2,
+    "externalHitDelta": 2,
+    "requestStatus": 200
+  },
+  "activation": "restart DSH for the active profile/default model to take effect",
+  "caveats": [
+    "Default model now local 7B; quality differs from DeepSeek Flash.",
+    "SSH tunnel must stay alive; no auto-reconnect in this prototype.",
+    "Provider/profile changes are local to this Mac profile, not in repo."
+  ]
+}

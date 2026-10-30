@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.29.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.30.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## 7B KV strategy comparison (latest)
 
@@ -37,6 +37,12 @@ Takeaways:
 - Next: **hybrid routing** (native hot cache + external cold cache), async/pinned KV loading, prefix-length crossover tuning, and lower GPU KV reservation to free memory.
 
 Raw data: `docs/assets/benchmarks/kv-strategy-comparison.json`.
+
+## Latest: production benchmark + DSH runtime integration
+
+- Real 7B-AWQ + external connector: throughput saturates ~**19 rps**; p50 75.6ms @1 concurrency, 1637ms @32 (single process).
+- DSH profile now has a **`local-memex`** provider backed by the connector vLLM through an SSH tunnel; profile default model set to `qwen-7b-awq` (restart required).
+- Real-trace encoder: pretrained **BGE-small** lifts real-archive ranking from 0.518 to **0.593** (still small-corpus limited).
 
 ## Why
 

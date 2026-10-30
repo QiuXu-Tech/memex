@@ -1,0 +1,32 @@
+{
+  "format": 1,
+  "kind": "real-trace-encoder-pretrained",
+  "generatedAt": "2026-10-30T17:53:00+08:00",
+  "dataset": {
+    "records": 36,
+    "groups": 108,
+    "samples": 540,
+    "source": "local memex archive"
+  },
+  "models": {
+    "scratch_2layer": {
+      "sample_accuracy": 0.5185,
+      "pairwise_ranking": 0.5185
+    },
+    "tfidf_bm25": {
+      "sample_accuracy": 0.4444,
+      "pairwise_ranking": 0.4444
+    },
+    "bge_small_pretrained": {
+      "sample_accuracy": 0.5926,
+      "pairwise_ranking": 0.5926,
+      "embedding_dim": 384
+    }
+  },
+  "conclusion": "Pretrained BGE lifts real-archive ranking from scratch 0.518 to 0.593; still limited by 36 records and templated queries.",
+  "caveats": [
+    "Aggregate metrics only; private data/weights not committed.",
+    "One split; small corpus.",
+    "BGE embeddings + linear head, not a production retriever."
+  ]
+}

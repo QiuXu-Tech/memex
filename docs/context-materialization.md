@@ -305,6 +305,31 @@ Same real Qwen2.5-7B-AWQ, 8 prefixes ×2 requests, 1,856-token prefix:
 
 Raw: `kv-strategy-comparison.json`.
 
+## Production benchmark + DSH runtime integration (v0.30.0)
+
+### Production throughput (real 7B-AWQ + external connector)
+64 requests / 8 prefixes / 1,856-token prefix:
+
+| concurrency | throughput | p50 | p95 |
+|---:|---:|---:|---:|
+| 1 | 13.1 rps | 75.6ms | 82.3ms |
+| 8 | 18.9 rps | 419.9ms | 444.0ms |
+| 16 | 19.1 rps | 826.7ms | 842.6ms |
+| 32 | 18.9 rps | 1637.4ms | 1779.4ms |
+
+Throughput saturates around **19 rps**; latency scales linearly with concurrency, indicating a single-process/CPU/disk bottleneck. Raw: `production-throughput-benchmark.json`.
+
+### DSH runtime integration
+- Added provider **`local-memex`** to the desktop profile, baseURL `http://127.0.0.1:18000/v1`, served by a tunnel to the remote vLLM connector.
+- Set the profile default model to **`local-memex/qwen-7b-awq`** (backup profile YAML exists).
+- Verified through the tunnel: long prompt requests return 200 and increase external-hit count.
+- **Restart DSH** for the provider/default model to take effect.
+- Caveats: local 7B quality differs from DeepSeek Flash; tunnel is a prototype without auto-reconnect.
+
+### Real-trace encoder with pretrained BGE
+- Real archive (36 records, 108 groups): scratch 2-layer **0.518**, TF-IDF **0.444**, **BGE-small pretrained + linear head 0.5926**.
+- Pretrained embeddings help, but the corpus/queries are still too small for production.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
