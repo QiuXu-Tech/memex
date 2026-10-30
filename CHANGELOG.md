@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.58.0
+
+### Added — per-model cost model + reference cost estimates
+- `training/quality_ab_protocol.py` now supports per-answer-model and judge cost rates (`costModel.answer[model]`, `costModel.judge[judge]`), validates them unless `--exploratory`, and reports `null` cost when missing.
+- Exploratory real-memory results annotated with post-hoc reference costs: DeepSeek rule ~$0.00174/hybrid ~$0.00219; Claude Haiku rule ~$0.03548/hybrid ~$0.03612; judge ~$0.0613; total ~$0.1369. Not billing.
+- Rule recalled all labeled relevant records; hybrid recall 0.5 on architecture; no consistent hybrid win. No default change.
+- Active runtime verified: 23:31 process, budget 1800, formatTokens 334, rule 1794 / hybrid 1759, status ok.
+- Repo **144/144**; active **98/98**.
+
 ## 0.57.0
 
 ### Added — authorized exploratory real-memory quality A/B

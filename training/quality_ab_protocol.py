@@ -42,8 +42,16 @@ def main():
     a=ap.parse_args(); data=json.loads(Path(a.dataset).read_text())
     if data.get('realMemory') and not a.authorize_real_memory:
         sys.exit('realMemory dataset requires --authorize-real-memory')
-    if not a.exploratory and not data.get('costModel'):
-        sys.exit('costModel is required unless --exploratory')
+    cm=data.get('costModel') or {}
+    if not a.exploratory:
+        if not cm.get('answer') or not cm.get('judge'):
+            sys.exit('costModel.answer (per model) and costModel.judge are required unless --exploratory')
+        for model in a.answer_models.split(','):
+            model=model.strip()
+            if not cm['answer'].get(model):
+                sys.exit(f'costModel.answer missing {model}')
+        if not cm['judge'].get(a.judge):
+            sys.exit(f'costModel.judge missing {a.judge}')
     train=set(data.get('trainKeys',[])); test=set(data.get('testKeys',[]))
     splitKey=data.get('splitKey','sessionId')
     if train and test and train & test:
@@ -55,7 +63,9 @@ def main():
             sys.exit(f"query {q.get('id')} is not in testKeys")
     cfg=json.loads(Path(a.config).read_text()); key=cfg.get('apiKey') or cfg.get('key')
     if not key: sys.exit('config must contain apiKey')
-    cm=data.get('costModel') or {'answerInputPer1k':0,'answerOutputPer1k':0,'judgeInputPer1k':0,'judgeOutputPer1k':0}
+    def rate(model, table):
+        row=(table or {}).get(model)
+        return (row['inputPer1M'],row['outputPer1M']) if row else None
     system='Answer using ONLY the provided context. Cite record ids for major claims. If absent, say "not in context". Be concise.'
     out={'dataset':data.get('dataset'),'judge':a.judge,'exploratory':a.exploratory,'queries':[],'totals':{}}
     total_answer_cost=0.0; total_judge_cost=0.0
@@ -69,19 +79,23 @@ def main():
             model=model.strip(); answers={}
             for cond,ctx in contexts.items():
                 resp,lat=call(a.endpoint,key,model,[{'role':'system','content':system},{'role':'user','content':ctx+'\n\nQuestion: '+q['question']}],max_tokens=700)
-                answers[cond]={'text':resp['choices'][0]['message']['content'],'usage':resp.get('usage',{}),'latencySeconds':round(lat,3),'cost':cost(resp.get('usage'),cm['answerInputPer1k'],cm['answerOutputPer1k'])}
-                total_answer_cost += answers[cond]['cost']
+                answer_rate=rate(model,cm.get('answer'))
+                answer_cost=None if answer_rate is None else cost(resp.get('usage'),*answer_rate)
+                answers[cond]={'text':resp['choices'][0]['message']['content'],'usage':resp.get('usage',{}),'latencySeconds':round(lat,3),'cost':answer_cost}
+                if answer_cost is not None: total_answer_cost += answer_cost
             judged={}
             for order in [('rule','hybrid'),('hybrid','rule')]:
                 mapping={'A':order[0],'B':order[1]}
                 prompt=f'''Question:\n{q['question']}\n\nReference facts:\n{q.get('referenceFacts','')}\n\nAnswer A:\n{answers[mapping['A']]['text']}\n\nAnswer B:\n{answers[mapping['B']]['text']}\n\nReturn ONLY JSON {{"A":{{"coverage":0-10,"correctness":0-10,"focus":0-10}},"B":{{...}},"winner":"A|B|tie","reason":"<=120 chars"}}. Judge only against reference facts; penalize missing key facts and unsupported claims.'''
                 resp,lat=call(a.endpoint,key,a.judge,[{'role':'user','content':prompt}],max_tokens=400)
                 text=resp['choices'][0]['message']['content']; m=re.search(r'\{.*\}',text,re.S)
-                judged[f"{order[0]}-first"]={'mapping':mapping,'latencySeconds':round(lat,3),'usage':resp.get('usage',{}),'cost':cost(resp.get('usage'),cm['judgeInputPer1k'],cm['judgeOutputPer1k']),'result':json.loads(m.group(0)) if m else {'raw':text}}
-                total_judge_cost += judged[f"{order[0]}-first"]['cost']
+                judge_rate=rate(a.judge,cm.get('judge'))
+                judge_cost=None if judge_rate is None else cost(resp.get('usage'),*judge_rate)
+                judged[f"{order[0]}-first"]={'mapping':mapping,'latencySeconds':round(lat,3),'usage':resp.get('usage',{}),'cost':judge_cost,'result':json.loads(m.group(0)) if m else {'raw':text}}
+                if judge_cost is not None: total_judge_cost += judge_cost
             item['conditions'][model]={'answers':answers,'judgeOrders':judged}
         out['queries'].append(item)
-    out['totals']={'answerCost':round(total_answer_cost,6),'judgeCost':round(total_judge_cost,6),'totalCost':round(total_answer_cost+total_judge_cost,6)}
+    out['totals']={'answerCost':round(total_answer_cost,6) if not a.exploratory else None,'judgeCost':round(total_judge_cost,6) if not a.exploratory else None,'totalCost':round(total_answer_cost+total_judge_cost,6) if not a.exploratory else None,'currency':cm.get('currency')}
     Path(a.out).write_text(json.dumps(out,ensure_ascii=False,indent=2))
     print('wrote',a.out,'queries',len(out['queries']),'totalCost',out['totals']['totalCost'])
 

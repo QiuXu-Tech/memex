@@ -731,7 +731,7 @@ Findings:
 
 - Rule recalled all labeled relevant records in all 5 cases; hybrid recall dropped to **0.5** on the architecture query.
 - No consistent hybrid win: rule won both orders on multi and Claude next/KV cases; hybrid won both orders on DeepSeek architecture and Claude DSH.
-- Latency ranged **5–47s** (network/provider variance); no pricing model was supplied, so cost is a zero placeholder and is **not** a valid cost comparison.
+- Latency ranged **5–47s** (network/provider variance). Post-hoc cost estimates using public reference prices: DeepSeek rule ~$0.00174 / hybrid ~$0.00219; Claude Haiku rule ~$0.03548 / hybrid ~$0.03612; judge ~$0.0613; total ~$0.1369. These are estimates, not billing.
 - Active runtime was separately verified: process 23:31, budget 1800, `formatTokens=334`, rule 1794 / hybrid 1759 tokens, status ok.
 
 Conclusion: **rule + core-fact tier remains the safer provisional default; hybrid is optional/experimental.** Human-verified labels and a real cost model are still required before any default change.

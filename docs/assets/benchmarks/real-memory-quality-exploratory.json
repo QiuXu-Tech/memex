@@ -452,5 +452,35 @@
     "Latency varied 5\u201347s due APIMaster/network; cost is unknown because no price model was supplied (exploratory cost=0 placeholder).",
     "Labels are provisional; this is exploratory, not a default-change basis."
   ],
-  "costNote": "No pricing supplied; cost fields are zero placeholders. Tokens and latency are recorded per judge call."
+  "costNote": "Post-hoc estimates from recorded token usage and public APIMaster/Anthropic reference prices; not actual billing. The exploratory protocol output used zero placeholder costs because no price model was supplied at run time. Judge cost is reported separately.",
+  "pricingReference": {
+    "deepseek-flash": {
+      "inputPer1M": 0.06,
+      "outputPer1M": 0.24,
+      "source": "APIMaster DeepSeek API page, channel-330 60% off; actual channel may vary"
+    },
+    "claude-haiku-4-5": {
+      "inputPer1M": 1.0,
+      "outputPer1M": 5.0,
+      "source": "Anthropic official rates used conservatively; APIMaster real-time may be lower"
+    },
+    "gpt-6-astra": {
+      "inputPer1M": 0.52288,
+      "outputPer1M": 2.6144,
+      "source": "APIMaster OpenAI API page, lowest listed channel; actual channel may vary"
+    }
+  },
+  "estimatedCostsUSD": {
+    "deepseek-flash": {
+      "rule": 0.00174,
+      "hybrid": 0.002191
+    },
+    "claude-haiku-4-5": {
+      "rule": 0.035478,
+      "hybrid": 0.036117
+    },
+    "judge": 0.061339,
+    "answerTotal": 0.075527,
+    "total": 0.136866
+  }
 }
