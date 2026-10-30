@@ -1,0 +1,41 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-hardening-2",
+  "generatedAt": "2026-10-30T17:30:00+08:00",
+  "model": "Qwen2.5-7B architecture, dummy random weights (28 layers)",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "compress": true,
+    "compressLevel": 1,
+    "tenant_id": "tenantB"
+  },
+  "tests": {
+    "gzipLevel": {
+      "level9MiB": 222,
+      "level1MiB": 222,
+      "level9MeanStore": 3.6276,
+      "level9MeanHit": 0.4268,
+      "level1MeanStore": 3.6084,
+      "level1MeanHit": 0.429,
+      "conclusion": "gzip level does not materially change disk or latency; CPU/serialization dominates"
+    },
+    "tenantIsolation": {
+      "tenantA": "existing cache left untouched",
+      "tenantB": "first request store 5.99s; second hit 0.565s; external hit count for tenantB=1",
+      "tenantManifestsVerified": true
+    },
+    "concurrency32": {
+      "requests": 32,
+      "ok": 32,
+      "maxSeconds": 15.147,
+      "externalHits": 32,
+      "invalidCaches": 0
+    }
+  },
+  "caveats": [
+    "Dummy weights; architecture/memory/connector only.",
+    "gzip latency is high relative to uncompressed; not production tuned.",
+    "32-way concurrency on single process; max latency includes gzip/disk contention."
+  ]
+}

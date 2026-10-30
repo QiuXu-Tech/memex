@@ -114,6 +114,10 @@ class MemexKVConnector(KVConnectorBase_V1):
         self._compress = bool(transfer_config.get_from_extra_config(
             "compress", False))
         self._saved_folders = set()
+        self._tenant_id = str(transfer_config.get_from_extra_config(
+            "tenant_id", "default"))
+        self._compress_level = int(transfer_config.get_from_extra_config(
+            "compress_level", 9) or 9)
         logger.info(vllm_config.kv_transfer_config)
         logger.info("Shared storage path is %s", self._storage_path)
 
@@ -291,7 +295,8 @@ class MemexKVConnector(KVConnectorBase_V1):
         for name in os.listdir(folder):
             if name.endswith('.safetensors') or name.endswith('.safetensors.gz'):
                 files[name] = os.path.getsize(os.path.join(folder, name))
-        manifest = {'version': 1, 'token_count': self._prefix_tokens, 'files': files}
+        manifest = {'version': 2, 'tenant_id': self._tenant_id, 'token_count': self._prefix_tokens,
+                    'compressed': self._compress, 'compress_level': self._compress_level, 'files': files}
         try:
             with open(os.path.join(folder, 'manifest.json'), 'w') as handle:
                 json.dump(manifest, handle)
@@ -475,6 +480,8 @@ class MemexKVConnector(KVConnectorBase_V1):
         if exists:
             try:
                 manifest = json.load(open(os.path.join(foldername, 'manifest.json')))
+                if manifest.get('tenant_id', 'default') != self._tenant_id:
+                    raise ValueError('tenant mismatch')
                 for name, size in manifest.get('files', {}).items():
                     path = os.path.join(foldername, name)
                     if not os.path.exists(path) or os.path.getsize(path) != size:
@@ -502,6 +509,7 @@ class MemexKVConnector(KVConnectorBase_V1):
         token_bytes = token_ids.numpy().tobytes()
         # Add mm_hashes to the bytes being hashed to avoid path traversal and
         # to create a canonical key.
+        token_bytes += self._tenant_id.encode('utf-8')
         if mm_hashes:
             mm_str = "-".join(mm_hashes)
             token_bytes += mm_str.encode('utf-8')

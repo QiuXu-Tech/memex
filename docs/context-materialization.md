@@ -266,6 +266,15 @@ On the 7B dummy-weight server:
 Raw: `vllm-memex-kv-connector-7b-hardening.json`.
 Boundary: dummy weights; gzip level not tuned; single process.
 
+## Tenant isolation + concurrency + gzip tuning (v0.27.0)
+
+- **gzip level tuning:** level1 vs level9 both yield **222MiB** for 8 prefixes and nearly identical latency (store ~3.61s / hit ~0.43s); gzip CPU/serialization dominates, so compression level is not the lever.
+- **Tenant isolation:** connector now keys the cache hash with `tenant_id` and validates the tenant in each `manifest.json`. Switching from tenantA to tenantB did not reuse tenantA folders; tenantB stored then hit its own prefix (first store 5.99s, second request 0.565s).
+- **32-way concurrency:** 32/32 requests succeeded, max 15.147s, 32 external-hit log entries, **0 invalid caches** (single process, compressed path).
+
+Raw: `vllm-memex-kv-connector-hardening2.json`.
+Boundary: dummy weights; gzip latency not production-tuned; single process.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
