@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.15.1
+
+### Fixed — DSH rc.4/rc.5 compatibility
+- Relaxed the bundle's `engines.dsh` requirement from exact `0.2.1-rc.3` to `>=0.2.1-rc.3 <0.2.2`, so it satisfies the nightly rc.5 update as well as the currently installed rc.3.
+- Rebuilt the `@local/dsh-memory` compatibility bundle for the active profile.
+- Backup/rollback of the pre-update app, profile, branding files and compat bundle: `~/Documents/deepseek-harness/default-workspace/backups/dsh-rc3-20261030-122547/`.
+- Harness **130/130**.
+
 ## 0.15.0
 
 ### Fixed — SQLite/file consistency

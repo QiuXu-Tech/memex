@@ -1,6 +1,6 @@
 {
   "name": "@qiuxu/memex",
-  "version": "0.15.0",
+  "version": "0.15.1",
   "private": true,
   "description": "DeepSeek Harness bundle for the extra-context memory subsystem (agent-agnostic core, L1 eviction, sticky L2/L3, cold tier, Web panel).",
   "type": "module",
@@ -27,7 +27,7 @@
     "icon.svg"
   ],
   "engines": {
-    "dsh": "0.2.1-rc.3"
+    "dsh": ">=0.2.1-rc.3 <0.2.2"
   },
   "dsh": {
     "bundle": {
