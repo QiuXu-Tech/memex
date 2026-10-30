@@ -188,7 +188,7 @@ The same `MemexKVConnector` was run with **Qwen2.5-3B-Instruct** (36 layers) on 
 
 - 8 materialized prefixes × 2 requests, native prefix caching disabled
 - **8/8 second requests external-cache hits**; **420MB** external KV for 8 prefixes
-- first request includes torch.compile warmup (65.9s); steady-state (excluding warmup): **store 0.1553s → hit 0.0964s**
+- first request includes torch.compile warmup (65.9s); steady-state (excluding warmup): **store 0.1470s → hit 0.0937s**
 - GPU memory during run: **88,933 / 97,887 MiB** (~91% utilized)
 - KV injection: 1,488 tokens per layer per hit
 
