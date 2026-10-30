@@ -1,0 +1,608 @@
+{
+  "kind": "synthetic-topic-pager-comparison",
+  "baseline": "c05dd12",
+  "cases": 20,
+  "design": "8 topics: 8 explicit, 8 paraphrased and 4 lexical-disjoint questions; target records precede 50 distractors; no target injection; 4 cold targets",
+  "probes": [
+    {
+      "topic": "deployment",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 432
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 432
+        }
+      }
+    },
+    {
+      "topic": "deployment",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 480
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 480
+        }
+      }
+    },
+    {
+      "topic": "deployment",
+      "kind": "lexical-disjoint",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        }
+      }
+    },
+    {
+      "topic": "database",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 464
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 464
+        }
+      }
+    },
+    {
+      "topic": "database",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 451
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 451
+        }
+      }
+    },
+    {
+      "topic": "database",
+      "kind": "lexical-disjoint",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        }
+      }
+    },
+    {
+      "topic": "api",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 423
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 423
+        }
+      }
+    },
+    {
+      "topic": "api",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 423
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 423
+        }
+      }
+    },
+    {
+      "topic": "ui",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 464
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 464
+        }
+      }
+    },
+    {
+      "topic": "ui",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 472
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 472
+        }
+      }
+    },
+    {
+      "topic": "review",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 425
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 425
+        }
+      }
+    },
+    {
+      "topic": "review",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 472
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 472
+        }
+      }
+    },
+    {
+      "topic": "review",
+      "kind": "lexical-disjoint",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        }
+      }
+    },
+    {
+      "topic": "incident",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 430
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 430
+        }
+      }
+    },
+    {
+      "topic": "incident",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 393
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 393
+        }
+      }
+    },
+    {
+      "topic": "backup",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 405
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 405
+        }
+      }
+    },
+    {
+      "topic": "backup",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 428
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 428
+        }
+      }
+    },
+    {
+      "topic": "privacy",
+      "kind": "explicit-topic",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 471
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 471
+        }
+      }
+    },
+    {
+      "topic": "privacy",
+      "kind": "paraphrase",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 394
+        },
+        "after-hybrid": {
+          "candidate": true,
+          "selected": true,
+          "fact": true,
+          "tokens": 394
+        }
+      }
+    },
+    {
+      "topic": "privacy",
+      "kind": "lexical-disjoint",
+      "conditions": {
+        "before-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "before-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-rule": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        },
+        "after-hybrid": {
+          "candidate": false,
+          "selected": false,
+          "fact": false,
+          "tokens": 500
+        }
+      }
+    }
+  ]
+}

@@ -7,6 +7,8 @@ layout: default
 
 **Scope:** v0.65.0 with pager repair [`bfeee59`](https://github.com/QiuXu-Tech/memex/commit/bfeee596cc7a06fd304b025b0b031de05bbd2f12). These results are a synthetic stress test and a limited private historical replay; they are not a human-labelled production benchmark.
 
+This is the historical pre-query-recall result. The subsequent [paired recall and ranking retest](pager-recall-evaluation.md) uses the same synthetic stores and probes with an updated pager.
+
 ## Repair and verification
 
 The pager now loads the stored record body when no canonical events exist, including for archive cards. Missing or unreadable files produce an error instead of silently substituting a summary. `pageTokenCap`, `tokenCounter` and `tokenizerName` are forwarded to the materializer; the engine forwards those options and canonical-event selection. The checkpoint exposes the optional page cap and forwards the current direct user query, allowing query-aware excerpts. Excerpted pages no longer retain the original page token count for learned-candidate limits. No active DSH profile was changed or restarted by this retest.
@@ -21,7 +23,7 @@ A real-store end-to-end harness covers hot/cold bodies, query-aware excerpts thr
 
 Each of ten seeds created a throwaway real SQLite/file store with 2,000 synthetic records, each assigned 5,000 tokens; half were archived cold. Seeds 301–305 used Node 25.9.0 and seeds 401–405 used Node 24.21.0. Bodies contain repeated `x` filler. The 10M figure is an assigned storage accounting value, not a measurement by a model tokenizer.
 
-Each seed sampled **20 targets from the pager's resident set and 20 outside it**, for 200 probes per runtime cohort. The search query was an exact `cardcue` in the target title. Search results were measured separately and were **not** passed to the pager. Both pager conditions used the same candidates, query, 1,800 chars/4 estimated-token budget and 400-token body excerpt cap. Hybrid used the repository lexical weights, topK 8 and a 700-token learned-page limit; neither condition used forced core or pinned pages. These settings exercise the pager API and do not imply that the repository checkpoint currently enables the hybrid strategy.
+Each seed sampled **20 targets from the pager's resident set and 20 outside it**, for 200 probes per runtime cohort. The search query was an exact `cardcue` in the target title. Search results were measured separately and were **not** passed to the pager. Both pager conditions used the same candidates, query, 1,800 chars/4 estimated-token budget and 400-token body excerpt cap. Hybrid used the repository lexical weights, topK 8 and a 700-token learned-page limit; neither condition used forced core or pinned pages. These settings exercised the pager API; the checkpoint at the tested commit did not enable the hybrid strategy.
 
 Node 25.9.0:
 

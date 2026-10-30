@@ -1,0 +1,99 @@
+{
+  "format": 1,
+  "kind": "historical-session-pager-replay-aggregate",
+  "testedCommit": "a0a33db5319ead359b089b3f5fb585212245e044",
+  "sessionCount": 1,
+  "sessionSpanHours": 73.39,
+  "malformedLinesSkipped": 10,
+  "queries": 10,
+  "asOfPriorWriteSnapshots": 232,
+  "sameCandidateSets": 10,
+  "selectionDiffers": 10,
+  "answerSettings": {
+    "models": [
+      "deepseek-flash",
+      "claude-haiku-4-5"
+    ],
+    "maxTokens": 2500,
+    "temperature": 0,
+    "provider": "APIMaster; real content sent with user authorization",
+    "calls": 40,
+    "validPairs": 20,
+    "possiblePairs": 20,
+    "perModel": {
+      "deepseek-flash": {
+        "calls": 20,
+        "responseModelCounts": {
+          "deepseek-v4-1-flash-261017": 20
+        },
+        "http_ok": 20,
+        "empty_answer": 0,
+        "promptTokensReported": 73252,
+        "completionTokensReported": 38510
+      },
+      "claude-haiku-4-5": {
+        "calls": 20,
+        "responseModelCounts": {
+          "claude-haiku-4-5": 20
+        },
+        "http_ok": 20,
+        "empty_answer": 0,
+        "promptTokensReported": 98940,
+        "completionTokensReported": 29143
+      }
+    }
+  },
+  "machineJudgement": {
+    "judge": "gpt-6-astra via APIMaster",
+    "ordersPerPair": 2,
+    "validPairResults": {
+      "complete": 20,
+      "stable_rule": 6,
+      "stable_hybrid": 10,
+      "stable_tie": 1,
+      "order_conflict": 3
+    },
+    "byAnswerModel": {
+      "deepseek-flash": {
+        "complete": 10,
+        "stable_rule": 4,
+        "stable_hybrid": 4,
+        "stable_tie": 1,
+        "order_conflict": 1
+      },
+      "claude-haiku-4-5": {
+        "complete": 10,
+        "stable_hybrid": 6,
+        "stable_rule": 2,
+        "order_conflict": 2
+      }
+    },
+    "problems": {},
+    "bodyReferenceExcerptChars": 1000,
+    "judgeCalls": 40,
+    "judgePromptTokensReported": 751704,
+    "judgeCompletionTokensReported": 12395
+  },
+  "verification": {
+    "episodes": 10,
+    "reproduced": 10,
+    "mismatches": 0
+  },
+  "humanVerifiedLabels": 0,
+  "invoiceCost": "UNKNOWN",
+  "limitations": [
+    "one historical session, ten questions, not representative",
+    "reconstructed successful memory-write arguments and workspace scope, not full historical store state",
+    "malformed session lines skipped",
+    "no human-verified facts or relevance labels",
+    "reference pages clipped for model judge",
+    "not an autonomous agent/tool-use replay",
+    "raw private inputs and answers are not published",
+    "machine judge order can change the winner"
+  ],
+  "baselineCommit": "c05dd120cf2adc129390b9bd8662ba310143004c",
+  "selectionChangedFromBaseline": {
+    "rule": 9,
+    "hybrid": 10
+  }
+}

@@ -20,7 +20,7 @@ Memex treats context as a hierarchy, not a notes store: when the native context 
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # offline harness (152 tests)
+node --import ./test/register.mjs ./test/run.mjs   # offline harness (161 tests)
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -30,6 +30,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
+- [Pager recall and ranking retest](pager-recall-evaluation.html) — paired synthetic results, lexical limits and historical-session replay.
 - [Pager retest](pager-retest.html) — pager repair, synthetic multi-seed rule/hybrid comparison, and replay limits.
 - [SQLite and file consistency](storage-consistency.html) — lock handling, interrupted-operation recovery and backup scope.
 - [Extra context, not just memory](context-layer.html) — the concept: a context hierarchy between history and the model window.

@@ -22,7 +22,7 @@ An agent's context is scarce, volatile and ordered: tokens compete for attention
 
 - **Eviction is context management, not deletion.** When L1 fills, the oldest balanced span is moved out *verbatim*; a receipt keeps the model oriented.
 - **L2/L3 are sticky context pools.** Once a pool is enabled it stays enabled, so context that was moved out never silently disappears.
-- **Paging-in replaces re-derivation.** The model uses `memory_search` / `memory_open` to page the right evidence back into its window, paying for what it needs instead of re-reading history.
+- **Paging-in can avoid re-derivation.** The model can use `memory_search` / `memory_open` to retrieve selected evidence instead of re-reading all history; finding and selecting the right evidence is not guaranteed.
 - **Every pool is budgeted.** Catalog/recall/open budgets are tuned per model family; context is injected in bounded blocks, never dumped.
 
 ## Terminology: memory concepts → context concepts
@@ -43,14 +43,14 @@ An agent's context is scarce, volatile and ordered: tokens compete for attention
 1. **It is window-aware.** Operations are tied to the model's context: eviction ratios, injection budgets, per-model profiles, reasoning-mode guidance.
 2. **It is lossless before it is clever.** Raw context is archived verbatim; summaries are optional and never the source of truth.
 3. **It is automatic.** No curation step: capture happens at eviction/compaction, and retrieval is driven by the model's own tool calls or auto-recall.
-4. **It is scoped.** L2 private to a session, L3 shared by workspace; sensitive content policy keeps secrets private.
+4. **It is scoped.** L2 is session-scoped and L3 is workspace-scoped; sensitive-content detection can redirect or skip detected spans, but is not a guarantee that all secrets are detected.
 5. **It is measured.** In the v0.30.0 synthetic 100M-token pool, the SQLite index was 10.7 MiB after writing and 28.3 MiB after cold spill; the measured card-field search median was 10.58 ms before and 28.33 ms after cold spill. These are shared-machine fixture results, not production guarantees (see [evaluation](evaluation.html) and [benchmark](benchmark.html)).
 
 ## What this changes in practice
 
 - The question is not "what facts should we store?" but **"what does the model need in its window right now, and what can safely leave it?"**
 - The quality metric is not only recall, but **context efficiency**: how many tokens are spent to page in the decisive evidence, and how much context stays available without bloating the prompt.
-- The failure mode is explicit: if evidence is missing, the model reports it (as DeepSeek Flash did in our live runs) rather than hallucinating; the gap becomes a measurable retrieval target (see [live validation](live-testing.html)).
+- Missing evidence is a measurable retrieval failure, but a model may still make unsupported claims. Small live runs and [pager evaluations](pager-recall-evaluation.html) do not establish a general hallucination-prevention guarantee.
 
 ## Reading guide
 

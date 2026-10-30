@@ -5,6 +5,14 @@ layout: default
 
 # Benchmark report
 
+## 2026-10-31 query recall and hybrid ranking repair
+
+On the same ten synthetic 10M assigned-token stores and 400 exact-cue probes used in the previous retest, query-aware rule windows contained target facts **22/400 → 400/400** and hybrid windows **0/400 → 400/400**. Both candidate generation and selection changed. An ablation using the same post-fix candidate pages found hybrid **0/400 → 400/400**. These are synthetic availability checks, not answer accuracy.
+
+![Paired synthetic pager comparison before and after query recall and ranking repair](assets/benchmarks/pager-recall-comparison.png)
+
+On a separate small synthetic topic diagnostic, both repaired policies included target facts for **16/16** questions with shared searchable terms and **0/4** lexically disjoint synonym questions. Neither run establishes production generalization. The shared host failed the quiet-start gate for all ten paired runs. [Full methods, raw results and limitations](pager-recall-evaluation.md).
+
 ## 2026-10-31 pager repair and 10M materializer retest
 
 The v0.65.0 pager repair was tested at commit [`bfeee59`](https://github.com/QiuXu-Tech/memex/commit/bfeee596cc7a06fd304b025b0b031de05bbd2f12). Each of two runtime cohorts used five seeded synthetic 10M **assigned-token** archives and 200 probes. Separate exact-cue search hit the target at rank 1 in 200/200 per cohort, but search results were not injected into the pager. With the same resident candidates and 1,800 estimated-token budget, the final rule/hybrid windows contained the target fact **12/200 and 0/200** on Node 25.9, and **10/200 and 0/200** on Node 24.21. Each cohort deliberately sampled 100 resident and 100 nonresident targets; these are stress cases, not production accuracy estimates.

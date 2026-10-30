@@ -5,7 +5,7 @@
 
 **A high-performance extra-context layer between an agent's history and its model window.** Memex treats context as a hierarchy — not a notes app: when the native context window fills up, older spans are moved out verbatim into sticky L2/L3 archives, capacity is managed through a lossless cold tier plus bounded batch digests, and a model can retrieve matching records with hybrid search; retrieval and window selection do not guarantee that every relevant fact is included.
 
-**Context, not just memory.** Raw session history is evicted verbatim from L1 into sticky L2/L3 context pools, paged back in with budget-aware retrieval, and compacted to a lossless cold tier — so selected context can be made available again within a budget; relevant facts can still be omitted. Read the concept: [Extra context, not just memory](docs/context-layer.md). Next direction: [Context materialization](docs/context-materialization.md) — exact window materialization and transformer context-specialist variants. Implemented: canonical events, materialized resident window (default in DSH), trained transformer encoder reference, runnable paged-KV/prefix host, structural fidelity eval. **A-route validated on GPU:** vLLM 0.10.2 + Qwen2.5-0.5B reused a 2,498-token stable prefix via native paged-KV prefix cache (99.2% second-request prefix hit). A separate KV-tensor probe paged 720 blocks CPU↔GPU and reconstructed the cache **exactly** (paged-vs-direct logit diff 0.0). A **custom vLLM KV connector** now stores materialized prefixes externally; 8/8 second requests hit at 0.5B, **Qwen2.5-3B**, and **real Qwen2.5-7B-AWQ** (36 layers, 420MB KV, 91% GPU utilization; steady store 0.147s → hit 0.094s). End-to-end: a real materializer window was stored through the connector and hit on the second request (1,488 KV tokens, 0.018s hit).
+**Context, not just memory.** Raw session history is evicted verbatim from L1 into sticky L2/L3 context pools, paged back in with budget-aware retrieval, and compacted to a lossless cold tier — so selected context can be made available again within a budget; relevant facts can still be omitted. Read the concept: [Extra context, not just memory](docs/context-layer.md). Next direction: [Context materialization](docs/context-materialization.md) — exact window materialization and transformer context-specialist variants. Implemented: canonical events, materialized resident window (optional in the repository checkpoint; host profiles can enable it), trained transformer encoder reference, runnable paged-KV/prefix host, structural fidelity eval. **A-route validated on GPU:** vLLM 0.10.2 + Qwen2.5-0.5B reused a 2,498-token stable prefix via native paged-KV prefix cache (99.2% second-request prefix hit). A separate KV-tensor probe paged 720 blocks CPU↔GPU and reconstructed the cache **exactly** (paged-vs-direct logit diff 0.0). A **custom vLLM KV connector** now stores materialized prefixes externally; 8/8 second requests hit at 0.5B, **Qwen2.5-3B**, and **real Qwen2.5-7B-AWQ** (36 layers, 420MB KV, 91% GPU utilization; steady store 0.147s → hit 0.094s). End-to-end: a real materializer window was stored through the connector and hit on the second request (1,488 KV tokens, 0.018s hit).
 
 It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 
@@ -78,13 +78,23 @@ On real session-query validation, rule recall 0.222 → learned top-1 0.500 → 
 
 ## JS hybrid materializer hook (v0.38.0)
 
-Optional `query` + `learnedRerank` adds a learned candidate to the materialized window. Real session-query val: rule 0.222 → hybrid 0.333 at 500 tokens; 0.722 → 0.833 at 1,000; 0.778 → 0.889 at 1,500–2,400. Default rule path unchanged.
+Optional `query` + `learnedRerank` adds a learned candidate to the materialized window. Real session-query val: rule 0.222 → hybrid 0.333 at 500 tokens; 0.722 → 0.833 at 1,000; 0.778 → 0.889 at 1,500–2,400. At that time the default rule path was unchanged.
 
 ## Long-horizon memex A/B (v0.44.0)
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
-## Pager repair and 10M materializer retest (2026-10-31)
+## Query-aware pager and hybrid ranking repair (2026-10-31)
+
+At [repair commit `a0a33db`](https://github.com/QiuXu-Tech/memex/commit/a0a33db5319ead359b089b3f5fb585212245e044), the pager adds scoped search hits to its candidates, and hybrid ranking prioritizes query-term coverage before using learned scores as a tie-breaker. Query-aware rule selection now tries search hits within the budget; hybrid remains opt-in. On 400 **paired exact-cue synthetic** 10M assigned-token probes, rule fact availability changed **22/400 → 400/400** and hybrid **0/400 → 400/400**. With identical post-fix candidates, the hybrid ranking ablation was **0/400 → 400/400**. All ten quiet-start gates failed; this is not a production or low-load performance claim.
+
+A separate 20-question synthetic topic diagnostic found the target fact **16/16** when searchable vocabulary overlapped, but **0/4** for lexically disjoint synonym questions. The system therefore still needs broader, human-verified evaluation. [Methods, raw data, replay and limitations](docs/pager-recall-evaluation.md).
+
+In a retrospective replay of 10 questions from one real session, two-order machine judging of 20 question/model pairs favored rule in both orders for 6, hybrid for 10, tied in 1 and changed with order in 3. These are not human labels or proof of production accuracy; a separate synthetic probe also shows that an archive card can omit a deep fact even after its record is selected.
+
+![Paired 10M synthetic pager results before and after repair](docs/assets/benchmarks/pager-recall-comparison.png)
+
+## Historical pager body repair and 10M retest (2026-10-31)
 
 The pager now loads stored bodies, forwards excerpt/tokenizer options and preserves source-marked excerpts. At v0.65.0 + [pager fix `bfeee59`](https://github.com/QiuXu-Tech/memex/commit/bfeee596cc7a06fd304b025b0b031de05bbd2f12), two five-seed synthetic cohorts each yielded separate search hit@1 **200/200**. Rule/hybrid pager windows contained the target fact **12/200 / 0/200** on Node 25.9, and **10/200 / 0/200** on Node 24.21. Each cohort was deliberately split 50/50 between resident and nonresident targets; these are availability checks, not production answer accuracy. No quiet-start gate passed. [Methods, raw data and limitations](docs/pager-retest.md).
 
@@ -245,7 +255,7 @@ node scripts/check-bundle.mjs        # verifies generated modules match sources
 | Row | Config fields |
 |---|---|
 | `memory` (backend) | `root`, `capacityTokens` (L3, 100M), `sessionCapacityTokens` (L2, 10M), `defaultLevels` (`none|l2|l3|both`), `settingsTtlDays` (90) |
-| `memory-checkpoint` | `autoArchive`, `autoRecall`, `catalogMaxChars`, `recallMaxChars`, `cardModel`, `materializer`, `materializerMaxTokens`, `materializerPageTokenCap`, `capacityNoticeRatio` (0.8), `capacityNoticeCooldownMs` (10 min) |
+| `memory-checkpoint` | `autoArchive`, `autoRecall`, `catalogMaxChars`, `recallMaxChars`, `cardModel`, `materializer`, `materializerMaxTokens`, `materializerPageTokenCap`, `materializerHybridRerank`, `materializerLearnedTopK`, `materializerLearnedPageMaxTokens`, `capacityNoticeRatio` (0.8), `capacityNoticeCooldownMs` (10 min) |
 | `memory-evict` | `evictAtRatio` (0.6), `retainRatio` (0.35), `maxChars` (250k), `captureLevel` (`deepest|l2`), `sensitivePolicy` (`auto|off`) |
 | `memory-compress` | `batchRecords` (20), `batchChars` (120k), `maxBatches` (6), `minAgeMs` (1h), `minDigestTokens` (2000), `coldQuotaTokens` (0 = unlimited) |
 
@@ -253,7 +263,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **152/152 offline**, **36/36 SQLite consistency**.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The current repo harness is **161/161 offline**, **36/36 SQLite consistency**.
 
 | Metric | Result |
 |---|---|

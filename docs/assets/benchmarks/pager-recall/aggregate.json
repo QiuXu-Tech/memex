@@ -1,0 +1,209 @@
+{
+  "format": 1,
+  "kind": "pager-recall-ranking-paired",
+  "testedCommit": "a0a33db5319ead359b089b3f5fb585212245e044",
+  "baselineCommit": "c05dd120cf2adc129390b9bd8662ba310143004c",
+  "baselineCoreCommit": "bfeee596cc7a06fd304b025b0b031de05bbd2f12",
+  "archive": {
+    "recordsPerSeed": 2000,
+    "assignedTokensPerRecord": 5000,
+    "assignedTokensPerSeed": 10000000,
+    "coldRecordsPerSeed": 1000,
+    "warning": "assigned tokens, repetitive filler; not tokenizer-measured or real sessions"
+  },
+  "design": {
+    "seeds": [
+      301,
+      302,
+      303,
+      304,
+      305,
+      401,
+      402,
+      403,
+      404,
+      405
+    ],
+    "probesPerSeed": 40,
+    "baselineSampling": "20 resident and 20 nonresident targets per seed",
+    "query": "natural-language question containing exact cardcue",
+    "conditions": "rule now prioritizes bounded search hits; hybrid prioritizes lexical query coverage and uses learned score on ties",
+    "budgetTokens": 1800,
+    "pageTokenCap": 400,
+    "learnedPageMaxTokens": 700,
+    "learnedTopK": 8,
+    "searchLimit": 8,
+    "counter": "chars/4 estimate",
+    "forcedCoreIds": []
+  },
+  "cohorts": {
+    "node25": {
+      "probes": 200,
+      "fullQuerySearchHit1": 200,
+      "candidateSetsEqual": 200,
+      "budgetViolations": 0,
+      "conditions": {
+        "before-rule": {
+          "candidate": 100,
+          "selected": 12,
+          "fact": 12,
+          "medianMs": 5.98
+        },
+        "after-rule": {
+          "candidate": 200,
+          "selected": 200,
+          "fact": 200,
+          "medianMs": 11.271
+        },
+        "before-hybrid": {
+          "candidate": 100,
+          "selected": 0,
+          "fact": 0,
+          "medianMs": 6.761
+        },
+        "after-hybrid": {
+          "candidate": 200,
+          "selected": 200,
+          "fact": 200,
+          "medianMs": 12.014
+        }
+      }
+    },
+    "node24": {
+      "probes": 200,
+      "fullQuerySearchHit1": 200,
+      "candidateSetsEqual": 200,
+      "budgetViolations": 0,
+      "conditions": {
+        "before-rule": {
+          "candidate": 100,
+          "selected": 10,
+          "fact": 10,
+          "medianMs": 4.917
+        },
+        "after-rule": {
+          "candidate": 200,
+          "selected": 200,
+          "fact": 200,
+          "medianMs": 9.618
+        },
+        "before-hybrid": {
+          "candidate": 100,
+          "selected": 0,
+          "fact": 0,
+          "medianMs": 5.552
+        },
+        "after-hybrid": {
+          "candidate": 200,
+          "selected": 200,
+          "fact": 200,
+          "medianMs": 10.372
+        }
+      }
+    },
+    "all": {
+      "probes": 400,
+      "fullQuerySearchHit1": 400,
+      "candidateSetsEqual": 400,
+      "budgetViolations": 0,
+      "conditions": {
+        "before-rule": {
+          "candidate": 200,
+          "selected": 22,
+          "fact": 22,
+          "medianMs": 5.588
+        },
+        "after-rule": {
+          "candidate": 400,
+          "selected": 400,
+          "fact": 400,
+          "medianMs": 10.745
+        },
+        "before-hybrid": {
+          "candidate": 200,
+          "selected": 0,
+          "fact": 0,
+          "medianMs": 6.123
+        },
+        "after-hybrid": {
+          "candidate": 400,
+          "selected": 400,
+          "fact": 400,
+          "medianMs": 11.422
+        }
+      }
+    }
+  },
+  "rankingAblation": {
+    "description": "old and new hybrid on identical post-fix candidate pages",
+    "probes": 400,
+    "oldFact": 0,
+    "newFact": 400
+  },
+  "topicFixture": {
+    "cases": 20,
+    "design": "8 topics: 8 explicit, 8 paraphrased and 4 lexical-disjoint questions; target records precede 50 distractors; no target injection; 4 cold targets",
+    "groups": {
+      "explicit-topic": {
+        "cases": 8,
+        "facts": {
+          "before-rule": 0,
+          "before-hybrid": 0,
+          "after-rule": 8,
+          "after-hybrid": 8
+        }
+      },
+      "paraphrase": {
+        "cases": 8,
+        "facts": {
+          "before-rule": 0,
+          "before-hybrid": 0,
+          "after-rule": 8,
+          "after-hybrid": 8
+        }
+      },
+      "lexical-disjoint": {
+        "cases": 4,
+        "facts": {
+          "before-rule": 0,
+          "before-hybrid": 0,
+          "after-rule": 0,
+          "after-hybrid": 0
+        }
+      }
+    }
+  },
+  "verification": {
+    "rerunProbes": 400,
+    "mismatches": 0,
+    "copiedBodyFilesChecked": 20000,
+    "copiedBodyFileMismatches": 0,
+    "copiedMetadataRowsChecked": 20000,
+    "topicCasesRerun": 20,
+    "topicMismatches": 0
+  },
+  "load": {
+    "quietGateMet": 0,
+    "runs": 10,
+    "gate": "two consecutive five-second samples: CPU busy <=20% and load1 <=4.5; up to two attempts"
+  },
+  "limitations": [
+    "the target cue is an exact lexical match in the 10M fixture",
+    "target sampling is deliberately 50% resident and 50% nonresident",
+    "both candidate and selection policies changed; the ranking ablation isolates the latter only on post-fix candidates",
+    "the topic fixture is synthetic, small, and has no human or model answers",
+    "original synthetic stores are retained locally and are not published; record IDs are random so exact public reconstruction is not guaranteed",
+    "shared-host timing is not a controlled performance comparison"
+  ],
+  "archiveCardProbe": {
+    "kind": "synthetic-archive-card-omission",
+    "candidate": true,
+    "included": true,
+    "factPresent": false,
+    "source": "record-card",
+    "originalBodyHasFact": true,
+    "budgetTokens": 600,
+    "pageTokenCap": 100,
+    "note": "Query cue and fact occur deep in an oversized episode body; the archive card is constructed before query-aware page excerpting."
+  }
+}
