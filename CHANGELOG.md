@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.59.0
+
+### Added — local replay episode extraction
+- `training/extract_replay_episodes.py`: extracts L1-eviction and exact `memory_write` episodes from a DSH session + memex records; no network calls.
+- Outputs local `replay-episodes.json`, `replay-review.md`, `replay-labels.csv`.
+- Labels remain provisional; one continuous session is not an independent benchmark.
+- Current local extraction: 28 episodes (10 L1 eviction + 18 exact memory-write), waiting for human review.
+- Docs: `docs/replay-evaluation.md`; repo harness **144/144**; active **98/98**.
+
 ## 0.58.0
 
 ### Added — per-model cost model + reference cost estimates
