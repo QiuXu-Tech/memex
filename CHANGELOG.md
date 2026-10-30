@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.49.0
+
+### Added — selection matrix + optimization directions
+- 41 records, 5 query types, budgets 1,200/1,800/2,400, topK 1/4/8/16; key-record coverage non-monotonic.
+- Multi query: 3/4 key records at 1,200–1,800/topK8, 0/4 at 2,400/topK8; KV hit everywhere; DSH/architecture query-specific; tokens overshoot 1–8% due prefix.
+- Active config set to 1,800 + topK8.
+- Directions: budget-aware rerank/per-page caps; core-fact always-include tier; diversity constraints; semantic/BGE reranker or query routing; multi-query human-verified benchmark.
+- Raw: `selection-matrix.json`, `selection-matrix-optimization.json`; harness **134/134**.
+
 ## 0.48.0
 
 ### Changed — active DSH hybrid + learnedTopK

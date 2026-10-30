@@ -602,6 +602,22 @@ Active memory tests: **98/98**; repo harness **134/134**.
 Requires DSH restart to load the new materializer/checkpoint code and config.
 
 Definition: **hybrid** is not a model. It is the materializer selection policy: rule/budget/pinned selection as the safety net, plus query-aware learned top-K candidates under the same token budget.
+## Selection matrix: budget/topK optimization directions (v0.49.0)
+
+Tested 41 real records, 5 query types, budgets 1,200/1,800/2,400 and learnedTopK 1/4/8/16. Key-record coverage is **non-monotonic**:
+
+- Multi query: 3/4 key records at 1,200–1,800/topK8; **0/4 at 2,400/topK8**.
+- KV: hit at all tested budgets for hybrid.
+- DSH: hit at 1,200 and 1,800/topK4–8, missed at 2,400.
+- Architecture: only specific 1,800/2,400 configurations.
+- Returned tokens exceed budget by ~1–8% because the stable prefix is outside the page budget.
+- Large learned top candidates can consume budget and reduce page count; topK alone is not budget-aware.
+
+Active config was therefore set to **1,800 + topK8**, not 2,400 + topK8.
+
+Optimization directions: budget-aware reranking with per-page caps; core-fact always-include tier; diversity/coverage constraints; semantic/BGE reranker or query routing; multi-query human-verified benchmark; validate with real DSH trace.
+
+Raw: `selection-matrix.json`, `selection-matrix-optimization.json`.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

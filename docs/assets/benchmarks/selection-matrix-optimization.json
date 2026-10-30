@@ -1,0 +1,27 @@
+{
+  "format": 1,
+  "kind": "selection-matrix-optimization",
+  "generatedAt": "2026-10-30T21:54:00+08:00",
+  "setup": "41 real memory records; 5 query types (multi, KV, DSH, architecture, next priorities); budgets 1200/1800/2400; learnedTopK 1/4/8/16; rule vs hybrid; key-record coverage measured.",
+  "findings": [
+    "Coverage is non-monotonic in budget/topK: the multi query hits 3/4 key records at 1200-1800/topK8 but 0/4 at 2400/topK8 because large top candidates consume the budget and fewer pages fit.",
+    "KV key record is selected at all tested budgets for hybrid; DSH is hit at 1200 and 1800/topK4-8 but missed at 2400; architecture is hit only at specific 1800/2400 configurations; next-priorities generally hit.",
+    "Returned tokens exceed budget by ~1-8% because the stable prefix is not included in the page budget.",
+    "Hybrid can select fewer pages than rule when learned top candidates are large; topK alone is not budget-aware.",
+    "Rule already includes some key records by chronology, so coverage comparison must be query-specific.",
+    "Actual active config currently set to 1800/topK8 rather than 2400/topK8 based on this matrix."
+  ],
+  "optimizationDirections": [
+    "Budget-aware reranking: score per token, cap/truncate huge pages, and enforce total window budget including prefix.",
+    "Core-fact tier: guarantee architecture/KV/DSH/priorities summary records via pinned or always-include summary pages.",
+    "Diversity/coverage constraints for learnedTopK: avoid adding near-duplicate huge pages that evict key short records.",
+    "Query routing / semantic reranker: lexical overlap is weak for architecture and cross-topic queries; use BGE cross-encoder or query-type routing.",
+    "Multi-query benchmark with human-verified answers; current matrix is key-record coverage, not answer quality.",
+    "Validate non-monotonic behavior with real DSH trace before defaulting hybrid."
+  ],
+  "caveats": [
+    "Key-record coverage is a proxy, not answer correctness.",
+    "One dataset/config family; no production traffic.",
+    "Token estimates include prefix; budget semantics need clarification."
+  ]
+}
