@@ -218,6 +218,19 @@ This is the first end-to-end **materializer → connector → vLLM KV load** val
 Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-eviction.json`.
 Boundary: disk safetensors, no compression yet; tiny model.
 
+## Compression + real-trace encoder baseline (v0.23.0)
+
+### KV compression
+- Added optional gzip compression to `MemexKVConnector` (`compress: true`).
+- Tiny-model probe, 8 prefixes: **6.9MiB compressed vs 12.0MiB uncompressed** (~42% disk reduction), 8/8 external hits.
+- Latency of the compressed path was not captured in this run.
+
+### Real-trace encoder baseline (negative result)
+- Built a dataset from the **real local memex archive** (36 records, 108 query groups, 540 samples).
+- Trained the 2-layer encoder; held-out: **sample accuracy 0.518**, **pairwise ranking 0.518** — near chance.
+- Cause: 36 records + templated queries are too small; this is an honest negative baseline, not a production model.
+- Only aggregate metrics are committed; data/weights stay local.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

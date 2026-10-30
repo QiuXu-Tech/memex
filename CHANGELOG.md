@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.23.0
+
+### Added — KV compression + real-trace encoder baseline
+- `MemexKVConnector` supports gzip-compressed KV (`compress: true`): 6.9MiB vs 12.0MiB for 8 prefixes (~42% disk reduction), 8/8 external hits (tiny model).
+- Real archive encoder baseline: 36 real records, 108 groups/540 samples; held-out **accuracy 0.518 / pairwise ranking 0.518** (near chance). Negative result; dataset/queries are too small and templated.
+- Raw: `vllm-memex-kv-connector-compression.json`, `real-trace-encoder-baseline.json`.
+- Harness **131/131**.
+
 ## 0.22.0
 
 ### Added — connector eviction

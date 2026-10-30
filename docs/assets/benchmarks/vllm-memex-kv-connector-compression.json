@@ -1,0 +1,26 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-compression",
+  "generatedAt": "2026-10-30T17:02:00+08:00",
+  "model": "tiny Qwen2 (2 layers, random weights)",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "compress": true
+  },
+  "workload": {
+    "prefixes": 8,
+    "requests": 16
+  },
+  "results": {
+    "externalHits": 8,
+    "compressedDiskMiB": 6.9,
+    "uncompressedDiskMiB": 12.0,
+    "diskReductionRatio": 0.425
+  },
+  "caveats": [
+    "gzip of safetensors KV; tiny random model.",
+    "Latency not captured in this run; hit path verified by external cache log.",
+    "Not a production workload."
+  ]
+}

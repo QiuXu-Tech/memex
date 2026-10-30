@@ -1,0 +1,31 @@
+{
+  "format": 1,
+  "kind": "real-trace-encoder-baseline",
+  "generatedAt": "2026-10-30T17:02:00+08:00",
+  "dataset": {
+    "records": 36,
+    "groups": 108,
+    "samples": 540,
+    "source": "local memex archive (hot+cold records)"
+  },
+  "model": {
+    "layers": 2,
+    "dim": 128,
+    "heads": 4,
+    "tokenizer": "fnv1a32-word"
+  },
+  "split": {
+    "train_groups": 81,
+    "val_groups": 27
+  },
+  "validation": {
+    "sample_accuracy": 0.5185,
+    "pairwise_ranking": 0.5185
+  },
+  "interpretation": "Near chance on held-out real archive records; the 36-record corpus is too small and queries are templated. This is a negative baseline, not a production result.",
+  "caveats": [
+    "Weights/data are not committed (private archive).",
+    "Only aggregate metrics are reported.",
+    "Needs pretrained encoders/real query traces/larger corpus."
+  ]
+}

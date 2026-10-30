@@ -18,6 +18,7 @@ debug implementation; not production-ready.
 """
 # SPDX-License-Identifier: Apache-2.0
 # SPDX-FileCopyrightText: Copyright contributors to the vLLM project
+import gzip
 import hashlib
 import os
 from dataclasses import dataclass
@@ -108,6 +109,8 @@ class MemexKVConnector(KVConnectorBase_V1):
             "prefix_tokens", 0) or 0)
         self._max_cache_mib = int(transfer_config.get_from_extra_config(
             "max_cache_mib", 2048) or 2048)
+        self._compress = bool(transfer_config.get_from_extra_config(
+            "compress", False))
         logger.info(vllm_config.kv_transfer_config)
         logger.info("Shared storage path is %s", self._storage_path)
 
@@ -206,8 +209,11 @@ class MemexKVConnector(KVConnectorBase_V1):
 
                 filename = self._generate_filename_debug(
                     layer_name, request.token_ids, request.mm_hashes)
-                kv_cache = safetensors.torch.load_file(
-                    filename)["kv_cache"].cuda()
+                if self._compress:
+                    with gzip.open(filename, "rb") as handle:
+                        kv_cache = safetensors.torch.load(handle.read())["kv_cache"].cuda()
+                else:
+                    kv_cache = safetensors.torch.load_file(filename)["kv_cache"].cuda()
                 inject_kv_into_layer(kv_cache_layer, kv_cache,
                                      request.slot_mapping)
 
@@ -262,7 +268,11 @@ class MemexKVConnector(KVConnectorBase_V1):
                                                  request.slot_mapping)
                 logger.warning("MEMEX store KV tokens=%d layer=%s", len(request.slot_mapping), layer_name)
                 tensors = {"kv_cache": kv_cache.detach().cpu()}
-                safetensors.torch.save_file(tensors, filename)
+                if self._compress:
+                    with gzip.open(filename, "wb") as handle:
+                        handle.write(safetensors.torch.save(tensors))
+                else:
+                    safetensors.torch.save_file(tensors, filename)
 
     def wait_for_save(self):
         self._evict_cache()
@@ -479,7 +489,7 @@ class MemexKVConnector(KVConnectorBase_V1):
         foldername = self._generate_foldername_debug(token_ids,
                                                      mm_hashes=mm_hashes,
                                                      create_folder=True)
-        return os.path.join(foldername, f"{layer_name}.safetensors")
+        return os.path.join(foldername, f"{layer_name}.safetensors" + (".gz" if self._compress else ""))
 
 
 def align_to_block_size(num_tokens: int, block_size) -> int:
