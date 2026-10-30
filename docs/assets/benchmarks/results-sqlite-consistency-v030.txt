@@ -1,0 +1,44 @@
+✔ a blocked update never changes the existing body or metadata (30.660917ms)
+✔ a blocked new write leaves no unindexed record file (29.298542ms)
+✔ a blocked archive leaves the hot body intact and a retry preserves it (30.736875ms)
+✔ a blocked restore and cold GC leave the cold body intact (29.662291ms)
+✔ a legacy missing hot path never overwrites an existing cold file on retry (3.881125ms)
+✔ an existing unrelated cold target is not overwritten (5.285958ms)
+✔ interrupted updates recover the old or committed new body and metadata (109.77075ms)
+✔ an interrupted new record leaves no indexed or active file and retains its staged body (37.9975ms)
+✔ recovery can itself be interrupted and resumed without losing either body (73.455875ms)
+✔ a changed old file is preserved during recovery after commit (41.133459ms)
+✔ a committed target can be restored from its staged file after interruption (37.220917ms)
+✔ missing committed and staged files are reported while the old file is preserved (37.171459ms)
+✔ interrupted archive and restore recover the indexed tier and original body (240.688125ms)
+✔ interrupted deletion preserves a rolled-back body or finishes a committed delete (73.504458ms)
+✔ interrupted cold GC preserves a rolled-back body or finishes a committed delete (73.417917ms)
+✔ a file-install error rolls back without losing the old body (39.238125ms)
+✔ a staging error preserves the previous record and the staged replacement (37.249875ms)
+✔ a target created during installation is never overwritten or deleted (38.450416ms)
+✔ a lost commit acknowledgement can be retried without overwriting the cold body (37.947459ms)
+✔ a lost acknowledgement for a generated ID reports the ID for inspection (40.128375ms)
+✔ a committed operation survives deferred file cleanup and is reconciled on open (38.6825ms)
+✔ an already-open instance reconciles another process before its next mutation (43.80575ms)
+✔ updating a cold record preserves its tier and searchable body (6.819834ms)
+✔ repeated updates and deletion do not accumulate empty revision directories (14.345791ms)
+✔ updating by ID keeps the original creation time in the file and database (10.1175ms)
+✔ changing status of a cold record does not change its tier or body (6.450125ms)
+✔ a stale status update cannot overwrite a concurrent body update (4.839ms)
+✔ backup and restore retain recovered files and open independently of the source root (117.226833ms)
+✔ backup while another process writes captures matching body and metadata (694.866083ms)
+✔ restore validates record paths before touching an existing target (131.518875ms)
+✔ filesystems without hard links use a safe exclusive copy (39.726083ms)
+✔ a copied target survives interruption without replacing the old body (34.297959ms)
+✔ a malformed recovery journal blocks mutation without deleting files (3.824208ms)
+✔ a competing writer is waited for before a mutation begins (390.799833ms)
+✔ concurrent processes update one record without mixing body and metadata (84.495625ms)
+✔ concurrent archive and update preserve the latest body and cold state (43.46325ms)
+ℹ tests 36
+ℹ suites 0
+ℹ pass 36
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2773.681125

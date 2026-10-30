@@ -44,7 +44,7 @@ An agent's context is scarce, volatile and ordered: tokens compete for attention
 2. **It is lossless before it is clever.** Raw context is archived verbatim; summaries are optional and never the source of truth.
 3. **It is automatic.** No curation step: capture happens at eviction/compaction, and retrieval is driven by the model's own tool calls or auto-recall.
 4. **It is scoped.** L2 private to a session, L3 shared by workspace; sensitive content policy keeps secrets private.
-5. **It is measured.** In the v0.27.0 synthetic 100M-token pool, the SQLite index was 10.9 MiB after writing and 28.3 MiB after cold spill; the measured card-field search median was 11.87 ms before and 31.76 ms after cold spill. These are shared-machine fixture results, not production guarantees (see [evaluation](evaluation.html) and [benchmark](benchmark.html)).
+5. **It is measured.** In the v0.30.0 synthetic 100M-token pool, the SQLite index was 10.7 MiB after writing and 28.3 MiB after cold spill; the measured card-field search median was 10.58 ms before and 28.33 ms after cold spill. These are shared-machine fixture results, not production guarantees (see [evaluation](evaluation.html) and [benchmark](benchmark.html)).
 
 ## What this changes in practice
 

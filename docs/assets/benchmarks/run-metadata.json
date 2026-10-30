@@ -1,8 +1,8 @@
 {
-  "testedVersion": "0.27.0",
-  "testedCommit": "3970ecff39b5e8be8373c50329e16458416ff0c5",
-  "executionCheckout": "3970ecff39b5e8be8373c50329e16458416ff0c5",
-  "executionCheckoutNote": "Clean detached checkout of the v0.27.0 release.",
+  "testedVersion": "0.30.0",
+  "testedCommit": "7d813147e9cc6d3aa9d61ebf321647061f44054d",
+  "executionCheckout": "7d813147e9cc6d3aa9d61ebf321647061f44054d",
+  "executionCheckoutNote": "Clean detached checkout of the v0.30.0 release.",
   "date": "2026-10-30",
   "timezone": "Asia/Shanghai",
   "os": "macOS 27.2 (26B123)",
@@ -17,29 +17,29 @@
   "quietGateFallback": false,
   "quietGateSamples": [
     {
-      "timeUtc": "2026-10-30T09:44:38+00:00",
+      "timeUtc": "2026-10-30T10:07:31+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 19.9,
-      "load1": 4.34716796875,
-      "load5": 3.84033203125,
+      "systemCpuBusyPercent": 17.8,
+      "load1": 4.40966796875,
+      "load5": 3.974609375,
       "benchmarkPid": null
     },
     {
-      "timeUtc": "2026-10-30T09:44:43+00:00",
+      "timeUtc": "2026-10-30T10:07:36+00:00",
       "stage": "preflight",
-      "systemCpuBusyPercent": 19.6,
-      "load1": 4.1591796875,
-      "load5": 3.8095703125,
+      "systemCpuBusyPercent": 15.2,
+      "load1": 4.13623046875,
+      "load5": 3.9248046875,
       "benchmarkPid": null
     }
   ],
   "benchmarkLoadSamples": {
-    "count": 22,
-    "cpuBusyPercentMin": 25.1,
-    "cpuBusyPercentMax": 47.2,
-    "cpuBusyPercentMedian": 37.9,
-    "load1Min": 4.13427734375,
-    "load1Max": 5.94384765625
+    "count": 20,
+    "cpuBusyPercentMin": 24.4,
+    "cpuBusyPercentMax": 40.8,
+    "cpuBusyPercentMedian": 29.700000000000003,
+    "load1Min": 3.515625,
+    "load1Max": 4.044921875
   },
   "temporaryLocation": "fresh macOS system temporary directory",
   "summary": "Pre-existing compaction-summary.txt; no model invoked for offline benchmark.",
@@ -79,40 +79,40 @@
     "quietStartGateMet": true,
     "quietGateSamples": [
       {
-        "timeUtc": "2026-10-30T09:47:01+00:00",
+        "timeUtc": "2026-10-30T10:09:39+00:00",
         "stage": "preflight",
-        "systemCpuBusyPercent": 22.3,
-        "load1": 4.05224609375,
-        "load5": 4.12353515625,
+        "systemCpuBusyPercent": 22.9,
+        "load1": 3.552734375,
+        "load5": 3.7548828125,
         "benchmarkPid": null
       },
       {
-        "timeUtc": "2026-10-30T09:47:06+00:00",
+        "timeUtc": "2026-10-30T10:09:44+00:00",
         "stage": "preflight",
-        "systemCpuBusyPercent": 23.8,
-        "load1": 4.1279296875,
-        "load5": 4.1376953125,
+        "systemCpuBusyPercent": 16.7,
+        "load1": 3.82861328125,
+        "load5": 3.80859375,
         "benchmarkPid": null
       }
     ],
     "loadSamples": {
-      "count": 25,
-      "cpuBusyPercentMin": 23.0,
-      "cpuBusyPercentMax": 32.3,
-      "cpuBusyPercentMedian": 26.6,
-      "load1Min": 3.80126953125,
-      "load1Max": 5.11328125
+      "count": 27,
+      "cpuBusyPercentMin": 17.2,
+      "cpuBusyPercentMax": 30.5,
+      "cpuBusyPercentMedian": 23.5,
+      "load1Min": 3.42236328125,
+      "load1Max": 4.603515625
     },
     "sessionTokenUsage": {
-      "input_tokens": 164215,
-      "cached_input_tokens": 94976,
+      "input_tokens": 158503,
+      "cached_input_tokens": 79104,
       "cache_write_input_tokens": 0,
-      "output_tokens": 1550,
-      "reasoning_output_tokens": 558,
-      "total_tokens": 165765
+      "output_tokens": 1753,
+      "reasoning_output_tokens": 761,
+      "total_tokens": 160256
     },
     "billedCost": "UNKNOWN",
-    "nativeReportSha256": "75b32f1ba58c354c01ef7c53dd24e528a679effb6df74126835c4307799a2565",
+    "nativeReportSha256": "2e9e846b50f84dfd99edc1152f68be2cb7df3490af89ac15e622403cf6c1773e",
     "note": "Separate from offline benchmark; diagnostic tails and local session logs retained locally."
   }
 }

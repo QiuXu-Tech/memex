@@ -3,16 +3,16 @@ title: Benchmark report
 layout: default
 ---
 
-# Benchmark report: v0.27.0 synthetic long-horizon retrieval
+# Benchmark report: v0.30.0 synthetic long-horizon retrieval
 
-The public synthetic workloads were run against v0.27.0, commit
-[`3970ecf`](https://github.com/QiuXu-Tech/memex/commit/3970ecff39b5e8be8373c50329e16458416ff0c5).
+The public synthetic workloads were run against v0.30.0, commit
+[`7d81314`](https://github.com/QiuXu-Tech/memex/commit/7d813147e9cc6d3aa9d61ebf321647061f44054d).
 
 On 2026-10-30 the test machine was an Apple M4 (10 logical CPUs, 16 GiB),
 running macOS 27.2 and Node 24.21.0. Before starting, two consecutive five-second
-samples showed CPU busy **19.9% / 19.6%** and one-minute load **4.35 / 4.16**
-(quiet-start thresholds ≤20% and ≤4.5). During the run, 22 five-second
-samples showed CPU busy **25.1%–47.2%** and one-minute load **4.13–5.94**,
+samples showed CPU busy **17.8% / 15.2%** and one-minute load **4.41 / 4.14**
+(quiet-start thresholds ≤20% and ≤4.5). During the run, 20 five-second
+samples showed CPU busy **24.4%–40.8%** and one-minute load **3.52–4.04**,
 including the benchmark itself. Samples can cross stage boundaries; short
 stages may have no dedicated sample. This was a shared machine, not an isolated
 host. The [run metadata](assets/benchmarks/run-metadata.json),
@@ -24,7 +24,8 @@ All seven offline stages completed in one run, including the 100M capacity
 stage that failed with SQLite `database is locked` in the previous v0.14.0
 measurement. Section 7 covers the fix, tests and historical failure.
 
-The [v0.26.0 report](https://github.com/QiuXu-Tech/memex/blob/d4a17a8a33fd3205468c887dce9cdb8b2148ac1e/docs/benchmark.md),
+The [v0.27.0 report](https://github.com/QiuXu-Tech/memex/blob/538d81dfd6b5d4eb6861daff44c1e6a2018ce055/docs/benchmark.md),
+the [v0.26.0 report](https://github.com/QiuXu-Tech/memex/blob/d4a17a8a33fd3205468c887dce9cdb8b2148ac1e/docs/benchmark.md),
 previous [v0.14.1 + SQLite fix report](https://github.com/QiuXu-Tech/memex/blob/6bcae11642bb9326fc02f8e0c8aa22f11ae2f30b/docs/benchmark.md)
 and earlier [v0.14.0 report](https://github.com/QiuXu-Tech/memex/blob/44a02124831c9cd279d99d3220d148e827b5936f/docs/benchmark.md),
 [v0.9.1 + tail-fix report](https://github.com/QiuXu-Tech/memex/blob/ff30e1fd101de3c8f9484af2dca8837a100411d3/docs/benchmark.md),
@@ -77,9 +78,9 @@ one simulated baseline, not a run of DSH's native compaction implementation.
 
 | Estimated history | Records | Window / history | Search hit@5, both runs | Search p50, first / repeat |
 |---|---:|---:|---:|---:|
-| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 2.10 / 2.02 ms |
-| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 24.71 / 24.22 ms |
-| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 51.59 / 52.77 ms |
+| 1,000,811 tokens | 667 | 99.9% | 40/40 (100%) | 1.92 / 1.96 ms |
+| 5,004,369 tokens | 3,333 | 20.0% | 40/40 (100%) | 23.66 / 23.76 ms |
+| 10,011,439 tokens | 6,667 | 10.0% | 40/40 (100%) | 51.10 / 51.85 ms |
 
 The window/history column is an arithmetic coverage ratio, not measured
 no-memory recall and not a universal ceiling. Actual availability depends on
@@ -91,8 +92,8 @@ answers correctly.
 
 ![Search medians at three scales and two repeated 160K runs](assets/benchmarks/cost-latency.png)
 
-The 160K comparison's search p50 was **2.02 ms** on the first run and
-**2.15 ms** on a repeat with the same fixture and supplied summary. Each p50
+The 160K comparison's search p50 was **1.85 ms** on the first run and
+**1.93 ms** on a repeat with the same fixture and supplied summary. Each p50
 comes from 40 searches. The script selects sorted element `floor(n / 2)`;
 for 40 observations this is the upper of the two middle values, rather than
 their average. The scaling sweep was also repeated; these observations are not
@@ -116,18 +117,18 @@ corpus. The two sizes use different cold target ratios to reproduce the prior
 
 | Pool | Write | Cold spill | Cold GC |
 |---|---:|---:|---:|
-| 1,000 records / 10M assigned tokens | 0.9 s | 700 records / 7M tokens in 1.11 s | 350 records / 3.5M tokens in 0.25 s |
-| 10,000 records / 100M assigned tokens | 10.0 s | 5,000 records / 50M tokens in 16.72 s | 2,500 records / 25M tokens in 7.54 s |
+| 1,000 records / 10M assigned tokens | 1.0 s | 700 records / 7M tokens in 1.07 s | 350 records / 3.5M tokens in 0.24 s |
+| 10,000 records / 100M assigned tokens | 9.4 s | 5,000 records / 50M tokens in 14.45 s | 2,500 records / 25M tokens in 5.36 s |
 
-In the 100M run, the SQLite index was 10.9 MiB after writing and 28.3 MiB
+In the 100M run, the SQLite index was 10.7 MiB after writing and 28.3 MiB
 after cold spill; the original body files totalled 384.8 MiB. Cold spill moves
 the records, while **cold GC deletes** the records it removes. Both were
 exercised only on throwaway stores. These are single-run times under the sampled
 load noted above.
 
-The prior v0.26.0 run reported **9.7 s / 14.61 s / 5.58 s** for the
-100M write, spill and GC operations; v0.27.0 measured **10.0 s /
-16.72 s / 7.54 s**. These are separate single runs on a shared
+The prior v0.27.0 run reported **10.0 s / 16.72 s / 7.54 s** for the
+100M write, spill and GC operations; v0.30.0 measured **9.4 s /
+14.45 s / 5.36 s**. These are separate single runs on a shared
 machine; they do not isolate load or version effects. The earlier v0.14.0
 recovery run reported **3.6 s / 2.36 s / 0.29 s** before the consistency fix
 added per-record staging, manifests and serialized cleanup.
@@ -154,7 +155,7 @@ including U25's fixed-timestamp, reverse-ID tail-order test. Before the fix,
 that test [failed as expected](assets/benchmarks/results-tail-regression.json).
 These checks are not a live agent benchmark.
 
-The v0.27.0 GPU/KV connector and real-trace encoder experiments were **not
+The v0.30.0 GPU/KV connector and real-trace encoder experiments were **not
 rerun** in this Mac benchmark; their separate historical evidence is in
 [context materialization](context-materialization.html).
 
@@ -181,31 +182,31 @@ evidence, not autonomous memory-tool use.
 | Treatment: tail cards + retrieved evidence | 60/60 (100%) | 57/57 (100%) |
 
 The bridge and all six Codex calls exited zero. The
-[published result](assets/benchmarks/live-ab-codex-sol-v027.json) retains
+[published result](assets/benchmarks/live-ab-codex-sol-v030.json) retains
 the grades, answers, call statuses and hashes; the
-[fixture evidence](assets/benchmarks/live-ab-codex-sol-v027-evidence.json)
+[fixture evidence](assets/benchmarks/live-ab-codex-sol-v030-evidence.json)
 contains the actual plans and both prompts. All three tails are turns
 **280–299 in order**, prompt contexts match the recorded tails, and all probe
 flags match those tails. Local Codex session completion events matched the
 saved answers; no model-issued tool calls appear in those six session logs.
 
-Before this run, two five-second samples showed CPU busy **22.3% / 23.8%**
-and load **4.05 / 4.13** (thresholds ≤25% and ≤5). During the live bridge,
-25 samples showed **23.0%–32.3%** busy and load **3.80–5.11**, including the
+Before this run, two five-second samples showed CPU busy **22.9% / 16.7%**
+and load **3.55 / 3.83** (thresholds ≤25% and ≤5). During the live bridge,
+27 samples showed **17.2%–30.5%** busy and load **3.42–4.60**, including the
 fixture and other work on the shared machine. The [live load samples](assets/benchmarks/results-load-samples-codex.jsonl)
 and [execution record](assets/benchmarks/results-execution-codex.jsonl) are
 separate from the offline measurements.
 
-The six local session `token_count` events report **164,215 input tokens**
-(including 94,976 cached input), **1,550 output tokens**, and **165,765 total**.
-The 558 reasoning-output tokens are included in output, not additional. These
+The six local session `token_count` events report **158,503 input tokens**
+(including 79,104 cached input), **1,753 output tokens**, and **160,256 total**.
+The 761 reasoning-output tokens are included in output, not additional. These
 are local session counts, not a provider billing receipt; monetary cost is
 **unknown**. The bridge captured only the final 1,200 characters of each
 diagnostic stream, and 6 captured tails contained initialization warnings.
 Those potentially sensitive tails and the native report remain local; their
 hashes are retained in the published result.
 
-The earlier [v0.26.0 result](assets/benchmarks/live-ab-codex-sol-v026.json)
+The earlier [v0.27.0 result](assets/benchmarks/live-ab-codex-sol-v027.json)
 and [v0.14.1 + SQLite fix result](assets/benchmarks/live-ab-codex-sol-sqlite-fixed.json) are separate runs.
 
 ### Historical tail-order limitation
@@ -260,7 +261,7 @@ These diagnostics and repeats are from the earlier fix commit; the v0.26.0
 [Node 24 SQLite suite](assets/benchmarks/results-sqlite-consistency-v026.txt)
 was separately rerun and passed 36/36. The v0.27.0
 [Node 24 suite](assets/benchmarks/results-sqlite-consistency-v027.txt) also
-passed 36/36.
+passed 36/36. The v0.30.0 [Node 24 suite](assets/benchmarks/results-sqlite-consistency-v030.txt) also passed 36/36.
 
 A relocated copy of the prior synthetic failure was also checked: the missing
 indexed body was reported and its cold candidate remained byte-for-byte
@@ -296,7 +297,7 @@ separately if comparing shared-machine timings.
 ```bash
 git clone https://github.com/QiuXu-Tech/memex.git memex-benchmark-sqlite-fix
 cd memex-benchmark-sqlite-fix
-git checkout --detach 3970ecff39b5e8be8373c50329e16458416ff0c5
+git checkout --detach 7d813147e9cc6d3aa9d61ebf321647061f44054d
 out_dir="$(mktemp -d "${TMPDIR:-/tmp}/memex-benchmark.XXXXXX")"
 for run in first repeat; do
   node --import ./test/register.mjs scripts/long-horizon-eval.mjs --mode compaction \
@@ -327,7 +328,7 @@ node scripts/codex-ab.mjs --model gpt-6.1-sol --keep --out "$out_dir/codex-ab.js
 
 The historical lock diagnostics use disposable synthetic stores; the archive
 diagnostic intentionally retries within its own fixture. They were not rerun
-for v0.27.0.
+for v0.30.0.
 
 ```bash
 for name in sqlite-lock-diagnostic sqlite-write-lock-diagnostic; do

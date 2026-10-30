@@ -190,17 +190,17 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The benchmark below was run on the v0.27.0 release.
+The benchmark below was run on the v0.30.0 release.
 
 | Metric | Result |
 |---|---|
 | Private archive re-check (40 curated questions; v0.5.1) | Reported hit@1 **68%** / hit@3 90% / hit@5 **93%**, cold recall 94%, p50 **1.5 ms**; this private archive cannot be independently reproduced from the public fixture |
-| Synthetic recall suite (v0.27.0) | 80/80 target-record hits at rank 1 |
-| Codex / GPT-6.1 Sol A/B (v0.27.0; 3 synthetic histories) | Exact answers: control with tail titles/summaries **3/60**, treatment with pre-retrieved evidence **60/60**; evicted subset **0/57 → 57/57**. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
-| 10k records / 100M assigned tokens (v0.27.0, synthetic, quiet-start gate) | write 10.0 s; cold spill 5,000 records/50M tokens in 16.72 s; cold GC 2,500 records/25M tokens in 7.54 s. [Timing context](docs/benchmark.md#4-synthetic-capacity-and-cold-operations) |
-| SQLite index (synthetic v0.27.0 100M-token pool) | 10.9 MiB after writing, 28.3 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
+| Synthetic recall suite (v0.30.0) | 80/80 target-record hits at rank 1 |
+| Codex / GPT-6.1 Sol A/B (v0.30.0; 3 synthetic histories) | Exact answers: control with tail titles/summaries **3/60**, treatment with pre-retrieved evidence **60/60**; evicted subset **0/57 → 57/57**. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
+| 10k records / 100M assigned tokens (v0.30.0, synthetic, quiet-start gate) | write 9.4 s; cold spill 5,000 records/50M tokens in 14.45 s; cold GC 2,500 records/25M tokens in 5.36 s. [Timing context](docs/benchmark.md#4-synthetic-capacity-and-cold-operations) |
+| SQLite index (synthetic v0.30.0 100M-token pool) | 10.7 MiB after writing, 28.3 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
 
-**Synthetic 160K history / 80K window, on v0.27.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
+**Synthetic 160K history / 80K window, on v0.30.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
 
 **SQLite consistency:** the fix included since v0.15.0 serializes file-backed operations with SQLite and recovers process-interrupted transactions without overwriting existing records. Previously damaged legacy stores require inspection; process-crash recovery and its limits are described in [SQLite and file consistency](docs/storage-consistency.md).
 
