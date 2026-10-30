@@ -118,6 +118,25 @@ Raw: [vllm-prefix-cache.json](assets/benchmarks/vllm-prefix-cache.json); probe: 
 
 **Boundary:** this is vLLM-native prefix caching, not yet a custom external paged-KV connector that maps materializer spans to hand-managed KV blocks. Production training and the custom connector remain next steps.
 
+## Custom KV block paging probe (v0.16.0)
+
+On the Blackwell GPU host we ran a real **KV-tensor paging** probe with Qwen2.5-0.5B (HuggingFace, 24 layers):
+
+- prefill 7,680 context tokens → extract per-layer key/value tensors
+- split KV along sequence into **256-token blocks** → **720 blocks**
+- evict all 720 blocks to CPU, page them back to GPU
+- rebuild a `DynamicCache` from blocks, decode the query, compare against direct cache reuse and full-context forward
+
+Results (`docs/assets/benchmarks/kv-block-paging.json`):
+
+- **paged vs direct cache reuse: max logit diff = 0.0** (exact reconstruction)
+- paged vs full-context: max logit diff 0.65625 (bf16 path/context truncation), **same next token** (`we`)
+- 720 KV blocks paged CPU↔GPU; GPU allocated ~3.4GB during probe
+
+This validates the **span → KV block → page-in** mechanics on real KV tensors. It is **not** vLLM connector integration yet: vLLM 0.10.2 uses its own paged-attention allocator, and the custom connector (mapping materializer spans to vLLM KV blocks) remains the next integration step.
+
+Raw: [kv-block-paging.json](assets/benchmarks/kv-block-paging.json); probe: `training/kv_block_probe.py`.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

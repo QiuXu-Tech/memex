@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.16.0
+
+### Added — custom KV block paging probe on GPU
+- Cloned RTX PRO 6000 Blackwell instance (96GB) restored with vLLM 0.10.2, Qwen2.5-0.5B and the model cache; vLLM prefix-cache validation reproduced (4,997 queries / 2,480 hits).
+- New `training/kv_block_probe.py`: real Qwen2.5-0.5B KV tensors, 7,680 context tokens, 24 layers, 256-token blocks = **720 blocks** paged CPU↔GPU; rebuilt `DynamicCache` and decoded.
+- **Paged vs direct cache reuse: max logit diff 0.0** (exact); paged vs full-context max diff 0.65625 (bf16), same next token.
+- Raw: `docs/assets/benchmarks/kv-block-paging.json`.
+- **Boundary:** reference HuggingFace paging, not vLLM custom KV connector integration; vLLM native prefix cache remains the runtime path.
+- Harness **130/130**.
+
 ## 0.15.1
 
 ### Fixed — DSH rc.4/rc.5 compatibility

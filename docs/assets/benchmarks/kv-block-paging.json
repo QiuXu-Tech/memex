@@ -1,0 +1,23 @@
+{
+  "model": "/root/models/qwen",
+  "context_tokens": 7680,
+  "block_size": 256,
+  "layers": 24,
+  "blocks_per_layer": 30,
+  "blocks_total": 720,
+  "kv_blocks_paged_to_cpu": 720,
+  "direct_reuse_max_logit_diff": 0.65625,
+  "direct_next_token_same": true,
+  "paged_vs_direct_max_logit_diff": 0.0,
+  "max_logit_diff": 0.65625,
+  "next_token_same": true,
+  "full_token": " we",
+  "paged_token": " we",
+  "gpu_memory_allocated_mib": 3370.4,
+  "gpu_memory_reserved_mib": 3436.0,
+  "caveats": [
+    "Reference KV paging on a 0.5B HF model, not vLLM connector integration.",
+    "Single context/query; no concurrency.",
+    "Blocks are paged CPU<->GPU manually; attention reconstruction is exact for this cache."
+  ]
+}
