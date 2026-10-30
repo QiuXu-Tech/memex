@@ -1,0 +1,141 @@
+{
+  "format": 1,
+  "kind": "kv-length-crossover",
+  "generatedAt": "2026-10-30T18:26:00+08:00",
+  "model": "Qwen/Qwen2.5-7B-Instruct-AWQ (real 4bit)",
+  "hardware": {
+    "gpu": "RTX PRO 6000 Blackwell 96GB",
+    "gpuMemoryUtilization": 0.5
+  },
+  "workload": {
+    "uniqueRandomPrefixes": true,
+    "requestsPerPrefix": 2,
+    "maxTokens": 1,
+    "lengths": [
+      512,
+      1024,
+      1856,
+      2800
+    ]
+  },
+  "results": {
+    "baseline_no_cache": [
+      {
+        "target": 512,
+        "prompt_tokens": 545,
+        "first": 0.0418,
+        "second": 0.0385
+      },
+      {
+        "target": 1024,
+        "prompt_tokens": 1057,
+        "first": 0.0638,
+        "second": 0.0618
+      },
+      {
+        "target": 1856,
+        "prompt_tokens": 1889,
+        "first": 0.1003,
+        "second": 0.0981
+      },
+      {
+        "target": 2800,
+        "prompt_tokens": 2833,
+        "first": 0.1469,
+        "second": 0.1392
+      }
+    ],
+    "native_prefix_cache": [
+      {
+        "target": 512,
+        "prompt_tokens": 545,
+        "first": 0.0447,
+        "second": 0.0175
+      },
+      {
+        "target": 1024,
+        "prompt_tokens": 1057,
+        "first": 0.0664,
+        "second": 0.0197
+      },
+      {
+        "target": 1856,
+        "prompt_tokens": 1889,
+        "first": 0.1015,
+        "second": 0.0228
+      },
+      {
+        "target": 2800,
+        "prompt_tokens": 2833,
+        "first": 0.1437,
+        "second": 0.0249
+      }
+    ],
+    "memex_external_kv": [
+      {
+        "target": 512,
+        "prompt_tokens": 545,
+        "first": 0.0724,
+        "second": 0.0339
+      },
+      {
+        "target": 1024,
+        "prompt_tokens": 1057,
+        "first": 0.1138,
+        "second": 0.038
+      },
+      {
+        "target": 1856,
+        "prompt_tokens": 1889,
+        "first": 0.1639,
+        "second": 0.0623
+      },
+      {
+        "target": 2800,
+        "prompt_tokens": 2833,
+        "first": 0.2086,
+        "second": 0.102
+      }
+    ],
+    "hybrid_native_first": [
+      {
+        "target": 512,
+        "prompt_tokens": 545,
+        "first": 0.0438,
+        "second": 0.0169
+      },
+      {
+        "target": 1024,
+        "prompt_tokens": 1057,
+        "first": 0.064,
+        "second": 0.0187
+      },
+      {
+        "target": 1856,
+        "prompt_tokens": 1889,
+        "first": 0.1002,
+        "second": 0.022
+      },
+      {
+        "target": 2800,
+        "prompt_tokens": 2833,
+        "first": 0.2135,
+        "second": 0.0238
+      }
+    ]
+  },
+  "analysis": {
+    "nativeSecondRange": "0.0175\u20130.0249s",
+    "baselineSecondRange": "0.0385\u20130.1392s",
+    "connectorSecondRange": "0.0339\u20130.1020s",
+    "connectorVsRecomputeLong": "~27% faster at 2800",
+    "externalStoreOverhead": "first request 0.072\u20130.209s depending on length",
+    "hybrid": "short prefixes use native (0.0169\u20130.0220s); long 2800 first request pays external store (0.2135s), second native 0.0238s. Reliable cold external fallback was not observed in this native+connector setup; hybrid currently behaves native-first."
+  },
+  "caveats": [
+    "Single process/GPU; unique random prefixes avoid prefix-cache contamination.",
+    "External connector uses disk safetensors and fixed 1500-token prefix.",
+    "Batch/parallel load not isolated in this table.",
+    "Hybrid cold external fallback needs a forced-cold test with native cache disabled/isolated."
+  ]
+}

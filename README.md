@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.31.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.32.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## 7B KV strategy comparison (latest)
 
@@ -50,6 +50,10 @@ Raw data: `docs/assets/benchmarks/kv-strategy-comparison.json`.
 - Prefix threshold (`min_prefix_tokens`), parallel batch layer loads, cold-only gzip.
 - Low GPU reservation test: 50,103/97,887 MiB with external cold KV still working.
 - Crossover evidence: 512/1024/1856-token prefixes ~0.013–0.020s native; cold 2,800-token external 0.363s then native 0.024s.
+
+## Prefix-length crossover (v0.32.0)
+
+Real 7B-AWQ, unique prefixes, 50% GPU reservation: native prefix cache is fastest at every length (**0.0175–0.0249s** for the second request). External KV beats recompute at 2,833 tokens (0.102s vs 0.139s) but pays a first-store cost; hybrid short prefixes hit native ~0.017–0.022s.
 
 ## Why
 

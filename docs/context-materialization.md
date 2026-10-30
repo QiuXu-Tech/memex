@@ -342,6 +342,23 @@ Throughput saturates around **19 rps**; latency scales linearly with concurrency
 Raw: `six-optimizations.json`.
 Boundary: single process/GPU; batch load has no isolated A/B benchmark yet.
 
+## Prefix-length crossover (v0.32.0)
+
+Real Qwen2.5-7B-AWQ, unique random prefixes, 2 requests per length, 50% GPU KV reservation:
+
+| prefix tokens | baseline 2nd | native 2nd | external connector 2nd | hybrid 2nd |
+|---:|---:|---:|---:|---:|
+| 545 | 0.0385s | **0.0175s** | 0.0339s | 0.0169s |
+| 1,057 | 0.0618s | **0.0197s** | 0.0380s | 0.0187s |
+| 1,889 | 0.0981s | **0.0228s** | 0.0623s | 0.0220s |
+| 2,833 | 0.1392s | **0.0249s** | 0.1020s | 0.0238s |
+
+- Native prefix cache wins at every tested length.
+- External connector still beats recompute (~27% faster at 2,833 tokens) but pays a first-store cost.
+- Hybrid native-first keeps short prefixes on native; long prefixes pay external store on first request then native on repeat.
+- Cold external fallback was not reliably observed in the native+connector hybrid; it needs a forced-cold test.
+- Raw: `kv-length-crossover.json`.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

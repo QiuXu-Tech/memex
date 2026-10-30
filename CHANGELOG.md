@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.32.0
+
+### Added — prefix-length crossover experiment
+- Real 7B-AWQ, unique random prefixes, 2 requests per length, 50% GPU KV reservation.
+- Second request: baseline 0.0385–0.1392s; native prefix cache **0.0175–0.0249s**; external connector 0.0339–0.1020s; hybrid 0.0169–0.0238s.
+- Native wins at every tested length; external beats recompute (~27% at 2,833 tokens) with first-store overhead.
+- Hybrid native-first validated for short prefixes; reliable cold external fallback was not observed and needs a forced-cold test.
+- Raw: `kv-length-crossover.json`; harness **131/131**.
+
 ## 0.31.0
 
 ### Added — six connector optimizations
