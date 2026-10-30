@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.37.0
+
+### Added — hybrid rule + learned materializer evaluation
+- Real session-query val (18 groups): rule recall **0.222**, learned top-1 **0.500**, **rule ∪ learned 0.667**.
+- Manual real-query val (4 groups): rule **0.500**, learned top-1 **0.250**, **union 0.750**.
+- Conclusion: learned ranking alone is unstable; hybrid additive policy improves recall while keeping rules as a safety net.
+- Raw: `hybrid-materializer-eval.json`; offline only, not JS-integrated; harness **131/131**.
+
 ## 0.36.0
 
 ### Added — real-query materializer generalization test (negative)

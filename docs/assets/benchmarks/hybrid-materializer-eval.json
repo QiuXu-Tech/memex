@@ -1,0 +1,25 @@
+{
+  "format": 1,
+  "kind": "hybrid-materializer-eval",
+  "generatedAt": "2026-10-30T19:30:00+08:00",
+  "datasets": {
+    "real_session_queries": {
+      "val_groups": 18,
+      "rule": 0.2222222222222222,
+      "learned_top1": 0.5,
+      "rule_union_learned": 0.6666666666666666
+    },
+    "manual_real_queries": {
+      "val_groups": 4,
+      "rule": 0.5,
+      "learned_top1": 0.25,
+      "rule_union_learned": 0.75
+    }
+  },
+  "interpretation": "Learned ranking alone is unreliable on real queries, but a hybrid policy that keeps rule-selected pages and adds the learned top-1 page improves positive recall: 0.222 -> 0.667 on 18 session-query val groups; 0.5 -> 0.75 on 4 manual val groups.",
+  "caveats": [
+    "Small/noisy real-query labels; nearest-session-query labels can be wrong.",
+    "Union currently measured offline; not yet integrated into JS materializer.",
+    "BGE on GPU; no production service/latency budget yet."
+  ]
+}

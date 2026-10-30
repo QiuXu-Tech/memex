@@ -411,6 +411,20 @@ This is a **negative generalization result**: the earlier 0.963 result came from
 Raw: `real-query-materializer-eval.json`.
 Boundary: only 4 val groups; labels noisy; this is a warning, not a final verdict.
 
+## Hybrid rule + learned selection (v0.37.0)
+
+Learned ranking alone is not reliable on real queries, so we evaluated a **hybrid policy**: keep rule-selected pages and add the learned top-1 candidate.
+
+| dataset | val groups | rule recall | learned top-1 | **rule ∪ learned** |
+|---|---:|---:|---:|---:|
+| real session queries (nearest-message labels) | 18 | 0.222 | 0.500 | **0.667** |
+| manual real-query labels | 4 | 0.500 | 0.250 | **0.750** |
+
+Takeaway: **rule-only is a weak baseline; learned alone is unstable; hybrid union improves recall** while keeping the rule path as a safety net. Next: integrate the learned reranker as an additive candidate and validate at larger real-query scale.
+
+Raw: `hybrid-materializer-eval.json`.
+Boundary: small/noisy labels; union measured offline; not yet integrated in JS.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
