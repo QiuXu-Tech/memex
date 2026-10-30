@@ -397,6 +397,20 @@ A query-aware selector was evaluated against the current rule/budget materialize
 
 Raw: `learned-materializer-eval.json`; code: `training/learned_materializer_eval.py`.
 
+## Real-query generalization test (v0.36.0)
+
+Extracted **real user queries from DSH session logs**, manually labeled to 36 real archive records, with positive records disjoint from train for validation:
+
+- 29 query groups: 25 train / 4 validation
+- rule materializer val positive recall: **0.50**
+- learned BGE cross-encoder on real train: **0.25 accuracy / 0.25 ranking**
+- zero-shot BGE alignment: **0.25**
+
+This is a **negative generalization result**: the earlier 0.963 result came from a templated, record-shared split and does not survive real-query, record-disjoint validation. The rule materializer currently beats the learned selector on this tiny real set.
+
+Raw: `real-query-materializer-eval.json`.
+Boundary: only 4 val groups; labels noisy; this is a warning, not a final verdict.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

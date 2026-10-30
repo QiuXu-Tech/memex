@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.35.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.36.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
 
 ## 7B KV strategy comparison (latest)
 
@@ -67,6 +67,10 @@ Query-aware BGE cross-encoder selector vs current rule materializer on real arch
 - learned selector **0.963** (388 tokens avg), **8.64ms/query** on GPU
 
 Caveat: templated queries and record-shared split; not production generalization, not yet integrated into JS/DSH.
+
+## Real-query generalization: negative result (v0.36.0)
+
+Real DSH session queries, record-disjoint validation (4 val groups): rule materializer **0.50** recall; learned cross-encoder **0.25**; zero-shot BGE **0.25**. The earlier templated 0.963 was optimistic; learned materializer is not production-ready.
 
 ## Why
 

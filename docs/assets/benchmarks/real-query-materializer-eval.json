@@ -1,0 +1,32 @@
+{
+  "format": 1,
+  "kind": "real-query-materializer-eval",
+  "generatedAt": "2026-10-30T19:12:00+08:00",
+  "dataset": {
+    "queries": 29,
+    "train": 25,
+    "val": 4,
+    "source": "real DSH session user messages, manually labeled to 36 real archive records",
+    "split": "positive records disjoint from train for val (4 val records)"
+  },
+  "results": {
+    "rule_materializer": {
+      "positive_recall": 0.5
+    },
+    "learned_bge_cross_encoder": {
+      "sample_accuracy": 0.25,
+      "pairwise_ranking": 0.25,
+      "avg_score_ms": 10.024742223322392
+    },
+    "zero_shot_bge": {
+      "sample_accuracy": 0.25
+    }
+  },
+  "interpretation": "On real queries with record-disjoint validation, the learned selector does not beat the rule materializer; the earlier 0.963 templated split was overly optimistic (shared records/templates). This is a negative but important generalization result.",
+  "caveats": [
+    "Only 4 real-query validation groups; statistically weak.",
+    "Manual labels from session queries; noisy.",
+    "Cross-encoder trained on very few real queries; overfits.",
+    "No production integration; rule materializer remains default."
+  ]
+}

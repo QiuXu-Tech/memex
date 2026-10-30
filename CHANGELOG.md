@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.36.0
+
+### Added — real-query materializer generalization test (negative)
+- Extracted real user queries from DSH session logs; manually labeled 29 query groups over 36 real archive records; val positive records disjoint from train.
+- Rule materializer val recall **0.50**; learned BGE cross-encoder **0.25 accuracy/ranking**; zero-shot BGE **0.25**.
+- Conclusion: earlier templated-split 0.963 does not survive real-query/record-disjoint validation; learned materializer is not production-ready.
+- Raw: `real-query-materializer-eval.json`; harness **131/131**.
+
 ## 0.35.0
 
 ### Added — learned materializer prototype
