@@ -289,6 +289,22 @@ The real 7B-AWQ weights finally downloaded and passed safetensors validation. vL
 Raw: `vllm-memex-kv-connector-real-7b.json`.
 Boundary: synthetic prefix workload, single process, prototype connector; model quality of generated answers not evaluated here.
 
+## KV strategy comparison (v0.29.0)
+
+Same real Qwen2.5-7B-AWQ, 8 prefixes ×2 requests, 1,856-token prefix:
+
+| strategy | first | second |
+|---|---:|---:|
+| no cache | 0.0907s | 0.0924s |
+| native vLLM prefix cache | 0.0922s | **0.0187s** |
+| Memex external KV | 0.1468s | 0.0583s |
+
+- Native hot cache wins clearly.
+- External KV beats recompute but is ~3× slower than native on hit; first store overhead is high.
+- Recommended: hybrid native-hot / external-cold routing; async/pinned loads; measure prefix-length crossover; reserve less GPU KV when external cache is used.
+
+Raw: `kv-strategy-comparison.json`.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

@@ -17,7 +17,26 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.28.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.29.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **131/131 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+
+## 7B KV strategy comparison (latest)
+
+Same real **Qwen2.5-7B-AWQ** model, 8 prefixes ×2 requests (1,856-token prefix), RTX PRO 6000 96GB:
+
+| strategy | first request | second request | notes |
+|---|---:|---:|---|
+| no cache | 0.0907s | 0.0924s | recompute prefix |
+| native vLLM prefix cache | 0.0922s | **0.0187s** | fastest hot path |
+| Memex external KV | 0.1468s | 0.0583s | 8/8 external hits, 654MiB disk, ~91% GPU |
+
+Takeaways:
+
+- Native GPU prefix cache is **~3× faster** than external disk KV on the second request.
+- External KV still beats recompute (~37% faster) and adds persistence, tenant isolation and cross-restart reuse.
+- The first external-store request pays significant overhead; gzip makes hit latency worse.
+- Next: **hybrid routing** (native hot cache + external cold cache), async/pinned KV loading, prefix-length crossover tuning, and lower GPU KV reservation to free memory.
+
+Raw data: `docs/assets/benchmarks/kv-strategy-comparison.json`.
 
 ## Why
 
