@@ -275,6 +275,20 @@ Boundary: dummy weights; gzip level not tuned; single process.
 Raw: `vllm-memex-kv-connector-hardening2.json`.
 Boundary: dummy weights; gzip latency not production-tuned; single process.
 
+## Real Qwen2.5-7B-AWQ connector result (v0.28.0)
+
+The real 7B-AWQ weights finally downloaded and passed safetensors validation. vLLM 0.10.2 + `MemexKVConnector`:
+
+- 8 materialized prefixes × 2 requests, native prefix caching disabled
+- **8/8 external cache hits**
+- external KV **652MiB / 8 prefixes**
+- GPU **89,023 / 97,887 MiB (~91%)**
+- first request warmup **70.5s**; steady-state **store 0.2263s → hit 0.1184s**
+- real Qwen2.5-7B-AWQ weights (not dummy)
+
+Raw: `vllm-memex-kv-connector-real-7b.json`.
+Boundary: synthetic prefix workload, single process, prototype connector; model quality of generated answers not evaluated here.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

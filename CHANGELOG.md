@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.28.0
+
+### Added — real Qwen2.5-7B-AWQ connector result
+- Real 7B-AWQ weights downloaded, validated with safetensors, and served by vLLM 0.10.2.
+- 8 prefixes × 2 requests, native prefix caching disabled: **8/8 external hits**, **652MiB** external KV, GPU **89,023/97,887 MiB (~91%)**.
+- Warmup first request 70.5s; steady-state **store 0.2263s → hit 0.1184s**.
+- Raw: `vllm-memex-kv-connector-real-7b.json`; harness **131/131**.
+
 ## 0.27.0
 
 ### Added — tenant isolation + concurrency + gzip tuning
