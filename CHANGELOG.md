@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.40.0
+
+### Added — DSH live-query hybrid rerank integration
+- Active memory-checkpoint now extracts the newest direct user message and passes it into `memory.materializeContext`.
+- Added `materializerHybridRerank` config (default false); active bundle enables it.
+- Existing default rule path remains available via the flag.
+- Active memory tests **98/98**; repo harness **133/133**.
+- Rollback: bundle backup + `materializerHybridRerank: false`.
+
 ## 0.39.0
 
 ### Added — production API wiring for hybrid rerank

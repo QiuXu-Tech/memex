@@ -453,6 +453,24 @@ The learned rerank hook is now wired through the production materializer API pat
 This makes the hybrid path callable by DSH/adapters without changing the default rule path.
 Boundary: DSH's active checkpoint call does not yet pass a live query; enabling it there is the next deployment step.
 
+## DSH live-query integration (v0.40.0)
+
+The active DSH memory bundle was wired for **optional query-aware hybrid rerank**:
+
+- checkpoint `agent/pre-step` extracts the newest direct user message
+- passes it as `query` into `memory.materializeContext`
+- when `materializerHybridRerank: true`, passes the learned reranker weights
+- default code path remains rule-only unless the flag is enabled
+- active bundle config now sets `materializerHybridRerank: true`
+- active memory subsystem tests: **98/98**
+- repo harness: **133/133**
+
+Rollback:
+
+- bundle code: `backups/dsh-memory-next-prehybrid-*`
+- bundle config: `dsh-memory-next/cordis.patch.yml.bak-prehybrid-*`
+- disable flag: set `materializerHybridRerank: false` and restart DSH
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
