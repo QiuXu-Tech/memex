@@ -234,7 +234,8 @@ export function materializeContext(input = {}) {
   const chars = text.length
   const actualTokens = text.length === 0 ? 0 : tokenCost(text)
   const prefixTokens = prefixText.length === 0 ? 0 : tokenCost(prefixText)
-  const pageTokens = selected.reduce((sum, page) => sum + pageCost(page), 0)
+  const bodyTokens = selected.reduce((sum, page) => sum + tokenCost(pageBody(page)), 0)
+  const pageTokens = bodyTokens
   const overBudgetBy = Math.max(0, actualTokens - available)
   const budgetStatus = selected.length === 0
     ? (available === 0 ? 'empty' : 'empty-budget')
@@ -254,9 +255,9 @@ export function materializeContext(input = {}) {
     overBudgetReason: overBudgetBy > 0 ? (overBudgetReason ?? (forced.length > 0 ? 'forced' : 'budget')) : undefined,
     budgetStatus,
     budgetBreakdown: {
-      pageTokens,
+      pageTokens: bodyTokens,
       prefixTokens,
-      formatTokens: Math.max(0, actualTokens - pageTokens - prefixTokens),
+      formatTokens: Math.max(0, actualTokens - prefixTokens - bodyTokens),
       reservedTokens: reserveTokens,
       totalTokens: actualTokens,
       renderedChars: chars,

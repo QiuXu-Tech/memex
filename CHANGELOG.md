@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.56.0
+
+### Fixed — formatTokens breakdown + protocol dry-run
+- `formatTokens` now derives from final rendered text minus body and prefix tokens; prior loaded version could report 0. Active file updated.
+- Runtime: process 89051 started 23:22; config 0.54 trace fields visible; latest trace `formatTokens=0` predates the fix; restart required to observe the corrected field.
+- Quality protocol dry-run with mock API: 2 synthetic queries, both answer orders, condition mapping, selection recall, answer/judge cost captured; no real memory sent.
+- No default strategy change. Repo **144/144**; active **98/98**.
+
 ## 0.55.0
 
 ### Fixed — active trace version/format fields

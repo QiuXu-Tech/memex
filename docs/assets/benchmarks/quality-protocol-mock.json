@@ -1,0 +1,21 @@
+{
+  "format": 1,
+  "kind": "quality-protocol-mock-validation",
+  "generatedAt": "2026-10-30T23:28:00+08:00",
+  "dataset": "synthetic mock, realMemory=false",
+  "queries": 2,
+  "checks": {
+    "bothAnswerOrders": true,
+    "conditionMapping": true,
+    "selectionRecall": true,
+    "answerCost": true,
+    "judgeCost": true,
+    "latency": true
+  },
+  "totalCost": {
+    "answerCost": 0.00112,
+    "judgeCost": 0.00304,
+    "totalCost": 0.00416
+  },
+  "note": "Mock API only; no real memory content sent. The protocol enforces verified labels, disjoint train/test keys, authorization for real memory, non-zero cost model, both answer orders, raw answers, judge rationale, latency, recall and answer+judge cost."
+}

@@ -715,6 +715,14 @@ Repo **144/144 offline**, **36/36 SQLite**, active **98/98**.
 - Both answer orders saved per question with condition mapping.
 - Selected-window recall, answer correctness, unsupported claims, latency, answer+judge cost.
 - Explicit real-memory authorization before third-party API use.
+## Format-field fix + protocol dry-run (v0.56.0)
+
+- `formatTokens` is now computed from the final rendered text minus body and prefix tokens; the previous loaded version could clamp it to 0. Code + active file updated.
+- Runtime: process 89051 started 23:22; config 0.54 trace fields are visible; `formatTokens=0` in the latest trace came from the pre-fix breakdown. One restart is required to observe the fixed field.
+- Quality protocol dry-run against a mock API: 2 synthetic queries, both answer orders, condition mapping, selection recall, answer and judge cost all captured; total mock cost 0.00416. No real memory sent.
+- Protocol still requires human-verified labels and explicit real-memory authorization before a real run.
+
+Raw: `quality-protocol-mock.json`; no default strategy change.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
