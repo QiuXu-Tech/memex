@@ -151,17 +151,33 @@ export function materializeContext(input = {}) {
   const tokenCost = (text) => counter === undefined ? estimateTokens(text) : counter(String(text))
   const pageCost = (page) => Number.isFinite(page.tokenCount) ? Math.max(1, Number(page.tokenCount)) : Math.max(1, tokenCost(pageText(page)))
   const pageTokenCap = Math.max(0, Number.isSafeInteger(input.pageTokenCap) ? input.pageTokenCap : 0)
+  const queryForExcerpt = input.query === undefined ? '' : String(input.query)
   const preparePage = (page) => {
     if (pageTokenCap === 0 || pageCost(page) <= pageTokenCap) return page
     const originalBody = pageBody(page)
     const source = page.sourceId ?? page.id
     const maxChars = Math.max(80, pageTokenCap * 4)
-    const excerpt = originalBody.slice(0, maxChars).trimEnd()
+    // For oversized records, select a snippet around a query term instead of always
+    // taking the head; the full archive file is untouched and the source is marked.
+    let start = 0
+    if (queryForExcerpt.length > 0) {
+      const terms = [...new Set(tokenizeText(queryForExcerpt).filter((term) => term.length >= 2))].sort((a, b) => b.length - a.length)
+      const lower = originalBody.toLowerCase()
+      for (const term of terms) {
+        const index = lower.indexOf(term)
+        if (index >= 0) {
+          start = Math.max(0, index - Math.floor(maxChars * 0.35))
+          break
+        }
+      }
+    }
+    const excerpt = originalBody.slice(start, start + maxChars).trimEnd()
     return {
       ...page,
       body: excerpt,
       truncated: true,
       sourceId: source,
+      excerptStart: start,
     }
   }
 

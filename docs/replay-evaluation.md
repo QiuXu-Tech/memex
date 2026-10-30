@@ -29,3 +29,7 @@ python3 training/extract_replay_episodes.py /path/to/output
 ## Local selection test
 
 28 provisional episodes, active 1,800 budget. Without excerpts, relevant-record hit rates were rule 3.6%, rule+core 7.1%, hybrid 28.6%, hybrid+core 32.1%. Adding `pageTokenCap=400` source-marked excerpts raised hybrid+core to **42.9%**, with no over-budget windows. L1 archive records are raw and huge; they must be excerpted/carded before materialization. This is a selection test, not answer quality; labels remain provisional.
+
+### Query-aware excerpt
+
+For oversized records the materializer now searches for the earliest query-term occurrence and excerpts around it (U50), instead of always taking the head. On the 28 provisional replay episodes, `hybrid+core+pageTokenCap400` relevant-record hit rate rose from 42.9% to **46.4%**, with all windows ≤1,800 tokens. L1 raw-archive episodes remain mostly unselected because a full archived span is not a card-sized page; labels still need human review.

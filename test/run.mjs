@@ -4607,6 +4607,17 @@ await test('U49', 'oversized pages become source-marked excerpts without mutatin
   assert.equal(pages[0].body, originalBody)
 })
 
+
+await test('U50', 'oversized excerpt is centered on query terms with source marker', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const originalBody = 'filler '.repeat(3000) + 'TARGET_FACT is here ' + 'tail '.repeat(500)
+  const pages = [{ id: 'archive', title: 'archive', body: originalBody, useWhen: '', sequence: 1 }]
+  const result = materializeContext({ pages, budgetTokens: 500, query: 'TARGET_FACT', pageTokenCap: 80 })
+  assert.ok(result.text.includes('TARGET_FACT'), 'query term should be in excerpt')
+  assert.ok(result.text.includes('truncated excerpt; source: archive'))
+  assert.equal(pages[0].body, originalBody)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

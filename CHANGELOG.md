@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.61.0
+
+### Added — query-aware excerpts for oversized pages
+- Oversized pages now excerpt around the earliest query term, with `> [truncated excerpt; source: id]` and unchanged archive; U50 covers it.
+- Local replay selection (28 provisional episodes): hybrid+core+pageTokenCap400 relevant-record hit rate **46.4%** (from 42.9%), all windows ≤1,800; no over-budget.
+- Active materializer synced; restart required to load the query-aware excerpt behavior.
+- Labels remain provisional; L1 raw-archive episodes still mostly unselected because a full archive span is not a card-sized page.
+- Repo **146/146**; active **98/98**; no default change.
 ## 0.60.0
 
 ### Added — replay selection test + source-marked page excerpts
