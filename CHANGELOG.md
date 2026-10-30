@@ -4,6 +4,17 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.31.0
+
+### Added — six connector optimizations
+- Hybrid native-first routing: external KV skipped when native prefix cache already computed the prefix (`num_computed_tokens > 0`).
+- `min_prefix_tokens` threshold for external KV; short prefixes stay native.
+- Parallel per-request layer KV loads (`ThreadPoolExecutor(8)`) with manifest validation.
+- Low GPU reservation (`--gpu-memory-utilization 0.5`): 50,103/97,887 MiB used; cold external 0.385s, native subsequent 0.028s.
+- Cold-only compression policy: gzip on external/cold KV; hot native path uncompressed.
+- Grouped external loads (per request, parallel across layers).
+- Raw: `six-optimizations.json`; harness **131/131**.
+
 ## 0.30.0
 
 ### Added — production benchmark, DSH runtime path, improved real-trace encoder

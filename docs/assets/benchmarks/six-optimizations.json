@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "kind": "six-optimizations",
+  "generatedAt": "2026-10-30T18:05:00+08:00",
+  "model": "Qwen/Qwen2.5-7B-Instruct-AWQ (real)",
+  "server": "vLLM 0.10.2, MemexKVConnector, native prefix cache + external cold KV",
+  "optimizations": {
+    "1_hybrid_native_first": {
+      "implemented": true,
+      "policy": "native prefix cache serves locally-computed prefix; external connector only when num_computed_tokens==0 and prefix >= min_prefix_tokens",
+      "evidence": "unique 2,933-token prefix: cold first request external hit 0.363s; second native 0.024s; short prefixes 512/1024/1856 stay native 0.013-0.020s"
+    },
+    "2_batch_parallel_load": {
+      "implemented": true,
+      "detail": "per-request layer KV files loaded in parallel with ThreadPoolExecutor(8) before injection",
+      "evidence": "cold external fallback completed; no isolated sequential-vs-parallel benchmark"
+    },
+    "3_prefix_threshold": {
+      "implemented": true,
+      "min_prefix_tokens": 2000,
+      "evidence": {
+        "512": {
+          "second": 0.013
+        },
+        "1024": {
+          "second": 0.017
+        },
+        "1856": {
+          "second": 0.02
+        },
+        "2800_external": {
+          "second": 0.084
+        },
+        "2800_hybrid_cold_then_native": {
+          "first": 0.363,
+          "second": 0.024
+        }
+      }
+    },
+    "4_low_gpu_reservation": {
+      "implemented": true,
+      "gpu_memory_utilization": 0.5,
+      "evidence": {
+        "gpuUsedMiB": 50103,
+        "gpuTotalMiB": 97887,
+        "coldFirst": 0.385,
+        "nativeSecond": 0.028
+      }
+    },
+    "5_cold_only_compression": {
+      "implemented": true,
+      "policy": "external KV is the cold tier; gzip optional for external storage only, native hot path never compressed",
+      "evidence": "7B compressed external KV 222MiB vs 652MiB but hit latency ~0.43s; use only for cold storage"
+    },
+    "6_group_external_loads": {
+      "implemented": true,
+      "detail": "loads grouped per request and parallelized across layers; manifest validates prefix before load",
+      "evidence": "enabled in successful cold fallback; dedicated throughput comparison pending"
+    }
+  },
+  "caveats": [
+    "Single GPU/process; some figures from repetitive-prefix probes.",
+    "Batch-load optimization has no isolated A/B benchmark yet.",
+    "SSH tunnel/local provider remains prototype."
+  ]
+}

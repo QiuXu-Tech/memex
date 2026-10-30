@@ -330,6 +330,18 @@ Throughput saturates around **19 rps**; latency scales linearly with concurrency
 - Real archive (36 records, 108 groups): scratch 2-layer **0.518**, TF-IDF **0.444**, **BGE-small pretrained + linear head 0.5926**.
 - Pretrained embeddings help, but the corpus/queries are still too small for production.
 
+## Six optimizations (v0.31.0)
+
+1. **Hybrid native-first routing** — connector now returns 0 external tokens when `num_computed_tokens > 0`; native prefix cache serves hot prefixes. Cold unique 2,933-token prefix: first external hit **0.363s**, second native **0.024s**; short prefixes stay native **0.013–0.020s**.
+2. **Parallel batch KV load** — per-request layer files are loaded via `ThreadPoolExecutor(8)` before injection.
+3. **Prefix threshold** — `min_prefix_tokens` (tested 2000) keeps short prompts on native cache; long/cold prompts can use external KV.
+4. **Low GPU reservation** — hybrid at `--gpu-memory-utilization 0.5`: GPU used **50,103/97,887 MiB**, cold external 0.385s, subsequent native 0.028s.
+5. **Cold-only compression** — external KV is the cold tier; gzip applies only there (222MiB vs 652MiB at 7B) and is not used on the hot native path.
+6. **Grouped external loads** — files are grouped per request and loaded in parallel, with manifest validation before use.
+
+Raw: `six-optimizations.json`.
+Boundary: single process/GPU; batch load has no isolated A/B benchmark yet.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).
