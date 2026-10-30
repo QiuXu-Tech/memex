@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.34.0
+
+### Added — learned real-trace cross-encoder
+- Fine-tuned BGE-small as a cross-encoder on the real archive split (36 records, 108 groups, 27 val groups).
+- Held-out: **0.963 sample accuracy / pairwise ranking** vs **0.5926** for the BGE bi-encoder.
+- This demonstrates learnability, but the split shares records and templated queries; not production generalization.
+- Raw: `real-trace-cross-encoder.json`; code: `training/real_trace_cross_encoder.py`.
+- **Materializer remains rule/budget/template-driven**; learned selector integration is the next step.
+- Harness **131/131**.
+
 ## 0.33.0
 
 ### Added — forced-cold external fallback + batch-load A/B

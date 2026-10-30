@@ -368,6 +368,20 @@ Real Qwen2.5-7B-AWQ, unique random prefixes, 2 requests per length, 50% GPU KV r
 Raw: `kv-cold-fallback-batch-load.json`.
 Boundary: single-run timings, API overhead included; gzip cold-load comparison incomplete.
 
+## Learned real-trace cross-encoder (v0.34.0)
+
+To move beyond the scratch encoder, BGE-small was fine-tuned as a **cross-encoder** on the real archive dataset (36 records, 108 query groups, templated queries):
+
+| model | sample accuracy | pairwise ranking |
+|---|---:|---:|
+| BGE bi-encoder + linear | 0.5926 | 0.5926 |
+| **BGE cross-encoder fine-tuned** | **0.963** | **0.963** |
+
+The jump is real **on this split**, but the split shares records and query templates; it is evidence of learnability, not production generalization. Next: real user queries, record-disjoint splits, and a query-aware materializer policy.
+
+Raw: `real-trace-cross-encoder.json`; code: `training/real_trace_cross_encoder.py`.
+Boundary: 36-record corpus, templated queries, no JS/DSH integration yet.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

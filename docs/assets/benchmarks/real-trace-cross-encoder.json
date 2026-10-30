@@ -1,0 +1,30 @@
+{
+  "format": 1,
+  "kind": "real-trace-cross-encoder",
+  "generatedAt": "2026-10-30T18:58:00+08:00",
+  "dataset": {
+    "records": 36,
+    "groups": 108,
+    "val_groups": 27,
+    "source": "local memex archive; templated queries from record title/useWhen"
+  },
+  "models": {
+    "bge_small_bi_encoder_linear": {
+      "sample_accuracy": 0.5926,
+      "pairwise_ranking": 0.5926
+    },
+    "bge_small_cross_encoder_finetuned": {
+      "val_groups": 27,
+      "sample_accuracy": 0.9629629629629629,
+      "pairwise_ranking": 0.9629629629629629,
+      "base_bge_bi": 0.5926
+    }
+  },
+  "interpretation": "Fine-tuning BGE-small as a cross-encoder raises this held-out split to 0.963, but the split shares records and templated query patterns; this indicates learnability, not production generalization.",
+  "caveats": [
+    "Small 36-record archive; queries are templated, not real user queries.",
+    "Only aggregate metrics; data/weights not committed.",
+    "Same-record leakage across train/val groups; true cross-record generalization untested.",
+    "Not integrated into JS/DSH materializer yet."
+  ]
+}
