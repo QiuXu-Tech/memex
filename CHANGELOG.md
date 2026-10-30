@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.53.0
+
+### Fixed — final rendered budget contract + sorting/quality protocols
+- Materializer now counts the **final rendered text** (format markers, headers, prefix) for budget enforcement, not just page+prefix estimates; exposes `formatTokens`, `renderedChars`, tokenizer metadata, explicit empty/exceeded status; final rendered count used for every candidate check.
+- New U45 (final rendered count/custom tokenizer) and U46 (negative/tied scores, different page lengths, partial budget, Chinese/mixed selection) tests; U44 CJK selection.
+- Added `training/quality_ab_protocol.py` and `docs/quality-evaluation-protocol.md`: record/session-isolated dataset, human-verified labels, randomized condition mapping, per-question answers, judge rationale, tokens and cost.
+- No default strategy change: active remains experimental hybrid topK8/core; current process was verified to have loaded v0.51 config but **not** the final-rendered budget fix — restart required.
+- Corrected outdated README test counts (140/140 offline, 36/36 SQLite), public benchmark v0.30.0 note, and a benchmark JSON timestamp.
+- Repo harness **142/142**; active tests **98/98**.
+
 ## 0.52.0
 
 ### Added — multi-query answer-quality evaluation

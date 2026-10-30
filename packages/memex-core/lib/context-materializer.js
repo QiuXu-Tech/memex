@@ -154,12 +154,25 @@ export function materializeContext(input = {}) {
     byId.set(page.id, { ...page, sequence: pageSequence(page, index) })
   }
   const sorted = [...byId.values()].sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
-  const prefixFor = (entries) => [
-    `## Extra-context materialized window (${variant.id})`,
-    `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`,
-    ...entries.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`),
-  ].join('\n')
-  const costFor = (entries) => entries.reduce((sum, page) => sum + pageCost(page), 0) + tokenCost(prefixFor(entries))
+  const renderEntries = (entries) => {
+    const prefixText = entries.length === 0 ? '' : [
+      `## Extra-context materialized window (${variant.id})`,
+      `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`,
+      ...entries.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`),
+    ].join('\n')
+    const timelineLines = []
+    for (const page of entries) {
+      const header = page.role === undefined ? `### context page ${page.id}` : `### context page ${page.id} [role=${page.role}]`
+      timelineLines.push(header)
+      if (page.title !== undefined) timelineLines.push(`Title: ${page.title}`)
+      timelineLines.push(pageBody(page))
+      timelineLines.push('')
+    }
+    const timelineText = timelineLines.join('\n').trimEnd()
+    const text = entries.length === 0 ? '' : `${prefixText}\n\n${timelineText}`.trimEnd()
+    return { text, prefixText, timelineText }
+  }
+  const costFor = (entries) => tokenCost(renderEntries(entries).text)
   const selected = []
   const forced = []
   const omitted = []
@@ -209,20 +222,12 @@ export function materializeContext(input = {}) {
     if (!tryAdd(page)) omitted.push(page.id)
   }
   selected.sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
-  const indexLines = selected.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`)
-  const prefixText = selected.length === 0 ? '' : [`## Extra-context materialized window (${variant.id})`, `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`, ...indexLines].join('\n')
-  const timelineLines = []
-  for (const page of selected) {
-    const header = page.role === undefined ? `### context page ${page.id}` : `### context page ${page.id} [role=${page.role}]`
-    timelineLines.push(header)
-    if (page.title !== undefined) timelineLines.push(`Title: ${page.title}`)
-    timelineLines.push(pageBody(page))
-    timelineLines.push('')
-  }
-  const timelineText = timelineLines.join('\n').trimEnd()
-  const text = selected.length === 0 ? '' : `${prefixText}\n\n${timelineText}`.trimEnd()
-  const chars = selected.reduce((sum, page) => sum + pageText(page).length, 0) + prefixText.length + timelineText.length
-  const actualTokens = selected.reduce((sum, page) => sum + pageCost(page), 0) + (prefixText.length === 0 ? 0 : tokenCost(prefixText))
+  const rendered = renderEntries(selected)
+  const { text, prefixText, timelineText } = rendered
+  const chars = text.length
+  const actualTokens = text.length === 0 ? 0 : tokenCost(text)
+  const prefixTokens = prefixText.length === 0 ? 0 : tokenCost(prefixText)
+  const pageTokens = selected.reduce((sum, page) => sum + pageCost(page), 0)
   const overBudgetBy = Math.max(0, actualTokens - available)
   const budgetStatus = selected.length === 0
     ? (available === 0 ? 'empty' : 'empty-budget')
@@ -242,13 +247,15 @@ export function materializeContext(input = {}) {
     overBudgetReason: overBudgetBy > 0 ? (overBudgetReason ?? 'forced') : undefined,
     budgetStatus,
     budgetBreakdown: {
-      pageTokens: selected.reduce((sum, page) => sum + pageCost(page), 0),
-      prefixTokens: prefixText.length === 0 ? 0 : tokenCost(prefixText),
+      pageTokens,
+      prefixTokens,
+      formatTokens: Math.max(0, actualTokens - pageTokens - prefixTokens),
       reservedTokens: reserveTokens,
       totalTokens: actualTokens,
-      tokenizer: tokenizerName,
+      renderedChars: chars,
       chars,
-      estimateError: counter === undefined ? 'chars/4 heuristic; tokenizer-specific error not measured' : 'custom tokenizer supplied',
+      tokenizer: tokenizerName,
+      estimateError: counter === undefined ? 'chars/4 heuristic on final rendered text; tokenizer-specific error not measured' : 'custom tokenizer supplied; final rendered text counted',
     },
     variant,
     order: selected.map((page) => page.id),

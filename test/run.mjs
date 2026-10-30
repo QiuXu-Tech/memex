@@ -4528,6 +4528,42 @@ await test('U44', 'CJK/mixed query tokenization can select Chinese-relevant page
   assert.ok(result.includedIds.includes('b'), `CJK query should select b: ${result.includedIds}`)
 })
 
+
+await test('U45', 'materializer counts the final rendered text, not just pages', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [
+    { id: 'a', title: 'alpha', body: 'alpha body text', useWhen: 'alpha use', sequence: 1 },
+    { id: 'b', title: 'beta', body: 'beta body text', useWhen: 'beta use', sequence: 2 },
+  ]
+  const counter = (text) => String(text).split(/\s+/).filter(Boolean).length
+  const result = materializeContext({ pages, budgetTokens: 120, tokenCounter: counter, tokenizerName: 'word-count' })
+  assert.equal(result.tokens, counter(result.text))
+  assert.equal(result.budgetBreakdown.totalTokens, result.tokens)
+  assert.equal(result.budgetBreakdown.chars, result.text.length)
+  assert.ok(result.budgetBreakdown.formatTokens > 0)
+  assert.ok(result.tokens <= 120, `rendered tokens ${result.tokens} should fit`)
+})
+
+await test('U46', 'materializer sorting handles negative/tied scores and partial budgets', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const pages = [
+    { id: 'huge', title: 'unrelated', body: 'filler '.repeat(400), useWhen: '', sequence: 1 },
+    { id: 'small', title: 'KV result', body: 'KV result body', useWhen: 'KV', sequence: 2 },
+    { id: 'other', title: 'other note', body: 'other body', useWhen: '', sequence: 3 },
+  ]
+  const zeroWeights = { weights: [0, 0, 0, 0, 0, 0, 0], bias: 0 }
+  const negativeWeights = { weights: [-1, -1, -1, -1, -1, -1, 0], bias: -1 }
+  const partial = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: zeroWeights, learnedTopK: 2, learnedPageMaxTokens: 400 })
+  assert.ok(partial.tokens <= 50)
+  assert.ok(partial.includedIds.includes('small'), `small page should fit: ${partial.includedIds}`)
+  const tieA = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: zeroWeights, learnedTopK: 2 })
+  const tieB = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: zeroWeights, learnedTopK: 2 })
+  assert.deepEqual(tieA.includedIds, tieB.includedIds)
+  const negative = materializeContext({ pages, budgetTokens: 50, query: 'KV result', learnedRerank: negativeWeights, learnedTopK: 2 })
+  assert.ok(Array.isArray(negative.includedIds))
+  assert.ok(negative.tokens <= 50)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

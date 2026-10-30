@@ -1,7 +1,7 @@
 {
   "format": 1,
   "kind": "multiquery-answer-quality",
-  "generatedAt": "2026-10-30T22:40:00+08:00",
+  "generatedAt": "2026-10-30T22:39:00+08:00",
   "setup": "5 query types (multi, KV, architecture, DSH, next); optimized materializer (core tier, 1800 budget, topK8); APIMaster deepseek-flash and claude-haiku-4-5; blind gpt-6-astra judge, both answer orders.",
   "cases": [
     {
