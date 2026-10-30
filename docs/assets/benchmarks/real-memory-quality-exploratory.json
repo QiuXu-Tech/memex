@@ -1,0 +1,456 @@
+{
+  "format": 1,
+  "kind": "real-memory-quality-exploratory",
+  "generatedAt": "2026-10-30T23:45:00+08:00",
+  "dataset": "5 real queries, rule/hybrid contexts from real memory; labels provisional (verified=false); exploratory only",
+  "authorization": "User selected option A: real memory content may be sent to APIMaster for quality A/B.",
+  "answerers": [
+    "deepseek-flash",
+    "claude-haiku-4-5"
+  ],
+  "judge": "gpt-6-astra",
+  "cases": [
+    {
+      "id": "multi",
+      "selectionRecall": {
+        "rule": {
+          "selected": 8,
+          "relevantSelected": 4,
+          "relevantTotal": 4,
+          "recall": 1.0
+        },
+        "hybrid": {
+          "selected": 6,
+          "relevantSelected": 4,
+          "relevantTotal": 4,
+          "recall": 1.0
+        }
+      },
+      "models": {
+        "deepseek-flash": {
+          "orders": {
+            "rule-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 9,
+                "correctness": 9,
+                "focus": 10
+              },
+              "B": {
+                "coverage": 9,
+                "correctness": 8,
+                "focus": 9
+              },
+              "latencySeconds": 7.025,
+              "totalTokens": 6702
+            },
+            "hybrid-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 7
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              "latencySeconds": 5.596,
+              "totalTokens": 8101
+            }
+          }
+        },
+        "claude-haiku-4-5": {
+          "orders": {
+            "rule-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 5,
+                "correctness": 6,
+                "focus": 6
+              },
+              "B": {
+                "coverage": 2,
+                "correctness": 4,
+                "focus": 4
+              },
+              "latencySeconds": 17.915,
+              "totalTokens": 1361
+            },
+            "hybrid-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 2,
+                "correctness": 4,
+                "focus": 4
+              },
+              "B": {
+                "coverage": 5,
+                "correctness": 5,
+                "focus": 6
+              },
+              "latencySeconds": 8.308,
+              "totalTokens": 7258
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "kv",
+      "selectionRecall": {
+        "rule": {
+          "selected": 8,
+          "relevantSelected": 1,
+          "relevantTotal": 1,
+          "recall": 1.0
+        },
+        "hybrid": {
+          "selected": 6,
+          "relevantSelected": 1,
+          "relevantTotal": 1,
+          "recall": 1.0
+        }
+      },
+      "models": {
+        "deepseek-flash": {
+          "orders": {
+            "rule-first": {
+              "winner": "tie",
+              "A": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              "latencySeconds": 7.524,
+              "totalTokens": 5140
+            },
+            "hybrid-first": {
+              "winner": "tie",
+              "A": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 7
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 7
+              },
+              "latencySeconds": 9.306,
+              "totalTokens": 5142
+            }
+          }
+        },
+        "claude-haiku-4-5": {
+          "orders": {
+            "rule-first": {
+              "winner": "hybrid",
+              "A": {
+                "coverage": 10,
+                "correctness": 9,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 9,
+                "focus": 9
+              },
+              "latencySeconds": 5.205,
+              "totalTokens": 5337
+            },
+            "hybrid-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 9
+              },
+              "latencySeconds": 40.414,
+              "totalTokens": 5536
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "arch",
+      "selectionRecall": {
+        "rule": {
+          "selected": 8,
+          "relevantSelected": 2,
+          "relevantTotal": 2,
+          "recall": 1.0
+        },
+        "hybrid": {
+          "selected": 6,
+          "relevantSelected": 1,
+          "relevantTotal": 2,
+          "recall": 0.5
+        }
+      },
+      "models": {
+        "deepseek-flash": {
+          "orders": {
+            "rule-first": {
+              "winner": "hybrid",
+              "A": {
+                "coverage": 10,
+                "correctness": 5,
+                "focus": 6
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 7
+              },
+              "latencySeconds": 7.38,
+              "totalTokens": 5442
+            },
+            "hybrid-first": {
+              "winner": "hybrid",
+              "A": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 4,
+                "focus": 6
+              },
+              "latencySeconds": 7.711,
+              "totalTokens": 5454
+            }
+          }
+        },
+        "claude-haiku-4-5": {
+          "orders": {
+            "rule-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 7
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 5,
+                "focus": 6
+              },
+              "latencySeconds": 8.483,
+              "totalTokens": 5564
+            },
+            "hybrid-first": {
+              "winner": "hybrid",
+              "A": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 7
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 5,
+                "focus": 6
+              },
+              "latencySeconds": 10.588,
+              "totalTokens": 5585
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "dsh",
+      "selectionRecall": {
+        "rule": {
+          "selected": 8,
+          "relevantSelected": 1,
+          "relevantTotal": 1,
+          "recall": 1.0
+        },
+        "hybrid": {
+          "selected": 6,
+          "relevantSelected": 1,
+          "relevantTotal": 1,
+          "recall": 1.0
+        }
+      },
+      "models": {
+        "deepseek-flash": {
+          "orders": {
+            "rule-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 6,
+                "correctness": 7,
+                "focus": 9
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 5,
+                "focus": 6
+              },
+              "latencySeconds": 7.467,
+              "totalTokens": 4911
+            },
+            "hybrid-first": {
+              "winner": "hybrid",
+              "A": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 6,
+                "correctness": 7,
+                "focus": 9
+              },
+              "latencySeconds": 10.418,
+              "totalTokens": 4907
+            }
+          }
+        },
+        "claude-haiku-4-5": {
+          "orders": {
+            "rule-first": {
+              "winner": "hybrid",
+              "A": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 6
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 8
+              },
+              "latencySeconds": 12.998,
+              "totalTokens": 7093
+            },
+            "hybrid-first": {
+              "winner": "hybrid",
+              "A": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 5,
+                "focus": 6
+              },
+              "latencySeconds": 46.935,
+              "totalTokens": 5420
+            }
+          }
+        }
+      }
+    },
+    {
+      "id": "next",
+      "selectionRecall": {
+        "rule": {
+          "selected": 8,
+          "relevantSelected": 1,
+          "relevantTotal": 1,
+          "recall": 1.0
+        },
+        "hybrid": {
+          "selected": 6,
+          "relevantSelected": 1,
+          "relevantTotal": 1,
+          "recall": 1.0
+        }
+      },
+      "models": {
+        "deepseek-flash": {
+          "orders": {
+            "rule-first": {
+              "winner": "tie",
+              "A": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              "latencySeconds": 19.459,
+              "totalTokens": 1053
+            },
+            "hybrid-first": {
+              "winner": "tie",
+              "A": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 8
+              },
+              "latencySeconds": 10.507,
+              "totalTokens": 4902
+            }
+          }
+        },
+        "claude-haiku-4-5": {
+          "orders": {
+            "rule-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 9
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 6,
+                "focus": 7
+              },
+              "latencySeconds": 10.47,
+              "totalTokens": 4976
+            },
+            "hybrid-first": {
+              "winner": "rule",
+              "A": {
+                "coverage": 10,
+                "correctness": 7,
+                "focus": 8
+              },
+              "B": {
+                "coverage": 10,
+                "correctness": 8,
+                "focus": 9
+              },
+              "latencySeconds": 5.183,
+              "totalTokens": 4972
+            }
+          }
+        }
+      }
+    }
+  ],
+  "observations": [
+    "Rule selected all labeled relevant records in all 5 cases; hybrid recall dropped to 0.5 on the architecture query.",
+    "No consistent hybrid win: rule won both orders on multi, next (Claude), and KV/architecture in one order; hybrid won both orders on deepseek architecture and Claude DSH.",
+    "Latency varied 5\u201347s due APIMaster/network; cost is unknown because no price model was supplied (exploratory cost=0 placeholder).",
+    "Labels are provisional; this is exploratory, not a default-change basis."
+  ],
+  "costNote": "No pricing supplied; cost fields are zero placeholders. Tokens and latency are recorded per judge call."
+}

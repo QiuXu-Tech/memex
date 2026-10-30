@@ -723,6 +723,20 @@ Repo **144/144 offline**, **36/36 SQLite**, active **98/98**.
 - Protocol still requires human-verified labels and explicit real-memory authorization before a real run.
 
 Raw: `quality-protocol-mock.json`; no default strategy change.
+## Authorized exploratory real-memory quality A/B (v0.57.0)
+
+User authorized real memory content to APIMaster for quality A/B (option A). Five real queries, rule vs hybrid contexts, DeepSeek Flash and Claude Haiku answerers, GPT-6 judge, both answer orders. Labels are provisional (`verified=false`), so this is exploratory only.
+
+Findings:
+
+- Rule recalled all labeled relevant records in all 5 cases; hybrid recall dropped to **0.5** on the architecture query.
+- No consistent hybrid win: rule won both orders on multi and Claude next/KV cases; hybrid won both orders on DeepSeek architecture and Claude DSH.
+- Latency ranged **5–47s** (network/provider variance); no pricing model was supplied, so cost is a zero placeholder and is **not** a valid cost comparison.
+- Active runtime was separately verified: process 23:31, budget 1800, `formatTokens=334`, rule 1794 / hybrid 1759 tokens, status ok.
+
+Conclusion: **rule + core-fact tier remains the safer provisional default; hybrid is optional/experimental.** Human-verified labels and a real cost model are still required before any default change.
+
+Raw aggregate: `real-memory-quality-exploratory.json`; no raw answers committed.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

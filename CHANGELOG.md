@@ -4,6 +4,16 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.57.0
+
+### Added — authorized exploratory real-memory quality A/B
+- User authorized real memory content to APIMaster; 5 real queries, rule vs hybrid, DeepSeek/Claude answerers, GPT-6 judge, both orders.
+- Rule recalled all labeled relevant records; hybrid recall 0.5 on architecture. No consistent hybrid win; rule won both orders on multi and Claude next/KV; hybrid won both on DeepSeek architecture and Claude DSH.
+- Latency 5–47s; no pricing supplied, so cost is a zero placeholder and not a valid comparison.
+- Labels provisional; exploratory only. **No default change**; rule+core remains safer provisional default, hybrid optional.
+- Runtime verified separately: 23:31 process, budget 1800, formatTokens 334, rule 1794 / hybrid 1759.
+- Repo **144/144**; active **98/98**.
+
 ## 0.56.0
 
 ### Fixed — formatTokens breakdown + protocol dry-run
