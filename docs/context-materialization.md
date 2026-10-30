@@ -588,6 +588,20 @@ Normal selection (41 real records, budget 1,800, no pinning), rule vs hybrid wit
 - `learnedTopK` is prototype; not yet synced to the active DSH bundle.
 
 Raw: `quality-ab-normal-selection.json`; harness **134/134**.
+## Active DSH config: hybrid + learnedTopK (v0.48.0)
+
+Active memory bundle is now wired with:
+
+- `materializer: timeline-exact`
+- `materializerMaxTokens: 2400`
+- `materializerHybridRerank: true`
+- `materializerLearnedTopK: 8`
+- checkpoint passes live query + learned weights into the materializer
+
+Active memory tests: **98/98**; repo harness **134/134**.
+Requires DSH restart to load the new materializer/checkpoint code and config.
+
+Definition: **hybrid** is not a model. It is the materializer selection policy: rule/budget/pinned selection as the safety net, plus query-aware learned top-K candidates under the same token budget.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

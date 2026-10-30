@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.48.0
+
+### Changed — active DSH hybrid + learnedTopK
+- Synced learnedTopK materializer to the active DSH bundle and wired `materializerLearnedTopK` through checkpoint config.
+- Active config: 2,400 budget, hybrid rerank true, learnedTopK 8, live query passthrough.
+- Active memory tests **98/98**; repo harness **134/134**.
+- Requires DSH restart.
+
+Definition: hybrid = rule/budget safety-net selection plus query-aware learned top-K candidates under one token budget; not a separate model.
 ## 0.47.0
 
 ### Added — learnedTopK + normal-selection quality A/B
