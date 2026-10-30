@@ -11,7 +11,7 @@
 import { createHash } from 'node:crypto'
 import { estimateTokens } from '../index.js'
 
-export const CONTEXT_MATERIALIZER_VERSION = '0.12.0'
+export const CONTEXT_MATERIALIZER_VERSION = '0.13.0'
 
 /**
  * Variants are *layout / specialist* descriptors, not trained models yet.
@@ -152,7 +152,7 @@ export function materializeContext(input = {}) {
   const tokenCost = (text) => counter === undefined ? estimateTokens(text) : counter(String(text))
   const pageCost = (page) => Number.isFinite(page.tokenCount) ? Math.max(1, Number(page.tokenCount)) : Math.max(1, tokenCost(pageText(page)))
   const pageTokenCap = Math.max(0, Number.isSafeInteger(input.pageTokenCap) ? input.pageTokenCap : 0)
-  const queryForExcerpt = input.query === undefined ? '' : String(input.query)
+  const queryForExcerpt = [input.query, ...(Array.isArray(input.queryAlternatives) ? input.queryAlternatives : [])].filter((q) => typeof q === 'string').join(' ')
   const preparePage = (page) => {
     if (pageTokenCap === 0 || pageCost(page) <= pageTokenCap) return page
     const originalBody = pageBody(page)
@@ -236,6 +236,16 @@ export function materializeContext(input = {}) {
   }
   if (input.query !== undefined && input.learnedRerank !== undefined) {
     const ranked = learnedRerankPages(sorted, String(input.query), input.learnedRerank)
+    for (const alternative of Array.isArray(input.queryAlternatives) ? input.queryAlternatives : []) {
+      const byId = new Map(learnedRerankPages(sorted, alternative, input.learnedRerank).map((entry) => [entry.page.id, entry]))
+      for (const entry of ranked) {
+        const other = byId.get(entry.page.id)
+        if (other !== undefined && other.coverage > entry.coverage) {
+          entry.coverage = other.coverage
+          entry.score = other.score
+        }
+      }
+    }
     const topK = Math.max(1, Number.isSafeInteger(input.learnedTopK) ? input.learnedTopK : 1)
     const maxPageTokens = Math.max(0, Number.isSafeInteger(input.learnedPageMaxTokens) ? input.learnedPageMaxTokens : 0)
     const diversify = input.diversify !== false

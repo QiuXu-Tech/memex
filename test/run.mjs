@@ -1293,7 +1293,7 @@ await test('K2', 'checkpoint row alone registers the policy listeners and no sur
     assert.deepEqual(ctx.sections, [], 'checkpoint row must register no prompt sections')
     assert.equal(checkpointRow.name, 'memory-checkpoint')
     assert.deepEqual(checkpointRow.inject, ['memory'])
-    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'materializer', 'materializerMaxTokens', 'materializerPageTokenCap', 'materializerHybridRerank', 'materializerLearnedTopK', 'materializerLearnedPageMaxTokens', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
+    assert.deepEqual(Object.keys(checkpointRow.Config.properties), ['autoArchive', 'autoRecall', 'catalogMaxChars', 'recallMaxChars', 'cardModel', 'materializer', 'materializerMaxTokens', 'materializerPageTokenCap', 'materializerHybridRerank', 'materializerQueryExpansion', 'materializerLearnedTopK', 'materializerLearnedPageMaxTokens', 'capacityNoticeRatio', 'capacityNoticeCooldownMs'])
   } finally {
     await ctx.dispose()
   }
@@ -4849,6 +4849,72 @@ await test('U65', 'superseded search matches cannot crowd a visible old target o
     assert.ok(out.includedIds.includes(target.id))
     assertIncludes(out.text, 'VISIBLE_TARGET_FACT')
     assert.ok(!out.text.includes('OBSOLETE_FACT'))
+  })
+})
+
+await test('U66', 'checkpoint query expansion recalls an old synonym through both policies', async () => {
+  for (const hybrid of [false, true]) {
+    const llm = createCompressLlm({ text: JSON.stringify({ queries: ['database storage write ahead logging'] }) })
+    await withInstance(`u66-${hybrid}`, { checkpoint: { cardModel: 'off', materializer: 'timeline-exact', materializerMaxTokens: 500, materializerPageTokenCap: 80, materializerQueryExpansion: true, materializerHybridRerank: hybrid, materializerLearnedTopK: 4 }, ctx: { services: { llm } } }, async ({ instance, ctx }) => {
+      const session = createSession({ id: `sess-u66-${hybrid}`, cwd: `/tmp/ws-u66-${hybrid}` })
+      await instance.enableLevel(session.id, 'l3')
+      const workspaceKey = workspaceKeyFor(session)
+      const target = await instance.write({ kind: 'fact', title: 'database storage decision', summary: 'SQLite WAL and lazy migration', body: 'SQLite WAL; migrations run lazily.', workspaceKey, scope: 'workspace' })
+      for (let index = 0; index < 45; index += 1) await instance.write({ kind: 'fact', title: `unrelated note ${index}`, body: 'unrelated project note '.repeat(30), workspaceKey, scope: 'workspace' })
+      const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(createPreStepDecision(session, 'Which persistence engine implements write-ahead logging?')))
+      const message = result.messages.find(item => item.source?.form === 'materialized-context')
+      assert.ok(message)
+      assertIncludes(message.content.filter(block => block.type === 'text').map(block => block.text).join('\n'), 'migrations run lazily')
+      assert.ok(message.source.recordIds.includes(target.id))
+      assert.equal(llm.calls.length, 1)
+    })
+  }
+})
+
+await test('U67', 'checkpoint archive card keeps deep query evidence without changing the cold body', async () => {
+  await withInstance('u67', { checkpoint: { cardModel: 'off', materializer: 'timeline-exact', materializerMaxTokens: 500, materializerPageTokenCap: 100 }, ctx: { services: { llm: undefined } } }, async ({ instance, ctx }) => {
+    const session = createSession({ id: 'sess-u67', cwd: '/tmp/ws-u67' })
+    await instance.enableLevel(session.id, 'l3')
+    const body = '## Primary Request and Intent\n' + 'x'.repeat(6000) + '\nDEEPARCHIVECUE FACT_DEEP_ARCHIVE'
+    const stored = await instance.write({ kind: 'episode', title: 'DEEPARCHIVECUE archive', summary: 'archive DEEPARCHIVECUE', body, tokens: 5000, workspaceKey: workspaceKeyFor(session), scope: 'workspace' })
+    await instance.archiveCold(stored.id)
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(createPreStepDecision(session, 'DEEPARCHIVECUE')))
+    const message = result.messages.find(item => item.source?.form === 'materialized-context')
+    assert.ok(message)
+    const text = message.content.filter(block => block.type === 'text').map(block => block.text).join('\n')
+    assertIncludes(text, 'FACT_DEEP_ARCHIVE')
+    assertIncludes(text, stored.id)
+    assert.equal((await instance.get(stored.id)).body, body)
+  })
+})
+
+await test('U68', 'invalid query expansion falls back to original retrieval', async () => {
+  const llm = createCompressLlm({ text: 'not JSON' })
+  await withInstance('u68', { checkpoint: { cardModel: 'off', materializer: 'timeline-exact', materializerMaxTokens: 500, materializerQueryExpansion: true }, ctx: { services: { llm } } }, async ({ instance, ctx }) => {
+    const session = createSession({ id: 'sess-u68', cwd: '/tmp/ws-u68' })
+    await instance.enableLevel(session.id, 'l3')
+    await instance.write({ kind: 'fact', title: 'fallbackneedle713', body: 'FALLBACK_VALID_FACT', workspaceKey: workspaceKeyFor(session), scope: 'workspace' })
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(createPreStepDecision(session, 'fallbackneedle713')))
+    const message = result.messages.find(item => item.source?.form === 'materialized-context')
+    assert.ok(message)
+    assertIncludes(message.content.filter(block => block.type === 'text').map(block => block.text).join('\n'), 'FALLBACK_VALID_FACT')
+    assert.equal(llm.calls.length, 1)
+  })
+})
+
+await test('U69', 'alternative query results retain workspace, session and supersession filters', async () => {
+  const { materializeStoreContext } = await import('../packages/memex-core/lib/context-pager.js')
+  await withCore('u69', async (store) => {
+    const visible = store.write({ kind: 'fact', title: 'rewritecue713', body: 'VISIBLE_REWRITE_FACT', workspaceKey: 'wk-u69', scope: 'workspace' })
+    store.write({ kind: 'fact', title: 'rewritecue713', body: 'OTHER_WORKSPACE_SECRET', workspaceKey: 'other', scope: 'workspace' })
+    store.write({ kind: 'fact', title: 'rewritecue713', body: 'OTHER_SESSION_SECRET', workspaceKey: 'wk-u69', scope: 'session', sessionId: 'other' })
+    const old = store.write({ kind: 'fact', title: 'rewritecue713', body: 'SUPERSEDED_SECRET', workspaceKey: 'wk-u69', scope: 'workspace' })
+    store.setStatus(old.id, 'superseded')
+    for (let i = 0; i < 45; i += 1) store.write({ kind: 'fact', title: `other ${i}`, body: 'unrelated', workspaceKey: 'wk-u69', scope: 'workspace' })
+    const out = materializeStoreContext({ store, workspaceKey: 'wk-u69', scopes: ['workspace', 'session'], sessionId: 'current', query: 'paraphrased subject', queryAlternatives: ['rewritecue713'], budgetTokens: 500 })
+    assert.ok(out.includedIds.includes(visible.id))
+    assertIncludes(out.text, 'VISIBLE_REWRITE_FACT')
+    for (const secret of ['OTHER_WORKSPACE_SECRET', 'OTHER_SESSION_SECRET', 'SUPERSEDED_SECRET']) assert.ok(!out.text.includes(secret), secret)
   })
 })
 

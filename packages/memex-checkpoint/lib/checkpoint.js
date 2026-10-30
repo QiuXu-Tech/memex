@@ -100,6 +100,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     materializerMaxTokens: Number.isSafeInteger(config.materializerMaxTokens) ? config.materializerMaxTokens : 1800,
     materializerPageTokenCap: Number.isSafeInteger(config.materializerPageTokenCap) ? config.materializerPageTokenCap : 0,
     materializerHybridRerank: config.materializerHybridRerank === true,
+    materializerQueryExpansion: config.materializerQueryExpansion === true,
     materializerLearnedTopK: Number.isSafeInteger(config.materializerLearnedTopK) ? config.materializerLearnedTopK : 1,
     materializerLearnedPageMaxTokens: Number.isSafeInteger(config.materializerLearnedPageMaxTokens) ? config.materializerLearnedPageMaxTokens : 0,
   }
@@ -376,6 +377,26 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     }
   }
 
+  /** Optional bounded query paraphrases; failures fall back to the original query. */
+  async function expandQuery(session, query) {
+    if (!policyConfig.materializerQueryExpansion || typeof query !== 'string' || !query.trim()) return []
+    try {
+      const llm = ctx.get('llm')
+      const target = session.requestHeader?.()?.config
+      if (!llm || !target?.provider || !target?.model) return []
+      const accumulator = new TextAccumulator()
+      const prompt = 'Return only JSON {"queries":["..."]} containing up to three short alternative search phrases for this question. Include relevant synonyms or abbreviations; do not answer or assume facts. Question:\n' + clip(query, 800)
+      for await (const chunk of llm.stream({ provider: target.provider, model: target.model, messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }], maxTokens: 200, sessionId: session.id })) accumulator.push(chunk)
+      const text = accumulator.text()
+      const start = text.indexOf('{'), end = text.lastIndexOf('}')
+      if (start < 0 || end <= start) return []
+      const parsed = JSON.parse(text.slice(start, end + 1))
+      return Array.isArray(parsed.queries) ? parsed.queries.filter((q) => typeof q === 'string' && q.trim() && q.length <= 160).slice(0, 3) : []
+    } catch {
+      return []
+    }
+  }
+
   /** Build a materialized resident window message, or undefined. */
   async function materializedMessage(session, workspaceKey, levels, query) {
     if (policyConfig.materializer === 'off') return undefined
@@ -386,6 +407,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
       budgetTokens: policyConfig.materializerMaxTokens,
       variant: policyConfig.materializer,
       query,
+      queryAlternatives: await expandQuery(session, query),
       pageTokenCap: policyConfig.materializerPageTokenCap,
       learnedRerank: query ? lexicalReranker : undefined,
       learnedTopK: policyConfig.materializerLearnedTopK,

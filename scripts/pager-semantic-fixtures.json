@@ -1,0 +1,14 @@
+[
+ {"id":"release","title":"deployment rollback policy","summary":"previous build deployment","body":"Restore the prior build identifier.","query":"How do we undo the launch?","fact":"Restore the prior build identifier."},
+ {"id":"database","title":"database storage decision","summary":"SQLite WAL and lazy migration","body":"Migrations run lazily and idempotently.","query":"Which persistence engine implements write-ahead logging?","fact":"Migrations run lazily"},
+ {"id":"review","title":"review requirements","summary":"tests bundle parity and private data checks","body":"Review requires bundle parity and tests.","query":"Which approval criteria govern code acceptance?","fact":"bundle parity and tests"},
+ {"id":"privacy","title":"privacy boundary decision","summary":"secrets in private session scope","body":"Secrets remain in L2 session scope.","query":"Where do confidential credentials belong?","fact":"L2 session scope"},
+ {"id":"billing","title":"billing retry policy","summary":"payment retries exponential backoff","body":"Payment retries use exponential backoff with three attempts.","query":"How do we handle failed charges?","fact":"exponential backoff with three attempts"},
+ {"id":"backup","title":"backup retention policy","summary":"snapshot retention and integrity","body":"Keep seven daily snapshots and verify checksums.","query":"How many recovery copies are kept?","fact":"seven daily snapshots"},
+ {"id":"outage","title":"incident response escalation","summary":"on-call incident ownership","body":"The on-call engineer pages the service owner.","query":"Who gets notified during an outage?","fact":"pages the service owner"},
+ {"id":"cache","title":"cache expiration policy","summary":"cache TTL and invalidation","body":"The cache expires entries after fifteen minutes.","query":"How long do stored responses remain fresh?","fact":"fifteen minutes"},
+ {"id":"auth","title":"authentication access control","summary":"permission checks for workspace access","body":"Access requires membership in the workspace.","query":"Who is allowed to enter the project?","fact":"membership in the workspace"},
+ {"id":"queue","title":"message queue delivery policy","summary":"queue delivery guarantees","body":"Consumers must handle duplicate deliveries idempotently.","query":"How should repeated events be processed?","fact":"duplicate deliveries idempotently"},
+ {"id":"zh-deploy","title":"发布回滚方案","summary":"上线异常退回旧版本","body":"异常时恢复上一个稳定构建。","query":"出问题后如何撤销部署？","fact":"恢复上一个稳定构建"},
+ {"id":"zh-billing","title":"账单重试规则","summary":"扣款失败使用指数退避","body":"扣款失败最多重试三次。","query":"支付出错以后怎么办？","fact":"最多重试三次"}
+]

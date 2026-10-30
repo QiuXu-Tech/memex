@@ -183,6 +183,7 @@ export class AgentMemory {
       pinnedIds: options.pinnedIds,
       reserveTokens: options.reserveTokens,
       query: options.query,
+      queryAlternatives: options.queryAlternatives,
       learnedRerank: options.learnedRerank,
       learnedTopK: options.learnedTopK,
       alwaysIncludeIds: options.alwaysIncludeIds,

@@ -8,8 +8,9 @@
  */
 import { materializeContext, resolveContextVariant } from './context-materializer.js'
 import { eventsToMaterializerPages } from './context-events.js'
+import { memoryQueryTerms } from '../index.js'
 
-export const CONTEXT_PAGER_VERSION = '0.13.0'
+export const CONTEXT_PAGER_VERSION = '0.14.0'
 
 const byId = (rows) => {
   const map = new Map()
@@ -41,8 +42,15 @@ const ARCHIVE_CARD_TOKENS = 2000
 const CARD_HEADINGS = ['Primary Request and Intent', 'Key Technical Concepts', 'Files and Code', 'Errors and fixes', 'Pending Tasks', 'Current Work', 'Optional Next Step']
 
 /** Project an oversized archive row into a source-marked card; the record file stays intact. */
-function archiveCard(row) {
+function archiveCard(row, query) {
   const body = String(row.body ?? row.summary ?? '')
+  const lower = body.toLowerCase()
+  const terms = memoryQueryTerms(query ?? '', 20).filter((term) => term.length >= 3).sort((a, b) => b.length - a.length)
+  const match = terms.map((term) => lower.indexOf(term.toLowerCase())).find((index) => index >= 0)
+  if (match !== undefined) {
+    const start = Math.max(0, match - 100)
+    return `> [archive card; source: ${row.id}; original archive remains intact]\n\n# ${row.title ?? row.id}\n\n${body.slice(start, start + 1200).trimEnd()}\n\n> [end archive card]`
+  }
   const sections = []
   for (const heading of CARD_HEADINGS) {
     const start = body.indexOf(`## ${heading}`)
@@ -69,16 +77,24 @@ export function materializeStoreContext(input = {}) {
     status: undefined,
   }
   const noVisibleScopes = Array.isArray(input.scopes) && !input.scopes.some((scope) => scope === 'workspace' || scope === 'session')
-  const queryHits = !noVisibleScopes && typeof input.query === 'string' && input.query.trim() !== '' && typeof store.search === 'function'
-    ? store.search({ ...filter, query: input.query, limit: 8, excludeSuperseded: true }).hits.filter((row) => {
+  const queries = typeof input.query === 'string' && input.query.trim() !== ''
+    ? [...new Set([input.query, ...(Array.isArray(input.queryAlternatives) ? input.queryAlternatives.filter((q) => typeof q === 'string' && q.trim() && q.length <= 160).slice(0, 3) : [])])]
+    : []
+  const searchResults = !noVisibleScopes && typeof store.search === 'function' ? queries.map((query) => store.search({ ...filter, query, limit: 8, excludeSuperseded: true }).hits) : []
+  const fused = new Map()
+  for (const hits of searchResults) for (const [rank, row] of hits.entries()) {
+    const entry = fused.get(row.id) ?? { row, score: 0 }
+    entry.score += 1 / (60 + rank + 1)
+    fused.set(row.id, entry)
+  }
+  const queryHits = [...fused.values()].sort((a, b) => b.score - a.score).map((entry) => entry.row).filter((row) => {
       if (row.status === 'superseded') return false
       if (input.workspaceKey !== undefined && row.workspaceKey !== input.workspaceKey) return false
       if (input.kind !== undefined && row.kind !== input.kind) return false
       if (Array.isArray(input.scopes) && !input.scopes.includes(row.scope)) return false
       if (row.scope === 'session' && row.sessionId !== input.sessionId) return false
       return true
-    })
-    : []
+    }).slice(0, 8)
   const rows = noVisibleScopes ? [] : byId([
     ...store.list({ ...filter, status: 'pinned', limit: 24, includeStatus: true }),
     ...store.list({ ...filter, status: 'open', limit: 16 }),
@@ -108,7 +124,7 @@ export function materializeStoreContext(input = {}) {
         title: isArchive ? `[card] ${row.title ?? row.id}` : row.title,
         summary: row.summary,
         useWhen: row.useWhen,
-        body: isArchive ? archiveCard({ ...row, body: rawBody }) : rawBody,
+        body: isArchive ? archiveCard({ ...row, body: rawBody }, queries.join(' ')) : rawBody,
         card: isArchive,
         sourceId: isArchive ? row.id : undefined,
         sequence: Number(row.createdAt ?? 0),
@@ -125,6 +141,7 @@ export function materializeStoreContext(input = {}) {
     pinnedIds: pages.filter((page) => page.pinned === true).map((page) => page.id),
     reserveTokens: input.reserveTokens,
     query: input.query,
+    queryAlternatives: queries.slice(1),
     learnedRerank: input.learnedRerank,
     learnedTopK: input.learnedTopK,
     alwaysIncludeIds: input.alwaysIncludeIds,

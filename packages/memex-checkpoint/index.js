@@ -33,6 +33,8 @@ export const Config = z.object({
   materializerPageTokenCap: z.number().step(1).min(0).default(0),
   /** Optional query-aware hybrid ordering; disabled by default. */
   materializerHybridRerank: z.boolean().default(false),
+  /** Ask the routed model for alternative search phrases; sends the query to that provider. */
+  materializerQueryExpansion: z.boolean().default(false),
   materializerLearnedTopK: z.number().step(1).min(1).default(1),
   materializerLearnedPageMaxTokens: z.number().step(1).min(0).default(0),
   /** Hot-pool usage ratio at which the model is told to ask the user about compression. */
@@ -52,6 +54,7 @@ export function apply(ctx, config = {}) {
     materializerMaxTokens: config.materializerMaxTokens ?? 1800,
     materializerPageTokenCap: config.materializerPageTokenCap ?? 0,
     materializerHybridRerank: config.materializerHybridRerank ?? false,
+    materializerQueryExpansion: config.materializerQueryExpansion ?? false,
     materializerLearnedTopK: config.materializerLearnedTopK ?? 1,
     materializerLearnedPageMaxTokens: config.materializerLearnedPageMaxTokens ?? 0,
     capacityNoticeRatio: config.capacityNoticeRatio ?? 0.8,

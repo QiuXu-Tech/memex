@@ -10,9 +10,12 @@ if (!input || !output || !stores) throw new Error('usage: --input EPISODES_JSON 
 if (existsSync(output)) throw new Error('output already exists; refusing to overwrite private replay data')
 mkdirSync(stores)
 const data = JSON.parse(readFileSync(input, 'utf8'))
+const expansionFile = arg('expansions')
+const expansions = expansionFile ? new Map(readFileSync(expansionFile, 'utf8').trim().split('\n').map(JSON.parse).filter((row) => row.group === 'private' && row.status === 'ok').map((row) => [row.id, row.queries])) : new Map()
 const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
 const results = []
 for (const episode of data.episodes) {
+  if (expansionFile && !expansions.has(episode.id)) throw new Error(`missing successful query expansion for ${episode.id}`)
   if (episode.pages.some((page) => page.availableAfter >= episode.querySeq) || episode.tail.some((item) => item.seq >= episode.querySeq)) throw new Error(`future event in ${episode.id}`)
   const root = join(stores, episode.id)
   mkdirSync(root)
@@ -21,9 +24,9 @@ for (const episode of data.episodes) {
     for (const page of episode.pages) store.write({ id: page.id, kind: page.kind ?? 'fact', title: page.title, summary: page.summary, useWhen: page.useWhen, body: page.body, createdAt: page.sequence, workspaceKey: 'replay', sessionId: episode.id, scope: 'workspace' })
     const base = { store, workspaceKey: 'replay', scopes: ['workspace'], budgetTokens: 1800, query: episode.question, pageTokenCap: 400, learnedPageMaxTokens: 700 }
     const conditions = {}
-    for (const name of ['rule', 'hybrid']) {
+    for (const name of expansionFile ? ['rule', 'hybrid', 'rule-expanded', 'hybrid-expanded'] : ['rule', 'hybrid']) {
       const start = performance.now()
-      const result = materializeStoreContext({ ...base, ...(name === 'hybrid' ? { learnedRerank: weights, learnedTopK: 8 } : {}) })
+      const result = materializeStoreContext({ ...base, ...(name.endsWith('-expanded') ? { queryAlternatives: expansions.get(episode.id) ?? [] } : {}), ...(name.startsWith('hybrid') ? { learnedRerank: weights, learnedTopK: 8 } : {}) })
       conditions[name] = { text: result.text, ids: result.includedIds, tokens: result.tokens, status: result.budgetStatus, sources: result.sources, latencyMs: performance.now() - start }
     }
     results.push({ id: episode.id, querySeq: episode.querySeq, question: episode.question, tail: episode.tail, referencePages: episode.pages, conditions })
