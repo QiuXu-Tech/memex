@@ -1,0 +1,31 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-7b-concurrency",
+  "generatedAt": "2026-10-30T17:10:00+08:00",
+  "model": "Qwen2.5-7B architecture, dummy random weights",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "maxCacheMiB": 2048
+  },
+  "tests": {
+    "samePrefixConcurrent": {
+      "requests": 8,
+      "ok": 8,
+      "maxSeconds": 0.756,
+      "externalHitDelta": 7,
+      "promptTokens": 2355
+    },
+    "realMaterializedWindow": {
+      "promptTokens": 2037,
+      "storeSeconds": 0.204,
+      "hitSeconds": 0.088,
+      "externalHit": true
+    }
+  },
+  "caveats": [
+    "Dummy weights: architecture/memory/connector only, not model quality.",
+    "Single process, 8 concurrent requests; no long stress test.",
+    "Prototype disk connector."
+  ]
+}

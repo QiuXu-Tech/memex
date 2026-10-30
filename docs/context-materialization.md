@@ -245,6 +245,16 @@ This validates **7B-scale architecture/memory/KV connector mechanics**, not mode
 
 Raw: `docs/assets/benchmarks/vllm-memex-kv-connector-7b-dummy.json`.
 
+## 7B concurrency + real materialized window (v0.25.0)
+
+On the 7B dummy-weight server (28 layers, ~91% GPU):
+
+- **8 concurrent requests** sharing the same materialized prefix: **8/8 OK**, max 0.756s, **7 external hits** (one request stored, the rest loaded), no errors.
+- Real `context-materializer` output (2,037 prompt tokens) through the connector: store **0.204s**, second request external hit **0.088s**.
+- This exercises concurrent load/store races at 7B architecture scale; dummy weights mean quality is out of scope.
+
+Raw: `vllm-memex-kv-connector-7b-concurrency.json`.
+
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

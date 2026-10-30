@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.25.0
+
+### Added — 7B concurrency + real materialized window
+- 7B dummy-weight server: **8 concurrent requests** sharing a materialized prefix → **8/8 OK**, max 0.756s, **7 external hits**, no errors.
+- Real `context-materializer` window (2,037 prompt tokens) through the 7B connector: store **0.204s**, second-request hit **0.088s**.
+- Validates concurrent load/store at 7B architecture scale; dummy weights, quality out of scope.
+- Raw: `vllm-memex-kv-connector-7b-concurrency.json`; harness 131/131.
+
 ## 0.24.0
 
 ### Added — 7B architecture connector scale test (dummy weights)
