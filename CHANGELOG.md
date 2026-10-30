@@ -4,6 +4,17 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.64.0
+
+### Added — full performance pass
+- Materializer: 100/1k/5k pages, rule vs hybrid, p50/p95; hybrid 1.55/12.97/65.47 ms, rule 0.62/4.95/25.24 ms; all windows ≤1,800 and ok.
+- Real replay (28 episodes): rule+core 0.089 ms mean, hybrid+core 6.18 ms mean; ~34 candidate pages, ~1.68k tokens.
+- Store 500×5k tokens: write 0.5 s, DB 0.6 MiB, cold compress 0.48 s, cold GC 0.11 s; reads 0.03–4.5 ms.
+- Recall 200 records/40 probes: baseline 0%, search/cold-grep 100% hit; medians 2.21–3.55 ms.
+- Bottlenecks: hybrid CPU scaling with candidate count; repeated cost/render computation; cold search; external model latency dominates.
+- Directions: FTS/BM25 prefilter, incremental accounting, learned-score cache, keep rule low-latency default, instrument duration.
+- Repo **147/147**; active **98/98**.
+
 ## 0.63.0
 
 ### Added — production pager archive cards
