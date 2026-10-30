@@ -4444,6 +4444,21 @@ await test('U37', 'context pager forwards query/learnedRerank to the materialize
   assert.ok(result.includedIds.includes('b'), `pager should forward query/rerank: ${result.includedIds}`)
 })
 
+
+await test('U38', 'materializer learnedTopK adds multiple query-relevant candidates', async () => {
+  const { materializeContext } = await import('../packages/memex-core/lib/context-materializer.js')
+  const { readFileSync } = await import('node:fs')
+  const weights = JSON.parse(readFileSync(new URL('../packages/memex-core/lib/lexical-reranker.json', import.meta.url), 'utf8'))
+  const pages = [
+    { id: 'a', title: 'billing note', body: 'billing retry policy unrelated content', useWhen: 'billing', sequence: 1 },
+    { id: 'b', title: 'provider reasoning levels', body: 'provider reasoning levels official settings', useWhen: 'model reasoning', sequence: 2 },
+    { id: 'c', title: 'kv connector benchmark', body: 'kv connector benchmark eight external hits 652 mib', useWhen: 'kv benchmark', sequence: 3 },
+    { id: 'd', title: 'cache note', body: 'cache eviction unrelated content', useWhen: 'cache', sequence: 4 },
+  ]
+  const result = materializeContext({ pages, budgetTokens: 120, query: 'provider reasoning levels kv connector benchmark', learnedRerank: weights, learnedTopK: 2 })
+  assert.ok(result.includedIds.includes('b') || result.includedIds.includes('c'), `expected query-relevant candidates: ${result.includedIds}`)
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

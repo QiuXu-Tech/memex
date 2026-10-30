@@ -146,9 +146,14 @@ export function materializeContext(input = {}) {
   }
   if (input.query !== undefined && input.learnedRerank !== undefined) {
     const ranked = learnedRerankPages(sorted, String(input.query), input.learnedRerank)
+    const topK = Math.max(1, Number.isSafeInteger(input.learnedTopK) ? input.learnedTopK : 1)
+    let added = 0
     for (const { page } of ranked) {
       if (selected.some((entry) => entry.id === page.id)) continue
-      if (tryAdd(page)) break
+      if (tryAdd(page)) {
+        added += 1
+        if (added >= topK) break
+      }
     }
   }
   for (const page of sorted) {

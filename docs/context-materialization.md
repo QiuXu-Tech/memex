@@ -572,6 +572,22 @@ Result: **updated context won both orders for both models.**
 
 Raw: `quality-ab-updated-memory.json`.
 Boundary: one query; pinned updated context is not a production selector; aggregates only.
+## Normal-selection quality A/B + learnedTopK (v0.47.0)
+
+Added optional `learnedTopK` to materializer (multiple learned candidates before chronology); U38 covers it.
+
+Normal selection (41 real records, budget 1,800, no pinning), rule vs hybrid with `learnedTopK=8`, APIMaster answerers and blind judge:
+
+| answerer | forward | reverse |
+|---|---|---|
+| deepseek-flash | **hybrid** (coverage 7 vs 0) | **hybrid** (coverage 6 vs 0) |
+| claude-haiku-4-5 | **hybrid** (coverage 6 vs 0) | **hybrid** (coverage 6 vs 0) |
+
+- Rule context coverage score 0; hybrid 6–7.
+- Hybrid now includes KV/DSH/priority facts via top-K retrieval, but still misses some architecture detail and adds unsupported specifics.
+- `learnedTopK` is prototype; not yet synced to the active DSH bundle.
+
+Raw: `quality-ab-normal-selection.json`; harness **134/134**.
 ## How it gets wired next
 
 1. **Event capture**: extend the checkpoint/compaction seam to store canonical events alongside records (`role`, `tool`, payload, offsets, attachments).

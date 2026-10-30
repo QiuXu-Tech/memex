@@ -4,6 +4,15 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.47.0
+
+### Added — learnedTopK + normal-selection quality A/B
+- Materializer supports optional `learnedTopK`: multiple learned candidates enter before chronological fill; U38 added.
+- Normal selection (41 real records, 1,800 budget, no pinning): rule vs hybrid topK=8; APIMaster DeepSeek/Claude answerers, blind GPT-6 judge, both orders.
+- Hybrid won **4/4**; rule coverage 0, hybrid 6–7. Hybrid included KV/DSH/priority facts but still missed some architecture detail.
+- `learnedTopK` is not yet synced to the active DSH bundle.
+- Raw: `quality-ab-normal-selection.json`; harness **134/134**.
+
 ## 0.46.0
 
 ### Added — updated-memory quality A/B
