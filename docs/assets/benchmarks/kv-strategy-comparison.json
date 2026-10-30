@@ -1,0 +1,52 @@
+{
+  "format": 1,
+  "kind": "kv-strategy-comparison",
+  "generatedAt": "2026-10-30T17:49:00+08:00",
+  "model": "Qwen/Qwen2.5-7B-Instruct-AWQ (real 4bit)",
+  "gpu": "NVIDIA RTX PRO 6000 Blackwell 96GB",
+  "workload": {
+    "prefixes": 8,
+    "requests_per_prefix": 2,
+    "promptTokens": 1856,
+    "note": "wide prefix with two different final questions"
+  },
+  "strategies": {
+    "baseline_no_cache": {
+      "meanFirstSeconds": 0.0907,
+      "meanSecondSeconds": 0.0924,
+      "diskMiB": 0
+    },
+    "native_prefix_cache": {
+      "meanFirstSeconds": 0.0922,
+      "meanSecondSeconds": 0.0187,
+      "diskMiB": 0,
+      "nativePrefixCaching": true
+    },
+    "memex_external_kv": {
+      "meanFirstSeconds": 0.1468,
+      "meanSecondSeconds": 0.0583,
+      "externalHits": 8,
+      "diskMiB": 654,
+      "gpuUsedMiB": 89023,
+      "nativePrefixCaching": false
+    }
+  },
+  "analysis": {
+    "connectorVsRecompute": 0.369,
+    "nativeVsConnector": 0.679,
+    "conclusion": "Native GPU prefix cache is fastest for hot prefixes; external connector beats recompute but adds first-store and disk-load overhead. Use native for hot, connector for cold/persistent/tenant-isolated cache."
+  },
+  "optimizationDirections": [
+    "Hybrid routing: native prefix cache for hot prefixes, external connector for cold/persisted/large prefixes.",
+    "Reduce connector load overhead: pinned host buffers, async/overlapped KV load, faster NVMe, uncompressed hot path.",
+    "Measure prefix-length crossover: externalize only above a threshold where disk load beats recompute.",
+    "Lower vLLM gpu_memory_utilization and rely on external cache to free GPU for other models.",
+    "Keep gzip for cold storage only; gzip increases hit latency significantly.",
+    "Batch/group external KV loads for multi-prefix requests; avoid per-layer sequential file IO."
+  ],
+  "caveats": [
+    "Single process; API latency includes network stack overhead.",
+    "1856-token prefix workload; crossover thresholds not yet measured.",
+    "Connector is a prototype with disk safetensors."
+  ]
+}

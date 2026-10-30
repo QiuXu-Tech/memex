@@ -1,0 +1,93 @@
+{
+  "format": 1,
+  "kind": "vllm-memex-kv-connector-real-7b",
+  "generatedAt": "2026-10-30T17:41:00+08:00",
+  "hardware": {
+    "gpu": "NVIDIA RTX PRO 6000 Blackwell Server Edition",
+    "memoryMiB": 97887,
+    "usedMiB": 89023
+  },
+  "software": {
+    "vllm": "0.10.2",
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.1"
+  },
+  "model": "Qwen/Qwen2.5-7B-Instruct-AWQ (4bit, real weights)",
+  "connector": {
+    "class": "MemexKVConnector",
+    "prefixTokens": 1500,
+    "alignedPrefixTokens": 1488,
+    "nativePrefixCaching": false,
+    "compress": false,
+    "tenant": "real7b"
+  },
+  "workload": {
+    "prefixes": 8,
+    "requests": 16,
+    "promptTokens": 2815
+  },
+  "results": {
+    "externalHits": 8,
+    "diskMiB": 652,
+    "warmupStoreSeconds": 70.5295,
+    "meanStoreAll": 9.0142,
+    "meanHit": 0.1186,
+    "steadyMeanStore": 0.2263,
+    "steadyMeanHit": 0.1184,
+    "pairs": [
+      {
+        "prefix": 0,
+        "store_seconds": 70.5295,
+        "hit_seconds": 0.1206,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 1,
+        "store_seconds": 0.2277,
+        "hit_seconds": 0.1177,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 2,
+        "store_seconds": 0.2317,
+        "hit_seconds": 0.1171,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 3,
+        "store_seconds": 0.2286,
+        "hit_seconds": 0.1192,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 4,
+        "store_seconds": 0.2212,
+        "hit_seconds": 0.1158,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 5,
+        "store_seconds": 0.224,
+        "hit_seconds": 0.1182,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 6,
+        "store_seconds": 0.2257,
+        "hit_seconds": 0.1212,
+        "prompt_tokens": 2815
+      },
+      {
+        "prefix": 7,
+        "store_seconds": 0.2254,
+        "hit_seconds": 0.1193,
+        "prompt_tokens": 2815
+      }
+    ]
+  },
+  "caveats": [
+    "Real 7B-AWQ weights; synthetic prefix workload, single process.",
+    "First request includes torch.compile warmup (70.5s); steady-state excludes it.",
+    "Prototype connector, fixed prefix length, disk KV, no compression in this run."
+  ]
+}
