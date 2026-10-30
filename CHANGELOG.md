@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## 0.27.0
+
+### Added — tenant isolation + concurrency + gzip tuning
+- gzip level1 vs level9: both **222MiB** for 8 prefixes, nearly identical latency (~3.6s store / 0.43s hit); compression level is not the lever.
+- Tenant isolation: cache hash includes `tenant_id`, manifest validates it; tenantB did not reuse tenantA folders and hit its own stored prefix.
+- 32-way concurrency: **32/32 OK**, max 15.147s, **0 invalid caches** (compressed path, single process).
+- Raw: `vllm-memex-kv-connector-hardening2.json`; harness **131/131**.
+
 ## 0.26.0
 
 ### Added — 7B connector hardening
