@@ -1,0 +1,16 @@
+---
+title: Four additional registered issue pairs
+---
+
+# Four additional issue pairs — registered follow-up
+
+**Registered before these solver and review calls.** Four previously unattempted open issues from four repositories have complete nonempty public discussions and different retrieved comment-ID sets for the two arms. The [manifest](assets/benchmarks/production-prospective-agent-batch29/manifest.json), SHA-256 `01e432b3ab398c6124b0c9bc2d8c67ef18cfbe8d1d3462fdff4e549d6f997393`, freezes source commits, contexts, partial checks, paired assignment order, models, budgets and failure policy. Selection followed prior trial results and the batch 28 timeout; several projects also appear in earlier batches. New issue identities do not establish statistical independence.
+
+| Open issue | Frozen partial acceptance | Proposed reference |
+| --- | --- | --- |
+| [Koa #827](https://github.com/koajs/koa/issues/827) | With proxying enabled, forwarded IPv4 and bracketed IPv6 addresses with ports return addresses without ports; plain addresses and the proxy-disabled socket address remain valid. | Narrow manual port of [PR #1205](https://github.com/koajs/koa/pull/1205) to the current parser. Malformed inputs and broader security properties are outside the check. |
+| [Day.js #2179](https://github.com/iamkun/dayjs/issues/2179) | Duration strings containing hours and minutes, seconds, or day and millisecond parts yield expected values; ISO and numeric durations remain valid. | Source-only [PR #3193](https://github.com/iamkun/dayjs/pull/3193) is used as a reference; its association with this issue is not asserted. |
+| [date-fns #1134](https://github.com/date-fns/date-fns/issues/1134) | `W`, `WW` and `Wo` format the week within a month for selected dates and week starts; ordinary date formatting remains valid. | Path-translated [PR #4186](https://github.com/date-fns/date-fns/pull/4186), manually corrected to handle `Wo`. The original reference passed `W` but failed `Wo`; that failed check is preserved. |
+| [Express #7362](https://github.com/expressjs/express/issues/7362) | `res.send` handles `ArrayBuffer` and `SharedArrayBuffer` bytes with binary content type, while ordinary `Buffer` and JSON paths still work. | Source-only [PR #7363](https://github.com/expressjs/express/pull/7363). The check invokes the real response prototype with an in-memory response rather than a network server. The issue itself describes a proposed fix. |
+
+The [qualification ledger](assets/benchmarks/production-prospective-agent-batch29/qualification.json) preserves baseline failures, reference passes, controls and original and adapted reference patches. These checks are narrow and the proposed references do not establish maintainer acceptance. The TypeScript check uses a test-only source transpiler. Solver, two AI reviewers, a separate AI adjudicator, bounded tool-overflow handling, 503-only retries and stage stop rules follow [batch 28](production-prospective-agent-batch28-registration.md). The estimated budget is below $1, not a hard cap. All labels use the same proxy, whose true upstream model provenance is not verified. Pre-seeded public issue discussion is not a real long-running production session or a test of autonomous memory management.

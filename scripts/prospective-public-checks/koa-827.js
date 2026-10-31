@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),root=process.argv[2],proto=require(root+'/lib/request.js');function request(forward,proxy=true){const r=Object.create(proto);r.app={proxy,proxyIpHeader:'x-forwarded-for',maxIpsCount:0};r.req={headers:{'x-forwarded-for':forward},socket:{remoteAddress:'10.0.0.1'}};return r};
+assert.equal(request('23.243.1.1:38242').ip,'23.243.1.1');console.log('checks passed');

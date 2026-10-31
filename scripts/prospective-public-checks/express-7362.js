@@ -1,0 +1,3 @@
+'use strict';const assert=require('node:assert/strict'),root=process.argv[2],proto=require(root+'/lib/response.js');
+function send(value){const r=Object.create(proto),h={};r.app={get(){return undefined}};r.req={method:'GET',fresh:false};r.statusCode=200;r.setHeader=(k,v)=>{h[k.toLowerCase()]=String(v)};r.getHeader=k=>h[k.toLowerCase()];r.removeHeader=k=>delete h[k.toLowerCase()];r.end=chunk=>{r.body=chunk};r.send(value);return {body:r.body,headers:h}}
+const x=send(new ArrayBuffer(4));assert.deepEqual(x.body,Buffer.alloc(4));assert.equal(x.headers['content-type'],'application/octet-stream');console.log('checks passed');
