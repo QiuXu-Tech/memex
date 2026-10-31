@@ -1,0 +1,115 @@
+{
+  "method": "Frozen before solver calls: partial baseline and source-only or explicitly adapted reference checks in a network-disabled VM sandbox.",
+  "issues": {
+    "dayjs-2442": {
+      "referencePR": 2983,
+      "referencePRState": "OPEN",
+      "referenceHead": "676a8ad935fe1798fe532e12133760b3e274177b",
+      "referenceKind": "SOURCE_ONLY_PR",
+      "sourcePatchSha256": "8797ba18c089a0a13dd294cc60d404bbbbca5cd78da54dd0a60df37e510af97b",
+      "compressedPatchSha256": "4881f61884706f19775ded3aa01e976eae6fd1e020f2c145b9531233e053904d",
+      "originalPRPatchSha256": "31dbe4b3d91d2488199db2267f3786584c51bad8205db9e94ed6a9d44f408929",
+      "compressedOriginalPRSha256": "d19472173d01180341e14e589623b3cb7a65667e6555ec30e4afb71b10f85378",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "481b3e0da3247d7ddc868bcf123d716dfe83ff0b65cb1ac2f8a29226ce4bedfd"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "481b3e0da3247d7ddc868bcf123d716dfe83ff0b65cb1ac2f8a29226ce4bedfd"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      }
+    },
+    "validator-2036": {
+      "referencePR": 2648,
+      "referencePRState": "OPEN",
+      "referenceHead": "615a238948f71ab31c93697dcb24b27dd992cbd0",
+      "referenceKind": "MANUAL_DEFAULT_CHANGE",
+      "sourcePatchSha256": "45425a28c8788ed494df3e891388b4b37c715427bbef8afd4c19c4d9517eb894",
+      "compressedPatchSha256": "9e56f9cb78cb7b959a02cd8dafd39e87b1915cdc1e242dad054dad05699b0159",
+      "originalPRPatchSha256": "6b71e475235134493b6e538a80587591705d0a762504f338ddc31106ea74deb9",
+      "compressedOriginalPRSha256": "90a2a6b8d68dadd16dca7b954ca562c8c4b5556f76d464135ee5a687eda390e3",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "558ab09c6fe4dec0a89e391c2fdfd1b6ec3f629d71cf6750a9bcffcecade3065"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "b1eab0b66a852d18d23af856a53dc245420b9d4d88e99c57fbecfbfbd162e791"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "The original PR defaults allow_zero_width to true, which does not meet this issue's default-denial expectation; the reference flips that default. Wider behavior is not qualified."
+    },
+    "mathjs-3604": {
+      "referencePR": 3648,
+      "referencePRState": "OPEN",
+      "referenceHead": "094131a7ad225180ca83f665a937c4918fb34413",
+      "referenceKind": "SOURCE_ONLY_PR",
+      "sourcePatchSha256": "bfb1bdf094bb41281d10a4e6a9cac32901789b9b9f2f6577c9755d957f9c08ba",
+      "compressedPatchSha256": "033bc7aed7c2b9195d4c5ca0be3362eda902be499d0e2c75ada55cf891d3a4ce",
+      "originalPRPatchSha256": "95e51c5be43beba5d9ec226344fc347f6256a935fade162e8ab74b4b4c246626",
+      "compressedOriginalPRSha256": "e4513809439c9b43d069a799e4d32a1d00db5f4c62c43f4a0104bd85d2adf91b",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "a8e5d824316d071be32baa1ce2d2917121403f499fb1248442126251f37c0d44"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "9f077c0dbb1890f7c0cffeacfecacb95b6d41dddf8493a4a138a0ea70b7af14d"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "The reported example asks for a real value; the frozen partial acceptance follows the complex branch discussed later by maintainers. This is not a claim of an accepted final specification."
+    }
+  }
+}

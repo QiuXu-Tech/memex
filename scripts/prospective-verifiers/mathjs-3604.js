@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url'),root=process.argv[2];
+(async()=>{const m=(await import(pathToFileURL(root+'/src/defaultInstance.js').href)).default;const a=m.lgamma(-1.5),b=m.lgamma(-0.5);assert.ok(Math.abs(a.re-0.860047015376481)<1e-9);assert.ok(Math.abs(a.im+2*Math.PI)<1e-9);assert.ok(Math.abs(b.re-1.265512123484645)<1e-9);assert.ok(Math.abs(b.im+Math.PI)<1e-9);console.log('checks passed')})().catch(e=>{console.error(e);process.exitCode=1});

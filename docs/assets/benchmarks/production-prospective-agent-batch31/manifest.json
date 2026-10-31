@@ -1,0 +1,127 @@
+{
+  "kind": "registered-three-new-issue-pairs-v31",
+  "createdAt": "2026-10-31T23:00:07.618238+08:00",
+  "sourceCommit": {
+    "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+    "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+    "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+  },
+  "tasks": {
+    "2442": "dayjs",
+    "2036": "validator",
+    "3604": "mathjs"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "guestHashes": {
+    "/opt/memex-pilot/node/bin/node": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "/home/mk-q.guest/staging/mathjs-runtime-20261031/package-lock.json": "2195cbcd933fd1a2ed008d97cbb5862e13fea87b78739ce9a4b28961ee46973e"
+  },
+  "runtime": "Node 24.18.0 and pinned math.js runtime dependencies; test-only hooks load source ESM.",
+  "files": {
+    "scripts/prospective-gateway-pilot-v27.py": "2f1af3fc34bc56cc0d9407470c707c71695a9e06a365913455b04fb18132423c",
+    "scripts/prospective-gateway-pilot-v25.py": "b9877352973e4b014af1465cd0dde67dfd6f32a15f2897513b8740b870813f6d",
+    "scripts/prospective-gateway-pilot-v24.py": "71bf84a0a0370f1743e4c3cd81f501cc76378fcbba8ff094ead13e86854f2ec3",
+    "scripts/prospective-gateway-pilot-v23.py": "def4504693340818b68e7daf5bc06c71aadd979c07cab6d0211a0803af974ee6",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v28.py": "80c556b634fdeab88f95f09bc49108ce34910ce69a16e769647fd85c9eb992c1",
+    "scripts/prospective_agent_v28.py": "882f33e22e9237e555fc9a34605868727abcd1f20a8f889b550a55d586eaa4cb",
+    "scripts/prospective-gateway-pilot-v29.py": "915244cb5a3894304ff8bec641a3bcdd2ac83f71a0c4c545d2a2fdd994c5725c",
+    "scripts/prospective-gateway-pilot-v31.py": "70167021ee8b9274432a4af33eb5e443b09f51d86ad77b2aa8fab28853a46650"
+  },
+  "checks": {
+    "2442": {
+      "public": "e8359c47bfda49ee112c44c37efd1a42b929935badbff171adb740766a3876b1",
+      "acceptance": "d3452926dc6de92b62ed044962c46bb35b857ed3b18bda7837d2b5f015d31008",
+      "regressionControls": "747e97fcbbd1799d805aba61187e33c79626ca9955209425d353aa4a30c0f5c2"
+    },
+    "2036": {
+      "public": "3dd0ba7cfd3970595ee4d665fb731115d3050c3eb8d593002154d90fa051059b",
+      "acceptance": "cb5c573bf7cb080486502752ec782271760171da2bbff0888e7f8444efc50b07",
+      "regressionControls": "3568044c2d4bf08234aab0b733e863b55a842b7c53eb1f2cd0698dfafba308ab"
+    },
+    "3604": {
+      "public": "33dea82f51942241291098a2f684c7dbb88e588f354fc69a7c25d061a63ee5ac",
+      "acceptance": "512e7e55e185de818e9dc2cc032c8ad18201f3807830abbd3e6d990d8d58884b",
+      "regressionControls": "a33af9cb4009be88a62b7eacb906d869f25e7ac57b22ef870cb1779fbda497fc"
+    }
+  },
+  "issuesSha256": "69cf7f9fd9d4224e9a5f5839ae7f1e42c0cb10ed4cc3c75ebc5623322a9c3387",
+  "contextsSha256": "484fb5a85552775b3167cb3f640486b02fb99a1a9357c46c4e74b8321f6c3848",
+  "seed": 2026103136,
+  "schedule": [
+    {
+      "issue": "2442",
+      "arm": "memex"
+    },
+    {
+      "issue": "2442",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2036",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2036",
+      "arm": "memex"
+    },
+    {
+      "issue": "3604",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3604",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6.1-sol",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 1200,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within each stage after provider failure or missing usage; preserve failed, missing and unknown costs. No timeout retry.",
+  "costTarget": "Below $1 estimated for three pairs, not a hard cap; proxy usage may exceed requested token limits.",
+  "limitations": [
+    "Selection follows previous outcomes and an ongoing trial; issue identities are new but statistical independence is not established.",
+    "All projects also appear in earlier batches; public issues or PRs may disclose fixes or be present in model training.",
+    "Different retrieved comment IDs do not control history content, length, or quality.",
+    "Frozen checks are partial, and proposed references do not establish maintainer acceptance.",
+    "The validator reference changes a proposed option default to satisfy the reported default-denial behavior; its broader compatibility is untested.",
+    "The math.js check selects the complex LogGamma branch described in the discussion, although the issue initially requested a real value.",
+    "Distinct AI model labels share a proxy with unverified provenance.",
+    "Short, pre-seeded issue histories do not establish production value or autonomous memory management."
+  ],
+  "toolOverflowPolicy": "Execute at most four tool calls per model response; log and return explicit not-executed results for every excess call, then continue within the original turn budget."
+}
