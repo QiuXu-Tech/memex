@@ -1,0 +1,143 @@
+{
+  "kind": "posthoc-alternate-blind-reviews-v34",
+  "createdAt": "2026-10-31T23:35:26.827439+08:00",
+  "runnerSha256": "45b56bd93a7912b2c6dc1e591cbc2873ca4115bcf8f7b780e7d736527703d9b6",
+  "gatewaySha256": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+  "candidates": [
+    {
+      "blind": "S01",
+      "packetSha256": "7de3a8747563744ee734beb41654df17b971da8ee842bee1986a1f5eb7e4c2a7",
+      "source": "20261031-independent-batch31",
+      "sourceBlind": "B03",
+      "slot": 4,
+      "issue": "2036",
+      "arm": "memex",
+      "firstReviewPath": "20261031-independent-batch31/reviews/B03-deepseek-flash.json",
+      "sourceHashes": {
+        "20261031-independent-batch31/manifest.json": "c9daf5df6345bdd6e1e3f57de62ad954208b2871a58144d578d8a6320c842a1d",
+        "20261031-independent-batch31/blind-key.json": "bcbe2e2acb41c145cfbf2e4b90ae16e1f0e349f1f81cde665f70adec22fcdb1c",
+        "20261031-independent-batch31/issues.json": "69cf7f9fd9d4224e9a5f5839ae7f1e42c0cb10ed4cc3c75ebc5623322a9c3387",
+        "20261031-independent-batch31/review-calls.jsonl": "e108928a733743a8e2848c60ab1ebbff18184b0f3d5e9d7cd33080df2a22ab69",
+        "20261031-independent-batch31/reviews/B03-deepseek-flash.json": "b9b21ccf5b510c87ad4aa6458a906e58fa6ee25362781f093ba4a6d28c8d14e3",
+        "20261031-independent-batch31/reviews/B03-qwen3.8-flash.json": "98acc28e3eea11fdadd003d01aa332cb4839346c4e4958f26926e8d859f9f3ba",
+        "20261031-independent-batch31/runs/04/result.json": "750c1d0a73fee5bb76eafbb1d81780c7a5e3698111bda82b1dcf31a45cf75b19",
+        "20261031-independent-batch31/runs/04/candidate.diff": "5ba00f8d91855607ed58e6b93c3549c07aa8b0af6ef5b4d08e374c47064ba85a"
+      }
+    },
+    {
+      "blind": "S02",
+      "packetSha256": "3b38091059584776a8bf84cabdcd57b01b95ce42fa7fbe8edbd711f2b1b6eeef",
+      "source": "20261031-independent-batch31",
+      "sourceBlind": "B02",
+      "slot": 1,
+      "issue": "2442",
+      "arm": "memex",
+      "firstReviewPath": "20261031-independent-batch31/reviews/B02-deepseek-flash.json",
+      "sourceHashes": {
+        "20261031-independent-batch31/manifest.json": "c9daf5df6345bdd6e1e3f57de62ad954208b2871a58144d578d8a6320c842a1d",
+        "20261031-independent-batch31/blind-key.json": "bcbe2e2acb41c145cfbf2e4b90ae16e1f0e349f1f81cde665f70adec22fcdb1c",
+        "20261031-independent-batch31/issues.json": "69cf7f9fd9d4224e9a5f5839ae7f1e42c0cb10ed4cc3c75ebc5623322a9c3387",
+        "20261031-independent-batch31/review-calls.jsonl": "e108928a733743a8e2848c60ab1ebbff18184b0f3d5e9d7cd33080df2a22ab69",
+        "20261031-independent-batch31/reviews/B02-deepseek-flash.json": "52ecf4edbb2d8ed574fa726a5e8907a3e0aae0058dda424ee618ce8be6e55ca8",
+        "20261031-independent-batch31/reviews/B02-qwen3.8-flash.json": "f85e9b951f1f0191f31ae8c667802938cef44bcdc58e048dc7fd3425ee3e292c",
+        "20261031-independent-batch31/runs/01/result.json": "f10c736ae60db6accf4f6b6f5d8aa4c43b836c04ce4c8b0d01790cb467a40ba9",
+        "20261031-independent-batch31/runs/01/candidate.diff": "155c96d64962d8541246c603f928e6d94aac0a6093612ad97f1086725d5532f7"
+      }
+    },
+    {
+      "blind": "S03",
+      "packetSha256": "6c39d64d6c2a9eb1c614e6605d2b25e1b69e8f8858fc648b344d3fb89d5ceb33",
+      "source": "20261031-independent-batch31",
+      "sourceBlind": "B01",
+      "slot": 3,
+      "issue": "2036",
+      "arm": "keyword",
+      "firstReviewPath": "20261031-independent-batch31/reviews/B01-deepseek-flash.json",
+      "sourceHashes": {
+        "20261031-independent-batch31/manifest.json": "c9daf5df6345bdd6e1e3f57de62ad954208b2871a58144d578d8a6320c842a1d",
+        "20261031-independent-batch31/blind-key.json": "bcbe2e2acb41c145cfbf2e4b90ae16e1f0e349f1f81cde665f70adec22fcdb1c",
+        "20261031-independent-batch31/issues.json": "69cf7f9fd9d4224e9a5f5839ae7f1e42c0cb10ed4cc3c75ebc5623322a9c3387",
+        "20261031-independent-batch31/review-calls.jsonl": "e108928a733743a8e2848c60ab1ebbff18184b0f3d5e9d7cd33080df2a22ab69",
+        "20261031-independent-batch31/reviews/B01-deepseek-flash.json": "8c62a617fe0c56900c1268844b418802ecf866c23fa06d982ae593ca7debdf9e",
+        "20261031-independent-batch31/reviews/B01-qwen3.8-flash.json": "9740d8aa521415fae8cf2d00552e66429e878b6e6326bd2b6cb730548c9d6614",
+        "20261031-independent-batch31/runs/03/result.json": "ae9a416f5d2ac434db125c90f0dbf000fdedfc12a77d8ac61e74fdc2e4a12c53",
+        "20261031-independent-batch31/runs/03/candidate.diff": "fa987eaeddae606be024ad8cc7373992b574088a8d6ae379dd06ff7e7ebf85ec"
+      }
+    },
+    {
+      "blind": "S04",
+      "packetSha256": "0083337193a36d8ac9612974738a2a9f28bb09626ccaf53e9f72d4863ee95f9e",
+      "source": "20261031-independent-batch32",
+      "sourceBlind": "B02",
+      "slot": 2,
+      "issue": "2433",
+      "arm": "keyword",
+      "firstReviewPath": "20261031-independent-batch32/reviews/B02-deepseek-flash.json",
+      "sourceHashes": {
+        "20261031-independent-batch32/manifest.json": "5bdd6d789e6ceca49921c6082a915996cfb72016da7a8ac4cd91dbf4ae5a6442",
+        "20261031-independent-batch32/blind-key.json": "f374f06a911d77b5c7854a43e3960b949c322d2ff931a1e194c0b7e3d05c0cfe",
+        "20261031-independent-batch32/issues.json": "ae0581abcab21f37012eb2c49ec183394eda854d8002389476f8e9a900d94ae0",
+        "20261031-independent-batch32/review-calls.jsonl": "f979525bb28c406056572d314d3af6a6ffd1e5d2054c901af93d10398b777b25",
+        "20261031-independent-batch32/reviews/B02-deepseek-flash.json": "543ed517864e87699752b9063e2075e7d61caeb060c57a034d832df8871521c6",
+        "20261031-independent-batch32/reviews/B02-qwen3.8-flash.json": "f85e9b951f1f0191f31ae8c667802938cef44bcdc58e048dc7fd3425ee3e292c",
+        "20261031-independent-batch32/runs/02/result.json": "14a50cd50561da88d49798685ad150505dd9d9df9587c2dd6cdb0b2668fa39fd",
+        "20261031-independent-batch32/runs/02/candidate.diff": "17074e17d4d8ebc205d1c2c9892763595629f8c0d77f821df093a2b126b61903"
+      }
+    },
+    {
+      "blind": "S05",
+      "packetSha256": "acf1c77e100e79a30cb1866f12e14e599bc371763c5ef0b2f3fb9256ab6aeefc",
+      "source": "20261031-independent-batch32",
+      "sourceBlind": "B01",
+      "slot": 3,
+      "issue": "2214",
+      "arm": "keyword",
+      "firstReviewPath": "20261031-independent-batch32/reviews/B01-deepseek-flash.json",
+      "sourceHashes": {
+        "20261031-independent-batch32/manifest.json": "5bdd6d789e6ceca49921c6082a915996cfb72016da7a8ac4cd91dbf4ae5a6442",
+        "20261031-independent-batch32/blind-key.json": "f374f06a911d77b5c7854a43e3960b949c322d2ff931a1e194c0b7e3d05c0cfe",
+        "20261031-independent-batch32/issues.json": "ae0581abcab21f37012eb2c49ec183394eda854d8002389476f8e9a900d94ae0",
+        "20261031-independent-batch32/review-calls.jsonl": "f979525bb28c406056572d314d3af6a6ffd1e5d2054c901af93d10398b777b25",
+        "20261031-independent-batch32/reviews/B01-deepseek-flash.json": "423d947fcfe852e4131be13b0328000003509fbfca6d2da2049f1273ca448f28",
+        "20261031-independent-batch32/reviews/B01-qwen3.8-flash.json": "9740d8aa521415fae8cf2d00552e66429e878b6e6326bd2b6cb730548c9d6614",
+        "20261031-independent-batch32/runs/03/result.json": "db599c83214367fb9b7ae1e835fddaadb65e65fd2a3044c980462b489e98f190",
+        "20261031-independent-batch32/runs/03/candidate.diff": "2106c24e0aaec699b72b7b07fe1aaf182eccead1ab96938354105f9b05dacc1e"
+      }
+    },
+    {
+      "blind": "S06",
+      "packetSha256": "24f3c2e4139a3efd8bc9419655ba9fb99cd2cf56e7f47285252de83f7d5cf77a",
+      "source": "20261031-independent-batch32",
+      "sourceBlind": "B03",
+      "slot": 1,
+      "issue": "2433",
+      "arm": "memex",
+      "firstReviewPath": "20261031-independent-batch32/reviews/B03-deepseek-flash.json",
+      "sourceHashes": {
+        "20261031-independent-batch32/manifest.json": "5bdd6d789e6ceca49921c6082a915996cfb72016da7a8ac4cd91dbf4ae5a6442",
+        "20261031-independent-batch32/blind-key.json": "f374f06a911d77b5c7854a43e3960b949c322d2ff931a1e194c0b7e3d05c0cfe",
+        "20261031-independent-batch32/issues.json": "ae0581abcab21f37012eb2c49ec183394eda854d8002389476f8e9a900d94ae0",
+        "20261031-independent-batch32/review-calls.jsonl": "f979525bb28c406056572d314d3af6a6ffd1e5d2054c901af93d10398b777b25",
+        "20261031-independent-batch32/reviews/B03-deepseek-flash.json": "599b7e2c8abb2d0a4fdbe98d69b5984eb3406b32df27cc46c3514c461f89def2",
+        "20261031-independent-batch32/reviews/B03-qwen3.8-flash.json": "98acc28e3eea11fdadd003d01aa332cb4839346c4e4958f26926e8d859f9f3ba",
+        "20261031-independent-batch32/runs/01/result.json": "436d55fbc1734051e23393ce5774b84673b6dcf01f72ac21f5296ef9da2bfc11",
+        "20261031-independent-batch32/runs/01/candidate.diff": "08a802ee5c89c575ffb137e61e7f4494eafda3cd5b4203e76a8310941452067e"
+      }
+    }
+  ],
+  "seed": 2026103139,
+  "reviewer": "gpt-6.1-sol",
+  "adjudicator": "gpt-6-astra",
+  "maxReviewTokens": 1200,
+  "maxAdjudicationTokens": 1200,
+  "maxReviewCalls": 6,
+  "maxAdjudicationCalls": 6,
+  "selection": "Completed batch 31 and 32 attempts with valid DeepSeek and completed but format-invalid Qwen reviews; exclude missing or failed/timeout reviews.",
+  "policy": "Only explicit 503 may be retried at most twice; never retry timeouts; stop each stage after provider failure or missing usage.",
+  "limitations": [
+    "Selected and model substituted after observing original review failures; originals remain unchanged.",
+    "Adjudicator uses the solver model label, so is not independent of the solver.",
+    "All AI model labels share one proxy with unverified provenance; no human review.",
+    "Format validity does not prove correctness; tests are partial."
+  ]
+}
