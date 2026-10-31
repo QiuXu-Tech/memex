@@ -1,0 +1,101 @@
+{
+  "kind": "registered-two-luxon-issue-pairs",
+  "createdAt": "2026-10-31T20:06:18.573536+08:00",
+  "sourceCommit": {
+    "luxon": "f427515a38f6a671f8de663e6bcc040ed81f114e"
+  },
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "dependencies": "Node module hooks load source ESM without external npm packages."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": {
+    "1366": "luxon",
+    "1189": "luxon"
+  },
+  "checks": {
+    "1366": {
+      "public": "b6543d5e189a2191edf46d24f4921de384f80240eda1ac69b235576006b99785",
+      "acceptance": "3d91ca36a6800eee57ad3c2cfd4f9c0cc756e86103c035685d306521bfe9a6ca",
+      "regressionControls": "8dc9ca68107c56476d58c640eeb5c399853ac6a5d4c974b5409ea48ac8e50ea2"
+    },
+    "1189": {
+      "public": "58c19515adbf1d833c576135a0cdef6f2fbd5b5248edbb57e42d71bb9f476e9e",
+      "acceptance": "e293b8beeb04b8ac6be534635d6e92cffa3221888074d7130c6e2f4d979f429b",
+      "regressionControls": "347324f81b381ecc2dd14ede1105a6e67bfce79b1014c9285a0e5fe2005a997b"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "docs/assets/benchmarks/production-prospective-agent-batch21/manifest.json": "58a4537aca3557a1e8f70e3a143915e14b3a9e3d209596c792e9b90046d30ae0"
+  },
+  "issuesSha256": "9903e0d72f22ca4da25ebf72f336cc13f73f9374bf906fe1070f1f481339f68f",
+  "contextsSha256": "b234c5a0c6540f598b838e317e3c1770c2aa3f4229732c461d6688802ab445e5",
+  "seed": 2026103125,
+  "schedule": [
+    {
+      "issue": "1366",
+      "arm": "memex"
+    },
+    {
+      "issue": "1366",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1189",
+      "arm": "memex"
+    },
+    {
+      "issue": "1189",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6-astra",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within a stage after provider failure or missing usage; preserve all attempts and unknown fees. Never retry a timeout.",
+  "costTarget": "Below $1 estimated, not a hard cap; unknown fees reported separately.",
+  "limitations": [
+    "Two pairs selected after earlier batches; not a pre-registered 30–50-task independent cohort.",
+    "Public discussions and PRs can disclose solutions or appear in training; shared project and source exposure can correlate.",
+    "Source-only references and small custom tests do not establish upstream acceptance.",
+    "The adjudicator has the same model name as the solver; all model names share a proxy with unverified provenance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim."
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "method": "isolated fixed verifier; source-only reference; hashes identify private raw logs",
+  "issues": {
+    "luxon-1366": {
+      "referenceHead": "56f1e5cbdd1c1899f5330deb0f5e2af9e61bed0c",
+      "referencePR": 1800,
+      "referencePatchSha256": "5e635860404a19a7eb4d96917924aff280b1b81cb47e8fe022cfccd098be44c0",
+      "compressedPatchSha256": "dea420b1045373fd78a60bee33596f51e0abf6b66b39e1a1c894653b7ad5c374",
+      "runs": {
+        "baseline-public": {
+          "exitCode": 1,
+          "privateLogSha256": "6b10b9fe4a055ce2c234021cd58eb20f8f145eb18bdd00f20c906892812732d3"
+        },
+        "baseline-acceptance": {
+          "exitCode": 1,
+          "privateLogSha256": "e2fb26490908ed65fa63b7e28579ea193ff9af38693b5bda72552d1a076ef4b9"
+        },
+        "baseline-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "424df7326638e4a4ea38f1748e3986a9180e2fb6b449fa93d76f0ac77ce3abe4"
+        },
+        "reference-public": {
+          "exitCode": 0,
+          "privateLogSha256": "be82eb3a8c5ba596d0b4cba42ee1f963d9e08493e293f6418139a153e547864b"
+        },
+        "reference-acceptance": {
+          "exitCode": 0,
+          "privateLogSha256": "be82eb3a8c5ba596d0b4cba42ee1f963d9e08493e293f6418139a153e547864b"
+        },
+        "reference-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "424df7326638e4a4ea38f1748e3986a9180e2fb6b449fa93d76f0ac77ce3abe4"
+        }
+      }
+    },
+    "luxon-1189": {
+      "referenceHead": "23a368aa143ea47ff04aa2866a57001f1259646d",
+      "referencePR": 1585,
+      "referencePatchSha256": "4b2dbd06b1ab2c43271ff9e1f23339df4980f61275611165282b28d26f28c6f3",
+      "compressedPatchSha256": "ffc29a7506ea649c6d3e236991b27b8be53e819a5dd199568c3c5a9c4284e0d3",
+      "runs": {
+        "baseline-public": {
+          "exitCode": 1,
+          "privateLogSha256": "40bf34b7878e3f612b17e80ce6ef95ead52cbaaca0f0c5ad6113cb552d61e471"
+        },
+        "baseline-acceptance": {
+          "exitCode": 1,
+          "privateLogSha256": "7528c3b9ee17db7baf1090a3022c3eb334c13d3c795429998c7086ef4fc988bf"
+        },
+        "baseline-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "ffcb6a3f85a5fac9ab19de4b2578127064038e43a0f8a02930fa91a4de662143"
+        },
+        "reference-public": {
+          "exitCode": 0,
+          "privateLogSha256": "8738991b59c9d9a32c1a82366aaa2bb361425947e59b8340a1effdd9dcf06b76"
+        },
+        "reference-acceptance": {
+          "exitCode": 0,
+          "privateLogSha256": "8738991b59c9d9a32c1a82366aaa2bb361425947e59b8340a1effdd9dcf06b76"
+        },
+        "reference-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "ffcb6a3f85a5fac9ab19de4b2578127064038e43a0f8a02930fa91a4de662143"
+        }
+      }
+    }
+  }
+}
