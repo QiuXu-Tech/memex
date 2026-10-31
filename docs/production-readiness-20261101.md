@@ -26,18 +26,19 @@ On an isolated copy with Node 24.21.0, the generated bundle build and parity che
 
 ## Actual Codex checks
 
-![Three synthetic Codex integration attempts](assets/benchmarks/codex-readiness-smoke.svg)
+![Four synthetic Codex integration attempts](assets/benchmarks/codex-readiness-smoke.svg)
 
-All three checks used `gpt-6.1-sol`, Codex CLI `0.166.0-alpha.5.1`, ChatGPT login, a temporary store and an isolated read-only invocation. They were tool-integration smokes, not production tasks:
+All four checks used `gpt-6.1-sol`, Codex CLI `0.166.0-alpha.5.1`, ChatGPT login and temporary stores. The first three used isolated read-only invocations; the fourth used a disposable workspace-write invocation. They were tool-integration smokes, not production tasks:
 
 1. An explicit request to write was rejected: the tool required approval while this invocation's approval policy was `never`. The process still exited successfully; the tool call itself did not succeed.
 2. The read-only tool completed but returned no marker because the fixture script had mistakenly seeded a different directory. This is an invalid instrumentation attempt, not a Memex retrieval failure or success.
 3. After the fixture was corrected and independently checked from both directories, the read-only tool returned the project marker. An instrumented server process reported the Codex `--cd` project as its working directory. This is one host and CLI version, not a guarantee for other clients or configurations.
+4. In a separate temporary writable workspace, an explicit prompt requested a write, search and open. All three MCP calls completed and the opened body matched the test fixture. The default approval policy was unchanged. This is a scripted connection check, not an autonomous decision to manage memory.
 
-No permission policy was relaxed for these checks. The first call was explicitly scripted, so it does not test autonomous memory management. No AI blind review was run in this round.
+No approval policy was changed for these checks. Both write attempts were explicitly scripted, so neither tests autonomous memory management. No AI blind review was run in this round.
 
 ## Usage, costs and remaining evidence
 
-The three model turns reported **105,714 input tokens**, of which **89,088 were reported cached**, and **294 output tokens**. The individual raw usage records and the [sanitized summary](assets/benchmarks/codex-readiness-smoke.json) were checked against each other. These were Codex/ChatGPT calls; no APIMaster call was made in this round. The incremental charge, any subscription allocation, compute, storage and engineering costs remain **UNKNOWN**, so no savings or cost-per-success estimate is possible. Private local logs include the failed and invalid checks; account data and fixture files are not published.
+The four model turns reported **234,755 input tokens**, of which **201,856 were reported cached**, and **540 output tokens**. The individual raw usage records and the [sanitized summary](assets/benchmarks/codex-readiness-smoke.json) were checked against each other. These were Codex/ChatGPT calls; no APIMaster call was made in this round. The incremental charge, any subscription allocation, compute, storage and engineering costs remain **UNKNOWN**, so no savings or cost-per-success estimate is possible. Private local logs include the failed and invalid checks; account data and fixture files are not published.
 
 Before making a production-value claim, run prespecified randomized comparisons on actual ongoing long-term tasks, with isolated stores and equivalent permissions, and independently assess the delivered artifacts. Measure successful writes, later retrieval and correct use of evidence across real continuations, including failures and review costs. The current read-only check does not establish that this lifecycle succeeds. The previous 30 public-issue pairs are exploratory and do not fill this gap. No default retrieval policy is changed by these findings.

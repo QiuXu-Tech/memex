@@ -26,18 +26,26 @@
       "inputTokens": 35212,
       "cachedInputTokens": 29696,
       "outputTokens": 69
+    },
+    {
+      "name": "scripted writable workspace cycle",
+      "outcome": "write, search and open completed in a temporary workspace",
+      "inputTokens": 129041,
+      "cachedInputTokens": 112768,
+      "outputTokens": 246
     }
   ],
-  "totalInputTokens": 105714,
-  "totalCachedInputTokens": 89088,
-  "totalOutputTokens": 294,
+  "totalInputTokens": 234755,
+  "totalCachedInputTokens": 201856,
+  "totalOutputTokens": 540,
   "apimasterCallsThisRound": 0,
   "actualIncrementalCost": "UNKNOWN",
   "realTaskPairs": 0,
   "autonomousWriteReadLifecycles": 0,
+  "scriptedWriteSearchOpenCycles": 1,
   "limitations": [
     "Synthetic integration checks only; not a randomized production experiment.",
-    "The write was explicitly requested and denied; no autonomous write was observed.",
+    "One write in the read-only invocation was denied; a later scripted writable-workspace cycle succeeded. No autonomous write was observed.",
     "The invalid fixture is retained as a failed instrumentation attempt.",
     "No invoice or total non-model cost was available."
   ]
