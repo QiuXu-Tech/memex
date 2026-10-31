@@ -17,7 +17,7 @@ import { join } from 'node:path'
 import { LocalStoreCore } from './store.js'
 import { materializeStoreContext } from './context-pager.js'
 import { memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
-import { clipToProfileTokens, profileTokens, resolveModelProfile } from './model-profiles.js'
+import { profileTokens, resolveModelProfile } from './model-profiles.js'
 
 /** Default storage location for non-DSH agents (with legacy DSH_MEMORY_HOME fallback). */
 export function defaultMemoryRoot() {
@@ -77,6 +77,10 @@ export class AgentMemory {
     return memoryVisibleScopes(this.levels)
   }
 
+  visibilityFilter() {
+    return { workspaceKey: this.workspaceKey, scopes: this.scopes, sessionId: this.sessionId }
+  }
+
   /** Scope a new record should be captured into (deepest enabled level). */
   captureScope() {
     return memoryCaptureScope(this.levels) ?? 'workspace'
@@ -94,6 +98,7 @@ export class AgentMemory {
    */
   write(input) {
     const scope = input?.scope === 'session' || input?.scope === 'workspace' ? input.scope : this.captureScope()
+    if (!this.scopes.includes(scope)) throw new Error(`memory: ${scope} scope is not enabled`)
     const body = String(input?.body ?? '')
     return this.store.write({
       ...input,
@@ -132,25 +137,33 @@ export class AgentMemory {
 
   /**
    * Read one record body.
-   * @param {{id: string, offset?: number, limit?: number, maxChars?: number}} request - Open request.
+   * @param {{id: string, offset?: number, limit?: number, maxChars?: number, charOffset?: number}} request - Line window and optional character offset within it.
    * @returns {object|undefined} Record with bounded body slice.
    */
-  open({ id, offset, limit, maxChars } = {}) {
-    const record = this.store.get(id)
+  open({ id, offset, limit, maxChars, charOffset } = {}) {
+    const record = this.store.get(id, this.visibilityFilter())
     if (record === undefined) return undefined
-    const max = Math.min(Math.max(Number(maxChars) || this.profile.openMaxChars, 400), 240_000)
-    const lines = Array.from(String(record.body ?? ''))
-    const start = Math.max(0, (Number(offset) || 1) - 1)
-    const end = Number(limit) > 0 ? Math.min(lines.length, start + (Number(limit) || 400)) : lines.length
-    const body = lines.slice(start, end).join('')
-    const clipped = clipToProfileTokens(body, Math.max(200, Math.round(max / this.profile.charsPerToken)), this.profile)
+    const max = Math.floor(Math.min(Math.max(Number(maxChars) || this.profile.openMaxChars, 400), 240_000))
+    const fullBody = String(record.body ?? '')
+    const lines = fullBody.split('\n')
+    const start = Math.min(lines.length, Math.max(0, Math.floor(Number(offset) || 1) - 1))
+    const count = Number(limit) > 0 ? Math.min(Math.floor(Number(limit)), 400) : lines.length
+    const end = Math.min(lines.length, start + count)
+    const body = lines.slice(start, end).join('\n')
+    const chars = Array.from(body)
+    const charStart = Math.min(chars.length, Math.max(0, Math.floor(Number(charOffset) || 0)))
+    const charEnd = Math.min(chars.length, charStart + max)
+    const clipped = chars.slice(charStart, charEnd).join('')
     return {
       ...record,
       body: clipped,
       bodyOffset: start + 1,
       bodyLimit: end - start,
-      bodyTotalChars: lines.length,
-      bodyTruncated: clipped.length < body.length || start > 0 || end < lines.length,
+      bodyTotalLines: lines.length,
+      bodyTotalChars: Array.from(fullBody).length,
+      bodyCharOffset: charStart,
+      bodyNextCharOffset: charEnd < chars.length ? charEnd : undefined,
+      bodyTruncated: charStart > 0 || charEnd < chars.length || start > 0 || end < lines.length,
     }
   }
 
@@ -228,22 +241,23 @@ export class AgentMemory {
 
   /** Remove a record (hot or cold) and its index rows. */
   forget(id) {
-    return this.store.forget(id)
+    return this.store.forget(id, this.visibilityFilter())
   }
 
   /** Update lifecycle status (pinned records are always catalogued). */
   setStatus(id, status) {
-    return this.store.setStatus(id, status)
+    return this.store.setStatus(id, status, this.visibilityFilter())
   }
 
   /** Move a cold record back to the hot pool. */
   restore(id) {
-    return this.store.restoreCold(id)
+    return this.store.restoreCold(id, this.visibilityFilter())
   }
 
   /** Lossless cold compression for one visible level. */
   compress({ level = '', targetRatio = 0.6, limit, minAgeMs } = {}) {
     const scope = level === 'l2' ? 'session' : level === 'l3' ? 'workspace' : this.captureScope()
+    if (!this.scopes.includes(scope)) throw new Error(`memory: ${scope} scope is not enabled`)
     const report = this.store.compressCold({
       workspaceKey: this.workspaceKey,
       scope,

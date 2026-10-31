@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex)** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **144/144 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. No telemetry, everything stays on your machine.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **176/176 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
 
 ## 7B KV strategy comparison (latest)
 
@@ -85,6 +85,10 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
 ## Prospective engineering canary (2026-10-31)
+
+**Integration readiness follow-up (2026-11-01, unreleased):** MCP record operations now respect workspace and session visibility, default L2 sessions no longer span MCP processes, new global Codex configuration does not pin the setup project, and long single-line bodies can be continued. Three synthetic Codex checks retained a denied write and an invalid fixture; one corrected read confirmed the project scope on the tested CLI. This is not a production A/B or evidence of autonomous memory management. [Repairs, checks, usage and limitations](docs/production-readiness-20261101.md).
+
+![Three synthetic Codex integration checks, including the denied write and invalid fixture](docs/assets/benchmarks/codex-readiness-smoke.svg)
 
 **Latest follow-up:** **30 distinct public-issue pairs** now have both randomized arms completed, two format-valid AI ratings per arm and the necessary format-valid disagreement adjudications. This combines **18 earlier issues and 12 new follow-up issues**, includes separately registered post-hoc ratings and adjudications, and excludes two no-history controls. Among these selected pairs, the resolved AI correctness score was equal on 25, higher for Memex on three and higher for keyword retrieval on two. The adaptive batches, shared projects, public solution exposure and AI-only judging prevent a claim of independent production improvement, cost savings or autonomous memory management. [Results, method and limits](docs/production-prospective-canary.md#follow-up-30-evaluable-public-issue-pairs-with-post-hoc-recovery).
 
@@ -331,7 +335,7 @@ Reproduction commands, including the required saved summary and cold target rati
 
 ## Privacy
 
-- All data stays local: `$DSH_HOME/memories` (SQLite index + markdown files + `cold/` tier). No telemetry, no network calls except the DSH model you already use.
+- Memex records are stored locally in `$DSH_HOME/memories` (SQLite index + markdown files + `cold/` tier), with no Memex telemetry. An agent's model calls can transmit prompts containing recalled memory; host integrations may have their own network behavior.
 - Archives are raw conversation/tool output — treat them with the same care as your transcripts. L3 is intentionally shared across sessions in the same working directory; sensitive-looking spans are routed to L2 when possible.
 - Backup files contain the same data: store them securely (`scripts/memory-backup.mjs` writes a sha256 manifest).
 

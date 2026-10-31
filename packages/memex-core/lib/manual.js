@@ -55,7 +55,7 @@ export function buildMemoryManual(profile, options = {}) {
   sections.push(
     '## Retrieval loop\n' +
     '1. Before re-deriving earlier work, call `memory_search` with the concrete topic or identifier.\n' +
-    '2. Open only the record you need with `memory_open`; read `offset`/`limit` rather than the whole body when it is long.\n' +
+    '2. Open only the record you need with `memory_open`; use `offset`/`limit` for lines and follow `nextCharOffset` with the same line window for an oversized line.\n' +
     '3. Cite the context page id in your answer when it drove a decision.\n' +
     '4. If search misses, try `memory_grep` for literal identifiers, or `memory_index` to see what exists.',
   )

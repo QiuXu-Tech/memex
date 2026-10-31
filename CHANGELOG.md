@@ -4,6 +4,14 @@
 same-millisecond records by random ID. Earlier counts remain historical; see
 [docs/live-testing.md](docs/live-testing.md#deepseek-flash-results-2026-10-29).
 
+## Unreleased
+
+### Fixed — MCP integration readiness
+- Scope MCP open, status, restore and forget by visible workspace and session; reject undeclared write fields, including supplied record IDs, and reject writes or compression into disabled levels. These are tool-level boundaries, not operating-system access controls.
+- Use a fresh default L2 session per MCP process, and stop pinning the initializing project in newly generated global Codex configurations. Existing entries and records are not automatically migrated.
+- Honor line-based `memory_open` paging and expose character continuation for oversized line windows. Advertise accurate read-only and destructive MCP tool annotations.
+- Record three synthetic Codex integration attempts, including the denied write and invalid fixture; no production task A/B or autonomous lifecycle was completed. See `docs/production-readiness-20261101.md`.
+
 ## 0.65.0
 
 ### Added — 10M-token controlled long-context experiment

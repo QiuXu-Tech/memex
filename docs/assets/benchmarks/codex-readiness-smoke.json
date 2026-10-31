@@ -1,0 +1,44 @@
+{
+  "date": "2026-11-01",
+  "kind": "synthetic-codex-integration-smoke",
+  "sourceVersion": "0.65.0 plus unreleased fixes",
+  "model": "gpt-6.1-sol",
+  "provider": "Codex CLI with ChatGPT login",
+  "cliVersion": "0.166.0-alpha.5.1",
+  "attempts": [
+    {
+      "name": "write in read-only smoke",
+      "outcome": "tool call denied: approval required, policy never",
+      "inputTokens": 35252,
+      "cachedInputTokens": 29696,
+      "outputTokens": 103
+    },
+    {
+      "name": "read with invalid fixture",
+      "outcome": "tool completed, fixture seeded into the wrong directory",
+      "inputTokens": 35250,
+      "cachedInputTokens": 29696,
+      "outputTokens": 122
+    },
+    {
+      "name": "read with corrected fixture",
+      "outcome": "tool completed; project marker and server cwd matched",
+      "inputTokens": 35212,
+      "cachedInputTokens": 29696,
+      "outputTokens": 69
+    }
+  ],
+  "totalInputTokens": 105714,
+  "totalCachedInputTokens": 89088,
+  "totalOutputTokens": 294,
+  "apimasterCallsThisRound": 0,
+  "actualIncrementalCost": "UNKNOWN",
+  "realTaskPairs": 0,
+  "autonomousWriteReadLifecycles": 0,
+  "limitations": [
+    "Synthetic integration checks only; not a randomized production experiment.",
+    "The write was explicitly requested and denied; no autonomous write was observed.",
+    "The invalid fixture is retained as a failed instrumentation attempt.",
+    "No invoice or total non-model cost was available."
+  ]
+}

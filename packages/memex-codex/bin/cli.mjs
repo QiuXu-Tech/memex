@@ -47,7 +47,7 @@ const levels = args.levels.split(',').map((level) => level.trim()).filter((level
 function tomlSnippet() {
   return `[mcp_servers.memex]
 command = ${JSON.stringify(process.execPath)}
-args = [${[MCP_SERVER, '--root', args.root, '--agent', 'codex', '--model', args.model, '--levels', levels.join(','), '--cwd', args.project].map((value) => JSON.stringify(value)).join(', ')}]`
+args = [${[MCP_SERVER, '--root', args.root, '--agent', 'codex', '--model', args.model, '--levels', levels.join(',')].map((value) => JSON.stringify(value)).join(', ')}]`
 }
 
 const CONFIG_DIR = process.env.CODEX_HOME !== undefined && process.env.CODEX_HOME.length > 0 ? resolve(process.env.CODEX_HOME) : join(homedir(), '.codex')
@@ -82,6 +82,7 @@ function init() {
       console.log(`  Config:        ${CONFIG_PATH} (backup: ${CONFIG_PATH}.bak)`)
     } else {
       console.log(`  Config:        ${CONFIG_PATH} already has [mcp_servers.memex]`)
+      console.log('  Review the existing entry: a fixed --cwd pins all sessions to that workspace.')
     }
   }
   console.log(`memex + Codex (${profile.id} profile) initialised in ${args.project}`)

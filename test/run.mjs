@@ -3525,8 +3525,8 @@ function runNode(script, args, options = {}) {
 }
 
 /** Send newline-delimited JSON-RPC messages to the MCP server; return parsed replies keyed by id. */
-function mcpExchange(root, args, messages) {
-  const result = runNode(MCP_SERVER, ['--root', root, ...args], { input: `${messages.map((message) => JSON.stringify(message)).join('\n')}\n` })
+function mcpExchange(root, args, messages, options = {}) {
+  const result = runNode(MCP_SERVER, ['--root', root, ...args], { input: `${messages.map((message) => JSON.stringify(message)).join('\n')}\n`, env: options.env })
   assert.equal(result.status, 0, `MCP server must exit 0 (stderr: ${result.stderr})`)
   assert.ok(result.stdout.trim().length > 0, `MCP server produced no stdout (stderr: ${result.stderr}, status: ${result.status}, signal: ${result.signal})`)
   const replies = new Map()
@@ -4916,6 +4916,201 @@ await test('U69', 'alternative query results retain workspace, session and super
     assertIncludes(out.text, 'VISIBLE_REWRITE_FACT')
     for (const secret of ['OTHER_WORKSPACE_SECRET', 'OTHER_SESSION_SECRET', 'SUPERSEDED_SECRET']) assert.ok(!out.text.includes(secret), secret)
   })
+})
+
+await test('U70', 'MCP record IDs cannot open another workspace or session', async () => {
+  const root = makeRoot('u70')
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const args = ['--cwd', '/tmp/memex-u70-a', '--levels', 'l2,l3', '--session', 'u70-owner']
+  const written = mcpExchange(root, args, [
+    call(1, 'memory_write', { kind: 'fact', title: 'workspace fact', body: 'WORKSPACE_PRIVATE', scope: 'workspace' }),
+    call(2, 'memory_write', { kind: 'fact', title: 'session fact', body: 'SESSION_PRIVATE', scope: 'session' }),
+  ])
+  const workspaceId = written.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const sessionId = written.get(2).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const outsider = mcpExchange(root, ['--cwd', '/tmp/memex-u70-b', '--levels', 'l2,l3', '--session', 'u70-other'], [
+    call(1, 'memory_open', { id: workspaceId }), call(2, 'memory_open', { id: sessionId }),
+  ])
+  assert.equal(outsider.get(1).result.isError, true)
+  assert.equal(outsider.get(2).result.isError, true)
+  const sibling = mcpExchange(root, ['--cwd', '/tmp/memex-u70-a', '--levels', 'l2,l3', '--session', 'u70-sibling'], [
+    call(1, 'memory_open', { id: workspaceId }), call(2, 'memory_open', { id: sessionId }),
+  ])
+  assertIncludes(sibling.get(1).result.content[0].text, 'WORKSPACE_PRIVATE')
+  assert.equal(sibling.get(2).result.isError, true)
+  const owner = mcpExchange(root, args, [call(1, 'memory_open', { id: sessionId })])
+  assertIncludes(owner.get(1).result.content[0].text, 'SESSION_PRIVATE')
+})
+
+await test('U71', 'MCP record mutations respect workspace and session visibility', async () => {
+  const root = makeRoot('u71')
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const ownerArgs = ['--cwd', '/tmp/memex-u71-a', '--levels', 'l2,l3', '--session', 'u71-owner']
+  const written = mcpExchange(root, ownerArgs, [
+    call(1, 'memory_write', { kind: 'fact', title: 'protected workspace', body: 'workspace content', scope: 'workspace' }),
+    call(2, 'memory_write', { kind: 'fact', title: 'protected session', body: 'session content', scope: 'session' }),
+  ])
+  const workspaceId = written.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const sessionId = written.get(2).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const requests = (id) => [
+    call(1, 'memory_set_status', { id, status: 'pinned' }),
+    call(2, 'memory_restore', { id }),
+    call(3, 'memory_forget', { id }),
+  ]
+  const outsider = mcpExchange(root, ['--cwd', '/tmp/memex-u71-b', '--levels', 'l2,l3', '--session', 'u71-other'], requests(workspaceId))
+  assert.equal(outsider.get(1).result.isError, true)
+  assert.equal(outsider.get(2).result.isError, true)
+  assertIncludes(outsider.get(3).result.content[0].text, 'No record')
+  const sibling = mcpExchange(root, ['--cwd', '/tmp/memex-u71-a', '--levels', 'l2,l3', '--session', 'u71-sibling'], requests(sessionId))
+  assert.equal(sibling.get(1).result.isError, true)
+  assert.equal(sibling.get(2).result.isError, true)
+  assertIncludes(sibling.get(3).result.content[0].text, 'No record')
+  const owner = mcpExchange(root, ownerArgs, [call(1, 'memory_open', { id: workspaceId }), call(2, 'memory_open', { id: sessionId })])
+  assertIncludes(owner.get(1).result.content[0].text, 'status=active')
+  assertIncludes(owner.get(2).result.content[0].text, 'status=active')
+})
+
+await test('U72', 'MCP servers without a session ID do not share L2 records', async () => {
+  const root = makeRoot('u72')
+  const args = ['--cwd', '/tmp/memex-u72', '--levels', 'l2']
+  const options = { env: { MEMEX_SESSION: undefined, DSH_MEMORY_SESSION: undefined } }
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const written = mcpExchange(root, args, [call(1, 'memory_write', { kind: 'fact', title: 'private session', body: 'PRIVATE_SESSION_BODY' })], options)
+  const id = written.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const other = mcpExchange(root, args, [call(1, 'memory_search', { query: 'private session' }), call(2, 'memory_open', { id })], options)
+  assert.ok(!other.get(1).result.content[0].text.includes(id))
+  assert.equal(other.get(2).result.isError, true)
+})
+
+await test('U73', 'MCP opens the requested body lines rather than characters', async () => {
+  const root = makeRoot('u73')
+  const args = ['--cwd', '/tmp/memex-u73', '--levels', 'l3', '--session', 'u73']
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const written = mcpExchange(root, args, [call(1, 'memory_write', { kind: 'fact', title: 'line paging', body: 'first line\nsecond line\nthird line\nfourth line' })])
+  const id = written.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const page = mcpExchange(root, args, [call(1, 'memory_open', { id, offset: 2, limit: 2 })]).get(1).result.content[0].text
+  assertIncludes(page, 'second line\nthird line')
+  assert.ok(!page.includes('first line'))
+  assert.ok(!page.includes('fourth line'))
+  assertIncludes(page, 'lines 2-3 of 4')
+})
+
+await test('U74', 'MCP advertises read-only and destructive tool behavior', async () => {
+  const root = makeRoot('u74')
+  const reply = mcpExchange(root, ['--cwd', '/tmp/memex-u74', '--levels', 'l3'], [
+    { jsonrpc: '2.0', id: 1, method: 'tools/list' },
+  ]).get(1).result.tools
+  const byName = new Map(reply.map((tool) => [tool.name, tool.annotations]))
+  for (const name of ['memory_search', 'memory_open', 'memory_grep', 'memory_index', 'memory_list']) {
+    assert.equal(byName.get(name).readOnlyHint, true, name)
+    assert.equal(byName.get(name).openWorldHint, false, name)
+  }
+  for (const name of ['memory_write', 'memory_set_status', 'memory_restore', 'memory_compress', 'memory_forget']) {
+    assert.equal(byName.get(name).readOnlyHint, false, name)
+  }
+  assert.equal(byName.get('memory_forget').destructiveHint, true)
+  assert.equal(byName.get('memory_set_status').destructiveHint, true)
+})
+
+await test('U75', 'MCP can continue within an oversized single-line body', async () => {
+  const root = makeRoot('u75')
+  const args = ['--cwd', '/tmp/memex-u75', '--levels', 'l3', '--session', 'u75']
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const written = mcpExchange(root, args, [call(1, 'memory_write', { kind: 'fact', title: 'long line', body: `${'😀'.repeat(850)}END_OF_LINE` })])
+  const id = written.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const pages = mcpExchange(root, args, [
+    call(1, 'memory_open', { id, offset: 1, limit: 1, maxChars: 400 }),
+    call(2, 'memory_open', { id, offset: 1, limit: 1, maxChars: 400, charOffset: 400 }),
+    call(3, 'memory_open', { id, offset: 1, limit: 1, maxChars: 400, charOffset: 800 }),
+  ])
+  assertIncludes(pages.get(1).result.content[0].text, 'nextCharOffset=400')
+  assertIncludes(pages.get(2).result.content[0].text, 'nextCharOffset=800')
+  assertIncludes(pages.get(3).result.content[0].text, 'END_OF_LINE')
+})
+
+await test('U76', 'one generated Codex config follows each project working directory', async () => {
+  const root = makeRoot('u76-store')
+  const projectA = makeRoot('u76-project-a')
+  const projectB = makeRoot('u76-project-b')
+  const config = runNode(CODEX_CLI, ['config', '--root', root, '--project', projectA, '--levels', 'l3'])
+  assert.equal(config.status, 0, config.stderr)
+  const args = JSON.parse(config.stdout.match(/^args = (.+)$/m)[1])
+  assert.ok(!args.includes('--cwd'), 'a global config must not pin the initializing project')
+  const call = (id, name, data) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: data } })
+  const exchange = (cwd, messages) => {
+    const child = spawnSync(process.execPath, ['--import', REGISTER, ...args], {
+      cwd, input: messages.map((item) => JSON.stringify(item)).join('\n') + '\n', encoding: 'utf8', timeout: 60000,
+    })
+    assert.equal(child.status, 0, child.stderr)
+    return child.stdout.trim().split('\n').map((line) => JSON.parse(line).result.content[0].text)
+  }
+  const written = exchange(projectA, [call(1, 'memory_write', { kind: 'fact', title: 'u76 unique marker', body: 'project A only' })])[0]
+  const id = written.match(/mem_[0-9a-f]{10}/)[0]
+  assertIncludes(exchange(projectA, [call(1, 'memory_list', {})])[0], id)
+  assert.ok(!exchange(projectB, [call(1, 'memory_list', {})])[0].includes(id))
+})
+
+await test('U77', 'MCP write rejects hidden ID overrides across workspaces', async () => {
+  const root = makeRoot('u77')
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const owner = ['--cwd', '/tmp/memex-u77-a', '--levels', 'l3', '--session', 'u77-a']
+  const written = mcpExchange(root, owner, [call(1, 'memory_write', { kind: 'fact', title: 'original', body: 'ORIGINAL_BODY' })])
+  const id = written.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const attacker = mcpExchange(root, ['--cwd', '/tmp/memex-u77-b', '--levels', 'l3', '--session', 'u77-b'], [
+    call(1, 'memory_write', { id, kind: 'fact', title: 'replacement', body: 'REPLACEMENT_BODY' }),
+  ])
+  assert.equal(attacker.get(1).result.isError, true)
+  const original = mcpExchange(root, owner, [call(1, 'memory_open', { id })]).get(1).result.content[0].text
+  assertIncludes(original, 'ORIGINAL_BODY')
+})
+
+await test('U78', 'a foreign workspace cannot restore another workspace cold record', async () => {
+  const root = makeRoot('u78')
+  const engine = new AgentMemory({ root, cwd: '/tmp/memex-u78-a', levels: ['l3'], sessionId: 'u78-a' })
+  try {
+    const record = engine.write({ kind: 'fact', title: 'cold protected', body: 'cold body' })
+    engine.store.archiveCold(record.id)
+    const request = { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_restore', arguments: { id: record.id } } }
+    const response = mcpExchange(root, ['--cwd', '/tmp/memex-u78-b', '--levels', 'l3', '--session', 'u78-b'], [request])
+    assert.equal(response.get(1).result.isError, true)
+    assert.equal(engine.store.get(record.id).cold, true)
+    assert.equal(engine.restore(record.id).cold, false)
+  } finally {
+    engine.close()
+  }
+})
+
+await test('U79', 'an empty scope filter cannot list or open records', async () => {
+  await withCore('u79', async (store) => {
+    const record = store.write({ kind: 'fact', title: 'u79 marker', body: 'protected body', workspaceKey: 'u79', scope: 'workspace' })
+    const filter = { workspaceKey: 'u79', scopes: [], sessionId: 'u79-session' }
+    assert.equal(store.get(record.id, filter), undefined)
+    assert.deepEqual(store.list(filter), [])
+    assert.deepEqual(store.search({ ...filter, query: 'u79 marker' }).hits, [])
+    assert.ok(!store.catalog(filter).includes('u79 marker'))
+    assert.equal(store.forget(record.id, filter), false)
+    assert.equal(store.get(record.id).body, 'protected body')
+  })
+})
+
+await test('U80', 'MCP cannot write or compress a disabled memory level', async () => {
+  const root = makeRoot('u80')
+  const cwd = '/tmp/memex-u80'
+  const sessionId = 'u80-session'
+  const engine = new AgentMemory({ root, cwd, levels: ['l3'], sessionId, sessionCapacityTokens: 100 })
+  try {
+    const hidden = engine.store.write({ kind: 'fact', title: 'disabled L2', body: 'hidden body', tokens: 200, workspaceKey: engine.workspaceKey, scope: 'session', sessionId })
+    const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+    const responses = mcpExchange(root, ['--cwd', cwd, '--levels', 'l3', '--session', sessionId, '--session-capacity', '100'], [
+      call(1, 'memory_write', { kind: 'fact', title: 'disabled write', body: 'test', scope: 'session' }),
+      call(2, 'memory_compress', { level: 'l2', targetRatio: 0.1, minAgeMs: 0 }),
+    ])
+    assert.equal(responses.get(1).result.isError, true)
+    assert.equal(responses.get(2).result.isError, true)
+    assert.equal(engine.store.get(hidden.id).cold, false)
+  } finally {
+    engine.close()
+  }
 })
 
 // ── summary ──────────────────────────────────────────────────────────────────

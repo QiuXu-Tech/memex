@@ -587,15 +587,14 @@ export class LocalStoreCore {
   }
 
   /** Load one record including its body read from the file. */
-  get(id) {
-    const db = this.database()
+  get(id, filter = {}) {
     for (let attempt = 0; attempt < 3; attempt += 1) {
-      const row = db.prepare('SELECT * FROM records WHERE id = ?').get(id)
+      const row = this.rowById(id, filter)
       if (row === undefined) return undefined
       try {
         return { ...this.cardFromRow(row), body: recordBodyFromFile(readFileSync(row.path, 'utf8')) }
       } catch (error) {
-        const latest = db.prepare('SELECT path FROM records WHERE id = ?').get(id)
+        const latest = this.rowById(id, filter)
         if (latest === undefined) return undefined
         if (error?.code === 'ENOENT' && latest.path !== row.path) continue
         throw new Error('memory: record file missing or unreadable; files were preserved: ' + row.path, { cause: error })
@@ -635,7 +634,9 @@ export class LocalStoreCore {
     }
     if (filter.scopes !== undefined && Array.isArray(filter.scopes)) {
       const scopes = filter.scopes.filter((scope) => MEMORY_SCOPES.includes(scope))
-      if (scopes.length > 0 && !scopes.includes('workspace')) {
+      if (scopes.length === 0) {
+        clauses.push('0')
+      } else if (!scopes.includes('workspace')) {
         clauses.push(`${col('scope')} = ?`)
         params.push('session')
         if (filter.sessionId !== undefined) {
@@ -1028,8 +1029,10 @@ export class LocalStoreCore {
   }
 
   /** Load the raw row backing one record id. */
-  rowById(id) {
-    return this.database().prepare('SELECT * FROM records WHERE id = ?').get(id)
+  rowById(id, filter = {}) {
+    const { clauses, params } = this.workspaceClause(filter)
+    const where = clauses.length > 0 ? ` AND ${clauses.join(' AND ')}` : ''
+    return this.database().prepare(`SELECT * FROM records WHERE id = ?${where}`).get(id, ...params)
   }
 
   /** Card-level listing in the requested order. */
@@ -1124,10 +1127,10 @@ export class LocalStoreCore {
    * @param {string} id - Record id.
    * @returns {object|undefined} Updated card, or undefined for an unknown id.
    */
-  restoreCold(id) {
+  restoreCold(id, filter = {}) {
     const db = this.database()
     return withFileTransaction(this.root, db, (stage) => {
-      const row = db.prepare('SELECT * FROM records WHERE id = ?').get(id)
+      const row = this.rowById(id, filter)
       if (row === undefined) return undefined
       if (Number(row.cold) !== 1) return this.cardFromRow(row)
       if (!existsSync(row.path)) throw new Error('memory: record file missing; original and candidate files were preserved: ' + row.path)
@@ -1321,7 +1324,7 @@ export class LocalStoreCore {
    * layer owns prompt-space allocation.
    */
   catalog(request = {}) {
-    const scopes = Array.isArray(request.scopes) && request.scopes.length > 0
+    const scopes = Array.isArray(request.scopes)
       ? request.scopes.filter((scope) => MEMORY_SCOPES.includes(scope))
       : MEMORY_SCOPES.includes(request.scope) ? [request.scope] : undefined
     const filter = {
@@ -1454,10 +1457,12 @@ export class LocalStoreCore {
   }
 
   /** Remove a record after atomically committing the index deletion. */
-  removeRecord(id, coldOnly = false) {
+  removeRecord(id, coldOnly = false, filter = {}) {
     const db = this.database()
     return withFileTransaction(this.root, db, (stage) => {
-      const row = db.prepare('SELECT rowid, path, cold, tokens FROM records WHERE id = ?').get(id)
+      const { clauses, params } = this.workspaceClause(filter)
+      const where = clauses.length > 0 ? ` AND ${clauses.join(' AND ')}` : ''
+      const row = db.prepare(`SELECT rowid, path, cold, tokens FROM records WHERE id = ?${where}`).get(id, ...params)
       if (row === undefined || (coldOnly && Number(row.cold) !== 1)) return undefined
       stage('delete', id, row.path, null)
       db.prepare('DELETE FROM records_fts WHERE rowid = ?').run(row.rowid)
@@ -1468,8 +1473,8 @@ export class LocalStoreCore {
   }
 
   /** Remove one record and its index projection. */
-  forget(id) {
-    return this.removeRecord(id) !== undefined
+  forget(id, filter = {}) {
+    return this.removeRecord(id, false, filter) !== undefined
   }
 
   /**
@@ -1477,9 +1482,9 @@ export class LocalStoreCore {
    * Rewrites the record file so the human-readable frontmatter never disagrees
    * with the index (files are documented as the source of truth for content).
    */
-  setStatus(id, status) {
+  setStatus(id, status, filter = {}) {
     if (!MEMORY_STATUSES.includes(status)) throw new Error(`memory: unknown status "${status}"`)
-    const record = this.get(id)
+    const record = this.get(id, filter)
     if (record === undefined) return undefined
     return this.write({ ...record, id, status, createdAt: record.createdAt, body: record.body }, { expectedPath: record.path })
   }

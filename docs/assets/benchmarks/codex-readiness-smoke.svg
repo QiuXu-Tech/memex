@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="350" viewBox="0 0 1050 350" role="img" aria-labelledby="title desc">
+<title id="title">Codex integration smoke attempts</title>
+<desc id="desc">Three synthetic checks: a denied write, a read with invalid test data, and a successful read with the corrected project scope. No production A/B or autonomous lifecycle was completed.</desc>
+<rect width="1050" height="350" fill="#f7f8fa"/>
+<text x="38" y="44" font-family="Arial,sans-serif" font-size="24" font-weight="700" fill="#19313e">Codex integration checks</text>
+<text x="38" y="73" font-family="Arial,sans-serif" font-size="14" fill="#526a78">Three synthetic attempts · same model · failures retained</text>
+<text x="39" y="110" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#526a78">ATTEMPT</text>
+<text x="370" y="110" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#526a78">RESULT</text>
+<text x="775" y="110" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#526a78">INPUT / OUTPUT TOKENS</text>
+<text x="39" y="149" font-family="Arial,sans-serif" font-size="15" fill="#19313e">1. Write in read-only check</text>
+<rect x="370" y="126" width="330" height="32" rx="5" fill="#af5a50"/>
+<text x="535" y="147" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">DENIED</text>
+<text x="775" y="148" font-family="Arial,sans-serif" font-size="14" fill="#19313e">35,252 / 103</text>
+<text x="39" y="203" font-family="Arial,sans-serif" font-size="15" fill="#19313e">2. Read with invalid fixture</text>
+<rect x="370" y="180" width="330" height="32" rx="5" fill="#a87529"/>
+<text x="535" y="201" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">INVALID FIXTURE</text>
+<text x="775" y="202" font-family="Arial,sans-serif" font-size="14" fill="#19313e">35,250 / 122</text>
+<text x="39" y="257" font-family="Arial,sans-serif" font-size="15" fill="#19313e">3. Read with corrected fixture</text>
+<rect x="370" y="234" width="330" height="32" rx="5" fill="#397d6d"/>
+<text x="535" y="255" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" font-weight="700" fill="#fff">READ + SCOPE VERIFIED</text>
+<text x="775" y="256" font-family="Arial,sans-serif" font-size="14" fill="#19313e">35,212 / 69</text>
+<text x="39" y="315" font-family="Arial,sans-serif" font-size="14" fill="#526a78">No production task pair or autonomous write-read lifecycle was completed; actual cost is unknown.</text>
+</svg>

@@ -11,6 +11,7 @@
  * stdout is reserved for protocol messages; diagnostics go to stderr.
  */
 import { readFileSync } from 'node:fs'
+import { randomUUID } from 'node:crypto'
 import { resolve } from 'node:path'
 import { AgentMemory, defaultMemoryRoot } from '@qiuxu/memex-core/engine'
 import { buildCatalogInjection, buildMemoryManual } from '@qiuxu/memex-core/manual'
@@ -50,7 +51,7 @@ const args = parseArgs(process.argv)
 const engine = new AgentMemory({
   root: args.root,
   cwd: args.cwd,
-  sessionId: args.session,
+  sessionId: args.session ?? (process.env.MEMEX_SESSION || process.env.DSH_MEMORY_SESSION || `mcp-${randomUUID()}`),
   levels: args.levels,
   model: args.model,
   agent: args.agent,
@@ -61,7 +62,12 @@ const profile = engine.profile
 
 process.stderr.write(`memex MCP server ${VERSION} · profile=${profile.id} · root=${engine.root} · levels=${JSON.stringify(engine.levels)}\n`)
 
-const tool = (name, description, inputSchema) => ({ name, description, inputSchema })
+const READ_ONLY_TOOLS = new Set(['memory_search', 'memory_open', 'memory_grep', 'memory_index', 'memory_list'])
+const DESTRUCTIVE_TOOLS = new Set(['memory_forget', 'memory_set_status'])
+const tool = (name, description, inputSchema) => ({
+  name, description, inputSchema,
+  annotations: { readOnlyHint: READ_ONLY_TOOLS.has(name), destructiveHint: DESTRUCTIVE_TOOLS.has(name), openWorldHint: false },
+})
 const TOOLS = [
   tool('memory_search', `Ranked card-level search over archived context (profile: ${profile.label}, top ${profile.maxSearchResults}). Returns ids, titles and "when to read" hints — open the record for the body.`, {
     type: 'object',
@@ -73,13 +79,14 @@ const TOOLS = [
     },
     required: ['query'],
   }),
-  tool('memory_open', 'Read one memory record body by id, with offset/limit line paging and a bounded maxChars slice. Use this to recover exact facts.', {
+  tool('memory_open', 'Read a record by id. Use offset/limit for lines; when nextCharOffset is returned, continue the same line window with charOffset.', {
     type: 'object',
     properties: {
       id: { type: 'string' },
       offset: { type: 'integer', minimum: 1, description: '1-based first line.' },
       limit: { type: 'integer', minimum: 1, maximum: 400 },
       maxChars: { type: 'integer', minimum: 400, maximum: 240000 },
+      charOffset: { type: 'integer', minimum: 0, description: '0-based character offset within the selected line window.' },
     },
     required: ['id'],
   }),
@@ -94,6 +101,7 @@ const TOOLS = [
   }),
   tool('memory_write', 'Persist one durable memory record (decision, fact, procedure, incident, episode, open thread, artifact). Include title, summary, useWhen and the raw evidence in body.', {
     type: 'object',
+    additionalProperties: false,
     properties: {
       kind: { type: 'string', enum: MEMORY_KINDS },
       title: { type: 'string' },
@@ -163,9 +171,10 @@ function callTool(name, input = {}) {
       return textResult(`${header}\n${lines.join('\n')}`)
     }
     case 'memory_open': {
-      const record = engine.open({ id: input.id, offset: input.offset, limit: input.limit, maxChars: input.maxChars })
+      const record = engine.open({ id: input.id, offset: input.offset, limit: input.limit, maxChars: input.maxChars, charOffset: input.charOffset })
       if (record === undefined) throw new Error(`memory_open: no record ${input.id}`)
-      const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · tokens=${record.tokens} · body ${record.bodyOffset}-${record.bodyLimit} of ${record.bodyTotalChars}${record.bodyTruncated ? ' (truncated)' : ''}\n`
+      const continuation = record.bodyNextCharOffset === undefined ? '' : ` · nextCharOffset=${record.bodyNextCharOffset}`
+      const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · tokens=${record.tokens} · body lines ${record.bodyOffset}-${record.bodyOffset + record.bodyLimit - 1} of ${record.bodyTotalLines}${record.bodyTruncated ? ' (truncated)' : ''}${continuation}\n`
       return textResult(`${meta}\n${record.body}`)
     }
     case 'memory_grep': {
@@ -176,6 +185,8 @@ function callTool(name, input = {}) {
     }
     case 'memory_write': {
       if (typeof input.title !== 'string' || typeof input.body !== 'string') throw new Error('memory_write requires title and body')
+      const allowed = new Set(['kind', 'title', 'body', 'summary', 'useWhen', 'tags', 'scope', 'status'])
+      if (Object.keys(input).some((key) => !allowed.has(key))) throw new Error('memory_write received an unsupported field')
       const record = engine.write(input)
       return textResult(`Stored ${record.id} (${record.kind}, scope=${record.scope}, ~${record.tokens} tokens). Path: ${record.path}`)
     }
