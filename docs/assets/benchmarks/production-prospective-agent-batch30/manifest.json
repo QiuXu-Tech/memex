@@ -1,0 +1,147 @@
+{
+  "kind": "registered-four-unattempted-issues-after-setup-failure-v30",
+  "createdAt": "2026-10-31T22:52:18.399161+08:00",
+  "sourceCommit": {
+    "koa": "b786e7b456782c2cff1d6549cd4c8dba3feeb262",
+    "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+    "datefns": "a9739fb3e5384a810e90d7376446f6d84ecc5029",
+    "express": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824"
+  },
+  "tasks": {
+    "827": "koa",
+    "2179": "dayjs",
+    "1134": "datefns",
+    "7362": "express"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "guestHashes": {
+    "/opt/memex-pilot/node/bin/node": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "/opt/memex-pilot/workspaces/datefns-base/node_modules/typescript/package.json": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6",
+    "/opt/memex-pilot/workspaces/datefns-base/node_modules/typescript/lib/typescript.js": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675",
+    "/home/mk-q.guest/staging/koa-runtime-v29/package-lock.json": "8ca21884dcc06055f777877b19ffb9fae927e0d8f9716314750bc5c7506c3942",
+    "/home/mk-q.guest/staging/express-runtime-v27/package-lock.json": "7469cd3624c70242507cb024f3fe6912c7200323e028d34893e3032b0cf6cd4a"
+  },
+  "runtime": "Node 24.18.0 and pinned runtime dependencies; date-fns TypeScript uses a test-only transpile hook.",
+  "files": {
+    "scripts/prospective-gateway-pilot-v27.py": "2f1af3fc34bc56cc0d9407470c707c71695a9e06a365913455b04fb18132423c",
+    "scripts/prospective-gateway-pilot-v25.py": "b9877352973e4b014af1465cd0dde67dfd6f32a15f2897513b8740b870813f6d",
+    "scripts/prospective-gateway-pilot-v24.py": "71bf84a0a0370f1743e4c3cd81f501cc76378fcbba8ff094ead13e86854f2ec3",
+    "scripts/prospective-gateway-pilot-v23.py": "def4504693340818b68e7daf5bc06c71aadd979c07cab6d0211a0803af974ee6",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v28.py": "80c556b634fdeab88f95f09bc49108ce34910ce69a16e769647fd85c9eb992c1",
+    "scripts/prospective_agent_v28.py": "882f33e22e9237e555fc9a34605868727abcd1f20a8f889b550a55d586eaa4cb",
+    "scripts/prospective-gateway-pilot-v29.py": "915244cb5a3894304ff8bec641a3bcdd2ac83f71a0c4c545d2a2fdd994c5725c",
+    "scripts/prospective-gateway-pilot-v30.py": "1aa1c7d1b18cda74fdc6efc10bc9cfbdf6760850d6db68613a5361e7b45f2a8e"
+  },
+  "checks": {
+    "827": {
+      "public": "fa644e05522259871be7d14cafd0e9fd2141d34109812027f411b3e7bde0b389",
+      "acceptance": "af32d93b232800b046401684cbf5631734bbbb12ac73646e60d0b3b966c49e0d",
+      "regressionControls": "596b0f4282c1805ef7a4dc99dd119a3eeab960d659898218c70f465422d22b92"
+    },
+    "2179": {
+      "public": "8ff7e657bf2aa60f48fda8c7e1adc8cc61e8548a9d442e41f008ff8dc4a90248",
+      "acceptance": "f5fabec9b68eaa0c1d6957be83185b9d95e8815de3fb1daa3b389d78ebaaddc5",
+      "regressionControls": "e9124f23acc8cfd4083ba7382dc3e9201fa7bc0f4dc6e7bac3be24f01fe725f9"
+    },
+    "1134": {
+      "public": "ea2b8c1c23a03e4fbe41b33e84c50c3b2fa14b0a417aaa9bd2efb02f2cae55fd",
+      "acceptance": "c10844eef3e7f94e63265c2cdd7a5ce3b828939b0a0b9fee73f5d762537f0b0b",
+      "regressionControls": "e93e10a32398af879593679db4e2a80c155978e893c4764175cfe730076ab519"
+    },
+    "7362": {
+      "public": "27631a22aee3de5daff09907f363ee1057f6262342ce36a01366eed531b0be75",
+      "acceptance": "d831804bded25d21bf76791261c6088703337317ed03a62db913cb73fa0237d2",
+      "regressionControls": "0622748ae3b8b8c7446485c00936ad1617ef305c1414023be497e0ad98d659b4"
+    }
+  },
+  "issuesSha256": "d16ccb1cf4e454a0c1c518e89f0df023fdcf7dfb633341d7911692b5f83299f3",
+  "contextsSha256": "14937a186ded466959a4508ef0de6c143f70413cf54dc6224cd2a9acec365421",
+  "seed": 2026103135,
+  "schedule": [
+    {
+      "issue": "7362",
+      "arm": "keyword"
+    },
+    {
+      "issue": "7362",
+      "arm": "memex"
+    },
+    {
+      "issue": "827",
+      "arm": "keyword"
+    },
+    {
+      "issue": "827",
+      "arm": "memex"
+    },
+    {
+      "issue": "1134",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1134",
+      "arm": "memex"
+    },
+    {
+      "issue": "2179",
+      "arm": "memex"
+    },
+    {
+      "issue": "2179",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6.1-sol",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 1200,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within each stage after provider failure or missing usage; preserve failed, missing and unknown costs. No timeout retry.",
+  "costTarget": "Below $1 estimated for four pairs, not a hard cap; proxy usage may exceed requested token limits.",
+  "limitations": [
+    "Selection follows earlier trial results and the batch 28 stop; issue identities are new but statistical independence is not established.",
+    "Some projects also appear in earlier batches; source and task dependence remain.",
+    "Public issues and PRs may reveal solutions and may appear in model training.",
+    "Different retrieved comment IDs do not control history content, length, or quality.",
+    "Custom checks and proposed references are partial and do not establish maintainer acceptance.",
+    "The Koa reference is a narrow manual port; the date-fns reference corrects a source-only PR that failed the ordinal check.",
+    "The Express test calls the response prototype directly rather than running a network server.",
+    "Distinct AI model labels share a proxy with unverified provenance.",
+    "Short, pre-seeded issue histories do not establish production value or autonomous memory management.",
+    "Batch 29 stopped on a missing workspace parent before any solver call; all four issue pairs were unattempted. This registration uses a new seed after repair and preserves the stopped batch separately."
+  ],
+  "toolOverflowPolicy": "Execute at most four tool calls per model response; log and return explicit not-executed results for every excess call, then continue within the original turn budget."
+}
