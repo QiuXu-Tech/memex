@@ -1,0 +1,5 @@
+'use strict';const assert=require('node:assert/strict'),fs=require('node:fs');const {registerHooks}=require('node:module');const {pathToFileURL,fileURLToPath}=require('node:url');const root=process.argv[2],prefix=pathToFileURL(root+'/src/').href;
+registerHooks({resolve(spec,context,next){if(spec==='dayjs')return next(pathToFileURL(root+'/src/index.js').href,context);try{return next(spec,context)}catch(e){if(e.code==='ERR_MODULE_NOT_FOUND'&&(spec.startsWith('./')||spec.startsWith('../')))return next(spec+'.js',context);throw e}},load(url,context,next){if(url.startsWith(prefix))return{format:'module',shortCircuit:true,source:fs.readFileSync(fileURLToPath(url),'utf8')};return next(url,context)}});
+(async()=>{const dayjs=(await import(pathToFileURL(root+'/src/index.js').href)).default;const plugin=(await import(pathToFileURL(root+'/src/plugin/weekOfYear/index.js').href)).default;dayjs.extend(plugin);await import(pathToFileURL(root+'/src/locale/uz.js').href);
+assert.equal(dayjs('2021-01-04').locale('en').week(),2);assert.equal(dayjs('2020-07-15').locale('uz').week(),29);console.log('week controls passed');
+})().catch(e=>{console.error(e);process.exitCode=1});

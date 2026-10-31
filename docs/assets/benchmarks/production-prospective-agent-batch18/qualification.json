@@ -1,0 +1,98 @@
+{
+  "method": "isolated fixed verifier; source-only reference; hashes identify private raw logs",
+  "issues": {
+    "dayjs-3062": {
+      "referenceHead": "6c2192940222f0a7cb13423e8a0a7551a58bcba7",
+      "referencePatchSha256": "83af997662ac94efb842fe4890e97b5add2fac9264edca6b5a9d7f76f0ec0984",
+      "compressedPatchSha256": "b8164daa5393cc12931a830365bc00db4ddbd52582778bbc8a07f3fea7513dfb",
+      "runs": {
+        "baseline-public": {
+          "exitCode": 1,
+          "privateLogSha256": "8bbd6cbc84d3e1d2795eab2b5d08d0b7e0b59ad2470fad0efee3165c0e7407f6"
+        },
+        "baseline-acceptance": {
+          "exitCode": 1,
+          "privateLogSha256": "8bbd6cbc84d3e1d2795eab2b5d08d0b7e0b59ad2470fad0efee3165c0e7407f6"
+        },
+        "baseline-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "6968f8bffe66fcd553e11ea8d720e81b878a8dee6350a1e5a8cf98638021b414"
+        },
+        "reference-public": {
+          "exitCode": 0,
+          "privateLogSha256": "0870480dc5b163cb4302e533ae09c18376265773aab0f87dcac51703b31acbf8"
+        },
+        "reference-acceptance": {
+          "exitCode": 0,
+          "privateLogSha256": "0870480dc5b163cb4302e533ae09c18376265773aab0f87dcac51703b31acbf8"
+        },
+        "reference-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "6968f8bffe66fcd553e11ea8d720e81b878a8dee6350a1e5a8cf98638021b414"
+        }
+      }
+    },
+    "mathjs-3528": {
+      "referenceHead": "b05db3d8abd3243c33d12dc793efd859d8c642f2",
+      "referencePatchSha256": "0f194dcdc9e7f48a215ea6457ff8b6f0737fca902c988ad3b04b2d0059d0dc6f",
+      "compressedPatchSha256": "883b64d2e9339805fc2ed4a2eb19a96062b966c1d28d7c6b2675d8341b2c66c0",
+      "runs": {
+        "baseline-public": {
+          "exitCode": 1,
+          "privateLogSha256": "b7695b317371746db7c69dbe627d03cabf067d837bfd642bd0642b72f93c94e5"
+        },
+        "baseline-acceptance": {
+          "exitCode": 1,
+          "privateLogSha256": "b7695b317371746db7c69dbe627d03cabf067d837bfd642bd0642b72f93c94e5"
+        },
+        "baseline-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "be1a1e19a35452df8a2455cdd208acbe0f6555de5f7089a450b69213f0d325b7"
+        },
+        "reference-public": {
+          "exitCode": 0,
+          "privateLogSha256": "6b00fe7894bf86634366fab5b904c1630814c1748c8c6c981c6a2a05dffc34b3"
+        },
+        "reference-acceptance": {
+          "exitCode": 0,
+          "privateLogSha256": "6b00fe7894bf86634366fab5b904c1630814c1748c8c6c981c6a2a05dffc34b3"
+        },
+        "reference-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "be1a1e19a35452df8a2455cdd208acbe0f6555de5f7089a450b69213f0d325b7"
+        }
+      }
+    },
+    "mathjs-3563": {
+      "referenceHead": "6ba0d3ba0981cc290f38e08aced1ac745ad3f99b",
+      "referencePatchSha256": "38a364682062b8f9e5157bf17ef7db21c26658cc8a9fcd69bed324a9b924f291",
+      "compressedPatchSha256": "1537f103fdae4c27f448f02a4017e954e305e81c73e3ebe4ef9a66ca0fcb1511",
+      "runs": {
+        "baseline-public": {
+          "exitCode": 1,
+          "privateLogSha256": "4502210d59d0f5649c52501fb41f25d2b9ef9774bf5ee48c4cbc26632c49339d"
+        },
+        "baseline-acceptance": {
+          "exitCode": 1,
+          "privateLogSha256": "4502210d59d0f5649c52501fb41f25d2b9ef9774bf5ee48c4cbc26632c49339d"
+        },
+        "baseline-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "74139f984efd3754ae0d3909f26b54f3373e31fc16b9c2552493bbbe81e00ef6"
+        },
+        "reference-public": {
+          "exitCode": 0,
+          "privateLogSha256": "3169caefaf07c5b876efddf93c7f05d1fa6393c75b4d248585756a8eaa64fe37"
+        },
+        "reference-acceptance": {
+          "exitCode": 0,
+          "privateLogSha256": "3169caefaf07c5b876efddf93c7f05d1fa6393c75b4d248585756a8eaa64fe37"
+        },
+        "reference-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "74139f984efd3754ae0d3909f26b54f3373e31fc16b9c2552493bbbe81e00ef6"
+        }
+      }
+    }
+  }
+}

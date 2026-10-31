@@ -1,0 +1,114 @@
+{
+  "kind": "registered-three-dayjs-mathjs-issue-pairs",
+  "createdAt": "2026-10-31T19:32:29.241503+08:00",
+  "sourceCommit": {
+    "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+    "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+  },
+  "mathjsRuntimeLockSha256": "2195cbcd933fd1a2ed008d97cbb5862e13fea87b78739ce9a4b28961ee46973e",
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "dayjs": "Node module hooks load unbundled source without npm packages.",
+    "mathjs": "Runtime dependencies installed from generated lock without lifecycle scripts."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": {
+    "3062": "dayjs",
+    "3528": "mathjs",
+    "3563": "mathjs"
+  },
+  "checks": {
+    "3062": {
+      "public": "85a80a0d1d259d1817c21ca978bab5b80862746b81696a8df32797138727c447",
+      "acceptance": "8c274feda0ca83d1d940ba0919a0e7550b5461c8db2011aa7bd3bc67fc2106b9",
+      "regressionControls": "2f1d20024d8da73c66915294a968a9ed72a85b0edb7176deb193f4b800d8ff00"
+    },
+    "3528": {
+      "public": "8c19f44ff30c8c67dbc2dcdd1c94f52439033e662a6d6e6ac5a06f7e8112992d",
+      "acceptance": "c3771f660c092c83481a2b563f114984c65bad57693d6ce0e88c0613500ed395",
+      "regressionControls": "f241ae18ed584643536824039c127dc609e1582a70524b51b7c1d1a0af6afadc"
+    },
+    "3563": {
+      "public": "b46664b9b74cdeb8a9c40f0b0eccf1a443f597d6164a428fd538d5abe417d02b",
+      "acceptance": "1519565cde7eca9b8e52afa50dba6214fa0710740ab97eb4eaed82dd560bff4c",
+      "regressionControls": "27e49d06576f494074d147f0b161cacfb3769c68ee81f84f4396c54b37004be3"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "1e85b2542d9a137db0974f378ac119045211b3cc7bfa7b2b4b6bc1f1a30e3b33",
+  "contextsSha256": "e571efe8a65f322fe3f53b02f4fe51cc86887d7c949921d75c15274c4f30e769",
+  "seed": 2026103121,
+  "schedule": [
+    {
+      "issue": "3062",
+      "arm": "memex"
+    },
+    {
+      "issue": "3062",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3528",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3528",
+      "arm": "memex"
+    },
+    {
+      "issue": "3563",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3563",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gemini-3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 2048,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within a stage after a provider failure or missing usage; preserve all attempts and unknown fees. Never retry a timeout.",
+  "costTarget": "Below $2 estimated, not a hard cap; unknown fees reported separately.",
+  "limitations": [
+    "Three additional pairs selected after observing earlier batches; not a pre-registered 30–50-task independent cohort.",
+    "Public discussions and PRs can disclose solutions or appear in training; common repositories and related issues can correlate.",
+    "Source-only references and small custom tests do not establish full upstream acceptance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Same-proxy AI model provenance is unverified; larger model budgets were selected after observing truncation.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim."
+  ]
+}
