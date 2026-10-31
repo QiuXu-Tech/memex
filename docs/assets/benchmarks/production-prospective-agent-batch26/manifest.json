@@ -1,0 +1,103 @@
+{
+  "kind": "registered-previously-unstarted-chartjs-pair",
+  "createdAt": "2026-10-31T20:56:41.046904+08:00",
+  "sourceCommit": {
+    "chartjs": "71d44219e79e3ac41e6f9dc907022eebf574868d"
+  },
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "validator": "Node module hooks load source ESM without npm packages.",
+    "chartjs": "A test-only TypeScript hook and generated dependency lock; lifecycle scripts disabled."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": {
+    "12191": "chartjs"
+  },
+  "checks": {
+    "12191": {
+      "public": "01e761142d319de60083dabec30d2690eaa70d5fb207b518d26c2809695af392",
+      "acceptance": "e5c4ce9817a995dfda00c7e40f124d3efe7fc6f4c71245349218cbf9b6b4d879",
+      "regressionControls": "67791feca3c5cdbbbf7b1e3dda52f9ef809e14fc6989fe06fa44491e0b68622d"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "docs/assets/benchmarks/production-prospective-agent-batch21/manifest.json": "58a4537aca3557a1e8f70e3a143915e14b3a9e3d209596c792e9b90046d30ae0",
+    "scripts/prospective-gateway-pilot-v23.py": "def4504693340818b68e7daf5bc06c71aadd979c07cab6d0211a0803af974ee6",
+    "docs/assets/benchmarks/production-prospective-agent-batch22/manifest.json": "e86aa0178042f3070f312e37ed3d66b6034751485857d8815ce8e69f38bf403c",
+    "scripts/prospective-gateway-pilot-v24.py": "71bf84a0a0370f1743e4c3cd81f501cc76378fcbba8ff094ead13e86854f2ec3",
+    "docs/assets/benchmarks/production-prospective-agent-batch23/manifest.json": "c6fae63083372c808c78a1da2e8072ffaf2a63c3eea0793e118b4c77320ea41d",
+    "scripts/prospective-gateway-pilot-v25.py": "b9877352973e4b014af1465cd0dde67dfd6f32a15f2897513b8740b870813f6d",
+    "docs/assets/benchmarks/production-prospective-agent-batch24/manifest.json": "020df6808dfc97be2b2f6be563e3e2b863afd9acfadb9748e0ffcd7880d6d6bf",
+    "scripts/prospective-gateway-pilot-v26.py": "fea31d585e5263d884f1087e64f5ff20910014071196900706774b7d882860b0"
+  },
+  "issuesSha256": "3640de7ec6935170e119e844add066fafbfc9e3bb89b9d56ba4ec15161e636f5",
+  "contextsSha256": "a2b9209d5101538fbedaedb055ff469ceec38d321dc49c6f5348b487c80af64e",
+  "seed": 2026103129,
+  "schedule": [
+    {
+      "issue": "12191",
+      "arm": "memex"
+    },
+    {
+      "issue": "12191",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6-astra",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within a stage after provider failure or missing usage; preserve all attempts and unknown fees. Never retry a timeout.",
+  "costTarget": "Below $1 estimated, not a hard cap; unknown fees reported separately.",
+  "limitations": [
+    "One previously registered but never-started pair selected after a transport failure; not a pre-registered independent cohort.",
+    "Public discussions and PRs can disclose solutions or appear in training; shared project and source exposure can correlate.",
+    "Source-only references and small custom tests do not establish upstream acceptance.",
+    "The adjudicator has the same model name as the solver; all model names share a proxy with unverified provenance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim.",
+    "Chart.js #12191 has no discussion records and is a no-history negative control; its check exercises a listener and mocked controller, not browser rendering."
+  ],
+  "runtimeLockSha256": "d7a35e7d49830c15f2a4d0873e9eda706fb7dfacf009a3697fe51b59f07eba54",
+  "previousManifestSha256": "a3d3cd003c85f709ed1fe695788693027e7f4b3839159b2e99fd5cb1ecdc355b",
+  "previousSolverLogSha256": "135ee22bbc39ccb75ca260800e31cd36cc2db798dde610b4beb1012f06646cd5",
+  "previousUnstartedResultHashes": {
+    "runs/05/result.json": "f457b3d1d588dcd57701323332897ddee8e37aa3906def393afdd2ea6612aec2",
+    "runs/06/result.json": "b1a53f832ae47b8698230002d6620df3f50e90f09da8c39c1bb9976b71372e83"
+  }
+}
