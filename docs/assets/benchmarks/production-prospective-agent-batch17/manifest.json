@@ -1,0 +1,127 @@
+{
+  "kind": "registered-four-moment-mathjs-issue-pairs",
+  "createdAt": "2026-10-31T19:17:06.897667+08:00",
+  "sourceCommit": {
+    "moment": "c2a703a4d84aa57ee2722ff8fb4a8016279fb3c4",
+    "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+  },
+  "mathjsRuntimeLockSha256": "2195cbcd933fd1a2ed008d97cbb5862e13fea87b78739ce9a4b28961ee46973e",
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "moment": "Node module hooks load unbundled source without npm packages.",
+    "mathjs": "Runtime dependencies installed from generated lock without lifecycle scripts."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": {
+    "3980": "moment",
+    "4641": "moment",
+    "3600": "mathjs",
+    "3614": "mathjs"
+  },
+  "checks": {
+    "3980": {
+      "public": "3f504b0f8ff8ae0e7caec8b925b7f89a5fb12b4c65ea22ebfdc33463de3030c0",
+      "acceptance": "3a620fdebe91f08bc95698080b6bf4a88005cb1d688f430e40edf844e9bfee50",
+      "regressionControls": "c173c607828b1506b1a09faf0537c31f4392a7fa3507fcff19b534a3c8302abe"
+    },
+    "4641": {
+      "public": "1f392fc487416afd16151f9e1f8965c88a607bd4680fd39186e6802a15183928",
+      "acceptance": "dae3f128760de44d6009948123285f131e6816723e8a8a0f4374fc48684f6677",
+      "regressionControls": "577893431cdc6caae437f8e83661a5c722e74c6a3b6b9f7bbd5c633f24b8a0d4"
+    },
+    "3600": {
+      "public": "afa930b69e7730db274ff201cd858fc9543ca65a2da3ae39a358f0105337b0f5",
+      "acceptance": "72826c8a77bac40c3137d6c7d1b51403b76879a21a8787191244c807f3ffd1ca",
+      "regressionControls": "fac3028f641a513c06ba2419090d531ca1d655f979b4da6322ab691df833f4dd"
+    },
+    "3614": {
+      "public": "4feef27f61158c013b146d00cd541c14eefb9200621631020be170231f723671",
+      "acceptance": "8111880781ef7dda459e4d1c0935c14f8d4425a0c541d8e25acc378ac04d2a4e",
+      "regressionControls": "f483fa1fe0f8d9ac3744c709bc425d12794ad0e76bb98498550f18989a7f7a75"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "4bb6e2038d69a53f36b73c73f0d5753df16639a71312a5846eda3a40d8ad9629",
+  "contextsSha256": "5b252298b8cba94a607f4e3b794be2e423b59dff05c13a13375d7f1f43c1e7bd",
+  "seed": 2026103119,
+  "schedule": [
+    {
+      "issue": "3980",
+      "arm": "memex"
+    },
+    {
+      "issue": "3980",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3614",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3614",
+      "arm": "memex"
+    },
+    {
+      "issue": "3600",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3600",
+      "arm": "memex"
+    },
+    {
+      "issue": "4641",
+      "arm": "keyword"
+    },
+    {
+      "issue": "4641",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gemini-3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 2048,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within a stage after a provider failure or missing usage; preserve all attempts and unknown fees. Never retry a timeout.",
+  "costTarget": "Below $2 estimated, not a hard cap; unknown fees reported separately.",
+  "limitations": [
+    "Four additional pairs selected after observing previous batches; not an independent pre-registered 30–50-task cohort.",
+    "Public discussions and PRs can disclose solutions or appear in training; shared repositories and related date issues can correlate.",
+    "Source-only references and small custom tests do not establish full upstream acceptance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Same-proxy AI model provenance is unverified; larger model budgets were selected after observing truncation.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim."
+  ]
+}

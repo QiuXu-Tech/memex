@@ -47,6 +47,7 @@ jobs:
           python3 scripts/test-prospective-gateway.py
           python3 scripts/test-prospective-gateway-pilot-v15.py
           python3 scripts/test-prospective-gateway-pilot-v16.py
+          python3 scripts/test-prospective-gateway-pilot-v17.py
           python3 scripts/test-prospective-gateway-posthoc-v15.py
           python3 scripts/test-prospective-gateway-posthoc-v15-budgeted.py
           python3 scripts/test-prospective-gateway-posthoc-v16-budgeted.py

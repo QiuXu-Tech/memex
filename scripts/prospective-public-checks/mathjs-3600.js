@@ -1,0 +1,3 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
+function verify(m,A){const {U,T}=m.schur(A);assert(Math.abs(T[2][0])<1e-6);}
+(async()=>{const m=(await import(pathToFileURL(process.argv[2]+'/src/defaultInstance.js').href)).default;verify(m,[[-0.03591206220229135,-0.09100469507870354,0.9952027277203429],[-0.3802068171617618,-0.9197139315803332,-0.09782157349362577],[0.9242040358990549,-0.38189583596928406,-0.0015717815434243287]]);console.log('Schur quasi-triangularity and reconstruction checks passed');})().catch(e=>{console.error(e);process.exitCode=1});

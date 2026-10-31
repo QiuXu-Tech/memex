@@ -1,0 +1,3 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
+function verify(m,A){const {U,T}=m.schur(A);assert(Math.abs(T[2][0])<1e-6);assert(Math.abs(T[1][0])<1e-6||Math.abs(T[2][1])<1e-6);const rec=m.multiply(m.multiply(U,T),m.transpose(U));assert(m.max(m.abs(m.subtract(rec,A)))<1e-6);const orth=m.multiply(U,m.transpose(U));assert(m.max(m.abs(m.subtract(orth,m.identity(3).valueOf())))<1e-6)}
+(async()=>{const m=(await import(pathToFileURL(process.argv[2]+'/src/defaultInstance.js').href)).default;verify(m,[[1,0,0],[0,2,0],[0,0,3]]);verify(m,[[0,-1,0],[1,0,0],[0,0,2]]);console.log('Schur diagonal and rotation controls passed');})().catch(e=>{console.error(e);process.exitCode=1});
