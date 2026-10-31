@@ -87,9 +87,89 @@
           "amountUsd": 0.001914
         }
       }
+    },
+    {
+      "label": "post-hoc unstarted disagreement adjudications",
+      "amountUsd": 0.00394,
+      "detail": "Five claude-haiku-4-5 responses at approximately 15:27:44–15:30:30 Asia/Shanghai match 8,641 input and 1,410 output tokens; includes two format-invalid outputs."
+    },
+    {
+      "label": "batch12 completed calls and post-503 health probe",
+      "amountUsd": 0.069578,
+      "detail": "2026-10-31 approximately 15:24–15:39 Asia/Shanghai: 65 gpt-6.1-sol responses (64 solver calls plus one health probe), five gpt-6-astra reviews, five deepseek-flash reviews and three claude-haiku-4-5 adjudications match local aggregate token counts. The 503 response is excluded.",
+      "models": {
+        "gpt-6.1-sol": {
+          "calls": 65,
+          "inputTokens": 842465,
+          "outputTokens": 9755,
+          "amountUsd": 0.050834
+        },
+        "gpt-6-astra": {
+          "calls": 5,
+          "inputTokens": 30750,
+          "outputTokens": 512,
+          "amountUsd": 0.015188
+        },
+        "deepseek-flash": {
+          "calls": 5,
+          "inputTokens": 8927,
+          "outputTokens": 539,
+          "amountUsd": 0.001046
+        },
+        "claude-haiku-4-5": {
+          "calls": 3,
+          "inputTokens": 6453,
+          "outputTokens": 709,
+          "amountUsd": 0.00251
+        }
+      }
+    },
+    {
+      "label": "batch13 completed calls and DeepSeek synthetic smoke",
+      "amountUsd": 0.010622,
+      "detail": "2026-10-31 approximately 15:37:50–15:41:30 Asia/Shanghai: 12 successful gpt-6.1-sol solver responses, one gpt-6-astra review, one deepseek-flash review and four synthetic smoke calls match provider rows by model and aggregate token counts. The failed final solver request is excluded.",
+      "models": {
+        "gpt-6.1-sol": {
+          "calls": 12,
+          "inputTokens": 131592,
+          "outputTokens": 1627,
+          "amountUsd": 0.008372
+        },
+        "gpt-6-astra": {
+          "calls": 1,
+          "inputTokens": 5961,
+          "outputTokens": 114,
+          "amountUsd": 0.001916
+        },
+        "deepseek-flash": {
+          "calls": 5,
+          "inputTokens": 4507,
+          "outputTokens": 232,
+          "amountUsd": 0.000334
+        }
+      }
+    },
+    {
+      "label": "batch14 completed solver calls and one valid review",
+      "amountUsd": 0.013538,
+      "detail": "2026-10-31 approximately 15:43:35–15:46:53 Asia/Shanghai: 52 deepseek-flash solver responses and one gpt-6-astra review match provider rows by model and aggregate token counts. The second review returned 503 without usage and is excluded.",
+      "models": {
+        "deepseek-flash": {
+          "calls": 52,
+          "inputTokens": 348529,
+          "outputTokens": 3991,
+          "amountUsd": 0.009988
+        },
+        "gpt-6-astra": {
+          "calls": 1,
+          "inputTokens": 5840,
+          "outputTokens": 125,
+          "amountUsd": 0.00355
+        }
+      }
     }
   ],
-  "matchedSubtotalUsd": 1.389034,
+  "matchedSubtotalUsd": 1.486712,
   "unattributedAdjacentConsoleRow": {
     "timeAsiaShanghai": "2026-10-31 13:26:02",
     "model": "claude-haiku-4-5",
@@ -106,7 +186,10 @@
     "Batch10 solver timeout and its charge",
     "Any other missing or delayed provider usage, non-model compute, storage, engineering time and taxes",
     "Earlier retrospective pilot charges reported separately remain unreconciled and are not included in the subtotal",
-    "Batch11 adjudication timeout and its charge"
+    "Batch11 adjudication timeout and its charge",
+    "Batch12 HTTP 503 request and its charge",
+    "Batch13 HTTP 503 final solver request and its charge",
+    "Batch14 HTTP 503 second-reviewer request and its charge"
   ],
   "notIncludedYet": [],
   "warning": "These are candidate aggregate matches, not invoice reconciliation or total study cost."

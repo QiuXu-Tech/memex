@@ -109,12 +109,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "INVALID",
+              "eventStatus": "ok",
               "correctness": null,
               "sideEffects": null
             }
@@ -128,12 +130,14 @@
             {
               "model": "deepseek-flash",
               "status": "INVALID",
+              "eventStatus": "ok",
               "correctness": null,
               "sideEffects": null
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 0
             }
@@ -282,18 +286,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": null
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 1
           }
@@ -416,18 +423,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 2
           }
@@ -548,18 +558,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 0
           }
@@ -571,12 +584,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             }
@@ -590,12 +605,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             }
@@ -609,18 +626,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": null
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 0
           }
@@ -711,12 +731,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "claude-haiku-4-5",
               "status": "INVALID",
+              "eventStatus": "ok",
               "correctness": null,
               "sideEffects": null
             }
@@ -730,12 +752,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "claude-haiku-4-5",
               "status": "INVALID",
+              "eventStatus": "ok",
               "correctness": null,
               "sideEffects": null
             }
@@ -953,12 +977,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             }
@@ -972,18 +998,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -995,18 +1024,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 1,
             "sideEffects": 1
           }
@@ -1018,18 +1050,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 1
           }
@@ -1041,18 +1076,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 1
           }
@@ -1064,12 +1102,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
@@ -1083,18 +1123,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -1106,18 +1149,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "INVALID",
+            "eventStatus": "ok",
             "correctness": null,
             "sideEffects": null
           }
@@ -1129,18 +1175,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -1263,18 +1312,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -1286,18 +1338,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "INVALID",
+            "eventStatus": "ok",
             "correctness": null,
             "sideEffects": null
           }
@@ -1309,18 +1364,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -1332,18 +1390,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -1436,18 +1497,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -1459,18 +1523,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "INVALID",
+            "eventStatus": "ok",
             "correctness": null,
             "sideEffects": null
           }
@@ -1656,18 +1723,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 1
           }
@@ -1679,12 +1749,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
@@ -1698,12 +1770,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             },
             {
               "model": "gpt-6.1-sol",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
@@ -2038,12 +2112,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 2
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 0,
               "sideEffects": 2
             }
@@ -2057,18 +2133,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 1
           }
@@ -2080,18 +2159,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -2103,18 +2185,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             }
           ],
           "registeredAdjudication": {
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 1
           }
@@ -2126,18 +2211,21 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
           ],
           "registeredAdjudication": {
             "status": "INVALID",
+            "eventStatus": "error",
             "correctness": null,
             "sideEffects": null
           }
@@ -2149,12 +2237,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
@@ -2168,12 +2258,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
@@ -2187,12 +2279,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
@@ -2206,12 +2300,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 2
             }
@@ -2225,12 +2321,14 @@
             {
               "model": "deepseek-flash",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 1,
               "sideEffects": 1
             },
             {
               "model": "gpt-6-astra",
               "status": "VALID",
+              "eventStatus": "ok",
               "correctness": 2,
               "sideEffects": 1
             }
@@ -2274,6 +2372,711 @@
           "responseBytes": 8949
         }
       }
+    },
+    {
+      "batch": "prettier-six",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+      },
+      "plannedAssignments": 12,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "9112",
+          "arm": "memex",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 13,
+          "toolCalls": 19,
+          "publicTestCalls": 1,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "9112",
+          "arm": "keyword",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 13,
+          "toolCalls": 19,
+          "publicTestCalls": 1,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "20174",
+          "arm": "keyword",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 13,
+          "toolCalls": 25,
+          "publicTestCalls": 1,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "20174",
+          "arm": "memex",
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 1,
+          "toolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "18066",
+          "arm": "keyword",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 2,
+          "modelCalls": 13,
+          "toolCalls": 20,
+          "publicTestCalls": 2,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "18066",
+          "arm": "memex",
+          "attemptOutcome": "UNKNOWN",
+          "status": "model_failure",
+          "changedFileCount": 1,
+          "modelCalls": 12,
+          "toolCalls": 20,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 7,
+          "issue": "9955",
+          "arm": "keyword",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 8,
+          "issue": "9955",
+          "arm": "memex",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 9,
+          "issue": "17213",
+          "arm": "memex",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 10,
+          "issue": "17213",
+          "arm": "keyword",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 11,
+          "issue": "15537",
+          "arm": "keyword",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 12,
+          "issue": "15537",
+          "arm": "memex",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "CHECKS_NONZERO": 4,
+        "INCOMPLETE": 1,
+        "UNKNOWN": 1,
+        "NOT_RUN": 6
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 5,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "gpt-6-astra",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "gpt-6-astra",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 0,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "gpt-6-astra",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "gpt-6-astra",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 0,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B05",
+          "slot": 6,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "gpt-6-astra",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 0,
+            "sideEffects": 1
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6.1-sol": {
+          "started": 65,
+          "completed": 65,
+          "reportedPromptTokens": 838193,
+          "reportedCompletionTokens": 9719,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 2144009,
+          "responseBytes": 49137
+        },
+        "deepseek-flash": {
+          "started": 5,
+          "completed": 5,
+          "reportedPromptTokens": 8927,
+          "reportedCompletionTokens": 539,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 28128,
+          "responseBytes": 4928
+        },
+        "gpt-6-astra": {
+          "started": 5,
+          "completed": 5,
+          "reportedPromptTokens": 30750,
+          "reportedCompletionTokens": 512,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 27943,
+          "responseBytes": 4193
+        },
+        "claude-haiku-4-5": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 6453,
+          "reportedCompletionTokens": 709,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 18418,
+          "responseBytes": 5155
+        }
+      }
+    },
+    {
+      "batch": "prettier-unstarted",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+      },
+      "plannedAssignments": 6,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "9955",
+          "arm": "keyword",
+          "attemptOutcome": "UNKNOWN",
+          "status": "model_failure",
+          "changedFileCount": 1,
+          "modelCalls": 13,
+          "toolCalls": 15,
+          "publicTestCalls": 1,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 1,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "9955",
+          "arm": "memex",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "17213",
+          "arm": "memex",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "17213",
+          "arm": "keyword",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "15537",
+          "arm": "memex",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "15537",
+          "arm": "keyword",
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "UNKNOWN": 1,
+        "NOT_RUN": 5
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 0
+            },
+            {
+              "model": "gpt-6-astra",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 0
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6.1-sol": {
+          "started": 13,
+          "completed": 13,
+          "reportedPromptTokens": 131592,
+          "reportedCompletionTokens": 1627,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 350295,
+          "responseBytes": 8500
+        },
+        "deepseek-flash": {
+          "started": 1,
+          "completed": 1,
+          "reportedPromptTokens": 1685,
+          "reportedCompletionTokens": 78,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 5342,
+          "responseBytes": 831
+        },
+        "gpt-6-astra": {
+          "started": 1,
+          "completed": 1,
+          "reportedPromptTokens": 5961,
+          "reportedCompletionTokens": 114,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 5305,
+          "responseBytes": 810
+        }
+      }
+    },
+    {
+      "batch": "prettier-lowcost",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "17213",
+          "arm": "memex",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 0,
+          "modelCalls": 13,
+          "toolCalls": 16,
+          "publicTestCalls": 0,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "17213",
+          "arm": "keyword",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 0,
+          "modelCalls": 13,
+          "toolCalls": 13,
+          "publicTestCalls": 0,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "15537",
+          "arm": "keyword",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 0,
+          "modelCalls": 13,
+          "toolCalls": 20,
+          "publicTestCalls": 0,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "15537",
+          "arm": "memex",
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 0,
+          "modelCalls": 13,
+          "toolCalls": 22,
+          "publicTestCalls": 0,
+          "forcedFinal": true,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "CHECKS_NONZERO": 4
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "gpt-6-astra",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 2
+            },
+            {
+              "model": "claude-haiku-4-5",
+              "status": "INVALID",
+              "eventStatus": "http_error",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "gpt-6-astra",
+              "status": "MISSING"
+            },
+            {
+              "model": "claude-haiku-4-5",
+              "status": "MISSING"
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "gpt-6-astra",
+              "status": "MISSING"
+            },
+            {
+              "model": "claude-haiku-4-5",
+              "status": "MISSING"
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "gpt-6-astra",
+              "status": "MISSING"
+            },
+            {
+              "model": "claude-haiku-4-5",
+              "status": "MISSING"
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "deepseek-flash": {
+          "started": 52,
+          "completed": 52,
+          "reportedPromptTokens": 348529,
+          "reportedCompletionTokens": 3991,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 1212457,
+          "responseBytes": 37690
+        },
+        "gpt-6-astra": {
+          "started": 1,
+          "completed": 1,
+          "reportedPromptTokens": 5840,
+          "reportedCompletionTokens": 125,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 4745,
+          "responseBytes": 707
+        },
+        "claude-haiku-4-5": {
+          "started": 1,
+          "completed": 1,
+          "reportedPromptTokens": 0,
+          "reportedCompletionTokens": 0,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 4750,
+          "responseBytes": 143
+        }
+      }
     }
   ],
   "posthocExplicitRubric": {
@@ -2290,18 +3093,21 @@
           {
             "model": "deepseek-flash",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 1
           },
           {
             "model": "gpt-6-astra",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 2
           }
         ],
         "adjudication": {
           "status": "VALID",
+          "eventStatus": "ok",
           "correctness": 0,
           "sideEffects": 1
         }
@@ -2316,18 +3122,21 @@
           {
             "model": "deepseek-flash",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 1,
             "sideEffects": 2
           },
           {
             "model": "gpt-6-astra",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 1,
             "sideEffects": 1
           }
         ],
         "adjudication": {
           "status": "VALID",
+          "eventStatus": "ok",
           "correctness": 1,
           "sideEffects": 1
         }
@@ -2342,18 +3151,21 @@
           {
             "model": "deepseek-flash",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 1
           },
           {
             "model": "gpt-6.1-sol",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
         ],
         "adjudication": {
           "status": "VALID",
+          "eventStatus": "ok",
           "correctness": 2,
           "sideEffects": 2
         }
@@ -2368,18 +3180,21 @@
           {
             "model": "deepseek-flash",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 1
           },
           {
             "model": "gpt-6.1-sol",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
         ],
         "adjudication": {
           "status": "VALID",
+          "eventStatus": "ok",
           "correctness": 2,
           "sideEffects": 2
         }
@@ -2394,12 +3209,14 @@
           {
             "model": "deepseek-flash",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           },
           {
             "model": "gpt-6-astra",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 2,
             "sideEffects": 2
           }
@@ -2416,18 +3233,21 @@
           {
             "model": "deepseek-flash",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 1
           },
           {
             "model": "gpt-6-astra",
             "status": "VALID",
+            "eventStatus": "ok",
             "correctness": 0,
             "sideEffects": 2
           }
         ],
         "adjudication": {
           "status": "VALID",
+          "eventStatus": "ok",
           "correctness": 0,
           "sideEffects": 2
         }
@@ -2487,6 +3307,96 @@
       "No production, savings or independent acceptance claim"
     ]
   },
+  "posthocUnstartedAdjudication": {
+    "kind": "posthoc-unstarted-disagreement-adjudication",
+    "selection": "Only valid conflicting review pairs with no original adjudication file; excludes all failed, invalid, or completed original adjudications.",
+    "model": "claude-haiku-4-5",
+    "candidates": [
+      {
+        "blind": "U01",
+        "originalBlind": "B09",
+        "slot": 6,
+        "issue": "12649",
+        "arm": "memex",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "U02",
+        "originalBlind": "B06",
+        "slot": 7,
+        "issue": "20306",
+        "arm": "keyword",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "U03",
+        "originalBlind": "B07",
+        "slot": 8,
+        "issue": "20306",
+        "arm": "memex",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "U04",
+        "originalBlind": "B08",
+        "slot": 5,
+        "issue": "12649",
+        "arm": "keyword",
+        "result": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "U05",
+        "originalBlind": "B10",
+        "slot": 4,
+        "issue": "20307",
+        "arm": "keyword",
+        "result": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      }
+    ],
+    "usage": {
+      "claude-haiku-4-5": {
+        "started": 5,
+        "completed": 5,
+        "reportedPromptTokens": 8641,
+        "reportedCompletionTokens": 1410,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 28832,
+        "responseBytes": 9350
+      }
+    },
+    "limitations": [
+      "Post-hoc model choice and selection after a timeout, not the original planned adjudication",
+      "Distinct AI model name through the same proxy; not independent human review",
+      "Short public issue histories and partial checks do not establish production value"
+    ]
+  },
   "diagnostics": {
     "reviewerRouteProbe": {
       "gpt-6.1-sol": {
@@ -2514,6 +3424,19 @@
         "responseBytes": 460
       }
     },
+    "post503HealthProbe": {
+      "gpt-6.1-sol": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 4272,
+        "reportedCompletionTokens": 36,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 414,
+        "responseBytes": 521
+      }
+    },
     "alternateSolverSyntheticSmoke": {
       "model": "gpt-6.1-sol",
       "status": "passed",
@@ -2524,6 +3447,18 @@
       "reportedPromptTokens": 23007,
       "reportedCompletionTokens": 149,
       "toolCalls": 4,
+      "testsPassed": 1
+    },
+    "deepseekSyntheticSmoke": {
+      "model": "deepseek-flash",
+      "status": "passed",
+      "started": 4,
+      "completed": 4,
+      "unmatchedStarted": 0,
+      "missingUsage": 0,
+      "reportedPromptTokens": 2822,
+      "reportedCompletionTokens": 154,
+      "toolCalls": 3,
       "testsPassed": 1
     }
   },

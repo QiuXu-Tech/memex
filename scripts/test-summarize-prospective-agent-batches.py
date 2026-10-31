@@ -14,6 +14,15 @@ class Tests(unittest.TestCase):
    events=[{'model':'m','label':'1','status':'started'},{'model':'m','label':'1','status':'error'},{'model':'m','label':'2','status':'started'}]
    p.write_text('\n'.join(json.dumps(x) for x in events)+'\n');v=m.usage(pathlib.Path(td))['m']
    self.assertEqual((v['started'],v['completed'],v['unmatchedStarted'],v['missingUsage'],v['failedResponses']),(2,1,1,1,1))
+ def test_review_provider_failure_is_distinct_from_missing(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=pathlib.Path(td);(root/'reviews').mkdir();(root/'adjudications').mkdir()
+   (root/'blind-key.json').write_text(json.dumps({'B01':1}))
+   (root/'reviews/B01-a.json').write_text(json.dumps({'eventStatus':'http_error','parsed':{'valid':False}}))
+   (root/'adjudications/B01.json').write_text(json.dumps({'eventStatus':'error','parsed':{'valid':False}}))
+   row=m.reviews(root,['a','b'])[0]
+   self.assertEqual([(x['status'],x.get('eventStatus')) for x in row['ratings']],[('INVALID','http_error'),('MISSING',None)])
+   self.assertEqual(row['registeredAdjudication']['eventStatus'],'error')
  def test_missing_posthoc_review_is_not_a_valid_rating(self):
   with tempfile.TemporaryDirectory() as td:
    root=pathlib.Path(td);(root/'reviews').mkdir()

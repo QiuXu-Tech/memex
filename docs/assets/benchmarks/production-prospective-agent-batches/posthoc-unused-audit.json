@@ -1,0 +1,47 @@
+{
+  "kind": "posthoc-unblinded-targeted-check",
+  "issue": "https://github.com/prettier/prettier/issues/20307",
+  "prettierCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+  "eslintCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+  "node": "24.18.0",
+  "check": "Built-in ESLint no-unused-vars, args:none, applied to src/language-js/print/member-chain.js in isolated read-only VM workspaces.",
+  "scriptSha256": "fd0eb301efc3ba0c7363e499c6dbcc22b7f86c6581e7a06e17341060c519282d",
+  "baseline": {
+    "exitCode": 0,
+    "messages": [],
+    "rawLogSha256": "d544f33ee64514b719635b0b8e8ebe05b680024a92a5cebc560e33b7ffbb3aeb"
+  },
+  "attempts": [
+    {
+      "slot": 3,
+      "arm": "memex",
+      "diffSha256": "b8904b130e8ed2f4627e71c7e67e04225790c3ee0a8206b7eab56020cff322b8",
+      "originalIssueCheckExit": 0,
+      "originalRegressionExit": 0,
+      "posthocNoUnusedVarsExit": 0,
+      "messages": [],
+      "rawLogSha256": "d544f33ee64514b719635b0b8e8ebe05b680024a92a5cebc560e33b7ffbb3aeb"
+    },
+    {
+      "slot": 4,
+      "arm": "keyword",
+      "diffSha256": "8ccf84e00b1934a5e22c8e333b382590d18ea824efa7a966c545024414ddce65",
+      "originalIssueCheckExit": 0,
+      "originalRegressionExit": 0,
+      "posthocNoUnusedVarsExit": 1,
+      "messages": [
+        {
+          "line": 390,
+          "message": "'expandedLastArg' is assigned a value but never used."
+        }
+      ],
+      "rawLogSha256": "ea7610c6a887e67249cd1da0f0d0d2504aa24bbc2281988275bf66bc97e55128"
+    }
+  ],
+  "limitations": [
+    "Selected and executed after observing original results and diffs; not prespecified or blinded.",
+    "This is a standalone rule check, not Prettier’s configured complete lint or test suite.",
+    "Original frozen-check outcomes remain unchanged; a diagnostic failure does not establish an upstream CI result."
+  ],
+  "note": "The isolated check was repeated after selection; private raw logs are retained and hashes are recorded here."
+}

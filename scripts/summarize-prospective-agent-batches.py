@@ -2,7 +2,7 @@
 """Sanitize registered pilot results without treating missing records as successes."""
 import argparse,collections,json,pathlib
 
-BATCHES=[('eslint-1','20261031-eslint-batch1','upstreamRegression'),('lodash-interrupted','20261031-lodash-batch2','regressionControls'),('lodash-repair','20261031-lodash-batch3','regressionControls'),('eslint-2','20261031-eslint-batch4','regressionControls'),('lodash-model-check','20261031-lodash-batch5','regressionControls'),('mixed-3','20261031-mixed-batch6','regressionControls'),('prettier-4','20261031-prettier-batch7','regressionControls'),('eslint-3','20261031-eslint-batch8','regressionControls'),('mixed-4','20261031-mixed-batch9','regressionControls'),('prettier-interrupted','20261031-prettier-batch10','regressionControls'),('prettier-route','20261031-prettier-batch11','regressionControls')]
+BATCHES=[('eslint-1','20261031-eslint-batch1','upstreamRegression'),('lodash-interrupted','20261031-lodash-batch2','regressionControls'),('lodash-repair','20261031-lodash-batch3','regressionControls'),('eslint-2','20261031-eslint-batch4','regressionControls'),('lodash-model-check','20261031-lodash-batch5','regressionControls'),('mixed-3','20261031-mixed-batch6','regressionControls'),('prettier-4','20261031-prettier-batch7','regressionControls'),('eslint-3','20261031-eslint-batch8','regressionControls'),('mixed-4','20261031-mixed-batch9','regressionControls'),('prettier-interrupted','20261031-prettier-batch10','regressionControls'),('prettier-route','20261031-prettier-batch11','regressionControls'),('prettier-six','20261031-prettier-batch12','regressionControls'),('prettier-unstarted','20261031-prettier-batch13','regressionControls'),('prettier-lowcost','20261031-prettier-batch14','regressionControls')]
 
 def outcome(result,exists):
  if result is None:return 'INTERRUPTED' if exists else 'NOT_RUN'
@@ -42,10 +42,10 @@ def reviews(root, models):
    path=root/'reviews'/f'{blind}-{model}.json'
    if not path.exists():ratings.append({'model':model,'status':'MISSING'});continue
    data=json.loads(path.read_text());parsed=data.get('parsed',{});value=parsed.get('rating',{})
-   ratings.append({'model':model,'status':'VALID' if parsed.get('valid') else 'INVALID','correctness':value.get('correctness'),'sideEffects':value.get('side_effects')})
+   ratings.append({'model':model,'status':'VALID' if parsed.get('valid') else 'INVALID','eventStatus':data.get('eventStatus'),'correctness':value.get('correctness'),'sideEffects':value.get('side_effects')})
   adj=root/'adjudications'/f'{blind}.json';a=None
   if adj.exists():
-   z=json.loads(adj.read_text())['parsed'];v=z.get('rating',{});a={'status':'VALID' if z.get('valid') else 'INVALID','correctness':v.get('correctness'),'sideEffects':v.get('side_effects')}
+   data=json.loads(adj.read_text());z=data['parsed'];v=z.get('rating',{});a={'status':'VALID' if z.get('valid') else 'INVALID','eventStatus':data.get('eventStatus'),'correctness':v.get('correctness'),'sideEffects':v.get('side_effects')}
   result.append({'blind':blind,'slot':slot,'ratings':ratings,'registeredAdjudication':a})
  return result
 
@@ -58,22 +58,34 @@ def posthoc_review(root):
   for model in entry['reviewers']:
    path=root/'reviews'/f'{blind}-{model}.json'
    if not path.exists():ratings.append({'model':model,'status':'MISSING'});continue
-   parsed=json.loads(path.read_text()).get('parsed',{});value=parsed.get('rating',{})
-   ratings.append({'model':model,'status':'VALID' if parsed.get('valid') else 'INVALID','correctness':value.get('correctness'),'sideEffects':value.get('side_effects')})
+   data=json.loads(path.read_text());parsed=data.get('parsed',{});value=parsed.get('rating',{})
+   ratings.append({'model':model,'status':'VALID' if parsed.get('valid') else 'INVALID','eventStatus':data.get('eventStatus'),'correctness':value.get('correctness'),'sideEffects':value.get('side_effects')})
   path=root/'adjudications'/f'{blind}.json';adjudication=None
   if path.exists():
-   parsed=json.loads(path.read_text()).get('parsed',{});value=parsed.get('rating',{})
-   adjudication={'status':'VALID' if parsed.get('valid') else 'INVALID','correctness':value.get('correctness'),'sideEffects':value.get('side_effects')}
+   data=json.loads(path.read_text());parsed=data.get('parsed',{});value=parsed.get('rating',{})
+   adjudication={'status':'VALID' if parsed.get('valid') else 'INVALID','eventStatus':data.get('eventStatus'),'correctness':value.get('correctness'),'sideEffects':value.get('side_effects')}
   candidates.append({'blind':blind,'batch':source['batch'],'slot':source['slot'],'issue':source['issue'],'arm':source['arm'],'ratings':ratings,'adjudication':adjudication})
  return {'kind':manifest['kind'],'selection':manifest['selection'],'candidates':candidates,'usage':usage(root),'limitations':manifest['limitations']}
 
 
-def synthetic_smoke(root):
+def synthetic_smoke(root,model):
  path=root/'trace.jsonl'
  if not path.exists():return None
  rows=[json.loads(line) for line in path.read_text().splitlines() if line.strip()];calls=[x for x in rows if x.get('kind')=='model'];started=sum(x.get('phase')=='started' for x in calls);ends=[x for x in calls if x.get('phase')=='completed'];with_usage=[x for x in ends if isinstance(x.get('usage',{}).get('prompt_tokens'),int) and isinstance(x.get('usage',{}).get('completion_tokens'),int)]
  result=json.loads((root/'result.json').read_text()) if (root/'result.json').exists() else {}
- return {'model':'gpt-6.1-sol','status':result.get('status','UNKNOWN'),'started':started,'completed':len(ends),'unmatchedStarted':max(0,started-len(ends)),'missingUsage':len(ends)-len(with_usage),'reportedPromptTokens':sum(x['usage']['prompt_tokens'] for x in with_usage),'reportedCompletionTokens':sum(x['usage']['completion_tokens'] for x in with_usage),'toolCalls':result.get('toolCalls'),'testsPassed':result.get('testsPassed')}
+ return {'model':model,'status':result.get('status','UNKNOWN'),'started':started,'completed':len(ends),'unmatchedStarted':max(0,started-len(ends)),'missingUsage':len(ends)-len(with_usage),'reportedPromptTokens':sum(x['usage']['prompt_tokens'] for x in with_usage),'reportedCompletionTokens':sum(x['usage']['completion_tokens'] for x in with_usage),'toolCalls':result.get('toolCalls'),'testsPassed':result.get('testsPassed')}
+
+
+def unstarted_adjudications(root):
+ if not (root/'manifest.json').exists():return None
+ manifest=json.loads((root/'manifest.json').read_text());mapping=json.loads((root/'blind-key.json').read_text());items=[]
+ for entry in manifest['candidates']:
+  blind=entry['blind'];path=root/'adjudications'/f'{blind}.json';result={'status':'MISSING'}
+  if path.exists():
+   data=json.loads(path.read_text());parsed=data.get('parsed',{});value=parsed.get('rating',{})
+   result={'status':'VALID' if parsed.get('valid') else 'INVALID','eventStatus':data.get('eventStatus'),'correctness':value.get('correctness'),'sideEffects':value.get('side_effects')}
+  items.append({'blind':blind,**mapping[blind],'result':result})
+ return {'kind':manifest['kind'],'selection':manifest['selection'],'model':manifest['model'],'candidates':items,'usage':usage(root),'limitations':manifest['limitations']}
 
 
 def summarize(base):
@@ -94,8 +106,8 @@ def summarize(base):
    original=json.loads(normalized.read_text());posthoc={'normalizationStatuses':dict(collections.Counter(x.get('status') for x in original.values())),'ratings':{key:{'status':value.get('status'),'correctness':value.get('parsed',{}).get('rating',{}).get('correctness'),'sideEffects':value.get('parsed',{}).get('rating',{}).get('side_effects')} for key,value in original.items()},'adjudications':{}}
    for path in sorted((root/'posthoc-reference-normalization').glob('B*.json')):
     data=json.loads(path.read_text());parsed=data.get('parsed',{});rating=parsed.get('rating',{});posthoc['adjudications'][path.stem]={'status':'VALID' if parsed.get('valid') else 'INVALID','correctness':rating.get('correctness'),'sideEffects':rating.get('side_effects')}
-  all_batches.append({'batch':label,'scoreDirectionExplicit':label in ('mixed-3','prettier-4','eslint-3','mixed-4','prettier-interrupted','prettier-route'),'sourceCommit':manifest['sourceCommit'],'plannedAssignments':len(runs),'runs':runs,'outcomes':dict(collections.Counter(x['attemptOutcome'] for x in runs)),'reviews':reviews(root,manifest.get('reviewers',[])),'posthocNormalization':posthoc,'usage':usage(root)})
- return {'kind':'separate-prospective-open-source-instrumentation-batches','batches':all_batches,'posthocExplicitRubric':posthoc_review(base/'posthoc-explicit-rubric'),'diagnostics':{'reviewerRouteProbe':usage(base/'20261031-reviewer-route-probe'),'alternateSolverToolProbe':usage(base/'20261031-sol-tool-probe'),'alternateSolverSyntheticSmoke':synthetic_smoke(base/'20261031-sol-agent-smoke')},'limitations':['Different batches were selected or revised after prior results and are not one pre-registered cohort.','The pre-seeded public issue discussions are not long production sessions.','Tests are partial and reviewers are AI; label validity does not prove factual support.','The numeric review direction was not specified in batches 1–5; their raw scores cannot be treated as a common scale.','Unmatched started and failed requests may have unreported tokens or fees; no failed request is automatically retried.','Source exposure to public PRs or model pretraining cannot be excluded.']}
+  all_batches.append({'batch':label,'scoreDirectionExplicit':label in ('mixed-3','prettier-4','eslint-3','mixed-4','prettier-interrupted','prettier-route','prettier-six','prettier-unstarted','prettier-lowcost'),'sourceCommit':manifest['sourceCommit'],'plannedAssignments':len(runs),'runs':runs,'outcomes':dict(collections.Counter(x['attemptOutcome'] for x in runs)),'reviews':reviews(root,manifest.get('reviewers',[])),'posthocNormalization':posthoc,'usage':usage(root)})
+ return {'kind':'separate-prospective-open-source-instrumentation-batches','batches':all_batches,'posthocExplicitRubric':posthoc_review(base/'posthoc-explicit-rubric'),'posthocUnstartedAdjudication':unstarted_adjudications(base/'posthoc-unstarted-adjudication'),'diagnostics':{'reviewerRouteProbe':usage(base/'20261031-reviewer-route-probe'),'alternateSolverToolProbe':usage(base/'20261031-sol-tool-probe'),'post503HealthProbe':usage(base/'20261031-post503-route-probe'),'alternateSolverSyntheticSmoke':synthetic_smoke(base/'20261031-sol-agent-smoke','gpt-6.1-sol'),'deepseekSyntheticSmoke':synthetic_smoke(base/'20261031-deepseek-agent-smoke','deepseek-flash')},'limitations':['Different batches were selected or revised after prior results and are not one pre-registered cohort.','The pre-seeded public issue discussions are not long production sessions.','Tests are partial and reviewers are AI; label validity does not prove factual support.','The numeric review direction was not specified in batches 1–5; their raw scores cannot be treated as a common scale.','Unmatched started and failed requests may have unreported tokens or fees; no failed request is automatically retried.','Source exposure to public PRs or model pretraining cannot be excluded.']}
 
 
 def main():
