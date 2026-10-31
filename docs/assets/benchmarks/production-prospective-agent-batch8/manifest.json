@@ -1,0 +1,66 @@
+{
+  "kind": "registered-one-eslint-issue-agent-instrumentation-not-30-task-study",
+  "createdAt": "2026-10-31T14:18:58.546067+08:00",
+  "repo": "eslint/eslint",
+  "sourceCommit": {
+    "eslint": "12cbff4125db3f6446f72fa0c48c46b92b120427"
+  },
+  "runtimeLockSha256": {
+    "eslint": "4fa513b9243f5c751c0dfaca6aa462d70ae313d59fc1634d302782cc10a564d4"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "21122"
+  ],
+  "checks": {
+    "21122": {
+      "public": "6048b957e4648e924c85967a3accc2d9f526aacadff257860b36b01a42774729",
+      "acceptance": "4fec1770687d033ccbfe821ecf26ffdd4316fd53e294378a1254e77c931d8edf",
+      "regressionControls": "f698e6e4719ab481ad050a9df11e2622c3d627c6718338d8a8e947074e0058ca"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v8.py": "0c0d944ed8b1398bb30ffb4e99a9ba6034d092dddfc47759a1c626dc334ff91b",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "733bca164f2a65d10a661d12a55c06fa307ce8d5c7433e66698749eafa6b16f1",
+  "contextsSha256": "7530d43b54cbf5b61a92ea75a1e6ebda292cf9873130e37d846062fc3f5fd6b2",
+  "seed": 2026103108,
+  "schedule": [
+    {
+      "issue": "21122",
+      "arm": "keyword"
+    },
+    {
+      "issue": "21122",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6.1-sol"
+  ],
+  "adjudicator": "gpt-6-astra",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $1; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "One new issue selected after previous outcomes, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers are not humans; adjudicator shares solver model family",
+    "No effect or savings claim"
+  ]
+}
