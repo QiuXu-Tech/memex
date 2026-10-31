@@ -1,0 +1,126 @@
+{
+  "kind": "registered-three-validator-chartjs-issue-pairs",
+  "createdAt": "2026-10-31T20:47:35.728945+08:00",
+  "sourceCommit": {
+    "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+    "chartjs": "71d44219e79e3ac41e6f9dc907022eebf574868d"
+  },
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "validator": "Node module hooks load source ESM without npm packages.",
+    "chartjs": "A test-only TypeScript hook and generated dependency lock; lifecycle scripts disabled."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": {
+    "2497": "validator",
+    "912": "validator",
+    "12191": "chartjs"
+  },
+  "checks": {
+    "2497": {
+      "public": "530a42f60082187f4b4cc0eecc1577e5ef7a0e8f4a84feaf91030d35cd9b4647",
+      "acceptance": "b443990660b442eac9e6b4b9a426041200b4de7f32bf6d8b3f7583ca1dced777",
+      "regressionControls": "04a72542a524568eedfe49824c034c7f2215d75d38152780c1b61e7263dcca98"
+    },
+    "912": {
+      "public": "9ae3e7e3a030b818bc65889575aaa4cf13e433c753a4f395613d00d4bd9bb37f",
+      "acceptance": "55cf5d6605fa7899772dc1195517661c6b5e75e3ec0e1f86abec2f8af17a08fd",
+      "regressionControls": "2bedb4eb7e94bc26eedd93b867967274f948118bf2bf833396781941f5d172b5"
+    },
+    "12191": {
+      "public": "01e761142d319de60083dabec30d2690eaa70d5fb207b518d26c2809695af392",
+      "acceptance": "e5c4ce9817a995dfda00c7e40f124d3efe7fc6f4c71245349218cbf9b6b4d879",
+      "regressionControls": "67791feca3c5cdbbbf7b1e3dda52f9ef809e14fc6989fe06fa44491e0b68622d"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "docs/assets/benchmarks/production-prospective-agent-batch21/manifest.json": "58a4537aca3557a1e8f70e3a143915e14b3a9e3d209596c792e9b90046d30ae0",
+    "scripts/prospective-gateway-pilot-v23.py": "def4504693340818b68e7daf5bc06c71aadd979c07cab6d0211a0803af974ee6",
+    "docs/assets/benchmarks/production-prospective-agent-batch22/manifest.json": "e86aa0178042f3070f312e37ed3d66b6034751485857d8815ce8e69f38bf403c",
+    "scripts/prospective-gateway-pilot-v24.py": "71bf84a0a0370f1743e4c3cd81f501cc76378fcbba8ff094ead13e86854f2ec3",
+    "docs/assets/benchmarks/production-prospective-agent-batch23/manifest.json": "c6fae63083372c808c78a1da2e8072ffaf2a63c3eea0793e118b4c77320ea41d",
+    "scripts/prospective-gateway-pilot-v25.py": "b9877352973e4b014af1465cd0dde67dfd6f32a15f2897513b8740b870813f6d",
+    "docs/assets/benchmarks/production-prospective-agent-batch24/manifest.json": "020df6808dfc97be2b2f6be563e3e2b863afd9acfadb9748e0ffcd7880d6d6bf"
+  },
+  "issuesSha256": "cb8e7b9ea9a55156a11f7b2d3693d8cf45377da2389ed875dd6ca5b0504a0e7b",
+  "contextsSha256": "cb31335f667e1dca52d49af74997ba8875a071deed3f550f5407f71e8ed4a026",
+  "seed": 2026103128,
+  "schedule": [
+    {
+      "issue": "2497",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2497",
+      "arm": "memex"
+    },
+    {
+      "issue": "912",
+      "arm": "keyword"
+    },
+    {
+      "issue": "912",
+      "arm": "memex"
+    },
+    {
+      "issue": "12191",
+      "arm": "keyword"
+    },
+    {
+      "issue": "12191",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6-astra",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within a stage after provider failure or missing usage; preserve all attempts and unknown fees. Never retry a timeout.",
+  "costTarget": "Below $1 estimated, not a hard cap; unknown fees reported separately.",
+  "limitations": [
+    "Three additional pairs selected after earlier batches; not a pre-registered 30–50-task independent cohort.",
+    "Public discussions and PRs can disclose solutions or appear in training; shared project and source exposure can correlate.",
+    "Source-only references and small custom tests do not establish upstream acceptance.",
+    "The adjudicator has the same model name as the solver; all model names share a proxy with unverified provenance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim.",
+    "Chart.js #12191 has no discussion records and is a no-history negative control; its check exercises a listener and mocked controller, not browser rendering.",
+    "Validator #912 uses the candidate PR source option name, which differs from the PR prose; acceptance was selected after inspecting that reference."
+  ],
+  "runtimeLockSha256": "d7a35e7d49830c15f2a4d0873e9eda706fb7dfacf009a3697fe51b59f07eba54"
+}
