@@ -1,0 +1,113 @@
+{
+  "kind": "candidate-console-cost-matches-not-invoice",
+  "method": "Provider usage-log rows grouped by model, reported input/output token totals and approximate time; request IDs unavailable. Amounts are USD and exclude unreported or unmatched charges.",
+  "matchedComponents": [
+    {
+      "label": "earlier screening, canary, diagnostics and batch1",
+      "amountUsd": 0.29956,
+      "detail": "Includes the previously reported 0.157292, later 31-issue screening 0.051826, and batch1 0.090442."
+    },
+    {
+      "label": "batch2 completed calls",
+      "amountUsd": 0.04378,
+      "detail": "25 completed solver calls, two review calls and one adjudication; excludes interrupted request."
+    },
+    {
+      "label": "batch3 completed calls",
+      "amountUsd": 0.056674,
+      "detail": "25 completed solver calls, two review calls and one adjudication; excludes failed request."
+    },
+    {
+      "label": "batch4 completed calls",
+      "amountUsd": 0.197128,
+      "detail": "52 solver calls, eight review calls and two adjudications."
+    },
+    {
+      "label": "batch5 completed calls",
+      "amountUsd": 0.022518,
+      "detail": "15 solver calls and four reviewer calls, including two empty responses."
+    },
+    {
+      "label": "reviewer route probe",
+      "amountUsd": 0.000658,
+      "detail": "One completed gpt-6.1-sol text probe."
+    },
+    {
+      "label": "batch6 through batch10, post-hoc review and alternate-route diagnostics",
+      "amountUsd": 0.620922,
+      "detail": "2026-10-31 14:06:00–14:44:59 Asia/Shanghai: 224 gpt-6-astra, 24 deepseek-flash, 26 gpt-6.1-sol and 3 claude-haiku-4-5 successful response rows match local aggregate token counts exactly; includes the tool probe and five-call synthetic smoke. Excludes batch11 and unmatched timeouts.",
+      "models": {
+        "gpt-6-astra": {
+          "calls": 224,
+          "inputTokens": 2944151,
+          "outputTokens": 28711,
+          "amountUsd": 0.566572
+        },
+        "deepseek-flash": {
+          "calls": 24,
+          "inputTokens": 42063,
+          "outputTokens": 15256,
+          "amountUsd": 0.007544
+        },
+        "gpt-6.1-sol": {
+          "calls": 26,
+          "inputTokens": 287883,
+          "outputTokens": 4337,
+          "amountUsd": 0.044698
+        },
+        "claude-haiku-4-5": {
+          "calls": 3,
+          "inputTokens": 4967,
+          "outputTokens": 686,
+          "amountUsd": 0.002108
+        }
+      }
+    },
+    {
+      "label": "batch11 completed calls",
+      "amountUsd": 0.147794,
+      "detail": "2026-10-31 14:45–15:07 Asia/Shanghai: 125 gpt-6.1-sol, 10 gpt-6-astra and 10 deepseek-flash successful response rows match local aggregate token counts exactly; the timed-out adjudication is excluded.",
+      "models": {
+        "gpt-6.1-sol": {
+          "calls": 125,
+          "inputTokens": 1970633,
+          "outputTokens": 14910,
+          "amountUsd": 0.114652
+        },
+        "gpt-6-astra": {
+          "calls": 10,
+          "inputTokens": 48646,
+          "outputTokens": 2383,
+          "amountUsd": 0.031228
+        },
+        "deepseek-flash": {
+          "calls": 10,
+          "inputTokens": 15279,
+          "outputTokens": 1243,
+          "amountUsd": 0.001914
+        }
+      }
+    }
+  ],
+  "matchedSubtotalUsd": 1.389034,
+  "unattributedAdjacentConsoleRow": {
+    "timeAsiaShanghai": "2026-10-31 13:26:02",
+    "model": "claude-haiku-4-5",
+    "inputTokens": 8964,
+    "outputTokens": 41,
+    "amountUsd": 0.002302,
+    "status": "POSSIBLE_MATCH_TO_FAILED_REQUEST_NOT_INCLUDED; no request-ID attribution"
+  },
+  "unknown": [
+    "Earlier HTTP 403 diagnostic charge",
+    "Batch2 interrupted in-flight request",
+    "Batch3 disconnected request and its charge",
+    "Batch9 solver timeout and its charge",
+    "Batch10 solver timeout and its charge",
+    "Any other missing or delayed provider usage, non-model compute, storage, engineering time and taxes",
+    "Earlier retrospective pilot charges reported separately remain unreconciled and are not included in the subtotal",
+    "Batch11 adjudication timeout and its charge"
+  ],
+  "notIncludedYet": [],
+  "warning": "These are candidate aggregate matches, not invoice reconciliation or total study cost."
+}

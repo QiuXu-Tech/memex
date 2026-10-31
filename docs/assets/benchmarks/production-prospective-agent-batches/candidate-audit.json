@@ -1,0 +1,126 @@
+{
+  "kind": "candidate-audit-after-prior-results",
+  "observedAt": "2026-10-31",
+  "note": "These are scoped observations, not permanent judgments or completed trial tasks. Links and earlier ledgers retain the underlying context; the runtime and reference checks are partial.",
+  "rows": [
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21418",
+      "disposition": "PENDING_REFERENCE_INCOMPLETE",
+      "observation": "The pinned runtime returned Shebang from both getAllComments and getCommentsBefore. The source changes in reference PR 21440 cover getAllComments but leave getCommentsBefore typed as ESTree.Comment. The issue asks for all corresponding APIs; the candidate was not frozen.",
+      "evidence": [
+        "https://github.com/eslint/eslint/pull/21440"
+      ]
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/20978",
+      "disposition": "PENDING_REGRESSION_REVIEW",
+      "observation": "A draft reference passes the local issue check, but 12 of 368 original upstream rule expectations fail under the reference. Whether the behavior changes are acceptable requires further review."
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21122",
+      "disposition": "FROZEN_BATCH_8",
+      "observation": "Baseline fails and reference passes the custom issue/public checks; both pass custom reporting controls. Three of five existing upstream cases fail on the reference because their expectations omit the newly introduced suggestions.",
+      "evidence": [
+        "https://github.com/eslint/eslint/pull/21439",
+        "production-prospective-agent-batch8-registration.md"
+      ]
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19955",
+      "disposition": "FROZEN_BATCH_7",
+      "observation": "Four of five issue examples fail on baseline and all five pass with source-only PR 20008 changes; small controls pass on both. Discussion contains proposed fixes.",
+      "evidence": [
+        "https://github.com/prettier/prettier/pull/20008",
+        "production-prospective-agent-batch7-registration.md"
+      ]
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19968",
+      "disposition": "FROZEN_BATCH_7",
+      "observation": "All three issue/discussion examples fail idempotence on baseline and pass with source-only PR 19970 changes; small controls pass on both.",
+      "evidence": [
+        "https://github.com/prettier/prettier/pull/19970",
+        "production-prospective-agent-batch7-registration.md"
+      ]
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20199",
+      "disposition": "PENDING_ACCEPTANCE_DECISION",
+      "observation": "The discussion weighs the requested behavior against a conflicting Markdown parsing decision and advises against modifying the plugin. The acceptance criterion is not settled.",
+      "evidence": [
+        "https://github.com/prettier/prettier/issues/20199#issuecomment-5941281174",
+        "https://github.com/prettier/prettier/issues/20199#issuecomment-6244455896"
+      ]
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2531",
+      "disposition": "HELD_EXPLICIT_PROPOSED_FIX",
+      "observation": "The issue body describes an exact proposed export change and discussion shows prior intended privacy of several types. It was not treated as an independent held-out task."
+    },
+    {
+      "issue": "https://github.com/validatorjs/validator.js/issues/2544",
+      "disposition": "HELD_EXPLICIT_PROPOSED_FIX",
+      "observation": "The issue body supplies a proposed regular expression; the complete list of valid operator codes has not been independently validated."
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2244",
+      "disposition": "PENDING_ACCEPTANCE_DECISION",
+      "observation": "Discussion gives different interpretations and workarounds for browser write arguments; a complete accepted behavior and regression scope have not been frozen."
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6105",
+      "disposition": "HELD_DISCLOSED_FIX",
+      "observation": "The public discussion identifies the root cause and gives a concrete code replacement; the sample is highly exposed to the proposed solution."
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2129",
+      "disposition": "PENDING_ACCEPTANCE_DECISION",
+      "observation": "The issue asks for a behavioral change and points to the reporter’s earlier proposed implementation; no independent acceptance standard was established."
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21438",
+      "disposition": "EXCLUDED_CODE_FIX_NOT_ACCEPTED",
+      "observation": "The ESLint TSC agreed to document limitations of non-serializable rule configuration rather than adopt the originally requested cache behavior.",
+      "evidence": [
+        "https://github.com/eslint/eslint/issues/21438#issuecomment-6508813188"
+      ]
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/20674",
+      "disposition": "EXCLUDED_UPSTREAM_BLOCKED",
+      "observation": "The accepted issue is marked blocked and maintainers identify an upstream dependency as the place to fix it."
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/14090",
+      "disposition": "PENDING_PARSER_SCOPE",
+      "observation": "Maintainer discussion identifies differing Glimmer and classic Handlebars syntax and an upstream parser limitation; the proper scope of the requested behavior is unresolved."
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/18843",
+      "disposition": "PENDING_REFERENCE_INCOMPLETE",
+      "observation": "The issue example fails on the baseline. The source hunks from PR 18881 move the comment but the formatted output remains unstable and does not match the maintainer-proposed expected output.",
+      "evidence": [
+        "https://github.com/prettier/prettier/pull/18881"
+      ]
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19271",
+      "disposition": "PENDING_ORIGINAL_EXAMPLE_STABLE",
+      "observation": "The original captured example formats idempotently on the pinned source. This observation does not establish that every later discussion variant is fixed."
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/7927",
+      "disposition": "PENDING_ORIGINAL_EXAMPLE_STABLE",
+      "observation": "The original captured example formats idempotently on the pinned source. This observation does not establish that every later discussion variant is fixed."
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/8182",
+      "disposition": "FROZEN_BATCH_11",
+      "observation": "Two reported GraphQL examples fail the exact-format baseline check and pass with a source-only manual port of PR 14838; three small custom controls pass on both.",
+      "evidence": [
+        "https://github.com/prettier/prettier/pull/14838",
+        "production-prospective-agent-batch11-registration.md"
+      ]
+    }
+  ]
+}

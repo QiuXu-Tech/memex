@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">Agent instrumentation outcomes by batch</title>
+<desc id="desc">Assigned task-arm slots grouped into passed checks with complete final, nonzero checks, incomplete response, unknown or interrupted, and not run. These small batches do not demonstrate production impact.</desc>
+<rect width="1200" height="900" fill="#f7f8fa"/>
+<text x="52" y="53" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#19313e">Real-issue agent instrumentation · incomplete study</text>
+<text x="52" y="84" font-family="Arial,sans-serif" font-size="15" fill="#526a78">Assigned task–arm slots by registration; re-registered unstarted slots appear more than once</text>
+<text x="52" y="145" font-family="Arial,sans-serif" font-size="17" fill="#19313e">ESLint initial</text>
+<rect x="310" y="120" width="420" height="36" fill="#c89b58"/>
+<text x="520.0" y="145" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">6</text>
+<text x="744" y="145" font-family="Arial,sans-serif" font-size="15" fill="#526a78">6 assigned</text>
+<text x="52" y="203" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Lodash interrupted</text>
+<rect x="310" y="178" width="70" height="36" fill="#c66f5e"/>
+<text x="345.0" y="203" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="380" y="178" width="70" height="36" fill="#8d87a2"/>
+<text x="415.0" y="203" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="450" y="178" width="280" height="36" fill="#c9d1d5"/>
+<text x="590.0" y="203" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#19313e">4</text>
+<text x="744" y="203" font-family="Arial,sans-serif" font-size="15" fill="#526a78">6 assigned</text>
+<text x="52" y="261" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Lodash search repair</text>
+<rect x="310" y="236" width="70" height="36" fill="#c66f5e"/>
+<text x="345.0" y="261" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="380" y="236" width="70" height="36" fill="#8d87a2"/>
+<text x="415.0" y="261" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="450" y="236" width="140" height="36" fill="#c9d1d5"/>
+<text x="520.0" y="261" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#19313e">2</text>
+<text x="604" y="261" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="319" font-family="Arial,sans-serif" font-size="17" fill="#19313e">ESLint additional</text>
+<rect x="310" y="294" width="280" height="36" fill="#c89b58"/>
+<text x="450.0" y="319" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
+<text x="604" y="319" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="377" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Lodash alternate model</text>
+<rect x="310" y="352" width="140" height="36" fill="#3d8c78"/>
+<text x="380.0" y="377" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">2</text>
+<text x="464" y="377" font-family="Arial,sans-serif" font-size="15" fill="#526a78">2 assigned</text>
+<text x="52" y="435" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Pino + Prettier</text>
+<rect x="310" y="410" width="490" height="36" fill="#3d8c78"/>
+<text x="555.0" y="435" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">7</text>
+<rect x="800" y="410" width="140" height="36" fill="#c66f5e"/>
+<text x="870.0" y="435" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">2</text>
+<rect x="940" y="410" width="70" height="36" fill="#c89b58"/>
+<text x="975.0" y="435" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<text x="1024" y="435" font-family="Arial,sans-serif" font-size="15" fill="#526a78">10 assigned</text>
+<text x="52" y="493" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Prettier follow-up</text>
+<rect x="310" y="468" width="280" height="36" fill="#3d8c78"/>
+<text x="450.0" y="493" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
+<text x="604" y="493" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="551" font-family="Arial,sans-serif" font-size="17" fill="#19313e">ESLint suggestions</text>
+<rect x="310" y="526" width="140" height="36" fill="#c66f5e"/>
+<text x="380.0" y="551" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">2</text>
+<text x="464" y="551" font-family="Arial,sans-serif" font-size="15" fill="#526a78">2 assigned</text>
+<text x="52" y="609" font-family="Arial,sans-serif" font-size="17" fill="#19313e">ESLint + Prettier</text>
+<rect x="310" y="584" width="210" height="36" fill="#3d8c78"/>
+<text x="415.0" y="609" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">3</text>
+<rect x="520" y="584" width="70" height="36" fill="#8d87a2"/>
+<text x="555.0" y="609" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="590" y="584" width="280" height="36" fill="#c9d1d5"/>
+<text x="730.0" y="609" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#19313e">4</text>
+<text x="884" y="609" font-family="Arial,sans-serif" font-size="15" fill="#526a78">8 assigned</text>
+<text x="52" y="667" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Prettier interrupted</text>
+<rect x="310" y="642" width="70" height="36" fill="#8d87a2"/>
+<text x="345.0" y="667" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="380" y="642" width="350" height="36" fill="#c9d1d5"/>
+<text x="555.0" y="667" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#19313e">5</text>
+<text x="744" y="667" font-family="Arial,sans-serif" font-size="15" fill="#526a78">6 assigned</text>
+<text x="52" y="725" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Prettier alternate route</text>
+<rect x="310" y="700" width="630" height="36" fill="#3d8c78"/>
+<text x="625.0" y="725" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">9</text>
+<rect x="940" y="700" width="70" height="36" fill="#c66f5e"/>
+<text x="975.0" y="725" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<text x="1024" y="725" font-family="Arial,sans-serif" font-size="15" fill="#526a78">10 assigned</text>
+<rect x="52" y="785" width="14" height="14" fill="#3d8c78"/>
+<text x="72" y="797" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Complete + checks pass</text>
+<rect x="271" y="785" width="14" height="14" fill="#c66f5e"/>
+<text x="291" y="797" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Checks nonzero</text>
+<rect x="434" y="785" width="14" height="14" fill="#c89b58"/>
+<text x="454" y="797" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Incomplete</text>
+<rect x="569" y="785" width="14" height="14" fill="#8d87a2"/>
+<text x="589" y="797" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Unknown / interrupted</text>
+<rect x="781" y="785" width="14" height="14" fill="#c9d1d5"/>
+<text x="801" y="797" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Not run</text>
+<text x="52" y="860" font-family="Arial,sans-serif" font-size="14" fill="#526a78">A passed check is not project acceptance. Small, post-observation batches do not show production impact.</text>
+</svg>
