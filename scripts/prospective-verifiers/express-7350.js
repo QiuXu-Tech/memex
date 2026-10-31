@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),fs=require('node:fs'),root=process.argv[2],express=require(root);
+(async()=>{const app=express();app.engine('tmpl',(file,opts,done)=>done(null,'rendered'));app.set('view engine','tmpl');app.set('views','/tmp');let n=0;function missing(name){app.render(name,(err)=>{assert(err);assert.match(err.message,/Failed to lookup view/);n++})};missing('missing.');missing('other.');assert.equal(n,2);console.log('checks passed')})().catch(e=>{console.error(e);process.exitCode=1});

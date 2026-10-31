@@ -1,0 +1,148 @@
+{
+  "method": "Frozen before solver calls: source-only or clearly labeled manual references and network-disabled VM sandbox checks; initial failed Express regression and its correction are preserved separately.",
+  "issues": {
+    "qs-432": {
+      "referencePR": 433,
+      "referenceHead": "c0779918a9ba9fa2e091d39800fffe662c76b71c",
+      "referenceKind": "MANUAL_PORT",
+      "sourcePatchSha256": "76d7f6eb317cdc657c5c250336cd2015ca0be134e19d6a2303de2fc39e743ee9",
+      "compressedPatchSha256": "a26b5d90465059c083b40327e09cb5229e1859526ad793af807d15f36f4b5fa3",
+      "originalPRPatchSha256": "7becdca4b70e140b42e5e2ff4e1ca5d351222022520e3fbf96c92944e7b3a1b4",
+      "compressedOriginalPRSha256": "3350d8f1213ab7896e3e73b708e046e270d9f29f470a8b00a5ce08181e88bfc0",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "7fe0b83dfdab3b8c08de0f2ec6fb399d8120e7da21e4144692819ae253c73c32"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "286237d83cdb7ac56f1d975b14ebfd69df7f8805e003b2fa3561b73a68e09691"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "PR source did not apply to the pinned current parser; the narrow manual port and original PR are both retained. A preliminary baseline require was also run in the isolated VM before the sandboxed qualification."
+    },
+    "express-7350": {
+      "referencePR": 7392,
+      "referenceHead": "f83a3e024a2d554795a6294f747a1f7b05e82553",
+      "referenceKind": "SOURCE_ONLY_PR",
+      "sourcePatchSha256": "08e900ffc4bfe80eb6e3bf17dae5f60727c5e114a38ed5ac113d11182f57e1a0",
+      "compressedPatchSha256": "d7ff52b63b46f2674cfba6041c73e812b399fcbcf425af83057ca454c5ece4e0",
+      "originalPRPatchSha256": "d397623083bec03ab3712683cd4022f100a84f146bd82e4d15f5d858d4abd7d7",
+      "compressedOriginalPRSha256": "9cb420d9bd3a2ca76a3446b153e306f8a0fe82d2523c29e1c57d48127268f4b3",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "c8b04570dd36dc965a446366315233428bdc0f157285b6b653bac1deb3f11216"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "52d377fb5b7edfd04cc73bbc22953432052a55f4a13db82b50c545c55aca1846"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "Initial baseline and reference regression failed because the success callback was not awaited; the check was corrected and rerun before registration. Original checks remain in the private qualification record."
+    },
+    "cheerio-581": {
+      "referencePR": 3306,
+      "referenceHead": "5b4787e888c7ed54e5af01cd08eca0075d9a4b67",
+      "referenceKind": "MANUAL_PORT",
+      "sourcePatchSha256": "378b0507fa8f2b4d8080e7de0c5dd9b196d7003e7a69eeeb19e8fff68c663604",
+      "compressedPatchSha256": "cce78fd0d10e36961c4f229d123065c9a4b85675e05a985729e43bed7d0bb030",
+      "originalPRPatchSha256": "aba687b15508f5e1572ca14bf610563dbf0fc8575e66f98773d39c21c841b36e",
+      "compressedOriginalPRSha256": "7df84c78f38c21c0e4c3e45dc0da4f134170e26b8bbada6b5869e96dd9a7b42d",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "01b053a1bdcdd66d5bf795f92af4c7c621ac3c34a638000f0b91484a3d7cc6e7"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "4e53e7d60236df15cb7c6a431503f3b55755e393e271325b868eb56a5683a2d0"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "PR source did not apply to the pinned current version; the manual port and checks cover getter behavior only, not setters or the data API."
+    },
+    "mathjs-3620": {
+      "referencePR": 3681,
+      "referenceHead": "946d8c13c57ee32455dc4795fa5a0c899f56a1e8",
+      "referenceKind": "SOURCE_ONLY_PR",
+      "sourcePatchSha256": "e02b0cc35bafc455824e8bca3bcc69467c36a8cd0f65377407478dc58c0ba607",
+      "compressedPatchSha256": "dd0664d9d8badc6518f57f26504a161b59ed0a941e347fee7c55f9622b593c86",
+      "originalPRPatchSha256": "7a6647852f36575cd56925f7327bd3748e69b26760e57904ed53d4bbca89a8ad",
+      "compressedOriginalPRSha256": "fafa3021c06aadac34570ffda781a50811d645926a083727518ec1405bf12ca3",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "384bd4480c4a976d3ff294d2dbbc94d71e071623b8685b177d59b6196af7e214"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "384bd4480c4a976d3ff294d2dbbc94d71e071623b8685b177d59b6196af7e214"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "kind": "registered-four-distinct-project-issue-pairs-v28",
+  "createdAt": "2026-10-31T22:29:03.604936+08:00",
+  "sourceCommit": {
+    "qs": "43baea4655cb9b543fb1c5cc0db95cde42852140",
+    "express": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824",
+    "cheerio": "70b0dcefb8514298d255ca7ca0ec26b7bc63475a",
+    "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+  },
+  "tasks": {
+    "432": "qs",
+    "7350": "express",
+    "581": "cheerio",
+    "3620": "mathjs"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "guestHashes": {
+    "/opt/memex-pilot/node/bin/node": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "/home/mk-q.guest/staging/qs-runtime-v27/package-lock.json": "67f76e8af7644c57990698358560828277c80844b51f012ea207120b8751efcd",
+    "/home/mk-q.guest/staging/express-runtime-v27/package-lock.json": "7469cd3624c70242507cb024f3fe6912c7200323e028d34893e3032b0cf6cd4a",
+    "/home/mk-q.guest/staging/cheerio-runtime-v28/package-lock.json": "695729b40267f060b4e4fd1835cda0e002f2f48f0d27cfac05958b8a7d98390f",
+    "/home/mk-q.guest/staging/mathjs-runtime-20261031/package-lock.json": "2195cbcd933fd1a2ed008d97cbb5862e13fea87b78739ce9a4b28961ee46973e"
+  },
+  "runtime": "Node 24.18.0 with pinned dependency locks; Cheerio source uses a test-only TypeScript hook.",
+  "files": {
+    "scripts/prospective-gateway-pilot-v27.py": "2f1af3fc34bc56cc0d9407470c707c71695a9e06a365913455b04fb18132423c",
+    "scripts/prospective-gateway-pilot-v25.py": "b9877352973e4b014af1465cd0dde67dfd6f32a15f2897513b8740b870813f6d",
+    "scripts/prospective-gateway-pilot-v24.py": "71bf84a0a0370f1743e4c3cd81f501cc76378fcbba8ff094ead13e86854f2ec3",
+    "scripts/prospective-gateway-pilot-v23.py": "def4504693340818b68e7daf5bc06c71aadd979c07cab6d0211a0803af974ee6",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v28.py": "80c556b634fdeab88f95f09bc49108ce34910ce69a16e769647fd85c9eb992c1",
+    "scripts/prospective_agent_v28.py": "882f33e22e9237e555fc9a34605868727abcd1f20a8f889b550a55d586eaa4cb"
+  },
+  "checks": {
+    "432": {
+      "public": "e1df87acf67e48a089938ffcd3a4f08392a273c189d0229b83893ba597c926da",
+      "acceptance": "c5da61c8984672daf5aef1699759f3b53aa6b955a3e550d493eb965b9b26056a",
+      "regressionControls": "5999698010eec8e9316a681190c179912824526bf656d58b75f5ad09ef39560c"
+    },
+    "7350": {
+      "public": "6646e57e49f7e5199ddb638f4aef84778c5c1b064756d6f8f0b668f7e5c2c76a",
+      "acceptance": "321cc9cc170e220770d793e306c5cf87911a867ebf4e0067ba1fa4ed18ab8cb2",
+      "regressionControls": "ca6c86adce68cd64ce592f045e915ad3f278413b12cbb7b182601b70ce35bf99"
+    },
+    "581": {
+      "public": "32f6dc20397e4eff1d4b926d6e7bb1c5091c06aa9b8a52214e8cdc0b42b33565",
+      "acceptance": "4eaa6ff90767da28c200304c1cbba3d6f018a2a923915a2f4022378d5cc68cfe",
+      "regressionControls": "ac13338b424ad459626030eb5bd000a2ecf6571a6d2def8a04797aedb982351f"
+    },
+    "3620": {
+      "public": "18fca08e1e55b0483fff1b8a2f3d65dc517a932127bd5153ee89b06a16621c4f",
+      "acceptance": "e023992aa49eb83a9366e1d2354c953dbd268f2a259ef818b6d1797b422b77b3",
+      "regressionControls": "9710ea3ba68a5dad0eb4cebba110299891df0758b5f230108177f17ce3266abd"
+    }
+  },
+  "issuesSha256": "585d5508437612a78212d303686eb51563151dc72e68412b355711692e467320",
+  "contextsSha256": "92498531e3d0f6f448e8724a5af9d139cae8f0da0bcaeb29cf43196eb8f3bce8",
+  "seed": 2026103133,
+  "schedule": [
+    {
+      "issue": "3620",
+      "arm": "memex"
+    },
+    {
+      "issue": "3620",
+      "arm": "keyword"
+    },
+    {
+      "issue": "581",
+      "arm": "keyword"
+    },
+    {
+      "issue": "581",
+      "arm": "memex"
+    },
+    {
+      "issue": "432",
+      "arm": "memex"
+    },
+    {
+      "issue": "432",
+      "arm": "keyword"
+    },
+    {
+      "issue": "7350",
+      "arm": "keyword"
+    },
+    {
+      "issue": "7350",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6.1-sol",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 1200,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within each stage after provider failure or missing usage; preserve failed, missing and unknown costs. No timeout retry.",
+  "costTarget": "Below $1 estimated for four pairs, not a hard cap; requested model limits may be exceeded according to earlier usage.",
+  "limitations": [
+    "Selection follows previous outcomes; new issue identities are distinct but statistical independence is not established.",
+    "Public comments or PRs may reveal solutions and be present in model training; some cases include explicit proposed fixes.",
+    "Distinct retrieved comment IDs do not control content, length, quality, or eliminate task dependence.",
+    "Source-only proposed references and small custom checks do not establish maintainer acceptance.",
+    "The date-fns check executes TypeScript source through a test-only hook rather than the published package.",
+    "The distinct reviewer and adjudicator model names share a proxy whose actual provenance is not verified.",
+    "Pre-seeded short issue discussions are not production sessions or autonomous memory management.",
+    "The math.js issue is distinct from batch 27 but touches the same source file, so these tasks may be correlated.",
+    "The qs and Cheerio references are narrow manual ports of public proposed PRs, not accepted upstream patches."
+  ],
+  "toolOverflowPolicy": "Execute at most four tool calls per model response; log and return explicit not-executed results for every excess call, then continue within the original turn budget."
+}
