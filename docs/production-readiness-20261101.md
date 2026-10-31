@@ -34,7 +34,7 @@ All four checks used `gpt-6.1-sol`, Codex CLI `0.166.0-alpha.5.1`, ChatGPT login
 1. An explicit request to write was rejected: the tool required approval while this invocation's approval policy was `never`. The process still exited successfully; the tool call itself did not succeed.
 2. The read-only tool completed but returned no marker because the fixture script had mistakenly seeded a different directory. This is an invalid instrumentation attempt, not a Memex retrieval failure or success.
 3. After the fixture was corrected and independently checked from both directories, the read-only tool returned the project marker. An instrumented server process reported the Codex `--cd` project as its working directory. This is one host and CLI version, not a guarantee for other clients or configurations.
-4. In a separate temporary writable workspace, an explicit prompt requested a write, search and open. All three MCP calls completed and the opened body matched the test fixture. The default approval policy was unchanged. This is a scripted connection check, not an autonomous decision to manage memory.
+4. In a separate temporary writable workspace, an explicit prompt requested a write, search and open. All three MCP calls completed and the opened body matched the test fixture. After the Codex process exited, a separately started MCP server in the same workspace also found and opened that record; this readback used no model call. The default approval policy was unchanged. This is a scripted connection check, not an autonomous decision to manage memory.
 
 No approval policy was changed for these checks. Both write attempts were explicitly scripted, so neither tests autonomous memory management. No AI blind review was run in this round.
 

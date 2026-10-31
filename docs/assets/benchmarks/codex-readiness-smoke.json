@@ -43,6 +43,11 @@
   "realTaskPairs": 0,
   "autonomousWriteReadLifecycles": 0,
   "scriptedWriteSearchOpenCycles": 1,
+  "independentProcessReadback": {
+    "searchFoundRecord": true,
+    "openMatchedBody": true,
+    "modelCalls": 0
+  },
   "limitations": [
     "Synthetic integration checks only; not a randomized production experiment.",
     "One write in the read-only invocation was denied; a later scripted writable-workspace cycle succeeded. No autonomous write was observed.",

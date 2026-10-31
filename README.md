@@ -86,7 +86,7 @@ Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: base
 
 ## Prospective engineering canary (2026-10-31)
 
-**Integration readiness follow-up (2026-11-01, unreleased):** MCP record operations now respect workspace and session visibility, default L2 sessions no longer span MCP processes, new global Codex configuration does not pin the setup project, and long single-line bodies can be continued. Four synthetic Codex checks retained a denied write and an invalid fixture; a corrected read confirmed the project scope, and a scripted write-search-open cycle worked in a temporary writable workspace. This is not a production A/B or evidence of autonomous memory management. [Repairs, checks, usage and limitations](docs/production-readiness-20261101.md).
+**Integration readiness follow-up (2026-11-01, unreleased):** MCP record operations now respect workspace and session visibility, default L2 sessions no longer span MCP processes, new global Codex configuration does not pin the setup project, and long single-line bodies can be continued. Four synthetic Codex checks retained a denied write and an invalid fixture; a corrected read confirmed the project scope, and a scripted write-search-open cycle worked in a temporary writable workspace and was read back by a new MCP process. This is not a production A/B or evidence of autonomous memory management. [Repairs, checks, usage and limitations](docs/production-readiness-20261101.md).
 
 ![Four synthetic Codex integration checks, including the denied write and invalid fixture](docs/assets/benchmarks/codex-readiness-smoke.svg)
 
