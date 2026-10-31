@@ -1,0 +1,1 @@
+'use strict';const assert=require('node:assert/strict');const {Linter}=require(process.argv[2]);const opts={languageOptions:{ecmaVersion:2022},rules:{'func-name-matching':'error'}};const m=new Linter().verify('obj.𐐨 = function 𐐩() {};',opts);assert.equal(m.filter(x=>x.ruleId==='func-name-matching').length,1);console.log('public example passed');

@@ -1,0 +1,1 @@
+'use strict';const assert=require('node:assert/strict');const {Linter}=require(process.argv[2]);const opts={languageOptions:{ecmaVersion:'latest'},rules:{'no-unreachable':'error'}};const m=new Linter().verify('for (;;) { try { break; } finally { foo(); } }',opts);assert.equal(m.length,0);console.log('public example passed');

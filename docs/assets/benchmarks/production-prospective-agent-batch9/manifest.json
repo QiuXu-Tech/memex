@@ -1,0 +1,111 @@
+{
+  "kind": "registered-four-mixed-issue-agent-instrumentation-not-30-task-study",
+  "createdAt": "2026-10-31T14:27:53.749326+08:00",
+  "repo": "eslint/eslint and prettier/prettier",
+  "sourceCommit": {
+    "eslint": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "eslint": "4fa513b9243f5c751c0dfaca6aa462d70ae313d59fc1634d302782cc10a564d4",
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "eslintRegressionLockSha256": "e32d6a6469c8041dfeec7da6231ab2c21a6a44bd5b48d3852ee33c66b4e4ea3a",
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "21361",
+    "21422",
+    "20307",
+    "20306"
+  ],
+  "checks": {
+    "21361": {
+      "public": "2af36ef18f7ffcc3a6c82ba94f1a0977c5c620b3c75fd1d23dc2e55ee200e51d",
+      "acceptance": "e0e7230b03506b3a0452c5efd3350fb968381a8d58fe09a761d0ba09a78e573b",
+      "regressionControls": "70d602823d18617f67c8421e73d8643360033885bd1a01487b3ca5b260e534b5"
+    },
+    "21422": {
+      "public": "662eda3667279d3218204f6bbe6ae834c37e4089d2f8278d192d0e01b1a21def",
+      "acceptance": "a180372ca3fc96e5084d6d65e820a01551bef9b2c354ed45ffec10282a9b1e63",
+      "regressionControls": "e2f064fddf13e9c6d88bd6293f74af53b8ae64da3b1e9965824008b100433b09"
+    },
+    "20307": {
+      "public": "8132f644a92feee46f244b7ba2fa04e27ab42e01d802c2a1054e2e9977973a94",
+      "acceptance": "7beb53d1fdd6d16c8158f4746967700e58a7bc0056268a14bffef8588ee0a563",
+      "regressionControls": "8333033dcceace39fc2005d7aad83f0f59c9888ce9e12451a133aa4998b8bf18"
+    },
+    "20306": {
+      "public": "2bc4db6afb9e7ffe8a786f26a6cad4e4ead90dfbb40cc94c24d3bb79c18abce8",
+      "acceptance": "0511a52a51589ae81bd7f7cc8fc48fe08bf575f38f7537a5cf8af972bfbcfc19",
+      "regressionControls": "0fbb975b0d86efd194fc76b26afad85d2e913dc30978a874bb512d4cf8d04ffd"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v9.py": "15f1e660896ad647ea322950833ec6a8afae4617a4766aa7b6bb91db6686d4f6",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "6afa4a9b1715ad51ca5780c314791d77f4e01d0edf08a60d8009b309a677cf14",
+  "contextsSha256": "cad90655e1f2efeda48a552ab39a8e658d3aee7ed143def4fe16989c46a5cc13",
+  "seed": 2026103109,
+  "schedule": [
+    {
+      "issue": "21361",
+      "arm": "keyword"
+    },
+    {
+      "issue": "21361",
+      "arm": "memex"
+    },
+    {
+      "issue": "21422",
+      "arm": "memex"
+    },
+    {
+      "issue": "21422",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20306",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20306",
+      "arm": "memex"
+    },
+    {
+      "issue": "20307",
+      "arm": "memex"
+    },
+    {
+      "issue": "20307",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6.1-sol"
+  ],
+  "adjudicator": "gpt-6-astra",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $2; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Four new issues selected after previous outcomes, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers are not humans; adjudicator shares solver model family",
+    "No effect or savings claim"
+  ]
+}
