@@ -1,0 +1,216 @@
+{
+  "kind": "posthoc-budgeted-dayjs-review-completion",
+  "createdAt": "2026-10-31T19:13:34.085172+08:00",
+  "repo": "iamkun/dayjs",
+  "sourceCommit": {
+    "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3"
+  },
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "dependencies": "No external npm packages; checks use Node module hooks to load source ESM."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "2951",
+    "2479",
+    "2956",
+    "1271",
+    "1923",
+    "2511"
+  ],
+  "checks": {
+    "2951": {
+      "public": "a560690602313ed85e2e82a40842ae0a3becdae13275fc65ea6c632936c2feac",
+      "acceptance": "79f4c27ad8f4f7ac66fba4c3aa29c23263236fbf92c6adc3aa48728a12d38446",
+      "regressionControls": "a59bfa55038daba3b7187eb1391d51c6a926af33f56a7c3a65767b2298aaf69a"
+    },
+    "2479": {
+      "public": "88b06efdb862bfa0fac0e1dd02d841becaaf2eb5be0a15138c909f845ca47503",
+      "acceptance": "a4c4ccd7c223d134336f0f33f4d01957fa664c902f855cbd6e76cd2a18dde8cd",
+      "regressionControls": "3a33ed1a6d1c25906e09ca12895a45a402690b9d80186cab6e50bdac349703cf"
+    },
+    "2956": {
+      "public": "0ade05c26b41224977ef20e6761a31bc5acbea159ce63666d105b2ba1fcd1051",
+      "acceptance": "7dc8c4b9bc02da1fb78b4697a408f725bc223f67e7656f02750fe7f4b2810335",
+      "regressionControls": "f01a1e309b0a40cc707cb8dc2cc4cb0a98c856e646fe648248795d9f28d254a7"
+    },
+    "1271": {
+      "public": "ae82a3e3f1eb2bdb5fcc7089d594f48ef03ffc08c3da9bc77ab2c941318dda45",
+      "acceptance": "a571ea50862dd5556d0b27a67a1724f223e97687c1438f576f7f429118dc6c34",
+      "regressionControls": "2c8815840bb0b6fd93456220b5aabbc07cd66522d47822566ae7d12dab899dcc"
+    },
+    "1923": {
+      "public": "f60ff89a6a5d57dd80a70548f46ab311080625d1f33e9b28da1e4669ee6ce31e",
+      "acceptance": "2fb7969772a4aeb7031c0933c627a95d037ff2119f7056a0f60d46edc540a03c",
+      "regressionControls": "cab16db255e0924a93d5e47e466936594afebd09cd1bbabe4267980bd9bed8f3"
+    },
+    "2511": {
+      "public": "bfe74ed3f24d55cb8ee10a51c0002cd42fec35af956e7d60f29ead8853f31fe5",
+      "acceptance": "6ac8e2520a8ba1d762ebb36a139d9f83d5b4c8bb3066d758395608d869a1c032",
+      "regressionControls": "aca7d1ef7b64dea571af3ad95f17f009acf68e36fc8070dce5026c4fb1837a0e"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-posthoc-v16-budgeted.py": "52a592e55e4724d921269735072ed85c7945b97d8230385e7f4ece8c8378c48a"
+  },
+  "issuesSha256": "ffa757a455650a8a5b405c75fe858b9b2e40c0ee9d77f1ec98c4eae1dea52f34",
+  "contextsSha256": "498ed01f8d7fc1033ccd7abde59320172a8add2c793d29f53b789db567535a4c",
+  "seed": 2026103116,
+  "schedule": [
+    {
+      "issue": "2511",
+      "arm": "memex"
+    },
+    {
+      "issue": "2511",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1923",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1923",
+      "arm": "memex"
+    },
+    {
+      "issue": "2956",
+      "arm": "memex"
+    },
+    {
+      "issue": "2956",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2951",
+      "arm": "memex"
+    },
+    {
+      "issue": "2951",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1271",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1271",
+      "arm": "memex"
+    },
+    {
+      "issue": "2479",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2479",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gemini-3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "After bounded 503 retries, stop launching calls within the stage after a provider failure, malformed response or missing usage. Preserve every attempt and unknown fee. Never automatically retry a timeout.",
+  "costTarget": "Under $2 estimated for this six-issue instrumentation batch, not a hard cap. Failed or unreported charges remain unknown.",
+  "limitations": [
+    "Selected after prior batches and some results were observed; not one pre-registered 30–50-task cohort.",
+    "Six issues touch different functional areas, but common project and source exposure prevent an independence guarantee.",
+    "Public issue discussions and PRs may disclose proposed solutions or appear in model training.",
+    "Source references and issue-specific tests are partial and do not establish maintainer acceptance.",
+    "Checks use Node source ESM hooks rather than the published compiled npm package.",
+    "Retrieved contexts have different actual lengths and pre-seeded short issue discussions are not production sessions.",
+    "Reviews and adjudications are AI through a common proxy; model provenance is unverified.",
+    "Autonomous memory lifecycle, production effectiveness and cost savings are not established.",
+    "Post-hoc selection and larger reasoning-model budgets were chosen after original truncations; original ratings and adjudications remain unchanged.",
+    "Synthetic format probes do not guarantee valid real review responses."
+  ],
+  "sourceManifestSha256": "2bd9efc67fe7970be5df882a0a2f3382dde495342b895249943a553566ba1c4d",
+  "sourceHashes": {
+    "issues.json": "ffa757a455650a8a5b405c75fe858b9b2e40c0ee9d77f1ec98c4eae1dea52f34",
+    "contexts.json": "498ed01f8d7fc1033ccd7abde59320172a8add2c793d29f53b789db567535a4c",
+    "blind-key.json": "294316f2f262a4c3333336ba814e37e0dd01c2b40821c2d504f0e5634751a3d1",
+    "review-calls.jsonl": "b8534c60a82e92dc82451420ac1e84f225dbcc2cbda558c3af105aedc7276396",
+    "adjudication-calls.jsonl": "53f74e59c12a4afba5e8db98235328cbada0af63d4175e6d82a42eab1c3ee410",
+    "runs/03/result.json": "70aff3c7548b9f781ce97a7acaa28d3d22244d066ed239b8469049659c5b840e",
+    "runs/03/candidate.diff": "d513fc00af9c8fcd4318d087ac0a33ef2bcbb399d4ed7b7e84fa8a4ce8a44514",
+    "runs/04/result.json": "3f635b490232a228168d4d5b533fb5f54c94bb1c802c222807196e9c278cd451",
+    "runs/04/candidate.diff": "2e87938f468d4e09bea0c680a158ad599b93a3e12567bfa670f01375a1d922c4",
+    "runs/05/result.json": "86086912b598938f72268bc27fcdb76cea6b5bbfe4a8ebd5700b6d129180fd81",
+    "runs/05/candidate.diff": "480822c817bee7c78892d3dd00655663e9fa2ed45aa83136cec466a923c99818",
+    "runs/02/result.json": "3b4ab53696df332ff2ebb6252dbf8c621df199c16714e14ea4fedab19d91a993",
+    "runs/02/candidate.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/11/result.json": "5bf7c4136e9c14f396f654c5b4317f380d1e916a71a1378b75574bd50ca7c308",
+    "runs/11/candidate.diff": "a675b071521a0f2deb7321a5183342f4fcf6e4155c8f817a349418414822d5b4",
+    "runs/10/result.json": "83c9f8afcaa17d0b911ba57ba3f2ccd58d111292159eb44d5dd4b740b60f0bae",
+    "runs/10/candidate.diff": "6a91905d4db77084bb44af7cc2ee36b1f1d6537342446e4a4ff81ea15552d52e",
+    "runs/07/result.json": "bf5b0031f0033935c1d1bd780f7387745a49dc93c569384698b0fe8c6c4806b1",
+    "runs/07/candidate.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "runs/09/result.json": "184a9e43aa591d81f34e6e78db2da08e6cc12080ae1c91c74d6cb754be727d49",
+    "runs/09/candidate.diff": "d9ecafeb36116fff0c288c64ce8b3bf6df03dc4786e0ed09e4302ee5dd0d5b84",
+    "runs/08/result.json": "9d43378ffa4bed487c27c1d7125ff204969f4006d766801ceb2aa7f0722c6785",
+    "runs/08/candidate.diff": "8e8d002546c3a146d178c14cd011be2431f50532525d4f715927a8322d05aff8",
+    "runs/01/result.json": "8d7ccecc38ec826de884b52d07c9a3cf17511261b6e23157ed09b38f94b3de0d",
+    "runs/01/candidate.diff": "59e4f33396f9be24e0401670a96ebe7c60a2565ff9b2512ec0ab01cedd2610e1",
+    "runs/06/result.json": "1a5f768a86b6b7ee56543407ee58155ae73e8c9beb1d514ab26548306abb184a",
+    "runs/06/candidate.diff": "42cb2a729ef9f882bb590a486663f46c86304b3f289445ca10156597255b0beb",
+    "runs/12/result.json": "2143e18cc6f16e2b9b5ee4a4532114a2eb927f77d02dc7433a616ec05a629a1d",
+    "runs/12/candidate.diff": "99500d292c5d9f58002f26e777b696ecd2d6c0bac32d97893b68a7e59bb8ba2f",
+    "reviews/B06-qwen3.8-flash.json": "aedb81b16f4fc09bee811e8260eb7bd76283aee50664c30a1a437741cdac4644",
+    "reviews/B08-qwen3.8-flash.json": "00c09d7b1bff4e8ac6a5d28254377f78aee9650fca0d0247f4e434bd52640b77",
+    "reviews/B05-qwen3.8-flash.json": "3731b249a89fcba996c9dbd8405238f907a444a8c0f21672e324d922e1cb3931",
+    "reviews/B03-qwen3.8-flash.json": "5d7b82580cbacb04df2ecd8f2ad0dff94f653db57c9fef678db465a32ee90afe",
+    "reviews/B10-qwen3.8-flash.json": "c8bd75104f1257c32e5e63d3d8dd8861c9811e00494d149169edae2483febd9e",
+    "reviews/B01-qwen3.8-flash.json": "67506319b206ff070720c2e2f878256c3dc58d8171fb2ec740d4e085224e2560",
+    "reviews/B01-deepseek-flash.json": "ad9b43fdd5c3c4d44b0e322a73fd9093a6ebd6c4d8e84588cca8a91939d5ca0e",
+    "reviews/B03-deepseek-flash.json": "3231a671e9ebd3179c2509d5dba5cba4cc4c9106b8df39213e3b407f221d52a2",
+    "reviews/B02-deepseek-flash.json": "9820022046e7ab2482d78b34df369910f0987910cf8f71bb6fabe7e9ae68a147",
+    "reviews/B04-deepseek-flash.json": "12338b37f1a44b9c186f62167d20ddd9f5ead2a9a12fab1746baaf253680768d",
+    "reviews/B05-deepseek-flash.json": "46d9c30ed49cfda04d19a2805fbb909386686be612f21a18774a380055c6cdf9",
+    "reviews/B06-deepseek-flash.json": "247ebfa3a9247dce53800b0074521e70f33d0473085dd64683d3db7200774a8a",
+    "reviews/B02-qwen3.8-flash.json": "515ad16aec501d205cafc45d698608e15ebe026ff4af1263c7e60e169f9f1535",
+    "reviews/B07-deepseek-flash.json": "df98616b58aee31fa38343a67aa4240e26b57ec83767e311c39e2fc9590f8064",
+    "reviews/B09-qwen3.8-flash.json": "f338083ba9afec9bcdaacfe83425b8b474ccd5874328e412e85e47d722ae531e",
+    "reviews/B04-qwen3.8-flash.json": "f297ba59d8db9289a9e899c63cc10d9271115ef12afc71c12e5fc0b3e3b6ab2a",
+    "reviews/B08-deepseek-flash.json": "49a3d0eccafa0525dedffd759a3a388a040b55f8006393fcb117b401ac421307",
+    "reviews/B10-deepseek-flash.json": "0f3c5f8bcc4c46adad4bf0f10d5d1208a107989708960cb920660551944b46bf",
+    "reviews/B09-deepseek-flash.json": "c408ae4b1f91514100062644a17aa5f060a173b879762cf617335ccf1cd20c97",
+    "reviews/B07-qwen3.8-flash.json": "85572d02d2a7239be51bd98822d388dff889febed0557ea1572004aa47c5378a",
+    "adjudications/B10.json": "1d039aac612fd072823e1dfcb72d4d82d1df6f3217a9dce3eca723e8062d6777",
+    "adjudications/B01.json": "7501a80114906dba7832040f303f43cd2a5d7e08edcc8fa8e5889bcf9f9d980a",
+    "adjudications/B02.json": "2d670fe05d9db23101261095a238bf221e17b592ec6c228b730980d07db8690c",
+    "adjudications/B08.json": "085eab3d579ac9e360a507b029962ecd9bc694db9dda9aa4c455ace1758f35ac",
+    "posthoc-key.json": "e838dc4f7dd374f72505b664ef336e4e23aee9edbc4d21c2df997346736f270b"
+  },
+  "posthocSeed": 2026103118,
+  "selection": "Re-review exactly the three empty or truncated original Qwen ratings; retain original valid DeepSeek and Qwen ratings. Adjudicate each valid score disagreement with a new Gemini call.",
+  "reviewer": "qwen3.8-flash",
+  "posthocOutputTokenLimit": 2048,
+  "maximumReviewCalls": 3,
+  "maximumAdjudicationCalls": 7
+}
