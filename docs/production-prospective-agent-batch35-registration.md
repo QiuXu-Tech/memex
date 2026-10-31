@@ -1,0 +1,11 @@
+---
+title: One unstarted pair and one new issue pair
+---
+
+# One unstarted pair and one new issue pair
+
+**Registered before these solver and review calls.** Batch 32 stopped after an ambiguous solver timeout. Both arms of [Yup #2252](https://github.com/jquense/yup/issues/2252) were marked `NOT_RUN_AFTER_STOP`, and the solver log contains no started call for either slot. This registration uses the same frozen acceptance checks for that still-unattempted issue, a fresh public discussion snapshot, and a new paired order; its [prior qualification](assets/benchmarks/production-prospective-agent-batch32/qualification.json) and unstarted evidence hashes are preserved. No timed-out request or partially attempted arm is repeated. The Yup issue is counted once across registrations.
+
+The additional, previously unattempted [math.js #3608](https://github.com/josdejong/mathjs/issues/3608) asks for function-call precedence of `not(...)` and correct implicit multiplication. The frozen partial checks cover `2 not(false)`, a selected `not(...).map(...)` result, and selected ordinary logical/arithmetic controls. The source-only [PR #3611](https://github.com/josdejong/mathjs/pull/3611) passes these checks while the pinned baseline fails the first two; the [qualification ledger](assets/benchmarks/production-prospective-agent-batch35/qualification.json) retains the original and reference patches. This is not full parser coverage or maintainer acceptance.
+
+The [manifest](assets/benchmarks/production-prospective-agent-batch35/manifest.json), SHA-256 `5312f33bef2987af77c9071bf7c6abe2444435e9caea7581f66975af09cff7c0`, freezes source commits, histories, checks, randomized paired order, models, budgets and stop rules. Registration follows previous outcomes; both projects occur in earlier batches, and distinct issue identities do not establish statistical independence. Conditions, AI blind ratings and adjudication, sandbox and bounded 503-only retry policy follow [batch 30](production-prospective-agent-batch30-registration.md). The expected budget is under $1, not a hard limit. Public discussions may reveal solutions or be present in training; the shared proxy's model provenance is unverified. Short pre-seeded histories do not establish a production gain, savings or autonomous memory management.

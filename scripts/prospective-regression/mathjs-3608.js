@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url'),root=process.argv[2];
+(async()=>{const m=(await import(pathToFileURL(root+'/src/defaultInstance.js').href)).default;assert.equal(m.evaluate('not 2'),false);assert.equal(m.evaluate('true and false'),false);assert.equal(m.evaluate('2*(3+4)'),14);console.log('checks passed')})().catch(e=>{console.error(e);process.exitCode=1});
