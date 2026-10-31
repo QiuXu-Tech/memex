@@ -1,0 +1,5 @@
+'use strict';const assert=require('node:assert/strict'),fs=require('node:fs');const {registerHooks}=require('node:module');const {pathToFileURL,fileURLToPath}=require('node:url');const root=process.argv[2],prefix=pathToFileURL(root+'/src/').href;
+registerHooks({resolve(spec,context,next){if(spec==='dayjs')return next(pathToFileURL(root+'/src/index.js').href,context);try{return next(spec,context)}catch(e){if(e.code==='ERR_MODULE_NOT_FOUND'&&(spec.startsWith('./')||spec.startsWith('../')))return next(spec+'.js',context);throw e}},load(url,context,next){if(url.startsWith(prefix))return{format:'module',shortCircuit:true,source:fs.readFileSync(fileURLToPath(url),'utf8')};return next(url,context)}});
+(async()=>{const dayjs=(await import(pathToFileURL(root+'/src/index.js').href)).default;await import(pathToFileURL(root+'/src/locale/ar-sa.js').href);
+for(const minute of [41]){const date=new Date(2025,9,28,12,minute);assert.equal(dayjs(date).locale('ar-sa').format('hh:mm a'),`12:${String(minute).padStart(2,'0')} م`)}console.log('noon Arabic meridiem checks passed');
+})().catch(e=>{console.error(e);process.exitCode=1});

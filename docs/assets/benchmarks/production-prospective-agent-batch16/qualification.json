@@ -1,0 +1,247 @@
+{
+  "kind": "pre-trial-task-qualification",
+  "sourceCommit": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+  "note": "Exit codes and private log hashes cover narrow tests, not full project acceptance. Public issues and references may be exposed to models.",
+  "rows": [
+    {
+      "issue": "https://github.com/iamkun/dayjs/issues/2951",
+      "issueUpdatedAt": "2026-02-02T11:51:00Z",
+      "commentCount": 8,
+      "referencePR": "https://github.com/iamkun/dayjs/pull/2952",
+      "referenceHead": "bee0319391c44335db7bab487bc102a23c680eee",
+      "referencePatchSha256": "66d588f1e17f43575b4ddf102c67b31fb7a129dc223af3fb233577952e3b2dce",
+      "checks": {
+        "public": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "37df9fab4f1b8773ac0cb29521cd5cbd062a113e190a253808ddd3b60fa3f328"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "7bc34f6317e1a44cf3d27f4abc291ab99d15468433e3b288da6268e692c84fb6"
+          }
+        },
+        "acceptance": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "85cf495b78957fe9cb3684cd1d50527a1e7389e5821a0f0688310dede2e277f2"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "7bc34f6317e1a44cf3d27f4abc291ab99d15468433e3b288da6268e692c84fb6"
+          }
+        },
+        "controls": {
+          "baseline": {
+            "exitCode": 0,
+            "logSha256": "f8c6d82815dbfca7ec0b3eee4886a45f2bdd6f5bc4561fa48a1601df8039f42d"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "f8c6d82815dbfca7ec0b3eee4886a45f2bdd6f5bc4561fa48a1601df8039f42d"
+          }
+        }
+      }
+    },
+    {
+      "issue": "https://github.com/iamkun/dayjs/issues/2479",
+      "issueUpdatedAt": "2024-10-13T21:04:42Z",
+      "commentCount": 6,
+      "referencePR": "https://github.com/iamkun/dayjs/pull/2583",
+      "referenceHead": "7ab8a1d4a29878b3a767f66d2e7eb55c0aa2bb4b",
+      "referencePatchSha256": "2d531f22bd0e758e72aec832b029029296536aa55f4b920c1824ca51ca18a64e",
+      "checks": {
+        "public": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "9e7d8fcdc5d4fa2ace62ff7f58f425e27e4f762007118ec3141b1ed6ee206c4c"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "ea302e30df055155275e62c1df1c620437da396100fb438b45c2407917d000c5"
+          }
+        },
+        "acceptance": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "9e7d8fcdc5d4fa2ace62ff7f58f425e27e4f762007118ec3141b1ed6ee206c4c"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "ea302e30df055155275e62c1df1c620437da396100fb438b45c2407917d000c5"
+          }
+        },
+        "controls": {
+          "baseline": {
+            "exitCode": 0,
+            "logSha256": "dfcdde45e0eaeb50517eede29698325d04b5d2bd6a0388e93ebe241687ea39d3"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "dfcdde45e0eaeb50517eede29698325d04b5d2bd6a0388e93ebe241687ea39d3"
+          }
+        }
+      }
+    },
+    {
+      "issue": "https://github.com/iamkun/dayjs/issues/2956",
+      "issueUpdatedAt": "2025-11-07T17:37:27Z",
+      "commentCount": 3,
+      "referencePR": "https://github.com/iamkun/dayjs/pull/3221",
+      "referenceHead": "961201a660e004ea2c31b75990f4be0871fc6ade",
+      "referencePatchSha256": "3025ef0ee2eec4accd895831a3e4dade5d839608e4a95f3bef0bdef8a2cc5839",
+      "checks": {
+        "public": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "1f894da583adc5b9dc7249d3bdcd506498208f1d89dc089c16c96d6cc29aa91f"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "b9744edfd3a21dd9ef8391dd9d9c0a3b94882e26fbe4b9468d5118412f6bca58"
+          }
+        },
+        "acceptance": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "1f894da583adc5b9dc7249d3bdcd506498208f1d89dc089c16c96d6cc29aa91f"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "b9744edfd3a21dd9ef8391dd9d9c0a3b94882e26fbe4b9468d5118412f6bca58"
+          }
+        },
+        "controls": {
+          "baseline": {
+            "exitCode": 0,
+            "logSha256": "5f0bfe1ca9226df85fc67cd1d447e427aa28409e4310de11a68f21657de6556d"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "5f0bfe1ca9226df85fc67cd1d447e427aa28409e4310de11a68f21657de6556d"
+          }
+        }
+      }
+    },
+    {
+      "issue": "https://github.com/iamkun/dayjs/issues/1271",
+      "issueUpdatedAt": "2026-10-26T15:18:02Z",
+      "commentCount": 19,
+      "referencePR": "https://github.com/iamkun/dayjs/pull/3252",
+      "referenceHead": "145aa01c842e655782a2f1c2d4a1138d3088cc03",
+      "referencePatchSha256": "e1bb94d4cfcd92e6c38eb0f5533144d2219d4d6ccabc39ec70cd1a5993627317",
+      "checks": {
+        "public": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "9f8c4e15791cfff93b387630f1d1292d29e02fa692df661ba634a8b0af9fe4ec"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "081f014ee4779ea218c1709fd746990af7e9f5e11265befd73adfa209f10d1fc"
+          }
+        },
+        "acceptance": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "9f8c4e15791cfff93b387630f1d1292d29e02fa692df661ba634a8b0af9fe4ec"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "081f014ee4779ea218c1709fd746990af7e9f5e11265befd73adfa209f10d1fc"
+          }
+        },
+        "controls": {
+          "baseline": {
+            "exitCode": 0,
+            "logSha256": "3ffd5197ad776b1ec2409f336e3c85c6b576516138b0ab9e2d5ad953cdf3029c"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "3ffd5197ad776b1ec2409f336e3c85c6b576516138b0ab9e2d5ad953cdf3029c"
+          }
+        }
+      }
+    },
+    {
+      "issue": "https://github.com/iamkun/dayjs/issues/1923",
+      "issueUpdatedAt": "2022-06-10T09:16:43Z",
+      "commentCount": 4,
+      "referencePR": "https://github.com/iamkun/dayjs/pull/1936",
+      "referenceHead": "0c6f9bfb098d8bcb8fbf41df005f4a9e78254d29",
+      "referencePatchSha256": "9b076a24d077c9be64ef10cf6e3cdbe3d148353dde865dffe5def799761eb554",
+      "checks": {
+        "public": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "0576d5d8972b74753b94e2a02e5f4f6e7e713490998739a862d1244cfb844dda"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "5b44d6746fc0b1c555a0be39eff6944d56900350214b7a75fd32548f5daa1e15"
+          }
+        },
+        "acceptance": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "5c905da3d8ec2092fb729cbd6613816f1bdb144539261d71d816ff76c8e2aa83"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "5b44d6746fc0b1c555a0be39eff6944d56900350214b7a75fd32548f5daa1e15"
+          }
+        },
+        "controls": {
+          "baseline": {
+            "exitCode": 0,
+            "logSha256": "88dab8a4ee6d58e36359611c4c91559868cc32f75bc9cd45ddd3b867aa6f6e7b"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "88dab8a4ee6d58e36359611c4c91559868cc32f75bc9cd45ddd3b867aa6f6e7b"
+          }
+        }
+      }
+    },
+    {
+      "issue": "https://github.com/iamkun/dayjs/issues/2511",
+      "issueUpdatedAt": "2023-12-13T10:49:08Z",
+      "commentCount": 6,
+      "referencePR": "https://github.com/iamkun/dayjs/pull/2942",
+      "referenceHead": "0113e9cbf1956f6e91241cd72203bbf18e8b86f2",
+      "referencePatchSha256": "a0e322a94dce28c69e8ef8883366e1a757991b30de5db173a212fcec525effc7",
+      "checks": {
+        "public": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "84e29c896bcf0d79ebe2bf96eb66c50df159c5945a0fb52e92ad8b32a18e9613"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "2e9c36f1bcb20f531a2d6bcd6480819158a43d39d23959598168b9b1beff8764"
+          }
+        },
+        "acceptance": {
+          "baseline": {
+            "exitCode": 1,
+            "logSha256": "84e29c896bcf0d79ebe2bf96eb66c50df159c5945a0fb52e92ad8b32a18e9613"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "2e9c36f1bcb20f531a2d6bcd6480819158a43d39d23959598168b9b1beff8764"
+          }
+        },
+        "controls": {
+          "baseline": {
+            "exitCode": 0,
+            "logSha256": "82db5d4fa11319598f34059365dea2182fa0e13631b5867febc85b6652cb4b69"
+          },
+          "reference": {
+            "exitCode": 0,
+            "logSha256": "82db5d4fa11319598f34059365dea2182fa0e13631b5867febc85b6652cb4b69"
+          }
+        }
+      }
+    }
+  ]
+}

@@ -1,0 +1,150 @@
+{
+  "kind": "registered-six-issue-dayjs-instrumentation",
+  "createdAt": "2026-10-31T18:43:13.070137+08:00",
+  "repo": "iamkun/dayjs",
+  "sourceCommit": {
+    "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3"
+  },
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "dependencies": "No external npm packages; checks use Node module hooks to load source ESM."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "2951",
+    "2479",
+    "2956",
+    "1271",
+    "1923",
+    "2511"
+  ],
+  "checks": {
+    "2951": {
+      "public": "a560690602313ed85e2e82a40842ae0a3becdae13275fc65ea6c632936c2feac",
+      "acceptance": "79f4c27ad8f4f7ac66fba4c3aa29c23263236fbf92c6adc3aa48728a12d38446",
+      "regressionControls": "a59bfa55038daba3b7187eb1391d51c6a926af33f56a7c3a65767b2298aaf69a"
+    },
+    "2479": {
+      "public": "88b06efdb862bfa0fac0e1dd02d841becaaf2eb5be0a15138c909f845ca47503",
+      "acceptance": "a4c4ccd7c223d134336f0f33f4d01957fa664c902f855cbd6e76cd2a18dde8cd",
+      "regressionControls": "3a33ed1a6d1c25906e09ca12895a45a402690b9d80186cab6e50bdac349703cf"
+    },
+    "2956": {
+      "public": "0ade05c26b41224977ef20e6761a31bc5acbea159ce63666d105b2ba1fcd1051",
+      "acceptance": "7dc8c4b9bc02da1fb78b4697a408f725bc223f67e7656f02750fe7f4b2810335",
+      "regressionControls": "f01a1e309b0a40cc707cb8dc2cc4cb0a98c856e646fe648248795d9f28d254a7"
+    },
+    "1271": {
+      "public": "ae82a3e3f1eb2bdb5fcc7089d594f48ef03ffc08c3da9bc77ab2c941318dda45",
+      "acceptance": "a571ea50862dd5556d0b27a67a1724f223e97687c1438f576f7f429118dc6c34",
+      "regressionControls": "2c8815840bb0b6fd93456220b5aabbc07cd66522d47822566ae7d12dab899dcc"
+    },
+    "1923": {
+      "public": "f60ff89a6a5d57dd80a70548f46ab311080625d1f33e9b28da1e4669ee6ce31e",
+      "acceptance": "2fb7969772a4aeb7031c0933c627a95d037ff2119f7056a0f60d46edc540a03c",
+      "regressionControls": "cab16db255e0924a93d5e47e466936594afebd09cd1bbabe4267980bd9bed8f3"
+    },
+    "2511": {
+      "public": "bfe74ed3f24d55cb8ee10a51c0002cd42fec35af956e7d60f29ead8853f31fe5",
+      "acceptance": "6ac8e2520a8ba1d762ebb36a139d9f83d5b4c8bb3066d758395608d869a1c032",
+      "regressionControls": "aca7d1ef7b64dea571af3ad95f17f009acf68e36fc8070dce5026c4fb1837a0e"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "ffa757a455650a8a5b405c75fe858b9b2e40c0ee9d77f1ec98c4eae1dea52f34",
+  "contextsSha256": "498ed01f8d7fc1033ccd7abde59320172a8add2c793d29f53b789db567535a4c",
+  "seed": 2026103116,
+  "schedule": [
+    {
+      "issue": "2511",
+      "arm": "memex"
+    },
+    {
+      "issue": "2511",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1923",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1923",
+      "arm": "memex"
+    },
+    {
+      "issue": "2956",
+      "arm": "memex"
+    },
+    {
+      "issue": "2956",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2951",
+      "arm": "memex"
+    },
+    {
+      "issue": "2951",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1271",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1271",
+      "arm": "memex"
+    },
+    {
+      "issue": "2479",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2479",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gemini-3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "After bounded 503 retries, stop launching calls within the stage after a provider failure, malformed response or missing usage. Preserve every attempt and unknown fee. Never automatically retry a timeout.",
+  "costTarget": "Under $2 estimated for this six-issue instrumentation batch, not a hard cap. Failed or unreported charges remain unknown.",
+  "limitations": [
+    "Selected after prior batches and some results were observed; not one pre-registered 30–50-task cohort.",
+    "Six issues touch different functional areas, but common project and source exposure prevent an independence guarantee.",
+    "Public issue discussions and PRs may disclose proposed solutions or appear in model training.",
+    "Source references and issue-specific tests are partial and do not establish maintainer acceptance.",
+    "Checks use Node source ESM hooks rather than the published compiled npm package.",
+    "Retrieved contexts have different actual lengths and pre-seeded short issue discussions are not production sessions.",
+    "Reviews and adjudications are AI through a common proxy; model provenance is unverified.",
+    "Autonomous memory lifecycle, production effectiveness and cost savings are not established."
+  ]
+}
