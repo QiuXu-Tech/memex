@@ -1,0 +1,136 @@
+{
+  "kind": "registered-six-prettier-issues-not-independent-long-session-study",
+  "createdAt": "2026-10-31T15:23:38.076555+08:00",
+  "repo": "prettier/prettier",
+  "sourceCommit": {
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "20174",
+    "15537",
+    "17213",
+    "18066",
+    "9955",
+    "9112"
+  ],
+  "checks": {
+    "20174": {
+      "public": "e400cb85de49380c5adfea1c07e6dc4bea2898dfe590d31f94b20ef99fe7a460",
+      "acceptance": "8cb75fcbc7a7672bf26633aa9d8a5caff086f87a0756f3f057288ec3eeb28926",
+      "regressionControls": "80cb625f3d12cd2ba429ff2b5676d6e932a9ca86864346067c8c49281a47793e"
+    },
+    "15537": {
+      "public": "2a16c8e4ba2069451d230a9a3736627ea2ff2bdf184c7188dc9508de2a9f24d6",
+      "acceptance": "f986d453d4e686c98677fad6b40f1299e1735fe2ece66121b3bed828e7db4b6a",
+      "regressionControls": "be0c523c250a821339f36eb3ecc083db8c548f368fbd2c50f9508fda1d3bb69e"
+    },
+    "17213": {
+      "public": "aba4d35f51f479646f093acd03e1354366c5a4a8f9c448f9078c0ad98451e3e2",
+      "acceptance": "4fa1dcf62709385c633b4a3654b100c2e03a8f552a43709b7990522c47ed6c9d",
+      "regressionControls": "80cb625f3d12cd2ba429ff2b5676d6e932a9ca86864346067c8c49281a47793e"
+    },
+    "18066": {
+      "public": "25b51565f0cfcf5d6ee07d369f8abf6a4ba550f8d8cf08181da256e3cde2e2f8",
+      "acceptance": "61bf42acd9886ddaf2561f7618da9f409c6cc5244e940b3ca2ac0713365cac08",
+      "regressionControls": "d6a3e34124f4643856b605121be9c49d861e4633856720e75591fe98baeee9e9"
+    },
+    "9955": {
+      "public": "cd65fd06865ea2b28032f218b8135848274e4edc1213bda517ef61c035f28099",
+      "acceptance": "0936646a7f477756c95eaea8643a4415d1701470ee8361af205fa520217443b8",
+      "regressionControls": "f847251cbf93f23374f4191c595bdfafd2727907da1ed0ee4704ed5a0535dda3"
+    },
+    "9112": {
+      "public": "eff826bb42e81ad3ea2c4d193e490db57b5adccef3e2afecc4cc5b1e05ef54c8",
+      "acceptance": "f1eb4578723a3564c853867ea8a7d1035b4006e3a4ab158542703a11e13bf08e",
+      "regressionControls": "f847251cbf93f23374f4191c595bdfafd2727907da1ed0ee4704ed5a0535dda3"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v12.py": "8ef03a8e1d8fa69ddaf8798f137fc79c0b6ff1b2bf20bbfc2a28b07f8a3d715d",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "0a284da0d1476d642287e12313f22378ae768115e947732f182188763914f8d9",
+  "contextsSha256": "e3ed89d9e64289345ff564f048893a4d6b88af2717a65740c0924fb43c20fdce",
+  "seed": 2026103112,
+  "schedule": [
+    {
+      "issue": "9112",
+      "arm": "memex"
+    },
+    {
+      "issue": "9112",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20174",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20174",
+      "arm": "memex"
+    },
+    {
+      "issue": "18066",
+      "arm": "keyword"
+    },
+    {
+      "issue": "18066",
+      "arm": "memex"
+    },
+    {
+      "issue": "9955",
+      "arm": "keyword"
+    },
+    {
+      "issue": "9955",
+      "arm": "memex"
+    },
+    {
+      "issue": "17213",
+      "arm": "memex"
+    },
+    {
+      "issue": "17213",
+      "arm": "keyword"
+    },
+    {
+      "issue": "15537",
+      "arm": "keyword"
+    },
+    {
+      "issue": "15537",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6.1-sol",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6-astra"
+  ],
+  "adjudicator": "claude-haiku-4-5",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $2; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Six new issues selected after prior outcomes and timeouts, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers and adjudicator are not humans; proxy model provenance is not independently verified",
+    "No effect or savings claim"
+  ]
+}

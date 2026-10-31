@@ -41,6 +41,7 @@ jobs:
           python3 scripts/test-prospective-real-agent-pilot-v9.py
           python3 scripts/test-prospective-real-agent-pilot-v10.py
           python3 scripts/test-prospective-real-agent-pilot-v11.py
+          python3 scripts/test-prospective-real-agent-pilot-v12.py
           python3 scripts/test-prospective-posthoc-rubric-review.py
           python3 scripts/test-summarize-prospective-agent-batches.py
           python3 scripts/test-prospective-review-normalize-v2.py
