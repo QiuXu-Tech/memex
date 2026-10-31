@@ -1,0 +1,102 @@
+{
+  "kind": "discovery-and-baseline-only",
+  "observed": "2026-10-31",
+  "snapshots": 69,
+  "strictHeuristicCandidates": 48,
+  "warning": "Baseline failure or timeout is not project acceptance, independent ground truth, or pilot eligibility. Additional nine baselines were observed after the canary trial and include issues outside the strict heuristic.",
+  "lodashCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+  "expressCommit": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824",
+  "expressDependencyTreeSha256": "a3ae95e03c26a279d56a08560cd96532f7800a7989798c38e4470e7b381e8d24",
+  "rows": [
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6195",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "21ff758638df0f2e992e213989d18905868962cc04c54f7f4c409fd298582872",
+      "at": "2026-10-31T02:00:43.643810+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5750",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "48dd89b1a690ca7963cdcc6548b0b1e2c65447e229c166a9929cf3ddd0651d82",
+      "at": "2026-10-31T02:00:43.707832+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5881",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "status": "reported_throw",
+      "exit": 1,
+      "validatorSha256": "28986085abe1b6b69cdbe45b197e1a31ef2c716a3891ac86703c92d9ee002fad",
+      "at": "2026-10-31T02:00:43.768188+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6274",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "status": "timeout_3_seconds",
+      "exit": null,
+      "validatorSha256": "370886eb5e48f830731f2a45c244d3ec83959f147e402b7f8bda5df9314b5b16",
+      "at": "2026-10-31T02:00:46.772275+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/expressjs/express/issues/7350",
+      "sourceCommit": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "274089c8e9f66746fb0d10e003402e14a071a88902fdef48ed22aa762b403c86",
+      "at": "2026-10-31T02:04:18.626077+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/expressjs/express/issues/7034",
+      "sourceCommit": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "a7f2788d68f32bbfd0b978c990f6776aabc14e849f441c3b5414688ad2c9dd55",
+      "at": "2026-10-31T02:04:18.724399+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5610",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "status": "assertion_failure",
+      "validatorSha256": "a766515938d326b53750db215103b0c8b171d23ba198b07dd92798caf06e7475",
+      "qualification": "selected canary; passing positive reference constructed separately; not independent"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2057",
+      "sourceCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "5219e15916109eb8c9b928cffdcebfc6bd9feae05c1becf0dddc9d0becfa82b3",
+      "at": "2026-10-31T02:05:44.426189+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2244",
+      "sourceCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "305abda9998c2e7290eb425d782e5deb56a4109a0159e7447b671e632bbc8c05",
+      "at": "2026-10-31T02:05:44.486271+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/1962",
+      "sourceCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "60392aeb1792fb44ae948bfacea51cadfe36ce7fa07dfdc3245cdde7e8e951a2",
+      "at": "2026-10-31T02:05:44.553971+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    }
+  ],
+  "pinoCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+  "pinoDependencyTreeSha256": "a0dbfc78c5d287fe9194a6e8b2fef88c433dc63e73d765f6a889467f552d29f8"
+}

@@ -84,6 +84,14 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
+## Prospective engineering canary (2026-10-31)
+
+A preregistered, isolated canary compared three conditions on **one manually selected public Lodash issue**. The original patch filter rejected all three outputs before testing; a corrected, uniformly applied post-hoc check passed **3/3** unchanged candidates. Two blinded AI reviewers agreed on correctness but disagreed on side-effect safety in **3/3** paired ratings. This is a narrow process check, not evidence of a production improvement or autonomous memory management; the requested 30–50-task study remains **incomplete**.
+
+The 12 canary model calls reported **27,847 prompt / 2,719 completion tokens** and candidate-match provider-console rows totaling **$0.014902**; request-ID reconciliation and other costs remain **UNKNOWN**. [Results, limitations, billing evidence and screening status](docs/production-prospective-canary.md) · [Registration](docs/production-prospective-canary-registration.md).
+
+![One-issue canary execution and AI review results](docs/assets/benchmarks/production-prospective-canary.png)
+
 ## Retrospective pilot follow-up (2026-10-31)
 
 A follow-up fixed the pilot harness's bounded answer continuation and separated historical-source IDs from observed-memory IDs in the unblinded audit. Twelve historical questions from six correlated sessions were replayed in five randomized conditions. A first cohort suffered 32 incomplete answers during a gateway outage; the separately registered post-outage replication completed **60/60** answers, including **6** that continued after the output limit. This is replay, not verified completion of the original tasks.

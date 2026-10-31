@@ -2,6 +2,7 @@
 """One registered isolated patch canary. Private trial data stay outside the repo."""
 import argparse,datetime,hashlib,json,os,pathlib,random,re,shutil,subprocess,time,urllib.error,urllib.request
 from zoneinfo import ZoneInfo
+from production_prospective_guard import accepts
 p=argparse.ArgumentParser();p.add_argument('--private',required=True);p.add_argument('--stage',required=True,choices=['prepare','solve','review','adjudicate']);a=p.parse_args()
 P=pathlib.Path(a.private).resolve();REPO=pathlib.Path(__file__).resolve().parent.parent;Q=P/'qualification';OUT=P/'canary';OUT.mkdir(mode=0o700,exist_ok=True)
 now=lambda:datetime.datetime.now(ZoneInfo('Asia/Shanghai')).isoformat()
@@ -70,7 +71,7 @@ if a.stage=='solve':
    try:
     text=event.get('content','').strip();text=re.sub(r'^```(?:json)?\s*|\s*```$','',text);value=json.loads(text);replacement=value['replacement'];result['explanation']=value.get('explanation','')
     if event.get('finishReason')=='length':raise ValueError('truncated')
-    if not re.fullmatch(r'function\s+customOmitClone\s*\(value\)\s*\{\s*return\s+[A-Za-z0-9_\s?!:().|&=]+;\s*\}',replacement) or re.search(r'(constructor|process|require|eval|global|import|Function|this)',replacement,re.I):raise ValueError('unsafe_or_out_of_scope')
+    if not accepts(replacement):raise ValueError('unsafe_or_out_of_scope')
     dest=Q/('canary-'+arm);dest.mkdir();shutil.copy2(P/'lodash/lodash.js',dest/'lodash.js');shutil.copytree(P/'lodash/fp',dest/'fp');(dest/'lodash.js').write_text(source.replace(old,replacement));result['replacement']=replacement;result['candidateStatus']='valid_replacement'
     proc2=subprocess.run(['sandbox-exec','-f',str(P/'isolation.sb'),'/opt/homebrew/bin/node',str(Q/'lodash-5610-canary-test.js'),str(dest)],cwd=P/'lodash',env={'PATH':'/usr/bin:/bin','HOME':str(Q),'LANG':'C'},capture_output=True,text=True,timeout=15);result['testStatus']='PASS' if proc2.returncode==0 else 'FAIL';result['testExit']=proc2.returncode;(OUT/(arm+'-test.log')).write_text((proc2.stdout+proc2.stderr)[:10000]);(OUT/(arm+'-test.log')).chmod(0o600)
    except Exception as exc:result.update(candidateStatus='invalid_or_test_error',errorType=type(exc).__name__,error=str(exc)[:200])
