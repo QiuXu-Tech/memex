@@ -49,6 +49,9 @@ def case_continuation_limit_and_failure():
  assert r['status']=='truncated' and r['text']=='ABC' and len(m.seen)==3
  w=Worker();trace=[];m=Model([({'content':'first'},'length'),({'content':'','tool_calls':[tool('memory_write','{}','x')]},'tool_calls')]);r=mod.run_tool_loop([],tools('memory_write'),w,trace,'answer',100,2,3,m)
  assert r['status']=='unexpected_tool_call_in_continuation' and r['text']=='first' and not w.calls
+ for second,expected in [(None,'continuation_model_failure'),({'content':''},'empty_continuation')]:
+  w=Worker();trace=[];m=Model([({'content':'partial'},'length'),(second,'stop')]);r=mod.run_tool_loop([],tools(),w,trace,'answer',100,2,0,m)
+  assert r['status']==expected and r['text']=='partial' and len(m.seen)==2
  w=Worker();trace=[];m=Model([({'tool_calls':[tool('memory_search','{}','a')],'content':None},'tool_calls'),({'content':'part'},'length'),({'content':' end'},'stop')]);r=mod.run_tool_loop([],tools('memory_search'),w,trace,'answer',100,0,0,m)
  assert r['status']=='ok' and r['text']=='part end' and r['finalizedAfterLimit'] and not w.calls
 
