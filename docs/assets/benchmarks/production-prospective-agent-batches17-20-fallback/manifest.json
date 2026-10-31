@@ -1,0 +1,222 @@
+{
+  "kind": "posthoc-alternate-adjudications-batches-17-20",
+  "createdAt": "2026-10-31T20:59:59.730680+08:00",
+  "runnerSha256": "30d0e2a0f6770aa0a86a9cfa7285d4ea74b78f1213f02d377904eabf99d01bdd",
+  "candidates": [
+    {
+      "blind": "F01",
+      "packetSha256": "7ead8c799063e96613438a1c5c4b4d71bb097bef760ad6e2c870fc5214bc6fea",
+      "batch": "17",
+      "sourceBlind": "B01",
+      "slot": 8,
+      "sourceHashes": {
+        "20261031-mixed-batch17/manifest.json": "32e6a65f911d732b23d845d97e56dc8c8b6854ca5a133a030bfc3213e4c83976",
+        "20261031-mixed-batch17/blind-key.json": "38e94be325a63f93af7ade5817f0b989e64e24f849b28d61eb7e22d379bc1343",
+        "20261031-mixed-batch17/issues.json": "4bb6e2038d69a53f36b73c73f0d5753df16639a71312a5846eda3a40d8ad9629",
+        "20261031-mixed-batch17/adjudications/B01.json": "7501a80114906dba7832040f303f43cd2a5d7e08edcc8fa8e5889bcf9f9d980a",
+        "20261031-mixed-batch17/runs/08/result.json": "08a585fc9a6a121185bb81b049627164d6885bf271e96df4927debf8fd58e93c",
+        "20261031-mixed-batch17/runs/08/candidate.diff": "73f33d91319c46a1d68d75e387a210790ff05c94fe1a70087a5cac6a68af5600",
+        "20261031-mixed-batch17/reviews/B01-deepseek-flash.json": "5d72698c76900e928d1ef3abb1ab39c12a191c5b8c4f3792729ecd4966a0cc55",
+        "20261031-mixed-batch17/reviews/B01-qwen3.8-flash.json": "704e7fae712b920eca45f0886a5130a43632e24a547794be2cc474dd8a743ce4"
+      }
+    },
+    {
+      "blind": "F02",
+      "packetSha256": "b544b9cf70e805cb4ab74aef9f6fa55f976bb58354cb23a1b115fe0e4c6434a6",
+      "batch": "18",
+      "sourceBlind": "B04",
+      "slot": 3,
+      "sourceHashes": {
+        "20261031-mixed-batch18/manifest.json": "090aa8016f6bf4bd55d0c1f468b733b4b3e799aa9fa3b72bc8671218304a9cdc",
+        "20261031-mixed-batch18/blind-key.json": "c47a7ebd830809b92be77cebbe9c1cad4bcf0864ffe5ebda851ae3213c57c1a5",
+        "20261031-mixed-batch18/issues.json": "1e85b2542d9a137db0974f378ac119045211b3cc7bfa7b2b4b6bc1f1a30e3b33",
+        "20261031-mixed-batch18/adjudications/B04.json": "34893c1b0c8edd48c37cbe49e919b6b9f431f6e3f513cccccd5e4ae54bc3902f",
+        "20261031-mixed-batch18/runs/03/result.json": "b38105afd0c85a831eae957b63ea7a5d076f776f583f0e95506ad8aef13d2e37",
+        "20261031-mixed-batch18/runs/03/candidate.diff": "659660609611639a8b180d788d418922b0360c0673a6acf2ee3ca2eefbd369a0",
+        "20261031-mixed-batch18/reviews/B04-deepseek-flash.json": "9323de1e98b0e99493e9854c3176169e65c06d3c532307d033873ee8c9a0e8e1",
+        "20261031-mixed-batch18/reviews/B04-qwen3.8-flash.json": "3a568b6ee70dce0029c99e510b8d83ae9441c93840d9bfab2646e9c1e86ce116"
+      }
+    },
+    {
+      "blind": "F03",
+      "packetSha256": "cb14c0c5169d91f467ff5b24cd4e4bab168274186e406d216823402619087f14",
+      "batch": "17",
+      "sourceBlind": "B02",
+      "slot": 4,
+      "sourceHashes": {
+        "20261031-mixed-batch17/manifest.json": "32e6a65f911d732b23d845d97e56dc8c8b6854ca5a133a030bfc3213e4c83976",
+        "20261031-mixed-batch17/blind-key.json": "38e94be325a63f93af7ade5817f0b989e64e24f849b28d61eb7e22d379bc1343",
+        "20261031-mixed-batch17/issues.json": "4bb6e2038d69a53f36b73c73f0d5753df16639a71312a5846eda3a40d8ad9629",
+        "20261031-mixed-batch17/adjudications/B02.json": "2d670fe05d9db23101261095a238bf221e17b592ec6c228b730980d07db8690c",
+        "20261031-mixed-batch17/runs/04/result.json": "7b8ff5755d3535c757555da4a24fde02c8fe0d968c069a6e3fbdd9a6c01a99f1",
+        "20261031-mixed-batch17/runs/04/candidate.diff": "67a5c296d5e2047923aa7001656cde3def2f48c4913436e3582b15cfa108fa6b",
+        "20261031-mixed-batch17/reviews/B02-deepseek-flash.json": "ef3404ee795efdf471da16c2af8cc915c0a1735e868ebfeb1abcceb9f64bce41",
+        "20261031-mixed-batch17/reviews/B02-qwen3.8-flash.json": "15dc096bfc4b63bdf17b449c023bdda7a6807324a3687cd2743e8f3ec95a5c0d"
+      }
+    },
+    {
+      "blind": "F04",
+      "packetSha256": "939cb2c122cd153b9bd0d15b97432a3629a2cd83b4f6720d359da9867ec8e7fa",
+      "batch": "18",
+      "sourceBlind": "B03",
+      "slot": 5,
+      "sourceHashes": {
+        "20261031-mixed-batch18/manifest.json": "090aa8016f6bf4bd55d0c1f468b733b4b3e799aa9fa3b72bc8671218304a9cdc",
+        "20261031-mixed-batch18/blind-key.json": "c47a7ebd830809b92be77cebbe9c1cad4bcf0864ffe5ebda851ae3213c57c1a5",
+        "20261031-mixed-batch18/issues.json": "1e85b2542d9a137db0974f378ac119045211b3cc7bfa7b2b4b6bc1f1a30e3b33",
+        "20261031-mixed-batch18/adjudications/B03.json": "53d3270ba2290fef71a2491ec6b1dc72d3a9e1e38e6490114fbcd21bba5b40d7",
+        "20261031-mixed-batch18/runs/05/result.json": "b21ff20090457289c14028cee4f76bf4133c37fd09954f11e9c70a0c31510239",
+        "20261031-mixed-batch18/runs/05/candidate.diff": "d47bcd01bfe564108df02aa4fad5b36361e40733f782f429ae35914d3b0ef64e",
+        "20261031-mixed-batch18/reviews/B03-deepseek-flash.json": "a6a4ee20d0feb869f62b501dd3ff2a466a4a93dd842884878b0d1c0d61106a6a",
+        "20261031-mixed-batch18/reviews/B03-qwen3.8-flash.json": "ef429a6466caf7bc308faf285a907a572621c04bfc087fd9b32559dc55633d4a"
+      }
+    },
+    {
+      "blind": "F05",
+      "packetSha256": "d203f8ed21ea4df171a52ec45f17751b9d7d0c07102c3ca8db1a9d1e3cc6c3d9",
+      "batch": "20",
+      "sourceBlind": "B01",
+      "slot": 2,
+      "sourceHashes": {
+        "20261031-mathjs-batch20/manifest.json": "aca9a7327a630a7825ef40faafc7ddd9f0d845201adbc6600097a5f90774d506",
+        "20261031-mathjs-batch20/blind-key.json": "840229090383eb43a73f62784c820154377bcff98d1ba2b72b0ce850691c9485",
+        "20261031-mathjs-batch20/issues.json": "c54147a3690cae553ed3937a6d28118a298b4b133a413752be4c174cd174e524",
+        "20261031-mathjs-batch20/adjudications/B01.json": "1eca5c60a331f35d80943ff7afbb4a8ad13247f2f5a33512643cbb61427fc17a",
+        "20261031-mathjs-batch20/runs/02/result.json": "d85e0fa898501c8d65ad4a6e045b41bc02b3b69fb75f966a6229cf231d8bd9eb",
+        "20261031-mathjs-batch20/runs/02/candidate.diff": "1d7d1722f2593de2c7c0fe7f6d2614cfb7cda075b47bd037e49ff5605f74b186",
+        "20261031-mathjs-batch20/reviews/B01-deepseek-flash.json": "1f5f7481a7ea60b5374e43d4ca2c3f93d197dd43986a9cb81fc84abdf4c5ebc9",
+        "20261031-mathjs-batch20/reviews/B01-qwen3.8-flash.json": "c6a4e63753e0ab92edab025532374feec58747936f0c395ac9370ccdc22eec9f"
+      }
+    },
+    {
+      "blind": "F06",
+      "packetSha256": "3217a937543be0c12ac67486c80d3a05b44d0f248c076ae28ad67b9485c6a1ef",
+      "batch": "18",
+      "sourceBlind": "B02",
+      "slot": 4,
+      "sourceHashes": {
+        "20261031-mixed-batch18/manifest.json": "090aa8016f6bf4bd55d0c1f468b733b4b3e799aa9fa3b72bc8671218304a9cdc",
+        "20261031-mixed-batch18/blind-key.json": "c47a7ebd830809b92be77cebbe9c1cad4bcf0864ffe5ebda851ae3213c57c1a5",
+        "20261031-mixed-batch18/issues.json": "1e85b2542d9a137db0974f378ac119045211b3cc7bfa7b2b4b6bc1f1a30e3b33",
+        "20261031-mixed-batch18/adjudications/B02.json": "fd95f9d7994fa098763e9a3cccc7a14a8561aa11a873eedca3e723373e53ae4d",
+        "20261031-mixed-batch18/runs/04/result.json": "7827e7f19d8d8c7a9eb49dd92e50cbb61897d69bf6617beeb04bf20a184df594",
+        "20261031-mixed-batch18/runs/04/candidate.diff": "8a51ed68f018c2dc116cd2670aca79eed7a638341792e60a260c9aff6ff3eba7",
+        "20261031-mixed-batch18/reviews/B02-deepseek-flash.json": "a4723d1cf138ba5ce841cf8275802c864d165c55fd12c093ae3c47e9d10853db",
+        "20261031-mixed-batch18/reviews/B02-qwen3.8-flash.json": "c95b8a9209774cce72425b8472c0d83f8235ef00474212ed192f6ea9ad5b7f90"
+      }
+    },
+    {
+      "blind": "F07",
+      "packetSha256": "2cda227c3826c87a10287c2d909f4ac0126fa39065aea3a0bf6542a8778b26c6",
+      "batch": "19",
+      "sourceBlind": "B02",
+      "slot": 2,
+      "sourceHashes": {
+        "20261031-prettier-batch19/manifest.json": "09fe7d5d262b6de8fd0c3b0beee42588b2be6a4187553225dc1500d24896875f",
+        "20261031-prettier-batch19/blind-key.json": "87a8abcd2f544f3e6605edba29cd9bad79ae1f21d426542c3dc345ed42782f05",
+        "20261031-prettier-batch19/issues.json": "e71a72ad8b58a7423df185862c6bec1453c6993915dbb90aaaa3b970ee97a14d",
+        "20261031-prettier-batch19/adjudications/B02.json": "2d670fe05d9db23101261095a238bf221e17b592ec6c228b730980d07db8690c",
+        "20261031-prettier-batch19/runs/02/result.json": "b239593ec090bb8e6462a5b7c427ad4a98f3fa2b043f6d9e42a55bfbaab77648",
+        "20261031-prettier-batch19/runs/02/candidate.diff": "7a2a8b5d7e895cdeede3870913a09e9ce7bdfa62bf78857b6f797d4b7a461b0c",
+        "20261031-prettier-batch19/reviews/B02-deepseek-flash.json": "57330ecb2608ca8ef643da1d3d1b1e57a919f344d1341e190063de46282c37a2",
+        "20261031-prettier-batch19/reviews/B02-qwen3.8-flash.json": "38898f93431f27cb3fdbf2b38b2cfd74febd8a3f57c7af48a538e14be1b2f542"
+      }
+    },
+    {
+      "blind": "F08",
+      "packetSha256": "2acadbd11dd410268227176d57cc5bc882d2b14961baf50b7baa35fae4389368",
+      "batch": "19",
+      "sourceBlind": "B03",
+      "slot": 3,
+      "sourceHashes": {
+        "20261031-prettier-batch19/manifest.json": "09fe7d5d262b6de8fd0c3b0beee42588b2be6a4187553225dc1500d24896875f",
+        "20261031-prettier-batch19/blind-key.json": "87a8abcd2f544f3e6605edba29cd9bad79ae1f21d426542c3dc345ed42782f05",
+        "20261031-prettier-batch19/issues.json": "e71a72ad8b58a7423df185862c6bec1453c6993915dbb90aaaa3b970ee97a14d",
+        "20261031-prettier-batch19/adjudications/B03.json": "3a468caa541d4bf282e7819bcff2a4fb33be83cb0db184a4a5a6c1eb10fa5299",
+        "20261031-prettier-batch19/runs/03/result.json": "7e9a1f930cff541771b076baa9e018486bb86e752b33fc4eb9efaf291d0ee732",
+        "20261031-prettier-batch19/runs/03/candidate.diff": "aa76db9d76ba0d6cbb5d6b236941d7ed3e7636a0cbd6d292256cc08f913629f8",
+        "20261031-prettier-batch19/reviews/B03-deepseek-flash.json": "c3f9eb803bf6ebecfbb4ac57a6abef5799b64f1cf656be108e4f713c80298d14",
+        "20261031-prettier-batch19/reviews/B03-qwen3.8-flash.json": "19e285f9f8df022e30f77001894b8d4360984f2c20b7da72d8655059601867cd"
+      }
+    },
+    {
+      "blind": "F09",
+      "packetSha256": "f620510aad64b7169e8cb84bace375dceb268a9f5d2bffa1029d891aebd7572d",
+      "batch": "20",
+      "sourceBlind": "B03",
+      "slot": 4,
+      "sourceHashes": {
+        "20261031-mathjs-batch20/manifest.json": "aca9a7327a630a7825ef40faafc7ddd9f0d845201adbc6600097a5f90774d506",
+        "20261031-mathjs-batch20/blind-key.json": "840229090383eb43a73f62784c820154377bcff98d1ba2b72b0ce850691c9485",
+        "20261031-mathjs-batch20/issues.json": "c54147a3690cae553ed3937a6d28118a298b4b133a413752be4c174cd174e524",
+        "20261031-mathjs-batch20/adjudications/B03.json": "3a468caa541d4bf282e7819bcff2a4fb33be83cb0db184a4a5a6c1eb10fa5299",
+        "20261031-mathjs-batch20/runs/04/result.json": "107297e2fc76efbffde72eb742d79d2c757f7a7ce32be447738035d7cc3ab3a9",
+        "20261031-mathjs-batch20/runs/04/candidate.diff": "9c6b519b3ad49645b57aaff5e730f05800c34182767868dd9562d673b3fb7527",
+        "20261031-mathjs-batch20/reviews/B03-deepseek-flash.json": "f0546d8f69b8a82062436aad72e46f9d2b9a630fbdf22b94f9c11cc13c505e24",
+        "20261031-mathjs-batch20/reviews/B03-qwen3.8-flash.json": "b181fa5dedbddb7b91b2bca030803b62264a0bb7d39e2b4e76cf120f3a183645"
+      }
+    },
+    {
+      "blind": "F10",
+      "packetSha256": "0c828bd0d530689632e7daf3e6406a2837212b09795d7a14faffa6c1dfc29b06",
+      "batch": "17",
+      "sourceBlind": "B03",
+      "slot": 1,
+      "sourceHashes": {
+        "20261031-mixed-batch17/manifest.json": "32e6a65f911d732b23d845d97e56dc8c8b6854ca5a133a030bfc3213e4c83976",
+        "20261031-mixed-batch17/blind-key.json": "38e94be325a63f93af7ade5817f0b989e64e24f849b28d61eb7e22d379bc1343",
+        "20261031-mixed-batch17/issues.json": "4bb6e2038d69a53f36b73c73f0d5753df16639a71312a5846eda3a40d8ad9629",
+        "20261031-mixed-batch17/adjudications/B03.json": "53d3270ba2290fef71a2491ec6b1dc72d3a9e1e38e6490114fbcd21bba5b40d7",
+        "20261031-mixed-batch17/runs/01/result.json": "723fdd18a01222dd2e95ad8164ab518b85eda4702e27c66e1be1a1f5d9459a57",
+        "20261031-mixed-batch17/runs/01/candidate.diff": "e324f9e4a80ead73d2e48928e8836a2f3081b79d320ee13a45806d8486e687b1",
+        "20261031-mixed-batch17/reviews/B03-deepseek-flash.json": "52f8ea0bdc4b0091af0f3a15d4a8811b428057995a778c599559009758dac72e",
+        "20261031-mixed-batch17/reviews/B03-qwen3.8-flash.json": "5fc4c94dbb66609000418ce897e4b7ed649bb01860dd451ff7b7e0dac80dcfdb"
+      }
+    },
+    {
+      "blind": "F11",
+      "packetSha256": "65e92071d78963045e7561f062b184ca9b7840eae24910ba19fe370758a7ab53",
+      "batch": "19",
+      "sourceBlind": "B04",
+      "slot": 4,
+      "sourceHashes": {
+        "20261031-prettier-batch19/manifest.json": "09fe7d5d262b6de8fd0c3b0beee42588b2be6a4187553225dc1500d24896875f",
+        "20261031-prettier-batch19/blind-key.json": "87a8abcd2f544f3e6605edba29cd9bad79ae1f21d426542c3dc345ed42782f05",
+        "20261031-prettier-batch19/issues.json": "e71a72ad8b58a7423df185862c6bec1453c6993915dbb90aaaa3b970ee97a14d",
+        "20261031-prettier-batch19/adjudications/B04.json": "6c0d88b478b174c9659ac7a7549a14471c3d8eb4cf7f3098ae67f0cd6277309d",
+        "20261031-prettier-batch19/runs/04/result.json": "ce1434a49af9aa0252d5bc4434fe2ef107bc82dccb0f36a004f38eb315cd1c39",
+        "20261031-prettier-batch19/runs/04/candidate.diff": "29afded17340032c7a84d4fd5a744dd78b6eb65dc0fc16e2afefb0025c701c70",
+        "20261031-prettier-batch19/reviews/B04-deepseek-flash.json": "85dc3479b493756a0d8e9a3681e879035ace94c2b016cdac83685c47fa77f879",
+        "20261031-prettier-batch19/reviews/B04-qwen3.8-flash.json": "c3d9a51bc8616e6a84ecbbcd0811db43f3fb8fe8bbed4a91d1eec69571e76e17"
+      }
+    },
+    {
+      "blind": "F12",
+      "packetSha256": "e20edf32dfefa8c6b7526fdeaeb07a997fa52553f1dacc919827ca7bda89eea5",
+      "batch": "19",
+      "sourceBlind": "B01",
+      "slot": 1,
+      "sourceHashes": {
+        "20261031-prettier-batch19/manifest.json": "09fe7d5d262b6de8fd0c3b0beee42588b2be6a4187553225dc1500d24896875f",
+        "20261031-prettier-batch19/blind-key.json": "87a8abcd2f544f3e6605edba29cd9bad79ae1f21d426542c3dc345ed42782f05",
+        "20261031-prettier-batch19/issues.json": "e71a72ad8b58a7423df185862c6bec1453c6993915dbb90aaaa3b970ee97a14d",
+        "20261031-prettier-batch19/adjudications/B01.json": "7501a80114906dba7832040f303f43cd2a5d7e08edcc8fa8e5889bcf9f9d980a",
+        "20261031-prettier-batch19/runs/01/result.json": "ee503086e484352b2d4b0fe5372967bc77901b6c2a0a1da17cae0a0b9136e0d9",
+        "20261031-prettier-batch19/runs/01/candidate.diff": "7e9287a6a8763e062413b6d3944810746e054ae6461caf5f7103b78b7f18fee4",
+        "20261031-prettier-batch19/reviews/B01-deepseek-flash.json": "7431bd8f09fd519fd0ac4508e143b40d4fa819571f26140a88902fbb1e523db0",
+        "20261031-prettier-batch19/reviews/B01-qwen3.8-flash.json": "4834c07f874b065f7432f5add8f97d0f66858eca768ef918ee1118d2ea485402"
+      }
+    }
+  ],
+  "seed": 2026103130,
+  "model": "gpt-6-astra",
+  "maxTokens": 1200,
+  "maxCalls": 12,
+  "selection": "Only original valid-score disagreements in batches 17–20 with a completed but format-invalid Gemini adjudication. No missing or timed-out adjudication is retried.",
+  "policy": "Only explicit 503 can be retried at most twice; never retry timeouts; stop the stage after provider failure or missing usage.",
+  "limitations": [
+    "The subset, output budget and alternate model were chosen after original failures.",
+    "The adjudicator has the same model name as the solver and is not independent of it.",
+    "All AI models use one proxy with unverified provenance; format validity does not prove factual support."
+  ]
+}
