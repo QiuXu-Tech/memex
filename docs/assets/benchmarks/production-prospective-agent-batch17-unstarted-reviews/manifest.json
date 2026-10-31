@@ -1,0 +1,56 @@
+{
+  "kind": "posthoc-batch17-never-started-reviews",
+  "createdAt": "2026-10-31T21:14:15.297303+08:00",
+  "runnerSha256": "6d803bbfe38e0290e59cbdbe6f5eb9b5b6ed20187a100564dad3a71ca48c01ed",
+  "gatewaySha256": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+  "seed": 2026103131,
+  "candidates": [
+    {
+      "blind": "U01",
+      "originalBlind": "B06",
+      "slot": 3,
+      "packetSha256": "a13948665777595b3701c433d250a36ef1142720b566797d1ee390a2d21724fe",
+      "sourceHashes": {
+        "manifest.json": "32e6a65f911d732b23d845d97e56dc8c8b6854ca5a133a030bfc3213e4c83976",
+        "blind-key.json": "38e94be325a63f93af7ade5817f0b989e64e24f849b28d61eb7e22d379bc1343",
+        "review-calls.jsonl": "fba596ed5d8179a71da451a6f41bdd6433083f1d3195e5f8cab3fa88b903f766",
+        "issues.json": "4bb6e2038d69a53f36b73c73f0d5753df16639a71312a5846eda3a40d8ad9629",
+        "runs/03/result.json": "0e46aa6b89fda5c95a3c57cad9e66c0e53f88b64ec0a9725fc554e72940eb781",
+        "runs/03/candidate.diff": "36e4d653369349c7749c29d452cd5a8485475c7e36709ca1fce8685351a9f317"
+      }
+    },
+    {
+      "blind": "U02",
+      "originalBlind": "B05",
+      "slot": 5,
+      "packetSha256": "ed8d4d2526aabba26c3825e65a11c23ad0e621ce550f71c6ed539ecfdf45ff93",
+      "sourceHashes": {
+        "manifest.json": "32e6a65f911d732b23d845d97e56dc8c8b6854ca5a133a030bfc3213e4c83976",
+        "blind-key.json": "38e94be325a63f93af7ade5817f0b989e64e24f849b28d61eb7e22d379bc1343",
+        "review-calls.jsonl": "fba596ed5d8179a71da451a6f41bdd6433083f1d3195e5f8cab3fa88b903f766",
+        "issues.json": "4bb6e2038d69a53f36b73c73f0d5753df16639a71312a5846eda3a40d8ad9629",
+        "runs/05/result.json": "09f90b982f7092a6ef9dcf987162f29a07ac1215a05740e4e0af3ad19399474c",
+        "runs/05/candidate.diff": "93b3071f59cc6223cf0e10750501ae72de9d8c6f9ee3e549ef5cd7719778441e"
+      }
+    }
+  ],
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicator": "gpt-6-astra",
+  "adjudicationOutputTokenLimit": 1200,
+  "maxReviewCalls": 4,
+  "maxAdjudicationCalls": 2,
+  "selection": "Only B05 and B06, whose two original reviewer calls never started after the B04 timeout; no timed-out call is repeated.",
+  "policy": "Only explicit HTTP 503 may be retried at most twice; stop each stage on any other provider failure or missing usage; never retry a timeout.",
+  "limitations": [
+    "Post-hoc selection follows the observed timeout and prior results; original missing ratings remain missing.",
+    "The Astra adjudicator has the solver model name and is not independent of it.",
+    "Reviewers share a proxy of unverified provenance; format validity does not establish factual support."
+  ]
+}

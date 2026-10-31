@@ -62,6 +62,7 @@ jobs:
           python3 scripts/test-prospective-gateway-posthoc-v16-budgeted.py
           python3 scripts/test-prospective-gateway-adjudication-v16-fallback.py
           python3 scripts/test-prospective-gateway-fallback-adjudications.py
+          python3 scripts/test-prospective-batch17-unstarted-reviews.py
           python3 scripts/test-prospective-budgeted-reference-normalize.py
           python3 scripts/test-prospective-posthoc-rubric-review.py
           python3 scripts/test-prospective-unstarted-adjudication.py
