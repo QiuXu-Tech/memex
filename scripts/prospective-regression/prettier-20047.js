@@ -1,0 +1,1 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));const x='# Title\n\nNormal paragraph.\n';assert.equal(await p.format(x,{parser:'markdown'}),x);console.log('ordinary markdown control passed')})().catch(e=>{console.error(e);process.exitCode=1});

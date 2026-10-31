@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');const {pathToFileURL}=require('node:url');(async()=>{const root=process.argv[2];const p=await import(pathToFileURL(root+'/src/index.js'));const yaml=require(root+'/node_modules/yaml');const input='a:\n  b: |\n    x \n  c: 1\n';const out=await p.format(input,{parser:'yaml'});assert.deepStrictEqual(yaml.parse(out),yaml.parse(input));console.log('public example passed');})().catch(e=>{console.error(e);process.exitCode=1});

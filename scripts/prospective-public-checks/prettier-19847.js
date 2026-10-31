@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');const {pathToFileURL}=require('node:url');(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));const once=await p.format('# NG\n\n| x | y |\n        |---|---|\n',{parser:'markdown'});assert.equal(await p.format(once,{parser:'markdown'}),once);console.log('public example passed');})().catch(e=>{console.error(e);process.exitCode=1});

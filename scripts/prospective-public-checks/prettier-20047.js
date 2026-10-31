@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');const {pathToFileURL}=require('node:url');(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));const out=await p.format('alpha <!-- retained comment --> beta\n',{parser:'markdown',proseWrap:'always',printWidth:20});assert.ok(out.includes('<!-- retained comment -->'));assert.doesNotMatch(out,/(^|\n)\s*<!-- retained comment -->/);console.log('public example passed');})().catch(e=>{console.error(e);process.exitCode=1});

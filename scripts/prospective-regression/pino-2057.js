@@ -1,0 +1,1 @@
+'use strict';const assert=require('node:assert/strict');const p=require(process.argv[2]+'/browser');const out=p.stdSerializers.err(new Error('plain'));assert.equal(out.type,'Error');assert.equal(out.msg,'plain');assert.equal(typeof out.stack,'string');console.log('ordinary error serializer control passed');

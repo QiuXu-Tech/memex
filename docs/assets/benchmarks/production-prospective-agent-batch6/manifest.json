@@ -1,0 +1,124 @@
+{
+  "kind": "registered-five-mixed-issue-agent-instrumentation-not-30-task-study",
+  "createdAt": "2026-10-31T14:05:27.287925+08:00",
+  "repo": "pinojs/pino and prettier/prettier",
+  "sourceCommit": {
+    "pino": "b29dbe97820630e7128e464c50263b427965ec99",
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "pino": "4a960c344b086abe6b8c3b2bb8a95f821cbec3fbc34db0853f4cd6e4fd8e9699",
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "2057",
+    "19427",
+    "19847",
+    "20047",
+    "20293"
+  ],
+  "checks": {
+    "2057": {
+      "public": "ff534a12676320029a2a0344ea499123476bdfd79cea8cf81ab275a5a58bfbd3",
+      "acceptance": "ec24565211b7e0a692219fd80fd13cdcb04ed2c7feaf9d332800f00015a057c0",
+      "regressionControls": "4a632638b7d17d77e52d6cffb1d5d9a6fd369de06ab05c23f5cadca4e3cc2bc6"
+    },
+    "19427": {
+      "public": "1da1da689596016fff0a922245939de00cfba3d6207212bd8bfbe3c601e114f6",
+      "acceptance": "eb7463fd17ce6a66ede7ceb1c47b352d945a371c0e021ed1a659e151779a6d3a",
+      "regressionControls": "5b538e031f94bf53becbad643fb5fa4ef64a7922a568bf044d9608dd9f9eb510"
+    },
+    "19847": {
+      "public": "3c0830fa6d06c6544c47828c596211a659c997d677856c7cfba9799848801e75",
+      "acceptance": "14714450c748588d4dc462a693d175f229b0d37169723adee448c4058f3f63de",
+      "regressionControls": "9d5506f495fe99b841399e98d74a3f42fcb6cccf6f1d2a6b3b9c8ddad642829e"
+    },
+    "20047": {
+      "public": "83414fba632fe7b74b0ed983794ce5203b503ab2b76e3d208820a1d65a41239f",
+      "acceptance": "409beefd431794ebffdbe83cdf70d87bd621c2afbcc6eff2915bdaadba4a182e",
+      "regressionControls": "07db7170e28440e935225e8dde5c255eb1e586b5ce714b874c1cc4c29a43545b"
+    },
+    "20293": {
+      "public": "3b4019733e5a05218fb3ca5e7ba2c582b4dc54715205ccb600f398d4ff22668e",
+      "acceptance": "f5af3d7c7d28f3538f56a9e1c3b044f84a12da7ca8bb9f262dd719788ed2f6c6",
+      "regressionControls": "1804e46d1f5d3aca32a0ff7428193ce72d18b6d0980b0a5c9d4554683179b885"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v6.py": "b4c3655596b4b59c805f142ad742b7e512f4855cd4250d7e4babec718063f8ad",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "b091fd99aca1b609154b646f31cc384462235ced770819fa422fa4766d8aa7ba",
+  "contextsSha256": "d096a760d5ffd0d5e93e074b1518bac44df865a5cc6c83747c080ddde10fbf45",
+  "seed": 2026103106,
+  "schedule": [
+    {
+      "issue": "2057",
+      "arm": "memex"
+    },
+    {
+      "issue": "2057",
+      "arm": "keyword"
+    },
+    {
+      "issue": "19847",
+      "arm": "keyword"
+    },
+    {
+      "issue": "19847",
+      "arm": "memex"
+    },
+    {
+      "issue": "20293",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20293",
+      "arm": "memex"
+    },
+    {
+      "issue": "19427",
+      "arm": "memex"
+    },
+    {
+      "issue": "19427",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20047",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20047",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6.1-sol"
+  ],
+  "adjudicator": "gpt-6-astra",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $2; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Five new issues selected after previous outcomes, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers are not humans; adjudicator shares solver model family",
+    "No effect or savings claim"
+  ]
+}

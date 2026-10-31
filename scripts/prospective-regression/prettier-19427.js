@@ -1,0 +1,1 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));assert.equal(await p.format('.x { color: red; }',{parser:'scss'}),'.x {\n  color: red;\n}\n');console.log('ordinary SCSS control passed')})().catch(e=>{console.error(e);process.exitCode=1});
