@@ -1,0 +1,4 @@
+'use strict';const assert=require('node:assert/strict'),fs=require('node:fs'),root=process.argv[2],ts=require(root+'/node_modules/typescript');
+require.extensions['.ts']=(module,filename)=>{const src=ts.transpileModule(fs.readFileSync(filename,'utf8'),{compilerOptions:{module:ts.ModuleKind.CommonJS,target:ts.ScriptTarget.ES2022,esModuleInterop:true}}).outputText;module._compile(src,filename)};
+const y=require(root+'/src/index.ts');function paths(schema,data){try{schema.validateSync(data,{abortEarly:false});throw Error('expected validation failure')}catch(e){if(!e.inner)throw e;return e.inner.map(x=>x.path)}}
+const s=y.object({foo:y.string().required(),fooBar:y.string().required(),fooBiz:y.string().required()});assert.deepEqual(paths(s,{foo:'',fooBar:'',fooBiz:''}),['foo','fooBar','fooBiz']);console.log('checks passed');

@@ -1,0 +1,129 @@
+{
+  "kind": "registered-three-new-issue-pairs-v32",
+  "createdAt": "2026-10-31T23:15:24.297465+08:00",
+  "sourceCommit": {
+    "underscore": "5c1e5f686f8500af9c9d15614ed60289d6d35d6b",
+    "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+    "yup": "ff31eee8a2b10c938bb3a22544d9e33957a8cf01"
+  },
+  "tasks": {
+    "2214": "underscore",
+    "2433": "validator",
+    "2252": "yup"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "guestHashes": {
+    "/opt/memex-pilot/node/bin/node": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "/home/mk-q.guest/staging/yup-runtime-20261031/package-lock.json": "a004425bf6fe075461651fe021057fcc8b552f154b9abf5e439a384530b4ed3c",
+    "/opt/memex-pilot/workspaces/yup-base/node_modules/typescript/package.json": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6",
+    "/opt/memex-pilot/workspaces/yup-base/node_modules/typescript/lib/typescript.js": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675"
+  },
+  "runtime": "Node 24.18.0 and pinned Yup runtime dependencies; test-only hooks load source ESM and TypeScript.",
+  "files": {
+    "scripts/prospective-gateway-pilot-v27.py": "2f1af3fc34bc56cc0d9407470c707c71695a9e06a365913455b04fb18132423c",
+    "scripts/prospective-gateway-pilot-v25.py": "b9877352973e4b014af1465cd0dde67dfd6f32a15f2897513b8740b870813f6d",
+    "scripts/prospective-gateway-pilot-v24.py": "71bf84a0a0370f1743e4c3cd81f501cc76378fcbba8ff094ead13e86854f2ec3",
+    "scripts/prospective-gateway-pilot-v23.py": "def4504693340818b68e7daf5bc06c71aadd979c07cab6d0211a0803af974ee6",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v28.py": "80c556b634fdeab88f95f09bc49108ce34910ce69a16e769647fd85c9eb992c1",
+    "scripts/prospective_agent_v28.py": "882f33e22e9237e555fc9a34605868727abcd1f20a8f889b550a55d586eaa4cb",
+    "scripts/prospective-gateway-pilot-v29.py": "915244cb5a3894304ff8bec641a3bcdd2ac83f71a0c4c545d2a2fdd994c5725c",
+    "scripts/prospective-gateway-pilot-v32.py": "e6c49f4d6af17e97841773a3de444ca719d9291b878d05c6ff6fc71346eb06b5"
+  },
+  "checks": {
+    "2214": {
+      "public": "fbbe69b36ebd5fd0a9ef58d8b279fe8ba6eae52f97557cc418b4256d7b98f8db",
+      "acceptance": "54e2f466e2c1c2872c33424a3c3ccd4921b41f2b59757d03b9530025eda77503",
+      "regressionControls": "a96feafdeb349922b71af185c0da42b4e38b00f2907267bfc61500904070097a"
+    },
+    "2433": {
+      "public": "85e9b44b7dd26bdb969397ee813937f305469a0d138ea1722a2e81d22439dd13",
+      "acceptance": "dec965efd7408dd867b45d03efa4d9d1477c9f8ebea47a6490fb9b03890b04f7",
+      "regressionControls": "42ba43a1530ec67cb42fc4dab2af115d9e7615eab0824373b1706efbfd533609"
+    },
+    "2252": {
+      "public": "e0befa73a957989b5c417d0170e11244b16387dfbe589ee64b9946becf94e8b2",
+      "acceptance": "8c94ab07fe432fd99678b41f398075268090abaeb3a3bbd702b740097b20060f",
+      "regressionControls": "15aa7863fa1a82c753346e7ed51ad4c4085ddc584dbd60a09cb32b2c41f9a2a7"
+    }
+  },
+  "issuesSha256": "ae0581abcab21f37012eb2c49ec183394eda854d8002389476f8e9a900d94ae0",
+  "contextsSha256": "7f16d4474ff5be1017ca5da10be2df9c9552e14bea5b2d5959039ebd39d3259c",
+  "seed": 2026103137,
+  "schedule": [
+    {
+      "issue": "2433",
+      "arm": "memex"
+    },
+    {
+      "issue": "2433",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2214",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2214",
+      "arm": "memex"
+    },
+    {
+      "issue": "2252",
+      "arm": "memex"
+    },
+    {
+      "issue": "2252",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6.1-sol",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 1200,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within each stage after provider failure or missing usage; preserve failed, missing and unknown costs. No timeout retry.",
+  "costTarget": "Below $1 estimated for three pairs, not a hard cap; proxy usage may exceed requested token limits.",
+  "limitations": [
+    "Selection follows previous outcomes and an ongoing trial; issue identities are new but statistical independence is not established.",
+    "Validator and Yup also appear in earlier batches; public issues or PRs may disclose fixes or be present in model training.",
+    "Different retrieved comment IDs do not control history content, length, or quality.",
+    "Frozen checks are partial, and proposed references do not establish maintainer acceptance.",
+    "The Underscore reference manually ports a proposed native bind fallback to the current module layout.",
+    "The Yup check exercises a selected abortEarly:false sorting case; it does not establish a deterministic abortEarly:true contract.",
+    "Distinct AI model labels share a proxy with unverified provenance.",
+    "Short, pre-seeded issue histories do not establish production value or autonomous memory management."
+  ],
+  "toolOverflowPolicy": "Execute at most four tool calls per model response; log and return explicit not-executed results for every excess call, then continue within the original turn budget."
+}

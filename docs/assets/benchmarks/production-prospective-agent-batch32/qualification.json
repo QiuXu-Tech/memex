@@ -1,0 +1,116 @@
+{
+  "method": "Frozen before solver calls: partial baseline and source-only or explicitly adapted reference checks in a network-disabled VM sandbox.",
+  "issues": {
+    "underscore-2214": {
+      "referencePR": 2845,
+      "referencePRState": "OPEN",
+      "referenceHead": "bf24482f557a22fe1566bb28672c5e5fac08f859",
+      "referenceKind": "MANUAL_PORT",
+      "sourcePatchSha256": "478cf0e5d587674bb61b74778e3f53d07c29bdf7d7657b8eea2924a7e50c5cee",
+      "compressedPatchSha256": "1652397bfb85f0a75da1d411cdac0cfefd78dccbfc905f858c7ff273e9c04757",
+      "originalPRPatchSha256": "67fcec9d81430a4c625af520424ae06a59f0a16e67243f0820b2545dd2fb458d",
+      "compressedOriginalPRSha256": "b0989762d5aac8e39f123db1889f4268e19e4c504c22b1b67b1a3677f175d6ad",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "ebbd63ad74e8479f47bea125371ff9bf39290951aecf6d4f6478a123706c1d59"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "ebbd63ad74e8479f47bea125371ff9bf39290951aecf6d4f6478a123706c1d59"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "Older PR source layout differs from the pinned module layout; the native bind fallback was manually ported. Legacy environments without native bind are not covered."
+    },
+    "validator-2433": {
+      "referencePR": 2694,
+      "referencePRState": "OPEN",
+      "referenceHead": "0419be0fbea762e6087fdabd954cfa5f62296000",
+      "referenceKind": "SOURCE_ONLY_PR",
+      "sourcePatchSha256": "f66328f06a0f235c919db5368a874d6655e3d4b0f7ea8c9643dca10153d01774",
+      "compressedPatchSha256": "faf276edcafbbba8b75762912b0e0499fbbe364d2385fe7673ddaa033fee4f28",
+      "originalPRPatchSha256": "4e07bc5da7d806dbc21eaacd93259144fd8fe6f7b8105106871db65b1ba95c53",
+      "compressedOriginalPRSha256": "6d71b5dc2d0932b2186a99de068f22adc29963cfd4af9def0fa9d3ecbc92f1b2",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "bb8f7f3ed71ff46b6720c593c4e3634e3396fa21260ef0fcfb41e8680d6e9cc8"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "9b8372117e7cb9e9df62fa626a75bf0f397112c4a5f0fced0b4db650e9f3fa90"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "The issue discusses landlines but the follow-up narrows this mobile validator to mobile numbers; numbering plan completeness is not established."
+    },
+    "yup-2252": {
+      "referencePR": 2331,
+      "referencePRState": "OPEN",
+      "referenceHead": "a90c1984efc0ae06bb21a44804f46e9d6614b8bd",
+      "referenceKind": "SOURCE_ONLY_PR",
+      "sourcePatchSha256": "6fcb027a0b0ffebca2caf7c5772f19b3310e2b0ea73dcceb702bcaeb48dbd815",
+      "compressedPatchSha256": "6ecabe832483b6c4ea03e06f7f3256aa8584e41a854b4a558e7e7471c96e09ae",
+      "originalPRPatchSha256": "3ce170df290ed1e343af8b165d0c9835d785e9a40eeadbcb90769e49ca737f1e",
+      "compressedOriginalPRSha256": "acba1d9fd92b6fa98dddb59867ae00eb3b83cc23d270def2a5225affcc2e2bcc",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "d0ae3515c17e72663776e739eaca4834511fb68e2bb71c111fb9d0e6e90142e6"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "d0ae3515c17e72663776e739eaca4834511fb68e2bb71c111fb9d0e6e90142e6"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      },
+      "qualificationRevision": "The frozen check concerns selected abortEarly:false error ordering, not a guarantee for abortEarly:true; the original discussion also contains form integration questions."
+    }
+  }
+}
