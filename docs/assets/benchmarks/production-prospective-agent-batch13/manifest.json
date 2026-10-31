@@ -1,0 +1,94 @@
+{
+  "kind": "registered-three-previously-unstarted-issues-after-503",
+  "createdAt": "2026-10-31T15:36:44.232317+08:00",
+  "repo": "prettier/prettier",
+  "sourceCommit": {
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "9955",
+    "17213",
+    "15537"
+  ],
+  "checks": {
+    "9955": {
+      "public": "cd65fd06865ea2b28032f218b8135848274e4edc1213bda517ef61c035f28099",
+      "acceptance": "0936646a7f477756c95eaea8643a4415d1701470ee8361af205fa520217443b8",
+      "regressionControls": "f847251cbf93f23374f4191c595bdfafd2727907da1ed0ee4704ed5a0535dda3"
+    },
+    "17213": {
+      "public": "aba4d35f51f479646f093acd03e1354366c5a4a8f9c448f9078c0ad98451e3e2",
+      "acceptance": "4fa1dcf62709385c633b4a3654b100c2e03a8f552a43709b7990522c47ed6c9d",
+      "regressionControls": "80cb625f3d12cd2ba429ff2b5676d6e932a9ca86864346067c8c49281a47793e"
+    },
+    "15537": {
+      "public": "2a16c8e4ba2069451d230a9a3736627ea2ff2bdf184c7188dc9508de2a9f24d6",
+      "acceptance": "f986d453d4e686c98677fad6b40f1299e1735fe2ece66121b3bed828e7db4b6a",
+      "regressionControls": "be0c523c250a821339f36eb3ecc083db8c548f368fbd2c50f9508fda1d3bb69e"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v13.py": "8a6830eb4181478fdc8a3e4a9111d8335f9f1793bf15d9861a004e6c80725e0d",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "7e0a9c6d9e1a5cec04d940e8ea717c93c2f4354b49526d0ad8c9ab00baeee007",
+  "contextsSha256": "a092de2ce1346b1fb037bd570c4e6d0f2e06c176c4031cf97152d1da7c7c3e24",
+  "seed": 2026103113,
+  "schedule": [
+    {
+      "issue": "9955",
+      "arm": "keyword"
+    },
+    {
+      "issue": "9955",
+      "arm": "memex"
+    },
+    {
+      "issue": "17213",
+      "arm": "memex"
+    },
+    {
+      "issue": "17213",
+      "arm": "keyword"
+    },
+    {
+      "issue": "15537",
+      "arm": "memex"
+    },
+    {
+      "issue": "15537",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "gpt-6.1-sol",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6-astra"
+  ],
+  "adjudicator": "claude-haiku-4-5",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $1.5; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Three previously registered but never started issues selected after a 503 and an independent health probe, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers and adjudicator are not humans; proxy model provenance is not independently verified",
+    "No effect or savings claim"
+  ]
+}
