@@ -1,0 +1,14 @@
+{
+  "kind": "posthoc-format-normalization-and-disagreement-review",
+  "createdAt": "2026-10-31T13:04:44.432856+08:00",
+  "initialManifestSha256": "6f58b0a8bd29b48b5e17a5279a065754b92603c2749cbb57d9da630671a1a7f5",
+  "reviewCallsSha256": "a0b3c3bd9b6ce1a0f3a8c1399ac29f62b36f9afc195be073cf556c4d68421ad1",
+  "normalizedSha256": "30a9da299fc2f0cc1859e3fdd6e42a48c6a8ab292df730019b1b11a43efed30c",
+  "scriptSha256": "afb7112a11d327105436113027afa10dd6f89ad4c880516de6f5fff91fdce1d8",
+  "rule": "Only existing exact labels, explicit label prefixes, and candidateDiff/acceptance/upstreamRegression aliases are accepted. Keep original responses. Format validity does not verify factual support. Reassess only pairs with two normalized-valid but differing scores.",
+  "model": "claude-haiku-4-5",
+  "maxTokens": 700,
+  "maxCalls": 2,
+  "noRetry": true,
+  "notIndependent": "Adjudicator is the solver model family; this posthoc procedure was added after seeing the initial responses."
+}
