@@ -1,0 +1,54 @@
+{
+  "kind": "posthoc-dayjs-alternate-adjudicator",
+  "createdAt": "2026-10-31T19:22:23.659233+08:00",
+  "sourceHashes": {
+    "manifest.json": "78400b1df37ba56685326e05821a63d12f6a0c2d1920c1ecbfa38e842cb20873",
+    "posthoc-key.json": "e838dc4f7dd374f72505b664ef336e4e23aee9edbc4d21c2df997346736f270b",
+    "posthoc-review-calls.jsonl": "c8c257b686fb91430c87cb2558a4a95ecd0a9890e93b24bdf90be04031a6df62",
+    "posthoc-adjudication-calls.jsonl": "ec6fca82bfeaa1dafdb6574954ccea1cb07627e0f158d1713f2f1024019c62c8"
+  },
+  "runnerSha256": "f7158a5d4f5e3f7c8d787028ccd3889a8f891b5e4db2d0b490d4cc2c24cff30b",
+  "seed": 2026103120,
+  "candidates": [
+    {
+      "blind": "A01",
+      "sourceBlind": "R01",
+      "slot": 6,
+      "packetSha256": "0aec723bda234b889c426280cb9be5c5a5a2b61b355dfb6e24d12e9ab7564eb1"
+    },
+    {
+      "blind": "A02",
+      "sourceBlind": "R10",
+      "slot": 9,
+      "packetSha256": "7c76c028c51fe65eebb673a2a47b6e4fe41a94e5f959faf2e04df9a0f97df393"
+    },
+    {
+      "blind": "A03",
+      "sourceBlind": "R08",
+      "slot": 5,
+      "packetSha256": "fbe9dad6b32108a4b3866c95371135b7f4fa0ceae52697f6c886e92fb8001dac"
+    },
+    {
+      "blind": "A04",
+      "sourceBlind": "R09",
+      "slot": 10,
+      "packetSha256": "0e2e2c1dac00d46355f6508c8577c3ea2f77bdf673bde2f2a0b94e7ba7ce4722"
+    },
+    {
+      "blind": "A05",
+      "sourceBlind": "R07",
+      "slot": 11,
+      "packetSha256": "8fcea169aa6f7115664481710a8a1e3fec7940eb72c871ad42560ca38826ae60"
+    }
+  ],
+  "model": "gpt-6-astra",
+  "maxTokens": 1200,
+  "maxCalls": 5,
+  "selection": "Five valid score disagreements after the original ratings and post-hoc Qwen replacements, each with an invalid post-hoc Gemini adjudication.",
+  "policy": "Only explicit 503 can be retried at most twice; timeouts are never retried; stop the stage after provider failure or missing usage.",
+  "limitations": [
+    "This alternate adjudicator and subset were chosen after observing failed adjudications.",
+    "The adjudicator has the same model name as the solver, so it is not independent of the solver.",
+    "All models share one proxy and provenance is unverified; AI format validity is not proof of factual correctness."
+  ]
+}
