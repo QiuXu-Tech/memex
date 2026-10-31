@@ -7,7 +7,7 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 ## Unreleased
 
 ### Fixed — MCP integration readiness
-- Scope MCP open, status, restore and forget by visible workspace and session; reject undeclared write fields, including supplied record IDs, and reject writes or compression into disabled levels. These are tool-level boundaries, not operating-system access controls.
+- Scope MCP open, status, restore and forget by visible workspace and session; reject undeclared write fields, including supplied record IDs, reject writes or compression into disabled levels, and default materialization to enabled scopes. These are tool-level boundaries, not operating-system access controls.
 - Use a fresh default L2 session per MCP process, and stop pinning the initializing project in newly generated global Codex configurations. Existing entries and records are not automatically migrated.
 - Honor line-based `memory_open` paging and expose character continuation for oversized line windows. Advertise accurate read-only and destructive MCP tool annotations.
 - Record four synthetic Codex integration attempts, including a denied write, invalid fixture and later scripted writable-workspace cycle; no production task A/B or autonomous lifecycle was completed. See `docs/production-readiness-20261101.md`.

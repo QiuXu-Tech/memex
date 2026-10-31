@@ -5113,6 +5113,22 @@ await test('U80', 'MCP cannot write or compress a disabled memory level', async 
   }
 })
 
+await test('U81', 'engine materialization defaults to enabled memory levels', async () => {
+  const root = makeRoot('u81')
+  const sessionId = 'u81-session'
+  const engine = new AgentMemory({ root, cwd: '/tmp/memex-u81', levels: ['l3'], sessionId })
+  try {
+    const visible = engine.write({ kind: 'fact', title: 'u81 marker', body: 'VISIBLE_WORKSPACE_FACT' })
+    engine.store.write({ kind: 'fact', title: 'u81 marker', body: 'HIDDEN_SESSION_FACT', workspaceKey: engine.workspaceKey, scope: 'session', sessionId })
+    const result = engine.materializeContext({ query: 'u81 marker', budgetTokens: 1000, pageTokenCap: 500 })
+    assert.ok(result.includedIds.includes(visible.id))
+    assertIncludes(result.text, 'VISIBLE_WORKSPACE_FACT')
+    assert.ok(!result.text.includes('HIDDEN_SESSION_FACT'))
+  } finally {
+    engine.close()
+  }
+})
+
 // ── summary ──────────────────────────────────────────────────────────────────
 
 cleanupTempDirs()

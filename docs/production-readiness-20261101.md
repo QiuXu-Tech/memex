@@ -18,11 +18,12 @@ This is a repair and integration check on the Memex project itself, based on v0.
 | MCP `memory_open` described line paging but sliced characters, and an oversized line could not be continued. | Line windows now use lines; `nextCharOffset` continues within the same window. U73 and U75 exercise line boundaries and a long Unicode line. |
 | An empty scope list was treated as an unfiltered scope by parts of the store and catalog. | An explicit empty list now returns no records. U79 covers get, list, search, catalog and forget. |
 | A caller could write or compress a memory level that was not enabled. | The engine rejects disabled scopes before writing or compressing. U80 exercises both MCP calls and checks that the hidden record remains cold-state unchanged. |
+| The programmatic materializer defaulted to both scopes even when L2 was disabled. | The default now uses the engine's enabled levels; U81 checks that a disabled session record is omitted while a visible workspace record remains. Explicit workspace, session and scope overrides remain available to trusted callers. |
 | MCP tools did not advertise their read-only or destructive behavior. | Read-only and destructive annotations match their behavior; U74 checks the declarations. Annotations do not override client approval policies. |
 
 The filters prevent these MCP tool calls from crossing logical workspace/session boundaries. They do **not** prevent another process with filesystem access to the memory root from reading or modifying its files. This is not a security certification. Existing `--cwd` configurations and any records captured under an incorrect workspace key require inspection; see the [Codex integration notes](integrations/codex.md).
 
-On an isolated copy with Node 24.21.0, the generated bundle build and parity check passed, the offline harness passed **176/176**, and the SQLite concurrency and recovery suite passed **36/36**. These checks cover the exercised cases, not all possible concurrent schedules or hosts.
+On an isolated copy with Node 24.21.0, the generated bundle build and parity check passed, the offline harness passed **177/177**, and the SQLite concurrency and recovery suite passed **36/36**. These checks cover the exercised cases, not all possible concurrent schedules or hosts.
 
 ## Actual Codex checks
 

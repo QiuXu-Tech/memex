@@ -189,7 +189,7 @@ export class AgentMemory {
     return materializeStoreContext({
       store: this.store,
       workspaceKey: options.workspaceKey ?? this.workspaceKey,
-      scopes: options.scopes ?? ['session', 'workspace'],
+      scopes: options.scopes ?? this.scopes,
       sessionId: options.sessionId ?? this.sessionId,
       budgetTokens: options.budgetTokens,
       variant: options.variant,
