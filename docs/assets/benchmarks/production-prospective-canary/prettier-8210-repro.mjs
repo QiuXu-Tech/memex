@@ -1,0 +1,3 @@
+import assert from 'node:assert/strict';import {pathToFileURL} from 'node:url';
+const prettier=await import(pathToFileURL(process.argv[2]+'/src/index.js'));
+await assert.doesNotReject(prettier.format('<a href=https://git.sr.ht/~sircmpwn/sr.ht-docs>https://git.sr.ht/~sircmpwn/sr.ht-docs</a>',{parser:'html'}));

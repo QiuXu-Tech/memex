@@ -3,7 +3,7 @@
   "observed": "2026-10-31",
   "snapshots": 69,
   "strictHeuristicCandidates": 48,
-  "warning": "Baseline failure or timeout is not project acceptance, independent ground truth, or pilot eligibility. Additional nine baselines were observed after the canary trial and include issues outside the strict heuristic.",
+  "warning": "Baseline failure or timeout is not project acceptance, independent ground truth, or pilot eligibility. Additional 30 baselines were observed after the canary trial and include issues outside the strict heuristic.",
   "lodashCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
   "expressCommit": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824",
   "expressDependencyTreeSha256": "a3ae95e03c26a279d56a08560cd96532f7800a7989798c38e4470e7b381e8d24",
@@ -95,8 +95,203 @@
       "validatorSha256": "60392aeb1792fb44ae948bfacea51cadfe36ce7fa07dfdc3245cdde7e8e951a2",
       "at": "2026-10-31T02:05:44.553971+00:00",
       "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21436",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "42060347494724265d87fce12b5d2d09d840696c7e98ae23a9de376b4cbd3ff0",
+      "at": "2026-10-31T02:11:03.904535+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21333",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "5d85dd6f6344fa3f67d9b18ce0b96c8152f29292d7338a535298572001222172",
+      "at": "2026-10-31T02:11:04.037898+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21443",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "10093f70a1ff1b8182fd840660f776cbef65aaaad0db0f1f61a231deeea91122",
+      "at": "2026-10-31T02:11:04.169707+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21113",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "6fe4b30b9554284a2d6447450f7f3863bf3c09a9b9fa618d4626e711ce22c697",
+      "at": "2026-10-31T02:11:04.320793+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/20854",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "7a524bcf2e65e0a1a9123f2a67c22dea1c0f5c51260c652e7d102993c6391e57",
+      "at": "2026-10-31T02:11:04.456755+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20199",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "ed8b3b15b03475b887b0045173464e4521e2eff24beca616d9a8c1144a6bb4cd",
+      "at": "2026-10-31T02:13:15.265730+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20047",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "13176c3beca41a93d484ff21e88171a9ed778ad46c798bdbe74dcd2471865978",
+      "at": "2026-10-31T02:13:15.605546+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20293",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "e175af827ed410049fc4b7afb19e0072da39a85c12c3ce4ff2f481f6a9105bbb",
+      "at": "2026-10-31T02:13:15.887477+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20096",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "3a5fdc7aaf25e679477466df3f90e2c72fde7264b02c63ce6875a43df34332d8",
+      "at": "2026-10-31T02:13:18.102918+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19955",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "621ac5f13a8e996869fdc6856a819580b8c9fe93015ab28a1ec6c18822079f13",
+      "at": "2026-10-31T02:13:18.547553+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19847",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "38798bd609702cb1ddd748cfef0c9e9328f64905f4e40f3a1d2230151c50550a",
+      "at": "2026-10-31T02:13:18.887031+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19530",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "3331bceed7f2d2cb4e929ce522c5c0948e8e9d8f0c9bda6b1d1db716d66cdb47",
+      "at": "2026-10-31T02:13:19.211931+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19968",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "3c6e0d201ecf7841ecd1322d55f0263c0cfe23327d02e0f9654d83907e4bb1e7",
+      "at": "2026-10-31T02:13:53.144909+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/16126",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "2edf252e1442eaf5db9b9b52fe9ae401c0488e432c45b48c4ac62d860abd31da",
+      "at": "2026-10-31T02:13:53.449177+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/15956",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "118bfdabdca06bf413b004f807e199a82995066d5d0fc30de7849e1b65c67f7c",
+      "at": "2026-10-31T02:13:53.734561+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/8210",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "b29c5fdd42e9c0631064be42912a1194ab326d93206e31387841a0f590c93356",
+      "at": "2026-10-31T02:13:53.958179+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19427",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "262b255cfa8db2f2a16d1495be869ea0f1d95ba1026f2a17876caaa766910e03",
+      "at": "2026-10-31T02:13:54.194421+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/960",
+      "sourceCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "606219648f7ece7bdcf1d946b838b1cb02f6677a7370f54e8299574bf98f3505",
+      "at": "2026-10-31T02:14:14.530986+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2129",
+      "sourceCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "89b14b4c4e5f3dda1c2a686d8e4b7634d9585d4b17e97fa38779845298341893",
+      "at": "2026-10-31T02:14:14.609824+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/1642",
+      "sourceCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "e46cb3ce8b21f7bc7c6d92814982268d9a3f4a9ac3cb9d44bcbe5670677b99f0",
+      "at": "2026-10-31T02:14:14.679845+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6105",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "status": "assertion_failure",
+      "exit": 1,
+      "validatorSha256": "70fac6cde0d2e0e07afb8ec1080aa1096bf3711092819a7cad48e4bbf4f1d9dd",
+      "at": "2026-10-31T02:15:19.266447+00:00",
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
     }
   ],
   "pinoCommit": "b29dbe97820630e7128e464c50263b427965ec99",
-  "pinoDependencyTreeSha256": "a0dbfc78c5d287fe9194a6e8b2fef88c433dc63e73d765f6a889467f552d29f8"
+  "pinoDependencyTreeSha256": "a0dbfc78c5d287fe9194a6e8b2fef88c433dc63e73d765f6a889467f552d29f8",
+  "eslintCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+  "eslintDependencyInventorySha256": "25dd7b321d9c1cf01ec56d38a7f6d00d0dfeeef129cd27c07e6949ae5c8323c5",
+  "eslintDependencyInventoryStatus": "npm ls exited nonzero reporting omitted dev dependencies; no full suite run",
+  "prettierCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+  "prettierDependencyInventorySha256": "a705aafd395be7ba6babd269cc7d8ec006906e95c03dc2475f2a984cee813f1c",
+  "prettierDependencyInventoryStatus": "npm install succeeded with engine warnings on Node 25.9.0; no full suite run"
 }
