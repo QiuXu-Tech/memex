@@ -1,0 +1,99 @@
+{
+  "kind": "registered-two-mathjs-issue-pairs",
+  "createdAt": "2026-10-31T19:50:27.214574+08:00",
+  "sourceCommit": {
+    "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+  },
+  "mathjsRuntimeLockSha256": "2195cbcd933fd1a2ed008d97cbb5862e13fea87b78739ce9a4b28961ee46973e",
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "mathjs": "Runtime dependencies installed from generated lock without lifecycle scripts."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": {
+    "3644": "mathjs",
+    "1905": "mathjs"
+  },
+  "checks": {
+    "3644": {
+      "public": "94a0eab506e405a9afa16731b7d902e91dcf34a6a7808cc7172e1dc549050a0f",
+      "acceptance": "48ffb8d256a3fc2121d87bb6585ca21fd3a5d1858bd42a511550be9765653f19",
+      "regressionControls": "a478b0103e0c9e85f2f9418f5f58ad98db7275d8ec0d187b751f9b0962144441"
+    },
+    "1905": {
+      "public": "adcf01e6e4def6a6407294ed6a000484fdf70ef33f8436b2064a18f2f5d758fe",
+      "acceptance": "adcf01e6e4def6a6407294ed6a000484fdf70ef33f8436b2064a18f2f5d758fe",
+      "regressionControls": "48be4b18e017937590ccb6a0cc670860039ee25034098dba3169049ec8a484fb"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379"
+  },
+  "issuesSha256": "c54147a3690cae553ed3937a6d28118a298b4b133a413752be4c174cd174e524",
+  "contextsSha256": "bbd144cc7a905cfb1c1e284600485e2fb6db75a815069631a998ae8ed05b431e",
+  "seed": 2026103123,
+  "schedule": [
+    {
+      "issue": "3644",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3644",
+      "arm": "memex"
+    },
+    {
+      "issue": "1905",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1905",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gemini-3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 2048,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within a stage after a provider failure or missing usage; preserve all attempts and unknown fees. Never retry a timeout.",
+  "costTarget": "Below $2 estimated, not a hard cap; unknown fees reported separately.",
+  "limitations": [
+    "Two additional pairs selected after earlier batches; not a pre-registered 30–50-task independent cohort.",
+    "Public discussions and PRs can disclose solutions or appear in training; common repositories and related issues can correlate.",
+    "Source-only references and small custom tests do not establish full upstream acceptance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Same-proxy AI model provenance is unverified; larger model budgets were selected after observing truncation.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim."
+  ]
+}
