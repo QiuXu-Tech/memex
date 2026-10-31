@@ -15,7 +15,16 @@
       "exit": 1,
       "validatorSha256": "21ff758638df0f2e992e213989d18905868962cc04c54f7f4c409fd298582872",
       "at": "2026-10-31T02:00:43.643810+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "_.invert and _invertBy removes key when _proto_ value",
+      "labels": [
+        "bug"
+      ],
+      "reportedComments": 6,
+      "capturedComments": 6,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/lodash/lodash/issues/5750",
@@ -24,7 +33,16 @@
       "exit": 1,
       "validatorSha256": "48dd89b1a690ca7963cdcc6548b0b1e2c65447e229c166a9929cf3ddd0651d82",
       "at": "2026-10-31T02:00:43.707832+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Unexpected behaviour of `camelCase`",
+      "labels": [
+        "bug"
+      ],
+      "reportedComments": 7,
+      "capturedComments": 7,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/lodash/lodash/issues/5881",
@@ -33,7 +51,16 @@
       "exit": 1,
       "validatorSha256": "28986085abe1b6b69cdbe45b197e1a31ef2c716a3891ac86703c92d9ee002fad",
       "at": "2026-10-31T02:00:43.768188+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "_.omit evaluates getters for omitted properties",
+      "labels": [
+        "bug"
+      ],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/lodash/lodash/issues/6274",
@@ -42,7 +69,14 @@
       "exit": null,
       "validatorSha256": "370886eb5e48f830731f2a45c244d3ec83959f147e402b7f8bda5df9314b5b16",
       "at": "2026-10-31T02:00:46.772275+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "[Bug]`_.truncate` hangs forever with a zero-length-capable regex `separator`",
+      "labels": [],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/expressjs/express/issues/7350",
@@ -51,7 +85,16 @@
       "exit": 1,
       "validatorSha256": "274089c8e9f66746fb0d10e003402e14a071a88902fdef48ed22aa762b403c86",
       "at": "2026-10-31T02:04:18.626077+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "res.render()/app.render() throws opaque TypeError for a view name ending in \".\"",
+      "labels": [
+        "bug"
+      ],
+      "reportedComments": 8,
+      "capturedComments": 8,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/expressjs/express/issues/7034",
@@ -60,14 +103,33 @@
       "exit": 1,
       "validatorSha256": "a7f2788d68f32bbfd0b978c990f6776aabc14e849f441c3b5414688ad2c9dd55",
       "at": "2026-10-31T02:04:18.724399+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "res.set('Content-Type') silently sets header to literal string 'false' for unknown types",
+      "labels": [
+        "discuss"
+      ],
+      "reportedComments": 5,
+      "capturedComments": 5,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/lodash/lodash/issues/5610",
       "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
       "status": "assertion_failure",
       "validatorSha256": "a766515938d326b53750db215103b0c8b171d23ba198b07dd92798caf06e7475",
-      "qualification": "selected canary; passing positive reference constructed separately; not independent"
+      "qualification": "selected canary; passing positive reference constructed separately; not independent",
+      "issueTitle": "_.omit from lodash/fp mutates the input object when using deep property paths with arrays",
+      "labels": [
+        "bug",
+        "lodash/fp"
+      ],
+      "reportedComments": 5,
+      "capturedComments": 5,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/pinojs/pino/issues/2057",
@@ -76,7 +138,14 @@
       "exit": 1,
       "validatorSha256": "5219e15916109eb8c9b928cffdcebfc6bd9feae05c1becf0dddc9d0becfa82b3",
       "at": "2026-10-31T02:05:44.426189+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "[bug] in the browser, `pino.stdSerializers.errorWithCause` does not serialize `cause` prop",
+      "labels": [],
+      "reportedComments": 4,
+      "capturedComments": 4,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/pinojs/pino/issues/2244",
@@ -85,7 +154,14 @@
       "exit": 1,
       "validatorSha256": "305abda9998c2e7290eb425d782e5deb56a4109a0159e7447b671e632bbc8c05",
       "at": "2026-10-31T02:05:44.486271+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "browser: logger does not pass arguments to write function",
+      "labels": [],
+      "reportedComments": 4,
+      "capturedComments": 4,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/pinojs/pino/issues/1962",
@@ -94,7 +170,14 @@
       "exit": 1,
       "validatorSha256": "60392aeb1792fb44ae948bfacea51cadfe36ce7fa07dfdc3245cdde7e8e951a2",
       "at": "2026-10-31T02:05:44.553971+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Promise catch directly calling error log results in \"Cannot read properties of undefined\" exception",
+      "labels": [],
+      "reportedComments": 7,
+      "capturedComments": 7,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/eslint/eslint/issues/21436",
@@ -103,7 +186,20 @@
       "exit": 1,
       "validatorSha256": "42060347494724265d87fce12b5d2d09d840696c7e98ae23a9de376b4cbd3ff0",
       "at": "2026-10-31T02:11:03.904535+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Bug: eqeqeq autofix can change runtime behavior when a typeof result is compared to a non-string operand",
+      "labels": [
+        "bug",
+        "rule",
+        "accepted",
+        "autofix",
+        "repro:yes"
+      ],
+      "reportedComments": 6,
+      "capturedComments": 6,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/eslint/eslint/issues/21333",
@@ -112,7 +208,20 @@
       "exit": 1,
       "validatorSha256": "5d85dd6f6344fa3f67d9b18ce0b96c8152f29292d7338a535298572001222172",
       "at": "2026-10-31T02:11:04.037898+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Rule Change: max-statements should count statements in switch cases and braceless bodies",
+      "labels": [
+        "bug",
+        "enhancement",
+        "rule",
+        "accepted",
+        "repro:yes"
+      ],
+      "reportedComments": 4,
+      "capturedComments": 4,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": true,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/eslint/eslint/issues/21443",
@@ -121,7 +230,18 @@
       "exit": 1,
       "validatorSha256": "10093f70a1ff1b8182fd840660f776cbef65aaaad0db0f1f61a231deeea91122",
       "at": "2026-10-31T02:11:04.169707+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Rule Change: support `JSON.parse` and `JSON.stringify` callbacks in `no-invalid-this`",
+      "labels": [
+        "enhancement",
+        "rule",
+        "accepted"
+      ],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": true,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/eslint/eslint/issues/21113",
@@ -130,7 +250,17 @@
       "exit": 1,
       "validatorSha256": "6fe4b30b9554284a2d6447450f7f3863bf3c09a9b9fa618d4626e711ce22c697",
       "at": "2026-10-31T02:11:04.320793+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Rule Change: support `Object.groupBy` and `Map.groupBy` in `array-callback-return`",
+      "labels": [
+        "enhancement",
+        "rule"
+      ],
+      "reportedComments": 15,
+      "capturedComments": 15,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": true,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/eslint/eslint/issues/20854",
@@ -139,7 +269,17 @@
       "exit": 1,
       "validatorSha256": "7a524bcf2e65e0a1a9123f2a67c22dea1c0f5c51260c652e7d102993c6391e57",
       "at": "2026-10-31T02:11:04.456755+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Bug: use-isnan does not detect globalThis.NaN",
+      "labels": [
+        "bug",
+        "repro:yes"
+      ],
+      "reportedComments": 11,
+      "capturedComments": 11,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/20199",
@@ -148,7 +288,16 @@
       "exit": 1,
       "validatorSha256": "ed8b3b15b03475b887b0045173464e4521e2eff24beca616d9a8c1144a6bb4cd",
       "at": "2026-10-31T02:13:15.265730+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "Markdown regression in 3.9.9: inline math is modified after disabling singleDollarTextMath",
+      "labels": [
+        "lang:markdown"
+      ],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/20047",
@@ -157,7 +306,14 @@
       "exit": 1,
       "validatorSha256": "13176c3beca41a93d484ff21e88171a9ed778ad46c798bdbe74dcd2471865978",
       "at": "2026-10-31T02:13:15.605546+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "Markdown: wrapping an inline HTML comment splits its paragraph",
+      "labels": [],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/20293",
@@ -166,7 +322,16 @@
       "exit": 1,
       "validatorSha256": "e175af827ed410049fc4b7afb19e0072da39a85c12c3ce4ff2f481f6a9105bbb",
       "at": "2026-10-31T02:13:15.887477+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "[yaml] block scalar with trailing whitespace moves the next key to the root (main, after #19764)",
+      "labels": [
+        "lang:yaml"
+      ],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/20096",
@@ -175,7 +340,17 @@
       "exit": 1,
       "validatorSha256": "3a5fdc7aaf25e679477466df3f90e2c72fde7264b02c63ce6875a43df34332d8",
       "at": "2026-10-31T02:13:18.102918+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "TS:  Statement after top-level `await` is duplicated with `typescript` parser",
+      "labels": [
+        "lang:typescript",
+        "scope:external"
+      ],
+      "reportedComments": 5,
+      "capturedComments": 5,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/19955",
@@ -184,7 +359,18 @@
       "exit": 1,
       "validatorSha256": "621ac5f13a8e996869fdc6856a819580b8c9fe93015ab28a1ec6c18822079f13",
       "at": "2026-10-31T02:13:18.547553+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "Unstable comment print in parenthesized arrow function body",
+      "labels": [
+        "help wanted",
+        "area:comments",
+        "area:idempotency"
+      ],
+      "reportedComments": 6,
+      "capturedComments": 6,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/19847",
@@ -193,7 +379,17 @@
       "exit": 1,
       "validatorSha256": "38798bd609702cb1ddd748cfef0c9e9328f64905f4e40f3a1d2230151c50550a",
       "at": "2026-10-31T02:13:18.887031+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "markdown: row indented GFM table rendering idempotency",
+      "labels": [
+        "help wanted",
+        "lang:markdown"
+      ],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/19530",
@@ -202,7 +398,17 @@
       "exit": 1,
       "validatorSha256": "3331bceed7f2d2cb4e929ce522c5c0948e8e9d8f0c9bda6b1d1db716d66cdb47",
       "at": "2026-10-31T02:13:19.211931+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "[md] incorrect normalisation of incorrect setex",
+      "labels": [
+        "help wanted",
+        "lang:markdown"
+      ],
+      "reportedComments": 5,
+      "capturedComments": 5,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/19968",
@@ -211,7 +417,17 @@
       "exit": 1,
       "validatorSha256": "3c6e0d201ecf7841ecd1322d55f0263c0cfe23327d02e0f9654d83907e4bb1e7",
       "at": "2026-10-31T02:13:53.144909+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "TS: idempotent issue with single param and object return type",
+      "labels": [
+        "lang:typescript",
+        "area:idempotency"
+      ],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/16126",
@@ -220,7 +436,17 @@
       "exit": 1,
       "validatorSha256": "2edf252e1442eaf5db9b9b52fe9ae401c0488e432c45b48c4ac62d860abd31da",
       "at": "2026-10-31T02:13:53.449177+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "yaml with folded multiline string and \"--prose-wrap always\" improperly wraps (and is not idempotent)",
+      "labels": [
+        "status:needs discussion",
+        "lang:yaml"
+      ],
+      "reportedComments": 8,
+      "capturedComments": 8,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/15956",
@@ -229,7 +455,16 @@
       "exit": 1,
       "validatorSha256": "118bfdabdca06bf413b004f807e199a82995066d5d0fc30de7849e1b65c67f7c",
       "at": "2026-10-31T02:13:53.734561+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "Prettier should *not* format JSONC with trailing commas",
+      "labels": [
+        "status:needs discussion"
+      ],
+      "reportedComments": 66,
+      "capturedComments": 66,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/8210",
@@ -238,7 +473,17 @@
       "exit": 1,
       "validatorSha256": "b29c5fdd42e9c0631064be42912a1194ab326d93206e31387841a0f590c93356",
       "at": "2026-10-31T02:13:53.958179+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "Unquoted HTML attribute with slash causes parser error",
+      "labels": [
+        "scope:dependency",
+        "lang:html"
+      ],
+      "reportedComments": 6,
+      "capturedComments": 6,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/prettier/prettier/issues/19427",
@@ -247,7 +492,17 @@
       "exit": 1,
       "validatorSha256": "262b255cfa8db2f2a16d1495be869ea0f1d95ba1026f2a17876caaa766910e03",
       "at": "2026-10-31T02:13:54.194421+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed; dependency engine warning",
+      "issueTitle": "SCSS: inline comment before nested function adds extra indent",
+      "labels": [
+        "help wanted",
+        "lang:css/scss/less"
+      ],
+      "reportedComments": 3,
+      "capturedComments": 3,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/pinojs/pino/issues/960",
@@ -256,7 +511,14 @@
       "exit": 1,
       "validatorSha256": "606219648f7ece7bdcf1d946b838b1cb02f6677a7370f54e8299574bf98f3505",
       "at": "2026-10-31T02:14:14.530986+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Childlogger Loglevel not respected in the browser",
+      "labels": [],
+      "reportedComments": 8,
+      "capturedComments": 8,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/pinojs/pino/issues/2129",
@@ -265,7 +527,14 @@
       "exit": 1,
       "validatorSha256": "89b14b4c4e5f3dda1c2a686d8e4b7634d9585d4b17e97fa38779845298341893",
       "at": "2026-10-31T02:14:14.609824+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "Use parent `bindings` formatter in child loggers",
+      "labels": [],
+      "reportedComments": 4,
+      "capturedComments": 4,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/pinojs/pino/issues/1642",
@@ -274,7 +543,14 @@
       "exit": 1,
       "validatorSha256": "e46cb3ce8b21f7bc7c6d92814982268d9a3f4a9ac3cb9d44bcbe5670677b99f0",
       "at": "2026-10-31T02:14:14.679845+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "put child() bindings (internal chindings) into nestedKey",
+      "labels": [],
+      "reportedComments": 16,
+      "capturedComments": 16,
+      "possibleSolutionOrPrMention": false,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     },
     {
       "issue": "https://github.com/lodash/lodash/issues/6105",
@@ -283,7 +559,17 @@
       "exit": 1,
       "validatorSha256": "70fac6cde0d2e0e07afb8ec1080aa1096bf3711092819a7cad48e4bbf4f1d9dd",
       "at": "2026-10-31T02:15:19.266447+00:00",
-      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed"
+      "qualification": "baseline only; acceptance semantics and eligibility not yet reviewed",
+      "issueTitle": "`lodash/fp` pollutes native/global `Array.isArray` with `convert` property",
+      "labels": [
+        "bug",
+        "lodash/fp"
+      ],
+      "reportedComments": 7,
+      "capturedComments": 7,
+      "possibleSolutionOrPrMention": true,
+      "possibleFeatureOrRuleChange": false,
+      "eligibility": "NOT_ASSESSED"
     }
   ],
   "pinoCommit": "b29dbe97820630e7128e464c50263b427965ec99",
