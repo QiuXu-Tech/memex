@@ -26,6 +26,7 @@ jobs:
         run: |
           python3 scripts/test-pilot-loop.py
           python3 scripts/test-pilot-review.py
+          python3 scripts/test-pilot-review-guard.py
           python3 scripts/test-pilot-citations.py
           python3 scripts/test-pilot-batch-stop.py
           python3 scripts/test-pilot-expanded-ledger.py

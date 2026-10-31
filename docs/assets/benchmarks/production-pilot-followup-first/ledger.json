@@ -1,0 +1,201 @@
+{
+  "categories": {
+    "answerAndIntake": {
+      "plannedJobs": 201,
+      "calls": 201,
+      "callsNotSent": 0,
+      "promptTokensReported": 772708,
+      "completionTokensReported": 70247,
+      "cachedPromptTokensReported": 0,
+      "cacheCreation5mTokensReported": 0,
+      "cacheCreation1hTokensReported": 0,
+      "reasoningTokensReported": 0,
+      "callsMissingReasoningTokens": 50,
+      "totalTokensReported": 842955,
+      "callsMissingTotalTokens": 50,
+      "inputAliasTokensReported": 772708,
+      "outputAliasTokensReported": 0,
+      "callsMissingPromptTokens": 50,
+      "callsMissingCompletionTokens": 50,
+      "callsMissingCachedTokens": 50,
+      "requestBytesReported": 2943599,
+      "responseBytesReported": 280633,
+      "callsMissingRequestBytes": 0,
+      "callsMissingResponseBytes": 50,
+      "statuses": {
+        "ok": 151,
+        "error": 46,
+        "http_error": 4
+      },
+      "responseModels": {
+        "claude-haiku-4-5": 151,
+        "UNKNOWN": 50
+      },
+      "usageSemantics": {
+        "openai": 151,
+        "UNKNOWN": 50
+      },
+      "usageSources": {
+        "anthropic": 151,
+        "UNKNOWN": 50
+      }
+    },
+    "blindedReviews": {
+      "plannedJobs": 56,
+      "calls": 56,
+      "callsNotSent": 0,
+      "promptTokensReported": 487111,
+      "completionTokensReported": 21449,
+      "cachedPromptTokensReported": 172544,
+      "cacheCreation5mTokensReported": 0,
+      "cacheCreation1hTokensReported": 0,
+      "reasoningTokensReported": 9594,
+      "callsMissingReasoningTokens": 0,
+      "totalTokensReported": 508560,
+      "callsMissingTotalTokens": 0,
+      "inputAliasTokensReported": 0,
+      "outputAliasTokensReported": 0,
+      "callsMissingPromptTokens": 0,
+      "callsMissingCompletionTokens": 0,
+      "callsMissingCachedTokens": 22,
+      "requestBytesReported": 1233042,
+      "responseBytesReported": 71042,
+      "callsMissingRequestBytes": 0,
+      "callsMissingResponseBytes": 0,
+      "statuses": {
+        "ok": 53,
+        "invalid_json": 3
+      },
+      "responseModels": {
+        "deepseek-v4-1-flash-261017": 28,
+        "gpt-6-astra": 28
+      },
+      "usageSemantics": {
+        "UNKNOWN": 56
+      },
+      "usageSources": {
+        "UNKNOWN": 56
+      }
+    },
+    "unblindedAutonomyAudits": {
+      "plannedJobs": 24,
+      "calls": 24,
+      "callsNotSent": 0,
+      "promptTokensReported": 254271,
+      "completionTokensReported": 8838,
+      "cachedPromptTokensReported": 41895,
+      "cacheCreation5mTokensReported": 0,
+      "cacheCreation1hTokensReported": 0,
+      "reasoningTokensReported": 4740,
+      "callsMissingReasoningTokens": 2,
+      "totalTokensReported": 263109,
+      "callsMissingTotalTokens": 0,
+      "inputAliasTokensReported": 0,
+      "outputAliasTokensReported": 0,
+      "callsMissingPromptTokens": 0,
+      "callsMissingCompletionTokens": 0,
+      "callsMissingCachedTokens": 10,
+      "requestBytesReported": 739350,
+      "responseBytesReported": 28102,
+      "callsMissingRequestBytes": 0,
+      "callsMissingResponseBytes": 0,
+      "statuses": {
+        "ok": 23,
+        "invalid_json": 1
+      },
+      "responseModels": {
+        "deepseek-v4-1-flash-261017": 12,
+        "gpt-6-astra": 12
+      },
+      "usageSemantics": {
+        "UNKNOWN": 24
+      },
+      "usageSources": {
+        "UNKNOWN": 24
+      }
+    },
+    "syntheticDevelopmentProbes": {
+      "plannedJobs": 3,
+      "calls": 3,
+      "callsNotSent": 0,
+      "promptTokensReported": 5947,
+      "completionTokensReported": 51,
+      "cachedPromptTokensReported": 5120,
+      "cacheCreation5mTokensReported": 0,
+      "cacheCreation1hTokensReported": 0,
+      "reasoningTokensReported": 42,
+      "callsMissingReasoningTokens": 0,
+      "totalTokensReported": 5998,
+      "callsMissingTotalTokens": 0,
+      "inputAliasTokensReported": 14,
+      "outputAliasTokensReported": 0,
+      "callsMissingPromptTokens": 0,
+      "callsMissingCompletionTokens": 0,
+      "callsMissingCachedTokens": 0,
+      "requestBytesReported": 453,
+      "responseBytesReported": 1538,
+      "callsMissingRequestBytes": 0,
+      "callsMissingResponseBytes": 0,
+      "statuses": {
+        "ok": 3
+      },
+      "responseModels": {
+        "claude-haiku-4-5": 1,
+        "gpt-6-astra": 1,
+        "deepseek-v4-1-flash-261017": 1
+      },
+      "usageSemantics": {
+        "openai": 1,
+        "UNKNOWN": 2
+      },
+      "usageSources": {
+        "anthropic": 1,
+        "UNKNOWN": 2
+      }
+    },
+    "priorRealDevelopmentProbes": {
+      "statuses": {},
+      "responseModels": {},
+      "usageSemantics": {},
+      "usageSources": {}
+    }
+  },
+  "totals": {
+    "plannedJobs": 284,
+    "calls": 284,
+    "callsNotSent": 0,
+    "promptTokensReported": 1520037,
+    "completionTokensReported": 100585,
+    "cachedPromptTokensReported": 219559,
+    "reasoningTokensReported": 14376,
+    "callsMissingReasoningTokens": 52,
+    "totalTokensReported": 1620622,
+    "callsMissingTotalTokens": 50,
+    "inputAliasTokensReported": 772722,
+    "outputAliasTokensReported": 0,
+    "cacheCreation5mTokensReported": 0,
+    "cacheCreation1hTokensReported": 0,
+    "callsMissingPromptTokens": 50,
+    "callsMissingCompletionTokens": 50,
+    "callsMissingCachedTokens": 82,
+    "requestBytesReported": 4916444,
+    "responseBytesReported": 381315,
+    "callsMissingRequestBytes": 0,
+    "callsMissingResponseBytes": 50
+  },
+  "billing": {
+    "gatewayInvoice": "UNKNOWN",
+    "providerPricesAndDiscounts": "UNKNOWN",
+    "historicalIngestion": "UNKNOWN",
+    "engineeringLabor": "UNKNOWN",
+    "humanReview": "UNKNOWN",
+    "localComputeStorageNetworkPricing": "UNKNOWN",
+    "costPerTask": "UNKNOWN",
+    "costPerVerifiedSuccess": "UNKNOWN"
+  },
+  "notes": [
+    "Cached prompt tokens are part of prompt tokens and must not be added again; reasoning tokens are completion-token details. Input/output aliases may duplicate prompt/completion.",
+    "Reported tokens and bytes are not an invoice; failed calls can have missing usage.",
+    "Development probes, if supplied, are separate from registered trial and review scores."
+  ]
+}

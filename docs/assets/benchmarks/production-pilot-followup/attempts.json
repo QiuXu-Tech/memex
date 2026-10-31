@@ -1,0 +1,30 @@
+{
+  "plannedTrials": 60,
+  "recordedTrials": 60,
+  "unrecordedTrials": 0,
+  "trialStatuses": {
+    "ok": 60
+  },
+  "modelCalls": 300,
+  "modelCallStatuses": {
+    "ok": 300
+  },
+  "failedModelTypes": {},
+  "modelUsage": {
+    "promptTokensReported": 1756780,
+    "promptTokensReportedMissingCalls": 0,
+    "completionTokensReported": 169430,
+    "completionTokensReportedMissingCalls": 0,
+    "cachedPromptTokensReported": 0,
+    "cachedPromptTokensMissingCalls": 0,
+    "requestBytesReported": 5031905,
+    "responseBytesReported": 623372
+  },
+  "continuationCalls": 6,
+  "billing": "UNKNOWN",
+  "limitations": [
+    "Unrecorded trials were not necessarily started.",
+    "Failed calls may have unreported gateway usage or fees.",
+    "This summary excludes reviewer and audit calls."
+  ]
+}

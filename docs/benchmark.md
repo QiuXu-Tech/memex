@@ -5,7 +5,13 @@ layout: default
 
 # Benchmark report
 
-## 2026-10-31 expanded retrospective validation pilot
+## 2026-10-31 retrospective pilot follow-up
+
+A 12-question, six-session replay retained a first cohort affected by gateway errors and separately registered a post-outage replication. The replication completed **60/60** answers, including **6** recovered by bounded tool-free continuation. The unblinded AI audit had **24/24** schema- and citation-valid responses, but formal validity does not prove faithful memory. Blind AI review yielded **92/120** valid ratings; Astra returned **27 HTTP 403** errors, leaving substantial nonrandom missingness. Across both cohorts and probes, **728 calls** reported **4,410,105 prompt / 316,373 completion tokens**, with usage missing for **77** calls and actual costs **UNKNOWN**. The repeated retrospective tasks are not evidence of production benefit. [Full results, methods and ledger](production-pilot-followup.md).
+
+![Follow-up AI reviewer ratings and missingness](assets/benchmarks/production-pilot-followup-machine-review.png)
+
+## 2026-10-31 earlier expanded retrospective validation pilot
 
 Nine historical questions from three correlated sessions were replayed in five randomized conditions. **41/45** answers were complete; the bounded tool-loop fallback produced complete answers in **8/9** answer phases that reached the cap. Two blinded AI reviewers returned **79/82** valid ratings, with agreement on **17/36** answers where both correctness scores were non-null. Eight of nine write-enabled runs wrote before the question; three later searched, opened and cited their own write. The **8/18** valid unblinded autonomy audits and incomplete cost data do not prove faithful production memory management or savings. Actual invoice and complete costs are **UNKNOWN**. [Full methods, results and ledger](production-pilot-expanded.md).
 

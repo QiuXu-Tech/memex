@@ -84,7 +84,15 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
-## Expanded retrospective validation pilot (2026-10-31)
+## Retrospective pilot follow-up (2026-10-31)
+
+A follow-up fixed the pilot harness's bounded answer continuation and separated historical-source IDs from observed-memory IDs in the unblinded audit. Twelve historical questions from six correlated sessions were replayed in five randomized conditions. A first cohort suffered 32 incomplete answers during a gateway outage; the separately registered post-outage replication completed **60/60** answers, including **6** that continued after the output limit. This is replay, not verified completion of the original tasks.
+
+In the replication, **24/24** unblinded AI autonomy audits passed the citation/schema checks, while model opinions about memory fidelity diverged. Blind answer reviews were valid in **92/120** calls; Astra returned **27 HTTP 403** errors and the two reviewers agreed on **15/29** comparable non-null correctness ratings. Both cohorts and connectivity probes generated **728 recorded calls** with **4,410,105 prompt / 316,373 completion tokens reported**; **77 calls lack prompt/completion usage**, and actual charges remain **UNKNOWN**. Results do not demonstrate production accuracy, savings or reliable autonomous memory. [Results, methods, failure evidence and full cost gaps](docs/production-pilot-followup.md).
+
+![Retrospective follow-up task usage and observed memory actions](docs/assets/benchmarks/production-pilot-followup-usage.png)
+
+## Earlier expanded retrospective validation pilot (2026-10-31)
 
 A preregistered five-condition replay of nine historical questions from three correlated sessions produced **41/45 complete answers** and four truncated answers. After tool budgets were exhausted, the pilot harness produced complete fallback answers in 8/9 affected answer phases. In the nine write-enabled runs, the agent wrote before the question in eight and searched, opened and cited its own earlier write in three. These are replay observations, not verified production success or proof of faithful memory management.
 

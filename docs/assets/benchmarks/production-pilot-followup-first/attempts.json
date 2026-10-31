@@ -1,0 +1,39 @@
+{
+  "plannedTrials": 60,
+  "recordedTrials": 60,
+  "unrecordedTrials": 0,
+  "trialStatuses": {
+    "continuation_model_failure": 1,
+    "model_failure": 31,
+    "ok": 28
+  },
+  "modelCalls": 201,
+  "modelCallStatuses": {
+    "ok": 151,
+    "http_error": 4,
+    "error": 46
+  },
+  "failedModelTypes": {
+    "503": 4,
+    "URLError": 44,
+    "RemoteDisconnected": 1,
+    "TimeoutError": 1
+  },
+  "modelUsage": {
+    "promptTokensReported": 772708,
+    "promptTokensReportedMissingCalls": 50,
+    "completionTokensReported": 70247,
+    "completionTokensReportedMissingCalls": 50,
+    "cachedPromptTokensReported": 0,
+    "cachedPromptTokensMissingCalls": 50,
+    "requestBytesReported": 2943599,
+    "responseBytesReported": 280633
+  },
+  "continuationCalls": 1,
+  "billing": "UNKNOWN",
+  "limitations": [
+    "Unrecorded trials were not necessarily started.",
+    "Failed calls may have unreported gateway usage or fees.",
+    "This summary excludes reviewer and audit calls."
+  ]
+}

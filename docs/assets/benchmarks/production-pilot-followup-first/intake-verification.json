@@ -1,0 +1,67 @@
+{
+  "runs": [
+    {
+      "trial": "pilot-37",
+      "intakeRequestsChecked": 13,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-21",
+      "intakeRequestsChecked": 9,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-27",
+      "intakeRequestsChecked": 11,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-11",
+      "intakeRequestsChecked": 4,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-48",
+      "intakeRequestsChecked": 3,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-09",
+      "intakeRequestsChecked": 3,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-53",
+      "intakeRequestsChecked": 3,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-42",
+      "intakeRequestsChecked": 13,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-03",
+      "intakeRequestsChecked": 8,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-19",
+      "intakeRequestsChecked": 3,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-58",
+      "intakeRequestsChecked": 3,
+      "exactFutureQuestionMatches": 0
+    },
+    {
+      "trial": "pilot-35",
+      "intakeRequestsChecked": 14,
+      "exactFutureQuestionMatches": 0
+    }
+  ],
+  "intakeRequestsChecked": 87,
+  "exactFutureQuestionMatches": 0,
+  "note": "Exact-string check only; it does not establish absence of semantic leakage."
+}

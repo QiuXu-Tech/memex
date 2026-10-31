@@ -1,0 +1,17 @@
+{
+  "overlappingQuestions": 9,
+  "matchedQuestionConditionPairs": 45,
+  "statusTransitions": {
+    "ok -> ok": 41,
+    "truncated -> ok": 3,
+    "truncated_after_limit -> ok": 1
+  },
+  "priorToolLimitRuns": 0,
+  "newStatusForPriorToolLimitRuns": {},
+  "priorTruncatedRuns": 4,
+  "newStatusForPriorTruncatedRuns": {
+    "ok": 4
+  },
+  "priorTruncatedRunsNowUsingContinuation": 2,
+  "note": "Descriptive repeated historical questions with different model responses, not a randomized pre/post causal estimate."
+}

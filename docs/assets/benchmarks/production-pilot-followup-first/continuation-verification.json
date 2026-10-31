@@ -1,0 +1,11 @@
+{
+  "runs": 60,
+  "runsWithContinuation": 1,
+  "continuationCalls": 1,
+  "statusCounts": {
+    "continuation_model_failure": 1
+  },
+  "casesWithExactSuffixPrefixOverlapAtLeast32Chars": 0,
+  "allSegmentsPreserved": true,
+  "note": "Only exact adjacent-character overlap is checked; semantic repetition, omission and contradictions remain possible. Raw answer segments stay private."
+}
