@@ -1,0 +1,42 @@
+{
+  "kind": "posthoc-unstarted-disagreement-adjudication",
+  "createdAt": "2026-10-31T15:26:33.124141+08:00",
+  "selection": "Only valid conflicting review pairs with no original adjudication file; excludes all failed, invalid, or completed original adjudications.",
+  "sourceManifestSha256": "759f2b1c143503962658c936b5a39a9c00a26f81270a7a34b8bef73346d1c18e",
+  "candidates": [
+    {
+      "blind": "U01",
+      "packetSha256": "5ecc43532c5a00563f7f0eba659c6fc8aa1b8119b8045cef6bc757ff4139beb8"
+    },
+    {
+      "blind": "U02",
+      "packetSha256": "6a7529cefa14cb594cfed11af8fcca492212d38a2bb81ae94275a4aa49ddbb01"
+    },
+    {
+      "blind": "U03",
+      "packetSha256": "35c8bed9dcd616ef9271abef29971177bdc94c49bd536e5006afbd6ff3a1521f"
+    },
+    {
+      "blind": "U04",
+      "packetSha256": "1eee13e1d38c8911ba3580f14bccf6b891c5c4237d2f02d3dc53a3f2c7181fb9"
+    },
+    {
+      "blind": "U05",
+      "packetSha256": "886b13181f06e2b940e01bbd8a93320ddfb3463579ce6e1611a093c769407e07"
+    }
+  ],
+  "packetsSha256": "f35c6667f6ce08cb57eeda683a803ff28012d88d08a5178320ddb4bfff01b7cc",
+  "blindKeySha256": "52aa9ba33fcf7c3987da1e1c8287c15370f82615dfa1929eaaec123554e5ee9b",
+  "scriptSha256": "6f1a92319c7213aefce774f3221921cacd7a0dd0a08c570f076390945d8d2863",
+  "pilotApiSha256": "8ef03a8e1d8fa69ddaf8798f137fc79c0b6ff1b2bf20bbfc2a28b07f8a3d715d",
+  "rubric": "Correctness: 0 means wrong or unresolved, 1 means partial or insufficient, 2 means the supplied evidence supports the requested behavior. Side effects: 0 means a demonstrated serious regression, 1 means plausible risk or material uncertainty, 2 means no material regression identified in the supplied evidence. Use null for insufficient evidence. These are AI opinions about partial evidence, not project acceptance.",
+  "model": "claude-haiku-4-5",
+  "maxOutputTokens": 1000,
+  "noRetry": true,
+  "stopRule": "Stop launching requests after a provider error or missing usage. Invalid output remains invalid.",
+  "limitations": [
+    "Post-hoc model choice and selection after a timeout, not the original planned adjudication",
+    "Distinct AI model name through the same proxy; not independent human review",
+    "Short public issue histories and partial checks do not establish production value"
+  ]
+}
