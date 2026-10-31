@@ -1,0 +1,15 @@
+---
+title: Alternate-solver follow-up after timeouts
+---
+
+# Alternate-solver follow-up after timeouts
+
+**Registered after two earlier solver requests timed out, but before these task calls.** The [manifest](assets/benchmarks/production-prospective-agent-batch11/manifest.json) has SHA-256 `759f2b1c143503962658c936b5a39a9c00a26f81270a7a34b8bef73346d1c18e` and fixes the new randomized paired order, issue snapshots, checks and runner. This follow-up is not part of a single pre-registered 30–50-task cohort.
+
+Four issues, [#20306](https://github.com/prettier/prettier/issues/20306), [#20307](https://github.com/prettier/prettier/issues/20307), [#10851](https://github.com/prettier/prettier/issues/10851) and [#12649](https://github.com/prettier/prettier/issues/12649), were registered earlier but **neither arm was started** after their respective batches stopped. Their frozen issue and regression checks remain exactly those in the [four-issue registration](production-prospective-agent-batch9-registration.md) and [three-issue registration](production-prospective-agent-batch10-registration.md). The interrupted #21422 and #18080 assignments are not retried. #20307 shares a reference patch and may share a cause with #18080; these are not independent samples.
+
+The fifth issue, [#8182](https://github.com/prettier/prettier/issues/8182), is newly selected. Its frozen issue check requires the two reported GraphQL descriptions with one or two following comments to retain their requested exact formatting and remain idempotent. The pinned baseline fails both; a locally [ported source-only reference](assets/benchmarks/production-prospective-agent-batch11/reference-8182.patch), SHA-256 `d097abb4391101df6f03b821a07b5465702782bcd6820aa13b8f9f8fd031ebd6`, derived from open [PR #14838](https://github.com/prettier/prettier/pull/14838), passes. Three small ordinary GraphQL regression controls pass on baseline and reference. The port adapts old source paths and places the handler in an existing file; it is not a merged upstream change or a full project suite.
+
+`gpt-6.1-sol` is used as solver after an independent single-call tool-route probe and a five-call synthetic edit/test diagnostic succeeded. Those diagnostics are not real task outcomes. The reviewer pair is `deepseek-flash` and `gpt-6-astra`, and the adjudicator is the solver model `gpt-6.1-sol`. All are AI models, so this is neither independent human review nor a randomized solver comparison. The alternate solver and review pair were chosen after observing timeouts; failed requests and any unreported fees remain UNKNOWN. The explicit rubric, bounded tools, 12-turn limit, isolation, per-stage stopping rule and no automatic retry follow the [mixed batch protocol](production-prospective-agent-batch6-registration.md). The estimated batch target is below $1.50, not a hard cap.
+
+Public PRs, short issue discussions, partial tests, possible model exposure and the post-observation change of solver limit interpretation. #20306 supplies only one discussion comment to each condition. No production correctness, cost-savings or autonomous memory-management conclusion follows from this batch.

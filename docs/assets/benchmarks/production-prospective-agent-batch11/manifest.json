@@ -1,0 +1,122 @@
+{
+  "kind": "registered-five-prettier-issues-alternate-solver-not-30-task-study",
+  "createdAt": "2026-10-31T14:43:48.848753+08:00",
+  "repo": "prettier/prettier",
+  "sourceCommit": {
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "20306",
+    "20307",
+    "10851",
+    "12649",
+    "8182"
+  ],
+  "checks": {
+    "20306": {
+      "public": "2bc4db6afb9e7ffe8a786f26a6cad4e4ead90dfbb40cc94c24d3bb79c18abce8",
+      "acceptance": "0511a52a51589ae81bd7f7cc8fc48fe08bf575f38f7537a5cf8af972bfbcfc19",
+      "regressionControls": "0fbb975b0d86efd194fc76b26afad85d2e913dc30978a874bb512d4cf8d04ffd"
+    },
+    "20307": {
+      "public": "8132f644a92feee46f244b7ba2fa04e27ab42e01d802c2a1054e2e9977973a94",
+      "acceptance": "7beb53d1fdd6d16c8158f4746967700e58a7bc0056268a14bffef8588ee0a563",
+      "regressionControls": "8333033dcceace39fc2005d7aad83f0f59c9888ce9e12451a133aa4998b8bf18"
+    },
+    "10851": {
+      "public": "72e535ce15d6c788832d8b852985553daaa003317cc8a8730aaeb566dbf70c99",
+      "acceptance": "ca086ac66a61a8425ebb12a8aa957aae804bee47de6fcb2a5679788cbfaa75df",
+      "regressionControls": "7e2a4bc29b23288c088b53fb9d4f6876317b9097adff92c57917d2a7cd7ebb9f"
+    },
+    "12649": {
+      "public": "62a692a0a4b1b2e4a753b24d5469617c28248f0bd9021a89cd87adf4572ef725",
+      "acceptance": "e4726c98ecef7f8c6cf09db20a2918d9822f54ec1b99dfafc71928da9fa9a490",
+      "regressionControls": "905b224277fe25277b4df043e36c216b221a02ee156b683a18be2978c593544b"
+    },
+    "8182": {
+      "public": "d89f4105099d3628329d3b2398fd1911eea557e4758c4e133219a9884c357266",
+      "acceptance": "0a754a8acc21dd33dacc2198c99eda4d8f1848fed2f72bc9e6a277347c89ade2",
+      "regressionControls": "93e6e4c032dde43981894b3f325c9d331a9d0176152885e6e301fedeec7c97d6"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v11.py": "509e5475dd207c8b90ce609422ad5861027b2714d33b2b69d18137ea6d9cdc11",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "2dda313623cdd715337bc29a85e5eaef78f5e51756643775b5f22f87f1b777fa",
+  "contextsSha256": "389991bb58b7a55cbd453ebcd81081f9abaec138a79b06143d6566166afddbfe",
+  "seed": 2026103111,
+  "schedule": [
+    {
+      "issue": "8182",
+      "arm": "memex"
+    },
+    {
+      "issue": "8182",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20307",
+      "arm": "memex"
+    },
+    {
+      "issue": "20307",
+      "arm": "keyword"
+    },
+    {
+      "issue": "12649",
+      "arm": "keyword"
+    },
+    {
+      "issue": "12649",
+      "arm": "memex"
+    },
+    {
+      "issue": "20306",
+      "arm": "keyword"
+    },
+    {
+      "issue": "20306",
+      "arm": "memex"
+    },
+    {
+      "issue": "10851",
+      "arm": "memex"
+    },
+    {
+      "issue": "10851",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "gpt-6.1-sol",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6-astra"
+  ],
+  "adjudicator": "gpt-6.1-sol",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $1.5; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Four previously registered but never attempted issues and one new issue selected after prior timeouts, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers are not humans; adjudicator shares solver model family",
+    "No effect or savings claim"
+  ]
+}

@@ -1,0 +1,72 @@
+diff --git a/src/language-graphql/printer-graphql.js b/src/language-graphql/printer-graphql.js
+index c9ed75645..7dd15796e 100644
+--- a/src/language-graphql/printer-graphql.js
++++ b/src/language-graphql/printer-graphql.js
+@@ -1,3 +1,4 @@
++import { addLeadingComment, addTrailingComment } from "../main/comments/utilities.js";
+ import {
+   group,
+   hardline,
+@@ -459,6 +460,54 @@ function hasPrettierIgnore(path) {
+   );
+ }
+ 
++
++function ownLine(comment /*, text, options, ast, isLastComment*/) {
++  const { precedingNode, enclosingNode } = comment;
++
++  if (
++    enclosingNode &&
++    precedingNode &&
++    enclosingNode.kind === "ObjectTypeDefinition" &&
++    enclosingNode.description === precedingNode
++  ) {
++    addTrailingComment(precedingNode, comment);
++    return true;
++  }
++
++  if (precedingNode && precedingNode.kind === "VariableDefinition") {
++    addTrailingComment(precedingNode, comment);
++    return true;
++  }
++
++  return false;
++}
++
++function endOfLine(comment /*, text, options, ast, isLastComment **/) {
++  const { enclosingNode, followingNode, precedingNode } = comment;
++  if (enclosingNode && enclosingNode.kind === "Field") {
++    if (followingNode && followingNode.kind === "FieldDefinition") {
++      addLeadingComment(followingNode, comment);
++      return true;
++    }
++    if (followingNode && followingNode.kind === "SelectionSet") {
++      addLeadingComment(followingNode, comment);
++      return true;
++    }
++  }
++
++  if (precedingNode && precedingNode.kind === "FieldDefinition") {
++    addTrailingComment(precedingNode, comment);
++    return true;
++  }
++
++  return false;
++}
++
++const handleComments = {
++  ownLine,
++  endOfLine,
++};
++
+ const printer = {
+   print: genericPrint,
+   massageAstNode,
+@@ -467,6 +516,7 @@ const printer = {
+   printComment,
+   canAttachComment,
+   getVisitorKeys,
++  handleComments,
+ };
+ 
+ export default printer;
