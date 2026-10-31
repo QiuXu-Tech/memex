@@ -1,0 +1,161 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1050" height="1425" viewBox="0 0 1050 1425" role="img" aria-labelledby="title desc">
+<title id="title">New issue pairs: execution and partial checks</title>
+<desc id="desc">Keyword and Memex arms for each newly registered public issue. Cells show completed checks, failures, incomplete, unknown, and unstarted assignments; this is not production evidence.</desc>
+<rect width="1050" height="1425" fill="#f7f8fa"/>
+<text x="48" y="48" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#19313e">New public-issue pairs · partial checks</text>
+<text x="48" y="78" font-family="Arial,sans-serif" font-size="14" fill="#526a78">Separate adaptive registrations; short issue discussions; not a production study</text>
+<text x="370" y="118" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#19313e">Keyword retrieval</text>
+<text x="680" y="118" font-family="Arial,sans-serif" font-size="16" font-weight="700" fill="#19313e">Memex pager</text>
+<text x="48" y="157" font-family="Arial,sans-serif" font-size="15" fill="#19313e">prettier #16126</text>
+<rect x="370" y="135" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="135" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="195" font-family="Arial,sans-serif" font-size="15" fill="#19313e">prettier #17487</text>
+<rect x="370" y="173" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="173" width="250" height="28" rx="4" fill="#c89b58"/>
+<text x="805" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<text x="48" y="233" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #2511</text>
+<rect x="370" y="211" width="250" height="28" rx="4" fill="#c89b58"/>
+<text x="495" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<rect x="680" y="211" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="271" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #1923</text>
+<rect x="370" y="249" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="249" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="309" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #2956</text>
+<rect x="370" y="287" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="287" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="347" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #2951</text>
+<rect x="370" y="325" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="325" width="250" height="28" rx="4" fill="#c89b58"/>
+<text x="805" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<text x="48" y="385" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #1271</text>
+<rect x="370" y="363" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="382" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="363" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="382" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="423" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #2479</text>
+<rect x="370" y="401" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="401" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="461" font-family="Arial,sans-serif" font-size="15" fill="#19313e">moment #3980</text>
+<rect x="370" y="439" width="250" height="28" rx="4" fill="#c89b58"/>
+<text x="495" y="458" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<rect x="680" y="439" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="458" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="499" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3614</text>
+<rect x="370" y="477" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="496" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="477" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="496" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="537" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3600</text>
+<rect x="370" y="515" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="534" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="515" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="534" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="575" font-family="Arial,sans-serif" font-size="15" fill="#19313e">moment #4641</text>
+<rect x="370" y="553" width="250" height="28" rx="4" fill="#c89b58"/>
+<text x="495" y="572" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<rect x="680" y="553" width="250" height="28" rx="4" fill="#c66f5e"/>
+<text x="805" y="572" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks nonzero</text>
+<text x="48" y="613" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #3062</text>
+<rect x="370" y="591" width="250" height="28" rx="4" fill="#c89b58"/>
+<text x="495" y="610" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<rect x="680" y="591" width="250" height="28" rx="4" fill="#c66f5e"/>
+<text x="805" y="610" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks nonzero</text>
+<text x="48" y="651" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3528</text>
+<rect x="370" y="629" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="648" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="629" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="648" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="689" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3563</text>
+<rect x="370" y="667" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="686" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="667" width="250" height="28" rx="4" fill="#8d87a2"/>
+<text x="805" y="686" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Unknown</text>
+<text x="48" y="727" font-family="Arial,sans-serif" font-size="15" fill="#19313e">prettier #16925</text>
+<rect x="370" y="705" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="724" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="705" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="724" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="765" font-family="Arial,sans-serif" font-size="15" fill="#19313e">prettier #11982</text>
+<rect x="370" y="743" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="762" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="743" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="762" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="803" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3644</text>
+<rect x="370" y="781" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="800" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="781" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="800" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="841" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #1905</text>
+<rect x="370" y="819" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="838" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="819" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="838" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="879" font-family="Arial,sans-serif" font-size="15" fill="#19313e">validator #2295</text>
+<rect x="370" y="857" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="876" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="857" width="250" height="28" rx="4" fill="#c89b58"/>
+<text x="805" y="876" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<text x="48" y="917" font-family="Arial,sans-serif" font-size="15" fill="#19313e">validator #1309</text>
+<rect x="370" y="895" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="914" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="895" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="914" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="955" font-family="Arial,sans-serif" font-size="15" fill="#19313e">luxon #1366</text>
+<rect x="370" y="933" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="952" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="933" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="952" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="993" font-family="Arial,sans-serif" font-size="15" fill="#19313e">luxon #1189</text>
+<rect x="370" y="971" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="990" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="971" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="990" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="1031" font-family="Arial,sans-serif" font-size="15" fill="#19313e">lodash #6191</text>
+<rect x="370" y="1009" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="1028" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="1009" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="1028" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="1069" font-family="Arial,sans-serif" font-size="15" fill="#19313e">lodash #5948 †</text>
+<rect x="370" y="1047" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="1066" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="1047" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="1066" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="1107" font-family="Arial,sans-serif" font-size="15" fill="#19313e">yup #2150</text>
+<rect x="370" y="1085" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="1104" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="1085" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="1104" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="1145" font-family="Arial,sans-serif" font-size="15" fill="#19313e">yup #660</text>
+<rect x="370" y="1123" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="1142" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="1123" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="1142" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="1183" font-family="Arial,sans-serif" font-size="15" fill="#19313e">validator #2497</text>
+<rect x="370" y="1161" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="1180" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="1161" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="1180" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="1221" font-family="Arial,sans-serif" font-size="15" fill="#19313e">validator #912</text>
+<rect x="370" y="1199" width="250" height="28" rx="4" fill="#8d87a2"/>
+<text x="495" y="1218" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Unknown</text>
+<rect x="680" y="1199" width="250" height="28" rx="4" fill="#c9d1d5"/>
+<text x="805" y="1218" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#19313e">Not run</text>
+<text x="48" y="1259" font-family="Arial,sans-serif" font-size="15" fill="#19313e">chartjs #12191 †</text>
+<rect x="370" y="1237" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="495" y="1256" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<rect x="680" y="1237" width="250" height="28" rx="4" fill="#3d8c78"/>
+<text x="805" y="1256" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Complete + checks pass</text>
+<text x="48" y="1315" font-family="Arial,sans-serif" font-size="14" fill="#526a78">Cells record one assignment each; a pass is not upstream acceptance. AI review validity is reported separately.</text>
+<text x="48" y="1338" font-family="Arial,sans-serif" font-size="14" fill="#526a78">† No discussion history; negative control. Shared projects and public solutions limit causal inference.</text>
+</svg>

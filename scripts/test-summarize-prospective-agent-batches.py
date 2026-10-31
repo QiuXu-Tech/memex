@@ -31,4 +31,25 @@ class Tests(unittest.TestCase):
    (root/'reviews/R01-a.json').write_text(json.dumps({'parsed':{'valid':False}}))
    row=m.posthoc_review(root)['candidates'][0]
    self.assertEqual([r['status'] for r in row['ratings']],['INVALID','MISSING']);self.assertIsNone(row['adjudication'])
+ def test_unstarted_followup_is_counted_once_and_double_starts_rejected(self):
+  def run(arm,outcome,status):return {'slot':1 if arm=='keyword' else 2,'project':'chartjs','issue':'12191','arm':arm,'historyRecords':0,'attemptOutcome':outcome,'status':status}
+  first={'batch':'validator-chartjs','runs':[run('keyword','NOT_RUN','NOT_RUN_AFTER_STOP'),run('memex','NOT_RUN','NOT_RUN_AFTER_STOP')],'reviews':[]}
+  second={'batch':'chartjs-unstarted','runs':[run('keyword','PASS','completed'),run('memex','UNKNOWN','model_failure')],'reviews':[]}
+  summary=m.new_pilot_summary([first,second]);self.assertEqual(summary['distinctIssues'],1);self.assertEqual(summary['assignmentOutcomes'],{'PASS':1,'UNKNOWN':1});self.assertEqual(summary['noHistoryControls'],['chartjs#12191'])
+  first['runs'][0]=run('keyword','PASS','completed')
+  with self.assertRaises(ValueError):m.new_pilot_summary([first,second])
+ def test_reported_completion_above_requested_limit_is_visible(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=pathlib.Path(td);p=root/'review-calls.jsonl';p.write_text(json.dumps({'model':'qwen3.8-flash','status':'ok','usage':{'completion_tokens':701,'completion_tokens_details':{'reasoning_tokens':600}}})+'\n')
+   manifest={'reviewers':['qwen3.8-flash'],'maxReviewTokens':700};row=m.qwen_limit_observations(root,manifest)[0]
+   self.assertEqual((row['requestedMaxTokens'],row['reportedCompletionTokens'],row['reportedReasoningTokens']),(700,701,600))
+ def test_unstarted_followup_preserves_missing_and_invalid_ratings(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=pathlib.Path(td);source=root/'source';followup=root/'followup';source.mkdir();followup.mkdir();(followup/'reviews').mkdir();(followup/'adjudications').mkdir()
+   (source/'manifest.json').write_text(json.dumps({'schedule':[{'issue':'42','arm':'keyword'}]}))
+   (followup/'manifest.json').write_text(json.dumps({'kind':'test','selection':'unstarted','limitations':[],'reviewers':['a','b'],'adjudicator':'c','candidates':[{'blind':'U01','originalBlind':'B01','slot':1}]}))
+   (followup/'reviews/U01-a.json').write_text(json.dumps({'eventStatus':'ok','parsed':{'valid':True,'rating':{'correctness':2,'side_effects':1}}}))
+   (followup/'adjudications/U01-c.json').write_text(json.dumps({'eventStatus':'ok','parsed':{'valid':False}}))
+   row=m.batch17_unstarted_reviews(followup,source)['candidates'][0]
+   self.assertEqual([x['status'] for x in row['ratings']],['VALID','MISSING']);self.assertEqual(row['adjudication']['status'],'INVALID')
 if __name__=='__main__':unittest.main()

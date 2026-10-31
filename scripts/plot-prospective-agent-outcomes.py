@@ -4,6 +4,14 @@ import html,json,pathlib
 root=pathlib.Path(__file__).resolve().parent.parent
 path=root/'docs/assets/benchmarks/production-prospective-agent-batches/aggregate.json'
 data=json.loads(path.read_text()); labels={'eslint-1':'ESLint initial','lodash-interrupted':'Lodash interrupted','lodash-repair':'Lodash search repair','eslint-2':'ESLint additional','lodash-model-check':'Lodash alternate model','mixed-3':'Pino + Prettier','prettier-4':'Prettier follow-up','eslint-3':'ESLint suggestions','mixed-4':'ESLint + Prettier','prettier-interrupted':'Prettier interrupted','prettier-route':'Prettier alternate route','prettier-six':'Prettier six issues','prettier-unstarted':'Unstarted follow-up','prettier-lowcost':'Prettier low-cost route'}
+labels.update({'prettier-gateway':'Prettier gateway recovery','dayjs-gateway':'Day.js gateway recovery','moment-mathjs':'Moment + math.js'})
+labels['dayjs-mathjs']='Day.js + math.js'
+labels['prettier-late']='Prettier additional'
+labels['mathjs-late']='math.js additional'
+labels['validator-new']='validator.js additional'
+labels['luxon-new']='Luxon additional'
+labels.update({'lodash-new':'Lodash additional','yup-new':'Yup additional','validator-chartjs':'validator.js + Chart.js'})
+labels['chartjs-unstarted']='Chart.js unstarted follow-up'
 colors={'PASS':'#3d8c78','CHECKS_NONZERO':'#c66f5e','INCOMPLETE':'#c89b58','UNKNOWN':'#8d87a2','NOT_RUN':'#c9d1d5'}
 legend_y=120+len(data['batches'])*58+15;foot_y=legend_y+75;height=foot_y+40;unit=min(70,750/max(x['plannedAssignments'] for x in data['batches']))
 parts=[f'<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="{height}" viewBox="0 0 1200 {height}" role="img" aria-labelledby="title desc">','<title id="title">Agent instrumentation outcomes by batch</title>','<desc id="desc">Assigned task-arm slots grouped into passed checks with complete final, nonzero checks, incomplete response, unknown or interrupted, and not run. These small batches do not demonstrate production impact.</desc>',f'<rect width="1200" height="{height}" fill="#f7f8fa"/>','<text x="52" y="53" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#19313e">Real-issue agent instrumentation · incomplete study</text>','<text x="52" y="84" font-family="Arial,sans-serif" font-size="15" fill="#526a78">Assigned task–arm slots by registration; re-registered unstarted slots appear more than once</text>']

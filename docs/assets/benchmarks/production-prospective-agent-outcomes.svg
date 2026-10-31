@@ -1,7 +1,7 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1062" viewBox="0 0 1200 1062" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1758" viewBox="0 0 1200 1758" role="img" aria-labelledby="title desc">
 <title id="title">Agent instrumentation outcomes by batch</title>
 <desc id="desc">Assigned task-arm slots grouped into passed checks with complete final, nonzero checks, incomplete response, unknown or interrupted, and not run. These small batches do not demonstrate production impact.</desc>
-<rect width="1200" height="1062" fill="#f7f8fa"/>
+<rect width="1200" height="1758" fill="#f7f8fa"/>
 <text x="52" y="53" font-family="Arial,sans-serif" font-size="28" font-weight="700" fill="#19313e">Real-issue agent instrumentation · incomplete study</text>
 <text x="52" y="84" font-family="Arial,sans-serif" font-size="15" fill="#526a78">Assigned task–arm slots by registration; re-registered unstarted slots appear more than once</text>
 <text x="52" y="145" font-family="Arial,sans-serif" font-size="17" fill="#19313e">ESLint initial</text>
@@ -88,15 +88,83 @@
 <rect x="310" y="874" width="250.0" height="36" fill="#c66f5e"/>
 <text x="435.0" y="899" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
 <text x="574.0" y="899" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
-<rect x="52" y="947" width="14" height="14" fill="#3d8c78"/>
-<text x="72" y="959" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Complete + checks pass</text>
-<rect x="271" y="947" width="14" height="14" fill="#c66f5e"/>
-<text x="291" y="959" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Checks nonzero</text>
-<rect x="434" y="947" width="14" height="14" fill="#c89b58"/>
-<text x="454" y="959" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Incomplete</text>
-<rect x="569" y="947" width="14" height="14" fill="#8d87a2"/>
-<text x="589" y="959" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Unknown / interrupted</text>
-<rect x="781" y="947" width="14" height="14" fill="#c9d1d5"/>
-<text x="801" y="959" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Not run</text>
-<text x="52" y="1022" font-family="Arial,sans-serif" font-size="14" fill="#526a78">A passed check is not project acceptance. Small, post-observation batches do not show production impact.</text>
+<text x="52" y="957" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Prettier gateway recovery</text>
+<rect x="310" y="932" width="187.5" height="36" fill="#3d8c78"/>
+<text x="403.75" y="957" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">3</text>
+<rect x="497.5" y="932" width="62.5" height="36" fill="#c89b58"/>
+<text x="528.75" y="957" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<text x="574.0" y="957" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="1015" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Day.js gateway recovery</text>
+<rect x="310" y="990" width="625.0" height="36" fill="#3d8c78"/>
+<text x="622.5" y="1015" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">10</text>
+<rect x="935.0" y="990" width="125.0" height="36" fill="#c89b58"/>
+<text x="997.5" y="1015" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">2</text>
+<text x="1074.0" y="1015" font-family="Arial,sans-serif" font-size="15" fill="#526a78">12 assigned</text>
+<text x="52" y="1073" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Moment + math.js</text>
+<rect x="310" y="1048" width="312.5" height="36" fill="#3d8c78"/>
+<text x="466.25" y="1073" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">5</text>
+<rect x="622.5" y="1048" width="62.5" height="36" fill="#c66f5e"/>
+<text x="653.75" y="1073" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="685.0" y="1048" width="125.0" height="36" fill="#c89b58"/>
+<text x="747.5" y="1073" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">2</text>
+<text x="824.0" y="1073" font-family="Arial,sans-serif" font-size="15" fill="#526a78">8 assigned</text>
+<text x="52" y="1131" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Day.js + math.js</text>
+<rect x="310" y="1106" width="187.5" height="36" fill="#3d8c78"/>
+<text x="403.75" y="1131" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">3</text>
+<rect x="497.5" y="1106" width="62.5" height="36" fill="#c66f5e"/>
+<text x="528.75" y="1131" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="560.0" y="1106" width="62.5" height="36" fill="#c89b58"/>
+<text x="591.25" y="1131" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="622.5" y="1106" width="62.5" height="36" fill="#8d87a2"/>
+<text x="653.75" y="1131" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<text x="699.0" y="1131" font-family="Arial,sans-serif" font-size="15" fill="#526a78">6 assigned</text>
+<text x="52" y="1189" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Prettier additional</text>
+<rect x="310" y="1164" width="250.0" height="36" fill="#3d8c78"/>
+<text x="435.0" y="1189" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
+<text x="574.0" y="1189" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="1247" font-family="Arial,sans-serif" font-size="17" fill="#19313e">math.js additional</text>
+<rect x="310" y="1222" width="250.0" height="36" fill="#3d8c78"/>
+<text x="435.0" y="1247" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
+<text x="574.0" y="1247" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="1305" font-family="Arial,sans-serif" font-size="17" fill="#19313e">validator.js additional</text>
+<rect x="310" y="1280" width="187.5" height="36" fill="#3d8c78"/>
+<text x="403.75" y="1305" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">3</text>
+<rect x="497.5" y="1280" width="62.5" height="36" fill="#c89b58"/>
+<text x="528.75" y="1305" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<text x="574.0" y="1305" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="1363" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Luxon additional</text>
+<rect x="310" y="1338" width="250.0" height="36" fill="#3d8c78"/>
+<text x="435.0" y="1363" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
+<text x="574.0" y="1363" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="1421" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Lodash additional</text>
+<rect x="310" y="1396" width="250.0" height="36" fill="#3d8c78"/>
+<text x="435.0" y="1421" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
+<text x="574.0" y="1421" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="1479" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Yup additional</text>
+<rect x="310" y="1454" width="250.0" height="36" fill="#3d8c78"/>
+<text x="435.0" y="1479" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">4</text>
+<text x="574.0" y="1479" font-family="Arial,sans-serif" font-size="15" fill="#526a78">4 assigned</text>
+<text x="52" y="1537" font-family="Arial,sans-serif" font-size="17" fill="#19313e">validator.js + Chart.js</text>
+<rect x="310" y="1512" width="125.0" height="36" fill="#3d8c78"/>
+<text x="372.5" y="1537" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">2</text>
+<rect x="435.0" y="1512" width="62.5" height="36" fill="#8d87a2"/>
+<text x="466.25" y="1537" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">1</text>
+<rect x="497.5" y="1512" width="187.5" height="36" fill="#c9d1d5"/>
+<text x="591.25" y="1537" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="#19313e">3</text>
+<text x="699.0" y="1537" font-family="Arial,sans-serif" font-size="15" fill="#526a78">6 assigned</text>
+<text x="52" y="1595" font-family="Arial,sans-serif" font-size="17" fill="#19313e">Chart.js unstarted follow-up</text>
+<rect x="310" y="1570" width="125.0" height="36" fill="#3d8c78"/>
+<text x="372.5" y="1595" text-anchor="middle" font-family="Arial,sans-serif" font-size="17" font-weight="700" fill="white">2</text>
+<text x="449.0" y="1595" font-family="Arial,sans-serif" font-size="15" fill="#526a78">2 assigned</text>
+<rect x="52" y="1643" width="14" height="14" fill="#3d8c78"/>
+<text x="72" y="1655" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Complete + checks pass</text>
+<rect x="271" y="1643" width="14" height="14" fill="#c66f5e"/>
+<text x="291" y="1655" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Checks nonzero</text>
+<rect x="434" y="1643" width="14" height="14" fill="#c89b58"/>
+<text x="454" y="1655" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Incomplete</text>
+<rect x="569" y="1643" width="14" height="14" fill="#8d87a2"/>
+<text x="589" y="1655" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Unknown / interrupted</text>
+<rect x="781" y="1643" width="14" height="14" fill="#c9d1d5"/>
+<text x="801" y="1655" font-family="Arial,sans-serif" font-size="13" fill="#344e5c">Not run</text>
+<text x="52" y="1718" font-family="Arial,sans-serif" font-size="14" fill="#526a78">A passed check is not project acceptance. Small, post-observation batches do not show production impact.</text>
 </svg>

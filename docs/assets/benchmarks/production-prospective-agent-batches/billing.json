@@ -167,9 +167,71 @@
           "amountUsd": 0.00355
         }
       }
+    },
+    {
+      "label": "gateway recovery, batches 15–26 and new post-hoc reviews and diagnostics",
+      "amountUsd": 1.226666,
+      "detail": "2026-10-31 18:09:55–21:02:30 Asia/Shanghai: 627 successful console rows match local response counts and aggregate input/output tokens exactly for each model. Includes invalid-format responses, probes and supplementary reviews. Four failed requests lack reported usage; three error rows display $0 without usable tokens and one transport error has no matched console row. Their final charges remain unknown. No request IDs establish attribution.",
+      "models": {
+        "gpt-6-astra": {
+          "calls": 488,
+          "inputTokens": 5191921,
+          "outputTokens": 60050,
+          "amountUsd": 1.127002
+        },
+        "qwen3.8-flash": {
+          "calls": 55,
+          "inputTokens": 66154,
+          "outputTokens": 55120,
+          "amountUsd": 0.01606
+        },
+        "deepseek-flash": {
+          "calls": 54,
+          "inputTokens": 65972,
+          "outputTokens": 6630,
+          "amountUsd": 0.008086
+        },
+        "gemini-3.8-flash": {
+          "calls": 26,
+          "inputTokens": 45198,
+          "outputTokens": 37597,
+          "amountUsd": 0.073948
+        },
+        "claude-haiku-4-5": {
+          "calls": 4,
+          "inputTokens": 6223,
+          "outputTokens": 7,
+          "amountUsd": 0.00157
+        }
+      }
+    },
+    {
+      "label": "batch17 previously unstarted blind reviews and adjudications",
+      "amountUsd": 0.003316,
+      "detail": "2026-10-31 21:15:03–21:16:21 Asia/Shanghai: six successful provider rows match model, token counts and approximate completion time of the four newly registered blind reviews and two adjudications, including one invalid adjudication. Request IDs do not establish attribution.",
+      "models": {
+        "gpt-6-astra": {
+          "calls": 2,
+          "inputTokens": 8899,
+          "outputTokens": 490,
+          "amountUsd": 0.002688
+        },
+        "qwen3.8-flash": {
+          "calls": 2,
+          "inputTokens": 2573,
+          "outputTokens": 411,
+          "amountUsd": 0.00024
+        },
+        "deepseek-flash": {
+          "calls": 2,
+          "inputTokens": 2589,
+          "outputTokens": 379,
+          "amountUsd": 0.000388
+        }
+      }
     }
   ],
-  "matchedSubtotalUsd": 1.486712,
+  "matchedSubtotalUsd": 2.716694,
   "unattributedAdjacentConsoleRow": {
     "timeAsiaShanghai": "2026-10-31 13:26:02",
     "model": "claude-haiku-4-5",
@@ -189,7 +251,11 @@
     "Batch11 adjudication timeout and its charge",
     "Batch12 HTTP 503 request and its charge",
     "Batch13 HTTP 503 final solver request and its charge",
-    "Batch14 HTTP 503 second-reviewer request and its charge"
+    "Batch14 HTTP 503 second-reviewer request and its charge",
+    "Gateway triage gpt-6.1-sol timeout and any pending charge",
+    "Batch17 Qwen review timeout and any pending charge",
+    "Batch18 Astra solver timeout and any pending charge",
+    "Batch25 Astra transport error with no matched console row and any charge"
   ],
   "notIncludedYet": [],
   "warning": "These are candidate aggregate matches, not invoice reconciliation or total study cost."

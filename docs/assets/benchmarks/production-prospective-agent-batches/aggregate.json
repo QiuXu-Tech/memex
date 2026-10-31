@@ -10,7 +10,9 @@
         {
           "slot": 1,
           "issue": "21333",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 4,
           "attemptOutcome": "INCOMPLETE",
           "status": "turn_limit",
           "changedFileCount": 0,
@@ -25,7 +27,9 @@
         {
           "slot": 2,
           "issue": "21333",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 4,
           "attemptOutcome": "INCOMPLETE",
           "status": "empty_or_truncated",
           "changedFileCount": 0,
@@ -40,7 +44,9 @@
         {
           "slot": 3,
           "issue": "21443",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "INCOMPLETE",
           "status": "turn_limit",
           "changedFileCount": 0,
@@ -55,7 +61,9 @@
         {
           "slot": 4,
           "issue": "21443",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "INCOMPLETE",
           "status": "turn_limit",
           "changedFileCount": 0,
@@ -70,7 +78,9 @@
         {
           "slot": 5,
           "issue": "21436",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 6,
           "attemptOutcome": "INCOMPLETE",
           "status": "turn_limit",
           "changedFileCount": 1,
@@ -85,7 +95,9 @@
         {
           "slot": 6,
           "issue": "21436",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 6,
           "attemptOutcome": "INCOMPLETE",
           "status": "turn_limit",
           "changedFileCount": 1,
@@ -214,7 +226,9 @@
           "requestBytes": 9718,
           "responseBytes": 2263
         }
-      }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "lodash-interrupted",
@@ -225,7 +239,9 @@
         {
           "slot": 1,
           "issue": "6195",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 6,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 0,
@@ -240,35 +256,45 @@
         {
           "slot": 2,
           "issue": "6195",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 6,
           "attemptOutcome": "INTERRUPTED",
           "status": null
         },
         {
           "slot": 3,
           "issue": "5750",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 7,
           "attemptOutcome": "NOT_RUN",
           "status": null
         },
         {
           "slot": 4,
           "issue": "5750",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 7,
           "attemptOutcome": "NOT_RUN",
           "status": null
         },
         {
           "slot": 5,
           "issue": "5881",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "NOT_RUN",
           "status": null
         },
         {
           "slot": 6,
           "issue": "5881",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "NOT_RUN",
           "status": null
         }
@@ -341,7 +367,9 @@
           "requestBytes": 5638,
           "responseBytes": 740
         }
-      }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "lodash-repair",
@@ -352,7 +380,9 @@
         {
           "slot": 1,
           "issue": "5750",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 7,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 0,
@@ -367,7 +397,9 @@
         {
           "slot": 2,
           "issue": "5750",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 7,
           "attemptOutcome": "UNKNOWN",
           "status": "model_failure",
           "changedFileCount": 0,
@@ -382,7 +414,9 @@
         {
           "slot": 3,
           "issue": "5881",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -397,7 +431,9 @@
         {
           "slot": 4,
           "issue": "5881",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -478,7 +514,22 @@
           "requestBytes": 4872,
           "responseBytes": 849
         }
-      }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "da5aaf97518b5a549ca691198dfd7dbb23d5672f52bfd93b9a9ab242abb78660",
+          "at": "2026-10-31T13:25:58.350452+08:00",
+          "label": "02:8",
+          "model": "claude-haiku-4-5",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "RemoteDisconnected",
+          "errorCode": null,
+          "elapsedSeconds": 3.776
+        }
+      ],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "eslint-2",
@@ -489,7 +540,9 @@
         {
           "slot": 1,
           "issue": "21441",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "INCOMPLETE",
           "status": "empty_or_truncated",
           "changedFileCount": 0,
@@ -504,7 +557,9 @@
         {
           "slot": 2,
           "issue": "21441",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "INCOMPLETE",
           "status": "empty_or_truncated",
           "changedFileCount": 0,
@@ -519,7 +574,9 @@
         {
           "slot": 3,
           "issue": "19931",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 7,
           "attemptOutcome": "INCOMPLETE",
           "status": "empty_or_truncated",
           "changedFileCount": 1,
@@ -534,7 +591,9 @@
         {
           "slot": 4,
           "issue": "19931",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 7,
           "attemptOutcome": "INCOMPLETE",
           "status": "empty_or_truncated",
           "changedFileCount": 1,
@@ -681,7 +740,9 @@
           "requestBytes": 23809,
           "responseBytes": 3096
         }
-      }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "lodash-model-check",
@@ -692,7 +753,9 @@
         {
           "slot": 1,
           "issue": "5881",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -707,7 +770,9 @@
         {
           "slot": 2,
           "issue": "5881",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -802,7 +867,9 @@
           "requestBytes": 5864,
           "responseBytes": 1322
         }
-      }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "mixed-3",
@@ -816,7 +883,9 @@
         {
           "slot": 1,
           "issue": "2057",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 4,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -831,7 +900,9 @@
         {
           "slot": 2,
           "issue": "2057",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 4,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -846,7 +917,9 @@
         {
           "slot": 3,
           "issue": "19847",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -861,7 +934,9 @@
         {
           "slot": 4,
           "issue": "19847",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 1,
@@ -876,7 +951,9 @@
         {
           "slot": 5,
           "issue": "20293",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 2,
@@ -891,7 +968,9 @@
         {
           "slot": 6,
           "issue": "20293",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 2,
@@ -906,7 +985,9 @@
         {
           "slot": 7,
           "issue": "19427",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -921,7 +1002,9 @@
         {
           "slot": 8,
           "issue": "19427",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 1,
@@ -936,7 +1019,9 @@
         {
           "slot": 9,
           "issue": "20047",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -951,7 +1036,9 @@
         {
           "slot": 10,
           "issue": "20047",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "INCOMPLETE",
           "status": "tool_call_limit",
           "changedFileCount": 0,
@@ -1230,7 +1317,9 @@
           "requestBytes": 45355,
           "responseBytes": 9298
         }
-      }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "prettier-4",
@@ -1243,7 +1332,9 @@
         {
           "slot": 1,
           "issue": "19968",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 2,
@@ -1258,7 +1349,9 @@
         {
           "slot": 2,
           "issue": "19968",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 4,
@@ -1273,7 +1366,9 @@
         {
           "slot": 3,
           "issue": "19955",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 6,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -1288,7 +1383,9 @@
         {
           "slot": 4,
           "issue": "19955",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 6,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -1445,7 +1542,9 @@
           "requestBytes": 30058,
           "responseBytes": 4654
         }
-      }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "eslint-3",
@@ -1458,7 +1557,9 @@
         {
           "slot": 1,
           "issue": "21122",
+          "project": "eslint",
           "arm": "keyword",
+          "historyRecords": 5,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 1,
@@ -1473,7 +1574,9 @@
         {
           "slot": 2,
           "issue": "21122",
+          "project": "eslint",
           "arm": "memex",
+          "historyRecords": 5,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 1,
@@ -1578,7 +1681,9 @@
           "requestBytes": 10904,
           "responseBytes": 2326
         }
-      }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "mixed-4",
@@ -1592,7 +1697,9 @@
         {
           "slot": 1,
           "issue": "21361",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -1607,7 +1714,9 @@
         {
           "slot": 2,
           "issue": "21361",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -1622,7 +1731,9 @@
         {
           "slot": 3,
           "issue": "21422",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -1637,7 +1748,9 @@
         {
           "slot": 4,
           "issue": "21422",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "UNKNOWN",
           "status": "model_failure",
           "changedFileCount": 0,
@@ -1652,7 +1765,9 @@
         {
           "slot": 5,
           "issue": "20306",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 1,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1667,7 +1782,9 @@
         {
           "slot": 6,
           "issue": "20306",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 1,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1682,7 +1799,9 @@
         {
           "slot": 7,
           "issue": "20307",
+          "project": null,
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1697,7 +1816,9 @@
         {
           "slot": 8,
           "issue": "20307",
+          "project": null,
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1820,7 +1941,22 @@
           "requestBytes": 14462,
           "responseBytes": 2527
         }
-      }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "19d2a81ea4236020683039fdd66c55aa0ca2806b378c5778bcd9ee7f121bcdf0",
+          "at": "2026-10-31T14:35:28.955280+08:00",
+          "label": "04:5",
+          "model": "gpt-6-astra",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "TimeoutError",
+          "errorCode": null,
+          "elapsedSeconds": 120.856
+        }
+      ],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "prettier-interrupted",
@@ -1833,7 +1969,9 @@
         {
           "slot": 1,
           "issue": "18080",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "UNKNOWN",
           "status": "model_failure",
           "changedFileCount": 0,
@@ -1848,7 +1986,9 @@
         {
           "slot": 2,
           "issue": "18080",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1863,7 +2003,9 @@
         {
           "slot": 3,
           "issue": "10851",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 4,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1878,7 +2020,9 @@
         {
           "slot": 4,
           "issue": "10851",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 4,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1893,7 +2037,9 @@
         {
           "slot": 5,
           "issue": "12649",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1908,7 +2054,9 @@
         {
           "slot": 6,
           "issue": "12649",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -1939,7 +2087,22 @@
           "requestBytes": 4058,
           "responseBytes": 0
         }
-      }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "f85eb11efb332b8e7c5fe081be350582b36398049f0e263441d1385ec6dded58",
+          "at": "2026-10-31T14:38:06.205441+08:00",
+          "label": "01:0",
+          "model": "gpt-6-astra",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "TimeoutError",
+          "errorCode": null,
+          "elapsedSeconds": 120.908
+        }
+      ],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "prettier-route",
@@ -1952,7 +2115,9 @@
         {
           "slot": 1,
           "issue": "8182",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 4,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 2,
@@ -1967,7 +2132,9 @@
         {
           "slot": 2,
           "issue": "8182",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 4,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 2,
@@ -1982,7 +2149,9 @@
         {
           "slot": 3,
           "issue": "20307",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -1997,7 +2166,9 @@
         {
           "slot": 4,
           "issue": "20307",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 2,
@@ -2012,7 +2183,9 @@
         {
           "slot": 5,
           "issue": "12649",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -2027,7 +2200,9 @@
         {
           "slot": 6,
           "issue": "12649",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 3,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -2042,7 +2217,9 @@
         {
           "slot": 7,
           "issue": "20306",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 1,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -2057,7 +2234,9 @@
         {
           "slot": 8,
           "issue": "20306",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 1,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 1,
@@ -2072,7 +2251,9 @@
         {
           "slot": 9,
           "issue": "10851",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 4,
           "attemptOutcome": "PASS",
           "status": "completed",
           "changedFileCount": 2,
@@ -2087,7 +2268,9 @@
         {
           "slot": 10,
           "issue": "10851",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 4,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 0,
@@ -2371,7 +2554,22 @@
           "requestBytes": 51982,
           "responseBytes": 8949
         }
-      }
+      },
+      "failures": [
+        {
+          "log": "adjudication-calls.jsonl",
+          "logSha256": "9d6fd599188197e5570f3ec68a4fbf4d2a621f625ee19d9537454cf527f7b596",
+          "at": "2026-10-31T15:04:14.005901+08:00",
+          "label": "B05",
+          "model": "gpt-6.1-sol",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "TimeoutError",
+          "errorCode": null,
+          "elapsedSeconds": 120.794
+        }
+      ],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "prettier-six",
@@ -2384,7 +2582,9 @@
         {
           "slot": 1,
           "issue": "9112",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 1,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 1,
@@ -2399,7 +2599,9 @@
         {
           "slot": 2,
           "issue": "9112",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 1,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 1,
@@ -2414,7 +2616,9 @@
         {
           "slot": 3,
           "issue": "20174",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 1,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 1,
@@ -2429,7 +2633,9 @@
         {
           "slot": 4,
           "issue": "20174",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 1,
           "attemptOutcome": "INCOMPLETE",
           "status": "tool_call_limit",
           "changedFileCount": 0,
@@ -2444,7 +2650,9 @@
         {
           "slot": 5,
           "issue": "18066",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 2,
@@ -2459,7 +2667,9 @@
         {
           "slot": 6,
           "issue": "18066",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "UNKNOWN",
           "status": "model_failure",
           "changedFileCount": 1,
@@ -2474,7 +2684,9 @@
         {
           "slot": 7,
           "issue": "9955",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2489,7 +2701,9 @@
         {
           "slot": 8,
           "issue": "9955",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2504,7 +2718,9 @@
         {
           "slot": 9,
           "issue": "17213",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 1,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2519,7 +2735,9 @@
         {
           "slot": 10,
           "issue": "17213",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 1,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2534,7 +2752,9 @@
         {
           "slot": 11,
           "issue": "15537",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2549,7 +2769,9 @@
         {
           "slot": 12,
           "issue": "15537",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2736,7 +2958,22 @@
           "requestBytes": 18418,
           "responseBytes": 5155
         }
-      }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "d21003720cf2e3221fcff3bc399b64dea5fbae89c28d81eb74c9dc065583a322",
+          "at": "2026-10-31T15:33:30.976043+08:00",
+          "label": "06:11",
+          "model": "gpt-6.1-sol",
+          "status": "http_error",
+          "httpStatus": 503,
+          "errorType": null,
+          "errorCode": "system_cpu_overloaded",
+          "elapsedSeconds": 1.752
+        }
+      ],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "prettier-unstarted",
@@ -2749,7 +2986,9 @@
         {
           "slot": 1,
           "issue": "9955",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "UNKNOWN",
           "status": "model_failure",
           "changedFileCount": 1,
@@ -2764,7 +3003,9 @@
         {
           "slot": 2,
           "issue": "9955",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2779,7 +3020,9 @@
         {
           "slot": 3,
           "issue": "17213",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 1,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2794,7 +3037,9 @@
         {
           "slot": 4,
           "issue": "17213",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 1,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2809,7 +3054,9 @@
         {
           "slot": 5,
           "issue": "15537",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2824,7 +3071,9 @@
         {
           "slot": 6,
           "issue": "15537",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "NOT_RUN",
           "status": "NOT_RUN_AFTER_STOP",
           "changedFileCount": 0,
@@ -2899,7 +3148,22 @@
           "requestBytes": 5305,
           "responseBytes": 810
         }
-      }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "caaff5c269c13bb0647bc01a4208f10fc548463ff51a25b0bc47375366ed9c0e",
+          "at": "2026-10-31T15:39:31.519180+08:00",
+          "label": "01:final",
+          "model": "gpt-6.1-sol",
+          "status": "http_error",
+          "httpStatus": 503,
+          "errorType": null,
+          "errorCode": "system_cpu_overloaded",
+          "elapsedSeconds": 1.63
+        }
+      ],
+      "qwenReportedOverLimit": []
     },
     {
       "batch": "prettier-lowcost",
@@ -2912,7 +3176,9 @@
         {
           "slot": 1,
           "issue": "17213",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 1,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 0,
@@ -2927,7 +3193,9 @@
         {
           "slot": 2,
           "issue": "17213",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 1,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 0,
@@ -2942,7 +3210,9 @@
         {
           "slot": 3,
           "issue": "15537",
+          "project": "prettier",
           "arm": "keyword",
+          "historyRecords": 2,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 0,
@@ -2957,7 +3227,9 @@
         {
           "slot": 4,
           "issue": "15537",
+          "project": "prettier",
           "arm": "memex",
+          "historyRecords": 2,
           "attemptOutcome": "CHECKS_NONZERO",
           "status": "completed",
           "changedFileCount": 0,
@@ -3076,9 +3348,3095 @@
           "requestBytes": 4750,
           "responseBytes": 143
         }
-      }
+      },
+      "failures": [
+        {
+          "log": "review-calls.jsonl",
+          "logSha256": "4c29ca3d0112c1e37ebe280b7ed20a46ebdeecaa1bc48b3c00dde29a1665fc22",
+          "at": "2026-10-31T15:46:53.712180+08:00",
+          "label": "B01:claude-haiku-4-5",
+          "model": "claude-haiku-4-5",
+          "status": "http_error",
+          "httpStatus": 503,
+          "errorType": null,
+          "errorCode": "system_cpu_overloaded",
+          "elapsedSeconds": 1.141
+        }
+      ],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "prettier-gateway",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "16126",
+          "project": "prettier",
+          "arm": "memex",
+          "historyRecords": 8,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 11,
+          "toolCalls": 12,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "16126",
+          "project": "prettier",
+          "arm": "keyword",
+          "historyRecords": 8,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 24,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "17487",
+          "project": "prettier",
+          "arm": "keyword",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 11,
+          "toolCalls": 16,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "17487",
+          "project": "prettier",
+          "arm": "memex",
+          "historyRecords": 4,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 3,
+          "toolCalls": 4,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 3,
+        "INCOMPLETE": 1
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "claude-haiku-4-5",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "claude-haiku-4-5",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "claude-haiku-4-5",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 35,
+          "completed": 35,
+          "reportedPromptTokens": 322356,
+          "reportedCompletionTokens": 4588,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 804846,
+          "responseBytes": 27914
+        },
+        "deepseek-flash": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 5370,
+          "reportedCompletionTokens": 455,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 17488,
+          "responseBytes": 3561
+        },
+        "claude-haiku-4-5": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 6209,
+          "reportedCompletionTokens": 3,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 17392,
+          "responseBytes": 1992
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "dayjs-gateway",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3"
+      },
+      "plannedAssignments": 12,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "2511",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 9,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "2511",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 6,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 3,
+          "toolCalls": 8,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "1923",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 7,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "1923",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 6,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "2956",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 6,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "2956",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 9,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 7,
+          "issue": "2951",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 8,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 2,
+          "toolCalls": 3,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 8,
+          "issue": "2951",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 8,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 8,
+          "modelCalls": 13,
+          "toolCalls": 15,
+          "publicTestCalls": 1,
+          "forcedFinal": true,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 9,
+          "issue": "1271",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 19,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 12,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 10,
+          "issue": "1271",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 19,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 8,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 11,
+          "issue": "2479",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 9,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 12,
+          "issue": "2479",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 25,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 10,
+        "INCOMPLETE": 2
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 11,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 5,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 12,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 9,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B05",
+          "slot": 8,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B06",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B07",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B08",
+          "slot": 10,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B09",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B10",
+          "slot": 6,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 0
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 82,
+          "completed": 82,
+          "reportedPromptTokens": 803168,
+          "reportedCompletionTokens": 8528,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 1471662,
+          "responseBytes": 65050
+        },
+        "deepseek-flash": {
+          "started": 10,
+          "completed": 10,
+          "reportedPromptTokens": 15102,
+          "reportedCompletionTokens": 1202,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 49819,
+          "responseBytes": 10310
+        },
+        "qwen3.8-flash": {
+          "started": 10,
+          "completed": 10,
+          "reportedPromptTokens": 15598,
+          "reportedCompletionTokens": 15853,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 49469,
+          "responseBytes": 64118
+        },
+        "gemini-3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 8968,
+          "reportedCompletionTokens": 2784,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 27404,
+          "responseBytes": 2807
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": [
+        {
+          "at": "2026-10-31T10:59:28.853267+00:00",
+          "label": "B07:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 700,
+          "reportedCompletionTokens": 2907,
+          "reportedReasoningTokens": 2791,
+          "logSha256": "b8534c60a82e92dc82451420ac1e84f225dbcc2cbda558c3af105aedc7276396"
+        },
+        {
+          "at": "2026-10-31T11:00:05.055751+00:00",
+          "label": "B08:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 700,
+          "reportedCompletionTokens": 6526,
+          "reportedReasoningTokens": 6392,
+          "logSha256": "b8534c60a82e92dc82451420ac1e84f225dbcc2cbda558c3af105aedc7276396"
+        },
+        {
+          "at": "2026-10-31T11:01:18.986922+00:00",
+          "label": "B09:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 700,
+          "reportedCompletionTokens": 1919,
+          "reportedReasoningTokens": null,
+          "logSha256": "b8534c60a82e92dc82451420ac1e84f225dbcc2cbda558c3af105aedc7276396"
+        },
+        {
+          "at": "2026-10-31T11:01:36.573521+00:00",
+          "label": "B10:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 700,
+          "reportedCompletionTokens": 1657,
+          "reportedReasoningTokens": null,
+          "logSha256": "b8534c60a82e92dc82451420ac1e84f225dbcc2cbda558c3af105aedc7276396"
+        }
+      ]
+    },
+    {
+      "batch": "moment-mathjs",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "moment": "c2a703a4d84aa57ee2722ff8fb4a8016279fb3c4",
+        "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+      },
+      "plannedAssignments": 8,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "3980",
+          "project": "moment",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 2,
+          "modelCalls": 13,
+          "toolCalls": 17,
+          "publicTestCalls": 1,
+          "forcedFinal": true,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "3980",
+          "project": "moment",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 3,
+          "toolCalls": 8,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "3614",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 14,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "3614",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 9,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "3600",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 12,
+          "toolCalls": 11,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "3600",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 12,
+          "toolCalls": 15,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 7,
+          "issue": "4641",
+          "project": "moment",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 2,
+          "toolCalls": 4,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 8,
+          "issue": "4641",
+          "project": "moment",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 8,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 5,
+        "INCOMPLETE": 2,
+        "CHECKS_NONZERO": 1
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 8,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 0
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B04",
+          "slot": 6,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "error",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B05",
+          "slot": 5,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "MISSING"
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "MISSING"
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B06",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "MISSING"
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "MISSING"
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 66,
+          "completed": 66,
+          "reportedPromptTokens": 947584,
+          "reportedCompletionTokens": 10463,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 1290487,
+          "responseBytes": 58375
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 5618,
+          "reportedCompletionTokens": 632,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 20469,
+          "responseBytes": 4875
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 3406,
+          "reportedCompletionTokens": 7929,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 20333,
+          "responseBytes": 36745
+        },
+        "gemini-3.8-flash": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 3921,
+          "reportedCompletionTokens": 6132,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 15063,
+          "responseBytes": 2926
+        }
+      },
+      "failures": [
+        {
+          "log": "review-calls.jsonl",
+          "logSha256": "fba596ed5d8179a71da451a6f41bdd6433083f1d3195e5f8cab3fa88b903f766",
+          "at": "2026-10-31T11:35:46.724530+00:00",
+          "label": "B04:qwen3.8-flash#attempt-1",
+          "model": "qwen3.8-flash",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "TimeoutError",
+          "errorCode": null,
+          "elapsedSeconds": 120.825
+        }
+      ],
+      "qwenReportedOverLimit": [
+        {
+          "at": "2026-10-31T11:34:28.058936+00:00",
+          "label": "B02:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 2048,
+          "reportedCompletionTokens": 6106,
+          "reportedReasoningTokens": null,
+          "logSha256": "fba596ed5d8179a71da451a6f41bdd6433083f1d3195e5f8cab3fa88b903f766"
+        }
+      ]
+    },
+    {
+      "batch": "dayjs-mathjs",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+        "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+      },
+      "plannedAssignments": 6,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "3062",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 3,
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 12,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 1,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "3062",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 3,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 2,
+          "toolCalls": 1,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "3528",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 13,
+          "publicTestCalls": 3,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "3528",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 9,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "3563",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 7,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 9,
+          "toolCalls": 12,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "3563",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 7,
+          "attemptOutcome": "UNKNOWN",
+          "status": "model_failure",
+          "changedFileCount": 0,
+          "modelCalls": 1,
+          "toolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "CHECKS_NONZERO": 1,
+        "INCOMPLETE": 1,
+        "PASS": 3,
+        "UNKNOWN": 1
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 0
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 0
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 5,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B04",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 37,
+          "completed": 37,
+          "reportedPromptTokens": 313537,
+          "reportedCompletionTokens": 4367,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 638764,
+          "responseBytes": 28188
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 3288,
+          "reportedCompletionTokens": 501,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 13968,
+          "responseBytes": 4319
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 3573,
+          "reportedCompletionTokens": 14259,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 13832,
+          "responseBytes": 68579
+        },
+        "gemini-3.8-flash": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 2947,
+          "reportedCompletionTokens": 4980,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 13031,
+          "responseBytes": 3220
+        }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "781e1ba88666f5ef4e020575f8770a29b1170a1f83e0e372f7df7315564e4389",
+          "at": "2026-10-31T11:38:50.450650+00:00",
+          "label": "06:0#attempt-1",
+          "model": "gpt-6-astra",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "TimeoutError",
+          "errorCode": null,
+          "elapsedSeconds": 120.787
+        }
+      ],
+      "qwenReportedOverLimit": [
+        {
+          "at": "2026-10-31T11:42:20.101594+00:00",
+          "label": "B02:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 2048,
+          "reportedCompletionTokens": 7405,
+          "reportedReasoningTokens": null,
+          "logSha256": "67f934cc3ee8a68a5072b29e8d9cb0578ecc759d2d467e542132fd76ad5d64be"
+        },
+        {
+          "at": "2026-10-31T11:44:14.150539+00:00",
+          "label": "B04:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 2048,
+          "reportedCompletionTokens": 6040,
+          "reportedReasoningTokens": null,
+          "logSha256": "67f934cc3ee8a68a5072b29e8d9cb0578ecc759d2d467e542132fd76ad5d64be"
+        }
+      ]
+    },
+    {
+      "batch": "prettier-late",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "16925",
+          "project": "prettier",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 13,
+          "toolCalls": 23,
+          "publicTestCalls": 2,
+          "forcedFinal": true,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "16925",
+          "project": "prettier",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 13,
+          "toolCalls": 25,
+          "publicTestCalls": 2,
+          "forcedFinal": true,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "11982",
+          "project": "prettier",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 9,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "11982",
+          "project": "prettier",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 9,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 4
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B04",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 42,
+          "completed": 42,
+          "reportedPromptTokens": 704565,
+          "reportedCompletionTokens": 5331,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 1269172,
+          "responseBytes": 33764
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 8120,
+          "reportedCompletionTokens": 512,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 26005,
+          "responseBytes": 4345
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 8312,
+          "reportedCompletionTokens": 2296,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 25869,
+          "responseBytes": 13474
+        },
+        "gemini-3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 9345,
+          "reportedCompletionTokens": 5743,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 29613,
+          "responseBytes": 4217
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "mathjs-late",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "3644",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 2,
+          "modelCalls": 10,
+          "toolCalls": 14,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "3644",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 12,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "1905",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 7,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 11,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "1905",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 7,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 11,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 4
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B04",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 34,
+          "completed": 34,
+          "reportedPromptTokens": 334463,
+          "reportedCompletionTokens": 3356,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 708753,
+          "responseBytes": 26274
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 3376,
+          "reportedCompletionTokens": 489,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 13693,
+          "responseBytes": 4146
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 3175,
+          "reportedCompletionTokens": 615,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 13557,
+          "responseBytes": 4127
+        },
+        "gemini-3.8-flash": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 2114,
+          "reportedCompletionTokens": 2410,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 8679,
+          "responseBytes": 2528
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "validator-new",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "2295",
+          "project": "validator",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 2,
+          "toolCalls": 1,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "2295",
+          "project": "validator",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 9,
+          "toolCalls": 14,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "1309",
+          "project": "validator",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 13,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "1309",
+          "project": "validator",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 9,
+          "toolCalls": 12,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "INCOMPLETE": 1,
+        "PASS": 3
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 33,
+          "completed": 33,
+          "reportedPromptTokens": 316331,
+          "reportedCompletionTokens": 4399,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 588368,
+          "responseBytes": 27750
+        },
+        "deepseek-flash": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 3137,
+          "reportedCompletionTokens": 347,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 12268,
+          "responseBytes": 3106
+        },
+        "qwen3.8-flash": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 3020,
+          "reportedCompletionTokens": 422,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 12166,
+          "responseBytes": 3069
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "luxon-new",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "luxon": "f427515a38f6a671f8de663e6bcc040ed81f114e"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "1366",
+          "project": "luxon",
+          "arm": "memex",
+          "historyRecords": 12,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 12,
+          "toolCalls": 13,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "1366",
+          "project": "luxon",
+          "arm": "keyword",
+          "historyRecords": 12,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 11,
+          "toolCalls": 14,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "1189",
+          "project": "luxon",
+          "arm": "memex",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 10,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "1189",
+          "project": "luxon",
+          "arm": "keyword",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 8,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 4
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 37,
+          "completed": 37,
+          "reportedPromptTokens": 414758,
+          "reportedCompletionTokens": 3896,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 832062,
+          "responseBytes": 28699
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 4974,
+          "reportedCompletionTokens": 513,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 19179,
+          "responseBytes": 4311
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 4694,
+          "reportedCompletionTokens": 3975,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 19043,
+          "responseBytes": 20941
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": [
+        {
+          "at": "2026-10-31T12:14:53.972251+00:00",
+          "label": "B02:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 2048,
+          "reportedCompletionTokens": 3423,
+          "reportedReasoningTokens": 3301,
+          "logSha256": "b8cc0f92cc8f64b52e70f5c42003bd0ad094d8aac418149a42a59a53ac6e25fc"
+        }
+      ]
+    },
+    {
+      "batch": "lodash-new",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "lodash": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "6191",
+          "project": "lodash",
+          "arm": "keyword",
+          "historyRecords": 2,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 10,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "6191",
+          "project": "lodash",
+          "arm": "memex",
+          "historyRecords": 2,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 10,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "5948",
+          "project": "lodash",
+          "arm": "memex",
+          "historyRecords": 0,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 9,
+          "toolCalls": 15,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "5948",
+          "project": "lodash",
+          "arm": "keyword",
+          "historyRecords": 0,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 9,
+          "toolCalls": 14,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 4
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "INVALID",
+            "eventStatus": "ok",
+            "correctness": null,
+            "sideEffects": null
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 35,
+          "completed": 35,
+          "reportedPromptTokens": 269600,
+          "reportedCompletionTokens": 3471,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 479089,
+          "responseBytes": 26972
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 3860,
+          "reportedCompletionTokens": 525,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 15565,
+          "responseBytes": 4414
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 3644,
+          "reportedCompletionTokens": 696,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 15429,
+          "responseBytes": 4706
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "yup-new",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "yup": "ff31eee8a2b10c938bb3a22544d9e33957a8cf01"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "2150",
+          "project": "yup",
+          "arm": "keyword",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 11,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "2150",
+          "project": "yup",
+          "arm": "memex",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 11,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "660",
+          "project": "yup",
+          "arm": "keyword",
+          "historyRecords": 11,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 7,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "660",
+          "project": "yup",
+          "arm": "memex",
+          "historyRecords": 11,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 9,
+          "toolCalls": 12,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 4
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B04",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 34,
+          "completed": 34,
+          "reportedPromptTokens": 360996,
+          "reportedCompletionTokens": 3011,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 680702,
+          "responseBytes": 24731
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 4380,
+          "reportedCompletionTokens": 462,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 18308,
+          "responseBytes": 4234
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 4267,
+          "reportedCompletionTokens": 469,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 18172,
+          "responseBytes": 3818
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "validator-chartjs",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+        "chartjs": "71d44219e79e3ac41e6f9dc907022eebf574868d"
+      },
+      "plannedAssignments": 6,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "2497",
+          "project": "validator",
+          "arm": "keyword",
+          "historyRecords": 12,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 7,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "2497",
+          "project": "validator",
+          "arm": "memex",
+          "historyRecords": 12,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 7,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "912",
+          "project": "validator",
+          "arm": "keyword",
+          "historyRecords": 8,
+          "attemptOutcome": "UNKNOWN",
+          "status": "model_failure",
+          "changedFileCount": 0,
+          "modelCalls": 2,
+          "toolCalls": 1,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "912",
+          "project": "validator",
+          "arm": "memex",
+          "historyRecords": 8,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "12191",
+          "project": "chartjs",
+          "arm": "keyword",
+          "historyRecords": 0,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "12191",
+          "project": "chartjs",
+          "arm": "memex",
+          "historyRecords": 0,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 2,
+        "UNKNOWN": 1,
+        "NOT_RUN": 3
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 0
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 1
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 16,
+          "completed": 16,
+          "reportedPromptTokens": 98654,
+          "reportedCompletionTokens": 3083,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 143453,
+          "responseBytes": 11641
+        },
+        "deepseek-flash": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 1755,
+          "reportedCompletionTokens": 264,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 6116,
+          "responseBytes": 2126
+        },
+        "qwen3.8-flash": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 1664,
+          "reportedCompletionTokens": 383,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 6048,
+          "responseBytes": 2202
+        }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "135ee22bbc39ccb75ca260800e31cd36cc2db798dde610b4beb1012f06646cd5",
+          "at": "2026-10-31T12:52:16.056599+00:00",
+          "label": "03:1#attempt-1",
+          "model": "gpt-6-astra",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "URLError",
+          "errorCode": null,
+          "elapsedSeconds": 5.003
+        }
+      ],
+      "qwenReportedOverLimit": []
+    },
+    {
+      "batch": "chartjs-unstarted",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "chartjs": "71d44219e79e3ac41e6f9dc907022eebf574868d"
+      },
+      "plannedAssignments": 2,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "12191",
+          "project": "chartjs",
+          "arm": "memex",
+          "historyRecords": 0,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 9,
+          "toolCalls": 12,
+          "publicTestCalls": 2,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "12191",
+          "project": "chartjs",
+          "arm": "keyword",
+          "historyRecords": 0,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 13,
+          "publicTestCalls": 3,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 2
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 19,
+          "completed": 19,
+          "reportedPromptTokens": 139540,
+          "reportedCompletionTokens": 1815,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 239808,
+          "responseBytes": 13489
+        },
+        "deepseek-flash": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 1597,
+          "reportedCompletionTokens": 169,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 6723,
+          "responseBytes": 1771
+        },
+        "qwen3.8-flash": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 1495,
+          "reportedCompletionTokens": 274,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 6655,
+          "responseBytes": 1895
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": []
     }
   ],
+  "newPilotSummary": {
+    "distinctIssues": 30,
+    "issuesWithAnyStartedArm": 30,
+    "assignmentOutcomes": {
+      "PASS": 48,
+      "INCOMPLETE": 7,
+      "CHECKS_NONZERO": 2,
+      "UNKNOWN": 2,
+      "NOT_RUN": 1
+    },
+    "bothArmsCompleteAndChecksPass": 21,
+    "bothArmsCompleteWithTwoOriginalFormatValidReviews": 16,
+    "originalReviewStatuses": {
+      "VALID": 89,
+      "INVALID": 7,
+      "MISSING": 4
+    },
+    "originalComparableCandidateReviewPairs": 41,
+    "originalScoreDisagreements": 28,
+    "originalDisagreementAdjudications": {
+      "INVALID": 19,
+      "VALID": 9
+    },
+    "noHistoryControls": [
+      "chartjs#12191",
+      "lodash#5948"
+    ]
+  },
   "posthocExplicitRubric": {
     "kind": "posthoc-explicit-rubric-blind-rereview",
     "selection": "Only attempts with a nonempty code diff; other attempts are not reviewed in this post-hoc pass.",
@@ -3397,6 +6755,850 @@
       "Short public issue histories and partial checks do not establish production value"
     ]
   },
+  "budgetedPosthocBatch15": {
+    "kind": "posthoc-three-candidate-budgeted-blinded-rereview",
+    "selection": "All three candidates from batch 15 with an original valid DeepSeek rating and an empty or truncated original Haiku rating; the unreviewable fourth attempt remains excluded.",
+    "candidates": [
+      {
+        "blind": "B01",
+        "slot": 2,
+        "ratings": [
+          {
+            "model": "deepseek-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 1
+          },
+          {
+            "model": "qwen3.8-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        ],
+        "registeredAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        },
+        "issue": "16126",
+        "arm": "keyword"
+      },
+      {
+        "blind": "B02",
+        "slot": 1,
+        "ratings": [
+          {
+            "model": "deepseek-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 1
+          },
+          {
+            "model": "qwen3.8-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        ],
+        "registeredAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        },
+        "issue": "16126",
+        "arm": "memex"
+      },
+      {
+        "blind": "B03",
+        "slot": 3,
+        "ratings": [
+          {
+            "model": "deepseek-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 1
+          },
+          {
+            "model": "qwen3.8-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        ],
+        "registeredAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        },
+        "issue": "17487",
+        "arm": "keyword"
+      }
+    ],
+    "usage": {
+      "deepseek-flash": {
+        "started": 3,
+        "completed": 3,
+        "reportedPromptTokens": 5370,
+        "reportedCompletionTokens": 554,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 17488,
+        "responseBytes": 4157
+      },
+      "qwen3.8-flash": {
+        "started": 3,
+        "completed": 3,
+        "reportedPromptTokens": 5338,
+        "reportedCompletionTokens": 4438,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 17386,
+        "responseBytes": 2494
+      },
+      "gemini-3.8-flash": {
+        "started": 3,
+        "completed": 3,
+        "reportedPromptTokens": 6158,
+        "reportedCompletionTokens": 4831,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 20830,
+        "responseBytes": 3761
+      }
+    },
+    "limitations": [
+      "Post-hoc model replacement and candidate selection after observing empty reviews; original ratings remain unchanged.",
+      "Two AI reviewers and a third AI adjudicator use the same proxy, not independent human assessment.",
+      "Short public histories and partial tests do not establish production value.",
+      "The increased reasoning-model budgets were selected after observing truncation and a separate synthetic probe; this is not the original registered assessment."
+    ],
+    "posthocReferenceNormalization": {
+      "inputSha256": "2dfdf4541fdc2b013edf7bda358a3aeaa17f8254bf5497dbc27fb646be8a9c51",
+      "scriptSha256": "b53c94d12497e2522960b76cda4e60034d5825558ab1cdd875b944af620b92af",
+      "rows": {
+        "B01#attempt-1": {
+          "status": "POSTHOC_NORMALIZED",
+          "correctness": 2,
+          "sideEffects": 2,
+          "changes": [
+            {
+              "original": "candidateDiff",
+              "normalized": "candidate"
+            },
+            {
+              "original": "acceptance",
+              "normalized": "checks"
+            },
+            {
+              "original": "regressionControls",
+              "normalized": "checks"
+            }
+          ]
+        },
+        "B02#attempt-1": {
+          "status": "POSTHOC_NORMALIZED",
+          "correctness": 2,
+          "sideEffects": 2,
+          "changes": [
+            {
+              "original": "candidateDiff",
+              "normalized": "candidate"
+            },
+            {
+              "original": "acceptance",
+              "normalized": "checks"
+            },
+            {
+              "original": "regressionControls",
+              "normalized": "checks"
+            }
+          ]
+        },
+        "B03#attempt-1": {
+          "status": "POSTHOC_NORMALIZED",
+          "correctness": 2,
+          "sideEffects": 2,
+          "changes": [
+            {
+              "original": "candidateDiff",
+              "normalized": "candidate"
+            },
+            {
+              "original": "acceptance",
+              "normalized": "checks"
+            },
+            {
+              "original": "regressionControls",
+              "normalized": "checks"
+            }
+          ]
+        }
+      }
+    }
+  },
+  "budgetedPosthocBatch16": {
+    "kind": "posthoc-budgeted-dayjs-review-completion",
+    "selection": "Re-review exactly the three empty or truncated original Qwen ratings; retain original valid DeepSeek and Qwen ratings. Adjudicate each valid score disagreement with a new Gemini call.",
+    "candidates": [
+      {
+        "blind": "R01",
+        "slot": 6,
+        "issue": "2956",
+        "arm": "keyword",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "originalQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 0,
+          "sideEffects": 0
+        },
+        "posthocQwen": {
+          "status": "NOT_APPLICABLE"
+        },
+        "posthocAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "R02",
+        "slot": 1,
+        "issue": "2511",
+        "arm": "memex",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "originalQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "posthocQwen": {
+          "status": "NOT_APPLICABLE"
+        },
+        "posthocAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "R03",
+        "slot": 4,
+        "issue": "1923",
+        "arm": "memex",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "originalQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "posthocQwen": {
+          "status": "NOT_APPLICABLE"
+        },
+        "posthocAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "R04",
+        "slot": 12,
+        "issue": "2479",
+        "arm": "memex",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "originalQwen": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        },
+        "posthocQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "posthocAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "R05",
+        "slot": 3,
+        "issue": "1923",
+        "arm": "keyword",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "originalQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "posthocQwen": {
+          "status": "NOT_APPLICABLE"
+        },
+        "posthocAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "R06",
+        "slot": 8,
+        "issue": "2951",
+        "arm": "keyword",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "originalQwen": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        },
+        "posthocQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "posthocAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "R07",
+        "slot": 11,
+        "issue": "2479",
+        "arm": "keyword",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        },
+        "originalQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "posthocQwen": {
+          "status": "NOT_APPLICABLE"
+        },
+        "posthocAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "R08",
+        "slot": 5,
+        "issue": "2956",
+        "arm": "memex",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "originalQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        },
+        "posthocQwen": {
+          "status": "NOT_APPLICABLE"
+        },
+        "posthocAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "R09",
+        "slot": 10,
+        "issue": "1271",
+        "arm": "memex",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "originalQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        },
+        "posthocQwen": {
+          "status": "NOT_APPLICABLE"
+        },
+        "posthocAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "R10",
+        "slot": 9,
+        "issue": "1271",
+        "arm": "keyword",
+        "originalDeepseek": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "originalQwen": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        },
+        "posthocQwen": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "posthocAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      }
+    ],
+    "usage": {
+      "qwen3.8-flash": {
+        "started": 3,
+        "completed": 3,
+        "reportedPromptTokens": 4870,
+        "reportedCompletionTokens": 3074,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 14697,
+        "responseBytes": 3160
+      },
+      "gemini-3.8-flash": {
+        "started": 5,
+        "completed": 5,
+        "reportedPromptTokens": 10581,
+        "reportedCompletionTokens": 10220,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 33225,
+        "responseBytes": 4551
+      }
+    },
+    "limitations": [
+      "Selected after prior batches and some results were observed; not one pre-registered 30–50-task cohort.",
+      "Six issues touch different functional areas, but common project and source exposure prevent an independence guarantee.",
+      "Public issue discussions and PRs may disclose proposed solutions or appear in model training.",
+      "Source references and issue-specific tests are partial and do not establish maintainer acceptance.",
+      "Checks use Node source ESM hooks rather than the published compiled npm package.",
+      "Retrieved contexts have different actual lengths and pre-seeded short issue discussions are not production sessions.",
+      "Reviews and adjudications are AI through a common proxy; model provenance is unverified.",
+      "Autonomous memory lifecycle, production effectiveness and cost savings are not established.",
+      "Post-hoc selection and larger reasoning-model budgets were chosen after original truncations; original ratings and adjudications remain unchanged.",
+      "Synthetic format probes do not guarantee valid real review responses."
+    ]
+  },
+  "fallbackAdjudicationsBatch16": {
+    "kind": "posthoc-dayjs-alternate-adjudicator",
+    "selection": "Five valid score disagreements after the original ratings and post-hoc Qwen replacements, each with an invalid post-hoc Gemini adjudication.",
+    "model": "gpt-6-astra",
+    "candidates": [
+      {
+        "blind": "A01",
+        "batch": null,
+        "slot": 6,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "A02",
+        "batch": null,
+        "slot": 9,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "A03",
+        "batch": null,
+        "slot": 5,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "A04",
+        "batch": null,
+        "slot": 10,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "A05",
+        "batch": null,
+        "slot": 11,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      }
+    ],
+    "usage": {
+      "gpt-6-astra": {
+        "started": 5,
+        "completed": 5,
+        "reportedPromptTokens": 44366,
+        "reportedCompletionTokens": 1603,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 33245,
+        "responseBytes": 5651
+      }
+    },
+    "limitations": [
+      "This alternate adjudicator and subset were chosen after observing failed adjudications.",
+      "The adjudicator has the same model name as the solver, so it is not independent of the solver.",
+      "All models share one proxy and provenance is unverified; AI format validity is not proof of factual correctness."
+    ]
+  },
+  "fallbackAdjudicationsBatches17to20": {
+    "kind": "posthoc-alternate-adjudications-batches-17-20",
+    "selection": "Only original valid-score disagreements in batches 17–20 with a completed but format-invalid Gemini adjudication. No missing or timed-out adjudication is retried.",
+    "model": "gpt-6-astra",
+    "candidates": [
+      {
+        "blind": "F01",
+        "batch": "17",
+        "slot": 8,
+        "result": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "F02",
+        "batch": "18",
+        "slot": 3,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "F03",
+        "batch": "17",
+        "slot": 4,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "F04",
+        "batch": "18",
+        "slot": 5,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "F05",
+        "batch": "20",
+        "slot": 2,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "F06",
+        "batch": "18",
+        "slot": 4,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "F07",
+        "batch": "19",
+        "slot": 2,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "F08",
+        "batch": "19",
+        "slot": 3,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "F09",
+        "batch": "20",
+        "slot": 4,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "F10",
+        "batch": "17",
+        "slot": 1,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        }
+      },
+      {
+        "blind": "F11",
+        "batch": "19",
+        "slot": 4,
+        "result": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "F12",
+        "batch": "19",
+        "slot": 1,
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        }
+      }
+    ],
+    "usage": {
+      "gpt-6-astra": {
+        "started": 12,
+        "completed": 12,
+        "reportedPromptTokens": 113540,
+        "reportedCompletionTokens": 2124,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 65078,
+        "responseBytes": 12888
+      }
+    },
+    "limitations": [
+      "The subset, output budget and alternate model were chosen after original failures.",
+      "The adjudicator has the same model name as the solver and is not independent of it.",
+      "All AI models use one proxy with unverified provenance; format validity does not prove factual support."
+    ]
+  },
+  "unstartedReviewsBatch17": {
+    "kind": "posthoc-batch17-never-started-reviews",
+    "selection": "Only B05 and B06, whose two original reviewer calls never started after the B04 timeout; no timed-out call is repeated.",
+    "candidates": [
+      {
+        "blind": "U01",
+        "originalBlind": "B06",
+        "slot": 3,
+        "issue": "3614",
+        "arm": "keyword",
+        "ratings": [
+          {
+            "model": "deepseek-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 1
+          },
+          {
+            "model": "qwen3.8-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 2
+          }
+        ],
+        "adjudication": {
+          "model": "gpt-6-astra",
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "U02",
+        "originalBlind": "B05",
+        "slot": 5,
+        "issue": "3600",
+        "arm": "keyword",
+        "ratings": [
+          {
+            "model": "deepseek-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 1
+          },
+          {
+            "model": "qwen3.8-flash",
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 1
+          }
+        ],
+        "adjudication": {
+          "model": "gpt-6-astra",
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      }
+    ],
+    "usage": {
+      "deepseek-flash": {
+        "started": 2,
+        "completed": 2,
+        "reportedPromptTokens": 2589,
+        "reportedCompletionTokens": 379,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 9377,
+        "responseBytes": 2834
+      },
+      "qwen3.8-flash": {
+        "started": 2,
+        "completed": 2,
+        "reportedPromptTokens": 2573,
+        "reportedCompletionTokens": 411,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 9309,
+        "responseBytes": 2582
+      },
+      "gpt-6-astra": {
+        "started": 2,
+        "completed": 2,
+        "reportedPromptTokens": 8899,
+        "reportedCompletionTokens": 490,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 13027,
+        "responseBytes": 2521
+      }
+    },
+    "failures": [],
+    "limitations": [
+      "Post-hoc selection follows the observed timeout and prior results; original missing ratings remain missing.",
+      "The Astra adjudicator has the solver model name and is not independent of it.",
+      "Reviewers share a proxy of unverified provenance; format validity does not establish factual support."
+    ]
+  },
   "diagnostics": {
     "reviewerRouteProbe": {
       "gpt-6.1-sol": {
@@ -3460,6 +7662,199 @@
       "reportedCompletionTokens": 154,
       "toolCalls": 3,
       "testsPassed": 1
+    },
+    "gatewayTriage": {
+      "deepseek-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 11,
+        "reportedCompletionTokens": 1,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 175,
+        "responseBytes": 0
+      },
+      "gpt-6.1-sol": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 0,
+        "reportedCompletionTokens": 0,
+        "missingUsage": 1,
+        "failedResponses": 1,
+        "unmatchedStarted": 0,
+        "requestBytes": 138,
+        "responseBytes": 0
+      },
+      "gpt-6-astra": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 4229,
+        "reportedCompletionTokens": 5,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 138,
+        "responseBytes": 0
+      },
+      "claude-haiku-4-5": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 14,
+        "reportedCompletionTokens": 4,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 143,
+        "responseBytes": 0
+      }
+    },
+    "gatewayTriageFailures": [
+      {
+        "log": "calls.jsonl",
+        "logSha256": "ac3bf64579a42f6529150e12bab30058bf87e8f413610d1652f9d6aa3a8df8af",
+        "at": null,
+        "label": null,
+        "model": "gpt-6.1-sol",
+        "status": "error",
+        "httpStatus": null,
+        "errorType": "TimeoutError",
+        "errorCode": null,
+        "elapsedSeconds": 35.884
+      }
+    ],
+    "qwenNoThinkingProbe": {
+      "qwen3.8-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 1334,
+        "reportedCompletionTokens": 148,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 5631,
+        "responseBytes": 0
+      }
+    },
+    "qwenReviewRouteProbe": {
+      "qwen3.8-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 52,
+        "reportedCompletionTokens": 48,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 326,
+        "responseBytes": 520
+      }
+    },
+    "geminiReviewRouteProbe": {
+      "gemini-3.8-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 49,
+        "reportedCompletionTokens": 266,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 329,
+        "responseBytes": 810
+      }
+    },
+    "reviewBudgetProbe": {
+      "qwen3.8-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 1263,
+        "reportedCompletionTokens": 213,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 6246,
+        "responseBytes": 1506
+      },
+      "gemini-3.8-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 1115,
+        "reportedCompletionTokens": 231,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 6249,
+        "responseBytes": 870
+      }
+    },
+    "timeoutHealthProbe": {
+      "deepseek-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 7,
+        "reportedCompletionTokens": 2,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 153,
+        "responseBytes": 444
+      },
+      "gpt-6-astra": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 9,
+        "reportedCompletionTokens": 5,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 116,
+        "responseBytes": 320
+      },
+      "qwen3.8-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 385,
+        "reportedCompletionTokens": 3,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 118,
+        "responseBytes": 327
+      }
+    },
+    "transportHealthProbe": {
+      "deepseek-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 7,
+        "reportedCompletionTokens": 2,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 153,
+        "responseBytes": 444
+      },
+      "gpt-6-astra": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 4225,
+        "reportedCompletionTokens": 5,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 116,
+        "responseBytes": 372
+      },
+      "qwen3.8-flash": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 64,
+        "reportedCompletionTokens": 25,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 118,
+        "responseBytes": 477
+      }
     }
   },
   "limitations": [
@@ -3467,7 +7862,7 @@
     "The pre-seeded public issue discussions are not long production sessions.",
     "Tests are partial and reviewers are AI; label validity does not prove factual support.",
     "The numeric review direction was not specified in batches 1–5; their raw scores cannot be treated as a common scale.",
-    "Unmatched started and failed requests may have unreported tokens or fees; no failed request is automatically retried.",
+    "Unmatched started and failed requests may have unreported tokens or fees; only explicitly registered later batches retry explicit HTTP 503, not timeouts.",
     "Source exposure to public PRs or model pretraining cannot be excluded."
   ]
 }
