@@ -1,0 +1,165 @@
+{
+  "method": "Frozen before solver calls: network-disabled VM sandbox, exact source-only proposed references, expected baseline/reference exit matrix; raw qualification logs stay private.",
+  "issues": {
+    "validator-2430": {
+      "referencePR": 2447,
+      "referenceHead": "4e616a450305964c36fdbf35a883927466724f3f",
+      "sourcePatchSha256": "ec461f507622336b923bd3b7e59e3300c2d87e81cd59dbc71c53b1a64b8e3370",
+      "compressedPatchSha256": "f390151089c55d1df158a4b968f861373dbc14abe7dd56357c4581e70f1ee40a",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "6eadac14b50ed4a3e54cfe7fbc35e7a7eb2c06cdd98f1f9000b999ba36dad2a5"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "d5046e13ea9c934b250680411b9d31969dd69bd9afa902446e42b728cdf91924"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      }
+    },
+    "ramda-2137": {
+      "referencePR": 3506,
+      "referenceHead": "7693d4447c42ee2b855725e0feb10a6fdf75f072",
+      "sourcePatchSha256": "08e1bbf1fd1cdb7ef122bf2c82228d856896b540a61c7e0b604eeb511477b62c",
+      "compressedPatchSha256": "b8e82d5019d9cb7adee19b4477be3248a5701203eaccd7eb92fab0370daaad85",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "273b19a21b6d0bbf78db9bcf642bb3d3cae2906c116a843ed415068b4b198266"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "1ba7ff67190ebc46d19fd9162507f99b298651931139931eb71e573b1ba50c35"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      }
+    },
+    "datefns-4096": {
+      "referencePR": 4119,
+      "referenceHead": "a490b6e8028c021c6369c15ba477f65a7da895ae",
+      "sourcePatchSha256": "f59f43464fd0a040b1deedabea42fc3273b25314cd827ca867278a3cda2f09bd",
+      "compressedPatchSha256": "4b8426bda3195858db522339a2afb82ea618c5d46b9ebee00cc7bc224ca644a9",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "39e96310b4139a349f1c223f8a4ca3aa60f5ec5f31db18470a2ce3ea8d690761"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "065096c2961f382a83b38ddc7e561917f96949dc6fecafe98bafe8efb73d5d4c"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      }
+    },
+    "mathjs-3134": {
+      "referencePR": 3705,
+      "referenceHead": "4caedfd9788558667579095980896a78b8ee8f34",
+      "sourcePatchSha256": "7bc1e36e37fe2d11b91f7ec40db18924a4bc795ceb5c5737fe55a6273af7ab21",
+      "compressedPatchSha256": "f864afafcbf50334ccc6136bc08aa295330b647e99219475ccbcd50775540ecb",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "c568ee29de1f289270f43589111d5490b41c0324dbf8585819df4dee42b7b005"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "bd1fa21c29cd296d0114ce0b1b0728e0dc4fe1b428735dbafa7036460d7135fe"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      }
+    },
+    "dayjs-2281": {
+      "referencePR": 3217,
+      "referenceHead": "5eb9d6b625306286e563d6987eeb4ea35ae68bad",
+      "sourcePatchSha256": "96c8221189a1c61d74d30b9ea6d24cd5d369c72261299511ad82907a2cfa2db0",
+      "compressedPatchSha256": "a716985501e1ef3c4b185b614016b38183fb71236c723239ef5e29de844669ac",
+      "runs": {
+        "public_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "ea34a8018d02f804971afce349445c3e11788f0758ee50a4b4f2f5cbaf8349db"
+        },
+        "public_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "acceptance_baseline": {
+          "exitCode": 1,
+          "privateCheckResultSha256": "ea34a8018d02f804971afce349445c3e11788f0758ee50a4b4f2f5cbaf8349db"
+        },
+        "acceptance_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_baseline": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        },
+        "regression_reference": {
+          "exitCode": 0,
+          "privateCheckResultSha256": "0287ef7aefcadf69b566b947bf97d6c522b88f02c62780ccd01f87862aafa631"
+        }
+      }
+    }
+  }
+}

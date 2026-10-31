@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');const root=process.argv[2];
+(async()=>{const m=(await import(pathToFileURL(root+'/src/defaultInstance.js').href)).default;const low=m.unit('9 degC'),high=m.unit('10 degC');for(const s of ['degF','K','degR']){assert.equal(m.smaller(low.to(s),high),true);assert.equal(m.smaller(high,low.to(s)),false)}assert.equal(m.equal(m.unit('0 degC'),m.unit('273.15 K')),true);console.log('checks passed')})().catch(e=>{console.error(e);process.exitCode=1});

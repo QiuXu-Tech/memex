@@ -1,0 +1,153 @@
+{
+  "kind": "registered-five-distinct-project-issue-pairs-v27",
+  "createdAt": "2026-10-31T21:58:30.266828+08:00",
+  "sourceCommit": {
+    "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+    "ramda": "f4b2e35ff433e18c751326b82acc3c6ab3585e18",
+    "datefns": "a9739fb3e5384a810e90d7376446f6d84ecc5029",
+    "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7",
+    "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3"
+  },
+  "tasks": {
+    "2430": "validator",
+    "2137": "ramda",
+    "4096": "datefns",
+    "3134": "mathjs",
+    "2281": "dayjs"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "guestHashes": {
+    "/opt/memex-pilot/node/bin/node": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "/opt/memex-pilot/workspaces/datefns-base/node_modules/typescript/package.json": "822ef7ca6452205657b6288b066481ecf508bfbf43455d715cf7d3ec457561e6",
+    "/opt/memex-pilot/workspaces/datefns-base/node_modules/typescript/lib/typescript.js": "3ae902c92cc44dace175c0e69e13a4b0899f6983c6121d76b9ab8dd5795e7675",
+    "/home/mk-q.guest/staging/mathjs-runtime-20261031/package-lock.json": "2195cbcd933fd1a2ed008d97cbb5862e13fea87b78739ce9a4b28961ee46973e"
+  },
+  "runtime": "Node 24.18.0; date-fns uses the test-only TypeScript 5.9.3 transpile hook from the existing Yup runtime. math.js uses the pinned runtime lock.",
+  "files": {
+    "scripts/prospective-gateway-pilot-v27.py": "2f1af3fc34bc56cc0d9407470c707c71695a9e06a365913455b04fb18132423c",
+    "scripts/prospective-gateway-pilot-v25.py": "b9877352973e4b014af1465cd0dde67dfd6f32a15f2897513b8740b870813f6d",
+    "scripts/prospective-gateway-pilot-v24.py": "71bf84a0a0370f1743e4c3cd81f501cc76378fcbba8ff094ead13e86854f2ec3",
+    "scripts/prospective-gateway-pilot-v23.py": "def4504693340818b68e7daf5bc06c71aadd979c07cab6d0211a0803af974ee6",
+    "scripts/prospective-gateway-pilot-v22.py": "2f7152a956189fa7e99dbb70ce3aa37278f49b213fb35a5caf6322e3d54641ea",
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "checks": {
+    "2430": {
+      "public": "3bfee4808cf9124592d710df71434bc1a17f89747d91be21b1cdeb0c066fa820",
+      "acceptance": "2366ced66410b09daee78b3612ab52fb643d7b4bdfd8ce38c422e03ae0ff8eb5",
+      "regressionControls": "699fb8c46a563555d0292813d7e4f3a1ba027ff0b11a6374a19053435e0e52dc"
+    },
+    "2137": {
+      "public": "2f79ad65c422e73e2a15df77799e7874482de742567b7474dbe2ba013f9bba86",
+      "acceptance": "6deb675c5ffd6d4cba5b72d020ee9d31d5af75e265a2f24e769c9a51365d9add",
+      "regressionControls": "656dc6dd89e31be3e1db9758f875d4747eb9fb0ea9bd071159e32f667de76133"
+    },
+    "4096": {
+      "public": "c83a9e2c70bd62fd5b4a59ad33d1b1702b00f052c0d6f985a16508b98ffb8f9a",
+      "acceptance": "633b35baa6f3fc788164e83c7e02ae4b1f3b522f4de0ad55a8e750d80687079d",
+      "regressionControls": "9536e8f072d3778a2a97e64acbd21152866c146490eccff4a19f6ef8a292f6cb"
+    },
+    "3134": {
+      "public": "c2176b0ebb2f8ebfc2c2bfc75d177783f9114e46cabeaffeabe480e988ca02de",
+      "acceptance": "2df331b2fd1dee14a85d3d45ae8d3af6a2f06f84a31412192b3b074b099fde1b",
+      "regressionControls": "1c3b59ae56f80f3641f7eef3bc74c4c4319b33148100ec0875a3919d570daf7c"
+    },
+    "2281": {
+      "public": "77cf208e650360c736ebdec9d69a3a1e00199710835e9f8d7941af09a17bbc68",
+      "acceptance": "da328edd6203de20e125647d3fdca27d307e45845c9bfd0c58ba0bc468704e6f",
+      "regressionControls": "1cb3ec8f4509a9cb1b8f2aa4ce16731d11f538001b7e40dfc9d1ec958d572246"
+    }
+  },
+  "issuesSha256": "1c424db873b1ac7d70550abca72d9ca12c0e263ce421f397365b851949fc7a33",
+  "contextsSha256": "2a93975ff3645439a0c0d46924206bcb722348f4c5a0722acaddbeecdb882d13",
+  "seed": 2026103132,
+  "schedule": [
+    {
+      "issue": "4096",
+      "arm": "memex"
+    },
+    {
+      "issue": "4096",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3134",
+      "arm": "keyword"
+    },
+    {
+      "issue": "3134",
+      "arm": "memex"
+    },
+    {
+      "issue": "2137",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2137",
+      "arm": "memex"
+    },
+    {
+      "issue": "2430",
+      "arm": "memex"
+    },
+    {
+      "issue": "2430",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2281",
+      "arm": "keyword"
+    },
+    {
+      "issue": "2281",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6.1-sol",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 1200,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within each stage after provider failure or missing usage; preserve failed, missing and unknown costs. No timeout retry.",
+  "costTarget": "Below $1 estimated for the five pairs; not a hard cap. Requested model limits may be exceeded according to earlier gateway usage.",
+  "limitations": [
+    "Selection follows previous outcomes; new issue identities are distinct but statistical independence is not established.",
+    "Public comments or PRs may reveal solutions and be present in model training; some cases include explicit proposed fixes.",
+    "Distinct retrieved comment IDs do not control content, length, quality, or eliminate task dependence.",
+    "Source-only proposed references and small custom checks do not establish maintainer acceptance.",
+    "The date-fns check executes TypeScript source through a test-only hook rather than the published package.",
+    "The distinct reviewer and adjudicator model names share a proxy whose actual provenance is not verified.",
+    "Pre-seeded short issue discussions are not production sessions or autonomous memory management."
+  ]
+}
