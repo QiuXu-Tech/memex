@@ -207,6 +207,31 @@ def new_pilot_summary(batches):
          'noHistoryControls':sorted(negative)}
 
 
+def supplemental_coverage(batches, batch15, batch16, batch17):
+ pairs={}
+ for batch in batches:
+  if batch['batch'] not in NEW_LABELS:continue
+  indexed={r['slot']:r for r in batch['reviews']}
+  for run in batch['runs']:
+   arms=pairs.setdefault((run['project'],run['issue']),{});old=arms.get(run['arm'])
+   if old and old['run']['attemptOutcome']!='NOT_RUN':continue
+   review=indexed.get(run['slot']);arms[run['arm']]={'run':run,'ratings':[r['status'] for r in review['ratings']] if review else []}
+ def covered():
+  return {k for k,arms in pairs.items() if len(arms)==2 and all(a['run'].get('status')=='completed' and a['ratings']==['VALID','VALID'] for a in arms.values())}
+ original=covered()
+ for c in (batch15 or {}).get('candidates',[]):
+  arm=pairs[('prettier',c['issue'])][c['arm']]
+  if len(c['ratings'])==2 and all(r['status']=='VALID' for r in c['ratings']):arm['ratings']=['VALID','VALID']
+ for c in (batch16 or {}).get('candidates',[]):
+  if c['posthocQwen']['status']=='VALID':pairs[('dayjs',c['issue'])][c['arm']]['ratings']=[c['originalDeepseek']['status'],'VALID']
+ for c in (batch17 or {}).get('candidates',[]):
+  arm=pairs[('mathjs',c['issue'])][c['arm']]
+  if arm['ratings']==['MISSING','MISSING']:arm['ratings']=[r['status'] for r in c['ratings']]
+ combined=covered();controls={k for k,arms in pairs.items() if any(a['run'].get('historyRecords')==0 for a in arms.values())}
+ return {'issuePairsWithOriginalOrSupplementaryRatings':len(combined),'noHistoryControlsIncluded':len(combined & controls),
+         'issuePairsExcludingNoHistoryControls':len(combined-controls),'additionalIssuesAfterSupplementaryReviews':sorted(f'{p}#{n}' for p,n in combined-original)}
+
+
 def summarize(base):
  all_batches=[]
  for label,name,regression in BATCHES:
@@ -228,7 +253,8 @@ def summarize(base):
    for path in sorted((root/'posthoc-reference-normalization').glob('B*.json')):
     data=json.loads(path.read_text());parsed=data.get('parsed',{});rating=parsed.get('rating',{});posthoc['adjudications'][path.stem]={'status':'VALID' if parsed.get('valid') else 'INVALID','correctness':rating.get('correctness'),'sideEffects':rating.get('side_effects')}
   all_batches.append({'batch':label,'scoreDirectionExplicit':label in ('mixed-3','prettier-4','eslint-3','mixed-4','prettier-interrupted','prettier-route','prettier-six','prettier-unstarted','prettier-lowcost','prettier-gateway','dayjs-gateway','moment-mathjs','dayjs-mathjs','prettier-late','mathjs-late','validator-new','luxon-new','lodash-new','yup-new','validator-chartjs','chartjs-unstarted'),'sourceCommit':manifest['sourceCommit'],'plannedAssignments':len(runs),'runs':runs,'outcomes':dict(collections.Counter(x['attemptOutcome'] for x in runs)),'reviews':reviews(root,manifest.get('reviewers',[])),'posthocNormalization':posthoc,'usage':usage(root),'failures':failures(root,('solver-calls.jsonl','review-calls.jsonl','adjudication-calls.jsonl')),'qwenReportedOverLimit':qwen_limit_observations(root,manifest)})
- return {'kind':'separate-prospective-open-source-instrumentation-batches','batches':all_batches,'newPilotSummary':new_pilot_summary(all_batches),'posthocExplicitRubric':posthoc_review(base/'posthoc-explicit-rubric'),'posthocUnstartedAdjudication':unstarted_adjudications(base/'posthoc-unstarted-adjudication'),'budgetedPosthocBatch15':budgeted_posthoc(base/'20261031-batch15-posthoc-budgeted',15),'budgetedPosthocBatch16':budgeted_posthoc(base/'20261031-batch16-posthoc-budgeted',16),'fallbackAdjudicationsBatch16':fallback_adjudications(base/'20261031-batch16-fallback-adjudication'),'fallbackAdjudicationsBatches17to20':fallback_adjudications(base/'20261031-batches17-20-fallback'),'unstartedReviewsBatch17':batch17_unstarted_reviews(base/'20261031-batch17-unstarted-reviews',base/'20261031-mixed-batch17'),'diagnostics':{'reviewerRouteProbe':usage(base/'20261031-reviewer-route-probe'),'alternateSolverToolProbe':usage(base/'20261031-sol-tool-probe'),'post503HealthProbe':usage(base/'20261031-post503-route-probe'),'alternateSolverSyntheticSmoke':synthetic_smoke(base/'20261031-sol-agent-smoke','gpt-6.1-sol'),'deepseekSyntheticSmoke':synthetic_smoke(base/'20261031-deepseek-agent-smoke','deepseek-flash'),'gatewayTriage':usage(base/'20261031-1809-gateway-triage'),'gatewayTriageFailures':failures(base/'20261031-1809-gateway-triage',('calls.jsonl',)),'qwenNoThinkingProbe':usage(base/'20261031-qwen-no-thinking-probe'),'qwenReviewRouteProbe':usage(base/'20261031-qwen-review-route-probe'),'geminiReviewRouteProbe':usage(base/'20261031-gemini-review-route-probe'),'reviewBudgetProbe':usage(base/'20261031-review-budget-probe'),'timeoutHealthProbe':usage(base/'20261031-1940-timeout-health'),'transportHealthProbe':usage(base/'20261031-2055-transport-health')},'limitations':['Different batches were selected or revised after prior results and are not one pre-registered cohort.','The pre-seeded public issue discussions are not long production sessions.','Tests are partial and reviewers are AI; label validity does not prove factual support.','The numeric review direction was not specified in batches 1–5; their raw scores cannot be treated as a common scale.','Unmatched started and failed requests may have unreported tokens or fees; only explicitly registered later batches retry explicit HTTP 503, not timeouts.','Source exposure to public PRs or model pretraining cannot be excluded.']}
+ b15=budgeted_posthoc(base/'20261031-batch15-posthoc-budgeted',15);b16=budgeted_posthoc(base/'20261031-batch16-posthoc-budgeted',16);b17=batch17_unstarted_reviews(base/'20261031-batch17-unstarted-reviews',base/'20261031-mixed-batch17')
+ return {'kind':'separate-prospective-open-source-instrumentation-batches','batches':all_batches,'newPilotSummary':new_pilot_summary(all_batches),'supplementaryCoverage':supplemental_coverage(all_batches,b15,b16,b17),'posthocExplicitRubric':posthoc_review(base/'posthoc-explicit-rubric'),'posthocUnstartedAdjudication':unstarted_adjudications(base/'posthoc-unstarted-adjudication'),'budgetedPosthocBatch15':b15,'budgetedPosthocBatch16':b16,'fallbackAdjudicationsBatch16':fallback_adjudications(base/'20261031-batch16-fallback-adjudication'),'fallbackAdjudicationsBatches17to20':fallback_adjudications(base/'20261031-batches17-20-fallback'),'unstartedReviewsBatch17':b17,'diagnostics':{'reviewerRouteProbe':usage(base/'20261031-reviewer-route-probe'),'alternateSolverToolProbe':usage(base/'20261031-sol-tool-probe'),'post503HealthProbe':usage(base/'20261031-post503-route-probe'),'alternateSolverSyntheticSmoke':synthetic_smoke(base/'20261031-sol-agent-smoke','gpt-6.1-sol'),'deepseekSyntheticSmoke':synthetic_smoke(base/'20261031-deepseek-agent-smoke','deepseek-flash'),'gatewayTriage':usage(base/'20261031-1809-gateway-triage'),'gatewayTriageFailures':failures(base/'20261031-1809-gateway-triage',('calls.jsonl',)),'qwenNoThinkingProbe':usage(base/'20261031-qwen-no-thinking-probe'),'qwenReviewRouteProbe':usage(base/'20261031-qwen-review-route-probe'),'geminiReviewRouteProbe':usage(base/'20261031-gemini-review-route-probe'),'reviewBudgetProbe':usage(base/'20261031-review-budget-probe'),'timeoutHealthProbe':usage(base/'20261031-1940-timeout-health'),'transportHealthProbe':usage(base/'20261031-2055-transport-health')},'limitations':['Different batches were selected or revised after prior results and are not one pre-registered cohort.','The pre-seeded public issue discussions are not long production sessions.','Tests are partial and reviewers are AI; label validity does not prove factual support.','The numeric review direction was not specified in batches 1–5; their raw scores cannot be treated as a common scale.','Unmatched started and failed requests may have unreported tokens or fees; only explicitly registered later batches retry explicit HTTP 503, not timeouts.','Source exposure to public PRs or model pretraining cannot be excluded.']}
 
 
 def main():

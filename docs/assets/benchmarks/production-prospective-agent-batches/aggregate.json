@@ -6437,6 +6437,17 @@
       "lodash#5948"
     ]
   },
+  "supplementaryCoverage": {
+    "issuePairsWithOriginalOrSupplementaryRatings": 20,
+    "noHistoryControlsIncluded": 2,
+    "issuePairsExcludingNoHistoryControls": 18,
+    "additionalIssuesAfterSupplementaryReviews": [
+      "dayjs#1271",
+      "dayjs#2479",
+      "mathjs#3614",
+      "prettier#16126"
+    ]
+  },
   "posthocExplicitRubric": {
     "kind": "posthoc-explicit-rubric-blind-rereview",
     "selection": "Only attempts with a nonempty code diff; other attempts are not reviewed in this post-hoc pass.",

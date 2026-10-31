@@ -52,4 +52,12 @@ class Tests(unittest.TestCase):
    (followup/'adjudications/U01-c.json').write_text(json.dumps({'eventStatus':'ok','parsed':{'valid':False}}))
    row=m.batch17_unstarted_reviews(followup,source)['candidates'][0]
    self.assertEqual([x['status'] for x in row['ratings']],['VALID','MISSING']);self.assertEqual(row['adjudication']['status'],'INVALID')
+ def test_supplementary_coverage_excludes_controls_and_incomplete_runs(self):
+  def run(slot,issue,arm,history,status):return {'slot':slot,'project':'mathjs','issue':issue,'arm':arm,'historyRecords':history,'status':status,'attemptOutcome':'PASS' if status=='completed' else 'INCOMPLETE'}
+  runs=[run(1,'3614','keyword',3,'completed'),run(2,'3614','memex',3,'completed'),run(3,'x','keyword',0,'completed'),run(4,'x','memex',0,'completed'),run(5,'y','keyword',2,'turn_limit'),run(6,'y','memex',2,'completed')]
+  reviews=[{'slot':n,'ratings':[{'status':v} for v in ratings]} for n,ratings in [(1,['MISSING','MISSING']),(2,['VALID','VALID']),(3,['VALID','VALID']),(4,['VALID','VALID']),(5,['VALID','VALID']),(6,['VALID','VALID'])]]
+  follow={'candidates':[{'issue':'3614','arm':'keyword','ratings':[{'status':'VALID'},{'status':'VALID'}]}]}
+  value=m.supplemental_coverage([{'batch':'moment-mathjs','runs':runs,'reviews':reviews}],None,None,follow)
+  self.assertEqual((value['issuePairsWithOriginalOrSupplementaryRatings'],value['issuePairsExcludingNoHistoryControls']),(2,1))
+  self.assertEqual(value['additionalIssuesAfterSupplementaryReviews'],['mathjs#3614'])
 if __name__=='__main__':unittest.main()
