@@ -1,0 +1,115 @@
+{
+  "kind": "posthoc-five-invalid-disagreement-adjudications-v33",
+  "createdAt": "2026-10-31T23:21:07.487054+08:00",
+  "runnerSha256": "00531ddc12a1e4c1f0a9eb5fc8bad1d2866a8eecb93ca8a653ffde8d9b991409",
+  "gatewaySha256": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+  "candidates": [
+    {
+      "blind": "R01",
+      "packetSha256": "36d8dc012a7a249fe7974f57b0a52662f0fa4d130efcdc6c74f796915201e8f2",
+      "source": "20261031-batch15-posthoc-budgeted",
+      "sourceBlind": "B02",
+      "slot": 1,
+      "issue": "16126",
+      "arm": "memex",
+      "sourceHashes": {
+        "20261031-batch15-posthoc-budgeted/manifest.json": "9430517916f1cd26d9787254d1f5ba605950b450169f68179cd78e52998434f4",
+        "20261031-batch15-posthoc-budgeted/blind-key.json": "480d844c9c4ed60b5007f3e5bf475b8c62d6f0caec4b632275c6d4807545e4fa",
+        "20261031-batch15-posthoc-budgeted/issues.json": "b092cfe3ca6456466268c605ad600e792498080350151683f3f4635ea4d47e3c",
+        "20261031-batch15-posthoc-budgeted/adjudications/B02.json": "fd95f9d7994fa098763e9a3cccc7a14a8561aa11a873eedca3e723373e53ae4d",
+        "20261031-batch15-posthoc-budgeted/runs/01/result.json": "c2a3a0c555eae061f9a4a4f8702057926cd371e6c234698332fe61eafe799686",
+        "20261031-batch15-posthoc-budgeted/runs/01/candidate.diff": "cf12120e29a78c29378b5ec519af1c1e6ab34e7b3cd3abc8c63f7e1765b2c44c",
+        "20261031-batch15-posthoc-budgeted/reviews/B02-deepseek-flash.json": "6e855b2eddcaf83b811228db386daa4c61c7a6ea04c939fe8854719256c4ef65",
+        "20261031-batch15-posthoc-budgeted/reviews/B02-qwen3.8-flash.json": "8f7a49aea43b93d6850a1dfa12c887a36b0de36af14f6e3c01089497dcb37a27"
+      }
+    },
+    {
+      "blind": "R02",
+      "packetSha256": "4f0f6e4e6403d0bfc627455aae9d0dfec52e3593337df05969ed4ad154adf06b",
+      "source": "20261031-lodash-batch23",
+      "sourceBlind": "B01",
+      "slot": 1,
+      "issue": "6191",
+      "arm": "keyword",
+      "sourceHashes": {
+        "20261031-lodash-batch23/manifest.json": "c6fae63083372c808c78a1da2e8072ffaf2a63c3eea0793e118b4c77320ea41d",
+        "20261031-lodash-batch23/blind-key.json": "ca54a223dd96acb47c35fb8323d584720a556829e102c2df77f57240ee5b34bd",
+        "20261031-lodash-batch23/issues.json": "cb0d7b4b928e4359395b0c642b4231f7879d767f76249fdebfcdeeea301f543b",
+        "20261031-lodash-batch23/adjudications/B01.json": "40963fe3bccc88026f102d133f59824b792e8fc5ef6625208016c12a4498f408",
+        "20261031-lodash-batch23/runs/01/result.json": "b869619eca87d6e1b6e3a5f75ac1bd971ace9ddc1b60b8367a216f8b3487eb45",
+        "20261031-lodash-batch23/runs/01/candidate.diff": "6d51d5c402b029c1f9088060d79ac451df7c0b25f450fb74e2a08c30a3f11fd4",
+        "20261031-lodash-batch23/reviews/B01-deepseek-flash.json": "444cde54daa49f1fb27621dc6f6969568e2ac541a9eb6dd285aaf51a88a817f7",
+        "20261031-lodash-batch23/reviews/B01-qwen3.8-flash.json": "2b3a2ba93fa58e4aa093214991f955dfb95fbafb08e5dc65de22f5eff2ebb940"
+      }
+    },
+    {
+      "blind": "R03",
+      "packetSha256": "65e92071d78963045e7561f062b184ca9b7840eae24910ba19fe370758a7ab53",
+      "source": "20261031-prettier-batch19",
+      "sourceBlind": "B04",
+      "slot": 4,
+      "issue": "11982",
+      "arm": "memex",
+      "sourceHashes": {
+        "20261031-prettier-batch19/manifest.json": "09fe7d5d262b6de8fd0c3b0beee42588b2be6a4187553225dc1500d24896875f",
+        "20261031-prettier-batch19/blind-key.json": "87a8abcd2f544f3e6605edba29cd9bad79ae1f21d426542c3dc345ed42782f05",
+        "20261031-prettier-batch19/issues.json": "e71a72ad8b58a7423df185862c6bec1453c6993915dbb90aaaa3b970ee97a14d",
+        "20261031-prettier-batch19/adjudications/B04.json": "6c0d88b478b174c9659ac7a7549a14471c3d8eb4cf7f3098ae67f0cd6277309d",
+        "20261031-prettier-batch19/runs/04/result.json": "ce1434a49af9aa0252d5bc4434fe2ef107bc82dccb0f36a004f38eb315cd1c39",
+        "20261031-prettier-batch19/runs/04/candidate.diff": "29afded17340032c7a84d4fd5a744dd78b6eb65dc0fc16e2afefb0025c701c70",
+        "20261031-prettier-batch19/reviews/B04-deepseek-flash.json": "85dc3479b493756a0d8e9a3681e879035ace94c2b016cdac83685c47fa77f879",
+        "20261031-prettier-batch19/reviews/B04-qwen3.8-flash.json": "c3d9a51bc8616e6a84ecbbcd0811db43f3fb8fe8bbed4a91d1eec69571e76e17",
+        "20261031-batches17-20-fallback/adjudications/F11.json": "964e77b44adec17b0cb973fce92a6bd1226e3b3deab70d38d3804ebc16cc4522"
+      }
+    },
+    {
+      "blind": "R04",
+      "packetSha256": "4947a0940b6c0fda394d9bea8335a47e89e0b81ba44177cfe5d7cba4bf544f59",
+      "source": "20261031-luxon-batch22",
+      "sourceBlind": "B01",
+      "slot": 3,
+      "issue": "1189",
+      "arm": "memex",
+      "sourceHashes": {
+        "20261031-luxon-batch22/manifest.json": "e86aa0178042f3070f312e37ed3d66b6034751485857d8815ce8e69f38bf403c",
+        "20261031-luxon-batch22/blind-key.json": "497c244d6f467ba498a6540c071d8f512e1744155dbea4ab87acb4e890693081",
+        "20261031-luxon-batch22/issues.json": "9903e0d72f22ca4da25ebf72f336cc13f73f9374bf906fe1070f1f481339f68f",
+        "20261031-luxon-batch22/adjudications/B01.json": "40963fe3bccc88026f102d133f59824b792e8fc5ef6625208016c12a4498f408",
+        "20261031-luxon-batch22/runs/03/result.json": "03e6f10e2af9e4f15e186d6e61a9ba96f46fad4eecefb9ceb9c7dc72012193df",
+        "20261031-luxon-batch22/runs/03/candidate.diff": "f6207b044d17f9dbd06a3dc1f4361a389e7efafa5e1f999caf48ba6ba0355f3c",
+        "20261031-luxon-batch22/reviews/B01-deepseek-flash.json": "604af81683568f67b230ba004e5567dc21aa4ca3457ac6fe2940e3d7526ef308",
+        "20261031-luxon-batch22/reviews/B01-qwen3.8-flash.json": "9486a53f56fbbc45f76b7de6244250c1fd6df588e147a36210ca2152f091d071"
+      }
+    },
+    {
+      "blind": "R05",
+      "packetSha256": "6bbc58cabe5e836860a63c793c1a819c3c44e13e9b6381a554db9d88e426e392",
+      "source": "20261031-batch15-posthoc-budgeted",
+      "sourceBlind": "B01",
+      "slot": 2,
+      "issue": "16126",
+      "arm": "keyword",
+      "sourceHashes": {
+        "20261031-batch15-posthoc-budgeted/manifest.json": "9430517916f1cd26d9787254d1f5ba605950b450169f68179cd78e52998434f4",
+        "20261031-batch15-posthoc-budgeted/blind-key.json": "480d844c9c4ed60b5007f3e5bf475b8c62d6f0caec4b632275c6d4807545e4fa",
+        "20261031-batch15-posthoc-budgeted/issues.json": "b092cfe3ca6456466268c605ad600e792498080350151683f3f4635ea4d47e3c",
+        "20261031-batch15-posthoc-budgeted/adjudications/B01.json": "1eca5c60a331f35d80943ff7afbb4a8ad13247f2f5a33512643cbb61427fc17a",
+        "20261031-batch15-posthoc-budgeted/runs/02/result.json": "d10db39e08ad3750ad24658b0fc95009ccc82583fae7af08a583cf74b8740852",
+        "20261031-batch15-posthoc-budgeted/runs/02/candidate.diff": "21a464650b6b7f436ef3952f51d73a7780e1b4d753241fdfef4138d1c827cd5f",
+        "20261031-batch15-posthoc-budgeted/reviews/B01-deepseek-flash.json": "593ca3c0876ef32cc8153dce8a3f7702c687a7da03ffd5ce5bb7af63f11c3c6f",
+        "20261031-batch15-posthoc-budgeted/reviews/B01-qwen3.8-flash.json": "4950003ca38bd1eb57f1bba3cb10e179ef97e5a5342d4a75045e55fc03725877"
+      }
+    }
+  ],
+  "seed": 2026103138,
+  "model": "gpt-6.1-sol",
+  "maxTokens": 1200,
+  "maxCalls": 5,
+  "selection": "Five disagreements in four otherwise fully rated historical pairs whose prior adjudications completed but failed the format check. No timed-out adjudication is replayed.",
+  "policy": "Only explicit 503 may be retried at most twice; never retry timeouts; stop after provider failure or missing usage.",
+  "limitations": [
+    "Selected after observing earlier ratings and adjudications; all originals remain separate.",
+    "Different AI model labels share one proxy with unverified provenance; no human review or proven independent provider.",
+    "Format validity does not prove correctness; partial checks are not upstream acceptance."
+  ]
+}
