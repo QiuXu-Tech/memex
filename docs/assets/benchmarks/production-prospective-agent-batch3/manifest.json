@@ -1,0 +1,75 @@
+{
+  "kind": "registered-two-lodash-issue-repair-followup-not-30-task-study",
+  "createdAt": "2026-10-31T13:20:40.182969+08:00",
+  "repo": "lodash/lodash",
+  "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "5881",
+    "5750"
+  ],
+  "checks": {
+    "5881": {
+      "public": "ad8ba1758d4854ec7d475c36646fa675246b91d18aa07d913288a503c41af717",
+      "acceptance": "79452394acce435bac172d130b4191f0e3a55f5b80788469e72377c1672f0aa0",
+      "regressionControls": "71a0b90918ec211de55bc1abfe48382fb59f1eee0396577d0e076827d9c97b5d"
+    },
+    "5750": {
+      "public": "c4e78d2e40f7d4a2d85b49d6a0c8786fd357f93d1a8a42f5fbd97681759e6ba0",
+      "acceptance": "1941a0a7d82a590ead5bee3e38889e8612fe8dc65d0d99120a2286a5f426ed94",
+      "regressionControls": "8896d752bf5260d57174aaa3af0c5c4bdfdaaf850b74229ea1b0682f121260c5"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v3.py": "9a844489f8383fae53941e553d7915a936a99bf43ed9c3c1eb170eb8f30a2dcd",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "43bf2c17628039553211758fc26026b1c1ffec5cf0d4e99ff4beaf376be5aa41",
+  "contextsSha256": "602f21c07dc5df98091edb1d37e26f77814dcd5d4f2c475b83de855105dafb8f",
+  "seed": 2026103103,
+  "schedule": [
+    {
+      "issue": "5750",
+      "arm": "keyword"
+    },
+    {
+      "issue": "5750",
+      "arm": "memex"
+    },
+    {
+      "issue": "5881",
+      "arm": "keyword"
+    },
+    {
+      "issue": "5881",
+      "arm": "memex"
+    }
+  ],
+  "solver": "claude-haiku-4-5",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6-astra"
+  ],
+  "adjudicator": "claude-haiku-4-5",
+  "maxTurns": 16,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 700,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $1; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Two remaining, unattempted Lodash issues from interrupted batch 2, selected after discovering a tool defect; not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers are not humans; adjudicator shares solver model family",
+    "No effect or savings claim"
+  ]
+}
