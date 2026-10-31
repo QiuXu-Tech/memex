@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
+(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));for(const input of [String.raw`.font\+1 { --font\+1: 1px; font-size: var(--font\+1); }`]){const out=await p.format(input,{parser:'scss'});assert(out.includes(input.includes('+')?String.raw`var(--font\+1)`:String.raw`var(--font\*2)`));assert.equal(await p.format(out,{parser:'scss'}),out)}console.log('escaped CSS identifiers preserved')})().catch(e=>{console.error(e);process.exitCode=1});

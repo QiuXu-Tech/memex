@@ -1,0 +1,96 @@
+{
+  "kind": "registered-two-prettier-issue-pairs",
+  "createdAt": "2026-10-31T19:40:01.786107+08:00",
+  "repo": "prettier/prettier",
+  "sourceCommit": {
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "11982",
+    "16925"
+  ],
+  "checks": {
+    "11982": {
+      "public": "0ae77d4afbe427c0ba5b07244f86a64ca5d941531ea690637878643d49d8f54e",
+      "acceptance": "4e026de5a8b01a9b22e970c9bde976e00f16808344a1731a3ddcd5ee68f778ce",
+      "regressionControls": "99f492d129e5c1d549060ca2a95cfcf7b9ce1dfe31279846f2156ce9177cbc64"
+    },
+    "16925": {
+      "public": "c0a1e130dd71c295f7db5334222e395e9b8f24498d5ef8989f71699cb9dda7b5",
+      "acceptance": "0fc96895ed1d9e66883ed80ebb41eafbff2450b6e7d226aba3fac562f9c5e356",
+      "regressionControls": "27ca95b0db52dbb672ed99b73b0dc4aa8e720e2075e2f865ea9c2536a5b1790e"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-pilot-v19.py": "03595afacef55c1f11d9d43b7fe6054e8dab57d6caf7c0efd605d046a9c49887",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c"
+  },
+  "issuesSha256": "e71a72ad8b58a7423df185862c6bec1453c6993915dbb90aaaa3b970ee97a14d",
+  "contextsSha256": "e763b65eab1f6871c5c5806431efe85f4150d084054b86904166f16e21293c64",
+  "seed": 2026103122,
+  "schedule": [
+    {
+      "issue": "16925",
+      "arm": "keyword"
+    },
+    {
+      "issue": "16925",
+      "arm": "memex"
+    },
+    {
+      "issue": "11982",
+      "arm": "keyword"
+    },
+    {
+      "issue": "11982",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gemini-3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "After bounded 503 retries, stop launching calls within the stage after a provider failure, malformed response or missing usage. Preserve every attempt, missing result and unknown fee. Never automatically retry a timeout.",
+  "costTarget": "Under $1 estimated for this two-issue instrumentation pilot, not a hard cap. Failed or unreported charges remain unknown.",
+  "limitations": [
+    "Two additional issues selected after earlier observed batches; not a pre-registered 30–50-task independent cohort.",
+    "Public discussions and PRs can disclose solutions or appear in model training; common repositories can correlate.",
+    "Source-only references and small custom tests do not establish full upstream acceptance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Same-proxy AI model provenance is unverified; larger model budgets were selected after observed truncation.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim."
+  ],
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 2048
+}

@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
+(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));for(const input of ['.x{font-size:var(--foo);}','.x{width:calc(1px + 2px);}','.x{color:red;}']){const out=await p.format(input,{parser:'scss'});assert.equal(await p.format(out,{parser:'scss'}),out)}console.log('ordinary SCSS controls passed')})().catch(e=>{console.error(e);process.exitCode=1});

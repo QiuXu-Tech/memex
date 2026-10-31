@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict'),{pathToFileURL}=require('node:url');
+(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));for(const input of ['# Heading\n\nparagraph\n','- one\n- two\n','<CodeBlock>{`plain`}</CodeBlock>\n']){const out=await p.format(input,{parser:'mdx'});assert.equal(await p.format(out,{parser:'mdx'}),out)}console.log('ordinary MDX controls passed')})().catch(e=>{console.error(e);process.exitCode=1});
