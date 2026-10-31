@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Aggregate a private pilot without publishing tasks, answers, or tool content."""
 import argparse,collections,json,pathlib,re,statistics
+from pilot_citations import validate_autonomy_citations
 p=argparse.ArgumentParser();p.add_argument('--frozen',required=True);p.add_argument('--trials',required=True);p.add_argument('--reviews',required=True);p.add_argument('--replacement-reviews');p.add_argument('--autonomy-reviews');p.add_argument('--replacement-autonomy-reviews');p.add_argument('--out',required=True);a=p.parse_args();frozen=pathlib.Path(a.frozen);trials=pathlib.Path(a.trials);reviews=pathlib.Path(a.reviews);out=pathlib.Path(a.out)
 if out.exists():raise SystemExit('refusing to overwrite aggregate')
 manifest=json.loads((frozen/'preregistered.json').read_text());episodes={e['id']:e for e in json.loads((frozen/'episodes.json').read_text())['episodes']};runs=[json.loads(x.read_text()) for x in sorted(trials.glob('pilot-*.json'))];key=json.loads((reviews/'private-blind-key.json').read_text());judgements=[json.loads(x) for x in (reviews/'judgements.jsonl').read_text().splitlines()] if (reviews/'judgements.jsonl').exists() else []
@@ -43,6 +44,9 @@ for arm in manifest['arms']:
    dimensions[reviewer][field]=dict(collections.Counter(vals))
  both=[reviewed[r['trial']] for r in rs if all(x in reviewed[r['trial']] for x in ['gpt-6-astra','deepseek-flash'])];agree=sum(x['gpt-6-astra'].get('correctness')==x['deepseek-flash'].get('correctness') and x['gpt-6-astra'].get('correctness') is not None for x in both)
  arms[arm]={'attempts':len(rs),'statusCounts':dict(collections.Counter(r['status'] for r in rs)),'nonemptyAnswers':sum(bool(r.get('answer','').strip()) for r in rs),'answerFinishLength':sum(any(x['kind']=='model' and x.get('stage')=='answer' and x.get('finishReason')=='length' for x in r['trace']) for r in rs),'intakeFinishLengthCalls':sum(x.get('stage')=='intake' and x.get('finishReason')=='length' for x in models),'intakeProblemRuns':sum(bool(r.get('intakeProblems')) for r in rs),'modelCalls':len(models),'failedModelCalls':sum(x['status']!='ok' for x in models),'gatewayUsage':dict(u),'toolCalls':dict(collections.Counter(x['name'] for x in tools)),'executedToolCalls':sum(x['status']=='ok' for x in tools),'duplicateReadsAvoided':sum(x['status']=='duplicate_reused' for x in tools),'duplicateWritesBlocked':sum(x['status']=='duplicate_write_blocked' for x in tools),'failedToolCalls':sum(x['status']=='error' for x in tools),'toolRoundLimits':sum(x['kind']=='tool_limit' for x in events),'finalizationStatusCounts':dict(collections.Counter(x['status'] for x in events if x['kind']=='tool_finalization')),'elapsedSecondsMedian':statistics.median(r['elapsedSeconds'] for r in rs),'elapsedSecondsMax':max(r['elapsedSeconds'] for r in rs),'parentCpuSeconds':sum(r['parentCpuSeconds'] for r in rs),'childCpuUserSeconds':sum(r['childCpuUserSeconds'] for r in rs),'childCpuSystemSeconds':sum(r['childCpuSystemSeconds'] for r in rs),'storeBytesTotal':sum(r['storeBytes'] for r in rs),'machineCorrectnessScores':scores,'machineScoresByDimension':dimensions,'bothRegisteredJudgesValid':len(both),'bothRegisteredNonNullCorrectness':sum(all(x[m].get('correctness') is not None for m in ['gpt-6-astra','deepseek-flash']) for x in both),'bothRegisteredSameNonNullCorrectness':agree,'primaryAndReplacementValid':sum(all(x in reviewed[r['trial']] for x in ['gpt-6-astra','gpt-6.1-sol']) for r in rs),'primaryAndReplacementSameNonNullCorrectness':sum(all(x in reviewed[r['trial']] for x in ['gpt-6-astra','gpt-6.1-sol']) and reviewed[r['trial']]['gpt-6-astra'].get('correctness') is not None and reviewed[r['trial']]['gpt-6-astra'].get('correctness')==reviewed[r['trial']]['gpt-6.1-sol'].get('correctness') for r in rs)}
+ arms[arm]['answerContinuationRuns']=sum(any(e.get('kind')=='answer_continuation' for e in r['trace']) for r in rs)
+ arms[arm]['answerContinuationCalls']=sum(e.get('kind')=='answer_continuation' for e in events)
+ arms[arm]['answerContinuationCompletedRuns']=sum(r['status']=='ok' and any(e.get('kind')=='answer_continuation' for e in r['trace']) for r in rs)
  if arm=='pager_tools_write':
   for r in rs:
    ts=[x for x in r['trace'] if x['kind']=='tool'];saved=[];written_bodies=[]
@@ -70,7 +74,8 @@ if a.autonomy_reviews:
    if run['arm']!='pager_tools_write':raise ValueError('arm')
    for field in ['memory_needed','writes_faithful','answer_used_prior_write']:
     if obj.get(field) not in ('yes','no','unknown',None):raise ValueError('score')
-   if not isinstance(obj.get('supportingSourceIds'),list) or any(z not in ids for z in obj['supportingSourceIds']):raise ValueError('source_ids')
+   citation_problem=validate_autonomy_citations(obj,episodes[run['episode']],run,manifest.get('autonomyCitationSchema')=='separate-history-and-memory')
+   if citation_problem:raise ValueError(citation_problem)
    observed=next(z for z in autonomy if z['trial']==x['trial'])
    if not (observed['preQuestionWrites'] or observed['answerWrites']) and obj.get('writes_faithful') is not None:raise ValueError('no_writes')
    valid.append((x,obj))

@@ -5,6 +5,30 @@ from zoneinfo import ZoneInfo
 now=lambda:datetime.datetime.now(ZoneInfo('Asia/Shanghai')).isoformat()
 READ_SEARCHES={'memory_search','archive_search'}
 
+def finish_response(message,messages,trace,stage,max_tokens,call,already_appended,after_limit):
+ text=message.get('content') or '';finish=trace[-1].get('finishReason');suffix='_after_limit' if after_limit else ''
+ if not text.strip():return 'empty'+suffix,text
+ if finish!='length':return 'ok',text
+ if stage!='answer':return 'truncated'+suffix,text
+ if not already_appended:messages.append({'role':'assistant','content':text})
+ for index in range(2):
+  messages.append({'role':'user','content':'Your previous answer was cut off by the output limit. Continue exactly where it stopped. Do not repeat earlier text, request tools, or invent missing evidence.'})
+  part=call(messages,[],max_tokens,trace,stage)
+  if part is None:
+   trace.append({'kind':'answer_continuation','stage':stage,'at':now(),'attempt':index+1,'status':'model_failure'})
+   return 'continuation_model_failure',text
+  reason=trace[-1].get('finishReason')
+  if part.get('tool_calls'):
+   trace.append({'kind':'answer_continuation','stage':stage,'at':now(),'attempt':index+1,'status':'unexpected_tool_call'})
+   return 'unexpected_tool_call_in_continuation',text
+  chunk=part.get('content') or ''
+  if not chunk.strip():
+   trace.append({'kind':'answer_continuation','stage':stage,'at':now(),'attempt':index+1,'status':'empty'})
+   return 'empty_continuation',text
+  text+=chunk;messages.append({'role':'assistant','content':chunk});trace.append({'kind':'answer_continuation','stage':stage,'at':now(),'attempt':index+1,'status':'truncated' if reason=='length' else 'ok'})
+  if reason!='length':return 'ok',text
+ return 'truncated'+suffix,text
+
 def run_tool_loop(messages,tools,worker,trace,stage,max_tokens,max_rounds,write_budget,call):
  names={t['function']['name'] for t in tools};writes=0;search_cache={};write_attempts={}
  for round_index in range(max_rounds+1):
@@ -16,8 +40,7 @@ def run_tool_loop(messages,tools,worker,trace,stage,max_tokens,max_rounds,write_
   if msg.get('reasoning_content') is not None:assistant['reasoning_content']=msg['reasoning_content']
   messages.append(assistant)
   if not calls:
-   text=msg.get('content') or '';finish=trace[-1].get('finishReason')
-   status='empty' if not text.strip() else 'truncated' if finish=='length' else 'ok'
+   status,text=finish_response(msg,messages,trace,stage,max_tokens,call,True,False)
    return {'status':status,'text':text,'writes':writes,'finalizedAfterLimit':False}
   if round_index==max_rounds:
    trace.append({'kind':'tool_limit','stage':stage,'at':now(),'requestedNames':[c.get('function',{}).get('name') for c in calls]})
@@ -27,8 +50,7 @@ def run_tool_loop(messages,tools,worker,trace,stage,max_tokens,max_rounds,write_
    if final is None:status,text='model_failure_after_limit',''
    elif final.get('tool_calls'):status,text='unexpected_tool_call_after_limit',''
    else:
-    text=final.get('content') or '';finish=trace[-1].get('finishReason')
-    status='empty_after_limit' if not text.strip() else 'truncated_after_limit' if finish=='length' else 'ok'
+    status,text=finish_response(final,messages,trace,stage,max_tokens,call,False,True)
    trace.append({'kind':'tool_finalization','stage':stage,'at':now(),'status':status})
    return {'status':status,'text':text,'writes':writes,'finalizedAfterLimit':True}
   for callrow in calls:

@@ -39,5 +39,18 @@ def case_duplicate_write_and_uncertain_failure():
   assert len(w.calls)==1 and any(x.get('status')=='duplicate_write_blocked' for x in trace)
   assert r['status']=='ok'
 
-for fn in (case_limit,case_duplicate_and_write,case_no_answer,case_duplicate_write_and_uncertain_failure):fn()
+def case_truncated_continuation():
+ w=Worker();trace=[];m=Model([({'content':'First part '},'length'),({'content':'second part.'},'stop')]);r=mod.run_tool_loop([],tools(),w,trace,'answer',100,2,0,m)
+ assert r['status']=='ok' and r['text']=='First part second part.' and len(m.seen)==2
+ assert m.seen[-1]['tools']==[] and any(x['kind']=='answer_continuation' for x in trace)
+
+def case_continuation_limit_and_failure():
+ w=Worker();trace=[];m=Model([({'content':'A'},'length'),({'content':'B'},'length'),({'content':'C'},'length')]);r=mod.run_tool_loop([],tools(),w,trace,'answer',100,2,0,m)
+ assert r['status']=='truncated' and r['text']=='ABC' and len(m.seen)==3
+ w=Worker();trace=[];m=Model([({'content':'first'},'length'),({'content':'','tool_calls':[tool('memory_write','{}','x')]},'tool_calls')]);r=mod.run_tool_loop([],tools('memory_write'),w,trace,'answer',100,2,3,m)
+ assert r['status']=='unexpected_tool_call_in_continuation' and r['text']=='first' and not w.calls
+ w=Worker();trace=[];m=Model([({'tool_calls':[tool('memory_search','{}','a')],'content':None},'tool_calls'),({'content':'part'},'length'),({'content':' end'},'stop')]);r=mod.run_tool_loop([],tools('memory_search'),w,trace,'answer',100,0,0,m)
+ assert r['status']=='ok' and r['text']=='part end' and r['finalizedAfterLimit'] and not w.calls
+
+for fn in (case_limit,case_duplicate_and_write,case_no_answer,case_duplicate_write_and_uncertain_failure,case_truncated_continuation,case_continuation_limit_and_failure):fn()
 print('pilot loop regression passed')

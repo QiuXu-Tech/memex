@@ -23,6 +23,7 @@ def review_status(text,finish_reason,kind):
   if not keys.issubset(obj):return 'invalid_schema'
   if any(obj[k] not in ('yes','no','unknown',None) for k in ['memory_needed','writes_faithful','answer_used_prior_write']):return 'invalid_schema'
   ids=obj['supportingSourceIds']
+  if 'supportingMemoryIds' in obj and (not isinstance(obj['supportingMemoryIds'],list) or any(not isinstance(x,str) for x in obj['supportingMemoryIds'])):return 'invalid_schema'
  else:raise ValueError('unknown review kind')
  if not isinstance(ids,list) or any(not isinstance(x,str) for x in ids) or not isinstance(obj['reason'],str):return 'invalid_schema'
  return 'ok'
