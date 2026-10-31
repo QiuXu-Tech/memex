@@ -1,0 +1,115 @@
+{
+  "kind": "posthoc-three-candidate-budgeted-blinded-rereview",
+  "createdAt": "2026-10-31T19:11:57.058925+08:00",
+  "repo": "prettier/prettier",
+  "sourceCommit": {
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "16126",
+    "17487"
+  ],
+  "checks": {
+    "16126": {
+      "public": "ce2589c82fe997a0af35b5f73954e4c5bd8655bffcf1c543727ef38abf423b8e",
+      "acceptance": "a7ed250f357ba209fc82bd9857999cc38abf9f00cd5f16528245f26750851f23",
+      "regressionControls": "eb047d714c74060bd52bcb7062fbd1c8d23c10e30555717f72deb467a83c3845"
+    },
+    "17487": {
+      "public": "7289535f3176b40fec2e07cd6567ae5d04a0ffbcaf733613afeca1021df859ce",
+      "acceptance": "fea3332b1cb8cda4934e1523cbb76251ae95e5ae2ccd91a9bb920173a906a132",
+      "regressionControls": "7c51849fd7b8aa4df4b62a0026d85384647f92a5b623c43020551145cdaef21b"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac",
+    "scripts/prospective-gateway-posthoc-v15.py": "1c45258cb2421f86125d5c1f0141433cfa5a78f86724d10c8fc3c087f70efe1f",
+    "scripts/prospective-gateway-posthoc-v15-budgeted.py": "e0d88f2edb85ca44be1ad1d3c675844633f314f592235ef42c48ff2bad72bc14"
+  },
+  "issuesSha256": "b092cfe3ca6456466268c605ad600e792498080350151683f3f4635ea4d47e3c",
+  "contextsSha256": "65df454ef5897ca1538151d567947747aa81f6cd0cb427e6d4f33d564ac8d81b",
+  "seed": 2026103117,
+  "schedule": [
+    {
+      "issue": "16126",
+      "arm": "memex"
+    },
+    {
+      "issue": "16126",
+      "arm": "keyword"
+    },
+    {
+      "issue": "17487",
+      "arm": "keyword"
+    },
+    {
+      "issue": "17487",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gemini-3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "After bounded 503 retries, stop launching calls within the stage after a provider failure, malformed response or missing usage. Preserve every attempt, missing result and unknown fee. Never automatically retry a timeout.",
+  "costTarget": "Under $1 estimated for this two-issue instrumentation pilot, not a hard cap. Failed or unreported charges remain unknown.",
+  "limitations": [
+    "Post-hoc model replacement and candidate selection after observing empty reviews; original ratings remain unchanged.",
+    "Two AI reviewers and a third AI adjudicator use the same proxy, not independent human assessment.",
+    "Short public histories and partial tests do not establish production value.",
+    "The increased reasoning-model budgets were selected after observing truncation and a separate synthetic probe; this is not the original registered assessment."
+  ],
+  "sourceManifestSha256": "c5bbca09a6c7005b448d8e2ee8e8c9f71f2d47e723d57604dbb53c6330290a84",
+  "originalReviewHashes": {
+    "B01-deepseek-flash.json": "d939a81a74879921d9a5be1bc9844f38a4b99745f9fc09f9bd0c908842d227b1",
+    "B01-claude-haiku-4-5.json": "661bedb1b70d5f632049390b31fbf5fa1d9e76540055a37f6fa06c4be01b1ca5",
+    "B02-deepseek-flash.json": "896eecfe919447b0e9947c98fd4927aa014af6277e04127a5ef7195b537a5122",
+    "B02-claude-haiku-4-5.json": "977aa22ca9e5fd50645af75a3611f2e723148e52f8b91c84c36626d8de2df893",
+    "B03-deepseek-flash.json": "8b0de2cae3e03b789a489ac97304234b405462c4cb1b4617675bf49129706c36",
+    "B03-claude-haiku-4-5.json": "210aca468ae254f207f80d9a1892b1a26d1b6fab105e6499ce1784a63eb0cd25"
+  },
+  "runHashes": {
+    "runs/01/result.json": "c2a3a0c555eae061f9a4a4f8702057926cd371e6c234698332fe61eafe799686",
+    "runs/01/candidate.diff": "cf12120e29a78c29378b5ec519af1c1e6ab34e7b3cd3abc8c63f7e1765b2c44c",
+    "runs/02/result.json": "d10db39e08ad3750ad24658b0fc95009ccc82583fae7af08a583cf74b8740852",
+    "runs/02/candidate.diff": "21a464650b6b7f436ef3952f51d73a7780e1b4d753241fdfef4138d1c827cd5f",
+    "runs/03/result.json": "5c713c55ffcaeca29f491d630e3c94fde4cf9e9a814456979bbb77deea5c4dec",
+    "runs/03/candidate.diff": "02daeed087f2e99324d10f50d81234279683e3c9a4634b417c2dddb34ae849c5",
+    "runs/04/result.json": "98a98523b7d248c86187b45b42bfe6e7cf6e513372d7864f542ca7c9956b3118",
+    "runs/04/candidate.diff": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "selection": "All three candidates from batch 15 with an original valid DeepSeek rating and an empty or truncated original Haiku rating; the unreviewable fourth attempt remains excluded.",
+  "supersededNotRunManifestSha256": "e5146b1fcb9ab470671b85df2e67acc7a017c7aa5e4c8d5e317799c22adb504c",
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 2048
+}
