@@ -1,0 +1,89 @@
+{
+  "kind": "registered-three-lodash-issue-agent-instrumentation-batch-not-30-task-study",
+  "createdAt": "2026-10-31T13:13:12.106156+08:00",
+  "repo": "lodash/lodash",
+  "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "6195",
+    "5881",
+    "5750"
+  ],
+  "checks": {
+    "6195": {
+      "public": "2c39470d9a11d0d68de315ee415e7d489a3015935bd6c0d3d3000de40a597549",
+      "acceptance": "45fe02dee31767fa7169016aaa563feb6b35fff0ee6635cba40b0a4a76478f74",
+      "regressionControls": "bb28b2611ae605095f003abebf20e77b935957e0c9bddadd29cfc310b6e51f56"
+    },
+    "5881": {
+      "public": "ad8ba1758d4854ec7d475c36646fa675246b91d18aa07d913288a503c41af717",
+      "acceptance": "79452394acce435bac172d130b4191f0e3a55f5b80788469e72377c1672f0aa0",
+      "regressionControls": "71a0b90918ec211de55bc1abfe48382fb59f1eee0396577d0e076827d9c97b5d"
+    },
+    "5750": {
+      "public": "c4e78d2e40f7d4a2d85b49d6a0c8786fd357f93d1a8a42f5fbd97681759e6ba0",
+      "acceptance": "1941a0a7d82a590ead5bee3e38889e8612fe8dc65d0d99120a2286a5f426ed94",
+      "regressionControls": "8896d752bf5260d57174aaa3af0c5c4bdfdaaf850b74229ea1b0682f121260c5"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v2.py": "52f8620ea8a9ca47c3bb029500eeee22bcf73f7e4e25250c4cdda2446fc7ea6b",
+    "scripts/prospective-agent-worker-v2.py": "466b53e1ae67715ef5294f944ac983d3d3e8705bb9ad787b4392907047e9cc91",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "553807dde42c41c4ea38847bf90a0ec1723d6782dcff73bfa6f3c523c0584d95",
+  "contextsSha256": "fbe3bb9a85ec5e31e5e196d6c5c785df3ac69de89721c9980a344013d98ac323",
+  "seed": 2026103102,
+  "schedule": [
+    {
+      "issue": "6195",
+      "arm": "keyword"
+    },
+    {
+      "issue": "6195",
+      "arm": "memex"
+    },
+    {
+      "issue": "5750",
+      "arm": "keyword"
+    },
+    {
+      "issue": "5750",
+      "arm": "memex"
+    },
+    {
+      "issue": "5881",
+      "arm": "keyword"
+    },
+    {
+      "issue": "5881",
+      "arm": "memex"
+    }
+  ],
+  "solver": "claude-haiku-4-5",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6-astra"
+  ],
+  "adjudicator": "claude-haiku-4-5",
+  "maxTurns": 16,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 700,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "costTarget": "Instrumentation target under $1; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Three selected Lodash issues chosen after earlier instrumentation results, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers are not humans; adjudicator shares solver model family",
+    "No effect or savings claim"
+  ]
+}
