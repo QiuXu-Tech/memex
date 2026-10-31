@@ -1,0 +1,2 @@
+'use strict';
+const assert=require('node:assert/strict');const {Linter}=require(process.argv[2]);const opts={languageOptions:{ecmaVersion:'latest'},rules:{'no-useless-catch':'error'}};const result=new Linter().verifyAndFix('try { work(); } catch (e) { throw e; } finally { clean(); }',opts);assert.equal(result.fixed,true);assert.doesNotMatch(result.output,/\bcatch\b/);assert.match(result.output,/finally/);console.log('public example passed');

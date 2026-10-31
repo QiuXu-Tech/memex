@@ -1,0 +1,4 @@
+'use strict';
+const assert=require('node:assert/strict'),fs=require('node:fs'),os=require('node:os'),path=require('node:path'),{spawnSync}=require('node:child_process');const dir=fs.mkdtempSync(path.join(os.tmpdir(),'cache-public-'));fs.writeFileSync(path.join(dir,'eslint.config.js'),'module.exports=[{rules:{"no-debugger":"error"}}];');fs.writeFileSync(path.join(dir,'b.js'),'debugger; // eslint-disable-line no-debugger\n');
+function run(args){const r=spawnSync(process.execPath,[process.argv[2]+'/bin/eslint.js',...args],{cwd:dir,encoding:'utf8',timeout:12000});if(r.error)throw r.error;return r;}
+assert.equal(run(['--cache','--cache-location','cache','b.js']).status,0);const r=run(['--cache','--cache-location','cache','--no-inline-config','b.js']);assert.equal(r.status,1);assert.match(r.stdout+r.stderr,/no-debugger/);console.log('public example passed');

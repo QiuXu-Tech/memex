@@ -1,0 +1,77 @@
+{
+  "kind": "registered-two-eslint-issue-instrumentation-batch-not-30-task-study",
+  "createdAt": "2026-10-31T13:36:55.437946+08:00",
+  "repo": "eslint/eslint",
+  "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "21441",
+    "19931"
+  ],
+  "checks": {
+    "21441": {
+      "public": "de5cb95ab250eda4bef08e0e15981a219957162fc2eb79f5e141688204cb7122",
+      "acceptance": "1860d425dafbdaf5306de86108dc0c77dbed4a9be0a7d2657e83d71a00129d8d",
+      "regressionControls": "40fe9597e81e8ee58c0a37ad1cbada2bcc045726b7109d216bcb9e897a5fbc0b"
+    },
+    "19931": {
+      "public": "35af60c106d778698bd6d1e45086aa61712fc2628ee3b71b0c59377131c41edf",
+      "acceptance": "c48e31d5aebe77be52552f4fc3aa03520fb3c51ff95b809ed6a46cd00d7b4af4",
+      "regressionControls": "f90add299a9265749114ba3f576468bd1ad71a9fea6999b8f7bd2745e981fd5c"
+    }
+  },
+  "files": {
+    "scripts/prospective-real-agent-pilot-v4.py": "1f92a9ee39f1e0cf839b8bf1e0eb158e9b24b3b11322303b6a257407cca2e576",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "45c07f1955ba576a779d51294e6a754b6dd53008b9c6fa00c5e5d5bc6eaaff87",
+  "contextsSha256": "8e92a6fc60616a3f9fd5afb84d24804bed9e075bc9727a17fa775cd30d92ec6e",
+  "seed": 2026103104,
+  "schedule": [
+    {
+      "issue": "21441",
+      "arm": "memex"
+    },
+    {
+      "issue": "21441",
+      "arm": "keyword"
+    },
+    {
+      "issue": "19931",
+      "arm": "memex"
+    },
+    {
+      "issue": "19931",
+      "arm": "keyword"
+    }
+  ],
+  "solver": "claude-haiku-4-5",
+  "reviewers": [
+    "deepseek-flash",
+    "gpt-6-astra"
+  ],
+  "adjudicator": "claude-haiku-4-5",
+  "maxTurns": 16,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 700,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within each stage after first provider failure, malformed provider response, or missing token usage. Preserve started events, failures, incomplete assignments and unreported charges. No automatic retry. Review only attempts with a nonempty final response or patch; missing reviews remain unknown.",
+  "guestDependencyLockSha256": "4fa513b9243f5c751c0dfaca6aa462d70ae313d59fc1634d302782cc10a564d4",
+  "regressionDependencyLockSha256": "e32d6a6469c8041dfeec7da6231ab2c21a6a44bd5b48d3852ee33c66b4e4ea3a",
+  "costTarget": "Instrumentation target under $1; estimated, not a hard spending limit; unknown fees reported separately.",
+  "limitations": [
+    "Two newly selected ESLint issues after earlier results, not 30-50 tasks",
+    "Public issues and linked PRs may be present in model training",
+    "Agent may read upstream tests and sees a public example; frozen issue checks and custom regression controls are not exposed",
+    "Same code tools, fixed budget and isolated copies; different keyword/pager context content",
+    "Pre-seeded issue discussion is not a long production session or autonomous memory lifecycle",
+    "Reference patches constructed or taken from public PRs before trial; tests are not independent project acceptance",
+    "AI reviewers are not humans; adjudicator shares solver model family",
+    "No effect or savings claim"
+  ]
+}
