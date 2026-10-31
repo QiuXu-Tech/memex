@@ -1,0 +1,92 @@
+{
+  "kind": "posthoc-explicit-rubric-blind-rereview",
+  "createdAt": "2026-10-31T14:06:08.109527+08:00",
+  "reason": "Earlier prompts did not specify whether 0 or 2 is best. Original ratings are retained and cannot be interpreted as a common direction.",
+  "rubric": "Correctness: 0 means the attempted change does not resolve the issue or is demonstrably wrong; 1 means partial or plausibly useful but insufficient; 2 means the supplied evidence supports the requested behavior. Side effects: 0 means a concrete serious regression is demonstrated; 1 means a plausible risk or material uncertainty remains; 2 means no material regression is identified in the supplied evidence. Use null when the available evidence does not support a score. These are AI opinions about partial evidence, not project acceptance.",
+  "selection": "Only attempts with a nonempty code diff; other attempts are not reviewed in this post-hoc pass.",
+  "candidates": [
+    {
+      "blind": "R01",
+      "issue": "19931",
+      "resultSha256": "7c553ee192376056d72a46a7771243670b9f19567a31743bfc9007c24662455f",
+      "diffSha256": "38a56799761b2fb67e643020427bc8ac14d1a7b6835ecb74749eed93133d100e",
+      "reviewers": [
+        "deepseek-flash",
+        "gpt-6-astra"
+      ],
+      "solver": "claude-haiku-4-5"
+    },
+    {
+      "blind": "R02",
+      "issue": "21436",
+      "resultSha256": "a73b138dbfc37b18c769dadf2d17d4c735b9b7eaef2044ffbda7ccdb3cfe57b8",
+      "diffSha256": "959b53b2a3e671ebbebbc8887f7aa41a7ecf6cbc678e9776c75f2109bc7e3ecb",
+      "reviewers": [
+        "deepseek-flash",
+        "gpt-6-astra"
+      ],
+      "solver": "claude-haiku-4-5"
+    },
+    {
+      "blind": "R03",
+      "issue": "5881",
+      "resultSha256": "c52c6cb4d3eaece4c8c9dd77369b30a2b1769411e17f08a3f699fcc1b6a5d3e9",
+      "diffSha256": "2a497e598f53ec3394380361fd07bef705fed3b5a60e7bc8103dc4c5abb0419b",
+      "reviewers": [
+        "deepseek-flash",
+        "gpt-6.1-sol"
+      ],
+      "solver": "gpt-6-astra"
+    },
+    {
+      "blind": "R04",
+      "issue": "5881",
+      "resultSha256": "01dbb9c81ff29376bddc9969d172188da6e897b0fedbaf23df42167efd5fe0b0",
+      "diffSha256": "20c36396fb6c518f5148930c9a701c215113946ffa61bf8e044793e02bff7a1c",
+      "reviewers": [
+        "deepseek-flash",
+        "gpt-6.1-sol"
+      ],
+      "solver": "gpt-6-astra"
+    },
+    {
+      "blind": "R05",
+      "issue": "21436",
+      "resultSha256": "477e007133fae5390ccdbf5e443bf9f7ccc5ca02cb99bd42399bd65662b136e3",
+      "diffSha256": "ceadb576512d2370a1a69950793e89249b63060211500cf3daa596ba75df7681",
+      "reviewers": [
+        "deepseek-flash",
+        "gpt-6-astra"
+      ],
+      "solver": "claude-haiku-4-5"
+    },
+    {
+      "blind": "R06",
+      "issue": "19931",
+      "resultSha256": "f9ecfbea83da8d60569a1dc3d5b7e72e8af513fae7c6d52e3f97b32e34366cd9",
+      "diffSha256": "03fb85691a67f3710f1f206415b2a6a54d19b14457f7a33bbdad9d4a968270e9",
+      "reviewers": [
+        "deepseek-flash",
+        "gpt-6-astra"
+      ],
+      "solver": "claude-haiku-4-5"
+    }
+  ],
+  "packetsSha256": "479b789319f32dd8efdb71d19cb3140afd254443acd393a351376a060c899e51",
+  "blindKeySha256": "1442c6b9f641096e6460ab7e379bd330e0c36328adae52aeaa7315bf760273e4",
+  "scriptSha256": "19762e60b300079d684e1fd7af60b1c82283971b1cbb8badaab226ff193cdd22",
+  "pilotApiSha256": "460dc0b1374711a6655d5f05f087cb350829b8d89602aafff42a187921d45cc4",
+  "maxReviewTokens": 1000,
+  "maxAdjudicationTokens": 1000,
+  "maxReviewCalls": 12,
+  "maxAdjudicationCalls": 6,
+  "noRetry": true,
+  "stopRule": "Stop launching calls within a stage after a provider error, malformed response or missing usage. Invalid scores and unanswered assignments remain missing.",
+  "limitations": [
+    "Post-hoc selection, rubric and replacement of empty reviewer with gpt-6.1-sol; not a replacement for original ratings",
+    "Two AI reviewers, not human labels; model outputs can reveal condition indirectly",
+    "Adjudicator uses the solver model family",
+    "Public issue and PR exposure may contaminate results",
+    "No production, savings or independent acceptance claim"
+  ]
+}
