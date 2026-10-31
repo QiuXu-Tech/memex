@@ -1,0 +1,41 @@
+{
+  "kind": "synthetic-agent-toolchain-diagnostic-not-a-real-task",
+  "status": "passed",
+  "model": "claude-haiku-4-5",
+  "modelCalls": 4,
+  "promptTokens": 4295,
+  "completionTokens": 231,
+  "tools": [
+    "repo_search",
+    "repo_edit",
+    "run_public_test"
+  ],
+  "successfulEdits": 1,
+  "passedPublicTests": 1,
+  "billingCandidateMatches": [
+    {
+      "prompt": 886,
+      "completion": 62,
+      "usd": "0.000300"
+    },
+    {
+      "prompt": 1016,
+      "completion": 82,
+      "usd": "0.000358"
+    },
+    {
+      "prompt": 1148,
+      "completion": 42,
+      "usd": "0.000342"
+    },
+    {
+      "prompt": 1245,
+      "completion": 45,
+      "usd": "0.000370"
+    }
+  ],
+  "billingCandidateMatchedUsd": "0.001370",
+  "billingMatch": "model, token counts and approximate time; no captured request ID",
+  "totalCosts": "UNKNOWN",
+  "isolation": "No host mounts; Linux VM bubblewrap with private network namespace, read-only source and test bind mounts, uid 65534, dropped capabilities, timeout and process/resource limits. Boundary smoke tests are not a security certification."
+}

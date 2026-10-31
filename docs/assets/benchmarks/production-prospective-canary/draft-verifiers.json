@@ -1,0 +1,118 @@
+{
+  "kind": "draft-checks-not-frozen-acceptance",
+  "node": "24.18.0",
+  "platform": "isolated Linux aarch64 VM",
+  "note": "Initial Prettier #19847 and #20047 attempts exited 134 from VM address-space limitation; the limit was adjusted and environment failures were retained before the reported assertion failures. None of these drafts is a passed task or independently validated full regression suite.",
+  "rows": [
+    {
+      "issue": "https://github.com/eslint/eslint/issues/20978",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/eslint-20978.js",
+      "sha256": "4aabe5884249ca0683db59856139dbeaa7107e35c3f2abd3399270195dacdeed",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21436",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/eslint-21436.js",
+      "sha256": "6495046cc14bc47900425499376536ed3b5877aa6f28cf077e5a90b6b469f47c",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21443",
+      "sourceCommit": "12cbff4125db3f6446f72fa0c48c46b92b120427",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/eslint-21443.js",
+      "sha256": "697cb0484ffd66593a7393fae414cd23574a4932d1a24d827b0cc327169a1067",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5750",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/lodash-5750.js",
+      "sha256": "1941a0a7d82a590ead5bee3e38889e8612fe8dc65d0d99120a2286a5f426ed94",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5881",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/lodash-5881.js",
+      "sha256": "79452394acce435bac172d130b4191f0e3a55f5b80788469e72377c1672f0aa0",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6195",
+      "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/lodash-6195.js",
+      "sha256": "45fe02dee31767fa7169016aaa563feb6b35fff0ee6635cba40b0a4a76478f74",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2057",
+      "sourceCommit": "b29dbe97820630e7128e464c50263b427965ec99",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/pino-2057.js",
+      "sha256": "ec24565211b7e0a692219fd80fd13cdcb04ed2c7feaf9d332800f00015a057c0",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19427",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/prettier-19427.js",
+      "sha256": "eb7463fd17ce6a66ede7ceb1c47b352d945a371c0e021ed1a659e151779a6d3a",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19847",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/prettier-19847.js",
+      "sha256": "14714450c748588d4dc462a693d175f229b0d37169723adee448c4058f3f63de",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20047",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/prettier-20047.js",
+      "sha256": "409beefd431794ebffdbe83cdf70d87bd621c2afbcc6eff2915bdaadba4a182e",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20293",
+      "sourceCommit": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9",
+      "verifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/prettier-20293.js",
+      "sha256": "f5af3d7c7d28f3538f56a9e1c3b044f84a12da7ca8bb9f262dd719788ed2f6c6",
+      "vmBaseline": "intended assertion failure after environment repair",
+      "positiveReference": "NOT_VERIFIED",
+      "fullProjectRegression": "NOT_RUN",
+      "eligibility": "DRAFT_NOT_FROZEN"
+    }
+  ]
+}

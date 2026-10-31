@@ -1,0 +1,3 @@
+'use strict';
+const assert=require('node:assert/strict');const {pathToFileURL}=require('node:url');
+(async()=>{const prettier=await import(pathToFileURL(process.argv[2]+'/src/index.js'));const opts={parser:'markdown'};const inputs=['# NG\n\n| x | y |\n        |---|---|\n','# NG\n\n| x | y |\n    |---|---|\n','# OK\n\n| x | y |\n|---|---|\n'];let failures=[];for(const [i,input] of inputs.entries()){const once=await prettier.format(input,opts);const twice=await prettier.format(once,opts);if(once!==twice)failures.push({case:i,once,twice});}assert.deepStrictEqual(failures,[]);console.log('acceptance and regression checks passed');})().catch(e=>{console.error(e);process.exitCode=1});

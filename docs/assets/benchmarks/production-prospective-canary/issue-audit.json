@@ -1,0 +1,1028 @@
+{
+  "observedAt": "2026-10-31T10:22:00+08:00",
+  "sourceSnapshotSha256": "cba1b65927f904f63719d649191c18c72b39f3c2ce20c815cff9b7d71ed6bf9c",
+  "note": "A cross-reference can be unrelated; no PR title or presence alone proves a fix or model exposure. Pending issues are not frozen or eligible.",
+  "rows": [
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6195",
+      "issueState": "OPEN",
+      "title": "_.invert and _invertBy removes key when _proto_ value",
+      "labels": [
+        "bug"
+      ],
+      "updatedAt": "2026-07-12T10:06:26Z",
+      "commentCount": 6,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/lodash/lodash/pull/6201",
+          "title": "fix: use baseAssignValue to handle __proto__ in invert and invertBy",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6218",
+          "title": "Preserve __proto__ values in invert outputs",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6227",
+          "title": "fix: prevent _.invert and _.invertBy from dropping __proto__ keys",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6233",
+          "title": "fix(invert): use baseAssignValue for __proto__ key support",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6243",
+          "title": "Fix _.invert and _.invertBy dropping `__proto__` keys",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6250",
+          "title": "test: add regression test for _.invert with __proto__ values",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6251",
+          "title": "fix(invert): handle __proto__ values in baseInverter",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6261",
+          "title": "fix(invert): preserve entries when inverted key is __proto__",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6267",
+          "title": "fix(invert): keep '__proto__' values as own keys",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5750",
+      "issueState": "OPEN",
+      "title": "Unexpected behaviour of `camelCase`",
+      "labels": [
+        "bug"
+      ],
+      "updatedAt": "2026-07-01T19:26:12Z",
+      "commentCount": 7,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/lodash/lodash/pull/5789",
+          "title": "test: add some cases in Camelcase",
+          "state": "MERGED",
+          "merged": true
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/5886",
+          "title": "fix: plural all caps in camelCase parsing",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5881",
+      "issueState": "OPEN",
+      "title": "_.omit evaluates getters for omitted properties",
+      "labels": [
+        "bug"
+      ],
+      "updatedAt": "2026-06-25T18:29:35Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/lodash/lodash/pull/6241",
+          "title": "Fix omit reading omitted getters",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6274",
+      "issueState": "OPEN",
+      "title": "[Bug]`_.truncate` hangs forever with a zero-length-capable regex `separator`",
+      "labels": [],
+      "updatedAt": "2026-09-19T19:51:33Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/lodash/lodash/pull/6275",
+          "title": "fix(truncate): prevent infinite loop when separator matches the empty string",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6276",
+          "title": "fix: advance lastIndex past empty separator matches in truncate",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_SOLUTION_IN_TASK",
+      "reason": "Issue body contains an explicit proposed code fix.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/expressjs/express/issues/7350",
+      "issueState": "OPEN",
+      "title": "res.render()/app.render() throws opaque TypeError for a view name ending in \".\"",
+      "labels": [
+        "bug"
+      ],
+      "updatedAt": "2026-09-12T10:30:01Z",
+      "commentCount": 8,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/expressjs/express/pull/7351",
+          "title": "fix(view): handle view names ending with \".\" to avoid require(\"\")",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7382",
+          "title": "Fix res.render() TypeError for view names ending in '.'",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7392",
+          "title": "Fix view engine resolution for view names ending in a dot",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7393",
+          "title": "fix(view): avoid opaque TypeError for view names ending in \".\"",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7411",
+          "title": "fix(view): treat names ending in '.' as extensionless",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7414",
+          "title": "fix(view): treat a view name ending in \".\" as extensionless",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7420",
+          "title": "fix: throw clean lookup error for view names ending with a dot",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7487",
+          "title": "fix: handle view names ending in '.' without throwing opaque TypeError",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/expressjs/express/issues/7034",
+      "issueState": "OPEN",
+      "title": "res.set('Content-Type') silently sets header to literal string 'false' for unknown types",
+      "labels": [
+        "discuss"
+      ],
+      "updatedAt": "2026-03-31T15:41:45Z",
+      "commentCount": 5,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/expressjs/express/pull/7035",
+          "title": "fix: prevent Content-Type header from being set to 'false'",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7036",
+          "title": "fix: throw error when Content-Type is invalid",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7039",
+          "title": "fix: prevent res.set('Content-Type') from setting header to 'false'",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7043",
+          "title": "Fix: Prevent Content-Type from being set to literal 'false' string",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7046",
+          "title": "fix(res): preserve original value when mime.contentType() returns false",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7067",
+          "title": "fix: preserve original value when Content-Type is unrecognized",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7097",
+          "title": "fix content-type fallback to original value",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7111",
+          "title": "fix: res.set('Content-Type') silently sets header to literal string",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7128",
+          "title": "fix(res.set): prevent Content-Type from being set to 'false' for unknown types",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7146",
+          "title": "fix(res.set): remove implicit mime lookup and charset injection for Content-Type   ",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7343",
+          "title": "fix: prevent invalid Content-Type and Location headers",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7384",
+          "title": "Preserve unknown Content-Type values in res.set()",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7430",
+          "title": "fix(res): remove magic from res.set() Content-Type",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7488",
+          "title": "fix: preserve original Content-Type value when mime.contentType returns false",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7491",
+          "title": "Fix res.jsonp() emitting invalid JavaScript when the callback sanitizes to empty",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/expressjs/express/pull/7537",
+          "title": "fix(response): keep custom Content-Type values in res.set()",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/5610",
+      "issueState": "OPEN",
+      "title": "_.omit from lodash/fp mutates the input object when using deep property paths with arrays",
+      "labels": [
+        "bug",
+        "lodash/fp"
+      ],
+      "updatedAt": "2026-07-01T20:12:45Z",
+      "commentCount": 5,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/lodash/lodash/pull/6058",
+          "title": "fix(omit): prevent mutation of nested arrays in deep paths",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6223",
+          "title": "fix(omit): prevent mutation of input object when using deep array paths",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6245",
+          "title": "fix(omit): clone arrays on deep paths so input is not mutated",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_REUSED",
+      "reason": "Already attempted in the engineering canary.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2057",
+      "issueState": "OPEN",
+      "title": "[bug] in the browser, `pino.stdSerializers.errorWithCause` does not serialize `cause` prop",
+      "labels": [],
+      "updatedAt": "2026-03-23T19:20:43Z",
+      "commentCount": 4,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/pinojs/pino/pull/2438",
+          "title": "fix(browser): serialize err.cause in errWithCause",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2244",
+      "issueState": "OPEN",
+      "title": "browser: logger does not pass arguments to write function",
+      "labels": [],
+      "updatedAt": "2026-08-11T19:37:46Z",
+      "commentCount": 4,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/pinojs/pino/pull/2496",
+          "title": "browser: forward remaining log arguments to write in asObject mode",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/1962",
+      "issueState": "OPEN",
+      "title": "Promise catch directly calling error log results in \"Cannot read properties of undefined\" exception",
+      "labels": [],
+      "updatedAt": "2025-06-06T16:50:13Z",
+      "commentCount": 7,
+      "sameRepositoryPrReferences": [],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_DISPUTED_EXPECTATION",
+      "reason": "Discussion identifies detached method use as expected behavior rather than a Pino defect.",
+      "supportingEvidence": "https://github.com/pinojs/pino/issues/1962#issuecomment-2949600990"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21436",
+      "issueState": "OPEN",
+      "title": "Bug: eqeqeq autofix can change runtime behavior when a typeof result is compared to a non-string operand",
+      "labels": [
+        "bug",
+        "rule",
+        "accepted",
+        "autofix",
+        "repro:yes"
+      ],
+      "updatedAt": "2026-10-29T03:36:45Z",
+      "commentCount": 6,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/eslint/eslint/pull/21435",
+          "title": "fix: avoid unsafe eqeqeq autofix for typeof vs non-string",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21333",
+      "issueState": "OPEN",
+      "title": "Rule Change: max-statements should count statements in switch cases and braceless bodies",
+      "labels": [
+        "bug",
+        "enhancement",
+        "rule",
+        "accepted",
+        "repro:yes"
+      ],
+      "updatedAt": "2026-10-26T12:18:20Z",
+      "commentCount": 4,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/eslint/eslint/pull/21344",
+          "title": "fix: count braceless bodies and switch cases in `max-statements`",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/eslint/eslint/pull/21446",
+          "title": "feat: count braceless bodies and `switch` cases in `max-statements`",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21443",
+      "issueState": "OPEN",
+      "title": "Rule Change: support `JSON.parse` and `JSON.stringify` callbacks in `no-invalid-this`",
+      "labels": [
+        "enhancement",
+        "rule",
+        "accepted"
+      ],
+      "updatedAt": "2026-10-27T06:51:18Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_POSITIVE_AND_PROJECT_REGRESSIONS",
+      "reason": "A draft eight-case verifier reflects the accepted issue discussion; baseline fails three intended cases while five negative controls pass. Positive reference and broader project regressions remain unverified.",
+      "supportingEvidence": "https://github.com/eslint/eslint/issues/21443#issuecomment-6435682983",
+      "draftVerifier": "https://github.com/QiuXu-Tech/memex/blob/main/scripts/prospective-verifiers/eslint-21443.js",
+      "draftVerifierSha256": "697cb0484ffd66593a7393fae414cd23574a4932d1a24d827b0cc327169a1067"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/21113",
+      "issueState": "OPEN",
+      "title": "Rule Change: support `Object.groupBy` and `Map.groupBy` in `array-callback-return`",
+      "labels": [
+        "enhancement",
+        "rule"
+      ],
+      "updatedAt": "2026-10-29T19:59:12Z",
+      "commentCount": 15,
+      "sameRepositoryPrReferences": [],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_CONFLICTING_RUBRIC",
+      "reason": "TSC discussion says to add a new rule rather than change the existing rule tested by the initial validator.",
+      "supportingEvidence": "https://github.com/eslint/eslint/issues/21113#issuecomment-5640822603"
+    },
+    {
+      "issue": "https://github.com/eslint/eslint/issues/20854",
+      "issueState": "OPEN",
+      "title": "Bug: use-isnan does not detect globalThis.NaN",
+      "labels": [
+        "bug",
+        "repro:yes"
+      ],
+      "updatedAt": "2026-08-17T00:07:17Z",
+      "commentCount": 11,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/eslint/eslint/pull/20936",
+          "title": "fix: detect globalThis.NaN in use-isnan rule",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/eslint/eslint/pull/21064",
+          "title": "test: add regression test for globalThis.NaN in use-isnan rule",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/eslint/eslint/pull/21225",
+          "title": "fix: detect globalThis.NaN in use-isnan rule",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/eslint/eslint/pull/21236",
+          "title": "fix: use-isnan should detect globalThis.NaN",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_UNACCEPTED",
+      "reason": "Maintainer says team has not reached a decision; no accepted label observed.",
+      "supportingEvidence": "https://github.com/eslint/eslint/issues/20854#issuecomment-4635876008"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20199",
+      "issueState": "OPEN",
+      "title": "Markdown regression in 3.9.9: inline math is modified after disabling singleDollarTextMath",
+      "labels": [
+        "lang:markdown"
+      ],
+      "updatedAt": "2026-10-18T01:54:27Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/20218",
+          "title": "Fix inline math being altered in Markdown (#20199)",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20302",
+          "title": "fix(markdown): keep single-dollar TeX formulas unchanged",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20047",
+      "issueState": "OPEN",
+      "title": "Markdown: wrapping an inline HTML comment splits its paragraph",
+      "labels": [],
+      "updatedAt": "2026-10-15T23:53:16Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/20106",
+          "title": "Keep inline HTML that starts a block out of the line start",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20293",
+      "issueState": "OPEN",
+      "title": "[yaml] block scalar with trailing whitespace moves the next key to the root (main, after #19764)",
+      "labels": [
+        "lang:yaml"
+      ],
+      "updatedAt": "2026-10-15T10:57:16Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/20297",
+          "title": "Fix YAML sibling indentation after block scalar with trailing whitespace",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/20096",
+      "issueState": "OPEN",
+      "title": "TS:  Statement after top-level `await` is duplicated with `typescript` parser",
+      "labels": [
+        "lang:typescript",
+        "scope:external"
+      ],
+      "updatedAt": "2026-10-09T05:28:24Z",
+      "commentCount": 5,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/20098",
+          "title": "Fix duplicate statement after top-level await",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20144",
+          "title": "fix(typescript): dedupe statement after top-level await (#20096)",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20217",
+          "title": "Fix duplicate statement after top-level await (#20096)",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20226",
+          "title": "Fix duplicated TypeScript statements after top-level await",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_EXTERNAL_DEPENDENCY",
+      "reason": "Discussion attributes defect to TypeScript parser and rejects proposed Prettier-side workaround.",
+      "supportingEvidence": "https://github.com/prettier/prettier/issues/20096#issuecomment-5766416790"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19955",
+      "issueState": "OPEN",
+      "title": "Unstable comment print in parenthesized arrow function body",
+      "labels": [
+        "help wanted",
+        "area:comments",
+        "area:idempotency"
+      ],
+      "updatedAt": "2026-09-15T23:23:30Z",
+      "commentCount": 6,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/19956",
+          "title": "Fix unstable trailing comment in a parenthesized arrow function body",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20008",
+          "title": "Fix unstable trailing comment on a parenthesized arrow body",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20075",
+          "title": "Fix unstable trailing comment on a parenthesized arrow body",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19847",
+      "issueState": "OPEN",
+      "title": "markdown: row indented GFM table rendering idempotency",
+      "labels": [
+        "help wanted",
+        "lang:markdown"
+      ],
+      "updatedAt": "2026-09-01T13:41:05Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/19848",
+          "title": "Escape indented pseudo table delimiter rows",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19877",
+          "title": "Escape a paragraph line that would reparse as a table delimiter row",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19878",
+          "title": "Strip blockquote markers from a setext heading's continuation lines",
+          "state": "MERGED",
+          "merged": true
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19929",
+          "title": "Escape indented table delimiter rows",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20233",
+          "title": "Escape indented pseudo table delimiter rows in markdown",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19530",
+      "issueState": "OPEN",
+      "title": "[md] incorrect normalisation of incorrect setex",
+      "labels": [
+        "help wanted",
+        "lang:markdown"
+      ],
+      "updatedAt": "2026-09-01T13:41:05Z",
+      "commentCount": 5,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/19540",
+          "title": "Add Markdown blockquote setext regression test",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19776",
+          "title": "fix(markdown): don't turn a line after a hard line break into a setex…",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19829",
+          "title": "Preserve lazy setext-like lines in Markdown",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_RETRACTED_EXPECTATION",
+      "reason": "Reporter acknowledged a correction and said maintainers can close the issue.",
+      "supportingEvidence": "https://github.com/prettier/prettier/issues/19530#issuecomment-4873120313"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19968",
+      "issueState": "OPEN",
+      "title": "TS: idempotent issue with single param and object return type",
+      "labels": [
+        "lang:typescript",
+        "area:idempotency"
+      ],
+      "updatedAt": "2026-10-15T17:27:45Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/19970",
+          "title": "Fix unstable parameters when the return type contains a preserved object type",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19971",
+          "title": "Keep single parameter hugged when the return type hugs an object type",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/16126",
+      "issueState": "OPEN",
+      "title": "yaml with folded multiline string and \"--prose-wrap always\" improperly wraps (and is not idempotent)",
+      "labels": [
+        "status:needs discussion",
+        "lang:yaml"
+      ],
+      "updatedAt": "2026-10-06T19:20:46Z",
+      "commentCount": 8,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/20214",
+          "title": "Fix wrapping of more-indented YAML folded scalar lines",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/20292",
+          "title": "Don't wrap more-indented lines in folded YAML block scalars",
+          "state": "OPEN",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_PENDING_DISCUSSION",
+      "reason": "Current status:needs discussion label; acceptance criteria are not yet settled.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/15956",
+      "issueState": "OPEN",
+      "title": "Prettier should *not* format JSONC with trailing commas",
+      "labels": [
+        "status:needs discussion"
+      ],
+      "updatedAt": "2026-09-06T00:06:27Z",
+      "commentCount": 66,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/15958",
+          "title": "fix: tsconfig.json is not jsonc compatible",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/16012",
+          "title": "Use `\"json\"` parser for `tsconfig.json` by default",
+          "state": "MERGED",
+          "merged": true
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/16287",
+          "title": "feat: support `.prettierrc.jsonc`",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/17563",
+          "title": "Don't add trailing commas to jsonc",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_PENDING_DISCUSSION",
+      "reason": "Current status:needs discussion label; initial expected formatting is not settled.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/8210",
+      "issueState": "OPEN",
+      "title": "Unquoted HTML attribute with slash causes parser error",
+      "labels": [
+        "scope:dependency",
+        "lang:html"
+      ],
+      "updatedAt": "2026-09-01T10:51:51Z",
+      "commentCount": 6,
+      "sameRepositoryPrReferences": [],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_EXTERNAL_DEPENDENCY",
+      "reason": "Issue has scope:dependency label and discussion points to an external parser.",
+      "supportingEvidence": "https://github.com/prettier/prettier/issues/8210#issuecomment-1623730067"
+    },
+    {
+      "issue": "https://github.com/prettier/prettier/issues/19427",
+      "issueState": "OPEN",
+      "title": "SCSS: inline comment before nested function adds extra indent",
+      "labels": [
+        "help wanted",
+        "lang:css/scss/less"
+      ],
+      "updatedAt": "2026-09-01T13:41:05Z",
+      "commentCount": 3,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/prettier/prettier/pull/19437",
+          "title": "Fix SCSS inline comment indentation in deeply nested function calls",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19438",
+          "title": "Fix SCSS inline comment indentation in deeply nested function calls",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19439",
+          "title": "Fix SCSS inline comment indentation in deeply nested function calls",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19446",
+          "title": "Fix extra indentation for value after inline comment in SCSS parenthesized group",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/prettier/prettier/pull/19874",
+          "title": "Keep the indent level after an inline comment in a value group",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/960",
+      "issueState": "OPEN",
+      "title": "Childlogger Loglevel not respected in the browser",
+      "labels": [],
+      "updatedAt": "2024-06-09T22:15:36Z",
+      "commentCount": 8,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/pinojs/pino/pull/1725",
+          "title": "fix: browser respect child logger log level ",
+          "state": "MERGED",
+          "merged": true
+        },
+        {
+          "url": "https://github.com/pinojs/pino/pull/1986",
+          "title": "Fixing browser side child log issue (#960) child level can now be set at cr…",
+          "state": "MERGED",
+          "merged": true
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "EXCLUDE_INVALID_BASELINE",
+      "reason": "Original validator passed level as a binding; the reported later API uses the second options argument, which logs debug on the pinned checkout.",
+      "supportingEvidence": "https://github.com/pinojs/pino/issues/960#issuecomment-1968741309"
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/2129",
+      "issueState": "OPEN",
+      "title": "Use parent `bindings` formatter in child loggers",
+      "labels": [],
+      "updatedAt": "2025-04-16T14:11:40Z",
+      "commentCount": 4,
+      "sameRepositoryPrReferences": [],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/pinojs/pino/issues/1642",
+      "issueState": "OPEN",
+      "title": "put child() bindings (internal chindings) into nestedKey",
+      "labels": [],
+      "updatedAt": "2024-02-21T20:15:28Z",
+      "commentCount": 16,
+      "sameRepositoryPrReferences": [],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    },
+    {
+      "issue": "https://github.com/lodash/lodash/issues/6105",
+      "issueState": "OPEN",
+      "title": "`lodash/fp` pollutes native/global `Array.isArray` with `convert` property",
+      "labels": [
+        "bug",
+        "lodash/fp"
+      ],
+      "updatedAt": "2026-07-01T20:04:23Z",
+      "commentCount": 7,
+      "sameRepositoryPrReferences": [
+        {
+          "url": "https://github.com/lodash/lodash/pull/6107",
+          "title": "fix(fp): prevent native function pollution",
+          "state": "OPEN",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6144",
+          "title": "fix(fp): avoid mutating global functions when adding convert",
+          "state": "CLOSED",
+          "merged": false
+        },
+        {
+          "url": "https://github.com/lodash/lodash/pull/6222",
+          "title": "fix(fp): wrap isArray to prevent Array.isArray mutation",
+          "state": "CLOSED",
+          "merged": false
+        }
+      ],
+      "crossReferenceHasNextPage": false,
+      "disposition": "PENDING_ACCEPTANCE_AUDIT",
+      "reason": "Baseline reproducer alone does not establish the acceptance standard, regression coverage, or an uncontaminated sample.",
+      "supportingEvidence": null
+    }
+  ]
+}

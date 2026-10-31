@@ -1,0 +1,2099 @@
+{
+  "kind": "ai-issue-screening-not-randomized-trial",
+  "rows": [
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/17579",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/19418",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-27",
+            "comment-28",
+            "comment-4"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-9"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/20237",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-10",
+            "comment-12",
+            "comment-15",
+            "comment-16",
+            "comment-2",
+            "comment-4",
+            "comment-8",
+            "comment-9"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-15"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/20978",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-3",
+            "comment-4",
+            "comment-5"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21226",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-5",
+            "comment-8"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21333",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-1",
+            "comment-2",
+            "comment-4"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue",
+            "comment-1",
+            "comment-2",
+            "comment-4"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-1"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21418",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-1",
+          "comment-3",
+          "comment-5",
+          "comment-6"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21436",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue",
+            "comment-2"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-2"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21438",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_EXCLUDE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-3",
+            "comment-4",
+            "comment-5"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21441",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-3"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-2"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-1",
+          "comment-2",
+          "comment-3"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21443",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/2414",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-13",
+            "comment-16",
+            "comment-19"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-13",
+            "comment-16",
+            "comment-19"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue",
+          "comment-13",
+          "comment-16",
+          "comment-17",
+          "comment-19"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/2483",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue",
+            "comment-3",
+            "comment-4"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3",
+            "comment-4"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "exclude",
+        "references": [
+          "issue",
+          "comment-3",
+          "comment-4",
+          "comment-6"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/2511",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue",
+          "comment-2",
+          "comment-5",
+          "comment-6",
+          "comment-10"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/2526",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/4557",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue",
+            "comment-4",
+            "comment-5",
+            "comment-7"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-4",
+            "comment-5",
+            "comment-7"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "exclude",
+        "references": [
+          "issue",
+          "comment-4",
+          "comment-5",
+          "comment-7"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/6541",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_EXCLUDE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/6756",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-9",
+            "comment-10",
+            "comment-11"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-10"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-8",
+          "comment-9",
+          "comment-11"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/6809",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_EXCLUDE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue",
+            "comment-2"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue",
+            "comment-2"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/7034",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-2",
+            "comment-4",
+            "comment-5"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/expressjs/express/issues/7350",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3",
+            "comment-5",
+            "comment-6"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3",
+            "comment-6"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/lodash/lodash/issues/5740",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-3",
+            "comment-4",
+            "comment-5",
+            "comment-6"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-4"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue",
+          "comment-3",
+          "comment-4",
+          "comment-5",
+          "comment-6"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/lodash/lodash/issues/5750",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-6"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/lodash/lodash/issues/5818",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/lodash/lodash/issues/5881",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-2",
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-2"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/lodash/lodash/issues/6105",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-4",
+            "comment-7"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-2",
+            "comment-3",
+            "comment-4",
+            "comment-7"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/lodash/lodash/issues/6195",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue",
+            "comment-4",
+            "comment-6"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-4",
+            "comment-6"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/1642",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "references": [],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-10",
+            "comment-14",
+            "comment-9"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/1895",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-2",
+            "comment-5"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-4"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue",
+          "comment-2",
+          "comment-5"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/2002",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3",
+            "comment-4"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3",
+            "comment-4"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/2057",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3",
+            "comment-4"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-4"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/2079",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_EXCLUDE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-3",
+            "comment-4"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-4"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/2129",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3",
+            "comment-4"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/2244",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-2",
+            "comment-3",
+            "comment-4"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3",
+            "comment-4"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/pinojs/pino/issues/2531",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/prettier/prettier/issues/19427",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue",
+            "comment-2"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/prettier/prettier/issues/19847",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/prettier/prettier/issues/19955",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3",
+            "comment-4",
+            "comment-6"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-2",
+            "comment-3",
+            "comment-6"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/prettier/prettier/issues/19968",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-2",
+            "comment-3"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue",
+          "comment-2",
+          "comment-3"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/prettier/prettier/issues/20047",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-2",
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/prettier/prettier/issues/20199",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_EXCLUDE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue",
+            "comment-1",
+            "comment-2",
+            "comment-3"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-3"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "candidate-ai-review",
+      "issue": "https://github.com/prettier/prettier/issues/20293",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3"
+          ]
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/18095",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue",
+          "comment-13",
+          "comment-20",
+          "comment-26",
+          "comment-29"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/18891",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3",
+            "comment-6"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/19118",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/19662",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-1",
+            "comment-5",
+            "comment-6"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-3"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/19706",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/19931",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-7"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-7"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-4",
+          "comment-7"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/20062",
+      "currentState": "OPEN",
+      "historyClipped": true,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue",
+            "comment-16",
+            "comment-18",
+            "comment-21",
+            "comment-27"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "references": [
+          "issue",
+          "comment-12",
+          "comment-16",
+          "comment-21",
+          "comment-27"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/20603",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-6",
+            "comment-7",
+            "comment-8"
+          ]
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-6",
+          "comment-8"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21122",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-1",
+            "comment-2",
+            "comment-3",
+            "comment-4",
+            "comment-5"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue",
+            "comment-1",
+            "comment-2",
+            "comment-3",
+            "comment-4",
+            "comment-5"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-1",
+          "comment-3",
+          "comment-5"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "extra-screening/candidate-ai-review",
+      "issue": "https://github.com/eslint/eslint/issues/21229",
+      "currentState": "OPEN",
+      "historyClipped": false,
+      "pair": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "references": [
+            "issue",
+            "comment-1",
+            "comment-2",
+            "comment-3"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": []
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "references": [
+            "issue"
+          ],
+          "reasonMentionsUnknownIds": [],
+          "reasonMentionsNotInReferences": [
+            "comment-1",
+            "comment-2"
+          ]
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "references": [
+          "issue",
+          "comment-1",
+          "comment-2",
+          "comment-3"
+        ],
+        "reasonMentionsUnknownIds": [],
+        "reasonMentionsNotInReferences": []
+      },
+      "eligibility": "NOT_FROZEN"
+    }
+  ],
+  "counts": {
+    "AGREED_UNCERTAIN": 15,
+    "AGREED_CANDIDATE": 12,
+    "DISAGREED": 19,
+    "AGREED_EXCLUDE": 5,
+    "MISSING_OR_INVALID": 1
+  },
+  "modelUsage": {
+    "claude-haiku-4-5": {
+      "calls": 52,
+      "promptTokens": 95678,
+      "completionTokens": 10228,
+      "missingUsage": 0,
+      "failures": 0
+    },
+    "deepseek-flash": {
+      "calls": 52,
+      "promptTokens": 88611,
+      "completionTokens": 4934,
+      "missingUsage": 0,
+      "failures": 0
+    },
+    "gpt-6-astra": {
+      "calls": 19,
+      "promptTokens": 147844,
+      "completionTokens": 3233,
+      "missingUsage": 0,
+      "failures": 0
+    }
+  },
+  "clippedHistories": 13,
+  "reasonMentionsOutsideReferenceList": 51,
+  "reasonMentionsUnknownIds": 0,
+  "warning": "Valid JSON and existing IDs do not verify that a claim is supported. A candidate vote does not freeze eligibility. Adjudication was added after initial screening began; all votes and missing outputs remain visible."
+}

@@ -1,0 +1,803 @@
+{
+  "kind": "ai-screening-not-task-outcomes",
+  "rows": [
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/eslint/eslint/issues/19013",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/eslint/eslint/issues/19173",
+      "historyClipped": true,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/eslint/eslint/issues/19721",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/eslint/eslint/issues/20730",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "initialVoteNormalization": [
+          "normalized_from_explicit_reason_ids",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/eslint/eslint/issues/20871",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/eslint/eslint/issues/20892",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/eslint/eslint/issues/21189",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "initialVoteNormalization": [
+          "valid",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/4374",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/4548",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "initialVoteNormalization": [
+          "valid",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/5098",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "initialVoteNormalization": [
+          "valid",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/5978",
+      "historyClipped": true,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/6012",
+      "historyClipped": true,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/6401",
+      "historyClipped": true,
+      "pairFromLoggedRawVotes": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "exclude",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "initialVoteNormalization": [
+          "valid",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/6454",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/fastify/fastify/issues/7090",
+      "historyClipped": true,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/markedjs/marked/issues/3435",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "third-screening",
+      "issue": "https://github.com/markedjs/marked/issues/4099",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "initialVoteNormalization": [
+          "normalized_from_explicit_reason_ids",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/1046",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/1674",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2003",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "exclude",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "uncertain",
+        "initialVoteNormalization": [
+          "valid",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2036",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2100",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "initialVoteNormalization": [
+          "valid",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2233",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2336",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2342",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "DISAGREED",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "candidate",
+        "initialVoteNormalization": [
+          "valid",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2355",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2360",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2433",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2497",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "MISSING_OR_INVALID",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "invalid",
+          "decision": null,
+          "invalidReason": "reason_mentions_unlisted_source"
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": {
+        "model": "gpt-6-astra",
+        "status": "valid",
+        "decision": "exclude",
+        "initialVoteNormalization": [
+          "normalized_from_explicit_reason_ids",
+          "valid"
+        ]
+      },
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2524",
+      "historyClipped": true,
+      "pairFromLoggedRawVotes": "AGREED_UNCERTAIN",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "uncertain",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    },
+    {
+      "cohort": "fourth-screening",
+      "issue": "https://github.com/validatorjs/validator.js/issues/2544",
+      "historyClipped": false,
+      "pairFromLoggedRawVotes": "AGREED_CANDIDATE",
+      "votes": [
+        {
+          "model": "claude-haiku-4-5",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        },
+        {
+          "model": "deepseek-flash",
+          "status": "valid",
+          "decision": "candidate",
+          "invalidReason": null
+        }
+      ],
+      "adjudication": null,
+      "eligibility": "NOT_FROZEN"
+    }
+  ],
+  "rawPairCounts": {
+    "AGREED_UNCERTAIN": 12,
+    "MISSING_OR_INVALID": 11,
+    "DISAGREED": 7,
+    "AGREED_CANDIDATE": 1
+  },
+  "adjudicationDecisions": {
+    "candidate": 5,
+    "uncertain": 4,
+    "exclude": 1
+  },
+  "modelUsage": {
+    "claude-haiku-4-5": {
+      "calls": 31,
+      "promptTokens": 47998,
+      "completionTokens": 7083,
+      "missingUsage": 0,
+      "failures": 0
+    },
+    "deepseek-flash": {
+      "calls": 31,
+      "promptTokens": 44434,
+      "completionTokens": 3760,
+      "missingUsage": 0,
+      "failures": 0
+    },
+    "gpt-6-astra": {
+      "calls": 10,
+      "promptTokens": 50588,
+      "completionTokens": 4137,
+      "missingUsage": 0,
+      "failures": 0
+    }
+  },
+  "clippedHistories": 6,
+  "warning": "Original raw votes are not modified; normalized adjudications are post hoc. Cite IDs and model opinions do not establish factual support or task eligibility."
+}

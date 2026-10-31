@@ -28,6 +28,8 @@ jobs:
           python3 scripts/test-pilot-review.py
           python3 scripts/test-pilot-review-guard.py
           python3 scripts/test-production-prospective-guard.py
+          python3 scripts/test-prospective-candidate-review.py
+          python3 scripts/test-prospective-vote-normalize.py
           python3 scripts/test-pilot-citations.py
           python3 scripts/test-pilot-batch-stop.py
           python3 scripts/test-pilot-expanded-ledger.py
