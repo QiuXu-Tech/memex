@@ -1,0 +1,99 @@
+{
+  "kind": "registered-two-validator-issue-pairs",
+  "createdAt": "2026-10-31T19:59:39.693205+08:00",
+  "sourceCommit": {
+    "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9"
+  },
+  "runtime": {
+    "nodeVersion": "v24.18.0",
+    "nodeBinarySha256": "6bf69d0eda41a12030d5f28d958cd09ce323bc0c13f1ab4d8bb426933aa08812",
+    "dependencies": "Node module hooks load source ESM without external npm packages."
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": {
+    "2295": "validator",
+    "1309": "validator"
+  },
+  "checks": {
+    "2295": {
+      "public": "ee9b64d3226fa6f9c7f907230298158c1cba2c061b4cf2f29d5cb54b96de9125",
+      "acceptance": "93dafc3f4e9464d97f7adb6c6bb485fec32cd5cb4ef7b2498aa3910e6ba450b7",
+      "regressionControls": "b8d451ed29708980a93e56676f29866d05b150feb35ee246c0749b6a37395761"
+    },
+    "1309": {
+      "public": "239f0ba0f847276106545a26e0a5c39e95340e9ddef3fc1f1ed9d5fd5f66bf21",
+      "acceptance": "caff54c770ace6a81d4f106aca355ce294d0db0841487a7f6709c6ba9d980598",
+      "regressionControls": "4e73768abe91a1d97fb604914cf9e99e3c62817b65f1ec9abb2a58959c38a28b"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v21.py": "7351f6b53e66ed1349a014ddb0ac879b0885cdd0f1ef367eb8748a50e7707643",
+    "scripts/prospective-gateway-pilot-v20.py": "14147b04b867c2c14bbe2cff207a2054dc6f498a8392fb74ea12245d1c37b379",
+    "scripts/prospective-gateway-pilot-v18.py": "e28ef0b7253602ef3acb6cc0a483005cadfe80ad3d0b9b2b9582041846f0c34a",
+    "scripts/prospective-gateway-pilot-v17.py": "232dcaac5b90915cc9ed3598a5060a41fe88178ff47c9c93edfd7f28ceb64ab2",
+    "scripts/prospective-gateway-pilot-v16.py": "94e5baa66c3b442de03b161efe1f488a4699044cf527fdc7857a045a08959e5c",
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "811753fa237e106e670b868533d00fb7f7318eb43d817378b2156aa50b5b0569",
+  "contextsSha256": "92a003a7bed54d424253616880436ec2ed0ca33c1b21f5abaeee635d05324c08",
+  "seed": 2026103124,
+  "schedule": [
+    {
+      "issue": "2295",
+      "arm": "memex"
+    },
+    {
+      "issue": "2295",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1309",
+      "arm": "keyword"
+    },
+    {
+      "issue": "1309",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "qwen3.8-flash"
+  ],
+  "adjudicator": "gpt-6-astra",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "reviewOutputTokenLimits": {
+    "deepseek-flash": 700,
+    "qwen3.8-flash": 2048
+  },
+  "adjudicationOutputTokenLimit": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "Stop launching calls within a stage after provider failure or missing usage; preserve all attempts and unknown fees. Never retry a timeout.",
+  "costTarget": "Below $1 estimated, not a hard cap; unknown fees reported separately.",
+  "limitations": [
+    "Two pairs selected after earlier batches; not a pre-registered 30–50-task independent cohort.",
+    "Public discussions and PRs can disclose solutions or appear in training; shared project and source exposure can correlate.",
+    "Source-only references and small custom tests do not establish upstream acceptance.",
+    "The adjudicator has the same model name as the solver; all model names share a proxy with unverified provenance.",
+    "Pre-seeded short issue discussions are not long production sessions or autonomous memory management.",
+    "Retrieved context content and size differ between arms; no production effect or savings claim."
+  ]
+}

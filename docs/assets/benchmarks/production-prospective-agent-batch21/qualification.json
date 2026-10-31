@@ -1,0 +1,73 @@
+{
+  "method": "isolated fixed verifier; source-only reference; hashes identify private raw logs",
+  "issues": {
+    "validator-2295": {
+      "referenceHead": "1717076168211a65a76282c1d0f5fd773023ee13",
+      "referencePR": 2843,
+      "originalPatchSha256": "d0ba1ecf16516a3059e85f951f7bbae9b332221e6a6b92b31665088b9673e0c9",
+      "referencePatchSha256": "d0ba1ecf16516a3059e85f951f7bbae9b332221e6a6b92b31665088b9673e0c9",
+      "compressedPatchSha256": "7b06d453ae118ecade558e13d2cf12c8a7cecec8130b256d66857ace9f0b8880",
+      "manualCorrection": false,
+      "runs": {
+        "baseline-public": {
+          "exitCode": 1,
+          "privateLogSha256": "bc3c3edc189131fc5045ee6f38e7326c0ea3ee419ea34ca69af35e12c634f939"
+        },
+        "baseline-acceptance": {
+          "exitCode": 1,
+          "privateLogSha256": "33e842da53b2f5d32be8d50b133f8c2dda8d4b003f8f25fba60e27ecd5a61bd6"
+        },
+        "baseline-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "c55fd5d42d2a9338b29c681b15771bd0c1b16e21545f9e6fc41e4ad65bdc3246"
+        },
+        "reference-public": {
+          "exitCode": 0,
+          "privateLogSha256": "f20a32ec4ac41cc4fe7e20fed33e8cd9bfda37c9b1d3420ebb4cd1c75e263375"
+        },
+        "reference-acceptance": {
+          "exitCode": 0,
+          "privateLogSha256": "f20a32ec4ac41cc4fe7e20fed33e8cd9bfda37c9b1d3420ebb4cd1c75e263375"
+        },
+        "reference-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "c55fd5d42d2a9338b29c681b15771bd0c1b16e21545f9e6fc41e4ad65bdc3246"
+        }
+      }
+    },
+    "validator-1309": {
+      "referenceHead": "98231a6dfe02d0ce05987209a0d400a1c131ce3b",
+      "referencePR": 1750,
+      "originalPatchSha256": "79f78b2d8724ce98b2ac15f538dc2faf9b82d05e028c77d4bad747854d6fbc31",
+      "referencePatchSha256": "25a1fabeca4095026650d4c952dde55e4cf350cfff84ae98c799ac9fdf59ed11",
+      "compressedPatchSha256": "d57aac268c40f55ef974e5f98c205d643f6c5b135e9f9195d56b36e8fb9c9e31",
+      "manualCorrection": true,
+      "runs": {
+        "baseline-public": {
+          "exitCode": 1,
+          "privateLogSha256": "e4273add11986e9c91191df0eedd109773b9c0469413724ef688e84eaa4a69fc"
+        },
+        "baseline-acceptance": {
+          "exitCode": 1,
+          "privateLogSha256": "678042648b4405ea45cd957aeb981fce64b3dc48c4564e48650a3c3536a7ca86"
+        },
+        "baseline-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "5169f86b0193ae2122fa207297b1d3a2867a20f00f33b11bd2fdbba22e79b5b5"
+        },
+        "reference-public": {
+          "exitCode": 0,
+          "privateLogSha256": "dae993fe4269898fc5bcd3858d20f63c0b2ed96b32468ff05c4fe4b7d112715b"
+        },
+        "reference-acceptance": {
+          "exitCode": 0,
+          "privateLogSha256": "dae993fe4269898fc5bcd3858d20f63c0b2ed96b32468ff05c4fe4b7d112715b"
+        },
+        "reference-controls": {
+          "exitCode": 0,
+          "privateLogSha256": "5169f86b0193ae2122fa207297b1d3a2867a20f00f33b11bd2fdbba22e79b5b5"
+        }
+      }
+    }
+  }
+}
