@@ -229,9 +229,40 @@
           "amountUsd": 0.000388
         }
       }
+    },
+    {
+      "label": "distinct-issue follow-up batches 27–35, post-hoc AI review and one route probe",
+      "amountUsd": 0.631912,
+      "detail": "2026-10-31 21:55–23:46 Asia/Shanghai: four UI pages contained 327 rows. For each model, the 325 successful rows match the local successful response count and aggregate input/output tokens exactly. This includes invalid AI outputs and supplementary reviews. Two error rows displayed $0 without token usage; their final charges remain UNKNOWN. Request IDs do not establish attribution.",
+      "models": {
+        "gpt-6-astra": {
+          "calls": 243,
+          "inputTokens": 1685791,
+          "outputTokens": 49010,
+          "amountUsd": 0.566474
+        },
+        "gpt-6.1-sol": {
+          "calls": 24,
+          "inputTokens": 347554,
+          "outputTokens": 4526,
+          "amountUsd": 0.056914
+        },
+        "deepseek-flash": {
+          "calls": 29,
+          "inputTokens": 32007,
+          "outputTokens": 3586,
+          "amountUsd": 0.00438
+        },
+        "qwen3.8-flash": {
+          "calls": 29,
+          "inputTokens": 31341,
+          "outputTokens": 13004,
+          "amountUsd": 0.004144
+        }
+      }
     }
   ],
-  "matchedSubtotalUsd": 2.716694,
+  "matchedSubtotalUsd": 3.348606,
   "unattributedAdjacentConsoleRow": {
     "timeAsiaShanghai": "2026-10-31 13:26:02",
     "model": "claude-haiku-4-5",
@@ -255,7 +286,9 @@
     "Gateway triage gpt-6.1-sol timeout and any pending charge",
     "Batch17 Qwen review timeout and any pending charge",
     "Batch18 Astra solver timeout and any pending charge",
-    "Batch25 Astra transport error with no matched console row and any charge"
+    "Batch25 Astra transport error with no matched console row and any charge",
+    "Batch28 Astra solver timeout: console error row displayed $0 but unreported or delayed charges remain unknown",
+    "Batch32 Astra solver timeout: console error row displayed $0 but unreported or delayed charges remain unknown"
   ],
   "notIncludedYet": [],
   "warning": "These are candidate aggregate matches, not invoice reconciliation or total study cost."

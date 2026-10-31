@@ -1,0 +1,43 @@
+{
+  "observations": [
+    {
+      "at": "2026-10-31T15:33:30.976043+08:00",
+      "modelLabel": "gpt-6.1-sol",
+      "httpStatus": 503,
+      "errorCode": "system_cpu_overloaded",
+      "elapsedSeconds": 1.752,
+      "responseBytes": 143,
+      "privateLogSha256": "d21003720cf2e3221fcff3bc399b64dea5fbae89c28d81eb74c9dc065583a322"
+    },
+    {
+      "at": "2026-10-31T15:39:31.519180+08:00",
+      "modelLabel": "gpt-6.1-sol",
+      "httpStatus": 503,
+      "errorCode": "system_cpu_overloaded",
+      "elapsedSeconds": 1.63,
+      "responseBytes": 143,
+      "privateLogSha256": "caaff5c269c13bb0647bc01a4208f10fc548463ff51a25b0bc47375366ed9c0e"
+    },
+    {
+      "at": "2026-10-31T15:46:53.712180+08:00",
+      "modelLabel": "claude-haiku-4-5",
+      "httpStatus": 503,
+      "errorCode": "system_cpu_overloaded",
+      "elapsedSeconds": 1.141,
+      "responseBytes": 143,
+      "privateLogSha256": "4c29ca3d0112c1e37ebe280b7ed20a46ebdeecaa1bc48b3c00dde29a1665fc22"
+    }
+  ],
+  "limitations": [
+    "The original client retained the error code but did not retain full error bodies, response headers or request IDs.",
+    "The same code on two model labels is compatible with a shared relay guard but does not locate it.",
+    "No provider deployment version, node metrics, configured threshold, route or direct upstream trace was available."
+  ],
+  "publicImplementationReference": {
+    "commit": "ea343c4a81151bfd537d33b66527c25fa21a1112",
+    "monitor": "https://github.com/QuantumNous/new-api/blob/ea343c4a81151bfd537d33b66527c25fa21a1112/common/system_monitor.go",
+    "middleware": "https://github.com/QuantumNous/new-api/blob/ea343c4a81151bfd537d33b66527c25fa21a1112/middleware/performance.go",
+    "fix": "https://github.com/QuantumNous/new-api/pull/7317",
+    "caveat": "A matching open-source mechanism is plausible context, not evidence that the APIMaster service or its upstream runs this software or version."
+  }
+}

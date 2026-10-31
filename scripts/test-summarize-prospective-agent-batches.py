@@ -43,6 +43,13 @@ class Tests(unittest.TestCase):
    root=pathlib.Path(td);p=root/'review-calls.jsonl';p.write_text(json.dumps({'model':'qwen3.8-flash','status':'ok','usage':{'completion_tokens':701,'completion_tokens_details':{'reasoning_tokens':600}}})+'\n')
    manifest={'reviewers':['qwen3.8-flash'],'maxReviewTokens':700};row=m.qwen_limit_observations(root,manifest)[0]
    self.assertEqual((row['requestedMaxTokens'],row['reportedCompletionTokens'],row['reportedReasoningTokens']),(700,701,600))
+ def test_solver_output_limit_accounts_for_forced_final_budget(self):
+  with tempfile.TemporaryDirectory() as td:
+   root=pathlib.Path(td);p=root/'solver-calls.jsonl';events=[{'model':'m','status':'ok','operationLabel':'01:0','usage':{'completion_tokens':1001}},
+     {'model':'m','status':'ok','operationLabel':'01:final','usage':{'completion_tokens':1100}}]
+   p.write_text('\n'.join(json.dumps(e) for e in events)+'\n')
+   rows=m.solver_limit_observations(root,{'maxOutputTokens':1000,'maxForcedFinalTokens':1200})
+   self.assertEqual(len(rows),1);self.assertEqual(rows[0]['requestedMaxTokens'],1000)
  def test_unstarted_followup_preserves_missing_and_invalid_ratings(self):
   with tempfile.TemporaryDirectory() as td:
    root=pathlib.Path(td);source=root/'source';followup=root/'followup';source.mkdir();followup.mkdir();(followup/'reviews').mkdir();(followup/'adjudications').mkdir()
@@ -60,4 +67,43 @@ class Tests(unittest.TestCase):
   value=m.supplemental_coverage([{'batch':'moment-mathjs','runs':runs,'reviews':reviews}],None,None,follow)
   self.assertEqual((value['issuePairsWithOriginalOrSupplementaryRatings'],value['issuePairsExcludingNoHistoryControls']),(2,1))
   self.assertEqual(value['additionalIssuesAfterSupplementaryReviews'],['mathjs#3614'])
+ def test_followup_requires_complete_arms_and_valid_adjudication_for_disagreements(self):
+  def run(slot,issue,arm,status):return {'slot':slot,'project':'p','issue':issue,'arm':arm,'attemptOutcome':'PASS' if status=='completed' else 'UNKNOWN','status':status}
+  def review(slot,a,b,adj=None):return {'slot':slot,'ratings':[{'status':'VALID','correctness':a,'sideEffects':1},{'status':'VALID','correctness':b,'sideEffects':1}],'registeredAdjudication':adj}
+  batch={'batch':'independent-27','runs':[run(1,'1','keyword','completed'),run(2,'1','memex','completed'),run(3,'2','keyword','model_failure'),run(4,'2','memex','completed')],
+         'reviews':[review(1,2,1,{'status':'INVALID'}),review(2,2,2),review(3,2,2),review(4,2,2)]}
+  value=m.followup_summary([batch]);self.assertEqual(value['distinctIssues'],2);self.assertEqual(value['bothArmsCompleteWithTwoFormatValidReviews'],1)
+  self.assertEqual(value['bothArmsCompleteWithDisagreementsResolved'],0);self.assertEqual(value['disagreementAdjudications'],{'INVALID':1})
+  batch['reviews'][0]['registeredAdjudication']={'status':'VALID'}
+  self.assertEqual(m.followup_summary([batch])['bothArmsCompleteWithDisagreementsResolved'],1)
+ def test_historical_posthoc_adjudication_does_not_overwrite_original(self):
+  runs=[{'slot':i,'project':'luxon','issue':'1189','arm':arm,'historyRecords':2,'status':'completed','attemptOutcome':'PASS'} for i,arm in [(1,'keyword'),(2,'memex')]]
+  reviews=[{'slot':i,'ratings':[{'status':'VALID','correctness':2,'sideEffects':1},{'status':'VALID','correctness':score,'sideEffects':1}],
+            'registeredAdjudication':{'status':'INVALID'}} for i,score in [(1,1),(2,2)]]
+  batch={'batch':'luxon-new','runs':runs,'reviews':reviews}
+  posthoc={'candidates':[{'source':'20261031-luxon-batch22','slot':1,'arm':'keyword','result':{'status':'VALID'}}]}
+  result=m.historical_resolution_coverage([batch],None,None,None,None,None,posthoc)
+  self.assertEqual(result['beforeV33']['pairsWithValidDisagreementAdjudications'],0)
+  self.assertEqual(result['includingV33']['pairsWithValidDisagreementAdjudications'],1)
+  self.assertEqual(reviews[0]['registeredAdjudication']['status'],'INVALID')
+ def test_alternate_review_is_separate_and_needs_valid_adjudication(self):
+  runs=[{'slot':i,'project':'p','issue':'1','arm':arm,'status':'completed','attemptOutcome':'PASS'} for i,arm in [(1,'keyword'),(2,'memex')]]
+  valid={'status':'VALID','correctness':2,'sideEffects':1};invalid={'status':'INVALID'}
+  reviews=[{'slot':1,'ratings':[valid,invalid],'registeredAdjudication':None},{'slot':2,'ratings':[valid,valid],'registeredAdjudication':None}]
+  batch={'batch':'independent-31','runs':runs,'reviews':reviews}
+  replacement={'status':'VALID','correctness':1,'sideEffects':1}
+  follow={'candidates':[{'source':'20261031-independent-batch31','slot':1,'supplementaryReview':replacement,'supplementaryAdjudication':{'status':'MISSING'}}]}
+  result=m.followup_summary([batch],follow)
+  self.assertEqual(result['bothArmsCompleteWithTwoFormatValidReviews'],1)
+  self.assertEqual(result['bothArmsCompleteWithDisagreementsResolved'],0)
+  self.assertEqual(reviews[0]['ratings'][1]['status'],'INVALID')
+  follow['candidates'][0]['supplementaryAdjudication']={'status':'VALID'}
+  self.assertEqual(m.followup_summary([batch],follow)['bothArmsCompleteWithDisagreementsResolved'],1)
+ def test_followup_unstarted_reregistration_is_counted_once(self):
+  def run(outcome,status):return {'slot':1,'project':'yup','issue':'2252','arm':'keyword','status':status,'attemptOutcome':outcome}
+  old={'batch':'independent-32','runs':[run('NOT_RUN','NOT_RUN_AFTER_STOP')],'reviews':[]}
+  new={'batch':'independent-35','runs':[run('PASS','completed')],'reviews':[]}
+  result=m.followup_summary([old,new]);self.assertEqual(result['distinctIssues'],1);self.assertEqual(result['assignmentOutcomes'],{'PASS':1})
+  old['runs']=[run('UNKNOWN','model_failure')]
+  with self.assertRaises(ValueError):m.followup_summary([old,new])
 if __name__=='__main__':unittest.main()

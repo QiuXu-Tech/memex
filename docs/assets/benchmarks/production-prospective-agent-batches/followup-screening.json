@@ -1,0 +1,53 @@
+{
+  "method": "Eligibility decisions were made before solver calls; source discussions and references are public. These are selected examples rather than an exhaustive audit.",
+  "exclusions": [
+    {
+      "issues": [
+        "dayjs#2712",
+        "dayjs#3141"
+      ],
+      "reason": "The two retrieval arms returned identical comment-ID sets."
+    },
+    {
+      "issues": [
+        "dayjs#1146"
+      ],
+      "reason": "A reference that handled a single-argument example failed the reporter's two-argument example; not registered."
+    },
+    {
+      "issues": [
+        "datefns#3041"
+      ],
+      "reason": "A first git apply --check used an unmatched path filter and falsely indicated success; after correction the source patch did not apply and the timezone expectation remained disputed."
+    },
+    {
+      "issues": [
+        "express#6756"
+      ],
+      "reason": "The proposed reference coerced BigInt while the discussion included rejecting it with a clearer error."
+    },
+    {
+      "issues": [
+        "express#7034"
+      ],
+      "reason": "The discussion did not establish a single accepted behavior for an unknown Content-Type."
+    },
+    {
+      "issues": [
+        "ramda#3364"
+      ],
+      "reason": "Inspection of the pinned source showed array-length allocation already present; no new task registered."
+    },
+    {
+      "issues": [
+        "mathjs#3532"
+      ],
+      "reason": "Pre-registration qualification using reduced tolerance variants failed reference accuracy checks and baseline and reference both failed a selected numeric control. The extreme original example was not qualified; no tolerance was relaxed to promote the case.",
+      "privateQualificationSha256": "44c4c3cf015c76a28c7f4e8bc9777df6a503db95d71e8e0c4cceab429c9d50f0"
+    }
+  ],
+  "notes": [
+    "The qs baseline had one preliminary require in the isolated VM outside the inner network-disabled sandbox; formal recorded qualification ran within it.",
+    "Baseline/reference checks for included issues are partial and are detailed in each frozen registration; solution exposure and project overlap remain."
+  ]
+}

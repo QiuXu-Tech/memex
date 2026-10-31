@@ -1,0 +1,132 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1150" height="1045" viewBox="0 0 1150 1045" role="img" aria-labelledby="title desc">
+<title id="title">Follow-up issue pairs: execution and AI review</title>
+<desc id="desc">Keyword and Memex arms show partial-check outcomes. The final column shows whether each completed pair has two format-valid AI ratings per arm and all rating disagreements adjudicated. Missing work is not success.</desc>
+<rect width="1150" height="1045" fill="#f7f8fa"/>
+<text x="42" y="48" font-family="Arial,sans-serif" font-size="25" font-weight="700" fill="#19313e">New issue follow-up · execution and AI review</text>
+<text x="42" y="78" font-family="Arial,sans-serif" font-size="14" fill="#526a78">Separate adaptive batches · partial checks · public issues · not a production study</text>
+<text x="290" y="118" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#19313e">Keyword</text>
+<text x="520" y="118" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#19313e">Memex</text>
+<text x="750" y="118" font-family="Arial,sans-serif" font-size="15" font-weight="700" fill="#19313e">Two AI ratings per arm + disputes</text>
+<text x="42" y="157" font-family="Arial,sans-serif" font-size="15" fill="#19313e">cheerio #581</text>
+<rect x="290" y="135" width="200" height="28" rx="4" fill="#766f8a"/>
+<text x="390" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Unknown</text>
+<rect x="520" y="135" width="200" height="28" rx="4" fill="#dce3e6"/>
+<text x="620" y="154" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#19313e">Not run</text>
+<text x="750" y="155" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="195" font-family="Arial,sans-serif" font-size="15" fill="#19313e">datefns #1134</text>
+<rect x="290" y="173" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="173" width="200" height="28" rx="4" fill="#bd604f"/>
+<text x="620" y="192" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks nonzero</text>
+<text x="750" y="193" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="233" font-family="Arial,sans-serif" font-size="15" fill="#19313e">datefns #4096</text>
+<rect x="290" y="211" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="211" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="230" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="231" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="271" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #2179</text>
+<rect x="290" y="249" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="249" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="268" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="269" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="309" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #2281</text>
+<rect x="290" y="287" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="287" width="200" height="28" rx="4" fill="#a87529"/>
+<text x="620" y="306" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<text x="750" y="307" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="347" font-family="Arial,sans-serif" font-size="15" fill="#19313e">dayjs #2442</text>
+<rect x="290" y="325" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="325" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="344" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="345" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete *</text>
+<text x="42" y="385" font-family="Arial,sans-serif" font-size="15" fill="#19313e">express #7350</text>
+<rect x="290" y="363" width="200" height="28" rx="4" fill="#dce3e6"/>
+<text x="390" y="382" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#19313e">Not run</text>
+<rect x="520" y="363" width="200" height="28" rx="4" fill="#dce3e6"/>
+<text x="620" y="382" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#19313e">Not run</text>
+<text x="750" y="383" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="423" font-family="Arial,sans-serif" font-size="15" fill="#19313e">express #7362</text>
+<rect x="290" y="401" width="200" height="28" rx="4" fill="#bd604f"/>
+<text x="390" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks nonzero</text>
+<rect x="520" y="401" width="200" height="28" rx="4" fill="#bd604f"/>
+<text x="620" y="420" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks nonzero</text>
+<text x="750" y="421" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="461" font-family="Arial,sans-serif" font-size="15" fill="#19313e">koa #827</text>
+<rect x="290" y="439" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="458" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="439" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="458" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="459" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="499" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3134</text>
+<rect x="290" y="477" width="200" height="28" rx="4" fill="#a87529"/>
+<text x="390" y="496" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<rect x="520" y="477" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="496" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="497" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="537" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3604</text>
+<rect x="290" y="515" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="534" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="515" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="534" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="535" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="575" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3608</text>
+<rect x="290" y="553" width="200" height="28" rx="4" fill="#bd604f"/>
+<text x="390" y="572" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks nonzero</text>
+<rect x="520" y="553" width="200" height="28" rx="4" fill="#bd604f"/>
+<text x="620" y="572" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks nonzero</text>
+<text x="750" y="573" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="613" font-family="Arial,sans-serif" font-size="15" fill="#19313e">mathjs #3620</text>
+<rect x="290" y="591" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="610" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="591" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="610" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="611" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="651" font-family="Arial,sans-serif" font-size="15" fill="#19313e">qs #432</text>
+<rect x="290" y="629" width="200" height="28" rx="4" fill="#dce3e6"/>
+<text x="390" y="648" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#19313e">Not run</text>
+<rect x="520" y="629" width="200" height="28" rx="4" fill="#dce3e6"/>
+<text x="620" y="648" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#19313e">Not run</text>
+<text x="750" y="649" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="689" font-family="Arial,sans-serif" font-size="15" fill="#19313e">ramda #2137</text>
+<rect x="290" y="667" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="686" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="667" width="200" height="28" rx="4" fill="#a87529"/>
+<text x="620" y="686" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<text x="750" y="687" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="727" font-family="Arial,sans-serif" font-size="15" fill="#19313e">underscore #2214</text>
+<rect x="290" y="705" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="724" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="705" width="200" height="28" rx="4" fill="#766f8a"/>
+<text x="620" y="724" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Unknown</text>
+<text x="750" y="725" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="765" font-family="Arial,sans-serif" font-size="15" fill="#19313e">validator #2036</text>
+<rect x="290" y="743" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="762" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="743" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="762" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="763" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete *</text>
+<text x="42" y="803" font-family="Arial,sans-serif" font-size="15" fill="#19313e">validator #2430</text>
+<rect x="290" y="781" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="800" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="781" width="200" height="28" rx="4" fill="#a87529"/>
+<text x="620" y="800" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Incomplete</text>
+<text x="750" y="801" font-family="Arial,sans-serif" font-size="14" fill="#766f8a">Not complete</text>
+<text x="42" y="841" font-family="Arial,sans-serif" font-size="15" fill="#19313e">validator #2433</text>
+<rect x="290" y="819" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="838" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="819" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="838" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="839" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete *</text>
+<text x="42" y="879" font-family="Arial,sans-serif" font-size="15" fill="#19313e">yup #2252</text>
+<rect x="290" y="857" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="390" y="876" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<rect x="520" y="857" width="200" height="28" rx="4" fill="#397d6d"/>
+<text x="620" y="876" text-anchor="middle" font-family="Arial,sans-serif" font-size="13" fill="#ffffff">Checks pass</text>
+<text x="750" y="877" font-family="Arial,sans-serif" font-size="14" fill="#397d6d">Complete</text>
+<text x="42" y="935" font-family="Arial,sans-serif" font-size="14" fill="#526a78">A check pass is not maintainer acceptance; a format-valid AI rating is not a verified correctness label.</text>
+<text x="42" y="958" font-family="Arial,sans-serif" font-size="14" fill="#526a78">* Includes post-hoc alternate AI reviews. Shared projects and solution exposure limit interpretation.</text>
+</svg>

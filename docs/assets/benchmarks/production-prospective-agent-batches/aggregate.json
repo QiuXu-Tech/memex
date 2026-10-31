@@ -18,6 +18,7 @@
           "changedFileCount": 0,
           "modelCalls": 8,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -35,6 +36,7 @@
           "changedFileCount": 0,
           "modelCalls": 7,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -52,6 +54,7 @@
           "changedFileCount": 0,
           "modelCalls": 8,
           "toolCalls": 11,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -69,6 +72,7 @@
           "changedFileCount": 0,
           "modelCalls": 8,
           "toolCalls": 10,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -86,6 +90,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 11,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -103,6 +108,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -228,7 +234,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "lodash-interrupted",
@@ -247,6 +254,7 @@
           "changedFileCount": 0,
           "modelCalls": 17,
           "toolCalls": 32,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -369,7 +377,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "lodash-repair",
@@ -388,6 +397,7 @@
           "changedFileCount": 0,
           "modelCalls": 17,
           "toolCalls": 30,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -405,6 +415,7 @@
           "changedFileCount": 0,
           "modelCalls": 9,
           "toolCalls": 15,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -422,6 +433,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -439,6 +451,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -529,7 +542,8 @@
           "elapsedSeconds": 3.776
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "eslint-2",
@@ -548,6 +562,7 @@
           "changedFileCount": 0,
           "modelCalls": 17,
           "toolCalls": 25,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -565,6 +580,7 @@
           "changedFileCount": 0,
           "modelCalls": 17,
           "toolCalls": 31,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -582,6 +598,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -599,6 +616,7 @@
           "changedFileCount": 1,
           "modelCalls": 11,
           "toolCalls": 16,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -742,7 +760,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "lodash-model-check",
@@ -761,6 +780,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -778,6 +798,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 16,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -869,7 +890,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "mixed-3",
@@ -891,6 +913,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -908,6 +931,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -925,6 +949,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 16,
+          "deniedToolCalls": null,
           "publicTestCalls": 3,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -942,6 +967,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 17,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -959,6 +985,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 20,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -976,6 +1003,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 19,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -993,6 +1021,7 @@
           "changedFileCount": 1,
           "modelCalls": 11,
           "toolCalls": 15,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -1010,6 +1039,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 18,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -1027,6 +1057,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 18,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -1044,6 +1075,7 @@
           "changedFileCount": 0,
           "modelCalls": 3,
           "toolCalls": 4,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -1319,7 +1351,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-4",
@@ -1340,6 +1373,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 21,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -1357,6 +1391,7 @@
           "changedFileCount": 4,
           "modelCalls": 13,
           "toolCalls": 19,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -1374,6 +1409,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 16,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -1391,6 +1427,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -1544,7 +1581,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "eslint-3",
@@ -1565,6 +1603,7 @@
           "changedFileCount": 1,
           "modelCalls": 11,
           "toolCalls": 15,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -1582,6 +1621,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 20,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -1683,7 +1723,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "mixed-4",
@@ -1705,6 +1746,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 7,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -1722,6 +1764,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 7,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -1739,6 +1782,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 14,
+          "deniedToolCalls": null,
           "publicTestCalls": 3,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -1756,6 +1800,7 @@
           "changedFileCount": 0,
           "modelCalls": 6,
           "toolCalls": 10,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -1773,6 +1818,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -1790,6 +1836,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -1807,6 +1854,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -1824,6 +1872,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -1956,7 +2005,8 @@
           "elapsedSeconds": 120.856
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-interrupted",
@@ -1977,6 +2027,7 @@
           "changedFileCount": 0,
           "modelCalls": 1,
           "toolCalls": 0,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -1994,6 +2045,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2011,6 +2063,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2028,6 +2081,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2045,6 +2099,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2062,6 +2117,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2102,7 +2158,8 @@
           "elapsedSeconds": 120.908
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-route",
@@ -2123,6 +2180,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 20,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -2140,6 +2198,7 @@
           "changedFileCount": 2,
           "modelCalls": 11,
           "toolCalls": 21,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -2157,6 +2216,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 14,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -2174,6 +2234,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 17,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -2191,6 +2252,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 24,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -2208,6 +2270,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 19,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -2225,6 +2288,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 23,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -2242,6 +2306,7 @@
           "changedFileCount": 1,
           "modelCalls": 11,
           "toolCalls": 20,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -2259,6 +2324,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 18,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -2276,6 +2342,7 @@
           "changedFileCount": 0,
           "modelCalls": 13,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -2569,7 +2636,8 @@
           "elapsedSeconds": 120.794
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-six",
@@ -2590,6 +2658,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 19,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -2607,6 +2676,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 19,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -2624,6 +2694,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 25,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -2641,6 +2712,7 @@
           "changedFileCount": 0,
           "modelCalls": 1,
           "toolCalls": 0,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -2658,6 +2730,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 20,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -2675,6 +2748,7 @@
           "changedFileCount": 1,
           "modelCalls": 12,
           "toolCalls": 20,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -2692,6 +2766,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2709,6 +2784,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2726,6 +2802,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2743,6 +2820,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2760,6 +2838,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2777,6 +2856,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -2973,7 +3053,8 @@
           "elapsedSeconds": 1.752
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-unstarted",
@@ -2994,6 +3075,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 15,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -3011,6 +3093,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -3028,6 +3111,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -3045,6 +3129,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -3062,6 +3147,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -3079,6 +3165,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -3163,7 +3250,8 @@
           "elapsedSeconds": 1.63
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-lowcost",
@@ -3184,6 +3272,7 @@
           "changedFileCount": 0,
           "modelCalls": 13,
           "toolCalls": 16,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -3201,6 +3290,7 @@
           "changedFileCount": 0,
           "modelCalls": 13,
           "toolCalls": 13,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -3218,6 +3308,7 @@
           "changedFileCount": 0,
           "modelCalls": 13,
           "toolCalls": 20,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -3235,6 +3326,7 @@
           "changedFileCount": 0,
           "modelCalls": 13,
           "toolCalls": 22,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": true,
           "acceptanceExit": 1,
@@ -3363,7 +3455,8 @@
           "elapsedSeconds": 1.141
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-gateway",
@@ -3384,6 +3477,7 @@
           "changedFileCount": 1,
           "modelCalls": 11,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3401,6 +3495,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 24,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3418,6 +3513,7 @@
           "changedFileCount": 1,
           "modelCalls": 11,
           "toolCalls": 16,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3435,6 +3531,7 @@
           "changedFileCount": 0,
           "modelCalls": 3,
           "toolCalls": 4,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -3548,7 +3645,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "dayjs-gateway",
@@ -3569,6 +3667,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 9,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3586,6 +3685,7 @@
           "changedFileCount": 0,
           "modelCalls": 3,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -3603,6 +3703,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 7,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3620,6 +3721,7 @@
           "changedFileCount": 1,
           "modelCalls": 5,
           "toolCalls": 6,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3637,6 +3739,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 6,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3654,6 +3757,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 9,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3671,6 +3775,7 @@
           "changedFileCount": 0,
           "modelCalls": 2,
           "toolCalls": 3,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -3688,6 +3793,7 @@
           "changedFileCount": 8,
           "modelCalls": 13,
           "toolCalls": 15,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -3705,6 +3811,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3722,6 +3829,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3739,6 +3847,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 9,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -3756,6 +3865,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 25,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4080,7 +4190,8 @@
           "reportedReasoningTokens": null,
           "logSha256": "b8534c60a82e92dc82451420ac1e84f225dbcc2cbda558c3af105aedc7276396"
         }
-      ]
+      ],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "moment-mathjs",
@@ -4102,6 +4213,7 @@
           "changedFileCount": 2,
           "modelCalls": 13,
           "toolCalls": 17,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -4119,6 +4231,7 @@
           "changedFileCount": 0,
           "modelCalls": 3,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -4136,6 +4249,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 14,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4153,6 +4267,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 9,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4170,6 +4285,7 @@
           "changedFileCount": 1,
           "modelCalls": 12,
           "toolCalls": 11,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4187,6 +4303,7 @@
           "changedFileCount": 1,
           "modelCalls": 12,
           "toolCalls": 15,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4204,6 +4321,7 @@
           "changedFileCount": 0,
           "modelCalls": 2,
           "toolCalls": 4,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -4221,6 +4339,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -4434,7 +4553,8 @@
           "reportedReasoningTokens": null,
           "logSha256": "fba596ed5d8179a71da451a6f41bdd6433083f1d3195e5f8cab3fa88b903f766"
         }
-      ]
+      ],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "dayjs-mathjs",
@@ -4456,6 +4576,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4473,6 +4594,7 @@
           "changedFileCount": 0,
           "modelCalls": 2,
           "toolCalls": 1,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -4490,6 +4612,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 13,
+          "deniedToolCalls": null,
           "publicTestCalls": 3,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4507,6 +4630,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 9,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4524,6 +4648,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4541,6 +4666,7 @@
           "changedFileCount": 0,
           "modelCalls": 1,
           "toolCalls": 0,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -4733,7 +4859,8 @@
           "reportedReasoningTokens": null,
           "logSha256": "67f934cc3ee8a68a5072b29e8d9cb0578ecc759d2d467e542132fd76ad5d64be"
         }
-      ]
+      ],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "prettier-late",
@@ -4754,6 +4881,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 23,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -4771,6 +4899,7 @@
           "changedFileCount": 1,
           "modelCalls": 13,
           "toolCalls": 25,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": true,
           "acceptanceExit": 0,
@@ -4788,6 +4917,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 9,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4805,6 +4935,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 9,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -4969,7 +5100,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "mathjs-late",
@@ -4990,6 +5122,7 @@
           "changedFileCount": 2,
           "modelCalls": 10,
           "toolCalls": 14,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5007,6 +5140,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5024,6 +5158,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 11,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5041,6 +5176,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 11,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5195,7 +5331,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "validator-new",
@@ -5216,6 +5353,7 @@
           "changedFileCount": 0,
           "modelCalls": 2,
           "toolCalls": 1,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -5233,6 +5371,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 14,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5250,6 +5389,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 13,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5267,6 +5407,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5395,7 +5536,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "luxon-new",
@@ -5416,6 +5558,7 @@
           "changedFileCount": 1,
           "modelCalls": 12,
           "toolCalls": 13,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5433,6 +5576,7 @@
           "changedFileCount": 1,
           "modelCalls": 11,
           "toolCalls": 14,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5450,6 +5594,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 10,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5467,6 +5612,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 8,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5619,7 +5765,8 @@
           "reportedReasoningTokens": 3301,
           "logSha256": "b8cc0f92cc8f64b52e70f5c42003bd0ad094d8aac418149a42a59a53ac6e25fc"
         }
-      ]
+      ],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "lodash-new",
@@ -5640,6 +5787,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 10,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5657,6 +5805,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 10,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5674,6 +5823,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 15,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5691,6 +5841,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 14,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5839,7 +5990,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "yup-new",
@@ -5860,6 +6012,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 11,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5877,6 +6030,7 @@
           "changedFileCount": 1,
           "modelCalls": 7,
           "toolCalls": 11,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5894,6 +6048,7 @@
           "changedFileCount": 1,
           "modelCalls": 8,
           "toolCalls": 7,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -5911,6 +6066,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -6054,7 +6210,8 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "validator-chartjs",
@@ -6076,6 +6233,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 7,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -6093,6 +6251,7 @@
           "changedFileCount": 1,
           "modelCalls": 6,
           "toolCalls": 7,
+          "deniedToolCalls": null,
           "publicTestCalls": 1,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -6110,6 +6269,7 @@
           "changedFileCount": 0,
           "modelCalls": 2,
           "toolCalls": 1,
+          "deniedToolCalls": null,
           "publicTestCalls": 0,
           "forcedFinal": false,
           "acceptanceExit": 1,
@@ -6127,6 +6287,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -6144,6 +6305,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -6161,6 +6323,7 @@
           "changedFileCount": 0,
           "modelCalls": null,
           "toolCalls": null,
+          "deniedToolCalls": null,
           "publicTestCalls": null,
           "forcedFinal": false,
           "acceptanceExit": null,
@@ -6277,7 +6440,8 @@
           "elapsedSeconds": 5.003
         }
       ],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
     },
     {
       "batch": "chartjs-unstarted",
@@ -6298,6 +6462,7 @@
           "changedFileCount": 1,
           "modelCalls": 9,
           "toolCalls": 12,
+          "deniedToolCalls": null,
           "publicTestCalls": 2,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -6315,6 +6480,7 @@
           "changedFileCount": 1,
           "modelCalls": 10,
           "toolCalls": 13,
+          "deniedToolCalls": null,
           "publicTestCalls": 3,
           "forcedFinal": false,
           "acceptanceExit": 0,
@@ -6406,7 +6572,2078 @@
         }
       },
       "failures": [],
-      "qwenReportedOverLimit": []
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
+    },
+    {
+      "batch": "independent-27",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+        "ramda": "f4b2e35ff433e18c751326b82acc3c6ab3585e18",
+        "datefns": "a9739fb3e5384a810e90d7376446f6d84ecc5029",
+        "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7",
+        "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3"
+      },
+      "plannedAssignments": 10,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "4096",
+          "project": "datefns",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 11,
+          "toolCalls": 16,
+          "deniedToolCalls": null,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "4096",
+          "project": "datefns",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 7,
+          "deniedToolCalls": null,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "3134",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 11,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 2,
+          "toolCalls": 4,
+          "deniedToolCalls": null,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "3134",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 11,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 12,
+          "toolCalls": 20,
+          "deniedToolCalls": null,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "2137",
+          "project": "ramda",
+          "arm": "keyword",
+          "historyRecords": 7,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 16,
+          "deniedToolCalls": null,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "2137",
+          "project": "ramda",
+          "arm": "memex",
+          "historyRecords": 7,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 5,
+          "toolCalls": 15,
+          "deniedToolCalls": null,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 7,
+          "issue": "2430",
+          "project": "validator",
+          "arm": "memex",
+          "historyRecords": 3,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 5,
+          "toolCalls": 12,
+          "deniedToolCalls": null,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 8,
+          "issue": "2430",
+          "project": "validator",
+          "arm": "keyword",
+          "historyRecords": 3,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 14,
+          "deniedToolCalls": null,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 9,
+          "issue": "2281",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 9,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 10,
+          "toolCalls": 25,
+          "deniedToolCalls": null,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 10,
+          "issue": "2281",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 9,
+          "attemptOutcome": "INCOMPLETE",
+          "status": "tool_call_limit",
+          "changedFileCount": 0,
+          "modelCalls": 6,
+          "toolCalls": 17,
+          "deniedToolCalls": null,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 6,
+        "INCOMPLETE": 4
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 8,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 5,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B05",
+          "slot": 9,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B06",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 76,
+          "completed": 76,
+          "reportedPromptTokens": 496965,
+          "reportedCompletionTokens": 12574,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 1401746,
+          "responseBytes": 61542
+        },
+        "deepseek-flash": {
+          "started": 6,
+          "completed": 6,
+          "reportedPromptTokens": 6819,
+          "reportedCompletionTokens": 732,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 23813,
+          "responseBytes": 6109
+        },
+        "qwen3.8-flash": {
+          "started": 6,
+          "completed": 6,
+          "reportedPromptTokens": 6220,
+          "reportedCompletionTokens": 1046,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 23609,
+          "responseBytes": 6792
+        },
+        "gpt-6.1-sol": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 47598,
+          "reportedCompletionTokens": 354,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 10516,
+          "responseBytes": 2334
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
+    },
+    {
+      "batch": "independent-28",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "qs": "43baea4655cb9b543fb1c5cc0db95cde42852140",
+        "express": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824",
+        "cheerio": "70b0dcefb8514298d255ca7ca0ec26b7bc63475a",
+        "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+      },
+      "plannedAssignments": 8,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "3620",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 11,
+          "toolCalls": 15,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "3620",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 8,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "581",
+          "project": "cheerio",
+          "arm": "keyword",
+          "historyRecords": 3,
+          "attemptOutcome": "UNKNOWN",
+          "status": "model_failure",
+          "changedFileCount": 0,
+          "modelCalls": 11,
+          "toolCalls": 18,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "581",
+          "project": "cheerio",
+          "arm": "memex",
+          "historyRecords": 3,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "432",
+          "project": "qs",
+          "arm": "memex",
+          "historyRecords": 6,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "432",
+          "project": "qs",
+          "arm": "keyword",
+          "historyRecords": 6,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 7,
+          "issue": "7350",
+          "project": "express",
+          "arm": "keyword",
+          "historyRecords": 8,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 8,
+          "issue": "7350",
+          "project": "express",
+          "arm": "memex",
+          "historyRecords": 8,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 2,
+        "UNKNOWN": 1,
+        "NOT_RUN": 5
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 29,
+          "completed": 29,
+          "reportedPromptTokens": 139458,
+          "reportedCompletionTokens": 4912,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 602518,
+          "responseBytes": 20400
+        },
+        "deepseek-flash": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 1452,
+          "reportedCompletionTokens": 185,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 6243,
+          "responseBytes": 1788
+        },
+        "qwen3.8-flash": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 1357,
+          "reportedCompletionTokens": 216,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 6175,
+          "responseBytes": 1734
+        },
+        "gpt-6.1-sol": {
+          "started": 1,
+          "completed": 1,
+          "reportedPromptTokens": 23257,
+          "reportedCompletionTokens": 148,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 3735,
+          "responseBytes": 1469
+        }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "7b6aa2135c97aadf76bd0faf57b40af150e8dab020fcd2127d0c9490e1883ba5",
+          "at": "2026-10-31T14:37:29.060872+00:00",
+          "label": "03:10#attempt-1",
+          "model": "gpt-6-astra",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "TimeoutError",
+          "errorCode": null,
+          "elapsedSeconds": 120.798
+        }
+      ],
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
+    },
+    {
+      "batch": "setup-stop-29",
+      "scoreDirectionExplicit": false,
+      "sourceCommit": {
+        "koa": "b786e7b456782c2cff1d6549cd4c8dba3feeb262",
+        "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+        "datefns": "a9739fb3e5384a810e90d7376446f6d84ecc5029",
+        "express": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824"
+      },
+      "plannedAssignments": 8,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "7362",
+          "project": "express",
+          "arm": "memex",
+          "historyRecords": 7,
+          "attemptOutcome": "UNKNOWN",
+          "status": "setup_failure",
+          "changedFileCount": 0,
+          "modelCalls": 0,
+          "toolCalls": 0,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "7362",
+          "project": "express",
+          "arm": "keyword",
+          "historyRecords": 7,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "1134",
+          "project": "datefns",
+          "arm": "memex",
+          "historyRecords": 9,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "1134",
+          "project": "datefns",
+          "arm": "keyword",
+          "historyRecords": 9,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "2179",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 9,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "2179",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 9,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 7,
+          "issue": "827",
+          "project": "koa",
+          "arm": "keyword",
+          "historyRecords": 12,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 8,
+          "issue": "827",
+          "project": "koa",
+          "arm": "memex",
+          "historyRecords": 12,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "UNKNOWN": 1,
+        "NOT_RUN": 7
+      },
+      "reviews": [],
+      "posthocNormalization": null,
+      "usage": {},
+      "failures": [],
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
+    },
+    {
+      "batch": "independent-30",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "koa": "b786e7b456782c2cff1d6549cd4c8dba3feeb262",
+        "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+        "datefns": "a9739fb3e5384a810e90d7376446f6d84ecc5029",
+        "express": "1c6f1b0fe4000977b9a7b4f34097e4d527dd9824"
+      },
+      "plannedAssignments": 8,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "7362",
+          "project": "express",
+          "arm": "keyword",
+          "historyRecords": 7,
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 8,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "7362",
+          "project": "express",
+          "arm": "memex",
+          "historyRecords": 7,
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 11,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "827",
+          "project": "koa",
+          "arm": "keyword",
+          "historyRecords": 12,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "827",
+          "project": "koa",
+          "arm": "memex",
+          "historyRecords": 12,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 16,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "1134",
+          "project": "datefns",
+          "arm": "keyword",
+          "historyRecords": 9,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 3,
+          "modelCalls": 13,
+          "toolCalls": 34,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": true,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "1134",
+          "project": "datefns",
+          "arm": "memex",
+          "historyRecords": 9,
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 13,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 7,
+          "issue": "2179",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 9,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 10,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 8,
+          "issue": "2179",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 9,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 12,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "CHECKS_NONZERO": 3,
+        "PASS": 5
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 7,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B02",
+          "slot": 6,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 0,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 0,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B04",
+          "slot": 8,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B05",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B06",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B07",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 0,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B08",
+          "slot": 5,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 54,
+          "completed": 54,
+          "reportedPromptTokens": 377358,
+          "reportedCompletionTokens": 17513,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 1274042,
+          "responseBytes": 51238
+        },
+        "deepseek-flash": {
+          "started": 8,
+          "completed": 8,
+          "reportedPromptTokens": 9026,
+          "reportedCompletionTokens": 958,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 33437,
+          "responseBytes": 8070
+        },
+        "qwen3.8-flash": {
+          "started": 8,
+          "completed": 8,
+          "reportedPromptTokens": 8644,
+          "reportedCompletionTokens": 1302,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 33165,
+          "responseBytes": 8410
+        },
+        "gpt-6.1-sol": {
+          "started": 6,
+          "completed": 6,
+          "reportedPromptTokens": 50706,
+          "reportedCompletionTokens": 950,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 28424,
+          "responseBytes": 5716
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": [
+        {
+          "at": "2026-10-31T15:00:49.259180+00:00",
+          "label": "05:6#attempt-1",
+          "model": "gpt-6-astra",
+          "requestedMaxTokens": 1000,
+          "reportedCompletionTokens": 2234,
+          "logSha256": "069def2fddb7b4b1b1ed1cc6db378d0123452a51346dddc9c3f165ffbbf089ae"
+        },
+        {
+          "at": "2026-10-31T15:01:12.687943+00:00",
+          "label": "05:7#attempt-1",
+          "model": "gpt-6-astra",
+          "requestedMaxTokens": 1000,
+          "reportedCompletionTokens": 1402,
+          "logSha256": "069def2fddb7b4b1b1ed1cc6db378d0123452a51346dddc9c3f165ffbbf089ae"
+        },
+        {
+          "at": "2026-10-31T15:06:02.610483+00:00",
+          "label": "08:3#attempt-1",
+          "model": "gpt-6-astra",
+          "requestedMaxTokens": 1000,
+          "reportedCompletionTokens": 2661,
+          "logSha256": "069def2fddb7b4b1b1ed1cc6db378d0123452a51346dddc9c3f165ffbbf089ae"
+        },
+        {
+          "at": "2026-10-31T15:07:35.178569+00:00",
+          "label": "08:4#attempt-1",
+          "model": "gpt-6-astra",
+          "requestedMaxTokens": 1000,
+          "reportedCompletionTokens": 1383,
+          "logSha256": "069def2fddb7b4b1b1ed1cc6db378d0123452a51346dddc9c3f165ffbbf089ae"
+        }
+      ]
+    },
+    {
+      "batch": "independent-31",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "dayjs": "436bde0bcded312781cbe45dc2b0ef079a36d8e3",
+        "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+        "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+      },
+      "plannedAssignments": 6,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "2442",
+          "project": "dayjs",
+          "arm": "memex",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 8,
+          "toolCalls": 18,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "2442",
+          "project": "dayjs",
+          "arm": "keyword",
+          "historyRecords": 4,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "2036",
+          "project": "validator",
+          "arm": "keyword",
+          "historyRecords": 11,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "2036",
+          "project": "validator",
+          "arm": "memex",
+          "historyRecords": 11,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "3604",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 13,
+          "toolCalls": 21,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": true,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "3604",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 6
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 5,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 1
+          }
+        },
+        {
+          "blind": "B05",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B06",
+          "slot": 6,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 41,
+          "completed": 41,
+          "reportedPromptTokens": 392325,
+          "reportedCompletionTokens": 7321,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 811221,
+          "responseBytes": 37705
+        },
+        "deepseek-flash": {
+          "started": 6,
+          "completed": 6,
+          "reportedPromptTokens": 6574,
+          "reportedCompletionTokens": 982,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 25098,
+          "responseBytes": 7335
+        },
+        "qwen3.8-flash": {
+          "started": 6,
+          "completed": 6,
+          "reportedPromptTokens": 6853,
+          "reportedCompletionTokens": 3071,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 24894,
+          "responseBytes": 17115
+        },
+        "gpt-6.1-sol": {
+          "started": 1,
+          "completed": 1,
+          "reportedPromptTokens": 6430,
+          "reportedCompletionTokens": 226,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 8175,
+          "responseBytes": 1246
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": [
+        {
+          "at": "2026-10-31T15:19:08.409062+00:00",
+          "label": "06:2#attempt-1",
+          "model": "gpt-6-astra",
+          "requestedMaxTokens": 1000,
+          "reportedCompletionTokens": 2012,
+          "logSha256": "ca218fb237307010f9aff3c9853aa31f5fbcf6f318f357929ef996106e341cdd"
+        }
+      ]
+    },
+    {
+      "batch": "independent-32",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "underscore": "5c1e5f686f8500af9c9d15614ed60289d6d35d6b",
+        "validator": "9ff342479591ca5a43cb30000195bcf55c1bbed9",
+        "yup": "ff31eee8a2b10c938bb3a22544d9e33957a8cf01"
+      },
+      "plannedAssignments": 6,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "2433",
+          "project": "validator",
+          "arm": "memex",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 8,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "2433",
+          "project": "validator",
+          "arm": "keyword",
+          "historyRecords": 6,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "2214",
+          "project": "underscore",
+          "arm": "keyword",
+          "historyRecords": 9,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 6,
+          "toolCalls": 7,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "2214",
+          "project": "underscore",
+          "arm": "memex",
+          "historyRecords": 9,
+          "attemptOutcome": "UNKNOWN",
+          "status": "model_failure",
+          "changedFileCount": 0,
+          "modelCalls": 4,
+          "toolCalls": 12,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 0,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 5,
+          "issue": "2252",
+          "project": "yup",
+          "arm": "memex",
+          "historyRecords": 13,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 6,
+          "issue": "2252",
+          "project": "yup",
+          "arm": "keyword",
+          "historyRecords": 13,
+          "attemptOutcome": "NOT_RUN",
+          "status": "NOT_RUN_AFTER_STOP",
+          "changedFileCount": 0,
+          "modelCalls": null,
+          "toolCalls": null,
+          "deniedToolCalls": null,
+          "publicTestCalls": null,
+          "forcedFinal": false,
+          "acceptanceExit": null,
+          "regressionExit": null,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 3,
+        "UNKNOWN": 1,
+        "NOT_RUN": 2
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 1,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B03",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "INVALID",
+              "eventStatus": "ok",
+              "correctness": null,
+              "sideEffects": null
+            }
+          ],
+          "registeredAdjudication": null
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 21,
+          "completed": 21,
+          "reportedPromptTokens": 102060,
+          "reportedCompletionTokens": 2910,
+          "missingUsage": 1,
+          "failedResponses": 1,
+          "unmatchedStarted": 0,
+          "requestBytes": 266492,
+          "responseBytes": 15323
+        },
+        "deepseek-flash": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 3374,
+          "reportedCompletionTokens": 345,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 12672,
+          "responseBytes": 3007
+        },
+        "qwen3.8-flash": {
+          "started": 3,
+          "completed": 3,
+          "reportedPromptTokens": 3668,
+          "reportedCompletionTokens": 2114,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 12570,
+          "responseBytes": 11676
+        }
+      },
+      "failures": [
+        {
+          "log": "solver-calls.jsonl",
+          "logSha256": "29bae17aacffc20efbe32e9457f80fd55ebce4542cd6fa2a8ca1bf07ec139ec7",
+          "at": "2026-10-31T15:27:50.571251+00:00",
+          "label": "04:3#attempt-1",
+          "model": "gpt-6-astra",
+          "status": "error",
+          "httpStatus": null,
+          "errorType": "TimeoutError",
+          "errorCode": null,
+          "elapsedSeconds": 120.869
+        }
+      ],
+      "qwenReportedOverLimit": [],
+      "solverReportedOverLimit": []
+    },
+    {
+      "batch": "independent-35",
+      "scoreDirectionExplicit": true,
+      "sourceCommit": {
+        "yup": "ff31eee8a2b10c938bb3a22544d9e33957a8cf01",
+        "mathjs": "4f5d049e8d6790d6774acbf73e774c19f5e20db7"
+      },
+      "plannedAssignments": 4,
+      "runs": [
+        {
+          "slot": 1,
+          "issue": "2252",
+          "project": "yup",
+          "arm": "memex",
+          "historyRecords": 13,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 2,
+          "issue": "2252",
+          "project": "yup",
+          "arm": "keyword",
+          "historyRecords": 13,
+          "attemptOutcome": "PASS",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 0,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 3,
+          "issue": "3608",
+          "project": "mathjs",
+          "arm": "keyword",
+          "historyRecords": 5,
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 7,
+          "toolCalls": 6,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        },
+        {
+          "slot": 4,
+          "issue": "3608",
+          "project": "mathjs",
+          "arm": "memex",
+          "historyRecords": 5,
+          "attemptOutcome": "CHECKS_NONZERO",
+          "status": "completed",
+          "changedFileCount": 1,
+          "modelCalls": 5,
+          "toolCalls": 4,
+          "deniedToolCalls": 0,
+          "publicTestCalls": 1,
+          "forcedFinal": false,
+          "acceptanceExit": 1,
+          "regressionExit": 0,
+          "checkErrorPresent": false
+        }
+      ],
+      "outcomes": {
+        "PASS": 2,
+        "CHECKS_NONZERO": 2
+      },
+      "reviews": [
+        {
+          "blind": "B01",
+          "slot": 3,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B02",
+          "slot": 4,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 0,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 1,
+            "sideEffects": 2
+          }
+        },
+        {
+          "blind": "B03",
+          "slot": 2,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": null
+        },
+        {
+          "blind": "B04",
+          "slot": 1,
+          "ratings": [
+            {
+              "model": "deepseek-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 1
+            },
+            {
+              "model": "qwen3.8-flash",
+              "status": "VALID",
+              "eventStatus": "ok",
+              "correctness": 2,
+              "sideEffects": 2
+            }
+          ],
+          "registeredAdjudication": {
+            "status": "VALID",
+            "eventStatus": "ok",
+            "correctness": 2,
+            "sideEffects": 1
+          }
+        }
+      ],
+      "posthocNormalization": null,
+      "usage": {
+        "gpt-6-astra": {
+          "started": 22,
+          "completed": 22,
+          "reportedPromptTokens": 165677,
+          "reportedCompletionTokens": 3341,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 268642,
+          "responseBytes": 15633
+        },
+        "deepseek-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 4762,
+          "reportedCompletionTokens": 384,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 19722,
+          "responseBytes": 3644
+        },
+        "qwen3.8-flash": {
+          "started": 4,
+          "completed": 4,
+          "reportedPromptTokens": 4599,
+          "reportedCompletionTokens": 5255,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 19586,
+          "responseBytes": 25785
+        },
+        "gpt-6.1-sol": {
+          "started": 2,
+          "completed": 2,
+          "reportedPromptTokens": 11070,
+          "reportedCompletionTokens": 479,
+          "missingUsage": 0,
+          "failedResponses": 0,
+          "unmatchedStarted": 0,
+          "requestBytes": 11289,
+          "responseBytes": 2005
+        }
+      },
+      "failures": [],
+      "qwenReportedOverLimit": [
+        {
+          "at": "2026-10-31T15:43:58.288683+00:00",
+          "label": "B02:qwen3.8-flash#attempt-1",
+          "requestedMaxTokens": 2048,
+          "reportedCompletionTokens": 4827,
+          "reportedReasoningTokens": 4755,
+          "logSha256": "2258ac1a3df7ee47d88a5275a30fc86181c626c2dda8f3017a4b94c6bd8362f3"
+        }
+      ],
+      "solverReportedOverLimit": []
     }
   ],
   "newPilotSummary": {
@@ -6446,6 +8683,974 @@
       "dayjs#2479",
       "mathjs#3614",
       "prettier#16126"
+    ]
+  },
+  "distinctIssueFollowupSummary": {
+    "distinctIssues": 20,
+    "assignmentOutcomes": {
+      "PASS": 24,
+      "INCOMPLETE": 4,
+      "UNKNOWN": 2,
+      "NOT_RUN": 5,
+      "CHECKS_NONZERO": 5
+    },
+    "bothArmsCompleteWithTwoFormatValidReviews": 9,
+    "bothArmsCompleteWithDisagreementsResolved": 9,
+    "resolvedCorrectnessComparisons": {
+      "KEYWORD_HIGHER": 1,
+      "EQUAL": 7,
+      "MEMEX_HIGHER": 1
+    },
+    "reviewStatuses": {
+      "VALID": 52,
+      "INVALID": 6
+    },
+    "disagreementAdjudications": {
+      "VALID": 12
+    },
+    "issues": [
+      {
+        "project": "cheerio",
+        "issue": "581",
+        "arms": {
+          "keyword": "UNKNOWN",
+          "memex": "NOT_RUN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "datefns",
+        "issue": "1134",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "CHECKS_NONZERO"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 2,
+          "memex": 0
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "datefns",
+        "issue": "4096",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "dayjs",
+        "issue": "2179",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "dayjs",
+        "issue": "2281",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "INCOMPLETE"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "dayjs",
+        "issue": "2442",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "express",
+        "issue": "7350",
+        "arms": {
+          "keyword": "NOT_RUN",
+          "memex": "NOT_RUN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "express",
+        "issue": "7362",
+        "arms": {
+          "keyword": "CHECKS_NONZERO",
+          "memex": "CHECKS_NONZERO"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 0,
+          "memex": 0
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "koa",
+        "issue": "827",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 2,
+          "memex": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3134",
+        "arms": {
+          "keyword": "INCOMPLETE",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3604",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 1,
+          "memex": 1
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3608",
+        "arms": {
+          "keyword": "CHECKS_NONZERO",
+          "memex": "CHECKS_NONZERO"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 0,
+          "memex": 1
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3620",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "qs",
+        "issue": "432",
+        "arms": {
+          "memex": "NOT_RUN",
+          "keyword": "NOT_RUN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "ramda",
+        "issue": "2137",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "INCOMPLETE"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "underscore",
+        "issue": "2214",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "UNKNOWN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "validator",
+        "issue": "2036",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "validator",
+        "issue": "2430",
+        "arms": {
+          "memex": "INCOMPLETE",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "validator",
+        "issue": "2433",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "yup",
+        "issue": "2252",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      }
+    ]
+  },
+  "distinctIssueFollowupSupplementaryCoverage": {
+    "distinctIssues": 20,
+    "assignmentOutcomes": {
+      "PASS": 24,
+      "INCOMPLETE": 4,
+      "UNKNOWN": 2,
+      "NOT_RUN": 5,
+      "CHECKS_NONZERO": 5
+    },
+    "bothArmsCompleteWithTwoFormatValidReviews": 12,
+    "bothArmsCompleteWithDisagreementsResolved": 12,
+    "resolvedCorrectnessComparisons": {
+      "KEYWORD_HIGHER": 1,
+      "EQUAL": 8,
+      "MEMEX_HIGHER": 3
+    },
+    "reviewStatuses": {
+      "VALID": 58
+    },
+    "disagreementAdjudications": {
+      "VALID": 13,
+      "INVALID": 1
+    },
+    "issues": [
+      {
+        "project": "cheerio",
+        "issue": "581",
+        "arms": {
+          "keyword": "UNKNOWN",
+          "memex": "NOT_RUN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "datefns",
+        "issue": "1134",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "CHECKS_NONZERO"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 2,
+          "memex": 0
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "datefns",
+        "issue": "4096",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "dayjs",
+        "issue": "2179",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "dayjs",
+        "issue": "2281",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "INCOMPLETE"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "dayjs",
+        "issue": "2442",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 1
+        },
+        "usedSupplementaryReviews": true
+      },
+      {
+        "project": "express",
+        "issue": "7350",
+        "arms": {
+          "keyword": "NOT_RUN",
+          "memex": "NOT_RUN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "express",
+        "issue": "7362",
+        "arms": {
+          "keyword": "CHECKS_NONZERO",
+          "memex": "CHECKS_NONZERO"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 0,
+          "memex": 0
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "koa",
+        "issue": "827",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 2,
+          "memex": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3134",
+        "arms": {
+          "keyword": "INCOMPLETE",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3604",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 1,
+          "memex": 1
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3608",
+        "arms": {
+          "keyword": "CHECKS_NONZERO",
+          "memex": "CHECKS_NONZERO"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 0,
+          "memex": 1
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "mathjs",
+        "issue": "3620",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "qs",
+        "issue": "432",
+        "arms": {
+          "memex": "NOT_RUN",
+          "keyword": "NOT_RUN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "ramda",
+        "issue": "2137",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "INCOMPLETE"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "underscore",
+        "issue": "2214",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "UNKNOWN"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": true
+      },
+      {
+        "project": "validator",
+        "issue": "2036",
+        "arms": {
+          "keyword": "PASS",
+          "memex": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "keyword": 2,
+          "memex": 2
+        },
+        "usedSupplementaryReviews": true
+      },
+      {
+        "project": "validator",
+        "issue": "2430",
+        "arms": {
+          "memex": "INCOMPLETE",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": false,
+        "bothArmsCompleteWithDisagreementsResolved": false,
+        "effectiveCorrectness": {},
+        "usedSupplementaryReviews": false
+      },
+      {
+        "project": "validator",
+        "issue": "2433",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 1
+        },
+        "usedSupplementaryReviews": true
+      },
+      {
+        "project": "yup",
+        "issue": "2252",
+        "arms": {
+          "memex": "PASS",
+          "keyword": "PASS"
+        },
+        "bothArmsCompleteWithTwoFormatValidReviews": true,
+        "bothArmsCompleteWithDisagreementsResolved": true,
+        "effectiveCorrectness": {
+          "memex": 2,
+          "keyword": 2
+        },
+        "usedSupplementaryReviews": false
+      }
+    ]
+  },
+  "posthocReviewsV34": {
+    "kind": "posthoc-alternate-blind-reviews-v34",
+    "selection": "Completed batch 31 and 32 attempts with valid DeepSeek and completed but format-invalid Qwen reviews; exclude missing or failed/timeout reviews.",
+    "reviewer": "gpt-6.1-sol",
+    "adjudicator": "gpt-6-astra",
+    "candidates": [
+      {
+        "blind": "S01",
+        "source": "20261031-independent-batch31",
+        "sourceBlind": "B03",
+        "slot": 4,
+        "issue": "2036",
+        "arm": "memex",
+        "firstReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        },
+        "supplementaryReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        },
+        "supplementaryAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "S02",
+        "source": "20261031-independent-batch31",
+        "sourceBlind": "B02",
+        "slot": 1,
+        "issue": "2442",
+        "arm": "memex",
+        "firstReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "supplementaryReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "supplementaryAdjudication": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "S03",
+        "source": "20261031-independent-batch31",
+        "sourceBlind": "B01",
+        "slot": 3,
+        "issue": "2036",
+        "arm": "keyword",
+        "firstReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        },
+        "supplementaryReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 1
+        },
+        "supplementaryAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "S04",
+        "source": "20261031-independent-batch32",
+        "sourceBlind": "B02",
+        "slot": 2,
+        "issue": "2433",
+        "arm": "keyword",
+        "firstReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "supplementaryReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "supplementaryAdjudication": {
+          "status": "MISSING"
+        }
+      },
+      {
+        "blind": "S05",
+        "source": "20261031-independent-batch32",
+        "sourceBlind": "B01",
+        "slot": 3,
+        "issue": "2214",
+        "arm": "keyword",
+        "firstReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 1
+        },
+        "supplementaryReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 1,
+          "sideEffects": 2
+        },
+        "supplementaryAdjudication": {
+          "status": "INVALID",
+          "eventStatus": "ok",
+          "correctness": null,
+          "sideEffects": null
+        }
+      },
+      {
+        "blind": "S06",
+        "source": "20261031-independent-batch32",
+        "sourceBlind": "B03",
+        "slot": 1,
+        "issue": "2433",
+        "arm": "memex",
+        "firstReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "supplementaryReview": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        },
+        "supplementaryAdjudication": {
+          "status": "MISSING"
+        }
+      }
+    ],
+    "usage": {
+      "gpt-6.1-sol": {
+        "started": 6,
+        "completed": 6,
+        "reportedPromptTokens": 121229,
+        "reportedCompletionTokens": 1393,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 19260,
+        "responseBytes": 5882
+      },
+      "gpt-6-astra": {
+        "started": 2,
+        "completed": 2,
+        "reportedPromptTokens": 11948,
+        "reportedCompletionTokens": 439,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 7782,
+        "responseBytes": 2162
+      }
+    },
+    "failures": [],
+    "limitations": [
+      "Selected and model substituted after observing original review failures; originals remain unchanged.",
+      "Adjudicator uses the solver model label, so is not independent of the solver.",
+      "All AI model labels share one proxy with unverified provenance; no human review.",
+      "Format validity does not prove correctness; tests are partial."
+    ]
+  },
+  "historicalResolutionCoverage": {
+    "excludesNoHistoryControls": true,
+    "beforeV33": {
+      "pairsWithTwoValidRatingsPerArm": 18,
+      "pairsWithValidDisagreementAdjudications": 14,
+      "resolvedIssueIds": [
+        "dayjs#1271",
+        "dayjs#1923",
+        "dayjs#2479",
+        "dayjs#2956",
+        "luxon#1366",
+        "mathjs#1905",
+        "mathjs#3528",
+        "mathjs#3614",
+        "mathjs#3644",
+        "prettier#16925",
+        "validator#1309",
+        "validator#2497",
+        "yup#2150",
+        "yup#660"
+      ],
+      "resolvedCorrectnessComparisons": {
+        "EQUAL": 13,
+        "KEYWORD_HIGHER": 1
+      },
+      "unresolvedCandidates": [
+        {
+          "project": "prettier",
+          "issue": "16126",
+          "arm": "memex",
+          "batch": "prettier-gateway",
+          "slot": 1
+        },
+        {
+          "project": "prettier",
+          "issue": "16126",
+          "arm": "keyword",
+          "batch": "prettier-gateway",
+          "slot": 2
+        },
+        {
+          "project": "prettier",
+          "issue": "11982",
+          "arm": "memex",
+          "batch": "prettier-late",
+          "slot": 4
+        },
+        {
+          "project": "luxon",
+          "issue": "1189",
+          "arm": "memex",
+          "batch": "luxon-new",
+          "slot": 3
+        },
+        {
+          "project": "lodash",
+          "issue": "6191",
+          "arm": "keyword",
+          "batch": "lodash-new",
+          "slot": 1
+        }
+      ]
+    },
+    "includingV33": {
+      "pairsWithTwoValidRatingsPerArm": 18,
+      "pairsWithValidDisagreementAdjudications": 18,
+      "resolvedIssueIds": [
+        "dayjs#1271",
+        "dayjs#1923",
+        "dayjs#2479",
+        "dayjs#2956",
+        "lodash#6191",
+        "luxon#1189",
+        "luxon#1366",
+        "mathjs#1905",
+        "mathjs#3528",
+        "mathjs#3614",
+        "mathjs#3644",
+        "prettier#11982",
+        "prettier#16126",
+        "prettier#16925",
+        "validator#1309",
+        "validator#2497",
+        "yup#2150",
+        "yup#660"
+      ],
+      "resolvedCorrectnessComparisons": {
+        "EQUAL": 17,
+        "KEYWORD_HIGHER": 1
+      },
+      "unresolvedCandidates": []
+    },
+    "note": "Supplementary post-hoc ratings and adjudications are included where identified; format validity does not establish correctness."
+  },
+  "posthocAdjudicationsV33": {
+    "kind": "posthoc-five-invalid-disagreement-adjudications-v33",
+    "selection": "Five disagreements in four otherwise fully rated historical pairs whose prior adjudications completed but failed the format check. No timed-out adjudication is replayed.",
+    "model": "gpt-6.1-sol",
+    "candidates": [
+      {
+        "blind": "R01",
+        "source": "20261031-batch15-posthoc-budgeted",
+        "sourceBlind": "B02",
+        "slot": 1,
+        "issue": "16126",
+        "arm": "memex",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "R02",
+        "source": "20261031-lodash-batch23",
+        "sourceBlind": "B01",
+        "slot": 1,
+        "issue": "6191",
+        "arm": "keyword",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "R03",
+        "source": "20261031-prettier-batch19",
+        "sourceBlind": "B04",
+        "slot": 4,
+        "issue": "11982",
+        "arm": "memex",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "R04",
+        "source": "20261031-luxon-batch22",
+        "sourceBlind": "B01",
+        "slot": 3,
+        "issue": "1189",
+        "arm": "memex",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      },
+      {
+        "blind": "R05",
+        "source": "20261031-batch15-posthoc-budgeted",
+        "sourceBlind": "B01",
+        "slot": 2,
+        "issue": "16126",
+        "arm": "keyword",
+        "result": {
+          "status": "VALID",
+          "eventStatus": "ok",
+          "correctness": 2,
+          "sideEffects": 2
+        }
+      }
+    ],
+    "usage": {
+      "gpt-6.1-sol": {
+        "started": 5,
+        "completed": 5,
+        "reportedPromptTokens": 83031,
+        "reportedCompletionTokens": 967,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 27351,
+        "responseBytes": 5706
+      }
+    },
+    "failures": [],
+    "limitations": [
+      "Selected after observing earlier ratings and adjudications; all originals remain separate.",
+      "Different AI model labels share one proxy with unverified provenance; no human review or proven independent provider.",
+      "Format validity does not prove correctness; partial checks are not upstream acceptance."
     ]
   },
   "posthocExplicitRubric": {
@@ -7865,6 +11070,19 @@
         "unmatchedStarted": 0,
         "requestBytes": 118,
         "responseBytes": 477
+      }
+    },
+    "v27JudgeRouteProbe": {
+      "gpt-6.1-sol": {
+        "started": 1,
+        "completed": 1,
+        "reportedPromptTokens": 4233,
+        "reportedCompletionTokens": 9,
+        "missingUsage": 0,
+        "failedResponses": 0,
+        "unmatchedStarted": 0,
+        "requestBytes": 189,
+        "responseBytes": 336
       }
     }
   },
