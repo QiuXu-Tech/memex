@@ -1,0 +1,6 @@
+'use strict';const assert=require('node:assert/strict');const {pathToFileURL}=require('node:url');
+function clean(x){if(Array.isArray(x))return x.map(clean);if(!x||typeof x!=='object')return x;return Object.fromEntries(Object.entries(x).filter(([k])=>!['start','end','loc','extra','comments','leadingComments','trailingComments','innerComments','tokens','errors'].includes(k)).map(([k,v])=>[k,clean(v)]));}
+(async()=>{const root=process.argv[2],p=await import(pathToFileURL(root+'/src/index.js')),b=require(root+'/node_modules/@babel/parser'),input="const el = (\n  <div>\n    {/*\n      * a comment\n      * on several lines\n      */}\n  </div>\n);\n\n";
+const out=await p.format(input,{parser:'babel'});const lines=out.split('\n'),opening=lines.findIndex(l=>l.includes('{/*'));assert(opening>=0);const column=lines[opening].indexOf('{/*')+2;
+for(const suffix of ['* a comment','* on several lines','*/}']){const line=lines.find(l=>l.includes(suffix));assert(line);assert.equal(line.indexOf('*'),column)}
+assert.deepStrictEqual(clean(b.parse(out,{sourceType:'module',plugins:['jsx']}).program),clean(b.parse(input,{sourceType:'module',plugins:['jsx']}).program));assert.equal(await p.format(out,{parser:'babel'}),out);console.log('issue alignment, syntax and idempotence checks passed')})().catch(e=>{console.error(e);process.exitCode=1});

@@ -44,6 +44,8 @@ jobs:
           python3 scripts/test-prospective-real-agent-pilot-v12.py
           python3 scripts/test-prospective-real-agent-pilot-v13.py
           python3 scripts/test-prospective-real-agent-pilot-v14.py
+          python3 scripts/test-prospective-gateway.py
+          python3 scripts/test-prospective-gateway-pilot-v15.py
           python3 scripts/test-prospective-posthoc-rubric-review.py
           python3 scripts/test-prospective-unstarted-adjudication.py
           python3 scripts/test-summarize-prospective-agent-batches.py

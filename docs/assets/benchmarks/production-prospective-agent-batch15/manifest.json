@@ -1,0 +1,91 @@
+{
+  "kind": "registered-two-issue-gateway-recovery-instrumentation",
+  "createdAt": "2026-10-31T18:27:10.296264+08:00",
+  "repo": "prettier/prettier",
+  "sourceCommit": {
+    "prettier": "bed4edbb1cf2a9db4004215b0ce5707cdb02b5d9"
+  },
+  "runtimeLockSha256": {
+    "prettier": "41b9c8ed4b436f246269727c8fbf8cda521ecc1d97d3ef5569b05c67eee34876"
+  },
+  "memexCoreCommit": "27b2a1f106c7d717be443614e6bf40226e613074",
+  "tasks": [
+    "16126",
+    "17487"
+  ],
+  "checks": {
+    "16126": {
+      "public": "ce2589c82fe997a0af35b5f73954e4c5bd8655bffcf1c543727ef38abf423b8e",
+      "acceptance": "a7ed250f357ba209fc82bd9857999cc38abf9f00cd5f16528245f26750851f23",
+      "regressionControls": "eb047d714c74060bd52bcb7062fbd1c8d23c10e30555717f72deb467a83c3845"
+    },
+    "17487": {
+      "public": "7289535f3176b40fec2e07cd6567ae5d04a0ffbcaf733613afeca1021df859ce",
+      "acceptance": "fea3332b1cb8cda4934e1523cbb76251ae95e5ae2ccd91a9bb920173a906a132",
+      "regressionControls": "7c51849fd7b8aa4df4b62a0026d85384647f92a5b623c43020551145cdaef21b"
+    }
+  },
+  "files": {
+    "scripts/prospective-gateway-pilot-v15.py": "b52410725e8fea666c7a797d37195dc46bf6080de3404c54daebeae71092bfaa",
+    "scripts/prospective-real-agent-pilot-v14.py": "620ba76e48e113b1bf21063f10459502e3c2487f0caa9962c19306a95e1b8a1c",
+    "scripts/prospective_gateway.py": "b020dee896889d1d3202eed91594a8d644db99516c6213900e2c2c55045b9ac0",
+    "scripts/prospective-agent-worker-v3.py": "686ebb85bff094291842f10da5d33f38aef469f8d4d442c7370b7e414a6e7a5a",
+    "scripts/prospective-vm-sandbox.sh": "cfeb72a3eadbf0e7c2d29e2f1223830aa20c79a98e446cc5e4d546ee5b82b331",
+    "scripts/production-pilot-store.mjs": "8d8769cfe148626b70ddcf41ae7dad287315b25b0689b0a76b55b6a9d52a30ac"
+  },
+  "issuesSha256": "b092cfe3ca6456466268c605ad600e792498080350151683f3f4635ea4d47e3c",
+  "contextsSha256": "65df454ef5897ca1538151d567947747aa81f6cd0cb427e6d4f33d564ac8d81b",
+  "seed": 2026103115,
+  "schedule": [
+    {
+      "issue": "16126",
+      "arm": "memex"
+    },
+    {
+      "issue": "16126",
+      "arm": "keyword"
+    },
+    {
+      "issue": "17487",
+      "arm": "keyword"
+    },
+    {
+      "issue": "17487",
+      "arm": "memex"
+    }
+  ],
+  "solver": "gpt-6-astra",
+  "reviewers": [
+    "deepseek-flash",
+    "claude-haiku-4-5"
+  ],
+  "adjudicator": "qwen3.8-flash",
+  "maxTurns": 12,
+  "maxForcedFinalCalls": 1,
+  "maxForcedFinalTokens": 1200,
+  "maxToolCallsPerTurn": 4,
+  "maxOutputTokens": 1000,
+  "maxReviewTokens": 700,
+  "gatewayPolicy": {
+    "maxAttempts": 3,
+    "retryOnly": "explicit HTTP 503",
+    "backoffSeconds": [
+      2,
+      8
+    ],
+    "maxRetryAfterSeconds": 30,
+    "retryTimeouts": false
+  },
+  "stopRule": "After bounded 503 retries, stop launching calls within the stage after a provider failure, malformed response or missing usage. Preserve every attempt, missing result and unknown fee. Never automatically retry a timeout.",
+  "costTarget": "Under $1 estimated for this two-issue instrumentation pilot, not a hard cap. Failed or unreported charges remain unknown.",
+  "limitations": [
+    "Two issues selected after the previous study and gateway failures; not a pre-registered 30–50-task cohort.",
+    "Public issue discussions and proposed PRs can disclose solutions or appear in model training.",
+    "The YAML issue and an earlier task touch a common source file, though the cited patches change different functions.",
+    "Pre-seeded issue comments are short and are not production sessions or autonomous memory lifecycle management.",
+    "Exact retrieval content and token counts differ by condition even though tools and limits are shared.",
+    "Source-only references, the manually ported JSX reference and custom checks are not full upstream acceptance.",
+    "The reviewers and adjudicator are AI model names through the same proxy, with provenance unverified.",
+    "No production effectiveness or cost-savings claim."
+  ]
+}
