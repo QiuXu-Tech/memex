@@ -202,5 +202,20 @@
   "earlierDiagnosticCandidateMatchedUsd": "0.001032",
   "failedEarlier403Charge": "UNKNOWN",
   "fullInvoiceAndOtherCosts": "UNKNOWN",
-  "costMatchCaveat": "Candidate matches from authenticated provider usage screen, not request-ID-verified invoice; delayed or omitted charges and non-API costs unknown."
+  "costMatchCaveat": "Candidate matches from authenticated provider usage screen, not request-ID-verified invoice; delayed or omitted charges and non-API costs unknown.",
+  "postRechargeLongDiagnostic": {
+    "model": "gpt-6-astra",
+    "startedAt": "2026-10-31T10:17:18+08:00",
+    "requestBytes": 31740,
+    "status": "ok",
+    "httpStatus": 200,
+    "promptTokens": 8742,
+    "completionTokens": 21,
+    "finishReason": "stop",
+    "candidateMatchedUsd": "0.004858",
+    "billingMatch": "model + token counts + approximate time; request ID unavailable",
+    "note": "synthetic reproduction of the pre-recharge 403 request; separate from canary trial"
+  },
+  "allSuccessfulDiagnosticCandidateMatchedUsd": "0.005890",
+  "canaryPlusSuccessfulDiagnosticCandidateMatchedUsd": "0.020792"
 }
