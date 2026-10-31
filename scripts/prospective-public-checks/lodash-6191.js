@@ -1,0 +1,2 @@
+'use strict';const assert=require('node:assert/strict');const _=require(process.argv[2]+'/lodash.js');
+const a=new Array(5);a[3]={n:42};const b=_.cloneDeep(a);assert.equal(b.length,5);assert.equal(0 in b,false);assert.equal(3 in b,true);assert.notEqual(b[3],a[3]);assert.equal(b[3].n,42);console.log('sparse clone semantics passed');
