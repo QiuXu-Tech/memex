@@ -1,0 +1,3 @@
+'use strict';
+const assert=require('node:assert/strict');const {pathToFileURL}=require('node:url');
+(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));const o={parser:'babel',singleQuote:true};const samples=['const add = (x) => (x + 1);\n','const f = (x) => ({ value: x });\n','const f = (x) => { /* kept */ return x; };\n'];for(const s of samples){const one=await p.format(s,o);assert.equal(await p.format(one,o),one);if(s.includes('/* kept */'))assert.ok(one.includes('/* kept */'));}console.log('regression controls passed');})().catch(e=>{console.error(e);process.exitCode=1});

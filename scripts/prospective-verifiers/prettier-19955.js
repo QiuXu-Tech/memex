@@ -1,0 +1,4 @@
+'use strict';
+const assert=require('node:assert/strict');const {pathToFileURL}=require('node:url');
+(async()=>{const p=await import(pathToFileURL(process.argv[2]+'/src/index.js'));const o={parser:'babel',singleQuote:true};const samples=[
+'x2 = (a) => (a /* ! */ // K\n)\n','var x2 = (a) => (a /* ! */ // K\n)\n','x2 = (a) => ((b) => {\n  c();\n} /* ! */ // K\n)\n','var x2 = (a) => ((b) => {\n  c();\n} /* ! */ // K\n)\n','x2 = (a) => (a /* ! */\n)\n'];let failed=[];for(const [i,s] of samples.entries()){const one=await p.format(s,o),two=await p.format(one,o);try{assert.equal(one,two);assert.ok(one.includes('/* ! */'));if(i<4)assert.ok(one.includes('// K'));}catch(e){failed.push(i+1)}};console.log(JSON.stringify({cases:samples.length,failed}));if(failed.length)process.exitCode=1;})().catch(e=>{console.error(e);process.exitCode=1});
