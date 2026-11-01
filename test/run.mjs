@@ -3880,6 +3880,21 @@ await test('U3j', 'MCP model guidance avoids redundant reads and labels uncertai
   }
 })
 
+await test('U3k', 'other model hints do not require redundant search or open calls', async () => {
+  const english = ['gemini-2.5-pro', 'gemma-3', 'gpt-6-astra', 'claude-opus-5-5', 'claude-sonnet-5-5', 'claude-fable-5-1', 'grok-4', 'phi-4', 'command-r', 'llama-3', 'unknown-agent']
+  const chinese = ['deepseek-chat', 'qwen', 'kimi', 'glm', 'deepseek-flash']
+  for (const model of english) {
+    const hint = profiles.resolveModelProfile(model).searchHint
+    assert.match(hint, /earlier context is not already available/i, model)
+    assert.match(hint, /preview/i, model)
+  }
+  for (const model of chinese) {
+    const hint = profiles.resolveModelProfile(model).searchHint
+    assert.match(hint, /尚不可用/, model)
+    assert.match(hint, /预览/, model)
+  }
+})
+
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
   const root = makeRoot('u4')
   const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))

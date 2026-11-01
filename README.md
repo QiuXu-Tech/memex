@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 10 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **187/187 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **188/188 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
 
 ## 7B KV strategy comparison (latest)
 
@@ -86,9 +86,11 @@ Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: base
 
 ## Prospective engineering canary (2026-10-31)
 
-**Three-session issue replay (2026-11-01):** An analysis of the previous study found 28/28 treatment first sessions searched empty stores. MCP now distinguishes an empty archive from a nonempty search miss and avoids suggesting unnecessary fallback calls. Three new public-issue coding replays had **0/3 complete original Codex pairs** after interrupted sessions. A separately registered Claude continuation on one reused issue wrote and later opened a memory, but its candidate failed an additional inherited-setter regression despite passing the original fixed checks. AI review disagreed on the candidate; the adjudicator scored control/Memex **2/1**. A fourth, new Chalk issue then timed out in session 1 in both arms, before editing was enabled; AI reviewers scored the empty artifacts 0/0, which is not a valid A/B comparison. After that attempt, contradictory model-specific search/open hints were aligned with the shared manual and guidance was added to label unverified hypotheses. These small historical replays do not establish production correctness or savings. [Methods, failures, cost and results](docs/production-longhorizon-20261101.md).
+**Three-session issue replay (2026-11-01):** An analysis of the previous study found 28/28 treatment first sessions searched empty stores. MCP now distinguishes an empty archive from a nonempty search miss and avoids suggesting unnecessary fallback calls. Three new public-issue coding replays had **0/3 complete original Codex pairs** after interrupted sessions. A separately registered Claude continuation on one reused issue wrote and later opened a memory, but its candidate failed an additional inherited-setter regression despite passing the original fixed checks. AI review disagreed on the candidate; the adjudicator scored control/Memex **2/1**. A fourth, new Chalk issue initially timed out in both arms. A separately registered longer-timeout retry on that same issue completed 3/3 sessions per arm and both passed the frozen check; Memex wrote no memory and used **18.7% more input tokens**, while its account-window solver charge candidate was lower for this single retry. A post-hoc reproduction of an existing upstream assertion failed on both patches, and both final explanations made inaccurate underline-color claims that the frozen-criteria AI scores did not flag. Claude and Qwen review failures were retained; GPT and post-hoc DeepSeek scored both 2/2, as did a Gemini adjudicator. Contradictory model-specific search/open hints were aligned with the shared manual, and guidance now labels unverified hypotheses. These historical replays do not establish production correctness or savings. [Methods, failures, cost and results](docs/production-longhorizon-20261101.md).
 
 ![Agent replay coverage, prior token use and a supplemental compatibility check](docs/assets/benchmarks/production-longhorizon-20261101.svg)
+
+![Post-hoc Chalk retry: session completion, token use, blinded scores and legacy assertion](docs/assets/benchmarks/production-longhorizon-20261101/chalk-retry.svg)
 
 <!-- real30:start -->
 **Post-repair 30-issue study (completed with post-hoc retries):** 28/30 original public-issue attempts completed both two-session Codex arms; 25/30 have two blinded AI ratings and adjudication without recovery, plus 3 supplemental adjudications. 30/30 distinct tasks have an evaluable pair including post-hoc retries. 3 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
@@ -349,7 +351,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **187/187**, with **36/36 SQLite consistency** checks.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **188/188**, with **36/36 SQLite consistency** checks.
 
 | Metric | Result |
 |---|---|

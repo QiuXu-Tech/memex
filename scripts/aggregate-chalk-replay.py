@@ -37,13 +37,13 @@ for arm in ('baseline', 'memex'):
             for item in (event.get('message') or {}).get('content', []):
                 if item.get('type') == 'tool_use': tools[item.get('name', '')] += 1
         stages.append({**{k: row.get(k) for k in ('stage', 'startedAt', 'finishedAt', 'elapsedSeconds', 'exitCode', 'timeout', 'shutdownTimeoutAfterResult', 'unexpectedTool', 'responseCompleted', 'usage', 'clientListPriceUsd', 'resultSubtype')},
-                       'toolCalls': dict(tools), 'traceSha256': sha(trace)})
+                       'toolCalls': dict(tools), 'toolCallCount': sum(tools.values()), 'traceSha256': sha(trace)})
     result_path = base / 'results' / f'chalk-{arm}-outcome.json'
     outcome = load(result_path) if result_path.exists() else None
     arms[arm] = {'stages': stages, 'reportedUsage': totals([s['usage'] for s in stages], usage_keys),
                  'missingUsageSessions': sum(s['usage'] is None for s in stages),
                  'clientListPriceUsd': str(sum((decimal.Decimal(str(s['clientListPriceUsd'] or 0)) for s in stages), decimal.Decimal(0))),
-                 'outcome': ({k: outcome[k] for k in ('sessionsCompleted', 'testExitCode', 'patchSha256', 'patchBytes')} if outcome else None)}
+                 'outcome': ({**{k: outcome[k] for k in ('sessionsCompleted', 'testExitCode', 'patchSha256', 'patchBytes')}, 'distinctSessionIds': len({x for x in outcome['sessionIds'] if x}), 'finalAnswerSha256': hashlib.sha256(outcome['final'].encode('utf-8')).hexdigest()} if outcome else None)}
 review_dir = base / 'reviews'
 review_key_path = review_dir / 'chalk-key.json'
 reviews = []
@@ -58,19 +58,35 @@ for model in ('gpt-6.1-sol', 'claude-haiku-4-5', 'adjudication'):
                     'scores': {key[x['id']]: x['score'] for x in ratings.get('candidates', [])},
                     'reasons': {key[x['id']]: x['reason'] for x in ratings.get('candidates', [])},
                     'materialDisagreement': ratings.get('materialDisagreement'), 'error': row.get('error')})
-gateway = review_dir / 'chalk-gateway.jsonl'
-review_events = [x for x in events(gateway) if x.get('status') != 'started'] if gateway.exists() else []
+supplemental = []
+for name in ('supplemental-review', 'second-supplemental-review', 'second-supplemental-adjudication'):
+    path = review_dir / f'chalk-{name}.json'
+    if not path.exists(): continue
+    row = load(path); ratings = row.get('ratings') or {}
+    supplemental.append({'role': name, 'reviewer': row.get('model'), 'status': row.get('status'),
+                         'scores': {key[x['id']]: x['score'] for x in ratings.get('candidates', [])},
+                         'reasons': {key[x['id']]: x['reason'] for x in ratings.get('candidates', [])},
+                         'materialDisagreement': ratings.get('materialDisagreement'), 'error': row.get('error')})
+review_events = []
+for name in ('chalk-gateway.jsonl', 'supplement-gateway.jsonl', 'second-supplement-gateway.jsonl'):
+    gateway = review_dir / name
+    if gateway.exists(): review_events += [x for x in events(gateway) if x.get('status') != 'started']
 billing_path = base / 'billing.json'
 billing = load(billing_path) if billing_path.exists() else {'status': 'UNKNOWN'}
+posthoc_path = base / 'posthoc-compat-results.json'
+posthoc = load(posthoc_path) if posthoc_path.exists() else None
+if posthoc:
+    posthoc = {'completedAt': posthoc['completedAt'],
+               'results': {arm: {k: row[k] for k in ('exitCode', 'observations')} for arm, row in posthoc['results'].items()}}
 strict_pair = all(arms[a]['outcome'] and arms[a]['outcome']['sessionsCompleted'] == 3 for a in arms)
 result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
           'kind': registration['kind'], 'registrationSha256': sha(base / 'registration.json'),
           'issueUrl': task['issueUrl'], 'sourceCommit': task['sourceCommit'],
           'criteria': task['criteria'], 'strictCompletePair': bool(strict_pair),
-          'arms': arms, 'reviews': reviews,
+          'arms': arms, 'reviews': reviews, 'supplementalReviews': supplemental,
           'reviewUsage': {'attempts': len(review_events), **totals([x.get('usage') for x in review_events], ('prompt_tokens', 'completion_tokens')),
                           'missingUsageAttempts': sum(x.get('usage') is None for x in review_events)},
-          'billing': billing, 'limits': registration['limits']}
+          'billing': billing, 'posthocCompatibility': posthoc, 'limits': registration['limits']}
 args.out.parent.mkdir(parents=True, exist_ok=True)
 args.out.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
 print(json.dumps({'strictCompletePair': result['strictCompletePair'], 'arms': {a: x['outcome'] for a, x in arms.items()}, 'reviewAttempts': len(review_events)}))
