@@ -3848,6 +3848,22 @@ await test('U3h', 'MCP reports an empty visible archive as a snapshot without hi
   assert.doesNotMatch(later.get(4).result.instructions, /no visible memory records at initialization/i)
 })
 
+await test('U3i', 'MCP distinguishes an empty archive from a search miss', async () => {
+  const root = makeRoot('u3i-mem')
+  const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
+  const replies = mcpExchange(root, ['--levels', 'l3', '--session', 'u3i-session'], [
+    call(1, 'memory_search', { query: 'unmatched-topic-1837' }),
+    call(2, 'memory_write', { kind: 'fact', title: 'Different record', body: 'UNRELATED_DATA_2094' }),
+    call(3, 'memory_search', { query: 'unmatched-topic-1837' }),
+  ])
+  const empty = replies.get(1).result.content[0].text
+  const miss = replies.get(3).result.content[0].text
+  assert.match(empty, /visible archive is currently empty/i)
+  assert.doesNotMatch(empty, /try memory_grep or memory_index/i)
+  assert.match(miss, /try memory_grep or memory_index/i)
+  assert.doesNotMatch(miss, /archive is currently empty/i)
+})
+
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
   const root = makeRoot('u4')
   const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))

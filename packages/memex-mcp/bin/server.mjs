@@ -174,7 +174,10 @@ function callTool(name, input = {}) {
       if (typeof input.query !== 'string' || input.query.trim().length === 0) throw new Error('memory_search requires a non-empty query')
       if (input.openTop !== undefined && typeof input.openTop !== 'boolean') throw new Error('memory_search openTop must be a boolean')
       const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status })
-      const header = result.hits.length === 0 ? 'No matching memory records. Try memory_grep or memory_index.' : `Memory search "${input.query}" (${result.hits.length} result${result.hits.length === 1 ? '' : 's'} shown)`
+      const empty = result.hits.length === 0 && engine.list({ limit: 1, includeStatus: true }).length === 0
+      const header = result.hits.length === 0
+        ? empty ? 'No matching memory records. The visible archive is currently empty; further searches cannot find records until some are added.' : 'No matching memory records. Try memory_grep or memory_index.'
+        : `Memory search "${input.query}" (${result.hits.length} result${result.hits.length === 1 ? '' : 's'} shown)`
       const lines = result.hits.map((card, index) => `${index + 1}. ${card.id} · ${card.title} · ${card.useWhen || card.summary || ''}`)
       let text = `${header}\n${lines.join('\n')}`
       if (input.openTop && result.hits.length > 0) {
