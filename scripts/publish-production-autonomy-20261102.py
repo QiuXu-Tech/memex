@@ -36,15 +36,19 @@ def source_links(folder,arm,repo,commit):
  return found
 for name,foldername in (('original','cohort30-triage'),('supplement','supplement-triage')):
  c=data[name];base=PRIVATE/foldername
+ blinded=name=='supplement' and c.get('reviewStatus')!='FINISHED'
  for t in c.get('tasks',[]):
   t['finalAnswers']={}
   t['sourceReferences']={}
-  for arm in ('baseline','memex'):
-   result=base/t['id']/'results'/f'{arm}-s2.json'
-   if result.exists():
-    r=json.loads(result.read_text());answer=r.get('final','')
-    if answer:t['finalAnswers'][arm]={'text':scrub(answer[:12000]),'truncated':len(answer)>12000}
-   t['sourceReferences'][arm]=source_links(base/t['id'],arm,t['repo'],t['sourceCommit'])
+  if not blinded:
+   for arm in ('baseline','memex'):
+    result=base/t['id']/'results'/f'{arm}-s2.json'
+    if result.exists():
+     r=json.loads(result.read_text());answer=r.get('final','')
+     if answer:t['finalAnswers'][arm]={'text':scrub(answer[:12000]),'truncated':len(answer)>12000}
+    t['sourceReferences'][arm]=source_links(base/t['id'],arm,t['repo'],t['sourceCommit'])
+  else:
+   t['review']={'status':t['review']['status']};t['posthocReview']=None
   packet=base/'reviews'/t['id']/'packet-registration.json'
   if packet.exists():t['blindPacketSha256']=json.loads(packet.read_text())['packetSha256']
   if t.get('runnerError'):t['runnerError']={'type':t['runnerError'].get('type','UNKNOWN')}

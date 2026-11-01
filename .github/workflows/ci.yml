@@ -70,6 +70,7 @@ jobs:
           python3 scripts/test-prospective-issue-triage-recovery-20261102.py
           python3 scripts/test-prospective-review-triage-recovery-20261102.py
           python3 scripts/test-aggregate-production-autonomy-20261102.py
+          python3 scripts/test-supplement-blind-commitments-20261102.py
           python3 scripts/test-prospective-gateway-review.py
           python3 scripts/test-revalidate-triage-limits-20261102.py
           python3 scripts/test-prospective-gateway-adjudication-v33.py
