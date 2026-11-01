@@ -3868,6 +3868,26 @@ await test('U3i', 'MCP-written memories carry unverified provenance and bounded 
   try { assert.equal(engine.open({ id }).trust, 'untrusted') } finally { engine.close() }
 })
 
+await test('U3j', 'MCP search preserves existing trust labels and clips summary previews safely', async () => {
+  const root = makeRoot('u3j-mem')
+  const project = makeRoot('u3j-project')
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u3j-session', levels: ['l3'] })
+  let id
+  try {
+    id = engine.write({ kind: 'fact', title: 'LEGACY_TRUST_732', body: 'body', trust: 'trusted', summary: '🌱'.repeat(300) }).id
+  } finally { engine.close() }
+  const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
+  const replies = mcpExchange(root, ['--cwd', project, '--levels', 'l3', '--session', 'u3j-session'], [
+    call(1, 'memory_search', { query: 'LEGACY_TRUST_732' }),
+    call(2, 'memory_open', { id }),
+  ])
+  const search = replies.get(1).result.content[0].text
+  assert.doesNotMatch(search, /\[unverified\]/)
+  assert.equal((search.match(/🌱/gu) ?? []).length, 240)
+  assertIncludes(search, '…')
+  assertIncludes(replies.get(2).result.content[0].text, 'trust=trusted')
+})
+
 await test('U3i', 'MCP distinguishes an empty archive from a search miss', async () => {
   const root = makeRoot('u3i-mem')
   const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
