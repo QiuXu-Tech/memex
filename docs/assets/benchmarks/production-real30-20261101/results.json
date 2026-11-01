@@ -1,73 +1,73 @@
 {
-  "generatedAt": "2026-11-01T12:54:26.377534+00:00",
+  "generatedAt": "2026-11-01T12:59:11.776025+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 12,
-    "reviewComplete": 11,
+    "pairedCompleted": 14,
+    "reviewComplete": 13,
     "qualityFlagged": 2,
-    "notStarted": 15,
-    "startedOrIncomplete": 3
+    "notStarted": 14,
+    "startedOrIncomplete": 2
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 4243220,
-      "cached_input_tokens": 3622272,
-      "output_tokens": 32908,
-      "elapsedSeconds": 1674.59
+      "input_tokens": 4480908,
+      "cached_input_tokens": 3815168,
+      "output_tokens": 35077,
+      "elapsedSeconds": 1770.48
     },
     "memex": {
-      "input_tokens": 5494880,
-      "cached_input_tokens": 4732288,
-      "output_tokens": 40784,
-      "elapsedSeconds": 1949.5499999999997,
+      "input_tokens": 6811293,
+      "cached_input_tokens": 5847040,
+      "output_tokens": 49593,
+      "elapsedSeconds": 2387.6099999999997,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 3379932,
-      "cached_input_tokens": 2864256,
-      "output_tokens": 27314,
-      "elapsedSeconds": 1436.51
+      "input_tokens": 4110757,
+      "cached_input_tokens": 3493248,
+      "output_tokens": 32448,
+      "elapsedSeconds": 1654.3200000000002
     },
     "memex": {
-      "input_tokens": 4962723,
-      "cached_input_tokens": 4262656,
-      "output_tokens": 37383,
-      "elapsedSeconds": 1630.4399999999998
+      "input_tokens": 6036799,
+      "cached_input_tokens": 5183232,
+      "output_tokens": 43949,
+      "elapsedSeconds": 1956.4199999999998
     }
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 94,
+      "successfulReads": 113,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 9,
-      "session2RepeatedResultCharacters": 46509
+      "session2PreviouslyReadExact": 11,
+      "session2RepeatedResultCharacters": 54781
     },
     "memex": {
-      "successfulReads": 100,
+      "successfulReads": 122,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 8,
-      "session2RepeatedResultCharacters": 35656
+      "session2PreviouslyReadExact": 12,
+      "session2RepeatedResultCharacters": 52737
     }
   },
   "memory": {
-    "session1Writes": 14,
-    "session2OpenedPrior": 14,
-    "session2CitedPrior": 12,
-    "overlappingAccess": 12
+    "session1Writes": 16,
+    "session2OpenedPrior": 16,
+    "session2CitedPrior": 15,
+    "overlappingAccess": 14
   },
   "memoryPaired": {
-    "session1Writes": 12,
-    "session2OpenedPrior": 12,
-    "session2CitedPrior": 12,
-    "overlappingAccess": 11
+    "session1Writes": 14,
+    "session2OpenedPrior": 14,
+    "session2CitedPrior": 14,
+    "overlappingAccess": 13
   },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 8,
+    "equal": 10,
     "baseline_higher": 1
   },
   "reviewGatewayAttempts": [
@@ -871,6 +871,148 @@
           "reasoning_tokens": 0
         }
       }
+    },
+    {
+      "operation": "T16-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T12:56:06.109535+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 35738,
+        "completion_tokens": 342,
+        "total_tokens": 36080,
+        "completion_tokens_details": {
+          "reasoning_tokens": 100
+        }
+      }
+    },
+    {
+      "operation": "T16-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T12:56:18.698534+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 17050,
+        "completion_tokens": 319,
+        "total_tokens": 17369,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 17047,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 17050,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 17047,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T16-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T12:56:26.831360+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 216,
+        "prompt_tokens": 14934,
+        "total_tokens": 15150,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "T17-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T12:54:36.158856+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 19367,
+        "completion_tokens": 284,
+        "total_tokens": 19651,
+        "completion_tokens_details": {
+          "reasoning_tokens": 66
+        }
+      }
+    },
+    {
+      "operation": "T17-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T12:54:50.508482+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 19635,
+        "completion_tokens": 311,
+        "total_tokens": 19946,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 19632,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 19635,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 19632,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T17-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T12:55:00.338103+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 264,
+        "prompt_tokens": 17132,
+        "total_tokens": 17396,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
     }
   ],
   "billingCandidate": {
@@ -1186,7 +1328,7 @@
         "secondsFromCallStart": 6.417
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 0
+    "unmatchedSuccessfulGatewayCalls": 6
   },
   "sourceDownloadFailures": [
     {
@@ -1274,19 +1416,19 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "915f5c198693912c33b4fa499aacc7c1c4a5d1710743b36979c4546d9ee3744f",
@@ -1523,13 +1665,13 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "repo_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "71f0fcb730ebb234870ac6a23aa45fe1f7d1e60e14eb152ec92601c9f65d38d2",
@@ -1872,7 +2014,7 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "86dbad85c33f696157706f5c33c0253811735d596353c15f68fc4e6958ca0673",
@@ -2246,7 +2388,7 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "ed11bab3714cd61a33d74bc7896e2732fddfafe44ab2d5c76bb9a7d743e5f5c8",
@@ -2282,13 +2424,13 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "path denied"
                 }
               ],
               "eventTraceSha256": "d6284d3c75b5636486b3b514c1b877f00b001475aa159744eb85a111fa1db8c1",
@@ -2513,13 +2655,13 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "archive_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "9dcc5c2197fb5bbbd4ad65f510bc7680051d90f7bfdb1ce816ba7ee6d1afad18",
@@ -2865,7 +3007,7 @@
                   "server": "pilot",
                   "tool": "repo_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "invalid query"
                 }
               ],
               "eventTraceSha256": "b23c2ffa16bd5a69fb2e34f0fab6904069cc928aecd390052dd486d10acbea9c",
@@ -3046,7 +3188,7 @@
                   "server": "pilot",
                   "tool": "repo_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "0d5f277e271e1e7f1e2526d2f6d197e2908ce084d575ce18b8eb9339d6a9d559",
@@ -3298,13 +3440,13 @@
                   "server": "pilot",
                   "tool": "repo_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "repo_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "e2e66fa05e3d5b8f8bf6ce886bce8afd2d39ac86f8c89b6c2a36f326765046e7",
@@ -3528,7 +3670,7 @@
                   "server": "pilot",
                   "tool": "repo_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "cac2020c98dee30befd931f6632924b89cfa1327ff5a75dbe2acd06d8c287ea9",
@@ -3806,7 +3948,7 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "09e3061bb7ead56d629c8b121adbb8a0b4c8ac3e97585611053af82936ba9b98",
@@ -3881,7 +4023,7 @@
                   "server": "memex",
                   "tool": "memory_write",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Error: memory: unknown record kind \"\""
                 }
               ],
               "eventTraceSha256": "27cd50d0133ed09843b38959dc2c372b1a18df26f7c718e5c952f278b1db51e4",
@@ -4228,13 +4370,13 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "archive_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "b4edc1d810b041fb61cd8fc8fe7dadb39eef09f475f0c7bc10d4a7b539d5f57a",
@@ -4304,15 +4446,54 @@
               "toolFailures": [],
               "eventTraceSha256": "2cab69b3403ad4c405b80a09092cdeae6895365d01548f8e17519114425ceddc",
               "finalSha256": "fe51ac86a6637b06178e03f21b5b0ca04e73ec28b20c000a9869dd0d2418ad69"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T12:53:07.647144+00:00",
+              "finishedAt": "2026-11-01T12:54:56.397342+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 108.75,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 400751,
+                  "cached_input_tokens": 339840,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1942,
+                  "reasoning_output_tokens": 33
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 9,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_search:completed": 8,
+                "pilot.repo_read:failed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "[Errno 2] No such file or directory: '[assigned-source]'"
+                }
+              ],
+              "eventTraceSha256": "3056dd497da573a2d1451f7cb02c5ddc4349046df0f3d8530c9113f8550c9747",
+              "finalSha256": "3be92b46306e714addeee0003ecbddc93b9d006e69b3ef4aa49ce0895b2b6eb2"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
@@ -4321,12 +4502,57 @@
         "session2OpenedPrior": [
           "mem_cf53f29456"
         ],
-        "session2CitedPrior": [],
+        "session2CitedPrior": [
+          "mem_cf53f29456"
+        ],
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Separates historical crash mitigation from stale-data repair, identifies the indexed-list versus summary-dictionary hypothesis with the important other-role caveat, and proposes serialization, deletion, and separate repair tests. However, the supplied source captures do not include the cited username-resolution or deletion-discovery implementations, and the handoff explicitly leaves the complete wipeout flow and collection behavior unverified. The captured include_deleted=True call alone does not establish placeholder behavior or positional preservation. Partially meets the criteria; no tests or maintainer acceptance were independently established.",
+            "memex": "Distinguishes the historical crash from unresolved stale references, discusses dictionary-only contributors escaping indexed discovery when no other role matches, and proposes deleted-user, existing-summary deletion, and separate idempotent repair tests. However, the supplied captures do not substantiate its cited placeholder implementation, cleanup TODO, or deletion-discovery query, and the complete wipeout path and collection behavior remain unverified. It appropriately labels comment-reported validation as unverified, but the source evidence supports only partial completion of the criteria."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Correctly identifies the separation between the historical crash (now guarded by placeholder handling in pinned source) and a remaining stale-data problem where contributors_summary can retain deleted user IDs while contributor_ids is empty. However, the evidence for the stale-data problem relies on the author's reported reproduction and passing tests rather than independent verification. The proposal to check deletion flow and add cleanup is sound, but source support for the complete wipeout path and collection behavior is incomplete. The pinned code confirms the crash guard works via strict=False and include_deleted=True, but does not independently verify the claimed dictionary-only reference escape or the prevalence of that condition in production.",
+            "memex": "Accurately distinguishes the pinned source's mitigation (placeholder handling for missing UserSettingsModel) from the unresolved cleanup concern (stale contributors_summary entries). Correctly notes the source revision mismatch between the original traceback and pinned library.py, and correctly identifies that the pinned handler delegates to summary_services rather than implementing its own contributor logic. The analysis of query paths (contributor_ids indexed but contributors_summary not) supports the hypothesis, but again relies on the author's reported test reproduction rather than verified test execution. The verification plan is thorough, but the proposed fix and its passing status remain author-reported rather than independently confirmed."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree on score 1. The handoff correctly separates the historical crash from the stale-contributor-data problem, notes the pinned source's strict=False/include_deleted=True mitigation, and proposes deletion-flow and cleanup tests. However, key claims (placeholder behavior, dictionary-only reference escaping indexed discovery, complete wipeout/collection behavior) rest on cited files not present in the supplied captures or on author-reported reproduction, so criteria are only partially met.",
+            "memex": "Both reviewers agree on score 1. The handoff distinguishes the mitigated crash from unresolved contributor-data integrity, flags the source-revision mismatch, and proposes serialization, deletion, and idempotent repair tests. But its cited placeholder implementation, cleanup TODO, and deletion-discovery query are not in the supplied captures, and the complete wipeout path and collection behavior remain unverified; validation is author-reported, so criteria are only partially met."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "qualityFlags": []
     },
     {
@@ -4410,13 +4636,13 @@
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 },
                 {
                   "server": "pilot",
                   "tool": "repo_read",
                   "status": "failed",
-                  "error": "None"
+                  "error": "Invalid tool arguments"
                 }
               ],
               "eventTraceSha256": "e7c43cd5025a4de71308d2dd735df0fcdcd90d770c7112b5018a571a198ce3d6",
@@ -4452,7 +4678,7 @@
                   "server": "pilot",
                   "tool": "repo_search",
                   "status": "failed",
-                  "error": "None"
+                  "error": "invalid query"
                 }
               ],
               "eventTraceSha256": "5f081d514e83c3171c915bd722db19ca311f31cb9d7cd21d415f091ec0e1d3c1",
@@ -4548,8 +4774,51 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 2
+          },
+          "reasons": {
+            "baseline": "Meets all frozen criteria: distinguishes the historical forge refresh stack flood from later source-frame failures, grounds the current per-failure warning mechanism in captured source, and limits claims about serialization and rotation. Proposes first-event detail with bounded periodic counts, distinct-failure isolation, bounded state, and preserved rejection propagation. Describes burst testing and measurement of records, bytes, rotations, and retained history without claiming tests ran or production impact was proven.",
+            "memex": "Meets all frozen criteria: separates the original forge report from later source-frame failures and supports the unconditional warning path with captured source. Proposes first-event detail, bounded periodic counts, separation of distinct sources/errors, bounded aggregation state, and preserved rejections, followed by repeat-heavy logger measurements with explicit production limits. The additional websocket transport claim is not independently supported by the supplied reads, but is not necessary to its qualifying conclusions. No tests or maintainer acceptance are claimed."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Handoff correctly identifies the unbounded warning producer in observeSourceSend (lines 8702–8714), distinguishes it from the original forge refresh producer, and proposes a practical verification plan (exercise synchronous/async failures, bounded reporting with first detail + periodic counts, source isolation, cleanup, rejection preservation, integration reproduction). Acknowledges remaining uncertainty (delivery cancellation trigger, original forge path status, RSS causation) without overreach. Meets all three frozen criteria.",
+            "memex": "Handoff identifies the unbounded warning path and proposes a practical future regression plan, but stops short of full distinction between the two producers. It correctly notes that observeSourceSend is not a retry loop and requires repeated failing sends, but does not clearly separate the original forge self-heal producer (which was a polling-based CLI invocation failure) from the later source-frame producer (which fails on send). The reference to 'legacy event and status fan-out' and 'unconfirmed producer' weakens the analysis. Partially meets criterion 1; meets criteria 2 and 3 adequately."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 2
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree C01 meets all frozen criteria. Verified against source: observeSourceSend (session.ts:8702-8714) attaches an unconditional warn with no dedupe/sampling, and the handoff correctly distinguishes the original forge refresh flood from the later source-frame failures, proposes first-occurrence detail plus bounded periodic counts with distinct-failure isolation and preserved rejection propagation, and describes burst testing while limiting what it proves about production. No unsupported claims relied upon.",
+            "memex": "Reviewer disagreement resolved in favor of the higher score. C02 does distinguish the original forge report from the later source-frame failures (explicitly labeling the reported producer unconfirmed and noting the helper is not a retry loop), grounds the unconditional warn path in the captured source (session.ts:8702-8713), and proposes first-event detail, bounded periodic counts, source/error separation, bounded state, and preserved rejections, followed by repeat-heavy measurement with explicit production limits. The websocket-server.ts claim is not in the supplied reads, but it is peripheral and not load-bearing for the qualifying conclusions, so it does not reduce the score."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "qualityFlags": []
     },
     {
@@ -4608,21 +4877,88 @@
           "testStatus": "NOT RUN"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:53:51.439290+00:00",
+              "finishedAt": "2026-11-01T12:55:32.937137+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 101.5,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 234581,
+                  "cached_input_tokens": 197504,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1943,
+                  "reasoning_output_tokens": 82
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 8,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "4bb31d3ec4d986f212838f5da8fcc9932c86462f5ab9d4a0ecde68a26251d31f",
+              "finalSha256": "17f003491bbcbc9041b5f870990c57eb6c79e36e5596f575fcf6d10648ad54f9"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T12:55:32.940005+00:00",
+              "finishedAt": "2026-11-01T12:56:59.117587+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 86.18,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 273382,
+                  "cached_input_tokens": 235008,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1899,
+                  "reasoning_output_tokens": 17
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 8,
+                "pilot.archive_open:completed": 6,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "f07a69ddc705d46652e3ef838e93330859676805e6d38b6852750f43103411aa",
+              "finalSha256": "732c66101610cf4dde9abf1b90afa9667794f992eef993f6149b0b84fd9043fc"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
       "pairCompleted": false,
       "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_73afddc284"
+        ],
+        "session2OpenedPrior": [
+          "mem_73afddc284"
+        ],
+        "session2CitedPrior": [
+          "mem_73afddc284"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
@@ -4678,27 +5014,152 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:57:18.030985+00:00",
+              "finishedAt": "2026-11-01T12:58:05.974487+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 47.94,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 125649,
+                  "cached_input_tokens": 103680,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1130,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 4,
+                "pilot.archive_open:completed": 9,
+                "pilot.repo_read:completed": 4
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "fa7e88ed9b8c5a9a53ba59e654c95e2697163793d9990b8bc9394ca756bcfeaa",
+              "finalSha256": "6fc10e147d10c25849def348172a7fcdece2d1093b91939eea2efe2cbe7310ac"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T12:58:05.976764+00:00",
+              "finishedAt": "2026-11-01T12:58:53.929457+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 47.95,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 112039,
+                  "cached_input_tokens": 89216,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1039,
+                  "reasoning_output_tokens": 19
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 3,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 2
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "e9e47cfd3662913fb81a26cf4c229fd640eb9d6a5a16ffcf394db26b3b03d34f",
+              "finalSha256": "4bf0c06803fc2c3f64cad06f14665b4d1194d9448f52f2f2ac1c0313d672b031"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:54:56.401733+00:00",
+              "finishedAt": "2026-11-01T12:56:09.110188+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 72.71,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 180833,
+                  "cached_input_tokens": 158720,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1489,
+                  "reasoning_output_tokens": 79
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 4,
+                "pilot.archive_open:completed": 9,
+                "pilot.repo_read:completed": 3,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "6e89b37c1d9e61b4b17ab70a1a3e9c643fd623f287e42dbc6484901233ec3282",
+              "finalSha256": "ecd0c86a19dd355cbd51bc207124876c6dd4c724e5e3d6b094fa41fa64f15625"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T12:56:09.111599+00:00",
+              "finishedAt": "2026-11-01T12:57:18.029801+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 68.92,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 226866,
+                  "cached_input_tokens": 183680,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1536,
+                  "reasoning_output_tokens": 16
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 3,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "09a076632c3976518f0c53491b9961d550529cd490683e868f6e23f9e5e51807",
+              "finalSha256": "82a67f174776f6b346f230565871318d1204637ecbd99210ba9a593dccaed406"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "NOT RUN",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_fbcc0dee82"
+        ],
+        "session2OpenedPrior": [
+          "mem_fbcc0dee82"
+        ],
+        "session2CitedPrior": [
+          "mem_fbcc0dee82"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,

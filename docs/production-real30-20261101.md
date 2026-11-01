@@ -1,12 +1,12 @@
 # Cross-session public-issue investigations: 30-task follow-up
 
-**Status: IN PROGRESS.** Updated 2026-11-01T12:54:26.377534+00:00. This report is regenerated from preserved records. [Machine-readable results](assets/benchmarks/production-real30-20261101/results.json) · [Registration](assets/benchmarks/production-real30-20261101-registration.json) · [Additional frozen criteria](assets/benchmarks/production-real30-20261101-new-tasks-registration.json)
+**Status: IN PROGRESS.** Updated 2026-11-01T12:59:11.776025+00:00. This report is regenerated from preserved records. [Machine-readable results](assets/benchmarks/production-real30-20261101/results.json) · [Registration](assets/benchmarks/production-real30-20261101-registration.json) · [Additional frozen criteria](assets/benchmarks/production-real30-20261101-new-tasks-registration.json)
 
 ![Coverage, AI review comparisons and paired token use](assets/benchmarks/production-real30-20261101.svg)
 
-12/30 tasks have completed both randomized arms, with two separate Codex processes per arm. 11/30 have two blinded AI reviews and a third model's adjudication. 2 adjudication rationales have evidence or rubric problems and are excluded below. 15 tasks have not started; 3 have started without a complete pair.
+14/30 tasks have completed both randomized arms, with two separate Codex processes per arm. 13/30 have two blinded AI reviews and a third model's adjudication. 2 adjudication rationales have evidence or rubric problems and are excluded below. 14 tasks have not started; 2 have started without a complete pair.
 
-For 9 completed reviews without those known flags, adjudicated scores were higher for Memex on **0**, equal on **8**, and higher for control on **1**. The 0/1/2 AI scores assess investigation criteria; reviewers are not project maintainers. Original opinions, including flagged ones, remain in the machine-readable results.
+For 11 completed reviews without those known flags, adjudicated scores were higher for Memex on **0**, equal on **10**, and higher for control on **1**. The 0/1/2 AI scores assess investigation criteria; reviewers are not project maintainers. Original opinions, including flagged ones, remain in the machine-readable results.
 
 ## What was tested
 
@@ -16,24 +16,24 @@ Fifteen tasks were assigned prior memory guidance and fifteen revised guidance t
 
 ## Memory and usage
 
-Among 12 completed pairs, the Memex arm wrote in session one on **12**, later opened a record it had written on **12**, and cited one in the final answer on **12**. On **11** it also opened the ordinary first-session handoff. These observable events do not establish whether memory was necessary, correct or autonomously managed throughout its lifecycle.
+Among 14 completed pairs, the Memex arm wrote in session one on **14**, later opened a record it had written on **14**, and cited one in the final answer on **14**. On **13** it also opened the ordinary first-session handoff. These observable events do not establish whether memory was necessary, correct or autonomously managed throughout its lifecycle.
 
 | Completed pairs only | Input tokens including cache | Cached input tokens | Output tokens | Session seconds |
 | --- | ---: | ---: | ---: | ---: |
-| Control | 3,379,932 | 2,864,256 | 27,314 | 1436.5 |
-| Memex | 4,962,723 | 4,262,656 | 37,383 | 1630.4 |
+| Control | 4,110,757 | 3,493,248 | 32,448 | 1654.3 |
+| Memex | 6,036,799 | 5,183,232 | 43,949 | 1956.4 |
 
 Input includes cached input and is not a bill. Session time is summed, not wall time. Sessions missing usage: 0. Different tasks and source-reading patterns limit inference. Started but incomplete sessions are excluded from this table and retained in the results.
 
-+Exact repeated source reads across sessions: control **9** (46,509 returned characters), Memex **8** (35,656 characters). These count identical arguments and identical returned source text in both sessions; such reads may be needed for independent verification. Characters are not tokens or billable cost.
++Exact repeated source reads across sessions: control **11** (54,781 returned characters), Memex **12** (52,737 characters). These count identical arguments and identical returned source text in both sessions; such reads may be needed for independent verification. Characters are not tokens or billable cost.
 
 ## Reviews, failures and cost
 
 The two AI reviewers were gpt-6.1-sol and claude-haiku-4-5; deepseek-flash reviewed their ratings and disagreements. Arm labels were removed, though answer content may reveal treatment. The initial T05 packet clipped a relevant comment; a [supplement](assets/benchmarks/production-real30-20261101-T05-supplement-registration.json) preserved original reviews but still produced an unsupported rationale ([evidence audit](assets/benchmarks/production-real30-20261101-T05-evidence-audit.json)). The T07 adjudicator introduced an independent-execution requirement not clearly present in the frozen criteria ([rubric audit](assets/benchmarks/production-real30-20261101-T07-rubric-audit.json)). An excerpt regression was fixed before later reviews.
 
-The ledger contains **34** returned or failed review attempts, including **0** non-OK attempts. At this checkpoint, 34 provider rows have candidate matches by model, time and token counts, totaling **USD 0.096552**. Matching is not receipt-level attribution. Successful review calls without a candidate match at this snapshot: **0**. Failed-call charges, Codex subscription allocation, machine and human time remain **UNKNOWN** until reconciled. The T15 Memex second session timed out after 180 seconds without a completed turn or usage; its partial output and the original pair remain retained. A separately [registered full-pair retry](assets/benchmarks/production-real30-20261101-T15-retry-registration.json) will be reported separately. Three source-download failures and their recoveries are retained in the results and fallback manifests.
+The ledger contains **40** returned or failed review attempts, including **0** non-OK attempts. At this checkpoint, 34 provider rows have candidate matches by model, time and token counts, totaling **USD 0.096552**. Matching is not receipt-level attribution. Successful review calls without a candidate match at this snapshot: **6**. Failed-call charges, Codex subscription allocation, machine and human time remain **UNKNOWN** until reconciled. The T15 Memex second session timed out after 180 seconds without a completed turn or usage; its partial output and the original pair remain retained. A separately [registered full-pair retry](assets/benchmarks/production-real30-20261101-T15-retry-registration.json) will be reported separately. Three source-download failures and their recoveries are retained in the results and fallback manifests.
 
-The memory_search header was corrected after a real call reported +0 more despite additional matches. A regression failed before the fix and passed afterward; the offline suite passed **182/182** and SQLite consistency tests **36/36**. The anti-duplicate-read guidance is an experiment; its effectiveness remains to be measured.
+The memory_search header was corrected after a real call reported +0 more despite additional matches. A separate real agent omitted the required kind on memory_write, failed, and then retried successfully. The generated manual and MCP description now identify kind as required, and the server returns an actionable missing-field error. Both defects have failing-before/passing-after MCP regressions. The latest offline suite passed **183/183**; the SQLite consistency suite passed **36/36** after the search fix. The write-guidance repair was made after this study's variants were frozen and is not included in its arms. The anti-duplicate-read guidance is an experiment; its effectiveness remains to be measured.
 
 ## Task-level status and AI scores
 
@@ -53,10 +53,10 @@ Scores are **control / Memex** on the frozen 0/1/2 rubric. NOT RUN includes revi
 | [T13](https://github.com/huggingface/huggingface_hub/issues/4196) | huggingface/huggingface_hub | paired complete | 1/1 | 2/1 | 1/1 | — |
 | [T14](https://github.com/autogluon/autogluon/issues/5521) | autogluon/autogluon | paired complete | 1/1 | 2/2 | 1/1 | — |
 | [T15](https://github.com/Arize-ai/openinference/issues/2101) | Arize-ai/openinference | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
-| [T16](https://github.com/oppia/oppia/issues/23412) | oppia/oppia | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
-| [T17](https://github.com/getpaseo/paseo/issues/2471) | getpaseo/paseo | paired complete | NOT RUN | NOT RUN | NOT RUN | — |
+| [T16](https://github.com/oppia/oppia/issues/23412) | oppia/oppia | paired complete | 1/1 | 1/1 | 1/1 | — |
+| [T17](https://github.com/getpaseo/paseo/issues/2471) | getpaseo/paseo | paired complete | 2/2 | 2/1 | 2/2 | — |
 | [T18](https://github.com/usebruno/bruno/issues/7362) | usebruno/bruno | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
-| [T20](https://github.com/ray-project/ray/issues/58976) | ray-project/ray | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
+| [T20](https://github.com/ray-project/ray/issues/58976) | ray-project/ray | paired complete | NOT RUN | NOT RUN | NOT RUN | — |
 | [T21](https://github.com/loopbackio/loopback-next/issues/11096) | loopbackio/loopback-next | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
 | [T22](https://github.com/ioBroker/ioBroker.mqtt/issues/518) | ioBroker/ioBroker.mqtt | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
 | [T23](https://github.com/storybookjs/storybook/issues/31699) | storybookjs/storybook | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
