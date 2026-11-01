@@ -32,6 +32,8 @@ L2 uses a fresh session ID for each MCP server process unless `--session`, `MEME
 
 `memory_open` pages by line using `offset` and `limit`. If a selected line window exceeds `maxChars`, repeat the same line window with the returned `nextCharOffset` as `charOffset` to continue. Read-only MCP tools advertise their behavior; write or destructive calls remain subject to the client's approval policy.
 
+For a specific query where the first result is likely to be relevant, MCP `memory_search` accepts `openTop: true` and includes a preview of up to 2,000 characters from that record in the search response. If the preview is truncated, continue with `memory_open` and the returned `nextCharOffset`. Review the ranked cards first when the query is ambiguous; the first result is not guaranteed to be correct. This option can save a tool round trip, but a token or cost reduction has not yet been established.
+
 The manual advises the agent to avoid rereading a duplicate handoff when a retrieved record already covers it, while consulting original sources for verification or gaps. This is guidance, not automatic deduplication or a guaranteed token saving.
 
 `memory_grep` searches visible hot and cold record files until it reaches the requested hit limit. A miss can require reading every visible record and therefore takes longer on larger stores. If an indexed record file is missing or unreadable, grep reports an error rather than claiming that the pattern is absent.

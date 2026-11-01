@@ -3771,6 +3771,45 @@ await test('U3f', 'MCP explains the required kind and an agent can recover a rej
   assertIncludes(replies.get(4).result.content[0].text, id)
 })
 
+await test('U3g', 'MCP search can preview the top record within a bounded body window', async () => {
+  const root = makeRoot('u3g-preview')
+  const project = makeRoot('u3g-project')
+  const otherProject = makeRoot('u3g-other')
+  const args = ['--cwd', project, '--agent', 'test', '--levels', 'l3', '--session', 'u3g-session']
+  const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
+  const replies = mcpExchange(root, args, [
+    { jsonrpc: '2.0', id: 1, method: 'tools/list' },
+    call(2, 'memory_write', { kind: 'fact', title: 'Unique preview record', body: `PREVIEW_BEGIN_${'x'.repeat(2300)}_PREVIEW_TAIL` }),
+    call(3, 'memory_search', { query: 'Unique preview record' }),
+    call(4, 'memory_search', { query: 'Unique preview record', openTop: true }),
+    call(5, 'memory_search', { query: 'no-such-preview-76543', openTop: true }),
+    call(6, 'memory_search', { query: 'Unique preview record', openTop: 'yes' }),
+  ])
+  const tool = replies.get(1).result.tools.find((entry) => entry.name === 'memory_search')
+  assert.equal(tool.inputSchema.properties.openTop.type, 'boolean')
+  const id = replies.get(2).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  assert.doesNotMatch(replies.get(3).result.content[0].text, /PREVIEW_BEGIN/)
+  const preview = replies.get(4).result.content[0].text
+  assertIncludes(preview, id)
+  assertIncludes(preview, 'PREVIEW_BEGIN_')
+  assert.doesNotMatch(preview, /PREVIEW_TAIL/)
+  const next = Number(preview.match(/nextCharOffset=(\d+)/)[1])
+  assert.ok(next > 0 && next <= 2000)
+  assertIncludes(replies.get(5).result.content[0].text, 'No matching memory records')
+  assert.equal(replies.get(6).result.isError, true)
+  const opened = mcpExchange(root, args, [
+    call(7, 'memory_open', { id, maxChars: 2000 }),
+    call(8, 'memory_open', { id, maxChars: 2000, charOffset: next }),
+  ])
+  assertIncludes(preview, opened.get(7).result.content[0].text)
+  assertIncludes(opened.get(8).result.content[0].text, 'PREVIEW_TAIL')
+  mcpExchange(root, ['--cwd', otherProject, '--levels', 'l3', '--session', 'u3g-other'], [
+    call(9, 'memory_write', { kind: 'fact', title: 'Foreign preview marker', body: 'FOREIGN_PREVIEW_BODY' }),
+  ])
+  const foreign = mcpExchange(root, args, [call(10, 'memory_search', { query: 'Foreign preview marker', openTop: true })])
+  assert.doesNotMatch(foreign.get(10).result.content[0].text, /FOREIGN_PREVIEW_BODY/)
+})
+
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
   const root = makeRoot('u4')
   const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))

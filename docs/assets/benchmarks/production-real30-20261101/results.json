@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-11-01T13:19:29.145351+00:00",
+  "generatedAt": "2026-11-01T13:22:25.596556+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 20,
-    "reviewComplete": 17,
+    "pairedCompleted": 21,
+    "reviewComplete": 19,
     "reviewRecoveryComplete": 1,
     "retryPairsCompleted": 2,
     "retryReviewsCompleted": 1,
     "retryReviewRecoveryComplete": 1,
-    "uniqueTasksEvaluableIncludingRetries": 20,
+    "uniqueTasksEvaluableIncludingRetries": 22,
     "qualityFlagged": 2,
     "notStarted": 6,
-    "startedOrIncomplete": 4
+    "startedOrIncomplete": 3
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 6409476,
-      "cached_input_tokens": 5434496,
-      "output_tokens": 50449,
-      "elapsedSeconds": 2648.14,
+      "input_tokens": 6883807,
+      "cached_input_tokens": 5836032,
+      "output_tokens": 54078,
+      "elapsedSeconds": 2800.18,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 9837470,
-      "cached_input_tokens": 8394112,
-      "output_tokens": 72833,
-      "elapsedSeconds": 3313.2799999999993,
+      "input_tokens": 10440028,
+      "cached_input_tokens": 8917888,
+      "output_tokens": 76707,
+      "elapsedSeconds": 3462.8399999999992,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 6039325,
-      "cached_input_tokens": 5112576,
-      "output_tokens": 47820,
-      "elapsedSeconds": 2351.15
+      "input_tokens": 6312554,
+      "cached_input_tokens": 5345664,
+      "output_tokens": 49900,
+      "elapsedSeconds": 2441.84
     },
     "memex": {
-      "input_tokens": 8637965,
-      "cached_input_tokens": 7371392,
-      "output_tokens": 63859,
-      "elapsedSeconds": 2757.73
+      "input_tokens": 9012362,
+      "cached_input_tokens": 7687552,
+      "output_tokens": 67096,
+      "elapsedSeconds": 2873.54
     }
   },
   "usageRetrySessions": {
@@ -62,13 +62,13 @@
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 172,
+      "successfulReads": 177,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 17,
-      "session2RepeatedResultCharacters": 85482
+      "session2PreviouslyReadExact": 18,
+      "session2RepeatedResultCharacters": 95822
     },
     "memex": {
-      "successfulReads": 177,
+      "successfulReads": 183,
       "sameSessionExactRepeats": 0,
       "session2PreviouslyReadExact": 16,
       "session2RepeatedResultCharacters": 66857
@@ -76,38 +76,42 @@
   },
   "toolResponseCharactersPaired": {
     "baseline": {
-      "pilotCalls": 631,
-      "pilotResponseCharacters": 1285982
+      "pilotCalls": 649,
+      "pilotResponseCharacters": 1335625
     },
     "memex": {
-      "memexCalls": 99,
-      "memexResponseCharacters": 39100,
-      "pilotCalls": 571,
-      "pilotResponseCharacters": 1234341
+      "memexCalls": 104,
+      "memexResponseCharacters": 40992,
+      "pilotCalls": 591,
+      "pilotResponseCharacters": 1285477
     }
+  },
+  "searchOpenPatternPaired": {
+    "adjacentTopSearchThenOpen": 19,
+    "openResponseAtMost2000Chars": 19
   },
   "memory": {
     "session1Writes": 24,
     "session2OpenedPrior": 24,
-    "session2CitedPrior": 21,
-    "overlappingAccess": 21
+    "session2CitedPrior": 23,
+    "overlappingAccess": 22
   },
   "memoryPaired": {
-    "session1Writes": 20,
-    "session2OpenedPrior": 20,
-    "session2CitedPrior": 20,
-    "overlappingAccess": 19
+    "session1Writes": 21,
+    "session2OpenedPrior": 21,
+    "session2CitedPrior": 21,
+    "overlappingAccess": 20
   },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 14,
+    "equal": 16,
     "baseline_higher": 1
   },
   "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
-    "equal": 15,
+    "equal": 17,
     "baseline_higher": 1
   },
   "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
-    "equal": 17,
+    "equal": 19,
     "baseline_higher": 1
   },
   "reviewDisagreementOriginal": {
@@ -1584,11 +1588,153 @@
           "reasoning_tokens": 0
         }
       }
+    },
+    {
+      "operation": "T26-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:19:42.815435+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 35152,
+        "completion_tokens": 329,
+        "total_tokens": 35481,
+        "completion_tokens_details": {
+          "reasoning_tokens": 82
+        }
+      }
+    },
+    {
+      "operation": "T26-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:19:54.002260+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 20145,
+        "completion_tokens": 334,
+        "total_tokens": 20479,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 20142,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 20145,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 20142,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T26-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:20:02.435019+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 254,
+        "prompt_tokens": 18073,
+        "total_tokens": 18327,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "T27-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:20:12.143480+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 34663,
+        "completion_tokens": 278,
+        "total_tokens": 34941,
+        "completion_tokens_details": {
+          "reasoning_tokens": 77
+        }
+      }
+    },
+    {
+      "operation": "T27-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:20:23.888793+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 9864,
+        "completion_tokens": 365,
+        "total_tokens": 10229,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 9861,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 9864,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 9861,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T27-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:20:30.349588+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 250,
+        "prompt_tokens": 9183,
+        "total_tokens": 9433,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
     }
   ],
   "reviewUsage": {
-    "input_tokens": 1285451,
-    "output_tokens": 20364,
+    "input_tokens": 1412531,
+    "output_tokens": 22174,
     "missingUsageAttempts": 1
   },
   "billingCandidate": {
@@ -2156,7 +2302,7 @@
         "secondsFromCallStart": 5.938
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 0
+    "unmatchedSuccessfulGatewayCalls": 6
   },
   "sourceDownloadFailures": [
     {
@@ -7825,10 +7971,53 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Correctly grounds React-wrapper delegation, initialization and its conditional retry, error propagation, and separate logout behavior in the pinned source. Accounts for concurrent consumers without assuming concurrent HTTP exchanges, and treats continued ferrt reports and the timeout setting as evidence rather than confirmed causality or fixes. However, the verification plan does not specify a mocked token-exchange or concurrency test without real credentials or live logins, leaving the third frozen criterion unmet. No project tests or maintainer acceptance establish the hypotheses.",
+            "memex": "Correctly separates wrapper behavior from underlying SDK coordination, avoids claiming a proven refresh race or automatic logout, and accounts for concurrent calls, tabs, clients, and remounts. Distinguishes the diagnostic timeout suggestion from a confirmed fix and preserves uncertainty about network failures. However, the proposed scenarios do not specify a mocked token-exchange or concurrency test without real credentials or live logins. It also omits the October 29 report of continued failures on 2.24.1 and cites unavailable prior context. No project tests or maintainer acceptance validate the proposed explanations."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Establishes delegation and error handling but leaves root cause unresolved. Confirms provider retains client state, initializes via checkSession/handleRedirectCallback, and wraps getTokenSilently without implementing rotation or serialization. Issue discussion shows maintainers announced fixes (2.14.0, 2.24.1) but original reporter confirmed continued ferrt failures on 2.24.1 despite claimed fixes and existing module-level serialization. Timeout suggestion explicitly described as diagnostic, not a fix, yet failures persisted after December 2025 configuration. Verification plan outlined but not executed: exact SDK versions, MRRT config, cache sync, concurrent exchanges, and cross-tab coordination remain untested hypotheses.",
+            "memex": "Confirms delegation without establishing causal root. Shows provider creates new client per mount (if key changes), initializes per instance, and wraps getTokenSilently without logout or coordination logic. Issue discussion repeats pattern: announced fixes were corrected or contradicted by continued failures. Reporter with existing serialization, no MRRT, single audience still sees ferrt on 2.24.1. Timeout diagnostic was already active. Concurrent interceptor calls do not prove concurrent exchanges—coordination belongs to resolved SPA SDK, outside wrapper. No source edits, tests, or verification of exchange sequence, rotation state, or cross-instance/cross-tab behavior performed."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree on score 1 and the substantive basis: the candidate correctly grounds wrapper delegation, initialization/retry, error propagation, and separate logout in the pinned source, and treats continued ferrt reports and the timeout setting as evidence rather than confirmed fixes. It accounts for concurrent consumers without asserting concurrent HTTP exchanges. However, its verification plan does not specify a mocked token-exchange or concurrency test without real credentials or live logins, leaving the third frozen criterion unmet. No numeric or substantive disagreement between reviewers.",
+            "memex": "Both reviewers agree on score 1. The candidate correctly separates wrapper behavior from underlying SDK coordination, avoids claiming a proven refresh race or automatic logout, and accounts for concurrent calls, tabs, clients, and remounts. It distinguishes the diagnostic timeout suggestion from a confirmed fix. However, it does not specify a mocked token-exchange or concurrency test without real credentials or live logins, leaving the third frozen criterion unmet, and it omits the October 29 report of continued failures on 2.24.1 while citing unavailable prior context. No material disagreement between reviewers."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -8029,10 +8218,53 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Accurately traces the supplied CA path being overridden by verify=False and cert login omitting an explicit cacert argument. Separates source-confirmed collection behavior from reported HVAC behavior, preserves uncertainty about TLS semantics, and flags the unresolved behavior decision. However, its validation/CA matrix is a general verification plan rather than an explicit proposal for mocked auth tests covering true and false validation settings. No project tests or maintainer acceptance establish the proposed behavior.",
+            "memex": "Accurately explains the collection's verify=False handling, cert-login arguments, and authentication-before-read flow while qualifying the reported HVAC rejection. Explicitly flags the unresolved verification semantics and avoids recommending a silent TLS change. However, it proposes reproductions and implementation inspection without explicitly proposing mocked auth tests for true and false validation settings. No project tests or maintainer acceptance establish the proposed behavior."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Partially meets criteria. Correctly identifies the integration gap, traces the source chain (connection options → HVAC client → cert auth), and distinguishes collection behavior from HVAC behavior. However, the handoff treats the proposed error-handling change as unimplemented speculation rather than source-supported fact. The claim 'hvac refuses cert login without certificate checking' is correctly flagged as going beyond what pinned source proves. The verification plan is sound but incomplete—no inspection of HVAC 2.4.0 or reproduction results are presented. The handoff does not resolve whether the intended behavior is to fail early with guidance or to use the supplied CA despite `validate_certs: false`.",
+            "memex": "Partially meets criteria. Establishes the same connection-options → HVAC boundary and correctly distinguishes reported reproduction from implemented fix. Confirms that `validate_certs: false` produces `verify=False` even with a CA path supplied, breaking HVAC's login assumption. The verification plan is concrete and executable. However, the handoff stops short of addressing the unresolved design question: should cert auth fail early with clear guidance, or should `validate_certs: false` be overridden to use the supplied CA? Neither candidate proposes or tests a complete solution. Both acknowledge the gap but do not materially advance the investigation or implementation."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree on score 1. Verified against source: connection options set verify=False when validate_certs is false even with a CA path (lines 258-261), cert auth forwards no explicit cacert and only catches NotImplementedError (lines 37-40), and vault_read authenticates before reading (lines 91-103). C01 correctly separates source-confirmed collection behavior from the contributor-reported HVAC claim and flags the unresolved behavior decision. However, it offers a general verification plan rather than explicit mocked auth tests for true/false validation settings, so it only partially meets the frozen criteria.",
+            "memex": "Both reviewers agree on score 1. C02 accurately traces the same source chain (verify=False override, cert login omitting cacert/verify, auth-before-read) and qualifies the reported HVAC rejection as unverified interpretation. It flags the unresolved semantics and avoids silently weakening TLS. Like C01, it proposes reproduction/inspection steps but does not explicitly propose mocked auth tests covering both true and false validation settings, so it is partial rather than fully meeting criteria."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -8086,7 +8318,57 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:20:23.051097+00:00",
+              "finishedAt": "2026-11-01T13:21:24.397617+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 61.35,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 201102,
+                  "cached_input_tokens": 168448,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1549,
+                  "reasoning_output_tokens": 59
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:failed": 1,
+                "pilot.repo_read:completed": 5,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_search:failed": 2,
+                "pilot.repo_search:completed": 5
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "repo_search",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "repo_search",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "7d990dbf9c676f4b403835e7a30541cda841d74a69e170179913a12a60f0237e",
+              "finalSha256": "97262fbf4e855b47aa72bd37b4654fa8231b10efeed7437eb79c017df961948b"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
@@ -8130,11 +8412,42 @@
               ],
               "eventTraceSha256": "787d730576184905bb7d5be32f42d82581a9e9637f858c39646634043b796324",
               "finalSha256": "e3465f927f8a867eb870de411406f92a98e725ee70d66c652c05fe170f8675ab"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:18:56.410584+00:00",
+              "finishedAt": "2026-11-01T13:20:23.049692+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 86.64,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 399696,
+                  "cached_input_tokens": 345600,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 2227,
+                  "reasoning_output_tokens": 63
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 6,
+                "pilot.repo_search:completed": 11,
+                "pilot.repo_read:completed": 7,
+                "pilot.archive_open:completed": 5,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "1450256dd22120582988b5c16c0d1d6d76210d29a521c1ab1c09be3878422c7b",
+              "finalSha256": "4f6edd6e4ad923ebf50856888966a7a010f53c994b91a76084696773eb5ac439"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
       "pairCompleted": false,
@@ -8147,7 +8460,9 @@
         "session2OpenedPrior": [
           "mem_d613fa08fe"
         ],
-        "session2CitedPrior": [],
+        "session2CitedPrior": [
+          "mem_d613fa08fe"
+        ],
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
@@ -8208,10 +8523,75 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:20:16.068749+00:00",
+              "finishedAt": "2026-11-01T13:20:59.691153+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 43.62,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 149315,
+                  "cached_input_tokens": 133504,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1085,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 2,
+                "pilot.repo_read:completed": 3,
+                "pilot.repo_search:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "be846ce89ff6dd3be6336ffc942d90460b5dcb286152308cf092a3b8e1adcd14",
+              "finalSha256": "ac8404c2fac4b618b9e336eccfd40822fb3595f8a878bc229b386d663acdd46c"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:20:59.692145+00:00",
+              "finishedAt": "2026-11-01T13:21:46.766070+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 47.07,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 123914,
+                  "cached_input_tokens": 99584,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 995,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 2,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_search:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "d07fff0b99693d254080393bb0b3786d4fe615ae428a9827fb81a6aad1682d19",
+              "finalSha256": "b9d6cce3c9bbc22f3058229f9ba594e80bfb1b5a677eb2d7d794a069605bc6b9"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
           "sessions": [
@@ -8244,15 +8624,46 @@
               "toolFailures": [],
               "eventTraceSha256": "c40fb12a5a5e1e8937219405c1d624ebf1bc347f129ad7914b7ef0070054268b",
               "finalSha256": "35c0e7faeee180b5d2326832f8398e63270d4a5556761b06920550014d1d29f2"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:19:13.148802+00:00",
+              "finishedAt": "2026-11-01T13:20:16.066543+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 62.92,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 202862,
+                  "cached_input_tokens": 178176,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1647,
+                  "reasoning_output_tokens": 65
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 3,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_search:completed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "3643a6d0b1495eb558b0e0776360e67708ede0faf4c405e0d5328819db0763d9",
+              "finalSha256": "75b396f9453ac96b1e779a025989a50b314aff797003dd4302edbb2831b7f450"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
@@ -8261,9 +8672,11 @@
         "session2OpenedPrior": [
           "mem_7cac50bc91"
         ],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session2CitedPrior": [
+          "mem_7cac50bc91"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,

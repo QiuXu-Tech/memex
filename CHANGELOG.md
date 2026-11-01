@@ -10,6 +10,7 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 - Name the required `kind` field in agent instructions and MCP tool descriptions, and give an actionable error when it is missing. A real agent had to retry a write after omitting it.
 
 ### Added — isolated test tools for real MCP agents
+- Add an opt-in, bounded top-result preview to MCP search for specific queries, allowing a search and initial body read in one call. Token and cost effects remain to be measured.
 - Advise agents to avoid rereading duplicate handoffs already covered by a retrieved memory while retaining source verification; evaluate the effect rather than assuming a token saving.
 - Expose the preassigned VM worker through a stdio MCP bridge with bounded repository and archive tools. Retire an unresponsive worker on a deadline without replaying an ambiguous request; add protocol and timeout regressions.
 - Add a separate v4 worker for Python source tasks and document isolated Codex/Claude Code configuration. Record the interrupted connector attempt, two paired Codex tasks, one adaptive cross-session memory lifecycle, AI-review disagreements and cost gaps in `docs/production-real-agent-20261101.md`.

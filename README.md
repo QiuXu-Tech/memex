@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **183/183 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **184/184 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
 
 ## 7B KV strategy comparison (latest)
 
@@ -87,7 +87,7 @@ Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: base
 ## Prospective engineering canary (2026-10-31)
 
 <!-- real30:start -->
-**Post-repair 30-issue study (in progress):** 20/30 original public-issue attempts completed both two-session Codex arms; 17/30 have two blinded AI ratings and adjudication without recovery, plus 1 supplemental adjudications. 20/30 distinct tasks have an evaluable pair including post-hoc retries. 2 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
+**Post-repair 30-issue study (in progress):** 21/30 original public-issue attempts completed both two-session Codex arms; 19/30 have two blinded AI ratings and adjudication without recovery, plus 1 supplemental adjudications. 22/30 distinct tasks have an evaluable pair including post-hoc retries. 2 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
 
 ![Coverage, AI reviews and paired token use for the 30-issue study](docs/assets/benchmarks/production-real30-20261101.svg)
 <!-- real30:end -->
@@ -301,6 +301,8 @@ node packages/memex-mcp/bin/server.mjs --root ~/.memex --model deepseek-flash --
 ```
 
 See [docs/integrations.md](docs/integrations.md), [Claude Code](docs/integrations/claude-code.md), [Codex](docs/integrations/codex.md), [generic MCP clients](docs/integrations/mcp.md) and [model profiles](docs/model-profiles.md).
+
+For a focused MCP query, `memory_search` can include up to 2,000 characters of the top record with `openTop: true`. Check that the result is relevant, and use `memory_open` to continue a truncated preview.
 
 ## Install (DSH local bundle)
 

@@ -31,6 +31,8 @@ Options: `--root DIR`, `--levels l2,l3`, `--model ID`, `--agent NAME`, `--sessio
 
 Plus a `memory://catalog` resource and model-tailored `instructions` on `initialize`.
 
+For a focused query, `memory_search` accepts `openTop: true` to include up to 2,000 characters from the first hit. Verify its relevance and use `memory_open` with `nextCharOffset` to continue a truncated preview.
+
 ## Client config examples
 
 **Gemini CLI** (`~/.gemini/settings.json`):

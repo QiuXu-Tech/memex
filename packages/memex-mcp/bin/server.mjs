@@ -69,13 +69,14 @@ const tool = (name, description, inputSchema) => ({
   annotations: { readOnlyHint: READ_ONLY_TOOLS.has(name), destructiveHint: DESTRUCTIVE_TOOLS.has(name), openWorldHint: false },
 })
 const TOOLS = [
-  tool('memory_search', `Ranked card-level search over archived context (profile: ${profile.label}, top ${profile.maxSearchResults}). Returns ids, titles and "when to read" hints — open the record for the body.`, {
+  tool('memory_search', `Ranked card-level search over archived context (profile: ${profile.label}, top ${profile.maxSearchResults}). Returns ids, titles and "when to read" hints. For a specific query, openTop can also return a bounded preview of the first result.`, {
     type: 'object',
     properties: {
       query: { type: 'string', description: 'Natural-language question or concrete identifier/topic.' },
       limit: { type: 'integer', minimum: 1, maximum: 20 },
       kind: { type: 'string', enum: MEMORY_KINDS },
       status: { type: 'string', enum: MEMORY_STATUSES },
+      openTop: { type: 'boolean', description: 'Include up to 2,000 characters from the top-ranked record; use only when the first hit is likely to be relevant.' },
     },
     required: ['query'],
   }),
@@ -161,21 +162,32 @@ const reply = (id, result) => send({ jsonrpc: '2.0', id, result })
 const fail = (id, code, message) => send({ jsonrpc: '2.0', id, error: { code, message } })
 const textResult = (text, isError = false) => ({ content: [{ type: 'text', text }], isError })
 
+function formatOpenedRecord(record) {
+  const continuation = record.bodyNextCharOffset === undefined ? '' : ` · nextCharOffset=${record.bodyNextCharOffset}`
+  const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · tokens=${record.tokens} · body lines ${record.bodyOffset}-${record.bodyOffset + record.bodyLimit - 1} of ${record.bodyTotalLines}${record.bodyTruncated ? ' (truncated)' : ''}${continuation}\n`
+  return `${meta}\n${record.body}`
+}
+
 function callTool(name, input = {}) {
   switch (name) {
     case 'memory_search': {
       if (typeof input.query !== 'string' || input.query.trim().length === 0) throw new Error('memory_search requires a non-empty query')
+      if (input.openTop !== undefined && typeof input.openTop !== 'boolean') throw new Error('memory_search openTop must be a boolean')
       const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status })
       const header = result.hits.length === 0 ? 'No matching memory records. Try memory_grep or memory_index.' : `Memory search "${input.query}" (${result.hits.length} result${result.hits.length === 1 ? '' : 's'} shown)`
       const lines = result.hits.map((card, index) => `${index + 1}. ${card.id} · ${card.title} · ${card.useWhen || card.summary || ''}`)
-      return textResult(`${header}\n${lines.join('\n')}`)
+      let text = `${header}\n${lines.join('\n')}`
+      if (input.openTop && result.hits.length > 0) {
+        const record = engine.open({ id: result.hits[0].id, maxChars: 2000 })
+        if (record === undefined) throw new Error(`memory_open: no record ${result.hits[0].id}`)
+        text += `\n\nTop result preview (up to 2,000 characters):\n${formatOpenedRecord(record)}`
+      }
+      return textResult(text)
     }
     case 'memory_open': {
       const record = engine.open({ id: input.id, offset: input.offset, limit: input.limit, maxChars: input.maxChars, charOffset: input.charOffset })
       if (record === undefined) throw new Error(`memory_open: no record ${input.id}`)
-      const continuation = record.bodyNextCharOffset === undefined ? '' : ` · nextCharOffset=${record.bodyNextCharOffset}`
-      const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · tokens=${record.tokens} · body lines ${record.bodyOffset}-${record.bodyOffset + record.bodyLimit - 1} of ${record.bodyTotalLines}${record.bodyTruncated ? ' (truncated)' : ''}${continuation}\n`
-      return textResult(`${meta}\n${record.body}`)
+      return textResult(formatOpenedRecord(record))
     }
     case 'memory_grep': {
       if (typeof input.pattern !== 'string' || input.pattern.length === 0) throw new Error('memory_grep requires a pattern')
