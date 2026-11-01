@@ -1,10 +1,10 @@
 # Cross-session public-issue investigations: 30-task follow-up
 
-**Status: IN PROGRESS.** Updated 2026-11-01T13:25:38.596197+00:00. This report is regenerated from preserved records. [Machine-readable results](assets/benchmarks/production-real30-20261101/results.json) · [Registration](assets/benchmarks/production-real30-20261101-registration.json) · [Additional frozen criteria](assets/benchmarks/production-real30-20261101-new-tasks-registration.json)
+**Status: IN PROGRESS.** Updated 2026-11-01T13:27:32.988263+00:00. This report is regenerated from preserved records. [Machine-readable results](assets/benchmarks/production-real30-20261101/results.json) · [Registration](assets/benchmarks/production-real30-20261101-registration.json) · [Additional frozen criteria](assets/benchmarks/production-real30-20261101-new-tasks-registration.json)
 
 ![Coverage, AI review comparisons and paired token use](assets/benchmarks/production-real30-20261101.svg)
 
-22/30 original attempts have completed both randomized arms, with two separate Codex processes per arm. 21/30 original attempts have two blinded AI reviews and a third model's adjudication without recovery; 1 more have a supplemental adjudication. Additionally, 2 post-hoc retry pairs are complete, 1 of those have reviews without recovery and 1 have a recovered review. 24/30 distinct tasks have an evaluable pair including these recoveries. 2 adjudication rationales have evidence or rubric problems and are excluded below. 4 tasks have not started; 4 have started without a complete pair.
+24/30 original attempts have completed both randomized arms, with two separate Codex processes per arm. 21/30 original attempts have two blinded AI reviews and a third model's adjudication without recovery; 1 more have a supplemental adjudication. Additionally, 2 post-hoc retry pairs are complete, 1 of those have reviews without recovery and 1 have a recovered review. 24/30 distinct tasks have an evaluable pair including these recoveries. 2 adjudication rationales have evidence or rubric problems and are excluded below. 2 tasks have not started; 4 have started without a complete pair.
 
 For 19 original adjudications without those known flags or post-hoc recoveries, adjudicated scores were higher for Memex on **0**, equal on **17**, and higher for control on **2**. The 0/1/2 AI scores assess investigation criteria; reviewers are not project maintainers. Including post-hoc review recoveries and whole-pair retries gives **22** unflagged comparisons: Memex higher on **0**, equal on **20**, and control higher on **2**. Original opinions, including flagged ones, remain in the machine-readable results.
 
@@ -16,18 +16,18 @@ Fifteen tasks were assigned prior memory guidance and fifteen revised guidance t
 
 ## Memory and usage
 
-Among 22 completed pairs, the Memex arm wrote in session one on **22**, later opened a record it had written on **22**, and cited one in the final answer on **22**. On **21** it also opened the ordinary first-session handoff. These observable events do not establish whether memory was necessary, correct or autonomously managed throughout its lifecycle.
+Among 24 completed pairs, the Memex arm wrote in session one on **24**, later opened a record it had written on **24**, and cited one in the final answer on **24**. On **22** it also opened the ordinary first-session handoff. These observable events do not establish whether memory was necessary, correct or autonomously managed throughout its lifecycle.
 
 | Completed pairs only | Input tokens including cache | Cached input tokens | Output tokens | Session seconds |
 | --- | ---: | ---: | ---: | ---: |
-| Control | 6,883,955 | 5,843,456 | 53,226 | 2574.1 |
-| Memex | 9,665,534 | 8,254,080 | 71,063 | 3031.6 |
+| Control | 7,424,532 | 6,286,592 | 57,284 | 2763.0 |
+| Memex | 10,451,282 | 8,962,560 | 76,991 | 3323.5 |
 
 Input includes cached input and is not a bill. Session time is summed, not wall time. Completed-pair sessions missing usage: 0. Incomplete original sessions and all retry sessions are excluded from this paired table.
 
-Across **all original sessions with a result record**, including incomplete pairs, control reported 7,609,268 input / 57,987 output tokens and Memex reported 10,591,191 input / 77,967 output tokens. 2 recorded sessions lack usage; still-running sessions do not have final usage records. Different tasks and source-reading patterns limit inference.
+Across **all original sessions with a result record**, including incomplete pairs, control reported 7,794,683 input / 59,913 output tokens and Memex reported 11,225,776 input / 82,635 output tokens. 2 recorded sessions lack usage; still-running sessions do not have final usage records. Different tasks and source-reading patterns limit inference.
 
-Exact repeated source reads across sessions: control **19** (100,693 returned characters), Memex **16** (66,857 characters). These count identical arguments and identical returned source text in both sessions; such reads may be needed for independent verification. Characters are not tokens or billable cost. Across completed pairs, control made 704 successful repository/archive calls with 1,448,768 response characters. Memex made 641 repository/archive calls with 1,386,069 characters, plus 109 memory calls with 43,026 characters. These are raw response lengths and cannot be converted directly into billed tokens. In the original completed pairs, **20** successful searches were immediately followed by opening their first hit, with **20** corresponding open responses at most 2,000 characters. This observed pattern motivated an opt-in bounded top-result preview; its effect on real model tokens and quality has not yet been measured.
+Exact repeated source reads across sessions: control **19** (100,693 returned characters), Memex **16** (66,857 characters). These count identical arguments and identical returned source text in both sessions; such reads may be needed for independent verification. Characters are not tokens or billable cost. Across completed pairs, control made 747 successful repository/archive calls with 1,515,444 response characters. Memex made 692 repository/archive calls with 1,443,488 characters, plus 119 memory calls with 46,574 characters. These are raw response lengths and cannot be converted directly into billed tokens. In the original completed pairs, **21** successful searches were immediately followed by opening their first hit, with **21** corresponding open responses at most 2,000 characters. This observed pattern motivated an opt-in bounded top-result preview; its effect on real model tokens and quality has not yet been measured.
 
 Post-hoc retry sessions separately reported control 730,749 input / 5,174 output tokens and Memex 995,350 input / 7,526 output tokens; 0 retry sessions lack usage. The original timed-out sessions still have unknown usage. Among 2 completed retry pairs, 2 wrote in session one, 2 opened and 2 cited a prior record.
 
@@ -38,7 +38,7 @@ The two AI reviewers were gpt-6.1-sol and claude-haiku-4-5; deepseek-flash revie
 
 The ledger contains **75** returned or failed review attempts, including **1** non-OK attempts. Review calls reported **1,565,792 input** and **23,783 output tokens**; **1** attempts lack reported usage. At this checkpoint, 74 provider rows have candidate matches by model, time and token counts, totaling **USD 0.217958**. Matching is not receipt-level attribution. Successful review calls without a candidate match at this snapshot: **0**. Failed-call charges, Codex subscription allocation, machine and human time remain **UNKNOWN** until reconciled. The T15 Memex second session and T18 control first session each timed out after 180 seconds without a completed turn or usage; their partial outputs and original pairs remain retained. Separately registered full-pair retries ([T15](assets/benchmarks/production-real30-20261101-T15-retry-registration.json), [T18](assets/benchmarks/production-real30-20261101-T18-retry-registration.json)) are recorded separately. Three source-download failures and their recoveries are retained in the results and fallback manifests.
 
-The memory_search header was corrected after a real call reported +0 more despite additional matches. A separate real agent omitted the required kind on memory_write, failed, and then retried successfully. The generated manual and MCP description now identify kind as required, and the server returns an actionable missing-field error. Both defects have failing-before/passing-after MCP regressions. The latest offline suite passed **184/184**; the SQLite consistency suite passed **36/36** after the search fix. The write-guidance repair and the optional 2,000-character top-result search preview were made after this study's variants were frozen and are not included in its arms. The preview is tested for empty results, continuation and workspace isolation; its effect on real model tokens and quality remains to be measured. The anti-duplicate-read guidance is also an experiment.
+The memory_search header was corrected after a real call reported +0 more despite additional matches. The original attempts recorded **2** memory_write failures reporting an unknown empty kind; **2** were followed by a successful memory write in the same session. The generated manual and MCP description now identify kind as required, and the server returns an actionable missing-field error. Both defects have failing-before/passing-after MCP regressions. The latest offline suite passed **184/184**; the SQLite consistency suite passed **36/36** after the search fix. The write-guidance repair and the optional 2,000-character top-result search preview were made after this study's variants were frozen and are not included in its arms. The preview is tested for empty results, continuation and workspace isolation; its effect on real model tokens and quality remains to be measured. The anti-duplicate-read guidance is also an experiment.
 
 For T15's post-hoc whole-pair retry, GPT scored 1/1, Claude syntax-repaired original scored 1/1, and adjudication scored 1/1 (control / Memex). The original invalid JSON and initial adjudication remain in the results.
 
@@ -74,10 +74,10 @@ Scores are **control / Memex** on the frozen 0/1/2 rubric. NOT RUN includes revi
 | [T27](https://github.com/ansible-collections/community.hashi_vault/issues/456) | ansible-collections/community.hashi_vault | paired complete | 1/1 | 1/1 | 1/1 | — |
 | [T28](https://github.com/cdxgen/cdxgen/issues/1797) | cdxgen/cdxgen | paired complete | 1/1 | 1/1 | 1/1 | — |
 | [N01](https://github.com/glasgow-ipl/ietfdata/issues/84) | glasgow-ipl/ietfdata | paired complete | 2/1 | 1/1 | 2/1 | — |
-| [N02](https://github.com/adafruit/Adafruit_CircuitPython_OV5640/issues/26) | adafruit/Adafruit_CircuitPython_OV5640 | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
-| [N03](https://github.com/jquery-form/form/issues/353) | jquery-form/form | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
-| [N04](https://github.com/louislam/uptime-kuma/issues/5670) | louislam/uptime-kuma | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
-| [N05](https://github.com/containers/ramalama/issues/2642) | containers/ramalama | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
+| [N02](https://github.com/adafruit/Adafruit_CircuitPython_OV5640/issues/26) | adafruit/Adafruit_CircuitPython_OV5640 | paired complete | NOT RUN | NOT RUN | NOT RUN | — |
+| [N03](https://github.com/jquery-form/form/issues/353) | jquery-form/form | paired complete | NOT RUN | NOT RUN | NOT RUN | — |
+| [N04](https://github.com/louislam/uptime-kuma/issues/5670) | louislam/uptime-kuma | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
+| [N05](https://github.com/containers/ramalama/issues/2642) | containers/ramalama | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
 | [N06](https://github.com/plotly/dash/issues/3343) | plotly/dash | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
 | [N07](https://github.com/nathan-gs/ha-map-card/issues/158) | nathan-gs/ha-map-card | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
 
