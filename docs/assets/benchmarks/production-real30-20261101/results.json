@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-11-01T13:15:28.888473+00:00",
+  "generatedAt": "2026-11-01T13:19:29.145351+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 18,
+    "pairedCompleted": 20,
     "reviewComplete": 17,
     "reviewRecoveryComplete": 1,
     "retryPairsCompleted": 2,
@@ -13,37 +13,37 @@
     "retryReviewRecoveryComplete": 1,
     "uniqueTasksEvaluableIncludingRetries": 20,
     "qualityFlagged": 2,
-    "notStarted": 8,
+    "notStarted": 6,
     "startedOrIncomplete": 4
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 5950250,
-      "cached_input_tokens": 5036160,
-      "output_tokens": 46981,
-      "elapsedSeconds": 2497.1,
+      "input_tokens": 6409476,
+      "cached_input_tokens": 5434496,
+      "output_tokens": 50449,
+      "elapsedSeconds": 2648.14,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 8847304,
-      "cached_input_tokens": 7550720,
-      "output_tokens": 64507,
-      "elapsedSeconds": 2999.5599999999995,
+      "input_tokens": 9837470,
+      "cached_input_tokens": 8394112,
+      "output_tokens": 72833,
+      "elapsedSeconds": 3313.2799999999993,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 5425702,
-      "cached_input_tokens": 4577408,
-      "output_tokens": 43073,
-      "elapsedSeconds": 2148.2400000000002
+      "input_tokens": 6039325,
+      "cached_input_tokens": 5112576,
+      "output_tokens": 47820,
+      "elapsedSeconds": 2351.15
     },
     "memex": {
-      "input_tokens": 7866514,
-      "cached_input_tokens": 6723200,
-      "output_tokens": 57282,
-      "elapsedSeconds": 2513.24
+      "input_tokens": 8637965,
+      "cached_input_tokens": 7371392,
+      "output_tokens": 63859,
+      "elapsedSeconds": 2757.73
     }
   },
   "usageRetrySessions": {
@@ -62,29 +62,41 @@
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 155,
+      "successfulReads": 172,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 16,
-      "session2RepeatedResultCharacters": 79952
+      "session2PreviouslyReadExact": 17,
+      "session2RepeatedResultCharacters": 85482
     },
     "memex": {
-      "successfulReads": 159,
+      "successfulReads": 177,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 15,
-      "session2RepeatedResultCharacters": 65056
+      "session2PreviouslyReadExact": 16,
+      "session2RepeatedResultCharacters": 66857
+    }
+  },
+  "toolResponseCharactersPaired": {
+    "baseline": {
+      "pilotCalls": 631,
+      "pilotResponseCharacters": 1285982
+    },
+    "memex": {
+      "memexCalls": 99,
+      "memexResponseCharacters": 39100,
+      "pilotCalls": 571,
+      "pilotResponseCharacters": 1234341
     }
   },
   "memory": {
-    "session1Writes": 21,
-    "session2OpenedPrior": 21,
-    "session2CitedPrior": 19,
-    "overlappingAccess": 19
+    "session1Writes": 24,
+    "session2OpenedPrior": 24,
+    "session2CitedPrior": 21,
+    "overlappingAccess": 21
   },
   "memoryPaired": {
-    "session1Writes": 18,
-    "session2OpenedPrior": 18,
-    "session2CitedPrior": 18,
-    "overlappingAccess": 17
+    "session1Writes": 20,
+    "session2OpenedPrior": 20,
+    "session2CitedPrior": 20,
+    "overlappingAccess": 19
   },
   "adjudicatedComparisonExcludingFlagged": {
     "equal": 14,
@@ -92,6 +104,10 @@
   },
   "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
     "equal": 15,
+    "baseline_higher": 1
+  },
+  "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
+    "equal": 17,
     "baseline_higher": 1
   },
   "reviewDisagreementOriginal": {
@@ -7678,28 +7694,136 @@
               ],
               "eventTraceSha256": "4d2464b2d1160e2456a66d0de4389e296f011d43d729c5189626735c209e213e",
               "finalSha256": "441630df4d86861e2506691b59fa4e5a340b846ff2d853c7fdc93628d91e1826"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:15:10.751328+00:00",
+              "finishedAt": "2026-11-01T13:15:57.914797+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 47.16,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 194077,
+                  "cached_input_tokens": 173056,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1192,
+                  "reasoning_output_tokens": 8
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 5,
+                "pilot.repo_read:completed": 4,
+                "pilot.archive_open:completed": 11
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "45e6243744515fa293535180809d8f54840398c7829b3f073dc4d37934a82de3",
+              "finalSha256": "8af6b84e75d97d782b2db3535a2c594bf9d28b574cf8604b99fdb94bb1f52b92"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:15:57.917486+00:00",
+              "finishedAt": "2026-11-01T13:17:08.726564+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 70.81,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 169272,
+                  "cached_input_tokens": 152064,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1806,
+                  "reasoning_output_tokens": 19
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 3,
+                "pilot.archive_open:completed": 6,
+                "memex.memory_write:failed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "memex",
+                  "tool": "memory_write",
+                  "status": "failed",
+                  "error": "Error: memory: unknown record kind \"\""
+                }
+              ],
+              "eventTraceSha256": "88db8e08e9734699750cfc9acd26ce1b7b4c285f1e9becd1a0692f65ca5213ea",
+              "finalSha256": "a7ee3b13a8dca36a565e629805bddda71b6b2e4d6c0fef1a61440c9a8a105a77"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:17:08.729166+00:00",
+              "finishedAt": "2026-11-01T13:18:20.246580+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 71.52,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 227237,
+                  "cached_input_tokens": 204160,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1581,
+                  "reasoning_output_tokens": 11
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 4,
+                "pilot.archive_open:completed": 10,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "35b7696040e0b0acc28e8afc01375a50b8aff7bc0c7d397c1c7c03b6fb5ac17e",
+              "finalSha256": "e3e114b943beef49cceaade1b147f1e5d13aada3cd2723f3f8406a6777b74e38"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_4cc6076753"
+        ],
+        "session2OpenedPrior": [
+          "mem_4cc6076753"
+        ],
+        "session2CitedPrior": [
+          "mem_4cc6076753"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
@@ -7758,10 +7882,67 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:16:01.043250+00:00",
+              "finishedAt": "2026-11-01T13:16:54.412735+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 53.37,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 133456,
+                  "cached_input_tokens": 109312,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1073,
+                  "reasoning_output_tokens": 34
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 5,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "4ab52e4c985196623992e31f0df1aaedaa59e9b00a34b09dfa05c774ec7ae095",
+              "finalSha256": "97dad90e96c9b1c94c7096894fca940521a75fa97ffcf7cfe4b189fec09880ea"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:16:54.413606+00:00",
+              "finishedAt": "2026-11-01T13:17:44.919796+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 50.51,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 131693,
+                  "cached_input_tokens": 115968,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1203,
+                  "reasoning_output_tokens": 59
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 5,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_search:completed": 2
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "47e1f56367711473a2998c7a300ab54131da21cf26d18d03c3eb7b0dde6823dd",
+              "finalSha256": "295619b96b27bc35aef41e712b92c7170ea0889b7926b850f50d1f50179dd929"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
           "sessions": [
@@ -7794,15 +7975,46 @@
               "toolFailures": [],
               "eventTraceSha256": "8b8d18e69a214aa40c38d48ee22792dedac970cf2c870b4d2037e110f49d3a9b",
               "finalSha256": "f3ae4892112723bbf865576ddf5f517c0733f671b6b9c79171a4686ca9de610b"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:15:14.007087+00:00",
+              "finishedAt": "2026-11-01T13:16:01.040578+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 47.03,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 168646,
+                  "cached_input_tokens": 128256,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1609,
+                  "reasoning_output_tokens": 92
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 5,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_search:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "5e7fd1018568fe414fed508cffafd63772ecd89b689f20f64e3f1318b7f63c13",
+              "finalSha256": "c7587f04441271db1757cfbe9978e2ea816e2a4a4933fe018ad62206bc39e804"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
@@ -7811,7 +8023,9 @@
         "session2OpenedPrior": [
           "mem_47af7e53eb"
         ],
-        "session2CitedPrior": [],
+        "session2CitedPrior": [
+          "mem_47af7e53eb"
+        ],
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
@@ -7878,21 +8092,64 @@
           "testStatus": "NOT RUN"
         },
         "memex": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:17:44.940858+00:00",
+              "finishedAt": "2026-11-01T13:18:56.407528+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 71.47,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 253476,
+                  "cached_input_tokens": 220928,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1740,
+                  "reasoning_output_tokens": 23
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_search:completed": 7,
+                "pilot.repo_read:completed": 4,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "787d730576184905bb7d5be32f42d82581a9e9637f858c39646634043b796324",
+              "finalSha256": "e3465f927f8a867eb870de411406f92a98e725ee70d66c652c05fe170f8675ab"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
+        "session1Written": [
+          "mem_d613fa08fe"
+        ],
+        "session2OpenedPrior": [
+          "mem_d613fa08fe"
+        ],
         "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
@@ -7957,18 +8214,53 @@
           "testStatus": "NOT RUN"
         },
         "memex": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:18:20.258162+00:00",
+              "finishedAt": "2026-11-01T13:19:13.146237+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 52.89,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 171535,
+                  "cached_input_tokens": 137984,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1590,
+                  "reasoning_output_tokens": 15
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 3,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_search:completed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "c40fb12a5a5e1e8937219405c1d624ebf1bc347f129ad7914b7ef0070054268b",
+              "finalSha256": "35c0e7faeee180b5d2326832f8398e63270d4a5556761b06920550014d1d29f2"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
+        "session1Written": [
+          "mem_7cac50bc91"
+        ],
+        "session2OpenedPrior": [
+          "mem_7cac50bc91"
+        ],
         "session2CitedPrior": [],
         "session2OpenedS1Handoff": false,
         "overlappingAccess": false

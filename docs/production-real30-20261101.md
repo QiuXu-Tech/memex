@@ -1,12 +1,12 @@
 # Cross-session public-issue investigations: 30-task follow-up
 
-**Status: IN PROGRESS.** Updated 2026-11-01T13:15:28.888473+00:00. This report is regenerated from preserved records. [Machine-readable results](assets/benchmarks/production-real30-20261101/results.json) · [Registration](assets/benchmarks/production-real30-20261101-registration.json) · [Additional frozen criteria](assets/benchmarks/production-real30-20261101-new-tasks-registration.json)
+**Status: IN PROGRESS.** Updated 2026-11-01T13:19:29.145351+00:00. This report is regenerated from preserved records. [Machine-readable results](assets/benchmarks/production-real30-20261101/results.json) · [Registration](assets/benchmarks/production-real30-20261101-registration.json) · [Additional frozen criteria](assets/benchmarks/production-real30-20261101-new-tasks-registration.json)
 
 ![Coverage, AI review comparisons and paired token use](assets/benchmarks/production-real30-20261101.svg)
 
-18/30 original attempts have completed both randomized arms, with two separate Codex processes per arm. 17/30 original attempts have two blinded AI reviews and a third model's adjudication without recovery; 1 more have a supplemental adjudication. Additionally, 2 post-hoc retry pairs are complete, 1 of those have reviews without recovery and 1 have a recovered review. 20/30 distinct tasks have an evaluable pair including these recoveries. 2 adjudication rationales have evidence or rubric problems and are excluded below. 8 tasks have not started; 4 have started without a complete pair.
+20/30 original attempts have completed both randomized arms, with two separate Codex processes per arm. 17/30 original attempts have two blinded AI reviews and a third model's adjudication without recovery; 1 more have a supplemental adjudication. Additionally, 2 post-hoc retry pairs are complete, 1 of those have reviews without recovery and 1 have a recovered review. 20/30 distinct tasks have an evaluable pair including these recoveries. 2 adjudication rationales have evidence or rubric problems and are excluded below. 6 tasks have not started; 4 have started without a complete pair.
 
-For 15 original adjudications without those known flags or post-hoc recoveries, adjudicated scores were higher for Memex on **0**, equal on **14**, and higher for control on **1**. The 0/1/2 AI scores assess investigation criteria; reviewers are not project maintainers. Original opinions, including flagged ones, remain in the machine-readable results.
+For 15 original adjudications without those known flags or post-hoc recoveries, adjudicated scores were higher for Memex on **0**, equal on **14**, and higher for control on **1**. The 0/1/2 AI scores assess investigation criteria; reviewers are not project maintainers. Including post-hoc review recoveries and whole-pair retries gives **18** unflagged comparisons: Memex higher on **0**, equal on **17**, and control higher on **1**. Original opinions, including flagged ones, remain in the machine-readable results.
 
 ## What was tested
 
@@ -16,18 +16,18 @@ Fifteen tasks were assigned prior memory guidance and fifteen revised guidance t
 
 ## Memory and usage
 
-Among 18 completed pairs, the Memex arm wrote in session one on **18**, later opened a record it had written on **18**, and cited one in the final answer on **18**. On **17** it also opened the ordinary first-session handoff. These observable events do not establish whether memory was necessary, correct or autonomously managed throughout its lifecycle.
+Among 20 completed pairs, the Memex arm wrote in session one on **20**, later opened a record it had written on **20**, and cited one in the final answer on **20**. On **19** it also opened the ordinary first-session handoff. These observable events do not establish whether memory was necessary, correct or autonomously managed throughout its lifecycle.
 
 | Completed pairs only | Input tokens including cache | Cached input tokens | Output tokens | Session seconds |
 | --- | ---: | ---: | ---: | ---: |
-| Control | 5,425,702 | 4,577,408 | 43,073 | 2148.2 |
-| Memex | 7,866,514 | 6,723,200 | 57,282 | 2513.2 |
+| Control | 6,039,325 | 5,112,576 | 47,820 | 2351.2 |
+| Memex | 8,637,965 | 7,371,392 | 63,859 | 2757.7 |
 
 Input includes cached input and is not a bill. Session time is summed, not wall time. Completed-pair sessions missing usage: 0. Incomplete original sessions and all retry sessions are excluded from this paired table.
 
-Across **all original sessions with a result record**, including incomplete pairs, control reported 5,950,250 input / 46,981 output tokens and Memex reported 8,847,304 input / 64,507 output tokens. 2 recorded sessions lack usage; still-running sessions do not have final usage records. Different tasks and source-reading patterns limit inference.
+Across **all original sessions with a result record**, including incomplete pairs, control reported 6,409,476 input / 50,449 output tokens and Memex reported 9,837,470 input / 72,833 output tokens. 2 recorded sessions lack usage; still-running sessions do not have final usage records. Different tasks and source-reading patterns limit inference.
 
-Exact repeated source reads across sessions: control **16** (79,952 returned characters), Memex **15** (65,056 characters). These count identical arguments and identical returned source text in both sessions; such reads may be needed for independent verification. Characters are not tokens or billable cost.
+Exact repeated source reads across sessions: control **17** (85,482 returned characters), Memex **16** (66,857 characters). These count identical arguments and identical returned source text in both sessions; such reads may be needed for independent verification. Characters are not tokens or billable cost. Across completed pairs, control made 631 successful repository/archive calls with 1,285,982 response characters. Memex made 571 repository/archive calls with 1,234,341 characters, plus 99 memory calls with 39,100 characters. These are raw response lengths and cannot be converted directly into billed tokens.
 
 Post-hoc retry sessions separately reported control 730,749 input / 5,174 output tokens and Memex 995,350 input / 7,526 output tokens; 0 retry sessions lack usage. The original timed-out sessions still have unknown usage. Among 2 completed retry pairs, 2 wrote in session one, 2 opened and 2 cited a prior record.
 
@@ -70,10 +70,10 @@ Scores are **control / Memex** on the frozen 0/1/2 rubric. NOT RUN includes revi
 | [T22](https://github.com/ioBroker/ioBroker.mqtt/issues/518) | ioBroker/ioBroker.mqtt | paired complete | 1/1 | 1/1 | 1/1 | — |
 | [T23](https://github.com/storybookjs/storybook/issues/31699) | storybookjs/storybook | paired complete | 1/2 | 2/2 | recovery 2/2 | — |
 | [T25](https://github.com/adobe/react-spectrum/issues/2806) | adobe/react-spectrum | paired complete | 1/1 | 2/2 | 2/2 | — |
-| [T26](https://github.com/auth0/auth0-react/issues/929) | auth0/auth0-react | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
-| [T27](https://github.com/ansible-collections/community.hashi_vault/issues/456) | ansible-collections/community.hashi_vault | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
-| [T28](https://github.com/cdxgen/cdxgen/issues/1797) | cdxgen/cdxgen | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
-| [N01](https://github.com/glasgow-ipl/ietfdata/issues/84) | glasgow-ipl/ietfdata | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
+| [T26](https://github.com/auth0/auth0-react/issues/929) | auth0/auth0-react | paired complete | NOT RUN | NOT RUN | NOT RUN | — |
+| [T27](https://github.com/ansible-collections/community.hashi_vault/issues/456) | ansible-collections/community.hashi_vault | paired complete | NOT RUN | NOT RUN | NOT RUN | — |
+| [T28](https://github.com/cdxgen/cdxgen/issues/1797) | cdxgen/cdxgen | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
+| [N01](https://github.com/glasgow-ipl/ietfdata/issues/84) | glasgow-ipl/ietfdata | started or incomplete | NOT RUN | NOT RUN | NOT RUN | — |
 | [N02](https://github.com/adafruit/Adafruit_CircuitPython_OV5640/issues/26) | adafruit/Adafruit_CircuitPython_OV5640 | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
 | [N03](https://github.com/jquery-form/form/issues/353) | jquery-form/form | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
 | [N04](https://github.com/louislam/uptime-kuma/issues/5670) | louislam/uptime-kuma | NOT RUN | NOT RUN | NOT RUN | NOT RUN | — |
