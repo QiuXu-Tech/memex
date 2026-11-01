@@ -57,6 +57,8 @@ In both cases the new agent used the preview without a separate open and cited t
 
 All six canary review calls have candidate provider-row matches totaling **USD 0.009462**. Combined with the main study's candidate review subtotal, the matched total is **USD 0.297108**; this is not receipt-level attribution or full cost. The canary's Codex sessions reported 237,278 input and 945 output tokens. Its reviewer calls reported 59,292 input and 1,012 output tokens. Subscription allocation and non-model costs remain UNKNOWN.
 
+Across the main original attempts, their retries and this canary, recorded Codex usage totals **23,736,434 input tokens** (including 20,236,160 cached) and **177,856 output tokens**; two timed-out sessions reported no usage. Main-study and canary review calls together reported **2,108,511 input** and **32,125 output tokens**; three failed calls reported no usage.
+
 ## Current default strategy
 
 Keep card-only search as the default and use the bounded top preview for focused queries where the first hit is likely to be relevant. Continue to consult source material when a preview leaves a gap or needs verification. The two-case result supports making the option available, but is too small to justify automatically opening the first hit for every query. The duplicate-handoff advice remains guidance rather than an enforced suppression rule.
