@@ -1,0 +1,19 @@
+{
+  "registeredAt": "2026-11-01T16:52:45.734182+00:00",
+  "kind": "post-hoc-clarified-synthetic-claude-hook-mechanism-retry",
+  "memexCommit": "17a682f6b2e98f93c4f3e2241e1f254a4e4d4065",
+  "runnerSha256": "0ff45a316e5b26106b9ef3e7adf7b635117c25644426aa84d7428481399da9aa",
+  "model": "claude-haiku-4-5",
+  "sessions": 2,
+  "maxClientListPriceUsdPerSession": 0.02,
+  "changesFromFirstRetry": [
+    "Use a direct instruction to repeat an explicitly supplied identifier; capture synthetic Stop-hook input for diagnosis."
+  ],
+  "purpose": "Verify hook capture and cross-session recall on synthetic data after two failed attempts; not a production or treatment-effect claim.",
+  "limits": [
+    "Synthetic marker and one pair are not real long-horizon tasks.",
+    "Client list-price cap is not a hard gateway invoice cap.",
+    "Hook capture is not an agent choosing memory_write.",
+    "Both prior failed attempts are retained."
+  ]
+}
