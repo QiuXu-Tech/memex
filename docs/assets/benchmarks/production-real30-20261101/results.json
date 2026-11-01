@@ -1,73 +1,81 @@
 {
-  "generatedAt": "2026-11-01T12:59:11.776025+00:00",
+  "generatedAt": "2026-11-01T13:04:06.050780+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 14,
-    "reviewComplete": 13,
+    "pairedCompleted": 15,
+    "reviewComplete": 14,
+    "retryPairsCompleted": 0,
+    "retryReviewsCompleted": 0,
+    "uniqueTasksEvaluableIncludingRetries": 14,
     "qualityFlagged": 2,
-    "notStarted": 14,
-    "startedOrIncomplete": 2
+    "notStarted": 12,
+    "startedOrIncomplete": 3
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 4480908,
-      "cached_input_tokens": 3815168,
-      "output_tokens": 35077,
-      "elapsedSeconds": 1770.48
+      "input_tokens": 5150658,
+      "cached_input_tokens": 4379520,
+      "output_tokens": 40569,
+      "elapsedSeconds": 2196.82,
+      "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 6811293,
-      "cached_input_tokens": 5847040,
-      "output_tokens": 49593,
-      "elapsedSeconds": 2387.6099999999997,
+      "input_tokens": 7422277,
+      "cached_input_tokens": 6383104,
+      "output_tokens": 54560,
+      "elapsedSeconds": 2597.1599999999994,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 4110757,
-      "cached_input_tokens": 3493248,
-      "output_tokens": 32448,
-      "elapsedSeconds": 1654.3200000000002
+      "input_tokens": 4356943,
+      "cached_input_tokens": 3687168,
+      "output_tokens": 34925,
+      "elapsedSeconds": 1760.7000000000003
     },
     "memex": {
-      "input_tokens": 6036799,
-      "cached_input_tokens": 5183232,
-      "output_tokens": 43949,
-      "elapsedSeconds": 1956.4199999999998
+      "input_tokens": 6346317,
+      "cached_input_tokens": 5453056,
+      "output_tokens": 46946,
+      "elapsedSeconds": 2088.2799999999997
     }
+  },
+  "usageRetrySessions": {
+    "baseline": {},
+    "memex": {}
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 113,
-      "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 11,
-      "session2RepeatedResultCharacters": 54781
-    },
-    "memex": {
-      "successfulReads": 122,
+      "successfulReads": 120,
       "sameSessionExactRepeats": 0,
       "session2PreviouslyReadExact": 12,
-      "session2RepeatedResultCharacters": 52737
+      "session2RepeatedResultCharacters": 57798
+    },
+    "memex": {
+      "successfulReads": 126,
+      "sameSessionExactRepeats": 0,
+      "session2PreviouslyReadExact": 13,
+      "session2RepeatedResultCharacters": 55754
     }
   },
   "memory": {
-    "session1Writes": 16,
-    "session2OpenedPrior": 16,
+    "session1Writes": 18,
+    "session2OpenedPrior": 17,
+    "session2CitedPrior": 16,
+    "overlappingAccess": 15
+  },
+  "memoryPaired": {
+    "session1Writes": 15,
+    "session2OpenedPrior": 15,
     "session2CitedPrior": 15,
     "overlappingAccess": 14
   },
-  "memoryPaired": {
-    "session1Writes": 14,
-    "session2OpenedPrior": 14,
-    "session2CitedPrior": 14,
-    "overlappingAccess": 13
-  },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 10,
+    "equal": 11,
     "baseline_higher": 1
   },
   "reviewGatewayAttempts": [
@@ -1013,13 +1021,85 @@
           "reasoning_tokens": 0
         }
       }
+    },
+    {
+      "operation": "T20-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T12:59:22.036071+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 17324,
+        "completion_tokens": 215,
+        "total_tokens": 17539
+      }
+    },
+    {
+      "operation": "T20-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T12:59:34.156963+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 16795,
+        "completion_tokens": 379,
+        "total_tokens": 17174,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 16792,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 16795,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 16792,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T20-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T12:59:40.581234+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 237,
+        "prompt_tokens": 14689,
+        "total_tokens": 14926,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
     }
   ],
+  "reviewUsage": {
+    "input_tokens": 854727,
+    "output_tokens": 13736
+  },
   "billingCandidate": {
-    "observedAt": "2026-11-01T12:52:22.628061+00:00",
-    "source": "APIMaster usage-log UI, first page after reload",
+    "observedAt": "2026-11-01T13:02:18.700990+00:00",
+    "source": "APIMaster usage-log UI, observed rows on first page",
     "matching": "unique model, exact prompt/output counts and provider finish within 180 seconds of local call start; no per-request receipt linkage",
-    "candidateSubtotalUsd": "0.096552",
+    "candidateSubtotalUsd": "0.120918",
     "rows": [
       {
         "operation": "T08-blind:gpt-6.1-sol",
@@ -1101,6 +1181,33 @@
         "output": 220,
         "walletUsd": "0.001754",
         "secondsFromCallStart": 4.928
+      },
+      {
+        "operation": "T16-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:56:18",
+        "inputIncludingCacheCreation": 35738,
+        "output": 342,
+        "walletUsd": "0.005758",
+        "secondsFromCallStart": 11.89
+      },
+      {
+        "operation": "T16-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:56:26",
+        "inputIncludingCacheCreation": 17050,
+        "output": 319,
+        "walletUsd": "0.002516",
+        "secondsFromCallStart": 7.301
+      },
+      {
+        "operation": "T16-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:56:31",
+        "inputIncludingCacheCreation": 14934,
+        "output": 216,
+        "walletUsd": "0.001492",
+        "secondsFromCallStart": 4.169
       },
       {
         "operation": "T01-blind:gpt-6.1-sol",
@@ -1247,6 +1354,33 @@
         "secondsFromCallStart": 5.616
       },
       {
+        "operation": "T17-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:54:50",
+        "inputIncludingCacheCreation": 19367,
+        "output": 284,
+        "walletUsd": "0.003196",
+        "secondsFromCallStart": 13.841
+      },
+      {
+        "operation": "T17-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:54:59",
+        "inputIncludingCacheCreation": 19635,
+        "output": 311,
+        "walletUsd": "0.002866",
+        "secondsFromCallStart": 8.492
+      },
+      {
+        "operation": "T17-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:55:06",
+        "inputIncludingCacheCreation": 17132,
+        "output": 264,
+        "walletUsd": "0.001718",
+        "secondsFromCallStart": 5.662
+      },
+      {
         "operation": "T13-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
         "walletTimeAsiaShanghai": "2026-11-01 20:44:59",
@@ -1301,6 +1435,33 @@
         "secondsFromCallStart": 4.379
       },
       {
+        "operation": "T20-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:59:34",
+        "inputIncludingCacheCreation": 17324,
+        "output": 215,
+        "walletUsd": "0.002828",
+        "secondsFromCallStart": 11.964
+      },
+      {
+        "operation": "T20-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:59:40",
+        "inputIncludingCacheCreation": 16795,
+        "output": 379,
+        "walletUsd": "0.002514",
+        "secondsFromCallStart": 5.843
+      },
+      {
+        "operation": "T20-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:59:46",
+        "inputIncludingCacheCreation": 14689,
+        "output": 237,
+        "walletUsd": "0.001478",
+        "secondsFromCallStart": 5.419
+      },
+      {
         "operation": "T09-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
         "walletTimeAsiaShanghai": "2026-11-01 20:39:30",
@@ -1328,7 +1489,7 @@
         "secondsFromCallStart": 6.417
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 6
+    "unmatchedSuccessfulGatewayCalls": 0
   },
   "sourceDownloadFailures": [
     {
@@ -1594,7 +1755,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T03",
@@ -1839,7 +2001,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T04",
@@ -2087,7 +2250,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T05",
@@ -2318,7 +2482,8 @@
       "reviewComplete": true,
       "qualityFlags": [
         "Adjudicator repeated a claim contradicted by supplied status and a relevant source comment; preserve scores but do not count this as a clean resolution."
-      ]
+      ],
+      "adaptiveRetry": null
     },
     {
       "id": "T07",
@@ -2573,7 +2738,8 @@
       "reviewComplete": true,
       "qualityFlags": [
         "Adjudicator required an independent comparison although independent execution was not explicit in the frozen criteria and project tests were forbidden; preserve scores and flag the rationale."
-      ]
+      ],
+      "adaptiveRetry": null
     },
     {
       "id": "T08",
@@ -2830,7 +2996,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T09",
@@ -3080,7 +3247,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T11",
@@ -3329,7 +3497,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T12",
@@ -3587,7 +3756,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T13",
@@ -3838,7 +4008,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T14",
@@ -4096,7 +4267,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T15",
@@ -4287,7 +4459,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T16",
@@ -4553,7 +4726,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T17",
@@ -4819,7 +4993,8 @@
         }
       ],
       "reviewComplete": true,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T18",
@@ -4871,10 +5046,39 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:56:59.118888+00:00",
+              "finishedAt": "2026-11-01T12:59:59.949176+00:00",
+              "exitCode": -15,
+              "timeout": true,
+              "unexpectedTool": null,
+              "elapsedSeconds": 180.83,
+              "threadCount": 1,
+              "usage": [],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_read:completed": 7,
+                "pilot.repo_search:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "ea092e25ee633527ee792c6c1b5014fafd7a746a6b64f154d80b2e591fd56fed",
+              "finalSha256": "cc5ce86449a8341332cd24fe3b2a1626d3b1135c94ebefb919d460640f9fe6d3"
+            }
+          ],
+          "sessionsCompleted": 0,
+          "twoDistinctThreads": false,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
           "sessions": [
@@ -4962,7 +5166,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T20",
@@ -5161,9 +5366,53 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
-      "qualityFlags": []
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Explains from the pinned filter-sort-truncate source that stable sorting only by task_id preserves incoming order among retries, so changing input order can change the limit-one result. Separates latest-returned-attempt selection from retaining failed history, summary counts, and attempt navigation, while treating reported UI behavior as unverified. Proposes shuffled multi-attempt tests for highest-attempt selection and preservation of older failures under larger limits. No tests or verified fix are claimed.",
+            "baseline": "Grounds the unstable limit-one mechanism in the pinned source and correctly makes variation conditional on incoming order changing. Clearly distinguishes latest matching attempt selection, historical failure access, and logical-task counts, noting that the source counts rows without task deduplication. Proposes permutation tests covering running and successful latest attempts, larger limits, explicit attempt filters, and multiple task IDs. Keeps historical claims and runtime behavior unverified and explicitly states that no tests were performed."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Correctly identifies the missing `attempt_number` tie-breaker in the sort at line 351 as the mechanism for unstable `limit=1` results. Accurately traces the data flow from fetch through filter/sort/truncate. Acknowledges that stable sort preserves incoming order, so different incoming permutations produce different selected attempts. Proposes a concrete verification plan (shuffled-input test, repeated requests with captured order). Appropriately distinguishes between the aggregator's selection mechanism and upstream event ordering, and between stabilizing detail view vs. preserving history. Correctly notes that summary counts and all-attempt navigation are separate concerns. Verifiable claim: the source confirms the missing sort key; the proposed fix direction is sound.",
+            "baseline": "Independently identifies the same missing `attempt_number` sort key at line 348–352 and reaches the same stable-sort-preserves-input-order conclusion. Accurately maps the data flow and notes the contrast between the proposed fix (newest-first) and current behavior (first-in-wins). Correctly distinguishes task-selection mechanism from upstream order variation and from logical-task aggregation. Proposes overlapping verification: repeated requests with captured order, permutation testing, and separation of attempt ordering from counts/navigation. Both handoffs converge on the same root cause and ordering solution. Minor differences in presentation clarity and depth do not materially affect diagnosis or verification soundness."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Both reviewers rate 2. Verified against source: list_tasks sorts only by task_id at line 351 before islice(limit), and TaskState exposes attempt_number (common.py:763-766). C01 correctly explains stable sort preserves incoming order among equal task IDs, so limit=1 selection varies with input order; distinguishes latest-attempt selection from preserving history/counts; proposes shuffled-input permutation tests. No unsupported claims repeated; issue status OPEN and proposed fix treated as unverified.",
+            "baseline": "Both reviewers rate 2. Verified against source: same filter-sort-truncate flow (lines 337-352), missing attempt_number tie-breaker, counts derived from returned rows plus dropped-event metadata without logical-task dedup. C02 correctly conditions instability on changing incoming order, separates latest matching attempt from historical failures and task-level counts, and proposes permutation tests including running/successful latest attempts. Treats the October update as a proposal, not an implemented fix; issue remains OPEN."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T21",
@@ -5215,31 +5464,171 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:01:57.288101+00:00",
+              "finishedAt": "2026-11-01T13:02:53.433461+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 56.15,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 117252,
+                  "cached_input_tokens": 96256,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1175,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.archive_open:completed": 2,
+                "pilot.repo_read:completed": 2,
+                "pilot.repo_search:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "3a01c5984949bc48a5807801623438a40847118ce2b1e9dd624c6b52f56ed5be",
+              "finalSha256": "05ca18c83b7c840b2feffaaef5d01872a4f96d87664014091ec94bf7c11a2339"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:02:53.434941+00:00",
+              "finishedAt": "2026-11-01T13:03:43.660651+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 50.23,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 128934,
+                  "cached_input_tokens": 97664,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1302,
+                  "reasoning_output_tokens": 21
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 5,
+                "pilot.repo_search:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "a6463ccdce464d6596ebb9eceb08729b649207a468a96d34281f3dc8cce218ba",
+              "finalSha256": "500ba0a1945c0d84987aa99535b7b89d6d5795ea9a76b53418933bf3df103e0f"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:59:45.424618+00:00",
+              "finishedAt": "2026-11-01T13:00:46.898200+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 61.47,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 139939,
+                  "cached_input_tokens": 120448,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1442,
+                  "reasoning_output_tokens": 15
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_read:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "be5fdd9d31be776f69872803f222cae6b5707e0a58619e9df255bc2a790b24db",
+              "finalSha256": "0fcdbdb887c5b19512afd4a51577cf1be236fe3027041cb8dae37c41d029369c"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:00:46.901379+00:00",
+              "finishedAt": "2026-11-01T13:01:57.286411+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 70.39,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 169579,
+                  "cached_input_tokens": 149376,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1555,
+                  "reasoning_output_tokens": 25
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 2,
+                "pilot.archive_open:completed": 5,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "d2ada4ed5c52923a2ef4648e60cd1ecb9adc6f6e87e9c19768234af1a09d0e8a",
+              "finalSha256": "e75ac07ea9d7beb6b8999cd5c8b53addb7440dba459a22f4fa2833419225bf13"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "NOT RUN",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_5627005bcc"
+        ],
+        "session2OpenedPrior": [
+          "mem_5627005bcc"
+        ],
+        "session2CitedPrior": [
+          "mem_5627005bcc"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T22",
@@ -5291,23 +5680,113 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:00:17.972549+00:00",
+              "finishedAt": "2026-11-01T13:01:32.270802+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 74.3,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 227634,
+                  "cached_input_tokens": 202496,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1550,
+                  "reasoning_output_tokens": 27
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 4,
+                "pilot.repo_read:completed": 8,
+                "pilot.archive_open:completed": 16,
+                "pilot.repo_search:completed": 6
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "7e3123ae3418f21e7548e0435698841769724c4377cc162d1b4b9619e928e7c3",
+              "finalSha256": "3b48d76e8dfc2038fd0535c62df9985664434bcd63a3c68297210dad13ba5a14"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:01:32.272675+00:00",
+              "finishedAt": "2026-11-01T13:02:37.105354+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 64.83,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 195930,
+                  "cached_input_tokens": 167936,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1465,
+                  "reasoning_output_tokens": 11
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 8,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_search:completed": 3
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "fcf8e33dd4cd0312920a4df33b8e97d03c41ced5001178d86a0be7bc3d768932",
+              "finalSha256": "43a9f84c090536b5a864e5e34c7cb8bfc5bf391e6340cfe2773337f7f1646d32"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:02:37.106879+00:00",
+              "finishedAt": "2026-11-01T13:03:54.798932+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 77.69,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 301466,
+                  "cached_input_tokens": 266240,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1970,
+                  "reasoning_output_tokens": 21
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 5,
+                "pilot.repo_read:completed": 8,
+                "pilot.archive_open:completed": 12,
+                "pilot.repo_search:completed": 5,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "4753b7da4f9a57aeeb1ce5a67e667d4fc640f3c0fe51ada94f1680fc0b23182b",
+              "finalSha256": "0a89aeb27608ffb38d2e0bde9aec954338fd6aa31aab06ec838a8588154715ea"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
+        "session1Written": [
+          "mem_62b4a4d1c2"
+        ],
         "session2OpenedPrior": [],
         "session2CitedPrior": [],
         "session2OpenedS1Handoff": false,
@@ -5315,7 +5794,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T23",
@@ -5391,7 +5871,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T25",
@@ -5467,7 +5948,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T26",
@@ -5543,7 +6025,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T27",
@@ -5619,7 +6102,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "T28",
@@ -5695,7 +6179,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "N01",
@@ -5771,7 +6256,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "N02",
@@ -5847,7 +6333,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "N03",
@@ -5923,7 +6410,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "N04",
@@ -5999,7 +6487,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "N05",
@@ -6075,7 +6564,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "N06",
@@ -6151,7 +6641,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     },
     {
       "id": "N07",
@@ -6227,7 +6718,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
-      "qualityFlags": []
+      "qualityFlags": [],
+      "adaptiveRetry": null
     }
   ],
   "limits": [
