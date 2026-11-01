@@ -1,0 +1,42 @@
+{
+  "registeredAt": "2026-11-01T17:08:00.517254+00:00",
+  "kind": "post-hoc-axios-two-session-retry-not-a-new-task",
+  "repo": "axios/axios",
+  "issue": 6690,
+  "issueUrl": "https://github.com/axios/axios/issues/6690",
+  "sourceCommit": "9d11464a75ee5c644c0308d742f58755c0482594",
+  "sourceTarSha256": "120a75f4654c7ff0907339a2110ae82b568bf34ff303b65a0112f2e918cdf41b",
+  "issueSnapshotSha256": "aae08e3242a019481dd9258a2f8a1069c6f29518e6e723e6fc657311ca00b88d",
+  "allocationCommitmentSha256": "ab8ed292fe3fbfedf20a84837b7ed00ef5ba98e2804d96e2ce67a7598f749b38",
+  "runnerSha256": "77425c6e4fabaae95896229662a39d6954d2a72c52cd7577f8c587ea41ef1858",
+  "bridgeSha256": "ad46eafb403ff52eec17927790c8d78cc8a082b937ef77a227d13a5f43c87626",
+  "workerSha256": "163a2c7eb0622600553efe58675cbe4881533c52de2f23a35f3179f088c42a0e",
+  "publicCheckSha256": "6204b531cfad505b94520d98318be1c308fbfc07699e8568761994578855c3d7",
+  "independentRegressionSha256": "3ca794f4ad17db70719f2835bf7e58f815bb5ace49ec0fa1be895e951a75bf0d",
+  "model": "claude-haiku-4-5",
+  "client": "Claude Code --restricted, no --bare, explicit MCP allowlist, fresh process per session",
+  "memexCommit": "a7a4efc15ec045e05a6394365cab9125cf483883",
+  "sessionBudgetClientListUsd": [
+    0.12,
+    0.18
+  ],
+  "timeoutSeconds": 480,
+  "maxConcurrentArms": 1,
+  "priorRegistrationSha256": "03d9cff2d121f5f1daf9a9218e5ab3945ceff22ec3083399d880ae56affbe49c",
+  "session1": "Initial issue and first discussion comment; inspect and explain, no edits.",
+  "session2": "Remaining discussion and each arm’s own prior handoff are searchable; implement and test an appropriate fix.",
+  "criteria": [
+    "The reproduced read-only inherited toJSON case must work while preserving the parent and child constructor.",
+    "Ordinary inherited setters and other assigned properties must retain their prior behavior.",
+    "Explanations should distinguish fixed checks from the full upstream suite."
+  ],
+  "limits": [
+    "Post-hoc retry of the same historical issue with a larger budget and improved search tools, not a new task or a population estimate.",
+    "Public issue and proposed ideas may be present in model training; source snapshot is newer than historical comments.",
+    "An investigator-authored public reproduction and independent setter control are not a full upstream test suite.",
+    "Client list-price budget is not an invoice limit; record gateway charges and unknown costs separately.",
+    "No extra fixed count limit on repo edits or test calls; session time and cost budgets still apply.",
+    "No -p --bare, because it would bypass the treatment hooks."
+  ],
+  "review": "Two AI reviewers score shuffled anonymized artifacts; adjudicate substantive or numeric disagreement; record missing output."
+}
