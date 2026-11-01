@@ -1,0 +1,9 @@
+{
+  "registeredAt": "2026-11-01T14:28:47.555293+00:00",
+  "kind": "posthoc-targeted-regression-after-blind-reviews",
+  "reason": "Check whether the lodash patch changes assignment semantics for an inherited setter; this was not part of the frozen primary verifier.",
+  "expected": "An inherited setter runs without creating an own value property.",
+  "verifierSha256": "9809e09da3e502540bbe824cdc95238aeff0700c43308eb08b05aa62015ea205",
+  "candidatePatchSha256": "fa51dd8a8210216f3ff329b7ba449fdebe1633bd234f2b28e03bef8ce2cd5181",
+  "baselinePatchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+}
