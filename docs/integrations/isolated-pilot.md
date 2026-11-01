@@ -25,21 +25,21 @@ Optionally prepare a private UTF-8 archive as an array of records:
 
 ## Codex example
 
-Replace the absolute paths, VM name, workspace and checks with your own preconfigured disposable environment. The following uses per-invocation overrides and does not install a global MCP entry. It disables unrelated app/plugin and shell tools for this evaluation; it is not a general-purpose Codex configuration. See the official [non-interactive](https://learn.chatgpt.com/docs/non-interactive-mode) and [MCP configuration](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) documentation for current flags.
+Replace the absolute paths, VM name, workspace and checks with your own preconfigured disposable environment. The following uses per-invocation overrides and does not install a global MCP entry. It disables unrelated app/plugin, shell and web-search tools for this evaluation; it is not a general-purpose Codex configuration. See the official [non-interactive](https://learn.chatgpt.com/docs/non-interactive-mode), [MCP configuration](https://learn.chatgpt.com/docs/extend/mcp?surface=cli) and [configuration reference](https://learn.chatgpt.com/docs/config-file/config-reference) documentation for current flags.
 
 ```bash
 codex exec --ignore-user-config \
   --disable shell_tool --disable unified_exec \
   --disable apps --disable plugins --disable remote_plugin --disable tool_suggest \
   --sandbox workspace-write --skip-git-repo-check --cd /ABS/WORK/agent \
-  -c 'approval_policy="never"' \
+  -c 'approval_policy="never"' -c 'web_search="disabled"' \
   -c 'mcp_servers.pilot.command="/opt/homebrew/bin/node"' \
   -c 'mcp_servers.pilot.args=["/ABS/MEMEX/scripts/prospective-agent-mcp.mjs","--archive","/ABS/WORK/history.json","--trace","/ABS/WORK/tools.jsonl","--","/opt/homebrew/bin/limactl","shell","pilot-vm","python3","/opt/memex-pilot/prospective-agent-worker-v4.py","--workspace","/opt/memex-pilot/workspaces/EXAMPLE","--checks","/opt/memex-pilot/checks/EXAMPLE"]' \
   -c 'mcp_servers.pilot.default_tools_approval_mode="approve"' \
   'Inspect the assigned repository, make the requested change, and run the assigned checks.'
 ```
 
-For a memory-enabled run, add the Memex MCP server separately and generate its project manual in the disposable host workspace, as described in the [Codex integration](codex.md). Give the two processes in a cross-session test the same L3 store and workspace scope; a new L2 session is not automatically shared. The pilot's per-run configuration disabled unrelated connectors after an earlier attempt found one automatically loaded despite `--ignore-user-config`.
+For a memory-enabled run, add the Memex MCP server separately and generate its project manual in the disposable host workspace, as described in the [Codex integration](codex.md). Give the two processes in a cross-session test the same L3 store and workspace scope; a new L2 session is not automatically shared. The pilot disabled unrelated connectors after an earlier attempt found one automatically loaded despite `--ignore-user-config`. A later run also attempted built-in web search, so the example explicitly disables it.
 
 ## Claude Code example
 

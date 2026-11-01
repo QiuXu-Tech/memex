@@ -3634,6 +3634,37 @@ await test('U3', 'generic MCP server speaks JSON-RPC: tools list/call, search, o
   assertIncludes(opened, 'body')
 })
 
+await test('U3a', 'MCP grep returns empty results and matching lines with filters', async () => {
+  const root = makeRoot('u3-grep')
+  const args = ['--agent', 'test', '--levels', 'l3', '--session', 'u3-grep-session']
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const replies = mcpExchange(root, args, [
+    call(1, 'memory_grep', { pattern: 'needle' }),
+    call(2, 'memory_write', { kind: 'fact', title: 'First grep record', body: 'first needle line' }),
+    call(3, 'memory_write', { kind: 'fact', title: 'Second grep record', body: 'second needle line' }),
+    call(4, 'memory_grep', { pattern: 'needle', limit: 1 }),
+    call(5, 'memory_grep', { pattern: 'no-such-line' }),
+  ])
+  assert.equal(replies.get(1).result.isError, false)
+  assertIncludes(replies.get(1).result.content[0].text, 'No lines matching')
+  const firstId = replies.get(2).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const secondId = replies.get(3).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  assert.equal(replies.get(4).result.isError, false)
+  assert.equal(replies.get(4).result.content[0].text.trim().split('\n').length, 1)
+  assert.equal(replies.get(5).result.isError, false)
+  assertIncludes(replies.get(5).result.content[0].text, 'No lines matching')
+  const filtered = mcpExchange(root, args, [
+    call(6, 'memory_grep', { pattern: 'needle', id: firstId }),
+    call(7, 'memory_grep', { pattern: '[' }),
+  ])
+  assert.equal(filtered.get(6).result.isError, false)
+  assertIncludes(filtered.get(6).result.content[0].text, firstId)
+  assertIncludes(filtered.get(6).result.content[0].text, 'first needle line')
+  assert.doesNotMatch(filtered.get(6).result.content[0].text, new RegExp(secondId))
+  assert.equal(filtered.get(7).result.isError, true)
+  assertIncludes(filtered.get(7).result.content[0].text, 'invalid grep pattern')
+})
+
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
   const root = makeRoot('u4')
   const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))

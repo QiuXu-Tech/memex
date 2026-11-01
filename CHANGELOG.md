@@ -16,6 +16,7 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 - Record the two-task shadow pilot, failed model candidates, separately repaired validator, blinded AI reviews, continuation and usage gaps in `docs/production-forward-pilot-20261101.md`.
 
 ### Fixed — MCP integration readiness
+- Format the array returned by `memory_grep` correctly in the MCP adapter; test empty, matching, filtered and invalid-pattern calls end to end.
 - Scope MCP open, status, restore and forget by visible workspace and session; reject undeclared write fields, including supplied record IDs, reject writes or compression into disabled levels, and default materialization to enabled scopes. These are tool-level boundaries, not operating-system access controls.
 - Use a fresh default L2 session per MCP process, and stop pinning the initializing project in newly generated global Codex configurations. Existing entries and records are not automatically migrated.
 - Honor line-based `memory_open` paging and expose character continuation for oversized line windows. Advertise accurate read-only and destructive MCP tool annotations.

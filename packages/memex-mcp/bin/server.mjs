@@ -180,7 +180,7 @@ function callTool(name, input = {}) {
     case 'memory_grep': {
       if (typeof input.pattern !== 'string' || input.pattern.length === 0) throw new Error('memory_grep requires a pattern')
       const result = engine.grep({ pattern: input.pattern, limit: input.limit, id: input.id })
-      const lines = result.hits.map((hit) => `${hit.id}:${hit.line}: ${hit.text}`)
+      const lines = result.map((hit) => `${hit.id}:${hit.line}: ${hit.text}`)
       return textResult(lines.length === 0 ? `No lines matching /${input.pattern}/.` : lines.join('\n'))
     }
     case 'memory_write': {
