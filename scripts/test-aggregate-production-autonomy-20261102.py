@@ -13,6 +13,10 @@ class AggregateValidation(unittest.TestCase):
   self.assertAlmostEqual(m.paired_client_prices([row],'baseline'),0.3)
   row['sessions']['baseline-s2']['clientListPriceUsd']=None
   self.assertIsNone(m.paired_client_prices([row],'baseline'))
+ def test_message_contexts_deduplicate_streamed_blocks_within_session(self):
+  def message(mid,reads):return {'type':'assistant','message':{'id':mid,'usage':{'input_tokens':1,'cache_creation_input_tokens':2,'cache_read_input_tokens':reads}}}
+  self.assertEqual(m.message_contexts([[message('a',3),message('a',4)],[message('a',5)]]),{'messageIds':2,'inputTokens':15})
+  self.assertEqual(m.first_message_context([[message('a',3),message('a',4)],[message('b',5)]]),{'sessions':2,'inputTokens':14})
  def test_budget_recovery_does_not_erase_failure_or_rejected_tool(self):
   rows=[{'runnerError':None,'sessions':{'a':{'status':'error_max_budget_usd','responseCompleted':False},
        'b':{'status':'success','responseCompleted':True,'recovery':{'status':'success'},'unavailableToolAttempts':['missing']}}}]

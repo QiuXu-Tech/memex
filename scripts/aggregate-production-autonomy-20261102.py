@@ -36,6 +36,25 @@ def paired_client_prices(complete,arm):
  prices=[x['sessions'][f'{arm}-s{stage}']['clientListPriceUsd'] for x in complete for stage in (1,2)]
  if not prices or any(not isinstance(x,(int,float)) or isinstance(x,bool) or x<0 for x in prices):return None
  return round(sum(prices),6)
+def message_contexts(sessions):
+ count=total=0
+ for session in sessions:
+  messages={}
+  for event in session:
+   message=event.get('message') or {};usage=message.get('usage')
+   if event.get('type')=='assistant' and message.get('id') and isinstance(usage,dict):messages[message['id']]=usage
+  for usage in messages.values():
+   if any(type(usage.get(k)) is not int or usage[k]<0 for k in INPUT_FIELDS):return None
+   count+=1;total+=sum(usage[k] for k in INPUT_FIELDS)
+ return {'messageIds':count,'inputTokens':total} if count else None
+def first_message_context(sessions):
+ total=0
+ for session in sessions:
+  message=next(((e.get('message') or {}) for e in session if e.get('type')=='assistant' and (e.get('message') or {}).get('id')),None)
+  usage=(message or {}).get('usage') or {}
+  if any(type(usage.get(k)) is not int or usage[k]<0 for k in INPUT_FIELDS):return None
+  total+=sum(usage[k] for k in INPUT_FIELDS)
+ return {'sessions':len(sessions),'inputTokens':total} if sessions else None
 def session_outcomes(rows):
  sessions=[s for row in rows for s in row['sessions'].values()]
  failed=collections.Counter(s.get('status') or 'UNKNOWN' for s in sessions if not s.get('responseCompleted'))
@@ -165,12 +184,25 @@ def cohort(name):
     trace=base/x['id']/'traces'
     sessions.append(events(trace/f'{arm}-s{stage}-events.jsonl')+events(trace/f'{arm}-s{stage}-recovery-events.jsonl'))
   calls[arm]=tool_counts(sessions)
+ contexts={};first_contexts={}
+ for arm in ('baseline','memex'):
+  sessions=[];first_sessions=[]
+  for x in tokenpairs:
+   for stage in (1,2):
+    trace=base/x['id']/'traces'
+    session=events(trace/f'{arm}-s{stage}-events.jsonl')+events(trace/f'{arm}-s{stage}-recovery-events.jsonl')
+    sessions.append(session)
+    if stage==1:first_sessions.append(session)
+  detail=message_contexts(sessions)
+  contexts[arm]=detail if detail and detail['inputTokens']==token_totals[arm]['input'] else None
+  first_contexts[arm]=first_message_context(first_sessions)
  review_status='FINISHED' if (base/'reviews'/'finished.json').exists() else 'IN_PROGRESS' if (base/'reviews'/'started.json').exists() else 'NOT_STARTED'
  return {'status':'FINISHED' if (base/'finished-rest.json').exists() else 'IN_PROGRESS','reviewStatus':review_status,'registered':len(rows),'started':sum(x['started'] for x in rows),
   'finished':sum(x['finished'] for x in rows),'completePairs':len(complete),'validRatedPairs':len(reviewed),'scoreDirections':dict(directions),
   'posthocSensitivityRatedPairs':len(sensitivity),'posthocSensitivityDirections':dict(sensitivity_directions),
   'meanScore':{a:statistics.mean(x['review']['scoresByArm'][a] for x in reviewed) if reviewed else None for a in ('baseline','memex')},
   'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'completePairToolAttempts':calls,
+  'completeTokenPairMessageContexts':contexts,'completeTokenPairFirstSessionInitialContexts':first_contexts,
   'completePairClientListPriceUsd':{a:paired_client_prices(complete,a) for a in ('baseline','memex')},
   'sessionOutcomes':session_outcomes(rows),
   'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,

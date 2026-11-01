@@ -19,6 +19,10 @@ if n:
  tokens+=f" The difference comprises {cache_read:+,} cache-read, {cache_write:+,} cache-creation and {mem-base-cache_read-cache_write:+,} uncached input tokens; token counts are not wallet charges."
 prices=a['completePairClientListPriceUsd'];pa=prices['baseline'];pm=prices['memex']
 paired_price=(f"For those {a['completePairs']} complete original pairs, client list prices were ${pa:.4f} control and ${pm:.4f} Memex ({(pm/pa-1)*100:+.1f}%)." if pa and pm is not None else 'A complete original-pair list-price comparison is unavailable.')
+bc=a['completeTokenPairMessageContexts']['baseline'];mc=a['completeTokenPairMessageContexts']['memex']
+context_note=(f"Those input totals reconcile to {bc['messageIds']} / {mc['messageIds']} distinct assistant message IDs, averaging {bc['inputTokens']/bc['messageIds']:,.0f} / {mc['inputTokens']/mc['messageIds']:,.0f} input tokens per message. This points to larger per-message context in this sample, but does not isolate which context component caused it." if bc and mc else 'Per-message context counts could not be reconciled to the full reported input totals.')
+bf=a['completeTokenPairFirstSessionInitialContexts']['baseline'];mf=a['completeTokenPairFirstSessionInitialContexts']['memex']
+if bf and mf:context_note+=f" Before any model tool result in the first session, the first assistant messages averaged {bf['inputTokens']/bf['sessions']:,.0f} / {mf['inputTokens']/mf['sessions']:,.0f} input tokens (control / Memex). Tool schemas, hooks and other initial context differ, so this does not isolate one cause."
 status='IN PROGRESS' if any(x['status']!='FINISHED' or x.get('reviewStatus')!='FINISHED' for x in (a,b)) else 'RUNS FINISHED; GAPS AND POST-HOC REVIEWS SHOWN BELOW'
 text=f'''---
 title: Cross-session memory and real-issue triage, 2026-11-02
@@ -70,6 +74,8 @@ The original cohort also has a **post-hoc sensitivity view** of {a['posthocSensi
 Across all started tasks, the original cohort has **{a['agentWrites']}** tasks with an observed successful agent `memory_write`; **{a['writtenRecordOpenedNext']}** have an agent-written record explicitly opened in the next session. The Stop hook saved a first-session checkpoint in **{a['automaticCheckpoints']}** tasks, and a checkpoint was opened in the next session in **{a['automaticCheckpointOpenedNext']}**. For the supplemental cohort, those corresponding counts are **{b['agentWrites']}**, **{b['writtenRecordOpenedNext']}**, **{b['automaticCheckpoints']}**, and **{b['automaticCheckpointOpenedNext']}**. These are observed operations, not proof that the content was correct or necessary; categories overlap.
 
 {tokens} Input totals include uncached, cache-read and cache-creation tokens, following [Anthropic's usage definition](https://platform.claude.com/docs/en/build-with-claude/prompt-caching). Output tokens are reported separately in the JSON. In recovered sessions, individual attempt usage is retained, but a full session total is **UNKNOWN** when the client may omit usage from a budget-failed request; zero is not substituted.
+
+{context_note}
 
 {paired_price} These are client list prices, not measured gateway wallet charges.
 
