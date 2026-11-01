@@ -9,9 +9,11 @@ def scoreline(label,x):
  n=x['validRatedPairs'];v=x['scoreDirections']
  if not n:return f"- **{label}:** no fully adjudicated pair is available in this snapshot."
  return f"- **{label}:** {n} rated pairs; control higher {v.get('baselineHigher',0)}, tie {v.get('tie',0)}, Memex higher {v.get('memexHigher',0)}. Mean score, control / Memex: {x['meanScore']['baseline']:.2f} / {x['meanScore']['memex']:.2f} on the 0–2 rubric."
+def usage_rows(label,x):
+ return '\n'.join(f"| {label} | {model} | {u['calls']} | {u['promptTokens']:,} | {u['completionTokens']:,} | {u['missingUsageOrFailedAttempts']} |" for model,u in x.get('reviewUsageByModel',{}).items()) or f'| {label} | Pending | 0 | 0 | 0 | 0 |'
 n=a['fullTokenPairs'];base=a['tokenTotals']['baseline']['input'];mem=a['tokenTotals']['memex']['input']
 tokens=(f"In the {n} original-protocol complete pairs with reported usage, control used {base:,} input tokens and Memex {mem:,} ({(mem/base-1)*100:+.1f}%)." if n and base else 'No complete original-protocol pairs have comparable input-token totals yet.')
-status='IN PROGRESS' if any(x['status']!='FINISHED' for x in (a,b)) else 'SOLVER RUNS FINISHED; REVIEW STATUS SHOWN BELOW'
+status='IN PROGRESS' if any(x['status']!='FINISHED' or x.get('reviewStatus')!='FINISHED' for x in (a,b)) else 'RUNS FINISHED; GAPS AND POST-HOC REVIEWS SHOWN BELOW'
 text=f'''---
 title: Cross-session memory and real-issue triage, 2026-11-02
 layout: default
@@ -21,7 +23,7 @@ layout: default
 
 **{status}.** This page is a dated snapshot, not evidence of a production correctness gain or cost saving. The tasks are real public issues, but their historical discussions were replayed in compressed sessions as source-backed triage; agents did not ship changes, and AI judges are not human reviewers. Snapshot: `{d['generatedAt']}`.
 
-[Machine-readable results](assets/benchmarks/production-autonomy-20261102/results.json) · [Original 30-task registration](assets/benchmarks/production-autonomy-20261102/triage30-registration.json) · [Original review plan and evidence correction](assets/benchmarks/production-autonomy-20261102/triage30-review-plan-metadata-revision.json) · [Supplemental 30-task registration](assets/benchmarks/production-autonomy-20261102/supplement-triage-registration.json) · [Supplemental review plan](assets/benchmarks/production-autonomy-20261102/supplement-triage-review-plan.json)
+[Machine-readable results](assets/benchmarks/production-autonomy-20261102/results.json) · [Calibration ledger](assets/benchmarks/production-autonomy-20261102/calibrations.json) · [Original 30-task registration](assets/benchmarks/production-autonomy-20261102/triage30-registration.json) · [Original review plan and evidence correction](assets/benchmarks/production-autonomy-20261102/triage30-review-plan-metadata-revision.json) · [Supplemental 30-task registration](assets/benchmarks/production-autonomy-20261102/supplement-triage-registration.json) · [Supplemental review plan](assets/benchmarks/production-autonomy-20261102/supplement-triage-review-plan-final.json)
 
 ![Task completion, AI review, token use and observed memory actions](assets/benchmarks/production-autonomy-20261102/autonomy-summary.svg)
 
@@ -49,6 +51,8 @@ The recovery cohort was selected and registered **after** observing budget exhau
 
 Scores assess the supplied triage evidence against the frozen 0–2 rubric; they do not establish that a patch works, an issue is resolved, or a production task is correct. Reviewers are GPT-6.1 Sol and DeepSeek Flash; material disagreements are sent to Gemini Flash when both initial reviews are valid. An absent, truncated, invalid or unresolved review stays missing.
 
+The original cohort also has a **post-hoc sensitivity view** of {a['posthocSensitivityRatedPairs']} rated pairs: control higher {a['posthocSensitivityDirections'].get('baselineHigher',0)}, tie {a['posthocSensitivityDirections'].get('tie',0)}, Memex higher {a['posthocSensitivityDirections'].get('memexHigher',0)}. This supplements the original primary view; it includes deterministic revalidation where judges cited a visible `limits` field, a different-model replacement after one timeout, and a separately registered retry of a malformed adjudication. The initial outcomes remain in the JSON. [Reference correction](assets/benchmarks/production-autonomy-20261102/triage30-limits-revalidation-registration.json) · [Reviewer rescue](assets/benchmarks/production-autonomy-20261102/triage30-review-rescue-registration.json)
+
 ## Memory behavior and cost
 
 Across all started tasks, the original cohort has **{a['agentWrites']}** tasks with an observed successful agent `memory_write`; **{a['writtenRecordOpenedNext']}** have an agent-written record explicitly opened in the next session. The Stop hook saved a first-session checkpoint in **{a['automaticCheckpoints']}** tasks, and a checkpoint was opened in the next session in **{a['automaticCheckpointOpenedNext']}**. For the supplemental cohort, those corresponding counts are **{b['agentWrites']}**, **{b['writtenRecordOpenedNext']}**, **{b['automaticCheckpoints']}**, and **{b['automaticCheckpointOpenedNext']}**. These are observed operations, not proof that the content was correct or necessary; categories overlap.
@@ -56,6 +60,13 @@ Across all started tasks, the original cohort has **{a['agentWrites']}** tasks w
 {tokens} Input totals include uncached, cache-read and cache-creation tokens, following [Anthropic's usage definition](https://platform.claude.com/docs/en/build-with-claude/prompt-caching). Output tokens are reported separately in the JSON. In recovered sessions, individual attempt usage is retained, but a full session total is **UNKNOWN** when the client may omit usage from a budget-failed request; zero is not substituted.
 
 The reported Claude client list-price totals for completed and failed session attempts are **${a['clientListPriceKnownUsd']:.4f}** for the original cohort and **${b['clientListPriceKnownUsd']:.4f}** for the supplemental cohort; sessions with missing client costs: **{a['clientListPriceMissingSessions']}** and **{b['clientListPriceMissingSessions']}** respectively. These figures are not APIMaster wallet charges and exclude the separate canaries, reviewers, machine time and labor. Gateway attribution and any missing fees are not assumed to be zero.
+
+The following reviewer usage is reported by the gateway for terminal attempts with complete usage; failed or usage-missing attempts remain a separate gap. It is not a dollar invoice.
+
+| Cohort | Model | Attempts | Known prompt tokens | Known output tokens | Failed or usage missing |
+| --- | --- | ---: | ---: | ---: | ---: |
+{usage_rows('Original',a)}
+{usage_rows('Supplemental',b)}
 
 ## Retained calibration failures
 

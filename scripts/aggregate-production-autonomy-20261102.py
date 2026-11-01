@@ -130,7 +130,8 @@ def cohort(name):
   sensitivity_directions['memexHigher' if delta>0 else 'baselineHigher' if delta<0 else 'tie']+=1
  tokenpairs=[x for x in complete if all(x['tokenByArm'].get(a) is not None for a in ('baseline','memex'))]
  token_totals={a:{k:sum(x['tokenByArm'][a][k] for x in tokenpairs) for k in ('input','output','cacheRead','cacheWrite')} for a in ('baseline','memex')}
- return {'status':'FINISHED' if (base/'finished-rest.json').exists() else 'IN_PROGRESS','registered':len(rows),'started':sum(x['started'] for x in rows),
+ review_status='FINISHED' if (base/'reviews'/'finished.json').exists() else 'IN_PROGRESS' if (base/'reviews'/'started.json').exists() else 'NOT_STARTED'
+ return {'status':'FINISHED' if (base/'finished-rest.json').exists() else 'IN_PROGRESS','reviewStatus':review_status,'registered':len(rows),'started':sum(x['started'] for x in rows),
   'finished':sum(x['finished'] for x in rows),'completePairs':len(complete),'validRatedPairs':len(reviewed),'scoreDirections':dict(directions),
   'posthocSensitivityRatedPairs':len(sensitivity),'posthocSensitivityDirections':dict(sensitivity_directions),
   'meanScore':{a:statistics.mean(x['review']['scoresByArm'][a] for x in reviewed) if reviewed else None for a in ('baseline','memex')},

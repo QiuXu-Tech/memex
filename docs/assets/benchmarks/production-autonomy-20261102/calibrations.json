@@ -1,0 +1,725 @@
+{
+  "kind": "redacted-calibration-ledger",
+  "note": "Synthetic prompts, identifiers, local paths and raw answers are excluded; missing usage remains unknown. The forced-final resumed client price was cumulative in that probe, so do not add its two listed prices.",
+  "hookSmokes": [
+    {
+      "name": "hook-smoke",
+      "kind": "synthetic-two-session-claude-hook-smoke",
+      "distinctSessions": 2,
+      "sameSession": null,
+      "answerMatches": false,
+      "stages": [
+        {
+          "stage": 1,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 12.14,
+          "usage": {
+            "input_tokens": 655,
+            "cache_creation_input_tokens": 5886,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 448,
+            "output_tokens_details": {
+              "thinking_tokens": 334
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 5886
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 655,
+                "output_tokens": 448,
+                "cache_read_input_tokens": 0,
+                "cache_creation_input_tokens": 5886,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 5886,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.0102525,
+          "exitCode": 0
+        },
+        {
+          "stage": 2,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 12.43,
+          "usage": {
+            "input_tokens": 680,
+            "cache_creation_input_tokens": 255,
+            "cache_read_input_tokens": 5861,
+            "output_tokens": 887,
+            "output_tokens_details": {
+              "thinking_tokens": 662
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 255
+            },
+            "inference_geo": "not_available",
+            "iterations": [
+              {
+                "input_tokens": 680,
+                "output_tokens": 887,
+                "cache_read_input_tokens": 5861,
+                "cache_creation_input_tokens": 255,
+                "cache_creation": {
+                  "ephemeral_5m_input_tokens": 255,
+                  "ephemeral_1h_input_tokens": 0
+                },
+                "type": "message"
+              }
+            ],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.00601985,
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "name": "hook-smoke-retry",
+      "kind": "synthetic-two-session-claude-hook-smoke",
+      "distinctSessions": 2,
+      "sameSession": null,
+      "answerMatches": false,
+      "stages": [
+        {
+          "stage": 1,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 4.78,
+          "usage": {
+            "input_tokens": 3471,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 182,
+            "output_tokens_details": {
+              "thinking_tokens": 136
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.004381,
+          "exitCode": 0
+        },
+        {
+          "stage": 2,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 4.62,
+          "usage": {
+            "input_tokens": 3765,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 293,
+            "output_tokens_details": {
+              "thinking_tokens": 258
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.00523,
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "name": "hook-smoke-clarified",
+      "kind": "synthetic-two-session-claude-hook-smoke",
+      "distinctSessions": 2,
+      "sameSession": null,
+      "answerMatches": true,
+      "stages": [
+        {
+          "stage": 1,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 4.61,
+          "usage": {
+            "input_tokens": 3467,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 69,
+            "output_tokens_details": {
+              "thinking_tokens": 50
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.003812,
+          "exitCode": 0
+        },
+        {
+          "stage": 2,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 3.52,
+          "usage": {
+            "input_tokens": 3729,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 121,
+            "output_tokens_details": {
+              "thinking_tokens": 107
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.004334,
+          "exitCode": 0
+        }
+      ]
+    },
+    {
+      "name": "mcp-trust-smoke",
+      "kind": "synthetic-explicit-mcp-write-and-cross-session-recall",
+      "distinctSessions": 2,
+      "sameSession": null,
+      "answerMatches": true,
+      "stages": [
+        {
+          "stage": 1,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 7.49,
+          "usage": {
+            "input_tokens": 15,
+            "cache_creation_input_tokens": 8195,
+            "cache_read_input_tokens": 4629,
+            "output_tokens": 440,
+            "output_tokens_details": {
+              "thinking_tokens": 215
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 8195
+            },
+            "inference_geo": "not_available",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.012921650000000002,
+          "exitCode": 0,
+          "tools": [
+            "mcp__memex__memory_write"
+          ],
+          "mcpResultHasUnverified": false,
+          "hookHasUnverified": false
+        },
+        {
+          "stage": 2,
+          "completed": true,
+          "timeout": false,
+          "elapsedSeconds": 4.93,
+          "usage": {
+            "input_tokens": 10,
+            "cache_creation_input_tokens": 1956,
+            "cache_read_input_tokens": 4531,
+            "output_tokens": 171,
+            "output_tokens_details": {
+              "thinking_tokens": 147
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 1956
+            },
+            "inference_geo": "not_available",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.0037631,
+          "exitCode": 0,
+          "tools": [],
+          "mcpResultHasUnverified": false,
+          "hookHasUnverified": true
+        }
+      ]
+    },
+    {
+      "name": "forced-final-smoke",
+      "kind": null,
+      "distinctSessions": null,
+      "sameSession": true,
+      "answerMatches": true,
+      "stages": [
+        {
+          "stage": 1,
+          "timeout": false,
+          "usage": {
+            "output_tokens_details": {
+              "thinking_tokens": 0
+            },
+            "input_tokens": 0,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 0,
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.005127,
+          "subtype": "error_max_budget_usd",
+          "exitCode": 1
+        },
+        {
+          "stage": 2,
+          "timeout": false,
+          "usage": {
+            "input_tokens": 3581,
+            "cache_creation_input_tokens": 0,
+            "cache_read_input_tokens": 0,
+            "output_tokens": 65,
+            "output_tokens_details": {
+              "thinking_tokens": 55
+            },
+            "server_tool_use": {
+              "web_search_requests": 0,
+              "web_fetch_requests": 0
+            },
+            "service_tier": "standard",
+            "cache_creation": {
+              "ephemeral_1h_input_tokens": 0,
+              "ephemeral_5m_input_tokens": 0
+            },
+            "inference_geo": "not_available",
+            "iterations": [],
+            "speed": "standard"
+          },
+          "clientListPriceUsd": 0.009033,
+          "subtype": "success",
+          "exitCode": 0
+        }
+      ]
+    }
+  ],
+  "axiosCalibrations": [
+    {
+      "name": "axios-6690-pilot",
+      "arms": {
+        "baseline": {
+          "session": {
+            "stage": 1,
+            "responseCompleted": false,
+            "timeout": false,
+            "elapsedSeconds": 36.83,
+            "usage": {
+              "input_tokens": 50,
+              "cache_creation_input_tokens": 20122,
+              "cache_read_input_tokens": 47875,
+              "output_tokens": 2340,
+              "output_tokens_details": {
+                "thinking_tokens": 1167
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 20122
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.052735649999999995,
+            "resultSubtype": "error_max_budget_usd",
+            "exitCode": 1,
+            "normalExit": false,
+            "shutdownTimeoutAfterResult": false,
+            "unexpectedTools": []
+          },
+          "checks": {
+            "public": {
+              "exitCode": 1,
+              "output": "TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\n    at Object.assign (<anonymous>)\n    at Object.inherits (file:///work/lib/utils.js:728:19)\n    at /checks/verify.js:12:11\n"
+            },
+            "regression": {
+              "exitCode": 0,
+              "output": "inherited setter and ordinary properties passed\n"
+            },
+            "changedPaths": [],
+            "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "memex": {
+          "session": {
+            "stage": 1,
+            "responseCompleted": false,
+            "timeout": false,
+            "elapsedSeconds": 32.56,
+            "usage": {
+              "input_tokens": 50,
+              "cache_creation_input_tokens": 21821,
+              "cache_read_input_tokens": 68784,
+              "output_tokens": 2390,
+              "output_tokens_details": {
+                "thinking_tokens": 1256
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 21821
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.05277515000000001,
+            "resultSubtype": "error_max_budget_usd",
+            "exitCode": 1,
+            "normalExit": false,
+            "shutdownTimeoutAfterResult": false,
+            "unexpectedTools": []
+          },
+          "checks": {
+            "public": {
+              "exitCode": 1,
+              "output": "TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\n    at Object.assign (<anonymous>)\n    at Object.inherits (file:///work/lib/utils.js:728:19)\n    at /checks/verify.js:12:11\n"
+            },
+            "regression": {
+              "exitCode": 0,
+              "output": "inherited setter and ordinary properties passed\n"
+            },
+            "changedPaths": [],
+            "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      }
+    },
+    {
+      "name": "axios-6690-retry",
+      "arms": {
+        "baseline": {
+          "session": {
+            "stage": 1,
+            "responseCompleted": false,
+            "timeout": false,
+            "elapsedSeconds": 87.59,
+            "usage": {
+              "input_tokens": 100,
+              "cache_creation_input_tokens": 46892,
+              "cache_read_input_tokens": 220301,
+              "output_tokens": 7583,
+              "output_tokens_details": {
+                "thinking_tokens": 5304
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 46892
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.12742684999999998,
+            "resultSubtype": "error_max_budget_usd",
+            "exitCode": 1,
+            "normalExit": false,
+            "shutdownTimeoutAfterResult": false,
+            "unexpectedTools": []
+          },
+          "checks": {
+            "public": {
+              "exitCode": 1,
+              "output": "TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\n    at Object.assign (<anonymous>)\n    at Object.inherits (file:///work/lib/utils.js:728:19)\n    at /checks/verify.js:12:11\n"
+            },
+            "regression": {
+              "exitCode": 0,
+              "output": "inherited setter and ordinary properties passed\n"
+            },
+            "changedPaths": [],
+            "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "memex": {
+          "session": {
+            "stage": 1,
+            "responseCompleted": false,
+            "timeout": false,
+            "elapsedSeconds": 79.28,
+            "usage": {
+              "input_tokens": 95,
+              "cache_creation_input_tokens": 48377,
+              "cache_read_input_tokens": 246215,
+              "output_tokens": 5259,
+              "output_tokens_details": {
+                "thinking_tokens": 2526
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 48377
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.12657954999999999,
+            "resultSubtype": "error_max_budget_usd",
+            "exitCode": 1,
+            "normalExit": false,
+            "shutdownTimeoutAfterResult": false,
+            "unexpectedTools": [
+              "mcp__pilot__repo_grep"
+            ]
+          },
+          "checks": {
+            "public": {
+              "exitCode": 1,
+              "output": "TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\n    at Object.assign (<anonymous>)\n    at Object.inherits (file:///work/lib/utils.js:728:19)\n    at /checks/verify.js:12:11\n"
+            },
+            "regression": {
+              "exitCode": 0,
+              "output": "inherited setter and ordinary properties passed\n"
+            },
+            "changedPaths": [],
+            "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        }
+      }
+    }
+  ],
+  "reviewCanary": {
+    "limitation": "Packet omitted author/time metadata that agents had seen; these opinions are retained as flawed-input calibration, not cohort ratings.",
+    "initialReviews": [
+      {
+        "model": "gpt-6.1-sol",
+        "status": "ok",
+        "rating": {
+          "candidates": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Correctly identifies the default 302, warning-only guards, and continued call to location(), and proposes actionable PR-status checks. However, it repeatedly declares the response malformed and a vulnerability despite acknowledging C5's dispute. This fails to keep HTTP header validity separate from proposed argument/type validation. The packet supports the local control flow, not confirmed specification invalidity, security impact, or release-wide behavior.",
+              "references": [
+                "final:C01",
+                "source:C01",
+                "comment:C2",
+                "comment:C5",
+                "comment:C6"
+              ],
+              "unsupportedClaims": [
+                "Calls Location: undefined definitively malformed and labels the behavior a vulnerability; neither conclusion is established by the packet.",
+                "Supplies comment authors and exact dates that are absent from the provided comment evidence.",
+                "Presents C2 as confirming v5.x-wide behavior and a planned v6 change, although the packet contains only a comment expressing expected behavior.",
+                "Attributes undefined-to-string coercion specifically to encodeUrl as source-established fact, although its implementation and an execution verification are absent."
+              ]
+            },
+            {
+              "id": "C02",
+              "score": 1,
+              "reason": "Explains the warning-only redirect path and clearly distinguishes C5's header-validity objection from proposed argument validation. It appropriately attributes the PR fix to a claim and recommends checking PR status. Nevertheless, its suggestion that the fix may already exist in the pinned baseline conflicts with the displayed warning-only implementation. Its unconditional response-body statement also overlooks the empty-body fallback and HEAD handling.",
+              "references": [
+                "final:C02",
+                "source:C02",
+                "comment:C2",
+                "comment:C5",
+                "comment:C6"
+              ],
+              "unsupportedClaims": [
+                "Supplies comment authors and exact dates that are absent from the provided comment evidence.",
+                "States without qualification that the response body contains undefined; the source makes body generation depend on content negotiation and suppresses the body for HEAD requests.",
+                "Suggests that merging PR #7103 could mean the issue is already resolved in this pinned baseline, although the supplied baseline source still warns and continues rather than immediately rejecting the URL argument."
+              ]
+            }
+          ]
+        },
+        "error": null
+      },
+      {
+        "model": "deepseek-flash",
+        "status": "ok",
+        "rating": {
+          "candidates": [
+            {
+              "id": "C01",
+              "score": 2,
+              "reason": "Accurately explains the redirect(undefined) behavior with specific source lines: deprecation warnings at 826-836 do not return/throw, and line 839 calls this.location(address) which via res.location (797-799) uses encodeUrl, coercing undefined to 'undefined'. Correctly distinguishes the header-validity dispute (C5) from the proposed argument-validation behavior (C2/C6), and appropriately flags uncertainty about PR #7103 status and whether the pinned commit is the intended baseline. Actionable next checks are specific and relevant.",
+              "references": [
+                "final:C01",
+                "source:C01",
+                "comment:C2",
+                "comment:C5",
+                "comment:C6"
+              ],
+              "unsupportedClaims": []
+            },
+            {
+              "id": "C02",
+              "score": 2,
+              "reason": "Correctly summarizes the reported behavior and cites the relevant source lines (797-799, 815-867, 826-836, 839), noting deprecation warnings warn but do not reject. Distinguishes the spec-validity challenge (C5) from the type-validation proposal (C2/C6) and flags uncertainty about PR #7103 and the pinned commit baseline. Slightly less detailed than C01 on the encodeUrl coercion mechanism but still accurate and specific.",
+              "references": [
+                "final:C02",
+                "source:C02",
+                "comment:C2",
+                "comment:C5",
+                "comment:C6"
+              ],
+              "unsupportedClaims": []
+            }
+          ]
+        },
+        "error": null
+      }
+    ],
+    "initialAdjudication": {
+      "model": "gemini-3.8-flash",
+      "status": "ok",
+      "rating": null,
+      "error": "failed or truncated response"
+    },
+    "posthocAdjudication": {
+      "model": "gemini-3.8-flash",
+      "status": "ok",
+      "rating": {
+        "candidates": [
+          {
+            "id": "C01",
+            "score": 1,
+            "reason": "Accurately traces control flow in `lib/response.js` showing that deprecation warnings do not return or throw, and notes C5's dispute regarding HTTP header validity. However, it repeatedly asserts that the response is definitively 'malformed' and labels it a 'vulnerability', conflating the disputed spec compliance with established fact. It also introduces extraneous comment metadata (usernames, dates) not provided in the packet.",
+            "references": [
+              "final:C01",
+              "comment:C2",
+              "comment:C5",
+              "comment:C6"
+            ],
+            "unsupportedClaims": [
+              "Asserts the behavior is a 'vulnerability' and unconditionally 'malformed', which is disputed and unverified in the packet.",
+              "Supplies usernames and dates for comments that do not appear in the packet evidence."
+            ]
+          },
+          {
+            "id": "C02",
+            "score": 2,
+            "reason": "Directly satisfies the criterion by clearly explaining the `redirect(undefined)` flow where warnings log without halting execution, and explicitly separating the header-validity dispute (C5 asserting `Location: undefined` is valid per HTTP spec) from proposed argument/type validation (C2 and C6). It maintains proper attribution and distinguishes claims from established baseline facts.",
+            "references": [
+              "final:C02",
+              "comment:C2",
+              "comment:C5",
+              "comment:C6"
+            ],
+            "unsupportedClaims": [
+              "Supplies usernames and dates for comments that do not appear in the packet evidence."
+            ]
+          }
+        ],
+        "materialDisagreement": true
+      },
+      "error": null,
+      "usage": {
+        "prompt_tokens": 16072,
+        "completion_tokens": 416,
+        "total_tokens": 16488,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 16072,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 0,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      },
+      "finishReason": "stop"
+    }
+  }
+}
