@@ -1,0 +1,20 @@
+{
+  "registeredAt": "2026-11-01T16:51:35.966128+00:00",
+  "kind": "post-hoc-synthetic-claude-hook-mechanism-retry",
+  "memexCommit": "5697cfd388c2ac53b781ac35c845f017f8c26e54",
+  "runnerSha256": "2841d4abea3f5425c254f00e573382722f6e78710fd1350d9e75aaf35bbd6343",
+  "model": "claude-haiku-4-5",
+  "sessions": 2,
+  "maxClientListPriceUsdPerSession": 0.02,
+  "changesFromFirstAttempt": [
+    "Close inherited stdin explicitly; instrument only synthetic prompt-hook input; confine test loader to hook subprocesses.",
+    "Skip generic refusals when automatically capturing assistant responses."
+  ],
+  "purpose": "Investigate first failed synthetic attempt and verify Stop capture followed by fresh-session recall; no production or treatment-effect claim.",
+  "limits": [
+    "Synthetic marker and one pair are not real long-horizon tasks.",
+    "Client list-price cap is not a hard gateway invoice cap.",
+    "An automatic hook write is distinct from an agent choosing to call memory_write.",
+    "A post-hoc retry does not replace the first failed attempt."
+  ]
+}
