@@ -1,0 +1,34 @@
+diff -ruN '--exclude=node_modules' [assigned-source]/packages/happy-dom/src/nodes/child-node/ChildNodeUtility.ts [assigned-source]/packages/happy-dom/src/nodes/child-node/ChildNodeUtility.ts
+--- a/packages/happy-dom/src/nodes/child-node/ChildNodeUtility.ts
++++ b/packages/happy-dom/src/nodes/child-node/ChildNodeUtility.ts
+@@ -1,5 +1,6 @@
+ import * as PropertySymbol from '../../PropertySymbol.js';
+ import Node from '../node/Node.js';
++import NodeTypeEnum from '../node/NodeTypeEnum.js';
+ import type IParentNode from '../parent-node/IParentNode.js';
+ import type IChildNode from './IChildNode.js';
+ 
+@@ -31,6 +32,23 @@
+ 			return;
+ 		}
+ 
++		if (
++			nodes.length === 1 &&
++			nodes[0] instanceof Node &&
++			parent[PropertySymbol.nodeType] === NodeTypeEnum.documentNode &&
++			childNode[PropertySymbol.nodeType] === NodeTypeEnum.elementNode &&
++			nodes[0][PropertySymbol.nodeType] === NodeTypeEnum.elementNode
++		) {
++			const node = nodes[0][PropertySymbol.proxy] || nodes[0];
++			if (node === childNode) {
++				return;
++			}
++			const nextSibling = childNode.nextSibling;
++			parent.removeChild(childNode);
++			parent.insertBefore(node, nextSibling);
++			return;
++		}
++
+ 		for (const node of nodes) {
+ 			if (node instanceof Node) {
+ 				parent.insertBefore(node, childNode);

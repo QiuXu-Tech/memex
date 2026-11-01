@@ -1,0 +1,1 @@
+const {spawnSync}=require('node:child_process');const p=spawnSync('/usr/bin/python3',['-I','/checks/fixture.py','public'],{encoding:'utf8',timeout:25000});process.stdout.write(p.stdout||'');process.stderr.write(p.stderr||'');process.exitCode=p.status===null?2:p.status

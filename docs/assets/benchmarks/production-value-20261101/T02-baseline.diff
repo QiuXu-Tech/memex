@@ -1,0 +1,35 @@
+diff -ruN '--exclude=node_modules' [assigned-source]/neural_lam/train_model.py [assigned-source]/neural_lam/train_model.py
+--- a/neural_lam/train_model.py
++++ b/neural_lam/train_model.py
+@@ -238,8 +238,9 @@
+         type=str,
+         default=["auto"],
+         help="Devices to use for training. Can be the string 'auto' or a list "
+-        "of integer id's corresponding to the desired devices, e.g. "
+-        "'--devices 0 1'. Note that this cannot be used with SLURM, instead "
++        "of integer GPU ids, e.g. '--devices 0 1'. On CPU, specify a single "
++        "positive process count, e.g. '--devices 2'. "
++        "Note that this cannot be used with SLURM, instead "
+         "set 'ntasks-per-node' in the slurm setup",
+     )
+     runtime_group.add_argument(
+@@ -652,6 +653,19 @@
+     devices: int | str | list[int]
+     if compute_config.devices == "auto" or compute_config.devices == ["auto"]:
+         devices = "auto"
++    elif device_name == "cpu":
++        cpu_devices = compute_config.devices
++        if isinstance(cpu_devices, list) and len(cpu_devices) == 1:
++            cpu_devices = cpu_devices[0]
++        error = "--devices on CPU must be a single positive integer process count"
++        if not isinstance(cpu_devices, (int, str)):
++            raise ValueError(error)
++        try:
++            devices = int(cpu_devices)
++        except ValueError:
++            raise ValueError(error) from None
++        if devices <= 0:
++            raise ValueError(error)
+     elif isinstance(compute_config.devices, list):
+         try:
+             devices = [int(i) for i in compute_config.devices]

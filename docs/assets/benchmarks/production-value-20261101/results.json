@@ -1,0 +1,1208 @@
+{
+  "generatedAt": "2026-11-01T11:26:47.451450+00:00",
+  "kind": "two-executable-real-issue-shadow-comparisons",
+  "tasks": [
+    {
+      "id": "T30",
+      "issue": "https://github.com/capricorn86/happy-dom/issues/2203",
+      "sourceCommit": "5e100dedb73111a276f75a3daff3a506e2524759",
+      "memexCommit": "98587f9499eff75cd47446b2e6fc431b94049f77",
+      "registrationSha256": "2e4d5e26e4c70b5db5c9029c2e18a9bd8c645b959a17c3e6e30e80c4a6834f04",
+      "frozenAcceptance": [
+        "Replace a document element with another element without incorrectly rejecting the temporary replacement as a second root.",
+        "Preserve the one-document-element constraint and ordinary replaceWith behavior for non-document parents.",
+        "Propose a document SVG replacement regression and an invalid second-root control."
+      ],
+      "publicChecks": [
+        "replace a document root with SVG",
+        "ordinary replacement keeps siblings",
+        "adding a second document root fails"
+      ],
+      "withheldChecks": [
+        "replace root with imported HTML",
+        "replaceChild on the document",
+        "ordinary multi-node replacement",
+        "replaceWith with no arguments",
+        "invalid two-root replacement does not lose the original root"
+      ],
+      "environment": "Node 24.18.0, npm ci --workspace=packages/happy-dom --omit=dev --omit=optional --ignore-scripts; TypeScript 5.9.3 tarball matched source lockfile SHA-512; test loader transpiles actual TypeScript source at runtime inside a network-disabled VM sandbox. This is functional execution, not a complete upstream suite or typecheck.",
+      "limitations": [
+        "One existing open-source issue with a publicly proposed patch; possible training or discussion leakage.",
+        "This is a retrospective issue-history shadow run, not a live long-running user production session.",
+        "The project verifier is investigator-written and does not replace the upstream suite or maintainer acceptance.",
+        "The initial source archive and hidden checks are privately retained and are committed by hashes below; the random order is disclosed after the trial.",
+        "AI reviewers are not human reviewers; native Codex settings outside the restricted harness are not compared."
+      ],
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T11:07:54.028572+00:00",
+              "finishedAt": "2026-11-01T11:08:59.502702+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 65.47,
+              "usage": [
+                {
+                  "input_tokens": 189566,
+                  "cached_input_tokens": 131840,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1626,
+                  "reasoning_output_tokens": 10
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 5,
+                "pilot.repo_search:completed": 6,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_read:completed": 12,
+                "pilot.repo_read:failed": 1
+              }
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T11:08:59.505580+00:00",
+              "finishedAt": "2026-11-01T11:10:09.550076+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 70.04,
+              "usage": [
+                {
+                  "input_tokens": 185709,
+                  "cached_input_tokens": 152576,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 2377,
+                  "reasoning_output_tokens": 160
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_read:completed": 5,
+                "pilot.repo_edit:failed": 4,
+                "pilot.repo_edit:completed": 3,
+                "pilot.repo_test:completed": 3
+              }
+            },
+            {
+              "stage": 3,
+              "startedAt": "2026-11-01T11:10:09.551400+00:00",
+              "finishedAt": "2026-11-01T11:10:58.942522+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 49.39,
+              "usage": [
+                {
+                  "input_tokens": 121913,
+                  "cached_input_tokens": 102912,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 835,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_test:completed": 1,
+                "pilot.repo_search:completed": 2,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 5
+              }
+            }
+          ],
+          "totalUsage": {
+            "input_tokens": 497188,
+            "cached_input_tokens": 387328,
+            "output_tokens": 4838,
+            "elapsedSeconds": 184.89999999999998
+          },
+          "callCounts": {
+            "pilot.archive_search:completed": 8,
+            "pilot.repo_search:completed": 9,
+            "pilot.archive_open:completed": 12,
+            "pilot.repo_read:completed": 22,
+            "pilot.repo_read:failed": 1,
+            "pilot.repo_edit:failed": 4,
+            "pilot.repo_edit:completed": 3,
+            "pilot.repo_test:completed": 4
+          },
+          "toolFailures": [
+            {
+              "stage": 1,
+              "server": "pilot",
+              "tool": "repo_read",
+              "message": "[Errno 2] No such file or directory: '[assigned-source]/packages/happy-dom/test/nodes/html-document'"
+            },
+            {
+              "stage": 2,
+              "server": "pilot",
+              "tool": "repo_edit",
+              "message": "old text must occur exactly once"
+            },
+            {
+              "stage": 2,
+              "server": "pilot",
+              "tool": "repo_edit",
+              "message": "[Errno 13] Permission denied: '[assigned-source]/packages/happy-dom/src/nodes/html-document/.agent-edit-1ks4o_zb'"
+            },
+            {
+              "stage": 2,
+              "server": "pilot",
+              "tool": "repo_edit",
+              "message": "[Errno 13] Permission denied: '[assigned-source]/packages/happy-dom/src/nodes/html-document/.agent-edit-7v5tjzi9'"
+            },
+            {
+              "stage": 2,
+              "server": "pilot",
+              "tool": "repo_edit",
+              "message": "old text must occur exactly once"
+            }
+          ],
+          "memoryWritesByStage": {},
+          "memoryOpensByStage": {},
+          "archiveOpensByStage": {
+            "1": [
+              "C2",
+              "ISSUE",
+              "C3",
+              "C1"
+            ],
+            "2": [
+              "S1",
+              "C4",
+              "C2"
+            ],
+            "3": [
+              "C2",
+              "S1",
+              "C4",
+              "ISSUE",
+              "C3"
+            ]
+          },
+          "memoryCitationsByStage": {
+            "1": [],
+            "2": [],
+            "3": []
+          },
+          "tests": {
+            "public": {
+              "exitCode": 0,
+              "passed": 3,
+              "failed": 0,
+              "stdout": "PASS replace document root with SVG\nPASS replace ordinary child without losing sibling\nPASS reject a second document root\n",
+              "stderr": ""
+            },
+            "hidden": {
+              "exitCode": 0,
+              "passed": 5,
+              "failed": 0,
+              "stdout": "PASS replace root with imported HTML\nPASS replaceChild document root directly\nPASS replace an ordinary element with multiple nodes\nPASS replaceWith no arguments removes ordinary child\nPASS reject invalid two-root replacement without losing the old root\n",
+              "stderr": ""
+            }
+          },
+          "changed": true,
+          "diffSha256Private": "f590eebfd3cd8459b4451af56d595fbe53e8d9e790bd9bdf42e1f5d0031dca22",
+          "publishedDiffSha256": "02ae7041e66969489071929a3530aa897279d8b33cdeda5633b6acde8a3b14c5"
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T11:03:35.412491+00:00",
+              "finishedAt": "2026-11-01T11:05:12.620105+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 97.21,
+              "usage": [
+                {
+                  "input_tokens": 289751,
+                  "cached_input_tokens": 250368,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 2632,
+                  "reasoning_output_tokens": 48
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 4,
+                "pilot.repo_search:completed": 6,
+                "pilot.repo_read:completed": 10,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_read:failed": 1,
+                "memex.memory_write:completed": 1
+              }
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T11:05:12.623189+00:00",
+              "finishedAt": "2026-11-01T11:06:52.924933+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 100.3,
+              "usage": [
+                {
+                  "input_tokens": 327975,
+                  "cached_input_tokens": 288896,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 2563,
+                  "reasoning_output_tokens": 277
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 2,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 5,
+                "pilot.repo_read:completed": 3,
+                "pilot.archive_open:completed": 2,
+                "pilot.repo_edit:failed": 2,
+                "pilot.repo_edit:completed": 3,
+                "pilot.repo_test:completed": 2,
+                "memex.memory_write:completed": 1
+              }
+            },
+            {
+              "stage": 3,
+              "startedAt": "2026-11-01T11:06:52.927000+00:00",
+              "finishedAt": "2026-11-01T11:07:49.546978+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 56.62,
+              "usage": [
+                {
+                  "input_tokens": 140215,
+                  "cached_input_tokens": 113024,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 999,
+                  "reasoning_output_tokens": 14
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 2,
+                "pilot.archive_search:completed": 1,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_read:completed": 4,
+                "pilot.repo_search:completed": 3,
+                "pilot.repo_test:completed": 1
+              }
+            }
+          ],
+          "totalUsage": {
+            "input_tokens": 757941,
+            "cached_input_tokens": 652288,
+            "output_tokens": 6194,
+            "elapsedSeconds": 254.13
+          },
+          "callCounts": {
+            "memex.memory_search:completed": 4,
+            "pilot.archive_search:completed": 10,
+            "pilot.repo_search:completed": 9,
+            "pilot.repo_read:completed": 17,
+            "pilot.archive_open:completed": 10,
+            "pilot.repo_read:failed": 1,
+            "memex.memory_write:completed": 2,
+            "memex.memory_open:completed": 3,
+            "pilot.repo_edit:failed": 2,
+            "pilot.repo_edit:completed": 3,
+            "pilot.repo_test:completed": 3
+          },
+          "toolFailures": [
+            {
+              "stage": 1,
+              "server": "pilot",
+              "tool": "repo_read",
+              "message": "[Errno 2] No such file or directory: '[assigned-source]/packages/happy-dom/test/nodes/html-document'"
+            },
+            {
+              "stage": 2,
+              "server": "pilot",
+              "tool": "repo_edit",
+              "message": "old text must occur exactly once"
+            },
+            {
+              "stage": 2,
+              "server": "pilot",
+              "tool": "repo_edit",
+              "message": "[Errno 13] Permission denied: '[assigned-source]/packages/happy-dom/src/nodes/html-document/.agent-edit-35zuny9a'"
+            }
+          ],
+          "memoryWritesByStage": {
+            "1": [
+              "mem_3778d97424"
+            ],
+            "2": [
+              "mem_1ef2459634"
+            ]
+          },
+          "memoryOpensByStage": {
+            "2": [
+              "mem_3778d97424"
+            ],
+            "3": [
+              "mem_1ef2459634",
+              "mem_3778d97424"
+            ]
+          },
+          "archiveOpensByStage": {
+            "1": [
+              "C2",
+              "C3",
+              "ISSUE",
+              "C1"
+            ],
+            "2": [
+              "C4",
+              "S1"
+            ],
+            "3": [
+              "ISSUE",
+              "C4",
+              "C2",
+              "C3"
+            ]
+          },
+          "memoryCitationsByStage": {
+            "1": [
+              "mem_3778d97424"
+            ],
+            "2": [
+              "mem_3778d97424"
+            ],
+            "3": [
+              "mem_1ef2459634",
+              "mem_3778d97424"
+            ]
+          },
+          "tests": {
+            "public": {
+              "exitCode": 0,
+              "passed": 3,
+              "failed": 0,
+              "stdout": "PASS replace document root with SVG\nPASS replace ordinary child without losing sibling\nPASS reject a second document root\n",
+              "stderr": ""
+            },
+            "hidden": {
+              "exitCode": 1,
+              "passed": 4,
+              "failed": 1,
+              "stdout": "PASS replace root with imported HTML\nFAIL replaceChild document root directly: Failed to execute 'insertBefore' on 'Node': Only one element on document allowed.\nPASS replace an ordinary element with multiple nodes\nPASS replaceWith no arguments removes ordinary child\nPASS reject invalid two-root replacement without losing the old root\n",
+              "stderr": ""
+            }
+          },
+          "changed": true,
+          "diffSha256Private": "5b4199ab6ee61da9de9d6b88aa59be4a3a481fd6f9bff0fc97de0eee375ba0ec",
+          "publishedDiffSha256": "89e94267d3084d5bac1bbfc3178cfa95650a38b9fe56f4f9bebd739fa725396e"
+        }
+      },
+      "blindKey": {
+        "C01": "baseline",
+        "C02": "memex"
+      },
+      "reviews": [
+        {
+          "model": "gpt-6.1-sol",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "delivery": 2,
+              "side_effects": 1,
+              "reason": "Meets frozen criteria: recorded checks pass SVG and imported-HTML root replacement, second-root rejection, and ordinary replacement behavior; handoff identifies SVG regression and invalid-root control coverage. All eight recorded checks pass, including direct replaceChild as related extra coverage. Broader replaceChild changes and removal before insertion leave failure/reentrancy risks unverified; targeted execution does not establish full-project correctness."
+            },
+            {
+              "id": "C02",
+              "delivery": 2,
+              "side_effects": 1,
+              "reason": "Meets frozen criteria: recorded checks pass SVG and imported-HTML root replacement, second-root rejection, and ordinary replacement behavior; handoff identifies SVG regression and invalid-root control coverage. Direct document replaceChild fails, but is related extra coverage rather than a frozen requirement. Removing the root before insertion without prevalidation leaves failure/reentrancy risks; targeted passes do not establish full-project correctness."
+            }
+          ],
+          "error": null
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "delivery": 2,
+              "side_effects": 1,
+              "reason": "Delivery: Meets frozen criteria—handles document element-to-element replacement by reordering (remove before insert) to bypass the single-root guard, delegates single-node replaceWith to replaceChild, and passes all public and withheld checks including the original imported HTML case. Side effects: Possible risk—modifies core replaceChild ordering for all document nodes (not just element replacement), adds ancestry checks that may have edge cases with detached/proxy nodes, and the intermediate root-removal state could expose callbacks to inconsistent DOM during mutation. Multi-argument replaceWith still uses insert-before-remove for non-document or non-element cases, creating an asymmetry. No demonstrated material harm in provided tests, but broader reentrancy and lifecycle behavior unverified."
+            },
+            {
+              "id": "C02",
+              "delivery": 1,
+              "side_effects": 1,
+              "reason": "Delivery: Partial—fixes the targeted replaceWith case for document element-to-element replacement and passes public checks and 4 of 5 withheld checks. However, fails the direct replaceChild document-root test (exit code 1), indicating the fix is incomplete. The root cause is that C02 only patches ChildNodeUtility.replaceWith and does not address Node.replaceChild, leaving direct replaceChild calls vulnerable to the same single-root-guard failure. This violates the frozen requirement to preserve ordinary replaceChild behavior. Side effects: Possible risk—introduces proxy normalization logic and saves/restores sibling references, creating inconsistency with the unmodified replaceChild path and potential issues under concurrent mutations or callback-driven DOM changes."
+            }
+          ],
+          "error": null
+        }
+      ],
+      "adjudication": {
+        "model": "deepseek-flash",
+        "status": "ok",
+        "ratings": [
+          {
+            "id": "C02",
+            "delivery": 2,
+            "side_effects": 1,
+            "reason": "Frozen criteria are met: public checks pass SVG root replacement, ordinary sibling-preserving replacement, and second-root rejection; withheld checks pass imported-HTML root replacement, multi-node ordinary replacement, no-arg replaceWith, and invalid two-root preservation. The failing direct replaceChild check is related extra coverage, not a frozen requirement. Risk remains because the fix removes the root before insertion without prevalidation, exposing an intermediate state to callbacks/reentrancy; no demonstrated material harm."
+          }
+        ],
+        "error": null
+      },
+      "sameRecordWrittenOpenedCited": [
+        "mem_3778d97424"
+      ]
+    },
+    {
+      "id": "T02",
+      "issue": "https://github.com/mllam/neural-lam/issues/393",
+      "sourceCommit": "1e936a1928b62351e384f843d8b504be95448d97",
+      "memexCommit": "bce60fd9f2247c8abf7310ebf25645d65eea033d",
+      "registrationSha256": "fbc88a7143183b1990a9b8c6c75beb68e96f2ec1f6ca4beba5d7d290232f0640",
+      "frozenAcceptance": [
+        "For CPU, a single positive --devices integer is a process count; reject zero, negatives and multiple IDs with a useful error.",
+        "Preserve auto and GPU device behavior, and distinguish the already-changed DDP strategy from the remaining devices issue.",
+        "Specify positive and invalid CPU regression cases."
+      ],
+      "publicChecks": [
+        "CPU one device becomes integer process count",
+        "CPU auto preserved",
+        "GPU device-list preserved",
+        "CLI help explains CPU count"
+      ],
+      "withheldChecks": [
+        "CPU two processes becomes integer",
+        "CPU zero and negative rejected with --devices in error",
+        "CPU multiple explicit IDs rejected",
+        "GPU single ID and auto preserved"
+      ],
+      "environment": "Execute the actual pinned Python fit() and CLI parser in a network-disabled VM sandbox; replace PyTorch, Lightning, datastore and logging with test doubles, and capture Trainer arguments before training. This is a functional interface test, not an actual model-training run or full upstream suite.",
+      "limitations": [
+        "Real public issue with earlier proposed solutions and a current maintainer decision; possible training or history leakage.",
+        "Historical issue discussion replayed against a current pinned source, not a live production session.",
+        "Mocked ML dependencies and investigator-written verifier are not a real Lightning training run or maintainer acceptance.",
+        "Preliminary test-fixture and file-copy setup failures were corrected before this registration and retained privately.",
+        "AI reviewers are not human reviewers; the constrained baseline is not a full default Codex comparison."
+      ],
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T11:07:25.408993+00:00",
+              "finishedAt": "2026-11-01T11:08:29.444457+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 64.04,
+              "usage": [
+                {
+                  "input_tokens": 131532,
+                  "cached_input_tokens": 99968,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1529,
+                  "reasoning_output_tokens": 41
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 7,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 6
+              }
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T11:08:29.446152+00:00",
+              "finishedAt": "2026-11-01T11:09:34.733007+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 65.29,
+              "usage": [
+                {
+                  "input_tokens": 258885,
+                  "cached_input_tokens": 217344,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1359,
+                  "reasoning_output_tokens": 109
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 8,
+                "pilot.repo_search:completed": 2,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 7,
+                "pilot.repo_edit:completed": 2,
+                "pilot.repo_test:completed": 1
+              }
+            },
+            {
+              "stage": 3,
+              "startedAt": "2026-11-01T11:09:34.734540+00:00",
+              "finishedAt": "2026-11-01T11:10:14.437734+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 39.7,
+              "usage": [
+                {
+                  "input_tokens": 97508,
+                  "cached_input_tokens": 79616,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 758,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_test:completed": 1,
+                "pilot.repo_search:completed": 2,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 6
+              }
+            }
+          ],
+          "totalUsage": {
+            "input_tokens": 487925,
+            "cached_input_tokens": 396928,
+            "output_tokens": 3646,
+            "elapsedSeconds": 169.03000000000003
+          },
+          "callCounts": {
+            "pilot.archive_search:completed": 12,
+            "pilot.repo_search:completed": 11,
+            "pilot.archive_open:completed": 15,
+            "pilot.repo_read:completed": 19,
+            "pilot.repo_edit:completed": 2,
+            "pilot.repo_test:completed": 2
+          },
+          "toolFailures": [],
+          "memoryWritesByStage": {},
+          "memoryOpensByStage": {},
+          "archiveOpensByStage": {
+            "1": [
+              "ISSUE",
+              "C2",
+              "C1",
+              "C3",
+              "C4"
+            ],
+            "2": [
+              "S1",
+              "C3",
+              "C2",
+              "C5",
+              "C4"
+            ],
+            "3": [
+              "ISSUE",
+              "C1",
+              "C3",
+              "S1",
+              "S2"
+            ]
+          },
+          "memoryCitationsByStage": {
+            "1": [],
+            "2": [],
+            "3": []
+          },
+          "tests": {
+            "public": {
+              "exitCode": 0,
+              "passed": 4,
+              "failed": 0,
+              "stdout": "PASS cpu one process\nPASS cpu auto\nPASS gpu list remains IDs\nPASS help documents CPU count\n",
+              "stderr": ""
+            },
+            "hidden": {
+              "exitCode": 0,
+              "passed": 6,
+              "failed": 0,
+              "stdout": "PASS cpu two processes\nPASS reject cpu zero\nPASS reject cpu negative\nPASS reject multiple cpu ids\nPASS gpu single ID remains list\nPASS gpu auto preserved\n",
+              "stderr": ""
+            }
+          },
+          "changed": true,
+          "diffSha256Private": "a1d92902d6ba1f9fb4b94cf97484295b66110514516aa630ce59a77523bd5629",
+          "publishedDiffSha256": "d204c92e6e214ba7512eb30ea39bf016f183de8d37351d5e8dbc3ed95cebef23"
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T11:10:14.768536+00:00",
+              "finishedAt": "2026-11-01T11:11:36.314578+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 81.55,
+              "usage": [
+                {
+                  "input_tokens": 245554,
+                  "cached_input_tokens": 214528,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 2190,
+                  "reasoning_output_tokens": 35
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "memex.memory_search:completed": 1,
+                "pilot.repo_search:completed": 7,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 9,
+                "pilot.repo_read:failed": 1,
+                "memex.memory_write:completed": 1
+              }
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T11:11:36.316993+00:00",
+              "finishedAt": "2026-11-01T11:13:14.060183+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 97.74,
+              "usage": [
+                {
+                  "input_tokens": 404879,
+                  "cached_input_tokens": 353408,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 2077,
+                  "reasoning_output_tokens": 187
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 8,
+                "pilot.repo_read:completed": 7,
+                "pilot.repo_search:completed": 4,
+                "pilot.archive_open:completed": 2,
+                "pilot.repo_edit:completed": 2,
+                "pilot.repo_test:completed": 1,
+                "memex.memory_write:completed": 1
+              }
+            },
+            {
+              "stage": 3,
+              "startedAt": "2026-11-01T11:13:14.062593+00:00",
+              "finishedAt": "2026-11-01T11:14:00.141724+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 46.08,
+              "usage": [
+                {
+                  "input_tokens": 156720,
+                  "cached_input_tokens": 136192,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 913,
+                  "reasoning_output_tokens": 47
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 2,
+                "pilot.repo_test:completed": 1,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_read:completed": 6
+              }
+            }
+          ],
+          "totalUsage": {
+            "input_tokens": 807153,
+            "cached_input_tokens": 704128,
+            "output_tokens": 5180,
+            "elapsedSeconds": 225.37
+          },
+          "callCounts": {
+            "pilot.archive_search:completed": 12,
+            "memex.memory_search:completed": 3,
+            "pilot.repo_search:completed": 13,
+            "pilot.archive_open:completed": 11,
+            "pilot.repo_read:completed": 22,
+            "pilot.repo_read:failed": 1,
+            "memex.memory_write:completed": 2,
+            "memex.memory_open:completed": 2,
+            "pilot.repo_edit:completed": 2,
+            "pilot.repo_test:completed": 2
+          },
+          "toolFailures": [
+            {
+              "stage": 1,
+              "server": "pilot",
+              "tool": "repo_read",
+              "message": "[Errno 2] No such file or directory: '[assigned-source]/tests/test_train_model.py'"
+            }
+          ],
+          "memoryWritesByStage": {
+            "1": [
+              "mem_2efe1c9d85"
+            ],
+            "2": [
+              "mem_af94f3be02"
+            ]
+          },
+          "memoryOpensByStage": {
+            "2": [
+              "mem_2efe1c9d85"
+            ],
+            "3": [
+              "mem_af94f3be02"
+            ]
+          },
+          "archiveOpensByStage": {
+            "1": [
+              "C1",
+              "ISSUE",
+              "C2",
+              "C4",
+              "C3"
+            ],
+            "2": [
+              "S1",
+              "C5"
+            ],
+            "3": [
+              "C5",
+              "C3",
+              "S2",
+              "ISSUE"
+            ]
+          },
+          "memoryCitationsByStage": {
+            "1": [
+              "mem_2efe1c9d85"
+            ],
+            "2": [
+              "mem_2efe1c9d85"
+            ],
+            "3": [
+              "mem_af94f3be02"
+            ]
+          },
+          "tests": {
+            "public": {
+              "exitCode": 0,
+              "passed": 4,
+              "failed": 0,
+              "stdout": "PASS cpu one process\nPASS cpu auto\nPASS gpu list remains IDs\nPASS help documents CPU count\n",
+              "stderr": ""
+            },
+            "hidden": {
+              "exitCode": 0,
+              "passed": 6,
+              "failed": 0,
+              "stdout": "PASS cpu two processes\nPASS reject cpu zero\nPASS reject cpu negative\nPASS reject multiple cpu ids\nPASS gpu single ID remains list\nPASS gpu auto preserved\n",
+              "stderr": ""
+            }
+          },
+          "changed": true,
+          "diffSha256Private": "b01024d72e67b537643eb1bd8755e9237c95bfc9a62b3bcb4e97a892dcfe79d0",
+          "publishedDiffSha256": "ee751145fa05dc3ae42549a12ea2fa13ce4fe5926cb5189e5e97a6eebcecf9e7"
+        }
+      },
+      "blindKey": {
+        "C01": "memex",
+        "C02": "baseline"
+      },
+      "reviews": [
+        {
+          "model": "gpt-6.1-sol",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "delivery": 2,
+              "side_effects": 2,
+              "reason": "Meets frozen criteria: normalizes positive CPU counts, rejects zero, negatives and multiple IDs with useful --devices errors, preserves auto and GPU lists, and documents CPU counts. Handoff identifies positive and invalid regression cases and correctly distinguishes the existing auto strategy from the remaining devices bug. All four public and six withheld checks passed. These mocked interface checks establish targeted behavior, not actual training or full project correctness; no material side effect was found."
+            },
+            {
+              "id": "C02",
+              "delivery": 2,
+              "side_effects": 2,
+              "reason": "Meets frozen criteria: normalizes positive CPU counts, rejects zero, negatives and multiple IDs with useful --devices errors, preserves auto and GPU lists, and documents CPU counts. Handoff specifies positive and invalid cases and correctly identifies strategy selection as already changed. All four public and six withheld checks passed. Full training, dependency-range and Python API compatibility checks remain unverified additional coverage, not unmet frozen requirements. No material side effect was found."
+            }
+          ],
+          "error": null
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "delivery": 2,
+              "side_effects": 2,
+              "reason": "Implements complete CPU device normalization: converts single-element lists to integers, rejects empty/multiple/non-positive values with clear error messages naming --devices and CPU. Preserves auto and GPU list handling. Help text updated. Both public (4/4) and withheld (6/6) checks pass. Validation logic is thorough and handles all frozen acceptance criteria."
+            },
+            {
+              "id": "C02",
+              "delivery": 2,
+              "side_effects": 2,
+              "reason": "Implements equivalent CPU normalization with slightly different validation structure: extracts single-element lists, validates type before conversion, rejects zero/negative with consistent error message. Same frozen acceptance coverage: CPU integer process count, auto/GPU preservation, help update. Both public (4/4) and withheld (6/6) checks pass. Error messages are less specific (do not explicitly mention 'or auto') but still meet requirements."
+            }
+          ],
+          "error": null
+        }
+      ],
+      "sameRecordWrittenOpenedCited": [
+        "mem_2efe1c9d85"
+      ]
+    }
+  ],
+  "reviewCalls": [
+    {
+      "operation": "T30-blind:gpt-6.1-sol",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "input": 32154,
+      "output": 444,
+      "cacheCreation": 0
+    },
+    {
+      "operation": "T30-blind:claude-haiku-4-5",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "input": 6987,
+      "output": 434,
+      "cacheCreation": 6984
+    },
+    {
+      "operation": "T30-adjudication",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "input": 6272,
+      "output": 122,
+      "cacheCreation": 0
+    },
+    {
+      "operation": "T02-blind:gpt-6.1-sol",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "input": 9114,
+      "output": 257,
+      "cacheCreation": 0
+    },
+    {
+      "operation": "T02-blind:claude-haiku-4-5",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "input": 6117,
+      "output": 270,
+      "cacheCreation": 6114
+    }
+  ],
+  "billingCandidate": {
+    "source": "APIMaster visible common usage-log rows, checked 2026-11-01 Asia/Shanghai",
+    "matching": "model, approximate time and reported input/output tokens; no request-to-receipt linkage",
+    "rows": [
+      {
+        "operation": "T30-blind:gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 19:12:36",
+        "model": "gpt-6.1-sol",
+        "inputIncludingCacheCreation": 32154,
+        "cacheCreation": 0,
+        "output": 444,
+        "walletUsd": "0.005286"
+      },
+      {
+        "operation": "T30-blind:claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 19:13:38",
+        "model": "claude-haiku-4-5",
+        "inputIncludingCacheCreation": 6987,
+        "cacheCreation": 6984,
+        "output": 434,
+        "walletUsd": "0.001198"
+      },
+      {
+        "operation": "T30-adjudication",
+        "walletTimeAsiaShanghai": "2026-11-01 19:14:25",
+        "model": "deepseek-flash",
+        "inputIncludingCacheCreation": 6272,
+        "cacheCreation": 0,
+        "output": 122,
+        "walletUsd": "0.000638"
+      },
+      {
+        "operation": "T02-blind:gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 19:14:16",
+        "model": "gpt-6.1-sol",
+        "inputIncludingCacheCreation": 9114,
+        "cacheCreation": 0,
+        "output": 257,
+        "walletUsd": "0.001598"
+      },
+      {
+        "operation": "T02-blind:claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 19:14:20",
+        "model": "claude-haiku-4-5",
+        "inputIncludingCacheCreation": 6117,
+        "cacheCreation": 6114,
+        "output": 270,
+        "walletUsd": "0.000988"
+      }
+    ],
+    "candidateSubtotalUsd": "0.009708",
+    "gaps": [
+      "Codex ChatGPT subscription allocation",
+      "VM/host compute and storage",
+      "human effort",
+      "receipt attribution"
+    ]
+  },
+  "grepFix": {
+    "commit": "480ab479971d324a7fd20eff8657a10a761736fb",
+    "behavior": [
+      "scan all visible record files until hit limit",
+      "error on missing/unreadable visible file",
+      "retry a record whose path changed"
+    ],
+    "offlineHarness": "181/181 passed with bundle built",
+    "sqliteConsistency": "36/36 passed",
+    "actualAgentPromptedSmoke": {
+      "passed": true,
+      "usage": [
+        {
+          "input_tokens": 45165,
+          "cached_input_tokens": 38528,
+          "cache_write_input_tokens": 0,
+          "output_tokens": 201,
+          "reasoning_output_tokens": 0
+        }
+      ]
+    },
+    "syntheticBenchmark": {
+      "records": 10000,
+      "assignedTokens": 10000000,
+      "bodyChars": 4200,
+      "storageBytes": 54938448,
+      "measurements": {
+        "old:recent": {
+          "found": [
+            1
+          ],
+          "samplesMs": [
+            12.471,
+            10.97,
+            9.866,
+            11.636,
+            11.086,
+            11.37,
+            10.663,
+            10.977,
+            10.609,
+            10.712
+          ],
+          "medianMs": 10.974
+        },
+        "old:oldCold": {
+          "found": [
+            0
+          ],
+          "samplesMs": [
+            44.323,
+            18.704,
+            19.248,
+            17.743,
+            18.349,
+            18.925,
+            17.583,
+            18.148,
+            18.584,
+            18.337
+          ],
+          "medianMs": 18.466
+        },
+        "old:missing": {
+          "found": [
+            0
+          ],
+          "samplesMs": [
+            17.634,
+            17.375,
+            18.21,
+            17.35,
+            17.573,
+            17.833,
+            17.733,
+            18.073,
+            17.722,
+            17.49
+          ],
+          "medianMs": 17.678
+        },
+        "fixed:recent": {
+          "found": [
+            1
+          ],
+          "samplesMs": [
+            5.868,
+            5.059,
+            6.058,
+            4.743,
+            4.419,
+            5.434,
+            5.742,
+            5.227,
+            4.805,
+            4.94
+          ],
+          "medianMs": 5.143
+        },
+        "fixed:oldCold": {
+          "found": [
+            1
+          ],
+          "samplesMs": [
+            997.656,
+            192.545,
+            192.982,
+            189.198,
+            202.112,
+            193.472,
+            189.588,
+            203.348,
+            190.028,
+            192.732
+          ],
+          "medianMs": 192.857
+        },
+        "fixed:missing": {
+          "found": [
+            0
+          ],
+          "samplesMs": [
+            192.369,
+            192.457,
+            196.282,
+            193.131,
+            191.398,
+            189.262,
+            186.691,
+            189.397,
+            186.914,
+            201.475
+          ],
+          "medianMs": 191.883
+        }
+      },
+      "cpuBusySamplesPercent": [
+        39.96,
+        46.62
+      ],
+      "quietStartGatePassed": false,
+      "notes": [
+        "Warm repeated reads on a shared host; assigned tokens are not model-tokenizer counts.",
+        "The old implementation did not examine older records after the 400-row cap.",
+        "Seed process logged a post-write stat path error; record count and old cold target were independently checked without reseeding."
+      ]
+    }
+  },
+  "limits": [
+    "Two selected historical public-issue shadow tasks, not live production sessions or a representative sample.",
+    "Control is the same restricted Codex process plus archive, not all default native Codex features.",
+    "T30 public fix proposal and T02 maintainer decision were available in public discussion.",
+    "T30 related replaceChild check extends the original replaceWith issue; T02 mocks training dependencies.",
+    "Original 3-session trials disabled memory status/forget tools; a separate post-hoc follow-up addresses this.",
+    "Cached input included in input, billed subscription allocation and full end-to-end costs unknown."
+  ],
+  "lifecycleFollowup": {
+    "registrationSha256": "7eee4616f1555ba92a38254923526195c34ec6dc7eb77436fe33a04a8cea3c09",
+    "status": {
+      "before": [
+        {
+          "id": "mem_2efe1c9d85",
+          "status": "open",
+          "kind": "open-thread"
+        },
+        {
+          "id": "mem_af94f3be02",
+          "status": "active",
+          "kind": "episode"
+        }
+      ],
+      "after": [
+        {
+          "id": "mem_2efe1c9d85",
+          "status": "open",
+          "kind": "open-thread"
+        },
+        {
+          "id": "mem_73d4f6e4c7",
+          "status": "active",
+          "kind": "artifact"
+        },
+        {
+          "id": "mem_af94f3be02",
+          "status": "active",
+          "kind": "episode"
+        }
+      ]
+    },
+    "arms": {
+      "baseline": {
+        "exitCode": 0,
+        "timeout": false,
+        "unexpectedTool": null,
+        "elapsedSeconds": 49.42,
+        "usage": [
+          {
+            "input_tokens": 121397,
+            "cached_input_tokens": 99456,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 684,
+            "reasoning_output_tokens": 0
+          }
+        ],
+        "callCounts": {
+          "pilot.archive_search:completed": 2,
+          "pilot.repo_search:failed": 1,
+          "pilot.archive_open:completed": 5,
+          "pilot.repo_read:completed": 3
+        },
+        "memoryCitations": []
+      },
+      "memex": {
+        "exitCode": 0,
+        "timeout": false,
+        "unexpectedTool": null,
+        "elapsedSeconds": 56.4,
+        "usage": [
+          {
+            "input_tokens": 116235,
+            "cached_input_tokens": 102912,
+            "cache_write_input_tokens": 0,
+            "output_tokens": 1005,
+            "reasoning_output_tokens": 12
+          }
+        ],
+        "callCounts": {
+          "memex.memory_search:completed": 1,
+          "memex.memory_open:completed": 2,
+          "pilot.repo_read:completed": 2,
+          "memex.memory_write:completed": 1
+        },
+        "memoryCitations": [
+          "mem_73d4f6e4c7",
+          "mem_af94f3be02"
+        ]
+      }
+    }
+  }
+}

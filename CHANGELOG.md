@@ -10,6 +10,7 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 - Expose the preassigned VM worker through a stdio MCP bridge with bounded repository and archive tools. Retire an unresponsive worker on a deadline without replaying an ambiguous request; add protocol and timeout regressions.
 - Add a separate v4 worker for Python source tasks and document isolated Codex/Claude Code configuration. Record the interrupted connector attempt, two paired Codex tasks, one adaptive cross-session memory lifecycle, AI-review disagreements and cost gaps in `docs/production-real-agent-20261101.md`.
 - Register 30 distinct public-issue investigations and report four initial randomized Codex pairs, one interrupted pair, a separate Krkn sandbox canary, AI-review disagreements and cost gaps in `docs/production-cohort-30-20261101.md`.
+- Add two executable public-issue comparisons, a separately registered memory lifecycle follow-up, AI reviews, measured usage and the `memory_grep` correctness/performance trade-off in `docs/production-value-20261101.md`. The new pairs bring the registered cohort to six completed pairs; 24 remain interrupted or unstarted.
 
 ### Fixed — pilot autonomy citation evidence
 - Exclude failed or missing-status pager events from observed memory IDs, and update the legacy successful-pager fixture and regression cases.
