@@ -4075,6 +4075,23 @@ await test('U6d', 'Claude hook failure is reported without failing the client', 
   assert.equal(result.stdout.trim(), '')
 })
 
+await test('U6e', 'automatic checkpoints skip generic refusals but keep useful failure reports', async () => {
+  const project = makeRoot('u6e-project')
+  const root = makeRoot('u6e-mem')
+  const invoke = (answer) => runNode(CLAUDE_CLI, ['hook', 'Stop', '--root', root, '--project', project, '--levels', 'l3'], {
+    input: JSON.stringify({ session_id: 'u6e-session', cwd: project, last_assistant_message: answer }),
+  })
+  assert.equal(invoke('I cannot help with this request. Please contact an appropriate support channel.').status, 0)
+  const informative = 'I cannot reproduce the ORBITAL_FAILURE_714 on Node 24; the isolated test exited 0 and the race remains unverified.'
+  assert.equal(invoke(informative).status, 0)
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'other', levels: ['l3'] })
+  try {
+    const entries = engine.list({ limit: 20 })
+    assert.equal(entries.length, 1)
+    assert.equal(engine.open({ id: entries[0].id }).body, informative)
+  } finally { engine.close() }
+})
+
 await test('U7', 'Codex init writes AGENTS.md and prints a working MCP config snippet', async () => {
   const project = makeRoot('u7-project')
   const root = makeRoot('u7-mem')

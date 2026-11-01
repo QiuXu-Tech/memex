@@ -203,6 +203,7 @@ async function hook() {
     if (event === 'stop') {
       const answer = typeof payload.last_assistant_message === 'string' ? payload.last_assistant_message.trim() : ''
       if (typeof session !== 'string' || !session || answer.length < 32) return
+      if (/^(?:i (?:cannot|can't|am unable to) (?:help|assist)\b|(?:抱歉[，, ]*)?我(?:无法|不能)(?:帮助|协助))/i.test(answer)) return
       // Match the eviction adapter's high-confidence credential patterns before
       // automatically copying assistant output into a potentially shared level.
       const sensitive = /-----BEGIN [A-Z ]*PRIVATE KEY-----/.test(answer) ||
