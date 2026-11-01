@@ -1,0 +1,551 @@
+{
+  "task": "T12",
+  "createdAt": "2026-11-01T12:33:20.719701+00:00",
+  "reason": "The full GitHub archive download failed before any model call; the partial download is retained.",
+  "scope": "Partial source view: only selected repository paths listed below; all downloaded bytes are checked against their Git blob hashes.",
+  "sourceCommit": "fc517df18fb59a33b39d383c6766690bc427ac06",
+  "treeSha256": "085c0e7217f704483f44f720abceb61f84a12304b3ba872588385cdce57dfbce",
+  "archiveSha256": "4ab4d63ab50b5e0d27b5b09a7e02842dcf83b3b535a91178f8ce8564932a6a94",
+  "files": [
+    {
+      "path": "workspaces/arborist/lib/add-rm-pkg-deps.js",
+      "gitBlob": "2e30eb1de762645d367b3744ede062f2357ffa7a",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/arborist/build-ideal-tree.js",
+      "gitBlob": "536b0f8a48f914688304f5352a8d2f03005f05f2",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/arborist/index.js",
+      "gitBlob": "11581cb4fd9400dbe1bd60c1002d74cabb657c81",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/arborist/isolated-reifier.js",
+      "gitBlob": "784c389c43756703d2d8d102a9ca600937980c08",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/arborist/load-actual.js",
+      "gitBlob": "02a466e655aa605f4c3f0c6bf5df51e0da70bada",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/arborist/load-virtual.js",
+      "gitBlob": "7e876adc016d527a21c5dc81f43236a155bb2418",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/arborist/rebuild.js",
+      "gitBlob": "53c6f63e77d9456e2cb121c247caf72279e5b7c8",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/arborist/reify.js",
+      "gitBlob": "b099d4d72c6a4a0ce44b2175915134410ad44759",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/audit-report.js",
+      "gitBlob": "1c3e15dee1924cbe063acd55ba50effe0c9a79b4",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/calc-dep-flags.js",
+      "gitBlob": "965127f5ac9dd9ec0515fdfb33f4f211143f92b5",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/can-place-dep.js",
+      "gitBlob": "1069fee8d65abc2613a51986f0d1497a76295b14",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/case-insensitive-map.js",
+      "gitBlob": "afc6afbe0f98ad684566c528d512db404c4a74e4",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/consistent-resolve.js",
+      "gitBlob": "20b119ac9ee524a74d8e5ac6a6c12cef514d9d20",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/debug.js",
+      "gitBlob": "d5197b46ef09a985c681bb6df709b727ce0d71d6",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/deepest-nesting-target.js",
+      "gitBlob": "2c6647f5db7badd1a51d42a41dfaa5872ab9964c",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/dep-valid.js",
+      "gitBlob": "db93c2980852a2958cac4f0f2fa67d217dbcd820",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/diff.js",
+      "gitBlob": "704dc7bafc42b3ce242de51c4db2b7ed36be7cb2",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/edge.js",
+      "gitBlob": "1ed2446c8090a52985cd5c7bd7144aa1ee7fb907",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/from-path.js",
+      "gitBlob": "f7e447495d14465b248f77219e5a141ef387a9f5",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/gather-dep-set.js",
+      "gitBlob": "39180de38db4a997bf2c49083d7a14ee1046fcad",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/index.js",
+      "gitBlob": "4236427d6c4e3afc4cd5ca3bdb1ce6d3558d6823",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/install-scripts.js",
+      "gitBlob": "29e9eace8eb96efd4a8f676409f44508ed352b93",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/inventory.js",
+      "gitBlob": "5e4a67eeed10327bf6113089472325839633250c",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/isolated-classes.js",
+      "gitBlob": "c5b7abbb64a3d6cdc14622ed13b29289e337501f",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/link.js",
+      "gitBlob": "89f993bb1690041518de85a61ee2d3e7974fb7d5",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/node.js",
+      "gitBlob": "13370a50ab475d95b2a41ed164f5222254f4b304",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/npm-extension.js",
+      "gitBlob": "505920968bee3bb9215dac4bac4074950fcc3202",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/optional-set.js",
+      "gitBlob": "891961fe2cd95d4240ca16d248a8c8325d0af12d",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/override-resolves.js",
+      "gitBlob": "c061cbce1867863ea0581973f5b0f76574ba8875",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/override-set.js",
+      "gitBlob": "ab597a7f33bd4adecc6e55ad0c2e7d6a765d7749",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/package-extensions.js",
+      "gitBlob": "870ac4cbeaf2dc68988ef450dd5ec87c3c094396",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/packument-cache.js",
+      "gitBlob": "d8e163ba23ba1e6f496f44b105bb7c1be652afc6",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/patch.js",
+      "gitBlob": "51d3c1878600fc4b6a1a786612c1cdb42271416a",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/patched-dependencies.js",
+      "gitBlob": "411406f0df71aeff96ac8e594a3bec4dac0f5bce",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/peer-entry-sets.js",
+      "gitBlob": "a2da8c8cb6fcd314fbadae5bb7caec2c8f48ae35",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/place-dep.js",
+      "gitBlob": "34a62144e9be47e82fcea826ebad83b8ff12f4b0",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/printable.js",
+      "gitBlob": "9ade2c0813699c46ebdfaf75d4ed991c2fdc7a59",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/query-selector-all.js",
+      "gitBlob": "05faa551f76ee88380bc7a395c86bcce0cc624b5",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/realpath.js",
+      "gitBlob": "6e5ad9b77ba5a5c5c9af627618e7a38605d62e5d",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/release-age-exclude.js",
+      "gitBlob": "b85527cfcbede8a1ab8456d02dd0202c19a89005",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/relpath.js",
+      "gitBlob": "a4187b5f6095fb3ef9d0ff80278d7d26da2f7d9d",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/reset-dep-flags.js",
+      "gitBlob": "6bb4ceceb6972f4f30b7ac7c5b5c4d80db2a1a0d",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/retire-path.js",
+      "gitBlob": "5bff79a15a1654820d9dbf67b74984c4a11eb5cf",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/script-allowed.js",
+      "gitBlob": "b560884aac66c1d887b98389146e735091012c0d",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/shrinkwrap.js",
+      "gitBlob": "19c2c952dc7f7ee94540af8c4149923eaf719433",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/signal-handling.js",
+      "gitBlob": "18841d944ffe7829c92ef625b2d86f3f97cf1050",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/signals.js",
+      "gitBlob": "8dcd585c4c06577a6e16c53b773d73a79e309fb5",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/spec-from-lock.js",
+      "gitBlob": "49b53c8f6aaca51d4e1f0c7434dbd0d5f0606336",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/tracker.js",
+      "gitBlob": "4a754d995dfcd2320f071e63f9ef141740eb23d6",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/tree-check.js",
+      "gitBlob": "62a50bc75bdb580b847783e8337678ee550ad2f5",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/unreviewed-scripts.js",
+      "gitBlob": "f7bed387845ec02841758c3e44ec31760846b204",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/version-from-tgz.js",
+      "gitBlob": "77e3956c1c17130a639b76a5ab36b670b00a0d6c",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/vuln.js",
+      "gitBlob": "e6c6bbab383ea7bbdb26921641d34c1af20db0aa",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "workspaces/arborist/lib/yarn-lock.js",
+      "gitBlob": "fc62806506acdcf89c2cbc36ca78e9c46e5babe8",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    }
+  ]
+}
