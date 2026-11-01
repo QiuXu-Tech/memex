@@ -12,7 +12,7 @@ RUBRIC=('Independently assess two anonymous historical issue-triage answers usin
  'Do not treat unverified issue or comment claims as confirmed facts. Identify concrete unsupported claims. '
  'Return JSON only: {"candidates":[{"id":"C01","score":1,"reason":"...","references":["final:C01"],'
  '"unsupportedClaims":[]},{"id":"C02","score":1,"reason":"...","references":["final:C02"],"unsupportedClaims":[]}]}. '
- 'Every reference must be an evidence ID present in the packet. Do not infer which condition produced a candidate.')
+ 'Every reference must be an evidence ID present in the packet; each candidate must cite its own final, source, or session evidence. Do not infer which condition produced a candidate.')
 ADJ=('Independently reassess both anonymous triage answers and the two AI reviews against the frozen criterion and evidence. '
  'Resolve material score or unsupported-claim disagreements. Return the same candidate JSON schema plus boolean "materialDisagreement". '
  'Use only evidence IDs in the packet; distinguish unsupported claims from unknowns.')
@@ -36,11 +36,13 @@ def parse(event,evidence,adjudication=False):
  obj=json.loads(text.strip().removeprefix('```json').removeprefix('```').removesuffix('```').strip());rows=obj.get('candidates')
  if not isinstance(rows,list) or len(rows)!=2 or {x.get('id') for x in rows}!={'C01','C02'}:raise ValueError('invalid candidates')
  for row in rows:
+  if 'score' not in row:raise ValueError('missing score')
   score=row.get('score')
   if score is not None and (type(score) is not int or score not in (0,1,2)):raise ValueError('invalid score')
   if not isinstance(row.get('reason'),str) or not row['reason'].strip():raise ValueError('missing reason')
   refs=row.get('references')
   if not isinstance(refs,list) or not refs or any(not isinstance(x,str) or x not in evidence for x in refs):raise ValueError('invalid references')
+  if not any(f'{kind}:{row["id"]}' in refs for kind in ('final','source','session')):raise ValueError('missing candidate evidence reference')
   claims=row.get('unsupportedClaims')
   if not isinstance(claims,list) or any(not isinstance(x,str) or not x.strip() for x in claims):raise ValueError('invalid unsupported claims')
  if adjudication and type(obj.get('materialDisagreement')) is not bool:raise ValueError('missing disagreement flag')
@@ -51,9 +53,13 @@ def plan():
   'reviewers':REVIEWERS,'adjudicator':ADJUDICATOR,'reviewMaxOutputTokens':1200,'adjudicationMaxOutputTokens':1800,
   'reviewPrompt':RUBRIC,'adjudicationPrompt':ADJ,'blinding':'Randomized anonymous labels, product names and memory IDs redacted; wording can still reveal condition.',
   'packet':'Issue and discussion plus candidate answers and their recorded source-tool excerpts; clipping is explicitly marked.',
-  'invalid':'Failed, empty, truncated, missing-usage or invalid-evidence responses remain missing and are not converted to a score.',
+  'invalid':'Pairs without two completed second-session responses are recorded as not reviewable. Failed, empty, truncated, missing-usage or invalid-evidence reviewer responses remain missing and are not converted to a score.',
   'adjudication':'Run when both ratings are valid and numeric scores or cited unsupported claims differ; otherwise record why not run.',
   'retries':'Gateway retries only explicit 503 responses with bounded backoff; ambiguous timeouts are not replayed.'}
+ initial=BASE/'reviews'/'plan-initial.json'
+ if initial.exists():
+  reg['revisesPlanSha256']=sha(initial)
+  reg['revision']='Before reviewer calls, reject missing scores and cross-candidate-only evidence and skip pairs without two completed final sessions.'
  save(BASE/'reviews'/'plan.json',reg);print(json.dumps({'reviewPlanSha256':sha(BASE/'reviews'/'plan.json')}),flush=True)
 
 def source_trace(task,arm):
@@ -96,6 +102,9 @@ def prepare_packets():
 def review_task(task,key,plan):
  folder=BASE/'reviews'/task;registration=load(folder/'packet-registration.json');data=load(folder/'packet.json')
  assert sha(folder/'packet.json')==registration['packetSha256'] and sha(folder/'key.json')==registration['keySha256']
+ if not all(data['evidence'][f'session:{label}']['completed'] and data['evidence'][f'session:{label}']['lastStage']==2 for label in ('C01','C02')):
+  save(folder/'review-status.json',{'status':'NOT_REVIEWABLE','reason':'One or both second-session responses are missing or incomplete.'})
+  print(json.dumps({'task':task,'review':'NOT_REVIEWABLE'}),flush=True);return
  reviews=[]
  for model in REVIEWERS:
   ev=prospective_gateway.call(key,model,[{'role':'system','content':'Review anonymous engineering triage from the evidence only.'},
