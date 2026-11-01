@@ -3949,7 +3949,9 @@ await test('U6', 'Claude Code hooks inject catalog/recall and archive transcript
   assert.equal(start.status, 0, start.stderr)
   const startPayload = JSON.parse(start.stdout.trim())
   assertIncludes(startPayload.hookSpecificOutput.additionalContext, '<memory-catalog>')
-  assertIncludes(startPayload.hookSpecificOutput.additionalContext, 'Deployment identifier fact')
+  assertIncludes(startPayload.hookSpecificOutput.additionalContext, 'memory_search')
+  assert.ok(!startPayload.hookSpecificOutput.additionalContext.includes('Deployment identifier fact'), 'startup should not repeat the later recall preview')
+  assert.ok(startPayload.hookSpecificOutput.additionalContext.length < 220, 'startup notice should remain short')
   const prompt = runNode(CLAUDE_CLI, ['hook', 'user-prompt', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: session, cwd: project, prompt: 'what is the deployment id we must keep?' }) })
   assert.equal(prompt.status, 0, prompt.stderr)
   const recall = JSON.parse(prompt.stdout.trim()).hookSpecificOutput.additionalContext
@@ -3991,7 +3993,9 @@ await test('U6a', 'installed Claude hook commands handle real event names', asyn
   }
   const start = invoke('SessionStart', {})
   assert.equal(start.status, 0, start.stderr)
-  assertIncludes(JSON.parse(start.stdout).hookSpecificOutput.additionalContext, 'Release rollout identifier')
+  const notice = JSON.parse(start.stdout).hookSpecificOutput.additionalContext
+  assertIncludes(notice, 'memory_search')
+  assert.ok(!notice.includes('Release rollout identifier'))
   const prompt = invoke('UserPromptSubmit', { prompt: 'Where is the release rollout identifier?' })
   assert.equal(prompt.status, 0, prompt.stderr)
   assertIncludes(JSON.parse(prompt.stdout).hookSpecificOutput.additionalContext, 'Release rollout identifier')
@@ -4090,6 +4094,23 @@ await test('U6e', 'automatic checkpoints skip generic refusals but keep useful f
     assert.equal(entries.length, 1)
     assert.equal(engine.open({ id: entries[0].id }).body, informative)
   } finally { engine.close() }
+})
+
+await test('U6f', 'stable L2 namespace still recalls checkpoints from a different Claude client session', async () => {
+  const project = makeRoot('u6f-project')
+  const root = makeRoot('u6f-mem')
+  const common = ['--root', root, '--project', project, '--levels', 'l2', '--session', 'stable-project']
+  const invoke = (event, clientSession, payload) => runNode(CLAUDE_CLI, ['hook', event, ...common], {
+    input: JSON.stringify({ session_id: clientSession, cwd: project, ...payload }),
+  })
+  const body = 'NOVA_RETRY_327: Keep the isolated retry queue and verify backoff before changing the production worker.'
+  const stop = invoke('Stop', 'client-one', { last_assistant_message: body })
+  assert.equal(stop.status, 0, stop.stderr)
+  const prompt = { prompt: 'What did we decide about NOVA_RETRY_327?' }
+  assert.equal(invoke('UserPromptSubmit', 'client-one', prompt).stdout.trim(), '')
+  const next = invoke('UserPromptSubmit', 'client-two', prompt)
+  assert.equal(next.status, 0, next.stderr)
+  assertIncludes(JSON.parse(next.stdout).hookSpecificOutput.additionalContext, 'NOVA_RETRY_327')
 })
 
 await test('U7', 'Codex init writes AGENTS.md and prints a working MCP config snippet', async () => {
@@ -4402,11 +4423,11 @@ await test('U19', 'Claude init --session aligns hooks and MCP L2 namespace; appr
   } finally {
     engine.close()
   }
-  const aligned = runNode(CLAUDE_CLI, ['hook', 'session-start', '--root', root, '--project', project, '--model', 'claude-opus-5-5', '--levels', 'l2,l3', '--session', 'proj-session'], { input: JSON.stringify({ session_id: 'client-session', cwd: project }) })
+  const aligned = runNode(CLAUDE_CLI, ['hook', 'user-prompt', '--root', root, '--project', project, '--model', 'claude-opus-5-5', '--levels', 'l2,l3', '--session', 'proj-session'], { input: JSON.stringify({ session_id: 'client-session', cwd: project, prompt: 'Project-session L2 fact' }) })
   assert.equal(aligned.status, 0, aligned.stderr)
   assertIncludes(JSON.parse(aligned.stdout.trim()).hookSpecificOutput.additionalContext, 'Project-session L2 fact')
   // Without --session, the payload client session id is used and cannot see the project-session record.
-  const mismatched = runNode(CLAUDE_CLI, ['hook', 'session-start', '--root', root, '--project', project, '--model', 'claude-opus-5-5', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: 'client-session', cwd: project }) })
+  const mismatched = runNode(CLAUDE_CLI, ['hook', 'user-prompt', '--root', root, '--project', project, '--model', 'claude-opus-5-5', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: 'client-session', cwd: project, prompt: 'Project-session L2 fact' }) })
   assert.equal(mismatched.status, 0, mismatched.stderr)
   assert.ok(mismatched.stdout.trim() === '' || !mismatched.stdout.includes('Project-session L2 fact'), 'without --session the L2 record must be out of scope')
 })

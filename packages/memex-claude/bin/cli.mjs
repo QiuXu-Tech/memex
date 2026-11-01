@@ -155,13 +155,17 @@ async function hook() {
   }
   const cwd = payload.cwd ?? args.project
   const session = args.session ?? payload.session_id
+  // A stable --session selects the storage namespace; the real client session
+  // still identifies which automatic checkpoints are already in context.
+  const clientSession = payload.session_id || session
   const engine = engineFor(cwd, session)
   try {
     if (event === 'session-start') {
-      const index = engine.index()
-      const facets = index.facets
+      const facets = engine.store.facets({ workspaceKey: engine.workspaceKey, scopes: engine.scopes, sessionId: engine.sessionId })
       if ((facets.hotCount ?? 0) + (facets.coldCount ?? 0) === 0) return
-      emitHook('SessionStart', buildCatalogInjection(engine.profile, index.catalog))
+      // UserPromptSubmit supplies relevant previews; don't inject the same
+      // record titles again at the start of every session.
+      emitHook('SessionStart', buildCatalogInjection(engine.profile, 'Earlier context is available. Relevant previews may be recalled automatically; use memory_search or memory_index when needed.'))
       return
     }
     if (event === 'user-prompt') {
@@ -169,7 +173,7 @@ async function hook() {
       if (prompt.trim().length < 8) return
       const recallLimit = engine.profile.maxSearchResults ?? 8
       const result = engine.search({ query: prompt, limit: Math.min(100, Math.max(32, recallLimit * 4)) })
-      const hits = result.hits.filter((card) => !(card.provenance?.source === 'claude-stop' && card.provenance?.sourceSession === session)).slice(0, recallLimit)
+      const hits = result.hits.filter((card) => !(card.provenance?.source === 'claude-stop' && card.provenance?.sourceSession === clientSession)).slice(0, recallLimit)
       if (hits.length === 0) return
       emitHook('UserPromptSubmit', buildRecallInjection(engine.profile, hits))
       return
@@ -202,7 +206,7 @@ async function hook() {
     }
     if (event === 'stop') {
       const answer = typeof payload.last_assistant_message === 'string' ? payload.last_assistant_message.trim() : ''
-      if (typeof session !== 'string' || !session || answer.length < 32) return
+      if (typeof clientSession !== 'string' || !clientSession || answer.length < 32) return
       if (/^(?:i (?:cannot|can't|am unable to) (?:help|assist)\b|(?:抱歉[，, ]*)?我(?:无法|不能)(?:帮助|协助))/i.test(answer)) return
       // Match the eviction adapter's high-confidence credential patterns before
       // automatically copying assistant output into a potentially shared level.
@@ -217,11 +221,11 @@ async function hook() {
         if (/[\uD800-\uDBFF]$/.test(prefix)) prefix = prefix.slice(0, -1)
         body = `${prefix}${marker}`
       }
-      const digest = createHash('sha256').update(`claude-stop\0${engine.workspaceKey}\0${session}\0${body}`).digest('hex')
+      const digest = createHash('sha256').update(`claude-stop\0${engine.workspaceKey}\0${session}\0${clientSession}\0${body}`).digest('hex')
       const id = `mem_${digest.slice(0, 10)}`
       const existing = engine.store.get(id)
       if (existing !== undefined) {
-        if (existing.workspaceKey !== engine.workspaceKey || existing.body !== body || existing.provenance?.sourceSession !== session) {
+        if (existing.workspaceKey !== engine.workspaceKey || existing.body !== body || existing.provenance?.sourceSession !== clientSession) {
           throw new Error('memory: automatic checkpoint id already belongs to a different record')
         }
         return
@@ -232,7 +236,7 @@ async function hook() {
         summary: body.replace(/\s+/g, ' ').slice(0, 900),
         useWhen: 'Earlier assistant response; verify decisions against current source and tests.',
         body, trust: 'untrusted', status: 'active',
-        provenance: { source: 'claude-stop', sourceSession: session },
+        provenance: { source: 'claude-stop', sourceSession: clientSession },
       })
       return
     }

@@ -21,13 +21,13 @@ node packages/memex-claude/bin/cli.mjs init --model claude-sonnet-5-5
 
 ## How the hooks behave
 
-- **SessionStart** — injects a bounded memory catalog (no-op when the store is empty).
+- **SessionStart** — injects a short availability notice (no-op when the store is empty); use `memory_index` when a catalog is needed.
 - **UserPromptSubmit** — searches the visible levels with the user's prompt and injects a `<memory-recall>` block when there are hits (cheap: one search, no LLM).
 - **PreCompact** — reads `transcript_path`, archives the raw JSONL as one record before Claude Code compacts (clipped at the store body limit). PreCompact does not inject context. This is the key difference from built-in compaction: details survive.
 - **Stop** — automatically stores the assistant’s completed response as an untrusted episode (minimum 32 characters), without another model call. Repeated identical responses in the same session are deduplicated, and generic refusal-only replies are skipped. High-confidence credential patterns are skipped; this is not a complete sensitive-data detector. The record follows the enabled L2/L3 scope, so L3 makes it visible to later sessions in the same workspace.
 - **SessionEnd** — no injection; keeps cleanup cheap.
 
-Auto-recall excludes Stop records from the current session to avoid repeating text already in context; they remain available through explicit memory search. Later sessions receive bounded summary previews and can open the full record when needed. Re-run `memex-claude init` to add the Stop hook to an existing installation.
+Auto-recall excludes Stop records from the current Claude client session to avoid repeating text already in context; they remain available through explicit memory search. A stable `--session` selects the L2 namespace without hiding checkpoints from other client sessions that share it. Later sessions receive bounded summary previews and can open the full record when needed. Re-run `memex-claude init` to add the Stop hook to an existing installation.
 
 Hooks never break a session: failures are logged to stderr and the exit code stays 0.
 
