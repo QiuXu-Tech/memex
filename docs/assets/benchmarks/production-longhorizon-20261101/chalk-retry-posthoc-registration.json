@@ -1,0 +1,24 @@
+{
+  "registeredAt": "2026-11-01T16:09:03.561762+00:00",
+  "kind": "posthoc-existing-upstream-assertion-and-underline-observations",
+  "sourceCommit": "72110019e147683f60e13fa0ff5c14a0c27cd9fe",
+  "upstreamTestPath": "test/chalk.js",
+  "upstreamTestLine": 145,
+  "upstreamTestBlobSha1": "e3113dc47d0fd5d8efae14953b19d23d35353557",
+  "upstreamTestFileSha256": "cf6009950e6a7bfa78b8332fdeb395fab365be3a724a5074a2b70d3049a8fe61",
+  "underlineDocumentationPath": "source/index.d.ts",
+  "underlineDocumentationLine": 169,
+  "underlineDocumentationSha256": "d6ef4d0e2407eef316586745bfac66d5280fc7b2ad7cdde75fcb24c44ff2252c",
+  "checkSha256": "0db308578cf58313dbed78cffde453f165715890e76ebaced6410e269c20218d",
+  "patches": {
+    "baseline": "438ad09bc8618f57a5313a2f9015f80ce72add131ab8c5ec96cc8310e9b31d29",
+    "memex": "c924baab7c11e3eecbbfd42ccb7fe82521baa14e4766e21841b87bc2d694ee99"
+  },
+  "procedure": "Run a local reproduction of the pinned upstream ansi256(255) assertion and observe underlineAnsi256(196/255) in the pristine and two isolated candidate workspaces.",
+  "limits": [
+    "Added after seeing the candidate answers and reviews, not part of the original acceptance.",
+    "This reproduces one existing upstream assertion, not the full upstream suite.",
+    "The existing assertion encodes old behavior that an intended fix may need to update; its failure alone does not settle the desired behavior.",
+    "The agent workspaces contained source and package.json, not the upstream test directory."
+  ]
+}
