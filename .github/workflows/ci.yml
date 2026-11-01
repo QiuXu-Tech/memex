@@ -63,11 +63,15 @@ jobs:
           python3 scripts/test-prospective-agent-mcp-v2.py
           python3 scripts/test-prospective-agent-mcp-v3.py
           python3 scripts/test-prospective-agent-mcp-v4.py
+          python3 scripts/test-prospective-agent-mcp-v5.py
           python3 scripts/test-prospective-review-axios-20261102.py
           python3 scripts/test-prospective-review-triage-20261102.py
           python3 scripts/test-prospective-issue-triage-20261102.py
+          python3 scripts/test-prospective-issue-triage-recovery-20261102.py
+          python3 scripts/test-prospective-review-triage-recovery-20261102.py
           python3 scripts/test-aggregate-production-autonomy-20261102.py
           python3 scripts/test-prospective-gateway-review.py
+          python3 scripts/test-revalidate-triage-limits-20261102.py
           python3 scripts/test-prospective-gateway-adjudication-v33.py
           python3 scripts/test-prospective-gateway-review-v34.py
           python3 scripts/test-prospective-gateway-pilot-v35.py
