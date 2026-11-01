@@ -1,0 +1,111 @@
+{
+  "task": "T20",
+  "createdAt": "2026-11-01T12:33:35.661553+00:00",
+  "reason": "The full GitHub archive download failed before any model call; the partial download is retained.",
+  "scope": "Partial source view: only selected repository paths listed below; all downloaded bytes are checked against their Git blob hashes.",
+  "sourceCommit": "03d3d8a680dacba16c1e92d56655dfd7b786b29a",
+  "treeSha256": "57df18beaefc784af1e032f7ac3d1c2cb0315d9d07e7768ad29eea161bbb964f",
+  "archiveSha256": "a6ed3d08c9934712850741b8857f69c8afdd35f6d5399969c13f30cc6254fcf7",
+  "files": [
+    {
+      "path": "python/ray/dashboard/modules/state/__init__.py",
+      "gitBlob": "e69de29bb2d1d6434b8b29ae775ad8c2e48c5391",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/dashboard/modules/state/state_head.py",
+      "gitBlob": "e5200f5026184296f6555070b56182bb9c9a4de7",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/dashboard/state_aggregator.py",
+      "gitBlob": "e558d84e60ffb73a5a5bf1a3e980edbc9bb58289",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/util/state/__init__.py",
+      "gitBlob": "b8bb885e5408ed8996ebd471990127061e7cfc00",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/util/state/api.py",
+      "gitBlob": "6cbc70766eb086c42db8ec8600fd9aa301254500",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/util/state/common.py",
+      "gitBlob": "9bbcf7b3f73a64b4d4c59e508954d58ca8157963",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/util/state/exception.py",
+      "gitBlob": "8d8a180c2c3233d56f26c32383d7d3b470e8b20b",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/util/state/state_cli.py",
+      "gitBlob": "658d841ed17c381d4dbc7c33e13335c9a4723f7f",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/util/state/state_manager.py",
+      "gitBlob": "3b8eef222daec7ca8aec117ff0dbc762e4d47c50",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "python/ray/util/state/util.py",
+      "gitBlob": "77894289d9fb2bc2574d0b27b3eb89bac3efbb3b",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    }
+  ]
+}

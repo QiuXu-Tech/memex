@@ -1,0 +1,221 @@
+{
+  "task": "T16",
+  "createdAt": "2026-11-01T12:33:32.692388+00:00",
+  "reason": "The full GitHub archive download failed before any model call; the partial download is retained.",
+  "scope": "Partial source view: only selected repository paths listed below; all downloaded bytes are checked against their Git blob hashes.",
+  "sourceCommit": "0538628a88da77478174636b85bff9c834492329",
+  "treeSha256": "ef09ccc092896d62e7e6296774aa2bc98cdb02c30a3407ba9e9ec25798530845",
+  "archiveSha256": "286d77342ffd40cf291b44233ef83ffa5958924d56f0f8a000c0de0e3865756e",
+  "files": [
+    {
+      "path": "core/controllers/base.py",
+      "gitBlob": "450c6cf097f4229ba0f3ddda53e0f76a358cf7c0",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/controllers/library.py",
+      "gitBlob": "981840b4fba91c65cae9f7c9dfd55e1ab524959a",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/controllers/library_test.py",
+      "gitBlob": "d67eb86be6f19896884b31cebc842e8533e2da43",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_domain.py",
+      "gitBlob": "823cdf3cd8870849838742b58ffcbf6a8d632098",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_domain_test.py",
+      "gitBlob": "85774007a11b28873f5f6cca5b06b39518236b99",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_fetchers.py",
+      "gitBlob": "2cc30b22b35b556fbc9eb585ab1e6bc9f0538953",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_fetchers_test.py",
+      "gitBlob": "2fa1e4e3f8fdd2083b8fd295312cb03d9363eef6",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_rights_domain.py",
+      "gitBlob": "34fde6125d42aeccca2364e3baa36d04903dc683",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_rights_domain_test.py",
+      "gitBlob": "35dcc1580299c98ab41857b4c1842ac9dfb3ddc5",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_services.py",
+      "gitBlob": "526ec26bacdbf74c87c7f1af593d1a8646281c0e",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/exp_services_test.py",
+      "gitBlob": "08016b8962d5454a205930e73c03dc0e5dd7e65b",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/expression_parser.py",
+      "gitBlob": "db37c257ce948557e69e189448e8a23032eb0886",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/expression_parser_test.py",
+      "gitBlob": "d0dd893360b6554be8e669e190886140fae3642f",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/summary_services.py",
+      "gitBlob": "e4ced9961184ba76261ac85e0d7d1c656ae730a3",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/summary_services_test.py",
+      "gitBlob": "8388edf81ae6bfcdb3a20834ac049bc8fd6b091c",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/user_domain.py",
+      "gitBlob": "019c4e18c05fb417364079c63a682fd67b932e3f",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/user_domain_test.py",
+      "gitBlob": "cc5f3c0ef0b63e6d8fc544e3eabba6d8647a1a59",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/user_services.py",
+      "gitBlob": "44e7014fe1ac842ed4c01e066daf1621efcf60c0",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/domain/user_services_test.py",
+      "gitBlob": "bc53c0128daa58bb61eb8ef9bdd63e0325c643c3",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/storage/exploration/gae_models.py",
+      "gitBlob": "e292301bcb722e26ae204e4160f66c98a17e4780",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    },
+    {
+      "path": "core/storage/user/gae_models.py",
+      "gitBlob": "616bfb51ec04cc0b199025abde20992307c028f7",
+      "included": true,
+      "attempts": [
+        {
+          "status": "ok"
+        }
+      ]
+    }
+  ]
+}
