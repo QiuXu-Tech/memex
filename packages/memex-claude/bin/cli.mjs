@@ -16,11 +16,12 @@
  * code stays 0. stdout carries the hook JSON only.
  */
 import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { AgentMemory, defaultMemoryRoot } from '@qiuxu/memex-core/engine'
 import { MEMORY_TEXT_LIMITS } from '@qiuxu/memex-core'
-import { buildCatalogInjection, buildMemoryManual, buildRecallInjection, buildReceipt } from '@qiuxu/memex-core/manual'
+import { buildCatalogInjection, buildMemoryManual, buildRecallInjection } from '@qiuxu/memex-core/manual'
 import { RECOMMENDED_PROFILES, resolveModelProfile } from '@qiuxu/memex-core/model-profiles'
 
 const HERE = dirname(fileURLToPath(import.meta.url))
@@ -108,7 +109,7 @@ function init() {
   writeJson(mcpPath, mcp)
   // .claude/settings.json — hooks.
   const settings = readJson(settingsPath, {})
-  mergeHooks(settings, hookCommandFor, [['SessionStart', undefined], ['UserPromptSubmit', undefined], ['PreCompact', 'manual|auto'], ['SessionEnd', undefined]])
+  mergeHooks(settings, hookCommandFor, [['SessionStart', undefined], ['UserPromptSubmit', undefined], ['PreCompact', 'manual|auto'], ['Stop', undefined], ['SessionEnd', undefined]])
   writeJson(settingsPath, settings)
   // CLAUDE.md — model-tailored manual (idempotent section).
   const marker = '<!-- memex:start -->'
@@ -143,7 +144,8 @@ function emitHook(eventName, additionalContext) {
 }
 
 async function hook() {
-  const event = args._[1] ?? 'session-start'
+  const eventName = args._[1] ?? 'session-start'
+  const event = { SessionStart: 'session-start', UserPromptSubmit: 'user-prompt', PreCompact: 'pre-compact', Stop: 'stop', SessionEnd: 'session-end' }[eventName] ?? eventName
   let payload = {}
   try {
     const input = readFileSync(0, 'utf8')
@@ -165,9 +167,11 @@ async function hook() {
     if (event === 'user-prompt') {
       const prompt = String(payload.prompt ?? '')
       if (prompt.trim().length < 8) return
-      const result = engine.search({ query: prompt })
-      if (result.hits.length === 0) return
-      emitHook('UserPromptSubmit', buildRecallInjection(engine.profile, result.hits))
+      const recallLimit = engine.profile.maxSearchResults ?? 8
+      const result = engine.search({ query: prompt, limit: Math.min(100, Math.max(32, recallLimit * 4)) })
+      const hits = result.hits.filter((card) => !(card.provenance?.source === 'claude-stop' && card.provenance?.sourceSession === session)).slice(0, recallLimit)
+      if (hits.length === 0) return
+      emitHook('UserPromptSubmit', buildRecallInjection(engine.profile, hits))
       return
     }
     if (event === 'pre-compact') {
@@ -185,7 +189,7 @@ async function hook() {
       // body is verbatim but only card fields are indexed, so a generic summary
       // would make this archive nearly unsearchable.
       const summaryText = raw.replace(/\s+/g, ' ').trim().slice(0, 900)
-      const record = engine.write({
+      engine.write({
         kind: 'episode',
         title: `Claude Code transcript ${String(payload.session_id ?? session ?? '').slice(0, 8)} · ${new Date().toISOString()}`,
         summary: summaryText,
@@ -194,7 +198,41 @@ async function hook() {
         status: 'open',
         tags: { 'claude-code': ['compaction', String(payload.trigger ?? 'auto')] },
       })
-      emitHook('PreCompact', buildReceipt(engine.profile, [record.id], 'Claude Code context archived verbatim before compaction'))
+      return
+    }
+    if (event === 'stop') {
+      const answer = typeof payload.last_assistant_message === 'string' ? payload.last_assistant_message.trim() : ''
+      if (typeof session !== 'string' || !session || answer.length < 32) return
+      // Match the eviction adapter's high-confidence credential patterns before
+      // automatically copying assistant output into a potentially shared level.
+      const sensitive = /-----BEGIN [A-Z ]*PRIVATE KEY-----/.test(answer) ||
+        /\b(?:sk-[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})\b/.test(answer) ||
+        /(?:password|passwd|secret|api[_-]?key|access[_-]?token|authorization)\s*[:=]\s*["']?[^\s"']{6,}/i.test(answer)
+      if (sensitive) return
+      const marker = '\n… (assistant answer clipped at the memory body limit)'
+      let body = answer
+      if (answer.length > MEMORY_TEXT_LIMITS.body - marker.length) {
+        let prefix = answer.slice(0, MEMORY_TEXT_LIMITS.body - marker.length)
+        if (/[\uD800-\uDBFF]$/.test(prefix)) prefix = prefix.slice(0, -1)
+        body = `${prefix}${marker}`
+      }
+      const digest = createHash('sha256').update(`claude-stop\0${engine.workspaceKey}\0${session}\0${body}`).digest('hex')
+      const id = `mem_${digest.slice(0, 10)}`
+      const existing = engine.store.get(id)
+      if (existing !== undefined) {
+        if (existing.workspaceKey !== engine.workspaceKey || existing.body !== body || existing.provenance?.sourceSession !== session) {
+          throw new Error('memory: automatic checkpoint id already belongs to a different record')
+        }
+        return
+      }
+      const firstLine = body.split('\n').find((line) => line.trim())?.replace(/^#+\s*/, '').trim() ?? 'Assistant response'
+      engine.write({
+        id, kind: 'episode', title: `Claude Code: ${firstLine.slice(0, 120)}`,
+        summary: body.replace(/\s+/g, ' ').slice(0, 900),
+        useWhen: 'Earlier assistant response; verify decisions against current source and tests.',
+        body, trust: 'untrusted', status: 'active',
+        provenance: { source: 'claude-stop', sourceSession: session },
+      })
       return
     }
     // session-end: nothing to inject; keep the store healthy.
@@ -217,7 +255,9 @@ function printManual() {
 }
 
 if (command === 'init') init()
-else if (command === 'hook') await hook()
+else if (command === 'hook') {
+  try { await hook() } catch (error) { console.error(`memex-claude hook failed: ${error instanceof Error ? error.message : String(error)}`) }
+}
 else if (command === 'status') status()
 else if (command === 'print-manual') printManual()
 else if (command === undefined || command === 'help' || command === '--help') {

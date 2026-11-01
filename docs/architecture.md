@@ -635,7 +635,7 @@ The original subsystem was DSH-only: the seam (`ctx.memory` Service), the local 
 - **`@qiuxu/memex-core`** — zero-host-dependency core: record vocabulary, workspace identity, query-term extraction, token accounting, the markdown+SQLite store (hot/cold, FTS, compression history), **model profiles**, the model-tailored **manual**, and an `AgentMemory` facade (`lib/engine.js`). No Cordis, no DSH packages.
 - **`@qiuxu/memex-seam`** — DSH `ctx.memory` service; re-exports the core vocabulary so existing DSH consumers keep one import.
 - **`@qiuxu/memex-mcp`** — dependency-free stdio MCP server: 7 tools, a `memory://catalog` resource, `initialize.instructions` from the profile manual.
-- **`@qiuxu/memex-claude`** — Claude Code adapter: `.mcp.json`, merged `.claude/settings.json` hooks (`SessionStart` catalog, `UserPromptSubmit` recall, `PreCompact` verbatim transcript archive, `SessionEnd`), `CLAUDE.md` manual section.
+- **`@qiuxu/memex-claude`** — Claude Code adapter: `.mcp.json`, merged `.claude/settings.json` hooks (`SessionStart` catalog, `UserPromptSubmit` recall, `PreCompact` transcript archive, `Stop` assistant-response checkpoint, `SessionEnd`), `CLAUDE.md` manual section.
 - **`@qiuxu/memex-codex`** — Codex adapter: `AGENTS.md` manual, `codex mcp add` command and `config.toml` writer.
 
 Invariants preserved across adapters: one record vocabulary and workspace key derivation (`memoryWorkspaceKey`), sticky L2/L3 semantics, deepest-enabled-level capture, hybrid retrieval (`memoryQueryTerms` + FTS/LIKE/cold abstract/rerank), lossless cold tier with optional digests, and the ability to share one storage root (`$MEMEX_HOME`, DSH defaults to `$DSH_HOME/memories`) across agents.

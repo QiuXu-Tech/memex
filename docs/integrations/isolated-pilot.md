@@ -13,7 +13,7 @@ This interface was exercised by real Codex CLI `0.166.0-alpha.5.1` and by a Clau
 
 Use a disposable Linux VM with Node 24+ at `/opt/memex-pilot/node/bin/node`, Python 3, `bubblewrap`, `systemd-run`, `timeout`, `prlimit`, and the project's fixed sandbox supervisor installed at `/opt/memex-pilot/prospective-vm-sandbox.sh`. The worker invokes that supervisor using non-interactive `sudo` **inside the VM**. The supervisor requires a preassigned workspace under `/opt/memex-pilot/workspaces/` and a check directory under `/opt/memex-pilot/checks/`; the latter must contain a trusted `verify.js`. Install `scripts/prospective-agent-worker-v4.py` in that VM and assign each arm its own workspace. The [earlier VM boundary checks](../production-prospective-canary.md#isolated-agent-environment-and-synthetic-check) describe the tested setup.
 
-The worker reads JavaScript, TypeScript, JSON and Python source; it edits the allowed source types, excludes test directories from edits, rejects absolute and escaping paths and symlinks, and runs only the assigned check. Put the verifier outside the editable workspace. The bridge allows five `repo_test` calls per server process. Its worker response timeout defaults to 120 seconds and can be changed with `--worker-timeout-ms`; after a timeout the worker is retired and the ambiguous request is not retried.
+The original v4 worker reads JavaScript, TypeScript, JSON and Python source; it edits the allowed source types, excludes test directories from edits, rejects absolute and escaping paths and symlinks, and runs only the assigned check. Put the verifier outside the editable workspace. The original bridge allows five `repo_test` calls per server process. The v2 bridge removes that count limit; per-run time and resource limits still apply. Its worker response timeout defaults to 120 seconds and can be changed with `--worker-timeout-ms`; after a timeout the worker is retired and the ambiguous request is not retried.
 
 Optionally prepare a private UTF-8 archive as an array of records:
 
@@ -63,3 +63,5 @@ claude -p 'Inspect the assigned repository and run its assigned checks.' \
 ```
 
 Add `mcp__pilot__repo_edit` to the allow list only for a task authorized to edit its disposable copy. Claude Code's [`--tools`](https://code.claude.com/docs/en/cli-reference) option controls built-in tools separately from MCP tools. Configure authentication through your existing provider mechanism; do not put credentials into the MCP configuration or trace file.
+
+For new comparisons, `prospective-agent-mcp-v2.mjs` with `prospective-agent-worker-v5.py` removes fixed test/edit call counts and allows editing existing test files inside the disposable workspace. The independent verifier remains outside that workspace and cannot be edited by the agent. Earlier registrations continue to point to their original bridge and worker.

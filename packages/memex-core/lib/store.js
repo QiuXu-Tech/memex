@@ -1378,7 +1378,7 @@ export class LocalStoreCore {
     }
     const header = [
       '## Memory catalog',
-      'Earlier context that left the model window is archived here. Search before re-deriving work: `memory_search`, then `memory_open <id>` for the raw archived text. Write durable decisions with `memory_write`.',
+      'Earlier context is archived here. When needed and not already available, search with `memory_search`; use a sufficient preview or open a record for details. Write durable decisions with `memory_write`.',
       '',
     ].join('\n')
     const levelLabel = (scopes ?? ['workspace']).map((scope) => (scope === 'session' ? 'L2 session-private' : 'L3 workspace-shared')).join(' + ')

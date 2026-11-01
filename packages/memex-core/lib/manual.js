@@ -100,10 +100,12 @@ export function buildCatalogInjection(profile, catalog) {
 export function buildRecallInjection(profile, hits, note) {
   if (!Array.isArray(hits) || hits.length === 0) return ''
   const lines = hits.map((card, index) => {
-    const when = card.useWhen ?? card.summary ?? ''
-    return `${index + 1}. ${card.id} · ${card.title}${when ? ` — ${when}` : ''}`
+    const detail = Array.from(String(card.summary || card.useWhen || ''))
+    const preview = detail.slice(0, 240).join('') + (detail.length > 240 ? '…' : '')
+    const trust = card.trust === 'untrusted' ? ' [unverified]' : ''
+    return `${index + 1}. ${card.id}${trust} · ${card.title}${preview ? ` — ${preview}` : ''}`
   })
-  const text = clipForForm(profile, 'recall', `${note ?? 'Relevant earlier context (call memory_open for details):'}\n${lines.join('\n')}`)
+  const text = clipForForm(profile, 'recall', `${note ?? 'Relevant earlier context (open a record if its preview is insufficient):'}\n${lines.join('\n')}`)
   return formatMemoryInjection(profile, 'recall', text)
 }
 

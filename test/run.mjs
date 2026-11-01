@@ -3959,8 +3959,7 @@ await test('U6', 'Claude Code hooks inject catalog/recall and archive transcript
   writeFileSync(transcript, [JSON.stringify({ type: 'user', message: { role: 'user', content: 'remember DEPLOY_ID=abc123' } }), JSON.stringify({ type: 'assistant', message: { role: 'assistant', content: 'noted' } })].join('\n'))
   const compact = runNode(CLAUDE_CLI, ['hook', 'pre-compact', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'], { input: JSON.stringify({ session_id: session, cwd: project, transcript_path: transcript, trigger: 'auto' }) })
   assert.equal(compact.status, 0, compact.stderr)
-  const receipt = JSON.parse(compact.stdout.trim()).hookSpecificOutput.additionalContext
-  assertIncludes(receipt, 'ids:')
+  assert.equal(compact.stdout.trim(), '', 'PreCompact does not support additionalContext')
   const check = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l2', 'l3'], model: 'claude-sonnet-4', agent: 'test' })
   try {
     const found = check.search({ query: 'Claude Code transcript' })
@@ -3970,6 +3969,110 @@ await test('U6', 'Claude Code hooks inject catalog/recall and archive transcript
   } finally {
     check.close()
   }
+})
+
+await test('U6a', 'installed Claude hook commands handle real event names', async () => {
+  const project = makeRoot('u6a-project')
+  const root = makeRoot('u6a-mem')
+  const session = 'u6a-session'
+  const init = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l3'])
+  assert.equal(init.status, 0, init.stderr)
+  const engine = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l3'] })
+  try {
+    engine.write({ kind: 'fact', title: 'Release rollout identifier', body: 'ROLL_ID=release-762', summary: 'release rollout identifier', useWhen: 'continuing the rollout' })
+  } finally { engine.close() }
+  const settings = JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8'))
+  const invoke = (event, payload) => {
+    const command = settings.hooks[event][0].hooks[0].command
+    return spawnSync('/bin/sh', ['-c', command], {
+      input: JSON.stringify({ session_id: session, cwd: project, hook_event_name: event, ...payload }),
+      encoding: 'utf8', timeout: 60000, env: { ...process.env, NODE_OPTIONS: `--import=${REGISTER}` },
+    })
+  }
+  const start = invoke('SessionStart', {})
+  assert.equal(start.status, 0, start.stderr)
+  assertIncludes(JSON.parse(start.stdout).hookSpecificOutput.additionalContext, 'Release rollout identifier')
+  const prompt = invoke('UserPromptSubmit', { prompt: 'Where is the release rollout identifier?' })
+  assert.equal(prompt.status, 0, prompt.stderr)
+  assertIncludes(JSON.parse(prompt.stdout).hookSpecificOutput.additionalContext, 'Release rollout identifier')
+  const transcript = join(project, 'transcript.jsonl')
+  writeFileSync(transcript, JSON.stringify({ type: 'assistant', message: { role: 'assistant', content: 'Rollout identifier is release-762.' } }))
+  const compact = invoke('PreCompact', { transcript_path: transcript, trigger: 'auto' })
+  assert.equal(compact.status, 0, compact.stderr)
+  assert.equal(compact.stdout.trim(), '', 'PreCompact must not emit unsupported hook-specific context')
+  const check = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l3'] })
+  try { assert.ok(check.search({ query: 'Claude Code transcript' }).hits.length > 0) } finally { check.close() }
+})
+
+await test('U6b', 'Claude Stop saves one scoped checkpoint and recalls it only across sessions', async () => {
+  const project = makeRoot('u6b-project')
+  const root = makeRoot('u6b-mem')
+  const started = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l3'])
+  assert.equal(started.status, 0, started.stderr)
+  const settings = JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8'))
+  assert.ok(settings.hooks.Stop?.length, 'init must register the Stop hook')
+  const invoke = (event, session, payload) => spawnSync('/bin/sh', ['-c', settings.hooks[event][0].hooks[0].command], {
+    input: JSON.stringify({ session_id: session, cwd: project, hook_event_name: event, ...payload }),
+    encoding: 'utf8', timeout: 60000, env: { ...process.env, NODE_OPTIONS: `--import=${REGISTER}` },
+  })
+  const body = 'ORBITAL_PLAN_426: The rollout uses the blue queue, with rollback kept available; the decision still needs verification.'
+  for (let i = 0; i < 2; i += 1) {
+    const stop = invoke('Stop', 'session-one', { last_assistant_message: body })
+    assert.equal(stop.status, 0, stop.stderr)
+    assert.equal(stop.stdout.trim(), '')
+  }
+  const check = new AgentMemory({ root, cwd: project, sessionId: 'session-two', levels: ['l3'] })
+  try {
+    const records = check.search({ query: 'ORBITAL_PLAN_426' }).hits
+    assert.equal(records.length, 1, 'replayed Stop must not duplicate the checkpoint')
+    assert.match(records[0].id, /^mem_[0-9a-f]{10}$/)
+    assert.equal(check.open({ id: records[0].id }).body, body)
+    assert.equal(records[0].trust, 'untrusted')
+  } finally { check.close() }
+  const prompt = { prompt: 'What did we decide for ORBITAL_PLAN_426?' }
+  const same = invoke('UserPromptSubmit', 'session-one', prompt)
+  assert.equal(same.status, 0, same.stderr)
+  assert.equal(same.stdout.trim(), '', 'do not inject the same session output again')
+  const next = invoke('UserPromptSubmit', 'session-two', prompt)
+  assert.equal(next.status, 0, next.stderr)
+  const recall = JSON.parse(next.stdout).hookSpecificOutput.additionalContext
+  assertIncludes(recall, 'ORBITAL_PLAN_426')
+  assertIncludes(recall, '[unverified]')
+  const secret = invoke('Stop', 'session-two', { last_assistant_message: 'A credential should not be persisted: api_key = sk-' + 'x'.repeat(32) })
+  assert.equal(secret.status, 0, secret.stderr)
+  const foreign = new AgentMemory({ root, cwd: makeRoot('u6b-other'), sessionId: 'session-two', levels: ['l3'] })
+  try { assert.equal(foreign.search({ query: 'ORBITAL_PLAN_426' }).hits.length, 0) } finally { foreign.close() }
+  const final = new AgentMemory({ root, cwd: project, sessionId: 'session-two', levels: ['l3'] })
+  try { assert.equal(final.list({ limit: 20 }).length, 1, 'credential-like output must not be auto-saved') } finally { final.close() }
+})
+
+await test('U6c', 'same-session automatic checkpoints do not crowd out older recall', async () => {
+  const project = makeRoot('u6c-project')
+  const root = makeRoot('u6c-mem')
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'prior', levels: ['l3'], model: 'claude-sonnet-4' })
+  try {
+    engine.write({ kind: 'fact', title: 'shared orbit context marker', summary: 'shared orbit context marker prior unique fact', body: 'prior unique fact', provenance: { source: 'claude-stop', sourceSession: 'prior' } })
+    for (let i = 0; i < 15; i += 1) {
+      engine.write({ kind: 'episode', title: 'shared orbit context marker', summary: `shared orbit context marker current fact ${i}`, body: `current fact ${i}`, provenance: { source: 'claude-stop', sourceSession: 'current' } })
+    }
+  } finally { engine.close() }
+  const prompt = runNode(CLAUDE_CLI, ['hook', 'UserPromptSubmit', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l3'], {
+    input: JSON.stringify({ session_id: 'current', cwd: project, prompt: 'shared orbit context marker' }),
+  })
+  assert.equal(prompt.status, 0, prompt.stderr)
+  assertIncludes(JSON.parse(prompt.stdout).hookSpecificOutput.additionalContext, 'prior unique fact')
+})
+
+await test('U6d', 'Claude hook failure is reported without failing the client', async () => {
+  const project = makeRoot('u6d-project')
+  const root = join(project, 'not-a-directory')
+  writeFileSync(root, 'file')
+  const result = runNode(CLAUDE_CLI, ['hook', 'Stop', '--root', root, '--project', project, '--levels', 'l3'], {
+    input: JSON.stringify({ session_id: 'u6d-session', cwd: project, last_assistant_message: 'A completed response with enough content to trigger a checkpoint.' }),
+  })
+  assert.equal(result.status, 0)
+  assert.match(result.stderr, /memex-claude hook failed/)
+  assert.equal(result.stdout.trim(), '')
 })
 
 await test('U7', 'Codex init writes AGENTS.md and prints a working MCP config snippet', async () => {
@@ -4077,14 +4180,12 @@ await test('U11', 'PreCompact archives transcripts larger than the store body li
   writeFileSync(transcript, Array.from({ length: Math.ceil(targetBytes / line.length) }, () => line).join('\n'))
   const result = runNode(CLAUDE_CLI, ['hook', 'pre-compact', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l3'], { input: JSON.stringify({ session_id: 'u11-session', cwd: project, transcript_path: transcript, trigger: 'auto' }) })
   assert.equal(result.status, 0, result.stderr)
-  const payload = JSON.parse(result.stdout.trim())
-  const receipt = payload.hookSpecificOutput.additionalContext
-  assertIncludes(receipt, 'ids:')
-  const recordId = receipt.match(/mem_[0-9a-f]{10}/)[0]
+  assert.equal(result.stdout.trim(), '')
   const engine = new AgentMemory({ root, cwd: project, sessionId: 'u11-session', levels: ['l3'], model: 'claude-sonnet-4', agent: 'test' })
   try {
-    const record = engine.store.get(recordId)
-    assert.ok(record !== undefined, 'the oversized transcript must still be archived')
+    const hit = engine.search({ query: 'Claude Code transcript' }).hits[0]
+    assert.ok(hit, 'the oversized transcript must still be archived')
+    const record = engine.store.get(hit.id)
     assert.ok(record.body.length <= MEMORY_TEXT_LIMITS.body, 'archived body must respect the store limit')
     assert.ok(record.body.includes('clipped at the memory body limit'), 'the archive must be explicitly clipped')
   } finally {
