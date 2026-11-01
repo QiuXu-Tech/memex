@@ -1,0 +1,59 @@
+{
+  "registeredAt": "2026-11-01T18:51:02.635102+00:00",
+  "kind": "exploratory-post-hoc-reused-issue-replay",
+  "tasks": [
+    {
+      "id": "37",
+      "repo": "honojs/hono",
+      "issue": 4765,
+      "issueUrl": "https://github.com/honojs/hono/issues/4765",
+      "title": "BUG: RPC types broken when using arrow function with a Promise",
+      "sourceCommit": "c91b60a251186fb024557c6d55a11d8e388f179c",
+      "issueSha256": "de23cf07c7fda32b59a4b69498940a819fad3a5f70e59426b758f41410d67641",
+      "archiveSha256": "ac3bf7e26afdacecebab5815828af76c1983192edafa0afa85ef1e6e61459f50",
+      "archiveBytes": 1777396,
+      "expandedBytes": 5078793,
+      "commentCount": 6,
+      "createdAt": "2026-02-24T11:57:45Z",
+      "lastCommentAt": "2026-03-15T16:15:44Z",
+      "frozenAcceptance": "Explain the Hono RPC unknown-result type with concise Promise-returning handlers and compare against equivalent handler shapes."
+    },
+    {
+      "id": "40",
+      "repo": "lit/lit",
+      "issue": 4512,
+      "issueUrl": "https://github.com/lit/lit/issues/4512",
+      "title": "[context] Consuming context with `@consume()` does not notify that the context has changed.",
+      "sourceCommit": "16507ef656417c9c53a55a02a44a563bbbf2c484",
+      "issueSha256": "cb2c32cb5432f837bb6513647e371541c3d6d74744045eb7c4dd68db89f31259",
+      "archiveSha256": "406561f44dc6d79aad0143f932930169f2684756f092b9f9674963d2b81e1f71",
+      "archiveBytes": 5276979,
+      "expandedBytes": 13419351,
+      "commentCount": 8,
+      "createdAt": "2024-01-23T14:14:32Z",
+      "lastCommentAt": "2024-03-28T19:27:02Z",
+      "frozenAcceptance": "Explain whether @consume context values appear in changedProperties and distinguish context subscription from reactive state."
+    }
+  ],
+  "selection": "These two issues were selected after their earlier Memex answers incorrectly claimed that discussion was absent; they are reused cases, not new independent tasks.",
+  "intervention": "Default automatic recall says earlier context can be incomplete or stale and asks the agent to check current sources and later discussion before concluding information is absent.",
+  "productCommit": "a59d74594417c0f9bc5a32e6d726d0a6678184d6",
+  "productFilesSha256": {
+    "packages/memex-core/lib/manual.js": "d820a5d3e1c333a992d455d6b85b871fc30fff1632a9186ce8369f68cb4a29a9",
+    "packages/memex-claude/bin/cli.mjs": "85dc289f11c37138405ca92ff75a9fe77374b7f1cd0575772bb87890b667b29d",
+    "packages/memex-mcp/bin/server.mjs": "d4b951bda6b0d5f67468aaf6606447805edde118d8f4b0e75c71936697c7cc79"
+  },
+  "pilotRunnerSha256": "3fc4a85f9300eb5c03d9818097075b56d16515c863ff06364660c767d236d1d4",
+  "runnerSha256": "45ca87cb8b91e9210012a94a026cc98240e73c2c8d5320f6711318c666a81c8c",
+  "bridgeSha256": "f4bdb9b4b151a8403b1bc989c6a69f188d2eb189cd44c899253511ce1bd2c48a",
+  "workerSha256": "db00de27b07ef4f2a7daa8e6e967e5455e1ec5b75911ad7b8839118bc257a586",
+  "allocationCommitmentSha256": "4168133254ab4792f66045b8bffa45f55cca1811750eba17e01b666670856a16",
+  "protocol": "Same two-session recovery-protocol prompts, source snapshots, model and per-session budgets as the registered supplemental cohort; fresh isolated workspaces and randomized arm order.",
+  "aggregateClientListTargetUsd": 1.25,
+  "primaryObservation": "Record whether each second session opens a C-prefixed discussion record and whether the response still claims no discussion; retain all outputs and failures.",
+  "limits": [
+    "Post-hoc, selected after observing failure, and reuses tasks: exploratory mechanism check only.",
+    "The original cohort used an earlier product commit; do not attribute these outcomes to it.",
+    "Client list price is not the gateway bill."
+  ]
+}
