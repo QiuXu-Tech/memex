@@ -1,86 +1,97 @@
 {
-  "generatedAt": "2026-11-01T13:05:25.845887+00:00",
+  "generatedAt": "2026-11-01T13:13:44.629450+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 16,
-    "reviewComplete": 15,
-    "retryPairsCompleted": 0,
+    "pairedCompleted": 17,
+    "reviewComplete": 16,
+    "reviewRecoveryComplete": 1,
+    "retryPairsCompleted": 1,
     "retryReviewsCompleted": 0,
-    "uniqueTasksEvaluableIncludingRetries": 15,
+    "retryReviewRecoveryComplete": 1,
+    "uniqueTasksEvaluableIncludingRetries": 18,
     "qualityFlagged": 2,
-    "notStarted": 11,
+    "notStarted": 10,
     "startedOrIncomplete": 3
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 5150658,
-      "cached_input_tokens": 4379520,
-      "output_tokens": 40569,
-      "elapsedSeconds": 2196.82,
+      "input_tokens": 5795853,
+      "cached_input_tokens": 4899328,
+      "output_tokens": 45702,
+      "elapsedSeconds": 2445.23,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 7663731,
-      "cached_input_tokens": 6578816,
-      "output_tokens": 56260,
-      "elapsedSeconds": 2666.4399999999996,
+      "input_tokens": 8441059,
+      "cached_input_tokens": 7222528,
+      "output_tokens": 61435,
+      "elapsedSeconds": 2886.7599999999993,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 4780507,
-      "cached_input_tokens": 4057600,
-      "output_tokens": 37940,
-      "elapsedSeconds": 1899.8300000000002
+      "input_tokens": 5131271,
+      "cached_input_tokens": 4351872,
+      "output_tokens": 40376,
+      "elapsedSeconds": 2009.64
     },
     "memex": {
-      "input_tokens": 6889237,
-      "cached_input_tokens": 5915008,
-      "output_tokens": 50616,
-      "elapsedSeconds": 2235.25
+      "input_tokens": 7430590,
+      "cached_input_tokens": 6369152,
+      "output_tokens": 54051,
+      "elapsedSeconds": 2378.8999999999996
     }
   },
   "usageRetrySessions": {
     "baseline": {
-      "input_tokens": 160540,
-      "cached_input_tokens": 133504,
-      "output_tokens": 1148,
-      "elapsedSeconds": 52.11
+      "input_tokens": 532893,
+      "cached_input_tokens": 452096,
+      "output_tokens": 3755,
+      "elapsedSeconds": 264.16
     },
-    "memex": {}
+    "memex": {
+      "input_tokens": 995350,
+      "cached_input_tokens": 841856,
+      "output_tokens": 7526,
+      "elapsedSeconds": 283.68
+    }
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 136,
+      "successfulReads": 145,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 13,
-      "session2RepeatedResultCharacters": 64174
+      "session2PreviouslyReadExact": 15,
+      "session2RepeatedResultCharacters": 73476
     },
     "memex": {
-      "successfulReads": 140,
+      "successfulReads": 150,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 13,
-      "session2RepeatedResultCharacters": 55754
+      "session2PreviouslyReadExact": 15,
+      "session2RepeatedResultCharacters": 65056
     }
   },
   "memory": {
-    "session1Writes": 18,
-    "session2OpenedPrior": 18,
+    "session1Writes": 20,
+    "session2OpenedPrior": 20,
+    "session2CitedPrior": 18,
+    "overlappingAccess": 18
+  },
+  "memoryPaired": {
+    "session1Writes": 17,
+    "session2OpenedPrior": 17,
     "session2CitedPrior": 17,
     "overlappingAccess": 16
   },
-  "memoryPaired": {
-    "session1Writes": 16,
-    "session2OpenedPrior": 16,
-    "session2CitedPrior": 16,
-    "overlappingAccess": 15
-  },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 12,
+    "equal": 13,
+    "baseline_higher": 1
+  },
+  "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
+    "equal": 14,
     "baseline_higher": 1
   },
   "reviewDisagreementOriginal": {
@@ -88,6 +99,97 @@
     "adjudicatorMarkedMaterial": 8
   },
   "reviewGatewayAttempts": [
+    {
+      "operation": "T15-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:11:35.054766+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 28582,
+        "completion_tokens": 237,
+        "total_tokens": 28819,
+        "completion_tokens_details": {
+          "reasoning_tokens": 34
+        }
+      }
+    },
+    {
+      "operation": "T15-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:11:49.584471+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 32192,
+        "completion_tokens": 402,
+        "total_tokens": 32594,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 32189,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 32192,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 32189,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T15-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:11:58.161695+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 188,
+        "prompt_tokens": 26114,
+        "total_tokens": 26302,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "T15-retry-posthoc-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:12:43.445866+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 375,
+        "prompt_tokens": 26462,
+        "total_tokens": 26837,
+        "prompt_tokens_details": {
+          "cached_tokens": 25984
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
     {
       "operation": "T01-blind:gpt-6.1-sol",
       "attempt": 1,
@@ -1169,11 +1271,164 @@
           "reasoning_tokens": 0
         }
       }
+    },
+    {
+      "operation": "T22-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:05:33.693495+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 44527,
+        "completion_tokens": 279,
+        "total_tokens": 44806,
+        "completion_tokens_details": {
+          "reasoning_tokens": 84
+        }
+      }
+    },
+    {
+      "operation": "T22-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:05:42.873157+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 21927,
+        "completion_tokens": 489,
+        "total_tokens": 22416,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 21924,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 21927,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 21924,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T22-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:05:50.281823+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 368,
+        "prompt_tokens": 19496,
+        "total_tokens": 19864,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "T23-posthoc-adjudication-recovery",
+      "attempt": 1,
+      "at": "2026-11-01T13:11:35.054726+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 296,
+        "prompt_tokens": 17830,
+        "total_tokens": 18126,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "T23-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:09:54.238001+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 38926,
+        "completion_tokens": 436,
+        "total_tokens": 39362,
+        "completion_tokens_details": {
+          "reasoning_tokens": 237
+        }
+      }
+    },
+    {
+      "operation": "T23-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:10:10.444264+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 20302,
+        "completion_tokens": 339,
+        "total_tokens": 20641,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 20299,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 20302,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 20299,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T23-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:10:22.799998+00:00",
+      "model": "deepseek-flash",
+      "status": "error",
+      "httpStatus": null,
+      "errorCode": null,
+      "usage": {}
     }
   ],
   "reviewUsage": {
-    "input_tokens": 886374,
-    "output_tokens": 14713
+    "input_tokens": 1162732,
+    "output_tokens": 18122,
+    "missingUsageAttempts": 1
   },
   "billingCandidate": {
     "observedAt": "2026-11-01T13:02:18.700990+00:00",
@@ -1569,7 +1824,7 @@
         "secondsFromCallStart": 6.417
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 3
+    "unmatchedSuccessfulGatewayCalls": 13
   },
   "sourceDownloadFailures": [
     {
@@ -1835,6 +2090,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -2081,6 +2338,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -2330,6 +2589,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -2560,6 +2821,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [
         "Adjudicator repeated a claim contradicted by supplied status and a relevant source comment; preserve scores but do not count this as a clean resolution."
       ],
@@ -2816,6 +3079,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [
         "Adjudicator required an independent comparison although independent execution was not explicit in the frozen criteria and project tests were forbidden; preserve scores and flag the rationale."
       ],
@@ -3076,6 +3341,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -3327,6 +3594,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -3577,6 +3846,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -3836,6 +4107,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -4088,6 +4361,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -4347,6 +4622,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -4539,9 +4816,11 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": {
-        "pairCompleted": false,
+        "pairCompleted": true,
         "arms": {
           "baseline": {
             "sessions": [
@@ -4580,28 +4859,205 @@
                 ],
                 "eventTraceSha256": "411959630b3c5dc5056905176499e9580fb5e908d72862d170a213cf556bd11f",
                 "finalSha256": "a1529ffe4b9cf8527ce2d0833d433c019df62cf7cee1343c70a299d874191465"
+              },
+              {
+                "stage": 2,
+                "startedAt": "2026-11-01T13:04:53.201261+00:00",
+                "finishedAt": "2026-11-01T13:07:33.446991+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 160.24,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 196075,
+                    "cached_input_tokens": 165376,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1353,
+                    "reasoning_output_tokens": 15
+                  }
+                ],
+                "callCounts": {
+                  "pilot.archive_search:failed": 1,
+                  "pilot.repo_read:failed": 1,
+                  "pilot.archive_search:completed": 4,
+                  "pilot.repo_read:completed": 4,
+                  "pilot.archive_open:completed": 4
+                },
+                "toolFailures": [
+                  {
+                    "server": "pilot",
+                    "tool": "archive_search",
+                    "status": "failed",
+                    "error": "Invalid tool arguments"
+                  },
+                  {
+                    "server": "pilot",
+                    "tool": "repo_read",
+                    "status": "failed",
+                    "error": "Invalid tool arguments"
+                  }
+                ],
+                "eventTraceSha256": "96b37cdc83a92c93770d327dc2feadfd05d09833465cb3989a98436b14a664a9",
+                "finalSha256": "ebe4deaaebe6e8c06da38bd41b06ffeea87e834401a80b17bed93e2f07e55742"
               }
             ],
-            "sessionsCompleted": null,
-            "twoDistinctThreads": null,
-            "testStatus": "NOT RUN"
+            "sessionsCompleted": 2,
+            "twoDistinctThreads": true,
+            "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
           },
           "memex": {
-            "sessions": [],
-            "sessionsCompleted": null,
-            "twoDistinctThreads": null,
-            "testStatus": "NOT RUN"
+            "sessions": [
+              {
+                "stage": 1,
+                "startedAt": "2026-11-01T13:07:33.449740+00:00",
+                "finishedAt": "2026-11-01T13:08:54.474036+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 81.02,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 294680,
+                    "cached_input_tokens": 258688,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1945,
+                    "reasoning_output_tokens": 28
+                  }
+                ],
+                "callCounts": {
+                  "memex.memory_search:completed": 1,
+                  "pilot.archive_search:completed": 4,
+                  "pilot.repo_search:completed": 2,
+                  "pilot.repo_read:completed": 5,
+                  "pilot.archive_open:completed": 7,
+                  "memex.memory_write:completed": 1
+                },
+                "toolFailures": [],
+                "eventTraceSha256": "34f8851dfcaf74341fa81662355e908d1784f9eceb5b9f7c7569b79cf3ebcf82",
+                "finalSha256": "71fe03b5842e1a4099952d80c87b37052254c1aad4e2a62fbe5200c22fe00e4c"
+              },
+              {
+                "stage": 2,
+                "startedAt": "2026-11-01T13:08:54.476043+00:00",
+                "finishedAt": "2026-11-01T13:10:21.837325+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 87.36,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 248223,
+                    "cached_input_tokens": 219776,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1890,
+                    "reasoning_output_tokens": 39
+                  }
+                ],
+                "callCounts": {
+                  "memex.memory_search:completed": 1,
+                  "memex.memory_open:completed": 1,
+                  "pilot.archive_search:completed": 4,
+                  "pilot.repo_read:completed": 5,
+                  "pilot.archive_open:completed": 5,
+                  "pilot.repo_search:completed": 1,
+                  "memex.memory_write:completed": 1
+                },
+                "toolFailures": [],
+                "eventTraceSha256": "a308e61a70005e3fda61b9b6edbf095f554a101b53058694252adc74d33afc39",
+                "finalSha256": "c50b44c6f4239fe81519e802b66233dd84b05908e7bc98e144d95b8ed77c5efb"
+              }
+            ],
+            "sessionsCompleted": 2,
+            "twoDistinctThreads": true,
+            "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
           }
         },
         "memory": {
-          "session1Written": [],
-          "session2OpenedPrior": [],
-          "session2CitedPrior": [],
-          "session2OpenedS1Handoff": false,
-          "overlappingAccess": false
+          "session1Written": [
+            "mem_1417fd30c9"
+          ],
+          "session2OpenedPrior": [
+            "mem_1417fd30c9"
+          ],
+          "session2CitedPrior": [
+            "mem_1417fd30c9"
+          ],
+          "session2OpenedS1Handoff": true,
+          "overlappingAccess": true
         },
-        "reviews": [],
+        "reviews": [
+          {
+            "reviewer": "gpt-6.1-sol",
+            "status": "ok",
+            "scores": {
+              "memex": 1,
+              "baseline": 1
+            },
+            "reasons": {
+              "memex": "Addresses a mixed application with direct OpenAI calls and Agents runs, explains the source-supported mechanism for potentially nested LLM spans, and preserves direct-call visibility when considering scoped suppression. Correctly leaves runtime duplication and a fix unverified. However, its span-capture and regression plan does not explicitly propose an in-memory span-exporter test with a mocked model operation and no external model request, so it only partially meets the frozen criteria.",
+              "baseline": "Addresses both direct-client and Agents usage, uses the processor lifecycle and LLM mappings to explain possible nested duplication, and proposes scoped suppression while retaining direct-call coverage. Appropriately distinguishes source findings from historical claims and unverified runtime behavior. However, its raw-span comparison and regression plan omits an explicit in-memory span-exporter test requiring no external model request, so it only partially meets the frozen criteria."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "claude-haiku-4-5",
+            "status": "ok",
+            "scores": null,
+            "reasons": null,
+            "materialDisagreement": null,
+            "error": "Expecting ',' delimiter: line 11 column 701 (char 1565)"
+          },
+          {
+            "reviewer": "adjudication",
+            "status": "ok",
+            "scores": {
+              "memex": 1,
+              "baseline": 1
+            },
+            "reasons": {
+              "memex": "Covers mixed direct OpenAI + Agents usage and explains the source-supported overlap mechanism without disabling direct-call visibility, and correctly leaves runtime duplication/fix unverified. But its verification plan (capture exported spans for a mixed workload) does not explicitly propose an in-memory span-exporter test with a mocked model operation and no external request, so it only partially meets the frozen acceptance criteria.",
+              "baseline": "Also covers both direct-client and Agents usage, grounds the overlap hypothesis in the processor lifecycle and LLM mappings, and proposes scoped suppression preserving direct-call coverage while flagging unverified runtime behavior. However, its raw-span comparison plan likewise omits an explicit in-memory span-exporter test with no external model request, so it only partially meets the criteria."
+            },
+            "materialDisagreement": false,
+            "error": null
+          }
+        ],
         "reviewComplete": false,
+        "reviewRecovery": {
+          "repairedClaude": {
+            "status": "ok",
+            "scores": {
+              "memex": 1,
+              "baseline": 1
+            },
+            "reasons": {
+              "memex": "Partially meets criteria. Source establishes overlapping instrumentation as the likely cause: `_processor.py:200–235` creates OpenTelemetry spans for Agents SDK events without suppressing client instrumentation, and `__init__.py` confirms `exclusive_processor` controls only Agents SDK processors, not OpenAI client instrumentation. The handoff correctly identifies the hypothesis and acknowledges the reporter's confirmation that both direct calls and Agents calls coexist. However, the source does not establish which two runtime spans are the reported duplicate, does not verify the fix claim (reporter said exclusivity failed), and proposes an untested verification plan rather than demonstrating the problem or solution in code.",
+              "baseline": "Partially meets criteria. Source-supported hypothesis: `_processor.py:366–374` maps both `GenerationSpanData` and `ResponseSpanData` to LLM spans; `on_span_start/end` lifecycle contains no client-instrumentation suppression. The handoff correctly notes that `exclusive_processor` controls Agents SDK processors only (`__init__.py:190–232`) and addresses reinstrumentation overlap separately (`_processor.py:208–213`). Updated requirement acknowledged: disabling client instrumentation globally would lose direct-call coverage, per December 29 issue update. However, source does not confirm whether both events fire for one invocation, does not verify earlier fix claims (reporter's \"it did not work\"), and proposes an untested verification plan with no code reproduction or test."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          "supplementalAdjudication": {
+            "status": "ok",
+            "scores": {
+              "memex": 1,
+              "baseline": 1
+            },
+            "reasons": {
+              "memex": "Both reviewers agree on score 1. Verified against source: _processor.py:200-235 creates OTel spans for accepted Agents SDK spans with no cross-instrumentor suppression; _get_span_kind:366-374 maps GenerationSpanData and ResponseSpanData to LLM but does not prove both fire per request; __init__.py exclusive_processor controls only Agents SDK processors. Issue status is OPEN and the reporter stated the exclusivity workaround 'did not work' and later confirmed both direct OpenAI and Agents usage coexist. The handoff correctly treats overlap as a hypothesis, preserves direct-call coverage, and does not repeat the unsupported 'known issue/fix' claim. However, it proposes a span-capture verification plan without explicitly specifying an in-memory span-exporter test with a mocked model operation and no external request, so it only partially meets the frozen acceptance criteria.",
+              "baseline": "Both reviewers agree on score 1. Verified against source: the on_span_start/on_span_end lifecycle (:200-235, :237-273) contains no client-instrumentation suppression or invocation-level dedup; the trace-ownership guard at :208-213 addresses reinstrumentation, a separate scenario; exclusive_processor defaults to True but governs only Agents SDK processors (__init__.py:190-232). Issue status OPEN; reporter confirmed both direct and Agents usage and that exclusivity failed. The handoff correctly distinguishes source findings from unverified bot claims and preserves direct-call coverage. However, its raw-span comparison and regression plan omits an explicit in-memory span-exporter test with no external model request, so it only partially meets the frozen criteria."
+            },
+            "materialDisagreement": false,
+            "error": null
+          },
+          "disclosure": "Post-hoc escaping of two quotation marks in the original response, followed by supplemental adjudication; raw response retained."
+        },
+        "reviewCompleteIncludingRecovery": true,
         "qualityFlags": [],
         "disclosure": "Post-hoc whole-pair retry; original failure is retained."
       }
@@ -4870,6 +5326,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -5137,6 +5595,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -5310,8 +5770,143 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
-      "adaptiveRetry": null
+      "adaptiveRetry": {
+        "pairCompleted": false,
+        "arms": {
+          "baseline": {
+            "sessions": [
+              {
+                "stage": 1,
+                "startedAt": "2026-11-01T13:12:35.050917+00:00",
+                "finishedAt": "2026-11-01T13:13:26.864713+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 51.81,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 176278,
+                    "cached_input_tokens": 153216,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1254,
+                    "reasoning_output_tokens": 0
+                  }
+                ],
+                "callCounts": {
+                  "pilot.archive_search:completed": 2,
+                  "pilot.repo_read:completed": 8,
+                  "pilot.archive_open:completed": 3,
+                  "pilot.repo_search:completed": 1
+                },
+                "toolFailures": [],
+                "eventTraceSha256": "94fdb084bd9339703b68f8ce0ddc620175495f9fae41b6ad135484afe45e9f48",
+                "finalSha256": "650d0d1a9ccefb2157e29ce0f91d195e2b29ca21a0c59cd2084933e698675b68"
+              }
+            ],
+            "sessionsCompleted": null,
+            "twoDistinctThreads": null,
+            "testStatus": "NOT RUN"
+          },
+          "memex": {
+            "sessions": [
+              {
+                "stage": 1,
+                "startedAt": "2026-11-01T13:10:39.742253+00:00",
+                "finishedAt": "2026-11-01T13:11:45.412641+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 65.67,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 164886,
+                    "cached_input_tokens": 128000,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1814,
+                    "reasoning_output_tokens": 11
+                  }
+                ],
+                "callCounts": {
+                  "memex.memory_search:completed": 1,
+                  "pilot.archive_search:completed": 3,
+                  "pilot.repo_read:completed": 7,
+                  "pilot.archive_open:completed": 6,
+                  "pilot.repo_search:failed": 1,
+                  "pilot.repo_search:completed": 1,
+                  "memex.memory_write:completed": 1
+                },
+                "toolFailures": [
+                  {
+                    "server": "pilot",
+                    "tool": "repo_search",
+                    "status": "failed",
+                    "error": "Invalid tool arguments"
+                  }
+                ],
+                "eventTraceSha256": "6047b5802016c5c7f0b104ea46b1feba2f30c8a92eb6887d1794c9bbd878b935",
+                "finalSha256": "41b4200e4cb07b185d1d4e1e17bfc4f99934b0eb656cb396fe93b585cd890491"
+              },
+              {
+                "stage": 2,
+                "startedAt": "2026-11-01T13:11:45.415898+00:00",
+                "finishedAt": "2026-11-01T13:12:35.048283+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 49.63,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 287561,
+                    "cached_input_tokens": 235392,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1877,
+                    "reasoning_output_tokens": 48
+                  }
+                ],
+                "callCounts": {
+                  "memex.memory_search:completed": 1,
+                  "memex.memory_open:completed": 1,
+                  "pilot.archive_search:completed": 4,
+                  "pilot.repo_read:completed": 8,
+                  "pilot.archive_open:completed": 5,
+                  "memex.memory_write:completed": 1
+                },
+                "toolFailures": [],
+                "eventTraceSha256": "5ed4caf2b0471c68e7cbfd36a99542cb67af783e09c0e12ae0fdb173387a917d",
+                "finalSha256": "c5859fd51451b2e3cb63ae796d5ba87d0eec069e97b69cb90eca05d04532a3c6"
+              }
+            ],
+            "sessionsCompleted": 2,
+            "twoDistinctThreads": true,
+            "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
+          }
+        },
+        "memory": {
+          "session1Written": [
+            "mem_770d35148c"
+          ],
+          "session2OpenedPrior": [
+            "mem_770d35148c"
+          ],
+          "session2CitedPrior": [
+            "mem_770d35148c"
+          ],
+          "session2OpenedS1Handoff": true,
+          "overlappingAccess": true
+        },
+        "reviews": [],
+        "reviewComplete": false,
+        "reviewRecovery": null,
+        "reviewCompleteIncludingRecovery": false,
+        "qualityFlags": [],
+        "disclosure": "Post-hoc whole-pair retry; original failure is retained."
+      }
     },
     {
       "id": "T20",
@@ -5555,6 +6150,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -5814,6 +6411,8 @@
         }
       ],
       "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6014,8 +6613,53 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Correctly distinguishes client-ID churn, stale status objects, and redundant writes from an unproven cause of memory exhaustion, with the core mechanism supported by the supplied source. However, the disable-and-delete workaround does not address selective inactive-object cleanup while preserving current live client state. The reconnect comparison also lacks an explicit cycle count or duration bound. It claims neither physical-device reproduction nor executed tests.",
+            "baseline": "Source-supported analysis identifies stale-ID accumulation and unconditional status writes, explains debounce behavior, and separates reporter observations from an unproven memory diagnosis. However, 'evaluate object retention separately' does not provide an inactive-object cleanup approach that protects current live client state. Specified stale-population sizes do not bound the repeated-connect/disconnect workload by cycles or duration. It claims neither physical-device reproduction nor executed tests."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Handoff correctly identifies accumulated stale client objects and redundant state writes as a plausible mechanism for excess event/CPU load, supported by pinned source code (MQTTServer.ts:419–469). However, it does not establish causation of the reported multi-gigabyte memory growth. The mechanism is partially characterized: refreshes write `false` unconditionally to all absent clients without checking prior state, and connection changes trigger refreshes. Verification plan is reasonable but incomplete—it conflates write calls per refresh with claims about per-connection behavior without accounting for debouncing (lines 423–489). The later October 31 update (75 stale objects from random client IDs) provides concrete context but remains reporter evidence. Memory exhaustion cause, heap retention, and regression release remain unestablished. Source analysis is sound but scope is limited to one mechanism; broader heap and event-queue dynamics are not inspected.",
+            "baseline": "Handoff establishes the same amplification mechanism with greater precision: unconditional `false` writes scale with stale client count, connection events trigger updates, and disabling client objects confirms the path exists. Pinned source code is correctly cited (lines 429–469, 464–469, 2389, 2205, 423–489). The handoff correctly notes debouncing behavior and distinguishes it from autonomous polling. However, it makes the same core claim as C01—this is a plausible cause of database work and event load, not proof of memory exhaustion. The verification plan is more structured (rotating-ID workloads, heap snapshots, version comparison) but still requires execution to confirm causation. Remaining uncertainty is identical: whether this mechanism explains the original 2GB+ growth, which release introduced it, and heap retention details. No source edits or tests were performed. Scope is appropriately bounded to one mechanism; the handoff does not over-claim."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Both reviewers agree on score 1. Verified against source: updateClientObjects() unconditionally writes false to absent client states (MQTTServer.ts:464-469) and true to active clients (line 460), with no deletion of stale objects; connection events trigger refreshes (lines 2205, 2389) and the one-second timer is a resettable debounce (lines 423-489). The candidate correctly separates this status-write amplification from the unproven multi-gigabyte memory cause and does not claim a physical-device reproduction. It falls short of full criteria because it does not propose cleanup of inactive client objects while preserving current live client state, and its reconnect comparison lacks an explicit cycle/duration bound. Issue status is OPEN, consistent with the unresolved diagnosis.",
+            "baseline": "Both reviewers agree on score 1. Source verification confirms the same mechanism: unconditional false writes to all absent client states (MQTTServer.ts:464-469), true writes per active client (line 460), connection-triggered refreshes (lines 2205, 2389), and debounce rather than polling (lines 423-489). The candidate correctly distinguishes reporter evidence (2GB growth, cFos random IDs, ~75 stale objects) from the unproven memory-exhaustion cause and does not claim a physical-device reproduction. It is partial rather than full because 'evaluate object retention separately' does not supply an inactive-object cleanup approach protecting live client state, and the stale-population sizes do not bound the reconnect workload by cycles or duration. Issue remains OPEN, matching the unresolved status."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6069,30 +6713,222 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:05:21.080706+00:00",
+              "finishedAt": "2026-11-01T13:06:10.126606+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 49.04,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 137879,
+                  "cached_input_tokens": 103936,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1033,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_read:completed": 2
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "846f461a5ece5aaef59b5ebf5de4b9545ffc8b88d44bbaf394747122ce1302b4",
+              "finalSha256": "2d25ae2e554dbd579b6b1dbaa7900057377b765e7f01c1d22cf6a7024978945e"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:06:10.129179+00:00",
+              "finishedAt": "2026-11-01T13:07:10.895191+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 60.77,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 212885,
+                  "cached_input_tokens": 190336,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1403,
+                  "reasoning_output_tokens": 23
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 7,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 6
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "3ac46825a9028db12f4a5bf03f1bd207cd838deeb35f7ebcf7b8835cef0085a9",
+              "finalSha256": "150822e2f8ccbc568a9d41c15909267818571c63c05b010339b46909c76facaf"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:07:10.896673+00:00",
+              "finishedAt": "2026-11-01T13:08:15.634102+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 64.74,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 255167,
+                  "cached_input_tokens": 216704,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1727,
+                  "reasoning_output_tokens": 23
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_read:completed": 4,
+                "pilot.repo_search:completed": 3,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "37252a3fcb8e6fc8858bb9b886a7befa5a6c770f142be2e62fb75fc5104bbdfb",
+              "finalSha256": "626bad57130cd41e597eec85ed4e8eddceea3aa391e8025467ae0ed9b0bb9e8d"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:08:15.637346+00:00",
+              "finishedAt": "2026-11-01T13:09:34.551827+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 78.91,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 286186,
+                  "cached_input_tokens": 237440,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1708,
+                  "reasoning_output_tokens": 13
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 6,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 4,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "9a70805ca40dc8031883ad433d48f92201563ba28b180d88a687bdaf07ec7006",
+              "finalSha256": "81bbeb1c25920a77bcef753a73d6e69064da56d8458f8fdd3416fb38faeae79f"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_832583246b"
+        ],
+        "session2OpenedPrior": [
+          "mem_832583246b"
+        ],
+        "session2CitedPrior": [
+          "mem_832583246b"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
-      "reviews": [],
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Meets all three frozen criteria: distinguishes visual-test builds from ordinary docs rendering, investigates the source-supported undefined docs configuration and preset propagation rather than assuming an import-path cause, and explicitly proposes ordinary/test builds with docs present and absent. Keeps the filtering explanation conditional and acknowledges unverified runtime behavior. The truncated React excerpt limits independent verification of its consumer citation; no tests or maintainer acceptance are established.",
+            "baseline": "Distinguishes ordinary builds from visual-test failures and investigates the source-supported undefined docs configuration and propagation, with appropriate runtime caveats. However, its build comparison explicitly keeps addon-docs enabled; checking that annotations are omitted when disabled does not clearly specify the required docs-disabled test-build control. The current React consumer is not independently verifiable from the truncated supplied excerpt, and describing the later commenter as a maintainer is unsupported."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Correctly identifies the root cause: test builds return `undefined` from the docs preset when `disableAutoDocs` is true, and React's `Object.keys(docsConfig)` crashes without a guard. The diagnosis is supported by pinned source (preset.ts:139–153, presets.ts:307–332, react/preset.ts:43–51). Explains the Yarn PnP filtering weakness (`name.includes('@storybook/addon-docs')` fails on virtual paths) from the September 2026 maintainer update. Correctly distinguishes this from the import-path issue. Acknowledges unverified assumptions (actual resolved paths, preset order, 9.0.6 behavior) and proposes concrete verification steps.",
+            "baseline": "Provides the same root-cause analysis as C01 with equivalent source citations and reasoning. Identifies the preset contract failure, the `undefined` propagation, and the Yarn PnP filtering mechanism. Proposes similar verification steps. The writing is slightly more structured and emphasizes package-identity versus string-matching as the fix distinction. Both handoffs are source-supported and meet the criteria equally; C02 does not advance the diagnosis beyond C01."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "error",
+          "scores": null,
+          "reasons": null,
+          "materialDisagreement": null,
+          "error": "failed or truncated response"
+        }
+      ],
       "reviewComplete": false,
+      "adjudicationRecovery": {
+        "status": "ok",
+        "scores": {
+          "memex": 2,
+          "baseline": 2
+        },
+        "reasons": {
+          "memex": "Both reviewers agree C01 meets the criteria. Verified against source: the docs preset returns undefined when disableAutoDocs is set (preset.ts:139-153), preset application propagates that undefined (presets.ts:307-332), and the React preset calls Object.keys on the docs config (react/preset.ts:43-51). C01 distinguishes the visual-test build failure from ordinary docs rendering, investigates the missing docs config rather than assuming the import path, and proposes docs-enabled/docs-disabled test-build controls. It appropriately hedges unverified runtime details (resolved paths, preset order, npm failure).",
+          "baseline": "The reviewers disagree (2 vs 1), but the 1 is not supported: C02 does propose comparing normal and test builds with addon-docs enabled and verifying docs annotations are omitted when disabled, which satisfies the docs-enabled/docs-disabled control criterion. Its substantive claims match the source: undefined docs config in test mode, unguarded Object.keys in React, and substring-based disabledAddons filtering (presets.ts:218-237). The 'maintainer' label is a minor unsupported attribution, not a material factual error, and C02 flags the PnP mechanism as conditional and the npm claim as unexplained. Resolved score 2."
+        },
+        "materialDisagreement": true,
+        "error": null,
+        "disclosure": "Post-hoc adjudication after the original request failed; original result retained."
+      },
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6146,30 +6982,152 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:09:37.308986+00:00",
+              "finishedAt": "2026-11-01T13:10:57.470538+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 80.16,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 182288,
+                  "cached_input_tokens": 149120,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1452,
+                  "reasoning_output_tokens": 28
+                }
+              ],
+              "callCounts": {
+                "pilot.repo_read:failed": 2,
+                "pilot.archive_search:completed": 2,
+                "pilot.archive_open:completed": 11,
+                "pilot.archive_search:failed": 1,
+                "pilot.repo_read:completed": 5,
+                "pilot.repo_search:completed": 2
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "archive_search",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "6c5ab6620ddc738ec19f38963f4fc2e3ab702a845bbd9881c053f60cdf0336f9",
+              "finalSha256": "f90c3e6e1268183a9bd99787ab3727ba7d8c205f8c3585925cdfb1904dc1d8ad"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:10:57.473662+00:00",
+              "finishedAt": "2026-11-01T13:11:55.917355+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 58.44,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 112143,
+                  "cached_input_tokens": 76416,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1245,
+                  "reasoning_output_tokens": 27
+                }
+              ],
+              "callCounts": {
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_read:completed": 5
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "c5fa774d632e5c9cf2efae90fa5c52e42185cc173945b9c6d920216311496544",
+              "finalSha256": "beffa9f41add016d74fdcaf84cc916266ddb3cec70325afb1544e5805385d670"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:11:55.920203+00:00",
+              "finishedAt": "2026-11-01T13:13:12.587496+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 76.67,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 235975,
+                  "cached_input_tokens": 189568,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1740,
+                  "reasoning_output_tokens": 56
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 5,
+                "pilot.archive_open:completed": 11,
+                "pilot.repo_search:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "a9c69d3341f747c2eef490328978e4f9d8a6ee1fea58b0512aeb4ca9603f924e",
+              "finalSha256": "ce8845843b0d9962a0f89219d4e6e5bf2343fb30c090e7cb07b00f41e37f4d0d"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
+        "session1Written": [
+          "mem_5187014612"
+        ],
+        "session2OpenedPrior": [
+          "mem_5187014612"
+        ],
         "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6247,6 +7205,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6324,6 +7284,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6401,6 +7363,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6478,6 +7442,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6555,6 +7521,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6632,6 +7600,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6709,6 +7679,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6786,6 +7758,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6863,6 +7837,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -6940,6 +7916,8 @@
       },
       "reviews": [],
       "reviewComplete": false,
+      "adjudicationRecovery": null,
+      "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": null
     }
