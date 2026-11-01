@@ -105,7 +105,7 @@ export function buildRecallInjection(profile, hits, note) {
     const trust = card.trust === 'untrusted' ? ' [unverified]' : ''
     return `${index + 1}. ${card.id}${trust} · ${card.title}${preview ? ` — ${preview}` : ''}`
   })
-  const text = clipForForm(profile, 'recall', `${note ?? 'Relevant earlier context (open a record if its preview is insufficient):'}\n${lines.join('\n')}`)
+  const text = clipForForm(profile, 'recall', `${note ?? 'Relevant earlier context may be incomplete or stale; check current sources and later discussion before concluding information is absent. Open a record if its preview is insufficient:'}\n${lines.join('\n')}`)
   return formatMemoryInjection(profile, 'recall', text)
 }
 

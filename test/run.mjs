@@ -4082,6 +4082,8 @@ await test('U6b', 'Claude Stop saves one scoped checkpoint and recalls it only a
   const recall = JSON.parse(next.stdout).hookSpecificOutput.additionalContext
   assertIncludes(recall, 'ORBITAL_PLAN_426')
   assertIncludes(recall, '[unverified]')
+  assertIncludes(recall, 'may be incomplete or stale')
+  assertIncludes(recall, 'check current sources and later discussion')
   const secret = invoke('Stop', 'session-two', { last_assistant_message: 'A credential should not be persisted: api_key = sk-' + 'x'.repeat(32) })
   assert.equal(secret.status, 0, secret.stderr)
   const foreign = new AgentMemory({ root, cwd: makeRoot('u6b-other'), sessionId: 'session-two', levels: ['l3'] })
