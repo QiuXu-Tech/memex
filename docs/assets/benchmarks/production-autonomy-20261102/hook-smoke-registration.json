@@ -1,0 +1,16 @@
+{
+  "registeredAt": "2026-11-01T16:44:14.453463+00:00",
+  "kind": "synthetic-claude-hook-mechanism-smoke",
+  "memexCommit": "6389ee3f5a9023814057a8e53440ae0c81523aa7",
+  "runnerSha256": "0e0b25681608c7d469f84303c7b03caf9909d0648840fa97c7851af407897754",
+  "model": "claude-haiku-4-5",
+  "sessions": 2,
+  "maxClientListPriceUsdPerSession": 0.02,
+  "client": "Claude Code --restricted --strict-mcp-config --settings, no --bare; no built-in or MCP tools",
+  "purpose": "Verify actual Stop capture followed by UserPromptSubmit recall in a fresh process, not an A/B effect.",
+  "limits": [
+    "Synthetic marker and one pair are not real long-horizon tasks.",
+    "Client list-price cap is not a hard gateway invoice cap.",
+    "An automatic hook write is distinct from an agent choosing to call memory_write."
+  ]
+}
