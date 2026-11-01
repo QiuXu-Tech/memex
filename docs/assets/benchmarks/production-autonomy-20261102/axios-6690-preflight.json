@@ -1,0 +1,10 @@
+{
+  "public": {
+    "exitCode": 1,
+    "output": "TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\n    at Object.assign (<anonymous>)\n    at Object.inherits (file:///work/lib/utils.js:728:19)\n    at /checks/verify.js:12:11\n"
+  },
+  "regression": {
+    "exitCode": 0,
+    "output": "inherited setter and ordinary properties passed\n"
+  }
+}

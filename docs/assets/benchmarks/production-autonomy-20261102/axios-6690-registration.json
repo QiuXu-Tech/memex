@@ -1,0 +1,44 @@
+{
+  "registeredAt": "2026-11-01T16:58:23.581241+00:00",
+  "kind": "new-real-issue-axios-two-session-calibration",
+  "repo": "axios/axios",
+  "issue": 6690,
+  "issueUrl": "https://github.com/axios/axios/issues/6690",
+  "sourceCommit": "9d11464a75ee5c644c0308d742f58755c0482594",
+  "sourceTarSha256": "120a75f4654c7ff0907339a2110ae82b568bf34ff303b65a0112f2e918cdf41b",
+  "issueSnapshotSha256": "aae08e3242a019481dd9258a2f8a1069c6f29518e6e723e6fc657311ca00b88d",
+  "allocationCommitmentSha256": "ee330e6df6bcd5840482cf18a8333216f37c86a4745ce085b45e41184f67ecbb",
+  "runnerSha256": "917c4c0517679ce4040dff0d3e6888badacf8c729b199fe7d966d29b8aafd305",
+  "bridgeSha256": "7863b59599baa93ae4200c8d096f1a4fda499b7df8896baef863e125e8991785",
+  "workerSha256": "7c70a56735434aec81e0f75276eacb62d3fa514e233d50676019c7e51b907b12",
+  "publicCheckSha256": "6204b531cfad505b94520d98318be1c308fbfc07699e8568761994578855c3d7",
+  "independentRegressionSha256": "3ca794f4ad17db70719f2835bf7e58f815bb5ace49ec0fa1be895e951a75bf0d",
+  "model": "claude-haiku-4-5",
+  "client": "Claude Code --restricted, no --bare, explicit MCP allowlist, fresh process per session",
+  "memexCommit": "7c71482be5bb5ddf964fe9b8692ab84216e6fe8e",
+  "sessionBudgetClientListUsd": [
+    0.05,
+    0.1
+  ],
+  "timeoutSeconds": 480,
+  "maxConcurrentArms": 1,
+  "session1": "Initial issue and first discussion comment; inspect and explain, no edits.",
+  "session2": "Remaining discussion and each arm\u2019s own prior handoff are searchable; implement and test an appropriate fix.",
+  "criteria": [
+    "The reproduced read-only inherited toJSON case must work while preserving the parent and child constructor.",
+    "Ordinary inherited setters and other assigned properties must retain their prior behavior.",
+    "Explanations should distinguish fixed checks from the full upstream suite."
+  ],
+  "limits": [
+    "One historical open-source issue replayed in two sessions, not a production trial or a 30-task estimate.",
+    "Public issue and proposed ideas may be present in model training; source snapshot is newer than historical comments.",
+    "An investigator-authored public reproduction and independent setter control are not a full upstream test suite.",
+    "Client list-price budget is not an invoice limit; record gateway charges and unknown costs separately.",
+    "No extra fixed count limit on repo edits or test calls; session time and cost budgets still apply.",
+    "No -p --bare, because it would bypass the treatment hooks."
+  ],
+  "review": "Two AI reviewers score shuffled anonymized artifacts; adjudicate substantive or numeric disagreement; record missing output.",
+  "revisedAt": "2026-11-01T16:58:54.708522+00:00",
+  "revision": "Before starting any agent call, handle delayed MCP shutdown separately from completed model output.",
+  "initialRegistrationSha256": "8f226ea24d6a4d31ac498efd9477958d4373ec62b6a261b31cf4b5190cb4fc4e"
+}
