@@ -1,50 +1,50 @@
 {
-  "generatedAt": "2026-11-01T13:34:32.397622+00:00",
+  "generatedAt": "2026-11-01T13:43:02.364247+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 26,
-    "reviewComplete": 24,
-    "reviewRecoveryComplete": 2,
+    "pairedCompleted": 28,
+    "reviewComplete": 25,
+    "reviewRecoveryComplete": 3,
     "retryPairsCompleted": 2,
     "retryReviewsCompleted": 1,
     "retryReviewRecoveryComplete": 1,
-    "uniqueTasksEvaluableIncludingRetries": 28,
+    "uniqueTasksEvaluableIncludingRetries": 30,
     "qualityFlagged": 3,
     "independentAuditsValid": 3,
     "notStarted": 0,
-    "startedOrIncomplete": 4
+    "startedOrIncomplete": 2
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 8835436,
-      "cached_input_tokens": 7507584,
-      "output_tokens": 68004,
-      "elapsedSeconds": 3428.61,
+      "input_tokens": 8958366,
+      "cached_input_tokens": 7617536,
+      "output_tokens": 69014,
+      "elapsedSeconds": 3476.0,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 12441660,
-      "cached_input_tokens": 10664064,
-      "output_tokens": 92103,
-      "elapsedSeconds": 4145.459999999999,
+      "input_tokens": 12814691,
+      "cached_input_tokens": 10975872,
+      "output_tokens": 95197,
+      "elapsedSeconds": 4280.549999999999,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 8035872,
-      "cached_input_tokens": 6806528,
-      "output_tokens": 62072,
-      "elapsedSeconds": 2972.27
+      "input_tokens": 8588215,
+      "cached_input_tokens": 7295616,
+      "output_tokens": 66385,
+      "elapsedSeconds": 3179.01
     },
     "memex": {
-      "input_tokens": 11339444,
-      "cached_input_tokens": 9713792,
-      "output_tokens": 83438,
-      "elapsedSeconds": 3589.8399999999992
+      "input_tokens": 12040197,
+      "cached_input_tokens": 10312064,
+      "output_tokens": 89553,
+      "elapsedSeconds": 3849.359999999999
     }
   },
   "usageRetrySessions": {
@@ -63,65 +63,70 @@
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 214,
+      "successfulReads": 222,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 19,
-      "session2RepeatedResultCharacters": 100693
+      "session2PreviouslyReadExact": 22,
+      "session2RepeatedResultCharacters": 113798
     },
     "memex": {
-      "successfulReads": 223,
+      "successfulReads": 233,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 18,
-      "session2RepeatedResultCharacters": 74672
+      "session2PreviouslyReadExact": 21,
+      "session2RepeatedResultCharacters": 89805
     }
   },
   "toolResponseCharactersPaired": {
     "baseline": {
-      "pilotCalls": 809,
-      "pilotResponseCharacters": 1653195
+      "pilotCalls": 853,
+      "pilotResponseCharacters": 1725769
     },
     "memex": {
-      "memexCalls": 129,
-      "memexResponseCharacters": 50355,
-      "pilotCalls": 743,
-      "pilotResponseCharacters": 1601966
+      "memexCalls": 139,
+      "memexResponseCharacters": 54536,
+      "pilotCalls": 783,
+      "pilotResponseCharacters": 1680276
     }
   },
   "searchOpenPatternPaired": {
-    "adjacentTopSearchThenOpen": 23,
-    "openResponseAtMost2000Chars": 23
+    "adjacentTopSearchThenOpen": 25,
+    "openResponseAtMost2000Chars": 25
   },
   "memory": {
     "session1Writes": 30,
-    "session2OpenedPrior": 29,
+    "session2OpenedPrior": 30,
+    "session2CitedPrior": 29,
+    "overlappingAccess": 27
+  },
+  "memoryPaired": {
+    "session1Writes": 28,
+    "session2OpenedPrior": 28,
     "session2CitedPrior": 28,
     "overlappingAccess": 26
   },
-  "memoryPaired": {
-    "session1Writes": 26,
-    "session2OpenedPrior": 26,
-    "session2CitedPrior": 26,
-    "overlappingAccess": 24
-  },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 19,
+    "equal": 20,
     "baseline_higher": 2
   },
   "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
-    "equal": 21,
-    "baseline_higher": 2
-  },
-  "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
     "equal": 23,
     "baseline_higher": 2
   },
-  "sensitivityComparisonUsingIndependentAudits": {
+  "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
     "equal": 25,
+    "baseline_higher": 2
+  },
+  "sensitivityComparisonUsingIndependentAudits": {
+    "equal": 27,
     "baseline_higher": 3
   },
   "reviewDisagreementOriginal": {
     "numericPairDisagreement": 13,
     "adjudicatorMarkedMaterial": 13
+  },
+  "reviewDisagreementIncludingRecoveries": {
+    "evaluablePairs": 30,
+    "numericPairDisagreement": 16,
+    "adjudicatorMarkedMaterial": 16
   },
   "memoryWriteMissingKindFailuresOriginal": 2,
   "memoryWriteMissingKindRecoveredSameSession": 2,
@@ -134,6 +139,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 14.528,
       "usage": {
         "prompt_tokens": 28582,
         "completion_tokens": 237,
@@ -151,6 +158,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.575,
       "usage": {
         "prompt_tokens": 32192,
         "completion_tokens": 402,
@@ -185,6 +194,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.415,
       "usage": {
         "completion_tokens": 188,
         "prompt_tokens": 26114,
@@ -205,6 +216,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 9.485,
       "usage": {
         "completion_tokens": 375,
         "prompt_tokens": 26462,
@@ -225,6 +238,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 15.624,
       "usage": {
         "prompt_tokens": 21925,
         "completion_tokens": 306,
@@ -245,6 +260,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.693,
       "usage": {
         "prompt_tokens": 22129,
         "completion_tokens": 408,
@@ -279,6 +296,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.505,
       "usage": {
         "completion_tokens": 284,
         "prompt_tokens": 19238,
@@ -299,6 +318,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 13.57,
       "usage": {
         "prompt_tokens": 37239,
         "completion_tokens": 329,
@@ -316,6 +337,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 10.779,
       "usage": {
         "prompt_tokens": 18936,
         "completion_tokens": 388,
@@ -350,6 +373,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.065,
       "usage": {
         "completion_tokens": 224,
         "prompt_tokens": 16394,
@@ -370,6 +395,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 38.285,
       "usage": {
         "prompt_tokens": 39988,
         "completion_tokens": 365,
@@ -387,6 +414,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.781,
       "usage": {
         "prompt_tokens": 21116,
         "completion_tokens": 442,
@@ -421,6 +450,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.859,
       "usage": {
         "completion_tokens": 218,
         "prompt_tokens": 18853,
@@ -441,6 +472,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.487,
       "usage": {
         "completion_tokens": 257,
         "prompt_tokens": 16990,
@@ -461,6 +494,8 @@
       "status": "error",
       "httpStatus": null,
       "errorCode": null,
+      "errorType": "TimeoutError",
+      "elapsedSeconds": 91.053,
       "usage": {}
     },
     {
@@ -471,6 +506,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.297,
       "usage": {
         "prompt_tokens": 19193,
         "completion_tokens": 328,
@@ -505,6 +542,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 13.588,
       "usage": {
         "completion_tokens": 298,
         "prompt_tokens": 16787,
@@ -525,6 +564,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 12.588,
       "usage": {
         "prompt_tokens": 38239,
         "completion_tokens": 362,
@@ -542,6 +583,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 15.08,
       "usage": {
         "prompt_tokens": 41100,
         "completion_tokens": 331,
@@ -559,6 +602,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.439,
       "usage": {
         "prompt_tokens": 17761,
         "completion_tokens": 378,
@@ -593,6 +638,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.406,
       "usage": {
         "completion_tokens": 322,
         "prompt_tokens": 15757,
@@ -613,6 +660,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 35.901,
       "usage": {
         "prompt_tokens": 42567,
         "completion_tokens": 385,
@@ -630,6 +679,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.489,
       "usage": {
         "prompt_tokens": 26507,
         "completion_tokens": 387,
@@ -664,10 +715,199 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.477,
       "usage": {
         "completion_tokens": 224,
         "prompt_tokens": 22102,
         "total_tokens": 22326,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N06-posthoc-adjudication-recovery",
+      "attempt": 1,
+      "at": "2026-11-01T13:36:50.965571+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.744,
+      "usage": {
+        "completion_tokens": 260,
+        "prompt_tokens": 9504,
+        "total_tokens": 9764,
+        "prompt_tokens_details": {
+          "cached_tokens": 8192
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N06-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:35:48.120600+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 13.132,
+      "usage": {
+        "prompt_tokens": 12740,
+        "completion_tokens": 230,
+        "total_tokens": 12970,
+        "completion_tokens_details": {
+          "reasoning_tokens": 43
+        }
+      }
+    },
+    {
+      "operation": "N06-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:36:01.254508+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "error",
+      "httpStatus": null,
+      "errorCode": null,
+      "errorType": "URLError",
+      "elapsedSeconds": 5.004,
+      "usage": {}
+    },
+    {
+      "operation": "N06-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:36:06.259578+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.183,
+      "usage": {
+        "completion_tokens": 223,
+        "prompt_tokens": 9094,
+        "total_tokens": 9317,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N06-posthoc-review-recovery",
+      "attempt": 1,
+      "at": "2026-11-01T13:36:43.101589+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.862,
+      "usage": {
+        "prompt_tokens": 10729,
+        "completion_tokens": 488,
+        "total_tokens": 11217,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 10726,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 10729,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 10726,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "N07-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:36:10.826377+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 11.022,
+      "usage": {
+        "prompt_tokens": 31181,
+        "completion_tokens": 239,
+        "total_tokens": 31420,
+        "completion_tokens_details": {
+          "reasoning_tokens": 75
+        }
+      }
+    },
+    {
+      "operation": "N07-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:36:21.851616+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 24.65,
+      "usage": {
+        "prompt_tokens": 10618,
+        "completion_tokens": 201,
+        "total_tokens": 10819,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 10618,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "N07-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:36:46.504259+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.939,
+      "usage": {
+        "completion_tokens": 272,
+        "prompt_tokens": 9599,
+        "total_tokens": 9871,
         "prompt_tokens_details": {
           "cached_tokens": 0
         },
@@ -684,6 +924,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 9.948,
       "usage": {
         "prompt_tokens": 36889,
         "completion_tokens": 262,
@@ -701,6 +943,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.023,
       "usage": {
         "prompt_tokens": 17971,
         "completion_tokens": 556,
@@ -735,6 +979,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.641,
       "usage": {
         "completion_tokens": 216,
         "prompt_tokens": 16002,
@@ -755,6 +1001,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 18.419,
       "usage": {
         "prompt_tokens": 18916,
         "completion_tokens": 447,
@@ -772,6 +1020,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.235,
       "usage": {
         "prompt_tokens": 18762,
         "completion_tokens": 405,
@@ -806,6 +1056,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.191,
       "usage": {
         "completion_tokens": 258,
         "prompt_tokens": 16153,
@@ -826,6 +1078,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 13.637,
       "usage": {
         "prompt_tokens": 34534,
         "completion_tokens": 285,
@@ -843,6 +1097,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.956,
       "usage": {
         "prompt_tokens": 15058,
         "completion_tokens": 300,
@@ -877,6 +1133,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 4.791,
       "usage": {
         "completion_tokens": 206,
         "prompt_tokens": 13606,
@@ -897,6 +1155,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 26.738,
       "usage": {
         "prompt_tokens": 38891,
         "completion_tokens": 338,
@@ -914,6 +1174,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 22.734,
       "usage": {
         "prompt_tokens": 20962,
         "completion_tokens": 346,
@@ -948,6 +1210,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.03,
       "usage": {
         "completion_tokens": 218,
         "prompt_tokens": 17909,
@@ -968,6 +1232,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 10.224,
       "usage": {
         "prompt_tokens": 19906,
         "completion_tokens": 259,
@@ -989,6 +1255,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.957,
       "usage": {
         "completion_tokens": 222,
         "prompt_tokens": 20184,
@@ -1009,6 +1277,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 16.188,
       "usage": {
         "prompt_tokens": 16604,
         "completion_tokens": 254,
@@ -1026,6 +1296,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.889,
       "usage": {
         "prompt_tokens": 15318,
         "completion_tokens": 550,
@@ -1060,6 +1332,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.022,
       "usage": {
         "completion_tokens": 301,
         "prompt_tokens": 13723,
@@ -1080,6 +1354,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 15.781,
       "usage": {
         "prompt_tokens": 14473,
         "completion_tokens": 625,
@@ -1101,6 +1377,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 14.058,
       "usage": {
         "prompt_tokens": 15393,
         "completion_tokens": 300,
@@ -1118,6 +1396,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.016,
       "usage": {
         "prompt_tokens": 13411,
         "completion_tokens": 280,
@@ -1152,6 +1432,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.001,
       "usage": {
         "completion_tokens": 402,
         "prompt_tokens": 12258,
@@ -1172,6 +1454,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 16.43,
       "usage": {
         "prompt_tokens": 34896,
         "completion_tokens": 262,
@@ -1189,6 +1473,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.86,
       "usage": {
         "prompt_tokens": 16066,
         "completion_tokens": 428,
@@ -1223,6 +1509,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.886,
       "usage": {
         "completion_tokens": 278,
         "prompt_tokens": 13641,
@@ -1243,6 +1531,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 22.372,
       "usage": {
         "prompt_tokens": 23142,
         "completion_tokens": 452,
@@ -1260,6 +1550,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.843,
       "usage": {
         "prompt_tokens": 23201,
         "completion_tokens": 256,
@@ -1294,6 +1586,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.364,
       "usage": {
         "completion_tokens": 282,
         "prompt_tokens": 20097,
@@ -1314,6 +1608,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.199,
       "usage": {
         "prompt_tokens": 34575,
         "completion_tokens": 263,
@@ -1331,6 +1627,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.168,
       "usage": {
         "prompt_tokens": 20094,
         "completion_tokens": 449,
@@ -1365,6 +1663,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.58,
       "usage": {
         "completion_tokens": 220,
         "prompt_tokens": 17684,
@@ -1385,6 +1685,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.406,
       "usage": {
         "prompt_tokens": 22510,
         "completion_tokens": 223,
@@ -1402,6 +1704,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.543,
       "usage": {
         "prompt_tokens": 22579,
         "completion_tokens": 523,
@@ -1436,6 +1740,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.107,
       "usage": {
         "completion_tokens": 301,
         "prompt_tokens": 19895,
@@ -1456,6 +1762,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 13.822,
       "usage": {
         "prompt_tokens": 15508,
         "completion_tokens": 471,
@@ -1473,6 +1781,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.547,
       "usage": {
         "prompt_tokens": 13498,
         "completion_tokens": 365,
@@ -1507,6 +1817,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.0,
       "usage": {
         "completion_tokens": 250,
         "prompt_tokens": 12133,
@@ -1527,6 +1839,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 12.587,
       "usage": {
         "prompt_tokens": 35738,
         "completion_tokens": 342,
@@ -1544,6 +1858,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.131,
       "usage": {
         "prompt_tokens": 17050,
         "completion_tokens": 319,
@@ -1578,6 +1894,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.222,
       "usage": {
         "completion_tokens": 216,
         "prompt_tokens": 14934,
@@ -1598,6 +1916,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 14.347,
       "usage": {
         "prompt_tokens": 19367,
         "completion_tokens": 284,
@@ -1615,6 +1935,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 9.827,
       "usage": {
         "prompt_tokens": 19635,
         "completion_tokens": 311,
@@ -1649,6 +1971,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.245,
       "usage": {
         "completion_tokens": 264,
         "prompt_tokens": 17132,
@@ -1669,6 +1993,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 12.118,
       "usage": {
         "prompt_tokens": 17324,
         "completion_tokens": 215,
@@ -1683,6 +2009,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.422,
       "usage": {
         "prompt_tokens": 16795,
         "completion_tokens": 379,
@@ -1717,6 +2045,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.422,
       "usage": {
         "completion_tokens": 237,
         "prompt_tokens": 14689,
@@ -1737,6 +2067,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 19.72,
       "usage": {
         "prompt_tokens": 12412,
         "completion_tokens": 409,
@@ -1754,6 +2086,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.348,
       "usage": {
         "prompt_tokens": 10109,
         "completion_tokens": 215,
@@ -1788,6 +2122,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.944,
       "usage": {
         "completion_tokens": 353,
         "prompt_tokens": 9126,
@@ -1808,6 +2144,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 9.176,
       "usage": {
         "prompt_tokens": 44527,
         "completion_tokens": 279,
@@ -1825,6 +2163,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.407,
       "usage": {
         "prompt_tokens": 21927,
         "completion_tokens": 489,
@@ -1859,6 +2199,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.203,
       "usage": {
         "completion_tokens": 368,
         "prompt_tokens": 19496,
@@ -1879,6 +2221,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 13.872,
       "usage": {
         "completion_tokens": 296,
         "prompt_tokens": 17830,
@@ -1899,6 +2243,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 16.204,
       "usage": {
         "prompt_tokens": 38926,
         "completion_tokens": 436,
@@ -1916,6 +2262,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 12.354,
       "usage": {
         "prompt_tokens": 20302,
         "completion_tokens": 339,
@@ -1950,6 +2298,8 @@
       "status": "error",
       "httpStatus": null,
       "errorCode": null,
+      "errorType": "URLError",
+      "elapsedSeconds": 5.003,
       "usage": {}
     },
     {
@@ -1960,6 +2310,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 17.489,
       "usage": {
         "prompt_tokens": 20800,
         "completion_tokens": 301,
@@ -1977,6 +2329,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.064,
       "usage": {
         "prompt_tokens": 20610,
         "completion_tokens": 457,
@@ -2011,6 +2365,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.608,
       "usage": {
         "completion_tokens": 486,
         "prompt_tokens": 18017,
@@ -2031,6 +2387,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 9.06,
       "usage": {
         "prompt_tokens": 18623,
         "completion_tokens": 236,
@@ -2052,6 +2410,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 11.184,
       "usage": {
         "prompt_tokens": 35152,
         "completion_tokens": 329,
@@ -2069,6 +2429,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 8.43,
       "usage": {
         "prompt_tokens": 20145,
         "completion_tokens": 334,
@@ -2103,6 +2465,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 9.639,
       "usage": {
         "completion_tokens": 254,
         "prompt_tokens": 18073,
@@ -2123,6 +2487,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 11.743,
       "usage": {
         "prompt_tokens": 34663,
         "completion_tokens": 278,
@@ -2140,6 +2506,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 6.46,
       "usage": {
         "prompt_tokens": 9864,
         "completion_tokens": 365,
@@ -2174,6 +2542,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 5.326,
       "usage": {
         "completion_tokens": 250,
         "prompt_tokens": 9183,
@@ -2194,6 +2564,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 11.469,
       "usage": {
         "prompt_tokens": 43044,
         "completion_tokens": 275,
@@ -2211,6 +2583,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.453,
       "usage": {
         "prompt_tokens": 19925,
         "completion_tokens": 202,
@@ -2245,6 +2619,8 @@
       "status": "ok",
       "httpStatus": 200,
       "errorCode": null,
+      "errorType": null,
+      "elapsedSeconds": 7.676,
       "usage": {
         "completion_tokens": 191,
         "prompt_tokens": 17723,
@@ -2259,15 +2635,15 @@
     }
   ],
   "reviewUsage": {
-    "input_tokens": 1955754,
-    "output_tokens": 29200,
-    "missingUsageAttempts": 2
+    "input_tokens": 2049219,
+    "output_tokens": 31113,
+    "missingUsageAttempts": 3
   },
   "billingCandidate": {
-    "observedAt": "2026-11-01T13:34:06.541991+00:00",
+    "observedAt": "2026-11-01T13:39:28.994248+00:00",
     "source": "APIMaster usage-log UI, observed rows on first page",
     "matching": "unique model, exact prompt/output counts and provider finish within 180 seconds of local call start; no per-request receipt linkage",
-    "candidateSubtotalUsd": "0.273678",
+    "candidateSubtotalUsd": "0.287646",
     "rows": [
       {
         "operation": "T08-blind:gpt-6.1-sol",
@@ -2358,6 +2734,24 @@
         "output": 368,
         "walletUsd": "0.001982",
         "secondsFromCallStart": 6.718
+      },
+      {
+        "operation": "N06-posthoc-adjudication-recovery",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:36:57",
+        "inputIncludingCacheCreation": 9504,
+        "output": 260,
+        "walletUsd": "0.000238",
+        "secondsFromCallStart": 6.034
+      },
+      {
+        "operation": "N06-posthoc-review-recovery",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:36:50",
+        "inputIncludingCacheCreation": 10729,
+        "output": 488,
+        "walletUsd": "0.001742",
+        "secondsFromCallStart": 6.898
       },
       {
         "operation": "T25-blind:gpt-6.1-sol",
@@ -2648,6 +3042,24 @@
         "secondsFromCallStart": 6.033
       },
       {
+        "operation": "N06-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:36:01",
+        "inputIncludingCacheCreation": 12740,
+        "output": 230,
+        "walletUsd": "0.002136",
+        "secondsFromCallStart": 12.879
+      },
+      {
+        "operation": "N06-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:36:11",
+        "inputIncludingCacheCreation": 9094,
+        "output": 223,
+        "walletUsd": "0.000944",
+        "secondsFromCallStart": 4.74
+      },
+      {
         "operation": "N02-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
         "walletTimeAsiaShanghai": "2026-11-01 21:28:17",
@@ -2781,6 +3193,33 @@
         "output": 298,
         "walletUsd": "0.001700",
         "secondsFromCallStart": 12.628
+      },
+      {
+        "operation": "N07-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:36:21",
+        "inputIncludingCacheCreation": 31181,
+        "output": 239,
+        "walletUsd": "0.004978",
+        "secondsFromCallStart": 10.174
+      },
+      {
+        "operation": "N07-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:36:46",
+        "inputIncludingCacheCreation": 10618,
+        "output": 201,
+        "walletUsd": "0.002920",
+        "secondsFromCallStart": 24.148
+      },
+      {
+        "operation": "N07-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:36:55",
+        "inputIncludingCacheCreation": 9599,
+        "output": 272,
+        "walletUsd": "0.001010",
+        "secondsFromCallStart": 8.496
       },
       {
         "operation": "T07-independent-audit",
@@ -3351,7 +3790,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T03",
@@ -3601,7 +4047,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T04",
@@ -3854,7 +4307,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T05",
@@ -4104,7 +4564,14 @@
         "error": null,
         "disclosure": "Post-hoc independent-model adjudication; original flagged opinions remain unchanged."
       },
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T07",
@@ -4378,7 +4845,14 @@
         "error": null,
         "disclosure": "Post-hoc independent-model adjudication; original flagged opinions remain unchanged."
       },
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T08",
@@ -4640,7 +5114,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T09",
@@ -4895,7 +5376,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T11",
@@ -5149,7 +5637,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T12",
@@ -5412,7 +5907,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T13",
@@ -5668,7 +6170,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T14",
@@ -5931,7 +6440,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T15",
@@ -6368,6 +6884,13 @@
         "reviewCompleteIncludingRecovery": true,
         "qualityFlags": [],
         "disclosure": "Post-hoc whole-pair retry; original failure is retained."
+      },
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
       }
     },
     {
@@ -6639,7 +7162,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T17",
@@ -6910,7 +7440,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T18",
@@ -7290,6 +7827,13 @@
         "reviewCompleteIncludingRecovery": true,
         "qualityFlags": [],
         "disclosure": "Post-hoc whole-pair retry; original failure is retained."
+      },
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
       }
     },
     {
@@ -7539,7 +8083,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T21",
@@ -7802,7 +8353,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T22",
@@ -8051,7 +8609,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T23",
@@ -8322,7 +8887,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T25",
@@ -8615,7 +9187,14 @@
         "error": null,
         "disclosure": "Post-hoc independent-model adjudication; original flagged opinions remain unchanged."
       },
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "T26",
@@ -8883,7 +9462,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T27",
@@ -9132,7 +9718,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "T28",
@@ -9410,7 +10003,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "N01",
@@ -9667,7 +10267,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "N02",
@@ -9923,7 +10530,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "N03",
@@ -10199,12 +10813,19 @@
           "materialDisagreement": true,
           "error": null
         },
-        "disclosure": "Post-hoc reviewer and adjudication after original timeout; original results retained."
+        "disclosure": "Post-hoc reviewer and adjudication after the original failed request; original results retained."
       },
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "N04",
@@ -10468,7 +11089,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "N05",
@@ -10717,7 +11345,14 @@
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      }
     },
     {
       "id": "N06",
@@ -10804,11 +11439,38 @@
               ],
               "eventTraceSha256": "f28057224366e4c11d64ad7545552e1f230b14a00876b3ebdb97dc59258bfae5",
               "finalSha256": "351098289062a6f95b967a1092a836415a699016c6ac7c2d65b5704de6583150"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:34:24.223782+00:00",
+              "finishedAt": "2026-11-01T13:35:11.610129+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 47.39,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 122930,
+                  "cached_input_tokens": 109952,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1010,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 2,
+                "pilot.archive_open:completed": 5
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "cac3aa317aca83e50d59dfa206c7b5f68109b3051ba777a1242ee7e41f65bf63",
+              "finalSha256": "6ffd835f174328b36c78b7f79b4110da8bfc115985c18204f64447305a7fba3e"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
           "sessions": [
@@ -10877,8 +11539,8 @@
           "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
@@ -10893,14 +11555,88 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Correctly traces the upload-only setProps updates separately from externally supplied disabled/style props, and distinguishes the original allegations from the later browser report without treating it as proof of the pinned revision. Clearly states that no tests were performed. The proposed real-file callback verification covers persistent disabling and hiding, but omits an explicit enabled control for the required local callback round-trip regression.",
+            "memex": "Correctly separates upload event prop publication from disabled/style forwarding and treats the later headless-browser result as reported evidence rather than verification of the pinned revision. Identifies browser behavior as unverified and proposes callback-based persistence checks, but lacks an explicit enabled control for the required local callback round-trip regression. The named commenter attribution and reference to an earlier handoff are also unsupported by the supplied evidence."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "error",
+          "scores": null,
+          "reasons": null,
+          "materialDisagreement": null,
+          "error": "failed or truncated response"
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Correctly separates upload-event prop publication (onDrop setProps of contents/filename/last_modified, lines 158-190) from externally supplied disabled/style forwarding (lines 193-248), and distinguishes the original report from the later headless-browser report without treating it as proof of the pinned revision; states no tests were performed. However, the proposed verification omits an explicit enabled control for the required local callback round-trip regression, so it is partial rather than fully meeting criteria.",
+            "memex": "Correctly separates upload prop publication from disabled/style forwarding and treats the later headless-browser result as reported evidence, not verification of the pinned revision; flags browser behavior as unverified. But it lacks an explicit enabled control for the required local callback round-trip regression, and its attribution of the October update to a named commenter and reference to an earlier handoff are unsupported by the supplied evidence, so it is partial."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
       "reviewComplete": false,
       "adjudicationRecovery": null,
-      "reviewerRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewerRecovery": {
+        "reviewer": {
+          "model": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Handoff correctly identifies that the pinned source does not establish spontaneous re-enabling or unhiding. It accurately traces onDrop (lines 158–190) as publishing only upload properties without disabled/style resets, and render (lines 193–248) as forwarding current props to Dropzone. The October 2026 report of successful disabling on dev 4.5.0 is correctly treated as reported verification, not proof of a fix. However, the handoff does not clearly distinguish between the hiding claim (which appears unsupported in the example) and the disabling claim (which the later report supports for a recent version). The regression plan is sound but the diagnosis of 'no direct reset mechanism' conflates component code with callback/scheduler behavior, which remain separate unknowns. The handoff meets the criteria partially: it supports its claims with source evidence but does not fully separate what the source establishes from what remains unverified.",
+            "memex": "Handoff correctly recognizes that the pinned source does not prove a bug or multiple-Input race condition. It accurately identifies that the example callback does not demonstrate hiding (only disabling) and never returns False. The onDrop analysis (lines 158–190) correctly shows no explicit resets; the render analysis (lines 193–248) correctly shows prop forwarding without lifecycle resets. The October 2026 report is appropriately treated as reported successful disabling on 4.5.0, not as proof of the original failure. However, the handoff's structure is verbose and somewhat repetitive compared to C01, and it does not clarify whether the issue's open status reflects lack of triage or actual unresolved behavior. The regression plan mirrors C01 and is adequate. The handoff meets criteria partially: source-supported analysis is present, but the distinction between hiding (unsupported in example) and disabling (later reported fixed) could be sharper."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        "supplementalAdjudication": {
+          "model": "deepseek-flash",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree on score 1. C01 correctly traces onDrop (lines 158–190) as publishing only contents/filename/last_modified without disabled/style resets, and render (lines 193–248) as forwarding current disabled/style props to Dropzone. It properly distinguishes the original report from the later headless-browser report and treats that report as reported verification, not proof of the pinned revision, and states no tests were performed. However, its regression plan omits an explicit enabled control for the required local callback round-trip regression, so it only partially meets the frozen criteria.",
+            "memex": "Both reviewers agree on score 1. C02 correctly separates upload event prop publication from disabled/style forwarding and treats the later headless-browser result as reported evidence rather than verification of the pinned revision, identifying browser behavior as unverified. It also lacks an explicit enabled control for the required local callback round-trip regression. Additionally, it attributes the October update to a named commenter and references an earlier handoff, neither of which is supported by the supplied evidence, so it only partially meets the criteria."
+          },
+          "materialDisagreement": false,
+          "error": null
+        },
+        "disclosure": "Post-hoc reviewer and adjudication after the original failed request; original results retained."
+      },
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      }
     },
     {
       "id": "N07",
@@ -11049,32 +11785,147 @@
           "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:33:26.073481+00:00",
+              "finishedAt": "2026-11-01T13:34:35.111146+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 69.04,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 173645,
+                  "cached_input_tokens": 152192,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1514,
+                  "reasoning_output_tokens": 81
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.archive_open:completed": 9,
+                "pilot.repo_read:completed": 2,
+                "pilot.repo_search:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "55199fec66f34904e4f3cd58a55c94a9bbc7eeb87d875f9ebd35d328b76ed380",
+              "finalSha256": "967b572c5990bd8a55bb41e8d2a564f83ec9893e33e58b7ed571482855887f44"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:34:35.113301+00:00",
+              "finishedAt": "2026-11-01T13:35:41.167706+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 66.05,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 199386,
+                  "cached_input_tokens": 159616,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1580,
+                  "reasoning_output_tokens": 26
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 4,
+                "pilot.archive_open:completed": 3,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "10065ffc733fcb2ac61fae566010f2eef6ab5a7adacd4b8f7690bb32247f3b79",
+              "finalSha256": "243827247faae23332812fad5acbcdbe7083e13610953947792ecc2cf31654b3"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
           "mem_2c0e090a93"
         ],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session2OpenedPrior": [
+          "mem_2c0e090a93"
+        ],
+        "session2CitedPrior": [
+          "mem_2c0e090a93"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Accurately traces service batching, manager filtering, append-only ingestion, adjacent-pair rendering, and index-based opacity. Treats the phantom segment and proposed PR as unconfirmed evidence and claims no reproduction or tests. However, its verification plan lacks an explicit multi-point chronological test with line and opacity controls.",
+            "baseline": "Correctly explains arrival-order adjacency without explicit closure, distinguishes reported observations from confirmed behavior, and appropriately limits conclusions about the proposed PR. However, it does not trace the available service-level batching mechanism, and its proposed replay regression lacks an explicit multi-point chronological fixture with line and opacity controls. No physical-device reproduction or executed tests are claimed."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Strong source trace: react() appends entries without sorting, and rendering links only consecutive pairs, so no explicit loop closure exists; it also identifies multi-source tracker batching as an ordering risk and treats the faint segment and later PR claim cautiously. However, its proposed coverage checks chronological ordering, multiple tracker configurations, and the omitted final endpoint but does not specify both line and opacity controls, so the test criterion is only partially met.",
+            "baseline": "It correctly traces unsorted insertion and consecutive-pair polylines, notes the absence of a final-to-first edge, and properly limits the later observation and PR claim to unverified reports. Its future regression mentions opacity ordering and preserved endpoints, but it does not propose a multi-point chronological history test with explicit line and opacity controls, so that criterion is incomplete."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Both reviewers agree on score 1. Source verification confirms the core claims: react() appends entries without sorting (EntityHistory.js:33-35), rendering connects only consecutive pairs with no final-to-first edge (lines 61-92), and HaHistoryService can batch device trackers plus base entity without cross-source timestamp merging (lines 25-33, 58-69). The candidate appropriately treats the phantom segment and the 2026-10-31 PR comment as unconfirmed. However, its verification plan does not explicitly specify a multi-point chronological test with both line and opacity controls, so the frozen acceptance criterion is only partially met.",
+            "baseline": "Both reviewers agree on score 1. Source verification confirms unsorted insertion and consecutive-pair polylines with no explicit loop closure, and index-based opacity consistent with the reported faint early segment. The candidate correctly limits the PR comment to a claimed submission and does not assert a confirmed root cause. It omits the service-level multi-source batching mechanism present in HaHistoryService.js, and its regression proposal lacks an explicit multi-point chronological fixture with both line and opacity controls, so the acceptance criterion is only partially met."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
       "reviewerRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
-      "adaptiveRetry": null
+      "adaptiveRetry": null,
+      "allocation": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
     }
   ],
   "limits": [
@@ -11086,5 +11937,270 @@
     "Randomization fixes ordering and guidance within this selected cohort; observed token totals include cache.",
     "Some AI adjudication rationales have evidence or rubric concerns; they are excluded from the clean comparison.",
     "Known wallet subtotal covers only individually matched rows; unmatched calls and subscription allocation remain unknown."
-  ]
+  ],
+  "allocation": {
+    "seed": "5b920b16d1c21f53fc97a8b00fda891939a67ad0e68b9406d328e52577c03b44",
+    "taskOrder": [
+      "T01",
+      "T03",
+      "T04",
+      "T05",
+      "T07",
+      "T08",
+      "T09",
+      "T11",
+      "T12",
+      "T13",
+      "T14",
+      "T15",
+      "T16",
+      "T17",
+      "T18",
+      "T20",
+      "T21",
+      "T22",
+      "T23",
+      "T25",
+      "T26",
+      "T27",
+      "T28",
+      "N01",
+      "N02",
+      "N03",
+      "N04",
+      "N05",
+      "N06",
+      "N07"
+    ],
+    "tasks": {
+      "T01": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T03": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      },
+      "T04": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      },
+      "T05": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T07": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T08": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      },
+      "T09": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      },
+      "T11": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T12": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T13": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      },
+      "T14": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T15": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      },
+      "T16": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T17": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      },
+      "T18": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      },
+      "T20": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      },
+      "T21": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      },
+      "T22": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      },
+      "T23": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      },
+      "T25": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      },
+      "T26": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "T27": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      },
+      "T28": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      },
+      "N01": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      },
+      "N02": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      },
+      "N03": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      },
+      "N04": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "old"
+      },
+      "N05": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "old"
+      },
+      "N06": {
+        "armOrder": [
+          "memex",
+          "baseline"
+        ],
+        "guidance": "new"
+      },
+      "N07": {
+        "armOrder": [
+          "baseline",
+          "memex"
+        ],
+        "guidance": "new"
+      }
+    }
+  },
+  "guidanceExploratoryOriginalPairs": {
+    "old": {
+      "completedOriginalPairs": 14,
+      "pairsWithCompleteUsage": 14,
+      "beforeSearchCountFix": 3,
+      "bothPriorMemoryAndHandoffOpened": 14,
+      "meanInputDeltaMemexMinusControl": 131302.4,
+      "medianInputDeltaMemexMinusControl": 120246.0
+    },
+    "new": {
+      "completedOriginalPairs": 14,
+      "pairsWithCompleteUsage": 14,
+      "beforeSearchCountFix": 1,
+      "bothPriorMemoryAndHandoffOpened": 12,
+      "meanInputDeltaMemexMinusControl": 115267.8,
+      "medianInputDeltaMemexMinusControl": 110331.0
+    }
+  }
 }

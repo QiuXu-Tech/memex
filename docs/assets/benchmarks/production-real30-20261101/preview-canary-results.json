@@ -1,0 +1,433 @@
+{
+  "generatedAt": "2026-11-01T13:40:30.954054+00:00",
+  "kind": "two-reused-case-memory-forced-preview-canary",
+  "registrationSha256": "12c20994ec1d11f501a104607078f852197b260f38ebefce3a6a99cdf37ea8ed",
+  "allocationCommitmentSha256": "c1919b73a283f0e301770770b3e05b1c703768d03f0583179081b0ddb91b3068",
+  "allocation": {
+    "seed": "63771660adebe283f1e1791be2f3f6cdb6d1a7cafbc195c15202cf96d7225579",
+    "orders": {
+      "T01": [
+        "new",
+        "old"
+      ],
+      "T14": [
+        "old",
+        "new"
+      ]
+    }
+  },
+  "cases": [
+    {
+      "id": "T01",
+      "question": "For mnemosyne issue #552, what explains the warmed peer stale query result, and what remains unverified? Use the earlier stored investigation record, cite its record id, and answer concisely.",
+      "criteria": [
+        "Identify instance-local opaque cache and invalidation not clearing an already-warm peer.",
+        "Distinguish the proposal or external reports from verified caller behavior.",
+        "Cite the stored record."
+      ],
+      "recordSha256": "82617e09e17aa2bd3b158593f0e1851ede4de1a00d02f6db7f9f7aef628750ae",
+      "arms": {
+        "old": {
+          "exitCode": 0,
+          "timeout": false,
+          "unexpectedTools": [],
+          "usage": [
+            {
+              "input_tokens": 69586,
+              "cached_input_tokens": 50816,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 266,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "callCounts": {
+            "memory_search": 1,
+            "memory_open": 1
+          },
+          "seedRecordCited": true,
+          "previewReturned": false,
+          "traceSha256": "c900ccb2d12b6d99561c1911906086ef50ca8af29d294eb15e9d5de69e4baee1",
+          "finalSha256": "2b714c0f324dfe5c57d2c1582d2e64823aa3a22054472175714cd46a9becc8db"
+        },
+        "new": {
+          "exitCode": 0,
+          "timeout": false,
+          "unexpectedTools": [],
+          "usage": [
+            {
+              "input_tokens": 50164,
+              "cached_input_tokens": 41344,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 222,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "callCounts": {
+            "memory_search": 1
+          },
+          "seedRecordCited": true,
+          "previewReturned": true,
+          "traceSha256": "047b222dd7ea9b4c9055a6911ca44df78ea143d2d5de3d274600ef4452991f1f",
+          "finalSha256": "ac07ab5025dedf2b696de20f5d40534c3e29b64418cfb69e7a1dab7d06712c5b"
+        }
+      },
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "new": 2,
+            "old": 2
+          },
+          "reasons": {
+            "new": "Correctly explains that instance-local opaque cache entries survive another peer’s invalidation, distinguishes the proposed epoch contract and external reports from verified caller behavior, and cites the stored record as confirmed by the provided boolean.",
+            "old": "Correctly identifies instance-local cache state and TTL checks as allowing a warmed peer to remain stale after invalidation, accurately states the unverified caller behavior, proposed contract, and supplementary reports, and cites the stored record as confirmed by the provided boolean."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "new": 2,
+            "old": 2
+          },
+          "reasons": {
+            "new": "Correctly identifies instance-local opaque cache with invalidation clearing only self and persisted rows, leaving peer's warmed result untouched. Clearly distinguishes proposed recall_cache_epoch contract and unverified supplementary provider results from confirmed QueryCache behavior. Cites stored record explicitly.",
+            "old": "Accurately explains stale result via instance-local opaque hit checking only TTL and local dictionary, with invalidation clearing caller's cache but not peer's warm state. Properly separates proposed shared-epoch contract and unverified caller transaction/key construction from confirmed behavior. Cites stored record."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "new": 2,
+            "old": 2
+          },
+          "reasons": {
+            "new": "Both reviews rate C01 2; no numeric or substantive disagreement. C01 matches the record: instance-local opaque cache/TTL hit leaves warmed peer stale after invalidation, and it separates the proposed epoch contract and unverified caller/provider behavior from confirmed QueryCache evidence.",
+            "old": "Both reviews rate C02 2; no numeric or substantive disagreement. C02 matches the record: instance-local version/lock and TTL/local-dict hit explain the stale warm peer, while caller transaction/key construction, the proposed shared-epoch contract, and supplementary provider results remain unverified."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "T14",
+      "question": "For AutoGluon issue #5521, how can fastai be installed yet its import fail, and what remains unverified? Use the earlier stored investigation record, cite its record id, and answer concisely.",
+      "criteria": [
+        "Identify the missing nested IPython dependency despite installed fastai.",
+        "Do not claim the upstream packaging cause or fixed versions were verified.",
+        "Cite the stored record."
+      ],
+      "recordSha256": "ef8359a22362e6bf2e2228ff67403c72874260bee1072e5f04869eedc042ed4b",
+      "arms": {
+        "old": {
+          "exitCode": 0,
+          "timeout": false,
+          "unexpectedTools": [],
+          "usage": [
+            {
+              "input_tokens": 67255,
+              "cached_input_tokens": 51968,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 250,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "callCounts": {
+            "memory_search": 1,
+            "memory_open": 1
+          },
+          "seedRecordCited": true,
+          "previewReturned": false,
+          "traceSha256": "85547253ed6ca7dc048c326d174e916c5df7bfdc183ab7b23fdb5ba21c9c6cc5",
+          "finalSha256": "7be9df55fe06c030e8ee4ee55b126d1bfaeaa908948748bd504ca40af84fa7d9"
+        },
+        "new": {
+          "exitCode": 0,
+          "timeout": false,
+          "unexpectedTools": [],
+          "usage": [
+            {
+              "input_tokens": 50273,
+              "cached_input_tokens": 33152,
+              "cache_write_input_tokens": 0,
+              "output_tokens": 207,
+              "reasoning_output_tokens": 0
+            }
+          ],
+          "callCounts": {
+            "memory_search": 1
+          },
+          "seedRecordCited": true,
+          "previewReturned": true,
+          "traceSha256": "594fb4e3dfdc950ad8b595a90421c1b28de6b6da906a28e9c2ab42020fbf79d6",
+          "finalSha256": "d99b4122273457f1ac1532b1a3ee3eeadb862a7ecc29db95d1ff1b9e1ebe27f9"
+        }
+      },
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "old": 2,
+            "new": 2
+          },
+          "reasons": {
+            "old": "Identifies missing nested IPython despite installed fastai, explains AutoGluon's generic import error, and explicitly leaves the upstream packaging cause and fixed versions unverified. Stored-record citation is confirmed by the provided boolean.",
+            "new": "Identifies the transitive IPython import failure despite installed fastai, explains AutoGluon's generic import error, and explicitly leaves the upstream packaging cause and fixed versions unverified. Stored-record citation is confirmed by the provided boolean."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "old": 2,
+            "new": 2
+          },
+          "reasons": {
+            "old": "Identifies the nested IPython dependency missing despite installed fastai (fastai → fastprogress → IPython.display chain). Correctly notes AutoGluon catches ModuleNotFoundError and raises generic error. Confirms ipython install resolved the issue. Explicitly states upstream cause and fixed versions remain unverified with no source changes or tests performed. Cites stored record appropriately.",
+            "new": "Identifies the nested IPython dependency missing despite installed fastai (fastai → fastprogress → IPython.display chain). Correctly notes AutoGluon catches ModuleNotFoundError and raises generic error. Confirms ipython install resolved the issue. Explicitly states upstream cause and fixed versions remain unverified with no source changes or tests performed. Cites stored record appropriately."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "old": 2,
+            "new": 2
+          },
+          "reasons": {
+            "old": "Both reviews agree C01 fully satisfies the criteria: identifies the missing nested IPython dependency despite installed fastai, explains the generic import error, and explicitly leaves the upstream packaging cause and fixed versions unverified with a stored-record citation.",
+            "new": "Both reviews agree C02 fully satisfies the criteria: identifies the transitive IPython import failure despite installed fastai, explains the generic import error, and explicitly leaves the upstream packaging cause and fixed versions unverified with a stored-record citation."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ]
+    }
+  ],
+  "totals": {
+    "old": {
+      "memorySearchCalls": 2,
+      "memoryOpenCalls": 2,
+      "input_tokens": 136841,
+      "cached_input_tokens": 102784,
+      "output_tokens": 516
+    },
+    "new": {
+      "memorySearchCalls": 2,
+      "memoryOpenCalls": 0,
+      "input_tokens": 100437,
+      "cached_input_tokens": 74496,
+      "output_tokens": 429
+    }
+  },
+  "reviewGatewayAttempts": [
+    {
+      "operation": "preview-T01-blind:gpt-6.1-sol",
+      "at": "2026-11-01T13:37:38.491936+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 27462,
+        "completion_tokens": 145,
+        "total_tokens": 27607,
+        "completion_tokens_details": {
+          "reasoning_tokens": 19
+        }
+      }
+    },
+    {
+      "operation": "preview-T01-blind:claude-haiku-4-5",
+      "at": "2026-11-01T13:37:58.068494+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 974,
+        "completion_tokens": 203,
+        "total_tokens": 1177,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 974,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "preview-T01-adjudication",
+      "at": "2026-11-01T13:38:06.583385+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 151,
+        "prompt_tokens": 1114,
+        "total_tokens": 1265,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "preview-T14-blind:gpt-6.1-sol",
+      "at": "2026-11-01T13:38:12.079811+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 27528,
+        "completion_tokens": 142,
+        "total_tokens": 27670,
+        "completion_tokens_details": {
+          "reasoning_tokens": 17
+        }
+      }
+    },
+    {
+      "operation": "preview-T14-blind:claude-haiku-4-5",
+      "at": "2026-11-01T13:38:18.194240+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "usage": {
+        "prompt_tokens": 1019,
+        "completion_tokens": 242,
+        "total_tokens": 1261,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 1019,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 0,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "preview-T14-adjudication",
+      "at": "2026-11-01T13:38:23.902289+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "usage": {
+        "completion_tokens": 129,
+        "prompt_tokens": 1195,
+        "total_tokens": 1324,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    }
+  ],
+  "reviewUsage": {
+    "input_tokens": 59292,
+    "output_tokens": 1012
+  },
+  "billingCandidate": {
+    "observedAt": "2026-11-01T13:39:58.106718+00:00",
+    "source": "APIMaster usage-log UI",
+    "matching": "model, exact token counts and time; no per-request receipt linkage",
+    "candidateSubtotalUsd": "0.009462",
+    "rows": [
+      {
+        "operation": "preview-T01-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:37:57",
+        "inputIncludingCacheCreation": 27462,
+        "output": 145,
+        "walletUsd": "0.004334",
+        "secondsFromCallStart": 18.508
+      },
+      {
+        "operation": "preview-T01-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:38:05",
+        "inputIncludingCacheCreation": 974,
+        "output": 203,
+        "walletUsd": "0.000218",
+        "secondsFromCallStart": 6.932
+      },
+      {
+        "operation": "preview-T01-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:38:11",
+        "inputIncludingCacheCreation": 1114,
+        "output": 151,
+        "walletUsd": "0.000162",
+        "secondsFromCallStart": 4.417
+      },
+      {
+        "operation": "preview-T14-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:38:18",
+        "inputIncludingCacheCreation": 27528,
+        "output": 142,
+        "walletUsd": "0.004342",
+        "secondsFromCallStart": 5.92
+      },
+      {
+        "operation": "preview-T14-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:38:23",
+        "inputIncludingCacheCreation": 1019,
+        "output": 242,
+        "walletUsd": "0.000244",
+        "secondsFromCallStart": 4.806
+      },
+      {
+        "operation": "preview-T14-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:38:29",
+        "inputIncludingCacheCreation": 1195,
+        "output": 129,
+        "walletUsd": "0.000162",
+        "secondsFromCallStart": 5.098
+      }
+    ],
+    "unmatchedSuccessfulGatewayCalls": 0
+  },
+  "limits": [
+    "Two previously studied public-issue records, seeded into fresh stores.",
+    "Prompt explicitly requests use of the stored record.",
+    "The main 30-task comparison used older frozen versions; this is a separate post-hoc mechanism canary.",
+    "Input includes cached input; provider costs do not include Codex subscription, machine or labor.",
+    "Two cases and AI-only review do not establish a general production improvement or cost saving."
+  ]
+}

@@ -1,0 +1,247 @@
+{
+  "seed": "5b920b16d1c21f53fc97a8b00fda891939a67ad0e68b9406d328e52577c03b44",
+  "taskOrder": [
+    "T01",
+    "T03",
+    "T04",
+    "T05",
+    "T07",
+    "T08",
+    "T09",
+    "T11",
+    "T12",
+    "T13",
+    "T14",
+    "T15",
+    "T16",
+    "T17",
+    "T18",
+    "T20",
+    "T21",
+    "T22",
+    "T23",
+    "T25",
+    "T26",
+    "T27",
+    "T28",
+    "N01",
+    "N02",
+    "N03",
+    "N04",
+    "N05",
+    "N06",
+    "N07"
+  ],
+  "tasks": {
+    "T01": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T03": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "new"
+    },
+    "T04": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    },
+    "T05": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T07": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T08": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "old"
+    },
+    "T09": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    },
+    "T11": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T12": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T13": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "old"
+    },
+    "T14": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T15": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    },
+    "T16": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T17": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "new"
+    },
+    "T18": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "old"
+    },
+    "T20": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "new"
+    },
+    "T21": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "new"
+    },
+    "T22": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    },
+    "T23": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    },
+    "T25": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    },
+    "T26": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "T27": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "old"
+    },
+    "T28": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "new"
+    },
+    "N01": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "old"
+    },
+    "N02": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    },
+    "N03": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "new"
+    },
+    "N04": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "old"
+    },
+    "N05": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "old"
+    },
+    "N06": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "guidance": "new"
+    },
+    "N07": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "guidance": "new"
+    }
+  }
+}

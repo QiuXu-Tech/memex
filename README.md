@@ -87,9 +87,13 @@ Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: base
 ## Prospective engineering canary (2026-10-31)
 
 <!-- real30:start -->
-**Post-repair 30-issue study (in progress):** 26/30 original public-issue attempts completed both two-session Codex arms; 24/30 have two blinded AI ratings and adjudication without recovery, plus 2 supplemental adjudications. 28/30 distinct tasks have an evaluable pair including post-hoc retries. 3 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
+**Post-repair 30-issue study (completed with post-hoc retries):** 28/30 original public-issue attempts completed both two-session Codex arms; 25/30 have two blinded AI ratings and adjudication without recovery, plus 3 supplemental adjudications. 30/30 distinct tasks have an evaluable pair including post-hoc retries. 3 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
 
 ![Coverage, AI reviews and paired token use for the 30-issue study](docs/assets/benchmarks/production-real30-20261101.svg)
+
+In the post-hoc sensitivity view, AI adjudication was equal on 27 tasks, higher for Memex on 0, and higher for control on 3. The 28 complete original pairs reported 8.59M control versus 12.04M Memex input tokens, including cache.
+
+**Preview mechanism canary:** In two reused, memory-prompted Codex pairs, the new option used two searches and no opens versus two searches and two opens; reported input was 26.6% lower. Both answers per pair received 2/2 from two AI reviewers and the adjudicator. This is a small mechanism check, not evidence of production savings.
 <!-- real30:end -->
 
 **Executable real-agent follow-up (2026-11-01):** Two more registered public-issue shadow tasks were run in three fresh Codex sessions per arm. Both arms passed the original issue checks; on a related extra Happy DOM check, control passed and Memex failed. In both Memex arms the agent wrote, later opened and cited the same record, while also having access to the ordinary handoff. The Memex arms reported more input tokens in these two trials; cached input and unknown subscription costs prevent a cost-savings conclusion. This brings the original cohort to **6/30** paired investigations, with one interrupted and 23 not started. Two `memory_grep` defects were fixed and regression-tested. These are historical replays with AI-only review; one task uses mocked ML dependencies. [Results, usage, repairs and limitations](docs/production-value-20261101.md).
