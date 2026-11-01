@@ -3764,6 +3764,9 @@ await test('U3f', 'MCP explains the required kind and an agent can recover a rej
   const guidance = manual.buildMemoryManual(profiles.resolveModelProfile('gpt-6.1-sol'))
   assert.match(guidance, /memory_write[^\n]*\bkind\b/)
   assert.match(guidance, /## Writing\n[^\n]*`kind`/)
+  assert.match(guidance, /not already available/)
+  assert.match(guidance, /do not write unchanged duplicates/)
+  assert.doesNotMatch(guidance, /one search, one open/)
   assert.equal(replies.get(2).result.isError, true)
   assert.match(replies.get(2).result.content[0].text, /memory_write requires kind, title and body/)
   assert.equal(replies.get(3).result.isError, false)
@@ -3808,6 +3811,39 @@ await test('U3g', 'MCP search can preview the top record within a bounded body w
   ])
   const foreign = mcpExchange(root, args, [call(10, 'memory_search', { query: 'Foreign preview marker', openTop: true })])
   assert.doesNotMatch(foreign.get(10).result.content[0].text, /FOREIGN_PREVIEW_BODY/)
+})
+
+await test('U3h', 'MCP reports an empty visible archive as a snapshot without hiding later or cold records', async () => {
+  const root = makeRoot('u3h-mem')
+  const project = makeRoot('u3h-project')
+  const otherProject = makeRoot('u3h-other')
+  const args = ['--cwd', project, '--levels', 'l2,l3', '--session', 'u3h-session']
+  const init = (id) => ({ jsonrpc: '2.0', id, method: 'initialize', params: {} })
+  const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
+  mcpExchange(root, ['--cwd', otherProject, '--levels', 'l3', '--session', 'other-workspace'], [
+    call(1, 'memory_write', { kind: 'fact', title: 'Other workspace', body: 'Other workspace detail' }),
+  ])
+  mcpExchange(root, ['--cwd', project, '--levels', 'l2', '--session', 'other-session'], [
+    call(1, 'memory_write', { kind: 'fact', title: 'Other session', body: 'Other session detail' }),
+  ])
+  const first = mcpExchange(root, args, [
+    init(1),
+    call(2, 'memory_write', { kind: 'fact', title: 'Later record', body: 'AFTER_INIT_MARKER' }),
+    call(3, 'memory_search', { query: 'AFTER_INIT_MARKER' }),
+  ])
+  assert.match(first.get(1).result.instructions, /no visible memory records at initialization/i)
+  assert.match(first.get(1).result.instructions, /snapshot/i)
+  assertIncludes(first.get(3).result.content[0].text, 'Later record')
+  const id = first.get(2).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u3h-session', levels: ['l2', 'l3'] })
+  try {
+    engine.setStatus(id, 'superseded')
+    engine.store.archiveCold(id)
+  } finally {
+    engine.close()
+  }
+  const later = mcpExchange(root, args, [init(4)])
+  assert.doesNotMatch(later.get(4).result.instructions, /no visible memory records at initialization/i)
 })
 
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {

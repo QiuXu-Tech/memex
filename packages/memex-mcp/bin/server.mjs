@@ -235,12 +235,17 @@ function callTool(name, input = {}) {
 }
 
 const handlers = {
-  initialize: (id, params) => reply(id, {
-    protocolVersion: PROTOCOL,
-    capabilities: { tools: {}, resources: {}, prompts: {} },
-    serverInfo: { name: 'memex', version: VERSION },
-    instructions: buildMemoryManual(profile, { agent: args.agent, root: engine.root, levels: Object.entries(engine.levels).filter(([, on]) => on).map(([level]) => level) }),
-  }),
+  initialize: (id, params) => {
+    const manual = buildMemoryManual(profile, { agent: args.agent, root: engine.root, levels: Object.entries(engine.levels).filter(([, on]) => on).map(([level]) => level) })
+    const empty = engine.list({ limit: 1, includeStatus: true }).length === 0
+    const snapshot = empty ? '\n\nNo visible memory records at initialization. This is a snapshot: other sessions or later writes may add records. Skip an empty search only when you know no records have since been added.' : ''
+    reply(id, {
+      protocolVersion: PROTOCOL,
+      capabilities: { tools: {}, resources: {}, prompts: {} },
+      serverInfo: { name: 'memex', version: VERSION },
+      instructions: manual + snapshot,
+    })
+  },
   'notifications/initialized': () => {},
   'notifications/cancelled': () => {},
   ping: (id) => reply(id, {}),
