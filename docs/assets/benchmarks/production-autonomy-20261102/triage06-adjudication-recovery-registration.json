@@ -1,0 +1,20 @@
+{
+  "registeredAt": "2026-11-01T17:41:51.533768+00:00",
+  "kind": "post-hoc-adjudication-recovery",
+  "packetSha256": "c99139421a81fb7b906699c839c52ff61061fdac8aab7c0c92390c587de1c1f7",
+  "reviewSha256": [
+    "4a69b6399e7ca29bf862d8b4c9ce99a2e3ec6cb9bcde19a2250818bf4942c3ba",
+    "5a6bf2fea83e5fe362867770da120960d4dbb485234f57b518f84335faad1e1c"
+  ],
+  "failedAdjudicationSha256": "26768fbcaa86f9f2454d5a7b0a708acf6c56deda324bb2469282df1cc1d5c9c2",
+  "helperSha256": "9449205e5bd915c4682a0b001b8de258658fbd52b76f4e7aee09d0320a4f37eb",
+  "model": "gemini-3.8-flash",
+  "maxOutputTokens": 3000,
+  "reasoningEffort": "low",
+  "temperature": 1,
+  "reason": "Initial adjudication exhausted output budget with incomplete JSON; preserve it and retry separately.",
+  "limits": [
+    "Same anonymized artifacts and reviewers; this is post-hoc recovery, not a new issue.",
+    "The gateway may translate or ignore model parameters."
+  ]
+}
