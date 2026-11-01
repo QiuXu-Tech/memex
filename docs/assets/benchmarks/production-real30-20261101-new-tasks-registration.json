@@ -1,0 +1,130 @@
+{
+  "registeredAt": "2026-11-01T12:27:41.169853+00:00",
+  "studyRegistrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
+  "selection": "Seven additional, distinct public open issues; source blobs and task-specific criteria were checked before their model calls.",
+  "tasks": [
+    {
+      "id": "N01",
+      "repo": "glasgow-ipl/ietfdata",
+      "issue": 84,
+      "issueUrl": "https://github.com/glasgow-ipl/ietfdata/issues/84",
+      "sourceCommit": "31f45b53805b148f5e1d1234a8db706d6902e961",
+      "sourcePath": "ietfdata/ma_parsing.py",
+      "sourceGitBlob": "2ab8ce1ad7230eb71557884f782e0a33f68950e9",
+      "inputSha256": "864e3aef3d2d78c25cd640e7a2078090bcdbe73c58a063d39851c5e85ab3b14d",
+      "laterCommentStartsAtIndex": 2,
+      "historyDays": 2238,
+      "acceptance": [
+        "Distinguish the original HeaderDataMailHelper timestamp exception from the current date-parsing path; do not assume they are the same implementation.",
+        "Consider the reported unusual RFC date and missing or unparseable dates without asserting the frequency of archive-wide failures.",
+        "Propose local deterministic date-header cases covering the report, invalid input and an ordinary timezone-aware date; no live archive claim."
+      ]
+    },
+    {
+      "id": "N02",
+      "repo": "adafruit/Adafruit_CircuitPython_OV5640",
+      "issue": 26,
+      "issueUrl": "https://github.com/adafruit/Adafruit_CircuitPython_OV5640/issues/26",
+      "sourceCommit": "6b0859eaf91c2bb87258faf6f34d79671d92726b",
+      "sourcePath": "adafruit_ov5640/__init__.py",
+      "sourceGitBlob": "26353da9a51119a743cefb799565e9262fd52039",
+      "inputSha256": "4e76e93ef6cb4cbf89234fdd3018282dcff192e751200d61aed0674012c0f318",
+      "laterCommentStartsAtIndex": 4,
+      "historyDays": 141,
+      "acceptance": [
+        "Compare the originally reported JPEG buffer heuristic with the current formula and explain the dependency on image content, dimensions and quality.",
+        "Distinguish an undersized buffer and missing JPEG end marker from an established universal bound or a verified hardware fault.",
+        "Propose buffer-size and end-marker controls and state that actual sensor behavior remains untested."
+      ]
+    },
+    {
+      "id": "N03",
+      "repo": "jquery-form/form",
+      "issue": 353,
+      "issueUrl": "https://github.com/jquery-form/form/issues/353",
+      "sourceCommit": "d1ab5ffe0f34f6855c8296a3407cdba81429255b",
+      "sourcePath": "src/jquery.form.js",
+      "sourceGitBlob": "a3ed329e409f3f10078f2f6c53f3105e37af8f40",
+      "inputSha256": "f2cca22895adc9383ddb323d5f54b661f34237ad9cdf38e20edaa04c773a0762",
+      "laterCommentStartsAtIndex": 4,
+      "historyDays": 4813,
+      "acceptance": [
+        "Trace this.selector use in ajaxForm delegation and ready-state handling under versions of jQuery where that property was removed.",
+        "Distinguish the maintainer’s proposed 4.x selector option and later 5.x requirement from functionality already present in the pinned source.",
+        "Propose a two-unrelated-form regression and a nondelegated control; do not submit real forms."
+      ]
+    },
+    {
+      "id": "N04",
+      "repo": "louislam/uptime-kuma",
+      "issue": 5670,
+      "issueUrl": "https://github.com/louislam/uptime-kuma/issues/5670",
+      "sourceCommit": "cbd357eb3982700132531dd8e7d66158d6c1f3e1",
+      "sourcePath": "extra/reset-password.mts",
+      "sourceGitBlob": "a468ca818b8a78d17ac85bd92d8ceac47d657449",
+      "inputSha256": "00eecf6a2fe24462901f40778c4182c7ac5f138480fde36d00790b1bdb80b370",
+      "laterCommentStartsAtIndex": 16,
+      "historyDays": 609,
+      "acceptance": [
+        "Trace the reset utility into database initialization and distinguish the reported embedded-MariaDB wait from SQLite behavior.",
+        "Separate the report and proposed connection approach from a proven root cause, including the already-running service case.",
+        "Propose local mocked connect/start and prompt tests for supported database modes without changing real credentials."
+      ]
+    },
+    {
+      "id": "N05",
+      "repo": "containers/ramalama",
+      "issue": 2642,
+      "issueUrl": "https://github.com/containers/ramalama/issues/2642",
+      "sourceCommit": "43919917badce9442dbff89a973e566ed561018c",
+      "sourcePath": "ramalama/transports/base.py",
+      "sourceGitBlob": "934e26faa17fa23112242759e555e3ed941fec2f",
+      "inputSha256": "576dcc7080f17325f6e2af29f440d2a9b5348170861537673ccb2f4aea1a70e2",
+      "laterCommentStartsAtIndex": 2,
+      "historyDays": 165,
+      "acceptance": [
+        "Trace the draft GGUF mount source and destination in the pinned transport code and compare them with the reported nonexistent host path.",
+        "Distinguish a later report of a partial fix from proof that every draft-model scenario works.",
+        "Propose local mount-argument controls for draft and primary models without invoking a real container or downloading weights."
+      ]
+    },
+    {
+      "id": "N06",
+      "repo": "plotly/dash",
+      "issue": 3343,
+      "issueUrl": "https://github.com/plotly/dash/issues/3343",
+      "sourceCommit": "00b8ed655a340917c35a329aed33690ccd2fab20",
+      "sourcePath": "components/dash-core-components/src/fragments/Upload.react.js",
+      "sourceGitBlob": "62def2927f40339b77c48085f0f0147fcdc97558",
+      "inputSha256": "93e2dd1b4aaf4ff82ea1a774ec1c73bb56fbfb7350da6ff2f97dba3d71f52ae5",
+      "laterCommentStartsAtIndex": 3,
+      "historyDays": 491,
+      "acceptance": [
+        "Trace upload event prop updates separately from the externally supplied disabled property in the pinned component.",
+        "Distinguish the original report from the later headless-browser report that a recent version stayed disabled; do not assume the report proves this revision.",
+        "Propose a local callback round-trip regression with disabled and enabled controls; identify browser execution as unverified."
+      ]
+    },
+    {
+      "id": "N07",
+      "repo": "nathan-gs/ha-map-card",
+      "issue": 158,
+      "issueUrl": "https://github.com/nathan-gs/ha-map-card/issues/158",
+      "sourceCommit": "0f2c9f9731f5869f660f6fa41d0665aeae477616",
+      "sourcePath": "src/models/EntityHistory.js",
+      "sourceGitBlob": "a0a922e97a65196de427b835b50e4a110deee823",
+      "inputSha256": "2f6641a4d9cbfb3135886dcff4a81db099e45437995f1832966bbd86e2a82979",
+      "laterCommentStartsAtIndex": 9,
+      "historyDays": 466,
+      "acceptance": [
+        "Trace how history entries are ordered and converted into adjacent map segments in the pinned source.",
+        "Account for the reported phantom segment from the oldest point and the later proposed PR without treating either as a confirmed root cause.",
+        "Propose a multi-point chronological history test with line and opacity controls; do not claim a physical-device reproduction."
+      ]
+    }
+  ],
+  "limits": [
+    "Current source and historical issue discussion may describe different revisions.",
+    "These are source investigations, not executable fixes or physical-device tests."
+  ]
+}
