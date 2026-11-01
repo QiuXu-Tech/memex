@@ -1,0 +1,12 @@
+{
+  "registeredAt": "2026-11-01T12:36:01.115340+00:00",
+  "kind": "post-hoc evidence supplement for original T05 review",
+  "originalPacketSha256": "40c73395a4dfe4495c27766b0def7dbb739b21986d51ec13900d176823816d55",
+  "originalAdjudicationSha256": "ca111bc7e800c15863aa8b29c2c5f906bec0c37950a5ad7e29200dfefe376b62",
+  "supplementPacketSha256": "80f9590164cbfbf24d38ad7ada01fce36d4c2d11be9905ce432f438ea58046f9",
+  "scriptSha256": "75bd8b4f00cf18a130910b798b832d29cdac67bc7153e5f945b5f623d2c95b87",
+  "reviewExcerptTestSha256": "71ea12a26069ac8184632ff9a7c5f303296b9ba5b5b0c93adcebf13ffb877c66",
+  "model": "deepseek-flash",
+  "prompt": "Reassess the anonymous T05 disagreement using the frozen criteria, original reviews and the supplied previously omitted evidence. Preserve uncertainty, do not infer the arm, and do not assume the supplemental evidence changes the score. Return JSON only with materialDisagreement boolean and candidates C01/C02, each with score 0/1/2/null and reason.",
+  "disclosure": "The original independent blind reviews and original adjudication remain unchanged; this is a separately recorded post-hoc reassessment."
+}
