@@ -1,0 +1,697 @@
+{
+  "registeredAt": "2026-11-01T12:13:29.673858+00:00",
+  "kind": "30-issue-two-session-post-grep-fix-codex-shadow-study",
+  "selection": "23 previously registered and unstarted issues plus seven newly screened issues; 30 unique repositories and owners, all open at screening. Selected public issues, not a random production population.",
+  "scope": "Two new ephemeral Codex sessions per arm carry out a source-grounded issue investigation and handoff, not a patch or executed acceptance test. Issue history is public historical replay; no upstream acceptance or production outcome is implied.",
+  "source": "Each source commit and issue history is fixed before its own calls; 23 criteria are already frozen, seven require a task-specific addendum before any calls on that task. Candidate order is the listed order.",
+  "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
+  "allocation": "Two randomized arms per task; 15 memory arms use the previous guidance and 15 use the new guidance. Both source versions include the grep correctness repair. Allocation, seed and source files are disclosed after their relevant calls.",
+  "versions": {
+    "oldGuidance": "e7b9515564bfbb8e6e45861d63aa0357e385180d",
+    "newGuidance": "685a504caf5353617450c10656c43ba3be377170",
+    "grepFix": "480ab479971d324a7fd20eff8657a10a761736fb"
+  },
+  "agent": {
+    "client": "Codex CLI",
+    "model": "gpt-6.1-sol",
+    "reasoningEffort": "low",
+    "sessionsPerArm": 2,
+    "sessionLimitSeconds": 180,
+    "maxConcurrentTasks": 2,
+    "tools": "Bounded read/search and issue/archive tools; treatment additionally has Memex L3 tools. Both arms see the same source, issue history and their own prior-session output. No task prompt names a memory tool. No code edit or project test."
+  },
+  "outcomes": {
+    "primary": "Final source-grounded investigation scored 0 materially wrong/absent, 1 partial, 2 meets frozen criteria, null insufficient evidence; review is AI-only, not project acceptance.",
+    "review": "Two blinded AI reviewers, gpt-6.1-sol and claude-haiku-4-5. A third model, deepseek-flash, checks every pair of reviews for numerical or substantive disagreement and resolves it where possible. Missing/failed reviews remain unknown.",
+    "memory": "Count first-session writes, subsequent opens/citations of those records, status changes, and treatment sessions that open both a previous handoff and its related memory. Opening both is overlapping access, not proof the text was identical.",
+    "usage": "Per-session input, cached input and output tokens, elapsed time and missing usage; report per-arm paired differences and old/new guidance subgroups. Subscription and non-model costs stay unknown absent receipts.",
+    "billing": "Record all reviewer gateway attempts, usage, visible matching wallet rows when available, and missing/failed-call cost. Automatic retries apply only to explicit 503 responses, with the bounded existing gateway policy; do not silently retry timeouts."
+  },
+  "limits": [
+    "Purposively selected public open-source issues with possible solution or training leakage.",
+    "Two fresh sessions are a short cross-session replay of public discussions, not live long-running production.",
+    "No project-specific executable verifier or maintainer review for these investigations.",
+    "Only 15 tasks per guidance condition; heterogeneous tasks and AI review limit inference.",
+    "Control is the same constrained Codex tool environment with a handoff archive, not every default client feature.",
+    "Randomization fixes ordering and guidance within this selected cohort; observed token totals include cache."
+  ],
+  "tasks": [
+    {
+      "id": "T01",
+      "issue": "https://github.com/mnemosyne-oss/mnemosyne/issues/552",
+      "repo": "mnemosyne-oss/mnemosyne",
+      "issueNumber": 552,
+      "statusAtScreening": {
+        "number": 552,
+        "state": "OPEN",
+        "title": "bug(query-cache): global invalidation does not reach already-open Enhanced Recall peers",
+        "createdAt": "2026-07-27T13:18:26Z",
+        "updatedAt": "2026-11-01T06:40:26Z"
+      },
+      "sourceCommit": "d34b5df79f40a39a3becc7116cf7148260dbcae7",
+      "sourcePath": "mnemosyne/core/query_cache.py",
+      "sourceGitBlob": "96a348cf0ca4a02f696ddcede001437e6e9910ad",
+      "inputSha256": "bc9236fe87cf79274008e42546f0aa72f985008ad6e52c27f366a70076103955",
+      "frozenAcceptance": [
+        "Distinguish the already-open peer stale Enhanced Recall cache from a fresh reader after a global invalidation.",
+        "Address canonical mutation APIs and distinguish in-flight reads and direct database writes as separate scope questions.",
+        "Propose a multi-instance regression and consider the stated constraint against per-request SQLite polling."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 96
+    },
+    {
+      "id": "T03",
+      "issue": "https://github.com/modelcontextprotocol/python-sdk/issues/2610",
+      "repo": "modelcontextprotocol/python-sdk",
+      "issueNumber": 2610,
+      "statusAtScreening": {
+        "number": 2610,
+        "state": "OPEN",
+        "title": "RequestResponder.__exit__ leaks CancelledError on cancelled request, killing the stdio receive loop",
+        "createdAt": "2026-05-15T19:52:52Z",
+        "updatedAt": "2026-10-30T03:35:25Z"
+      },
+      "sourceCommit": "52e64ddb9f8f897bcb74de0bc9417f820af35a59",
+      "sourcePath": "src/mcp/shared/session.py",
+      "sourceGitBlob": "35a83fcf1bfb41e244c364d5354e85d8caf810d0",
+      "inputSha256": "7d782214e5687ce46d4b965fd9d535d0bf568bdb366f8a790d1cb77ed01f60eb",
+      "frozenAcceptance": [
+        "Distinguish the earlier request-handler cancellation fix from cancellation while a response is being sent.",
+        "Assess whether a subsequent stdio request can still be handled after that cancellation without swallowing unrelated cancellation.",
+        "Propose a controlled cancellation and transport-recovery test against the frozen v1.x branch."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 167
+    },
+    {
+      "id": "T04",
+      "issue": "https://github.com/pydantic/pydantic-ai/issues/1196",
+      "repo": "pydantic/pydantic-ai",
+      "issueNumber": 1196,
+      "statusAtScreening": {
+        "number": 1196,
+        "state": "OPEN",
+        "title": "`pydantic_graph`: `asyncio.get_event_loop()` is deprecated since python 3.12",
+        "createdAt": "2025-03-21T03:12:35Z",
+        "updatedAt": "2026-10-30T12:32:24Z"
+      },
+      "sourceCommit": "e286b84a1302849da685eeeeefcf2f4b12662d45",
+      "sourcePath": "pydantic_graph/pydantic_graph/_utils.py",
+      "sourceGitBlob": "802fb68b190297c3d4716c56ad879752768b2f25",
+      "inputSha256": "276dc9317651f2598a94b7470d345eb2fac0eb32320fbf9e50ec509944d81a59",
+      "frozenAcceptance": [
+        "Explain the get_event_loop deprecation in the sync path without replacing it mechanically with get_running_loop.",
+        "Preserve event-loop reuse and lifecycle behavior, and distinguish Python 3.12/3.13 warnings from 3.14 behavior.",
+        "Propose tests for sync use, an existing loop and version-specific behavior."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 587
+    },
+    {
+      "id": "T05",
+      "issue": "https://github.com/yt-dlp/yt-dlp/issues/14206",
+      "repo": "yt-dlp/yt-dlp",
+      "issueNumber": 14206,
+      "statusAtScreening": {
+        "number": 14206,
+        "state": "OPEN",
+        "title": "`--embed-thumbnail --remux-video ogg` do not work together - Python EoF Error",
+        "createdAt": "2025-08-31T06:46:17Z",
+        "updatedAt": "2026-10-31T01:12:53Z"
+      },
+      "sourceCommit": "b77c9304e1c4220cca450c583491904daf8455af",
+      "sourcePath": "yt_dlp/postprocessor/embedthumbnail.py",
+      "sourceGitBlob": "39e8826c6f80660712bf84a061a9d144ad3d4c55",
+      "inputSha256": "aaaa419e3b159d27cf4a4e419aff600cd93092df946894a83609b84268fb6175",
+      "frozenAcceptance": [
+        "Distinguish an Ogg container holding Opus from Vorbis when thumbnail embedding follows remuxing.",
+        "Do not assert that Ogg cannot contain thumbnails or that the filename extension proves the codec.",
+        "Propose local fixtures covering Opus and Vorbis and avoid network-dependent downloads."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 425
+    },
+    {
+      "id": "T07",
+      "issue": "https://github.com/gchq/CyberChef/issues/1881",
+      "repo": "gchq/CyberChef",
+      "issueNumber": 1881,
+      "statusAtScreening": {
+        "number": 1881,
+        "state": "OPEN",
+        "title": "Bug report: Argon2 salts do not match between input and hash output",
+        "createdAt": "2024-08-22T14:17:38Z",
+        "updatedAt": "2026-10-28T16:54:10Z"
+      },
+      "sourceCommit": "b75398f1134fc59fd74d288f620aa1eecba77dc9",
+      "sourcePath": "src/core/operations/Argon2.mjs",
+      "sourceGitBlob": "4feb881cd5ad5583f02f92de1c81367fd57f525b",
+      "inputSha256": "a3b01820572521c80e145823c48318e414efb84dcbcf7dbe40d2905f0b60bf51",
+      "frozenAcceptance": [
+        "Compare the decoded input salt bytes with the salt encoded in Argon2 output for hex and base64 inputs.",
+        "Investigate the byte-string versus UTF-8 conversion and include a non-ASCII UTF-8 control.",
+        "Preserve ordinary ASCII behavior and propose deterministic local regression cases."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 797
+    },
+    {
+      "id": "T08",
+      "issue": "https://github.com/asyncapi/website/issues/5151",
+      "repo": "asyncapi/website",
+      "issueNumber": 5151,
+      "statusAtScreening": {
+        "number": 5151,
+        "state": "OPEN",
+        "title": "[BUG] check-edit-links generates 404s",
+        "createdAt": "2026-02-12T19:53:57Z",
+        "updatedAt": "2026-10-31T20:08:22Z"
+      },
+      "sourceCommit": "eccff65adaaa6edb67e98ad0f19d6002e9b30cad",
+      "sourcePath": "scripts/markdown/check-edit-links.ts",
+      "sourceGitBlob": "65682bfc2d9ff5cccd08ee324ed1f8b9b178bbe4",
+      "inputSha256": "2116ab34bbdecae3ebcb73133a312742447f106e39d48d32dbdd2300ae92cff8",
+      "frozenAcceptance": [
+        "Explain the discrepancy between generated edit links and existing spec/bindings file layouts.",
+        "Cover spec files and bindings README paths without hardcoding a growing version ignore list.",
+        "Compare the checker with the documentation layout and propose local fixture-based link tests."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 261
+    },
+    {
+      "id": "T09",
+      "issue": "https://github.com/conventional-changelog/commitlint/issues/3129",
+      "repo": "conventional-changelog/commitlint",
+      "issueNumber": 3129,
+      "statusAtScreening": {
+        "number": 3129,
+        "state": "OPEN",
+        "title": "input is not displayed correctly (non-existing blank lines added)",
+        "createdAt": "2022-04-20T08:36:08Z",
+        "updatedAt": "2026-11-01T01:33:47Z"
+      },
+      "sourceCommit": "e64e17b48fcb7341f93b07f5933aca595f855b0f",
+      "sourcePath": "@commitlint/lint/src/lint.ts",
+      "sourceGitBlob": "a91bb4acb65c187580deeabbd79d218d647a9131",
+      "inputSha256": "9f0ee621e95cdfaeaa41bf5d5bc4c3a8e65dc1b2798e62f457ba3438e656b6e4",
+      "frozenAcceptance": [
+        "Verify whether report.input changes blank lines around a footer in the current source, rather than assuming the original example still reproduces.",
+        "Preserve intended comment-line handling while keeping the displayed message faithful to the actual input.",
+        "Include a body directly followed by a Signed-off-by trailer and a comments control."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 1655
+    },
+    {
+      "id": "T11",
+      "issue": "https://github.com/yargs/yargs/issues/873",
+      "repo": "yargs/yargs",
+      "issueNumber": 873,
+      "statusAtScreening": {
+        "number": 873,
+        "state": "OPEN",
+        "title": "Environment variables trigger errors for irrelevant commands (in strict mode)",
+        "createdAt": "2017-05-02T22:05:29Z",
+        "updatedAt": "2026-10-30T21:58:01Z"
+      },
+      "sourceCommit": "ee7b7ab5338a03beb86c6acec38bbe3417822c5a",
+      "sourcePath": "lib/yargs-factory.ts",
+      "sourceGitBlob": "65502ebeccf49f8c5831441be5220c262b597e08",
+      "inputSha256": "fa28a6117d59bd36665af8c3f36de3e328ec9a50125430766a2840bc67b5db15",
+      "frozenAcceptance": [
+        "Distinguish environment variables belonging to another command from genuinely unknown CLI options under strict mode.",
+        "Preserve active-command and global option behavior while addressing the reported false unknown-argument error.",
+        "Specify paired build/run and unknown-CLI regression cases."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 3467
+    },
+    {
+      "id": "T12",
+      "issue": "https://github.com/npm/cli/issues/9800",
+      "repo": "npm/cli",
+      "issueNumber": 9800,
+      "statusAtScreening": {
+        "number": 9800,
+        "state": "OPEN",
+        "title": "[BUG] `--dry-run` fails with EALLOWREMOTE on registry tarballs for packages that declare bundleDependencies",
+        "createdAt": "2026-07-25T06:24:32Z",
+        "updatedAt": "2026-10-31T11:25:32Z"
+      },
+      "sourceCommit": "fc517df18fb59a33b39d383c6766690bc427ac06",
+      "sourcePath": "workspaces/arborist/lib/arborist/reify.js",
+      "sourceGitBlob": "b099d4d72c6a4a0ce44b2175915134410ad44759",
+      "inputSha256": "14e514aa55bcfca0298d2463776476e9a39701e78dc99cfd4fe5efe96978d901",
+      "frozenAcceptance": [
+        "Investigate registry tarballs with bundleDependencies under dry-run and package-lock-only as well as a regular install control.",
+        "Preserve the default allow-remote restriction rather than broadly allowing arbitrary remote downloads.",
+        "Propose a mocked local registry/fixture test and explicitly identify any unrun network integration."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 98
+    },
+    {
+      "id": "T13",
+      "issue": "https://github.com/huggingface/huggingface_hub/issues/4196",
+      "repo": "huggingface/huggingface_hub",
+      "issueNumber": 4196,
+      "statusAtScreening": {
+        "number": 4196,
+        "state": "OPEN",
+        "title": "No resuming of downloads",
+        "createdAt": "2026-05-06T13:06:01Z",
+        "updatedAt": "2026-11-01T09:56:37Z"
+      },
+      "sourceCommit": "5077876d472bf0fbd8525b9dbb60f968c31f5302",
+      "sourcePath": "src/huggingface_hub/file_download.py",
+      "sourceGitBlob": "65fca27c1a61f93c7b39fcff7a5525279b6ca2d4",
+      "inputSha256": "c269e8806edf93dcb923d9ae2c0e10713bedb6ad5cdcc2924bc22e9b25eb7303",
+      "frozenAcceptance": [
+        "Distinguish the HTTP and hf-xet download paths and the evidence about orphaned partial files.",
+        "Include the maintainer decision not to implement the HTTP-only proposal yet; do not treat a suggestion as an accepted fix.",
+        "Propose a bounded interrupted-download and partial-file accounting test without downloading real model weights."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 178
+    },
+    {
+      "id": "T14",
+      "issue": "https://github.com/autogluon/autogluon/issues/5521",
+      "repo": "autogluon/autogluon",
+      "issueNumber": 5521,
+      "statusAtScreening": {
+        "number": 5521,
+        "state": "OPEN",
+        "title": "[BUG] Training fails due to fastai ImportError when already installed",
+        "createdAt": "2026-01-03T08:53:33Z",
+        "updatedAt": "2026-11-01T06:30:02Z"
+      },
+      "sourceCommit": "65ea1bf737d767729dcbd15b2d8f213dd243cd3b",
+      "sourcePath": "common/src/autogluon/common/utils/try_import.py",
+      "sourceGitBlob": "5f6a9e973c436f5979a839daaf99d81507f794bd",
+      "inputSha256": "b9bbc6cd461bb0f437f82e10e5b34602bc3fcc5914c7ca96457a5b4b33662577",
+      "frozenAcceptance": [
+        "Distinguish fastai itself being absent from a nested dependency ImportError during fastai import.",
+        "Assess whether the original exception is preserved and avoid asserting that better diagnostics alone fix training.",
+        "Propose isolated mocked import cases and retain any unresolved fastprogress dependency issue."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 301
+    },
+    {
+      "id": "T15",
+      "issue": "https://github.com/Arize-ai/openinference/issues/2101",
+      "repo": "Arize-ai/openinference",
+      "issueNumber": 2101,
+      "statusAtScreening": {
+        "number": 2101,
+        "state": "OPEN",
+        "title": "[bug] Using openai and openai.agents duplicates llm spans.",
+        "createdAt": "2025-08-19T14:58:23Z",
+        "updatedAt": "2026-11-01T09:07:23Z"
+      },
+      "sourceCommit": "5c68f3a6d1ba1095e9b7ae594fabfbe0271c6948",
+      "sourcePath": "python/instrumentation/openinference-instrumentation-openai-agents/src/openinference/instrumentation/openai_agents/_processor.py",
+      "sourceGitBlob": "57f0cd907ee93cb5eaaae058ec8a06a9ad9d2027",
+      "inputSha256": "0a364f6fb6c6abf75e42e58f0085b569bdd41b47b0677bb7f134627e1c576e60",
+      "frozenAcceptance": [
+        "Cover an application using both direct OpenAI calls and OpenAI Agents instrumentation.",
+        "Assess duplicate nested LLM spans without disabling visibility for direct-only calls.",
+        "Propose an in-memory span-exporter test with no external model request."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 132
+    },
+    {
+      "id": "T16",
+      "issue": "https://github.com/oppia/oppia/issues/23412",
+      "repo": "oppia/oppia",
+      "issueNumber": 23412,
+      "statusAtScreening": {
+        "number": 23412,
+        "state": "OPEN",
+        "title": "IndexError: list index out of range when fetching exploration summaries in the library page",
+        "createdAt": "2025-09-20T19:38:09Z",
+        "updatedAt": "2026-11-01T09:17:26Z"
+      },
+      "sourceCommit": "0538628a88da77478174636b85bff9c834492329",
+      "sourcePath": "core/controllers/library.py",
+      "sourceGitBlob": "981840b4fba91c65cae9f7c9dfd55e1ab524959a",
+      "inputSha256": "e321834016d9db67a71286d3b5150b6ec88ffe48bc36b5b599aee8fa41aa1955",
+      "frozenAcceptance": [
+        "Distinguish the library crash guard from stale contributor references left by user deletion.",
+        "Investigate the deletion flow and indexed contributor list versus summary data rather than assuming a crash guard cleans old data.",
+        "Propose tests for deleted contributors and existing summaries, with a separate cleanup consideration."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 406
+    },
+    {
+      "id": "T17",
+      "issue": "https://github.com/getpaseo/paseo/issues/2471",
+      "repo": "getpaseo/paseo",
+      "issueNumber": 2471,
+      "statusAtScreening": {
+        "number": 2471,
+        "state": "OPEN",
+        "title": "daemon.log: 86% of records are one repeated error with a full stack; no dedupe or sampling",
+        "createdAt": "2026-07-27T07:24:41Z",
+        "updatedAt": "2026-11-01T06:59:44Z"
+      },
+      "sourceCommit": "fa89738e3a937e83d10b8998ee0d96f3708947dd",
+      "sourcePath": "packages/server/src/server/session.ts",
+      "sourceGitBlob": "00c85294821f13b7d3353f0d6603c1de1e3c1a63",
+      "inputSha256": "4131ce7b42c5a6313efbd9cb0e08105166383bdadda722cb9fb027f893d1af06",
+      "frozenAcceptance": [
+        "Identify the repeated warning/stack problem and distinguish the original forge refresh from later source-frame failures.",
+        "Propose bounded deduplication or sampling that preserves the first occurrence and visibility of distinct failures.",
+        "Describe a repeat-heavy log test and retain limits on what it proves about production."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 96
+    },
+    {
+      "id": "T18",
+      "issue": "https://github.com/usebruno/bruno/issues/7362",
+      "repo": "usebruno/bruno",
+      "issueNumber": 7362,
+      "statusAtScreening": {
+        "number": 7362,
+        "state": "OPEN",
+        "title": "Impossible to use built-in library 'cheerio' with CLI ( ../webidl: File is not defined)",
+        "createdAt": "2026-03-04T17:29:44Z",
+        "updatedAt": "2026-10-31T12:47:29Z"
+      },
+      "sourceCommit": "e559194058d7802627ce692b90358d5f6b9deabc",
+      "sourcePath": "packages/bruno-js/src/sandbox/node-vm/cjs-loader.js",
+      "sourceGitBlob": "7e5839e62a8624f85ce42c65e93dee003ebfe8e7",
+      "inputSha256": "13eacb924cf4d8eac34e74d8ee916c5d218a51c9ad0a5655068cee562e6de635",
+      "frozenAcceptance": [
+        "Investigate why requiring cheerio from the CLI sandbox reaches an undefined File through undici/webidl.",
+        "Distinguish the reported runtime and CI environments instead of assuming all Node versions behave alike.",
+        "Propose a local CLI/sandbox reproduction and a control for other module loading."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 139
+    },
+    {
+      "id": "T20",
+      "issue": "https://github.com/ray-project/ray/issues/58976",
+      "repo": "ray-project/ray",
+      "issueNumber": 58976,
+      "statusAtScreening": {
+        "number": 58976,
+        "state": "OPEN",
+        "title": "[Dashboard] Tasks with retries alternate randomly between any of their runs (Both FAILED and RUNNING/SUCCEEDED).",
+        "createdAt": "2025-11-25T18:32:59Z",
+        "updatedAt": "2026-10-30T05:39:30Z"
+      },
+      "sourceCommit": "03d3d8a680dacba16c1e92d56655dfd7b786b29a",
+      "sourcePath": "python/ray/dashboard/state_aggregator.py",
+      "sourceGitBlob": "e558d84e60ffb73a5a5bf1a3e980edbc9bb58289",
+      "inputSha256": "3b6c975d11f711dc6740f05b7e15f31242dc8c9947eeb6c598bf162f58e19894",
+      "frozenAcceptance": [
+        "Explain why multiple attempts with the same task ID can produce an unstable limit-one result.",
+        "Distinguish choosing the latest attempt for a detail view from preserving historical failed attempts and task-level counts.",
+        "Propose a deterministic multi-attempt ordering test."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 338
+    },
+    {
+      "id": "T21",
+      "issue": "https://github.com/loopbackio/loopback-next/issues/11096",
+      "repo": "loopbackio/loopback-next",
+      "issueNumber": 11096,
+      "statusAtScreening": {
+        "number": 11096,
+        "state": "OPEN",
+        "title": "ajv request body validation regression following an upgrade to @loopback/rest 15.0.3",
+        "createdAt": "2025-07-22T08:01:03Z",
+        "updatedAt": "2026-10-29T17:07:04Z"
+      },
+      "sourceCommit": "f7f40707f9a113e29580803d928930d761b49e08",
+      "sourcePath": "packages/rest/src/validation/ajv-factory.provider.ts",
+      "sourceGitBlob": "6850680e1c9df0722c9e87a3f878ae86eccb29c0",
+      "inputSha256": "394e4ddd5006cf812f190ad9835bfdfd3285c6ea90d0e2678ae5ccfcb70f6ff7",
+      "frozenAcceptance": [
+        "Reproduce or bound the strict AJV unknown discriminator error for polymorphic request schemas.",
+        "Account for the reported discriminator option workaround and preserve validation of actual request bodies.",
+        "Propose valid and invalid polymorphic payload controls."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 464
+    },
+    {
+      "id": "T22",
+      "issue": "https://github.com/ioBroker/ioBroker.mqtt/issues/518",
+      "repo": "ioBroker/ioBroker.mqtt",
+      "issueNumber": 518,
+      "statusAtScreening": {
+        "number": 518,
+        "state": "OPEN",
+        "title": "High memory consumption",
+        "createdAt": "2025-03-20T17:34:34Z",
+        "updatedAt": "2026-10-31T19:35:39Z"
+      },
+      "sourceCommit": "bfd65032c50a0b4aa80355abcb03d65214da418e",
+      "sourcePath": "src/lib/MQTTServer.ts",
+      "sourceGitBlob": "38282e761b932b0ffbd6d577efe2a3f5c78f1b22",
+      "inputSha256": "e039db7295e262d724157d0e6527b7adf9860ebd67dc6a5f29ec96c59b843539",
+      "frozenAcceptance": [
+        "Distinguish repeated client-ID churn and stale client objects from generic memory consumption.",
+        "Consider cleanup of inactive client objects without deleting current live client state.",
+        "Propose a bounded repeated-connect/disconnect test and do not claim a physical-device reproduction without one."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 590
+    },
+    {
+      "id": "T23",
+      "issue": "https://github.com/storybookjs/storybook/issues/31699",
+      "repo": "storybookjs/storybook",
+      "issueNumber": 31699,
+      "statusAtScreening": {
+        "number": 31699,
+        "state": "OPEN",
+        "title": "[Bug]: Running Visual Test locally from browser fails if addon-docs enabled in sb 9.0.6",
+        "createdAt": "2025-06-07T14:09:13Z",
+        "updatedAt": "2026-10-30T13:08:25Z"
+      },
+      "sourceCommit": "43a13889a499ee209a52dc5f874c0ad84b3eeec3",
+      "sourcePath": "code/addons/docs/src/preset.ts",
+      "sourceGitBlob": "7b8b9dd65a5be77aaf8ae46528d4ef3abdf1efef",
+      "inputSha256": "e7c0d5dbff4c2eb94a2c726cbceda3b148001b6ba4bce8b30765226403997500",
+      "frozenAcceptance": [
+        "Distinguish the reported visual-test build failure from normal documentation rendering.",
+        "Investigate a missing docs config in test builds and its consumers rather than assuming the initial import path was the cause.",
+        "Propose docs-enabled and docs-disabled test-build controls."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 460
+    },
+    {
+      "id": "T25",
+      "issue": "https://github.com/adobe/react-spectrum/issues/2806",
+      "repo": "adobe/react-spectrum",
+      "issueNumber": 2806,
+      "statusAtScreening": {
+        "number": 2806,
+        "state": "OPEN",
+        "title": "Unit in NumberField cannot be deleted (for some units/ unit-displays)",
+        "createdAt": "2022-02-04T15:55:35Z",
+        "updatedAt": "2026-10-30T10:17:56Z"
+      },
+      "sourceCommit": "a562b335e645c172ec5a940b3e47ccdadbeeaa15",
+      "sourcePath": "packages/@internationalized/number/src/NumberParser.ts",
+      "sourceGitBlob": "0c00ad09cae7af80d4aba2ed06a106c8762c9e5a",
+      "inputSha256": "2bcd037642dc8ebb55611982a4402999e3525af7e58b08e3c299edaff2d4426f",
+      "frozenAcceptance": [
+        "Investigate editing partial unit literals in a NumberField, including the reported milligram/milliliter distinction.",
+        "Consider accepting valid partial unit input without accepting unrelated invalid numbers.",
+        "Specify keyboard deletion and ordinary complete-unit controls."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 1728
+    },
+    {
+      "id": "T26",
+      "issue": "https://github.com/auth0/auth0-react/issues/929",
+      "repo": "auth0/auth0-react",
+      "issueNumber": 929,
+      "statusAtScreening": {
+        "number": 929,
+        "state": "OPEN",
+        "title": "Users getting logged out with \"Unsuccessful Refresh Token exchange, reused refresh token detected\"",
+        "createdAt": "2025-11-10T04:00:04Z",
+        "updatedAt": "2026-10-29T22:49:25Z"
+      },
+      "sourceCommit": "7af5029c6056e5d3879bb3f113ad8dc4239aa7cf",
+      "sourcePath": "src/auth0-provider.tsx",
+      "sourceGitBlob": "b808fc5ebcfa94ea48d33818b795a583c4e3bfb2",
+      "inputSha256": "f57680d326053c0abb2f8667078ef713e203499c73653a81a041a9460b6fe445",
+      "frozenAcceptance": [
+        "Distinguish refresh-token reuse reports from ordinary request timeouts and account for concurrent consumers.",
+        "Identify which behavior belongs to the React wrapper versus its underlying SDK without claiming unverified causality.",
+        "Propose a mocked token-exchange or concurrency test without real credentials or live logins."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 353
+    },
+    {
+      "id": "T27",
+      "issue": "https://github.com/ansible-collections/community.hashi_vault/issues/456",
+      "repo": "ansible-collections/community.hashi_vault",
+      "issueNumber": 456,
+      "statusAtScreening": {
+        "number": 456,
+        "state": "OPEN",
+        "title": "vault_read module shows an error when disabling certificate validation",
+        "createdAt": "2024-10-09T14:09:02Z",
+        "updatedAt": "2026-11-01T03:01:28Z"
+      },
+      "sourceCommit": "2a0b75ce88e1deb08822b587461f2987b7710c72",
+      "sourcePath": "plugins/module_utils/_auth_method_cert.py",
+      "sourceGitBlob": "af5d3bb15bb208671e56675d3dba99b9c11628fc",
+      "inputSha256": "20f3156e59f23964d5f4173dcc6f1da2bf9e5ed7275552d3aec4f14985a8483e",
+      "frozenAcceptance": [
+        "Explain the reported cert-auth failure when validate_certs is false and a CA path is supplied.",
+        "Distinguish the collection’s option handling from HVAC behavior and do not silently weaken TLS verification.",
+        "Propose mocked auth tests for true and false validation settings and flag the unresolved behavior decision."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 752
+    },
+    {
+      "id": "T28",
+      "issue": "https://github.com/cdxgen/cdxgen/issues/1797",
+      "repo": "cdxgen/cdxgen",
+      "issueNumber": 1797,
+      "statusAtScreening": {
+        "number": 1797,
+        "state": "OPEN",
+        "title": "Generated purl for OCI images includes namespace, which is not allowed by purl spec",
+        "createdAt": "2025-05-14T10:59:08Z",
+        "updatedAt": "2026-10-30T16:55:51Z"
+      },
+      "sourceCommit": "b3d0710cb59120d81866c4465c95c6cdfed0bf40",
+      "sourcePath": "lib/managers/docker.js",
+      "sourceGitBlob": "6c4d73ba18813e16a58f5b1fab7ee0de2d82c3ae",
+      "inputSha256": "0390e024ea0c5f55f329b6638a80780c16f3e4f894f3f872606d3bfd0c30fc64",
+      "frozenAcceptance": [
+        "Distinguish an OCI package namespace from the repository_url qualifier in the issue’s purl example.",
+        "Record the maintainer’s compatibility/security objections and do not represent the proposed spec change as accepted policy.",
+        "Propose a local purl serialization test and verify the applicable specification before asserting compliance."
+      ],
+      "acceptanceState": "frozen",
+      "issueHistoryDays": 69
+    },
+    {
+      "id": "N01",
+      "issue": "https://github.com/glasgow-ipl/ietfdata/issues/84",
+      "repo": "glasgow-ipl/ietfdata",
+      "issueNumber": 84,
+      "statusAtScreening": {
+        "number": 84,
+        "state": "OPEN",
+        "title": "HeaderDataMailHelper crashes with bad dates",
+        "createdAt": "2020-09-14T11:49:21Z",
+        "updatedAt": "2026-11-01T06:52:44Z"
+      },
+      "sourceCommit": "31f45b53805b148f5e1d1234a8db706d6902e961",
+      "acceptanceState": "pending task-specific registration before calls"
+    },
+    {
+      "id": "N02",
+      "issue": "https://github.com/adafruit/Adafruit_CircuitPython_OV5640/issues/26",
+      "repo": "adafruit/Adafruit_CircuitPython_OV5640",
+      "issueNumber": 26,
+      "statusAtScreening": {
+        "number": 26,
+        "state": "OPEN",
+        "title": "improve jpeg size estimate",
+        "createdAt": "2023-12-12T16:05:46Z",
+        "updatedAt": "2026-11-01T05:19:25Z"
+      },
+      "sourceCommit": "6b0859eaf91c2bb87258faf6f34d79671d92726b",
+      "acceptanceState": "pending task-specific registration before calls"
+    },
+    {
+      "id": "N03",
+      "issue": "https://github.com/jquery-form/form/issues/353",
+      "repo": "jquery-form/form",
+      "issueNumber": 353,
+      "statusAtScreening": {
+        "number": 353,
+        "state": "OPEN",
+        "title": ".selector property is removed",
+        "createdAt": "2013-08-26T23:10:49Z",
+        "updatedAt": "2026-10-31T18:05:24Z"
+      },
+      "sourceCommit": "d1ab5ffe0f34f6855c8296a3407cdba81429255b",
+      "acceptanceState": "pending task-specific registration before calls"
+    },
+    {
+      "id": "N04",
+      "issue": "https://github.com/louislam/uptime-kuma/issues/5670",
+      "repo": "louislam/uptime-kuma",
+      "issueNumber": 5670,
+      "statusAtScreening": {
+        "number": 5670,
+        "state": "OPEN",
+        "title": "Password Reset via CLI does not work on Embedded MariaDB",
+        "createdAt": "2025-02-28T20:52:21Z",
+        "updatedAt": "2026-10-31T14:53:56Z"
+      },
+      "sourceCommit": "cbd357eb3982700132531dd8e7d66158d6c1f3e1",
+      "acceptanceState": "pending task-specific registration before calls"
+    },
+    {
+      "id": "N05",
+      "issue": "https://github.com/containers/ramalama/issues/2642",
+      "repo": "containers/ramalama",
+      "issueNumber": 2642,
+      "statusAtScreening": {
+        "number": 2642,
+        "state": "OPEN",
+        "title": "--model-draft uses the wrong path for mount point for both host and container",
+        "createdAt": "2026-04-17T00:59:58Z",
+        "updatedAt": "2026-10-30T04:12:07Z"
+      },
+      "sourceCommit": "43919917badce9442dbff89a973e566ed561018c",
+      "acceptanceState": "pending task-specific registration before calls"
+    },
+    {
+      "id": "N06",
+      "issue": "https://github.com/plotly/dash/issues/3343",
+      "repo": "plotly/dash",
+      "issueNumber": 3343,
+      "statusAtScreening": {
+        "number": 3343,
+        "state": "OPEN",
+        "title": "[BUG] dcc.Upload does not remain hidden or disabled after successful upload (callback with multiple Inputs)",
+        "createdAt": "2025-06-25T19:48:17Z",
+        "updatedAt": "2026-10-30T10:02:53Z"
+      },
+      "sourceCommit": "00b8ed655a340917c35a329aed33690ccd2fab20",
+      "acceptanceState": "pending task-specific registration before calls"
+    },
+    {
+      "id": "N07",
+      "issue": "https://github.com/nathan-gs/ha-map-card/issues/158",
+      "repo": "nathan-gs/ha-map-card",
+      "issueNumber": 158,
+      "statusAtScreening": {
+        "number": 158,
+        "state": "OPEN",
+        "title": "Wrong line in history trace",
+        "createdAt": "2025-07-22T09:49:42Z",
+        "updatedAt": "2026-10-31T16:19:27Z"
+      },
+      "sourceCommit": "0f2c9f9731f5869f660f6fa41d0665aeae477616",
+      "acceptanceState": "pending task-specific registration before calls"
+    }
+  ]
+}
