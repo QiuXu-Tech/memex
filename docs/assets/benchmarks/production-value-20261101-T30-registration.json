@@ -1,0 +1,73 @@
+{
+  "registeredAt": "2026-11-01T11:02:46.477202+00:00",
+  "kind": "real-issue-executable-paired-codex-shadow-pilot",
+  "task": "T30",
+  "issue": "https://github.com/capricorn86/happy-dom/issues/2203",
+  "status": {
+    "state": "OPEN",
+    "title": "HTMLElement::replaceWith() doesn't work",
+    "updatedAt": "2026-11-01T09:10:40Z",
+    "url": "https://github.com/capricorn86/happy-dom/issues/2203"
+  },
+  "publicProposedFix": {
+    "mergedAt": null,
+    "state": "OPEN",
+    "title": "fix: [#2203] Removes the old child before inserting the new one when replacing",
+    "url": "https://github.com/capricorn86/happy-dom/pull/2304"
+  },
+  "sourceCommit": "5e100dedb73111a276f75a3daff3a506e2524759",
+  "sourceArchiveSha256": "a04e6fb577a1e3051e042e3d681b56ff478ef3b423555639ec0d6a7e7073a59c",
+  "inputSha256": "7f3254843afc94296743752dcbc661d795e85cf4ac8ff69abc5c4dbba4054009",
+  "originalCohortSha256": "a5725bae2689dd3ae331c0ce73ed737f099258c2ba2ca58fb5f8937c56b52c06",
+  "allocationCommitmentSha256": "6648eee5793444d51efb8bc74825a005cc95341603ea04cd8bfc57b9bde161b9",
+  "memexCommit": "98587f9499eff75cd47446b2e6fc431b94049f77",
+  "memexServerSha256": "7376ddfa748bc47d0b842b80a692c52f837ee34f0afa4bfa02270d116c9038f6",
+  "manualSha256": "21a6e0e1ee466e7a6dea604a8e7a66faa0b35df50d0b593b4ae5f3d198592911",
+  "agent": "Codex CLI gpt-6.1-sol, low reasoning, separate ephemeral process per session",
+  "arms": "Original pre-registered randomized order. Both arms receive the same initial source, issue archive, public tests, tool limits, and their own previous-session outputs; treatment additionally has the Memex standard manual and a new empty L3 store. This constrained baseline is not a test of every default Codex feature.",
+  "sessions": [
+    "S1 investigates actual earlier issue history and source; no edits or tests.",
+    "S2 receives the later public follow-up and its own S1 handoff; implement the issue and can run fixed public checks.",
+    "S3 is a fresh process reviewing the result and can run the public checks. Final public and withheld checks run on both candidates. No task prompt commands a memory call."
+  ],
+  "frozenAcceptance": [
+    "Replace a document element with another element without incorrectly rejecting the temporary replacement as a second root.",
+    "Preserve the one-document-element constraint and ordinary replaceWith behavior for non-document parents.",
+    "Propose a document SVG replacement regression and an invalid second-root control."
+  ],
+  "publicChecks": [
+    "replace a document root with SVG",
+    "ordinary replacement keeps siblings",
+    "adding a second document root fails"
+  ],
+  "withheldChecks": [
+    "replace root with imported HTML",
+    "replaceChild on the document",
+    "ordinary multi-node replacement",
+    "replaceWith with no arguments",
+    "invalid two-root replacement does not lose the original root"
+  ],
+  "checksSha256": {
+    "loader": "1aad26c2e0fdde3c91afb7a274caf7657f7a3d8d1ff03bbd67fb28964068533d",
+    "public": "c45f9ed52b25519d240fb6db4b6929867a915207ec26da961f76ffbb76879bc2",
+    "withheld": "6b5a40829ec1ffec795a3b87440a5977812ba9f23c629f83d710799da8a650d8"
+  },
+  "preflight": {
+    "unmodifiedPublic": 1,
+    "unmodifiedWithheld": 1,
+    "publicPRReferencePublic": 0,
+    "publicPRReferenceWithheld": 0,
+    "preflightSha256": "69d9fb48a00a070a0fc135e8d402046582fc5e6acef474cab3e45a3f4dabea2d",
+    "upstreamReferencePatchSha256": "c8c23c1a4589a2ddc4d3e3819bfdec707f5db4c466c93c1eecb6eb6bb1b77f88"
+  },
+  "environment": "Node 24.18.0, npm ci --workspace=packages/happy-dom --omit=dev --omit=optional --ignore-scripts; TypeScript 5.9.3 tarball matched source lockfile SHA-512; test loader transpiles actual TypeScript source at runtime inside a network-disabled VM sandbox. This is functional execution, not a complete upstream suite or typecheck.",
+  "review": "Two AI reviewers evaluate anonymized candidate diffs, public and withheld test output and handoff; adjudicate substantive or numeric disagreement with one additional model. Preserve failures and original reviews.",
+  "cost": "Record per-session Codex token usage, elapsed time, gateway-review usage and matching visible wallet rows. Subscription allocation, interrupted turns and non-model costs remain UNKNOWN unless verified.",
+  "limitations": [
+    "One existing open-source issue with a publicly proposed patch; possible training or discussion leakage.",
+    "This is a retrospective issue-history shadow run, not a live long-running user production session.",
+    "The project verifier is investigator-written and does not replace the upstream suite or maintainer acceptance.",
+    "The initial source archive and hidden checks are privately retained and are committed by hashes below; the random order is disclosed after the trial.",
+    "AI reviewers are not human reviewers; native Codex settings outside the restricted harness are not compared."
+  ]
+}
