@@ -1,0 +1,17 @@
+{
+  "registeredAt": "2026-11-01T14:38:54.577096+00:00",
+  "kind": "posthoc-budget-recovery-continuation",
+  "selection": "Lodash treatment session 2 exceeded the earlier client budget; continue in the same isolated workspace after the search-response fix. The original failure and blind reviews remain unchanged.",
+  "initialArchiveSha256": "ff62aad699fc37046726d3bc5db0f3c59f8d7df2fdae48fb0a3994589272cf05",
+  "failedSessionSha256": "0dec2bb6d02ac184056ed02da3cb36b0b31521c0d86b047aaf7824f86b0589ea",
+  "firstSessionSha256": "dd1fcfc9f7e64bbdd6e2f0a50d0443ba70a7c6cb18a722c7cef493cbff3db735",
+  "runnerSha256": "b73629b34e47945c7628eebf532e5b8e855c69c30f481f01386349fdf4cf9744",
+  "memexCommit": "f952a441af99317c96a484f9129559250e780dfc",
+  "sessionTimeoutSeconds": 180,
+  "clientMaxBudgetUsdPerSession": 0.15,
+  "prompts": "Same task prompts and advisory 10-tool-call limit for sessions 2 and 3.",
+  "limits": [
+    "Post-hoc, extra attempt and unequal work; not a new independent task or replacement for the strict randomized result.",
+    "The API client limit is a list-price target, not a hard gateway invoice limit."
+  ]
+}
