@@ -1,49 +1,49 @@
 {
-  "generatedAt": "2026-11-01T13:22:25.596556+00:00",
+  "generatedAt": "2026-11-01T13:25:38.596197+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 21,
-    "reviewComplete": 19,
+    "pairedCompleted": 22,
+    "reviewComplete": 21,
     "reviewRecoveryComplete": 1,
     "retryPairsCompleted": 2,
     "retryReviewsCompleted": 1,
     "retryReviewRecoveryComplete": 1,
-    "uniqueTasksEvaluableIncludingRetries": 22,
+    "uniqueTasksEvaluableIncludingRetries": 24,
     "qualityFlagged": 2,
-    "notStarted": 6,
-    "startedOrIncomplete": 3
+    "notStarted": 4,
+    "startedOrIncomplete": 4
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 6883807,
-      "cached_input_tokens": 5836032,
-      "output_tokens": 54078,
-      "elapsedSeconds": 2800.18,
+      "input_tokens": 7609268,
+      "cached_input_tokens": 6470912,
+      "output_tokens": 57987,
+      "elapsedSeconds": 2970.5199999999995,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 10440028,
-      "cached_input_tokens": 8917888,
-      "output_tokens": 76707,
-      "elapsedSeconds": 3462.8399999999992,
+      "input_tokens": 10591191,
+      "cached_input_tokens": 9048192,
+      "output_tokens": 77967,
+      "elapsedSeconds": 3508.709999999999,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 6312554,
-      "cached_input_tokens": 5345664,
-      "output_tokens": 49900,
-      "elapsedSeconds": 2441.84
+      "input_tokens": 6883955,
+      "cached_input_tokens": 5843456,
+      "output_tokens": 53226,
+      "elapsedSeconds": 2574.08
     },
     "memex": {
-      "input_tokens": 9012362,
-      "cached_input_tokens": 7687552,
-      "output_tokens": 67096,
-      "elapsedSeconds": 2873.54
+      "input_tokens": 9665534,
+      "cached_input_tokens": 8254080,
+      "output_tokens": 71063,
+      "elapsedSeconds": 3031.6499999999996
     }
   },
   "usageRetrySessions": {
@@ -62,13 +62,13 @@
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 177,
+      "successfulReads": 189,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 18,
-      "session2RepeatedResultCharacters": 95822
+      "session2PreviouslyReadExact": 19,
+      "session2RepeatedResultCharacters": 100693
     },
     "memex": {
-      "successfulReads": 183,
+      "successfulReads": 194,
       "sameSessionExactRepeats": 0,
       "session2PreviouslyReadExact": 16,
       "session2RepeatedResultCharacters": 66857
@@ -76,47 +76,47 @@
   },
   "toolResponseCharactersPaired": {
     "baseline": {
-      "pilotCalls": 649,
-      "pilotResponseCharacters": 1335625
+      "pilotCalls": 704,
+      "pilotResponseCharacters": 1448768
     },
     "memex": {
-      "memexCalls": 104,
-      "memexResponseCharacters": 40992,
-      "pilotCalls": 591,
-      "pilotResponseCharacters": 1285477
+      "memexCalls": 109,
+      "memexResponseCharacters": 43026,
+      "pilotCalls": 641,
+      "pilotResponseCharacters": 1386069
     }
   },
   "searchOpenPatternPaired": {
-    "adjacentTopSearchThenOpen": 19,
-    "openResponseAtMost2000Chars": 19
+    "adjacentTopSearchThenOpen": 20,
+    "openResponseAtMost2000Chars": 20
   },
   "memory": {
-    "session1Writes": 24,
-    "session2OpenedPrior": 24,
+    "session1Writes": 26,
+    "session2OpenedPrior": 25,
     "session2CitedPrior": 23,
     "overlappingAccess": 22
   },
   "memoryPaired": {
-    "session1Writes": 21,
-    "session2OpenedPrior": 21,
-    "session2CitedPrior": 21,
-    "overlappingAccess": 20
+    "session1Writes": 22,
+    "session2OpenedPrior": 22,
+    "session2CitedPrior": 22,
+    "overlappingAccess": 21
   },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 16,
-    "baseline_higher": 1
+    "equal": 17,
+    "baseline_higher": 2
   },
   "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
-    "equal": 17,
-    "baseline_higher": 1
+    "equal": 18,
+    "baseline_higher": 2
   },
   "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
-    "equal": 19,
-    "baseline_higher": 1
+    "equal": 20,
+    "baseline_higher": 2
   },
   "reviewDisagreementOriginal": {
-    "numericPairDisagreement": 9,
-    "adjudicatorMarkedMaterial": 9
+    "numericPairDisagreement": 10,
+    "adjudicatorMarkedMaterial": 10
   },
   "reviewGatewayAttempts": [
     {
@@ -276,6 +276,77 @@
         "completion_tokens": 284,
         "prompt_tokens": 19238,
         "total_tokens": 19522,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N01-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:23:14.175457+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 37239,
+        "completion_tokens": 329,
+        "total_tokens": 37568,
+        "completion_tokens_details": {
+          "reasoning_tokens": 139
+        }
+      }
+    },
+    {
+      "operation": "N01-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:23:27.749581+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 18936,
+        "completion_tokens": 388,
+        "total_tokens": 19324,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 18933,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 18936,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 18933,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "N01-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:23:38.532320+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 224,
+        "prompt_tokens": 16394,
+        "total_tokens": 16618,
         "prompt_tokens_details": {
           "cached_tokens": 0
         },
@@ -1730,18 +1801,89 @@
           "reasoning_tokens": 0
         }
       }
+    },
+    {
+      "operation": "T28-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:23:22.041971+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 43044,
+        "completion_tokens": 275,
+        "total_tokens": 43319,
+        "completion_tokens_details": {
+          "reasoning_tokens": 83
+        }
+      }
+    },
+    {
+      "operation": "T28-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:23:33.512611+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 19925,
+        "completion_tokens": 202,
+        "total_tokens": 20127,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 19922,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 19925,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 19922,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T28-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:23:40.966853+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 191,
+        "prompt_tokens": 17723,
+        "total_tokens": 17914,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
     }
   ],
   "reviewUsage": {
-    "input_tokens": 1412531,
-    "output_tokens": 22174,
+    "input_tokens": 1565792,
+    "output_tokens": 23783,
     "missingUsageAttempts": 1
   },
   "billingCandidate": {
-    "observedAt": "2026-11-01T13:15:28.168784+00:00",
+    "observedAt": "2026-11-01T13:25:32.808013+00:00",
     "source": "APIMaster usage-log UI, observed rows on first page",
     "matching": "unique model, exact prompt/output counts and provider finish within 180 seconds of local call start; no per-request receipt linkage",
-    "candidateSubtotalUsd": "0.177636",
+    "candidateSubtotalUsd": "0.217958",
     "rows": [
       {
         "operation": "T08-blind:gpt-6.1-sol",
@@ -1769,6 +1911,33 @@
         "output": 402,
         "walletUsd": "0.001310",
         "secondsFromCallStart": 5.414
+      },
+      {
+        "operation": "T26-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:19:53",
+        "inputIncludingCacheCreation": 35152,
+        "output": 329,
+        "walletUsd": "0.005658",
+        "secondsFromCallStart": 10.185
+      },
+      {
+        "operation": "T26-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:20:02",
+        "inputIncludingCacheCreation": 20145,
+        "output": 334,
+        "walletUsd": "0.002950",
+        "secondsFromCallStart": 7.998
+      },
+      {
+        "operation": "T26-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:20:11",
+        "inputIncludingCacheCreation": 18073,
+        "output": 254,
+        "walletUsd": "0.001804",
+        "secondsFromCallStart": 8.565
       },
       {
         "operation": "T22-blind:gpt-6.1-sol",
@@ -1850,6 +2019,33 @@
         "output": 353,
         "walletUsd": "0.000996",
         "secondsFromCallStart": 6.364
+      },
+      {
+        "operation": "N01-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:23:27",
+        "inputIncludingCacheCreation": 37239,
+        "output": 329,
+        "walletUsd": "0.005978",
+        "secondsFromCallStart": 12.825
+      },
+      {
+        "operation": "N01-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:23:38",
+        "inputIncludingCacheCreation": 18936,
+        "output": 388,
+        "walletUsd": "0.002814",
+        "secondsFromCallStart": 10.25
+      },
+      {
+        "operation": "N01-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:23:44",
+        "inputIncludingCacheCreation": 16394,
+        "output": 224,
+        "walletUsd": "0.001634",
+        "secondsFromCallStart": 5.468
       },
       {
         "operation": "T05-blind:gpt-6.1-sol",
@@ -1985,6 +2181,33 @@
         "output": 282,
         "walletUsd": "0.002006",
         "secondsFromCallStart": 7.206
+      },
+      {
+        "operation": "T28-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:23:33",
+        "inputIncludingCacheCreation": 43044,
+        "output": 275,
+        "walletUsd": "0.006830",
+        "secondsFromCallStart": 10.958
+      },
+      {
+        "operation": "T28-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:23:40",
+        "inputIncludingCacheCreation": 19925,
+        "output": 202,
+        "walletUsd": "0.002846",
+        "secondsFromCallStart": 6.487
+      },
+      {
+        "operation": "T28-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:23:47",
+        "inputIncludingCacheCreation": 17723,
+        "output": 191,
+        "walletUsd": "0.001748",
+        "secondsFromCallStart": 6.033
       },
       {
         "operation": "T14-blind:gpt-6.1-sol",
@@ -2212,6 +2435,33 @@
         "secondsFromCallStart": 10.556
       },
       {
+        "operation": "T27-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:20:23",
+        "inputIncludingCacheCreation": 34663,
+        "output": 278,
+        "walletUsd": "0.005544",
+        "secondsFromCallStart": 10.857
+      },
+      {
+        "operation": "T27-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:20:29",
+        "inputIncludingCacheCreation": 9864,
+        "output": 365,
+        "walletUsd": "0.001554",
+        "secondsFromCallStart": 5.111
+      },
+      {
+        "operation": "T27-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:20:35",
+        "inputIncludingCacheCreation": 9183,
+        "output": 250,
+        "walletUsd": "0.000962",
+        "secondsFromCallStart": 4.65
+      },
+      {
         "operation": "T09-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
         "walletTimeAsiaShanghai": "2026-11-01 20:39:30",
@@ -2302,7 +2552,7 @@
         "secondsFromCallStart": 5.938
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 6
+    "unmatchedSuccessfulGatewayCalls": 0
   },
   "sourceDownloadFailures": [
     {
@@ -8367,11 +8617,39 @@
               ],
               "eventTraceSha256": "7d990dbf9c676f4b403835e7a30541cda841d74a69e170179913a12a60f0237e",
               "finalSha256": "97262fbf4e855b47aa72bd37b4654fa8231b10efeed7437eb79c017df961948b"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:21:24.400341+00:00",
+              "finishedAt": "2026-11-01T13:22:35.286780+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 70.89,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 370299,
+                  "cached_input_tokens": 329344,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1777,
+                  "reasoning_output_tokens": 37
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 11,
+                "pilot.repo_search:completed": 12,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 7
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "4f568c9bf4260d01b427f3589f6bb381ade3c0010354e81dca45f008ca4ebbf9",
+              "finalSha256": "84562c294c26647e64d2f3b2ce3225abe691ad96b895b96277c321747dcdaf50"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
           "sessions": [
@@ -8450,8 +8728,8 @@
           "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
@@ -8466,10 +8744,53 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Distinguishes namespace from repository_url, correctly separates parsing from serialization, and proposes useful local serialization assertions without claiming tests ran. However, it does not explicitly record the maintainer’s compatibility and security objections, and applicable-specification verification remains outstanding. Its decisive claims about ociPurl and generic namespace construction cannot be verified from the supplied captured source reads.",
+            "memex": "Distinguishes namespace from repository_url, records the maintainer’s compatibility objection without treating it as accepted policy, and proposes specification checks and local serialization fixtures. However, it omits the security objection and does not complete specification verification. The supplied reads confirm the parser and a call to ociPurl, but do not establish the helper behavior asserted in the handoff. No tests or maintainer acceptance substantiate those conclusions."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Identifies the OCI-specific serialization path (ociPurl) that correctly omits namespace and preserves registry in repository_url, advancing prior analysis. However, confirms a separate manifest-image assembly path still passes group as namespace input, leaving end-to-end output unverified. Static source inspection only; no runtime verification or test execution performed.",
+            "memex": "Traces the decisive Docker parent construction path through ociPurl, confirming namespace omission and repository_url preservation in that route. Acknowledges the unresolved manifest-image path and maintainer's stated compatibility concerns from July 2025. Establishes that the direct Docker serialization is now compliant, but does not verify whether the reported defect still reproduces in either path, or confirm spec conformity."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree on score 1. C01 correctly distinguishes namespace from repository_url and separates parsing from serialization, but does not explicitly record the maintainer's compatibility/security objections and leaves specification verification outstanding. Its claims about ociPurl and generic namespace construction are not verifiable from the supplied captured reads, so it is partial rather than meeting criteria.",
+            "memex": "Both reviewers agree on score 1. C02 distinguishes namespace from repository_url, records the maintainer's compatibility objection without treating it as accepted policy, and proposes specification checks and local serialization fixtures. However, it omits the security objection and does not complete specification verification; the supplied reads confirm the parser and a call to ociPurl but not the helper behavior asserted. Partial, not full compliance."
+          },
+          "materialDisagreement": false,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -8678,10 +8999,53 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Distinguishes the historical mktime/timestamp crash from the pinned _parse_header_date/date implementation, supported by lines 358–414 and 441–465. Treats unusual-year interpretations and archive-wide frequency as unresolved. Proposes deterministic raw-message cases covering both reported headers, missing/unparseable dates, and ordinary timezone-aware numeric offsets, with exact-output assertions. Clearly states that no tests were performed.",
+            "memex": "Correctly distinguishes the historical crash from the current source, explains missing-date and conversion-failure handling, and avoids asserting archive-wide prevalence or verified runtime results. Its proposed regression cases cover reported, missing/invalid, and fallback dates, but do not explicitly include the required ordinary timezone-aware control case. No project-test or maintainer acceptance evidence establishes that missing coverage."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Correctly distinguishes the pinned source's `_parse_header_date()` function (using `parsedate_to_datetime`) from the historical crash site (`datetime.fromtimestamp(time.mktime())`). Identifies that exception handling exists but does not establish correctness of parsed dates. Notes timezone-free fallbacks create naive datetimes before `.astimezone(UTC)`, making results host-dependent despite UTC comments. Proposes multi-platform regression testing covering both reported headers, missing dates, and all fallback formats under different host timezones. However, somewhat verbose and could be more concise about the core gap: no verification of actual outputs for the problematic dates.",
+            "memex": "Also correctly identifies the historical crash (`mailhelper_headerdata.py:43`) versus the pinned source's different implementation. Emphasizes that RFC 5322 compliance does not establish Python/platform behavior, and that IMAP vs. web archive representation differences are additional test cases, not proof. Identifies the same timezone-naive datetime issue in lines 384–400. Crucially adds that no-crash behavior and correct date values require separate verification, and flags that header stripping occurs outside the conversion handlers. Proposes checking both reported dates and suspicious *successful* parses. Slightly clearer framing of the key distinction but similarly lacks concrete assessment of whether the pinned source actually handles the `Jun 100` or `Jun 0` dates correctly."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree C01 distinguishes the historical mktime/timestamp crash from the pinned _parse_header_date/date path (lines 358–414, 441–465), treats unusual-year interpretation and archive-wide frequency as unresolved, and proposes deterministic raw-message cases covering both reported headers, missing/unparseable dates, and ordinary timezone-aware numeric offsets with exact-output assertions. The haiku reviewer's lower score rests on verbosity and a claimed lack of output verification, but the frozen criteria do not require reproducing runtime outputs; C01 explicitly flags that uncertainty. Meets all three acceptance criteria.",
+            "memex": "C02 correctly separates the historical crash from the current parser and avoids asserting archive-wide prevalence, but its proposed regression plan omits an explicit ordinary timezone-aware control case, which the frozen criteria require. The sol reviewer's partial score is supported; the haiku reviewer's equal score does not cure the missing required case. Partial."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -8735,10 +9099,67 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:23:08.495392+00:00",
+              "finishedAt": "2026-11-01T13:23:53.078900+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 44.58,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 124482,
+                  "cached_input_tokens": 103936,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 988,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_read:completed": 2
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "53f79715da7da7012c23a377c49ccdd6e5670069af2252490fe50421b481dffb",
+              "finalSha256": "fdb9496c71ca54f09e0e153b90d37f43da89e7c133e8ec93769c92709e05ed1e"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:23:53.081487+00:00",
+              "finishedAt": "2026-11-01T13:24:47.956018+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 54.87,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 230680,
+                  "cached_input_tokens": 201600,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1144,
+                  "reasoning_output_tokens": 10
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 4,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 9,
+                "pilot.repo_read:completed": 2
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "9004fd4bd40983d924ed6459f38c3c5214a43c054ad7fedbf41907e1f679fe06",
+              "finalSha256": "9cc4ecb2de9aeb624cd7049d77dad242ce888a1cb1f2bb885b404b04bebd26c1"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
           "sessions": [],
@@ -8748,10 +9169,12 @@
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
+        "session1Written": [
+          "mem_efa16bf322"
+        ],
         "session2OpenedPrior": [],
         "session2CitedPrior": [],
         "session2OpenedS1Handoff": false,
@@ -8820,18 +9243,53 @@
           "testStatus": "NOT RUN"
         },
         "memex": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:23:08.495582+00:00",
+              "finishedAt": "2026-11-01T13:23:54.370507+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 45.87,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 151163,
+                  "cached_input_tokens": 130304,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1260,
+                  "reasoning_output_tokens": 8
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "54d76d5e88b84b873230259b4ca2b14a6078bff67f6f60202a4e27607d15dba2",
+              "finalSha256": "63b6fb646cd7ea0e558432af64c17ed26315c29d9e8ac9789e65a3d6494bcea7"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
+        "session1Written": [
+          "mem_401758fe13"
+        ],
+        "session2OpenedPrior": [
+          "mem_401758fe13"
+        ],
         "session2CitedPrior": [],
         "session2OpenedS1Handoff": false,
         "overlappingAccess": false
