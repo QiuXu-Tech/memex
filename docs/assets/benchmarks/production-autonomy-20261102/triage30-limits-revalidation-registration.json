@@ -1,0 +1,41 @@
+{
+  "registeredAt": "2026-11-01T18:05:30.764694+00:00",
+  "kind": "post-hoc-review-reference-revalidation",
+  "reason": "The original parser rejected references to limits even though the exact limits text was visible at the top level of the frozen packet.",
+  "originalPlanSha256": "b3063c65abadcdd504a96954a2184558f5e2b384fe7b01ca33c11cee00776d58",
+  "runnerSha256": "75fc7d8ebeadd09d2285450d73256252bd97f4bf69410debd49b969ab9b551da",
+  "reviewParserSha256": "38c1957e63b3afdebd8c91e96645e0585a233e8b74bf8d618f2d64def5a282f8",
+  "gatewayHelperSha256": "9449205e5bd915c4682a0b001b8de258658fbd52b76f4e7aee09d0320a4f37eb",
+  "items": [
+    {
+      "task": "02",
+      "model": "gpt-6.1-sol",
+      "originalReviewSha256": "6f25b66835c99790eddd71f589d9c3c2511fa8131772cf6bd72133e6c8ab9160",
+      "packetSha256": "03b1a209e2f1596267ff007c9763a72327a933197702f2545441d93ff61ebad5",
+      "gatewayTraceSha256": "a7298f6836dc72f92c2c32dba71f04673e1e970710a5f2d64c7ca72983853903"
+    },
+    {
+      "task": "03",
+      "model": "gpt-6.1-sol",
+      "originalReviewSha256": "6f25b66835c99790eddd71f589d9c3c2511fa8131772cf6bd72133e6c8ab9160",
+      "packetSha256": "f4d042768cd4048dcdede9d09206d8007556ac7306f4e5e2adb183af2a712828",
+      "gatewayTraceSha256": "1063aa8528db0eeeeb8c3c4bf79d3b26dabe6d8b3421527d9448c440ec2b2015"
+    },
+    {
+      "task": "18",
+      "model": "gpt-6.1-sol",
+      "originalReviewSha256": "6f25b66835c99790eddd71f589d9c3c2511fa8131772cf6bd72133e6c8ab9160",
+      "packetSha256": "06b6af76721ee730a85bf6c961736baee97827efdcde6b3c23d6fd0dd231cafe",
+      "gatewayTraceSha256": "52489562264e3a18a1ce35e6b3a119397c4dd046527791c18eea07634c12a24b"
+    }
+  ],
+  "method": "Revalidate existing raw responses without new reviewer calls, allowing only the exact visible packet limits field as an additional evidence ID. Preserve original statuses. If two valid reviews disagree, request a separate low-effort Gemini adjudication.",
+  "adjudicator": "gemini-3.8-flash",
+  "adjudicationMaxOutputTokens": 3000,
+  "reasoningEffort": "low",
+  "temperature": 1,
+  "limits": [
+    "This correction is post hoc and is reported separately from the frozen primary analysis.",
+    "Responses invalid for any other reason remain invalid."
+  ]
+}
