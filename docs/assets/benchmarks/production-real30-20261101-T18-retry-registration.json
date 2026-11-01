@@ -1,0 +1,14 @@
+{
+  "registeredAt": "2026-11-01T13:00:29.930186+00:00",
+  "task": "T18",
+  "type": "post-hoc whole-pair retry after control session 1 timed out",
+  "reason": "Original control session 1 timed out after 180 seconds without turn.completed or usage, so control session 2 did not run. Original pair, partial output and missing cost remain unchanged.",
+  "design": "Repeat both randomized arms from fresh isolated stores and processes using the originally frozen source, criteria, prompt, assignment and two-session handoff procedure. Post-hoc retry of the same issue, not an additional independent task; report original and retry separately.",
+  "sessionTimeoutSeconds": 300,
+  "originalResultSha256": "83c4574e4df832dcfd8684169a8c09b2863271a1c6810e435cef97c7d9a2a869",
+  "originalBatchRegistrationSha256": "bd19536d06b0baa4119dbf6161926d4eb44f2dc56ea7b9d9fc9e5784d8923bf2",
+  "retryRunnerSha256": "3f8100e1e24fc7a8e410db0ed3b5bf900a775b5e2cdc4613cfd09e215b602c16",
+  "retryInitialArchiveSha256": "b0809488b14ac71e30d9b4541bd841764634a5a6f60fdf70267e1da88146d3dd",
+  "usage": "Log all retry sessions; unknown original timed-out usage stays unknown.",
+  "rule": "Start only when a solver slot is free; at most two solver tasks active; do not overwrite original data."
+}
