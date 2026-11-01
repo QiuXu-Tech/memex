@@ -1,59 +1,73 @@
 {
-  "generatedAt": "2026-11-01T12:49:39.982473+00:00",
+  "generatedAt": "2026-11-01T12:54:26.377534+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 11,
-    "reviewComplete": 10,
+    "pairedCompleted": 12,
+    "reviewComplete": 11,
     "qualityFlagged": 2,
-    "notStarted": 18,
-    "startedOrIncomplete": 1
+    "notStarted": 15,
+    "startedOrIncomplete": 3
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 3513634,
-      "cached_input_tokens": 2979072,
-      "output_tokens": 27843,
-      "elapsedSeconds": 1439.1399999999999
+      "input_tokens": 4243220,
+      "cached_input_tokens": 3622272,
+      "output_tokens": 32908,
+      "elapsedSeconds": 1674.59
     },
     "memex": {
-      "input_tokens": 4786177,
-      "cached_input_tokens": 4119424,
-      "output_tokens": 35681,
-      "elapsedSeconds": 1746.1999999999998,
+      "input_tokens": 5494880,
+      "cached_input_tokens": 4732288,
+      "output_tokens": 40784,
+      "elapsedSeconds": 1949.5499999999997,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 3143483,
-      "cached_input_tokens": 2657152,
-      "output_tokens": 25214,
-      "elapsedSeconds": 1322.98
+      "input_tokens": 3379932,
+      "cached_input_tokens": 2864256,
+      "output_tokens": 27314,
+      "elapsedSeconds": 1436.51
     },
     "memex": {
-      "input_tokens": 4519646,
-      "cached_input_tokens": 3888128,
-      "output_tokens": 33879,
-      "elapsedSeconds": 1502.6899999999998
+      "input_tokens": 4962723,
+      "cached_input_tokens": 4262656,
+      "output_tokens": 37383,
+      "elapsedSeconds": 1630.4399999999998
+    }
+  },
+  "repoReadRepetitionPaired": {
+    "baseline": {
+      "successfulReads": 94,
+      "sameSessionExactRepeats": 0,
+      "session2PreviouslyReadExact": 9,
+      "session2RepeatedResultCharacters": 46509
+    },
+    "memex": {
+      "successfulReads": 100,
+      "sameSessionExactRepeats": 0,
+      "session2PreviouslyReadExact": 8,
+      "session2RepeatedResultCharacters": 35656
     }
   },
   "memory": {
-    "session1Writes": 12,
-    "session2OpenedPrior": 12,
-    "session2CitedPrior": 11,
-    "overlappingAccess": 10
+    "session1Writes": 14,
+    "session2OpenedPrior": 14,
+    "session2CitedPrior": 12,
+    "overlappingAccess": 12
   },
   "memoryPaired": {
-    "session1Writes": 11,
-    "session2OpenedPrior": 11,
-    "session2CitedPrior": 11,
-    "overlappingAccess": 10
+    "session1Writes": 12,
+    "session2OpenedPrior": 12,
+    "session2CitedPrior": 12,
+    "overlappingAccess": 11
   },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 7,
+    "equal": 8,
     "baseline_higher": 1
   },
   "reviewGatewayAttempts": [
@@ -786,60 +800,111 @@
           "reasoning_tokens": 0
         }
       }
+    },
+    {
+      "operation": "T14-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T12:50:53.554802+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 15508,
+        "completion_tokens": 471,
+        "total_tokens": 15979,
+        "completion_tokens_details": {
+          "reasoning_tokens": 310
+        }
+      }
+    },
+    {
+      "operation": "T14-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T12:51:07.380916+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 13498,
+        "completion_tokens": 365,
+        "total_tokens": 13863,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 13495,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 13498,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 13495,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T14-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T12:51:13.930998+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 250,
+        "prompt_tokens": 12133,
+        "total_tokens": 12383,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
     }
   ],
   "billingCandidate": {
-    "observedAt": "2026-11-01T12:31:16.513472+00:00",
-    "source": "APIMaster usage-log UI",
-    "matching": "model, token counts and approximate time; no per-request receipt linkage",
+    "observedAt": "2026-11-01T12:52:22.628061+00:00",
+    "source": "APIMaster usage-log UI, first page after reload",
+    "matching": "unique model, exact prompt/output counts and provider finish within 180 seconds of local call start; no per-request receipt linkage",
+    "candidateSubtotalUsd": "0.096552",
     "rows": [
       {
-        "operation": "T01-blind:gpt-6.1-sol",
+        "operation": "T08-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
-        "walletTimeAsiaShanghai": "2026-11-01 20:23:30",
-        "inputIncludingCacheCreation": 36889,
-        "output": 262,
-        "walletUsd": "0.005874"
+        "walletTimeAsiaShanghai": "2026-11-01 20:38:11",
+        "inputIncludingCacheCreation": 15393,
+        "output": 300,
+        "walletUsd": "0.002598",
+        "secondsFromCallStart": 13.498
       },
       {
-        "operation": "T01-blind:claude-haiku-4-5",
+        "operation": "T08-blind:claude-haiku-4-5",
         "model": "claude-haiku-4-5",
-        "walletTimeAsiaShanghai": "2026-11-01 20:23:38",
-        "inputIncludingCacheCreation": 17971,
-        "output": 556,
-        "walletUsd": "0.002772"
+        "walletTimeAsiaShanghai": "2026-11-01 20:38:19",
+        "inputIncludingCacheCreation": 13411,
+        "output": 280,
+        "walletUsd": "0.001996",
+        "secondsFromCallStart": 7.437
       },
       {
-        "operation": "T01-adjudication",
+        "operation": "T08-adjudication",
         "model": "deepseek-flash",
-        "walletTimeAsiaShanghai": "2026-11-01 20:23:45",
-        "inputIncludingCacheCreation": 16002,
-        "output": 216,
-        "walletUsd": "0.001594"
-      },
-      {
-        "operation": "T03-blind:gpt-6.1-sol",
-        "model": "gpt-6.1-sol",
-        "walletTimeAsiaShanghai": "2026-11-01 20:24:04",
-        "inputIncludingCacheCreation": 18916,
-        "output": 447,
-        "walletUsd": "0.003252"
-      },
-      {
-        "operation": "T03-blind:claude-haiku-4-5",
-        "model": "claude-haiku-4-5",
-        "walletTimeAsiaShanghai": "2026-11-01 20:24:11",
-        "inputIncludingCacheCreation": 18762,
-        "output": 405,
-        "walletUsd": "0.002798"
-      },
-      {
-        "operation": "T03-adjudication",
-        "model": "deepseek-flash",
-        "walletTimeAsiaShanghai": "2026-11-01 20:24:17",
-        "inputIncludingCacheCreation": 16153,
-        "output": 258,
-        "walletUsd": "0.001624"
+        "walletTimeAsiaShanghai": "2026-11-01 20:38:25",
+        "inputIncludingCacheCreation": 12258,
+        "output": 402,
+        "walletUsd": "0.001310",
+        "secondsFromCallStart": 5.414
       },
       {
         "operation": "T05-blind:gpt-6.1-sol",
@@ -847,7 +912,8 @@
         "walletTimeAsiaShanghai": "2026-11-01 20:29:50",
         "inputIncludingCacheCreation": 38891,
         "output": 338,
-        "walletUsd": "0.006240"
+        "walletUsd": "0.006240",
+        "secondsFromCallStart": 25.813
       },
       {
         "operation": "T05-blind:claude-haiku-4-5",
@@ -855,7 +921,8 @@
         "walletTimeAsiaShanghai": "2026-11-01 20:30:13",
         "inputIncludingCacheCreation": 20962,
         "output": 346,
-        "walletUsd": "0.003068"
+        "walletUsd": "0.003068",
+        "secondsFromCallStart": 22.071
       },
       {
         "operation": "T05-adjudication",
@@ -863,7 +930,143 @@
         "walletTimeAsiaShanghai": "2026-11-01 20:30:19",
         "inputIncludingCacheCreation": 17909,
         "output": 218,
-        "walletUsd": "0.001774"
+        "walletUsd": "0.001774",
+        "secondsFromCallStart": 5.336
+      },
+      {
+        "operation": "T12-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:44:38",
+        "inputIncludingCacheCreation": 34575,
+        "output": 263,
+        "walletUsd": "0.005518",
+        "secondsFromCallStart": 7.302
+      },
+      {
+        "operation": "T12-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:44:45",
+        "inputIncludingCacheCreation": 20094,
+        "output": 449,
+        "walletUsd": "0.003006",
+        "secondsFromCallStart": 6.099
+      },
+      {
+        "operation": "T12-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:44:51",
+        "inputIncludingCacheCreation": 17684,
+        "output": 220,
+        "walletUsd": "0.001754",
+        "secondsFromCallStart": 4.928
+      },
+      {
+        "operation": "T01-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:23:30",
+        "inputIncludingCacheCreation": 36889,
+        "output": 262,
+        "walletUsd": "0.005874",
+        "secondsFromCallStart": 8.952
+      },
+      {
+        "operation": "T01-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:23:38",
+        "inputIncludingCacheCreation": 17971,
+        "output": 556,
+        "walletUsd": "0.002772",
+        "secondsFromCallStart": 7.003
+      },
+      {
+        "operation": "T01-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:23:45",
+        "inputIncludingCacheCreation": 16002,
+        "output": 216,
+        "walletUsd": "0.001594",
+        "secondsFromCallStart": 5.977
+      },
+      {
+        "operation": "T11-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:40:05",
+        "inputIncludingCacheCreation": 23142,
+        "output": 452,
+        "walletUsd": "0.003906",
+        "secondsFromCallStart": 21.425
+      },
+      {
+        "operation": "T11-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:40:11",
+        "inputIncludingCacheCreation": 23201,
+        "output": 256,
+        "walletUsd": "0.003326",
+        "secondsFromCallStart": 5.052
+      },
+      {
+        "operation": "T11-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:40:19",
+        "inputIncludingCacheCreation": 20097,
+        "output": 282,
+        "walletUsd": "0.002006",
+        "secondsFromCallStart": 7.206
+      },
+      {
+        "operation": "T14-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:51:07",
+        "inputIncludingCacheCreation": 15508,
+        "output": 471,
+        "walletUsd": "0.002746",
+        "secondsFromCallStart": 13.445
+      },
+      {
+        "operation": "T14-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:51:13",
+        "inputIncludingCacheCreation": 13498,
+        "output": 365,
+        "walletUsd": "0.002054",
+        "secondsFromCallStart": 5.619
+      },
+      {
+        "operation": "T14-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:51:20",
+        "inputIncludingCacheCreation": 12133,
+        "output": 250,
+        "walletUsd": "0.001242",
+        "secondsFromCallStart": 6.069
+      },
+      {
+        "operation": "T03-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:24:04",
+        "inputIncludingCacheCreation": 18916,
+        "output": 447,
+        "walletUsd": "0.003252",
+        "secondsFromCallStart": 18.262
+      },
+      {
+        "operation": "T03-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:24:11",
+        "inputIncludingCacheCreation": 18762,
+        "output": 405,
+        "walletUsd": "0.002798",
+        "secondsFromCallStart": 6.839
+      },
+      {
+        "operation": "T03-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:24:17",
+        "inputIncludingCacheCreation": 16153,
+        "output": 258,
+        "walletUsd": "0.001624",
+        "secondsFromCallStart": 5.602
       },
       {
         "operation": "T07-blind:gpt-6.1-sol",
@@ -871,7 +1074,8 @@
         "walletTimeAsiaShanghai": "2026-11-01 20:30:35",
         "inputIncludingCacheCreation": 16604,
         "output": 254,
-        "walletUsd": "0.002748"
+        "walletUsd": "0.002748",
+        "secondsFromCallStart": 15.186
       },
       {
         "operation": "T07-blind:claude-haiku-4-5",
@@ -879,7 +1083,8 @@
         "walletTimeAsiaShanghai": "2026-11-01 20:30:43",
         "inputIncludingCacheCreation": 15318,
         "output": 550,
-        "walletUsd": "0.002406"
+        "walletUsd": "0.002406",
+        "secondsFromCallStart": 6.997
       },
       {
         "operation": "T07-adjudication",
@@ -887,16 +1092,101 @@
         "walletTimeAsiaShanghai": "2026-11-01 20:30:49",
         "inputIncludingCacheCreation": 13723,
         "output": 301,
-        "walletUsd": "0.001410"
+        "walletUsd": "0.001410",
+        "secondsFromCallStart": 5.106
+      },
+      {
+        "operation": "T05-posthoc-supplement",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:36:16",
+        "inputIncludingCacheCreation": 20184,
+        "output": 222,
+        "walletUsd": "0.001992",
+        "secondsFromCallStart": 5.616
+      },
+      {
+        "operation": "T13-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:44:59",
+        "inputIncludingCacheCreation": 22510,
+        "output": 223,
+        "walletUsd": "0.003632",
+        "secondsFromCallStart": 7.264
+      },
+      {
+        "operation": "T13-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:45:07",
+        "inputIncludingCacheCreation": 22579,
+        "output": 523,
+        "walletUsd": "0.003388",
+        "secondsFromCallStart": 6.855
+      },
+      {
+        "operation": "T13-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:45:13",
+        "inputIncludingCacheCreation": 19895,
+        "output": 301,
+        "walletUsd": "0.001994",
+        "secondsFromCallStart": 5.308
+      },
+      {
+        "operation": "T04-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:37:46",
+        "inputIncludingCacheCreation": 34534,
+        "output": 285,
+        "walletUsd": "0.005528",
+        "secondsFromCallStart": 12.979
+      },
+      {
+        "operation": "T04-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:37:52",
+        "inputIncludingCacheCreation": 15058,
+        "output": 300,
+        "walletUsd": "0.002232",
+        "secondsFromCallStart": 5.339
+      },
+      {
+        "operation": "T04-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:37:57",
+        "inputIncludingCacheCreation": 13606,
+        "output": 206,
+        "walletUsd": "0.001364",
+        "secondsFromCallStart": 4.379
+      },
+      {
+        "operation": "T09-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 20:39:30",
+        "inputIncludingCacheCreation": 34896,
+        "output": 262,
+        "walletUsd": "0.005566",
+        "secondsFromCallStart": 15.712
+      },
+      {
+        "operation": "T09-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 20:39:36",
+        "inputIncludingCacheCreation": 16066,
+        "output": 428,
+        "walletUsd": "0.002440",
+        "secondsFromCallStart": 5.279
+      },
+      {
+        "operation": "T09-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 20:39:43",
+        "inputIncludingCacheCreation": 13641,
+        "output": 278,
+        "walletUsd": "0.001394",
+        "secondsFromCallStart": 6.417
       }
     ],
-    "candidateSubtotalUsd": "0.035560",
-    "gaps": [
-      "Codex subscription allocation",
-      "VM and host costs",
-      "engineering time",
-      "request-to-receipt linkage"
-    ]
+    "unmatchedSuccessfulGatewayCalls": 0
   },
   "sourceDownloadFailures": [
     {
@@ -3619,8 +3909,51 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Mostly source-supported: it distinguishes nested dependency failure from absent fastai, correctly notes that the replacement message omits detail while implicit exception context remains, and avoids claiming diagnostics fix training. It proposes useful verification and notes uncertainty around fastprogress, but does not propose isolated mocked import cases as required; its memory/context reference also weakens the handoff.",
+            "baseline": "Mostly source-supported: it distinguishes fastai installation from nested import failure, accurately describes the diagnostic and exception context, and retains uncertainty about fastprogress and upstream resolution. Its verification plan covers relevant scenarios but does not specify isolated mocked import cases, so it does not meet all frozen criteria."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Root cause clearly identified: fastai package present but nested import (IPython via fastprogress) missing. Evidence chain from issue comments (Jan 6 traceback showing fastai→fastprogress→IPython failure, Jan 8 reporter confirmation that `pip install ipython` resolved it, Feb 2 fastprogress 1.0.5 downgrade workaround) establishes the mechanism. Pinned source (try_import.py:150–153 catching ModuleNotFoundError and masking the actual missing module) explains why diagnostics are misleading. The November 1 comment correctly identifies that catching ImportError instead and chaining with `from e` would preserve the original exception. Issue remains open; no tests run, but source-supported diagnosis is complete.",
+            "baseline": "Diagnosis materially equivalent to C01: fastai installed but transitive dependency (IPython) missing; AutoGluon's broad ModuleNotFoundError handler masks the actual failure. Same evidence base (Jan 6 CI traceback, Jan 8 reporter fix confirmation, Feb/Mar workarounds). Correctly notes that exception context remains implicit but diagnostic text loses detail. Distinguishes between 'discarded' language (overstated) and actual loss of actionable error identity. Proposes verification plan but acknowledges none executed. Source reading confirms the try_import mechanism and imports_helper path. Meets criteria: identifies the actual failure mode, supports it with comment evidence and traced code path, explains why current diagnostics fail."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Both reviews agree the diagnosis is source-supported and that the nested-dependency vs. absent-fastai distinction is made. The disagreement is on whether the frozen criterion requiring isolated mocked import cases is met. C01 proposes fresh-subprocess cases covering absent fastai, installed fastai with missing IPython, and healthy deeper imports, but does not specify mocked import cases; it also includes a memory/context reference that weakens the handoff. It correctly notes the replacement message omits detail while implicit exception context remains, and retains fastprogress uncertainty. Partial, not full, criteria satisfaction.",
+            "baseline": "C02 is materially equivalent to C01 on the core diagnosis: fastai installed but a transitive dependency (IPython via fastprogress) missing, with the broad ModuleNotFoundError handler masking the actual failure. It correctly qualifies the November 1 'discarded' claim by noting exception context remains, and retains fastprogress/upstream uncertainty. However, its verification plan does not specify isolated mocked import cases as required by the frozen criteria, so it is partial rather than fully meeting criteria."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "qualityFlags": []
     },
     {
@@ -3864,27 +4197,133 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:49:50.117786+00:00",
+              "finishedAt": "2026-11-01T12:50:26.568509+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 36.45,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 120330,
+                  "cached_input_tokens": 105984,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1053,
+                  "reasoning_output_tokens": 36
+                }
+              ],
+              "callCounts": {
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_search:failed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 3,
+                "pilot.archive_open:completed": 3
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "None"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "archive_search",
+                  "status": "failed",
+                  "error": "None"
+                }
+              ],
+              "eventTraceSha256": "b4edc1d810b041fb61cd8fc8fe7dadb39eef09f475f0c7bc10d4a7b539d5f57a",
+              "finalSha256": "c54feeac4a2ad878574d8798e29371cf0933a53d4fa597d749447735a4a13bb4"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T12:50:26.570577+00:00",
+              "finishedAt": "2026-11-01T12:51:52.038253+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 85.47,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 372807,
+                  "cached_input_tokens": 330112,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1912,
+                  "reasoning_output_tokens": 51
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 7,
+                "pilot.repo_read:completed": 10,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_search:completed": 16
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "45131ea5347f30cdaa8fdeb037bfc03f964b4e041038855de006e5b9cc358e87",
+              "finalSha256": "1b191645a89d01385fd67c711debcc32b1f0f63ad4a8cf75019367fea805b928"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:51:52.040517+00:00",
+              "finishedAt": "2026-11-01T12:53:07.643922+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 75.6,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 265626,
+                  "cached_input_tokens": 238336,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1599,
+                  "reasoning_output_tokens": 43
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 7,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_search:completed": 3,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "2cab69b3403ad4c405b80a09092cdeae6895365d01548f8e17519114425ceddc",
+              "finalSha256": "fe51ac86a6637b06178e03f21b5b0ca04e73ec28b20c000a9869dd0d2418ad69"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
+        "session1Written": [
+          "mem_cf53f29456"
+        ],
+        "session2OpenedPrior": [
+          "mem_cf53f29456"
+        ],
         "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
@@ -3940,27 +4379,174 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:51:57.897064+00:00",
+              "finishedAt": "2026-11-01T12:52:57.506799+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 59.61,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 124088,
+                  "cached_input_tokens": 109184,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1090,
+                  "reasoning_output_tokens": 11
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_read:failed": 2,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_search:completed": 1,
+                "pilot.repo_read:completed": 3
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "None"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "None"
+                }
+              ],
+              "eventTraceSha256": "e7c43cd5025a4de71308d2dd735df0fcdcd90d770c7112b5018a571a198ce3d6",
+              "finalSha256": "83b3d11841438cf81c8fb9e950b9ec70e3c4fbfb4877f6aee0bcbd9050e6affe"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T12:52:57.510170+00:00",
+              "finishedAt": "2026-11-01T12:53:51.430388+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 53.92,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 112361,
+                  "cached_input_tokens": 97920,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1010,
+                  "reasoning_output_tokens": 29
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_search:failed": 1,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 4,
+                "pilot.repo_read:completed": 2
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_search",
+                  "status": "failed",
+                  "error": "None"
+                }
+              ],
+              "eventTraceSha256": "5f081d514e83c3171c915bd722db19ca311f31cb9d7cd21d415f091ec0e1d3c1",
+              "finalSha256": "01595011c2dd0af18a92e247e99904d38aa4228a35d161acf141d4836461e39b"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T12:49:50.143118+00:00",
+              "finishedAt": "2026-11-01T12:50:53.813248+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 63.67,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 209651,
+                  "cached_input_tokens": 180352,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1719,
+                  "reasoning_output_tokens": 25
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 1,
+                "memex.memory_search:completed": 1,
+                "pilot.repo_search:completed": 9,
+                "pilot.repo_read:completed": 4,
+                "pilot.archive_open:completed": 5,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "3a53390205dd7461fdcf62fa2d754a5ad3bc31863751099369abebd46f129f20",
+              "finalSha256": "6c99e75ac4996009d719c56800c43b55b30d6f37d6f4a475a4f23686483db086"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T12:50:53.815002+00:00",
+              "finishedAt": "2026-11-01T12:51:57.895366+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 64.08,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 233426,
+                  "cached_input_tokens": 194176,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1785,
+                  "reasoning_output_tokens": 32
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_read:completed": 5,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 6,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "52cab911f40ff3751534112352e630eec15bd67ec90e15b62ed10b1df25a7d10",
+              "finalSha256": "25bbd80cd2dc19d86f93046876e4535a411a4799f2b13981597dc72c421623da"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "NOT RUN",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_cc6c1ee6f0"
+        ],
+        "session2OpenedPrior": [
+          "mem_cc6c1ee6f0"
+        ],
+        "session2CitedPrior": [
+          "mem_cc6c1ee6f0"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
@@ -4029,7 +4615,7 @@
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
         "session1Written": [],
