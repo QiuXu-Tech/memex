@@ -40,4 +40,5 @@ class ReviewValidation(unittest.TestCase):
    with patch.object(m,'BASE',base),patch.object(m,'SRC',source):m.packet('01')
    comment=json.loads((base/'reviews/01/packet.json').read_text())['evidence']['comment:C1']
    self.assertEqual(comment['author'],'reporter');self.assertEqual(comment['createdAt'],'2026-01-01T00:00:00Z')
+   self.assertIn('limits',json.loads((base/'reviews/01/packet.json').read_text())['evidence'])
 if __name__=='__main__':unittest.main()

@@ -60,7 +60,7 @@ def plan():
  initial=BASE/'reviews'/'plan-initial.json'
  if initial.exists():
   reg['revisesPlanSha256']=sha(initial)
-  reg['revision']='Before reviewer calls, reject missing scores and cross-candidate-only evidence and skip pairs without two completed final sessions.'
+  reg['revision']='Before supplemental reviewer calls, expose the packet limitations as an evidence ID; reviewers in the original cohort cited the visible limitations but the initial validator rejected them.'
  save(BASE/'reviews'/'plan.json',reg);print(json.dumps({'reviewPlanSha256':sha(BASE/'reviews'/'plan.json')}),flush=True)
 
 def source_trace(task,arm):
@@ -77,7 +77,8 @@ def source_trace(task,arm):
 
 def packet(task):
  reg=load(BASE/'registration.json');t=next(x for x in reg['tasks'] if x['id']==task);issue=load(SRC/f'{task}.issue.json')
- evidence={'criterion':t['frozenAcceptance'],'issue':clipped(issue['title']+'\n'+issue['body'],14000)}
+ limits='Historical compressed replay; source may postdate comments. Partial recorded source excerpts, no execution verifier, and AI review cannot establish a production fix.'
+ evidence={'criterion':t['frozenAcceptance'],'issue':clipped(issue['title']+'\n'+issue['body'],14000),'limits':limits}
  for i,c in enumerate(issue['comments']['nodes'],1):
   evidence[f'comment:C{i}']={**clipped(c['body'],1800),'createdAt':c.get('createdAt'),
                             'author':(c.get('author') or {}).get('login'),'url':c.get('url')}
@@ -90,8 +91,7 @@ def packet(task):
   evidence[f'session:{label}']={'lastStage':result.get('stage'),'completed':result.get('responseCompleted'),'status':result.get('status')}
   evidence[f'source:{label}']=source_trace(task,arm)
  folder=BASE/'reviews'/task;save(folder/'key.json',key)
- save(folder/'packet.json',{'issueUrl':t['issueUrl'],'sourceCommit':t['sourceCommit'],'evidence':evidence,
-  'limits':'Historical compressed replay; source may postdate comments. Partial recorded source excerpts, no execution verifier, and AI review cannot establish a production fix.'})
+ save(folder/'packet.json',{'issueUrl':t['issueUrl'],'sourceCommit':t['sourceCommit'],'evidence':evidence})
  save(folder/'packet-registration.json',{'createdAt':now(),'reviewPlanSha256':sha(BASE/'reviews'/'plan.json'),
   'packetSha256':sha(folder/'packet.json'),'keySha256':sha(folder/'key.json')})
  return {'task':task,'packetSha256':sha(folder/'packet.json')}
