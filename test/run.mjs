@@ -3864,6 +3864,22 @@ await test('U3i', 'MCP distinguishes an empty archive from a search miss', async
   assert.doesNotMatch(miss, /archive is currently empty/i)
 })
 
+await test('U3j', 'MCP model guidance avoids redundant reads and labels uncertain memory', async () => {
+  const root = makeRoot('u3j-manual')
+  for (const model of ['claude-haiku-4-5', 'gpt-6.1-sol', 'gpt-4.1']) {
+    const replies = mcpExchange(root, ['--levels', 'l3', '--model', model], [
+      { jsonrpc: '2.0', id: 1, method: 'initialize', params: {} },
+    ])
+    const guidance = replies.get(1).result.instructions
+    const hint = guidance.split('## Model-specific guidance\n')[1].split('\n')[0]
+    assert.match(hint, /earlier context is not already available/i, model)
+    assert.match(hint, /use a sufficient preview/i, model)
+    assert.doesNotMatch(hint, /search first, open|search → open one record/i, model)
+    assert.match(guidance, /remembered conclusions can be wrong or stale/i, model)
+    assert.match(guidance, /unverified hypotheses as such/i, model)
+  }
+})
+
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
   const root = makeRoot('u4')
   const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))

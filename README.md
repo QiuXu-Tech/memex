@@ -17,7 +17,7 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 10 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **186/186 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **187/187 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
 
 ## 7B KV strategy comparison (latest)
 
@@ -86,7 +86,7 @@ Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: base
 
 ## Prospective engineering canary (2026-10-31)
 
-**Three-session issue replay (2026-11-01):** An analysis of the previous study found 28/28 treatment first sessions searched empty stores. MCP now distinguishes an empty archive from a nonempty search miss and avoids suggesting unnecessary fallback calls. Three new public-issue coding replays had **0/3 complete original Codex pairs** after interrupted sessions. A separately registered Claude continuation on one reused issue wrote and later opened a memory, but its candidate failed an additional inherited-setter regression despite passing the original fixed checks. AI review disagreed on the candidate; the adjudicator scored control/Memex **2/1**. These small historical replays do not establish production correctness or savings. [Methods, failures, cost and results](docs/production-longhorizon-20261101.md).
+**Three-session issue replay (2026-11-01):** An analysis of the previous study found 28/28 treatment first sessions searched empty stores. MCP now distinguishes an empty archive from a nonempty search miss and avoids suggesting unnecessary fallback calls. Three new public-issue coding replays had **0/3 complete original Codex pairs** after interrupted sessions. A separately registered Claude continuation on one reused issue wrote and later opened a memory, but its candidate failed an additional inherited-setter regression despite passing the original fixed checks. AI review disagreed on the candidate; the adjudicator scored control/Memex **2/1**. A fourth, new Chalk issue then timed out in session 1 in both arms, before editing was enabled; AI reviewers scored the empty artifacts 0/0, which is not a valid A/B comparison. After that attempt, contradictory model-specific search/open hints were aligned with the shared manual and guidance was added to label unverified hypotheses. These small historical replays do not establish production correctness or savings. [Methods, failures, cost and results](docs/production-longhorizon-20261101.md).
 
 ![Agent replay coverage, prior token use and a supplemental compatibility check](docs/assets/benchmarks/production-longhorizon-20261101.svg)
 
@@ -349,7 +349,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **182/182**, with **36/36 SQLite consistency** checks.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **187/187**, with **36/36 SQLite consistency** checks.
 
 | Metric | Result |
 |---|---|

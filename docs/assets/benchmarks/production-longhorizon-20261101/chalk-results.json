@@ -1,0 +1,224 @@
+{
+  "generatedAt": "2026-11-01T15:37:51.935128+00:00",
+  "kind": "one-new-issue-claude-code-three-session-randomized-replay",
+  "registrationSha256": "7b7bb93f6a3503cd5b1611661833686401d192be8ccb0f7fe8e3427ec3ec1e7f",
+  "issueUrl": "https://github.com/chalk/chalk/issues/690",
+  "sourceCommit": "72110019e147683f60e13fa0ff5c14a0c27cd9fe",
+  "criteria": [
+    "At ANSI level 1, grayscale indices 232–243 map to black, 244–250 to white, 251–255 to bright white for foreground and background.",
+    "Cover ansi256, rgb and hex entry points, preserving 256-color and truecolor controls.",
+    "Treat comments and proposed patches as reports; do not claim upstream acceptance or a full project suite."
+  ],
+  "strictCompletePair": false,
+  "arms": {
+    "baseline": {
+      "stages": [
+        {
+          "stage": 1,
+          "startedAt": "2026-11-01T15:30:28.256845+00:00",
+          "finishedAt": "2026-11-01T15:33:28.676523+00:00",
+          "elapsedSeconds": 180.42,
+          "exitCode": 143,
+          "timeout": true,
+          "shutdownTimeoutAfterResult": false,
+          "unexpectedTool": null,
+          "responseCompleted": false,
+          "usage": null,
+          "clientListPriceUsd": null,
+          "resultSubtype": null,
+          "toolCalls": {
+            "mcp__pilot__archive_search": 1,
+            "mcp__pilot__repo_search": 2,
+            "mcp__pilot__archive_open": 1
+          },
+          "traceSha256": "3bce4b4cf883b26b2cc19a0ce544515e0f092a67e05ecb621f3bd4998088a05d"
+        }
+      ],
+      "reportedUsage": {
+        "input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 0
+      },
+      "missingUsageSessions": 1,
+      "clientListPriceUsd": "0",
+      "outcome": {
+        "sessionsCompleted": 0,
+        "testExitCode": 1,
+        "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patchBytes": 0
+      }
+    },
+    "memex": {
+      "stages": [
+        {
+          "stage": 1,
+          "startedAt": "2026-11-01T15:27:27.004415+00:00",
+          "finishedAt": "2026-11-01T15:30:27.864772+00:00",
+          "elapsedSeconds": 180.86,
+          "exitCode": 143,
+          "timeout": true,
+          "shutdownTimeoutAfterResult": false,
+          "unexpectedTool": null,
+          "responseCompleted": false,
+          "usage": null,
+          "clientListPriceUsd": null,
+          "resultSubtype": null,
+          "toolCalls": {
+            "mcp__memex__memory_search": 1,
+            "mcp__pilot__repo_read": 2,
+            "mcp__pilot__archive_search": 1
+          },
+          "traceSha256": "6f85abe30de721604d968baf6592cf4cd31f37252b3028794c0ddad925af21f3"
+        }
+      ],
+      "reportedUsage": {
+        "input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "cache_read_input_tokens": 0,
+        "output_tokens": 0
+      },
+      "missingUsageSessions": 1,
+      "clientListPriceUsd": "0",
+      "outcome": {
+        "sessionsCompleted": 0,
+        "testExitCode": 1,
+        "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "patchBytes": 0
+      }
+    }
+  },
+  "reviews": [
+    {
+      "reviewer": "gpt-6.1-sol",
+      "status": "ok",
+      "scores": {
+        "memex": 0,
+        "baseline": 0
+      },
+      "reasons": {
+        "memex": "No patch or substantive fix is supplied. The frozen investigator-authored check fails because foreground output remains ANSI 37 (white) where ANSI 97 (bright white) is expected, demonstrating that a required level-1 mapping is unresolved. Background mappings, rgb/hex entry points, and preservation of higher-color controls are not established; this check is not the full upstream suite.",
+        "baseline": "No patch or substantive fix is supplied. The frozen investigator-authored check fails because foreground output remains ANSI 37 (white) where ANSI 97 (bright white) is expected, demonstrating that a required level-1 mapping is unresolved. Background mappings, rgb/hex entry points, and preservation of higher-color controls are not established; this check is not the full upstream suite."
+      },
+      "materialDisagreement": null,
+      "error": null
+    },
+    {
+      "reviewer": "claude-haiku-4-5",
+      "status": "ok",
+      "scores": {
+        "memex": 0,
+        "baseline": 0
+      },
+      "reasons": {
+        "memex": "No patch and no final answer are supplied, and the frozen check fails: `/checks/verify.js:9` got `\\x1B[37mx\\x1B[39m` where bright white `\\x1B[97mx\\x1B[39m` was required. Nothing in the evidence changes the level-1 grayscale ramp, so 251–255 still resolve to white rather than bright white and the 232–243/244–250/251–255 split is unmet. Absent any substantive change, this is a wrong/no-fix result rather than partial credit.",
+        "baseline": "Same evidence profile as C01: empty patch, empty final answer, zero completed sessions, and the same failing assertion at `/checks/verify.js:9` — actual `\\x1B[37mx\\x1B[39m` versus required `\\x1B[97mx\\x1B[39m`. With no code change there is no mapping from 251–255 to bright white and no coverage of the rgb/hex entry points, so the frozen criteria are not met on any dimension. Score 0 for absence of a substantive fix."
+      },
+      "materialDisagreement": null,
+      "error": null
+    },
+    {
+      "reviewer": "adjudication",
+      "status": "ok",
+      "scores": {
+        "memex": 0,
+        "baseline": 0
+      },
+      "reasons": {
+        "memex": "No patch or final answer is supplied, and the frozen check fails: foreground output is ANSI 37 (white) where ANSI 97 (bright white) is required. The level-1 grayscale ramp is unchanged, so 251–255 do not map to bright white and the 232–243/244–250/251–255 split is unmet. Background, rgb/hex coverage, and preservation of higher-color controls are also unestablished. This is a no-fix result, not partial credit.",
+        "baseline": "Same evidence profile as C01: empty patch, empty final answer, zero completed sessions, and the same failing assertion (actual ANSI 37 versus required ANSI 97). With no code change there is no mapping of 251–255 to bright white and no coverage of the rgb/hex entry points, so the frozen criteria are not met on any dimension."
+      },
+      "materialDisagreement": false,
+      "error": null
+    }
+  ],
+  "reviewUsage": {
+    "attempts": 3,
+    "prompt_tokens": 34085,
+    "completion_tokens": 688,
+    "missingUsageAttempts": 0
+  },
+  "billing": {
+    "observedThroughAsiaShanghai": "2026-11-01 23:35:28",
+    "solverWindowAsiaShanghai": [
+      "2026-11-01 23:27:27",
+      "2026-11-01 23:33:29"
+    ],
+    "solverCandidates": [
+      {
+        "timeAsiaShanghai": "23:28:06",
+        "model": "claude-haiku-4-5",
+        "inputTokens": 3928,
+        "outputTokens": 359,
+        "usd": "0.000628"
+      },
+      {
+        "timeAsiaShanghai": "23:29:26",
+        "model": "claude-haiku-4-5",
+        "inputTokens": 4544,
+        "outputTokens": 206,
+        "usd": "0.001400"
+      },
+      {
+        "timeAsiaShanghai": "23:31:38",
+        "model": "claude-haiku-4-5",
+        "inputTokens": 1432,
+        "outputTokens": 140,
+        "usd": "0.000536"
+      },
+      {
+        "timeAsiaShanghai": "23:32:32",
+        "model": "claude-haiku-4-5",
+        "inputTokens": 2633,
+        "outputTokens": 124,
+        "usd": "0.000816"
+      }
+    ],
+    "solverCandidateUsd": "0.003380",
+    "solverAttribution": "Account-level time-window candidates; unrelated concurrent calls cannot be excluded.",
+    "pendingCanceledRowsAsiaShanghai": [
+      "2026-11-01 23:30:27",
+      "2026-11-01 23:33:28"
+    ],
+    "reviewCandidates": [
+      {
+        "timeAsiaShanghai": "23:34:45",
+        "model": "gpt-6.1-sol",
+        "inputTokens": 25829,
+        "outputTokens": 184,
+        "usd": "0.004112"
+      },
+      {
+        "timeAsiaShanghai": "23:35:23",
+        "model": "claude-haiku-4-5",
+        "inputTokens": 4218,
+        "outputTokens": 288,
+        "usd": "0.001422"
+      },
+      {
+        "timeAsiaShanghai": "23:35:28",
+        "model": "deepseek-flash",
+        "inputTokens": 4038,
+        "outputTokens": 216,
+        "usd": "0.000464"
+      }
+    ],
+    "reviewCandidateUsd": "0.005998",
+    "reviewAttribution": "Unique visible rows match model, reported input/output tokens and request timing; not receipt-level attribution.",
+    "combinedCandidateUsd": "0.009378",
+    "priorStudyCandidateUsd": "0.073860",
+    "priorPlusNewCandidateUsd": "0.083238",
+    "unknown": [
+      "Both canceled requests have upstream usage unavailable and pending reconciliation.",
+      "Both solver sessions lack final usage.",
+      "Earlier pending charges, Codex subscription, compute, storage and labor remain unknown."
+    ]
+  },
+  "limits": [
+    "Historical replay compressed into one sitting, not real elapsed-time or live production.",
+    "Current source may postdate historical comments; the public discussion includes a proposed solution and may be in model training.",
+    "Source views are partial; investigator-authored checks are not the full upstream suite or maintainer acceptance.",
+    "One issue and AI-only blind review cannot establish a general effect.",
+    "The issue and budget were selected after earlier failures. Different agent/model and code revision; do not pool with the original Codex estimate."
+  ]
+}
