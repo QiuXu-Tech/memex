@@ -1,0 +1,869 @@
+{
+  "generatedAt": "2026-11-01T14:58:27.476132+00:00",
+  "kind": "three-issue-historical-replay-with-interrupted-and-posthoc-recoveries",
+  "registrationSha256": "3e354680fcd237f656aa4dcde0c74454b595e9aa5432977bf4ca7995a1e9e49c",
+  "originalCodex": {
+    "tasks": [
+      {
+        "id": "moment",
+        "repo": "moment/moment",
+        "issueUrl": "https://github.com/moment/moment/issues/4127",
+        "sourceCommit": "c2a703a4d84aa57ee2722ff8fb4a8016279fb3c4",
+        "sourceView": [
+          "moment.js"
+        ],
+        "arms": {
+          "baseline": {
+            "stages": [
+              {
+                "number": 1,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 120530,
+                  "cached_input_tokens": 107520,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 871,
+                  "reasoning_output_tokens": 0
+                },
+                "memoryCalls": {},
+                "traceSha256": "6b9f9f7b2dc98416cde9a959d349902a860209c01c316d9e2b1efe4df24fa13c"
+              },
+              {
+                "number": 2,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 162549,
+                  "cached_input_tokens": 146048,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 756,
+                  "reasoning_output_tokens": 88
+                },
+                "memoryCalls": {},
+                "traceSha256": "b627e30ff8f8ea2ded09ac5becbdd02fb6d9ff8336a49022e722f7cac39bfbb9"
+              },
+              {
+                "number": 3,
+                "exitCode": -15,
+                "timeout": true,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "timeout_after_turn",
+                "usage": {
+                  "input_tokens": 138390,
+                  "cached_input_tokens": 109824,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 618,
+                  "reasoning_output_tokens": 43
+                },
+                "memoryCalls": {},
+                "traceSha256": "dcdc717f13eb12327fef411879598cce0100df0e9f0d6e665b94ca9282375062"
+              }
+            ],
+            "strictCompletedSessions": 2,
+            "fixedVerifierExitCode": 0,
+            "patchSha256": "f4240963eac18c5f7643e6b1a263c120ca80f7c0d9554413104039b832d075a3",
+            "patchBytes": 769
+          },
+          "memex": {
+            "stages": [
+              {
+                "number": 1,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 181477,
+                  "cached_input_tokens": 157312,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1043,
+                  "reasoning_output_tokens": 13
+                },
+                "memoryCalls": {},
+                "traceSha256": "1d9c54e92558aae3f42de6d6c4de9991768ac7a64f2b42b6f75e162437d8f499"
+              },
+              {
+                "number": 2,
+                "exitCode": -15,
+                "timeout": true,
+                "turnCompleted": false,
+                "answerPresent": false,
+                "processStatus": "timeout_before_turn",
+                "usage": null,
+                "memoryCalls": {
+                  "memory_search": 1,
+                  "memory_grep": 1,
+                  "memory_index": 1
+                },
+                "traceSha256": "95c3389f321fe4487071a4c968a11dca8fb60d9ae2ac68f304c52c983c158bea"
+              }
+            ],
+            "strictCompletedSessions": 1,
+            "fixedVerifierExitCode": 1,
+            "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "patchBytes": 0
+          }
+        },
+        "reviews": [
+          {
+            "reviewer": "gpt-6.1-sol",
+            "status": "ok",
+            "scores": {
+              "baseline": 2,
+              "memex": 0
+            },
+            "reasons": {
+              "baseline": "The patch changes both from() and to() to construct durations from the exact elapsed millisecond difference, avoiding lossy month-to-day conversion. The investigator-authored fixed verifier passed, providing evidence that the required UTC day pairs, inverse interval, and ordinary duration humanization criteria are met. This evidence does not establish timezone/DST or upstream-suite coverage.",
+              "memex": "No patch was supplied, and the fixed verifier failed: the 31-day case returned 'in 30 days' instead of 'in 31 days'. Therefore the frozen criteria are not met."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "claude-haiku-4-5",
+            "status": "ok",
+            "scores": {
+              "baseline": 2,
+              "memex": 0
+            },
+            "reasons": {
+              "baseline": "Patch replaces the lossy month-remainder Duration construction in from()/to() with direct millisecond diffs, eliminating the root cause of issue #4127. The verifier exit code 0 and output 'issue #4127 fixed checks passed' confirm the fix meets the frozen criteria: day-threshold pairs now yield correct 30/31/28/32 day values for the UTC test cases. The approach sidesteps the inherent precision loss when converting month-spanning intervals to days via the ~30.4 day average, which was causing 31-day months to round down incorrectly.",
+              "memex": "Verifier exit code 1 and assertion failure show the candidate does not pass the frozen checks. The test expects 'in 31 days' but got 'in 30 days', which is the exact bug from issue #4127. The empty patch field indicates no fix was attempted or applied. No substantive remediation of the reported problem is evident."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "adjudication",
+            "status": "ok",
+            "scores": {
+              "baseline": 2,
+              "memex": 0
+            },
+            "reasons": {
+              "baseline": "Patch replaces lossy month-remainder Duration construction in from()/to() with exact millisecond diffs, addressing the root cause. Fixed verifier exit code 0 with 'issue #4127 fixed checks passed' supports the frozen UTC day-pair, inverse interval, and ordinary duration humanization criteria. No timezone/DST or upstream-suite coverage is claimed.",
+              "memex": "No patch supplied and fixed verifier failed: 31-day case returned 'in 30 days' instead of 'in 31 days', the exact reported bug. Frozen criteria are not met."
+            },
+            "materialDisagreement": false,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "lodash",
+        "repo": "lodash/lodash",
+        "issueUrl": "https://github.com/lodash/lodash/issues/6112",
+        "sourceCommit": "2b5e6f7399a7b48005140b5d5c6bc6c0e62919a8",
+        "sourceView": [
+          "lodash.js"
+        ],
+        "arms": {
+          "baseline": {
+            "stages": [
+              {
+                "number": 1,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 120161,
+                  "cached_input_tokens": 101504,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1010,
+                  "reasoning_output_tokens": 0
+                },
+                "memoryCalls": {},
+                "traceSha256": "bd4915ec4b171877dfdf80f188a662725a06de5fb30f6708940e8790bedda736"
+              },
+              {
+                "number": 2,
+                "exitCode": -15,
+                "timeout": true,
+                "turnCompleted": false,
+                "answerPresent": false,
+                "processStatus": "timeout_before_turn",
+                "usage": null,
+                "memoryCalls": {},
+                "traceSha256": "19cd4d6b61ba0c14206c38e721bf1528f0a7e9cd5ea0d6fd8c50d338557adc43"
+              }
+            ],
+            "strictCompletedSessions": 1,
+            "fixedVerifierExitCode": 1,
+            "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "patchBytes": 0
+          },
+          "memex": {
+            "stages": [
+              {
+                "number": 1,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 124596,
+                  "cached_input_tokens": 111488,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 997,
+                  "reasoning_output_tokens": 0
+                },
+                "memoryCalls": {},
+                "traceSha256": "b81fd24b4e3cf1e8e92a2cd119546b7bd87a00f36a1d6cfad7fb43ec5939663f"
+              },
+              {
+                "number": 2,
+                "exitCode": -15,
+                "timeout": true,
+                "turnCompleted": false,
+                "answerPresent": false,
+                "processStatus": "timeout_before_turn",
+                "usage": null,
+                "memoryCalls": {
+                  "memory_search": 1
+                },
+                "traceSha256": "871ddea2bc162a1f4c7bb155a1bbff9973b48b37506ee8f1c077a501402d8990"
+              }
+            ],
+            "strictCompletedSessions": 1,
+            "fixedVerifierExitCode": 0,
+            "patchSha256": "fa51dd8a8210216f3ff329b7ba449fdebe1633bd234f2b28e03bef8ce2cd5181",
+            "patchBytes": 630
+          }
+        },
+        "reviews": [
+          {
+            "reviewer": "gpt-6.1-sol",
+            "status": "ok",
+            "scores": {
+              "memex": 2,
+              "baseline": 0
+            },
+            "reasons": {
+              "memex": "The patch attempts ordinary assignment, then uses defineProperty when no own property was created, preserving an own hasOwnProperty value despite the frozen inherited property. Clone and deep-clone benefit from the shared helper. Ordinary successful assignments remain unchanged, and __proto__ retains the defineProperty path that avoids invoking the inherited prototype setter. The supplied investigator-authored checks pass, supporting the required normal-property, nested-value, and prototype-safety behavior without establishing full upstream compatibility. The response explicitly addresses older-engine concerns and retains assignment when defineProperty is unavailable; it does not establish that the frozen-prototype fix works in those engines.",
+              "baseline": "No patch or substantive fix is supplied. The original assignment behavior therefore remains unchanged, and the investigator-authored check fails with false !== true. The response only announces intended investigation and provides no implemented correction or discussion of the older-engine concern."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "claude-haiku-4-5",
+            "status": "ok",
+            "scores": {
+              "memex": 2,
+              "baseline": 0
+            },
+            "reasons": {
+              "memex": "Patch fixes the frozen-prototype issue by using defineProperty as a fallback when assignment fails. The logic correctly attempts direct assignment first (preserving older-engine compatibility per maintainer concern), then uses defineProperty if the property isn't on the object itself. Verifier output shows checks passed (exit code 0). Addresses all frozen criteria: preserves hasOwnProperty as own property when Object.prototype is frozen, maintains normal properties, handles __proto__ safely, and respects the compatibility constraint mentioned in issue comments.",
+              "baseline": "Verifier exit code 1 with assertion failure indicates the fix does not pass the frozen checks. No patch content provided—only a placeholder statement. Insufficient evidence of a substantive fix; the failed verification output shows the candidate's approach failed to resolve the core issue."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "adjudication",
+            "status": "ok",
+            "scores": {
+              "memex": 2,
+              "baseline": 0
+            },
+            "reasons": {
+              "memex": "Patch attempts ordinary assignment first, then falls back to defineProperty when no own property exists, preserving an own hasOwnProperty value under a frozen Object.prototype. Shared baseAssignValue covers clone and cloneDeep; __proto__ retains the defineProperty path avoiding prototype pollution; normal assignments are unchanged. Verifier exit code 0 supports the frozen checks. The response explicitly addresses the older-engine concern by keeping assignment when defineProperty is unavailable, though it does not prove the fix works in those engines.",
+              "baseline": "No patch or substantive fix is supplied; the original assignment behavior remains, and the verifier fails with exit code 1 (false !== true). The response only announces intended investigation and provides no implemented correction or discussion of the older-engine concern."
+            },
+            "materialDisagreement": false,
+            "error": null
+          }
+        ]
+      },
+      {
+        "id": "qs",
+        "repo": "ljharb/qs",
+        "issueUrl": "https://github.com/ljharb/qs/issues/387",
+        "sourceCommit": "43baea4655cb9b543fb1c5cc0db95cde42852140",
+        "sourceView": [
+          "lib",
+          "node_modules (locked runtime dependencies)"
+        ],
+        "arms": {
+          "baseline": {
+            "stages": [
+              {
+                "number": 1,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 139092,
+                  "cached_input_tokens": 111744,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1123,
+                  "reasoning_output_tokens": 9
+                },
+                "memoryCalls": {},
+                "traceSha256": "3c8c3f8979f8c362cc4cfdd48df36c2e6b056eed1d13c48b55e4fd6749fe7f03"
+              },
+              {
+                "number": 2,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 152752,
+                  "cached_input_tokens": 135168,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 770,
+                  "reasoning_output_tokens": 93
+                },
+                "memoryCalls": {},
+                "traceSha256": "dc59d0ace033af797aa1d007debcddd045961c6c7defdf2ef325113653f2edbc"
+              },
+              {
+                "number": 3,
+                "exitCode": 0,
+                "timeout": false,
+                "turnCompleted": true,
+                "answerPresent": true,
+                "processStatus": "exited_zero",
+                "usage": {
+                  "input_tokens": 122446,
+                  "cached_input_tokens": 107392,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 540,
+                  "reasoning_output_tokens": 34
+                },
+                "memoryCalls": {},
+                "traceSha256": "2f07578cbc44c77647e7ec1279f96d2d089c94906d54828c8b5e01e4fef77102"
+              }
+            ],
+            "strictCompletedSessions": 3,
+            "fixedVerifierExitCode": 0,
+            "patchSha256": "d83c566872eedd1254d6675f69ea72cb218124b813a1f4ffd42e0f1b9c05a35b",
+            "patchBytes": 961
+          },
+          "memex": {
+            "stages": [
+              {
+                "number": 1,
+                "exitCode": -15,
+                "timeout": true,
+                "turnCompleted": false,
+                "answerPresent": false,
+                "processStatus": "timeout_before_turn",
+                "usage": null,
+                "memoryCalls": {},
+                "traceSha256": "87d90af4c0b27e3c7d3e166bd188087b2e924bd05a64748c1ceb5ec49086a867"
+              }
+            ],
+            "strictCompletedSessions": 0,
+            "fixedVerifierExitCode": 1,
+            "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "patchBytes": 0
+          }
+        },
+        "reviews": [
+          {
+            "reviewer": "gpt-6.1-sol",
+            "status": "ok",
+            "scores": {
+              "memex": 0,
+              "baseline": 2
+            },
+            "reasons": {
+              "memex": "No patch or substantive fix was supplied. The frozen verifier exits 1 because the reported example still returns list=foo%2Cbar%2Chello%2Cworld, encoding delimiter commas instead of leaving them literal. The explanation identifies the cause but does not implement the required behavior; the failing first assertion does not establish whether later controls pass.",
+              "baseline": "The patch encodes individual comma-array elements before joining, then bypasses value re-encoding while retaining key encoding. This preserves encoded embedded commas and literal delimiter commas, including the encodeValuesOnly path. Scalar and indices-array paths remain unchanged. The investigator-authored frozen verifier exits 0, supporting the required controls on available evidence. The final answer explicitly leaves broader upstream compatibility unverified rather than claiming the full suite passed."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "claude-haiku-4-5",
+            "status": "ok",
+            "scores": {
+              "memex": 0,
+              "baseline": 2
+            },
+            "reasons": {
+              "memex": "Verifier output shows the candidate failed the frozen check: actual output 'list=foo%2Cbar%2Chello%2Cworld' does not match expected 'list=foo%2Cbar,hello,world'. The patch is empty, indicating no fix was attempted. The final answer correctly identifies the root cause but provides no resolution.",
+              "baseline": "Verifier confirms the fix passed: 'issue #387 fixed checks passed' with exit code 0. The patch addresses the frozen criteria: (1) commas inside array elements are percent-encoded while delimiter commas remain unencoded by encoding each element individually before joining; (2) the fix preserves encodeValuesOnly and scalar encoding paths; (3) the final answer appropriately notes that the full upstream suite was not available and does not claim it passed. The implementation changes the encoder condition from requiring encodeValuesOnly to always encoding comma-format arrays, and wraps the encoder to suppress key encoding in nested recursion."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "adjudication",
+            "status": "ok",
+            "scores": {
+              "memex": 0,
+              "baseline": 2
+            },
+            "reasons": {
+              "memex": "No patch was supplied and the frozen verifier exits 1: the reported example still returns 'list=foo%2Cbar%2Chello%2Cworld' instead of 'list=foo%2Cbar,hello,world'. The explanation identifies the cause but implements no fix, so the primary criterion is unmet.",
+              "baseline": "The patch encodes each comma-array element before joining, so embedded commas are percent-encoded while delimiter commas stay literal, and it suppresses value re-encoding in the recursive call while retaining key encoding. The frozen verifier exits 0 ('issue #387 fixed checks passed'), and the final answer does not claim the full upstream suite passed. Evidence supports the frozen criteria."
+            },
+            "materialDisagreement": false,
+            "error": null
+          }
+        ]
+      }
+    ],
+    "plannedTasks": 3,
+    "completeStrictPairs": 0,
+    "startedSessions": 13,
+    "timeouts": 5,
+    "completedTurnShutdownTimeouts": 1,
+    "missingUsageSessions": 4,
+    "reportedUsage": {
+      "input_tokens": 1261993,
+      "cached_input_tokens": 1088000,
+      "output_tokens": 7728
+    }
+  },
+  "interruptedClaudeRecovery": {
+    "startedStreams": 5,
+    "resultRecords": 3,
+    "budgetFailures": 3,
+    "streamsWithoutResult": [
+      "moment-memex-s1-events.jsonl",
+      "qs-baseline-s1-events.jsonl"
+    ],
+    "reportedUsage": {
+      "input_tokens": 24989,
+      "cache_creation_input_tokens": 51961,
+      "cache_read_input_tokens": 149963,
+      "output_tokens": 11703
+    },
+    "clientListPriceUsd": "0.19343914999999999",
+    "operatorStopSha256": "4ca922b8c1110608f9e07abda23c0b061cdddbd5d31fc41c776b0c4b9e1c5988"
+  },
+  "claudeCanary": {
+    "task": "lodash",
+    "notNewIndependentTask": true,
+    "arms": {
+      "baseline": {
+        "stages": [
+          {
+            "stage": 1,
+            "responseCompleted": true,
+            "timeout": false,
+            "resultSubtype": "success",
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 3452,
+              "cache_creation_input_tokens": 4686,
+              "cache_read_input_tokens": 3721,
+              "output_tokens": 1163,
+              "output_tokens_details": {
+                "thinking_tokens": 213
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 4686
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.0154966
+          },
+          {
+            "stage": 2,
+            "responseCompleted": true,
+            "timeout": false,
+            "resultSubtype": "success",
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 9038,
+              "cache_creation_input_tokens": 15534,
+              "cache_read_input_tokens": 39677,
+              "output_tokens": 3115,
+              "output_tokens_details": {
+                "thinking_tokens": 1802
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 15534
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.047998200000000005
+          },
+          {
+            "stage": 3,
+            "responseCompleted": true,
+            "timeout": false,
+            "resultSubtype": "success",
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 5232,
+              "cache_creation_input_tokens": 5967,
+              "cache_read_input_tokens": 12438,
+              "output_tokens": 1631,
+              "output_tokens_details": {
+                "thinking_tokens": 617
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 5967
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.022089550000000003
+          }
+        ],
+        "reportedUsage": {
+          "input_tokens": 17722,
+          "cache_creation_input_tokens": 26187,
+          "cache_read_input_tokens": 55836,
+          "output_tokens": 5909
+        },
+        "clientListPriceUsd": "0.085584350000000008",
+        "originalAttempt": {
+          "sessionsCompleted": 3,
+          "testExitCode": 0,
+          "patchSha256": "ff7572290a6f497021a3041cb32b7f05094e0bd0644950e1725078b978e534c3"
+        }
+      },
+      "memex": {
+        "stages": [
+          {
+            "stage": 1,
+            "responseCompleted": true,
+            "timeout": false,
+            "resultSubtype": "success",
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 3899,
+              "cache_creation_input_tokens": 8783,
+              "cache_read_input_tokens": 16093,
+              "output_tokens": 1760,
+              "output_tokens_details": {
+                "thinking_tokens": 672
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 8783
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.02528705
+          },
+          {
+            "stage": 2,
+            "responseCompleted": false,
+            "timeout": false,
+            "resultSubtype": "error_max_budget_usd",
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 7926,
+              "cache_creation_input_tokens": 16886,
+              "cache_read_input_tokens": 59667,
+              "output_tokens": 4727,
+              "output_tokens_details": {
+                "thinking_tokens": 2900
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 16886
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.0677485
+          },
+          {
+            "stage": 2,
+            "responseCompleted": true,
+            "timeout": false,
+            "resultSubtype": "success",
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 7919,
+              "cache_creation_input_tokens": 12435,
+              "cache_read_input_tokens": 40583,
+              "output_tokens": 2807,
+              "output_tokens_details": {
+                "thinking_tokens": 1103
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 12435
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.04155605
+          },
+          {
+            "stage": 3,
+            "responseCompleted": true,
+            "timeout": false,
+            "resultSubtype": "success",
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 3885,
+              "cache_creation_input_tokens": 6956,
+              "cache_read_input_tokens": 9054,
+              "output_tokens": 1379,
+              "output_tokens_details": {
+                "thinking_tokens": 642
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 6956
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "clientListPriceUsd": 0.0203804
+          }
+        ],
+        "reportedUsage": {
+          "input_tokens": 23629,
+          "cache_creation_input_tokens": 45060,
+          "cache_read_input_tokens": 125397,
+          "output_tokens": 10673
+        },
+        "clientListPriceUsd": "0.15497200",
+        "originalAttempt": {
+          "sessionsCompleted": 1,
+          "testExitCode": 1,
+          "patchSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "posthocResume": {
+          "sessionsCompleted": 3,
+          "testExitCode": 0,
+          "patchSha256": "5ad7cbd93303a63b9018dfe1c3030d7193c17fa0e65e3af7b0f4bcbd2bce09f0",
+          "distinctSessionIds": 3
+        }
+      }
+    },
+    "reviewsBeforeResume": [
+      {
+        "reviewer": "gpt-6.1-sol",
+        "status": "ok",
+        "scores": {
+          "memex": 0,
+          "baseline": 2
+        },
+        "reasons": {
+          "memex": "No patch or substantive fix was supplied. The investigator-authored check fails with false !== true, consistent with the original cloning defect remaining unresolved. There is also no discussion of older-engine compatibility.",
+          "baseline": "The patch uses the existing guarded defineProperty path for hasOwnProperty, creating an own data property even when the inherited property is frozen. It preserves the existing __proto__ handling and ordinary assignment path, supporting normal and nested cloning behavior without introducing prototype pollution. The investigator-authored checks pass, although this is not evidence of a complete upstream-suite pass. The response explicitly discusses the maintainer's older-engine concern and the availability guard. Its compatibility assurances are somewhat overstated: when defineProperty is unavailable, the fallback retains the original limitation, and defining a property can differ from assignment. Nevertheless, the frozen criteria are met on the available evidence."
+        },
+        "materialDisagreement": null,
+        "error": null
+      },
+      {
+        "reviewer": "claude-haiku-4-5",
+        "status": "ok",
+        "scores": {
+          "memex": 0,
+          "baseline": 2
+        },
+        "reasons": {
+          "memex": "Verifier failed with assertion error (false !== true). No patch content provided; fix did not pass the frozen criteria checks. The candidate produced a failing test result, indicating the attempted solution does not resolve the core issue of cloning own hasOwnProperty when Object.prototype is frozen.",
+          "baseline": "Verifier passed (exit code 0, 'issue #6112 fixed checks passed'). The patch extends baseAssignValue() to use Object.defineProperty() for both '__proto__' and 'hasOwnProperty' keys, matching the frozen criteria: (1) preserves own hasOwnProperty values when Object.prototype is frozen by using defineProperty to create own property descriptors, bypassing prototype chain assignment; (2) maintains normal property handling for other keys via fallback to direct assignment; (3) acknowledges backward compatibility by checking defineProperty availability, consistent with the existing __proto__ pattern and the maintainer concern about older engines raised in issue comments. The fix is minimal, targeted, and evidence-backed by passing checks."
+        },
+        "materialDisagreement": null,
+        "error": null
+      },
+      {
+        "reviewer": "adjudication",
+        "status": "ok",
+        "scores": {
+          "memex": 0,
+          "baseline": 2
+        },
+        "reasons": {
+          "memex": "No patch or substantive fix supplied; the investigator-authored check fails (false !== true), consistent with the original defect remaining. No discussion of older-engine compatibility.",
+          "baseline": "Patch routes hasOwnProperty through the existing guarded defineProperty path, creating an own data property even when the inherited property is frozen, while preserving __proto__ handling and the ordinary assignment fallback. Investigator-authored checks pass (not a full upstream-suite pass). Response discusses the older-engine concern and the defineProperty availability guard, though its compatibility assurances are somewhat overstated since the fallback retains the original limitation when defineProperty is unavailable."
+        },
+        "materialDisagreement": false,
+        "error": null
+      }
+    ],
+    "reviewsAfterResume": [
+      {
+        "reviewer": "gpt-6.1-sol",
+        "status": "ok",
+        "scores": {
+          "memex": 1,
+          "baseline": 2
+        },
+        "reasons": {
+          "memex": "The primary investigator-authored checks pass, supporting preservation of own hasOwnProperty values in clone/cloneDeep, ordinary and nested values, and safe __proto__ copying. However, unconditionally using defineProperty when available changes assignment semantics across all baseAssignValue callers: the distinct supplemental inherited-setter check fails, demonstrating a compatibility regression outside the primary checks. The answer also claims backward compatibility and 'strictly safer' behavior without substantively addressing the maintainer's older-engine concern; retaining the availability fallback does not establish broad compatibility.",
+          "baseline": "Meets the frozen criteria on available evidence: the targeted hasOwnProperty change fixes the reported cloning case, retains the existing __proto__ protection, and passes the primary investigator-authored checks covering ordinary and nested values. The distinct supplemental check also passes, supporting preservation of the inherited-setter behavior exercised there. The answer discusses ES5/older-engine availability and the guarded fallback before making compatibility claims. Those claims are nevertheless overstated: the fallback does not fix frozen-prototype cloning without usable defineProperty, and specially defining hasOwnProperty can change behavior for an inherited setter of that name. Neither check set establishes comprehensive upstream compatibility; other frozen inherited names are outside the frozen criteria."
+        },
+        "materialDisagreement": null,
+        "error": null
+      },
+      {
+        "reviewer": "claude-haiku-4-5",
+        "status": "ok",
+        "scores": {
+          "memex": 2,
+          "baseline": 2
+        },
+        "reasons": {
+          "memex": "Passes frozen criteria checks and fixes the root cause by removing the `key == '__proto__'` conditional, applying `defineProperty` to all properties when available. This correctly bypasses frozen prototype constraints. However, fails the supplemental inherited-setter check (exit code 1, undefined !== 42), indicating the fix breaks setter invocation on inherited properties. The broader approach trades one correctness problem for another: while it fixes `hasOwnProperty` cloning, it prevents legitimate inherited setters from being called during assignment, which violates the stated concern about compatibility implications.",
+          "baseline": "Passes all frozen criteria checks and the supplemental inherited-setter check (exit code 0). The targeted fix extends `defineProperty` use only to `hasOwnProperty` (in addition to `__proto__`), preserving normal assignment semantics for other properties. This maintains inherited setter behavior while fixing the specific issue. The approach is narrower than C01 but avoids breaking existing patterns. Aligns with the maintainer comment preferring a solution that only uses `defineProperty` when assignment fails, though implements it proactively for the known problematic key rather than reactively."
+        },
+        "materialDisagreement": null,
+        "error": null
+      },
+      {
+        "reviewer": "adjudication",
+        "status": "ok",
+        "scores": {
+          "memex": 1,
+          "baseline": 2
+        },
+        "reasons": {
+          "memex": "Primary checks pass, but the unconditional defineProperty change fails the supplemental inherited-setter check, showing a compatibility regression for inherited setters. The answer also claims broad backward compatibility and 'strictly safer' behavior without substantively addressing the maintainer's older-engine concern; the availability fallback does not establish compatibility for frozen-prototype cloning.",
+          "baseline": "Targeted hasOwnProperty handling fixes the reported clone case, retains __proto__ protection, passes the primary checks, and passes the supplemental inherited-setter check. The answer discusses ES5/older-engine availability and the guarded fallback before making compatibility claims, though those claims are somewhat overstated and other frozen inherited names remain outside the frozen criteria."
+        },
+        "materialDisagreement": true,
+        "error": null
+      }
+    ],
+    "memoryCalls": {
+      "s1": {
+        "memory_search": 1
+      },
+      "s2": {
+        "memory_search": 2
+      },
+      "resume-s2": {
+        "memory_search": 1,
+        "memory_write": 1
+      },
+      "resume-s3": {
+        "memory_search": 1,
+        "memory_open": 1
+      }
+    },
+    "memoryWriteOpenSameRecord": true,
+    "finalCitedRecordId": false,
+    "supplementalSetterExitCodes": {
+      "baseline": 0,
+      "memex": 1
+    }
+  },
+  "originalCodexPosthocSetterExitCodes": {
+    "baseline": 0,
+    "memex": 1
+  },
+  "reviewUsage": {
+    "attempts": 15,
+    "prompt_tokens": 125079,
+    "completion_tokens": 3681
+  },
+  "billing": {
+    "observedAfter": "2026-11-01T14:42:46Z",
+    "reviewRows": 15,
+    "reviewCandidateUsd": "0.019720",
+    "reviewMatching": "Unique UI rows matched by model, prompt/output tokens and local request time; cache creation included in prompt. Not receipt-level linkage.",
+    "solverWindows": [
+      {
+        "name": "interrupted Claude recovery",
+        "fromAsiaShanghai": "22:28:00",
+        "toAsiaShanghai": "22:30:29",
+        "chargedRows": 51,
+        "candidateUsd": "0.027716",
+        "pendingRows": 1
+      },
+      {
+        "name": "budgeted Claude canary",
+        "fromAsiaShanghai": "22:32:26",
+        "toAsiaShanghai": "22:35:20",
+        "chargedRows": 37,
+        "candidateUsd": "0.019618",
+        "pendingRows": 0
+      },
+      {
+        "name": "post-hoc Claude continuation",
+        "fromAsiaShanghai": "22:39:10",
+        "toAsiaShanghai": "22:40:05",
+        "chargedRows": 13,
+        "candidateUsd": "0.006806",
+        "pendingRows": 0
+      }
+    ],
+    "solverMatching": "Account-level time windows, not individual request attribution; unrelated activity could be included.",
+    "combinedCandidateUsd": "0.073860",
+    "unknown": [
+      "At least one canceled request is pending reconciliation.",
+      "Two interrupted Claude sessions lack final usage.",
+      "Four Codex turns lack usage.",
+      "Codex subscription allocation, compute, storage and labor are unknown."
+    ]
+  },
+  "limits": [
+    "Historical replay compressed into one sitting, not real elapsed-time or live production.",
+    "Current source may postdate historical comments; public issues and solutions may be in model training.",
+    "Source views are partial (a generated distribution file for moment); fixed checks are investigator-authored, not the full upstream suite or maintainer acceptance.",
+    "Three tasks and AI-only blind review do not establish a general effect.",
+    "Claude recovery was selected after observing failures and is not a fresh independent task.",
+    "The supplemental setter check was added after the original Codex candidate and AI reviews.",
+    "A write/open chain does not establish memory correctness or causal necessity."
+  ]
+}

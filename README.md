@@ -14,10 +14,10 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **DeepSeek Harness** | native Cordis bundle (L1 eviction seam, Web panel, 9 HTTP routes, 7 tools) |
 | **Claude Code** | MCP server + `SessionStart` / `UserPromptSubmit` / `PreCompact` hooks + `CLAUDE.md` manual |
 | **OpenAI Codex** | MCP server + `AGENTS.md` manual + `config.toml` snippet |
-| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 7 tools + catalog resource |
+| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 10 tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **184/184 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **186/186 offline tests**, **36/36 SQLite consistency tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
 
 ## 7B KV strategy comparison (latest)
 
@@ -85,6 +85,10 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
 ## Prospective engineering canary (2026-10-31)
+
+**Three-session issue replay (2026-11-01):** An analysis of the previous study found 28/28 treatment first sessions searched empty stores. MCP now distinguishes an empty archive from a nonempty search miss and avoids suggesting unnecessary fallback calls. Three new public-issue coding replays had **0/3 complete original Codex pairs** after interrupted sessions. A separately registered Claude continuation on one reused issue wrote and later opened a memory, but its candidate failed an additional inherited-setter regression despite passing the original fixed checks. AI review disagreed on the candidate; the adjudicator scored control/Memex **2/1**. These small historical replays do not establish production correctness or savings. [Methods, failures, cost and results](docs/production-longhorizon-20261101.md).
+
+![Agent replay coverage, prior token use and a supplemental compatibility check](docs/assets/benchmarks/production-longhorizon-20261101.svg)
 
 <!-- real30:start -->
 **Post-repair 30-issue study (completed with post-hoc retries):** 28/30 original public-issue attempts completed both two-session Codex arms; 25/30 have two blinded AI ratings and adjudication without recovery, plus 3 supplemental adjudications. 30/30 distinct tasks have an evaluable pair including post-hoc retries. 3 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).

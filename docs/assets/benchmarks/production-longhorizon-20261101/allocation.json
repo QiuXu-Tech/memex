@@ -1,0 +1,28 @@
+{
+  "seed": "b1fb575d36604a3a649df9922065c81d3ae6c8e3ff2fac98706a07ad41ab9537",
+  "taskOrder": [
+    "moment",
+    "lodash",
+    "qs"
+  ],
+  "tasks": {
+    "moment": {
+      "armOrder": [
+        "memex",
+        "baseline"
+      ]
+    },
+    "lodash": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ]
+    },
+    "qs": {
+      "armOrder": [
+        "baseline",
+        "memex"
+      ]
+    }
+  }
+}
