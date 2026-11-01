@@ -6,6 +6,9 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 
 ## Unreleased
 
+### Fixed — actionable memory write guidance
+- Name the required `kind` field in agent instructions and MCP tool descriptions, and give an actionable error when it is missing. A real agent had to retry a write after omitting it.
+
 ### Added — isolated test tools for real MCP agents
 - Advise agents to avoid rereading duplicate handoffs already covered by a retrieved memory while retaining source verification; evaluate the effect rather than assuming a token saving.
 - Expose the preassigned VM worker through a stdio MCP bridge with bounded repository and archive tools. Retire an unresponsive worker on a deadline without replaying an ambiguous request; add protocol and timeout regressions.

@@ -16,7 +16,7 @@ const TOOL_LINES = [
   ['memory_search', 'ranked card-level search over archived context (no bodies)'],
   ['memory_open', 'read one record body by id (offset/limit/maxChars honoured)'],
   ['memory_grep', 'literal/regex line search across stored bodies'],
-  ['memory_write', 'persist a durable decision/fact/procedure (title, body, summary, useWhen)'],
+  ['memory_write', 'persist a durable decision/fact/procedure (required: kind, title, body; optional: summary, useWhen)'],
   ['memory_index', 'bounded catalog + capacity accounting for the visible levels'],
   ['memory_list', 'list recent cards (kind/status filters)'],
   ['memory_forget', 'delete an obsolete or wrongly captured record'],

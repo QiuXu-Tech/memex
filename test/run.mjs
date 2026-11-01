@@ -3748,6 +3748,27 @@ await test('U3e', 'MCP search does not claim there are no more matches when resu
   assert.match(broader, /3 results shown/)
 })
 
+await test('U3f', 'MCP explains the required kind and an agent can recover a rejected write', async () => {
+  const root = makeRoot('u3f-write')
+  const args = ['--agent', 'test', '--levels', 'l3', '--session', 'u3f-session']
+  const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
+  const replies = mcpExchange(root, args, [
+    { jsonrpc: '2.0', id: 1, method: 'tools/list' },
+    call(2, 'memory_write', { title: 'Recovered write', body: 'RECOVERED_WRITE_483' }),
+    call(3, 'memory_write', { kind: 'fact', title: 'Recovered write', body: 'RECOVERED_WRITE_483' }),
+    call(4, 'memory_search', { query: 'Recovered write' }),
+  ])
+  const tool = replies.get(1).result.tools.find((entry) => entry.name === 'memory_write')
+  assert.ok(tool.inputSchema.required.includes('kind'))
+  assert.match(tool.description, /\bkind\b/)
+  assert.match(manual.buildMemoryManual(profiles.resolveModelProfile('gpt-6.1-sol')), /memory_write[^\n]*\bkind\b/)
+  assert.equal(replies.get(2).result.isError, true)
+  assert.match(replies.get(2).result.content[0].text, /memory_write requires kind, title and body/)
+  assert.equal(replies.get(3).result.isError, false)
+  const id = replies.get(3).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  assertIncludes(replies.get(4).result.content[0].text, id)
+})
+
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
   const root = makeRoot('u4')
   const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))

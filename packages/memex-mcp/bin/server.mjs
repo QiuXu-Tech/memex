@@ -99,7 +99,7 @@ const TOOLS = [
     },
     required: ['pattern'],
   }),
-  tool('memory_write', 'Persist one durable memory record (decision, fact, procedure, incident, episode, open thread, artifact). Include title, summary, useWhen and the raw evidence in body.', {
+  tool('memory_write', 'Persist one durable memory record. Required: kind (decision, fact, procedure, incident, episode, open-thread, artifact), title and body. Include summary and useWhen when useful.', {
     type: 'object',
     additionalProperties: false,
     properties: {
@@ -184,7 +184,7 @@ function callTool(name, input = {}) {
       return textResult(lines.length === 0 ? `No lines matching /${input.pattern}/.` : lines.join('\n'))
     }
     case 'memory_write': {
-      if (typeof input.title !== 'string' || typeof input.body !== 'string') throw new Error('memory_write requires title and body')
+      if (typeof input.kind !== 'string' || !input.kind || typeof input.title !== 'string' || typeof input.body !== 'string') throw new Error('memory_write requires kind, title and body')
       const allowed = new Set(['kind', 'title', 'body', 'summary', 'useWhen', 'tags', 'scope', 'status'])
       if (Object.keys(input).some((key) => !allowed.has(key))) throw new Error('memory_write received an unsupported field')
       const record = engine.write(input)
