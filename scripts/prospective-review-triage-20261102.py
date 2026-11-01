@@ -53,7 +53,7 @@ def plan():
   'reviewers':REVIEWERS,'adjudicator':ADJUDICATOR,'reviewMaxOutputTokens':1200,'adjudicationMaxOutputTokens':3000,
   'gatewayHelperSha256':sha(ROOT/'scripts/prospective_gateway_review.py'),'adjudicationReasoningEffort':'low','adjudicationTemperature':1,
   'reviewPrompt':RUBRIC,'adjudicationPrompt':ADJ,'blinding':'Randomized anonymous labels, product names and memory IDs redacted; wording can still reveal condition.',
-  'packet':'Issue and discussion plus candidate answers and their recorded source-tool excerpts; clipping is explicitly marked.',
+  'packet':'Issue and discussion with comment authors, dates and URLs plus candidate answers and recorded source-tool excerpts; clipping is explicitly marked.',
   'invalid':'Pairs without two completed second-session responses are recorded as not reviewable. Failed, empty, truncated, missing-usage or invalid-evidence reviewer responses remain missing and are not converted to a score.',
   'adjudication':'Run when both ratings are valid and numeric scores or cited unsupported claims differ; otherwise record why not run.',
   'retries':'Gateway retries only explicit 503 responses with bounded backoff; ambiguous timeouts are not replayed.'}
@@ -65,6 +65,10 @@ def plan():
  if revised.exists():
   reg['revisesPlanSha256']=sha(revised)
   reg['revision']='Before cohort reviewer calls, use low-effort Gemini adjudication and a 3000-token limit after a separately recorded canary truncated at 1800.'
+ metadata_revision=BASE/'reviews'/'plan-before-comment-metadata.json'
+ if metadata_revision.exists():
+  reg['revisesPlanSha256']=sha(metadata_revision)
+  reg['revision']='Before cohort reviewer calls, include comment author, timestamp, and URL already visible to agents; the separate canary reviewers incorrectly flagged them as unsupported when omitted.'
  save(BASE/'reviews'/'plan.json',reg);print(json.dumps({'reviewPlanSha256':sha(BASE/'reviews'/'plan.json')}),flush=True)
 
 def source_trace(task,arm):
@@ -82,7 +86,9 @@ def source_trace(task,arm):
 def packet(task):
  reg=load(BASE/'registration.json');t=next(x for x in reg['tasks'] if x['id']==task);issue=load(SRC/f'{task}.issue.json')
  evidence={'criterion':t['frozenAcceptance'],'issue':clipped(issue['title']+'\n'+issue['body'],14000)}
- for i,c in enumerate(issue['comments']['nodes'],1):evidence[f'comment:C{i}']=clipped(c['body'],1800)
+ for i,c in enumerate(issue['comments']['nodes'],1):
+  evidence[f'comment:C{i}']={**clipped(c['body'],1800),'createdAt':c.get('createdAt'),
+                            'author':(c.get('author') or {}).get('login'),'url':c.get('url')}
  arms=['baseline','memex'];random.SystemRandom().shuffle(arms);key={f'C{i+1:02d}':arm for i,arm in enumerate(arms)}
  for label,arm in key.items():
   path=BASE/task/'results'/f'{arm}-s2.json'
