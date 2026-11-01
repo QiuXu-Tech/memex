@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-11-01T12:37:09.882553+00:00",
+  "kind": "post-hoc investigator evidence audit, not independent human review",
+  "task": "T05",
+  "evidence": {
+    "commentUrl": "https://github.com/yt-dlp/yt-dlp/issues/14206#issuecomment-3243719525",
+    "commentContains": "FFmpeg command includes -acodec libvorbis followed by a reported thumbnail-embedding step",
+    "issueStatusAtScreening": "OPEN",
+    "evidenceWasPresentInSupplement": true
+  },
+  "finding": "The supplemental adjudication still characterized the libvorbis and status claims as not established, despite relevant evidence in its packet. The log is a contributor report, not an independently verified successful run. Treat that portion of the adjudicator rationale as unreliable. Its separate local-fixture criterion remains a judgment; preserve all original and supplemental scores."
+}
