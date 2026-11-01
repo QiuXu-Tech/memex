@@ -3766,6 +3766,8 @@ await test('U3f', 'MCP explains the required kind and an agent can recover a rej
   assert.match(guidance, /## Writing\n[^\n]*`kind`/)
   assert.match(guidance, /not already available/)
   assert.match(guidance, /do not write unchanged duplicates/)
+  assert.match(guidance, /known to be empty/)
+  assert.match(guidance, /even if the archive was initially empty/)
   assert.doesNotMatch(guidance, /one search, one open/)
   assert.equal(replies.get(2).result.isError, true)
   assert.match(replies.get(2).result.content[0].text, /memory_write requires kind, title and body/)

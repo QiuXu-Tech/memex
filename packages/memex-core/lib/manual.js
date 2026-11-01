@@ -57,13 +57,13 @@ export function buildMemoryManual(profile, options = {}) {
     '1. If earlier context is needed and not already available, search with a concrete topic or identifier. In MCP, `openTop: true` previews the first hit for a specific query; inspect ranked results when relevance is uncertain.\n' +
     '2. Use the preview if it contains what you need; otherwise use `memory_open`. Use `offset`/`limit` for lines and follow `nextCharOffset` with the same line window for an oversized line.\n' +
     '3. Cite the context page id in your answer when it drove a decision.\n' +
-    '4. If search misses, try `memory_grep` for literal identifiers, or `memory_index` to see what exists.\n' +
+    '4. If a search misses and relevant records may exist, try `memory_grep` for literal identifiers or `memory_index`. Do not chain fallback calls when the archive is known to be empty.\n' +
     '5. When a retrieved record already covers a handoff, avoid rereading duplicate copies; consult the original source to verify details or resolve gaps and conflicts.',
   )
   if (concise) sections.push('Keep tool calls shallow: one focused search; open a record only if its preview is insufficient.')
   sections.push(
     '## Writing\n' +
-    'Write durable new decisions, facts, procedures, incidents or open threads that may help a future session; do not write unchanged duplicates. Include a `kind`, a crisp `title`, a `summary`, a `useWhen` line and the evidence in `body`. Prefer several small records over one giant one.',
+    'When work produces a durable decision, fact, procedure, incident or open thread needed by a future session, write it even if the archive was initially empty; do not write unchanged duplicates. Include a `kind`, a crisp `title`, a `summary`, a `useWhen` line and the evidence in `body`. Prefer several small records over one giant one.',
   )
   sections.push(`## Capacity\nInjections are bounded for this model: catalog ≤ ${profile.catalogTokens} tokens, auto-recall ≤ ${profile.recallTokens} tokens, opened body ≤ ${profile.openMaxChars} chars. When capacity runs low, prefer \`memory_compress\` (lossless cold tier) and write a digest instead of dumping raw history. Compression requires user consent when the runtime asks for it.`)
   sections.push(`## Model-specific guidance\n${profile.searchHint}\n${profile.compactionAdvice}`)
