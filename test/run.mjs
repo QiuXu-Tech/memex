@@ -3848,6 +3848,26 @@ await test('U3h', 'MCP reports an empty visible archive as a snapshot without hi
   assert.doesNotMatch(later.get(4).result.instructions, /no visible memory records at initialization/i)
 })
 
+await test('U3i', 'MCP-written memories carry unverified provenance and bounded useful search previews', async () => {
+  const root = makeRoot('u3i-mem')
+  const project = makeRoot('u3i-project')
+  const args = ['--cwd', project, '--agent', 'test', '--levels', 'l3', '--session', 'u3i-session']
+  const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
+  const replies = mcpExchange(root, args, [
+    call(1, 'memory_write', { kind: 'incident', title: 'RECALL_TRUST_427', body: 'Unverified diagnosis; check the code.', summary: 'The response header may be valid; check the standard.', useWhen: 'when reviewing a response' }),
+    call(2, 'memory_search', { query: 'RECALL_TRUST_427' }),
+  ])
+  const id = replies.get(1).result.content[0].text.match(/mem_[0-9a-f]{10}/)[0]
+  const search = replies.get(2).result.content[0].text
+  assertIncludes(search, '[unverified]')
+  assertIncludes(search, 'The response header may be valid')
+  assert.doesNotMatch(search, /when reviewing a response/)
+  const opened = mcpExchange(root, args, [call(3, 'memory_open', { id })]).get(3).result.content[0].text
+  assertIncludes(opened, 'trust=untrusted')
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u3i-session', levels: ['l3'] })
+  try { assert.equal(engine.open({ id }).trust, 'untrusted') } finally { engine.close() }
+})
+
 await test('U3i', 'MCP distinguishes an empty archive from a search miss', async () => {
   const root = makeRoot('u3i-mem')
   const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })

@@ -312,7 +312,7 @@ node packages/memex-mcp/bin/server.mjs --root ~/.memex --model deepseek-flash --
 
 See [docs/integrations.md](docs/integrations.md), [Claude Code](docs/integrations/claude-code.md), [Codex](docs/integrations/codex.md), [generic MCP clients](docs/integrations/mcp.md) and [model profiles](docs/model-profiles.md).
 
-For a focused MCP query, `memory_search` can include up to 2,000 characters of the top record with `openTop: true`. Check that the result is relevant, and use `memory_open` to continue a truncated preview.
+MCP writes are marked untrusted because an agent's assertion is not itself verification; existing records keep their labels. Search results show bounded summaries and trust labels. For a focused query, `memory_search` can also include up to 2,000 characters of the top record with `openTop: true`. Check that the result is relevant, and use `memory_open` to continue a truncated preview.
 
 ## Install (DSH local bundle)
 

@@ -29,6 +29,8 @@ node packages/memex-claude/bin/cli.mjs init --model claude-sonnet-5-5
 
 Auto-recall excludes Stop records from the current Claude client session to avoid repeating text already in context; they remain available through explicit memory search. A stable `--session` selects the L2 namespace without hiding checkpoints from other client sessions that share it. Later sessions receive bounded summary previews and can open the full record when needed. Re-run `memex-claude init` to add the Stop hook to an existing installation.
 
+MCP `memory_write` records are marked untrusted because an agent's assertion is not verification. Search previews and opened records show that label; check consequential claims against current evidence. Existing records are not relabeled, and the label itself does not determine whether a claim is true.
+
 Hooks never break a session: failures are logged to stderr and the exit code stays 0.
 
 ## Recommended settings

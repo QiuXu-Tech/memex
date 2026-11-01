@@ -69,7 +69,7 @@ const tool = (name, description, inputSchema) => ({
   annotations: { readOnlyHint: READ_ONLY_TOOLS.has(name), destructiveHint: DESTRUCTIVE_TOOLS.has(name), openWorldHint: false },
 })
 const TOOLS = [
-  tool('memory_search', `Ranked card-level search over archived context (profile: ${profile.label}, top ${profile.maxSearchResults}). Returns ids, titles and "when to read" hints. For a specific query, openTop can also return a bounded preview of the first result.`, {
+  tool('memory_search', `Ranked card-level search over archived context (profile: ${profile.label}, top ${profile.maxSearchResults}). Returns ids, titles, bounded summaries and trust labels. For a specific query, openTop can also return a bounded body preview of the first result.`, {
     type: 'object',
     properties: {
       query: { type: 'string', description: 'Natural-language question or concrete identifier/topic.' },
@@ -164,7 +164,7 @@ const textResult = (text, isError = false) => ({ content: [{ type: 'text', text 
 
 function formatOpenedRecord(record) {
   const continuation = record.bodyNextCharOffset === undefined ? '' : ` · nextCharOffset=${record.bodyNextCharOffset}`
-  const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · tokens=${record.tokens} · body lines ${record.bodyOffset}-${record.bodyOffset + record.bodyLimit - 1} of ${record.bodyTotalLines}${record.bodyTruncated ? ' (truncated)' : ''}${continuation}\n`
+  const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · trust=${record.trust} · tokens=${record.tokens} · body lines ${record.bodyOffset}-${record.bodyOffset + record.bodyLimit - 1} of ${record.bodyTotalLines}${record.bodyTruncated ? ' (truncated)' : ''}${continuation}\n`
   return `${meta}\n${record.body}`
 }
 
@@ -178,7 +178,11 @@ function callTool(name, input = {}) {
       const header = result.hits.length === 0
         ? empty ? 'No matching memory records. The visible archive is currently empty; further searches cannot find records until some are added.' : 'No matching memory records. Try memory_grep or memory_index.'
         : `Memory search "${input.query}" (${result.hits.length} result${result.hits.length === 1 ? '' : 's'} shown)`
-      const lines = result.hits.map((card, index) => `${index + 1}. ${card.id} · ${card.title} · ${card.useWhen || card.summary || ''}`)
+      const lines = result.hits.map((card, index) => {
+        const summary = Array.from(String(card.summary || card.useWhen || '').replace(/\s+/g, ' ').trim())
+        const preview = summary.slice(0, 240).join('') + (summary.length > 240 ? '…' : '')
+        return `${index + 1}. ${card.id}${card.trust === 'untrusted' ? ' [unverified]' : ''} · ${card.title}${preview ? ` · ${preview}` : ''}`
+      })
       let text = `${header}\n${lines.join('\n')}`
       if (input.openTop && result.hits.length > 0) {
         const record = engine.open({ id: result.hits[0].id, maxChars: 2000 })
@@ -202,7 +206,9 @@ function callTool(name, input = {}) {
       if (typeof input.kind !== 'string' || !input.kind || typeof input.title !== 'string' || typeof input.body !== 'string') throw new Error('memory_write requires kind, title and body')
       const allowed = new Set(['kind', 'title', 'body', 'summary', 'useWhen', 'tags', 'scope', 'status'])
       if (Object.keys(input).some((key) => !allowed.has(key))) throw new Error('memory_write received an unsupported field')
-      const record = engine.write(input)
+      // An agent's assertion is useful context, but is not automatically a
+      // verified fact. Explicit core/API writes retain their existing policy.
+      const record = engine.write({ ...input, trust: 'untrusted' })
       return textResult(`Stored ${record.id} (${record.kind}, scope=${record.scope}, ~${record.tokens} tokens). Path: ${record.path}`)
     }
     case 'memory_index': {
