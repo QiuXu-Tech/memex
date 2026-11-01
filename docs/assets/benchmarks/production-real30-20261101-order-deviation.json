@@ -1,0 +1,55 @@
+{
+  "recordedAt": "2026-11-01T12:39:38.938022+00:00",
+  "studyRegistrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
+  "kind": "execution-order deviation",
+  "registeredOrder": "The public study registration listed candidate order.",
+  "actualFirstEight": [
+    "T01",
+    "T03",
+    "T05",
+    "T07",
+    "T04",
+    "T08",
+    "T09",
+    "T11"
+  ],
+  "deviation": "T05 and T07 started before T04 because T04 source archive was still downloading. The batch01 task list was published before those calls, but this differs from the original listed study order.",
+  "remainingPlannedBatches": {
+    "B03": [
+      "T12",
+      "T13",
+      "T14",
+      "T15"
+    ],
+    "B04": [
+      "T16",
+      "T17",
+      "T18",
+      "T20"
+    ],
+    "B05": [
+      "T21",
+      "T22",
+      "T23",
+      "T25"
+    ],
+    "B06": [
+      "T26",
+      "T27",
+      "T28",
+      "N01"
+    ],
+    "B07": [
+      "N02",
+      "N03",
+      "N04",
+      "N05"
+    ],
+    "B08": [
+      "N06",
+      "N07"
+    ]
+  },
+  "unchanged": "The previously committed per-task randomized arm order and balanced guidance assignment were not changed.",
+  "limits": "This deviation is disclosed after the first eight task starts; source preparation and scheduling are not independent of availability."
+}
