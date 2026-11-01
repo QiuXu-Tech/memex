@@ -1,0 +1,69 @@
+{
+  "registeredAt": "2026-11-01T11:06:53.698116+00:00",
+  "kind": "real-issue-executable-paired-codex-shadow-pilot",
+  "task": "T02",
+  "issue": "https://github.com/mllam/neural-lam/issues/393",
+  "status": {
+    "state": "OPEN",
+    "title": "CPU runs fail with explicit --devices due to list parsing and fixed DDP strategy in CLI",
+    "updatedAt": "2026-10-30T04:19:25Z",
+    "url": "https://github.com/mllam/neural-lam/issues/393"
+  },
+  "sourceCommit": "1e936a1928b62351e384f843d8b504be95448d97",
+  "sourceArchiveSha256": "c97d8e0b6b02f9d8118cc3c3060b33f64fc8c8982b7b366ba1a455a083efa14d",
+  "inputSha256": "44c27774d4f31b195a1c63ab82dbfe3b7b02f7a46869cf98bb2af200b44ae7e5",
+  "originalCohortSha256": "a5725bae2689dd3ae331c0ce73ed737f099258c2ba2ca58fb5f8937c56b52c06",
+  "allocationCommitmentSha256": "7dbddaa28abe7312591d24a1e32f2c4eaf4dfb984a1cb40276f9b6f4aecfc056",
+  "selection": "Selected adaptively for a clear maintainer decision and a lightweight executable acceptance after earlier cohort outcomes; it is not in the original cohort execution order. Arm order is the original randomized assignment.",
+  "memexCommit": "bce60fd9f2247c8abf7310ebf25645d65eea033d",
+  "memexServerSha256": "7376ddfa748bc47d0b842b80a692c52f837ee34f0afa4bfa02270d116c9038f6",
+  "manualSha256": "515d63998bebb6054784cf809128e08fa9087ed04e615cf49972c75d3aef6407",
+  "agent": "Codex CLI gpt-6.1-sol, low reasoning, separate ephemeral process per session",
+  "arms": "Both arms receive the same pinned source, issue archive, public checks, editable workspace, bounded tools and their own previous-session output. Treatment additionally has the standard Memex manual and a new empty L3 store. This restricted baseline is not every default Codex feature.",
+  "sessions": [
+    "S1 investigates the earlier issue and source without editing or testing.",
+    "S2 receives the later maintainer decision and its own S1 handoff; implements the agreed CPU-device behavior and can run public tests.",
+    "S3 is a fresh process reviewing the result and can run public checks. Final public and withheld checks run on each candidate. No task prompt commands a memory call."
+  ],
+  "frozenAcceptance": [
+    "For CPU, a single positive --devices integer is a process count; reject zero, negatives and multiple IDs with a useful error.",
+    "Preserve auto and GPU device behavior, and distinguish the already-changed DDP strategy from the remaining devices issue.",
+    "Specify positive and invalid CPU regression cases."
+  ],
+  "publicChecks": [
+    "CPU one device becomes integer process count",
+    "CPU auto preserved",
+    "GPU device-list preserved",
+    "CLI help explains CPU count"
+  ],
+  "withheldChecks": [
+    "CPU two processes becomes integer",
+    "CPU zero and negative rejected with --devices in error",
+    "CPU multiple explicit IDs rejected",
+    "GPU single ID and auto preserved"
+  ],
+  "checksSha256": {
+    "fixture": "357499e866a1aae693aa430c0f2828ea4c96667f89bd7c957f179cb5d3d942a9",
+    "public": "f440ad99101b2f95d0f7ca17e8d1f97ce4b1527eb9b1c9b114f1e2e293ee67b4",
+    "withheld": "955ef0b2b0461f2fcf8dc38ab144295301d18a330246267b576c13b18b25ea0b"
+  },
+  "preflight": {
+    "unmodifiedPublic": 1,
+    "unmodifiedWithheld": 1,
+    "investigatorReferencePublic": 0,
+    "investigatorReferenceWithheld": 0,
+    "preflightSha256": "ea5d06b510e263324302ff498d3b29444e74c37238a35c5ddc078fe6fc43a546",
+    "positiveReferenceSha256": "54f7bcb39eef52574e514d0979c59ed650887b7829c16275d4d63ed4928d9f27",
+    "setupAttemptsSha256": "7a54463e0448d76677adabb0e397b493afb0546f08e2660e0305c13587042f0a"
+  },
+  "environment": "Execute the actual pinned Python fit() and CLI parser in a network-disabled VM sandbox; replace PyTorch, Lightning, datastore and logging with test doubles, and capture Trainer arguments before training. This is a functional interface test, not an actual model-training run or full upstream suite.",
+  "review": "Two AI reviewers evaluate anonymized candidate diffs, public/withheld test output and handoffs; adjudicate material disagreement. Preserve failures and original reviews.",
+  "cost": "Record per-session Codex token usage, elapsed time, gateway-review usage and matching visible wallet rows. Subscription allocation, interrupted turns and non-model costs remain UNKNOWN unless verified.",
+  "limitations": [
+    "Real public issue with earlier proposed solutions and a current maintainer decision; possible training or history leakage.",
+    "Historical issue discussion replayed against a current pinned source, not a live production session.",
+    "Mocked ML dependencies and investigator-written verifier are not a real Lightning training run or maintainer acceptance.",
+    "Preliminary test-fixture and file-copy setup failures were corrected before this registration and retained privately.",
+    "AI reviewers are not human reviewers; the constrained baseline is not a full default Codex comparison."
+  ]
+}
