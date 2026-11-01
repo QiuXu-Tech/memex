@@ -2,6 +2,12 @@
 import importlib.util,json,pathlib,tempfile,unittest
 p=pathlib.Path(__file__).with_name('aggregate-production-autonomy-20261102.py');s=importlib.util.spec_from_file_location('autonomy_aggregate',p);m=importlib.util.module_from_spec(s);s.loader.exec_module(m)
 class AggregateValidation(unittest.TestCase):
+ def test_tool_repetition_is_counted_within_each_session_only(self):
+  def call(name,args):return {'type':'assistant','message':{'content':[{'type':'tool_use','name':name,'input':args}]}}
+  read=call('mcp__pilot__repo_read',{'path':'a','start':1})
+  memory=call('mcp__memex__memory_open',{'id':'x'})
+  counts=m.tool_counts([[read,read,memory],[read]])
+  self.assertEqual(counts,{'total':4,'exactRepeated':1,'memory':1,'source':3,'archive':0,'other':0})
  def test_cached_input_and_charged_zero_usage_are_not_conflated(self):
   usage={'input_tokens':2,'cache_creation_input_tokens':3,'cache_read_input_tokens':4,'output_tokens':5}
   self.assertEqual(m.model_tokens({'usage':usage,'clientListPriceUsd':0.01})['input'],9)

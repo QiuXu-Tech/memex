@@ -18,6 +18,20 @@ def model_tokens(s):
  return {'input':sum(u[k] for k in INPUT_FIELDS),'output':u['output_tokens'],'cacheRead':u['cache_read_input_tokens'],'cacheWrite':u['cache_creation_input_tokens']}
 def call_entries(e):
  return [x for y in e if y.get('type')=='assistant' for x in (y.get('message') or {}).get('content',[]) if isinstance(x,dict) and x.get('type')=='tool_use']
+def tool_counts(sessions):
+ counts=collections.Counter()
+ for session in sessions:
+  seen=set()
+  for call in call_entries(session):
+   name=call.get('name','');key=(name,json.dumps(call.get('input') or {},sort_keys=True,ensure_ascii=False))
+   counts['total']+=1
+   if key in seen:counts['exactRepeated']+=1
+   seen.add(key)
+   if name.startswith('mcp__memex__'):counts['memory']+=1
+   elif name.startswith('mcp__pilot__repo_'):counts['source']+=1
+   elif name.startswith('mcp__pilot__archive_'):counts['archive']+=1
+   else:counts['other']+=1
+ return {k:counts[k] for k in ('total','exactRepeated','memory','source','archive','other')}
 def writes_and_opens(base,task):
  t=base/task/'traces';one=events(t/'memex-s1-events.jsonl')+events(t/'memex-s1-recovery-events.jsonl');two=events(t/'memex-s2-events.jsonl')+events(t/'memex-s2-recovery-events.jsonl')
  writes={x['id'] for x in call_entries(one) if x.get('name')=='mcp__memex__memory_write' and x.get('id')}
@@ -130,12 +144,20 @@ def cohort(name):
   sensitivity_directions['memexHigher' if delta>0 else 'baselineHigher' if delta<0 else 'tie']+=1
  tokenpairs=[x for x in complete if all(x['tokenByArm'].get(a) is not None for a in ('baseline','memex'))]
  token_totals={a:{k:sum(x['tokenByArm'][a][k] for x in tokenpairs) for k in ('input','output','cacheRead','cacheWrite')} for a in ('baseline','memex')}
+ calls={}
+ for arm in ('baseline','memex'):
+  sessions=[]
+  for x in complete:
+   for stage in (1,2):
+    trace=base/x['id']/'traces'
+    sessions.append(events(trace/f'{arm}-s{stage}-events.jsonl')+events(trace/f'{arm}-s{stage}-recovery-events.jsonl'))
+  calls[arm]=tool_counts(sessions)
  review_status='FINISHED' if (base/'reviews'/'finished.json').exists() else 'IN_PROGRESS' if (base/'reviews'/'started.json').exists() else 'NOT_STARTED'
  return {'status':'FINISHED' if (base/'finished-rest.json').exists() else 'IN_PROGRESS','reviewStatus':review_status,'registered':len(rows),'started':sum(x['started'] for x in rows),
   'finished':sum(x['finished'] for x in rows),'completePairs':len(complete),'validRatedPairs':len(reviewed),'scoreDirections':dict(directions),
   'posthocSensitivityRatedPairs':len(sensitivity),'posthocSensitivityDirections':dict(sensitivity_directions),
   'meanScore':{a:statistics.mean(x['review']['scoresByArm'][a] for x in reviewed) if reviewed else None for a in ('baseline','memex')},
-  'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,
+  'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'completePairToolAttempts':calls,'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,
   'agentWrites':sum(bool(x['memoryChain'] and x['memoryChain']['successfulWriteIds']) for x in rows),
   'writtenRecordOpenedNext':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdOpenedNext']) for x in rows),
   'writtenRecordAutomaticallyRecalled':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdInAutomaticRecall']) for x in rows),

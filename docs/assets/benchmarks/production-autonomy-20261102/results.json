@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T18:08:43.621468+00:00",
+  "generatedAt": "2026-11-01T18:13:37.192363+00:00",
   "kind": "descriptive-evidence-reconciliation",
   "original": {
     "status": "FINISHED",
@@ -36,6 +36,24 @@
         "output": 70859,
         "cacheRead": 1783689,
         "cacheWrite": 389195
+      }
+    },
+    "completePairToolAttempts": {
+      "baseline": {
+        "total": 264,
+        "exactRepeated": 2,
+        "memory": 0,
+        "source": 134,
+        "archive": 130,
+        "other": 0
+      },
+      "memex": {
+        "total": 231,
+        "exactRepeated": 2,
+        "memory": 56,
+        "source": 134,
+        "archive": 41,
+        "other": 0
       }
     },
     "clientListPriceKnownUsd": 7.00247,
@@ -12045,9 +12063,9 @@
     "status": "IN_PROGRESS",
     "reviewStatus": "NOT_STARTED",
     "registered": 30,
-    "started": 14,
-    "finished": 12,
-    "completePairs": 12,
+    "started": 17,
+    "finished": 15,
+    "completePairs": 15,
     "validRatedPairs": 0,
     "scoreDirections": {},
     "posthocSensitivityRatedPairs": 0,
@@ -12071,14 +12089,32 @@
         "cacheWrite": 0
       }
     },
-    "clientListPriceKnownUsd": 3.370403,
+    "completePairToolAttempts": {
+      "baseline": {
+        "total": 513,
+        "exactRepeated": 3,
+        "memory": 0,
+        "source": 323,
+        "archive": 190,
+        "other": 0
+      },
+      "memex": {
+        "total": 411,
+        "exactRepeated": 1,
+        "memory": 46,
+        "source": 301,
+        "archive": 64,
+        "other": 0
+      }
+    },
+    "clientListPriceKnownUsd": 4.281475,
     "clientListPriceMissingSessions": 0,
-    "agentWrites": 1,
+    "agentWrites": 2,
     "writtenRecordOpenedNext": 0,
-    "writtenRecordAutomaticallyRecalled": 1,
-    "automaticCheckpoints": 13,
-    "automaticCheckpointOpenedNext": 13,
-    "automaticCheckpointRecalledNext": 13,
+    "writtenRecordAutomaticallyRecalled": 2,
+    "automaticCheckpoints": 16,
+    "automaticCheckpointOpenedNext": 16,
+    "automaticCheckpointRecalledNext": 16,
     "reviewUsageByModel": {},
     "rawConsistencyProblems": [],
     "tasks": [
@@ -12091,10 +12127,144 @@
         "sourceArchiveSha256": "1fd6c9b233a9b9fb4d6b21226cdef9a07c73bb05f545c331690a3af6c763bd15",
         "issueSnapshotSha256": "2199982f00178543fe755a2c2d5ada3fc913640680f545f9bbae1ce00280abb2",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
+        "completePair": true,
         "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08512884999999999,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 26135,
+                "cache_read_input_tokens": 58437,
+                "output_tokens": 1892,
+                "output_tokens_details": {
+                  "thinking_tokens": 801
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 26135
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0570276,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 17673,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1200,
+                "output_tokens_details": {
+                  "thinking_tokens": 806
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17673
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08512884999999999,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08261355000000001,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 19838,
+                "cache_read_input_tokens": 82316,
+                "output_tokens": 2819,
+                "output_tokens_details": {
+                  "thinking_tokens": 1847
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19838
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0553448,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 16683,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1281,
+                "output_tokens_details": {
+                  "thinking_tokens": 748
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16683
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08261355000000001,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
           "memex-s1": {
             "status": "success",
             "responseCompleted": true,
@@ -12230,7 +12400,10 @@
             }
           }
         },
-        "tokenByArm": {},
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
         "memoryChain": {
           "writeCalls": 0,
           "writtenIdOpenedNext": false,
@@ -12246,6 +12419,10 @@
         },
         "posthocReview": null,
         "finalAnswers": {
+          "baseline": {
+            "text": "## Triage: Issue #7522 - `combine()` Result Type Constraint in solid-query\n\n**Reported behavior:**\nUser expects `createQueries()` with `combine()` to support returning custom objects (e.g., `{ data: boolean }`). Currently encounters type errors and/or runtime crash `state.map is not a function`.\n\n**Source evidence:**\n- **File**: `packages/solid-query/src/useQueries.ts:272–283`\n- **Type constraint**: Line 274 — `TCombinedResult extends QueriesResults<T>` forces return type to be array-like (unlike React, which has no such constraint at line 210 of `packages/react-query/src/useQueries.ts`)\n- **Implementation assumes array**: Lines 334–336 unconditionally call `state.length` and `state.map()`:\n  ```typescript\n  createMemo(\n    on(\n      () => state.length,    // line 334\n      () => state.map(...),  // line 336\n    )\n  )\n  ```\n- Also line 364: indexed access `result[index]`\n\n**Discussion & disagreement:**\n- **C12 (TkDodo, 2025-12-27)**: Identified the type constraint as the root issue. Attempted removal but hit Solid-js blocking issues: `createStore<T>` requires `T extends object`, and downstream `createMemo` errors. Requested Solid expertise.\n- **C11 (devinatbryt, 2025-07-16)**: Confirmed still unfixed — type is incorrect.\n- **C10 (samuelchau, 2024-12-17)**: Asked if fixed (still open).\n\n**Recommended next check:**\n1. Whether Solid-js primitives (`createStore`, `createMemo`, resource tracking at lines 332–370) can support non-array combined result shapes\n2. Whether `combine()` contract should allow arbitrary types or remain array-only\n3. Scope of refactoring needed beyond type constraint removal\n\n**Explicit uncertainty:**\n- Whether the implementation can be refactored to support arbitrary return types, or if the type constraint exists for a valid architectural reason in Solid\n- Whether this is a design decision or an incomplete feature",
+            "truncated": false
+          },
           "memex": {
             "text": "## Concise Triage\n\n**Reported behavior:** User provides a `combine` function to `createQueries` (solid-query) returning a custom object (e.g., `{ data: boolean }`), but:\n- TypeScript infers type as array (`QueriesResults<T>`)\n- Runtime returns array of query results, not combined value\n\n**Root causes:**\n\n1. **Type constraint too narrow** (`packages/solid-query/src/useQueries.ts:274`): `TCombinedResult extends QueriesResults<T>` forces combined result to be array-shaped.\n\n2. **Runtime ignores combined result** (`packages/solid-query/src/useQueries.ts:311-316, 428`): \n   - Line 315 receives combined result from `getOptimisticResult()[1]()`\n   - Line 428 returns `proxyState as TCombinedResult`\n   - But `proxyState` wraps the raw array `state` in proxies (lines 420-425)\n\n3. **Subscription handler rewrites state as array** (`packages/solid-query/src/useQueries.ts:358-366`): Updates assume `state` is indexed array; each query update replaces combined structure.\n\n4. **Observer notifies with raw results** (`packages/query-core/src/queriesObserver.ts:406`): Listeners receive `this.#result` (array), never the combined value; solid-query has no way to receive combined updates.\n\n**Next action:** Determine if React's `useQueries` has same limitation (would indicate design choice) or handles combine correctly (would isolate bug to solid-query).\n\n**Uncertainty:** Whether the observer's raw-result notification is intentional for framework flexibility or an oversight affecting all adapters.",
             "truncated": false
@@ -14490,21 +14667,435 @@
         "sourceCommit": "16507ef656417c9c53a55a02a44a563bbbf2c484",
         "sourceArchiveSha256": "406561f44dc6d79aad0143f932930169f2684756f092b9f9674963d2b81e1f71",
         "issueSnapshotSha256": "cb2c32cb5432f837bb6513647e371541c3d6d74744045eb7c4dd68db89f31259",
-        "started": false,
+        "started": true,
         "finished": false,
         "runnerError": null,
         "completePair": false,
-        "sessions": {},
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 35,
+              "cache_creation_input_tokens": 20102,
+              "cache_read_input_tokens": 36198,
+              "output_tokens": 2418,
+              "output_tokens_details": {
+                "thinking_tokens": 1258
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 20102
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0408723,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 35,
+                "cache_creation_input_tokens": 20102,
+                "cache_read_input_tokens": 36198,
+                "output_tokens": 2418,
+                "output_tokens_details": {
+                  "thinking_tokens": 1258
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20102
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0408723,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07609830000000001,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [
+              "mcp__pilot__repo_grep"
+            ],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 18712,
+                "cache_read_input_tokens": 94720,
+                "output_tokens": 2587,
+                "output_tokens_details": {
+                  "thinking_tokens": 1737
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18712
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.05410455,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 13823,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 941,
+                "output_tokens_details": {
+                  "thinking_tokens": 580
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 13823
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07609830000000001,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.0732845,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 18153,
+                "cache_read_input_tokens": 89527,
+                "output_tokens": 2900,
+                "output_tokens_details": {
+                  "thinking_tokens": 1548
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18153
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.053143249999999996,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 13993,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 528,
+                "output_tokens_details": {
+                  "thinking_tokens": 143
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 13993
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.0732845,
+              "exitCode": 0,
+              "timeout": false
+            }
+          }
+        },
         "tokenByArm": {},
-        "memoryChain": null,
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 1
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
         "posthocReview": null,
-        "finalAnswers": {},
+        "finalAnswers": {
+          "memex": {
+            "text": "## Triage: Issue #4512 – @consume() not tracking context changes in willUpdate changed Map\n\n**Reported behavior:**\nWhen using `@consume({ context, subscribe: true })`, the `changed` Map in `willUpdate()` is empty when context updates, despite the property being set. User expects the property name in `changed`.\n\n**Source evidence:**\n- **`packages/context/src/lib/controllers/context-consumer.ts:124`** — `_callback` calls `this.host.requestUpdate()` with no arguments, preventing ReactiveElement from registering the property in `changed`.\n- **`packages/context/src/lib/decorators/consume.ts:63–65, 75–77`** — Decorator callback sets the property but has no mechanism to inform the controller which property name it's using.\n\n**Root cause:**\nThe `ContextConsumer` constructor accepts `context`, `callback`, and `subscribe` in its `Options` interface (lines 18–22), but no property name. The controller cannot call `requestUpdate(propertyName, oldValue)` without knowing the property key.\n\n**Discussion/disagreement:**\nNone found. The earlier handoff identified this gap but left the fix approach unresolved.\n\n**Recommended next action:**\nDetermine whether to extend `ContextConsumer` `Options` with a `property?: PropertyKey` field, allowing the decorator to pass the property name at initialization so `_callback` can properly track it in the changed Map.\n\n**Uncertainty:**\n- Whether this is a breaking change to the public `ContextConsumer` API.\n- Whether there's an existing pattern in Lit controllers for accessing property metadata from decorators.",
+            "truncated": false
+          }
+        },
         "sourceReferences": {
-          "baseline": [],
-          "memex": []
+          "baseline": [
+            {
+              "path": "packages/context/CHANGELOG.md",
+              "line": 34,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/CHANGELOG.md#L34"
+            },
+            {
+              "path": "packages/context/README.md",
+              "line": 47,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/README.md#L47"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 34,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L34"
+            },
+            {
+              "path": "packages/context/src/test/context-provider_test.ts",
+              "line": 19,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/context-provider_test.ts#L19"
+            },
+            {
+              "path": "packages/context/src/test/context-request_test.ts",
+              "line": 36,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/context-request_test.ts#L36"
+            },
+            {
+              "path": "packages/context/src/test/late-provider_test.ts",
+              "line": 26,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/late-provider_test.ts#L26"
+            },
+            {
+              "path": "packages/context/src/test/provider-and-consumer_test.ts",
+              "line": 17,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/provider-and-consumer_test.ts#L17"
+            },
+            {
+              "path": "packages/context/src/test/type_check_test.ts",
+              "line": 51,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/type_check_test.ts#L51"
+            },
+            {
+              "path": "packages/context/src/test/decorators/provide_test.ts",
+              "line": 16,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/decorators/provide_test.ts#L16"
+            },
+            {
+              "path": "packages/context/src/test/std-decorators/context-provider_test.ts",
+              "line": 18,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/std-decorators/context-provider_test.ts#L18"
+            },
+            {
+              "path": "packages/context/README.md",
+              "line": 68,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/README.md#L68"
+            },
+            {
+              "path": "packages/context/README.md",
+              "line": 74,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/README.md#L74"
+            },
+            {
+              "path": "packages/context/README.md",
+              "line": 78,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/README.md#L78"
+            },
+            {
+              "path": "packages/context/src/index.ts",
+              "line": 20,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/index.ts#L20"
+            },
+            {
+              "path": "packages/context/src/lib/controllers/context-consumer.ts",
+              "line": 36,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/controllers/context-consumer.ts#L36"
+            },
+            {
+              "path": "packages/context/src/lib/controllers/context-consumer.ts",
+              "line": 51,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/controllers/context-consumer.ts#L51"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 9,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L9"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 20,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L20"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 61,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L61"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 1,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L1"
+            }
+          ],
+          "memex": [
+            {
+              "path": "packages/context/CHANGELOG.md",
+              "line": 34,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/CHANGELOG.md#L34"
+            },
+            {
+              "path": "packages/context/README.md",
+              "line": 47,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/README.md#L47"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 34,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L34"
+            },
+            {
+              "path": "packages/context/src/test/context-provider_test.ts",
+              "line": 19,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/context-provider_test.ts#L19"
+            },
+            {
+              "path": "packages/context/src/test/context-request_test.ts",
+              "line": 36,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/context-request_test.ts#L36"
+            },
+            {
+              "path": "packages/context/src/test/late-provider_test.ts",
+              "line": 26,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/late-provider_test.ts#L26"
+            },
+            {
+              "path": "packages/context/src/test/provider-and-consumer_test.ts",
+              "line": 17,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/provider-and-consumer_test.ts#L17"
+            },
+            {
+              "path": "packages/context/src/test/type_check_test.ts",
+              "line": 51,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/type_check_test.ts#L51"
+            },
+            {
+              "path": "packages/context/src/test/decorators/provide_test.ts",
+              "line": 16,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/decorators/provide_test.ts#L16"
+            },
+            {
+              "path": "packages/context/src/test/std-decorators/context-provider_test.ts",
+              "line": 18,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/std-decorators/context-provider_test.ts#L18"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 1,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L1"
+            },
+            {
+              "path": "packages/context/src/lib/controllers/context-consumer.ts",
+              "line": 1,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/controllers/context-consumer.ts#L1"
+            },
+            {
+              "path": "packages/context/src/lib/controllers/context-consumer.ts",
+              "line": 100,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/controllers/context-consumer.ts#L100"
+            },
+            {
+              "path": "packages/context/src/lib/controllers/context-consumer.ts",
+              "line": 106,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/controllers/context-consumer.ts#L106"
+            },
+            {
+              "path": "CHANGELOG.md",
+              "line": 77,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/CHANGELOG.md#L77"
+            },
+            {
+              "path": "packages/lit/CHANGELOG.md",
+              "line": 486,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/lit/CHANGELOG.md#L486"
+            },
+            {
+              "path": "packages/reactive-element/CHANGELOG.md",
+              "line": 262,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/reactive-element/CHANGELOG.md#L262"
+            },
+            {
+              "path": "packages/context/src/test/provider-and-consumer_test.ts",
+              "line": 1,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/test/provider-and-consumer_test.ts#L1"
+            },
+            {
+              "path": "packages/context/src/lib/decorators/consume.ts",
+              "line": 42,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/decorators/consume.ts#L42"
+            },
+            {
+              "path": "packages/context/src/lib/controllers/context-consumer.ts",
+              "line": 50,
+              "url": "https://github.com/lit/lit/blob/16507ef656417c9c53a55a02a44a563bbbf2c484/packages/context/src/lib/controllers/context-consumer.ts#L50"
+            }
+          ]
         }
       },
       {
@@ -15082,13 +15673,22 @@
         "sourceCommit": "fe21fce019e7797a9eeb5066211ff42e4e7cca8d",
         "sourceArchiveSha256": "bd8bba54507de2c083ea5ae19cf12ceda8ce11723d2853d0a5eaae7fbd090c46",
         "issueSnapshotSha256": "25a3827d9c2768be5cf7fe07a989386325f3e8c7dbbfc3926f7746be9abb95e6",
-        "started": false,
+        "started": true,
         "finished": false,
         "runnerError": null,
         "completePair": false,
         "sessions": {},
         "tokenByArm": {},
-        "memoryChain": null,
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": false,
+          "automaticCheckpointRecalledNext": false,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 0
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
@@ -17237,21 +17837,500 @@
         "sourceCommit": "fc517df18fb59a33b39d383c6766690bc427ac06",
         "sourceArchiveSha256": "a73116a48fc0e1717f12bd69af34c5a1fc775400dafc5e18a49d319fd81664e6",
         "issueSnapshotSha256": "7bac270895dfe780ce82850f06cf5970761a4a67af9738d30839250132bceb8a",
-        "started": false,
-        "finished": false,
+        "started": true,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
-        "sessions": {},
-        "tokenByArm": {},
-        "memoryChain": null,
+        "completePair": true,
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07664420000000001,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 35,
+                "cache_creation_input_tokens": 23271,
+                "cache_read_input_tokens": 32718,
+                "output_tokens": 1717,
+                "output_tokens_details": {
+                  "thinking_tokens": 644
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23271
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.050871700000000006,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 16598,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1003,
+                "output_tokens_details": {
+                  "thinking_tokens": 556
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16598
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07664420000000001,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.11749065,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 45,
+                "cache_creation_input_tokens": 20947,
+                "cache_read_input_tokens": 62045,
+                "output_tokens": 2321,
+                "output_tokens_details": {
+                  "thinking_tokens": 993
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20947
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.06843815,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 34506,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1182,
+                "output_tokens_details": {
+                  "thinking_tokens": 631
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 34506
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.11749065,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08785275,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [
+              "mcp__pilot__repo_grep"
+            ],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 40,
+                "cache_creation_input_tokens": 22895,
+                "cache_read_input_tokens": 65332,
+                "output_tokens": 2264,
+                "output_tokens_details": {
+                  "thinking_tokens": 1237
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 22895
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.055633999999999996,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 20675,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1273,
+                "output_tokens_details": {
+                  "thinking_tokens": 833
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20675
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08785275,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07832035,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 20146,
+                "cache_read_input_tokens": 97777,
+                "output_tokens": 2745,
+                "output_tokens_details": {
+                  "thinking_tokens": 1489
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20146
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.055291599999999996,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 14175,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1060,
+                "output_tokens_details": {
+                  "thinking_tokens": 524
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14175
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07832035,
+              "exitCode": 0,
+              "timeout": false
+            }
+          }
+        },
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 1
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
         "posthocReview": null,
-        "finalAnswers": {},
+        "finalAnswers": {
+          "baseline": {
+            "text": "## Triage: Issue #8059 - ERESOLVE with peerOptional Dependencies\n\n**Reported Behavior:**\nWhen manually updating Storybook packages (8.4.7 → 8.5.1) where all three packages (@storybook/react-vite, @storybook/test, storybook) are devDependencies, `npm install` fails with ERESOLVE. The error flags @storybook/test@8.5.1 as a conflicting peer dependency despite being declared as peerOptional by @storybook/react-vite@8.5.1.\n\n**Source Evidence:**\n- CHANGELOG.md:493 — PR #8981 commit `bb135cc`: \"arborist: fix `peerOptional` dependency resolution in `buildIdealTree`\" (released v11.10.1, 2026-02-19)\n- workspaces/arborist/lib/arborist/build-ideal-tree.js:505 — logic for `skipPeerOptional` exists but behavior differs from intent\n\n**Relevant Discussion:**\n- C4/C9: User confirmed `npm install --save` with all packages in single command still fails\n- C12 (cr101, 2026-10-20): **Issue persists on npm 12.2.0 (latest) and 11.20.0** with React Router family reproduction. Deleting lockfile allows install to succeed, indicating problem is upgrading existing lockfile entries, not fresh installs.\n\n**Root Issue:**\nConflict detection during lockfile mutation treats peerOptional edges as hard conflicts during entry set construction, even when the package is an explicit direct dependency that should satisfy the peerOptional requirement. The buildIdealTree logic appears insufficient to exclude optional peer dependencies from ERESOLVE when the requestor is already present.\n\n**Recommended Next Check:**\n- Compare buildIdealTree entry set construction between pre-fix (if fc517df is before bb135cc) and post-fix to identify whether bb135cc fully resolved the issue or only partially\n- If bb135cc is already in the baseline, a second bug in entry set formation or conflict validation may need separate fixing\n\n**Explicit Uncertainty:**\n- Commit timeline: whether pinned commit fc517df is before or after the fix bb135cc\n- Whether the fix in bb135cc fully resolves the original issue or if C12's persistence indicates a regression or new manifestation",
+            "truncated": false
+          },
+          "memex": {
+            "text": "## Triage: Issue #8059 - ERESOLVE peerOptional Conflict\n\n**Reported behavior:**\nUpgrading interdependent packages (Storybook, React Router, Vite) from one minor version to another fails with ERESOLVE, reporting a conflicting peer dependency that is already installed and satisfied. Installing from scratch or deleting lockfile/node_modules works. The error only occurs during incremental updates where old versions remain in node_modules.\n\n**Source evidence:**\n- File: `workspaces/arborist/lib/can-place-dep.js:371–415` (`canPlacePeers` method)\n- The method iterates peer edges but does not distinguish between required `peer` and `peerOptional` types\n- Contrast: `build-ideal-tree.js:505–507` explicitly checks `edge.type === 'peerOptional'`, indicating the codebase recognizes this distinction\n\n**Scope of issue:**\n- Affects npm 10.8.2+, 11.x, 12.x (appears across multiple versions)\n- Reproducible with Storybook (C1–C12 issue), React Router (C12 reproduction), Vite (C11)\n- Affects CI environments where lockfile is checked in (C11)\n- User signal (C11): \"npm is using whatever it finds in node_modules instead of seeing that package.json changed\"\n\n**Discussion/workarounds:**\n- C5: `--legacy-peer-deps` + delete node_modules works\n- C11/C12: Deleting lockfile and reinstalling from scratch works\n- No npm team diagnosis or fix identified in thread; issue remains open\n\n**Recommended next check:**\nConfirm whether `canPlacePeers` should skip or differently handle `peerOptional` edges (similar to `build-ideal-tree.js`). The placement check may be incorrectly treating optional peer dependencies as hard conflicts when an old version exists during incremental updates.\n\n**Uncertainty:**\nNo npm team maintainer explanation of root cause is visible in the archive. Whether this is a regression or pre-existing gap in peer resolution logic is unclear. The exact semantics of when `peerOptional` edges should block placement need clarification.",
+            "truncated": false
+          }
+        },
         "sourceReferences": {
-          "baseline": [],
-          "memex": []
+          "baseline": [
+            {
+              "path": "lib/utils/display.js",
+              "line": 2,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/display.js#L2"
+            },
+            {
+              "path": "lib/utils/display.js",
+              "line": 385,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/display.js#L385"
+            },
+            {
+              "path": "lib/utils/error-message.js",
+              "line": 16,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/error-message.js#L16"
+            },
+            {
+              "path": "lib/utils/error-message.js",
+              "line": 17,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/error-message.js#L17"
+            },
+            {
+              "path": "lib/utils/error-message.js",
+              "line": 18,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/error-message.js#L18"
+            },
+            {
+              "path": "lib/utils/error-message.js",
+              "line": 24,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/error-message.js#L24"
+            },
+            {
+              "path": "lib/utils/explain-eresolve.js",
+              "line": 1,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/explain-eresolve.js#L1"
+            },
+            {
+              "path": "lib/utils/explain-eresolve.js",
+              "line": 6,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/explain-eresolve.js#L6"
+            },
+            {
+              "path": "lib/utils/explain-eresolve.js",
+              "line": 18,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/explain-eresolve.js#L18"
+            },
+            {
+              "path": "tap-snapshots/test/lib/utils/error-message.js.test.cjs",
+              "line": 1085,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/tap-snapshots/test/lib/utils/error-message.js.test.cjs#L1085"
+            },
+            {
+              "path": "lib/utils/explain-eresolve.js",
+              "line": 8,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/explain-eresolve.js#L8"
+            },
+            {
+              "path": "test/fixtures/eresolve-explanations.js",
+              "line": 37,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/test/fixtures/eresolve-explanations.js#L37"
+            },
+            {
+              "path": "workspaces/arborist/lib/edge.js",
+              "line": 28,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/edge.js#L28"
+            },
+            {
+              "path": "workspaces/arborist/lib/peer-entry-sets.js",
+              "line": 32,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/peer-entry-sets.js#L32"
+            },
+            {
+              "path": "workspaces/arborist/lib/place-dep.js",
+              "line": 46,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/place-dep.js#L46"
+            },
+            {
+              "path": "workspaces/arborist/lib/printable.js",
+              "line": 135,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/printable.js#L135"
+            },
+            {
+              "path": "workspaces/arborist/lib/arborist/build-ideal-tree.js",
+              "line": 1098,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/arborist/build-ideal-tree.js#L1098"
+            },
+            {
+              "path": "workspaces/arborist/tap-snapshots/test/can-place-dep.js.test.cjs",
+              "line": 47,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/tap-snapshots/test/can-place-dep.js.test.cjs#L47"
+            },
+            {
+              "path": "workspaces/arborist/tap-snapshots/test/edge.js.test.cjs",
+              "line": 18,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/tap-snapshots/test/edge.js.test.cjs#L18"
+            },
+            {
+              "path": "workspaces/arborist/tap-snapshots/test/node.js.test.cjs",
+              "line": 205,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/tap-snapshots/test/node.js.test.cjs#L205"
+            }
+          ],
+          "memex": [
+            {
+              "path": "lib/utils/explain-eresolve.js",
+              "line": 8,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/utils/explain-eresolve.js#L8"
+            },
+            {
+              "path": "tap-snapshots/test/lib/utils/explain-eresolve.js.test.cjs",
+              "line": 10,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/tap-snapshots/test/lib/utils/explain-eresolve.js.test.cjs#L10"
+            },
+            {
+              "path": "workspaces/arborist/CHANGELOG.md",
+              "line": 5,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/CHANGELOG.md#L5"
+            },
+            {
+              "path": "workspaces/arborist/lib/node.js",
+              "line": 1512,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/node.js#L1512"
+            },
+            {
+              "path": "workspaces/arborist/lib/arborist/build-ideal-tree.js",
+              "line": 943,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/arborist/build-ideal-tree.js#L943"
+            },
+            {
+              "path": "workspaces/arborist/test/arborist/build-ideal-tree.js",
+              "line": 270,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/test/arborist/build-ideal-tree.js#L270"
+            },
+            {
+              "path": "workspaces/arborist/lib/arborist/build-ideal-tree.js",
+              "line": 1,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/arborist/build-ideal-tree.js#L1"
+            },
+            {
+              "path": "workspaces/arborist/lib/can-place-dep.js",
+              "line": 1,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/can-place-dep.js#L1"
+            },
+            {
+              "path": "lib/commands/ls.js",
+              "line": 240,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/lib/commands/ls.js#L240"
+            },
+            {
+              "path": "workspaces/arborist/lib/arborist/build-ideal-tree.js",
+              "line": 505,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/arborist/build-ideal-tree.js#L505"
+            },
+            {
+              "path": "workspaces/arborist/test/arborist/build-ideal-tree.js",
+              "line": 1639,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/test/arborist/build-ideal-tree.js#L1639"
+            },
+            {
+              "path": "workspaces/arborist/lib/can-place-dep.js",
+              "line": 118,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/can-place-dep.js#L118"
+            },
+            {
+              "path": "workspaces/arborist/lib/can-place-dep.js",
+              "line": 150,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/can-place-dep.js#L150"
+            },
+            {
+              "path": "workspaces/arborist/lib/can-place-dep.js",
+              "line": 280,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/can-place-dep.js#L280"
+            },
+            {
+              "path": "workspaces/arborist/lib/arborist/build-ideal-tree.js",
+              "line": 490,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/lib/arborist/build-ideal-tree.js#L490"
+            },
+            {
+              "path": "CHANGELOG.md",
+              "line": 83,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/CHANGELOG.md#L83"
+            },
+            {
+              "path": "workspaces/arborist/CHANGELOG.md",
+              "line": 23,
+              "url": "https://github.com/npm/cli/blob/fc517df18fb59a33b39d383c6766690bc427ac06/workspaces/arborist/CHANGELOG.md#L23"
+            }
+          ]
         }
       },
       {
@@ -17703,26 +18782,294 @@
         "sourceArchiveSha256": "655e494fe7e0138ce835a4bb79edc0e86a8cf0c3e7c80b35079b9b982fbf41c0",
         "issueSnapshotSha256": "09061dea39bf4afc01846b1c79a043ca11bf41f56e7d9b1459256dc814534438",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
-        "sessions": {},
-        "tokenByArm": {},
+        "completePair": true,
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.075409,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 45,
+                "cache_creation_input_tokens": 23930,
+                "cache_read_input_tokens": 51116,
+                "output_tokens": 2078,
+                "output_tokens_details": {
+                  "thinking_tokens": 967
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23930
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0525365,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 15006,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 821,
+                "output_tokens_details": {
+                  "thinking_tokens": 465
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15006
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.075409,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 30,
+              "cache_creation_input_tokens": 6821,
+              "cache_read_input_tokens": 27895,
+              "output_tokens": 2121,
+              "output_tokens_details": {
+                "thinking_tokens": 1067
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 6821
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.021950749999999998,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 30,
+                "cache_creation_input_tokens": 6821,
+                "cache_read_input_tokens": 27895,
+                "output_tokens": 2121,
+                "output_tokens_details": {
+                  "thinking_tokens": 1067
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6821
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.021950749999999998,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 50,
+              "cache_creation_input_tokens": 19516,
+              "cache_read_input_tokens": 79389,
+              "output_tokens": 3453,
+              "output_tokens_details": {
+                "thinking_tokens": 1280
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 19516
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0496489,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 19516,
+                "cache_read_input_tokens": 79389,
+                "output_tokens": 3453,
+                "output_tokens_details": {
+                  "thinking_tokens": 1280
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19516
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0496489,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 50,
+              "cache_creation_input_tokens": 14194,
+              "cache_read_input_tokens": 75947,
+              "output_tokens": 4074,
+              "output_tokens_details": {
+                "thinking_tokens": 2719
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 14194
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0457572,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 14194,
+                "cache_read_input_tokens": 75947,
+                "output_tokens": 4074,
+                "output_tokens_details": {
+                  "thinking_tokens": 2719
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14194
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0457572,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          }
+        },
+        "tokenByArm": {
+          "baseline": null,
+          "memex": {
+            "input": 189146,
+            "output": 7527,
+            "cacheRead": 155336,
+            "cacheWrite": 33710
+          }
+        },
         "memoryChain": {
-          "writeCalls": 0,
+          "writeCalls": 1,
           "writtenIdOpenedNext": false,
-          "writtenIdInAutomaticRecall": false,
-          "unverifiedRecallLabel": false,
-          "automaticCheckpointOpenedNext": false,
-          "automaticCheckpointRecalledNext": false,
-          "successfulWriteCount": 0,
-          "automaticCheckpointCount": 0
+          "writtenIdInAutomaticRecall": true,
+          "unverifiedRecallLabel": true,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 1,
+          "automaticCheckpointCount": 1
         },
         "review": {
           "status": "NOT_PREPARED"
         },
         "posthocReview": null,
-        "finalAnswers": {},
+        "finalAnswers": {
+          "baseline": {
+            "text": "## Triage: Docker Image Pull Failure for `sls invoke local --docker`\n\n**Reported Behavior**: `sls invoke local --docker -f hello` fails with error `docker pull --disable-content-trust=false lambci/lambda:java11 Exited with code 1` when attempting to invoke a Java 11 function locally using Docker.\n\n**Source Evidence**: \n- `packages/serverless/lib/plugins/aws/invoke-local/index.js:472` calls `getLambdaCiImageUriFromRuntime(runtime)`\n- `packages/serverless/lib/plugins/aws/invoke-local/index.js:107–128` defines that function\n- **Current pinned code (7046e34) constructs AWS ECR URLs**: `public.ecr.aws/lambda/java:11` (line 116), not `lambci/lambda`\n\n**Critical Discrepancy**: The error message reports pulling the deprecated `lambci/lambda:java11` image, but the pinned source code already uses the new AWS ECR registry. This indicates either a version mismatch or the fix was already applied in this commit.\n\n**Discussion/Resolution Evidence**:\n- 2024-02-05 (C1): User confirms expired docker images are the issue\n- 2024-02-21 (C2): PR #12348 referenced as likely fix\n- 2024-03-19 (C3): Workaround provided: pull `mlupin/docker-lambda:${runtime}` and tag as `lambci/lambda:${runtime}`\n\n**Recommended Next Check**: Verify whether PR #12348 migrated the code from lambci to AWS ECR registry. If it was merged, confirm the pinned commit (7046e34) is at or after that merge. If the fix is already in the pinned code, this issue may be resolved in the current version but the user is on an older version.\n\n**Explicit Uncertainty**: Cannot confirm whether the pinned commit represents the post-fix state or if this is a regression without comparing commit dates and PR merge history.",
+            "truncated": false
+          },
+          "memex": {
+            "text": "**Triage Summary:**\n\n**Reported Behavior:**  \n`sls invoke local --docker` with `java11` runtime fails pulling expired Docker image `lambci/lambda:java11` on framework v3.38.0.\n\n**Source Evidence with Discrepancy:**\n- **Lines 107–128** (`packages/serverless/lib/plugins/aws/invoke-local/index.js`): `getLambdaCiImageUriFromRuntime()` maps `java11` → `public.ecr.aws/lambda/java:11` (AWS ECR image, not lambci)\n- **Lines 470–476**: `pullDockerImage()` executes `docker pull ${imageUri}` using the mapped URI\n- **Lines 564–569**: `buildDockerImage()` uses `FROM ${imageUri}` in Dockerfile base\n\nNo `lambci` references exist in the current codebase.\n\n**Critical Mismatch:**  \nThe error message shows the framework attempting to pull `lambci/lambda:java11`, but the pinned code at 7046e34cd82f493c1c966e534257b22c98e8c5dc generates AWS ECR URIs. This is a version discrepancy or cached dependency issue.\n\n**Relevant Discussion:**\n- **Archive C3** (2024-03-19): Workaround posted—manually pull from `mlupin/docker-lambda:${runtime}` and tag as `lambci/lambda:${runtime}` \n- **Archive C1** (2024-02-05): User SurajAdsul reports expired docker images\n\n**Recommended Next Check:**  \nVerify whether the user's locally installed framework version actually matches v3.38.0 or if `node_modules` contains an older cached version. Check `package-lock.json` or `node_modules/serverless/package.json` for the true installed version. The pinned commit appears to already have the fix (AWS ECR migration); the issue likely stems from version mismatch in the user's environment.\n\n**Explicit Uncertainty:**  \nCannot confirm whether the pinned commit hash was taken at time of the original report or is a reference point for the current codebase state. The codebase has already migrated away from lambci; the discrepancy suggests the user's installed version predates that migration.",
+            "truncated": false
+          }
+        },
         "sourceReferences": {
           "baseline": [
             {
@@ -17789,9 +19136,85 @@
               "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
               "line": 470,
               "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L470"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 104,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L104"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 110,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L110"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 113,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L113"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 116,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L116"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 119,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L119"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 122,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L122"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 125,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L125"
             }
           ],
-          "memex": []
+          "memex": [
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 454,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L454"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 1,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L1"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/provider.js",
+              "line": 2153,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/provider.js#L2153"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 100,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L100"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 560,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L560"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 470,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L470"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 107,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L107"
+            },
+            {
+              "path": "packages/serverless/lib/plugins/aws/invoke-local/index.js",
+              "line": 564,
+              "url": "https://github.com/serverless/serverless/blob/7046e34cd82f493c1c966e534257b22c98e8c5dc/packages/serverless/lib/plugins/aws/invoke-local/index.js#L564"
+            }
+          ]
         }
       },
       {
