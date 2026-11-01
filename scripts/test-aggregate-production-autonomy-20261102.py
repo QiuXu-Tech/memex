@@ -23,4 +23,14 @@ class AggregateValidation(unittest.TestCase):
    two=[{'subtype':'hook_response','hook_name':'UserPromptSubmit','stdout':'mem_1234567890 other mem_abcdefghij [unverified]'}]
    (trace/'memex-s1-events.jsonl').write_text('\n'.join(map(json.dumps,one))+'\n');(trace/'memex-s2-events.jsonl').write_text('\n'.join(map(json.dumps,two))+'\n')
    chain=m.writes_and_opens(base,'01');self.assertTrue(chain['writtenIdInAutomaticRecall']);self.assertFalse(chain['unverifiedRecallLabel'])
+ def test_automatic_checkpoint_is_matched_to_actual_client_session(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=pathlib.Path(td);task=base/'01';trace=task/'traces';trace.mkdir(parents=True);(task/'results').mkdir()
+   (task/'results/memex-s1.json').write_text(json.dumps({'sessionId':'session-one'}))
+   records=task/'memory/memex/records/workspace';records.mkdir(parents=True)
+   (records/'mem_1234567890.md').write_text('---\nprovenance: {"source":"claude-stop","sourceSession":"session-one"}\n---\nbody')
+   (records/'mem_abcdefghij.md').write_text('---\nprovenance: {"source":"claude-stop","sourceSession":"other"}\n---\nbody')
+   event={'type':'assistant','message':{'content':[{'type':'tool_use','name':'mcp__memex__memory_open','input':{'id':'mem_1234567890'}}]}}
+   (trace/'memex-s2-events.jsonl').write_text(json.dumps(event)+'\n')
+   chain=m.writes_and_opens(base,'01');self.assertEqual(chain['automaticCheckpointIds'],['mem_1234567890']);self.assertTrue(chain['automaticCheckpointOpenedNext'])
 if __name__=='__main__':unittest.main()

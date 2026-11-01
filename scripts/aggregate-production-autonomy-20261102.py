@@ -29,8 +29,18 @@ def writes_and_opens(base,task):
     ids.update(re.findall(r'Stored (mem_[0-9a-f]{10})',json.dumps(x.get('content'),ensure_ascii=False)))
  opens={x.get('input',{}).get('id') for x in call_entries(two) if x.get('name')=='mcp__memex__memory_open'}
  recall='\n'.join(e.get('stdout','') for e in two if e.get('subtype')=='hook_response' and e.get('hook_name')=='UserPromptSubmit')
+ first_result=base/task/'results'/'memex-s1.json';session=load(first_result).get('sessionId') if first_result.exists() else None
+ automatic=set()
+ for file in (base/task/'memory'/'memex'/'records').rglob('mem_*.md'):
+  try:
+   head=file.read_text().split('\n---\n',1)[0]
+   match=re.search(r'^provenance: (\{.*\})$',head,re.M);provenance=json.loads(match.group(1)) if match else {}
+   if provenance.get('source')=='claude-stop' and session and provenance.get('sourceSession')==session:automatic.add(file.stem)
+  except (OSError,UnicodeError,ValueError):continue
  return {'writeCalls':len(writes),'successfulWriteIds':sorted(ids),'writtenIdOpenedNext':bool(ids & opens),
-         'writtenIdInAutomaticRecall':any(i in recall for i in ids),'unverifiedRecallLabel':any(f'{i} [unverified]' in recall for i in ids)}
+         'writtenIdInAutomaticRecall':any(i in recall for i in ids),'unverifiedRecallLabel':any(f'{i} [unverified]' in recall for i in ids),
+         'automaticCheckpointIds':sorted(automatic),'automaticCheckpointOpenedNext':bool(automatic & opens),
+         'automaticCheckpointRecalledNext':any(i in recall for i in automatic)}
 def review_summary(base,task):
  folder=base/'reviews'/task
  if not (folder/'key.json').exists():return {'status':'NOT_PREPARED'}
@@ -105,6 +115,9 @@ def cohort(name):
   'agentWrites':sum(bool(x['memoryChain'] and x['memoryChain']['successfulWriteIds']) for x in rows),
   'writtenRecordOpenedNext':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdOpenedNext']) for x in rows),
   'writtenRecordAutomaticallyRecalled':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdInAutomaticRecall']) for x in rows),
+  'automaticCheckpoints':sum(bool(x['memoryChain'] and x['memoryChain']['automaticCheckpointIds']) for x in rows),
+  'automaticCheckpointOpenedNext':sum(bool(x['memoryChain'] and x['memoryChain']['automaticCheckpointOpenedNext']) for x in rows),
+  'automaticCheckpointRecalledNext':sum(bool(x['memoryChain'] and x['memoryChain']['automaticCheckpointRecalledNext']) for x in rows),
   'reviewUsageByModel':dict(review_usage),
   'rawConsistencyProblems':problems,'tasks':rows}
 def aggregate():
