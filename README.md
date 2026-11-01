@@ -87,7 +87,7 @@ Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: base
 ## Prospective engineering canary (2026-10-31)
 
 <!-- real30:start -->
-**Post-repair 30-issue study (in progress):** 26/30 original public-issue attempts completed both two-session Codex arms; 22/30 have two blinded AI ratings and adjudication without recovery, plus 2 supplemental adjudications. 26/30 distinct tasks have an evaluable pair including post-hoc retries. 2 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
+**Post-repair 30-issue study (in progress):** 26/30 original public-issue attempts completed both two-session Codex arms; 24/30 have two blinded AI ratings and adjudication without recovery, plus 2 supplemental adjudications. 28/30 distinct tasks have an evaluable pair including post-hoc retries. 3 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
 
 ![Coverage, AI reviews and paired token use for the 30-issue study](docs/assets/benchmarks/production-real30-20261101.svg)
 <!-- real30:end -->

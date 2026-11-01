@@ -1,35 +1,35 @@
 {
-  "generatedAt": "2026-11-01T13:31:40.359721+00:00",
+  "generatedAt": "2026-11-01T13:34:32.397622+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
     "pairedCompleted": 26,
-    "reviewComplete": 22,
+    "reviewComplete": 24,
     "reviewRecoveryComplete": 2,
     "retryPairsCompleted": 2,
     "retryReviewsCompleted": 1,
     "retryReviewRecoveryComplete": 1,
-    "uniqueTasksEvaluableIncludingRetries": 26,
-    "qualityFlagged": 2,
-    "independentAuditsValid": 2,
+    "uniqueTasksEvaluableIncludingRetries": 28,
+    "qualityFlagged": 3,
+    "independentAuditsValid": 3,
     "notStarted": 0,
     "startedOrIncomplete": 4
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 8406023,
-      "cached_input_tokens": 7128448,
-      "output_tokens": 64701,
-      "elapsedSeconds": 3269.2599999999998,
+      "input_tokens": 8835436,
+      "cached_input_tokens": 7507584,
+      "output_tokens": 68004,
+      "elapsedSeconds": 3428.61,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 12113938,
-      "cached_input_tokens": 10377600,
-      "output_tokens": 89082,
-      "elapsedSeconds": 4021.029999999999,
+      "input_tokens": 12441660,
+      "cached_input_tokens": 10664064,
+      "output_tokens": 92103,
+      "elapsedSeconds": 4145.459999999999,
       "missingUsageSessions": 1
     }
   },
@@ -92,10 +92,10 @@
     "openResponseAtMost2000Chars": 23
   },
   "memory": {
-    "session1Writes": 28,
-    "session2OpenedPrior": 28,
-    "session2CitedPrior": 27,
-    "overlappingAccess": 25
+    "session1Writes": 30,
+    "session2OpenedPrior": 29,
+    "session2CitedPrior": 28,
+    "overlappingAccess": 26
   },
   "memoryPaired": {
     "session1Writes": 26,
@@ -104,24 +104,24 @@
     "overlappingAccess": 24
   },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 18,
+    "equal": 19,
     "baseline_higher": 2
   },
   "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
-    "equal": 20,
+    "equal": 21,
     "baseline_higher": 2
   },
   "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
-    "equal": 22,
+    "equal": 23,
     "baseline_higher": 2
   },
   "sensitivityComparisonUsingIndependentAudits": {
-    "equal": 23,
+    "equal": 25,
     "baseline_higher": 3
   },
   "reviewDisagreementOriginal": {
-    "numericPairDisagreement": 11,
-    "adjudicatorMarkedMaterial": 11
+    "numericPairDisagreement": 13,
+    "adjudicatorMarkedMaterial": 13
   },
   "memoryWriteMissingKindFailuresOriginal": 2,
   "memoryWriteMissingKindRecoveredSameSession": 2,
@@ -531,6 +531,148 @@
         "total_tokens": 38601,
         "completion_tokens_details": {
           "reasoning_tokens": 165
+        }
+      }
+    },
+    {
+      "operation": "N04-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:31:46.700788+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 41100,
+        "completion_tokens": 331,
+        "total_tokens": 41431,
+        "completion_tokens_details": {
+          "reasoning_tokens": 103
+        }
+      }
+    },
+    {
+      "operation": "N04-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:32:01.784342+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 17761,
+        "completion_tokens": 378,
+        "total_tokens": 18139,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 17758,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 17761,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 17758,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "N04-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:32:10.228010+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 322,
+        "prompt_tokens": 15757,
+        "total_tokens": 16079,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N05-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:32:18.723016+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 42567,
+        "completion_tokens": 385,
+        "total_tokens": 42952,
+        "completion_tokens_details": {
+          "reasoning_tokens": 205
+        }
+      }
+    },
+    {
+      "operation": "N05-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:32:54.626263+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 26507,
+        "completion_tokens": 387,
+        "total_tokens": 26894,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 26504,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 26507,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 26504,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "N05-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:33:02.117474+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 224,
+        "prompt_tokens": 22102,
+        "total_tokens": 22326,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
         }
       }
     },
@@ -1882,6 +2024,27 @@
       }
     },
     {
+      "operation": "T25-independent-audit",
+      "attempt": 1,
+      "at": "2026-11-01T13:33:19.443320+00:00",
+      "model": "gpt-6.1-terra",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 18623,
+        "completion_tokens": 236,
+        "total_tokens": 18859,
+        "prompt_tokens_details": {
+          "cached_tokens": 1050,
+          "cache_write_tokens": 17570
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 114
+        }
+      }
+    },
+    {
       "operation": "T26-blind:gpt-6.1-sol",
       "attempt": 1,
       "at": "2026-11-01T13:19:42.815435+00:00",
@@ -2096,15 +2259,15 @@
     }
   ],
   "reviewUsage": {
-    "input_tokens": 1771337,
-    "output_tokens": 26937,
+    "input_tokens": 1955754,
+    "output_tokens": 29200,
     "missingUsageAttempts": 2
   },
   "billingCandidate": {
-    "observedAt": "2026-11-01T13:25:32.808013+00:00",
+    "observedAt": "2026-11-01T13:34:06.541991+00:00",
     "source": "APIMaster usage-log UI, observed rows on first page",
     "matching": "unique model, exact prompt/output counts and provider finish within 180 seconds of local call start; no per-request receipt linkage",
-    "candidateSubtotalUsd": "0.217958",
+    "candidateSubtotalUsd": "0.273678",
     "rows": [
       {
         "operation": "T08-blind:gpt-6.1-sol",
@@ -2159,6 +2322,15 @@
         "output": 254,
         "walletUsd": "0.001804",
         "secondsFromCallStart": 8.565
+      },
+      {
+        "operation": "T05-independent-audit",
+        "model": "gpt-6.1-terra",
+        "walletTimeAsiaShanghai": "2026-11-01 21:29:34",
+        "inputIncludingCacheCreation": 19906,
+        "output": 259,
+        "walletUsd": "0.003644",
+        "secondsFromCallStart": 9.169
       },
       {
         "operation": "T22-blind:gpt-6.1-sol",
@@ -2240,6 +2412,51 @@
         "output": 353,
         "walletUsd": "0.000996",
         "secondsFromCallStart": 6.364
+      },
+      {
+        "operation": "N03-posthoc-review-recovery",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:31:22",
+        "inputIncludingCacheCreation": 38239,
+        "output": 362,
+        "walletUsd": "0.006158",
+        "secondsFromCallStart": 11.592
+      },
+      {
+        "operation": "N05-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:32:54",
+        "inputIncludingCacheCreation": 42567,
+        "output": 385,
+        "walletUsd": "0.006840",
+        "secondsFromCallStart": 35.277
+      },
+      {
+        "operation": "N05-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:33:01",
+        "inputIncludingCacheCreation": 26507,
+        "output": 387,
+        "walletUsd": "0.003852",
+        "secondsFromCallStart": 6.374
+      },
+      {
+        "operation": "N05-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:33:10",
+        "inputIncludingCacheCreation": 22102,
+        "output": 224,
+        "walletUsd": "0.002174",
+        "secondsFromCallStart": 7.883
+      },
+      {
+        "operation": "N03-posthoc-adjudication-recovery",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:31:28",
+        "inputIncludingCacheCreation": 16990,
+        "output": 257,
+        "walletUsd": "0.000186",
+        "secondsFromCallStart": 5.001
       },
       {
         "operation": "N01-blind:gpt-6.1-sol",
@@ -2431,6 +2648,33 @@
         "secondsFromCallStart": 6.033
       },
       {
+        "operation": "N02-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:28:17",
+        "inputIncludingCacheCreation": 39988,
+        "output": 365,
+        "walletUsd": "0.006428",
+        "secondsFromCallStart": 38.008
+      },
+      {
+        "operation": "N02-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:28:24",
+        "inputIncludingCacheCreation": 21116,
+        "output": 442,
+        "walletUsd": "0.003142",
+        "secondsFromCallStart": 6.72
+      },
+      {
+        "operation": "N02-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:28:31",
+        "inputIncludingCacheCreation": 18853,
+        "output": 218,
+        "walletUsd": "0.001864",
+        "secondsFromCallStart": 5.938
+      },
+      {
         "operation": "T14-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
         "walletTimeAsiaShanghai": "2026-11-01 20:51:07",
@@ -2519,6 +2763,60 @@
         "output": 222,
         "walletUsd": "0.001992",
         "secondsFromCallStart": 5.616
+      },
+      {
+        "operation": "N03-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:30:10",
+        "inputIncludingCacheCreation": 19193,
+        "output": 328,
+        "walletUsd": "0.002816",
+        "secondsFromCallStart": 6.929
+      },
+      {
+        "operation": "N03-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:30:23",
+        "inputIncludingCacheCreation": 16787,
+        "output": 298,
+        "walletUsd": "0.001700",
+        "secondsFromCallStart": 12.628
+      },
+      {
+        "operation": "T07-independent-audit",
+        "model": "gpt-6.1-terra",
+        "walletTimeAsiaShanghai": "2026-11-01 21:29:49",
+        "inputIncludingCacheCreation": 14473,
+        "output": 625,
+        "walletUsd": "0.002854",
+        "secondsFromCallStart": 13.942
+      },
+      {
+        "operation": "N04-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:32:01",
+        "inputIncludingCacheCreation": 41100,
+        "output": 331,
+        "walletUsd": "0.006574",
+        "secondsFromCallStart": 14.299
+      },
+      {
+        "operation": "N04-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:32:10",
+        "inputIncludingCacheCreation": 17761,
+        "output": 378,
+        "walletUsd": "0.002646",
+        "secondsFromCallStart": 8.216
+      },
+      {
+        "operation": "N04-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:32:18",
+        "inputIncludingCacheCreation": 15757,
+        "output": 322,
+        "walletUsd": "0.001610",
+        "secondsFromCallStart": 7.772
       },
       {
         "operation": "T17-blind:gpt-6.1-sol",
@@ -2636,6 +2934,15 @@
         "output": 237,
         "walletUsd": "0.001478",
         "secondsFromCallStart": 5.419
+      },
+      {
+        "operation": "T25-independent-audit",
+        "model": "gpt-6.1-terra",
+        "walletTimeAsiaShanghai": "2026-11-01 21:33:28",
+        "inputIncludingCacheCreation": 18623,
+        "output": 236,
+        "walletUsd": "0.003232",
+        "secondsFromCallStart": 8.557
       },
       {
         "operation": "T23-blind:gpt-6.1-sol",
@@ -2773,7 +3080,7 @@
         "secondsFromCallStart": 5.938
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 9
+    "unmatchedSuccessfulGatewayCalls": 0
   },
   "sourceDownloadFailures": [
     {
@@ -8290,8 +8597,24 @@
       "adjudicationRecovery": null,
       "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
-      "qualityFlags": [],
-      "independentAudit": null,
+      "qualityFlags": [
+        "Adjudicator treated a listed milliliter case and discussion of the unit mismatch as resolving an objection about a missing milligram test; ordinary-unit and invalid-number controls in the control plan are also not explicit. Preserve scores and flag the rationale."
+      ],
+      "independentAudit": {
+        "model": "gpt-6.1-terra",
+        "status": "ok",
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "reasons": {
+          "memex": "The source diagnosis and proposed keyboard checks are sound, and the plan covers both milligram and milliliter. However, it does not explicitly specify ordinary complete-unit acceptance controls or invalid-number controls beyond unrelated text.",
+          "baseline": "The source diagnosis and verification plan are useful, but the plan omits milligram despite identifying the report's inconsistency. It also lacks explicit unrelated-invalid-number rejection and complete-unit acceptance controls."
+        },
+        "materialDisagreement": true,
+        "error": null,
+        "disclosure": "Post-hoc independent-model adjudication; original flagged opinions remain unchanged."
+      },
       "adaptiveRetry": null
     },
     {
@@ -10095,11 +10418,54 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Correctly traces connect-before-prompt, unconditional embedded startup, process-local guards, and unbounded polling/restarts, while identifying reported reproductions as unverified. However, its claim of two confirmed lifecycle defects exceeds the supplied source evidence: the cited Database.close() and server shutdown implementations are not captured. SQLite receives no source-level comparison. The regression plan proposes actual password resets and login checks rather than local mocked connect/start and prompt tests across supported database modes without changing real credentials.",
+            "memex": "Provides a source-supported trace of duplicate embedded startup blocking prompts and correctly explains why process-local singleton checks cannot detect the running server's daemon. It distinguishes reported fork success from verified integration and acknowledges version differences. However, cited readiness and shutdown details extend beyond the captured evidence, SQLite behavior is not traced, and the regression plan relies on deployment resets and login checks instead of the required local mocked connect/start and prompt tests without real credential changes. No project tests or maintainer acceptance establish runtime success."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 2
+          },
+          "reasons": {
+            "baseline": "Source confirms two defects: embedded-MariaDB startup blocks prompts via unconditional `Database.connect()` call before user selection (reset-password.mts:27–33, database.js:406–425), and child process lacks shutdown in CLI cleanup path (reset-password.mts:79–93 calls Database.close() only, omits EmbeddedMariaDB.stop()). Lock-error loop explained by process-local singleton and restart-on-nonzero-exit (embedded-mariadb.js:38–49, 103–112). October update confirms 2.5.8 reproduces same symptoms and orphaned child. Mechanism is source-supported; actual runtime behavior and whether proposed upstream fix integrates remain unverified.",
+            "memex": "Diagnosis isolates root cause: duplicate embedded-MariaDB startup. Pinned source proves mechanism—singleton and hasInstance() are process-local (embedded-mariadb.js:38–49), unable to detect running server's daemon; unconditional start() call (database.js:406–408) precedes socket connection, blocking prompts before user interaction (reset-password.mts:27–28). Child restart loop confirmed (embedded-mariadb.js:103–112). Later update (Apr 8, 2026) reports fork PR probes socket before startup and resolves the issue; pinned source lacks that probe. Analysis correctly traces blocking path and distinguishes reported success from unmerged proposal. Remaining verification needs runtime confirmation of fix integration and multi-database coverage."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree the core trace is source-supported: reset-password.mts awaits Database.connect() before prompting, and database.js:406-425 unconditionally starts embedded MariaDB, with process-local singleton guards (embedded-mariadb.js:38-49) and unbounded polling/restart (70-79, 103-112). However, C01's second 'confirmed' defect (missing child shutdown) relies on Database.close() and server.js shutdown code not present in the captured excerpts, so it exceeds supplied evidence. It also does not trace SQLite behavior at source level and its regression plan uses real password resets/login rather than the required local mocked connect/start and prompt tests without changing real credentials. Partial, not full.",
+            "memex": "C02 correctly isolates duplicate embedded startup as the blocking mechanism and distinguishes the reported fork PR success from verified integration, which is well supported. But it also cites readiness/shutdown details (embedded-mariadb.js:123-127, 203-213; database.js:826-865; server.js:1694-1697) beyond the captured excerpts, and it does not trace SQLite behavior at source level. Its regression plan likewise relies on deployment resets and login checks instead of the required local mocked connect/start and prompt tests without real credential changes. The haiku reviewer's score of 2 overstates compliance with the frozen acceptance criteria; partial is warranted."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
       "reviewerRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
       "adaptiveRetry": null
@@ -10301,11 +10667,54 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Correctly traces the pinned draft-store blob source, filename-based destination, and runtime argument, and distinguishes historical partial-fix claims from proof of live success. However, its verification plan does not specify isolated local mount-argument controls for both primary and draft models without containers or weight downloads; it instead leads with the live ROCm reproduction.",
+            "memex": "Correctly explains the pinned path agreement and appropriately limits the historical partial-fix and reported test evidence. Its focused regression proposal partially meets the local-control criterion through distinct primary/draft stores and filenames, but does not explicitly establish container-free, download-free fixtures or primary-mount assertions. The generated-configuration claim at base.py:635–639 is also outside the supplied captured source evidence."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 2
+          },
+          "reasons": {
+            "baseline": "Pinned source shows draft GGUF mounts now correctly resolve each draft file's hash through its store, convert the host blob path, and bind it to MNT_DIR/{file.name}. llama.cpp --model-draft argument is populated from _get_entry_model_path() which returns the matching container path for container execution. The old reported host-side path /mnt/models/{filename} and destination /mnt/models/draft_model.file constructions are absent. Public update attributes fix to e67cc0af with passing kube/compose generation tests, though original ROCm serve command was not rerun and issue remains open. Source inspection confirms ordinary GGUF path agreement between mount construction and runtime arguments; live execution verification is the remaining gap.",
+            "memex": "Handoff correctly identifies that pinned source resolves both reported path mismatches for non-OCI GGUF container runs: draft mounts use model-store-resolved host blobs with container-friendly paths bound to MNT_DIR/{file.name}, and --model-draft argument matches that destination via _get_entry_model_path(). The old fixed-name mount and host-side mount-point mismatch are not present. Correctly notes contributor report of e67cc0af fix with passing generated-config tests but lack of original ROCm serve rerun. Outlines practical verification covering split GGUFs, same-filename collisions, OCI return-before-draft-loop, and live execution. Distinguishes source-level path agreement from proof of end-to-end workload success."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Both reviews agree the pinned source shows the draft mount source resolving to the draft store blob and the destination matching the llama.cpp --model-draft container path, and that the later partial-fix report is not proof of live success. The disagreement is on the local-control criterion: C01 leads with a live ROCm reproduction and does not specify container-free, download-free mount-argument controls for both primary and draft models, so it only partially meets the frozen acceptance criteria.",
+            "memex": "C02 correctly traces the pinned draft-store blob source, filename-based destination, and runtime argument, and limits the historical partial-fix and reported test evidence. Its regression proposal partially addresses local controls via distinct primary/draft stores and filenames, but does not explicitly establish container-free, download-free fixtures or primary-mount assertions. Its generated-configuration claim at base.py:635-639 is outside the supplied captured source evidence, so it is not fully supported."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
       "reviewerRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "independentAudit": null,
       "adaptiveRetry": null
@@ -10360,27 +10769,129 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:33:37.693289+00:00",
+              "finishedAt": "2026-11-01T13:34:24.219002+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 46.53,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 120217,
+                  "cached_input_tokens": 98432,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1053,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 4,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_read:completed": 2
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "f28057224366e4c11d64ad7545552e1f230b14a00876b3ebdb97dc59258bfae5",
+              "finalSha256": "351098289062a6f95b967a1092a836415a699016c6ac7c2d65b5704de6583150"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:31:33.258393+00:00",
+              "finishedAt": "2026-11-01T13:32:34.607565+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 61.35,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 137864,
+                  "cached_input_tokens": 114048,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1420,
+                  "reasoning_output_tokens": 87
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 2,
+                "pilot.archive_open:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "4ed55ae20e09b4522f090f2766c21f986b684e6aed069836e9cd98d67249143a",
+              "finalSha256": "90e8b160b1adb507dfd2920c8c62912580365df76dd692b66d566341c6b6f3f4"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:32:34.608740+00:00",
+              "finishedAt": "2026-11-01T13:33:37.689706+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 63.08,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 189858,
+                  "cached_input_tokens": 172416,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1601,
+                  "reasoning_output_tokens": 14
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 2,
+                "pilot.archive_open:completed": 5,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "269296bbf22dd15b685759d92675a3b7ae4d93bc300c4378e234f20d01963495",
+              "finalSha256": "dad18a27a74e3fd08ad438ef2d2851c31aba2a4e0bb0753035e97c8382fc4f93"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
       "pairCompleted": false,
       "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_b1409578ac"
+        ],
+        "session2OpenedPrior": [
+          "mem_b1409578ac"
+        ],
+        "session2CitedPrior": [
+          "mem_b1409578ac"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
@@ -10441,10 +10952,101 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:31:33.252880+00:00",
+              "finishedAt": "2026-11-01T13:32:38.508352+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 65.26,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 194255,
+                  "cached_input_tokens": 179968,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1349,
+                  "reasoning_output_tokens": 54
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_read:failed": 3,
+                "pilot.archive_open:completed": 7,
+                "pilot.repo_search:failed": 1,
+                "pilot.archive_search:failed": 1,
+                "pilot.repo_read:completed": 2,
+                "pilot.repo_search:completed": 2
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "repo_search",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "archive_search",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "302e5b0e25add6cbbb7b7ee0b2c32c214cc7588977c4d34451c92f4bf8820e5b",
+              "finalSha256": "e12579c93696ed03b18406f37a29b1d9a5994f63aa6e0475fd3e44779c34a865"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:32:38.509270+00:00",
+              "finishedAt": "2026-11-01T13:33:26.072312+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 47.56,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 114941,
+                  "cached_input_tokens": 100736,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 901,
+                  "reasoning_output_tokens": 8
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 2,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_search:completed": 2
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "14413bf368aeb3b571d880c6897621f2453973363cd180e506b231cd780aacb0",
+              "finalSha256": "abc2cf6ba7c4ac0584efb9ce5370c173ceffc9893a097426f70f578dc4e4e79b"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
           "sessions": [],
@@ -10457,7 +11059,9 @@
       "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
+        "session1Written": [
+          "mem_2c0e090a93"
+        ],
         "session2OpenedPrior": [],
         "session2CitedPrior": [],
         "session2OpenedS1Handoff": false,
@@ -10480,7 +11084,7 @@
     "Only 15 tasks per guidance condition; heterogeneous tasks and AI review limit inference.",
     "Control is the same constrained Codex tool environment with a handoff archive, not every default client feature.",
     "Randomization fixes ordering and guidance within this selected cohort; observed token totals include cache.",
-    "Two AI adjudication rationales have evidence or rubric concerns; they are excluded from the clean comparison.",
+    "Some AI adjudication rationales have evidence or rubric concerns; they are excluded from the clean comparison.",
     "Known wallet subtotal covers only individually matched rows; unmatched calls and subscription allocation remain unknown."
   ]
 }
