@@ -14,7 +14,9 @@
     "T11"
   ],
   "deviation": "T05 and T07 started before T04 because T04 source archive was still downloading. The batch01 task list was published before those calls, but this differs from the original listed study order.",
-  "remainingPlannedBatches": {
+  "unchanged": "The previously committed per-task randomized arm order and balanced guidance assignment were not changed.",
+  "limits": "This deviation is disclosed after the first eight task starts; source preparation and scheduling are not independent of availability.",
+  "postFirstEightBatches": {
     "B03": [
       "T12",
       "T13",
@@ -50,6 +52,5 @@
       "N07"
     ]
   },
-  "unchanged": "The previously committed per-task randomized arm order and balanced guidance assignment were not changed.",
-  "limits": "This deviation is disclosed after the first eight task starts; source preparation and scheduling are not independent of availability."
+  "B03StatusAtRecording": "T12 and T13 had already started when this deviation record was created."
 }
