@@ -166,7 +166,7 @@ function callTool(name, input = {}) {
     case 'memory_search': {
       if (typeof input.query !== 'string' || input.query.trim().length === 0) throw new Error('memory_search requires a non-empty query')
       const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status })
-      const header = result.hits.length === 0 ? 'No matching memory records. Try memory_grep or memory_index.' : `Memory search "${input.query}" (${result.hits.length} hits, +${result.total - result.hits.length} more)`
+      const header = result.hits.length === 0 ? 'No matching memory records. Try memory_grep or memory_index.' : `Memory search "${input.query}" (${result.hits.length} result${result.hits.length === 1 ? '' : 's'} shown)`
       const lines = result.hits.map((card, index) => `${index + 1}. ${card.id} · ${card.title} · ${card.useWhen || card.summary || ''}`)
       return textResult(`${header}\n${lines.join('\n')}`)
     }

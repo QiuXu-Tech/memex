@@ -36,6 +36,8 @@ The manual advises the agent to avoid rereading a duplicate handoff when a retri
 
 `memory_grep` searches visible hot and cold record files until it reaches the requested hit limit. A miss can require reading every visible record and therefore takes longer on larger stores. If an indexed record file is missing or unreadable, grep reports an error rather than claiming that the pattern is absent.
 
+`memory_search` reports how many ranked results it shows; the bounded retrieval does not report the total number of possible matches.
+
 Note: GPT-6.1 Sol allows a 1,050,000-token API context, but Codex/ChatGPT Work default to a 500k context; the `gpt-6.1` profile models the API limit and can be overridden (`profileOverrides: { windowTokens: 500_000 }`).
 
 Because there is no transcript hook, capture happens when the agent calls `memory_write` (the manual instructs it to write durable decisions/facts). For verbatim transcript archiving in Codex, run the MCP server in the same root and let the agent call `memory_write` with the span, or use a wrapper script that pipes the session log into `memory_write`.

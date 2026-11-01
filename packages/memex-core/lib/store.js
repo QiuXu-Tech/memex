@@ -671,7 +671,7 @@ export class LocalStoreCore {
    * a bounded LIKE scan, and a record-body regex scan covers a distinctive
    * identifier that lives only in the archived body. Every path applies the
    * same workspace/kind/status/tag filters, so callers never need to know which
-   * one answered.
+   * one answered. `total` counts the returned hits, not all possible matches.
    */
   search(query) {
     const db = this.database()

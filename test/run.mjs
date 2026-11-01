@@ -3731,6 +3731,23 @@ await test('U3d', 'grep retries when an archived record changes path during a re
   }
 })
 
+await test('U3e', 'MCP search does not claim there are no more matches when results are limited', async () => {
+  const root = makeRoot('u3e-search')
+  const call = (id, name, args) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: args } })
+  const replies = mcpExchange(root, ['--agent', 'test', '--levels', 'l3', '--session', 'u3e-session'], [
+    ...[1, 2, 3].map((index) => call(index, 'memory_write', { kind: 'fact', title: `Needle record ${index}`, body: `needle detail ${index}` })),
+    call(4, 'memory_search', { query: 'needle', limit: 1 }),
+    call(5, 'memory_search', { query: 'needle', limit: 3 }),
+  ])
+  const limited = replies.get(4).result.content[0].text
+  const broader = replies.get(5).result.content[0].text
+  assert.equal((limited.match(/mem_[0-9a-f]{10}/g) ?? []).length, 1)
+  assert.equal((broader.match(/mem_[0-9a-f]{10}/g) ?? []).length, 3)
+  assert.doesNotMatch(limited, /\+0 more/, 'a limited search cannot assert there are no more matches')
+  assert.match(limited, /1 result shown/)
+  assert.match(broader, /3 results shown/)
+})
+
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {
   const root = makeRoot('u4')
   const writes = [1, 2, 3].map((index) => ({ jsonrpc: '2.0', id: index, method: 'tools/call', params: { name: 'memory_write', arguments: { kind: 'episode', title: `Cold note ${index}`, body: `${'detail '.repeat(200)}cold-note-${index}`, useWhen: 'read when testing cold compression' } } }))
