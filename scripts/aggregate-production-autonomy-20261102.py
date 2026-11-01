@@ -62,6 +62,7 @@ def review_summary(base,task):
          'reviews':reviews,'adjudication':adjud}
 def posthoc_review_summary(base,task):
  path=base/'reviews'/'posthoc-limits'/f'{task}-result.json'
+ if not path.exists():path=base/'reviews'/'posthoc-rescue'/f'{task}-result.json'
  if not path.exists():return None
  data=load(path);key=load(base/'reviews'/task/'key.json');reviews=data['reviews'];adjud=data['adjudication']
  if any(not x.get('rating') for x in reviews):return {'status':'MISSING_VALID_REVIEW'}
@@ -106,7 +107,7 @@ def cohort(name):
     u=[model_tokens(ss[(arm,k)]) for k in (1,2)]
     token_by_arm[arm]=None if any(x is None for x in u) else {k:sum(x[k] for x in u) for k in ('input','output','cacheRead','cacheWrite')}
   r=review_summary(base,tid);posthoc=posthoc_review_summary(base,tid)
-  for ev in events(base/'reviews'/tid/'gateway.jsonl')+events(base/'reviews'/'posthoc-limits'/f'{tid}-gateway.jsonl'):
+  for ev in events(base/'reviews'/tid/'gateway.jsonl')+events(base/'reviews'/'posthoc-limits'/f'{tid}-gateway.jsonl')+events(base/'reviews'/'posthoc-rescue'/f'{tid}-gateway.jsonl'):
    if ev.get('status')=='started':continue
    model=ev.get('model','UNKNOWN');entry=review_usage[model];entry['calls']+=1;usage=ev.get('usage') or {}
    if ev.get('status')=='ok' and type(usage.get('prompt_tokens')) is int and type(usage.get('completion_tokens')) is int:
