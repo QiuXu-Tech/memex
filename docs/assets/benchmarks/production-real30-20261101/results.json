@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-11-01T13:04:06.050780+00:00",
+  "generatedAt": "2026-11-01T13:05:25.845887+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 15,
-    "reviewComplete": 14,
+    "pairedCompleted": 16,
+    "reviewComplete": 15,
     "retryPairsCompleted": 0,
     "retryReviewsCompleted": 0,
-    "uniqueTasksEvaluableIncludingRetries": 14,
+    "uniqueTasksEvaluableIncludingRetries": 15,
     "qualityFlagged": 2,
-    "notStarted": 12,
+    "notStarted": 11,
     "startedOrIncomplete": 3
   },
   "usageAllSessions": {
@@ -23,40 +23,45 @@
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 7422277,
-      "cached_input_tokens": 6383104,
-      "output_tokens": 54560,
-      "elapsedSeconds": 2597.1599999999994,
+      "input_tokens": 7663731,
+      "cached_input_tokens": 6578816,
+      "output_tokens": 56260,
+      "elapsedSeconds": 2666.4399999999996,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 4356943,
-      "cached_input_tokens": 3687168,
-      "output_tokens": 34925,
-      "elapsedSeconds": 1760.7000000000003
+      "input_tokens": 4780507,
+      "cached_input_tokens": 4057600,
+      "output_tokens": 37940,
+      "elapsedSeconds": 1899.8300000000002
     },
     "memex": {
-      "input_tokens": 6346317,
-      "cached_input_tokens": 5453056,
-      "output_tokens": 46946,
-      "elapsedSeconds": 2088.2799999999997
+      "input_tokens": 6889237,
+      "cached_input_tokens": 5915008,
+      "output_tokens": 50616,
+      "elapsedSeconds": 2235.25
     }
   },
   "usageRetrySessions": {
-    "baseline": {},
+    "baseline": {
+      "input_tokens": 160540,
+      "cached_input_tokens": 133504,
+      "output_tokens": 1148,
+      "elapsedSeconds": 52.11
+    },
     "memex": {}
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 120,
+      "successfulReads": 136,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 12,
-      "session2RepeatedResultCharacters": 57798
+      "session2PreviouslyReadExact": 13,
+      "session2RepeatedResultCharacters": 64174
     },
     "memex": {
-      "successfulReads": 126,
+      "successfulReads": 140,
       "sameSessionExactRepeats": 0,
       "session2PreviouslyReadExact": 13,
       "session2RepeatedResultCharacters": 55754
@@ -64,19 +69,23 @@
   },
   "memory": {
     "session1Writes": 18,
-    "session2OpenedPrior": 17,
+    "session2OpenedPrior": 18,
+    "session2CitedPrior": 17,
+    "overlappingAccess": 16
+  },
+  "memoryPaired": {
+    "session1Writes": 16,
+    "session2OpenedPrior": 16,
     "session2CitedPrior": 16,
     "overlappingAccess": 15
   },
-  "memoryPaired": {
-    "session1Writes": 15,
-    "session2OpenedPrior": 15,
-    "session2CitedPrior": 15,
-    "overlappingAccess": 14
-  },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 11,
+    "equal": 12,
     "baseline_higher": 1
+  },
+  "reviewDisagreementOriginal": {
+    "numericPairDisagreement": 8,
+    "adjudicatorMarkedMaterial": 8
   },
   "reviewGatewayAttempts": [
     {
@@ -1089,11 +1098,82 @@
           "reasoning_tokens": 0
         }
       }
+    },
+    {
+      "operation": "T21-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:04:16.565043+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 12412,
+        "completion_tokens": 409,
+        "total_tokens": 12821,
+        "completion_tokens_details": {
+          "reasoning_tokens": 157
+        }
+      }
+    },
+    {
+      "operation": "T21-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:04:36.286668+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 10109,
+        "completion_tokens": 215,
+        "total_tokens": 10324,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 10106,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 10109,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 10106,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T21-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:04:41.636481+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 353,
+        "prompt_tokens": 9126,
+        "total_tokens": 9479,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
     }
   ],
   "reviewUsage": {
-    "input_tokens": 854727,
-    "output_tokens": 13736
+    "input_tokens": 886374,
+    "output_tokens": 14713
   },
   "billingCandidate": {
     "observedAt": "2026-11-01T13:02:18.700990+00:00",
@@ -1489,7 +1569,7 @@
         "secondsFromCallStart": 6.417
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 0
+    "unmatchedSuccessfulGatewayCalls": 3
   },
   "sourceDownloadFailures": [
     {
@@ -4460,7 +4540,71 @@
       "reviews": [],
       "reviewComplete": false,
       "qualityFlags": [],
-      "adaptiveRetry": null
+      "adaptiveRetry": {
+        "pairCompleted": false,
+        "arms": {
+          "baseline": {
+            "sessions": [
+              {
+                "stage": 1,
+                "startedAt": "2026-11-01T13:04:01.090686+00:00",
+                "finishedAt": "2026-11-01T13:04:53.198676+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 52.11,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 160540,
+                    "cached_input_tokens": 133504,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1148,
+                    "reasoning_output_tokens": 0
+                  }
+                ],
+                "callCounts": {
+                  "pilot.repo_read:failed": 1,
+                  "pilot.archive_search:completed": 1,
+                  "pilot.archive_open:completed": 8,
+                  "pilot.repo_read:completed": 4,
+                  "pilot.repo_search:completed": 3
+                },
+                "toolFailures": [
+                  {
+                    "server": "pilot",
+                    "tool": "repo_read",
+                    "status": "failed",
+                    "error": "Invalid tool arguments"
+                  }
+                ],
+                "eventTraceSha256": "411959630b3c5dc5056905176499e9580fb5e908d72862d170a213cf556bd11f",
+                "finalSha256": "a1529ffe4b9cf8527ce2d0833d433c019df62cf7cee1343c70a299d874191465"
+              }
+            ],
+            "sessionsCompleted": null,
+            "twoDistinctThreads": null,
+            "testStatus": "NOT RUN"
+          },
+          "memex": {
+            "sessions": [],
+            "sessionsCompleted": null,
+            "twoDistinctThreads": null,
+            "testStatus": "NOT RUN"
+          }
+        },
+        "memory": {
+          "session1Written": [],
+          "session2OpenedPrior": [],
+          "session2CitedPrior": [],
+          "session2OpenedS1Handoff": false,
+          "overlappingAccess": false
+        },
+        "reviews": [],
+        "reviewComplete": false,
+        "qualityFlags": [],
+        "disclosure": "Post-hoc whole-pair retry; original failure is retained."
+      }
     },
     {
       "id": "T16",
@@ -5625,8 +5769,51 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 2
+          },
+          "reasons": {
+            "baseline": "Meets the frozen criteria through a bounded source investigation: identifies the missing default discriminator configuration and compilation outside the validation catch, traces how discriminator:true reaches AJV, and distinguishes keyword recognition from payload validation. Proposes valid branches and invalid controls including missing/unknown tags and mismatched branch payloads. Historical causality and runtime compatibility remain explicitly unresolved. References to example files and package version are not independently supported by the supplied excerpts, but the core assessment is supported without them. No project tests or maintainer acceptance are claimed.",
+            "memex": "Meets the frozen criteria: bounds the reported error to AJV configuration and schema compilation outside normal invalid-body handling, establishes the source path for the reported discriminator:true workaround, and explains why bare keyword registration does not implement discriminator validation. Proposes valid and invalid variants, missing/unknown tags, and checks for ordinary invalid-body responses. Treats issue comments as claims and leaves release causality unconfirmed. The reference to an earlier handoff supplies no independent evidence, but the conclusions are supported by the captured source. No project tests or maintainer acceptance are claimed."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "reasons": {
+            "baseline": "Identifies schema-compilation failure consistent with reported regression and confirms factory's keyword registration pattern, but does not establish causality to a specific release change. Acknowledges the July workaround's configuration path and October proposal's ambiguity regarding keyword registration vs. semantic implementation. Recommends verification steps (obtain failing schema, compare versions, test payload variants) rather than confirming the fix. No code changes or tests performed.",
+            "memex": "Confirms AJV strict-mode error mechanism, option precedence through factory injection, and compilation occurring outside normal error conversion. Notes the October proposal's semantic gap—bare keyword registration without discriminator validation logic. Identifies the same unresolved questions: causality to a release, whether annotation-only fixes are sufficient, and preservation of existing validation behavior. Recommends equivalent verification steps. No source edits or tests were performed."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "baseline": 2,
+            "memex": 2
+          },
+          "reasons": {
+            "baseline": "Both reviewers agree the substance is sound; the numeric split (2 vs 1) is the disagreement. Verified against the excerpts: the factory defaults to {$data:true}, merges injected/per-call options with per-call precedence, sets allErrors:true and strictTypes:false, and registers only components/x-typescript-type/x-index-info (no discriminator). request-body.validator.ts constructs the validator before the try block and compiles at line 236, so compilation errors escape normal invalid-body conversion. C01 correctly bounds the error to configuration/compilation, treats the workaround and October proposal as unverified claims, and distinguishes keyword recognition from discriminator semantics. It proposes valid/invalid polymorphic controls (valid branches, missing/unknown tags, mismatched payloads, mappings). The example-file and package-version references are not in the supplied excerpts, but the core assessment stands on the captured source. Meets criteria.",
+            "memex": "Substantively equivalent to C01 and equally supported: confirms option precedence allowing discriminator:true to reach AJV, notes strictTypes:false does not disable unknown-keyword checks, identifies missing discriminator registration, and locates compilation outside the try block. Correctly flags that bare addKeyword('discriminator') recognizes but does not implement discriminator validation. Proposes valid/invalid variants, missing/unknown tags, and ordinary invalid-body response checks. The reference to an earlier handoff adds no independent evidence but does not undermine the supported conclusions. Meets criteria; the 1 rating is not justified by the evidence."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -5773,24 +5960,59 @@
               "toolFailures": [],
               "eventTraceSha256": "4753b7da4f9a57aeeb1ce5a67e667d4fc640f3c0fe51ada94f1680fc0b23182b",
               "finalSha256": "0a89aeb27608ffb38d2e0bde9aec954338fd6aa31aab06ec838a8588154715ea"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:03:54.801498+00:00",
+              "finishedAt": "2026-11-01T13:05:04.084613+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 69.28,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 241454,
+                  "cached_input_tokens": 195712,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1700,
+                  "reasoning_output_tokens": 14
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 6,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_search:completed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "e6ad4e932bfa7a5091377367c2fe3285ee261de143532710f83ade291d31cefe",
+              "finalSha256": "4741812ff68a8c8273676b5061bee3a934fd789ac09de355518e2465a585871d"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
           "mem_62b4a4d1c2"
         ],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session2OpenedPrior": [
+          "mem_62b4a4d1c2"
+        ],
+        "session2CitedPrior": [
+          "mem_62b4a4d1c2"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
@@ -5860,7 +6082,7 @@
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
         "session1Written": [],
