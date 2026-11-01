@@ -1,0 +1,41 @@
+{
+  "registeredAt": "2026-11-01T13:24:43.398679+00:00",
+  "kind": "post-hoc repeated-task MCP preview mechanism canary",
+  "cases": [
+    {
+      "id": "T01",
+      "question": "For mnemosyne issue #552, what explains the warmed peer stale query result, and what remains unverified? Use the earlier stored investigation record, cite its record id, and answer concisely.",
+      "criteria": [
+        "Identify instance-local opaque cache and invalidation not clearing an already-warm peer.",
+        "Distinguish the proposal or external reports from verified caller behavior.",
+        "Cite the stored record."
+      ],
+      "recordSha256": "82617e09e17aa2bd3b158593f0e1851ede4de1a00d02f6db7f9f7aef628750ae",
+      "originalSessionTraceSha256": "e0f4db3c2e2d33ed132f0e8ac83515c7f0d1b262801f3e54af4cf7bba6c43289"
+    },
+    {
+      "id": "T14",
+      "question": "For AutoGluon issue #5521, how can fastai be installed yet its import fail, and what remains unverified? Use the earlier stored investigation record, cite its record id, and answer concisely.",
+      "criteria": [
+        "Identify the missing nested IPython dependency despite installed fastai.",
+        "Do not claim the upstream packaging cause or fixed versions were verified.",
+        "Cite the stored record."
+      ],
+      "recordSha256": "ef8359a22362e6bf2e2228ff67403c72874260bee1072e5f04869eedc042ed4b",
+      "originalSessionTraceSha256": "73ab4c8f3d9bf005883595e95b95f0d3125c1541996ccfe4f0208cbb9c9524c7"
+    }
+  ],
+  "caseSelection": "Two previously studied public-issue handoff records, selected after inspecting completed traces; not independent new tasks.",
+  "conditions": "Same seeded record content and question per case; old and new code differ in opt-in top preview and its guidance. A fresh Codex process per arm with only memory read tools. The prompt explicitly asks for stored context.",
+  "commits": {
+    "old": "47c9d53",
+    "new": "6b75d56"
+  },
+  "allocationCommitmentSha256": "c1919b73a283f0e301770770b3e05b1c703768d03f0583179081b0ddb91b3068",
+  "runnerSha256": "c379d603e426e794f37411ab5b90d82a2b3fc997f15b24c3f17a217e4e592e46",
+  "model": "gpt-6.1-sol",
+  "reasoning": "low",
+  "limits": "Two reused, memory-forced retrieval cases, not production or autonomy evidence. Input usage includes cache; subscription and total costs unknown.",
+  "maxConcurrentCases": 2,
+  "sessionTimeoutSeconds": 180
+}
