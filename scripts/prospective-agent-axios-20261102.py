@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Frozen two-session, two-arm Claude Code calibration on a real Axios issue."""
-import datetime, difflib, hashlib, json, os, pathlib, random, re, secrets, shlex, subprocess, sys, tarfile, time
+import datetime, difflib, hashlib, json, os, pathlib, random, re, secrets, select, shlex, signal, subprocess, sys, tarfile, time
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 PRIVATE = pathlib.Path('/Users/mk-q/.local/share/memex-forward-20261102')
@@ -140,28 +140,40 @@ def session(arm, stage, key):
     command=['claude','-p',prompt,'--restricted','--strict-mcp-config','--mcp-config',str(config),'--settings',str(settings),
              '--tools','','--allowedTools',','.join(allowed),'--no-session-persistence','--model','claude-haiku-4-5',
              '--max-budget-usd',str(CLIENT_BUDGET[stage-1]),'--append-system-prompt',guidance,'--output-format','stream-json','--verbose','--include-hook-events']
-    start=now();tick=time.monotonic()
-    try:
-        p=subprocess.run(command,cwd=host,env=env,stdin=subprocess.DEVNULL,capture_output=True,text=True,timeout=TIMEOUT)
-        stdout,stderr,code,timed=p.stdout,p.stderr,p.returncode,False
-    except subprocess.TimeoutExpired as e:
-        stdout=e.stdout.decode(errors='replace') if isinstance(e.stdout,bytes) else e.stdout or ''
-        stderr=e.stderr.decode(errors='replace') if isinstance(e.stderr,bytes) else e.stderr or ''
-        code,timed=None,True
-    (BASE/'traces'/f'{arm}-s{stage}-events.jsonl').write_text(stdout)
-    (BASE/'traces'/f'{arm}-s{stage}-stderr.txt').write_text(stderr)
-    events=[]
-    for line in stdout.splitlines():
-        try:events.append(json.loads(line))
-        except ValueError:continue
+    start=now();tick=time.monotonic();timed=False;shutdown_timeout=False;done_at=None;buf=b'';events=[]
+    with (BASE/'traces'/f'{arm}-s{stage}-events.jsonl').open('xb') as output, (BASE/'traces'/f'{arm}-s{stage}-stderr.txt').open('xb') as errors:
+        p=subprocess.Popen(command,cwd=host,env=env,stdin=subprocess.DEVNULL,stdout=subprocess.PIPE,stderr=errors,start_new_session=True)
+        fd=p.stdout.fileno();os.set_blocking(fd,False)
+        while True:
+            if time.monotonic()-tick>=TIMEOUT:timed=True;break
+            if done_at is not None and time.monotonic()-done_at>=5:shutdown_timeout=True;break
+            ready,_,_=select.select([fd],[],[],1)
+            if not ready:continue
+            chunk=os.read(fd,65536)
+            if not chunk:break
+            output.write(chunk);output.flush();buf+=chunk
+            while b'\n' in buf:
+                line,buf=buf.split(b'\n',1)
+                try:ev=json.loads(line)
+                except ValueError:continue
+                events.append(ev)
+                if ev.get('type')=='result':done_at=time.monotonic()
+        if timed or shutdown_timeout:
+            try:os.killpg(p.pid,signal.SIGTERM)
+            except ProcessLookupError:pass
+            try:p.wait(timeout=5)
+            except subprocess.TimeoutExpired:os.killpg(p.pid,signal.SIGKILL);p.wait()
+        else:p.wait(timeout=10)
+    code=p.returncode
     event=next((x for x in reversed(events) if x.get('type')=='result'),None)
     bad=[]
     for ev in events:
         if ev.get('type')=='assistant':
             bad += [x.get('name') for x in (ev.get('message') or {}).get('content',[]) if x.get('type')=='tool_use' and x.get('name') not in allowed]
-    ok=bool(event and event.get('subtype')=='success' and not event.get('is_error') and event.get('result') and not bad)
+    ok=bool(event and event.get('subtype')=='success' and not event.get('is_error') and event.get('result') and not bad and not timed)
     result={'arm':arm,'stage':stage,'startedAt':start,'finishedAt':now(),'elapsedSeconds':round(time.monotonic()-tick,2),'exitCode':code,
-            'timeout':timed,'responseCompleted':ok,'unexpectedTools':bad,'sessionId':(event or {}).get('session_id'),
+            'timeout':timed,'shutdownTimeoutAfterResult':shutdown_timeout,'responseCompleted':ok,
+            'normalExit':code==0 and not timed and not shutdown_timeout,'unexpectedTools':bad,'sessionId':(event or {}).get('session_id'),
             'usage':(event or {}).get('usage'),'clientListPriceUsd':(event or {}).get('total_cost_usd'),
             'resultSubtype':(event or {}).get('subtype'),'final':(event or {}).get('result','')}
     save(BASE/'results'/f'{arm}-s{stage}.json',result)
