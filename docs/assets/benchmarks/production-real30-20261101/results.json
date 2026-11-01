@@ -1,49 +1,50 @@
 {
-  "generatedAt": "2026-11-01T13:27:32.988263+00:00",
+  "generatedAt": "2026-11-01T13:31:40.359721+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 24,
-    "reviewComplete": 21,
-    "reviewRecoveryComplete": 1,
+    "pairedCompleted": 26,
+    "reviewComplete": 22,
+    "reviewRecoveryComplete": 2,
     "retryPairsCompleted": 2,
     "retryReviewsCompleted": 1,
     "retryReviewRecoveryComplete": 1,
-    "uniqueTasksEvaluableIncludingRetries": 24,
+    "uniqueTasksEvaluableIncludingRetries": 26,
     "qualityFlagged": 2,
-    "notStarted": 2,
+    "independentAuditsValid": 2,
+    "notStarted": 0,
     "startedOrIncomplete": 4
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 7794683,
-      "cached_input_tokens": 6608512,
-      "output_tokens": 59913,
-      "elapsedSeconds": 3060.0299999999997,
+      "input_tokens": 8406023,
+      "cached_input_tokens": 7128448,
+      "output_tokens": 64701,
+      "elapsedSeconds": 3269.2599999999998,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 11225776,
-      "cached_input_tokens": 9626368,
-      "output_tokens": 82635,
-      "elapsedSeconds": 3754.709999999999,
+      "input_tokens": 12113938,
+      "cached_input_tokens": 10377600,
+      "output_tokens": 89082,
+      "elapsedSeconds": 4021.029999999999,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 7424532,
-      "cached_input_tokens": 6286592,
-      "output_tokens": 57284,
-      "elapsedSeconds": 2763.04
+      "input_tokens": 8035872,
+      "cached_input_tokens": 6806528,
+      "output_tokens": 62072,
+      "elapsedSeconds": 2972.27
     },
     "memex": {
-      "input_tokens": 10451282,
-      "cached_input_tokens": 8962560,
-      "output_tokens": 76991,
-      "elapsedSeconds": 3323.5199999999995
+      "input_tokens": 11339444,
+      "cached_input_tokens": 9713792,
+      "output_tokens": 83438,
+      "elapsedSeconds": 3589.8399999999992
     }
   },
   "usageRetrySessions": {
@@ -62,61 +63,65 @@
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 197,
+      "successfulReads": 214,
       "sameSessionExactRepeats": 0,
       "session2PreviouslyReadExact": 19,
       "session2RepeatedResultCharacters": 100693
     },
     "memex": {
-      "successfulReads": 203,
+      "successfulReads": 223,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 16,
-      "session2RepeatedResultCharacters": 66857
+      "session2PreviouslyReadExact": 18,
+      "session2RepeatedResultCharacters": 74672
     }
   },
   "toolResponseCharactersPaired": {
     "baseline": {
-      "pilotCalls": 747,
-      "pilotResponseCharacters": 1515444
+      "pilotCalls": 809,
+      "pilotResponseCharacters": 1653195
     },
     "memex": {
-      "memexCalls": 119,
-      "memexResponseCharacters": 46574,
-      "pilotCalls": 692,
-      "pilotResponseCharacters": 1443488
+      "memexCalls": 129,
+      "memexResponseCharacters": 50355,
+      "pilotCalls": 743,
+      "pilotResponseCharacters": 1601966
     }
   },
   "searchOpenPatternPaired": {
-    "adjacentTopSearchThenOpen": 21,
-    "openResponseAtMost2000Chars": 21
+    "adjacentTopSearchThenOpen": 23,
+    "openResponseAtMost2000Chars": 23
   },
   "memory": {
-    "session1Writes": 26,
-    "session2OpenedPrior": 26,
-    "session2CitedPrior": 25,
-    "overlappingAccess": 23
+    "session1Writes": 28,
+    "session2OpenedPrior": 28,
+    "session2CitedPrior": 27,
+    "overlappingAccess": 25
   },
   "memoryPaired": {
-    "session1Writes": 24,
-    "session2OpenedPrior": 24,
-    "session2CitedPrior": 24,
-    "overlappingAccess": 22
+    "session1Writes": 26,
+    "session2OpenedPrior": 26,
+    "session2CitedPrior": 26,
+    "overlappingAccess": 24
   },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 17,
-    "baseline_higher": 2
-  },
-  "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
     "equal": 18,
     "baseline_higher": 2
   },
-  "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
+  "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
     "equal": 20,
     "baseline_higher": 2
   },
+  "adjudicatedComparisonIncludingRetriesExcludingFlagged": {
+    "equal": 22,
+    "baseline_higher": 2
+  },
+  "sensitivityComparisonUsingIndependentAudits": {
+    "equal": 23,
+    "baseline_higher": 3
+  },
   "reviewDisagreementOriginal": {
-    "numericPairDisagreement": 10,
-    "adjudicatorMarkedMaterial": 10
+    "numericPairDisagreement": 11,
+    "adjudicatorMarkedMaterial": 11
   },
   "memoryWriteMissingKindFailuresOriginal": 2,
   "memoryWriteMissingKindRecoveredSameSession": 2,
@@ -354,6 +359,178 @@
         },
         "completion_tokens_details": {
           "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N02-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:27:38.991829+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 39988,
+        "completion_tokens": 365,
+        "total_tokens": 40353,
+        "completion_tokens_details": {
+          "reasoning_tokens": 156
+        }
+      }
+    },
+    {
+      "operation": "N02-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:28:17.279622+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 21116,
+        "completion_tokens": 442,
+        "total_tokens": 21558,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 21113,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 21116,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 21113,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "N02-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:28:25.062423+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 218,
+        "prompt_tokens": 18853,
+        "total_tokens": 19071,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N03-posthoc-adjudication-recovery",
+      "attempt": 1,
+      "at": "2026-11-01T13:31:22.998802+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 257,
+        "prompt_tokens": 16990,
+        "total_tokens": 17247,
+        "prompt_tokens_details": {
+          "cached_tokens": 16384
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N03-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:28:32.013111+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "httpStatus": null,
+      "errorCode": null,
+      "usage": {}
+    },
+    {
+      "operation": "N03-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:30:03.070626+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 19193,
+        "completion_tokens": 328,
+        "total_tokens": 19521,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 19190,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 19193,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 19190,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "N03-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:30:10.371884+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 298,
+        "prompt_tokens": 16787,
+        "total_tokens": 17085,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "N03-posthoc-review-recovery",
+      "attempt": 1,
+      "at": "2026-11-01T13:31:10.407550+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 38239,
+        "completion_tokens": 362,
+        "total_tokens": 38601,
+        "completion_tokens_details": {
+          "reasoning_tokens": 165
         }
       }
     },
@@ -642,6 +819,27 @@
       }
     },
     {
+      "operation": "T05-independent-audit",
+      "attempt": 1,
+      "at": "2026-11-01T13:29:24.831130+00:00",
+      "model": "gpt-6.1-terra",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 19906,
+        "completion_tokens": 259,
+        "total_tokens": 20165,
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cache_write_tokens": 19903
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 137
+        }
+      }
+    },
+    {
       "operation": "T05-posthoc-supplement",
       "attempt": 1,
       "at": "2026-11-01T12:36:10.384023+00:00",
@@ -729,6 +927,27 @@
         },
         "completion_tokens_details": {
           "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "T07-independent-audit",
+      "attempt": 1,
+      "at": "2026-11-01T13:29:35.057606+00:00",
+      "model": "gpt-6.1-terra",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 14473,
+        "completion_tokens": 625,
+        "total_tokens": 15098,
+        "prompt_tokens_details": {
+          "cached_tokens": 1050,
+          "cache_write_tokens": 13420
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 475
         }
       }
     },
@@ -1877,9 +2096,9 @@
     }
   ],
   "reviewUsage": {
-    "input_tokens": 1565792,
-    "output_tokens": 23783,
-    "missingUsageAttempts": 1
+    "input_tokens": 1771337,
+    "output_tokens": 26937,
+    "missingUsageAttempts": 2
   },
   "billingCandidate": {
     "observedAt": "2026-11-01T13:25:32.808013+00:00",
@@ -2554,7 +2773,7 @@
         "secondsFromCallStart": 5.938
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 0
+    "unmatchedSuccessfulGatewayCalls": 9
   },
   "sourceDownloadFailures": [
     {
@@ -2821,8 +3040,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -3069,8 +3290,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -3320,8 +3543,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -3552,10 +3777,26 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [
         "Adjudicator repeated a claim contradicted by supplied status and a relevant source comment; preserve scores but do not count this as a clean resolution."
       ],
+      "independentAudit": {
+        "model": "gpt-6.1-terra",
+        "status": "ok",
+        "scores": {
+          "baseline": 2,
+          "memex": 1
+        },
+        "reasons": {
+          "baseline": "Correctly identifies extension-based parser selection, distinguishes Opus-in-Ogg from Vorbis, and proposes local fixtures for both. It appropriately treats the reported reproduction and patch as unverified.",
+          "memex": "Correctly diagnoses the parser mismatch and proposes testing both codecs, but does not explicitly specify local fixtures or avoid network-dependent reproduction. The supplied evidence supports its claims about libvorbis transcoding and the issue being open."
+        },
+        "materialDisagreement": true,
+        "error": null,
+        "disclosure": "Post-hoc independent-model adjudication; original flagged opinions remain unchanged."
+      },
       "adaptiveRetry": null
     },
     {
@@ -3810,10 +4051,26 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [
         "Adjudicator required an independent comparison although independent execution was not explicit in the frozen criteria and project tests were forbidden; preserve scores and flag the rationale."
       ],
+      "independentAudit": {
+        "model": "gpt-6.1-terra",
+        "status": "ok",
+        "scores": {
+          "baseline": 2,
+          "memex": 2
+        },
+        "reasons": {
+          "baseline": "Correctly traces the source-supported salt handoff, distinguishes reported results from independently verified facts, and proposes byte-level comparisons across equivalent encodings, published cases, non-ASCII UTF8 and ASCII controls. The published examples provide deterministic inputs and expected results; execution was not required.",
+          "memex": "Correctly identifies the encoding boundary and its uncertainty, and proposes decoded-salt comparisons using the published cases and equivalent UTF8, Hex and Base64 inputs, alongside ASCII and non-ASCII controls. The cited published cases provide deterministic reference values; execution was not required."
+        },
+        "materialDisagreement": true,
+        "error": null,
+        "disclosure": "Post-hoc independent-model adjudication; original flagged opinions remain unchanged."
+      },
       "adaptiveRetry": null
     },
     {
@@ -4072,8 +4329,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -4325,8 +4584,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -4577,8 +4838,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -4838,8 +5101,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -5092,8 +5357,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -5353,8 +5620,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -5547,8 +5816,10 @@
       "reviews": [],
       "reviewComplete": false,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": {
         "pairCompleted": true,
         "arms": {
@@ -6057,8 +6328,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -6326,8 +6599,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -6501,8 +6776,10 @@
       "reviews": [],
       "reviewComplete": false,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": {
         "pairCompleted": true,
         "arms": {
@@ -6951,8 +7228,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -7212,8 +7491,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -7459,8 +7740,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -7728,8 +8011,10 @@
         "error": null,
         "disclosure": "Post-hoc adjudication after the original request failed; original result retained."
       },
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -8003,8 +8288,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -8269,8 +8556,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -8516,8 +8805,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -8792,8 +9083,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -9047,8 +9340,10 @@
       ],
       "reviewComplete": true,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -9255,11 +9550,56 @@
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Correctly contrasts the original estimate with the pinned doubled formula, explains dimension and quality dependence, and addresses scene-dependent sizing through varied-content controls. Distinguishes missing EOI from proven undersizing, a universal bound, or a hardware fault. Proposes oversized versus candidate-sized buffers, fresh-buffer and decoding controls, and explicitly reports no tests. Its unsupported archive-access claims and omission of the supplied later report do not materially undermine the frozen criteria.",
+            "baseline": "Accurately compares the original and pinned formulas, including their near-equivalence at quality 10, and treats historical reports as limited evidence rather than proof of current behavior. Addresses dimensions, quality, and image-content variability; distinguishes absent EOI from established truncation or hardware failure; and proposes oversized/candidate-buffer, fresh-marker, and decoder controls. Explicitly states no tests were performed, leaving actual sensor behavior unverified."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Partially meets criteria. Correctly identifies the pinned formula as 2*(width*height//quality), confirms the capture() behavior (EOI search, None return), and acknowledges quality range 2–54. Accurately notes that public comments report success with width*height//5 but do not independently distinguish it from the current doubled estimate at quality 10. However, the handoff conflates two separate uncertainties: (1) whether the current formula is adequate, and (2) the content of the later Nov 1, 2026 update. The latter cannot be verified from supplied evidence. The verification plan is sound but the final claim that 'no source edits or tests were performed' is incomplete—the task explicitly forbids both. The reasoning correctly avoids inferring deployment outcome from timestamps alone.",
+            "baseline": "Meets criteria with source support. Correctly pinpoints the current formula as 2*(width*height//quality) and acknowledges its arbitrary comment. Accurately describes capture() as EOI-search-only with no retry or diagnosis. Correctly distinguishes between 'found EOI' (not proof of valid JPEG) and 'missing EOI' (confirms truncation but not root cause). Properly notes that jmangum's May 2024 report at quality 10 overlaps both formulas numerically and thus does not isolate which is better. The handoff avoids false equivalence between formulas and resists inferring the later update's content. The verification plan is concrete and properly sequenced (oversized first, then candidate-sized, then comparison). Correctly preserves existing non-JPEG sizing and EOI behavior as a regression guard. The final uncertainty statement is accurate and proportional."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Both reviews agree the substance is largely correct; the numeric disagreement (2 vs 1) is not supported by the evidence. C01 correctly contrasts the original heuristic with the pinned doubled formula, explains dimension/quality dependence, treats scene content via varied-content controls, distinguishes missing EOI from proven undersizing or hardware fault, and proposes oversized/candidate-buffer and decoder controls while stating sensor behavior remains untested. The archive-access caveat and omission of the later report do not materially undermine the frozen criteria.",
+            "baseline": "Both reviews agree on score 2. C02 accurately compares the original and pinned formulas, notes near-equivalence at quality 10, treats reports as limited evidence, addresses dimensions/quality/content variability, distinguishes absent EOI from established truncation or hardware failure, and proposes oversized/candidate-buffer, fresh-marker, and decoder controls while stating no tests were performed. Meets all frozen criteria."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewerRecovery": null,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -9467,11 +9807,80 @@
         "session2OpenedS1Handoff": false,
         "overlappingAccess": false
       },
-      "reviews": [],
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "error",
+          "scores": null,
+          "reasons": null,
+          "materialDisagreement": null,
+          "error": "failed or truncated response"
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Correctly identifies `.selector` dependency and loss of form scoping in delegation mode, with accurate line references (1017, 1038–1043, 1062–1065, 171–190) showing how unrelated forms can be intercepted. However, overstates certainty ('this is a static diagnosis; no source edits or tests were performed') and conflates the proposed 4.x/5.x roadmap with current source behavior. The mechanism is source-supported but the actual runtime consequence (login-form interception) remains unverified. Partially meets criteria.",
+            "baseline": "Meets criteria. Clearly distinguishes the discussion timeline (1.9 deprecation → 3.0 removal → October report) from the pinned source's state. Traces the specific mechanism: line 1017 converts delegation to boolean, lines 1038–1043 use `this.selector` directly, lines 1058–1065 call `ajaxSubmit(options)` on unrelated forms, lines 171–218 prioritize configured URL and extract that form's fields. Correctly notes the proposed selector-string API is not implemented here. Accurately qualifies what is source-supported (mechanism) versus unverified (actual runtime outcome, event bubbling behavior). Proposes appropriate verification plan. Does not infer the experimental arm."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Source-supported and accurate: identifies delegation booleanization at line 1017, document handlers bound via this.selector at 1038–1043, and ajaxSubmit(options) on the closest form at 1062–1065 with options.url precedence and field serialization. Correctly qualifies 'every form' as conditional on bubbling/cancellation/vetoes, notes nondelegated binding stays scoped (1052–1054), and flags the empty-selection pre-ready retry loss (1020–1035). Correctly treats the 4.x/5.x selector-string plan as roadmap, not implemented. The reviewer's 'overstates certainty' criticism is unsupported: C01 explicitly labels it a static diagnosis with no tests and lists remaining uncertainty.",
+            "baseline": "Meets criteria: correct timeline (1.9 deprecation, 3.0 removal, later report), accurate source tracing (1017 booleanization, 1038–1043 this.selector, 1058–1065 handler, 171/218 url and field extraction), correctly states the selector-string API is absent and the roadmap is not shipped, and properly separates source-supported mechanism from unverified runtime outcome. Proposes a two-unrelated-form regression plus nondelegated control without submitting real forms."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
       "reviewComplete": false,
       "adjudicationRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewerRecovery": {
+        "reviewer": {
+          "model": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Traces boolean coercion and this.selector-based document binding, the unrelated-form ajaxSubmit/options.url path, and the failed empty-selection ready retry. Correctly distinguishes proposed 4.x/5.x behavior from the pinned implementation. Proposes selected-versus-unrelated-form regression coverage and nondelegated controls. Explicitly reports static analysis only; no real submissions, project tests, or maintainer acceptance are claimed.",
+            "baseline": "Supports the delegation scope-loss diagnosis and ready-state limitation with pinned-source paths, while qualifying event bubbling, cancellation, and submission vetoes. Correctly identifies the selector-string API as proposed rather than implemented. Proposes matching and unrelated forms, locally captured requests, and a separate direct-binding control. Explicitly leaves runtime behavior unverified and claims no real submissions, project tests, or maintainer acceptance."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        "supplementalAdjudication": {
+          "model": "deepseek-flash",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Both reviewers agree the mechanism is source-supported; the haiku reviewer's score-1 rationale mischaracterizes the candidate, which explicitly labels the diagnosis static and distinguishes the proposed 4.x/5.x API from pinned behavior. Verified against source: line 1017 coerces delegation to boolean, lines 1038–1043 bind document handlers via this.selector, lines 1062–1065 call ajaxSubmit on the closest form, and options.url/field serialization support the wrong-destination path. Empty-selection ready retry at 1020–1035 and nondelegated binding at 1052–1054 are correctly described. Meets criteria.",
+            "baseline": "Both reviewers rate 2. Verified: correctly traces boolean coercion at 1017, this.selector binding at 1038–1043, ajaxSubmit/options.url path at 1058–1065 and 171/218, and notes the selector-string API is absent from pinned source. Qualifies event bubbling/cancellation/vetoes and marks runtime outcomes unverified. Meets criteria."
+          },
+          "materialDisagreement": true,
+          "error": null
+        },
+        "disclosure": "Post-hoc reviewer and adjudication after original timeout; original results retained."
+      },
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -9524,33 +9933,175 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:26:58.725386+00:00",
+              "finishedAt": "2026-11-01T13:27:43.466637+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 44.74,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 164615,
+                  "cached_input_tokens": 145280,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1237,
+                  "reasoning_output_tokens": 18
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 3,
+                "pilot.archive_open:completed": 13,
+                "pilot.repo_search:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "a7d11fad5988e3373704206b09f38ee4814c94f68072a073bcf6d4e693fcf754",
+              "finalSha256": "56629e0e8b16e20d83f7abb88037f3cba144d52a70a7e2bcbc2876fe48f1cc64"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:27:43.469877+00:00",
+              "finishedAt": "2026-11-01T13:28:40.859366+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 57.39,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 209240,
+                  "cached_input_tokens": 183680,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1421,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 4,
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_open:completed": 7,
+                "pilot.repo_read:completed": 6,
+                "pilot.archive_search:failed": 1,
+                "pilot.repo_search:completed": 2
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                },
+                {
+                  "server": "pilot",
+                  "tool": "archive_search",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "0c065377917e6576c8c52df81a9963530adca95d7aaaec4b8d9d4729d0f5036d",
+              "finalSha256": "daedc0c7069ce3b5f15e5621956f86025bccb23ff3029852d7fe3143c22d0871"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:28:40.862215+00:00",
+              "finishedAt": "2026-11-01T13:29:45.957745+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 65.1,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 180906,
+                  "cached_input_tokens": 137728,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1600,
+                  "reasoning_output_tokens": 86
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 4,
+                "pilot.repo_search:completed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "8eabcdd5b194a93183a5dd2e2e76d3bdde529907cf2f760959920613ecc1fa7e",
+              "finalSha256": "2b5633030013b098085230316641bd5f6e9c7dcbe2f1729a9e738f2b270505f9"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:29:45.960122+00:00",
+              "finishedAt": "2026-11-01T13:31:02.578302+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 76.62,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 254174,
+                  "cached_input_tokens": 225792,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1623,
+                  "reasoning_output_tokens": 8
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 6,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_search:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "4d251d58c9aec6ced7e040b16e277fabf8ef0c91863c53becacec3e368c4d4f9",
+              "finalSha256": "a2fc25a409534d98db28baa8d12cd9e3cc53cfe1c5543636526ac6729858fb03"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_de97972a3f"
+        ],
+        "session2OpenedPrior": [
+          "mem_de97972a3f"
+        ],
+        "session2CitedPrior": [
+          "mem_de97972a3f"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -9603,33 +10154,160 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:29:23.733575+00:00",
+              "finishedAt": "2026-11-01T13:30:24.243554+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 60.51,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 146781,
+                  "cached_input_tokens": 114176,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1148,
+                  "reasoning_output_tokens": 0
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_read:completed": 5,
+                "pilot.repo_search:completed": 2,
+                "pilot.archive_open:completed": 3
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "94be89cf96a3b48088911cc53dcea2731b96deb7166cd0f9db639dc80ff2fa6e",
+              "finalSha256": "ddfe23aea5a6951c8337c704e4588aabfac3ba6c7d9a3dd76a92bf08db473b30"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:30:24.246677+00:00",
+              "finishedAt": "2026-11-01T13:31:10.839276+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 46.59,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 90704,
+                  "cached_input_tokens": 76800,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 982,
+                  "reasoning_output_tokens": 29
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 2,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_read:completed": 3
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "1adbcccab08b2a87c153b5a336f0fad601f72e4bcb0da7003dd1725e59f4a407",
+              "finalSha256": "45bd6c9bca9f04e22e9e9d77aff40f9cb7104dbd56450849466bcc3076d15339"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         },
         "memex": {
-          "sessions": [],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:27:19.131923+00:00",
+              "finishedAt": "2026-11-01T13:28:20.460737+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 61.33,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 233872,
+                  "cached_input_tokens": 198528,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1625,
+                  "reasoning_output_tokens": 32
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 2,
+                "memex.memory_search:completed": 1,
+                "pilot.repo_read:completed": 6,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_search:completed": 2,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "678724dfb6efeafa2db46d45c07cf56b10378da19006853430f3578e09cf352a",
+              "finalSha256": "9643803fd8b60e6602866383d3953e582ed065a0634f3eca4b519924e116d55b"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:28:20.463670+00:00",
+              "finishedAt": "2026-11-01T13:29:23.731123+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 63.27,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 219210,
+                  "cached_input_tokens": 189184,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1599,
+                  "reasoning_output_tokens": 15
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_read:completed": 4,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_search:completed": 3,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "493ce6a290b092e0867a6614b4c6026a9fe3982119fc31f5378b558c1887dab5",
+              "finalSha256": "1a5a3dbe1e0c8e4346ce61d1e575c33daf225e9363a7bff7c421484c5e596ddb"
+            }
+          ],
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
-        "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session1Written": [
+          "mem_4d4786416d"
+        ],
+        "session2OpenedPrior": [
+          "mem_4d4786416d"
+        ],
+        "session2CitedPrior": [
+          "mem_4d4786416d"
+        ],
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -9695,7 +10373,7 @@
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
         "session1Written": [],
@@ -9707,8 +10385,10 @@
       "reviews": [],
       "reviewComplete": false,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     },
     {
@@ -9774,7 +10454,7 @@
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
         "session1Written": [],
@@ -9786,8 +10466,10 @@
       "reviews": [],
       "reviewComplete": false,
       "adjudicationRecovery": null,
+      "reviewerRecovery": null,
       "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
+      "independentAudit": null,
       "adaptiveRetry": null
     }
   ],
