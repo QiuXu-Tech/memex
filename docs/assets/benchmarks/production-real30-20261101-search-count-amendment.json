@@ -1,0 +1,24 @@
+{
+  "registeredAt": "2026-11-01T12:25:03.917183+00:00",
+  "studyRegistrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
+  "reason": "MCP search falsely displayed +0 more when a result limit hid additional matching records; reproduced during the first batch and repaired with an end-to-end regression.",
+  "firstBatchRetainsOriginalVersions": [
+    "T01",
+    "T03",
+    "T05",
+    "T07"
+  ],
+  "remainingTasks": "All other previously registered tasks use the updated versions below; no allocation is changed.",
+  "versions": {
+    "oldGuidance": "253fc7b066aaabe3a2704bceb524648637b3a754",
+    "newGuidance": "4efec4419072fd128b7c2f3bc34b23997a081b19",
+    "bothContainSearchCountFix": "4efec4419072fd128b7c2f3bc34b23997a081b19"
+  },
+  "comparison": "The two new variants differ only in the previously registered one-line handoff guidance within Memex code. Analyze the first four separately from later tasks; do not attribute differences across strata to guidance.",
+  "validation": {
+    "offlineHarness": "182/182",
+    "sqliteConsistency": "36/36",
+    "bothVariants": "MCP initialize, three writes, limited and broader search, and guidance distinction passed"
+  },
+  "unknowns": "No claim that wording alone improves task outcomes or reduces token charges."
+}
