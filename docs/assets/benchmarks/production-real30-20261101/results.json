@@ -1,57 +1,57 @@
 {
-  "generatedAt": "2026-11-01T13:13:44.629450+00:00",
+  "generatedAt": "2026-11-01T13:15:28.888473+00:00",
   "kind": "ongoing-30-post-grep-repair-issue-investigation-pairs",
   "registrationSha256": "839e14decd0884d2f3ad8d53c0e4f65049f9b4cc938b29f15ae99682c49bbd4a",
   "allocationCommitmentSha256": "8f4f8e9a220eed1b52a39e97e88c841680d89844611725a81fa2e9bc106ee368",
   "counts": {
     "registered": 30,
-    "pairedCompleted": 17,
-    "reviewComplete": 16,
+    "pairedCompleted": 18,
+    "reviewComplete": 17,
     "reviewRecoveryComplete": 1,
-    "retryPairsCompleted": 1,
-    "retryReviewsCompleted": 0,
+    "retryPairsCompleted": 2,
+    "retryReviewsCompleted": 1,
     "retryReviewRecoveryComplete": 1,
-    "uniqueTasksEvaluableIncludingRetries": 18,
+    "uniqueTasksEvaluableIncludingRetries": 20,
     "qualityFlagged": 2,
-    "notStarted": 10,
-    "startedOrIncomplete": 3
+    "notStarted": 8,
+    "startedOrIncomplete": 4
   },
   "usageAllSessions": {
     "baseline": {
-      "input_tokens": 5795853,
-      "cached_input_tokens": 4899328,
-      "output_tokens": 45702,
-      "elapsedSeconds": 2445.23,
+      "input_tokens": 5950250,
+      "cached_input_tokens": 5036160,
+      "output_tokens": 46981,
+      "elapsedSeconds": 2497.1,
       "missingUsageSessions": 1
     },
     "memex": {
-      "input_tokens": 8441059,
-      "cached_input_tokens": 7222528,
-      "output_tokens": 61435,
-      "elapsedSeconds": 2886.7599999999993,
+      "input_tokens": 8847304,
+      "cached_input_tokens": 7550720,
+      "output_tokens": 64507,
+      "elapsedSeconds": 2999.5599999999995,
       "missingUsageSessions": 1
     }
   },
   "usagePairedSessions": {
     "baseline": {
-      "input_tokens": 5131271,
-      "cached_input_tokens": 4351872,
-      "output_tokens": 40376,
-      "elapsedSeconds": 2009.64
+      "input_tokens": 5425702,
+      "cached_input_tokens": 4577408,
+      "output_tokens": 43073,
+      "elapsedSeconds": 2148.2400000000002
     },
     "memex": {
-      "input_tokens": 7430590,
-      "cached_input_tokens": 6369152,
-      "output_tokens": 54051,
-      "elapsedSeconds": 2378.8999999999996
+      "input_tokens": 7866514,
+      "cached_input_tokens": 6723200,
+      "output_tokens": 57282,
+      "elapsedSeconds": 2513.24
     }
   },
   "usageRetrySessions": {
     "baseline": {
-      "input_tokens": 532893,
-      "cached_input_tokens": 452096,
-      "output_tokens": 3755,
-      "elapsedSeconds": 264.16
+      "input_tokens": 730749,
+      "cached_input_tokens": 623616,
+      "output_tokens": 5174,
+      "elapsedSeconds": 309.82000000000005
     },
     "memex": {
       "input_tokens": 995350,
@@ -62,41 +62,41 @@
   },
   "repoReadRepetitionPaired": {
     "baseline": {
-      "successfulReads": 145,
+      "successfulReads": 155,
       "sameSessionExactRepeats": 0,
-      "session2PreviouslyReadExact": 15,
-      "session2RepeatedResultCharacters": 73476
+      "session2PreviouslyReadExact": 16,
+      "session2RepeatedResultCharacters": 79952
     },
     "memex": {
-      "successfulReads": 150,
+      "successfulReads": 159,
       "sameSessionExactRepeats": 0,
       "session2PreviouslyReadExact": 15,
       "session2RepeatedResultCharacters": 65056
     }
   },
   "memory": {
-    "session1Writes": 20,
-    "session2OpenedPrior": 20,
-    "session2CitedPrior": 18,
-    "overlappingAccess": 18
+    "session1Writes": 21,
+    "session2OpenedPrior": 21,
+    "session2CitedPrior": 19,
+    "overlappingAccess": 19
   },
   "memoryPaired": {
-    "session1Writes": 17,
-    "session2OpenedPrior": 17,
-    "session2CitedPrior": 17,
-    "overlappingAccess": 16
+    "session1Writes": 18,
+    "session2OpenedPrior": 18,
+    "session2CitedPrior": 18,
+    "overlappingAccess": 17
   },
   "adjudicatedComparisonExcludingFlagged": {
-    "equal": 13,
-    "baseline_higher": 1
-  },
-  "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
     "equal": 14,
     "baseline_higher": 1
   },
+  "adjudicatedComparisonIncludingRecoveryExcludingFlagged": {
+    "equal": 15,
+    "baseline_higher": 1
+  },
   "reviewDisagreementOriginal": {
-    "numericPairDisagreement": 8,
-    "adjudicatorMarkedMaterial": 8
+    "numericPairDisagreement": 9,
+    "adjudicatorMarkedMaterial": 9
   },
   "reviewGatewayAttempts": [
     {
@@ -184,6 +184,80 @@
         "total_tokens": 26837,
         "prompt_tokens_details": {
           "cached_tokens": 25984
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
+    },
+    {
+      "operation": "T18-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:14:31.738916+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 21925,
+        "completion_tokens": 306,
+        "total_tokens": 22231,
+        "prompt_tokens_details": {
+          "cached_tokens": 4096
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 30
+        }
+      }
+    },
+    {
+      "operation": "T18-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:14:47.365837+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 22129,
+        "completion_tokens": 408,
+        "total_tokens": 22537,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 22126,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 22129,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 22126,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T18-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:14:54.062079+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 284,
+        "prompt_tokens": 19238,
+        "total_tokens": 19522,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
         },
         "completion_tokens_details": {
           "reasoning_tokens": 0
@@ -1423,18 +1497,89 @@
       "httpStatus": null,
       "errorCode": null,
       "usage": {}
+    },
+    {
+      "operation": "T25-blind:gpt-6.1-sol",
+      "attempt": 1,
+      "at": "2026-11-01T13:14:31.738782+00:00",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 20800,
+        "completion_tokens": 301,
+        "total_tokens": 21101,
+        "completion_tokens_details": {
+          "reasoning_tokens": 57
+        }
+      }
+    },
+    {
+      "operation": "T25-blind:claude-haiku-4-5",
+      "attempt": 1,
+      "at": "2026-11-01T13:14:49.231672+00:00",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "prompt_tokens": 20610,
+        "completion_tokens": 457,
+        "total_tokens": 21067,
+        "usage_semantic": "openai",
+        "usage_source": "anthropic",
+        "prompt_tokens_details": {
+          "cached_tokens": 0,
+          "cached_creation_tokens": 20607,
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0
+        },
+        "completion_tokens_details": {
+          "text_tokens": 0,
+          "audio_tokens": 0,
+          "image_tokens": 0,
+          "reasoning_tokens": 0
+        },
+        "input_tokens": 20610,
+        "output_tokens": 0,
+        "input_tokens_details": null,
+        "claude_cache_creation_5_m_tokens": 20607,
+        "claude_cache_creation_1_h_tokens": 0
+      }
+    },
+    {
+      "operation": "T25-adjudication",
+      "attempt": 1,
+      "at": "2026-11-01T13:14:57.297946+00:00",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "httpStatus": 200,
+      "errorCode": null,
+      "usage": {
+        "completion_tokens": 486,
+        "prompt_tokens": 18017,
+        "total_tokens": 18503,
+        "prompt_tokens_details": {
+          "cached_tokens": 0
+        },
+        "completion_tokens_details": {
+          "reasoning_tokens": 0
+        }
+      }
     }
   ],
   "reviewUsage": {
-    "input_tokens": 1162732,
-    "output_tokens": 18122,
+    "input_tokens": 1285451,
+    "output_tokens": 20364,
     "missingUsageAttempts": 1
   },
   "billingCandidate": {
-    "observedAt": "2026-11-01T13:02:18.700990+00:00",
+    "observedAt": "2026-11-01T13:15:28.168784+00:00",
     "source": "APIMaster usage-log UI, observed rows on first page",
     "matching": "unique model, exact prompt/output counts and provider finish within 180 seconds of local call start; no per-request receipt linkage",
-    "candidateSubtotalUsd": "0.120918",
+    "candidateSubtotalUsd": "0.177636",
     "rows": [
       {
         "operation": "T08-blind:gpt-6.1-sol",
@@ -1462,6 +1607,87 @@
         "output": 402,
         "walletUsd": "0.001310",
         "secondsFromCallStart": 5.414
+      },
+      {
+        "operation": "T22-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:05:42",
+        "inputIncludingCacheCreation": 44527,
+        "output": 279,
+        "walletUsd": "0.007060",
+        "secondsFromCallStart": 8.307
+      },
+      {
+        "operation": "T22-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:05:50",
+        "inputIncludingCacheCreation": 21927,
+        "output": 489,
+        "walletUsd": "0.003280",
+        "secondsFromCallStart": 7.127
+      },
+      {
+        "operation": "T22-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:05:57",
+        "inputIncludingCacheCreation": 19496,
+        "output": 368,
+        "walletUsd": "0.001982",
+        "secondsFromCallStart": 6.718
+      },
+      {
+        "operation": "T25-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:14:48",
+        "inputIncludingCacheCreation": 20800,
+        "output": 301,
+        "walletUsd": "0.003430",
+        "secondsFromCallStart": 16.261
+      },
+      {
+        "operation": "T25-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:14:57",
+        "inputIncludingCacheCreation": 20610,
+        "output": 457,
+        "walletUsd": "0.003080",
+        "secondsFromCallStart": 7.768
+      },
+      {
+        "operation": "T25-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:15:04",
+        "inputIncludingCacheCreation": 18017,
+        "output": 486,
+        "walletUsd": "0.001886",
+        "secondsFromCallStart": 6.702
+      },
+      {
+        "operation": "T21-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:04:35",
+        "inputIncludingCacheCreation": 12412,
+        "output": 409,
+        "walletUsd": "0.002222",
+        "secondsFromCallStart": 18.435
+      },
+      {
+        "operation": "T21-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:04:41",
+        "inputIncludingCacheCreation": 10109,
+        "output": 215,
+        "walletUsd": "0.001506",
+        "secondsFromCallStart": 4.713
+      },
+      {
+        "operation": "T21-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:04:48",
+        "inputIncludingCacheCreation": 9126,
+        "output": 353,
+        "walletUsd": "0.000996",
+        "secondsFromCallStart": 6.364
       },
       {
         "operation": "T05-blind:gpt-6.1-sol",
@@ -1716,6 +1942,15 @@
         "secondsFromCallStart": 5.662
       },
       {
+        "operation": "T23-posthoc-adjudication-recovery",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:11:48",
+        "inputIncludingCacheCreation": 17830,
+        "output": 296,
+        "walletUsd": "0.001796",
+        "secondsFromCallStart": 12.945
+      },
+      {
         "operation": "T13-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
         "walletTimeAsiaShanghai": "2026-11-01 20:44:59",
@@ -1797,6 +2032,24 @@
         "secondsFromCallStart": 5.419
       },
       {
+        "operation": "T23-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:10:09",
+        "inputIncludingCacheCreation": 38926,
+        "output": 436,
+        "walletUsd": "0.006320",
+        "secondsFromCallStart": 14.762
+      },
+      {
+        "operation": "T23-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:10:21",
+        "inputIncludingCacheCreation": 20302,
+        "output": 339,
+        "walletUsd": "0.002974",
+        "secondsFromCallStart": 10.556
+      },
+      {
         "operation": "T09-blind:gpt-6.1-sol",
         "model": "gpt-6.1-sol",
         "walletTimeAsiaShanghai": "2026-11-01 20:39:30",
@@ -1822,9 +2075,72 @@
         "output": 278,
         "walletUsd": "0.001394",
         "secondsFromCallStart": 6.417
+      },
+      {
+        "operation": "T15-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:11:49",
+        "inputIncludingCacheCreation": 28582,
+        "output": 237,
+        "walletUsd": "0.004576",
+        "secondsFromCallStart": 13.945
+      },
+      {
+        "operation": "T15-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:11:57",
+        "inputIncludingCacheCreation": 32192,
+        "output": 402,
+        "walletUsd": "0.004640",
+        "secondsFromCallStart": 7.416
+      },
+      {
+        "operation": "T15-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:12:03",
+        "inputIncludingCacheCreation": 26114,
+        "output": 188,
+        "walletUsd": "0.002538",
+        "secondsFromCallStart": 4.838
+      },
+      {
+        "operation": "T15-retry-posthoc-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:12:52",
+        "inputIncludingCacheCreation": 26462,
+        "output": 375,
+        "walletUsd": "0.000236",
+        "secondsFromCallStart": 8.554
+      },
+      {
+        "operation": "T18-blind:gpt-6.1-sol",
+        "model": "gpt-6.1-sol",
+        "walletTimeAsiaShanghai": "2026-11-01 21:14:47",
+        "inputIncludingCacheCreation": 21925,
+        "output": 306,
+        "walletUsd": "0.003008",
+        "secondsFromCallStart": 15.261
+      },
+      {
+        "operation": "T18-blind:claude-haiku-4-5",
+        "model": "claude-haiku-4-5",
+        "walletTimeAsiaShanghai": "2026-11-01 21:14:53",
+        "inputIncludingCacheCreation": 22129,
+        "output": 408,
+        "walletUsd": "0.003262",
+        "secondsFromCallStart": 5.634
+      },
+      {
+        "operation": "T18-adjudication",
+        "model": "deepseek-flash",
+        "walletTimeAsiaShanghai": "2026-11-01 21:15:00",
+        "inputIncludingCacheCreation": 19238,
+        "output": 284,
+        "walletUsd": "0.001926",
+        "secondsFromCallStart": 5.938
       }
     ],
-    "unmatchedSuccessfulGatewayCalls": 13
+    "unmatchedSuccessfulGatewayCalls": 0
   },
   "sourceDownloadFailures": [
     {
@@ -5774,7 +6090,7 @@
       "reviewCompleteIncludingRecovery": false,
       "qualityFlags": [],
       "adaptiveRetry": {
-        "pairCompleted": false,
+        "pairCompleted": true,
         "arms": {
           "baseline": {
             "sessions": [
@@ -5805,11 +6121,38 @@
                 "toolFailures": [],
                 "eventTraceSha256": "94fdb084bd9339703b68f8ce0ddc620175495f9fae41b6ad135484afe45e9f48",
                 "finalSha256": "650d0d1a9ccefb2157e29ce0f91d195e2b29ca21a0c59cd2084933e698675b68"
+              },
+              {
+                "stage": 2,
+                "startedAt": "2026-11-01T13:13:26.866326+00:00",
+                "finishedAt": "2026-11-01T13:14:12.523706+00:00",
+                "exitCode": 0,
+                "timeout": false,
+                "unexpectedTool": null,
+                "elapsedSeconds": 45.66,
+                "threadCount": 1,
+                "usage": [
+                  {
+                    "input_tokens": 197856,
+                    "cached_input_tokens": 171520,
+                    "cache_write_input_tokens": 0,
+                    "output_tokens": 1419,
+                    "reasoning_output_tokens": 8
+                  }
+                ],
+                "callCounts": {
+                  "pilot.repo_read:completed": 8,
+                  "pilot.archive_search:completed": 3,
+                  "pilot.archive_open:completed": 7
+                },
+                "toolFailures": [],
+                "eventTraceSha256": "3e3f6550c8b437e6d199b0b44c1e002c57a2cca22c27f04018569c3eee141e91",
+                "finalSha256": "ad8dfb251a5d84f935c22724c3aed878288807fb423ab4ac4872b42358ebba0c"
               }
             ],
-            "sessionsCompleted": null,
-            "twoDistinctThreads": null,
-            "testStatus": "NOT RUN"
+            "sessionsCompleted": 2,
+            "twoDistinctThreads": true,
+            "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
           },
           "memex": {
             "sessions": [
@@ -5900,10 +6243,53 @@
           "session2OpenedS1Handoff": true,
           "overlappingAccess": true
         },
-        "reviews": [],
-        "reviewComplete": false,
+        "reviews": [
+          {
+            "reviewer": "gpt-6.1-sol",
+            "status": "ok",
+            "scores": {
+              "memex": 1,
+              "baseline": 1
+            },
+            "reasons": {
+              "memex": "Source supports the qualified diagnosis: npm JavaScript executes in a VM whose shared context imports safeGlobals, which omits File despite including Blob. The handoff separates host availability from sandbox availability and acknowledges historical-release and dependency uncertainty. It proposes a local reproduction and host-versus-VM control, but omits the key May 6 comparison between successful local Ubuntu 22.04.5/Node 24.15.0/CLI 3.3.0 and failing GitHub Actions ubuntu-latest/Node 24.x/global CLI installation. It also lacks an explicit independent module-loading control. No project tests or maintainer acceptance establish the diagnosis or proposed fix.",
+              "baseline": "The missing-File diagnosis is supported by the captured VM construction, safeGlobals list, module evaluation, and resolution code, and the handoff appropriately qualifies reproduction and historical-release equivalence. It proposes reproducing the collection on an affected release and pinned source while recording dependencies and host/VM File availability. However, it omits the reported local-success versus GitHub Actions-failure environments and supplies no independent module-loading control; another Undici consumer does not provide that control. No project tests or maintainer acceptance verify the proposed fix."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "claude-haiku-4-5",
+            "status": "ok",
+            "scores": {
+              "memex": 2,
+              "baseline": 2
+            },
+            "reasons": {
+              "memex": "Diagnosis correctly identifies missing `File` global in Bruno's VM sandbox as root cause. Source confirms: (1) npm packages like cheerio execute in vm.Script context, not native require; (2) safeGlobals allowlist includes Blob/fetch APIs but omits File (constants.js:25–95); (3) host availability does not auto-propagate to isolated context (cjs-loader.js:179–192); (4) nested error wrapping explains the chain (cjs-loader.js:684–715). Multiple corroborating reports (May, July) across versions 3.4.1–3.5.1 strengthen the diagnosis. Practical reproduction plan is sound. Uncertainty remains on exact Undici version, resolution path, and whether forwarding File through safeGlobals is sufficient; these are verification gaps, not diagnosis flaws.",
+              "baseline": "Diagnosis matches C01 in core finding: `File` global missing from VM context causes Undici failures. Source support is identical and complete: npm modules use vm.Script (not native require), safeGlobals omits File, host availability does not guarantee sandbox availability. Distinguishes 'built-in library' as npm package, not Node builtin—critical for accuracy. Multiple user reports (May–July) across CLI versions and Node versions strengthen attribution over single report. Reproduction and verification plan is practical. Same verification gaps (exact Undici source, resolution path, sufficiency of File alone) apply; diagnosis itself is well-grounded."
+            },
+            "materialDisagreement": null,
+            "error": null
+          },
+          {
+            "reviewer": "adjudication",
+            "status": "ok",
+            "scores": {
+              "memex": 1,
+              "baseline": 1
+            },
+            "reasons": {
+              "memex": "Both reviews agree the missing-File diagnosis is source-supported (safeGlobals omits File while including Blob; npm modules run via vm.Script; host availability does not propagate to the VM). The disagreement is on whether the handoff meets the frozen criterion to distinguish reported runtime and CI environments. C01 does not address the May 6 comment contrasting a working local Ubuntu 22.04.5/Node 24.15.0/CLI 3.3.0 setup with failing GitHub Actions ubuntu-latest/Node 24.x, so that criterion is only partially met. It also lacks an explicit independent module-loading control. Diagnosis is qualified and not reproduced, so partial credit.",
+              "baseline": "C02's core diagnosis is equally source-grounded and it correctly notes 'built-in library' means an npm package, not a Node builtin. However, like C01 it omits the May 6 local-success versus GitHub Actions-failure comparison, leaving the environment-distinction criterion unmet, and it offers no independent module-loading control (the @salesforce/core report is another Undici consumer, not a control). No reproduction or maintainer acceptance verifies the fix, so partial credit rather than full."
+            },
+            "materialDisagreement": true,
+            "error": null
+          }
+        ],
+        "reviewComplete": true,
         "reviewRecovery": null,
-        "reviewCompleteIncludingRecovery": false,
+        "reviewCompleteIncludingRecovery": true,
         "qualityFlags": [],
         "disclosure": "Post-hoc whole-pair retry; original failure is retained."
       }
@@ -7103,15 +7489,46 @@
               "toolFailures": [],
               "eventTraceSha256": "a9c69d3341f747c2eef490328978e4f9d8a6ee1fea58b0512aeb4ca9603f924e",
               "finalSha256": "ce8845843b0d9962a0f89219d4e6e5bf2343fb30c090e7cb07b00f41e37f4d0d"
+            },
+            {
+              "stage": 2,
+              "startedAt": "2026-11-01T13:13:12.589377+00:00",
+              "finishedAt": "2026-11-01T13:14:10.262407+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 57.67,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 199949,
+                  "cached_input_tokens": 164480,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1491,
+                  "reasoning_output_tokens": 12
+                }
+              ],
+              "callCounts": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_open:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_read:completed": 4,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_search:completed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "ab1a05b3016734a2a0fb4d2fe63838c8114497f6f7254887759672b81a6cdb9b",
+              "finalSha256": "e954af2e2ed17b252279e1911197a8080ecdbfee589697b4be380af87440fb62"
             }
           ],
-          "sessionsCompleted": null,
-          "twoDistinctThreads": null,
-          "testStatus": "NOT RUN"
+          "sessionsCompleted": 2,
+          "twoDistinctThreads": true,
+          "testStatus": "NOT RUN: this is a source investigation, with no project acceptance verifier"
         }
       },
-      "pairCompleted": false,
-      "state": "started or incomplete",
+      "pairCompleted": true,
+      "state": "paired complete",
       "runnerError": null,
       "memory": {
         "session1Written": [
@@ -7120,14 +7537,59 @@
         "session2OpenedPrior": [
           "mem_5187014612"
         ],
-        "session2CitedPrior": [],
+        "session2CitedPrior": [
+          "mem_5187014612"
+        ],
         "session2OpenedS1Handoff": true,
         "overlappingAccess": true
       },
-      "reviews": [],
-      "reviewComplete": false,
+      "reviews": [
+        {
+          "reviewer": "gpt-6.1-sol",
+          "status": "ok",
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "reasons": {
+            "memex": "Source-supported explanation of complete-literal sanitization, leftover-fragment rejection, and NumberField validation delegation. It correctly distinguishes historical observations from verified current behavior and flags the milligram/milliliter inconsistency. Its verification plan covers both units, unrelated-text rejection, Backspace, forward Delete, and selections. However, it leaves the milligram/milliliter comparison unresolved and does not explicitly specify ordinary complete-unit acceptance controls or concrete invalid-number controls for a prefix-acceptance change. No project tests or maintainer acceptance establish those outcomes.",
+            "baseline": "Accurately explains the source mechanism, including unanchored matching of complete literals, and appropriately qualifies runtime examples and historical fix claims. It specifies keyboard deletion checks and useful locale and parsing edge cases. However, after noting the milligram/milliliter discrepancy, its verification plan omits milligram, leaving that frozen criterion insufficiently addressed. It also does not explicitly specify rejection controls for unrelated invalid numbers or ordinary complete-unit acceptance controls. No project tests or maintainer acceptance establish those outcomes."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "claude-haiku-4-5",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Correctly identifies the complete-literal validation limitation in NumberParser: sanitize removes only whole matched literals (line 237), isValidPartialNumber requires empty remainder after removing numeric characters (lines 278–312), causing partial unit fragments to fail validation. Accurately traces the flow through useNumberFieldState.validate (line 332). Explains the reported symptom pattern (single-char 'g' vs multi-char 'kg'/'mL', 'gram' vs 'gra'). Acknowledges September 29 maintainer guidance (prefixes as goal, whole-unit deletion as fallback) and correctly notes that existing test assertions are guards, not prohibitions. Outlines a thorough verification plan covering deletion strings, plural forms, displays, locales, blur/commit behavior, and remains appropriately uncertain about implementation complexity and locale coverage. No source edits performed, but analysis is source-supported and meets the criteria.",
+            "baseline": "Identifies the same root cause with equivalent detail: complete-literal collection in getSymbols (lines 330–401), substring-match removal in sanitize (lines 226–237), and empty-remainder validation in isValidPartialNumber (lines 278–312). Correctly traces NumberField delegation (useNumberFieldState.ts:332–336). Explains the reported symptom pattern with the same examples and acknowledges the September 28 observation and September 29 maintainer direction. Explicitly notes the unanchored-match behavior and contrasts it with lack of partial-unit generation. Provides a more comprehensive verification plan that includes formatToParts inspection, parse-level behavior, selection deletion, interior deletions, prefix-position units, and numeral-free units. Correctly identifies that prefix acceptance alone doesn't cover all edits because parse still sanitizes. Appropriately flags uncertainty about runtime literals, UI events, and PR #9905 status. Source-supported and meets criteria; no edits or tests run."
+          },
+          "materialDisagreement": null,
+          "error": null
+        },
+        {
+          "reviewer": "adjudication",
+          "status": "ok",
+          "scores": {
+            "memex": 2,
+            "baseline": 2
+          },
+          "reasons": {
+            "memex": "Both reviewers agree the source supports the complete-literal sanitization mechanism: sanitize removes only whole matched literals (NumberParser.ts:237), and isValidPartialNumber accepts only an empty remainder after stripping numeric characters (lines 278–312), with useNumberFieldState delegating validate directly (line 332). C01 correctly explains the symptom pattern (single-char 'g' vs multi-char 'kg'/'mL', 'gram' vs 'gra'), flags the milligram/milliliter inconsistency in the issue, and distinguishes reported runtime observations from independently verified behavior. It incorporates the September 29 maintainer direction (prefix acceptance preferred, whole-unit deletion as fallback) and correctly treats existing '10 i' assertions as guards rather than prohibitions. Its verification plan covers both units, unrelated-text rejection, Backspace, forward Delete, selections, plural forms, displays, locales, and blur/commit. The haiku reviewer's score of 2 is better supported than the sol reviewer's 1, whose objections about unresolved milligram/milliliter and missing explicit controls are overstated given the plan's coverage.",
+            "baseline": "C02 identifies the same root cause with equivalent source grounding: complete-literal collection in getSymbols (lines 330–401), substring removal in sanitize (lines 226–237), and empty-remainder validation (lines 278–312), plus NumberField delegation (useNumberFieldState.ts:332–336). It correctly notes the unanchored substring matching and that no partial-unit alternatives are generated, explains the symptom pattern, and flags the milligram/milliliter inconsistency. It incorporates the September 29 maintainer direction and notes that PR #9905 retest requests are not evidence of a fix. Its verification plan is thorough, including formatToParts inspection, parse-level behavior, selection and interior deletions, prefix-position units, and numeral-free units, and it correctly observes that prefix acceptance alone does not cover all edits because parse still sanitizes. The sol reviewer's claim that the plan omits milligram is inaccurate—C02 explicitly lists 'mL' and long singular/plural forms and discusses the milligram/milliliter discrepancy; the haiku score of 2 is better supported."
+          },
+          "materialDisagreement": true,
+          "error": null
+        }
+      ],
+      "reviewComplete": true,
       "adjudicationRecovery": null,
-      "reviewCompleteIncludingRecovery": false,
+      "reviewCompleteIncludingRecovery": true,
       "qualityFlags": [],
       "adaptiveRetry": null
     },
@@ -7181,7 +7643,43 @@
       },
       "arms": {
         "baseline": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:14:18.878256+00:00",
+              "finishedAt": "2026-11-01T13:15:10.748651+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 51.87,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 154397,
+                  "cached_input_tokens": 136832,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1279,
+                  "reasoning_output_tokens": 18
+                }
+              ],
+              "callCounts": {
+                "pilot.repo_read:failed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.archive_open:completed": 16,
+                "pilot.repo_read:completed": 3
+              },
+              "toolFailures": [
+                {
+                  "server": "pilot",
+                  "tool": "repo_read",
+                  "status": "failed",
+                  "error": "Invalid tool arguments"
+                }
+              ],
+              "eventTraceSha256": "4d2464b2d1160e2456a66d0de4389e296f011d43d729c5189626735c209e213e",
+              "finalSha256": "441630df4d86861e2506691b59fa4e5a340b846ff2d853c7fdc93628d91e1826"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
@@ -7194,7 +7692,7 @@
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
         "session1Written": [],
@@ -7266,21 +7764,56 @@
           "testStatus": "NOT RUN"
         },
         "memex": {
-          "sessions": [],
+          "sessions": [
+            {
+              "stage": 1,
+              "startedAt": "2026-11-01T13:14:18.876739+00:00",
+              "finishedAt": "2026-11-01T13:15:14.005964+00:00",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "elapsedSeconds": 55.13,
+              "threadCount": 1,
+              "usage": [
+                {
+                  "input_tokens": 206296,
+                  "cached_input_tokens": 163712,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1581,
+                  "reasoning_output_tokens": 105
+                }
+              ],
+              "callCounts": {
+                "pilot.archive_search:completed": 4,
+                "memex.memory_search:completed": 1,
+                "pilot.repo_read:completed": 6,
+                "pilot.archive_open:completed": 3,
+                "pilot.repo_search:completed": 1,
+                "memex.memory_write:completed": 1
+              },
+              "toolFailures": [],
+              "eventTraceSha256": "8b8d18e69a214aa40c38d48ee22792dedac970cf2c870b4d2037e110f49d3a9b",
+              "finalSha256": "f3ae4892112723bbf865576ddf5f517c0733f671b6b9c79171a4686ca9de610b"
+            }
+          ],
           "sessionsCompleted": null,
           "twoDistinctThreads": null,
           "testStatus": "NOT RUN"
         }
       },
       "pairCompleted": false,
-      "state": "NOT RUN",
+      "state": "started or incomplete",
       "runnerError": null,
       "memory": {
-        "session1Written": [],
-        "session2OpenedPrior": [],
+        "session1Written": [
+          "mem_47af7e53eb"
+        ],
+        "session2OpenedPrior": [
+          "mem_47af7e53eb"
+        ],
         "session2CitedPrior": [],
-        "session2OpenedS1Handoff": false,
-        "overlappingAccess": false
+        "session2OpenedS1Handoff": true,
+        "overlappingAccess": true
       },
       "reviews": [],
       "reviewComplete": false,
