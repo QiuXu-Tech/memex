@@ -60,6 +60,20 @@ def review_summary(base,task):
  return {'status':'VALID','scoresByArm':{key[label]:score for label,score in final.items()},'disagreement':disagreement,
          'reviewerScoresByArm':[{key[label]:score for label,score in scoremap.items()} for scoremap in scores],
          'reviews':reviews,'adjudication':adjud}
+def posthoc_review_summary(base,task):
+ path=base/'reviews'/'posthoc-limits'/f'{task}-result.json'
+ if not path.exists():return None
+ data=load(path);key=load(base/'reviews'/task/'key.json');reviews=data['reviews'];adjud=data['adjudication']
+ if any(not x.get('rating') for x in reviews):return {'status':'MISSING_VALID_REVIEW'}
+ scores=[{r['id']:r['score'] for r in x['rating']['candidates']} for x in reviews]
+ claims=[{r['id']:tuple(sorted(r['unsupportedClaims'])) for r in x['rating']['candidates']} for x in reviews]
+ disagreement=scores[0]!=scores[1] or claims[0]!=claims[1]
+ if disagreement:
+  if not adjud.get('rating'):return {'status':'UNRESOLVED_DISAGREEMENT','reviews':reviews,'adjudication':adjud}
+  final={r['id']:r['score'] for r in adjud['rating']['candidates']}
+ else:final=scores[0]
+ return {'status':'VALID','scoresByArm':{key[label]:score for label,score in final.items()},'disagreement':disagreement,
+         'correctedModels':data['correctedModels'],'reviews':reviews,'adjudication':adjud}
 def cohort(name):
  base=P/name
  if not (base/'registration.json').exists():return {'status':'NOT_REGISTERED'}
@@ -91,8 +105,8 @@ def cohort(name):
    for arm in ('baseline','memex'):
     u=[model_tokens(ss[(arm,k)]) for k in (1,2)]
     token_by_arm[arm]=None if any(x is None for x in u) else {k:sum(x[k] for x in u) for k in ('input','output','cacheRead','cacheWrite')}
-  r=review_summary(base,tid)
-  for ev in events(base/'reviews'/tid/'gateway.jsonl'):
+  r=review_summary(base,tid);posthoc=posthoc_review_summary(base,tid)
+  for ev in events(base/'reviews'/tid/'gateway.jsonl')+events(base/'reviews'/'posthoc-limits'/f'{tid}-gateway.jsonl'):
    if ev.get('status')=='started':continue
    model=ev.get('model','UNKNOWN');entry=review_usage[model];entry['calls']+=1;usage=ev.get('usage') or {}
    if ev.get('status')=='ok' and type(usage.get('prompt_tokens')) is int and type(usage.get('completion_tokens')) is int:
@@ -102,15 +116,22 @@ def cohort(name):
    'sourceArchiveSha256':t['archiveSha256'],'issueSnapshotSha256':t['issueSha256'],'started':folder.exists(),
    'finished':(folder/'finished.json').exists(),'runnerError':load(folder/'runner-error.json') if (folder/'runner-error.json').exists() else None,
    'completePair':paired,'sessions':{f'{a}-s{k}':{z:s.get(z) for z in ('status','responseCompleted','normalExit','timeout','shutdownTimeoutAfterResult','usage','usageNote','clientListPriceUsd','unexpectedTools','unavailableToolAttempts','initialAttempt','recovery')} for (a,k),s in ss.items()},
-   'tokenByArm':token_by_arm,'memoryChain':writes_and_opens(base,tid) if folder.exists() else None,'review':r})
+   'tokenByArm':token_by_arm,'memoryChain':writes_and_opens(base,tid) if folder.exists() else None,'review':r,'posthocReview':posthoc})
  complete=[x for x in rows if x['completePair']];reviewed=[x for x in complete if x['review']['status']=='VALID' and all(type(x['review']['scoresByArm'].get(a)) is int for a in ('baseline','memex'))]
  directions=collections.Counter()
  for x in reviewed:
   d=x['review']['scoresByArm']['memex']-x['review']['scoresByArm']['baseline'];directions['memexHigher' if d>0 else 'baselineHigher' if d<0 else 'tie']+=1
+ sensitivity=[];sensitivity_directions=collections.Counter()
+ for x in complete:
+  rating=x['review'] if x['review']['status']=='VALID' else x.get('posthocReview') or {}
+  if rating.get('status')!='VALID' or not all(type(rating['scoresByArm'].get(a)) is int for a in ('baseline','memex')):continue
+  sensitivity.append((x,rating));delta=rating['scoresByArm']['memex']-rating['scoresByArm']['baseline']
+  sensitivity_directions['memexHigher' if delta>0 else 'baselineHigher' if delta<0 else 'tie']+=1
  tokenpairs=[x for x in complete if all(x['tokenByArm'].get(a) is not None for a in ('baseline','memex'))]
  token_totals={a:{k:sum(x['tokenByArm'][a][k] for x in tokenpairs) for k in ('input','output','cacheRead','cacheWrite')} for a in ('baseline','memex')}
  return {'status':'FINISHED' if (base/'finished-rest.json').exists() else 'IN_PROGRESS','registered':len(rows),'started':sum(x['started'] for x in rows),
   'finished':sum(x['finished'] for x in rows),'completePairs':len(complete),'validRatedPairs':len(reviewed),'scoreDirections':dict(directions),
+  'posthocSensitivityRatedPairs':len(sensitivity),'posthocSensitivityDirections':dict(sensitivity_directions),
   'meanScore':{a:statistics.mean(x['review']['scoresByArm'][a] for x in reviewed) if reviewed else None for a in ('baseline','memex')},
   'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,
   'agentWrites':sum(bool(x['memoryChain'] and x['memoryChain']['successfulWriteIds']) for x in rows),

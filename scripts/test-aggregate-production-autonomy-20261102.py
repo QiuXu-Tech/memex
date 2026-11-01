@@ -33,4 +33,12 @@ class AggregateValidation(unittest.TestCase):
    event={'type':'assistant','message':{'content':[{'type':'tool_use','name':'mcp__memex__memory_open','input':{'id':'mem_1234567890'}}]}}
    (trace/'memex-s2-events.jsonl').write_text(json.dumps(event)+'\n')
    chain=m.writes_and_opens(base,'01');self.assertEqual(chain['automaticCheckpointIds'],['mem_1234567890']);self.assertTrue(chain['automaticCheckpointOpenedNext'])
+ def test_posthoc_revalidation_is_separate_from_primary(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=pathlib.Path(td);folder=base/'reviews/01';folder.mkdir(parents=True);post=base/'reviews/posthoc-limits';post.mkdir()
+   (folder/'key.json').write_text(json.dumps({'C01':'baseline','C02':'memex'}))
+   ratings={'candidates':[{'id':'C01','score':2,'unsupportedClaims':[]},{'id':'C02','score':1,'unsupportedClaims':[]}]}
+   (post/'01-result.json').write_text(json.dumps({'reviews':[{'rating':ratings},{'rating':ratings}],'adjudication':{'status':'NOT_RUN'},'correctedModels':['gpt-6.1-sol']}))
+   self.assertEqual(m.review_summary(base,'01')['status'],'MISSING_VALID_REVIEW')
+   self.assertEqual(m.posthoc_review_summary(base,'01')['scoresByArm'],{'baseline':2,'memex':1})
 if __name__=='__main__':unittest.main()
