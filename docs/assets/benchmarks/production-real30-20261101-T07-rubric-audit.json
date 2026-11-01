@@ -1,0 +1,12 @@
+{
+  "checkedAt": "2026-11-01T12:45:17.257512+00:00",
+  "kind": "post-hoc investigator rubric audit, not independent human review",
+  "task": "T07",
+  "frozenAcceptance": [
+    "Compare the decoded input salt bytes with the salt encoded in Argon2 output for hex and base64 inputs.",
+    "Investigate the byte-string versus UTF-8 conversion and include a non-ASCII UTF-8 control.",
+    "Preserve ordinary ASCII behavior and propose deterministic local regression cases."
+  ],
+  "protocol": "The registered agent prompt forbade project tests; the rubric called for comparisons and proposed deterministic tests.",
+  "finding": "The adjudicator treated an independently performed comparison as required, but the frozen criteria did not explicitly require independent execution. Whether the reports supplied enough hex/base64 comparison remains a judgment. Preserve the blind scores and flag the adjudication rationale as unresolved."
+}

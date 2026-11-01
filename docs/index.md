@@ -30,6 +30,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
+- [30-issue cross-session follow-up](production-real30-20261101.html) — randomized source investigations, AI review, memory access, usage and cost gaps.
 - [Executable real-agent comparisons and grep repair](production-value-20261101.html) — two paired issue replays, memory observations, AI review, cost gaps and retrieval trade-offs.
 - [Independent-issue real-agent progress](production-cohort-30-20261101.html) — 30 registered investigations, initial paired trials, memory observations and AI-review limitations.
 - [Real-agent isolation and cross-session pilot](production-real-agent-20261101.html) — paired Codex tasks, one observed memory lifecycle, AI review and cost gaps.
