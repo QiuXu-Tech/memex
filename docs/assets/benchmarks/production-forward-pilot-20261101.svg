@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="525" viewBox="0 0 1120 525" role="img" aria-labelledby="title desc">
+  <title id="title">Two real-task shadow comparisons: initial attempts and engineering retry</title>
+  <desc id="desc">The initial four attempts did not edit the requested files. An engineering retry on the same two tasks produced four edits; both Memex audit candidates failed the frozen order test, while the two Axios candidates received partial or split AI review. A further Memex-only repeat with a sandbox test tool passed the frozen cases in both arms but failed newly added checks in both. A later session did not use memory tools. Repeats are not new samples.</desc>
+  <rect width="1120" height="525" fill="#f7f9fb"/>
+  <text x="42" y="49" fill="#173047" font-family="Arial,sans-serif" font-size="27" font-weight="700">Two-task shadow pilot</text>
+  <text x="42" y="77" fill="#536b7b" font-family="Arial,sans-serif" font-size="15">Paired arms · same two tasks repeated · no production deployment</text>
+  <text x="42" y="122" fill="#536b7b" font-family="Arial,sans-serif" font-size="13" font-weight="700">TASK / ARM</text>
+  <text x="429" y="122" fill="#536b7b" font-family="Arial,sans-serif" font-size="13" font-weight="700">INITIAL ATTEMPT</text>
+  <text x="736" y="122" fill="#536b7b" font-family="Arial,sans-serif" font-size="13" font-weight="700">ENGINEERING RETRY</text>
+  <line x1="42" y1="136" x2="1078" y2="136" stroke="#dce5ea"/>
+  <text x="42" y="174" fill="#173047" font-family="Arial,sans-serif" font-size="16" font-weight="700">Memex audit validator</text>
+  <text x="42" y="194" fill="#647985" font-family="Arial,sans-serif" font-size="13">Memory-enabled arm</text>
+  <rect x="429" y="151" width="245" height="43" rx="7" fill="#a54d4a"/>
+  <text x="551" y="178" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">No edit</text>
+  <rect x="736" y="151" width="342" height="43" rx="7" fill="#a7752b"/>
+  <text x="907" y="178" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">Edited · order test failed</text>
+  <text x="42" y="235" fill="#173047" font-family="Arial,sans-serif" font-size="16" font-weight="700">Memex audit validator</text>
+  <text x="42" y="255" fill="#647985" font-family="Arial,sans-serif" font-size="13">Archive-only control</text>
+  <rect x="429" y="212" width="245" height="43" rx="7" fill="#a54d4a"/>
+  <text x="551" y="239" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">No edit</text>
+  <rect x="736" y="212" width="342" height="43" rx="7" fill="#a7752b"/>
+  <text x="907" y="239" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">Edited · order test failed</text>
+  <text x="42" y="296" fill="#173047" font-family="Arial,sans-serif" font-size="16" font-weight="700">Axios issue #11402</text>
+  <text x="42" y="316" fill="#647985" font-family="Arial,sans-serif" font-size="13">Memory-enabled arm</text>
+  <rect x="429" y="273" width="245" height="43" rx="7" fill="#a54d4a"/>
+  <text x="551" y="300" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">No edit</text>
+  <rect x="736" y="273" width="342" height="43" rx="7" fill="#507c92"/>
+  <text x="907" y="300" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">Edited · AI rated partial</text>
+  <text x="42" y="357" fill="#173047" font-family="Arial,sans-serif" font-size="16" font-weight="700">Axios issue #11402</text>
+  <text x="42" y="377" fill="#647985" font-family="Arial,sans-serif" font-size="13">Archive-only control</text>
+  <rect x="429" y="334" width="245" height="43" rx="7" fill="#a54d4a"/>
+  <text x="551" y="361" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">No edit</text>
+  <rect x="736" y="334" width="342" height="43" rx="7" fill="#507c92"/>
+  <text x="907" y="361" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">Edited · AI ratings split</text>
+  <line x1="42" y1="400" x2="1078" y2="400" stroke="#dce5ea"/>
+  <rect x="42" y="414" width="1036" height="40" rx="7" fill="#e7eef2"/>
+  <text x="60" y="439" fill="#173047" font-family="Arial,sans-serif" font-size="14" font-weight="700">Memex-only test-tool repeat: frozen tests passed 2/2 · added checks passed 0/2</text>
+  <text x="42" y="482" fill="#536b7b" font-family="Arial,sans-serif" font-size="14">No memory read during any solve or the separate continuation. Review is AI-only; Axios correctness remains unverified.</text>
+  <text x="42" y="505" fill="#536b7b" font-family="Arial,sans-serif" font-size="13">Initial attempts: 0/4 edits. Repeats and continuation are diagnostic, not additional independent tasks.</text>
+</svg>

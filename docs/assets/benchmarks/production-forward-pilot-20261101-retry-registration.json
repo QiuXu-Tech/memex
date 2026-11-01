@@ -1,0 +1,48 @@
+{
+  "kind": "engineering-retry-same-two-tasks",
+  "registeredAt": "2026-11-01T04:10:57.522393+00:00",
+  "taskFileSha256": "d4512b432c3e4a233b5b4cd93a600a44dd781d6efd1b2babe9a904b0459de157",
+  "acceptanceVerifierSha256": "2758348d95b93b5100e42e2edc309334715dc01b132db36621d65fc65f27e6c6",
+  "runnerSha256": "72b2031f0a65ba6b7e6f39dc177edb1bfb1af4c357149ec1d1384a8bec7f92cf",
+  "seed": 2026110111,
+  "schedule": [
+    {
+      "task": "memex-audit",
+      "arm": "memex"
+    },
+    {
+      "task": "memex-audit",
+      "arm": "baseline"
+    },
+    {
+      "task": "axios-proxy-docs",
+      "arm": "memex"
+    },
+    {
+      "task": "axios-proxy-docs",
+      "arm": "baseline"
+    }
+  ],
+  "solver": "deepseek-flash",
+  "reviewers": [
+    "gpt-6.1-sol",
+    "claude-haiku-4-5"
+  ],
+  "adjudicator": "deepseek-flash",
+  "maxSolverRounds": 8,
+  "maxIntakeRounds": 2,
+  "maxTokensPerSolverCall": 1400,
+  "maxReviewTokens": 900,
+  "costGoal": "small initial run; actual gateway pricing and costs verified separately; no guarantee of a hard monetary cap",
+  "failureRule": "retain failed, incomplete and unknown calls; do not repeat an ambiguous timed-out call",
+  "design": "same model, repository snapshot, task, baseline archive access and repo tools; only treatment receives a fresh Memex store and a model-driven historical intake before the task; isolated workspaces and randomized arm order",
+  "limitations": [
+    "two tasks are a feasibility pilot, not an efficacy estimate",
+    "both tasks are paired shadows of actual work; no production deployment is performed",
+    "two AI reviewers are not human or verified independent providers",
+    "local preregistration is not an independently timestamped registration",
+    "same tasks repeated after inspecting first outcomes; not a new or independent sample",
+    "tool-budget reminder was added post hoc as an engineering adjustment"
+  ],
+  "priorManifestSha256": "cd51abcb29e9319d54548a933330140b6b5e21906cafdf8dc55d53055dffb9df"
+}

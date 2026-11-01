@@ -6,6 +6,10 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 
 ## Unreleased
 
+### Fixed — pilot autonomy citation evidence
+- Reject a positive prior-write-use audit claim unless the cited memory ID was written during intake, subsequently opened or included by the pager, and cited in the answer. Add ordering, failed-action, unrelated-ID and no-claim regression cases. This validates recorded linkage, not semantic memory fidelity.
+- Record the two-task shadow pilot, failed model candidates, separately repaired validator, blinded AI reviews, continuation and usage gaps in `docs/production-forward-pilot-20261101.md`.
+
 ### Fixed — MCP integration readiness
 - Scope MCP open, status, restore and forget by visible workspace and session; reject undeclared write fields, including supplied record IDs, reject writes or compression into disabled levels, and default materialization to enabled scopes. These are tool-level boundaries, not operating-system access controls.
 - Use a fresh default L2 session per MCP process, and stop pinning the initializing project in newly generated global Codex configurations. Existing entries and records are not automatically migrated.

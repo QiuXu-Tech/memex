@@ -1,0 +1,32 @@
+{
+  "kind": "adaptive-sandbox-test-tool-canary-same-memex-task",
+  "registeredAt": "2026-11-01T04:33:22.084868+00:00",
+  "taskFileSha256": "3294f835570dd6817888ccbf0766fe9d8735dea1eb03cdf9f61fcbc5df278f54",
+  "runnerSha256": "72b2031f0a65ba6b7e6f39dc177edb1bfb1af4c357149ec1d1384a8bec7f92cf",
+  "scriptSha256": "5a4055b5769a7601a5d982d447691e4d5440c6cfd02e9fb310922d0a6a86f8a4",
+  "acceptanceVerifierSha256": "2758348d95b93b5100e42e2edc309334715dc01b132db36621d65fc65f27e6c6",
+  "priorRegistrationSha256": "44d03b318c37a4ff6921cb2315323d60eefc16b144a3e7019b6cac3d084e3907",
+  "sourceCommit": "957041355bd94fd09b8a023b0c4e92a8dcf60d8f",
+  "seed": 2026110114,
+  "schedule": [
+    {
+      "task": "memex-audit",
+      "arm": "memex"
+    },
+    {
+      "task": "memex-audit",
+      "arm": "baseline"
+    }
+  ],
+  "solver": "deepseek-flash",
+  "maxSolverRounds": 10,
+  "maxIntakeRounds": 2,
+  "maxTokensPerSolverCall": 1400,
+  "criterion": "Same frozen verifier and existing citation test must both pass in a network-disabled VM sandbox, using a fixed repo_test tool available to both arms.",
+  "design": "Adaptive diagnostic repeat of the same task. Equal archive, editing and fixed acceptance test tools; treatment has model-driven memory intake. Tests reveal the frozen cases to the model, so passing does not establish generalization or production impact.",
+  "limitations": [
+    "same task repeated after prior outcomes",
+    "not an independent production sample",
+    "local registration is not independently timestamped"
+  ]
+}
