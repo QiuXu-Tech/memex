@@ -13,6 +13,12 @@ def usage_rows(label,x):
  return '\n'.join(f"| {label} | {model} | {u['calls']} | {u['promptTokens']:,} | {u['completionTokens']:,} | {u['missingUsageOrFailedAttempts']} |" for model,u in x.get('reviewUsageByModel',{}).items()) or f'| {label} | Pending | 0 | 0 | 0 | 0 |'
 n=a['fullTokenPairs'];base=a['tokenTotals']['baseline']['input'];mem=a['tokenTotals']['memex']['input']
 tokens=(f"In the {n} original-protocol complete pairs with reported usage, control used {base:,} input tokens and Memex {mem:,} ({(mem/base-1)*100:+.1f}%)." if n and base else 'No complete original-protocol pairs have comparable input-token totals yet.')
+if n:
+ bt=a['tokenTotals']['baseline'];mt=a['tokenTotals']['memex']
+ cache_read=mt['cacheRead']-bt['cacheRead'];cache_write=mt['cacheWrite']-bt['cacheWrite']
+ tokens+=f" The difference comprises {cache_read:+,} cache-read, {cache_write:+,} cache-creation and {mem-base-cache_read-cache_write:+,} uncached input tokens; token counts are not wallet charges."
+prices=a['completePairClientListPriceUsd'];pa=prices['baseline'];pm=prices['memex']
+paired_price=(f"For those {a['completePairs']} complete original pairs, client list prices were ${pa:.4f} control and ${pm:.4f} Memex ({(pm/pa-1)*100:+.1f}%)." if pa and pm is not None else 'A complete original-pair list-price comparison is unavailable.')
 status='IN PROGRESS' if any(x['status']!='FINISHED' or x.get('reviewStatus')!='FINISHED' for x in (a,b)) else 'RUNS FINISHED; GAPS AND POST-HOC REVIEWS SHOWN BELOW'
 text=f'''---
 title: Cross-session memory and real-issue triage, 2026-11-02
@@ -44,12 +50,16 @@ layout: default
 
 Each task has its own pinned public source revision, issue snapshot hash, issue-specific criteria and randomized arm order. Both arms receive the same issue, staged comments, read-only source tools and their own searchable prior handoffs. The Memex arm additionally receives actual Claude Code hooks and memory tools. A completed pair requires two successful, distinct client sessions in each arm. Failures, tool errors, incomplete sessions and unstarted tasks remain in the results.
 
+The issue discussions are historical public material that the models may already have seen; the pinned source revision can also postdate the discussion and contain subsequent fixes. This is a compressed replay of issue investigation, rather than a live long-running production workflow.
+
+Original sessions not completed by final status: `{json.dumps(a['sessionOutcomes']['notCompletedByStatus'],sort_keys=True)}`; supplemental: `{json.dumps(b['sessionOutcomes']['notCompletedByStatus'],sort_keys=True)}`. In the supplemental protocol, {b['sessionOutcomes']['resumedAfterBudget']} budget-exhausted sessions had a same-session finalization attempt and {b['sessionOutcomes']['resumedAndCompleted']} completed; {b['sessionOutcomes']['unavailableToolAttempts']} nonexistent-tool attempts were explicitly rejected and retained. A `success` status can still fail the completion rule if an unapproved tool was attempted. These counts are sessions, not tasks.
+
 The recovery cohort was selected and registered **after** observing budget exhaustion in the first cohort. It uses lower initial budgets, one tool-free same-session finalization when the initial budget is exhausted, the later MCP trust change and a revised pilot bridge. Treat the two cohorts separately; an observed difference between them is not a randomized comparison of those protocol changes.
 
 {scoreline('Original',a)}
 {scoreline('Supplemental recovery',b)}
 
-Scores assess the supplied triage evidence against the frozen 0–2 rubric; they do not establish that a patch works, an issue is resolved, or a production task is correct. Reviewers are GPT-6.1 Sol and DeepSeek Flash; material disagreements are sent to Gemini Flash when both initial reviews are valid. An absent, truncated, invalid or unresolved review stays missing.
+Scores assess the supplied triage evidence against the frozen 0–2 rubric; they do not establish that a patch works, an issue is resolved, or a production task is correct. Reviewers are GPT-6.1 Sol and DeepSeek Flash; material disagreements are sent to Gemini Flash when both initial reviews are valid. Candidate labels are randomized and product names are removed, but the wording may still reveal the condition. An absent, truncated, invalid or unresolved review stays missing.
 
 The original cohort also has a **post-hoc sensitivity view** of {a['posthocSensitivityRatedPairs']} rated pairs: control higher {a['posthocSensitivityDirections'].get('baselineHigher',0)}, tie {a['posthocSensitivityDirections'].get('tie',0)}, Memex higher {a['posthocSensitivityDirections'].get('memexHigher',0)}. This supplements the original primary view; it includes deterministic revalidation where judges cited a visible `limits` field, a different-model replacement after one timeout, and a separately registered retry of a malformed adjudication. The initial outcomes remain in the JSON. [Reference correction](assets/benchmarks/production-autonomy-20261102/triage30-limits-revalidation-registration.json) · [Reviewer rescue](assets/benchmarks/production-autonomy-20261102/triage30-review-rescue-registration.json)
 
@@ -58,6 +68,8 @@ The original cohort also has a **post-hoc sensitivity view** of {a['posthocSensi
 Across all started tasks, the original cohort has **{a['agentWrites']}** tasks with an observed successful agent `memory_write`; **{a['writtenRecordOpenedNext']}** have an agent-written record explicitly opened in the next session. The Stop hook saved a first-session checkpoint in **{a['automaticCheckpoints']}** tasks, and a checkpoint was opened in the next session in **{a['automaticCheckpointOpenedNext']}**. For the supplemental cohort, those corresponding counts are **{b['agentWrites']}**, **{b['writtenRecordOpenedNext']}**, **{b['automaticCheckpoints']}**, and **{b['automaticCheckpointOpenedNext']}**. These are observed operations, not proof that the content was correct or necessary; categories overlap.
 
 {tokens} Input totals include uncached, cache-read and cache-creation tokens, following [Anthropic's usage definition](https://platform.claude.com/docs/en/build-with-claude/prompt-caching). Output tokens are reported separately in the JSON. In recovered sessions, individual attempt usage is retained, but a full session total is **UNKNOWN** when the client may omit usage from a budget-failed request; zero is not substituted.
+
+{paired_price} These are client list prices, not measured gateway wallet charges.
 
 In the original {a['completePairs']} complete pairs, the control / Memex arms made **{a['completePairToolAttempts']['baseline']['total']} / {a['completePairToolAttempts']['memex']['total']}** tool attempts, of which **{a['completePairToolAttempts']['baseline']['exactRepeated']} / {a['completePairToolAttempts']['memex']['exactRepeated']}** repeated the identical tool and arguments within a single session. Overlapping source ranges and semantically repeated searches are not included in that narrow count. Fewer attempts alongside more input tokens does not by itself identify the cause: repeated context, cache traffic and output size require separate investigation.
 

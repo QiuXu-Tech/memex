@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T18:13:37.192363+00:00",
+  "generatedAt": "2026-11-01T18:15:57.627752+00:00",
   "kind": "descriptive-evidence-reconciliation",
   "original": {
     "status": "FINISHED",
@@ -55,6 +55,21 @@
         "archive": 41,
         "other": 0
       }
+    },
+    "completePairClientListPriceUsd": {
+      "baseline": 0.92988,
+      "memex": 1.020173
+    },
+    "sessionOutcomes": {
+      "notCompletedByStatus": {
+        "error_max_budget_usd": 28,
+        "success": 2
+      },
+      "resumedAfterBudget": 0,
+      "resumedAndCompleted": 0,
+      "unavailableToolAttempts": 0,
+      "unexpectedToolAttempts": 5,
+      "runnerErrors": 0
     },
     "clientListPriceKnownUsd": 7.00247,
     "clientListPriceMissingSessions": 0,
@@ -12063,9 +12078,9 @@
     "status": "IN_PROGRESS",
     "reviewStatus": "NOT_STARTED",
     "registered": 30,
-    "started": 17,
-    "finished": 15,
-    "completePairs": 15,
+    "started": 19,
+    "finished": 17,
+    "completePairs": 17,
     "validRatedPairs": 0,
     "scoreDirections": {},
     "posthocSensitivityRatedPairs": 0,
@@ -12091,30 +12106,42 @@
     },
     "completePairToolAttempts": {
       "baseline": {
-        "total": 513,
+        "total": 550,
         "exactRepeated": 3,
         "memory": 0,
-        "source": 323,
-        "archive": 190,
+        "source": 339,
+        "archive": 211,
         "other": 0
       },
       "memex": {
-        "total": 411,
+        "total": 448,
         "exactRepeated": 1,
-        "memory": 46,
-        "source": 301,
+        "memory": 55,
+        "source": 329,
         "archive": 64,
         "other": 0
       }
     },
-    "clientListPriceKnownUsd": 4.281475,
+    "completePairClientListPriceUsd": {
+      "baseline": 2.205249,
+      "memex": 2.27041
+    },
+    "sessionOutcomes": {
+      "notCompletedByStatus": {},
+      "resumedAfterBudget": 49,
+      "resumedAndCompleted": 49,
+      "unavailableToolAttempts": 3,
+      "unexpectedToolAttempts": 0,
+      "runnerErrors": 0
+    },
+    "clientListPriceKnownUsd": 4.60711,
     "clientListPriceMissingSessions": 0,
-    "agentWrites": 2,
-    "writtenRecordOpenedNext": 0,
-    "writtenRecordAutomaticallyRecalled": 2,
-    "automaticCheckpoints": 16,
-    "automaticCheckpointOpenedNext": 16,
-    "automaticCheckpointRecalledNext": 16,
+    "agentWrites": 4,
+    "writtenRecordOpenedNext": 2,
+    "writtenRecordAutomaticallyRecalled": 4,
+    "automaticCheckpoints": 18,
+    "automaticCheckpointOpenedNext": 18,
+    "automaticCheckpointRecalledNext": 18,
     "reviewUsageByModel": {},
     "rawConsistencyProblems": [],
     "tasks": [
@@ -13185,13 +13212,22 @@
         "sourceCommit": "eab8bedbb65d5429c54e612ddbd88aa23091d398",
         "sourceArchiveSha256": "54d165a0ef05eb1daa2764eddc4f8dcd4e66f2e152baaed37a2acecfbf5a8c27",
         "issueSnapshotSha256": "7828d38e25bbeea8b3bc2909108978c8114479b0b4687a327d292605b86357cf",
-        "started": false,
+        "started": true,
         "finished": false,
         "runnerError": null,
         "completePair": false,
         "sessions": {},
         "tokenByArm": {},
-        "memoryChain": null,
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": false,
+          "automaticCheckpointRecalledNext": false,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 0
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
@@ -13199,7 +13235,58 @@
         "finalAnswers": {},
         "sourceReferences": {
           "baseline": [],
-          "memex": []
+          "memex": [
+            {
+              "path": "drizzle-kit/src/utils.ts",
+              "line": 1,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-kit/src/utils.ts#L1"
+            },
+            {
+              "path": "drizzle-kit/src/cli/connections.ts",
+              "line": 1003,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-kit/src/cli/connections.ts#L1003"
+            },
+            {
+              "path": "drizzle-kit/src/serializer/studio.ts",
+              "line": 71,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-kit/src/serializer/studio.ts#L71"
+            },
+            {
+              "path": "drizzle-orm/src/better-sqlite3/session.ts",
+              "line": 10,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-orm/src/better-sqlite3/session.ts#L10"
+            },
+            {
+              "path": "drizzle-orm/src/sqlite-core/README.md",
+              "line": 16,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-orm/src/sqlite-core/README.md#L16"
+            },
+            {
+              "path": "integration-tests/tests/relational/bettersqlite.test.ts",
+              "line": 2,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/integration-tests/tests/relational/bettersqlite.test.ts#L2"
+            },
+            {
+              "path": "integration-tests/tests/sqlite/better-sqlite.test.ts",
+              "line": 1,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/integration-tests/tests/sqlite/better-sqlite.test.ts#L1"
+            },
+            {
+              "path": "drizzle-orm/src/better-sqlite3/session.ts",
+              "line": 1,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-orm/src/better-sqlite3/session.ts#L1"
+            },
+            {
+              "path": "drizzle-orm/src/better-sqlite3/session.ts",
+              "line": 100,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-orm/src/better-sqlite3/session.ts#L100"
+            },
+            {
+              "path": "drizzle-orm/src/sqlite-core/session.ts",
+              "line": 1,
+              "url": "https://github.com/drizzle-team/drizzle-orm/blob/eab8bedbb65d5429c54e612ddbd88aa23091d398/drizzle-orm/src/sqlite-core/session.ts#L1"
+            }
+          ]
         }
       },
       {
@@ -14668,9 +14755,9 @@
         "sourceArchiveSha256": "406561f44dc6d79aad0143f932930169f2684756f092b9f9674963d2b81e1f71",
         "issueSnapshotSha256": "cb2c32cb5432f837bb6513647e371541c3d6d74744045eb7c4dd68db89f31259",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
+        "completePair": true,
         "sessions": {
           "baseline-s1": {
             "status": "success",
@@ -14727,6 +14814,67 @@
                 "speed": "standard"
               },
               "clientListPriceUsd": 0.0408723,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 50,
+              "cache_creation_input_tokens": 14351,
+              "cache_read_input_tokens": 65761,
+              "output_tokens": 3501,
+              "output_tokens_details": {
+                "thinking_tokens": 2095
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 14351
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.04206985,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 14351,
+                "cache_read_input_tokens": 65761,
+                "output_tokens": 3501,
+                "output_tokens_details": {
+                  "thinking_tokens": 2095
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14351
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.04206985,
               "zeroUsageWithCharge": false,
               "exitCode": 0,
               "timeout": false
@@ -14870,7 +15018,15 @@
             }
           }
         },
-        "tokenByArm": {},
+        "tokenByArm": {
+          "baseline": {
+            "input": 136497,
+            "output": 5919,
+            "cacheRead": 101959,
+            "cacheWrite": 34453
+          },
+          "memex": null
+        },
         "memoryChain": {
           "writeCalls": 0,
           "writtenIdOpenedNext": false,
@@ -14886,6 +15042,10 @@
         },
         "posthocReview": null,
         "finalAnswers": {
+          "baseline": {
+            "text": "## Triage: Issue #4512 — Context @consume() not notifying changed\n\n**Reported behavior:**  \nWhen using `@consume()` with `subscribe: true`, context updates trigger a re-render but the consumed property does not appear in the `changed` Map passed to lifecycle hooks like `willUpdate()`. Users cannot reliably detect that a context change caused the update.\n\n**Source evidence:**\n- `packages/context/src/lib/decorators/consume.ts:63–65` (standard decorators) and `77` (experimental decorators): The callback directly assigns the value without triggering Lit's reactive property tracking:\n  ```ts\n  callback: (value) => {\n    protoOrTarget.set.call(this, value);  // or (element as any)[nameOrContext] = value\n  }\n  ```\n- `packages/context/src/lib/controllers/context-consumer.ts:20`: The controller's `Options` interface accepts a `callback`, but `consume` decorator's interface (line 48–50) does not expose it.\n\n**Discussion:**\n- **C1** (augustjk, 2024-01-23): Root cause identified—consumed properties are not reactive properties. Workaround: combine `@consume()` with `@state()`.\n- **C2** (justinfagnani, 2024-01-24): Rejects adding callback to decorator; states if you need callbacks, use the controller directly.\n- **C3** (augustjk, 2024-01-24): Proposes adding `callback` option to `@consume()` to match `ContextConsumer` API; references a proof-of-concept commit.\n- **C5** (augustjk, 2024-01-25): Suggests dual-decorator pattern (`@state()` + `@consume()`) to consolidate change detection in lifecycle hooks.\n- **C7** (justinfagnani, 2024-03-01): Softens stance; willing to add callback to decorator if it includes old/new value arguments like `@state()`.\n\n**Design disagreement:** Unresolved tension between keeping `@consume()` minimal (C2) vs. exposing callback functionality (C3, C7). Current implementation follows C2's position but lacks practical parity with `ContextConsumer` controller for reactive tracking.\n\n**Recommended next check:**  \nConfirm whether a decision was made post-C7 (March 2024) to implement callback support, and if so, why it doesn't appear in the current `packages/context/src/lib/decorators/consume.ts` type signature. If no implementation followed, clarify with maintainers whether to pursue: (a) callback option with old/new args, (b) document `@state()` + `@consume()` as the canonical pattern, or (c) update `ContextConsumer` callback to mark the property as changed in the reactive system.",
+            "truncated": false
+          },
           "memex": {
             "text": "## Triage: Issue #4512 – @consume() not tracking context changes in willUpdate changed Map\n\n**Reported behavior:**\nWhen using `@consume({ context, subscribe: true })`, the `changed` Map in `willUpdate()` is empty when context updates, despite the property being set. User expects the property name in `changed`.\n\n**Source evidence:**\n- **`packages/context/src/lib/controllers/context-consumer.ts:124`** — `_callback` calls `this.host.requestUpdate()` with no arguments, preventing ReactiveElement from registering the property in `changed`.\n- **`packages/context/src/lib/decorators/consume.ts:63–65, 75–77`** — Decorator callback sets the property but has no mechanism to inform the controller which property name it's using.\n\n**Root cause:**\nThe `ContextConsumer` constructor accepts `context`, `callback`, and `subscribe` in its `Options` interface (lines 18–22), but no property name. The controller cannot call `requestUpdate(propertyName, oldValue)` without knowing the property key.\n\n**Discussion/disagreement:**\nNone found. The earlier handoff identified this gap but left the fix approach unresolved.\n\n**Recommended next action:**\nDetermine whether to extend `ContextConsumer` `Options` with a `property?: PropertyKey` field, allowing the decorator to pass the property name at initialization so `_callback` can properly track it in the changed Map.\n\n**Uncertainty:**\n- Whether this is a breaking change to the public `ContextConsumer` API.\n- Whether there's an existing pattern in Lit controllers for accessing property metadata from decorators.",
             "truncated": false
@@ -15674,29 +15834,424 @@
         "sourceArchiveSha256": "bd8bba54507de2c083ea5ae19cf12ceda8ce11723d2853d0a5eaae7fbd090c46",
         "issueSnapshotSha256": "25a3827d9c2768be5cf7fe07a989386325f3e8c7dbbfc3926f7746be9abb95e6",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
-        "sessions": {},
-        "tokenByArm": {},
+        "completePair": true,
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 45,
+              "cache_creation_input_tokens": 18982,
+              "cache_read_input_tokens": 46917,
+              "output_tokens": 2814,
+              "output_tokens_details": {
+                "thinking_tokens": 1707
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 18982
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0425342,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 45,
+                "cache_creation_input_tokens": 18982,
+                "cache_read_input_tokens": 46917,
+                "output_tokens": 2814,
+                "output_tokens_details": {
+                  "thinking_tokens": 1707
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18982
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0425342,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 30,
+              "cache_creation_input_tokens": 6342,
+              "cache_read_input_tokens": 26062,
+              "output_tokens": 1795,
+              "output_tokens_details": {
+                "thinking_tokens": 973
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 6342
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0195387,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 30,
+                "cache_creation_input_tokens": 6342,
+                "cache_read_input_tokens": 26062,
+                "output_tokens": 1795,
+                "output_tokens_details": {
+                  "thinking_tokens": 973
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 6342
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0195387,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.06978039999999999,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 16057,
+                "cache_read_input_tokens": 78397,
+                "output_tokens": 3857,
+                "output_tokens_details": {
+                  "thinking_tokens": 2370
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16057
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.05257914999999999,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 12349,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 351,
+                "output_tokens_details": {
+                  "thinking_tokens": 118
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12349
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.06978039999999999,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 8460,
+              "cache_read_input_tokens": 27409,
+              "output_tokens": 1384,
+              "output_tokens_details": {
+                "thinking_tokens": 688
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 8460
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0202609,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 25,
+                "cache_creation_input_tokens": 8460,
+                "cache_read_input_tokens": 27409,
+                "output_tokens": 1384,
+                "output_tokens_details": {
+                  "thinking_tokens": 688
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 8460
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0202609,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          }
+        },
+        "tokenByArm": {
+          "baseline": {
+            "input": 98378,
+            "output": 4609,
+            "cacheRead": 72979,
+            "cacheWrite": 25324
+          },
+          "memex": null
+        },
         "memoryChain": {
-          "writeCalls": 0,
-          "writtenIdOpenedNext": false,
-          "writtenIdInAutomaticRecall": false,
-          "unverifiedRecallLabel": false,
-          "automaticCheckpointOpenedNext": false,
-          "automaticCheckpointRecalledNext": false,
-          "successfulWriteCount": 0,
-          "automaticCheckpointCount": 0
+          "writeCalls": 1,
+          "writtenIdOpenedNext": true,
+          "writtenIdInAutomaticRecall": true,
+          "unverifiedRecallLabel": true,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 1,
+          "automaticCheckpointCount": 1
         },
         "review": {
           "status": "NOT_PREPARED"
         },
         "posthocReview": null,
-        "finalAnswers": {},
+        "finalAnswers": {
+          "baseline": {
+            "text": "## Triage: bind:clientWidth does not update when scrollBar appears/disappears\n\n**Reported behavior:**\n`bind:clientWidth` and `bind:clientHeight` do not update when scrollbars appear or disappear. The DOM element's actual `clientWidth` changes but the bound variable stays out of sync.\n\n**Source evidence with file and line:**\n- **File:** `packages/svelte/src/internal/client/dom/elements/bindings/size.js:100`\n- **Root cause:** `bind_element_size()` uses `resize_observer_border_box.observe()` for all four bindings (`clientWidth`, `clientHeight`, `offsetWidth`, `offsetHeight`)\n- Lines 69–71 define the border-box observer. When a scrollbar appears, the content area shrinks but the border-box size remains constant (the scrollbar is inside it), so the observer never fires and the binding isn't updated.\n\n**Relevant discussion (comment IDs):**\n- **C3** (ptrxyz, 2026-01-22): Confirmed root cause—border-box observer doesn't fire when scrollbars appear because border-box size doesn't change\n- **C4** (CrumbsTrace, 2026-01-22): Proposed using both content-box and border-box observers to catch all scenarios, but rejected this as inelegant due to significant overlap. Suggested documenting the limitation instead, noting it's a niche scenario with straightforward workarounds on the application side\n\n**Recommended next check:**\nConfirm whether the team's current direction is toward: (1) a dual-observer fix with acceptable complexity, (2) documentation of the limitation, or (3) a third approach. Review any maintainer guidance on this trade-off.\n\n**Explicit uncertainty:**\nUnclear whether a fix using both observers is actually viable without over-firing or missing edge cases with `offsetWidth`/`offsetHeight`, which have different semantics than `clientWidth`.",
+            "truncated": false
+          },
+          "memex": {
+            "text": "## Triage: Issue #17457 — bind:clientWidth doesn't update on scrollbar appearance\n\n**Reported behavior:**\n`bind:clientWidth` and `bind:clientHeight` don't update when a scrollbar appears or disappears due to overflow content, despite `clientWidth`/`clientHeight` actually changing (scrollbars consume client space).\n\n**Source evidence:**\n- **File:** `packages/svelte/src/internal/client/dom/elements/bindings/size.js`\n- **Lines:** 69–70 (ResizeObserver configured with `box: 'border-box'`) and line 100 (bind_element_size callback)\n- **Root cause:** ResizeObserver in border-box mode doesn't fire when scrollbars appear because scrollbars render *inside* the border-box, leaving CSS dimensions unchanged. The binding callback never triggers even though `element.clientWidth`/`element.clientHeight` have changed.\n\n**Relevant discussion:**\nNo comments or disagreement recorded in memory yet.\n\n**Recommended next check:**\n1. Verify whether switching to `box: 'content-box'` causes ResizeObserver to fire on scrollbar changes (content-box size *should* change)\n2. If content-box works, test for performance and compatibility impact\n3. If content-box doesn't work, evaluate alternatives: polling, scroll events, or a hybrid approach that monitors overflow state directly\n\n**Explicit uncertainty:**\nWhether content-box mode will detect scrollbar changes is untested; some browsers or configurations may have subtle differences. Performance tradeoff of alternatives is unknown.",
+            "truncated": false
+          }
+        },
         "sourceReferences": {
-          "baseline": [],
-          "memex": []
+          "baseline": [
+            {
+              "path": "documentation/docs/03-template-syntax/12-bind.md",
+              "line": 335,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/documentation/docs/03-template-syntax/12-bind.md#L335"
+            },
+            {
+              "path": "documentation/docs/07-misc/07-v5-migration-guide.md",
+              "line": 712,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/documentation/docs/07-misc/07-v5-migration-guide.md#L712"
+            },
+            {
+              "path": "packages/svelte/CHANGELOG-pre-5.md",
+              "line": 323,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/CHANGELOG-pre-5.md#L323"
+            },
+            {
+              "path": "packages/svelte/elements.d.ts",
+              "line": 469,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/elements.d.ts#L469"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 8,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L8"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 1,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L1"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 99,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L99"
+            },
+            {
+              "path": "packages/svelte/elements.d.ts",
+              "line": 729,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/elements.d.ts#L729"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 70,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L70"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 60,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L60"
+            }
+          ],
+          "memex": [
+            {
+              "path": "documentation/docs/03-template-syntax/12-bind.md",
+              "line": 35,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/documentation/docs/03-template-syntax/12-bind.md#L35"
+            },
+            {
+              "path": "packages/svelte/CHANGELOG-pre-5.md",
+              "line": 1817,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/CHANGELOG-pre-5.md#L1817"
+            },
+            {
+              "path": "packages/svelte/CHANGELOG.md",
+              "line": 5892,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/CHANGELOG.md#L5892"
+            },
+            {
+              "path": "packages/svelte/elements.d.ts",
+              "line": 472,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/elements.d.ts#L472"
+            },
+            {
+              "path": "packages/svelte/src/compiler/phases/2-analyze/visitors/BindDirective.js",
+              "line": 101,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/compiler/phases/2-analyze/visitors/BindDirective.js#L101"
+            },
+            {
+              "path": "packages/svelte/tests/validator/samples/binding-dimensions-svg/errors.json",
+              "line": 4,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/tests/validator/samples/binding-dimensions-svg/errors.json#L4"
+            },
+            {
+              "path": "packages/svelte/tests/validator/samples/document-binding-invalid-dimensions/errors.json",
+              "line": 4,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/tests/validator/samples/document-binding-invalid-dimensions/errors.json#L4"
+            },
+            {
+              "path": "packages/svelte/tests/validator/samples/window-binding-invalid-dimensions/errors.json",
+              "line": 4,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/tests/validator/samples/window-binding-invalid-dimensions/errors.json#L4"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 8,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L8"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 1,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L1"
+            },
+            {
+              "path": "packages/svelte/src/internal/client/dom/elements/bindings/size.js",
+              "line": 99,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/internal/client/dom/elements/bindings/size.js#L99"
+            },
+            {
+              "path": "documentation/docs/03-template-syntax/12-bind.md",
+              "line": 339,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/documentation/docs/03-template-syntax/12-bind.md#L339"
+            },
+            {
+              "path": "packages/svelte/elements.d.ts",
+              "line": 852,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/elements.d.ts#L852"
+            },
+            {
+              "path": "packages/svelte/src/compiler/phases/bindings.js",
+              "line": 160,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/compiler/phases/bindings.js#L160"
+            },
+            {
+              "path": "packages/svelte/src/compiler/phases/bindings.js",
+              "line": 152,
+              "url": "https://github.com/sveltejs/svelte/blob/fe21fce019e7797a9eeb5066211ff42e4e7cca8d/packages/svelte/src/compiler/phases/bindings.js#L152"
+            }
+          ]
         }
       },
       {
@@ -16796,21 +17351,336 @@
         "sourceCommit": "61050e9323e742539dc2360236671110e37329e6",
         "sourceArchiveSha256": "af527553d374ac23ff253e315d47f1b70b633c6ac236846bcd5324f081646e97",
         "issueSnapshotSha256": "43e6468206951a326d494a88a91acc5cfa852c7f891a34e9d8884236dc55eeec",
-        "started": false,
+        "started": true,
         "finished": false,
         "runnerError": null,
         "completePair": false,
-        "sessions": {},
+        "sessions": {
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 45,
+              "cache_creation_input_tokens": 16853,
+              "cache_read_input_tokens": 72510,
+              "output_tokens": 4149,
+              "output_tokens_details": {
+                "thinking_tokens": 2362
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 16853
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.049107250000000005,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 45,
+                "cache_creation_input_tokens": 16853,
+                "cache_read_input_tokens": 72510,
+                "output_tokens": 4149,
+                "output_tokens_details": {
+                  "thinking_tokens": 2362
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16853
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.049107250000000005,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08234385,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 20602,
+                "cache_read_input_tokens": 90931,
+                "output_tokens": 2938,
+                "output_tokens_details": {
+                  "thinking_tokens": 1771
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20602
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.05642384999999999,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 16516,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1053,
+                "output_tokens_details": {
+                  "thinking_tokens": 539
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 16516
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08234385,
+              "exitCode": 0,
+              "timeout": false
+            }
+          }
+        },
         "tokenByArm": {},
-        "memoryChain": null,
+        "memoryChain": {
+          "writeCalls": 1,
+          "writtenIdOpenedNext": true,
+          "writtenIdInAutomaticRecall": true,
+          "unverifiedRecallLabel": true,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 1,
+          "automaticCheckpointCount": 1
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
         "posthocReview": null,
-        "finalAnswers": {},
+        "finalAnswers": {
+          "memex": {
+            "text": "## Triage: Jest #16278 — Untested files missing in multi-project coverage\n\n**Reported behavior:**  \nIn Jest multi-project setups with npm workspaces, files without tests are missing from coverage reports when `collectCoverageFrom` is configured per-project (e.g., via shared preset) and `jest --coverage` runs from the root. Files appear correctly when running from individual packages—the behavior is inconsistent and inverted from global-only configuration.\n\n**Source evidence:**  \n`packages/jest-reporters/src/CoverageReporter.ts:129–149` — The `_addUntestedFiles` method only reads `this._globalConfig.collectCoverageFrom` and `this._globalConfig.rootDir`. It iterates over `testContexts` (each containing a per-project `config`), but discards the per-project config and only uses global patterns in the `matchFilesWithGlob` call (lines 140–143).\n\n**Discussion status:**  \nOriginal issue #15358 (Oct 2024) was superseded by #16278. PR #16014 was mentioned as a potential fix but I found no evidence it merged or addressed this specifically. The repo's CHANGELOG shows PR #14180 *enabled* `collectCoverageFrom` in project configs (pre-v30), confirming per-project patterns are a supported feature—but the CoverageReporter doesn't use them.\n\n**Recommended next check:**  \n1. Verify PR #16014 status (merged, closed, or superseded) on GitHub\n2. Confirm whether each `TestContext.config.collectCoverageFrom` is actually populated in multi-project scenarios, or if it only exists at the global level\n3. Verify whether each project context has its own `rootDir` that differs from the global one, or if `matchFilesWithGlob` must use a context-specific root\n\n**Explicit uncertainty:**  \nThe fix direction is clear (check per-project config patterns + use context-specific rootDir), but the exact implementation depends on whether per-project `collectCoverageFrom` and per-project `rootDir` are populated in the context objects at runtime. Also unclear if there are edge cases around preset-based config merging that affect this.",
+            "truncated": false
+          }
+        },
         "sourceReferences": {
-          "baseline": [],
-          "memex": []
+          "baseline": [
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 94,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L94"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 1,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L1"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 300,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L300"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 170,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L170"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 62,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L62"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 135,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L135"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 125,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L125"
+            },
+            {
+              "path": "packages/jest-core/src/lib/updateGlobalConfig.ts",
+              "line": 58,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-core/src/lib/updateGlobalConfig.ts#L58"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 137,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L137"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 138,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L138"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 141,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L141"
+            },
+            {
+              "path": "packages/jest-reporters/src/generateEmptyCoverage.ts",
+              "line": 38,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/generateEmptyCoverage.ts#L38"
+            },
+            {
+              "path": "packages/jest-runner/src/runTest.ts",
+              "line": 201,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-runner/src/runTest.ts#L201"
+            },
+            {
+              "path": "packages/jest-transform/src/__tests__/ScriptTransformer.test.ts",
+              "line": 2382,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-transform/src/__tests__/ScriptTransformer.test.ts#L2382"
+            }
+          ],
+          "memex": [
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 94,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L94"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 1,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L1"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 129,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L129"
+            },
+            {
+              "path": "packages/jest-core/src/lib/updateGlobalConfig.ts",
+              "line": 58,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-core/src/lib/updateGlobalConfig.ts#L58"
+            },
+            {
+              "path": "packages/jest-reporters/src/CoverageReporter.ts",
+              "line": 137,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-reporters/src/CoverageReporter.ts#L137"
+            },
+            {
+              "path": "packages/pretty-format/__benchmarks__/world.geo.json",
+              "line": 82,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/pretty-format/__benchmarks__/world.geo.json#L82"
+            },
+            {
+              "path": "packages/pretty-format/__benchmarks__/world.geo.json",
+              "line": 157,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/pretty-format/__benchmarks__/world.geo.json#L157"
+            },
+            {
+              "path": "CHANGELOG_PRE_v30.md",
+              "line": 84,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/CHANGELOG_PRE_v30.md#L84"
+            },
+            {
+              "path": "docs/CLI.md",
+              "line": 145,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/docs/CLI.md#L145"
+            },
+            {
+              "path": "docs/Configuration.md",
+              "line": 278,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/docs/Configuration.md#L278"
+            },
+            {
+              "path": "packages/jest-cli/src/args.ts",
+              "line": 168,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-cli/src/args.ts#L168"
+            },
+            {
+              "path": "packages/jest-config/src/Descriptions.ts",
+              "line": 19,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-config/src/Descriptions.ts#L19"
+            },
+            {
+              "path": "packages/jest-core/src/SearchSource.ts",
+              "line": 24,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-core/src/SearchSource.ts#L24"
+            },
+            {
+              "path": "packages/jest-core/src/watch.ts",
+              "line": 114,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-core/src/watch.ts#L114"
+            },
+            {
+              "path": "packages/jest-core/src/__tests__/SearchSource.test.ts",
+              "line": 465,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-core/src/__tests__/SearchSource.test.ts#L465"
+            },
+            {
+              "path": "packages/jest-core/src/__tests__/watch.test.js",
+              "line": 642,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-core/src/__tests__/watch.test.js#L642"
+            },
+            {
+              "path": "packages/jest-runner/src/runTest.ts",
+              "line": 201,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/packages/jest-runner/src/runTest.ts#L201"
+            },
+            {
+              "path": "website/versioned_docs/version-29.7/CLI.md",
+              "line": 145,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/website/versioned_docs/version-29.7/CLI.md#L145"
+            },
+            {
+              "path": "website/versioned_docs/version-29.7/Configuration.md",
+              "line": 197,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/website/versioned_docs/version-29.7/Configuration.md#L197"
+            },
+            {
+              "path": "website/versioned_docs/version-30.0/CLI.md",
+              "line": 145,
+              "url": "https://github.com/jestjs/jest/blob/61050e9323e742539dc2360236671110e37329e6/website/versioned_docs/version-30.0/CLI.md#L145"
+            }
+          ]
         }
       },
       {

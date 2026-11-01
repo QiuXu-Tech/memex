@@ -32,6 +32,19 @@ def tool_counts(sessions):
    elif name.startswith('mcp__pilot__archive_'):counts['archive']+=1
    else:counts['other']+=1
  return {k:counts[k] for k in ('total','exactRepeated','memory','source','archive','other')}
+def paired_client_prices(complete,arm):
+ prices=[x['sessions'][f'{arm}-s{stage}']['clientListPriceUsd'] for x in complete for stage in (1,2)]
+ if not prices or any(not isinstance(x,(int,float)) or isinstance(x,bool) or x<0 for x in prices):return None
+ return round(sum(prices),6)
+def session_outcomes(rows):
+ sessions=[s for row in rows for s in row['sessions'].values()]
+ failed=collections.Counter(s.get('status') or 'UNKNOWN' for s in sessions if not s.get('responseCompleted'))
+ resumed=[s for s in sessions if s.get('recovery')]
+ return {'notCompletedByStatus':dict(failed),'resumedAfterBudget':len(resumed),
+         'resumedAndCompleted':sum(bool(s.get('responseCompleted')) for s in resumed),
+         'unavailableToolAttempts':sum(len(s.get('unavailableToolAttempts') or []) for s in sessions),
+         'unexpectedToolAttempts':sum(len(s.get('unexpectedTools') or []) for s in sessions),
+         'runnerErrors':sum(bool(row['runnerError']) for row in rows)}
 def writes_and_opens(base,task):
  t=base/task/'traces';one=events(t/'memex-s1-events.jsonl')+events(t/'memex-s1-recovery-events.jsonl');two=events(t/'memex-s2-events.jsonl')+events(t/'memex-s2-recovery-events.jsonl')
  writes={x['id'] for x in call_entries(one) if x.get('name')=='mcp__memex__memory_write' and x.get('id')}
@@ -157,7 +170,10 @@ def cohort(name):
   'finished':sum(x['finished'] for x in rows),'completePairs':len(complete),'validRatedPairs':len(reviewed),'scoreDirections':dict(directions),
   'posthocSensitivityRatedPairs':len(sensitivity),'posthocSensitivityDirections':dict(sensitivity_directions),
   'meanScore':{a:statistics.mean(x['review']['scoresByArm'][a] for x in reviewed) if reviewed else None for a in ('baseline','memex')},
-  'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'completePairToolAttempts':calls,'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,
+  'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'completePairToolAttempts':calls,
+  'completePairClientListPriceUsd':{a:paired_client_prices(complete,a) for a in ('baseline','memex')},
+  'sessionOutcomes':session_outcomes(rows),
+  'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,
   'agentWrites':sum(bool(x['memoryChain'] and x['memoryChain']['successfulWriteIds']) for x in rows),
   'writtenRecordOpenedNext':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdOpenedNext']) for x in rows),
   'writtenRecordAutomaticallyRecalled':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdInAutomaticRecall']) for x in rows),

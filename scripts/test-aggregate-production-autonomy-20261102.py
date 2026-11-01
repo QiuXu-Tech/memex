@@ -8,6 +8,17 @@ class AggregateValidation(unittest.TestCase):
   memory=call('mcp__memex__memory_open',{'id':'x'})
   counts=m.tool_counts([[read,read,memory],[read]])
   self.assertEqual(counts,{'total':4,'exactRepeated':1,'memory':1,'source':3,'archive':0,'other':0})
+ def test_paired_client_price_preserves_missing_values(self):
+  row={'sessions':{'baseline-s1':{'clientListPriceUsd':0.1},'baseline-s2':{'clientListPriceUsd':0.2}}}
+  self.assertAlmostEqual(m.paired_client_prices([row],'baseline'),0.3)
+  row['sessions']['baseline-s2']['clientListPriceUsd']=None
+  self.assertIsNone(m.paired_client_prices([row],'baseline'))
+ def test_budget_recovery_does_not_erase_failure_or_rejected_tool(self):
+  rows=[{'runnerError':None,'sessions':{'a':{'status':'error_max_budget_usd','responseCompleted':False},
+       'b':{'status':'success','responseCompleted':True,'recovery':{'status':'success'},'unavailableToolAttempts':['missing']}}}]
+  out=m.session_outcomes(rows)
+  self.assertEqual(out['notCompletedByStatus'],{'error_max_budget_usd':1})
+  self.assertEqual((out['resumedAfterBudget'],out['resumedAndCompleted'],out['unavailableToolAttempts']),(1,1,1))
  def test_cached_input_and_charged_zero_usage_are_not_conflated(self):
   usage={'input_tokens':2,'cache_creation_input_tokens':3,'cache_read_input_tokens':4,'output_tokens':5}
   self.assertEqual(m.model_tokens({'usage':usage,'clientListPriceUsd':0.01})['input'],9)
