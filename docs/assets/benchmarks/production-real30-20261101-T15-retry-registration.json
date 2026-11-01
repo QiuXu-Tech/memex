@@ -1,0 +1,14 @@
+{
+  "registeredAt": "2026-11-01T12:51:40.679767+00:00",
+  "task": "T15",
+  "type": "post-hoc whole-pair retry after treatment session 2 timed out",
+  "reason": "The original second Memex session timed out at 180 seconds without turn.completed or usage; its last message may be interim. Original pair, partial output and missing cost remain unchanged.",
+  "design": "Repeat both randomized arms from fresh isolated stores and processes using the originally frozen source, criteria, prompt, assignment and 2-session handoff procedure. This is a post-hoc retry of the same issue, not an additional independent task; separately report original and retry.",
+  "sessionTimeoutSeconds": 300,
+  "originalResultSha256": "5fe89b1af5846f4811520f3bf8f3145bb0d239a2143e438847c3b97efb756dd9",
+  "originalBatchRegistrationSha256": "adfb6334839499fee22e97664d654ac9fb450ab78fab06cfb8603d35c11d0157",
+  "retryRunnerSha256": "3f8100e1e24fc7a8e410db0ed3b5bf900a775b5e2cdc4613cfd09e215b602c16",
+  "retryInitialArchiveSha256": "d44c3f26f0e3ad41b0e46b6731923b8b4300f4cbde468ea4637c512811184194",
+  "usage": "Log all four retry sessions; unknown original timed-out usage stays unknown.",
+  "rule": "Only start after prior batch completes to keep at most two solver tasks active; do not overwrite the original data."
+}
