@@ -1,0 +1,15 @@
+{
+  "registeredAt": "2026-11-01T17:23:10.153659+00:00",
+  "kind": "synthetic-explicit-mcp-write-and-cross-session-recall",
+  "memexCommit": "fd88156fa31da0dc892c643f7dce858745fd655d",
+  "runnerSha256": "a99471abaefa148189b020817b736ff3be65ae3337ae992a238be29c2e04d935",
+  "model": "claude-haiku-4-5",
+  "client": "Claude Code --restricted --effort low, no --bare, MCP write/search/open and actual hooks",
+  "sessions": 2,
+  "maxClientListPriceUsdPerSession": 0.05,
+  "purpose": "Verify unverified label and bounded recall on an actual client after the MCP change.",
+  "limits": [
+    "Synthetic and explicitly prompted write and search; not an autonomous task or a treatment effect.",
+    "Client list price is not a hard gateway invoice limit."
+  ]
+}

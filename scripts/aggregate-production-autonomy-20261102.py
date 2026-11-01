@@ -98,7 +98,8 @@ def cohort(name):
    if ev.get('status')=='ok' and type(usage.get('prompt_tokens')) is int and type(usage.get('completion_tokens')) is int:
     entry['promptTokens']+=usage['prompt_tokens'];entry['completionTokens']+=usage['completion_tokens']
    else:entry['missingUsageOrFailedAttempts']+=1
-  rows.append({'id':tid,'repo':t['repo'],'issue':t['issue'],'issueUrl':t['issueUrl'],'started':folder.exists(),
+  rows.append({'id':tid,'repo':t['repo'],'issue':t['issue'],'issueUrl':t['issueUrl'],'sourceCommit':t['sourceCommit'],
+   'sourceArchiveSha256':t['archiveSha256'],'issueSnapshotSha256':t['issueSha256'],'started':folder.exists(),
    'finished':(folder/'finished.json').exists(),'runnerError':load(folder/'runner-error.json') if (folder/'runner-error.json').exists() else None,
    'completePair':paired,'sessions':{f'{a}-s{k}':{z:s.get(z) for z in ('status','responseCompleted','normalExit','timeout','shutdownTimeoutAfterResult','usage','usageNote','clientListPriceUsd','unexpectedTools','unavailableToolAttempts','initialAttempt','recovery')} for (a,k),s in ss.items()},
    'tokenByArm':token_by_arm,'memoryChain':writes_and_opens(base,tid) if folder.exists() else None,'review':r})
