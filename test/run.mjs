@@ -43,7 +43,7 @@
  */
 
 import assert from 'node:assert/strict'
-import { existsSync, mkdtempSync, readdirSync, readFileSync, realpathSync, rmSync, unlinkSync, writeFileSync } from 'node:fs'
+import { existsSync, mkdtempSync, readdirSync, readFileSync, realpathSync, renameSync, rmSync, unlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -3663,6 +3663,72 @@ await test('U3a', 'MCP grep returns empty results and matching lines with filter
   assert.doesNotMatch(filtered.get(6).result.content[0].text, new RegExp(secondId))
   assert.equal(filtered.get(7).result.isError, true)
   assertIncludes(filtered.get(7).result.content[0].text, 'invalid grep pattern')
+})
+
+await test('U3b', 'MCP grep finds a visible record older than 400 newer records', async () => {
+  const root = makeRoot('u3b-mem')
+  const project = makeRoot('u3b-project')
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u3b-session', levels: ['l3'], agent: 'test' })
+  let targetId
+  try {
+    targetId = engine.write({ kind: 'fact', title: 'Older record', body: 'DEEP_ARCHIVE_NEEDLE_59' }).id
+    engine.store.archiveCold(targetId)
+    for (let index = 0; index < 401; index += 1) {
+      engine.write({ kind: 'fact', title: `Newer record ${index}`, body: `Routine content ${index}` })
+    }
+    engine.store.database().prepare('UPDATE records SET updated_at = ? WHERE id = ?').run(1, targetId)
+  } finally {
+    engine.close()
+  }
+  const replies = mcpExchange(root, ['--cwd', project, '--levels', 'l3', '--session', 'u3b-session'], [
+    { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_grep', arguments: { pattern: 'DEEP_ARCHIVE_NEEDLE_59' } } },
+    { jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'memory_grep', arguments: { pattern: 'DEEP_ARCHIVE_NEEDLE_59', id: targetId } } },
+  ])
+  assertIncludes(replies.get(2).result.content[0].text, targetId, 'the old cold record is readable by id')
+  assert.equal(replies.get(1).result.isError, false)
+  assertIncludes(replies.get(1).result.content[0].text, targetId, 'grep must not silently stop after 400 records')
+})
+
+await test('U3c', 'MCP grep reports missing record bodies instead of a false no-match', async () => {
+  const root = makeRoot('u3c-mem')
+  const project = makeRoot('u3c-project')
+  const otherProject = makeRoot('u3c-other')
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u3c-session', levels: ['l3'], agent: 'test' })
+  try {
+    const card = engine.write({ kind: 'fact', title: 'Missing record', body: 'MISSING_FIXTURE_481' })
+    rmSync(card.path)
+  } finally {
+    engine.close()
+  }
+  const replies = mcpExchange(root, ['--cwd', project, '--levels', 'l3', '--session', 'u3c-session'], [
+    { jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_grep', arguments: { pattern: 'MISSING_FIXTURE_481' } } },
+  ])
+  assert.equal(replies.get(1).result.isError, true)
+  assertIncludes(replies.get(1).result.content[0].text, 'record file missing or unreadable')
+  const other = mcpExchange(root, ['--cwd', otherProject, '--levels', 'l3', '--session', 'u3c-other'], [
+    { jsonrpc: '2.0', id: 2, method: 'tools/call', params: { name: 'memory_grep', arguments: { pattern: 'MISSING_FIXTURE_481' } } },
+  ])
+  assert.equal(other.get(2).result.isError, false, 'a missing file outside the visible workspace must not leak')
+  assertIncludes(other.get(2).result.content[0].text, 'No lines matching')
+})
+
+await test('U3d', 'grep retries when an archived record changes path during a read', async () => {
+  const root = makeRoot('u3d-mem')
+  const project = makeRoot('u3d-project')
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u3d-session', levels: ['l3'], agent: 'test' })
+  try {
+    const card = engine.write({ kind: 'fact', title: 'Moving record', body: 'MOVED_FIXTURE_649' })
+    const movedPath = `${card.path}.moved`
+    renameSync(card.path, movedPath)
+    const originalRowById = engine.store.rowById.bind(engine.store)
+    engine.store.rowById = (id, filter) => {
+      engine.store.database().prepare('UPDATE records SET path = ? WHERE id = ?').run(movedPath, id)
+      return originalRowById(id, filter)
+    }
+    assert.equal(engine.grep({ pattern: 'MOVED_FIXTURE_649' })[0].id, card.id)
+  } finally {
+    engine.close()
+  }
 })
 
 await test('U4', 'MCP cold compression frees capacity and cold records remain openable', async () => {

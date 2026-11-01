@@ -1048,7 +1048,7 @@ export class LocalStoreCore {
     return rows.map((row) => this.cardFromRow(row))
   }
 
-  /** Literal regex search over stored bodies, with bounded file and line work. */
+  /** Regex search over visible stored bodies, stopping at the requested hit limit. */
   grep(request) {
     const pattern = String(request?.pattern ?? '')
     if (pattern.length === 0) throw new Error('memory: grep requires a pattern')
@@ -1067,7 +1067,7 @@ export class LocalStoreCore {
     if (request.id === undefined) {
       const { clauses, params } = this.workspaceClause(filter)
       const where = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : ''
-      rows = this.database().prepare(`SELECT * FROM records ${where} ORDER BY updated_at DESC LIMIT 400`).all(...params)
+      rows = this.database().prepare(`SELECT id, title, path FROM records ${where} ORDER BY updated_at DESC`).all(...params)
     } else {
       rows = this.database().prepare('SELECT * FROM records WHERE id = ?').all(request.id).filter((row) => {
         if (row.workspace_key !== request.workspaceKey) return false
@@ -1083,12 +1083,21 @@ export class LocalStoreCore {
     }
     const hits = []
     for (const row of rows) {
+      let current = row
       let text
-      try {
-        text = readFileSync(row.path, 'utf8')
-      } catch {
-        continue
+      for (let attempt = 0; attempt < 3; attempt += 1) {
+        try {
+          text = readFileSync(current.path, 'utf8')
+          break
+        } catch (error) {
+          const latest = this.rowById(row.id, filter)
+          if (latest === undefined) { current = undefined; break }
+          if (error?.code === 'ENOENT' && latest.path !== current.path) { current = latest; continue }
+          throw new Error('memory: record file missing or unreadable; files were preserved: ' + current.path, { cause: error })
+        }
       }
+      if (current === undefined) continue
+      if (text === undefined) throw new Error('memory: record changed repeatedly while reading: ' + row.id)
       const lines = text.split('\n')
       for (let index = 0; index < lines.length; index += 1) {
         if (!expression.test(lines[index])) continue
