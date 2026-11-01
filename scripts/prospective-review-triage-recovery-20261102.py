@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Blind, evidence-ID-validated AI review for the 30 historical triage tasks."""
 import concurrent.futures, datetime, hashlib, json, os, pathlib, random, re, subprocess, sys
-import prospective_gateway
+import prospective_gateway_review as prospective_gateway
 ROOT=pathlib.Path(__file__).resolve().parent.parent
 BASE=pathlib.Path('/Users/mk-q/.local/share/memex-forward-20261102/supplement-triage')
 SRC=BASE.parent/'supplement-source';REVIEWERS=['gpt-6.1-sol','deepseek-flash'];ADJUDICATOR='gemini-3.8-flash'
@@ -50,7 +50,8 @@ def parse(event,evidence,adjudication=False):
 
 def plan():
  reg={'registeredAt':now(),'studyRegistrationSha256':sha(BASE/'registration.json'),'runnerSha256':sha(pathlib.Path(__file__)),
-  'reviewers':REVIEWERS,'adjudicator':ADJUDICATOR,'reviewMaxOutputTokens':1200,'adjudicationMaxOutputTokens':1800,
+  'reviewers':REVIEWERS,'adjudicator':ADJUDICATOR,'reviewMaxOutputTokens':1200,'adjudicationMaxOutputTokens':3000,
+  'gatewayHelperSha256':sha(ROOT/'scripts/prospective_gateway_review.py'),'adjudicationReasoningEffort':'low','adjudicationTemperature':1,
   'reviewPrompt':RUBRIC,'adjudicationPrompt':ADJ,'blinding':'Randomized anonymous labels, product names and memory IDs redacted; wording can still reveal condition.',
   'packet':'Issue and discussion plus candidate answers and their recorded source-tool excerpts; clipping is explicitly marked.',
   'invalid':'Pairs without two completed second-session responses are recorded as not reviewable. Failed, empty, truncated, missing-usage or invalid-evidence reviewer responses remain missing and are not converted to a score.',
@@ -94,7 +95,7 @@ def packet(task):
  return {'task':task,'packetSha256':sha(folder/'packet.json')}
 
 def prepare_packets():
- plan=load(BASE/'reviews'/'plan.json');assert plan['runnerSha256']==sha(pathlib.Path(__file__))
+ plan=load(BASE/'reviews'/'plan.json');assert plan['runnerSha256']==sha(pathlib.Path(__file__)) and plan['gatewayHelperSha256']==sha(ROOT/'scripts/prospective_gateway_review.py')
  assert (BASE/'finished-rest.json').exists()
  rows=[packet(t['id']) for t in load(BASE/'registration.json')['tasks']]
  save(BASE/'reviews'/'packets.json',{'createdAt':now(),'packets':rows});print(json.dumps({'packets':len(rows)}),flush=True)
@@ -126,7 +127,7 @@ def review_task(task,key,plan):
  print(json.dumps({'task':task,'adjudicator':ADJUDICATOR,'valid':rating is not None,'status':ev.get('status')}),flush=True)
 
 def run():
- plan=load(BASE/'reviews'/'plan.json');assert plan['runnerSha256']==sha(pathlib.Path(__file__))
+ plan=load(BASE/'reviews'/'plan.json');assert plan['runnerSha256']==sha(pathlib.Path(__file__)) and plan['gatewayHelperSha256']==sha(ROOT/'scripts/prospective_gateway_review.py')
  key=subprocess.run(['ruby','-ryaml','-e','print YAML.load_file(File.expand_path("~/.dsh/.credentials.yaml")).dig("refs","APIMASTER_API_KEY")'],capture_output=True,text=True,check=True).stdout
  assert key;save(BASE/'reviews'/'started.json',{'at':now()});tasks=[x['task'] for x in load(BASE/'reviews'/'packets.json')['packets']]
  with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:
