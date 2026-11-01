@@ -1,0 +1,12 @@
+'use strict';
+const assert = require('node:assert/strict');
+const moment = require('/work/moment.js');
+moment.relativeTimeThreshold('d', 180);
+const x = moment.utc('2017-08-18');
+assert.equal(x.to(moment.utc('2017-09-17')), 'in 30 days');
+assert.equal(x.to(moment.utc('2017-09-18')), 'in 31 days');
+assert.equal(moment.utc('2017-02-18').to(moment.utc('2017-03-18')), 'in 28 days');
+assert.equal(moment.utc('2017-12-01').from(moment.utc('2017-10-30')), 'in 32 days');
+assert.equal(moment.utc('2017-10-30').from(moment.utc('2017-12-01')), '32 days ago');
+assert.equal(moment.duration(2, 'days').humanize(), '2 days');
+console.log('issue #4127 fixed checks passed');
