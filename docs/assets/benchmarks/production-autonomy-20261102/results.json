@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T18:30:06.765223+00:00",
+  "generatedAt": "2026-11-01T18:35:00.301991+00:00",
   "kind": "descriptive-evidence-reconciliation",
   "original": {
     "status": "FINISHED",
@@ -12100,12 +12100,12 @@
     ]
   },
   "supplement": {
-    "status": "IN_PROGRESS",
+    "status": "FINISHED",
     "reviewStatus": "NOT_STARTED",
     "registered": 30,
-    "started": 29,
-    "finished": 27,
-    "completePairs": 27,
+    "started": 30,
+    "finished": 30,
+    "completePairs": 30,
     "validRatedPairs": 0,
     "scoreDirections": {},
     "posthocSensitivityRatedPairs": 0,
@@ -12131,19 +12131,19 @@
     },
     "completePairToolAttempts": {
       "baseline": {
-        "total": 826,
-        "exactRepeated": 5,
+        "total": 909,
+        "exactRepeated": 6,
         "memory": 0,
-        "source": 475,
-        "archive": 351,
+        "source": 517,
+        "archive": 392,
         "other": 0
       },
       "memex": {
-        "total": 723,
-        "exactRepeated": 1,
-        "memory": 86,
-        "source": 535,
-        "archive": 102,
+        "total": 809,
+        "exactRepeated": 2,
+        "memory": 93,
+        "source": 598,
+        "archive": 118,
         "other": 0
       }
     },
@@ -12156,30 +12156,30 @@
       "memex": null
     },
     "completePairClientListPriceUsd": {
-      "baseline": 3.234002,
-      "memex": 3.648354
+      "baseline": 3.617329,
+      "memex": 4.096152
     },
     "sessionOutcomes": {
       "notCompletedByStatus": {},
-      "resumedAfterBudget": 77,
-      "resumedAndCompleted": 77,
+      "resumedAfterBudget": 82,
+      "resumedAndCompleted": 82,
       "unavailableToolAttempts": 5,
       "unexpectedToolAttempts": 0,
       "runnerErrors": 0
     },
     "recoveryInputReconciliation": {
       "matched": 0,
-      "different": 77,
+      "different": 82,
       "missing": 0
     },
-    "clientListPriceKnownUsd": 7.247785,
+    "clientListPriceKnownUsd": 7.713481,
     "clientListPriceMissingSessions": 0,
     "agentWrites": 4,
     "writtenRecordOpenedNext": 2,
     "writtenRecordAutomaticallyRecalled": 4,
-    "automaticCheckpoints": 29,
-    "automaticCheckpointOpenedNext": 29,
-    "automaticCheckpointRecalledNext": 29,
+    "automaticCheckpoints": 30,
+    "automaticCheckpointOpenedNext": 30,
+    "automaticCheckpointRecalledNext": 30,
     "reviewUsageByModel": {},
     "rawConsistencyProblems": [],
     "tasks": [
@@ -12480,11 +12480,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "db02e356babf8123da11b8046b180c5438ef1bedccef562e1e85b1091b2a0cc4"
       },
       {
         "id": "32",
@@ -12783,11 +12784,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "7ecb36c08dedfaebf50708886ac3d5fad3cb87c3d2a04e634bd9a68f21d591c8"
       },
       {
         "id": "33",
@@ -13074,11 +13076,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "9102540014ffff73846f3949b38dfb723f407d176b4cfc5b83e950619139953d"
       },
       {
         "id": "34",
@@ -13371,11 +13374,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "e3710dcfa52cb17edda40099cbff389ce654a9dce238f748440dd04b37c6f55a"
       },
       {
         "id": "35",
@@ -13386,10 +13390,138 @@
         "sourceArchiveSha256": "44de28ae1307760dabe914214e087fc14a235bf61d2686892118ce7fdaa1f336",
         "issueSnapshotSha256": "71271a3345a723abfd4f92efd227ad20289340ec86abc298355bc10600183eff",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
+        "completePair": true,
         "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08864335000000001,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 1035,
+                "cache_creation_input_tokens": 29625,
+                "cache_read_input_tokens": 31501,
+                "output_tokens": 1216,
+                "output_tokens_details": {
+                  "thinking_tokens": 692
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 29625
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.05741085,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 18846,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1533,
+                "output_tokens_details": {
+                  "thinking_tokens": 921
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18846
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08864335000000001,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 12196,
+              "cache_read_input_tokens": 11575,
+              "output_tokens": 1959,
+              "output_tokens_details": {
+                "thinking_tokens": 777
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 12196
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0262175,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 20,
+                "cache_creation_input_tokens": 12196,
+                "cache_read_input_tokens": 11575,
+                "output_tokens": 1959,
+                "output_tokens_details": {
+                  "thinking_tokens": 777
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12196
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0262175,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
           "memex-s1": {
             "status": "success",
             "responseCompleted": true,
@@ -13525,7 +13657,10 @@
             }
           }
         },
-        "tokenByArm": {},
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
         "memoryChain": {
           "writeCalls": 0,
           "writtenIdOpenedNext": false,
@@ -13537,11 +13672,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "e831ff9a4268ad5771fcfc2542f262d8c0365be614bcbdba096f4877184cc217"
       },
       {
         "id": "36",
@@ -13834,11 +13970,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "79501dc7b8fc79c91985f1032174409209cf7290f0033aed2d28b79bfd5fd3a3"
       },
       {
         "id": "37",
@@ -14131,11 +14268,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "8301dd02f998750022a3a3e64bb4b089c5377d0ee39ab5fa614e0e11d4bf75db"
       },
       {
         "id": "38",
@@ -14428,11 +14566,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "5d913f235bedbee6997fed0532d55fe7b4e943e31245efd732f0fd4c88cc0aa1"
       },
       {
         "id": "39",
@@ -14725,11 +14864,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "8d5146e227464d487860964156e3dd0f6944135d2cb8e3686b8cf9c936e67b21"
       },
       {
         "id": "40",
@@ -15023,11 +15163,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "3227db11190d4bd41c81cdc268ab61e11ca09e46db8aa9be83069e8e56919427"
       },
       {
         "id": "41",
@@ -15314,11 +15455,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "232e09a81c89c575fb7a9f76e1dbddffc6d93029f5fdb3c4185ffd00ab67d719"
       },
       {
         "id": "42",
@@ -15617,11 +15759,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "220310649a694d003dab3dd282f2eb6d3ca6bb5fa05fc2d68557b49ccf932c96"
       },
       {
         "id": "43",
@@ -15908,11 +16051,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "2d60d96ed5dd32b6fdf5ad995e7e3835a92d2d6307757d86134a74cdfd9db764"
       },
       {
         "id": "44",
@@ -16198,11 +16342,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "a5710800c5b57261d950e8bfca7ca0347bf18c24d3ec01b056991a0587954505"
       },
       {
         "id": "45",
@@ -16213,9 +16358,9 @@
         "sourceArchiveSha256": "cd82796413dce4bc98b250f1cfdbff9c21485f69ef77cf5d05a4fe3f1bbd6d3a",
         "issueSnapshotSha256": "2b212207a1bbd474d4dbf7e4fda9c628785ecba245eb3f0ffecb8ecfb73e7242",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
+        "completePair": true,
         "sessions": {
           "baseline-s1": {
             "status": "success",
@@ -16280,6 +16425,73 @@
                 "speed": "standard"
               },
               "cumulativeClientListPriceUsd": 0.07406765,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.0809773,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 18219,
+                "cache_read_input_tokens": 77540,
+                "output_tokens": 3122,
+                "output_tokens_details": {
+                  "thinking_tokens": 1735
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18219
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0579873,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 15292,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 773,
+                "output_tokens_details": {
+                  "thinking_tokens": 282
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15292
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.0809773,
               "exitCode": 0,
               "timeout": false
             }
@@ -16413,7 +16625,10 @@
             "recovery": null
           }
         },
-        "tokenByArm": {},
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
         "memoryChain": {
           "writeCalls": 0,
           "writtenIdOpenedNext": false,
@@ -16425,11 +16640,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "2f65c4c73370b6d40997cd3eb7cc735363ee6c674c78efd5bb17094b28fa93fd"
       },
       {
         "id": "46",
@@ -16439,19 +16655,295 @@
         "sourceCommit": "ac2322ada3c1212793144c296d2429d7857576e4",
         "sourceArchiveSha256": "18694e48252dfd4651267191829c86c1fe6e494e86b4b522ec7db8cd0080abab",
         "issueSnapshotSha256": "ab047eb2f128fa837a64482e815637a15569176aafb32bf90e8924407baf3dc3",
-        "started": false,
-        "finished": false,
+        "started": true,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
-        "sessions": {},
-        "tokenByArm": {},
-        "memoryChain": null,
+        "completePair": true,
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07487935,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 25291,
+                "cache_read_input_tokens": 66444,
+                "output_tokens": 1697,
+                "output_tokens_details": {
+                  "thinking_tokens": 578
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25291
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.052445599999999995,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 14635,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 826,
+                "output_tokens_details": {
+                  "thinking_tokens": 503
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14635
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07487935,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 50,
+              "cache_creation_input_tokens": 11408,
+              "cache_read_input_tokens": 61119,
+              "output_tokens": 3624,
+              "output_tokens_details": {
+                "thinking_tokens": 1899
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 11408
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.038541900000000004,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 11408,
+                "cache_read_input_tokens": 61119,
+                "output_tokens": 3624,
+                "output_tokens_details": {
+                  "thinking_tokens": 1899
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 11408
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.038541900000000004,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.0833606,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 60,
+                "cache_creation_input_tokens": 23890,
+                "cache_read_input_tokens": 96632,
+                "output_tokens": 1923,
+                "output_tokens_details": {
+                  "thinking_tokens": 594
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23890
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0587081,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 15630,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1021,
+                "output_tokens_details": {
+                  "thinking_tokens": 644
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15630
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.0833606,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.0730766,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 18258,
+                "cache_read_input_tokens": 93153,
+                "output_tokens": 2570,
+                "output_tokens_details": {
+                  "thinking_tokens": 1313
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18258
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.051822850000000004,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 12959,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1009,
+                "output_tokens_details": {
+                  "thinking_tokens": 550
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12959
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.0730766,
+              "exitCode": 0,
+              "timeout": false
+            }
+          }
+        },
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 1
+        },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "9da3a58fdd1578d84912ff989e0927d625c624a18a2851501e65d592460c609f"
       },
       {
         "id": "47",
@@ -16746,11 +17238,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "a655d64b14728e376147a263ccf210327116d69b02b9c1b41082e446f86eb873"
       },
       {
         "id": "48",
@@ -17043,11 +17536,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "86fa253522f1b5b0c501c8dc4aab01f6088db3f1834b32190ee402b3b338277f"
       },
       {
         "id": "49",
@@ -17334,11 +17828,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "1068481b520eeae5a42aa6ae7e0129ec2d25f5015468f731c4ff78673e1de296"
       },
       {
         "id": "50",
@@ -17633,11 +18128,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "0d07447981f99e341bd602ac4bdcc8b831ad9635966501b8f8ff1c6b23b4d9be"
       },
       {
         "id": "51",
@@ -17924,11 +18420,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "c2d3b2a7cc42a4bf35d1fd6c9c59d5e2b5316e3fb13e5d13e512d819b3bb0453"
       },
       {
         "id": "52",
@@ -18221,11 +18718,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "94d25326d6d7ca7136913d3d28a2db691dac0d903e2cb2b4a45fa434ff8b4c3a"
       },
       {
         "id": "53",
@@ -18512,11 +19010,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "83527cac65f51c633b5bae8c4dfb65123c7b90181b2b409a7196f06da192e065"
       },
       {
         "id": "54",
@@ -18817,11 +19316,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "497c526d0e7808f2566abac2ae011d77b76b6176c7c461c66f115052cfbef528"
       },
       {
         "id": "55",
@@ -19108,11 +19608,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "be2feaee9de44e4fc72293470af2fe649c8970db1540f56ff45567b4b0babf37"
       },
       {
         "id": "56",
@@ -19398,11 +19899,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "a079fb2950d1d1b88b1c13c7283ad12ae4cb510432060223324384443d3818ac"
       },
       {
         "id": "57",
@@ -19695,11 +20197,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "4e0df19e0c9a6b2c58c9c238e03fe64c46cdd5d934c95ca163a905935d7190db"
       },
       {
         "id": "58",
@@ -19994,11 +20497,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "8d646dd3496ca7db987e7a8e4a71f812d01145288a9978e10569c1b51840d7d7"
       },
       {
         "id": "59",
@@ -20291,11 +20795,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "f40255e5a8e992b3395245f788d1abf3770f46f28e907fc942213b21e141c113"
       },
       {
         "id": "60",
@@ -20588,11 +21093,12 @@
           "automaticCheckpointCount": 1
         },
         "review": {
-          "status": "NOT_PREPARED"
+          "status": "MISSING_VALID_REVIEW"
         },
         "posthocReview": null,
         "finalAnswers": {},
-        "sourceReferences": {}
+        "sourceReferences": {},
+        "blindPacketSha256": "c83bb919f3a896609a43ea743f995a290b1c61a4c1683b656781fd43a203ab70"
       }
     ]
   },

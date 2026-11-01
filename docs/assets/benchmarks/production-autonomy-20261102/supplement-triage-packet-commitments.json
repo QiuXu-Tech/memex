@@ -1,0 +1,186 @@
+{
+  "createdAt": "2026-11-01T18:35:05.780018+00:00",
+  "method": "SHA256(UTF8(\"memex-blind-key-v1\\0\") || 32-byte private salt || exact key.json bytes); salts and mappings are revealed after review finishes.",
+  "packets": [
+    {
+      "task": "31",
+      "packetSha256": "db02e356babf8123da11b8046b180c5438ef1bedccef562e1e85b1091b2a0cc4",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "77aa01be9fa9ba76205b38182cd152dec80542bd232bcdb64c24c1ae65618cc1"
+    },
+    {
+      "task": "32",
+      "packetSha256": "7ecb36c08dedfaebf50708886ac3d5fad3cb87c3d2a04e634bd9a68f21d591c8",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "1829c28db8fd1515d980f6a88fa49a4c976a1e5f118b24d53f962603e7e48294"
+    },
+    {
+      "task": "33",
+      "packetSha256": "9102540014ffff73846f3949b38dfb723f407d176b4cfc5b83e950619139953d",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "a29fe7364498286079b39fe0104fd263663ccd091aa00a5a5523ddbe7a39c8ed"
+    },
+    {
+      "task": "34",
+      "packetSha256": "e3710dcfa52cb17edda40099cbff389ce654a9dce238f748440dd04b37c6f55a",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "b3a8d2d19caef389f8d6548387247768a3fe6b0fae31769f30d107732d57f6fc"
+    },
+    {
+      "task": "35",
+      "packetSha256": "e831ff9a4268ad5771fcfc2542f262d8c0365be614bcbdba096f4877184cc217",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "c39828a52c43ada1be5959f5de682cc0c46bc3eb9443435ae396635cc5929ed2"
+    },
+    {
+      "task": "36",
+      "packetSha256": "79501dc7b8fc79c91985f1032174409209cf7290f0033aed2d28b79bfd5fd3a3",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "2ef2a58da31ccff95ba36c8be3ffab4c96be287472e37cff5a31bd974cbb185f"
+    },
+    {
+      "task": "37",
+      "packetSha256": "8301dd02f998750022a3a3e64bb4b089c5377d0ee39ab5fa614e0e11d4bf75db",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "82df03fc2d9a66a51f762a25be70ac9fc00d1108dab96704cc21171491982de9"
+    },
+    {
+      "task": "38",
+      "packetSha256": "5d913f235bedbee6997fed0532d55fe7b4e943e31245efd732f0fd4c88cc0aa1",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "97621d7c09a9e95a6115666172dee61d201033dab02e25294a0de799d599b4b3"
+    },
+    {
+      "task": "39",
+      "packetSha256": "8d5146e227464d487860964156e3dd0f6944135d2cb8e3686b8cf9c936e67b21",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "b976ce68db7f89ba455545131f34ee813467d7b1a04ef92dff331288128310fc"
+    },
+    {
+      "task": "40",
+      "packetSha256": "3227db11190d4bd41c81cdc268ab61e11ca09e46db8aa9be83069e8e56919427",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "ff3acd2b11063dac58a7ab078b152c05a7405fe59e32c4a14455ac2834da4b65"
+    },
+    {
+      "task": "41",
+      "packetSha256": "232e09a81c89c575fb7a9f76e1dbddffc6d93029f5fdb3c4185ffd00ab67d719",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "6135b4d3f2cf9b8b23b50c39a40c99b63a5645f14c5700dc3cae3356e8ceba0a"
+    },
+    {
+      "task": "42",
+      "packetSha256": "220310649a694d003dab3dd282f2eb6d3ca6bb5fa05fc2d68557b49ccf932c96",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "1d2606c5e25eb02b820e964d14488b914de728f303be5d3606c7812bf67c635d"
+    },
+    {
+      "task": "43",
+      "packetSha256": "2d60d96ed5dd32b6fdf5ad995e7e3835a92d2d6307757d86134a74cdfd9db764",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "51002ec5c6779e41ae0d9339f0093f625674481a3cc9a686fbf8f383f863fb68"
+    },
+    {
+      "task": "44",
+      "packetSha256": "a5710800c5b57261d950e8bfca7ca0347bf18c24d3ec01b056991a0587954505",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "5427733f7f1e44c2955d6e2da23dae96dfe9636304b1757f998d3bc095131388"
+    },
+    {
+      "task": "45",
+      "packetSha256": "2f65c4c73370b6d40997cd3eb7cc735363ee6c674c78efd5bb17094b28fa93fd",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "e6cb5b4430b78bf66747d2daf46533a5175ec6827ca0914300a35fb7c948204b"
+    },
+    {
+      "task": "46",
+      "packetSha256": "9da3a58fdd1578d84912ff989e0927d625c624a18a2851501e65d592460c609f",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "1293d2e145999a34aefe9823a880d672a66c65d64af634bbc939c00a518bfe1f"
+    },
+    {
+      "task": "47",
+      "packetSha256": "a655d64b14728e376147a263ccf210327116d69b02b9c1b41082e446f86eb873",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "5540e527f63f750ac0bed0003f42edbf50aa78ce31ca6c3618c8725b7c64afd6"
+    },
+    {
+      "task": "48",
+      "packetSha256": "86fa253522f1b5b0c501c8dc4aab01f6088db3f1834b32190ee402b3b338277f",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "7f46928c5c179c1c4aed795eacf96aae61aa548fa1986c62fd1d43847c45b755"
+    },
+    {
+      "task": "49",
+      "packetSha256": "1068481b520eeae5a42aa6ae7e0129ec2d25f5015468f731c4ff78673e1de296",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "4e4a70b3455b4de763f0fd58d8b9072f9c50e27c705319100aa92038c8110306"
+    },
+    {
+      "task": "50",
+      "packetSha256": "0d07447981f99e341bd602ac4bdcc8b831ad9635966501b8f8ff1c6b23b4d9be",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "b3efe79290a719e76bf85b46cdcd77fc64d5c5b982a073e6f465e4656105cf37"
+    },
+    {
+      "task": "51",
+      "packetSha256": "c2d3b2a7cc42a4bf35d1fd6c9c59d5e2b5316e3fb13e5d13e512d819b3bb0453",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "aa5e51333445e1a68d3048c3506b06634488f0579ecb046b8bafc62a61a11707"
+    },
+    {
+      "task": "52",
+      "packetSha256": "94d25326d6d7ca7136913d3d28a2db691dac0d903e2cb2b4a45fa434ff8b4c3a",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "313bcb348d7006f00ca66e55fd7e8b7208ace9bf49120646a1fd2345d5a09641"
+    },
+    {
+      "task": "53",
+      "packetSha256": "83527cac65f51c633b5bae8c4dfb65123c7b90181b2b409a7196f06da192e065",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "d8de40e5144c8dc9f8f3024ed28aec44f1e7889fff2cb1c5054d7c2cd76350f8"
+    },
+    {
+      "task": "54",
+      "packetSha256": "497c526d0e7808f2566abac2ae011d77b76b6176c7c461c66f115052cfbef528",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "81cad4788bff5512acfceea7061c23f92adde96ed93fe42f503acf813ae550d8"
+    },
+    {
+      "task": "55",
+      "packetSha256": "be2feaee9de44e4fc72293470af2fe649c8970db1540f56ff45567b4b0babf37",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "97ae9d1cb43836a40a5d8d37f024882c7c5c518e951b92526ebef5e85639dc8d"
+    },
+    {
+      "task": "56",
+      "packetSha256": "a079fb2950d1d1b88b1c13c7283ad12ae4cb510432060223324384443d3818ac",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "d7616e0ff17b23b58bbe20afb1a34c5dbd33b8cd6c025169427a3cbad5a00515"
+    },
+    {
+      "task": "57",
+      "packetSha256": "4e0df19e0c9a6b2c58c9c238e03fe64c46cdd5d934c95ca163a905935d7190db",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "7fed53df168c540c756553be3fc16951e758383cecda22d7a8a769503dd6fcea"
+    },
+    {
+      "task": "58",
+      "packetSha256": "8d646dd3496ca7db987e7a8e4a71f812d01145288a9978e10569c1b51840d7d7",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "72a8e9612fe3edb8d99f8d3ed4ab82837202c6d8941ec5e7c6f83d27f930819b"
+    },
+    {
+      "task": "59",
+      "packetSha256": "f40255e5a8e992b3395245f788d1abf3770f46f28e907fc942213b21e141c113",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "63b5862e8a6e1c6d5b599c88204639a230aecb735a760b6f92434f0e70441339"
+    },
+    {
+      "task": "60",
+      "packetSha256": "c83bb919f3a896609a43ea743f995a290b1c61a4c1683b656781fd43a203ab70",
+      "reviewPlanSha256": "2e0fbf76fb668cb3bb79bc39996188f8ecd9ca6944e64e9a9b796efbde807b8e",
+      "saltedKeyCommitmentSha256": "c472ae20bfc16ab87b1871c61cfcb8c7233a6bfc8af1e28f9bc3ecfeb5b883e5"
+    }
+  ]
+}
