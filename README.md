@@ -85,7 +85,7 @@ Optional `query` + `learnedRerank` adds a learned candidate to the materialized 
 Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
 
 <!-- autonomy20261102:start -->
-**Cross-session follow-up (2026-11-02; in progress):** Real public issues are being replayed in two separately registered, randomized Claude Code cohorts. At this snapshot, 10/30 original and 23/30 recovery-protocol pairs completed both sessions; blinded AI review is reported separately. Automatic and agent-initiated writes are distinguished, and missing usage is retained. [Results and limitations](docs/production-autonomy-20261102.md).
+**Cross-session follow-up (2026-11-02; in progress):** Real public issues are being replayed in two separately registered, randomized Claude Code cohorts. At this snapshot, 10/30 original and 27/30 recovery-protocol pairs completed both sessions; blinded AI review is reported separately. Automatic and agent-initiated writes are distinguished, and missing usage is retained. [Results and limitations](docs/production-autonomy-20261102.md).
 
 ![Cross-session issue replay progress](docs/assets/benchmarks/production-autonomy-20261102/autonomy-summary.svg)
 <!-- autonomy20261102:end -->

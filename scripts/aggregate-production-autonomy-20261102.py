@@ -64,6 +64,17 @@ def session_outcomes(rows):
          'unavailableToolAttempts':sum(len(s.get('unavailableToolAttempts') or []) for s in sessions),
          'unexpectedToolAttempts':sum(len(s.get('unexpectedTools') or []) for s in sessions),
          'runnerErrors':sum(bool(row['runnerError']) for row in rows)}
+def recovery_input_reconciliation(base,rows):
+ counts=collections.Counter()
+ for row in rows:
+  for name,session in row['sessions'].items():
+   if not session.get('recovery'):continue
+   summary=model_tokens({'usage':(session.get('initialAttempt') or {}).get('usage'),'clientListPriceUsd':None})
+   stream=message_contexts([events(base/row['id']/'traces'/f'{name}-events.jsonl')])
+   if not summary or not stream:counts['missing']+=1
+   elif summary['input']==stream['inputTokens']:counts['matched']+=1
+   else:counts['different']+=1
+ return {k:counts[k] for k in ('matched','different','missing')}
 def writes_and_opens(base,task):
  t=base/task/'traces';one=events(t/'memex-s1-events.jsonl')+events(t/'memex-s1-recovery-events.jsonl');two=events(t/'memex-s2-events.jsonl')+events(t/'memex-s2-recovery-events.jsonl')
  writes={x['id'] for x in call_entries(one) if x.get('name')=='mcp__memex__memory_write' and x.get('id')}
@@ -186,15 +197,17 @@ def cohort(name):
   calls[arm]=tool_counts(sessions)
  contexts={};first_contexts={}
  for arm in ('baseline','memex'):
-  sessions=[];first_sessions=[]
+  sessions=[];first_sessions=[];session_matches=True
   for x in tokenpairs:
    for stage in (1,2):
     trace=base/x['id']/'traces'
     session=events(trace/f'{arm}-s{stage}-events.jsonl')+events(trace/f'{arm}-s{stage}-recovery-events.jsonl')
     sessions.append(session)
+    streamed=message_contexts([session]);expected=model_tokens(x['sessions'][f'{arm}-s{stage}'])
+    if not streamed or not expected or streamed['inputTokens']!=expected['input']:session_matches=False
     if stage==1:first_sessions.append(session)
   detail=message_contexts(sessions)
-  contexts[arm]=detail if detail and detail['inputTokens']==token_totals[arm]['input'] else None
+  contexts[arm]=detail if session_matches and detail and detail['inputTokens']==token_totals[arm]['input'] else None
   first_contexts[arm]=first_message_context(first_sessions)
  review_status='FINISHED' if (base/'reviews'/'finished.json').exists() else 'IN_PROGRESS' if (base/'reviews'/'started.json').exists() else 'NOT_STARTED'
  return {'status':'FINISHED' if (base/'finished-rest.json').exists() else 'IN_PROGRESS','reviewStatus':review_status,'registered':len(rows),'started':sum(x['started'] for x in rows),
@@ -204,7 +217,7 @@ def cohort(name):
   'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'completePairToolAttempts':calls,
   'completeTokenPairMessageContexts':contexts,'completeTokenPairFirstSessionInitialContexts':first_contexts,
   'completePairClientListPriceUsd':{a:paired_client_prices(complete,a) for a in ('baseline','memex')},
-  'sessionOutcomes':session_outcomes(rows),
+  'sessionOutcomes':session_outcomes(rows),'recoveryInputReconciliation':recovery_input_reconciliation(base,rows),
   'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,
   'agentWrites':sum(bool(x['memoryChain'] and x['memoryChain']['successfulWriteIds']) for x in rows),
   'writtenRecordOpenedNext':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdOpenedNext']) for x in rows),

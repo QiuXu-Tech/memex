@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T18:24:10.908207+00:00",
+  "generatedAt": "2026-11-01T18:30:06.765223+00:00",
   "kind": "descriptive-evidence-reconciliation",
   "original": {
     "status": "FINISHED",
@@ -90,6 +90,11 @@
       "unavailableToolAttempts": 0,
       "unexpectedToolAttempts": 5,
       "runnerErrors": 0
+    },
+    "recoveryInputReconciliation": {
+      "matched": 0,
+      "different": 0,
+      "missing": 0
     },
     "clientListPriceKnownUsd": 7.00247,
     "clientListPriceMissingSessions": 0,
@@ -12098,9 +12103,9 @@
     "status": "IN_PROGRESS",
     "reviewStatus": "NOT_STARTED",
     "registered": 30,
-    "started": 25,
-    "finished": 23,
-    "completePairs": 23,
+    "started": 29,
+    "finished": 27,
+    "completePairs": 27,
     "validRatedPairs": 0,
     "scoreDirections": {},
     "posthocSensitivityRatedPairs": 0,
@@ -12126,19 +12131,19 @@
     },
     "completePairToolAttempts": {
       "baseline": {
-        "total": 699,
-        "exactRepeated": 3,
+        "total": 826,
+        "exactRepeated": 5,
         "memory": 0,
-        "source": 425,
-        "archive": 274,
+        "source": 475,
+        "archive": 351,
         "other": 0
       },
       "memex": {
-        "total": 612,
+        "total": 723,
         "exactRepeated": 1,
-        "memory": 76,
-        "source": 442,
-        "archive": 94,
+        "memory": 86,
+        "source": 535,
+        "archive": 102,
         "other": 0
       }
     },
@@ -12151,25 +12156,30 @@
       "memex": null
     },
     "completePairClientListPriceUsd": {
-      "baseline": 2.844072,
-      "memex": 3.097444
+      "baseline": 3.234002,
+      "memex": 3.648354
     },
     "sessionOutcomes": {
       "notCompletedByStatus": {},
-      "resumedAfterBudget": 66,
-      "resumedAndCompleted": 66,
+      "resumedAfterBudget": 77,
+      "resumedAndCompleted": 77,
       "unavailableToolAttempts": 5,
       "unexpectedToolAttempts": 0,
       "runnerErrors": 0
     },
-    "clientListPriceKnownUsd": 6.195518,
+    "recoveryInputReconciliation": {
+      "matched": 0,
+      "different": 77,
+      "missing": 0
+    },
+    "clientListPriceKnownUsd": 7.247785,
     "clientListPriceMissingSessions": 0,
     "agentWrites": 4,
     "writtenRecordOpenedNext": 2,
     "writtenRecordAutomaticallyRecalled": 4,
-    "automaticCheckpoints": 25,
-    "automaticCheckpointOpenedNext": 25,
-    "automaticCheckpointRecalledNext": 25,
+    "automaticCheckpoints": 29,
+    "automaticCheckpointOpenedNext": 29,
+    "automaticCheckpointRecalledNext": 29,
     "reviewUsageByModel": {},
     "rawConsistencyProblems": [],
     "tasks": [
@@ -13375,13 +13385,157 @@
         "sourceCommit": "d99683548742f5ce5ab63ac906e2a447c6384694",
         "sourceArchiveSha256": "44de28ae1307760dabe914214e087fc14a235bf61d2686892118ce7fdaa1f336",
         "issueSnapshotSha256": "71271a3345a723abfd4f92efd227ad20289340ec86abc298355bc10600183eff",
-        "started": false,
+        "started": true,
         "finished": false,
         "runnerError": null,
         "completePair": false,
-        "sessions": {},
+        "sessions": {
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08630675,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 40,
+                "cache_creation_input_tokens": 24214,
+                "cache_read_input_tokens": 77335,
+                "output_tokens": 2223,
+                "output_tokens_details": {
+                  "thinking_tokens": 1050
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 24214
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.056218000000000004,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 18555,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1377,
+                "output_tokens_details": {
+                  "thinking_tokens": 687
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18555
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08630675,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08101815000000001,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 40,
+                "cache_creation_input_tokens": 20523,
+                "cache_read_input_tokens": 70739,
+                "output_tokens": 2815,
+                "output_tokens_details": {
+                  "thinking_tokens": 2014
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20523
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0521244,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 15807,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1825,
+                "output_tokens_details": {
+                  "thinking_tokens": 910
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 15807
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08101815000000001,
+              "exitCode": 0,
+              "timeout": false
+            }
+          }
+        },
         "tokenByArm": {},
-        "memoryChain": null,
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 1
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
@@ -14288,13 +14442,288 @@
         "sourceCommit": "91475adbf33579561e580eceea0c031f4ec2e992",
         "sourceArchiveSha256": "f8b45662d9587ef517b2c39dae35fad22937dea7e8313ae647c3bab909922a88",
         "issueSnapshotSha256": "e04a95ea83aab54cdfdc5fc988954ae78cffb6c727e9bcae95174accf8494963",
-        "started": false,
-        "finished": false,
+        "started": true,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
-        "sessions": {},
-        "tokenByArm": {},
-        "memoryChain": null,
+        "completePair": true,
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07436229999999999,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 25455,
+                "cache_read_input_tokens": 74541,
+                "output_tokens": 1950,
+                "output_tokens_details": {
+                  "thinking_tokens": 678
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25455
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.052661049999999994,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 13809,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 886,
+                "output_tokens_details": {
+                  "thinking_tokens": 508
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 13809
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07436229999999999,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 25,
+              "cache_creation_input_tokens": 4839,
+              "cache_read_input_tokens": 19967,
+              "output_tokens": 1477,
+              "output_tokens_details": {
+                "thinking_tokens": 507
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 4839
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.015455449999999999,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 25,
+                "cache_creation_input_tokens": 4839,
+                "cache_read_input_tokens": 19967,
+                "output_tokens": 1477,
+                "output_tokens_details": {
+                  "thinking_tokens": 507
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 4839
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.015455449999999999,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07685449999999999,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 60,
+                "cache_creation_input_tokens": 23429,
+                "cache_read_input_tokens": 99889,
+                "output_tokens": 1699,
+                "output_tokens_details": {
+                  "thinking_tokens": 506
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23429
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.05543825,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 14273,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 713,
+                "output_tokens_details": {
+                  "thinking_tokens": 375
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14273
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07685449999999999,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.0813411,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 24986,
+                "cache_read_input_tokens": 88240,
+                "output_tokens": 1832,
+                "output_tokens_details": {
+                  "thinking_tokens": 607
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 24986
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.054364850000000006,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 18397,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 794,
+                "output_tokens_details": {
+                  "thinking_tokens": 437
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18397
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.0813411,
+              "exitCode": 0,
+              "timeout": false
+            }
+          }
+        },
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 1
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
@@ -14609,9 +15038,9 @@
         "sourceArchiveSha256": "3bc20e5425f113c763c38ba257b526a35a18b5f7e2ba668f19eefde4e20d1203",
         "issueSnapshotSha256": "7910b334bd93d965e905fbe0b998f53cb5525dd2bf964f3c2a62d36a9ce2f18b",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
+        "completePair": true,
         "sessions": {
           "baseline-s1": {
             "status": "success",
@@ -14679,6 +15108,67 @@
               "exitCode": 0,
               "timeout": false
             }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 20,
+              "cache_creation_input_tokens": 5631,
+              "cache_read_input_tokens": 14648,
+              "output_tokens": 1424,
+              "output_tokens_details": {
+                "thinking_tokens": 675
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 5631
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.01564355,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 20,
+                "cache_creation_input_tokens": 5631,
+                "cache_read_input_tokens": 14648,
+                "output_tokens": 1424,
+                "output_tokens_details": {
+                  "thinking_tokens": 675
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 5631
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.01564355,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
           },
           "memex-s1": {
             "status": "success",
@@ -14809,7 +15299,10 @@
             "recovery": null
           }
         },
-        "tokenByArm": {},
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
         "memoryChain": {
           "writeCalls": 0,
           "writtenIdOpenedNext": false,
@@ -15719,13 +16212,218 @@
         "sourceCommit": "a81bba207211fc70c449a13a56407799c72c53c6",
         "sourceArchiveSha256": "cd82796413dce4bc98b250f1cfdbff9c21485f69ef77cf5d05a4fe3f1bbd6d3a",
         "issueSnapshotSha256": "2b212207a1bbd474d4dbf7e4fda9c628785ecba245eb3f0ffecb8ecfb73e7242",
-        "started": false,
+        "started": true,
         "finished": false,
         "runnerError": null,
         "completePair": false,
-        "sessions": {},
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07406765,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 23801,
+                "cache_read_input_tokens": 52310,
+                "output_tokens": 1562,
+                "output_tokens_details": {
+                  "thinking_tokens": 690
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 23801
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0525089,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 14243,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 749,
+                "output_tokens_details": {
+                  "thinking_tokens": 464
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 14243
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07406765,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07727429999999999,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 45,
+                "cache_creation_input_tokens": 20755,
+                "cache_read_input_tokens": 73072,
+                "output_tokens": 2135,
+                "output_tokens_details": {
+                  "thinking_tokens": 1302
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20755
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.050421799999999996,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 17254,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1055,
+                "output_tokens_details": {
+                  "thinking_tokens": 586
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17254
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07727429999999999,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 45,
+              "cache_creation_input_tokens": 18182,
+              "cache_read_input_tokens": 73089,
+              "output_tokens": 3336,
+              "output_tokens_details": {
+                "thinking_tokens": 1748
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 18182
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.046761399999999995,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 45,
+                "cache_creation_input_tokens": 18182,
+                "cache_read_input_tokens": 73089,
+                "output_tokens": 3336,
+                "output_tokens_details": {
+                  "thinking_tokens": 1748
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18182
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.046761399999999995,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          }
+        },
         "tokenByArm": {},
-        "memoryChain": null,
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 1
+        },
         "review": {
           "status": "NOT_PREPARED"
         },
@@ -16360,10 +17058,138 @@
         "sourceArchiveSha256": "193fdad14d459e83238b2a6c4060c01178283eac8eae4a933829c8c9a19a9bb4",
         "issueSnapshotSha256": "1cdfe3466be0e33aad5b48f682ee89c1ab7cc38bdecf9002b82bfcb86981a7cc",
         "started": true,
-        "finished": false,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
+        "completePair": true,
         "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.07969135,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 40,
+                "cache_creation_input_tokens": 26724,
+                "cache_read_input_tokens": 50076,
+                "output_tokens": 1631,
+                "output_tokens_details": {
+                  "thinking_tokens": 748
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 26724
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0516376,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 17731,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1176,
+                "output_tokens_details": {
+                  "thinking_tokens": 759
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17731
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.07969135,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 30,
+              "cache_creation_input_tokens": 7562,
+              "cache_read_input_tokens": 28399,
+              "output_tokens": 2355,
+              "output_tokens_details": {
+                "thinking_tokens": 1223
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 7562
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.024097399999999998,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 30,
+                "cache_creation_input_tokens": 7562,
+                "cache_read_input_tokens": 28399,
+                "output_tokens": 2355,
+                "output_tokens_details": {
+                  "thinking_tokens": 1223
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7562
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.024097399999999998,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
           "memex-s1": {
             "status": "success",
             "responseCompleted": true,
@@ -16430,9 +17256,73 @@
               "exitCode": 0,
               "timeout": false
             }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 35,
+              "cache_creation_input_tokens": 12910,
+              "cache_read_input_tokens": 48010,
+              "output_tokens": 3105,
+              "output_tokens_details": {
+                "thinking_tokens": 1628
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 12910
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.0364985,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 35,
+                "cache_creation_input_tokens": 12910,
+                "cache_read_input_tokens": 48010,
+                "output_tokens": 3105,
+                "output_tokens_details": {
+                  "thinking_tokens": 1628
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12910
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.0364985,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
           }
         },
-        "tokenByArm": {},
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
         "memoryChain": {
           "writeCalls": 0,
           "writtenIdOpenedNext": false,
@@ -19415,13 +20305,288 @@
         "sourceCommit": "deb7e86201e26cb4a8e25191fce5ef2f7a28aa87",
         "sourceArchiveSha256": "dd4d186a9a9a7d1c817bbb24a4f968079b7b5fa938fcabfd9f04e751d155b41f",
         "issueSnapshotSha256": "8a374b0c2873ae2aa158bb8b48df662c1cfd0a1d614576c78ea82a692bbbe070",
-        "started": false,
-        "finished": false,
+        "started": true,
+        "finished": true,
         "runnerError": null,
-        "completePair": false,
-        "sessions": {},
-        "tokenByArm": {},
-        "memoryChain": null,
+        "completePair": true,
+        "sessions": {
+          "baseline-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.067809,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 18430,
+                "cache_read_input_tokens": 49991,
+                "output_tokens": 3071,
+                "output_tokens_details": {
+                  "thinking_tokens": 760
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 18430
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.05074525,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 10559,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 771,
+                "output_tokens_details": {
+                  "thinking_tokens": 454
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 10559
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.067809,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "baseline-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": {
+              "input_tokens": 45,
+              "cache_creation_input_tokens": 17099,
+              "cache_read_input_tokens": 56806,
+              "output_tokens": 2817,
+              "output_tokens_details": {
+                "thinking_tokens": 1059
+              },
+              "server_tool_use": {
+                "web_search_requests": 0,
+                "web_fetch_requests": 0
+              },
+              "service_tier": "standard",
+              "cache_creation": {
+                "ephemeral_1h_input_tokens": 0,
+                "ephemeral_5m_input_tokens": 17099
+              },
+              "inference_geo": "not_available",
+              "iterations": [],
+              "speed": "standard"
+            },
+            "usageNote": null,
+            "clientListPriceUsd": 0.041184349999999995,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 45,
+                "cache_creation_input_tokens": 17099,
+                "cache_read_input_tokens": 56806,
+                "output_tokens": 2817,
+                "output_tokens_details": {
+                  "thinking_tokens": 1059
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17099
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.041184349999999995,
+              "zeroUsageWithCharge": false,
+              "exitCode": 0,
+              "timeout": false
+            },
+            "recovery": null
+          },
+          "memex-s1": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08698295,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 25566,
+                "cache_read_input_tokens": 85285,
+                "output_tokens": 1850,
+                "output_tokens_details": {
+                  "thinking_tokens": 675
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 25566
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.059132950000000004,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 17356,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1229,
+                "output_tokens_details": {
+                  "thinking_tokens": 792
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17356
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08698295,
+              "exitCode": 0,
+              "timeout": false
+            }
+          },
+          "memex-s2": {
+            "status": "success",
+            "responseCompleted": true,
+            "normalExit": true,
+            "timeout": false,
+            "shutdownTimeoutAfterResult": false,
+            "usage": null,
+            "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+            "clientListPriceUsd": 0.08691815,
+            "unexpectedTools": [],
+            "unavailableToolAttempts": [],
+            "initialAttempt": {
+              "status": "error_max_budget_usd",
+              "usage": {
+                "input_tokens": 50,
+                "cache_creation_input_tokens": 19252,
+                "cache_read_input_tokens": 78152,
+                "output_tokens": 2472,
+                "output_tokens_details": {
+                  "thinking_tokens": 1382
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 19252
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "clientListPriceUsd": 0.059731900000000004,
+              "zeroUsageWithCharge": false,
+              "exitCode": 1,
+              "timeout": false
+            },
+            "recovery": {
+              "status": "success",
+              "usage": {
+                "input_tokens": 10,
+                "cache_creation_input_tokens": 17373,
+                "cache_read_input_tokens": 0,
+                "output_tokens": 1092,
+                "output_tokens_details": {
+                  "thinking_tokens": 573
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 17373
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "cumulativeClientListPriceUsd": 0.08691815,
+              "exitCode": 0,
+              "timeout": false
+            }
+          }
+        },
+        "tokenByArm": {
+          "baseline": null,
+          "memex": null
+        },
+        "memoryChain": {
+          "writeCalls": 0,
+          "writtenIdOpenedNext": false,
+          "writtenIdInAutomaticRecall": false,
+          "unverifiedRecallLabel": false,
+          "automaticCheckpointOpenedNext": true,
+          "automaticCheckpointRecalledNext": true,
+          "successfulWriteCount": 0,
+          "automaticCheckpointCount": 1
+        },
         "review": {
           "status": "NOT_PREPARED"
         },

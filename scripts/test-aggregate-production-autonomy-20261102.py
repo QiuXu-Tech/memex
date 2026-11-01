@@ -23,6 +23,15 @@ class AggregateValidation(unittest.TestCase):
   out=m.session_outcomes(rows)
   self.assertEqual(out['notCompletedByStatus'],{'error_max_budget_usd':1})
   self.assertEqual((out['resumedAfterBudget'],out['resumedAndCompleted'],out['unavailableToolAttempts']),(1,1,1))
+ def test_recovery_disagreement_is_not_a_reconciled_total(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=pathlib.Path(td);trace=base/'01/traces';trace.mkdir(parents=True)
+   reported={'input_tokens':1,'cache_creation_input_tokens':2,'cache_read_input_tokens':3,'output_tokens':4}
+   streamed={**reported,'cache_read_input_tokens':9}
+   event={'type':'assistant','message':{'id':'m1','usage':streamed}}
+   (trace/'baseline-s1-events.jsonl').write_text(json.dumps(event)+'\n')
+   rows=[{'id':'01','sessions':{'baseline-s1':{'initialAttempt':{'usage':reported},'recovery':{ 'status':'success'}}}}]
+   self.assertEqual(m.recovery_input_reconciliation(base,rows),{'matched':0,'different':1,'missing':0})
  def test_cached_input_and_charged_zero_usage_are_not_conflated(self):
   usage={'input_tokens':2,'cache_creation_input_tokens':3,'cache_read_input_tokens':4,'output_tokens':5}
   self.assertEqual(m.model_tokens({'usage':usage,'clientListPriceUsd':0.01})['input'],9)

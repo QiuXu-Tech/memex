@@ -24,6 +24,9 @@ context_note=(f"Those input totals reconcile to {bc['messageIds']} / {mc['messag
 bf=a['completeTokenPairFirstSessionInitialContexts']['baseline'];mf=a['completeTokenPairFirstSessionInitialContexts']['memex']
 if bf and mf:context_note+=f" Before any model tool result in the first session, the first assistant messages averaged {bf['inputTokens']/bf['sessions']:,.0f} / {mf['inputTokens']/mf['sessions']:,.0f} input tokens (control / Memex). Tool schemas, hooks and other initial context differ, so this does not isolate one cause."
 status='IN PROGRESS' if any(x['status']!='FINISHED' or x.get('reviewStatus')!='FINISHED' for x in (a,b)) else 'RUNS FINISHED; GAPS AND POST-HOC REVIEWS SHOWN BELOW'
+asset=root/'docs/assets/benchmarks/production-autonomy-20261102'
+commitments=(' · [Supplemental blind packet commitments](assets/benchmarks/production-autonomy-20261102/supplement-triage-packet-commitments.json)' if (asset/'supplement-triage-packet-commitments.json').exists() else '')
+if (asset/'supplement-triage-packet-unblinding.json').exists():commitments+=' · [Post-review unblinding](assets/benchmarks/production-autonomy-20261102/supplement-triage-packet-unblinding.json)'
 text=f'''---
 title: Cross-session memory and real-issue triage, 2026-11-02
 layout: default
@@ -33,7 +36,7 @@ layout: default
 
 **{status}.** This page is a dated snapshot, not evidence of a production correctness gain or cost saving. The tasks are real public issues, but their historical discussions were replayed in compressed sessions as source-backed triage; agents did not ship changes, and AI judges are not human reviewers. Snapshot: `{d['generatedAt']}`.
 
-[Machine-readable results](assets/benchmarks/production-autonomy-20261102/results.json) · [Calibration ledger](assets/benchmarks/production-autonomy-20261102/calibrations.json) · [Original 30-task registration](assets/benchmarks/production-autonomy-20261102/triage30-registration.json) · [Original review plan and evidence correction](assets/benchmarks/production-autonomy-20261102/triage30-review-plan-metadata-revision.json) · [Supplemental 30-task registration](assets/benchmarks/production-autonomy-20261102/supplement-triage-registration.json) · [Supplemental review plan](assets/benchmarks/production-autonomy-20261102/supplement-triage-review-plan-final.json)
+[Machine-readable results](assets/benchmarks/production-autonomy-20261102/results.json) · [Calibration ledger](assets/benchmarks/production-autonomy-20261102/calibrations.json) · [Original 30-task registration](assets/benchmarks/production-autonomy-20261102/triage30-registration.json) · [Original review plan and evidence correction](assets/benchmarks/production-autonomy-20261102/triage30-review-plan-metadata-revision.json) · [Supplemental 30-task registration](assets/benchmarks/production-autonomy-20261102/supplement-triage-registration.json) · [Supplemental review plan](assets/benchmarks/production-autonomy-20261102/supplement-triage-review-plan-final.json){commitments}
 
 ![Task completion, AI review, token use and observed memory actions](assets/benchmarks/production-autonomy-20261102/autonomy-summary.svg)
 
@@ -74,6 +77,8 @@ The original cohort also has a **post-hoc sensitivity view** of {a['posthocSensi
 Across all started tasks, the original cohort has **{a['agentWrites']}** tasks with an observed successful agent `memory_write`; **{a['writtenRecordOpenedNext']}** have an agent-written record explicitly opened in the next session. The Stop hook saved a first-session checkpoint in **{a['automaticCheckpoints']}** tasks, and a checkpoint was opened in the next session in **{a['automaticCheckpointOpenedNext']}**. For the supplemental cohort, those corresponding counts are **{b['agentWrites']}**, **{b['writtenRecordOpenedNext']}**, **{b['automaticCheckpoints']}**, and **{b['automaticCheckpointOpenedNext']}**. These are observed operations, not proof that the content was correct or necessary; categories overlap.
 
 {tokens} Input totals include uncached, cache-read and cache-creation tokens, following [Anthropic's usage definition](https://platform.claude.com/docs/en/build-with-claude/prompt-caching). Output tokens are reported separately in the JSON. In recovered sessions, individual attempt usage is retained, but a full session total is **UNKNOWN** when the client may omit usage from a budget-failed request; zero is not substituted.
+
+For supplemental budget-exhausted initial attempts, summed input usage in streamed assistant messages agrees with the client summary in {b['recoveryInputReconciliation']['matched']} cases, differs in {b['recoveryInputReconciliation']['different']}, and lacks usable evidence in {b['recoveryInputReconciliation']['missing']}. The difference cannot safely be filled in as a known billed total.
 
 {context_note}
 
