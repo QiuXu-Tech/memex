@@ -14,8 +14,11 @@ RUBRIC=('Independently assess two anonymous historical issue-triage answers usin
  '"unsupportedClaims":[]},{"id":"C02","score":1,"reason":"...","references":["final:C02"],"unsupportedClaims":[]}]}. '
  'Every reference must be an evidence ID present in the packet; each candidate must cite its own final, source, or session evidence. Do not infer which condition produced a candidate.')
 ADJ=('Independently reassess both anonymous triage answers and the two AI reviews against the frozen criterion and evidence. '
- 'Resolve material score or unsupported-claim disagreements. Return the same candidate JSON schema plus boolean "materialDisagreement". '
- 'Use only evidence IDs in the packet; distinguish unsupported claims from unknowns.')
+ 'Resolve material score or unsupported-claim disagreements. Return JSON only: {"materialDisagreement":true,"candidates":['
+ '{"id":"C01","score":1,"reason":"...","references":["final:C01"],"unsupportedClaims":[]},'
+ '{"id":"C02","score":1,"reason":"...","references":["final:C02"],"unsupportedClaims":[]}]}. '
+ 'Scores are 0, 1, 2 or null. Use only evidence IDs in the packet; each candidate must cite its own final, source or session evidence. '
+ 'Distinguish unsupported claims from unknowns.')
 os.umask(0o077)
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -61,6 +64,10 @@ def plan():
  if initial.exists():
   reg['revisesPlanSha256']=sha(initial)
   reg['revision']='Before supplemental reviewer calls, expose the packet limitations as an evidence ID; reviewers in the original cohort cited the visible limitations but the initial validator rejected them.'
+ before_schema=BASE/'reviews'/'plan-before-adjudicator-schema.json'
+ if before_schema.exists():
+  reg['revisesPlanSha256']=sha(before_schema)
+  reg['revision']='Before supplemental reviewer calls, provide the adjudicator with the complete required JSON schema after an original-cohort adjudication omitted candidate records.'
  save(BASE/'reviews'/'plan.json',reg);print(json.dumps({'reviewPlanSha256':sha(BASE/'reviews'/'plan.json')}),flush=True)
 
 def source_trace(task,arm):
