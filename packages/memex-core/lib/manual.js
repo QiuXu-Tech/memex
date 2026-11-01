@@ -63,7 +63,7 @@ export function buildMemoryManual(profile, options = {}) {
   if (concise) sections.push('Keep tool calls shallow: one search, one open, then answer.')
   sections.push(
     '## Writing\n' +
-    'Write a record (one call) whenever a durable decision, fact, procedure, incident or open thread appears; include a crisp `title`, a `summary`, a `useWhen` line describing when a future session should read it, and the raw evidence in `body`. Prefer several small records over one giant one.',
+    'Write a record (one call) whenever a durable decision, fact, procedure, incident or open thread appears; include a `kind`, a crisp `title`, a `summary`, a `useWhen` line describing when a future session should read it, and the raw evidence in `body`. Prefer several small records over one giant one.',
   )
   sections.push(`## Capacity\nInjections are bounded for this model: catalog ≤ ${profile.catalogTokens} tokens, auto-recall ≤ ${profile.recallTokens} tokens, opened body ≤ ${profile.openMaxChars} chars. When capacity runs low, prefer \`memory_compress\` (lossless cold tier) and write a digest instead of dumping raw history. Compression requires user consent when the runtime asks for it.`)
   sections.push(`## Model-specific guidance\n${profile.searchHint}\n${profile.compactionAdvice}`)
