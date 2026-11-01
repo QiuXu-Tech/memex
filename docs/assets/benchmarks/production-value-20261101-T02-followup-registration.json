@@ -1,0 +1,38 @@
+{
+  "registeredAt": "2026-11-01T11:20:18.230349+00:00",
+  "kind": "adaptive fourth-session memory-lifecycle follow-up on the same T02 task",
+  "sourceTaskRegistrationSha256": "fbc88a7143183b1990a9b8c6c75beb68e96f2ec1f6ca4beba5d7d290232f0640",
+  "reason": "The original three-session study disabled memory status tools, so it cannot assess lifecycle management. Both task outcomes and original reviews are already known; this is not a new independent task.",
+  "arms": "Run one new ephemeral Codex process in each original arm in the original randomized order; both see their own three prior-session outputs and the same assigned source/test tools. Treatment adds memory_search/open/write/list/index/grep/set_status/forget on its disposable L3 store; no prompt directly requests a particular memory operation.",
+  "prompt": "The assigned Neural-LAM change has completed its tests. Prepare a final handoff for a future session, clearly distinguishing completed work and any follow-up still needed. Use available tools as useful. Do not edit source.",
+  "model": "gpt-6.1-sol",
+  "memexSourceCommit": "bee5742881ca4f09c5e880985296ff88a8987333",
+  "memexServerSha256": "7376ddfa748bc47d0b842b80a692c52f837ee34f0afa4bfa02270d116c9038f6",
+  "priorStoreSnapshotManifestSha256": "2a6e42d48f418b049b9ece876b43d29a5919efa38003517dd9d0deee5a627612",
+  "priorRecords": [
+    {
+      "id": "mem_2efe1c9d85",
+      "status": "open",
+      "kind": "open-thread"
+    },
+    {
+      "id": "mem_af94f3be02",
+      "status": "active",
+      "kind": "episode"
+    }
+  ],
+  "archiveSha256": {
+    "baseline": "32b4dbb331e7eb35733a257329871075ccf57a6193f05882a7af6028099b2c97",
+    "memex": "4c7a04f282be49af0f7996000079a62773d3a607a95c6ee7cd4328c97ea34b6d"
+  },
+  "candidateDiffSha256": {
+    "baseline": "a1d92902d6ba1f9fb4b94cf97484295b66110514516aa630ce59a77523bd5629",
+    "memex": "b01024d72e67b537643eb1bd8755e9237c95bfc9a62b3bcb4e97a892dcfe79d0"
+  },
+  "observations": "Retain all tool calls and failures; compare pre/post record ids and statuses and check any cited use. Treat a write or status change as observed behavior, not proof of fidelity or necessity. Report token counts and any incomplete usage.",
+  "limits": [
+    "Post-hoc selected one task after seeing its outcomes; not a causal or production-effect estimate.",
+    "Both arms have prior outputs available through an archive; this is not a default unrestricted Codex comparison.",
+    "The disposable memory store may be changed or deleted by the agent; a private snapshot is retained."
+  ]
+}
