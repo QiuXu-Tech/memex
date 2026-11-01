@@ -22,6 +22,7 @@ class ReviewValidation(unittest.TestCase):
    with self.assertRaises(ValueError):m.parse(dict(self.event,message={'content':json.dumps(rows)}),self.evidence)
  def test_adjudication_requires_explicit_disagreement_flag(self):
   with self.assertRaises(ValueError):m.parse(self.event,self.evidence,True)
+  self.assertIn('"candidates"',m.ADJ);self.assertIn('"C01"',m.ADJ);self.assertIn('"C02"',m.ADJ)
  def test_missing_score_or_other_candidates_evidence_is_rejected(self):
   import json
   rows=json.loads(json.dumps(self.rows));del rows['candidates'][0]['score']
@@ -40,4 +41,5 @@ class ReviewValidation(unittest.TestCase):
    with patch.object(m,'BASE',base),patch.object(m,'SRC',source):m.packet('01')
    comment=json.loads((base/'reviews/01/packet.json').read_text())['evidence']['comment:C1']
    self.assertEqual(comment['author'],'reporter');self.assertEqual(comment['createdAt'],'2026-01-01T00:00:00Z')
+   self.assertIn('limits',json.loads((base/'reviews/01/packet.json').read_text())['evidence'])
 if __name__=='__main__':unittest.main()

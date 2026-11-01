@@ -14,8 +14,11 @@ RUBRIC=('Independently assess two anonymous historical issue-triage answers usin
  '"unsupportedClaims":[]},{"id":"C02","score":1,"reason":"...","references":["final:C02"],"unsupportedClaims":[]}]}. '
  'Every reference must be an evidence ID present in the packet; each candidate must cite its own final, source, or session evidence. Do not infer which condition produced a candidate.')
 ADJ=('Independently reassess both anonymous triage answers and the two AI reviews against the frozen criterion and evidence. '
- 'Resolve material score or unsupported-claim disagreements. Return the same candidate JSON schema plus boolean "materialDisagreement". '
- 'Use only evidence IDs in the packet; distinguish unsupported claims from unknowns.')
+ 'Resolve material score or unsupported-claim disagreements. Return JSON only: {"materialDisagreement":true,"candidates":['
+ '{"id":"C01","score":1,"reason":"...","references":["final:C01"],"unsupportedClaims":[]},'
+ '{"id":"C02","score":1,"reason":"...","references":["final:C02"],"unsupportedClaims":[]}]}. '
+ 'Scores are 0, 1, 2 or null. Use only evidence IDs in the packet; each candidate must cite its own final, source or session evidence. '
+ 'Distinguish unsupported claims from unknowns.')
 os.umask(0o077)
 def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
 def sha(p):return hashlib.sha256(p.read_bytes()).hexdigest()
@@ -60,7 +63,11 @@ def plan():
  initial=BASE/'reviews'/'plan-initial.json'
  if initial.exists():
   reg['revisesPlanSha256']=sha(initial)
-  reg['revision']='Before reviewer calls, reject missing scores and cross-candidate-only evidence and skip pairs without two completed final sessions.'
+  reg['revision']='Before supplemental reviewer calls, expose the packet limitations as an evidence ID; reviewers in the original cohort cited the visible limitations but the initial validator rejected them.'
+ before_schema=BASE/'reviews'/'plan-before-adjudicator-schema.json'
+ if before_schema.exists():
+  reg['revisesPlanSha256']=sha(before_schema)
+  reg['revision']='Before supplemental reviewer calls, provide the adjudicator with the complete required JSON schema after an original-cohort adjudication omitted candidate records.'
  save(BASE/'reviews'/'plan.json',reg);print(json.dumps({'reviewPlanSha256':sha(BASE/'reviews'/'plan.json')}),flush=True)
 
 def source_trace(task,arm):
@@ -77,7 +84,8 @@ def source_trace(task,arm):
 
 def packet(task):
  reg=load(BASE/'registration.json');t=next(x for x in reg['tasks'] if x['id']==task);issue=load(SRC/f'{task}.issue.json')
- evidence={'criterion':t['frozenAcceptance'],'issue':clipped(issue['title']+'\n'+issue['body'],14000)}
+ limits='Historical compressed replay; source may postdate comments. Partial recorded source excerpts, no execution verifier, and AI review cannot establish a production fix.'
+ evidence={'criterion':t['frozenAcceptance'],'issue':clipped(issue['title']+'\n'+issue['body'],14000),'limits':limits}
  for i,c in enumerate(issue['comments']['nodes'],1):
   evidence[f'comment:C{i}']={**clipped(c['body'],1800),'createdAt':c.get('createdAt'),
                             'author':(c.get('author') or {}).get('login'),'url':c.get('url')}
@@ -90,8 +98,7 @@ def packet(task):
   evidence[f'session:{label}']={'lastStage':result.get('stage'),'completed':result.get('responseCompleted'),'status':result.get('status')}
   evidence[f'source:{label}']=source_trace(task,arm)
  folder=BASE/'reviews'/task;save(folder/'key.json',key)
- save(folder/'packet.json',{'issueUrl':t['issueUrl'],'sourceCommit':t['sourceCommit'],'evidence':evidence,
-  'limits':'Historical compressed replay; source may postdate comments. Partial recorded source excerpts, no execution verifier, and AI review cannot establish a production fix.'})
+ save(folder/'packet.json',{'issueUrl':t['issueUrl'],'sourceCommit':t['sourceCommit'],'evidence':evidence})
  save(folder/'packet-registration.json',{'createdAt':now(),'reviewPlanSha256':sha(BASE/'reviews'/'plan.json'),
   'packetSha256':sha(folder/'packet.json'),'keySha256':sha(folder/'key.json')})
  return {'task':task,'packetSha256':sha(folder/'packet.json')}
