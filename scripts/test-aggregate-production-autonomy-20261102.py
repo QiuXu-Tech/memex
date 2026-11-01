@@ -32,6 +32,17 @@ class AggregateValidation(unittest.TestCase):
    (trace/'baseline-s1-events.jsonl').write_text(json.dumps(event)+'\n')
    rows=[{'id':'01','sessions':{'baseline-s1':{'initialAttempt':{'usage':reported},'recovery':{ 'status':'success'}}}}]
    self.assertEqual(m.recovery_input_reconciliation(base,rows),{'matched':0,'different':1,'missing':0})
+ def test_later_discussion_exposure_requires_later_visible_text(self):
+  with tempfile.TemporaryDirectory() as td:
+   base=pathlib.Path(td);issue=base/'issue.json'
+   issue.write_text(json.dumps({'comments':{'nodes':[{}, {}, {}, {}]}}))
+   calls=[{'type':'tool_use','id':'a','name':'mcp__pilot__archive_open'},
+          {'type':'tool_use','id':'b','name':'mcp__pilot__archive_search'},
+          {'type':'tool_use','id':'c','name':'mcp__pilot__archive_open'}]
+   results=[{'type':'tool_result','tool_use_id':'a','content':[{'text':json.dumps({'id':'C1','text':'earlier'})}]},
+            {'type':'tool_result','tool_use_id':'b','content':[{'text':json.dumps({'matches':[{'id':'C3','excerpt':'later'}]})}]}]
+   session=[{'type':'assistant','message':{'content':calls}},{'type':'user','message':{'content':results}}]
+   self.assertEqual(m.later_discussion_exposure(issue,session),{'hasLaterComments':True,'openedLaterComment':False,'exposedLaterComment':True})
  def test_cached_input_and_charged_zero_usage_are_not_conflated(self):
   usage={'input_tokens':2,'cache_creation_input_tokens':3,'cache_read_input_tokens':4,'output_tokens':5}
   self.assertEqual(m.model_tokens({'usage':usage,'clientListPriceUsd':0.01})['input'],9)

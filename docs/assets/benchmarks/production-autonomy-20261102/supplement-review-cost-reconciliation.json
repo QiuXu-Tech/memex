@@ -1,0 +1,852 @@
+{
+  "observedAt": "2026-11-01T18:45:36+00:00",
+  "method": "One-to-one match of visible wallet rows by model, reported input/output tokens, and finish time within 3 seconds; earliest visible row precedes the earliest matching review by more than a minute. Response IDs did not match the UI request-ID filter.",
+  "scope": "Supplemental review and post-hoc rescue only; not solver calls or the entire study. Matching is heuristic, not cryptographic request-ID attribution.",
+  "successfulCalls": 90,
+  "matchedCalls": 90,
+  "displayedWalletUsd": 0.353598,
+  "models": {
+    "gpt-6.1-sol": {
+      "calls": 28,
+      "displayedWalletUsd": 0.126518
+    },
+    "deepseek-flash": {
+      "calls": 30,
+      "displayedWalletUsd": 0.04226
+    },
+    "gemini-3.8-flash": {
+      "calls": 30,
+      "displayedWalletUsd": 0.166174
+    },
+    "gpt-6.1-terra": {
+      "calls": 2,
+      "displayedWalletUsd": 0.018646
+    }
+  },
+  "unmatchedFailedAttempts": [
+    {
+      "task": "46",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError"
+    },
+    {
+      "task": "54",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError"
+    }
+  ],
+  "receipts": [
+    {
+      "task": "31",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 17820,
+      "outputTokens": 873,
+      "responseFinishedAt": "2026-11-01T18:35:50.595208+00:00",
+      "uiTimeDeltaMs": -595,
+      "displayedWalletUsd": 0.002794
+    },
+    {
+      "task": "31",
+      "model": "deepseek-flash",
+      "inputTokens": 14740,
+      "outputTokens": 554,
+      "responseFinishedAt": "2026-11-01T18:35:56.949986+00:00",
+      "uiTimeDeltaMs": -950,
+      "displayedWalletUsd": 0.001602
+    },
+    {
+      "task": "31",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16570,
+      "outputTokens": 482,
+      "responseFinishedAt": "2026-11-01T18:36:04.556942+00:00",
+      "uiTimeDeltaMs": -557,
+      "displayedWalletUsd": 0.006018
+    },
+    {
+      "task": "32",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 39575,
+      "outputTokens": 592,
+      "responseFinishedAt": "2026-11-01T18:35:32.314957+00:00",
+      "uiTimeDeltaMs": -315,
+      "displayedWalletUsd": 0.00654
+    },
+    {
+      "task": "32",
+      "model": "deepseek-flash",
+      "inputTokens": 13483,
+      "outputTokens": 492,
+      "responseFinishedAt": "2026-11-01T18:35:38.095164+00:00",
+      "uiTimeDeltaMs": -1095,
+      "displayedWalletUsd": 0.00146
+    },
+    {
+      "task": "32",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 15276,
+      "outputTokens": 491,
+      "responseFinishedAt": "2026-11-01T18:35:46.214306+00:00",
+      "uiTimeDeltaMs": -214,
+      "displayedWalletUsd": 0.005622
+    },
+    {
+      "task": "33",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 16284,
+      "outputTokens": 945,
+      "responseFinishedAt": "2026-11-01T18:35:55.342585+00:00",
+      "uiTimeDeltaMs": -343,
+      "displayedWalletUsd": 0.00323
+    },
+    {
+      "task": "33",
+      "model": "deepseek-flash",
+      "inputTokens": 12500,
+      "outputTokens": 330,
+      "responseFinishedAt": "2026-11-01T18:35:59.968434+00:00",
+      "uiTimeDeltaMs": -968,
+      "displayedWalletUsd": 0.001306
+    },
+    {
+      "task": "33",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 14370,
+      "outputTokens": 347,
+      "responseFinishedAt": "2026-11-01T18:36:06.010831+00:00",
+      "uiTimeDeltaMs": -1011,
+      "displayedWalletUsd": 0.005108
+    },
+    {
+      "task": "34",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 40518,
+      "outputTokens": 633,
+      "responseFinishedAt": "2026-11-01T18:36:00.101148+00:00",
+      "uiTimeDeltaMs": -1101,
+      "displayedWalletUsd": 0.006716
+    },
+    {
+      "task": "34",
+      "model": "deepseek-flash",
+      "inputTokens": 14491,
+      "outputTokens": 308,
+      "responseFinishedAt": "2026-11-01T18:36:04.858011+00:00",
+      "uiTimeDeltaMs": -858,
+      "displayedWalletUsd": 0.001486
+    },
+    {
+      "task": "34",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16702,
+      "outputTokens": 237,
+      "responseFinishedAt": "2026-11-01T18:36:11.008213+00:00",
+      "uiTimeDeltaMs": -1008,
+      "displayedWalletUsd": 0.005672
+    },
+    {
+      "task": "35",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 16543,
+      "outputTokens": 719,
+      "responseFinishedAt": "2026-11-01T18:36:26.272294+00:00",
+      "uiTimeDeltaMs": -272,
+      "displayedWalletUsd": 0.003096
+    },
+    {
+      "task": "35",
+      "model": "deepseek-flash",
+      "inputTokens": 12537,
+      "outputTokens": 563,
+      "responseFinishedAt": "2026-11-01T18:36:32.412302+00:00",
+      "uiTimeDeltaMs": -412,
+      "displayedWalletUsd": 0.001398
+    },
+    {
+      "task": "35",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 14702,
+      "outputTokens": 592,
+      "responseFinishedAt": "2026-11-01T18:36:42.252458+00:00",
+      "uiTimeDeltaMs": -252,
+      "displayedWalletUsd": 0.0056
+    },
+    {
+      "task": "36",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 13973,
+      "outputTokens": 700,
+      "responseFinishedAt": "2026-11-01T18:36:22.631606+00:00",
+      "uiTimeDeltaMs": -632,
+      "displayedWalletUsd": 0.002686
+    },
+    {
+      "task": "36",
+      "model": "deepseek-flash",
+      "inputTokens": 9703,
+      "outputTokens": 447,
+      "responseFinishedAt": "2026-11-01T18:36:27.918374+00:00",
+      "uiTimeDeltaMs": -918,
+      "displayedWalletUsd": 0.001086
+    },
+    {
+      "task": "36",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 11663,
+      "outputTokens": 339,
+      "responseFinishedAt": "2026-11-01T18:36:34.976651+00:00",
+      "uiTimeDeltaMs": -977,
+      "displayedWalletUsd": 0.004236
+    },
+    {
+      "task": "37",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 17674,
+      "outputTokens": 653,
+      "responseFinishedAt": "2026-11-01T18:36:35.452153+00:00",
+      "uiTimeDeltaMs": -452,
+      "displayedWalletUsd": 0.00322
+    },
+    {
+      "task": "37",
+      "model": "deepseek-flash",
+      "inputTokens": 13835,
+      "outputTokens": 429,
+      "responseFinishedAt": "2026-11-01T18:36:41.509742+00:00",
+      "uiTimeDeltaMs": -510,
+      "displayedWalletUsd": 0.00147
+    },
+    {
+      "task": "37",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16269,
+      "outputTokens": 703,
+      "responseFinishedAt": "2026-11-01T18:36:50.544688+00:00",
+      "uiTimeDeltaMs": -545,
+      "displayedWalletUsd": 0.006274
+    },
+    {
+      "task": "38",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 37141,
+      "outputTokens": 599,
+      "responseFinishedAt": "2026-11-01T18:36:46.841687+00:00",
+      "uiTimeDeltaMs": -842,
+      "displayedWalletUsd": 0.00617
+    },
+    {
+      "task": "38",
+      "model": "deepseek-flash",
+      "inputTokens": 10976,
+      "outputTokens": 419,
+      "responseFinishedAt": "2026-11-01T18:36:52.903116+00:00",
+      "uiTimeDeltaMs": -903,
+      "displayedWalletUsd": 0.001196
+    },
+    {
+      "task": "38",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 12617,
+      "outputTokens": 458,
+      "responseFinishedAt": "2026-11-01T18:36:59.888529+00:00",
+      "uiTimeDeltaMs": -889,
+      "displayedWalletUsd": 0.004728
+    },
+    {
+      "task": "39",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 33642,
+      "outputTokens": 534,
+      "responseFinishedAt": "2026-11-01T18:36:55.127252+00:00",
+      "uiTimeDeltaMs": -1127,
+      "displayedWalletUsd": 0.005582
+    },
+    {
+      "task": "39",
+      "model": "deepseek-flash",
+      "inputTokens": 11645,
+      "outputTokens": 431,
+      "responseFinishedAt": "2026-11-01T18:37:00.937681+00:00",
+      "uiTimeDeltaMs": -938,
+      "displayedWalletUsd": 0.001264
+    },
+    {
+      "task": "39",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 13178,
+      "outputTokens": 436,
+      "responseFinishedAt": "2026-11-01T18:37:08.201761+00:00",
+      "uiTimeDeltaMs": -202,
+      "displayedWalletUsd": 0.00487
+    },
+    {
+      "task": "40",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 35286,
+      "outputTokens": 685,
+      "responseFinishedAt": "2026-11-01T18:37:08.612983+00:00",
+      "uiTimeDeltaMs": -613,
+      "displayedWalletUsd": 0.005952
+    },
+    {
+      "task": "40",
+      "model": "deepseek-flash",
+      "inputTokens": 13507,
+      "outputTokens": 326,
+      "responseFinishedAt": "2026-11-01T18:37:14.611581+00:00",
+      "uiTimeDeltaMs": -612,
+      "displayedWalletUsd": 0.0014
+    },
+    {
+      "task": "40",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 15647,
+      "outputTokens": 387,
+      "responseFinishedAt": "2026-11-01T18:37:20.859584+00:00",
+      "uiTimeDeltaMs": -860,
+      "displayedWalletUsd": 0.005576
+    },
+    {
+      "task": "41",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 16444,
+      "outputTokens": 639,
+      "responseFinishedAt": "2026-11-01T18:37:16.147509+00:00",
+      "uiTimeDeltaMs": -1148,
+      "displayedWalletUsd": 0.00302
+    },
+    {
+      "task": "41",
+      "model": "deepseek-flash",
+      "inputTokens": 13679,
+      "outputTokens": 303,
+      "responseFinishedAt": "2026-11-01T18:37:20.443171+00:00",
+      "uiTimeDeltaMs": -443,
+      "displayedWalletUsd": 0.001408
+    },
+    {
+      "task": "41",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16603,
+      "outputTokens": 247,
+      "responseFinishedAt": "2026-11-01T18:37:28.477193+00:00",
+      "uiTimeDeltaMs": -477,
+      "displayedWalletUsd": 0.005656
+    },
+    {
+      "task": "42",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 34392,
+      "outputTokens": 551,
+      "responseFinishedAt": "2026-11-01T18:37:23.685040+00:00",
+      "uiTimeDeltaMs": -685,
+      "displayedWalletUsd": 0.005712
+    },
+    {
+      "task": "42",
+      "model": "deepseek-flash",
+      "inputTokens": 12563,
+      "outputTokens": 376,
+      "responseFinishedAt": "2026-11-01T18:37:29.003362+00:00",
+      "uiTimeDeltaMs": -1003,
+      "displayedWalletUsd": 0.00133
+    },
+    {
+      "task": "42",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 13486,
+      "outputTokens": 313,
+      "responseFinishedAt": "2026-11-01T18:37:35.567452+00:00",
+      "uiTimeDeltaMs": -567,
+      "displayedWalletUsd": 0.004772
+    },
+    {
+      "task": "43",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 35990,
+      "outputTokens": 606,
+      "responseFinishedAt": "2026-11-01T18:37:37.602552+00:00",
+      "uiTimeDeltaMs": -603,
+      "displayedWalletUsd": 0.006
+    },
+    {
+      "task": "43",
+      "model": "deepseek-flash",
+      "inputTokens": 14242,
+      "outputTokens": 488,
+      "responseFinishedAt": "2026-11-01T18:37:43.092128+00:00",
+      "uiTimeDeltaMs": -1092,
+      "displayedWalletUsd": 0.00153
+    },
+    {
+      "task": "43",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16662,
+      "outputTokens": 498,
+      "responseFinishedAt": "2026-11-01T18:37:51.112090+00:00",
+      "uiTimeDeltaMs": -1112,
+      "displayedWalletUsd": 0.006074
+    },
+    {
+      "task": "44",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 14464,
+      "outputTokens": 754,
+      "responseFinishedAt": "2026-11-01T18:37:50.891538+00:00",
+      "uiTimeDeltaMs": -892,
+      "displayedWalletUsd": 0.002186
+    },
+    {
+      "task": "44",
+      "model": "deepseek-flash",
+      "inputTokens": 10698,
+      "outputTokens": 271,
+      "responseFinishedAt": "2026-11-01T18:37:55.320442+00:00",
+      "uiTimeDeltaMs": -320,
+      "displayedWalletUsd": 0.001114
+    },
+    {
+      "task": "44",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 12234,
+      "outputTokens": 252,
+      "responseFinishedAt": "2026-11-01T18:38:01.117678+00:00",
+      "uiTimeDeltaMs": -1118,
+      "displayedWalletUsd": 0.00428
+    },
+    {
+      "task": "45",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 17923,
+      "outputTokens": 445,
+      "responseFinishedAt": "2026-11-01T18:38:04.028121+00:00",
+      "uiTimeDeltaMs": -1028,
+      "displayedWalletUsd": 0.003098
+    },
+    {
+      "task": "45",
+      "model": "deepseek-flash",
+      "inputTokens": 14349,
+      "outputTokens": 404,
+      "responseFinishedAt": "2026-11-01T18:38:10.621382+00:00",
+      "uiTimeDeltaMs": -621,
+      "displayedWalletUsd": 0.001508
+    },
+    {
+      "task": "45",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16300,
+      "outputTokens": 244,
+      "responseFinishedAt": "2026-11-01T18:38:16.907520+00:00",
+      "uiTimeDeltaMs": -908,
+      "displayedWalletUsd": 0.005556
+    },
+    {
+      "task": "46",
+      "model": "deepseek-flash",
+      "inputTokens": 12896,
+      "outputTokens": 335,
+      "responseFinishedAt": "2026-11-01T18:40:26.556629+00:00",
+      "uiTimeDeltaMs": -557,
+      "displayedWalletUsd": 0.001346
+    },
+    {
+      "task": "47",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 36111,
+      "outputTokens": 645,
+      "responseFinishedAt": "2026-11-01T18:38:16.786073+00:00",
+      "uiTimeDeltaMs": -786,
+      "displayedWalletUsd": 0.006048
+    },
+    {
+      "task": "47",
+      "model": "deepseek-flash",
+      "inputTokens": 14151,
+      "outputTokens": 373,
+      "responseFinishedAt": "2026-11-01T18:38:23.034945+00:00",
+      "uiTimeDeltaMs": -1035,
+      "displayedWalletUsd": 0.001478
+    },
+    {
+      "task": "47",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16247,
+      "outputTokens": 399,
+      "responseFinishedAt": "2026-11-01T18:38:30.950337+00:00",
+      "uiTimeDeltaMs": -950,
+      "displayedWalletUsd": 0.005784
+    },
+    {
+      "task": "48",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 17919,
+      "outputTokens": 658,
+      "responseFinishedAt": "2026-11-01T18:38:40.488518+00:00",
+      "uiTimeDeltaMs": -489,
+      "displayedWalletUsd": 0.00326
+    },
+    {
+      "task": "48",
+      "model": "deepseek-flash",
+      "inputTokens": 14902,
+      "outputTokens": 467,
+      "responseFinishedAt": "2026-11-01T18:39:16.943027+00:00",
+      "uiTimeDeltaMs": -943,
+      "displayedWalletUsd": 0.001584
+    },
+    {
+      "task": "48",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16591,
+      "outputTokens": 392,
+      "responseFinishedAt": "2026-11-01T18:39:24.766866+00:00",
+      "uiTimeDeltaMs": -767,
+      "displayedWalletUsd": 0.005882
+    },
+    {
+      "task": "49",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 40729,
+      "outputTokens": 689,
+      "responseFinishedAt": "2026-11-01T18:38:46.878907+00:00",
+      "uiTimeDeltaMs": -879,
+      "displayedWalletUsd": 0.006792
+    },
+    {
+      "task": "49",
+      "model": "deepseek-flash",
+      "inputTokens": 14566,
+      "outputTokens": 595,
+      "responseFinishedAt": "2026-11-01T18:39:22.717188+00:00",
+      "uiTimeDeltaMs": -717,
+      "displayedWalletUsd": 0.001602
+    },
+    {
+      "task": "49",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16762,
+      "outputTokens": 677,
+      "responseFinishedAt": "2026-11-01T18:39:30.472159+00:00",
+      "uiTimeDeltaMs": -472,
+      "displayedWalletUsd": 0.006388
+    },
+    {
+      "task": "50",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 36243,
+      "outputTokens": 676,
+      "responseFinishedAt": "2026-11-01T18:39:42.507073+00:00",
+      "uiTimeDeltaMs": -507,
+      "displayedWalletUsd": 0.006092
+    },
+    {
+      "task": "50",
+      "model": "deepseek-flash",
+      "inputTokens": 14169,
+      "outputTokens": 280,
+      "responseFinishedAt": "2026-11-01T18:40:16.588087+00:00",
+      "uiTimeDeltaMs": -588,
+      "displayedWalletUsd": 0.001444
+    },
+    {
+      "task": "50",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16377,
+      "outputTokens": 309,
+      "responseFinishedAt": "2026-11-01T18:40:23.337661+00:00",
+      "uiTimeDeltaMs": -338,
+      "displayedWalletUsd": 0.005684
+    },
+    {
+      "task": "51",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 29240,
+      "outputTokens": 701,
+      "responseFinishedAt": "2026-11-01T18:39:44.543844+00:00",
+      "uiTimeDeltaMs": -544,
+      "displayedWalletUsd": 0.005034
+    },
+    {
+      "task": "51",
+      "model": "deepseek-flash",
+      "inputTokens": 11509,
+      "outputTokens": 388,
+      "responseFinishedAt": "2026-11-01T18:40:19.265370+00:00",
+      "uiTimeDeltaMs": -265,
+      "displayedWalletUsd": 0.001234
+    },
+    {
+      "task": "51",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 13962,
+      "outputTokens": 471,
+      "responseFinishedAt": "2026-11-01T18:40:27.068617+00:00",
+      "uiTimeDeltaMs": -1069,
+      "displayedWalletUsd": 0.005174
+    },
+    {
+      "task": "52",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 15717,
+      "outputTokens": 675,
+      "responseFinishedAt": "2026-11-01T18:42:23.884735+00:00",
+      "uiTimeDeltaMs": -885,
+      "displayedWalletUsd": 0.002936
+    },
+    {
+      "task": "52",
+      "model": "deepseek-flash",
+      "inputTokens": 11783,
+      "outputTokens": 453,
+      "responseFinishedAt": "2026-11-01T18:42:30.208348+00:00",
+      "uiTimeDeltaMs": -208,
+      "displayedWalletUsd": 0.001284
+    },
+    {
+      "task": "52",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 13973,
+      "outputTokens": 463,
+      "responseFinishedAt": "2026-11-01T18:42:37.136879+00:00",
+      "uiTimeDeltaMs": -1137,
+      "displayedWalletUsd": 0.005166
+    },
+    {
+      "task": "53",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 15102,
+      "outputTokens": 601,
+      "responseFinishedAt": "2026-11-01T18:42:22.742951+00:00",
+      "uiTimeDeltaMs": -743,
+      "displayedWalletUsd": 0.002784
+    },
+    {
+      "task": "53",
+      "model": "deepseek-flash",
+      "inputTokens": 10740,
+      "outputTokens": 364,
+      "responseFinishedAt": "2026-11-01T18:42:28.723427+00:00",
+      "uiTimeDeltaMs": -723,
+      "displayedWalletUsd": 0.001152
+    },
+    {
+      "task": "53",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 12448,
+      "outputTokens": 381,
+      "responseFinishedAt": "2026-11-01T18:42:35.719614+00:00",
+      "uiTimeDeltaMs": -720,
+      "displayedWalletUsd": 0.004552
+    },
+    {
+      "task": "54",
+      "model": "deepseek-flash",
+      "inputTokens": 16078,
+      "outputTokens": 397,
+      "responseFinishedAt": "2026-11-01T18:42:33.112381+00:00",
+      "uiTimeDeltaMs": -1112,
+      "displayedWalletUsd": 0.00167
+    },
+    {
+      "task": "55",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 15936,
+      "outputTokens": 429,
+      "responseFinishedAt": "2026-11-01T18:42:47.958413+00:00",
+      "uiTimeDeltaMs": -958,
+      "displayedWalletUsd": 0.002182
+    },
+    {
+      "task": "55",
+      "model": "deepseek-flash",
+      "inputTokens": 12215,
+      "outputTokens": 478,
+      "responseFinishedAt": "2026-11-01T18:42:53.157691+00:00",
+      "uiTimeDeltaMs": -1158,
+      "displayedWalletUsd": 0.001336
+    },
+    {
+      "task": "55",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 14534,
+      "outputTokens": 453,
+      "responseFinishedAt": "2026-11-01T18:42:59.919533+00:00",
+      "uiTimeDeltaMs": -920,
+      "displayedWalletUsd": 0.005328
+    },
+    {
+      "task": "56",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 16506,
+      "outputTokens": 664,
+      "responseFinishedAt": "2026-11-01T18:42:53.636183+00:00",
+      "uiTimeDeltaMs": -636,
+      "displayedWalletUsd": 0.003048
+    },
+    {
+      "task": "56",
+      "model": "deepseek-flash",
+      "inputTokens": 12877,
+      "outputTokens": 266,
+      "responseFinishedAt": "2026-11-01T18:42:57.705577+00:00",
+      "uiTimeDeltaMs": -706,
+      "displayedWalletUsd": 0.001318
+    },
+    {
+      "task": "56",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 15406,
+      "outputTokens": 387,
+      "responseFinishedAt": "2026-11-01T18:43:04.964979+00:00",
+      "uiTimeDeltaMs": -965,
+      "displayedWalletUsd": 0.0055
+    },
+    {
+      "task": "57",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 39628,
+      "outputTokens": 602,
+      "responseFinishedAt": "2026-11-01T18:42:51.918874+00:00",
+      "uiTimeDeltaMs": -919,
+      "displayedWalletUsd": 0.006556
+    },
+    {
+      "task": "57",
+      "model": "deepseek-flash",
+      "inputTokens": 17791,
+      "outputTokens": 275,
+      "responseFinishedAt": "2026-11-01T18:42:56.339752+00:00",
+      "uiTimeDeltaMs": -340,
+      "displayedWalletUsd": 0.001786
+    },
+    {
+      "task": "57",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 19843,
+      "outputTokens": 342,
+      "responseFinishedAt": "2026-11-01T18:43:03.351070+00:00",
+      "uiTimeDeltaMs": -351,
+      "displayedWalletUsd": 0.006834
+    },
+    {
+      "task": "58",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 18990,
+      "outputTokens": 711,
+      "responseFinishedAt": "2026-11-01T18:43:23.935824+00:00",
+      "uiTimeDeltaMs": -936,
+      "displayedWalletUsd": 0.003466
+    },
+    {
+      "task": "58",
+      "model": "deepseek-flash",
+      "inputTokens": 15363,
+      "outputTokens": 611,
+      "responseFinishedAt": "2026-11-01T18:43:30.282702+00:00",
+      "uiTimeDeltaMs": -283,
+      "displayedWalletUsd": 0.001682
+    },
+    {
+      "task": "58",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 18408,
+      "outputTokens": 586,
+      "responseFinishedAt": "2026-11-01T18:43:38.551118+00:00",
+      "uiTimeDeltaMs": -551,
+      "displayedWalletUsd": 0.006766
+    },
+    {
+      "task": "59",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 39760,
+      "outputTokens": 695,
+      "responseFinishedAt": "2026-11-01T18:43:19.223000+00:00",
+      "uiTimeDeltaMs": -223,
+      "displayedWalletUsd": 0.006648
+    },
+    {
+      "task": "59",
+      "model": "deepseek-flash",
+      "inputTokens": 13655,
+      "outputTokens": 423,
+      "responseFinishedAt": "2026-11-01T18:43:24.532138+00:00",
+      "uiTimeDeltaMs": -532,
+      "displayedWalletUsd": 0.00145
+    },
+    {
+      "task": "59",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 16368,
+      "outputTokens": 525,
+      "responseFinishedAt": "2026-11-01T18:43:32.440509+00:00",
+      "uiTimeDeltaMs": -441,
+      "displayedWalletUsd": 0.006022
+    },
+    {
+      "task": "60",
+      "model": "gpt-6.1-sol",
+      "inputTokens": 33954,
+      "outputTokens": 584,
+      "responseFinishedAt": "2026-11-01T18:43:37.071837+00:00",
+      "uiTimeDeltaMs": -1072,
+      "displayedWalletUsd": 0.00567
+    },
+    {
+      "task": "60",
+      "model": "deepseek-flash",
+      "inputTokens": 12272,
+      "outputTokens": 466,
+      "responseFinishedAt": "2026-11-01T18:43:42.641306+00:00",
+      "uiTimeDeltaMs": -641,
+      "displayedWalletUsd": 0.001336
+    },
+    {
+      "task": "60",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 14101,
+      "outputTokens": 536,
+      "responseFinishedAt": "2026-11-01T18:43:50.479625+00:00",
+      "uiTimeDeltaMs": -480,
+      "displayedWalletUsd": 0.005322
+    },
+    {
+      "task": "46",
+      "model": "gpt-6.1-terra",
+      "inputTokens": 12468,
+      "outputTokens": 426,
+      "responseFinishedAt": "2026-11-01T18:44:30.537514+00:00",
+      "uiTimeDeltaMs": -538,
+      "displayedWalletUsd": 0.015328
+    },
+    {
+      "task": "46",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 14822,
+      "outputTokens": 404,
+      "responseFinishedAt": "2026-11-01T18:44:36.960786+00:00",
+      "uiTimeDeltaMs": -961,
+      "displayedWalletUsd": 0.00534
+    },
+    {
+      "task": "54",
+      "model": "gpt-6.1-terra",
+      "inputTokens": 16430,
+      "outputTokens": 574,
+      "responseFinishedAt": "2026-11-01T18:44:47.852420+00:00",
+      "uiTimeDeltaMs": -852,
+      "displayedWalletUsd": 0.003318
+    },
+    {
+      "task": "54",
+      "model": "gemini-3.8-flash",
+      "inputTokens": 18336,
+      "outputTokens": 363,
+      "responseFinishedAt": "2026-11-01T18:44:54.433028+00:00",
+      "uiTimeDeltaMs": -433,
+      "displayedWalletUsd": 0.00639
+    }
+  ]
+}

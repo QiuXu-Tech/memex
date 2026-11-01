@@ -1,0 +1,245 @@
+{
+  "status": "FINISHED",
+  "kind": "exploratory-post-hoc-reused-issue-replay",
+  "selection": "These two issues were selected after their earlier Memex answers incorrectly claimed that discussion was absent; they are reused cases, not new independent tasks.",
+  "limits": [
+    "Post-hoc, selected after observing failure, and reuses tasks: exploratory mechanism check only.",
+    "The original cohort used an earlier product commit; do not attribute these outcomes to it.",
+    "Client list price is not the gateway bill."
+  ],
+  "productCommit": "a59d74594417c0f9bc5a32e6d726d0a6678184d6",
+  "clientListPriceUsd": 0.421867,
+  "tasks": [
+    {
+      "id": "37",
+      "issueUrl": "https://github.com/honojs/hono/issues/4765",
+      "sourceCommit": "c91b60a251186fb024557c6d55a11d8e388f179c",
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": 1,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.07679055,
+              "usage": null,
+              "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            },
+            {
+              "stage": 2,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.03574914999999999,
+              "usage": {
+                "input_tokens": 55,
+                "cache_creation_input_tokens": 12909,
+                "cache_read_input_tokens": 68179,
+                "output_tokens": 2548,
+                "output_tokens_details": {
+                  "thinking_tokens": 1164
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 12909
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "usageNote": null,
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            }
+          ],
+          "laterDiscussion": {
+            "hasLaterComments": true,
+            "openedLaterComment": true,
+            "exposedLaterComment": true
+          },
+          "finalAnswer": "## Triage: RPC Types Broken with Arrow Function + Promise\n\n**Reported behavior:**\nRPC client types infer as `unknown` when route handler uses arrow function directly returning a Promise chain (`.then()`). Same code works with explicit `return` statement after variable assignment.\n\n**Source evidence:**\n- `src/types.ts:70-74` – `HandlerResponse<O>` union: `Response | TypedResponse<O> | Promise<Response | TypedResponse<O>> | Promise<void>`\n- `src/types.ts:76-81` – `Handler` type definition\n- `src/types.ts:90-95` – `H` union combines `Handler | MiddlewareHandler`\n- `src/types.ts:127+` – `HandlerInterface` generic constraints apply these unions\n\n**Root cause (from archive discussion):**\nArchive C2 (ambergristle, 2026-02-24) identified this as TypeScript's `Promise.then()` type inference limitation. When arrow function directly returns `Promise.then()`, TypeScript creates a broad union of incompatible response types instead of narrowing to a single type. Assigning to variable first allows TypeScript to capture the proper type before returning.\n\n**Relevant discussion:**\n- C2: Demonstrates the union is created during `.then()` inference; shows workarounds with explicit type annotation\n- C6 (mahmoodhamdi, 2026-03-15): Confirmed `async/await` syntax preserves types correctly as practical workaround\n- C4 (valerii15298): Noted this is unexpected TypeScript behavior; investigated `Awaited` utility without resolution\n\n**Recommended next check:**\nDetermine whether type narrowing can be improved in `HandlerInterface` generic constraints (line 127+) to narrow the `HandlerResponse<R>` union when `R` is inferred from `.then()` chains, or if this requires a TypeScript-level fix that Hono cannot address.\n\n**Uncertainty:**\nWhether a viable fix exists within Hono's type system or if this is a fundamental TypeScript inference limitation requiring workarounds only (variable assignment or async/await).",
+          "answerTruncated": false
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": 1,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.08249005000000001,
+              "usage": null,
+              "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            },
+            {
+              "stage": 2,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.066745,
+              "usage": null,
+              "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            }
+          ],
+          "laterDiscussion": {
+            "hasLaterComments": true,
+            "openedLaterComment": true,
+            "exposedLaterComment": true
+          },
+          "finalAnswer": "## Triage\n\n**Reported behavior:** RPC response types resolve to `unknown` when handlers use concise arrow functions with Promise chains (`.then()`), but correctly infer when using block functions with explicit returns.\n\n**Source evidence:**\n- `src/types.ts:2653-2662` — `MergeTypedResponse<T>` processes handler return types\n- `src/types.ts:70-74` — `HandlerResponse<O>` permits `Promise<Response | TypedResponse<O>>` or `Promise<void>`\n- Issue reproduction confirmed in both cases\n\n**Root cause (from discussion):**\nComment C2 identifies that `Promise.then()` chains produce unions because TypeScript's Promise.then signature defaults to `Promise<TResult1 | TResult2>`. Arrow functions with `.then()` create unions that include `void`, which `MergeTypedResponse` doesn't handle cleanly — it falls through to the default `TypedResponse` case (resolving to `unknown` in the RPC client).\n\n**Workaround confirmed:** Users can work around this by using `async/await` instead of `.then()`, which preserves type narrowing correctly (comment C6).\n\n**Recommended next check:** Whether `MergeTypedResponse` should explicitly handle union types containing `void` (via `Exclude<T, void>` or similar), or whether a narrower check is needed earlier in the handler type extraction pipeline.\n\n**Uncertainty:** Whether the fix belongs in type system narrowing (handling the union better) or in the handler inference logic itself. The issue may require testing whether the arrow vs block function difference is a TypeScript bug or expected behavior.",
+          "answerTruncated": false
+        }
+      },
+      "originalMemexLaterDiscussion": {
+        "hasLaterComments": true,
+        "openedLaterComment": false,
+        "exposedLaterComment": false
+      },
+      "runnerError": null
+    },
+    {
+      "id": "40",
+      "issueUrl": "https://github.com/lit/lit/issues/4512",
+      "sourceCommit": "16507ef656417c9c53a55a02a44a563bbbf2c484",
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": 1,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.07451749999999999,
+              "usage": null,
+              "usageNote": "After recovery, per-attempt usage is retained separately; total token use is unknown unless reconciled.",
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            },
+            {
+              "stage": 2,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.02257025,
+              "usage": {
+                "input_tokens": 30,
+                "cache_creation_input_tokens": 7669,
+                "cache_read_input_tokens": 26990,
+                "output_tokens": 2051,
+                "output_tokens_details": {
+                  "thinking_tokens": 968
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7669
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "usageNote": null,
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            }
+          ],
+          "laterDiscussion": {
+            "hasLaterComments": true,
+            "openedLaterComment": true,
+            "exposedLaterComment": true
+          },
+          "finalAnswer": "## Triage: Issue #4512 — @consume() not notifying property changes\n\n**Reported Behavior**: When using `@consume()` decorator with `subscribe: true`, context value changes do not appear in the `changedProperties` Map passed to lifecycle methods like `willUpdate()`, making it impossible to detect context updates through the reactive lifecycle.\n\n**Source Evidence**:\n- **Root Cause**: `packages/context/src/lib/controllers/context-consumer.ts:124`  \n  `this.host.requestUpdate()` is called with no arguments. ReactiveElement requires `requestUpdate(propertyName, oldValue)` to include properties in `changedProperties`; a bare call triggers an update cycle but doesn't track which property changed.\n- **Decorator Gap**: `packages/context/src/lib/decorators/consume.ts:45–80`  \n  The decorator has the property name (`nameOrContext`) available but never passes it to the ContextConsumer controller.\n\n**Discussion**:\n- **C1** (justinfagnani, 2024-01-23): Confirmed the issue. Noted `@consume()` properties are not reactive and don't appear in `changedProperties`. Mentioned a possible workaround of also decorating with `@state()`, but acknowledged this is awkward. Suggested expanding `@consume()` to accept a callback option.\n- **C2** (justinfagnani, 2024-01-24): Pushed back on callback support in decorator, arguing users should use `ContextConsumer` controller directly if they need callbacks.\n- **C3** (augustjk, 2024-01-24): User advocated for callback support in the decorator to avoid the verbosity of using the controller directly.\n- **C7** (justinfagnani, 2024-03-01): Later signaled openness to adding callback support, suggesting it should match `@state()` with new/old value arguments.\n\n**Recommended Next Check**: Search the issue for any recent activity (post-March 2024) to confirm whether a callback feature was implemented, a PR was merged, or if the issue is still pending design decision.\n\n**Explicit Uncertainty**: No verification whether the latest codebase includes callback support or if this remains unresolved.",
+          "answerTruncated": false
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": 1,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.0423735,
+              "usage": {
+                "input_tokens": 40,
+                "cache_creation_input_tokens": 20400,
+                "cache_read_input_tokens": 52185,
+                "output_tokens": 2323,
+                "output_tokens_details": {
+                  "thinking_tokens": 1065
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 20400
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "usageNote": null,
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            },
+            {
+              "stage": 2,
+              "status": "success",
+              "responseCompleted": true,
+              "clientListPriceUsd": 0.0206309,
+              "usage": {
+                "input_tokens": 25,
+                "cache_creation_input_tokens": 7738,
+                "cache_read_input_tokens": 26484,
+                "output_tokens": 1657,
+                "output_tokens_details": {
+                  "thinking_tokens": 963
+                },
+                "server_tool_use": {
+                  "web_search_requests": 0,
+                  "web_fetch_requests": 0
+                },
+                "service_tier": "standard",
+                "cache_creation": {
+                  "ephemeral_1h_input_tokens": 0,
+                  "ephemeral_5m_input_tokens": 7738
+                },
+                "inference_geo": "not_available",
+                "iterations": [],
+                "speed": "standard"
+              },
+              "usageNote": null,
+              "unexpectedTools": [],
+              "unavailableToolAttempts": []
+            }
+          ],
+          "laterDiscussion": {
+            "hasLaterComments": true,
+            "openedLaterComment": false,
+            "exposedLaterComment": false
+          },
+          "finalAnswer": "Based on the prior investigation, I have sufficient evidence for a triage. Let me record a concise summary:\n\n## Triage: Issue #4512 — `@consume` decorator doesn't mark changed properties\n\n**Reported behavior:**  \nWhen using `@consume({ context, subscribe: true })`, the `changed` Map in `willUpdate()` is empty when the context value changes, making it impossible to detect which properties updated.\n\n**Source evidence:**\n- `packages/context/src/lib/decorators/consume.ts:60-68` (standard decorators) and `71-82` (experimental decorators) — callback directly assigns property via `protoOrTarget.set.call(this, value)` or `(element as any)[nameOrContext] = value`, bypassing Lit's reactive tracking\n- `packages/context/src/lib/controllers/context-consumer.ts:124` — `requestUpdate()` called with no property argument, triggering a generic update without marking which property changed\n\n**Root cause:**  \nThe decorator sets the property directly, then the controller requests an update without specifying the property name. Since Lit's reactive property system is bypassed, the `changed` Map remains empty in `willUpdate()`.\n\n**Recommended next check:**  \nVerify whether the decorator should:\n1. Pass the property name to `requestUpdate(propertyName)` after assignment, or\n2. Use a different mechanism (e.g., calling `requestUpdate` before the setter or passing metadata through the ContextConsumer)\n\nThe workaround (using ContextConsumer directly with manual property assignment in the callback) confirms the root cause: when the user explicitly assigns through Lit's property system, `changed` is populated correctly.\n\n**Uncertainty:**  \nNo discussion from issue comments is available in memory yet—need to verify if maintainers have weighed in on the correct fix approach.",
+          "answerTruncated": false
+        }
+      },
+      "originalMemexLaterDiscussion": {
+        "hasLaterComments": true,
+        "openedLaterComment": false,
+        "exposedLaterComment": false
+      },
+      "runnerError": null
+    }
+  ],
+  "note": "These two selected reused issues are a post-hoc mechanism check; no new blinded quality assessment or independent effectiveness estimate is claimed."
+}

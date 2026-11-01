@@ -16,12 +16,13 @@ for ax in (a,b,c,e):
 fig.text(.07,.94,'Memex: cross-session issue investigations',fontsize=20,weight='bold',color='#0f172a')
 fig.text(.07,.895,'Two separately registered protocols · real public issues replayed in fresh agent sessions',fontsize=11,color='#475569')
 fig.text(.07,.855,f"Snapshot: {d['generatedAt'][:19].replace('T',' ')} UTC · AI reviews are not human reviews",fontsize=9.5,color='#475569')
-x=np.arange(4);width=.35;fields=['started','finished','completePairs','validRatedPairs'];ticks=['Started','Finished','Complete pairs','Valid AI ratings']
+x=np.arange(4);width=.35;fields=['started','finished','completePairs','validRatedPairs'];ticks=['Started','Finished','Complete pairs','Primary AI ratings']
 for j,n in enumerate(names):
  v=[d[n].get(k,0) for k in fields];bars=a.bar(x+(j-.5)*width,v,width,color=colors[j],label=labels[j])
  for z in bars:a.text(z.get_x()+z.get_width()/2,z.get_height()+.5,str(int(z.get_height())),ha='center',fontsize=8,color='#334155')
-a.set_xticks(x,ticks,rotation=8);a.set_ylim(0,34);a.set_title('Task flow (30 registered in each cohort)',loc='left',fontweight='bold',fontsize=11);a.legend(frameon=False,fontsize=8,loc='upper right')
-b.set_title('Blinded AI score comparison',loc='left',fontweight='bold',fontsize=11)
+a.set_xticks(x,ticks,rotation=8);a.set_ylim(0,34);a.set_title('Task flow (30 registered in each cohort)',loc='left',fontweight='bold',fontsize=11)
+fig.legend(handles=[Patch(color=colors[i],label=labels[i]) for i in range(2)],frameon=False,fontsize=8,loc='upper right',bbox_to_anchor=(.96,.91))
+b.set_title('Primary blinded AI score comparison',loc='left',fontweight='bold',fontsize=11)
 for i,n in enumerate(names):
  row=d[n];k=row.get('validRatedPairs',0);dirs=row.get('scoreDirections',{})
  if not k:b.text(.03,i,'Review pending or incomplete',transform=b.get_yaxis_transform(),va='center',fontsize=9,color='#475569');continue
@@ -32,7 +33,7 @@ for i,n in enumerate(names):
   left+=value
 b.set_yticks(range(2),labels);b.invert_yaxis();b.set_xlabel('Comparable rated pairs',fontsize=9)
 b.set_ylim(1.55,-.55);b.set_xlim(0,max(1,max(d[n].get('validRatedPairs',0) for n in names))*1.1)
-if any(d[n].get('validRatedPairs',0) for n in names):b.legend(handles=[Patch(color='#f97316',label='Control higher'),Patch(color='#94a3b8',label='Tie'),Patch(color='#2563eb',label='Memex higher')],frameon=False,fontsize=8,loc='lower right')
+if any(d[n].get('validRatedPairs',0) for n in names):b.legend(handles=[Patch(color='#f97316',label='Control higher'),Patch(color='#94a3b8',label='Tie'),Patch(color='#2563eb',label='Memex higher')],frameon=False,fontsize=7.5,loc='center',bbox_to_anchor=(.5,.5),ncol=3)
 c.set_title('Input tokens per complete pair',loc='left',fontweight='bold',fontsize=11)
 row=d['original'];n=row.get('fullTokenPairs',0)
 if n:

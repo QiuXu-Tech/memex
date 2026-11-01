@@ -75,6 +75,24 @@ def recovery_input_reconciliation(base,rows):
    elif summary['input']==stream['inputTokens']:counts['matched']+=1
    else:counts['different']+=1
  return {k:counts[k] for k in ('matched','different','missing')}
+def later_discussion_exposure(issue_file,session):
+ comments=load(issue_file)['comments']['nodes'];split=max(1,len(comments)//2);opened=set();excerpts=set()
+ calls={x['id']:x for x in call_entries(session) if x.get('id')}
+ for event in session:
+  if event.get('type')!='user':continue
+  for item in (event.get('message') or {}).get('content',[]):
+   if not isinstance(item,dict) or item.get('type')!='tool_result' or item.get('is_error'):continue
+   call=calls.get(item.get('tool_use_id')) or {};content=item.get('content') or []
+   if not isinstance(content,list):continue
+   for part in content:
+    try:result=json.loads(part.get('text',''))
+    except (ValueError,AttributeError):continue
+    if not isinstance(result,dict):continue
+    if call.get('name')=='mcp__pilot__archive_open' and 'text' in result:opened.add(result.get('id',''))
+    if call.get('name')=='mcp__pilot__archive_search':excerpts.update(x.get('id','') for x in result.get('matches',[]) if 'excerpt' in x)
+ def later(ids):
+  return any(isinstance(i,str) and (match:=re.fullmatch(r'C(\d+)',i)) and int(match.group(1))>split for i in ids)
+ return {'hasLaterComments':len(comments)>split,'openedLaterComment':later(opened),'exposedLaterComment':later(opened|excerpts)}
 def writes_and_opens(base,task):
  t=base/task/'traces';one=events(t/'memex-s1-events.jsonl')+events(t/'memex-s1-recovery-events.jsonl');two=events(t/'memex-s2-events.jsonl')+events(t/'memex-s2-recovery-events.jsonl')
  writes={x['id'] for x in call_entries(one) if x.get('name')=='mcp__memex__memory_write' and x.get('id')}
@@ -195,6 +213,15 @@ def cohort(name):
     trace=base/x['id']/'traces'
     sessions.append(events(trace/f'{arm}-s{stage}-events.jsonl')+events(trace/f'{arm}-s{stage}-recovery-events.jsonl'))
   calls[arm]=tool_counts(sessions)
+ discussion={}
+ if name=='supplement-triage':
+  for arm in ('baseline','memex'):
+   observations=[]
+   for x in complete:
+    trace=base/x['id']/'traces'
+    session=events(trace/f'{arm}-s2-events.jsonl')+events(trace/f'{arm}-s2-recovery-events.jsonl')
+    observations.append(later_discussion_exposure(P/'supplement-source'/f"{x['id']}.issue.json",session))
+   discussion[arm]={k:sum(bool(x[k]) for x in observations) for k in ('hasLaterComments','openedLaterComment','exposedLaterComment')}
  contexts={};first_contexts={}
  for arm in ('baseline','memex'):
   sessions=[];first_sessions=[];session_matches=True
@@ -217,7 +244,7 @@ def cohort(name):
   'fullTokenPairs':len(tokenpairs),'tokenTotals':token_totals,'completePairToolAttempts':calls,
   'completeTokenPairMessageContexts':contexts,'completeTokenPairFirstSessionInitialContexts':first_contexts,
   'completePairClientListPriceUsd':{a:paired_client_prices(complete,a) for a in ('baseline','memex')},
-  'sessionOutcomes':session_outcomes(rows),'recoveryInputReconciliation':recovery_input_reconciliation(base,rows),
+  'sessionOutcomes':session_outcomes(rows),'recoveryInputReconciliation':recovery_input_reconciliation(base,rows),'posthocDiscussionExposure':discussion,
   'clientListPriceKnownUsd':round(cost,6),'clientListPriceMissingSessions':missing_cost,
   'agentWrites':sum(bool(x['memoryChain'] and x['memoryChain']['successfulWriteIds']) for x in rows),
   'writtenRecordOpenedNext':sum(bool(x['memoryChain'] and x['memoryChain']['writtenIdOpenedNext']) for x in rows),
