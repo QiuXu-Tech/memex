@@ -30,6 +30,8 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
+- [Real-agent isolation and cross-session pilot](production-real-agent-20261101.html) — paired Codex tasks, one observed memory lifecycle, AI review and cost gaps.
+- [Isolated pilot tools for MCP agents](integrations/isolated-pilot.html) — bounded repository tools and fixed sandbox tests for Codex and Claude Code.
 - [Synonym and archive excerpt retest](pager-semantic-evaluation.html) — paired seeded diagnostics and historical replay.
 - [Retrospective pilot follow-up](production-pilot-followup.html) — bounded answer continuation, citation validation, outage evidence and cost gaps.
 - [Follow-up registration](production-pilot-followup-registration.html) and [post-outage replication registration](production-pilot-followup-replication-registration.html) — preregistered designs and limitations.

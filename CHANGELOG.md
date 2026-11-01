@@ -6,7 +6,12 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 
 ## Unreleased
 
+### Added — isolated test tools for real MCP agents
+- Expose the preassigned VM worker through a stdio MCP bridge with bounded repository and archive tools. Retire an unresponsive worker on a deadline without replaying an ambiguous request; add protocol and timeout regressions.
+- Add a separate v4 worker for Python source tasks and document isolated Codex/Claude Code configuration. Record the interrupted connector attempt, two paired Codex tasks, one adaptive cross-session memory lifecycle, AI-review disagreements and cost gaps in `docs/production-real-agent-20261101.md`.
+
 ### Fixed — pilot autonomy citation evidence
+- Exclude failed or missing-status pager events from observed memory IDs, and update the legacy successful-pager fixture and regression cases.
 - Reject a positive prior-write-use audit claim unless the cited memory ID was written during intake, subsequently opened or included by the pager, and cited in the answer. Add ordering, failed-action, unrelated-ID and no-claim regression cases. This validates recorded linkage, not semantic memory fidelity.
 - Record the two-task shadow pilot, failed model candidates, separately repaired validator, blinded AI reviews, continuation and usage gaps in `docs/production-forward-pilot-20261101.md`.
 

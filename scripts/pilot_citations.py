@@ -6,7 +6,7 @@ MEMORY_ID=re.compile(r'\bmem_[a-z0-9]+\b')
 def audit_memory_ids(run):
  ids=set()
  for event in run['trace']:
-  if event.get('kind')=='pager':ids.update(i for i in event.get('ids',[]) if isinstance(i,str) and MEMORY_ID.fullmatch(i))
+  if event.get('kind')=='pager' and event.get('status')=='ok':ids.update(i for i in event.get('ids',[]) if isinstance(i,str) and MEMORY_ID.fullmatch(i))
   elif event.get('kind')=='tool' and event.get('status')=='ok':
    ids.update(MEMORY_ID.findall(str(event.get('result',''))))
    if event.get('name')=='memory_open':

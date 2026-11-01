@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="470" viewBox="0 0 1120 470" role="img" aria-labelledby="title desc">
+  <title id="title">Real Codex pilot: paired task tests and an observed memory lifecycle</title>
+  <desc id="desc">Two related engineering tasks were each attempted with and without Memex. All four candidates passed their frozen sandbox tests. The audit task's original unadapted repository fixture failed for both candidates and was updated for integration. In an adaptive third session, the memory-enabled agent searched, opened, and cited a record written in the prior session. This one observation does not establish causal necessity.</desc>
+  <rect width="1120" height="470" fill="#f7f9fb"/>
+  <text x="42" y="49" fill="#173047" font-family="Arial,sans-serif" font-size="27" font-weight="700">Real-agent pilot</text>
+  <text x="42" y="77" fill="#536b7b" font-family="Arial,sans-serif" font-size="15">Codex · two related engineering tasks · randomized paired arms</text>
+  <text x="42" y="120" fill="#536b7b" font-family="Arial,sans-serif" font-size="13" font-weight="700">ARM</text>
+  <text x="325" y="120" fill="#536b7b" font-family="Arial,sans-serif" font-size="13" font-weight="700">AUDIT EVIDENCE</text>
+  <text x="708" y="120" fill="#536b7b" font-family="Arial,sans-serif" font-size="13" font-weight="700">WORKER TIMEOUT</text>
+  <line x1="42" y1="135" x2="1078" y2="135" stroke="#dce5ea"/>
+  <text x="42" y="177" fill="#173047" font-family="Arial,sans-serif" font-size="16" font-weight="700">Memex enabled</text>
+  <rect x="325" y="152" width="310" height="44" rx="7" fill="#3e806f"/>
+  <text x="480" y="179" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">FROZEN TEST PASSED</text>
+  <rect x="708" y="152" width="370" height="44" rx="7" fill="#3e806f"/>
+  <text x="893" y="179" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">FROZEN TEST PASSED</text>
+  <text x="42" y="240" fill="#173047" font-family="Arial,sans-serif" font-size="16" font-weight="700">Archive control</text>
+  <rect x="325" y="215" width="310" height="44" rx="7" fill="#3e806f"/>
+  <text x="480" y="242" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">FROZEN TEST PASSED</text>
+  <rect x="708" y="215" width="370" height="44" rx="7" fill="#3e806f"/>
+  <text x="893" y="242" text-anchor="middle" fill="#fff" font-family="Arial,sans-serif" font-size="15" font-weight="700">FROZEN TEST PASSED</text>
+  <text x="42" y="292" fill="#785c2a" font-family="Arial,sans-serif" font-size="14">Audit: both candidates failed the original unadapted fixture; the integrated test fixture was updated.</text>
+  <rect x="42" y="315" width="1036" height="75" rx="9" fill="#e4edf2"/>
+  <text x="60" y="344" fill="#173047" font-family="Arial,sans-serif" font-size="16" font-weight="700">One observed cross-session lifecycle</text>
+  <text x="60" y="370" fill="#36596a" font-family="Arial,sans-serif" font-size="14">A prior write was searched, opened and cited in an adaptive third session; causal necessity remains unknown.</text>
+  <text x="42" y="425" fill="#536b7b" font-family="Arial,sans-serif" font-size="13">Two related tasks and selected history; the worker-timeout task was repeated after an interrupted run.</text>
+  <text x="42" y="447" fill="#536b7b" font-family="Arial,sans-serif" font-size="13">AI-only review · no verified production improvement or total-cost saving.</text>
+</svg>

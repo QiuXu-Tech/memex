@@ -1,0 +1,226 @@
+{
+  "date": "2026-11-01",
+  "scope": "two related real engineering tasks; one is an adaptive retry after an unexpected connector; selected history and an adaptive third session",
+  "agent": {
+    "name": "Codex CLI",
+    "version": "0.166.0-alpha.5.1",
+    "model": "gpt-6.1-sol",
+    "authentication": "existing ChatGPT login"
+  },
+  "sourceCommit": "609c5520a12d81d5be80e604b31a859b16a4f44a",
+  "registeredSourceSha256": {
+    "audit": "5946fe98b3afae51064fda73ed66ae6978a16f5ff1521e8c3f0c0bd31cabc310",
+    "bridge": "7b2984bec4b688eeaf1573267482193dbdf280810568d60e8b1bbd31005fec9d"
+  },
+  "registeredManifestSha256": "1a6f5aeaac2cc3efb7650ab3256daad38ce9b5602713a23824d9cc36794c362a",
+  "executionRegistrationSha256": "82af97ac925c453f4f4050b006c0d951ff155407df6dc33f0bb90af09dcbf190",
+  "blindReviewPlanSha256": "cf4cff567689a88daa743d11b801cb34b8e8252c8d63a69d66d424f80b917f48",
+  "followupRegistrationSha256": "bbbeb2c5d1984e393414df19cca1eedb1270f99ad5f227fbb9adac092adc57a3",
+  "localRegistrationIndependentlyTimestamped": false,
+  "boundaryChecks": {
+    "initial": "INVALID: the outside sentinel was absent",
+    "corrected": "PASS after independently confirming the sentinel exists outside the sandbox; unprivileged UID, read-only workspace and network denial also checked"
+  },
+  "interruptedInitialCohort": {
+    "completedCodexTurns": 3,
+    "interruptedCodexTurns": 1,
+    "unexpectedConnectorCalls": {
+      "readFailed": 1,
+      "listEmptyWorkspaceCompleted": 1,
+      "processExecutionDenied": 1
+    },
+    "interruptedTurnUsage": "UNKNOWN",
+    "notIncludedInRepairedComparison": true
+  },
+  "repairedPairedCohort": {
+    "tasks": 2,
+    "armsPerTask": 2,
+    "freshSessionsPerArm": 2,
+    "schedule": [
+      {
+        "task": "audit",
+        "arm": "memex"
+      },
+      {
+        "task": "audit",
+        "arm": "baseline"
+      },
+      {
+        "task": "bridge",
+        "arm": "baseline"
+      },
+      {
+        "task": "bridge",
+        "arm": "memex"
+      }
+    ],
+    "allEightSessionsFinished": true,
+    "distinctProcessPairs": 4,
+    "frozenTestPasses": 4,
+    "candidateCount": 4,
+    "successfulMemoryWritesInSession1": 0,
+    "successfulMemoryWritesInSession2": 2,
+    "baselineInputTokens": 903687,
+    "baselineCachedInputTokens": 828416,
+    "baselineOutputTokens": 3492,
+    "memexInputTokens": 1037349,
+    "memexCachedInputTokens": 934400,
+    "memexOutputTokens": 4876,
+    "reviewRatings": {
+      "gpt-6.1-sol": {
+        "bridge_memex": {
+          "delivery": 2,
+          "sideEffects": 2
+        },
+        "audit_baseline": {
+          "delivery": 1,
+          "sideEffects": 2
+        },
+        "bridge_baseline": {
+          "delivery": 2,
+          "sideEffects": 2
+        },
+        "audit_memex": {
+          "delivery": 1,
+          "sideEffects": 2
+        }
+      },
+      "claude-haiku-4-5": {
+        "bridge_memex": {
+          "delivery": 2,
+          "sideEffects": 2
+        },
+        "audit_baseline": {
+          "delivery": 2,
+          "sideEffects": 2
+        },
+        "bridge_baseline": {
+          "delivery": 2,
+          "sideEffects": 2
+        },
+        "audit_memex": {
+          "delivery": 2,
+          "sideEffects": 2
+        }
+      }
+    },
+    "originalUnadaptedAuditFixturePasses": 0,
+    "auditFixtureCandidates": 2,
+    "finalIntegratedFixtureUpdated": true
+  },
+  "adaptiveFollowup": {
+    "sameTask": "audit",
+    "selection": "chosen after a session2 memory write was observed",
+    "additionalIndependentTasks": 0,
+    "arms": 2,
+    "mechanicalLifecycle": {
+      "previousWriteSucceeded": true,
+      "laterOpenSucceeded": true,
+      "bodyReadbackExact": true,
+      "finalCitesId": true,
+      "differentProcesses": true
+    },
+    "blindCorrectnessRatings": {
+      "gpt-6.1-sol": {
+        "memex": 2,
+        "baseline": 1
+      },
+      "claude-haiku-4-5": {
+        "memex": 1,
+        "baseline": 2
+      }
+    },
+    "regexClaim": "The baseline claimed a separate word-boundary defect; a post-hoc isolated positive-sequence check passed both candidates.",
+    "memoryAudits": {
+      "gpt-6.1-sol": {
+        "faithful": "yes",
+        "answer_used_record": "yes",
+        "record_necessary": "unknown"
+      },
+      "claude-haiku-4-5": {
+        "faithful": "yes",
+        "answer_used_record": "yes",
+        "record_necessary": "yes"
+      },
+      "necessityAdjudicated": "unknown"
+    }
+  },
+  "claudeCodeSmoke": {
+    "cliVersion": "2.1.283",
+    "provider": "APIMaster Anthropic-compatible endpoint",
+    "model": "claude-haiku-4-5",
+    "streamResult": "success",
+    "observedTools": [
+      {
+        "name": "repo_read",
+        "status": "ok"
+      },
+      {
+        "name": "repo_test",
+        "status": "ok"
+      }
+    ],
+    "cliExitCode": "UNKNOWN",
+    "wrapperErrorRetained": true,
+    "reportedInputTokens": 2726,
+    "reportedOutputTokens": 250,
+    "cliListPriceEstimateUsd": 0.003976,
+    "candidateBilledUsd": 0.000436
+  },
+  "usage": {
+    "codex": {
+      "connectionSmokes": {
+        "completedTurns": 3,
+        "inputTokens": 197754,
+        "cachedInputTokens": 166400,
+        "outputTokens": 455
+      },
+      "interruptedInitialCohort": {
+        "completedTurns": 3,
+        "inputTokens": 632732,
+        "cachedInputTokens": 554752,
+        "outputTokens": 2297
+      },
+      "repairedPairedCohort": {
+        "completedTurns": 8,
+        "inputTokens": 1941036,
+        "cachedInputTokens": 1762816,
+        "outputTokens": 8368
+      },
+      "adaptiveThirdSession": {
+        "completedTurns": 2,
+        "inputTokens": 385427,
+        "cachedInputTokens": 332672,
+        "outputTokens": 1834
+      },
+      "totalReported": {
+        "completedTurns": 16,
+        "inputTokens": 3156949,
+        "cachedInputTokens": 2816640,
+        "outputTokens": 12954
+      }
+    },
+    "interruptedCodexTurnUsage": "UNKNOWN",
+    "codexSubscriptionIncrementalCost": "UNKNOWN",
+    "apimasterReviews": {
+      "successfulRequests": 9,
+      "failedRequests": 0,
+      "inputTokens": 62553,
+      "outputTokens": 2329,
+      "cacheCreationInputTokens": 10078,
+      "candidateBilledUsd": 0.010208
+    },
+    "apimasterMatchedTotalUsd": 0.010644,
+    "billingMatch": "11 visible provider rows match timestamp, model and tokens; no per-request receipt match",
+    "computeStorageAndLabor": "UNKNOWN"
+  },
+  "limits": [
+    "two correlated Memex tasks, not 30-50 independent production tasks",
+    "selected real conversation excerpts and newly executed sessions, not an entire live long-duration deployment",
+    "the bridge task arose during this work and was adaptively rerun",
+    "AI reviews and audits are not human acceptance",
+    "the follow-up was selected after a memory write and cannot establish causal benefit",
+    "Claude Code exit status lost due to wrapper bookkeeping failure",
+    "DSH real-agent execution not run"
+  ]
+}

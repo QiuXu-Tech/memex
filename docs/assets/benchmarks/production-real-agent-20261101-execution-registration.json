@@ -1,0 +1,25 @@
+{
+  "kind": "codex-execution-registration",
+  "registeredAt": "2026-11-01T08:56:01.420429+00:00",
+  "priorManifestSha256": "1a6f5aeaac2cc3efb7650ab3256daad38ce9b5602713a23824d9cc36794c362a",
+  "runnerSha256": "276f8b2270561c3b35c9575704df0b6c02e70894ace67b5fa78601a3827497b6",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "low",
+  "sessionLimitSeconds": 180,
+  "provider": "Codex CLI using existing ChatGPT login",
+  "controls": "ignore user config; disable shell_tool, unified_exec, apps, plugins, remote_plugin and tool_suggest; stop on an unexpected tool; workspace-write in empty host directory, ephemeral fresh processes; pilot repo worker and sandbox are assigned per arm",
+  "memoryEnabledTools": [
+    "memory_write",
+    "memory_search",
+    "memory_open",
+    "memory_grep",
+    "memory_index",
+    "memory_list"
+  ],
+  "blindReviewers": [
+    "gpt-6.1-sol",
+    "claude-haiku-4-5"
+  ],
+  "adjudicator": "deepseek-flash",
+  "reviewPolicy": "Blind both arms after all available results; retain missing reviews and disagreements. No hidden retry of an ambiguous model call."
+}

@@ -1,0 +1,28 @@
+{
+  "kind": "adaptive-third-session-same-audit-task",
+  "registeredAt": "2026-11-01T09:05:06.396020+00:00",
+  "priorManifestSha256": "1a6f5aeaac2cc3efb7650ab3256daad38ce9b5602713a23824d9cc36794c362a",
+  "runnerSha256": "aa61b160fcea7e428df3c83d360cb6691f858d2201a75419a15a87446a11e846",
+  "model": "gpt-6.1-sol",
+  "reasoningEffort": "low",
+  "sessionLimitSeconds": 180,
+  "provider": "Codex CLI using existing ChatGPT login",
+  "controls": "ignore user config; disable shell_tool, unified_exec, apps, plugins, remote_plugin and tool_suggest; stop on an unexpected tool; workspace-write in empty host directory, ephemeral fresh processes; pilot repo worker and sandbox are assigned per arm",
+  "memoryEnabledTools": [
+    "memory_write",
+    "memory_search",
+    "memory_open",
+    "memory_grep",
+    "memory_index",
+    "memory_list"
+  ],
+  "blindReviewers": [
+    "gpt-6.1-sol",
+    "claude-haiku-4-5"
+  ],
+  "adjudicator": "deepseek-flash",
+  "reviewPolicy": "Blind both arms after all available results; retain missing reviews and disagreements. No hidden retry of an ambiguous model call.",
+  "selection": "Audit selected after observing a memory write in its second session; this adaptive follow-up is not a new independent task.",
+  "prompt": "Before adopting the earlier audit fix, review it against the available source, history and fixed tests. Report what is supported and any unresolved issue.",
+  "seed": 2026110120
+}

@@ -1,0 +1,16 @@
+{
+  "registeredAt": "2026-11-01T08:55:49.551979+00:00",
+  "manifestSha256": "1a6f5aeaac2cc3efb7650ab3256daad38ce9b5602713a23824d9cc36794c362a",
+  "models": [
+    "gpt-6.1-sol",
+    "claude-haiku-4-5"
+  ],
+  "adjudicator": "deepseek-flash",
+  "seed": 2026110119,
+  "rubric": {
+    "delivery": "0 no requested change or materially incorrect; 1 partial or uncertain; 2 fulfills stated acceptance, null unknown",
+    "sideEffects": "0 material regression; 1 uncertainty; 2 no apparent new concern; null unknown"
+  },
+  "conditions": "Anonymous randomized IDs; judge task, original source, acceptance and tests; preserve missing reviews and score/substantive disagreements. Answers may reveal conditions.",
+  "memoryAudit": "Link successful previous-session write to later successful open and final use; assess fidelity against source where available. Individual prompts do not require a memory call."
+}
