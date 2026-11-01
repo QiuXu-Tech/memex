@@ -1,0 +1,1436 @@
+{
+  "generatedAt": "2026-11-01 Asia/Shanghai",
+  "kind": "independent-public-issue-shadow-investigations",
+  "privateRegistrationSha256": "a5725bae2689dd3ae331c0ce73ed737f099258c2ba2ca58fb5f8937c56b52c06",
+  "counts": {
+    "registered": 30,
+    "pairedCompleted": 4,
+    "interruptedOrIncomplete": 1,
+    "notStarted": 25
+  },
+  "cohortTasks": [
+    {
+      "id": "T29",
+      "issueUrl": "https://github.com/qooxdoo/qooxdoo/issues/10738",
+      "sourceCommit": "bebc06480647dfc2c250662597d9cdd0e456358f",
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 5,
+                "pilot.repo_search:completed": 7,
+                "pilot.repo_read:completed": 12,
+                "pilot.archive_open:completed": 14,
+                "pilot.repo_read:failed": 1
+              },
+              "usage": [
+                {
+                  "input_tokens": 281721,
+                  "cached_input_tokens": 247296,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1836,
+                  "reasoning_output_tokens": 84
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 9,
+                "pilot.archive_open:completed": 7,
+                "pilot.repo_search:completed": 4,
+                "pilot.repo_read:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 229590,
+                  "cached_input_tokens": 208128,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1554,
+                  "reasoning_output_tokens": 62
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": -15,
+              "timeout": false,
+              "unexpectedTool": {
+                "type": "web_search",
+                "server": null,
+                "tool": null
+              },
+              "threadCount": 1,
+              "toolCalls": {},
+              "usage": []
+            }
+          ],
+          "usage": {
+            "turns": 2,
+            "input_tokens": 511311,
+            "cached_input_tokens": 455424,
+            "output_tokens": 3390,
+            "missingUsage": [
+              "T29-baseline-session3.json"
+            ]
+          }
+        }
+      },
+      "memexCommit": null,
+      "memexCommitInferred": null,
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "testScope": "Source and public issue investigation only. No project-specific executable acceptance test has been prepared; repo_test is disabled.",
+      "status": "interrupted or incomplete"
+    },
+    {
+      "id": "T24",
+      "issueUrl": "https://github.com/devcontainers/cli/issues/863",
+      "sourceCommit": "a190a3f86fe20b582c25c4dcb7bbf5fdb739ab26",
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 7,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_read:completed": 10
+              },
+              "usage": [
+                {
+                  "input_tokens": 181457,
+                  "cached_input_tokens": 128640,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1674,
+                  "reasoning_output_tokens": 28
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 6,
+                "pilot.archive_open:completed": 10,
+                "pilot.repo_search:completed": 2,
+                "pilot.repo_read:completed": 6,
+                "pilot.repo_read:failed": 1
+              },
+              "usage": [
+                {
+                  "input_tokens": 183255,
+                  "cached_input_tokens": 144384,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1546,
+                  "reasoning_output_tokens": 9
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 7,
+                "pilot.repo_read:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 136328,
+                  "cached_input_tokens": 112128,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1276,
+                  "reasoning_output_tokens": 0
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 501040,
+            "cached_input_tokens": 385152,
+            "output_tokens": 4496,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_search:completed": 7,
+                "pilot.archive_open:completed": 7,
+                "pilot.repo_read:completed": 8
+              },
+              "usage": [
+                {
+                  "input_tokens": 179158,
+                  "cached_input_tokens": 126848,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1776,
+                  "reasoning_output_tokens": 37
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 6,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_search:completed": 3,
+                "pilot.repo_read:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 220116,
+                  "cached_input_tokens": 195328,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1831,
+                  "reasoning_output_tokens": 24
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_grep:failed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 9,
+                "pilot.repo_read:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 190104,
+                  "cached_input_tokens": 166528,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1490,
+                  "reasoning_output_tokens": 0
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 589378,
+            "cached_input_tokens": 488704,
+            "output_tokens": 5097,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        }
+      },
+      "memexCommit": null,
+      "memexCommitInferred": "de00e08f805b447be9878c06989dc6038d2f2bdc",
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "testScope": "Source and public issue investigation only. No project-specific executable acceptance test has been prepared; repo_test is disabled.",
+      "status": "paired completed",
+      "blindKey": {
+        "C01": "memex",
+        "C02": "baseline"
+      },
+      "reviews": [
+        {
+          "model": "gpt-6.1-sol",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Captured reads support the Compose-to-UID flow and unchecked localhost prefix; the handoff correctly separates reporter claims from source evidence and discloses unrun reproduction. It proposes provider comparisons and image-identity checks, but does not specify mocked inspection cases for both naming conventions or deliver a concrete change avoiding the absent localhost image."
+            },
+            {
+              "id": "C02",
+              "score": 1,
+              "reason": "The diagnosis is supported by captured source and original logs, and historical reports and proposed tests are appropriately qualified. However, the final handoff offers runtime comparisons rather than mocked image-inspection cases for both providers, and leaves the change preventing an invalid localhost prefix unresolved."
+            }
+          ],
+          "error": null
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Partial. Diagnosis supported by source but not independently verified. C01 correctly identifies the image-name mismatch during UID adjustment (source lines 470, 3–4) and recognizes that the October 30 report (C7) adds CLI 0.90.0 and rootless Podman 5.8.9 as affected versions. It proposes reasonable test cases to resolve uncertainty. However: (1) no reproduction was run to confirm the failure persists; (2) the API-setting causality remains a commenter claim without controlled comparison; (3) proposed fixes (existence check, image ID) are not evaluated against edge cases (stale tags); (4) the exact regression boundary (0.58.0→0.59.1) is not bisected. The handoff accurately discloses that C7's observations and workarounds are unverified claims, not evidence of a working solution. Meets partial verification standard but lacks definitive reproduction or fix validation."
+            },
+            {
+              "id": "C02",
+              "score": 1,
+              "reason": "Partial. Diagnosis supported by source; causality and fix efficacy unverified. C02 correctly isolates the UID-adjustment step as the failure point (source dockerCompose.ts:399–406, containerFeatures.ts:470) and accurately notes that the October 30 report attributes the tag difference to Podman's Docker-compatible API with `compat_api_enforce_docker_hub`. It proposes systematic test comparisons and correctly identifies that an existence-only check could select a stale image. However: (1) no controlled reproduction was performed to confirm the API setting's role; (2) the reported workaround (`image: localhost/project-app`) is treated as unverified claim, not validated fix; (3) the BuildKit/additional-contexts failure is correctly separated but not independently tested; (4) the 0.58.0 success is noted but not bisected to isolate the introducing commit. The handoff appropriately avoids claiming a fix works and proposes verification steps. Meets the standard for identifying the blocking mechanism and proposing tests, but lacks runtime proof."
+            }
+          ],
+          "error": null
+        }
+      ]
+    },
+    {
+      "id": "T10",
+      "issueUrl": "https://github.com/josdejong/mathjs/issues/1305",
+      "sourceCommit": "20784452aa607b065461d07b0a20a2a4a617891b",
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 13,
+                "pilot.repo_read:completed": 12,
+                "pilot.archive_open:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 234637,
+                  "cached_input_tokens": 206208,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1779,
+                  "reasoning_output_tokens": 50
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_search:completed": 5,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_read:completed": 4
+              },
+              "usage": [
+                {
+                  "input_tokens": 115042,
+                  "cached_input_tokens": 99072,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1256,
+                  "reasoning_output_tokens": 12
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 4,
+                "pilot.archive_open:completed": 4,
+                "pilot.repo_read:failed": 4,
+                "pilot.repo_read:completed": 5
+              },
+              "usage": [
+                {
+                  "input_tokens": 124483,
+                  "cached_input_tokens": 110592,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1219,
+                  "reasoning_output_tokens": 0
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 474162,
+            "cached_input_tokens": 415872,
+            "output_tokens": 4254,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 4,
+                "memex.memory_search:completed": 1,
+                "pilot.repo_read:completed": 10,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_search:completed": 15
+              },
+              "usage": [
+                {
+                  "input_tokens": 226767,
+                  "cached_input_tokens": 195200,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1671,
+                  "reasoning_output_tokens": 39
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.archive_open:completed": 9,
+                "pilot.repo_read:completed": 7,
+                "pilot.repo_search:completed": 7
+              },
+              "usage": [
+                {
+                  "input_tokens": 128801,
+                  "cached_input_tokens": 109184,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1652,
+                  "reasoning_output_tokens": 70
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_grep:failed": 1,
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_search:completed": 3,
+                "pilot.archive_open:completed": 7,
+                "pilot.repo_read:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 181037,
+                  "cached_input_tokens": 160512,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1468,
+                  "reasoning_output_tokens": 26
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 536605,
+            "cached_input_tokens": 464896,
+            "output_tokens": 4791,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        }
+      },
+      "memexCommit": null,
+      "memexCommitInferred": "de00e08f805b447be9878c06989dc6038d2f2bdc",
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "testScope": "Source and public issue investigation only. No project-specific executable acceptance test has been prepared; repo_test is disabled.",
+      "status": "paired completed",
+      "blindKey": {
+        "C01": "baseline",
+        "C02": "memex"
+      },
+      "reviews": [
+        {
+          "model": "gpt-6.1-sol",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Captured reads support the precedence diagnosis and error path. The handoff compares the reported parenthesized control, assesses asymmetric precedence and conversion compatibility, and accurately discloses that runtime reproduction and tests remain unverified. However, it gives no concrete ordinary-arithmetic regression examples with expected results, leaving that acceptance criterion incomplete."
+            },
+            {
+              "id": "C02",
+              "score": 1,
+              "reason": "Captured reads support the grouping, error path, target restrictions, and rendering concern. The handoff explicitly compares both original forms, distinguishes reported reproduction from independent verification, and proposes conversion compatibility checks for both aliases. However, it omits concrete ordinary-arithmetic regression examples with expected results, so it does not fully meet the frozen acceptance."
+            }
+          ],
+          "error": null
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Diagnoses parser precedence correctly via source inspection. Identifies the grouping `(10 km) in (meters + 100 meters)` and traces the error to valueless Unit rejection in addScalar.js. Reports C6 as a later reproduction on mathjs 15.2.0 demo with both operators. Proposes asymmetric precedence as a candidate direction but explicitly disclaims completion: 'does not establish that a fix exists.' No implementation, no tests run. Incomplete against acceptance criteria requiring comparison of unparenthesized vs. parenthesized control, precedence assessment, and regression examples."
+            },
+            {
+              "id": "C02",
+              "score": 1,
+              "reason": "Strengthens diagnosis with source evidence and reports C6 as a recent public reproduction on 15.2.0. Proposes asymmetric precedence (additive left, multiplicative right) with concrete target examples (compound units, function returns). Explicitly states the proposal 'does not establish that a fix has landed' and notes parsing incompleteness ('merely narrowing the RHS parser is insufficient'). Identifies backward-compatibility unknowns and rendering instability. No independent runtime verification, no tests executed. Fails acceptance criteria: proposed but unimplemented direction; no comparison of both aliases or regression assertions."
+            }
+          ],
+          "error": null
+        }
+      ],
+      "adjudication": {
+        "model": "deepseek-flash",
+        "status": "ok",
+        "ratings": [
+          {
+            "id": "C01",
+            "score": 1,
+            "reason": "Captured source reads support the precedence diagnosis: parseConversion uses parseRange for both operands, so the expression groups as to(10*km, meters+100*meters), and addScalar rejects the valueless Unit. The handoff compares the unparenthesized failure with the reported parenthesized control and covers both in/to aliases, while clearly labeling C6 as a reported reproduction and all tests as not run. It also assesses the asymmetric-precedence proposal and its compatibility pitfalls. Gap: it gives no concrete ordinary-arithmetic regression examples with expected results, so the frozen acceptance is only partially met."
+          },
+          {
+            "id": "C02",
+            "score": 1,
+            "reason": "Captured reads support the same grouping and error path, plus the Unit.to valueless-target restriction and the operators.js precedence-table concern. The handoff explicitly compares both original forms, covers both in and to, and distinguishes the reported 15.2.0 reproduction from independent verification; proposed checks are clearly not executed. It also assesses the asymmetric-precedence proposal and required target forms. Gap: it likewise omits concrete ordinary-arithmetic regression examples with expected results, leaving the frozen acceptance incomplete."
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "T19",
+      "issueUrl": "https://github.com/elysiajs/elysia/issues/1515",
+      "sourceCommit": "e037eca710e7ad193be09cc6615ab0dbe54af914",
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 14,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_read:completed": 12
+              },
+              "usage": [
+                {
+                  "input_tokens": 231729,
+                  "cached_input_tokens": 187776,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1599,
+                  "reasoning_output_tokens": 8
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 4,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 10,
+                "pilot.repo_read:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 149049,
+                  "cached_input_tokens": 111488,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1488,
+                  "reasoning_output_tokens": 23
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_read:completed": 6
+              },
+              "usage": [
+                {
+                  "input_tokens": 134491,
+                  "cached_input_tokens": 111360,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1379,
+                  "reasoning_output_tokens": 0
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 515269,
+            "cached_input_tokens": 410624,
+            "output_tokens": 4466,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 3,
+                "pilot.archive_open:completed": 5,
+                "pilot.repo_search:completed": 11,
+                "pilot.repo_read:completed": 14
+              },
+              "usage": [
+                {
+                  "input_tokens": 226486,
+                  "cached_input_tokens": 173568,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1924,
+                  "reasoning_output_tokens": 36
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 5,
+                "pilot.archive_open:completed": 11,
+                "pilot.repo_search:completed": 4,
+                "pilot.repo_read:completed": 9
+              },
+              "usage": [
+                {
+                  "input_tokens": 272519,
+                  "cached_input_tokens": 230016,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1824,
+                  "reasoning_output_tokens": 30
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_grep:completed": 1,
+                "pilot.archive_search:completed": 1,
+                "pilot.repo_search:completed": 1,
+                "pilot.archive_open:completed": 7,
+                "pilot.repo_read:completed": 8
+              },
+              "usage": [
+                {
+                  "input_tokens": 187099,
+                  "cached_input_tokens": 156032,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1576,
+                  "reasoning_output_tokens": 9
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 686104,
+            "cached_input_tokens": 559616,
+            "output_tokens": 5324,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        }
+      },
+      "memexCommit": "788c8415c406af076e7566e5879be7206477f846",
+      "memexCommitInferred": null,
+      "armOrder": [
+        "baseline",
+        "memex"
+      ],
+      "testScope": "Source and public issue investigation only. No project-specific executable acceptance test has been prepared; repo_test is disabled.",
+      "status": "paired completed",
+      "blindKey": {
+        "C01": "memex",
+        "C02": "baseline"
+      },
+      "reviews": [
+        {
+          "model": "gpt-6.1-sol",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 2,
+              "reason": "Captured reads support the distinction between returned bundle values and native bundle handlers, conditional JSON serialization, and route-export/merge concerns. Covers SPA deep links, mounted API precedence, unknown API 404s, and local HTTP/asset tests. Explicitly discloses version differences and unexecuted tests; the other framework's historical success report does not verify Elysia behavior."
+            },
+            {
+              "id": "C02",
+              "score": 2,
+              "reason": "Meets the investigation criteria with source-supported bundle-handler distinctions, qualified API-interception hypotheses, and proposed fallback/API/asset tests. Explains why Bun native routing requires a listening-server check and distinguishes built HTML from bundling/HMR. Treats historical workarounds as reports and explicitly leaves runtime reproduction unverified."
+            }
+          ],
+          "error": null
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Partial investigation; distinguishes bundle serialization from native registration but lacks verification. Source inspection supports two separate issues (error serialization via mapResponse, native-route precedence) and confirms the earlier diagnosis. However, no runtime reproduction, no verification of the original version's behavior, and no tested workarounds. History shows conflicting reports: C5 reports `/api/*: false` failing for `/api`, C19 leaves Better Auth untested, C20 demonstrates success in a different framework but not Elysia. Proposal lists 5 verification steps, none executed. Correctly identifies unverified conditions (bundle runtime representation, actual Bun precedence, merge behavior under collisions). Reflects the frozen acceptance criteria only to the extent that distinguishing bundle return from bundle registration is evidence-adjacent, not sufficient."
+            },
+            {
+              "id": "C02",
+              "score": 1,
+              "reason": "Partial investigation; same depth as C01 with clearer framing of uncertainty. Confirms source paths (compose.ts, mapResponse, handler-native.ts, mergeRoutes) and identifies two materiially different mechanisms (.get('/*', index) vs .get('/*', () => index)). Correctly notes that adding Content-Type alone does not convert bundle metadata. Acknowledges history limitations (C19 untested better-auth, C20 different framework, mergeRoutes does not replace truthy with false). Proposes 6 verification tests with explicit assertion targets (bundle representation, status, content-type, asset loading, handler execution). Does not run any tests or execute reproductions. Meets frozen acceptance only weakly: distinguishing the two paths is stated but not demonstrated; API preservation and SPA deep links remain unverified; no local tests proposed for the reported 'single-level' or better-auth interactions."
+            }
+          ],
+          "error": null
+        }
+      ],
+      "adjudication": {
+        "model": "deepseek-flash",
+        "status": "ok",
+        "ratings": [
+          {
+            "id": "C01",
+            "score": 2,
+            "reason": "Source reads support the core distinctions: onError results pass through mapResponse where Object/Array become Response.json (src/adapter/bun/handler.ts:32-38), while non-function bundle handlers take a separate native path preserving HTMLBundle (src/adapter/bun/handler-native.ts:32-41). It covers SPA deep links, mounted API precedence, unknown-API 404s, and proposes concrete local HTTP/asset tests. It properly qualifies uncertainty (bundle runtime representation, version mismatch 1.4.13 vs 1.4.30, unexecuted tests) and does not overclaim the other-framework report as an Elysia fix."
+          },
+          {
+            "id": "C02",
+            "score": 2,
+            "reason": "Meets acceptance with source-supported separation of returned-bundle serialization versus native bundle registration, qualified API-interception hypotheses, and proposed fallback/API/asset tests including listening-server checks. It correctly notes Content-Type alone does not convert bundle metadata, treats historical workarounds as reports, and explicitly leaves runtime reproduction unverified. Depth and evidence are comparable to C01; the partial-score rationale understates the source-backed distinctions and test coverage."
+          }
+        ],
+        "error": null
+      }
+    },
+    {
+      "id": "T06",
+      "issueUrl": "https://github.com/pyodide/pyodide/issues/4139",
+      "sourceCommit": "950e0de49536778f2d7a0efc825e932d812be9e7",
+      "arms": {
+        "baseline": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 8,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_read:completed": 4
+              },
+              "usage": [
+                {
+                  "input_tokens": 128379,
+                  "cached_input_tokens": 98688,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1371,
+                  "reasoning_output_tokens": 7
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 4,
+                "pilot.repo_search:completed": 4,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_read:completed": 3
+              },
+              "usage": [
+                {
+                  "input_tokens": 121315,
+                  "cached_input_tokens": 104064,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1262,
+                  "reasoning_output_tokens": 12
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 3,
+                "pilot.repo_search:completed": 2,
+                "pilot.archive_open:completed": 9,
+                "pilot.repo_read:failed": 2,
+                "pilot.repo_read:completed": 3
+              },
+              "usage": [
+                {
+                  "input_tokens": 154455,
+                  "cached_input_tokens": 137856,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1347,
+                  "reasoning_output_tokens": 8
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 404149,
+            "cached_input_tokens": 340608,
+            "output_tokens": 3980,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        },
+        "memex": {
+          "sessions": [
+            {
+              "stage": "session1",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.archive_open:completed": 6,
+                "pilot.repo_search:completed": 10,
+                "pilot.repo_read:completed": 12,
+                "pilot.repo_read:failed": 1
+              },
+              "usage": [
+                {
+                  "input_tokens": 214579,
+                  "cached_input_tokens": 184064,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1885,
+                  "reasoning_output_tokens": 116
+                }
+              ]
+            },
+            {
+              "stage": "session2",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "pilot.archive_search:completed": 3,
+                "memex.memory_search:completed": 1,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_search:completed": 5,
+                "pilot.repo_read:completed": 4,
+                "pilot.repo_read:failed": 1
+              },
+              "usage": [
+                {
+                  "input_tokens": 161697,
+                  "cached_input_tokens": 140928,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1629,
+                  "reasoning_output_tokens": 41
+                }
+              ]
+            },
+            {
+              "stage": "session3",
+              "exitCode": 0,
+              "timeout": false,
+              "unexpectedTool": null,
+              "threadCount": 1,
+              "toolCalls": {
+                "memex.memory_search:completed": 1,
+                "memex.memory_grep:completed": 1,
+                "pilot.archive_search:completed": 2,
+                "pilot.repo_search:completed": 5,
+                "pilot.archive_open:completed": 8,
+                "pilot.repo_read:completed": 4
+              },
+              "usage": [
+                {
+                  "input_tokens": 174889,
+                  "cached_input_tokens": 153088,
+                  "cache_write_input_tokens": 0,
+                  "output_tokens": 1573,
+                  "reasoning_output_tokens": 32
+                }
+              ]
+            }
+          ],
+          "usage": {
+            "turns": 3,
+            "input_tokens": 551165,
+            "cached_input_tokens": 478080,
+            "output_tokens": 5087,
+            "missingUsage": []
+          },
+          "sessionsCompleted": 3,
+          "threeDistinctThreads": true,
+          "testStatus": "NOT RUN: no task-specific acceptance verifier was prepared"
+        }
+      },
+      "memexCommit": "788c8415c406af076e7566e5879be7206477f846",
+      "memexCommitInferred": null,
+      "armOrder": [
+        "memex",
+        "baseline"
+      ],
+      "testScope": "Source and public issue investigation only. No project-specific executable acceptance test has been prepared; repo_test is disabled.",
+      "status": "paired completed",
+      "blindKey": {
+        "C01": "memex",
+        "C02": "baseline"
+      },
+      "reviews": [
+        {
+          "model": "gpt-6.1-sol",
+          "status": "ok",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Correctly explains source-backed partial-line buffering, newline stripping, fsync delivery, and workarounds, while disclosing no runtime tests. However, the asserted checkout version 314.1.0-dev.0 and package.json citation are unsupported by the supplied excerpt or captured reads; historical traces do not verify the pinned runtime."
+            },
+            {
+              "id": "C02",
+              "score": 2,
+              "reason": "Carefully delimits reported partial-write/flush/later-newline behavior from source-supported StringWriter mechanics, distinguishes documentation expectations from Python/filesystem buffering, and describes raw/write and fsync workarounds. Explicitly leaves artifact versions, runtime reproduction, and modern workaround validation unverified, with concrete Node/browser-worker setup and verification steps; does not claim executed tests."
+            }
+          ],
+          "error": null
+        },
+        {
+          "model": "claude-haiku-4-5",
+          "status": "ok",
+          "ratings": null,
+          "error": "Expecting ',' delimiter: line 6 column 214 (char 276)"
+        }
+      ],
+      "adjudication": {
+        "model": "deepseek-flash",
+        "status": "ok",
+        "ratings": [
+          {
+            "id": "C01",
+            "score": 2,
+            "reason": "Source-backed explanation of StringWriter buffering, newline stripping, fsync delivery, and raw/write workarounds; the disputed checkout version 314.1.0-dev.0 is confirmed by additionalEvidence package.json. It appropriately qualifies historical traces and C7 as unverified runtime reports and does not claim executed tests."
+          },
+          {
+            "id": "C02",
+            "score": 2,
+            "reason": "Carefully delimits reported partial-write/flush/later-newline behavior from source-supported StringWriter mechanics, distinguishes documentation expectations from Python/filesystem buffering, and describes raw/write and fsync workarounds with concrete Node/browser verification steps. It explicitly leaves runtime reproduction and modern workaround validation unverified and does not claim executed tests."
+          }
+        ],
+        "error": null
+      },
+      "posthocReviewRecovery": {
+        "registration": {
+          "registeredAt": "2026-11-01T10:27:59.183363+00:00",
+          "kind": "post-hoc deterministic JSON recovery; preserve invalid original",
+          "gatewayLogSha256": "d0f99a3b84a88d3a05cc930948af6bc1e90232168540dab5603a06204c013fcc",
+          "originalResponseSha256": "f1af947d828102936a2183cff7d1ae53a5574fb379d1edf7aeb60e3a139fb02f",
+          "rule": "For each single-line reason string only, escape unescaped inner quote characters; abort if reason contains a backslash or recovered schema/IDs differ. No scores or reason words changed."
+        },
+        "originalResponse": "```json\n{\n  \"candidates\": [\n    {\n      \"id\": \"C01\",\n      \"score\": 1,\n      \"reason\": \"Partial and incomplete. Correctly identifies the two-buffer explanation (Python flush → driver write, but not StringWriter.fsync) and maps source locations accurately. However, the handoff lists \"tests that would resolve uncertainty\" rather than executing them. The distinction between \"still unverified\" and \"evidence-supported\" is acknowledged but not resolved. The handoff properly qualifies the C7 reproduction as unindependently verified and notes the issue remains open, but does not reproduce or delimit the behavior against the frozen acceptance criteria. No runtime verification was performed.\"\n    },\n    {\n      \"id\": \"C02\",\n      \"score\": 1,\n      \"reason\": \"Partial and incomplete. Establishes the same two-buffer mechanism with correct source references (StringWriter.write accumulates until newline; fsync emits partial text). Accurately reports C7 as a modern reproduction showing buffering rather than loss, and correctly notes the issue remains open and no decision was made. However, like C01, it proposes verification steps rather than executing them. The frozen acceptance requires reproduction and distinction of documented vs. actual behavior; this handoff identifies the discrepancy but does not run tests to confirm current behavior, prompt ordering, or close semantics. No runtime work was performed.\"\n    }\n  ]\n}\n```",
+        "recovered": {
+          "model": "claude-haiku-4-5",
+          "status": "posthoc_mechanically_recovered",
+          "ratings": [
+            {
+              "id": "C01",
+              "score": 1,
+              "reason": "Partial and incomplete. Correctly identifies the two-buffer explanation (Python flush → driver write, but not StringWriter.fsync) and maps source locations accurately. However, the handoff lists \"tests that would resolve uncertainty\" rather than executing them. The distinction between \"still unverified\" and \"evidence-supported\" is acknowledged but not resolved. The handoff properly qualifies the C7 reproduction as unindependently verified and notes the issue remains open, but does not reproduce or delimit the behavior against the frozen acceptance criteria. No runtime verification was performed."
+            },
+            {
+              "id": "C02",
+              "score": 1,
+              "reason": "Partial and incomplete. Establishes the same two-buffer mechanism with correct source references (StringWriter.write accumulates until newline; fsync emits partial text). Accurately reports C7 as a modern reproduction showing buffering rather than loss, and correctly notes the issue remains open and no decision was made. However, like C01, it proposes verification steps rather than executing them. The frozen acceptance requires reproduction and distinction of documented vs. actual behavior; this handoff identifies the discrepancy but does not run tests to confirm current behavior, prompt ordering, or close semantics. No runtime work was performed."
+            }
+          ],
+          "originalError": "unescaped inner quotes in reason strings",
+          "method": "escape inner quotes within single-line reason strings only"
+        },
+        "sourceSupplement": {
+          "kind": "post-hoc supplement of source/read omitted by packet clipping",
+          "sourceCommit": "950e0de49536778f2d7a0efc825e932d812be9e7",
+          "path": "src/js/package.json",
+          "sourceFileSha256": "69eac3bf25385f8d34f8ab66fdb8eb66438cb40a9a6aff82436e8b2bb027b9f4",
+          "sourceExcerpt": "{\n  \"name\": \"pyodide\",\n  \"version\": \"314.1.0-dev.0\",\n  \"description\": \"The Pyodide JavaScript package\",\n  \"keywords\": [\n    \"python\",",
+          "candidate": "C01",
+          "capturedSuccessfulRead": {
+            "path": "src/js/package.json",
+            "start": 1,
+            "excerpt": "1: {\n2:   \"name\": \"pyodide\",\n3:   \"version\": \"314.1.0-dev.0\",\n4:   \"description\": \"The Pyodide JavaScript package\",\n5:   \"keywords\": [\n6:     \"python\","
+          }
+        }
+      }
+    }
+  ],
+  "separateKrknPilot": {
+    "issueUrl": "https://github.com/krkn-chaos/krkn/issues/1404",
+    "sourceCommit": "ffa9eb2041a5e928b8659959507f89f7a535782a",
+    "scope": "application_outage rollback guard only",
+    "sandboxMockAcceptancePassed": "2/2 arms",
+    "independentRealAgentSessionsPerArm": 3,
+    "memoryLifecycle": "Session 2 wrote; session 3 opened the same record and cited it. Archive and source provided overlapping evidence; necessity unknown.",
+    "blindKey": {
+      "C01": "memex",
+      "C02": "baseline"
+    },
+    "reviews": [
+      {
+        "model": "gpt-6.1-sol",
+        "status": "ok",
+        "ratings": [
+          {
+            "id": "C01",
+            "delivery": 2,
+            "side_effects": 2,
+            "handoff": 1,
+            "reason": "The single-file guard returns 1 before policy mutations on False; the existing exception handler covers registration exceptions, and successful creation/deletion remains intact. The supplied harness checks these paths but bypasses the decorator and mocks external APIs. No material regression found. Handoff includes runner behavior and archive claims unsupported by the supplied evidence."
+          },
+          {
+            "id": "C02",
+            "delivery": 2,
+            "side_effects": 2,
+            "handoff": 1,
+            "reason": "Functionally identical to C01: the single-file guard satisfies the scoped failure and success requirements, with no material regression found. The harness checks both registration failures and the successful lifecycle, but excludes decorator and real integration behavior. Handoff appropriately limits issue-wide conclusions, yet its runner and additional archive claims lack supplied supporting evidence."
+          }
+        ],
+        "error": null
+      },
+      {
+        "model": "claude-haiku-4-5",
+        "status": "ok",
+        "ratings": [
+          {
+            "id": "C01",
+            "delivery": 2,
+            "side_effects": 2,
+            "handoff": 2,
+            "reason": "Patch correctly checks set_rollback_callable() return value and returns 1 before NetworkPolicy creation on false or exception. Test passed. Registration failure and exception paths abort without cluster mutation; successful registration preserves create→wait→delete lifecycle. Handoff accurately scopes the fix to application_outage only and documents the seven remaining callers (hogs, zone_outage, shut_down, storage_throttle, http_load, syn_flood, service_hijacking) as historical backlog requiring separate work."
+          },
+          {
+            "id": "C02",
+            "delivery": 2,
+            "side_effects": 2,
+            "handoff": 2,
+            "reason": "Patch is functionally identical to C01: checks return value, returns 1 on failure before creation, preserves success path. Test passed. Only cosmetic difference: extra blank line before create_net_policy call. Handoff is equally accurate in scoping to application_outage and deferring the seven other callers, with explicit reference to archived PR #1533 and plugin-specific pre-patch considerations (deployment/patching sequencing in http_load, syn_flood, service_hijacking)."
+          }
+        ],
+        "error": null
+      }
+    ],
+    "adjudication": {
+      "model": "deepseek-flash",
+      "status": "ok",
+      "ratings": [
+        {
+          "id": "C01",
+          "handoff": 2,
+          "reason": "With the supplemented runner source and S1/S2 outputs, the handoff's runner claim (nonzero selects rollback handling, records telemetry/failure, continues the loop rather than aborting the scenario list) is supported, as is the application_outage-only scope and the historical seven-caller backlog. Remaining unsupported assertion: the handoff says the test implementation is not exposed and its precise assertions cannot be independently reviewed, but the supplied testHarness shows the assertions; this is a minor overstatement, not a material error."
+        },
+        {
+          "id": "C02",
+          "handoff": 2,
+          "reason": "Same as C01: runner behavior, scoped fix, and historical backlog are now supported by the supplement. Remaining unsupported assertion: it claims the test source was not exposed through repository search and its mocks/assertions could not be independently reviewed, whereas the supplied testHarness contains them; minor overstatement only."
+        }
+      ],
+      "error": null
+    },
+    "reviewAudit": {
+      "observation": "The two blinded reviewers agreed on delivery and side effects, but disagreed on the supplemental handoff score. The first packet omitted runner source and S1/S2 outputs. The adjudication supplied them and rated both handoffs 2/2; original ratings remain unchanged.",
+      "correctionToAdjudicator": "The adjudicator said the agents' statements that the assigned test implementation was not exposed were unsupported because the reviewer packet included the test harness. That confuses reviewer access with agent access: the worker reads only its assigned workspace, the fixed verifier is stored separately under the checks root, and repo_test returns only status, exit code and output. The agents did not receive the verifier through their tools. This independent correction is not an additional model rating.",
+      "evidence": [
+        "scripts/prospective-agent-worker-v4.py safe_path and public_test",
+        "Krkn fixed VM workspace/check directory assignments",
+        "krkn-review-packet.json testHarness field",
+        "krkn-adjudication.json original opinions"
+      ]
+    }
+  },
+  "codexUsage": {
+    "krkn": {
+      "turns": 6,
+      "input_tokens": 1251010,
+      "cached_input_tokens": 1108864,
+      "output_tokens": 7682,
+      "missingUsage": []
+    },
+    "cohort": {
+      "turns": 26,
+      "input_tokens": 4769183,
+      "cached_input_tokens": 3998976,
+      "output_tokens": 40885,
+      "missingUsage": [
+        "T29-baseline-session3.json"
+      ]
+    },
+    "syntheticSmokes": {
+      "turns": 2,
+      "input_tokens": 59935,
+      "cached_input_tokens": 41216,
+      "output_tokens": 252,
+      "missingUsage": []
+    },
+    "total": {
+      "turns": 34,
+      "input_tokens": 6080128,
+      "cached_input_tokens": 5149056,
+      "output_tokens": 48819,
+      "missingUsage": [
+        "T29-baseline-session3.json"
+      ]
+    },
+    "cachedInputIncludedInInput": true
+  },
+  "gatewayReviewCalls": [
+    {
+      "operation": "T06-blind:gpt-6.1-sol",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "promptTokens": 46007,
+      "completionTokens": 234,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "T06-blind:claude-haiku-4-5",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "promptTokens": 28510,
+      "completionTokens": 324,
+      "cacheCreationTokens": 28507
+    },
+    {
+      "operation": "T06-adjudication",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "promptTokens": 25333,
+      "completionTokens": 166,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "T10-blind:gpt-6.1-sol",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "promptTokens": 26994,
+      "completionTokens": 237,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "T10-blind:claude-haiku-4-5",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "promptTokens": 27826,
+      "completionTokens": 345,
+      "cacheCreationTokens": 27823
+    },
+    {
+      "operation": "T10-adjudication",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "promptTokens": 23761,
+      "completionTokens": 259,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "T19-blind:gpt-6.1-sol",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "promptTokens": 62538,
+      "completionTokens": 249,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "T19-blind:claude-haiku-4-5",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "promptTokens": 49760,
+      "completionTokens": 453,
+      "cacheCreationTokens": 49757
+    },
+    {
+      "operation": "T19-adjudication",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "promptTokens": 37289,
+      "completionTokens": 257,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "T24-blind:gpt-6.1-sol",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "promptTokens": 30463,
+      "completionTokens": 179,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "T24-blind:claude-haiku-4-5",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "promptTokens": 34502,
+      "completionTokens": 534,
+      "cacheCreationTokens": 34499
+    },
+    {
+      "operation": "krkn-blind:gpt-6.1-sol",
+      "model": "gpt-6.1-sol",
+      "status": "ok",
+      "promptTokens": 33611,
+      "completionTokens": 431,
+      "cacheCreationTokens": 0
+    },
+    {
+      "operation": "krkn-blind:claude-haiku-4-5",
+      "model": "claude-haiku-4-5",
+      "status": "ok",
+      "promptTokens": 8826,
+      "completionTokens": 338,
+      "cacheCreationTokens": 8823
+    },
+    {
+      "operation": "krkn-adjudication",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "promptTokens": 10479,
+      "completionTokens": 206,
+      "cacheCreationTokens": 0
+    }
+  ],
+  "billingCandidate": {
+    "source": "APIMaster common usage-log visible wallet rows checked 2026-11-01 Asia/Shanghai",
+    "matching": "model, timestamp, reported input and output; cache creation included in input; no request-receipt linkage",
+    "rows": [
+      {
+        "operation": "krkn-blind:gpt-6.1-sol",
+        "time": "2026-11-01 17:57:02",
+        "model": "gpt-6.1-sol",
+        "inputIncludingCacheCreation": 33611,
+        "cacheCreation": 0,
+        "output": 431,
+        "walletUsd": "0.005500"
+      },
+      {
+        "operation": "krkn-blind:claude-haiku-4-5",
+        "time": "2026-11-01 17:57:07",
+        "model": "claude-haiku-4-5",
+        "inputIncludingCacheCreation": 8826,
+        "cacheCreation": 8823,
+        "output": 338,
+        "walletUsd": "0.001398"
+      },
+      {
+        "operation": "krkn-adjudication",
+        "time": "2026-11-01 17:57:49",
+        "model": "deepseek-flash",
+        "inputIncludingCacheCreation": 10479,
+        "cacheCreation": 0,
+        "output": 206,
+        "walletUsd": "0.001068"
+      },
+      {
+        "operation": "T24-blind:gpt-6.1-sol",
+        "time": "2026-11-01 18:15:21",
+        "model": "gpt-6.1-sol",
+        "inputIncludingCacheCreation": 30463,
+        "cacheCreation": 0,
+        "output": 179,
+        "walletUsd": "0.004822"
+      },
+      {
+        "operation": "T24-blind:claude-haiku-4-5",
+        "time": "2026-11-01 18:15:30",
+        "model": "claude-haiku-4-5",
+        "inputIncludingCacheCreation": 34502,
+        "cacheCreation": 34499,
+        "output": 534,
+        "walletUsd": "0.005030"
+      },
+      {
+        "operation": "T10-blind:gpt-6.1-sol",
+        "time": "2026-11-01 18:17:05",
+        "model": "gpt-6.1-sol",
+        "inputIncludingCacheCreation": 26994,
+        "cacheCreation": 0,
+        "output": 237,
+        "walletUsd": "0.004332"
+      },
+      {
+        "operation": "T10-blind:claude-haiku-4-5",
+        "time": "2026-11-01 18:17:13",
+        "model": "claude-haiku-4-5",
+        "inputIncludingCacheCreation": 27826,
+        "cacheCreation": 27823,
+        "output": 345,
+        "walletUsd": "0.004010"
+      },
+      {
+        "operation": "T10-adjudication",
+        "time": "2026-11-01 18:17:53",
+        "model": "deepseek-flash",
+        "inputIncludingCacheCreation": 23761,
+        "cacheCreation": 0,
+        "output": 259,
+        "walletUsd": "0.002344"
+      },
+      {
+        "operation": "T19-blind:gpt-6.1-sol",
+        "time": "2026-11-01 18:26:50",
+        "model": "gpt-6.1-sol",
+        "inputIncludingCacheCreation": 62538,
+        "cacheCreation": 0,
+        "output": 249,
+        "walletUsd": "0.009806"
+      },
+      {
+        "operation": "T19-blind:claude-haiku-4-5",
+        "time": "2026-11-01 18:26:59",
+        "model": "claude-haiku-4-5",
+        "inputIncludingCacheCreation": 49760,
+        "cacheCreation": 49757,
+        "output": 453,
+        "walletUsd": "0.007082"
+      },
+      {
+        "operation": "T19-adjudication",
+        "time": "2026-11-01 18:27:27",
+        "model": "deepseek-flash",
+        "inputIncludingCacheCreation": 37289,
+        "cacheCreation": 0,
+        "output": 257,
+        "walletUsd": "0.003620"
+      },
+      {
+        "operation": "T06-blind:gpt-6.1-sol",
+        "time": "2026-11-01 18:27:06",
+        "model": "gpt-6.1-sol",
+        "inputIncludingCacheCreation": 46007,
+        "cacheCreation": 0,
+        "output": 234,
+        "walletUsd": "0.007254"
+      },
+      {
+        "operation": "T06-blind:claude-haiku-4-5",
+        "time": "2026-11-01 18:27:14",
+        "model": "claude-haiku-4-5",
+        "inputIncludingCacheCreation": 28510,
+        "cacheCreation": 28507,
+        "output": 324,
+        "walletUsd": "0.004092"
+      },
+      {
+        "operation": "T06-adjudication",
+        "time": "2026-11-01 18:28:14",
+        "model": "deepseek-flash",
+        "inputIncludingCacheCreation": 25333,
+        "cacheCreation": 0,
+        "output": 166,
+        "walletUsd": "0.002456"
+      }
+    ],
+    "candidateSubtotalUsd": "0.062814"
+  },
+  "limits": [
+    "The 30 tasks are historical public-issue investigations, not 30 completed online production tasks.",
+    "Project-specific executable acceptance was unavailable for cohort tasks; no cohort code-fix test passed is asserted.",
+    "The issue body is the latest captured version, early comments are replayed against a newer pinned commit, and discussions can contain proposed solutions.",
+    "Different owners and repositories do not prove statistical independence; tasks are purposively selected.",
+    "AI reviewer provenance is based on gateway response metadata and is not independently verified.",
+    "Registration was written locally before calls, not independently timestamped before outcomes; raw traces and input snapshots remain private.",
+    "T24/T10 execution registrations did not record a Memex server hash; the old commit is inferred from local repository history and the execution timeline.",
+    "Interrupted usage, ChatGPT subscription allocation, compute, storage and human effort remain unknown."
+  ]
+}
