@@ -26,6 +26,18 @@ def zero_usage_with_charge(event):
  usage=event.get('usage');price=event.get('total_cost_usd')
  return bool(isinstance(usage,dict) and isinstance(price,(int,float)) and price>0 and
              all(usage.get(k)==0 for k in ('input_tokens','cache_creation_input_tokens','cache_read_input_tokens','output_tokens')))
+def classify_tool_attempts(events,allowed):
+ outcomes={x.get('tool_use_id'):x for e in events if e.get('type')=='user' for x in (e.get('message') or {}).get('content',[]) if x.get('type')=='tool_result'}
+ unexpected=[];unavailable=[]
+ for e in events:
+  if e.get('type')!='assistant':continue
+  for x in (e.get('message') or {}).get('content',[]):
+   if x.get('type')!='tool_use' or x.get('name') in allowed:continue
+   name=x.get('name');result=outcomes.get(x.get('id')) or {};content=result.get('content')
+   text=content if isinstance(content,str) else json.dumps(content,ensure_ascii=False)
+   if result.get('is_error') is True and f'No such tool available: {name}' in text:unavailable.append(name)
+   else:unexpected.append(name)
+ return unexpected,unavailable
 def cmd(*args,timeout=120):return subprocess.run(args,check=True,capture_output=True,text=True,timeout=timeout).stdout.strip()
 def remote(*args,timeout=120):return cmd('limactl','shell',VM,'--',*args,timeout=timeout)
 def vwork(t,arm):return f'{VROOT}/workspaces/triage-recovery-20261102/{t["id"]}/{arm}'
@@ -51,6 +63,7 @@ def prepare():
   'timeoutSeconds':TIMEOUT,'maxConcurrentTasks':CONCURRENCY,
   'primaryAssessment':'Blinded AI rating of issue-specific triage quality using issue, discussion, candidate source excerpts and stated uncertainty; no claim of patch correctness.',
   'controls':'Both arms receive identical issue text, staged discussion, read-only source tools, and searchable handoffs from their own earlier sessions. Treatment additionally has Memex hooks and memory tools.',
+  'completionRule':'Require nonempty successful final responses in two distinct client sessions. A nonexistent tool name explicitly rejected as unavailable is logged but is not treated as an executed unauthorized tool; other unapproved or ambiguous calls remain failures.',
   'stopping':'No fixed tool-call count. After an initial budget exhaustion, allow one tool-free resumed finalization in that same session; retain both attempts. Run two randomly ordered tasks first, then the rest with the same protocol. Preserve failures and incomplete pairs. Stop starting sessions at aggregate client-list target; unknown usage is conservatively budgeted at the per-session reservation.',
   'limits':['Thirty further distinct repository owners and public historical issue discussions, selected after the original trial began; report the cohorts separately. Sessions are compressed into a replay, not live production work.',
             'Public issue details may be in model training; pinned source can postdate the discussion.',
@@ -173,10 +186,10 @@ def session(t,arm,stage,key):
    event=next((e for e in reversed(last['events']) if e.get('type')=='result'),None) or {}
    recovery={'status':event.get('subtype','NO_RESULT'),'sessionId':event.get('session_id'),'usage':event.get('usage'),
              'cumulativeClientListPriceUsd':event.get('total_cost_usd'),'exitCode':last['exitCode'],'timeout':last['timeout']}
-  unexpected=[x.get('name') for e in first['events'] if e.get('type')=='assistant' for x in (e.get('message') or {}).get('content',[])
-              if x.get('type')=='tool_use' and x.get('name') not in allowed]
+  unexpected,unavailable=classify_tool_attempts(first['events'],allowed)
   if recovery:
-   unexpected += [x.get('name') for e in last['events'] if e.get('type')=='assistant' for x in (e.get('message') or {}).get('content',[]) if x.get('type')=='tool_use']
+   recovery_unexpected,recovery_unavailable=classify_tool_attempts(last['events'],[])
+   unexpected+=recovery_unexpected;unavailable+=recovery_unavailable
    if recovery['sessionId'] != initial['session_id']:unexpected.append('RESUME_SESSION_MISMATCH')
   session_id=event.get('session_id') or initial.get('session_id')
   previous=load(out/'results'/f'{arm}-s1.json') if stage==2 else None
@@ -186,7 +199,7 @@ def session(t,arm,stage,key):
   result={'arm':arm,'stage':stage,'startedAt':start,'elapsedSeconds':round(time.monotonic()-tick,2),'exitCode':last['exitCode'],
    'timeout':last['timeout'],'shutdownTimeoutAfterResult':last['shutdownTimeoutAfterResult'],
    'normalExit':last['exitCode']==0 and not last['shutdownTimeoutAfterResult'] and not last['timeout'],
-   'responseCompleted':completed,'status':event.get('subtype','NO_RESULT'),'unexpectedTools':unexpected,'sessionId':session_id,'distinctFromFirstStage':distinct,
+   'responseCompleted':completed,'status':event.get('subtype','NO_RESULT'),'unexpectedTools':unexpected,'unavailableToolAttempts':unavailable,'sessionId':session_id,'distinctFromFirstStage':distinct,
    'initialAttempt':{'status':initial.get('subtype','NO_RESULT'),'sessionId':initial.get('session_id'),'usage':initial.get('usage'),
                      'clientListPriceUsd':initial.get('total_cost_usd'),'zeroUsageWithCharge':zero_usage_with_charge(initial),
                      'exitCode':first['exitCode'],'timeout':first['timeout']},

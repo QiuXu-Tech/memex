@@ -17,4 +17,11 @@ class RecoveryAccounting(unittest.TestCase):
   with patch.object(m,'BUDGET',0.10),patch.object(m,'TOTAL_BUDGET',0.25):
    b=m.Budget();self.assertTrue(b.acquire());self.assertTrue(b.acquire());self.assertFalse(b.acquire())
    b.finish(None);self.assertEqual(b.unknown,1);self.assertFalse(b.acquire())
+ def test_unavailable_tool_error_is_distinct_from_an_unverified_execution(self):
+  call={'type':'assistant','message':{'content':[{'type':'tool_use','id':'t1','name':'mcp__pilot__repo_open'}]}}
+  rejected={'type':'user','message':{'content':[{'type':'tool_result','tool_use_id':'t1','is_error':True,'content':'Error: No such tool available: mcp__pilot__repo_open'}]}}
+  self.assertEqual(m.classify_tool_attempts([call,rejected],[]),([],['mcp__pilot__repo_open']))
+  self.assertEqual(m.classify_tool_attempts([call],[]),(['mcp__pilot__repo_open'],[]))
+  rejected['message']['content'][0]['content']='Tool failed after running'
+  self.assertEqual(m.classify_tool_attempts([call,rejected],[]),(['mcp__pilot__repo_open'],[]))
 if __name__=='__main__':unittest.main()
