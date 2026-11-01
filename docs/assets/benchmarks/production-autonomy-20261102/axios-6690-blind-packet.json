@@ -1,0 +1,47 @@
+{
+  "frozenIssueUrl": "https://github.com/axios/axios/issues/6690",
+  "sourceCommit": "9d11464a75ee5c644c0308d742f58755c0482594",
+  "evidence": {
+    "issue": "A problem with setting AxiosError.prototype.toJSON\n### Describe the bug\r\n\r\n`util.inherits` fails on `Object.assign(props)` when `Error.prototype.toJSON`  is already defined as a non-writable. \r\n\r\nWe're using a library that adds a toJSON to the prototype of Error.\r\nIt does it using something in the spirit of:\r\n```\r\nObject.defineProperty(Error.prorotype, 'toJSON', { configurable: true, writable: false, enumerable: false, value() {\r\n  /* some customization code  that makes sure name, stack and any own property passes */ \r\n})\r\n```\r\nThen, `axios/lib/util.js:inerit` fails on `Object.assign`.\r\n\r\n![image](https://github.com/user-attachments/assets/d4147783-fe1c-4ed4-a2eb-bd4919cae0a8)\r\n\r\nAlso - see reproduction below.\r\n\r\n\r\n### To Reproduce\r\n\r\nCase isolated in the code snippet below.\r\n\r\n### Code snippet\r\n\r\n```js\r\nObject.defineProperty(Error.prototype, 'toJSON', {\r\n  configurable: true,\r\n  writable: false,\r\n  enumerable: false,\r\n  value: function foo() { return {} }\r\n})\r\n\r\nconst utils = (await import(path.join(process.cwd(), 'node_modules/axios/lib/utils.js'))).default\r\n\r\nfunction MyError() { }\r\n\r\n//This does not work (throws):\r\nutils.inherits(MyError, Error, { toJSON() { return {} } }) //<-- throws: TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\r\n\r\n//This does not throw, and works as expected:\r\nconst util = require('node:util')\r\nutil.inherits(MyError, Error, { toJSON() { return {} } })\r\n```\r\n\r\n\r\n### Expected behavior\r\n\r\n- Should not throw\r\n- Should set the toJSON on the extended prototype\r\n\r\n### Axios Version\r\n\r\n1.7.7\r\n\r\n### Adapter Version\r\n\r\n_No response_\r\n\r\n### Browser\r\n\r\n_No response_\r\n\r\n### Browser Version\r\n\r\n_No response_\r\n\r\n### Node.js Version\r\n\r\nv20.18.0\r\n\r\n### OS\r\n\r\nFedora in WSL.\r\nReproduced on my Win 11 also with node 20.12.2\r\n\r\n### Additional Library Versions\r\n\r\n_No response_\r\n\r\n### Additional context/Screenshots\r\n\r\n_No response_",
+    "source": "lib/utils.js lines 700-735:\n700:   if (content.charCodeAt(0) === 0xfeff) {\n701:     content = content.slice(1);\n702:   }\n703:   return content;\n704: };\n705: \n706: /**\n707:  * Inherit the prototype methods from one constructor into another\n708:  * @param {function} constructor\n709:  * @param {function} superConstructor\n710:  * @param {object} [props]\n711:  * @param {object} [descriptors]\n712:  *\n713:  * @returns {void}\n714:  */\n715: const inherits = (constructor, superConstructor, props, descriptors) => {\n716:   constructor.prototype = Object.create(superConstructor.prototype, descriptors);\n717:   Object.defineProperty(constructor.prototype, 'constructor', {\n718:     __proto__: null,\n719:     value: constructor,\n720:     writable: true,\n721:     enumerable: false,\n722:     configurable: true,\n723:   });\n724:   Object.defineProperty(constructor, 'super', {\n725:     __proto__: null,\n726:     value: superConstructor.prototype,\n727:   });\n728:   props && Object.assign(constructor.prototype, props);\n729: };\n730: \n731: /**\n732:  * Resolve object with deep prototype chain to a flat object\n733:  * @param {Object} sourceObj source object\n734:  * @param {Object} [destObj]\n735:  * @param {Function|Boolean} [filter]",
+    "criteria": [
+      "The reproduced read-only inherited toJSON case must work while preserving the parent and child constructor.",
+      "Ordinary inherited setters and other assigned properties must retain their prior behavior.",
+      "Explanations should distinguish fixed checks from the full upstream suite."
+    ],
+    "comment:C1": "This issue does not seem to be a bug; rather, it is expected behavior.\r\n\r\nFor property inheritance, Axios's `utils.inherits()` assigns properties to the child's `constructor.prototype` using the `Object.assign()` method.\r\n\r\nBecause `Object.assign()` *assigns* properties, it could throw a TypeError if a property is non-writable, as explained in the [MDN Web Docs](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object/assign#description). According to your code snippet, you defined `toJSON` as non-writable property, so it's natural for it to throw.\r\n\r\nHowever, Node's `util.inherits()` does not provide functionality that inherits properties by assigning them. It only accepts two parameters: the child and the super constructor.\r\n\r\nSo on your working example `util.inherits(MyError, Error, { toJSON() { return {} } })`, the third parameter will just be ignored because functions in JavaScript do not throw errors for extra arguments.\r\n\r\nHere's the actual code definition in node: [util.js:321](https://github.com/nodejs/node/blob/v20.18.0/lib/util.js#L321)\r\n\r\nAnd here's the code in axios: [utils.js:360](https://github.com/axios/axios/blob/main/lib/utils.js#L360)",
+    "comment:C2": "I fully understand the implementation details, but it does not change the fact that I'm left with broken code when trying to migrate to `axios`...\r\n\r\nWhat I'm trying to say is that your choice of implementation detail is fragile in case there is already a toJSON created by another library.\r\n\r\nso I find it hard to say that a crash is the expected behavior ... 🤔 it's not that I would not be able to make HTTP requests if the error beautifier will not be yours.\r\n\r\n",
+    "comment:C3": "So, what is it going to be?",
+    "candidate:C01": "[empty patch]",
+    "public:C01": {
+      "exitCode": 1,
+      "output": "TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\n    at Object.assign (<anonymous>)\n    at Object.inherits (file:///work/lib/utils.js:728:19)\n    at /checks/verify.js:12:11\n"
+    },
+    "regression:C01": {
+      "exitCode": 0,
+      "output": "inherited setter and ordinary properties passed\n"
+    },
+    "final:C01": "",
+    "session:C01": {
+      "finalSessionCompleted": false,
+      "finalStage": 1,
+      "timeout": false
+    },
+    "candidate:C02": "[empty patch]",
+    "public:C02": {
+      "exitCode": 1,
+      "output": "TypeError: Cannot assign to read only property 'toJSON' of object 'Error'\n    at Object.assign (<anonymous>)\n    at Object.inherits (file:///work/lib/utils.js:728:19)\n    at /checks/verify.js:12:11\n"
+    },
+    "regression:C02": {
+      "exitCode": 0,
+      "output": "inherited setter and ordinary properties passed\n"
+    },
+    "final:C02": "",
+    "session:C02": {
+      "finalSessionCompleted": false,
+      "finalStage": 1,
+      "timeout": false
+    }
+  },
+  "limits": "Public and regression checks are investigator-authored; neither is the full upstream suite."
+}
