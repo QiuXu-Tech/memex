@@ -7,6 +7,7 @@ same-millisecond records by random ID. Earlier counts remain historical; see
 ## Unreleased
 
 ### Added — isolated test tools for real MCP agents
+- Advise agents to avoid rereading duplicate handoffs already covered by a retrieved memory while retaining source verification; evaluate the effect rather than assuming a token saving.
 - Expose the preassigned VM worker through a stdio MCP bridge with bounded repository and archive tools. Retire an unresponsive worker on a deadline without replaying an ambiguous request; add protocol and timeout regressions.
 - Add a separate v4 worker for Python source tasks and document isolated Codex/Claude Code configuration. Record the interrupted connector attempt, two paired Codex tasks, one adaptive cross-session memory lifecycle, AI-review disagreements and cost gaps in `docs/production-real-agent-20261101.md`.
 - Register 30 distinct public-issue investigations and report four initial randomized Codex pairs, one interrupted pair, a separate Krkn sandbox canary, AI-review disagreements and cost gaps in `docs/production-cohort-30-20261101.md`.

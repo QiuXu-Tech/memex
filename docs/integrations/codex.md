@@ -32,6 +32,8 @@ L2 uses a fresh session ID for each MCP server process unless `--session`, `MEME
 
 `memory_open` pages by line using `offset` and `limit`. If a selected line window exceeds `maxChars`, repeat the same line window with the returned `nextCharOffset` as `charOffset` to continue. Read-only MCP tools advertise their behavior; write or destructive calls remain subject to the client's approval policy.
 
+The manual advises the agent to avoid rereading a duplicate handoff when a retrieved record already covers it, while consulting original sources for verification or gaps. This is guidance, not automatic deduplication or a guaranteed token saving.
+
 `memory_grep` searches visible hot and cold record files until it reaches the requested hit limit. A miss can require reading every visible record and therefore takes longer on larger stores. If an indexed record file is missing or unreadable, grep reports an error rather than claiming that the pattern is absent.
 
 Note: GPT-6.1 Sol allows a 1,050,000-token API context, but Codex/ChatGPT Work default to a 500k context; the `gpt-6.1` profile models the API limit and can be overridden (`profileOverrides: { windowTokens: 500_000 }`).
