@@ -24,7 +24,7 @@ mcp = out/'empty-mcp.json'; mcp.write_text('{"mcpServers":{}}\n')
 settings = project/'.claude/settings.json'
 generated_settings = json.loads(settings.read_text())
 marker = 'Q' + secrets.token_hex(5).upper()
-prompts = [f'This synthetic release note says the Quartz release plan identifier is {marker}. Summarize that decision in one complete sentence.',
+prompts = [f'The Quartz release plan identifier is {marker}. Repeat that identifier in a complete sentence.',
            'What identifier did the Quartz release plan use? Reply with the identifier and no extra explanation.']
 rows = []
 for stage, prompt in enumerate(prompts, 1):
@@ -35,8 +35,9 @@ for stage, prompt in enumerate(prompts, 1):
         for group in groups:
             for hook in group['hooks']:
                 command = 'env NODE_OPTIONS=' + shlex.quote(f'--import={loader}') + ' ' + hook['command']
-                if event == 'UserPromptSubmit':
-                    command = 'tee ' + shlex.quote(str(out / f'stage-{stage}-prompt-hook.json')) + ' | ' + command
+                if event in ('UserPromptSubmit', 'Stop'):
+                    name = 'prompt' if event == 'UserPromptSubmit' else 'stop'
+                    command = 'tee ' + shlex.quote(str(out / f'stage-{stage}-{name}-hook.json')) + ' | ' + command
                 hook['command'] = command
     settings.write_text(json.dumps(stage_settings, indent=2) + '\n')
     cmd = ['claude', '-p', prompt, '--restricted', '--strict-mcp-config', '--mcp-config', str(mcp),
