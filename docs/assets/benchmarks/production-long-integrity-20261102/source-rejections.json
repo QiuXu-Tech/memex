@@ -1,0 +1,18 @@
+[
+  {
+    "repo": "ionic-team/ionic-framework",
+    "reason": "compressed archive exceeded 50 MiB"
+  },
+  {
+    "repo": "mapbox/mapbox-gl-js",
+    "reason": "source download stopped after the prior candidate exceeded the workspace budget"
+  },
+  {
+    "repo": "webdriverio/webdriverio",
+    "reason": "compressed archive exceeded 50 MiB and discussion span below seven days"
+  },
+  {
+    "repo": "open-telemetry/opentelemetry-js",
+    "reason": "initial source preparation selected the wrong issue number; corrected before model calls"
+  }
+]
