@@ -40,8 +40,8 @@ Hooks never break a session: failures are logged to stderr and the exit code sta
 - Restart Claude Code after `init` so the MCP server and hooks load (check `/mcp`).
 - Project-scoped `.mcp.json` servers require a **one-time approval**: `claude mcp list` shows `memex … Pending approval (run claude to approve)` until you run `claude` in the project and approve it. This is Claude Code's security gate, not a config error.
 - Without `--session`, hooks use the client session id while the MCP server gets its own random id. MCP cannot open a hook's L2 transcript automatically; the integration has no verified host-provided binding between these processes. An explicitly shared `--session` aligns ordinary hook/MCP L2 writes but is shared by every client configured with that id and does not bind the private PreCompact copy. Use L3 for memories intended to be shared between sessions.
-- Project initialization pins hook and MCP workspace identity to the same project directory, including when a hook runs in a subdirectory. For `--user`, workspace identity comes from the hook payload and MCP process working directory; they must agree. User-level MCP registration is in `~/.claude.json`.
-- Existing malformed JSON configurations cause `init` to stop before changing its files. Co-located non-Memex hooks are retained. Existing archives are not automatically reclassified or erased by these changes.
+- Project initialization pins hook and MCP workspace identity to the same project directory, including when a hook runs in a subdirectory. For `--user`, hooks prefer `CLAUDE_PROJECT_DIR` and otherwise use the hook payload; the MCP process workspace must agree. User-level MCP registration is in `~/.claude.json` and its manual is in `~/.claude/CLAUDE.md`.
+- Existing malformed JSON configurations cause `init` to stop before changing its files. Co-located non-Memex hooks and existing configuration symlinks are retained. Each file replacement is atomic, but the three files are not a single transaction. Existing archives are not automatically reclassified or erased by these changes.
 
 ## Manual workflows
 

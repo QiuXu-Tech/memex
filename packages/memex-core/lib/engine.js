@@ -17,7 +17,7 @@ import { randomUUID } from 'node:crypto'
 import { join } from 'node:path'
 import { LocalStoreCore } from './store.js'
 import { materializeStoreContext } from './context-pager.js'
-import { memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
+import { contextEventPage, memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
 import { profileTokens, resolveModelProfile } from './model-profiles.js'
 
 /** Default storage location for non-DSH agents (with legacy DSH_MEMORY_HOME fallback). */
@@ -168,6 +168,18 @@ export class AgentMemory {
       bodyNextCharOffset: charEnd < chars.length ? charEnd : undefined,
       bodyTruncated: charStart > 0 || charEnd < chars.length || start > 0 || end < lines.length,
     }
+  }
+
+  /** Read one captured DSH source event without bypassing record visibility. */
+  openEvent({ id, eventIndex, charOffset, maxChars } = {}) {
+    const record = this.store.get(id, this.visibilityFilter())
+    if (record === undefined) return undefined
+    const seqs = record.provenance?.shadowedSeqs
+    if (!Number.isSafeInteger(eventIndex) || eventIndex < 1 || !Array.isArray(seqs) || eventIndex > seqs.length) throw new Error('memory_open: source event index is unavailable')
+    const event = this.store.listContextEvents(id, { sequence: seqs[eventIndex - 1] }).find((item) => item.attachments.some((part) => part?.rawEvent !== undefined))
+    if (event === undefined) throw new Error('memory_open: raw source event is unavailable')
+    const max = Math.floor(Math.min(Math.max(Number(maxChars) || this.profile.openMaxChars, 400), 240000))
+    return contextEventPage(record, event, eventIndex, { charOffset: charOffset ?? 0, maxChars: max })
   }
 
   /** Literal/regex grep across stored bodies. */

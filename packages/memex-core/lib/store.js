@@ -612,8 +612,11 @@ export class LocalStoreCore {
   }
 
   /** @returns {object[]} canonical context events for one record, in sequence order. */
-  listContextEvents(recordId) {
-    const rows = this.database().prepare('SELECT * FROM context_events WHERE record_id = ? ORDER BY sequence ASC, event_id ASC').all(recordId)
+  listContextEvents(recordId, options = {}) {
+    if (options.sequence !== undefined && !Number.isSafeInteger(options.sequence)) throw new TypeError('context event sequence must be an integer')
+    const rows = options.sequence === undefined
+      ? this.database().prepare('SELECT * FROM context_events WHERE record_id = ? ORDER BY sequence ASC, event_id ASC').all(recordId)
+      : this.database().prepare('SELECT * FROM context_events WHERE record_id = ? AND sequence = ? ORDER BY event_id ASC').all(recordId, options.sequence)
     return rows.map((row) => {
       const event = canonicalContextEvent({
         id: row.event_id, role: row.role, type: row.type, sequence: row.sequence, sessionId: row.session_id ?? undefined,

@@ -15,8 +15,8 @@
  * Hooks never break a session: failures are reported on stderr and the exit
  * code stays 0. stdout carries the hook JSON only.
  */
-import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync } from 'node:fs'
-import { createHash } from 'node:crypto'
+import { existsSync, mkdirSync, readFileSync, writeFileSync, copyFileSync, lstatSync, statSync, realpathSync, renameSync, unlinkSync } from 'node:fs'
+import { createHash, randomUUID } from 'node:crypto'
 import { dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { AgentMemory, defaultMemoryRoot } from '@qiuxu/memex-core/engine'
@@ -66,9 +66,28 @@ function readJson(path, fallback) {
   }
 }
 
-function writeJson(path, value) {
+function writeAtomic(path, value) {
   mkdirSync(dirname(path), { recursive: true })
-  writeFileSync(path, `${JSON.stringify(value, null, 2)}\n`)
+  let info
+  let mode = 0o600
+  try {
+    info = lstatSync(path)
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error
+  }
+  const target = info?.isSymbolicLink() ? realpathSync(path) : path
+  if (info) mode = statSync(target).mode & 0o777
+  const temporary = join(dirname(target), `.memex-init-${randomUUID()}.tmp`)
+  try {
+    writeFileSync(temporary, value, { flag: 'wx', mode })
+    renameSync(temporary, target)
+  } finally {
+    try { unlinkSync(temporary) } catch (error) { if (error?.code !== 'ENOENT') throw error }
+  }
+}
+
+function writeJson(path, value) {
+  writeAtomic(path, `${JSON.stringify(value, null, 2)}\n`)
 }
 
 function hookEntry(command, matcher) {
@@ -108,7 +127,7 @@ function init() {
   const profile = resolveModelProfile(args.model)
   const settingsPath = join(base, '.claude', 'settings.json')
   const mcpPath = join(base, args.user ? '.claude.json' : '.mcp.json')
-  const claudeMdPath = join(base, 'CLAUDE.md')
+  const claudeMdPath = args.user ? join(base, '.claude', 'CLAUDE.md') : join(base, 'CLAUDE.md')
   const nodeBin = process.execPath
   const hookCommandFor = (event) => `${shellQuote(nodeBin)} ${shellQuote(resolve(HERE, 'cli.mjs'))} hook ${event} --root ${shellQuote(args.root)} --project ${shellQuote(base)} --model ${shellQuote(args.model)} --levels ${shellQuote(levels.join(','))}${args.session ? ` --session ${shellQuote(args.session)}` : ''}${args.user ? ' --user' : ''}`
   // .mcp.json — register the stdio server for this project.
@@ -136,11 +155,11 @@ function init() {
     if (!/<!-- memex:start -->[\s\S]*?<!-- memex:end -->/.test(existing)) throw new Error(`${claudeMdPath}: incomplete memex manual markers`)
     next = existing.replace(/<!-- memex:start -->[\s\S]*?<!-- memex:end -->/, section)
   } else {
-    next = `${existing.trimEnd()}\n\n${section}\n`
+    next = existing ? `${existing}${existing.endsWith('\n') ? '' : '\n'}\n${section}\n` : `${section}\n`
   }
   writeJson(mcpPath, mcp)
   writeJson(settingsPath, settings)
-  writeFileSync(claudeMdPath, next.startsWith('\n') ? next.slice(1) : next)
+  writeAtomic(claudeMdPath, next)
   console.log(`memex + Claude Code (${profile.id} profile) initialised in ${base}`)
   console.log(`  MCP server:    ${mcpPath} -> ${MCP_SERVER}`)
   console.log(`  Hooks:         ${settingsPath}`)
@@ -171,7 +190,7 @@ async function hook() {
   } catch {
     payload = {}
   }
-  const cwd = args.user ? (payload.cwd ?? process.cwd()) : args.project
+  const cwd = args.user ? (process.env.CLAUDE_PROJECT_DIR || payload.cwd || process.cwd()) : args.project
   const session = args.session ?? payload.session_id
   // A stable --session selects the storage namespace; the real client session
   // still identifies which automatic checkpoints are already in context.

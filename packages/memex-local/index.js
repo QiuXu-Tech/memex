@@ -123,8 +123,8 @@ export default class LocalMemoryStore extends MemoryStore {
     return this.core.appendContextEvents(input)
   }
 
-  async listContextEvents(recordId) {
-    return this.core.listContextEvents(recordId)
+  async listContextEvents(recordId, options) {
+    return this.core.listContextEvents(recordId, options)
   }
 
   async materializeContext(request) {

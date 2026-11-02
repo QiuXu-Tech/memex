@@ -1,21 +1,24 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { mkdtempSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
+import { lstatSync, mkdtempSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { LocalStoreCore } from '../packages/memex-core/lib/store.js'
 import { AgentMemory } from '../packages/memex-core/lib/engine.js'
-import { MEMORY_TEXT_LIMITS, archiveRecordId } from '../packages/memex-core/index.js'
+import { MEMORY_TEXT_LIMITS, archiveRecordId, memoryWorkspaceKey } from '../packages/memex-core/index.js'
 import { canonicalEventsFromDsh } from '../packages/memex-core/lib/context-events.js'
 import LocalMemoryStore from '../packages/memex-local/index.js'
 import * as checkpoint from '../packages/memex-checkpoint/index.js'
+import * as toolsRow from '../packages/memex-tool/index.js'
 import { createFakeContext, createSessionQueryMock } from './fake-ctx.mjs'
 import { createSession, createSurfaceEvents, createCompactionEvent } from './fixtures.mjs'
 
 const register = fileURLToPath(new URL('./register.mjs', import.meta.url))
 const cli = fileURLToPath(new URL('../packages/memex-claude/bin/cli.mjs', import.meta.url))
+const mcp = fileURLToPath(new URL('../packages/memex-mcp/bin/server.mjs', import.meta.url))
+const initFault = fileURLToPath(new URL('./claude-init-fault.mjs', import.meta.url))
 const root = () => mkdtempSync(join(tmpdir(), 'memex-integrity-test-'))
 const node = (args, input = '', env = {}) => spawnSync(process.execPath, ['--import', register, cli, ...args], { input, encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
 const pause = () => new Promise((resolve) => setTimeout(resolve, 100))
@@ -214,6 +217,54 @@ test('Claude init preserves malformed configuration and co-located user hooks', 
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
 
+test('an interrupted Claude config write leaves existing configuration intact', () => {
+  const dir = root()
+  try {
+    const project = join(dir, 'project')
+    mkdirSync(join(project, '.claude'), { recursive: true })
+    const mcpPath = join(project, '.mcp.json')
+    const settingsPath = join(project, '.claude/settings.json')
+    const mcpText = '{"mcpServers":{"other":{"command":"keep"}}}\n'
+    const settingsText = '{"hooks":{}}\n'
+    writeFileSync(mcpPath, mcpText)
+    writeFileSync(settingsPath, settingsText)
+    const result = node(['init', '--project', project, '--root', join(dir, 'memory')], '', { NODE_OPTIONS: `--import=${initFault}` })
+    assert.notEqual(result.status, 0)
+    assert.equal(readFileSync(mcpPath, 'utf8'), mcpText)
+    assert.equal(readFileSync(settingsPath, 'utf8'), settingsText)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Claude init keeps an existing configuration symlink and its unrelated server', () => {
+  const dir = root()
+  const project = join(dir, 'project')
+  const target = join(dir, 'shared-config.json')
+  mkdirSync(project)
+  writeFileSync(target, '{"mcpServers":{"other":{"command":"keep"}}}\n')
+  symlinkSync(target, join(project, '.mcp.json'))
+  try {
+    const result = node(['init', '--project', project, '--root', join(dir, 'memory')])
+    assert.equal(result.status, 0, result.stderr)
+    assert.ok(lstatSync(join(project, '.mcp.json')).isSymbolicLink())
+    const config = JSON.parse(readFileSync(target, 'utf8'))
+    assert.equal(config.mcpServers.other.command, 'keep')
+    assert.ok(config.mcpServers.memex)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Claude init refuses to replace a dangling configuration symlink', () => {
+  const dir = root()
+  const project = join(dir, 'project')
+  mkdirSync(project)
+  const link = join(project, '.mcp.json')
+  symlinkSync(join(dir, 'missing.json'), link)
+  try {
+    const result = node(['init', '--project', project, '--root', join(dir, 'memory')])
+    assert.notEqual(result.status, 0)
+    assert.ok(lstatSync(link).isSymbolicLink())
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
 test('Claude project namespace stays fixed and raw transcripts use the actual client session', () => {
   const dir = root()
   const project = join(dir, 'project')
@@ -239,12 +290,33 @@ test('Claude project namespace stays fixed and raw transcripts use the actual cl
 test('Claude user initialization registers the user MCP server without forcing the home workspace', () => {
   const dir = root()
   try {
+    writeFileSync(join(dir, 'CLAUDE.md'), 'existing home instructions\n')
     const result = node(['init', '--user', '--root', join(dir, 'memory')], '', { HOME: dir })
     assert.equal(result.status, 0, result.stderr)
     const config = JSON.parse(readFileSync(join(dir, '.claude.json'), 'utf8'))
     assert.ok(!config.mcpServers.memex.args.includes('--cwd'))
     const hooks = JSON.parse(readFileSync(join(dir, '.claude/settings.json'), 'utf8')).hooks
     assert.match(hooks.PreCompact[0].hooks[0].command, /--user/)
+    assert.match(readFileSync(join(dir, '.claude/CLAUDE.md'), 'utf8'), /memex:start/)
+    assert.equal(readFileSync(join(dir, 'CLAUDE.md'), 'utf8'), 'existing home instructions\n')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('user-level Claude hooks use the original project identity after a cwd change', () => {
+  const dir = root()
+  const project = join(dir, 'project')
+  const child = join(project, 'child')
+  const memory = join(dir, 'memory')
+  mkdirSync(child, { recursive: true })
+  try {
+    const result = node(['hook', 'Stop', '--user', '--root', memory, '--project', dir, '--levels', 'l3'], JSON.stringify({ session_id: 's', cwd: child, last_assistant_message: 'The original project identity should remain stable after a working-directory change.' }), { CLAUDE_PROJECT_DIR: project })
+    assert.equal(result.status, 0, result.stderr)
+    const projectEngine = new AgentMemory({ root: memory, cwd: project, sessionId: 'other', levels: ['l3'] })
+    const childEngine = new AgentMemory({ root: memory, cwd: child, sessionId: 'other', levels: ['l3'] })
+    try {
+      assert.equal(projectEngine.list({ limit: 10 }).length, 1)
+      assert.equal(childEngine.list({ limit: 10 }).length, 0)
+    } finally { projectEngine.close(); childEngine.close() }
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
 
@@ -342,4 +414,68 @@ test('an interrupted multi-part Claude transcript can be retried without losing 
       assert.equal(cards.map((card) => engine.store.get(card.id).body).join(''), text)
     } finally { engine.close() }
   } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('DSH and MCP can page an entire raw event without exposing another session', async () => {
+  const dir = root()
+  const ctx = createFakeContext()
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l2' })
+  ctx.provideService('memory', backend)
+  checkpoint.apply(ctx, { cardModel: 'off' })
+  toolsRow.apply(ctx, { maxInlineChars: 1500 })
+  const session = createSession({ id: 'owner-session', cwd: '/tmp/memex-event-paging' })
+  const events = createSurfaceEvents()
+  events[0].data.content[0].text = `${'x😀'.repeat(5000)}RAW_EVENT_TAIL`
+  try {
+    for (const event of events) await ctx.emit('session/event', session, event)
+    await ctx.emit('session/event', session, createCompactionEvent())
+    await pause()
+    const id = await backend.wasArchived(session.id, 'cmp-1', { requireComplete: true })
+    assert.ok(id)
+    const open = ctx.tool('memory_open')
+    let offset = 0
+    let restored = ''
+    do {
+      const text = await open.execute({ id, eventIndex: 1, charOffset: offset, maxChars: 2000 }, { agent: { session } })
+      assert.ok(text.length <= 1500)
+      const page = JSON.parse(text)
+      assert.equal(page.sequence, 1)
+      restored += page.content
+      offset = page.nextCharOffset
+    } while (offset !== null)
+    assert.deepEqual(JSON.parse(restored), events[0])
+    const denied = await open.execute({ id, eventIndex: 1 }, { agent: { session: createSession({ id: 'other', cwd: session.header.cwd }) } })
+    assert.match(denied, /No memory record/)
+    const request = JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_open', arguments: { id, eventIndex: 1, maxChars: 60000 } } }) + '\n'
+    const result = spawnSync(process.execPath, ['--import', register, mcp, '--root', dir, '--cwd', session.header.cwd, '--levels', 'l2', '--session', session.id], { input: request, encoding: 'utf8', timeout: 60000 })
+    assert.equal(result.status, 0, result.stderr)
+    const page = JSON.parse(JSON.parse(result.stdout.trim()).result.content[0].text)
+    assert.equal(page.nextCharOffset, null)
+    assert.deepEqual(JSON.parse(page.content), events[0])
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('DSH can continue within one oversized record line', async () => {
+  const dir = root()
+  const ctx = createFakeContext()
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l2' })
+  ctx.provideService('memory', backend)
+  toolsRow.apply(ctx, { maxInlineChars: 1500 })
+  const session = createSession({ id: 'owner-session', cwd: '/tmp/memex-long-line' })
+  try {
+    const card = await backend.write({ kind: 'fact', title: 'long line', body: `${'x😀'.repeat(5000)}BODY_TAIL`, scope: 'session', sessionId: session.id, workspaceKey: memoryWorkspaceKey(session.header.cwd, session.id) })
+    const open = ctx.tool('memory_open')
+    let offset = 0
+    let sawTail = false
+    for (let pages = 0; pages < 50; pages += 1) {
+      const text = await open.execute({ id: card.id, offset: 1, limit: 1, charOffset: offset, maxChars: 2000 }, { agent: { session } })
+      assert.ok(text.length <= 1500)
+      sawTail ||= text.includes('BODY_TAIL')
+      const match = text.match(/nextCharOffset=(\d+)/)
+      if (!match) break
+      assert.ok(Number(match[1]) > offset)
+      offset = Number(match[1])
+    }
+    assert.ok(sawTail, 'a long line must remain reachable through the advertised continuation')
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
 })

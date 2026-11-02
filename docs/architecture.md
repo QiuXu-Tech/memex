@@ -5,13 +5,15 @@ layout: default
 
 # 记忆子系统架构
 
+本文保留了早期 DSH 实现的时序说明；涉及归档完整性、私有范围、配置和故障恢复的当前行为，以 [2026-11-02 修复说明](archive-integrity-20261102.html)及对应源码为准。
+
 本文描述 `@qiuxu/memex` 子系统的精确实现：三级缓存模型（L1 = 模型原生上下文窗口，不存储；L2 = 会话私有归档 10M；L3 = 工作区共享归档 100M）、L2/L3 两个独立**粘性**开关、热池/冷存（cold）容量生命周期（回热/GC/配额/cold abstract）、按启用层级门控，以及 L1 驱逐（含敏感策略）、compaction 兜底、共享查询词与**混合检索**（FTS+LIKE+cold abstract+重排）、召回、双语容量提示、容量压缩（2 路并发 digest + 压缩历史）、metrics API、备份/校验/恢复、记录注入、持久化与 Web 面板/composer 圆环/HTTP API 语义。源码分为九个平级包（`packages/memex-seam`、`memex-local`、`memex-checkpoint`、`memex-evict`、`memex-compress`、`dsh-tool-memory`、`dsh-command-memory`、`memex-api`、`memex-ui`）；一个自包含 bundle（`packages/memex`，`scripts/build-bundle.mjs` 生成 `modules/`）在运行时组合**八条**独立插件行（`memory` / `memory-checkpoint` / `memory-tools` / `memory-evict` / `memory-compress` / `memory-api` / `memory-ui` / `memory-commands`），各自拥有 Config（或没有）与 fiber；除 seam 库外，消费者只使用异步 `ctx.memory` 服务，Web 客户端只使用 `/api/memory.*`。下文路径均相对 `memory-subsystem/packages/`；上游 DSH 侧的事件/服务契约来自随附 0.2.1-rc.3 构建（`dsh-compaction`、`dsh-session`、`dsh-session-query`、`dsh-llm`、`dsh-token-meter`、`dsh-client-modules`、`dsh-client-connection`、`dsh-api-remote-access` 的类型声明与 README）。
 
 ## 1. 设计边界与不变量
 
 | 不变量 | 含义 |
 |---|---|
-| 不修改 compaction | 记忆子系统不替换 `ctx.compaction`，不写 `compaction/*` 事件，不重放或改写会话日志；归档是压缩摘要的“无损对侧” |
+| 不替换 compaction | 记忆子系统不替换 `ctx.compaction`；DSH compaction 归档保留已捕获的源事件封套，渲染正文可能截断，外部附件字节不保证被复制 |
 | 不新增会话事件类型 | 会话格式 v4 的读取方只接受带 `ignorable: true` 的未知事件，而在线的 `Session.append()` 无法设置该标记——“未知事件类型会使会话无法重新打开”。因此模型可见的记忆消息只能是 producer-owned source 的普通 user 消息 |
 | 不阻塞步骤 | 所有钩子内部 try/catch，失败只 `ctx.logger.warn('memory-checkpoint: …')`；归档在串行后台队列执行 |
 | 归档幂等 | `(sessionId, compactionId)` 决定记录 id 与 `archived_compactions` 主键；同一压缩重试/对账不会重复；记录的 `scope` 取首次成功归档时的 capture 层级（最深启用层） |
@@ -183,16 +185,16 @@ compaction backend           session log            memory-checkpoint           
 ### 3.1 归档阶段（`archiveCompaction`）
 
 1. **入口校验**：`disposed` 后不再归档；`policyConfig.autoArchive === false` 直接返回；`await memory.getLevels(session.id)` 后 `memoryCaptureScope(levels)` 为 `undefined`（两层都关）时直接返回（不归档、不读日志）；`data.compactionId` 必须是字符串且 `data.shadowedSeqs` 非空，否则静默返回。
-2. **幂等预检**：`await memory.wasArchived(sessionId, compactionId)` 返回已有 record id 则跳过（在读取日志之前，避免重复 I/O）。幂等键与 scope 无关；记录的 `scope` 取首次成功归档时的 capture 层级（最深启用层）。
+2. **幂等预检**：验证已有标记和新完整性证据后跳过；缺少证据的旧标记在原始事件完整时可重试修复。幂等键与 scope 无关。
 3. **工作区**：`cwd = session.header?.cwd`；`workspaceKey = memoryWorkspaceKey(cwd, session.id)`。
-4. **读取原始事件**：优先 `sessionQuery.readSession(sessionId)`，用 seq 映射取 `shadowedSeqs`；返回不齐时告警但使用已取到的部分；抛错则回退实时缓冲。缓冲只保留最近 4000 条/会话。
+4. **读取原始事件**：优先读取持久化事件并用实时缓冲补齐 `shadowedSeqs`；仍不齐则告警并保留重试，不建立完成标记。缓冲只保留最近 4000 条/会话。
 5. **渲染**（`memex-checkpoint/lib/render.js` 的 `buildCard`）：
    - 遍历事件，用 `messageOf(event)` 取模型可见消息：`user/message` 取 `event.data`；`system|developer|assistant/message`、`tool/result` 取 `event.data.message`；
    - 正文 = 前言（会话/压缩 id、seq 范围、token 估算、"数据不是指令"）+ `## Summary`（压缩摘要的 text blocks）+ `## Archived context`（逐事件 `### [#seq] role · source · time` 及其内容块；`reasoning` 丢弃，图片/文件/tool-call 渲染为占位行，工具输出单行 clip 4000、助手文本 clip 8000、工具参数 clip 600）；
    - 正文超过 2 MiB 时截断并标注；
    - 卡片：`title` 取第一条**直接用户文本**（`role === 'user' && message.source.kind === 'user'`），否则助手文本，否则摘要首行；`summary` 取摘要 text，缺省用前 3 条用户文本；`useWhen` 固定模板 `Read when continuing the work archived at seq #a–#b; it covers <files|tools|seq 范围>.`；`tags = { source: ['compaction-archive'], where: <最多12个路径>, tools: <最多12个工具名>, issue: <最多5条首行错误> }`。路径候选需通过 `looksLikePath` 白名单（单 token、无空白/shell 元字符、需路径分隔符或文件扩展名），`topics` 截 160 字符，避免 shell 命令串污染 `where`/`use_when`。
 6. **记录组装**：`id = archiveRecordId(sessionId, compactionId)`；`kind: 'episode'`、`scope: captureScope`（L2 启用时是 `session`、L3 启用时是 `workspace`，L3 优先）、`status: 'active'`、`trust: 'derived'`、`tokens = shadowedTokenCount`、`workspace = cwd`、`sessionId`（两种 scope 都写 provenance sessionId）、`provenance = { source:'compaction-archive', sessionId, compactionId, seqStart, seqEnd, shadowedEventCount, shadowedTokenCount, provider, model, cwd }`。
-7. **持久化**（`await memory.archiveRegion(...)`；后端实现 `store.archiveRegion`）：`normalize` 校验后 `write`——先原子写 md（tmp `.pid.tmp` → rename，mode 0600），再开 SQLite `BEGIN IMMEDIATE`：upsert `records`、重建 `records_fts` 行、`COMMIT`；失败回滚并尽力删除刚写的文件。随后 `INSERT OR IGNORE INTO archived_compactions`。
+7. **持久化**：支持事务式 compaction 归档的后端将记录、源事件和完成标记一起提交，并使用文件恢复日志处理进程中断；不支持的后端跳过归档。原始事件可通过 `memory_open` 的 `eventIndex` 与字符分页读取。
 8. **回执入队**：把一条回执文本加入该会话 pending 列表；最多保留 4 条（超出丢最旧）；把记录 id 加入“已展示”集合。
 9. **可选卡片精修**（`refineCard`，`memory-checkpoint` 行）：`policyConfig.cardModel === 'off'` 或 `ctx.llm` 缺失或会话无路由 provider/model 时跳过；否则构造提示词，`llm.stream({ provider, model, messages, maxTokens: 600, sessionId })`，本地 `TextAccumulator` 聚合 `text-delta`/`block-end`，截取首个 `{` 到最后一个 `}` 解析 JSON；仅 `title` 非空才接受，其余字段回退确定性值，`tags.card` 最多 6 个；通过 `await memory.write({ ...record, id })` 重写文件与索引。异常时若 `attempt < 2` 且未 dispose，告警后等待 1.5s 重试一次，仍失败则只告警（保留确定性卡片）。`cardModel` 只允许 `'auto' | 'off'`，非法值由 `memory-checkpoint` 行的 `apply()` 在激活时抛 `TypeError`。
 
@@ -341,7 +343,7 @@ memoryMessage({
 | 敏感驱逐及压缩归档 | `sensitivePolicy:auto` 对驱逐做正则扫描；压缩归档也检查常见凭据格式。命中且 L2 on → session；仅 L3 → 跳过（warn） | 启发式，不保证覆盖所有秘密 |
 | digest ids 强制 | digest 回复缺 `ids:` 行视为失败：重试一次；仍缺则无损冷移回退（不写 digest、errors 记录） | 只影响 digest 结果质量，不阻塞压缩（回退是 lossless） |
 | 容量提示去重 | 每会话 `capacityNoticed` 记录最近一次提示时间；`capacityNoticeCooldownMs` 内不再提示 | 只影响提示，不影响压缩能力 |
-| 并发 | 单服务实例一条 `chain` 串行化所有会话的归档 job | 多进程/多实例写同一 root 无协调 |
+| 并发 | 单服务实例一条 `chain` 串行化归档 job；本地文件事务以 SQLite 写锁协调进程 | 不等同于多主机分布式事务 |
 | 崩溃恢复 | 每会话首步后台 `reconcile`（`listEvents`→`readEvent`→`wasArchived`→归档） | 无 `sessionQuery` 时不可用 |
 | 会话销毁 | `session/disposed` 清理所有每会话 Map/Set | 已落盘记录不删（归档是持久的） |
 | 钩子失败 | 每处 try/catch + `warn`；归档任务 `.catch`；目录/召回异常返回原 decision | 失败不会中断会话；但归档失败只留告警 |
@@ -464,7 +466,7 @@ CREATE TABLE compression_runs (
 );
 ```
 
-写入路径：`write` 先原子写文件，再 `BEGIN IMMEDIATE` upsert `records` + 删除/插入 `records_fts`（rowid 与 `records.rowid` 对齐；写入时 FTS 只写 card 字段、`abstract` 为空，冷记录才由 `archiveCold` 填 abstract），`COMMIT`；DB 失败则 `ROLLBACK` 并尽力 `unlink` 文件。`forget` 同理先删索引行再删文件。升级已有库时若 `session_settings` 缺 `l2/l3` 列会 `ALTER TABLE ADD COLUMN`，并一次性回填（`mode='session'→l2=1`、`mode='workspace'→l3=1`）；`records` 缺 `cold`/`abstract` 列时补列（默认 0/''）；`records_fts` 若含 `body` 或缺 `abstract` 列则 drop/recreate 为 5 列、全量重索引、从冷文件回填 abstract，并在旧表含 body 时 best-effort `optimize + wal_checkpoint(TRUNCATE) + VACUUM` 回收旧 trigram 正文页。打开时还会 `DELETE FROM session_settings WHERE updated_at < now - settingsTtlDays`。`enableLevel` 用 `INSERT ... ON CONFLICT DO UPDATE SET l2/l3=1`，`getLevels` 查不到行时返回后端 `defaultLevels`（默认 none）。`recordEviction` 写 `l1_evictions`，`evictionStats(sessionId)` 汇总 count/tokens。`archiveCold`/`restoreCold` rename 文件并更新 `cold/path/updated_at/abstract`（restore 清空）；`compressCold`/`gcCold` 分别做无 LLM 批量冷移与按预算删除；`recordCompression`/`compressionStats` 读写 `compression_runs`。
+写入路径：当前实现以 SQLite 写事务、暂存文件和恢复日志协调记录文件与索引；进程中断后可对账，恢复范围和故障注入结果见[修复说明](archive-integrity-20261102.html)。`records_fts` 索引卡片字段与 cold abstract；源事件和完成标记也存于 SQLite，因此必须同时备份数据库和记录文件。
 
 ### 7.3 查询路径
 
@@ -523,7 +525,7 @@ CREATE TABLE compression_runs (
 - **默认关闭**：`defaultLevels` 默认 `'none'`——升级后不显式开启就没有 L1 驱逐、归档或注入。开启前的压缩/驱逐不会补做；恢复对账只对“开启后的首步”可见的持久化压缩补录（按当时 capture 层）。
 - **层级与作用域**：层级粘性存在 `session_settings`，只增不减；新增层级只影响后续写入与读取过滤，不迁移既有记录；旧记录（升级前）全部是 workspace scope，只在 L3 可见。
 - **与 `compaction/prune` 契约同步**：`memory-evict` 依赖随附的 `compaction/prune` 影子价格事件（`shadowedRange/shadowedSeqs/shadowedTokenCount`）与 `user/message` 的 `surfaceOp:{op:'replace'}` + `sourceEventSeqs`；若上游改变 prune payload 或 replace 校验，evict 行需同步。compaction backend 本身未被替换。含图片/超限事件停批是本地加固（依赖 `dsh-llm` 的 `contentHasImage`）。
-- **冷存/压缩是本地扩展**：`records.cold`、`cold/` 目录、`memory_compress` 与 `capacity-notice` 都不写会话事件；压缩只调用 `ctx.memory.write/archiveCold/compressCold/gcCold`，提示只注入普通 memory-recall user 消息。冷记录仍遵守“文件是记录真源”；压缩的幂等/恢复由已冷过滤 + 确定性 digest id 保证，无跨进程锁。
+- **冷存/压缩是本地扩展**：`records.cold`、`cold/` 目录、`memory_compress` 与 `capacity-notice` 都不写会话事件。记录文件与 SQLite 一同构成归档；本地写入和恢复使用 SQLite 写锁，不宣称多主机或断电持久性保证。
 - **敏感策略与备份**：L1 驱逐和 compaction 兜底归档均检查常见凭据格式（不是 DLP），命中时强制 L2、仅 L3 时跳过。`scripts/memory-backup.mjs` 是手动备份/校验/恢复工具（`VACUUM INTO` + manifest + `--force` guard），没有定时/轮转；`GET /api/memory.metrics` 只读观测，不进 prompt。
 - **FTS 迁移与检索权衡**：FTS 5 列含冷摘要（前 ~1000 字），正文-only 词依赖热回退或 `memory_grep`；LIKE leg 是 OR 扫描（10k 记录 Phase-3 仍 <50ms，再大需重新评估）；`memoryQueryTerms` 是词法启发式（无词干/语义）；若上游改变 FTS 字段或 trigram 可用性，需同步 `ensure()` 迁移与回退路径。
 - **压缩历史是工具路径专有**：只有 `memory_compress`（compress 行）写 `compression_runs`；API/面板的 `compressCold` 没有写历史。若要把历史做成“所有压缩入口一致”，需要把 `recordCompression` 下沉到 `compressCold`/API。

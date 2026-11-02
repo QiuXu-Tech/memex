@@ -115,6 +115,9 @@ export class MemoryStore extends Service {
    */
   async appendContextEvents(_input) { return 0 }
 
+  /** @returns {Promise<object[]>} Canonical events for an archive, optionally restricted by sequence. */
+  async listContextEvents(_recordId, _options) { return [] }
+
   /**
    * Materialize a resident extra-context window (pager/materializer).
    * Backends that do not implement it stay compatible with `undefined`.

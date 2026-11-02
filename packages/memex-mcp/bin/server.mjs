@@ -80,10 +80,11 @@ const TOOLS = [
     },
     required: ['query'],
   }),
-  tool('memory_open', 'Read a record by id. Use offset/limit for lines; when nextCharOffset is returned, continue the same line window with charOffset.', {
+  tool('memory_open', 'Read a record by id. Use offset/limit for lines; when nextCharOffset is returned, continue the same window with charOffset. For captured DSH compactions, eventIndex opens one original event as paginated JSON.', {
     type: 'object',
     properties: {
       id: { type: 'string' },
+      eventIndex: { type: 'integer', minimum: 1, description: '1-based source event within a DSH compaction archive; use charOffset to page its JSON.' },
       offset: { type: 'integer', minimum: 1, description: '1-based first line.' },
       limit: { type: 'integer', minimum: 1, maximum: 400 },
       maxChars: { type: 'integer', minimum: 400, maximum: 240000 },
@@ -192,6 +193,11 @@ function callTool(name, input = {}) {
       return textResult(text)
     }
     case 'memory_open': {
+      if (input.eventIndex !== undefined) {
+        const page = engine.openEvent({ id: input.id, eventIndex: input.eventIndex, charOffset: input.charOffset, maxChars: input.maxChars })
+        if (page === undefined) throw new Error(`memory_open: no record ${input.id}`)
+        return textResult(JSON.stringify(page))
+      }
       const record = engine.open({ id: input.id, offset: input.offset, limit: input.limit, maxChars: input.maxChars, charOffset: input.charOffset })
       if (record === undefined) throw new Error(`memory_open: no record ${input.id}`)
       return textResult(formatOpenedRecord(record))

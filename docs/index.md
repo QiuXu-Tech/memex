@@ -12,7 +12,7 @@ A high-performance context hierarchy between an agent's history and its model wi
 
 ![memex demo](assets/demo.gif)
 
-Memex treats context as a hierarchy, not a notes store: when the native context window fills up, older spans are moved out **verbatim** into sticky **L2 (10M, session-private)** / **L3 (100M, workspace-shared)** context pools; capacity is managed through a lossless cold tier plus bounded batch digests; and selected context pages can be retrieved under per-model context budgets. Retrieval and excerpting do not guarantee every relevant fact is included.
+Memex treats context as a hierarchy: eligible older text spans can be archived in sticky **L2 (10M, session-private)** / **L3 (100M, workspace-shared)** pools, and DSH compaction retains captured source-event envelopes. Selected context can be retrieved under per-model budgets; capture and retrieval can omit relevant information or externally referenced attachment bytes.
 
 ## Quick start
 
