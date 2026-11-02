@@ -81,6 +81,29 @@ test('MCP source, version and validity survive reopen and govern normal recall',
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
 
+test('legacy arbitrary provenance remains visible and can change status', () => {
+  const dir = root(), store = new LocalStoreCore({ root: dir })
+  try {
+    const original = store.write({ id: 'mem_legacy_evidence', kind: 'fact', title: 'Sprocket legacy', body: 'Original body', workspaceKey: 'wk', provenance: { source: 'legacy' } })
+    const legacy = { source: 'legacy', evidence: { description: 'Old caller metadata', validUntil: '0' } }
+    store.database().prepare('UPDATE records SET provenance_json = ? WHERE id = ?').run(JSON.stringify(legacy), original.id)
+    const file = readFileSync(original.path, 'utf8').replace(/^provenance: .*$/m, `provenance: ${JSON.stringify(legacy)}`)
+    writeFileSync(original.path, file)
+    assert.equal(store.search({ query: 'Sprocket legacy', workspaceKey: 'wk' }).hits[0]?.id, original.id)
+    const updated = store.setStatus(original.id, 'resolved', { workspaceKey: 'wk' })
+    assert.deepEqual(updated.provenance, legacy)
+    store.close()
+    const reopened = new LocalStoreCore({ root: dir })
+    try {
+      const record = reopened.get(original.id)
+      assert.deepEqual(record.provenance, legacy); assert.equal(record.body, 'Original body')
+      assert.throws(() => reopened.write({ ...record, provenance: { ...legacy, evidence: { ...legacy.evidence, validUntil: '1' } } }), /unsupported field/)
+      assert.deepEqual(reopened.get(original.id).provenance, legacy)
+    } finally { reopened.close() }
+    assert.throws(() => store.write({ kind: 'fact', title: 'invalid', body: '', provenance: { evidence: { source: 'new', validUntil: '0' } } }), /valid UTC ISO/)
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
 test('expired evidence stays available by id but is excluded from normal search and paging', () => {
   const dir = root(), project = '/tmp/memex-expiry-regression'
   const engine = new AgentMemory({ root: dir, cwd: project, sessionId: 'evidence-test', levels: ['l3'] })

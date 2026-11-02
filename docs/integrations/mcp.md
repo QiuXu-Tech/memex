@@ -32,7 +32,7 @@ For a focused query, `memory_search` accepts `openTop: true` to include up to 2,
 
 `source` is required when `evidence` is supplied; the remaining fields are optional. Times use valid UTC ISO timestamps. The source and version are assertions supplied by the caller: Memex does not verify that the source exists or automatically compare it with a current Git checkout. Search and open display the stored metadata and trust label. Search accepts exact `source` plus `version` filters; a version filter requires a source.
 
-Superseded and expired records are excluded from normal search and materialized windows. Search can explicitly select `status: "superseded"` or set `includeExpired: true`; an expired record can also be opened by id. Unknown validity does not mean current. Writing a new version does not automatically supersede another record: set its status after deciding it has been replaced. Existing records without the new metadata remain readable with unknown version/validity.
+Superseded and expired records are excluded from normal search and materialized windows. Search can explicitly select `status: "superseded"` or set `includeExpired: true`; an expired record can also be opened by id. Unknown validity does not mean current. Writing a new version does not automatically supersede another record: set its status after deciding it has been replaced. Existing records without the new metadata remain readable with unknown version/validity. Older arbitrary provenance is preserved on updates; an unparseable legacy expiry is treated as unknown rather than as expired.
 
 ## Client config examples
 

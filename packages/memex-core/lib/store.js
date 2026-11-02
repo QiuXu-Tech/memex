@@ -15,6 +15,7 @@ import { DatabaseSync } from 'node:sqlite'
 import { chmodSync, closeSync, mkdirSync, openSync, readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash, randomUUID } from 'node:crypto'
+import { isDeepStrictEqual } from 'node:util'
 import { canonicalContextEvent, checksumContextEvent } from './context-events.js'
 import { recoverOnOpen, withFileTransaction } from './file-transactions.js'
 import {
@@ -438,7 +439,7 @@ export class LocalStoreCore {
   }
 
   /** Validate and normalize one record input. */
-  normalize(input) {
+  normalize(input, { deferEvidenceValidation = false } = {}) {
     if (input === null || typeof input !== 'object') throw new TypeError('memory: record must be an object')
     const kind = String(input.kind ?? '')
     if (!MEMORY_KINDS.includes(kind)) throw new TypeError(`memory: unknown record kind "${kind}"`)
@@ -454,7 +455,7 @@ export class LocalStoreCore {
     }
     const workspaceKey = String(input.workspaceKey ?? 'global')
     const provenance = input.provenance !== null && typeof input.provenance === 'object' && !Array.isArray(input.provenance) ? { ...input.provenance } : {}
-    if (provenance.evidence !== undefined) provenance.evidence = normalizeMemoryEvidence(provenance.evidence)
+    if (provenance.evidence !== undefined && !deferEvidenceValidation) provenance.evidence = normalizeMemoryEvidence(provenance.evidence)
     const now = Date.now()
     return {
       id: typeof input.id === 'string' && input.id.length > 0 ? input.id : `mem_${randomUUID().replace(/-/g, '').slice(0, 10)}`,
@@ -480,7 +481,7 @@ export class LocalStoreCore {
 
   /** Persist a record and its index without replacing the previously indexed file. */
   write(input, options = {}) {
-    const record = this.normalize(input)
+    const record = this.normalize(input, { deferEvidenceValidation: true })
     try {
       const db = this.database()
       return withFileTransaction(this.root, db, (stage) => {
@@ -495,7 +496,17 @@ export class LocalStoreCore {
             db.prepare('DELETE FROM context_events WHERE record_id = ?').run(archivedId)
           }
         }
-        const existing = db.prepare('SELECT rowid, path, cold, created_at FROM records WHERE id = ?').get(record.id)
+        const existing = db.prepare('SELECT rowid, path, cold, created_at, provenance_json FROM records WHERE id = ?').get(record.id)
+        if (record.provenance.evidence !== undefined) {
+          try {
+            record.provenance.evidence = normalizeMemoryEvidence(record.provenance.evidence)
+          } catch (error) {
+            // Older releases accepted arbitrary provenance. Preserve unchanged
+            // legacy evidence on updates, but reject new invalid evidence.
+            const previous = existing === undefined ? undefined : parseJson(existing.provenance_json)?.evidence
+            if (previous === undefined || !isDeepStrictEqual(previous, record.provenance.evidence)) throw error
+          }
+        }
         if (options.archive !== undefined && existing !== undefined) {
           const prior = this.get(record.id)
           if (prior?.provenance?.sessionId !== options.archive.sessionId || prior?.provenance?.compactionId !== options.archive.compactionId) {
@@ -695,7 +706,10 @@ export class LocalStoreCore {
     }
     const evidence = (key) => `CASE WHEN json_valid(${col('provenance_json')}) THEN json_extract(${col('provenance_json')}, '$.evidence.${key}') ELSE NULL END`
     if (filter.excludeExpired === true) {
-      clauses.push(`(${evidence('validUntil')} IS NULL OR ${evidence('validUntil')} > ?)`)
+      const source = evidence('source'), expiry = evidence('validUntil')
+      // Unknown or legacy metadata is not an expiry claim. New evidence uses
+      // UTC ISO timestamps; julianday rejects malformed historical values.
+      clauses.push(`(typeof(${source}) != 'text' OR trim(${source}) = '' OR typeof(${expiry}) != 'text' OR ${expiry} NOT GLOB '????-??-??T??:??:??*Z' OR julianday(${expiry}) IS NULL OR julianday(${expiry}) > julianday(?))`)
       params.push(new Date().toISOString())
     }
     if (filter.source !== undefined) { clauses.push(`${evidence('source')} = ?`); params.push(filter.source) }
