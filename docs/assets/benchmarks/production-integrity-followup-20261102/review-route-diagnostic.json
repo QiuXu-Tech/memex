@@ -1,0 +1,30 @@
+{
+  "startedAt": "2026-11-02T05:42:07.935170+00:00",
+  "model": "deepseek-flash",
+  "purpose": "one-shot review-route diagnostic outside randomized study",
+  "maxOutputTokens": 8,
+  "status": "ok",
+  "httpStatus": 200,
+  "usage": {
+    "completion_tokens": 2,
+    "prompt_tokens": 7,
+    "total_tokens": 9,
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    },
+    "completion_tokens_details": {
+      "reasoning_tokens": 0
+    }
+  },
+  "finishReason": "stop",
+  "elapsedSeconds": 2.506,
+  "walletCandidate": {
+    "localTime": "2026-11-02 13:42:10",
+    "timezone": "Asia/Shanghai",
+    "promptTokens": 7,
+    "completionTokens": 2,
+    "displayedUsd": 2e-06,
+    "method": "One visible row matches model, token counts and completion time; no request-ID proof."
+  },
+  "interpretation": "The review-model chat route responded successfully at this time; it does not establish the cause of the separate Claude route timeout."
+}
