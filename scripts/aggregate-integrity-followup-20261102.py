@@ -24,7 +24,8 @@ def digest(path):
     return hashlib.sha256(path.read_bytes()).hexdigest()
 
 
-def verify_blind(base):
+def verify_blind(base, published):
+    assert digest(base / 'reviews/commitments.json') == digest(published)
     commitments = read(base / 'reviews/commitments.json')['packets']
     unblinded = []
     for item in commitments:
@@ -49,7 +50,10 @@ def independent_scores(base, task):
     ratings = [read(p).get('rating') for p in paths]
     if any(not isinstance(r, dict) or len(r.get('candidates', [])) != 2 for r in ratings):
         return None
+    evidence = set(read(folder / 'packet.json')['evidence'])
     def rows(r):
+        for candidate in r['candidates']:
+            assert candidate['references'] and set(candidate['references']) <= evidence
         return {v['id']: (v['score'], tuple(sorted(v['unsupportedClaims']))) for v in r['candidates']}
     original = [rows(r) for r in ratings]
     if any(set(x) != set(key) or any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in x.values()) for x in original):
@@ -69,6 +73,25 @@ def independent_scores(base, task):
             'reviewerScores': [{key[k]: v[0] for k, v in review.items()} for review in original]}
 
 
+def successful_opens(base, row):
+    chain = row.get('memoryChain') or {}
+    trace = base / row['id'] / 'traces'
+    events = a.events(trace / 'memex-s2-events.jsonl') + a.events(trace / 'memex-s2-recovery-events.jsonl')
+    calls, opened = {}, set()
+    for event in events:
+        for item in (event.get('message') or {}).get('content', []):
+            if not isinstance(item, dict):
+                continue
+            if item.get('type') == 'tool_use' and item.get('name') == 'mcp__memex__memory_open':
+                calls[item.get('id')] = (item.get('input') or {}).get('id')
+            elif item.get('type') == 'tool_result' and not item.get('is_error'):
+                record = calls.get(item.get('tool_use_id'))
+                if record and record in json.dumps(item.get('content'), ensure_ascii=False):
+                    opened.add(record)
+    return {'agentWriteThenSuccessfulOpen': bool(opened & set(chain.get('successfulWriteIds') or [])),
+            'automaticCheckpointThenSuccessfulOpen': bool(opened & set(chain.get('automaticCheckpointIds') or []))}
+
+
 def cohort(name, source):
     base = BASE / name
     data = a.cohort(name)
@@ -77,7 +100,9 @@ def cohort(name, source):
     reg = read(base / 'registration.json')
     tasks = {t['id']: t for t in reg['tasks']}
     finished_review = (base / 'reviews/finished.json').exists()
-    unblind = verify_blind(base) if finished_review else []
+    published = ROOT / ('docs/assets/benchmarks/production-integrity-20261102/packet-commitments.json' if name == 'integrity-triage' else 'docs/assets/benchmarks/production-long-integrity-20261102/packet-commitments.json')
+    unblind = verify_blind(base, published) if finished_review else []
+    assert not data['rawConsistencyProblems'], data['rawConsistencyProblems']
     simplified = []
     directions = collections.Counter()
     later = {arm: collections.Counter() for arm in ('baseline', 'memex')}
@@ -97,17 +122,18 @@ def cohort(name, source):
             trace = a.events(path / f'{arm}-s2-events.jsonl') + a.events(path / f'{arm}-s2-recovery-events.jsonl')
             exposure = a.later_discussion_exposure(BASE / source / f'{tid}.issue.json', trace)
             for k, v in exposure.items(): later[arm][k] += int(bool(v))
+        opens = successful_opens(base, row) if row.get('started') else {'agentWriteThenSuccessfulOpen': False, 'automaticCheckpointThenSuccessfulOpen': False}
         simplified.append({'id': tid, 'issueUrl': row['issueUrl'], 'sourceCommit': row['sourceCommit'],
             'discussionSpanDays': tasks[tid].get('discussionSpanDays'), 'completePair': row['completePair'],
             'sessionStatuses': {k: v.get('status') for k, v in row['sessions'].items()},
             'sessionRecoveries': sum(bool(v.get('recovery')) for v in row['sessions'].values()),
             'reviewStatus': row['review']['status'], 'blindReview': score,
-            'agentWriteThenOpen': bool(row['memoryChain'] and row['memoryChain']['writtenIdOpenedNext']),
-            'automaticCheckpointThenOpen': bool(row['memoryChain'] and row['memoryChain']['automaticCheckpointOpenedNext'])})
+            **opens})
     assert dict(directions) == data['scoreDirections']
     result = {k: v for k, v in data.items() if k != 'tasks'}
     result.update({'sourceCommit': reg['memexCommit'], 'registrationSha256': digest(base / 'registration.json'),
                    'independentlyRecountedDirections': dict(directions), 'laterDiscussionExposure': {k: dict(v) for k, v in later.items()},
+                   'successfulOpens': {key: sum(t[key] for t in simplified) for key in ('agentWriteThenSuccessfulOpen', 'automaticCheckpointThenSuccessfulOpen')},
                    'tasks': simplified if finished_review else []})
     return result, unblind
 

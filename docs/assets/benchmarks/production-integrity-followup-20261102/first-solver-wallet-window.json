@@ -1,0 +1,17 @@
+{
+  "kind": "account-window-context-not-per-request-attribution",
+  "date": "2026-11-02",
+  "timezone": "Asia/Shanghai",
+  "windowStart": "12:21:05",
+  "windowEnd": "12:47:35",
+  "model": "claude-haiku-4-5",
+  "visibleDistinctRows": 383,
+  "rowsWithDisplayedWalletCost": 383,
+  "displayedWalletUsd": 0.294406,
+  "method": "Read and deduplicate the visible model rows from seven paginated gateway UI pages. This is an account-wide time window, not a request-ID match to the study. Pagination could shift while other activity continues.",
+  "limits": [
+    "Concurrent account activity may be included.",
+    "Unshown or failed attempts may be missing.",
+    "No per-arm attribution or total study invoice can be established from this window."
+  ]
+}

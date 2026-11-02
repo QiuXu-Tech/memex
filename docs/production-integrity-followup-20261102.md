@@ -7,7 +7,7 @@ layout: default
 
 The initial eight-task randomized replay and AI blind review are complete. A separate 25-task long-discussion follow-up is registered and running. Neither is a live production benchmark or a demonstration of a correctness gain or cost saving.
 
-[Results and per-task statuses](assets/benchmarks/production-integrity-followup-20261102/results.json) · [Initial registration](production-integrity-20261102-registration.html) · [Long-discussion registration](production-long-integrity-20261102-registration.html) · [Post-review unblinding](assets/benchmarks/production-integrity-followup-20261102/packet-unblinding.json) · [Candidate review-wallet matches](assets/benchmarks/production-integrity-followup-20261102/first-review-wallet-matches.json) · [Repair details and limitations](archive-integrity-20261102.html)
+[Results and per-task statuses](assets/benchmarks/production-integrity-followup-20261102/results.json) · [Initial registration](production-integrity-20261102-registration.html) · [Long-discussion registration](production-long-integrity-20261102-registration.html) · [Post-review unblinding](assets/benchmarks/production-integrity-followup-20261102/packet-unblinding.json) · [Candidate review-wallet matches](assets/benchmarks/production-integrity-followup-20261102/first-review-wallet-matches.json) · [Solver account-window context](assets/benchmarks/production-integrity-followup-20261102/first-solver-wallet-window.json) · [Repair details and limitations](archive-integrity-20261102.html)
 
 ![Initial blinded review results and later-discussion exposure by arm](assets/benchmarks/production-integrity-followup-20261102/integrity-followup.svg)
 
@@ -29,7 +29,7 @@ In a post-hoc tool-output check, the second session received a later-discussion 
 
 The Claude client's reported list prices for the eight completed pairs total **$1.200828 control / $1.479450 Memex**. These are list-price telemetry, not gateway charges. A fully reconciled input-token total exists for only **1/8 pairs** because budget-exhausted attempts report incomplete cumulative usage; the remaining totals are **UNKNOWN**. For that one pair, input including cache creation and cache reads was 127,803 / 149,792 tokens; it is not a cohort-wide estimate.
 
-All 24 successful AI-review calls uniquely matched visible wallet rows by model, input/output counts and completion time within three seconds, totaling **$0.091542**. This is a candidate match, not request-ID proof. The solver's actual allocated wallet cost, other account activity, infrastructure and labor remain **UNKNOWN**. Review usage by model and all session statuses are in the machine-readable results. Client per-session limits may be exceeded by an in-flight request before it stops.
+All 24 successful AI-review calls uniquely matched visible wallet rows by model, input/output counts and completion time within three seconds, totaling **$0.091542**. This is a candidate match, not request-ID proof. Separately, the visible account-wide Claude Haiku rows in the solver time window totaled **$0.294406 across 383 distinct rows**. That window can include other activity and may omit rows as pagination shifts; it is not attributed per arm or asserted as the study's solver bill. The solver's actual allocated wallet cost, other account activity, infrastructure and labor remain **UNKNOWN**. Review usage by model and all session statuses are in the machine-readable results. Client per-session limits may be exceeded by an in-flight request before it stops.
 
 ## New long-discussion cohort
 

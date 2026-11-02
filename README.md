@@ -220,8 +220,10 @@ Long conversations and long-running projects hit the same wall: the native conte
 | Level | What it is | Capacity | Semantics |
 |---|---|---|---|
 | **L1** | The model's native context window | model window | untouched; eviction removes the oldest balanced span |
-| **L2** | Session-private archive | 10M tokens / session | only this conversation can read it |
-| **L3** | Workspace-shared archive | 100M tokens / cwd | every session in the working directory can read it |
+| **L2** | Session-private archive | 10M tokens / session | Memex filters reads by workspace and session id |
+| **L3** | Workspace-shared archive | 100M tokens / cwd | Memex sessions in the same workspace can read it |
+
+These are logical storage scopes, not operating-system security boundaries: a process with access to the database or record files can inspect them directly.
 
 - **L2 and L3 are independent, sticky switches** — once enabled a level cannot be turned off (recorded context never silently disappears).
 - **Stored source events**: DSH compaction retains captured event envelopes in SQLite alongside a rendered record, without an LLM on the critical path; rendered excerpts and referenced external files may be incomplete.

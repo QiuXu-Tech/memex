@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T04:58:17.243744+00:00",
+  "generatedAt": "2026-11-02T05:04:16.527061+00:00",
   "firstEight": {
     "status": "FINISHED",
     "reviewStatus": "FINISHED",
@@ -139,6 +139,10 @@
         "exposedLaterComment": 2
       }
     },
+    "successfulOpens": {
+      "agentWriteThenSuccessfulOpen": 3,
+      "automaticCheckpointThenSuccessfulOpen": 8
+    },
     "tasks": [
       {
         "id": "integrity-01",
@@ -172,8 +176,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": true,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
       },
       {
         "id": "integrity-02",
@@ -207,8 +211,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": false,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
       },
       {
         "id": "integrity-03",
@@ -242,8 +246,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": true,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
       },
       {
         "id": "integrity-04",
@@ -277,8 +281,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": false,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
       },
       {
         "id": "integrity-05",
@@ -312,8 +316,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": false,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
       },
       {
         "id": "integrity-06",
@@ -347,8 +351,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": false,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
       },
       {
         "id": "integrity-07",
@@ -382,8 +386,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": true,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
       },
       {
         "id": "integrity-08",
@@ -417,8 +421,8 @@
             }
           ]
         },
-        "agentWriteThenOpen": false,
-        "automaticCheckpointThenOpen": true
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
       }
     ]
   },
@@ -426,9 +430,9 @@
     "status": "IN_PROGRESS",
     "reviewStatus": "NOT_STARTED",
     "registered": 25,
-    "started": 4,
-    "finished": 2,
-    "completePairs": 2,
+    "started": 7,
+    "finished": 5,
+    "completePairs": 5,
     "validRatedPairs": 0,
     "scoreDirections": {},
     "posthocSensitivityRatedPairs": 0,
@@ -437,85 +441,85 @@
       "baseline": null,
       "memex": null
     },
-    "fullTokenPairs": 1,
+    "fullTokenPairs": 3,
     "tokenTotals": {
       "baseline": {
-        "input": 199967,
-        "output": 7929,
-        "cacheRead": 153981,
-        "cacheWrite": 45881
+        "input": 593123,
+        "output": 23203,
+        "cacheRead": 459621,
+        "cacheWrite": 133197
       },
       "memex": {
-        "input": 301713,
-        "output": 8311,
-        "cacheRead": 254183,
-        "cacheWrite": 47390
+        "input": 865342,
+        "output": 25432,
+        "cacheRead": 722381,
+        "cacheWrite": 142596
       }
     },
     "completePairToolAttempts": {
       "baseline": {
-        "total": 72,
-        "exactRepeated": 0,
+        "total": 173,
+        "exactRepeated": 1,
         "memory": 0,
-        "source": 47,
-        "archive": 25,
+        "source": 108,
+        "archive": 65,
         "other": 0
       },
       "memex": {
-        "total": 86,
+        "total": 180,
         "exactRepeated": 0,
-        "memory": 11,
-        "source": 49,
-        "archive": 24,
+        "memory": 24,
+        "source": 114,
+        "archive": 40,
         "other": 2
       }
     },
     "completeTokenPairMessageContexts": {
       "baseline": {
-        "messageIds": 19,
-        "inputTokens": 199967
+        "messageIds": 55,
+        "inputTokens": 593123
       },
       "memex": {
-        "messageIds": 26,
-        "inputTokens": 301713
+        "messageIds": 67,
+        "inputTokens": 865342
       }
     },
     "completeTokenPairFirstSessionInitialContexts": {
       "baseline": {
-        "sessions": 1,
-        "inputTokens": 5559
+        "sessions": 3,
+        "inputTokens": 16718
       },
       "memex": {
-        "sessions": 1,
-        "inputTokens": 7794
+        "sessions": 3,
+        "inputTokens": 23423
       }
     },
     "completePairClientListPriceUsd": {
-      "baseline": 0.242504,
-      "memex": 0.344479
+      "baseline": 0.629078,
+      "memex": 0.713591
     },
     "sessionOutcomes": {
       "notCompletedByStatus": {},
-      "resumedAfterBudget": 1,
-      "resumedAndCompleted": 1,
+      "resumedAfterBudget": 2,
+      "resumedAndCompleted": 2,
       "unavailableToolAttempts": 2,
       "unexpectedToolAttempts": 0,
       "runnerErrors": 0
     },
     "recoveryInputReconciliation": {
       "matched": 0,
-      "different": 1,
+      "different": 2,
       "missing": 0
     },
     "posthocDiscussionExposure": {},
-    "clientListPriceKnownUsd": 0.586984,
+    "clientListPriceKnownUsd": 1.457349,
     "clientListPriceMissingSessions": 0,
-    "agentWrites": 1,
-    "writtenRecordOpenedNext": 1,
-    "writtenRecordAutomaticallyRecalled": 1,
-    "automaticCheckpoints": 2,
-    "automaticCheckpointOpenedNext": 2,
-    "automaticCheckpointRecalledNext": 2,
+    "agentWrites": 4,
+    "writtenRecordOpenedNext": 4,
+    "writtenRecordAutomaticallyRecalled": 4,
+    "automaticCheckpoints": 5,
+    "automaticCheckpointOpenedNext": 5,
+    "automaticCheckpointRecalledNext": 5,
     "reviewUsageByModel": {},
     "rawConsistencyProblems": [],
     "sourceCommit": "c47e4456451d3e9990be40ce52bfbe6fda6cc7cc",
@@ -523,15 +527,19 @@
     "independentlyRecountedDirections": {},
     "laterDiscussionExposure": {
       "baseline": {
-        "hasLaterComments": 2,
-        "openedLaterComment": 1,
-        "exposedLaterComment": 2
+        "hasLaterComments": 5,
+        "openedLaterComment": 4,
+        "exposedLaterComment": 5
       },
       "memex": {
-        "hasLaterComments": 2,
-        "openedLaterComment": 2,
-        "exposedLaterComment": 2
+        "hasLaterComments": 5,
+        "openedLaterComment": 5,
+        "exposedLaterComment": 5
       }
+    },
+    "successfulOpens": {
+      "agentWriteThenSuccessfulOpen": 4,
+      "automaticCheckpointThenSuccessfulOpen": 5
     },
     "tasks": []
   },
