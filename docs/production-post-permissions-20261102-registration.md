@@ -9,7 +9,7 @@ This separate two-issue smoke was frozen after discovering and fixing the POSIX 
 
 The tested source commit is `e24bc06af255c648017cb7895905ef53f4e95a56`. Issue snapshots and pinned source archives are retained privately; the registration contains their hashes. Public material may be in model training, and pinned source may postdate discussion.
 
-[Machine-readable registration](assets/benchmarks/production-post-permissions-20261102/registration.json) · [Frozen review plan](assets/benchmarks/production-post-permissions-20261102/review-plan.json) · [Source selection exclusions](assets/benchmarks/production-post-permissions-20261102/source-rejections.json)
+[Machine-readable registration](assets/benchmarks/production-post-permissions-20261102/registration.json) · [Frozen review plan](assets/benchmarks/production-post-permissions-20261102/review-plan.json) · [Anonymous packet and salted-label commitments](assets/benchmarks/production-post-permissions-20261102/packet-commitments.json) · [Source selection exclusions](assets/benchmarks/production-post-permissions-20261102/source-rejections.json)
 
 | Public issue | Discussion span | Frozen acceptance focus |
 | --- | ---: | --- |

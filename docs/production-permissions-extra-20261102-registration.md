@@ -7,7 +7,7 @@ layout: default
 
 This single new owner-disjoint issue was added after observing incomplete Claude pairs and before any call on this issue. Its results must be reported separately from earlier preregistered samples. The pinned Memex commit is `b93d798441b4b25d3f0fad9e40a4b961e64e8648`.
 
-[Machine-readable registration](assets/benchmarks/production-permissions-extra-20261102/registration.json) · [Frozen AI review plan](assets/benchmarks/production-permissions-extra-20261102/review-plan.json)
+[Machine-readable registration](assets/benchmarks/production-permissions-extra-20261102/registration.json) · [Frozen AI review plan](assets/benchmarks/production-permissions-extra-20261102/review-plan.json) · [Anonymous packet and salted-label commitments](assets/benchmarks/production-permissions-extra-20261102/packet-commitments.json)
 
 | Public issue | Discussion span | Frozen acceptance focus |
 | --- | ---: | --- |
