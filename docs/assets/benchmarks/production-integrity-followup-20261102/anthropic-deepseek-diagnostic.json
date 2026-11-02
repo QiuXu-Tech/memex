@@ -1,0 +1,24 @@
+{
+  "startedAt": "2026-11-02T05:44:05.854462+00:00",
+  "model": "deepseek-flash",
+  "purpose": "one-shot alternate-model Anthropic-route diagnostic outside randomized study",
+  "maxOutputTokens": 8,
+  "status": "ok",
+  "httpStatus": 200,
+  "usage": {
+    "input_tokens": 33,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 8,
+    "claude_cache_creation_5_m_tokens": 0,
+    "claude_cache_creation_1_h_tokens": 0
+  },
+  "stopReason": "max_tokens",
+  "elapsedSeconds": 2.587,
+  "walletCandidate": {
+    "localTime": "2026-11-02 13:44:08",
+    "timezone": "Asia/Shanghai",
+    "displayedUsd": 6e-06,
+    "method": "Unique visible row matches model, input/output counts and completion time; no request-ID proof."
+  }
+}

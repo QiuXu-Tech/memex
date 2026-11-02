@@ -1,0 +1,39 @@
+{
+  "startedAt": "2026-11-02T05:45:04.893812+00:00",
+  "model": "deepseek-flash",
+  "purpose": "one-shot isolated Claude Code alternate-model smoke outside randomized study",
+  "clientListBudgetUsd": 0.02,
+  "exitCode": 0,
+  "status": "success",
+  "isError": false,
+  "hasResult": true,
+  "usage": {
+    "input_tokens": 981,
+    "cache_creation_input_tokens": 0,
+    "cache_read_input_tokens": 0,
+    "output_tokens": 2,
+    "output_tokens_details": {
+      "thinking_tokens": 0
+    },
+    "server_tool_use": {
+      "web_search_requests": 0,
+      "web_fetch_requests": 0
+    },
+    "service_tier": "standard",
+    "cache_creation": {
+      "ephemeral_1h_input_tokens": 0,
+      "ephemeral_5m_input_tokens": 0
+    },
+    "inference_geo": "",
+    "iterations": [],
+    "speed": "standard"
+  },
+  "clientListPriceUsd": 0.0039640000000000005,
+  "elapsedSeconds": 3.347,
+  "walletCandidate": {
+    "localTime": "2026-11-02 13:45:08",
+    "timezone": "Asia/Shanghai",
+    "displayedUsd": 9.4e-05,
+    "method": "Unique visible row matches model, input/output counts and completion time; no request-ID proof."
+  }
+}

@@ -11,6 +11,8 @@ The initial eight-task randomized replay and AI blind review are complete. A sep
 
 During the later long-discussion run, a separate [single 8-output-token-cap diagnostic](assets/benchmarks/production-integrity-followup-20261102/anthropic-route-diagnostic.json) to the same Claude model route timed out after about 26 seconds without an HTTP status. It was not retried and its actual charge is **UNKNOWN**. A separate [DeepSeek review-route diagnostic](assets/benchmarks/production-integrity-followup-20261102/review-route-diagnostic.json) succeeded in 2.5 seconds with 7 input and 2 output tokens; one matching wallet row displayed **$0.000002**. These observations do not isolate the gateway, upstream model or network as the Claude timeout's cause.
 
+The same Anthropic-compatible endpoint returned [a small DeepSeek request](assets/benchmarks/production-integrity-followup-20261102/anthropic-deepseek-diagnostic.json), and an [isolated Claude Code + DeepSeek smoke](assets/benchmarks/production-integrity-followup-20261102/claude-code-deepseek-smoke.json) produced a response. Candidate wallet matches displayed $0.000006 and $0.000094 respectively. These diagnostics are outside the randomized study; a successful small request does not guarantee sustained tool-calling reliability.
+
 ![Initial blinded review results and later-discussion exposure by arm](assets/benchmarks/production-integrity-followup-20261102/integrity-followup.svg)
 
 ## Repairs and tests
