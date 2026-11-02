@@ -1,0 +1,160 @@
+{
+  "kind": "original-review-failures",
+  "failures": [
+    {
+      "task": "state-01",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-02",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-06",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-09",
+      "stage": "pair",
+      "status": "NOT_REVIEWABLE",
+      "reason": "One or both third-session responses are missing or incomplete."
+    },
+    {
+      "task": "state-10",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-13",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-14",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-15",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-16",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-17",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-18",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-20",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-24",
+      "stage": "review",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "errorType": null,
+      "httpStatus": 200,
+      "validationError": "Expecting ',' delimiter: line 1 column 2262 (char 2261)"
+    },
+    {
+      "task": "state-25",
+      "stage": "pair",
+      "status": "NOT_REVIEWABLE",
+      "reason": "One or both third-session responses are missing or incomplete."
+    },
+    {
+      "task": "state-27",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    },
+    {
+      "task": "state-28",
+      "stage": "review",
+      "model": "deepseek-flash",
+      "status": "ok",
+      "errorType": null,
+      "httpStatus": 200,
+      "validationError": "Expecting ',' delimiter: line 1 column 2389 (char 2388)"
+    },
+    {
+      "task": "state-29",
+      "stage": "review",
+      "model": "gpt-6.1-sol",
+      "status": "error",
+      "errorType": "TimeoutError",
+      "httpStatus": null,
+      "validationError": "failed or truncated response"
+    }
+  ],
+  "countsByStage": {
+    "review": 15,
+    "pair": 2
+  },
+  "limits": [
+    "Original failures remain unchanged even when a separately registered post-hoc replacement is successful.",
+    "Timeout charges can remain unsettled or unknown. Raw model responses remain local."
+  ]
+}

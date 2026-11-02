@@ -1,0 +1,28 @@
+{
+  "kind": "post-hoc-streamed-input-observation",
+  "distinctAssistantMessageIds": 220,
+  "duplicateMessageIdsAcrossAttempts": 0,
+  "messagesWithMissingInputUsage": 0,
+  "streamedInputTotals": {
+    "input_tokens": 1260,
+    "cache_read_input_tokens": 2148342,
+    "cache_creation_input_tokens": 806447
+  },
+  "recoveredInitialSummaryComparison": {
+    "initialMatches": 0,
+    "initialDiffers": 8,
+    "initialMissing": 0
+  },
+  "completePairs": 4,
+  "completePairsWithAllStreamedInput": 4,
+  "streamedInputByArmForThosePairs": {
+    "baseline": 1483123,
+    "memex": 1472926
+  },
+  "limits": [
+    "These are streamed message inputs, not independently reconciled final per-session totals.",
+    "Recovered sessions with differing terminal and streamed inputs remain unknown in the primary paired-token analysis.",
+    "Account-wide gateway rows may corroborate totals but do not prove individual or per-arm attribution.",
+    "Streamed output-token fields are not final output usage and are intentionally omitted."
+  ]
+}

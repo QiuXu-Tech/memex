@@ -1,0 +1,4184 @@
+{
+  "generatedAt": "2026-11-02T10:32:47.063291+00:00",
+  "memexCommit": "16a40a11c86133953ae360549897f1e390ee3980",
+  "registrationSha256": "fc799c0c52de5fa4e1562fd18e5d2fb8e1502d1d2a7d76d9a84a51aa386350d8",
+  "reviewPlanSha256": "66a40b21817ea688baee7ddc72d9a45781177cd118291b6aeef7d859c85ddae5",
+  "registered": 30,
+  "started": 30,
+  "completePairs": 28,
+  "validRatedPairs": 13,
+  "scoreDirections": {
+    "memexHigher": 4,
+    "tie": 7,
+    "baselineHigher": 2
+  },
+  "meanScore": {
+    "baseline": 0.8461538461538461,
+    "memex": 1
+  },
+  "adjudicatedPairs": 13,
+  "numericReviewerDisagreements": 9,
+  "verifiedTokenPairs": 6,
+  "verifiedTokens": {
+    "baseline": {
+      "input": 1278909,
+      "output": 55497,
+      "cacheRead": 1011735,
+      "cacheWrite": 266364
+    },
+    "memex": {
+      "input": 1230649,
+      "output": 44928,
+      "cacheRead": 990659,
+      "cacheWrite": 239335
+    }
+  },
+  "memoryEvents": {
+    "agentSuccessfulWrites": 19,
+    "agentWriteThenSuccessfulOpen": 12,
+    "agentWriteThenAutomaticRecall": 15,
+    "automaticCheckpoints": 58,
+    "automaticCheckpointThenSuccessfulOpen": 29,
+    "automaticCheckpointThenRecall": 29
+  },
+  "clientListPriceKnownUsd": 11.874257,
+  "clientListPriceMissingSessions": 0,
+  "reviewUsageByModel": {
+    "gpt-6.1-sol": {
+      "attempts": 28,
+      "promptTokens": 267275,
+      "completionTokens": 9622,
+      "failedOrMissingUsage": 13
+    },
+    "deepseek-flash": {
+      "attempts": 28,
+      "promptTokens": 395503,
+      "completionTokens": 13417,
+      "failedOrMissingUsage": 0
+    },
+    "gemini-3.8-flash": {
+      "attempts": 13,
+      "promptTokens": 241772,
+      "completionTokens": 7418,
+      "failedOrMissingUsage": 0
+    }
+  },
+  "tasks": [
+    {
+      "id": "state-01",
+      "issueUrl": "https://github.com/openstreetmap/iD/issues/9529",
+      "sourceCommit": "c659f34ae3481f023bbc7f2b6ebf562907466592",
+      "discussionSpanDays": 1336,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14148925
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.03366085
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1353271
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1472659
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0207992
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.07108500000000001
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 37,
+          "exactRepeated": 3,
+          "memory": 0,
+          "source": 37,
+          "archive": 0,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 10,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 4,
+          "archive": 6,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 33,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 29,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 30,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 26,
+          "archive": 2,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 2,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 12,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 10,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-02",
+      "issueUrl": "https://github.com/advplyr/audiobookshelf/issues/2661",
+      "sourceCommit": "ce41ce489cebaf00e008919f6f2901b428acfd56",
+      "discussionSpanDays": 981,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.16960129999999998
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.09572235
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.16537590000000002
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1707921
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0161495
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0857252
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 30,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 27,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 29,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 26,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 39,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 32,
+          "archive": 7,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 30,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 26,
+          "archive": 3,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 25,
+          "exactRepeated": 1,
+          "memory": 3,
+          "source": 8,
+          "archive": 14,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-03",
+      "issueUrl": "https://github.com/icedman/dash2dock-lite/issues/305",
+      "sourceCommit": "98ef2ae08dfc0210f71767e4a1b6a10cdb06d6d8",
+      "discussionSpanDays": 218,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.16953975
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.021872700000000002
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0309554
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14235930000000002
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.017614949999999997
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0118049
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 47,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 43,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 7,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 3,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 10,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 6,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 21,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 19,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 3,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 2,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 2,
+            "baseline": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-04",
+      "issueUrl": "https://github.com/udecode/plate/issues/5052",
+      "sourceCommit": "0744d21985d13831c5788d06fffdbc8fe2eaeb4f",
+      "discussionSpanDays": 122,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.052594850000000005
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.016575600000000003
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.04201485
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14092355
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0132207
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0142609
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 10,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 6,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 14,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 6,
+          "archive": 8,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 17,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 15,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 1,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 187144,
+          "output": 7416,
+          "cacheRead": 138953,
+          "cacheWrite": 48076
+        },
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 0,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "memex": 0,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-05",
+      "issueUrl": "https://github.com/suchnsuch/Tangent/issues/437",
+      "sourceCommit": "a1e1e6cb7b685d585938aef3649fc49444135339",
+      "discussionSpanDays": 67,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1470663
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0557995
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01780085
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.16337995
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0172728
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0119658
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 36,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 33,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 16,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 13,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 2,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 56,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 54,
+          "archive": 1,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 2
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-06",
+      "issueUrl": "https://github.com/puppeteer/puppeteer/issues/7863",
+      "sourceCommit": "72317747dbead16bcb53334cb8c356ccc9f01ce3",
+      "discussionSpanDays": 1776,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1436614
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0194692
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.040606199999999995
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0624884
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01298255
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.020789500000000002
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 39,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 29,
+          "archive": 10,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 5,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 5,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 17,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 12,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 15,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 12,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 2,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": {
+          "input": 200344,
+          "output": 6838,
+          "cacheRead": 163767,
+          "cacheWrite": 36467
+        }
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-07",
+      "issueUrl": "https://github.com/vuetifyjs/vuetify/issues/23110",
+      "sourceCommit": "3f676e2129e9c7a1a00736e3fd8e9611f248f969",
+      "discussionSpanDays": 80,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.15016875000000002
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0202844
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0384402
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1395348
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0196722
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.030101799999999998
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 36,
+          "exactRepeated": 1,
+          "memory": 0,
+          "source": 27,
+          "archive": 9,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 5,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 5,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 8,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 21,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 19,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 4,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-08",
+      "issueUrl": "https://github.com/lingui/js-lingui/issues/1640",
+      "sourceCommit": "57f72cf02973c34bc9fc2b03e0b148c5589ec9e6",
+      "discussionSpanDays": 1275,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0590692
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01373195
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.02166515
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.03091605
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.035885349999999996
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.025084949999999998
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 16,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 10,
+          "archive": 6,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 7,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 3,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 9,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 6,
+          "archive": 2,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 10,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 1,
+          "archive": 8,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 7,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 5,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 157535,
+          "output": 6071,
+          "cacheRead": 115463,
+          "cacheWrite": 41972
+        },
+        "memex": {
+          "input": 186606,
+          "output": 7037,
+          "cacheRead": 153501,
+          "cacheWrite": 32985
+        }
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 0,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-09",
+      "issueUrl": "https://github.com/nextcloud/mail/issues/7984",
+      "sourceCommit": "455cffa6efe72706b809ebb49873555a6cd7ad4d",
+      "discussionSpanDays": 1365,
+      "started": true,
+      "completePair": false,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "NOT_RUN_BUDGET",
+          "completed": false,
+          "recovered": false,
+          "timeout": null,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": null
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.15792675
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1616399
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.09901155
+        }
+      },
+      "missingSessions": [
+        "baseline-s2",
+        "baseline-s3"
+      ],
+      "tools": {
+        "baseline-s1": {
+          "total": 0,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 49,
+          "exactRepeated": 1,
+          "memory": 1,
+          "source": 45,
+          "archive": 3,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 44,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 43,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 34,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 31,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {},
+      "reviewStatus": "NOT_REVIEWABLE",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-10",
+      "issueUrl": "https://github.com/jquery-form/form/issues/353",
+      "sourceCommit": "d1ab5ffe0f34f6855c8296a3407cdba81429255b",
+      "discussionSpanDays": 4813,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0298031
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0161043
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0174121
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0435663
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0125236
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.019668150000000002
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 3,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 7,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 1,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 1,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 85004,
+          "output": 5026,
+          "cacheRead": 59170,
+          "cacheWrite": 25754
+        },
+        "memex": {
+          "input": 126072,
+          "output": 5239,
+          "cacheRead": 93918,
+          "cacheWrite": 32069
+        }
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-11",
+      "issueUrl": "https://github.com/josdejong/mathjs/issues/1305",
+      "sourceCommit": "f1135be4ff1c077da02f23c07df8b16fbdfd2bdc",
+      "discussionSpanDays": 2924,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.059554050000000004
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.022855149999999998
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01799925
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.13897385
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.04893270000000001
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.013807149999999999
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 14,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 11,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 8,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 7,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 6,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 20,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 18,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 7,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 5,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 163169,
+          "output": 8430,
+          "cacheRead": 126672,
+          "cacheWrite": 36377
+        },
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 2
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 2
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-12",
+      "issueUrl": "https://github.com/frappe/charts/issues/295",
+      "sourceCommit": "7b15424c3af80b1c8e178d8e612c290d2d630904",
+      "discussionSpanDays": 1801,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14811825
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.05070990000000001
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.075458
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.07926725
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.021575749999999998
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.03237645
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 40,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 36,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 19,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 18,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 24,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 19,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 19,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 14,
+          "archive": 3,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 5,
+          "exactRepeated": 0,
+          "memory": 5,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 9,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 3,
+          "archive": 4,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": {
+          "input": 278896,
+          "output": 10168,
+          "cacheRead": 231482,
+          "cacheWrite": 47269
+        }
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 0
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 0
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-13",
+      "issueUrl": "https://github.com/usebruno/bruno/issues/7362",
+      "sourceCommit": "48afeeea1b95df1238276ffd56c8a6abbab109ab",
+      "discussionSpanDays": 139,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1495137
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.028976299999999997
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01635685
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1400502
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01330045
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0106786
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 28,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 23,
+          "archive": 5,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 7,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 5,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 28,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 25,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-14",
+      "issueUrl": "https://github.com/cdxgen/cdxgen/issues/1797",
+      "sourceCommit": "b3d0710cb59120d81866c4465c95c6cdfed0bf40",
+      "discussionSpanDays": 69,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.15692585
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14361580000000002
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.06463105000000001
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.15350495
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14858385
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14739534999999998
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 26,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 23,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 36,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 29,
+          "archive": 7,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 20,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 11,
+          "archive": 9,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 24,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 23,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 35,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 34,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 21,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 19,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-15",
+      "issueUrl": "https://github.com/camunda/camunda-modeler/issues/3902",
+      "sourceCommit": "6b06ce9788b3d0bb311a7b1ef32fff86883890d9",
+      "discussionSpanDays": 1075,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14466279999999998
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.07345404999999999
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14523855000000002
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14680814999999997
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0191272
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0635702
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 41,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 36,
+          "archive": 5,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 50,
+          "exactRepeated": 1,
+          "memory": 0,
+          "source": 0,
+          "archive": 50,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 51,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 41,
+          "archive": 10,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 37,
+          "exactRepeated": 1,
+          "memory": 1,
+          "source": 33,
+          "archive": 3,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 19,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 11,
+          "archive": 5,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-16",
+      "issueUrl": "https://github.com/SGrondin/bottleneck/issues/95",
+      "sourceCommit": "b83528333ba4d27cf70b81cc2be12e09d7ff692f",
+      "discussionSpanDays": 2899,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0781249
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1288684
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.08272884999999999
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.07616479999999999
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.02240015
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.06573804999999999
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 33,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 25,
+          "archive": 8,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 51,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 50,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 24,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 20,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 21,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 14,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 4,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 19,
+          "exactRepeated": 0,
+          "memory": 5,
+          "source": 14,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": {
+          "input": 331979,
+          "output": 11721,
+          "cacheRead": 268905,
+          "cacheWrite": 62934
+        }
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 2,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-17",
+      "issueUrl": "https://github.com/vue-leaflet/Vue2Leaflet/issues/599",
+      "sourceCommit": "2fd50c3b51cda5492399011b959012f44d4e473b",
+      "discussionSpanDays": 2310,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1499672
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.03620205
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.021547999999999998
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.08891109999999999
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.037861200000000005
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.016819399999999998
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 39,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 36,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 10,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 7,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 3,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 27,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 25,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 9,
+          "exactRepeated": 0,
+          "memory": 6,
+          "source": 1,
+          "archive": 2,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": {
+          "input": 302777,
+          "output": 10696,
+          "cacheRead": 250717,
+          "cacheWrite": 51920
+        }
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-18",
+      "issueUrl": "https://github.com/padloc/padloc/issues/314",
+      "sourceCommit": "81f492cbfcfb9c656b91d6b7d424af2f19c0a1ed",
+      "discussionSpanDays": 481,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.06409229999999999
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.017986000000000002
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0162513
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.08278419999999999
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0125162
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0214784
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 16,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 12,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 5,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 5,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 3,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 13,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 10,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 4,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 184048,
+          "output": 7642,
+          "cacheRead": 147746,
+          "cacheWrite": 36172
+        },
+        "memex": {
+          "input": 264905,
+          "output": 6352,
+          "cacheRead": 213988,
+          "cacheWrite": 50812
+        }
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-19",
+      "issueUrl": "https://github.com/kalkih/mini-graph-card/issues/780",
+      "sourceCommit": "f203f4883a99cf930c86a35f2f0b3e655e444651",
+      "discussionSpanDays": 1643,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.09994929999999998
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.025363450000000003
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0508463
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.08978225000000001
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0209534
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01651495
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 60,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 55,
+          "archive": 5,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 9,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 9,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 17,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 12,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 22,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 20,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 334990,
+          "output": 15199,
+          "cacheRead": 276978,
+          "cacheWrite": 57817
+        },
+        "memex": {
+          "input": 284737,
+          "output": 9089,
+          "cacheRead": 238331,
+          "cacheWrite": 46266
+        }
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 2,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-20",
+      "issueUrl": "https://github.com/clangd/vscode-clangd/issues/579",
+      "sourceCommit": "58df17edac6c7edf5734d33e574429e4b03a78bd",
+      "discussionSpanDays": 1030,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.13803785
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01316445
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0447332
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.13128835
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.024348500000000002
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.016285599999999997
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 56,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 49,
+          "archive": 7,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 4,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 18,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 10,
+          "archive": 8,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 44,
+          "exactRepeated": 1,
+          "memory": 1,
+          "source": 43,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-21",
+      "issueUrl": "https://github.com/garethgeorge/backrest/issues/400",
+      "sourceCommit": "148ba12c12a7a4fef6d3c6c8e675ca2c5e7d3635",
+      "discussionSpanDays": 831,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.04216045
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.024328950000000002
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.05612865
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.07842020000000001
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.05311729999999999
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.020108599999999997
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 11,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 5,
+          "archive": 6,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 7,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 7,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 17,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 5,
+          "archive": 12,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 17,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 11,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 4,
+          "source": 0,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 1,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 222433,
+          "output": 9464,
+          "cacheRead": 176268,
+          "cacheWrite": 46025
+        },
+        "memex": {
+          "input": 300564,
+          "output": 12819,
+          "cacheRead": 250536,
+          "cacheWrite": 49878
+        }
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 2,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 2,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-22",
+      "issueUrl": "https://github.com/ljharb/qs/issues/471",
+      "sourceCommit": "43baea4655cb9b543fb1c5cc0db95cde42852140",
+      "discussionSpanDays": 125,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1288402
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0263915
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.060144500000000004
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.13786415000000002
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.015111300000000001
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0127633
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 71,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 70,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 5,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 14,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 10,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 18,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 15,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 0,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 0,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-23",
+      "issueUrl": "https://github.com/thoughtbot/administrate/issues/2978",
+      "sourceCommit": "6cb9cbbbc8032b5802ade02169881e61caf08193",
+      "discussionSpanDays": 275,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.094225
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.040282
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.023024
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.033447000000000005
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01332525
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0134375
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 41,
+          "exactRepeated": 2,
+          "memory": 0,
+          "source": 27,
+          "archive": 14,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 14,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 14,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 8,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 3,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 3,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 1,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": {
+          "input": 294899,
+          "output": 12095,
+          "cacheRead": 236110,
+          "cacheWrite": 58624
+        },
+        "memex": {
+          "input": 67765,
+          "output": 4392,
+          "cacheRead": 40385,
+          "cacheWrite": 27325
+        }
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 2,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-24",
+      "issueUrl": "https://github.com/NginxProxyManager/nginx-proxy-manager/issues/3678",
+      "sourceCommit": "1aca775cb983270a3f5be23fd32501173165ebd3",
+      "discussionSpanDays": 942,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1451525
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.012380450000000001
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.12972345
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.13110775000000002
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.04081675
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0151388
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 44,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 36,
+          "archive": 8,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 40,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 19,
+          "archive": 21,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 28,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 25,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 7,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 5,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 2,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-25",
+      "issueUrl": "https://github.com/getpaseo/paseo/issues/2574",
+      "sourceCommit": "3e3a707f5a40c2e09536e0c167ea4417fca1c1d9",
+      "discussionSpanDays": 95,
+      "started": true,
+      "completePair": false,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "NOT_RUN_BUDGET",
+          "completed": false,
+          "recovered": false,
+          "timeout": null,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": null
+        },
+        "memex-s1": {
+          "status": "NOT_RUN_BUDGET",
+          "completed": false,
+          "recovered": false,
+          "timeout": null,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": null
+        }
+      },
+      "missingSessions": [
+        "baseline-s2",
+        "baseline-s3",
+        "memex-s2",
+        "memex-s3"
+      ],
+      "tools": {
+        "baseline-s1": {
+          "total": 0,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 0,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {},
+      "reviewStatus": "NOT_REVIEWABLE",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 0,
+        "automaticCheckpointThenSuccessfulOpen": false,
+        "automaticCheckpointThenRecall": false
+      }
+    },
+    {
+      "id": "state-26",
+      "issueUrl": "https://github.com/saihgupr/HomeAssistantTimeMachine/issues/69",
+      "sourceCommit": "1f485c498e0a84f7704ce90f78683065590d3ba4",
+      "discussionSpanDays": 164,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14700315
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.0201348
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.06046725
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.144486
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.04617039999999999
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.061590950000000005
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 32,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 29,
+          "archive": 3,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 6,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 18,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 14,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 16,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 13,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 11,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 5,
+          "archive": 5,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 15,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 1,
+          "archive": 12,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-27",
+      "issueUrl": "https://github.com/bambanah/deemix/issues/272",
+      "sourceCommit": "418bac05c639edf451ef6883b3c889050b5ca7d9",
+      "discussionSpanDays": 225,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.15701415
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.15966144999999998
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1596629
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.13495574999999999
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.018093949999999998
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.00976065
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 78,
+          "exactRepeated": 1,
+          "memory": 0,
+          "source": 77,
+          "archive": 1,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 46,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 44,
+          "archive": 2,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 28,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 26,
+          "archive": 2,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 26,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 23,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-28",
+      "issueUrl": "https://github.com/hackademix/noscript/issues/450",
+      "sourceCommit": "9ca0e4a7e1d0ba278c267bc53f13965f7dd76ccb",
+      "discussionSpanDays": 521,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14370940000000001
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.06074975
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.015019399999999999
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1519143
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.14354315
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.15191490000000002
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 71,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 67,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 22,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 16,
+          "archive": 6,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 0,
+          "archive": 6,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 45,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 43,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 31,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 30,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 44,
+          "exactRepeated": 3,
+          "memory": 2,
+          "source": 42,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 0,
+        "agentWriteThenSuccessfulOpen": false,
+        "agentWriteThenAutomaticRecall": false,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-29",
+      "issueUrl": "https://github.com/gioxx/MarvellousSuspender/issues/346",
+      "sourceCommit": "3acce14b968935c4936f471ae1f258e4acbf0450",
+      "discussionSpanDays": 225,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1469579
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.09039195
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.022396199999999998
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.1586301
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.03089865
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.017152
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 26,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 22,
+          "archive": 4,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 32,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 21,
+          "archive": 11,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 9,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 2,
+          "archive": 7,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 42,
+          "exactRepeated": 0,
+          "memory": 1,
+          "source": 39,
+          "archive": 2,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 6,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 4,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 1,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "MISSING_VALID_REVIEW",
+      "blindReview": null,
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    },
+    {
+      "id": "state-30",
+      "issueUrl": "https://github.com/code-charity/youtube/issues/2735",
+      "sourceCommit": "6d85ec536139247ca3cc05a226908e805539cdb6",
+      "discussionSpanDays": 679,
+      "started": true,
+      "completePair": true,
+      "runnerErrorType": null,
+      "sessions": {
+        "baseline-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.13342175
+        },
+        "baseline-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01678135
+        },
+        "baseline-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.01805195
+        },
+        "memex-s1": {
+          "status": "success",
+          "completed": true,
+          "recovered": true,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.12649495
+        },
+        "memex-s2": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.014859550000000001
+        },
+        "memex-s3": {
+          "status": "success",
+          "completed": true,
+          "recovered": false,
+          "timeout": false,
+          "unavailableTools": 0,
+          "unexpectedTools": 0,
+          "clientListPriceUsd": 0.014973199999999999
+        }
+      },
+      "missingSessions": [],
+      "tools": {
+        "baseline-s1": {
+          "total": 20,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 9,
+          "archive": 11,
+          "other": 0
+        },
+        "baseline-s2": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 2,
+          "other": 0
+        },
+        "baseline-s3": {
+          "total": 5,
+          "exactRepeated": 0,
+          "memory": 0,
+          "source": 1,
+          "archive": 4,
+          "other": 0
+        },
+        "memex-s1": {
+          "total": 17,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 11,
+          "archive": 3,
+          "other": 0
+        },
+        "memex-s2": {
+          "total": 2,
+          "exactRepeated": 0,
+          "memory": 2,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        },
+        "memex-s3": {
+          "total": 3,
+          "exactRepeated": 0,
+          "memory": 3,
+          "source": 0,
+          "archive": 0,
+          "other": 0
+        }
+      },
+      "tokenByArm": {
+        "baseline": null,
+        "memex": null
+      },
+      "reviewStatus": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "memory": {
+        "agentSuccessfulWrites": 1,
+        "agentWriteThenSuccessfulOpen": true,
+        "agentWriteThenAutomaticRecall": true,
+        "automaticCheckpoints": 2,
+        "automaticCheckpointThenSuccessfulOpen": true,
+        "automaticCheckpointThenRecall": true
+      }
+    }
+  ],
+  "limits": [
+    "Owner-disjoint public issue triage in compressed historical sessions is not deployed production task correctness.",
+    "Recorded memory reads and automatic recall do not prove that memory caused an answer.",
+    "AI reviews are not human assessments. Client list prices are not gateway invoices; unknown usage and other costs remain unknown."
+  ]
+}

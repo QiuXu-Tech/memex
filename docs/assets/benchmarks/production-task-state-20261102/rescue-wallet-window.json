@@ -1,0 +1,12 @@
+{
+  "kind": "account-window-observation-not-request-attribution",
+  "source": "APIMaster usage-log UI, read-only",
+  "windowLocalTime": {"timezone": "Asia/Shanghai", "fromInclusive": "2026-11-02 18:33:00", "toInclusive": "2026-11-02 18:36:02"},
+  "successfulByModel": {
+    "gpt-6.1-terra": {"rows": 15, "promptTokens": 203176, "completionTokens": 7561, "displayedWalletUsd": 0.253030},
+    "gemini-3.8-flash": {"rows": 15, "promptTokens": 271125, "completionTokens": 7857, "displayedWalletUsd": 0.098434}
+  },
+  "displayedWalletUsdForSuccessfulRows": 0.351464,
+  "corroboration": "Successful row counts, prompt tokens and completion tokens match the 30 terminal gateway responses recorded by the separately registered rescue.",
+  "limits": ["This is an account time window, not a request-ID or invoice join; unrelated account activity could be included.", "The synthetic Terra preflight and first-review window are outside this subtotal.", "Infrastructure and other unrecorded or unsettled costs remain unknown."]
+}

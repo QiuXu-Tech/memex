@@ -1,0 +1,13 @@
+{
+  "kind": "account-window-observation-not-request-attribution",
+  "source": "APIMaster usage-log UI, read-only",
+  "windowLocalTime": {"timezone": "Asia/Shanghai", "fromInclusive": "2026-11-02 18:38:49", "toInclusive": "2026-11-02 18:40:15"},
+  "successfulByModel": {
+    "gpt-6.1-sol": {"rows": 4, "promptTokens": 70767, "completionTokens": 2281, "displayedWalletUsd": 0.012034},
+    "deepseek-flash": {"rows": 4, "promptTokens": 56944, "completionTokens": 1979, "displayedWalletUsd": 0.006128},
+    "gemini-3.8-flash": {"rows": 4, "promptTokens": 72815, "completionTokens": 2281, "displayedWalletUsd": 0.026708}
+  },
+  "displayedWalletUsdForSuccessfulRows": 0.044870,
+  "corroboration": "Successful row counts, prompt tokens and completion tokens match the terminal gateway responses for all three reviewer models.",
+  "limits": ["This is an account time window, not a request-ID or invoice join; unrelated activity could be included.", "Infrastructure and other unrecorded or unsettled costs remain unknown."]
+}

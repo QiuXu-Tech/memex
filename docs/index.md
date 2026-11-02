@@ -29,6 +29,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
 - [Archive integrity and privacy repairs](archive-integrity-20261102.html) — atomic compaction, private transcripts, namespace and backup limitations.
+- [Task-state memory and three-session replays](production-task-state-20261102.html) — source/version/expiry changes, registered AI reviews, retained failures and cost reconciliation.
 - [Integrity and real-issue follow-up](production-integrity-followup-20261102.html) — archive repairs, separately registered issue replays, blinded AI review, failures and cost reconciliation.
 - [Registered integrity follow-up](production-integrity-20261102-registration.html) — frozen issue criteria, comparison and AI review plan.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.

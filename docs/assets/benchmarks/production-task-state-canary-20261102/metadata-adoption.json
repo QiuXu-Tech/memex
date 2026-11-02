@@ -1,0 +1,25 @@
+{
+  "generatedAt": "2026-11-02T10:39:07.782045+00:00",
+  "kind": "post-hoc-stored-record-metadata-count",
+  "recordCounts": {
+    "storedRecords": 13,
+    "automaticCheckpoints": 12,
+    "recordsWithEvidence": 1,
+    "source": 1,
+    "version": 1,
+    "observedAt": 1,
+    "validUntil": 0
+  },
+  "tasksWithAtLeastOne": {
+    "evidence": 1,
+    "source": 1,
+    "version": 1,
+    "observedAt": 1,
+    "validUntil": 0
+  },
+  "unreadableRecordErrors": [],
+  "limits": [
+    "This counts metadata in records present at inspection, not all writes or records that were subsequently removed.",
+    "Source, version, observation time and expiry are caller assertions, not independently verified facts."
+  ]
+}

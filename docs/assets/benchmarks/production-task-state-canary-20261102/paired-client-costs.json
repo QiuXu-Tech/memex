@@ -1,0 +1,18 @@
+{
+  "kind": "post-hoc-paired-client-list-prices",
+  "completePairs": 4,
+  "completePairsWithKnownClientPrices": 4,
+  "clientListPriceTotalsUsd": {
+    "baseline": 0.816749,
+    "memex": 0.862664
+  },
+  "clientListPriceMeanPerCompletePairUsd": {
+    "baseline": 0.204187,
+    "memex": 0.215666
+  },
+  "limits": [
+    "These are agent-client list prices, not APIMaster wallet charges.",
+    "Pairs with any unknown client price are excluded from this paired comparison. All started-session known totals and missing charges are reported separately.",
+    "Model review calls, infrastructure and labor are not included."
+  ]
+}

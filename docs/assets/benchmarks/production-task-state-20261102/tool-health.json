@@ -1,0 +1,84 @@
+{
+  "kind": "post-hoc-tool-health",
+  "exactRepeatedCallsByArm": {
+    "baseline": 8,
+    "memex": 7
+  },
+  "toolOutcomesByArm": {
+    "baseline": {
+      "mcp__pilot__repo_search": {
+        "success": 848,
+        "missingResult": 5,
+        "error": 25
+      },
+      "mcp__pilot__repo_read": {
+        "success": 315,
+        "missingResult": 1,
+        "error": 62
+      },
+      "mcp__pilot__archive_search": {
+        "success": 387
+      },
+      "mcp__pilot__archive_open": {
+        "success": 249
+      }
+    },
+    "memex": {
+      "mcp__memex__memory_search": {
+        "success": 64
+      },
+      "mcp__pilot__archive_search": {
+        "success": 52
+      },
+      "mcp__pilot__archive_open": {
+        "success": 42
+      },
+      "mcp__pilot__repo_search": {
+        "success": 570,
+        "missingResult": 3,
+        "error": 2
+      },
+      "mcp__pilot__repo_read": {
+        "success": 309,
+        "error": 34,
+        "missingResult": 1
+      },
+      "mcp__memex__memory_write": {
+        "missingResult": 2,
+        "success": 23,
+        "error": 5
+      },
+      "mcp__memex__memory_open": {
+        "success": 100
+      },
+      "mcp__memex__memory_set_status": {
+        "success": 2
+      }
+    }
+  },
+  "tasksWithSuccessfulTool": {
+    "baseline:mcp__pilot__repo_search": 28,
+    "baseline:mcp__pilot__repo_read": 27,
+    "baseline:mcp__pilot__archive_search": 28,
+    "baseline:mcp__pilot__archive_open": 28,
+    "memex:mcp__memex__memory_search": 29,
+    "memex:mcp__pilot__archive_search": 15,
+    "memex:mcp__pilot__archive_open": 14,
+    "memex:mcp__pilot__repo_search": 28,
+    "memex:mcp__pilot__repo_read": 29,
+    "memex:mcp__memex__memory_open": 29,
+    "memex:mcp__memex__memory_write": 19,
+    "memex:mcp__memex__memory_set_status": 1
+  },
+  "pilotErrors": {
+    "searchAboveMaximum": 26,
+    "searchInvalidOther": 1,
+    "searchLimitsAdjusted": 0,
+    "otherPilotToolErrors": 96
+  },
+  "limits": [
+    "A successful tool result proves an operation returned, not that its content was correct or caused the final answer.",
+    "Exact repeated calls are counted within a single client session, including a same-session continuation.",
+    "This count includes started sessions from incomplete pairs and is an exploratory post-hoc analysis."
+  ]
+}

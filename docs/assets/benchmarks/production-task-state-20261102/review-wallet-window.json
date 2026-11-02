@@ -1,0 +1,13 @@
+{
+  "kind": "account-window-observation-not-request-attribution",
+  "source": "APIMaster usage-log UI, read-only",
+  "windowLocalTime": {"timezone": "Asia/Shanghai", "fromInclusive": "2026-11-02 18:18:19", "toInclusive": "2026-11-02 18:32:35"},
+  "successfulByModel": {
+    "gpt-6.1-sol": {"rows": 15, "promptTokens": 267275, "completionTokens": 9622, "displayedWalletUsd": 0.047292},
+    "deepseek-flash": {"rows": 28, "promptTokens": 395503, "completionTokens": 13417, "displayedWalletUsd": 0.042442},
+    "gemini-3.8-flash": {"rows": 13, "promptTokens": 241772, "completionTokens": 7418, "displayedWalletUsd": 0.088432}
+  },
+  "displayedWalletUsdForSuccessfulRows": 0.178166,
+  "corroboration": "Successful row counts, prompt tokens and completion tokens match the recorded terminal gateway responses for each reviewer model. Two successful DeepSeek responses were invalid JSON and remain missing ratings despite appearing in this billing sum.",
+  "limits": ["This is an account time window, not a request-ID or invoice join.", "The runner recorded 13 GPT timeouts. Some displayed error rows said upstream usage was unavailable and cost was pending reconciliation; their eventual charge is UNKNOWN even if a zero is displayed now.", "Three exact duplicate visible rows were removed while handling dynamically shifting pages; identical rows could also be distinct requests.", "Post-hoc replacement reviews and synthetic preflights are outside this reviewer subtotal."]
+}

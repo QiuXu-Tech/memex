@@ -1,0 +1,412 @@
+{
+  "generatedAt": "2026-11-02T10:36:05.812486+00:00",
+  "registrationSha256": "3a7a278c73dfddaebd0507cea94f32488aca43cd029e341c31a26e03470d565e",
+  "primaryValidRatedPairs": 13,
+  "rescueRegistered": 15,
+  "rescueValidRatedPairs": 15,
+  "postHocValidRatedPairs": 28,
+  "postHocScoreDirections": {
+    "memexHigher": 4,
+    "tie": 20,
+    "baselineHigher": 4
+  },
+  "postHocMeanScore": {
+    "baseline": 0.8928571428571429,
+    "memex": 0.8928571428571429
+  },
+  "reviewUsageByModel": {
+    "gpt-6.1-terra": {
+      "attempts": 15,
+      "promptTokens": 203176,
+      "completionTokens": 7561,
+      "failedOrMissingUsage": 0
+    },
+    "gemini-3.8-flash": {
+      "attempts": 15,
+      "promptTokens": 271125,
+      "completionTokens": 7857,
+      "failedOrMissingUsage": 0
+    }
+  },
+  "tasks": {
+    "state-01": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-02": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 2
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-06": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 2,
+            "baseline": 2
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-10": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 2,
+            "memex": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-13": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 0,
+          "memex": 0
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 0,
+            "memex": 0
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-14": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 0,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "memex": 0,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 2
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-15": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-16": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 2
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-17": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-18": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 0,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-20": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": true,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 2,
+            "memex": 2
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-24": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "deepseek-flash"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-27": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "baseline": 1,
+          "memex": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "baseline": 1,
+            "memex": 1
+          },
+          {
+            "baseline": 1,
+            "memex": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-28": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "deepseek-flash"
+      ],
+      "reason": "REPLACE_ONE"
+    },
+    "state-29": {
+      "status": "VALID",
+      "blindReview": {
+        "scores": {
+          "memex": 1,
+          "baseline": 1
+        },
+        "adjudicated": true,
+        "numericReviewerDisagreement": false,
+        "reviewerScores": [
+          {
+            "memex": 1,
+            "baseline": 1
+          },
+          {
+            "memex": 1,
+            "baseline": 1
+          }
+        ]
+      },
+      "replacementModels": [
+        "gpt-6.1-sol"
+      ],
+      "reason": "REPLACE_ONE"
+    }
+  },
+  "limits": [
+    "Post-hoc replacement is a sensitivity analysis; original missing and failed reviews remain unchanged.",
+    "AI review is not human assessment. Failed requests may have unknown charges."
+  ]
+}

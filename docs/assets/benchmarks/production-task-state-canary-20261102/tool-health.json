@@ -1,0 +1,75 @@
+{
+  "kind": "post-hoc-tool-health",
+  "exactRepeatedCallsByArm": {
+    "baseline": 1,
+    "memex": 0
+  },
+  "toolOutcomesByArm": {
+    "baseline": {
+      "mcp__pilot__repo_search": {
+        "success": 92,
+        "missingResult": 2
+      },
+      "mcp__pilot__repo_read": {
+        "success": 52,
+        "error": 2,
+        "missingResult": 1
+      },
+      "mcp__pilot__archive_search": {
+        "success": 23
+      },
+      "mcp__pilot__archive_open": {
+        "success": 27
+      }
+    },
+    "memex": {
+      "mcp__memex__memory_search": {
+        "success": 7
+      },
+      "mcp__pilot__repo_search": {
+        "success": 177,
+        "missingResult": 3
+      },
+      "mcp__pilot__repo_read": {
+        "success": 39,
+        "error": 4
+      },
+      "mcp__memex__memory_open": {
+        "success": 12
+      },
+      "mcp__memex__memory_write": {
+        "success": 1
+      },
+      "mcp__pilot__archive_search": {
+        "success": 1
+      },
+      "mcp__pilot__archive_open": {
+        "success": 2
+      }
+    }
+  },
+  "tasksWithSuccessfulTool": {
+    "baseline:mcp__pilot__repo_search": 4,
+    "baseline:mcp__pilot__repo_read": 4,
+    "baseline:mcp__pilot__archive_search": 4,
+    "baseline:mcp__pilot__archive_open": 4,
+    "memex:mcp__memex__memory_search": 4,
+    "memex:mcp__pilot__repo_search": 4,
+    "memex:mcp__pilot__repo_read": 4,
+    "memex:mcp__memex__memory_open": 4,
+    "memex:mcp__memex__memory_write": 1,
+    "memex:mcp__pilot__archive_search": 1,
+    "memex:mcp__pilot__archive_open": 1
+  },
+  "pilotErrors": {
+    "searchAboveMaximum": 0,
+    "searchInvalidOther": 0,
+    "searchLimitsAdjusted": 0,
+    "otherPilotToolErrors": 6
+  },
+  "limits": [
+    "A successful tool result proves an operation returned, not that its content was correct or caused the final answer.",
+    "Exact repeated calls are counted within a single client session, including a same-session continuation.",
+    "This count includes started sessions from incomplete pairs and is an exploratory post-hoc analysis."
+  ]
+}

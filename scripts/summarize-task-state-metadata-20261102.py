@@ -7,7 +7,7 @@ import pathlib
 import re
 import sys
 
-base = pathlib.Path.home() / '.local/share/memex-forward-20261102/task-state-triage'
+base = pathlib.Path(sys.argv[1]) if len(sys.argv) == 3 else pathlib.Path.home() / '.local/share/memex-forward-20261102/task-state-triage'
 registration = json.loads((base / 'registration.json').read_text())
 counts = collections.Counter()
 tasks_with = collections.Counter()
@@ -35,4 +35,4 @@ output = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(
           'unreadableRecordErrors': errors,
           'limits': ['This counts metadata in records present at inspection, not all writes or records that were subsequently removed.',
                      'Source, version, observation time and expiry are caller assertions, not independently verified facts.']}
-path = pathlib.Path(sys.argv[1]); path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + '\n');print(json.dumps(output['recordCounts']))
+path = pathlib.Path(sys.argv[-1]); path.write_text(json.dumps(output, ensure_ascii=False, indent=2) + '\n');print(json.dumps(output['recordCounts']))

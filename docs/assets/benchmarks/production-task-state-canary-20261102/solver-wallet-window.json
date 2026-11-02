@@ -1,0 +1,15 @@
+{
+  "kind": "account-window-observation-not-request-attribution",
+  "source": "APIMaster usage-log UI, read-only",
+  "windowLocalTime": {"timezone": "Asia/Shanghai", "fromInclusive": "2026-11-02 18:28:14", "toInclusive": "2026-11-02 18:38:32"},
+  "model": "claude-haiku-4-5",
+  "displayedSuccessfulRowsAfterExactVisibleRowDeduplication": 220,
+  "exactVisibleRowDuplicatesRemoved": 4,
+  "displayedUncachedInputTokens": 1260,
+  "displayedOutputTokens": 91052,
+  "displayedCacheReadTokens": 2148342,
+  "displayedCacheWriteTokens": 806447,
+  "displayedWalletUsd": 0.184478,
+  "corroboration": "Count and all three input/cache totals match the 220 distinct assistant message IDs and streamed input usage in the two follow-up solver phases. Displayed output was not independently reconciled to terminal summaries.",
+  "limits": ["This is an account window, not a request-ID join or a per-arm allocation; unrelated activity could be included.", "The UI pages shifted while other requests were running; exact visible row duplicates were removed, although distinct requests can have identical visible rows.", "This is not a complete invoice and excludes review, host, labor and unrecorded costs."]
+}

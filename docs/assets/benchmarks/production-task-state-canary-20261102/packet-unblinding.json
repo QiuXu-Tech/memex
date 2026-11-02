@@ -1,0 +1,34 @@
+[
+  {
+    "task": "canary-01",
+    "nonce": "2f7b69a989a9b8b6daa3be07349af5aba4e42665357760b8cc183198c1a03614",
+    "labels": {
+      "C01": "memex",
+      "C02": "baseline"
+    }
+  },
+  {
+    "task": "canary-02",
+    "nonce": "ed4a48f7ed884d4c0e7460710af9df1f953783cc0d94718ce72abadcbe302e95",
+    "labels": {
+      "C01": "baseline",
+      "C02": "memex"
+    }
+  },
+  {
+    "task": "canary-03",
+    "nonce": "b937849cc681ed486579a61ef8f34e1f908285c097ddc2ab7b8dd60279cd7be5",
+    "labels": {
+      "C01": "baseline",
+      "C02": "memex"
+    }
+  },
+  {
+    "task": "canary-04",
+    "nonce": "a7da9dd9e637f1a48eec00bb8fcfe5eb090c4b3eac6d7c7eda40c775c3cf99db",
+    "labels": {
+      "C01": "memex",
+      "C02": "baseline"
+    }
+  }
+]

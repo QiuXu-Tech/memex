@@ -1,0 +1,27 @@
+{
+  "taskOrder": [
+    "canary-02",
+    "canary-03",
+    "canary-01",
+    "canary-04"
+  ],
+  "armOrder": {
+    "canary-02": [
+      "memex",
+      "baseline"
+    ],
+    "canary-03": [
+      "memex",
+      "baseline"
+    ],
+    "canary-01": [
+      "memex",
+      "baseline"
+    ],
+    "canary-04": [
+      "memex",
+      "baseline"
+    ]
+  },
+  "nonce": "0544b99ba3d43a8ed69658965a954628e513c4508962729b759657fd51d57564"
+}
