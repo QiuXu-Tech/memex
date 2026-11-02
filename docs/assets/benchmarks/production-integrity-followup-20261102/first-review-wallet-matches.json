@@ -1,0 +1,204 @@
+{
+  "kind": "candidate-wallet-matches",
+  "date": "2026-11-02",
+  "timezone": "Asia/Shanghai",
+  "method": "Unique row by exact model and prompt/output token counts, within three seconds of reviewer completion time; no gateway request ID in visible table.",
+  "matched": 24,
+  "uniqueRows": 24,
+  "walletUsd": 0.091542,
+  "unallocated": "Solver charges, possible other account activity, infrastructure and labor are not included.",
+  "rows": [
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:49:14",
+      "promptTokens": 18043,
+      "completionTokens": 677,
+      "walletTime": "12:49:13",
+      "walletUsd": 0.003294
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:49:20",
+      "promptTokens": 14635,
+      "completionTokens": 546,
+      "walletTime": "12:49:20",
+      "walletUsd": 0.00159
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:49:26",
+      "promptTokens": 18460,
+      "completionTokens": 416,
+      "walletTime": "12:49:26",
+      "walletUsd": 0.006514
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:48:36",
+      "promptTokens": 18144,
+      "completionTokens": 646,
+      "walletTime": "12:48:36",
+      "walletUsd": 0.003286
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:48:43",
+      "promptTokens": 14497,
+      "completionTokens": 365,
+      "walletTime": "12:48:43",
+      "walletUsd": 0.001508
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:48:53",
+      "promptTokens": 19437,
+      "completionTokens": 488,
+      "walletTime": "12:48:52",
+      "walletUsd": 0.006938
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:49:54",
+      "promptTokens": 16596,
+      "completionTokens": 595,
+      "walletTime": "12:49:54",
+      "walletUsd": 0.00301
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:50:00",
+      "promptTokens": 12926,
+      "completionTokens": 394,
+      "walletTime": "12:50:00",
+      "walletUsd": 0.00137
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:50:06",
+      "promptTokens": 16940,
+      "completionTokens": 515,
+      "walletTime": "12:50:06",
+      "walletUsd": 0.006188
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:49:39",
+      "promptTokens": 31533,
+      "completionTokens": 478,
+      "walletTime": "12:49:39",
+      "walletUsd": 0.005216
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:49:44",
+      "promptTokens": 9381,
+      "completionTokens": 247,
+      "walletTime": "12:49:44",
+      "walletUsd": 0.00098
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:49:50",
+      "promptTokens": 12207,
+      "completionTokens": 384,
+      "walletTime": "12:49:50",
+      "walletUsd": 0.00448
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:48:36",
+      "promptTokens": 16064,
+      "completionTokens": 535,
+      "walletTime": "12:48:35",
+      "walletUsd": 0.002882
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:48:43",
+      "promptTokens": 12103,
+      "completionTokens": 380,
+      "walletTime": "12:48:43",
+      "walletUsd": 0.001288
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:48:52",
+      "promptTokens": 16195,
+      "completionTokens": 579,
+      "walletTime": "12:48:52",
+      "walletUsd": 0.006054
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:49:19",
+      "promptTokens": 35170,
+      "completionTokens": 697,
+      "walletTime": "12:49:19",
+      "walletUsd": 0.005944
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:49:25",
+      "promptTokens": 13607,
+      "completionTokens": 437,
+      "walletTime": "12:49:25",
+      "walletUsd": 0.001452
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:49:33",
+      "promptTokens": 17476,
+      "completionTokens": 477,
+      "walletTime": "12:49:33",
+      "walletUsd": 0.006298
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:49:12",
+      "promptTokens": 16759,
+      "completionTokens": 569,
+      "walletTime": "12:49:12",
+      "walletUsd": 0.003014
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:49:19",
+      "promptTokens": 13057,
+      "completionTokens": 456,
+      "walletTime": "12:49:19",
+      "walletUsd": 0.001406
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:49:36",
+      "promptTokens": 17201,
+      "completionTokens": 516,
+      "walletTime": "12:49:36",
+      "walletUsd": 0.006272
+    },
+    {
+      "model": "gpt-6.1-sol",
+      "reviewFinish": "12:48:33",
+      "promptTokens": 30383,
+      "completionTokens": 685,
+      "walletTime": "12:48:33",
+      "walletUsd": 0.005198
+    },
+    {
+      "model": "deepseek-flash",
+      "reviewFinish": "12:48:40",
+      "promptTokens": 12501,
+      "completionTokens": 364,
+      "walletTime": "12:48:40",
+      "walletUsd": 0.001318
+    },
+    {
+      "model": "gemini-3.8-flash",
+      "reviewFinish": "12:48:53",
+      "promptTokens": 16745,
+      "completionTokens": 462,
+      "walletTime": "12:48:52",
+      "walletUsd": 0.006042
+    }
+  ]
+}

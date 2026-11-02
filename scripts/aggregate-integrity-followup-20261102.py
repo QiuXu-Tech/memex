@@ -1,0 +1,133 @@
+#!/usr/bin/env python3
+"""Reconcile the two integrity replays and verify their blind commitments."""
+import collections
+import datetime
+import hashlib
+import importlib.util
+import json
+import pathlib
+import sys
+
+ROOT = pathlib.Path(__file__).resolve().parent.parent
+BASE = pathlib.Path.home() / '.local/share/memex-forward-20261102'
+spec = importlib.util.spec_from_file_location('autonomy_aggregate', ROOT / 'scripts/aggregate-production-autonomy-20261102.py')
+a = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(a)
+a.P = BASE
+
+
+def read(path):
+    return json.loads(path.read_text())
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def verify_blind(base):
+    commitments = read(base / 'reviews/commitments.json')['packets']
+    unblinded = []
+    for item in commitments:
+        folder = base / 'reviews' / item['task']
+        assert digest(folder / 'packet.json') == item['packetSha256']
+        key = read(folder / 'key.json')
+        salt = read(folder / 'salt.json')['nonce']
+        encoded = json.dumps(key, sort_keys=True, separators=(',', ':'))
+        assert hashlib.sha256((salt + '\0' + encoded).encode()).hexdigest() == item['saltedKeyCommitmentSha256']
+        unblinded.append({'task': item['task'], 'nonce': salt, 'labels': key})
+    return unblinded
+
+
+def independent_scores(base, task):
+    folder = base / 'reviews' / task
+    if not (folder / 'key.json').exists():
+        return None
+    key = read(folder / 'key.json')
+    paths = [folder / 'gpt-6.1-sol.json', folder / 'deepseek-flash.json']
+    if not all(p.exists() for p in paths):
+        return None
+    ratings = [read(p).get('rating') for p in paths]
+    if any(not isinstance(r, dict) or len(r.get('candidates', [])) != 2 for r in ratings):
+        return None
+    def rows(r):
+        return {v['id']: (v['score'], tuple(sorted(v['unsupportedClaims']))) for v in r['candidates']}
+    original = [rows(r) for r in ratings]
+    if any(set(x) != set(key) or any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in x.values()) for x in original):
+        return None
+    different = original[0] != original[1]
+    numeric_difference = any(original[0][k][0] != original[1][k][0] for k in key)
+    final = original[0]
+    if different:
+        path = folder / 'adjudication.json'
+        if not path.exists() or not read(path).get('rating'):
+            return None
+        final = rows(read(path)['rating'])
+        if set(final) != set(key) or any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in final.values()):
+            return None
+    return {'scores': {key[k]: v[0] for k, v in final.items()}, 'adjudicated': different,
+            'numericReviewerDisagreement': numeric_difference,
+            'reviewerScores': [{key[k]: v[0] for k, v in review.items()} for review in original]}
+
+
+def cohort(name, source):
+    base = BASE / name
+    data = a.cohort(name)
+    if data.get('status') == 'NOT_REGISTERED':
+        return data, []
+    reg = read(base / 'registration.json')
+    tasks = {t['id']: t for t in reg['tasks']}
+    finished_review = (base / 'reviews/finished.json').exists()
+    unblind = verify_blind(base) if finished_review else []
+    simplified = []
+    directions = collections.Counter()
+    later = {arm: collections.Counter() for arm in ('baseline', 'memex')}
+    for row in data['tasks']:
+        tid = row['id']
+        score = independent_scores(base, tid) if finished_review and row['completePair'] else None
+        if score:
+            assert row['review']['status'] == 'VALID' and score['scores'] == row['review']['scoresByArm']
+            delta = score['scores']['memex'] - score['scores']['baseline']
+            directions['memexHigher' if delta > 0 else 'baselineHigher' if delta < 0 else 'tie'] += 1
+        elif row['review']['status'] == 'VALID' and row['completePair']:
+            raise AssertionError(f'{tid}: independent scoring mismatch')
+        for arm in ('baseline', 'memex'):
+            if not row['completePair']:
+                continue
+            path = base / tid / 'traces'
+            trace = a.events(path / f'{arm}-s2-events.jsonl') + a.events(path / f'{arm}-s2-recovery-events.jsonl')
+            exposure = a.later_discussion_exposure(BASE / source / f'{tid}.issue.json', trace)
+            for k, v in exposure.items(): later[arm][k] += int(bool(v))
+        simplified.append({'id': tid, 'issueUrl': row['issueUrl'], 'sourceCommit': row['sourceCommit'],
+            'discussionSpanDays': tasks[tid].get('discussionSpanDays'), 'completePair': row['completePair'],
+            'sessionStatuses': {k: v.get('status') for k, v in row['sessions'].items()},
+            'sessionRecoveries': sum(bool(v.get('recovery')) for v in row['sessions'].values()),
+            'reviewStatus': row['review']['status'], 'blindReview': score,
+            'agentWriteThenOpen': bool(row['memoryChain'] and row['memoryChain']['writtenIdOpenedNext']),
+            'automaticCheckpointThenOpen': bool(row['memoryChain'] and row['memoryChain']['automaticCheckpointOpenedNext'])})
+    assert dict(directions) == data['scoreDirections']
+    result = {k: v for k, v in data.items() if k != 'tasks'}
+    result.update({'sourceCommit': reg['memexCommit'], 'registrationSha256': digest(base / 'registration.json'),
+                   'independentlyRecountedDirections': dict(directions), 'laterDiscussionExposure': {k: dict(v) for k, v in later.items()},
+                   'tasks': simplified if finished_review else []})
+    return result, unblind
+
+
+def main():
+    output = pathlib.Path(sys.argv[1])
+    first, first_unblind = cohort('integrity-triage', 'integrity-source')
+    long, long_unblind = cohort('integrity-long-triage', 'integrity-long-source')
+    result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'firstEight': first, 'longFollowup': long,
+              'limits': ['Different commits and prompts: do not pool as one randomized protocol.',
+                         'Open-source historical triage replay is not a deployed production outcome.',
+                         'AI judges and model client list prices do not establish human-rated correctness or actual wallet cost.',
+                         'Memory calls and matching IDs do not establish that the memory caused the answer.']}
+    output.parent.mkdir(parents=True, exist_ok=True)
+    output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
+    unblind = {'firstEight': first_unblind, 'longFollowup': long_unblind}
+    (output.parent / 'packet-unblinding.json').write_text(json.dumps(unblind, indent=2) + '\n')
+    print(json.dumps({'firstRated': first.get('validRatedPairs'), 'longRated': long.get('validRatedPairs'),
+                      'firstDirections': first.get('scoreDirections'), 'longDirections': long.get('scoreDirections')}))
+
+
+if __name__ == '__main__':
+    main()

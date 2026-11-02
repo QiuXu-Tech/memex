@@ -1,0 +1,544 @@
+{
+  "generatedAt": "2026-11-02T04:58:17.243744+00:00",
+  "firstEight": {
+    "status": "FINISHED",
+    "reviewStatus": "FINISHED",
+    "registered": 8,
+    "started": 8,
+    "finished": 8,
+    "completePairs": 8,
+    "validRatedPairs": 8,
+    "scoreDirections": {
+      "baselineHigher": 3,
+      "tie": 5
+    },
+    "posthocSensitivityRatedPairs": 8,
+    "posthocSensitivityDirections": {
+      "baselineHigher": 3,
+      "tie": 5
+    },
+    "meanScore": {
+      "baseline": 1.125,
+      "memex": 0.75
+    },
+    "fullTokenPairs": 1,
+    "tokenTotals": {
+      "baseline": {
+        "input": 127803,
+        "output": 5556,
+        "cacheRead": 93554,
+        "cacheWrite": 34169
+      },
+      "memex": {
+        "input": 149792,
+        "output": 5315,
+        "cacheRead": 117539,
+        "cacheWrite": 32183
+      }
+    },
+    "completePairToolAttempts": {
+      "baseline": {
+        "total": 325,
+        "exactRepeated": 2,
+        "memory": 0,
+        "source": 225,
+        "archive": 100,
+        "other": 0
+      },
+      "memex": {
+        "total": 333,
+        "exactRepeated": 2,
+        "memory": 43,
+        "source": 265,
+        "archive": 25,
+        "other": 0
+      }
+    },
+    "completeTokenPairMessageContexts": {
+      "baseline": {
+        "messageIds": 14,
+        "inputTokens": 127803
+      },
+      "memex": {
+        "messageIds": 12,
+        "inputTokens": 149792
+      }
+    },
+    "completeTokenPairFirstSessionInitialContexts": {
+      "baseline": {
+        "sessions": 1,
+        "inputTokens": 6778
+      },
+      "memex": {
+        "sessions": 1,
+        "inputTokens": 8949
+      }
+    },
+    "completePairClientListPriceUsd": {
+      "baseline": 1.200828,
+      "memex": 1.47945
+    },
+    "sessionOutcomes": {
+      "notCompletedByStatus": {},
+      "resumedAfterBudget": 14,
+      "resumedAndCompleted": 14,
+      "unavailableToolAttempts": 2,
+      "unexpectedToolAttempts": 0,
+      "runnerErrors": 0
+    },
+    "recoveryInputReconciliation": {
+      "matched": 0,
+      "different": 14,
+      "missing": 0
+    },
+    "posthocDiscussionExposure": {},
+    "clientListPriceKnownUsd": 2.680278,
+    "clientListPriceMissingSessions": 0,
+    "agentWrites": 3,
+    "writtenRecordOpenedNext": 3,
+    "writtenRecordAutomaticallyRecalled": 3,
+    "automaticCheckpoints": 8,
+    "automaticCheckpointOpenedNext": 8,
+    "automaticCheckpointRecalledNext": 8,
+    "reviewUsageByModel": {
+      "gpt-6.1-sol": {
+        "calls": 8,
+        "promptTokens": 182692,
+        "completionTokens": 4882,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "deepseek-flash": {
+        "calls": 8,
+        "promptTokens": 102707,
+        "completionTokens": 3189,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "gemini-3.8-flash": {
+        "calls": 8,
+        "promptTokens": 134661,
+        "completionTokens": 3837,
+        "missingUsageOrFailedAttempts": 0
+      }
+    },
+    "rawConsistencyProblems": [],
+    "sourceCommit": "af610afa30a77e56f69bc1379ebd76b66760e6f4",
+    "registrationSha256": "bbe1243f556443ef6e66295d42c528b949b0d1070edc8669a9a10b712ba8edf9",
+    "independentlyRecountedDirections": {
+      "baselineHigher": 3,
+      "tie": 5
+    },
+    "laterDiscussionExposure": {
+      "baseline": {
+        "hasLaterComments": 8,
+        "openedLaterComment": 7,
+        "exposedLaterComment": 7
+      },
+      "memex": {
+        "hasLaterComments": 8,
+        "openedLaterComment": 2,
+        "exposedLaterComment": 2
+      }
+    },
+    "tasks": [
+      {
+        "id": "integrity-01",
+        "issueUrl": "https://github.com/avajs/ava/issues/3343",
+        "sourceCommit": "8bd11143a95ef7653733e043981b46255a790e79",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 2,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 0
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 0
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenOpen": true,
+        "automaticCheckpointThenOpen": true
+      },
+      {
+        "id": "integrity-02",
+        "issueUrl": "https://github.com/graphql/graphql-js/issues/4834",
+        "sourceCommit": "805fadd286dea7053b875f71c91222444c5d1228",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 2,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenOpen": false,
+        "automaticCheckpointThenOpen": true
+      },
+      {
+        "id": "integrity-03",
+        "issueUrl": "https://github.com/hapijs/hapi/issues/4582",
+        "sourceCommit": "9358b480889c2c858aa7ca276125977ce62e22c1",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 0
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenOpen": true,
+        "automaticCheckpointThenOpen": true
+      },
+      {
+        "id": "integrity-04",
+        "issueUrl": "https://github.com/postcss/postcss/issues/2133",
+        "sourceCommit": "2faedf9db171a2e924d58d313992621054417971",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenOpen": false,
+        "automaticCheckpointThenOpen": true
+      },
+      {
+        "id": "integrity-05",
+        "issueUrl": "https://github.com/preactjs/preact/issues/4994",
+        "sourceCommit": "cad3d26f92c266f22d8d8877f53c7350d9718eee",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 2,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenOpen": false,
+        "automaticCheckpointThenOpen": true
+      },
+      {
+        "id": "integrity-06",
+        "issueUrl": "https://github.com/sequelize/sequelize/issues/18253",
+        "sourceCommit": "53d1e8a6199fff85a8d6cd7d9bf0f3487f0cf798",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 3,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 2,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenOpen": false,
+        "automaticCheckpointThenOpen": true
+      },
+      {
+        "id": "integrity-07",
+        "issueUrl": "https://github.com/typicode/json-server/issues/1709",
+        "sourceCommit": "89a34a44b7a6a5311dc84f3b8a1b8b45c0905aea",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenOpen": true,
+        "automaticCheckpointThenOpen": true
+      },
+      {
+        "id": "integrity-08",
+        "issueUrl": "https://github.com/fastify/fastify/issues/6454",
+        "sourceCommit": "5b9c009d9fc13d73bc48cf884778214402713739",
+        "discussionSpanDays": null,
+        "completePair": true,
+        "sessionStatuses": {
+          "baseline-s1": "success",
+          "baseline-s2": "success",
+          "memex-s1": "success",
+          "memex-s2": "success"
+        },
+        "sessionRecoveries": 3,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenOpen": false,
+        "automaticCheckpointThenOpen": true
+      }
+    ]
+  },
+  "longFollowup": {
+    "status": "IN_PROGRESS",
+    "reviewStatus": "NOT_STARTED",
+    "registered": 25,
+    "started": 4,
+    "finished": 2,
+    "completePairs": 2,
+    "validRatedPairs": 0,
+    "scoreDirections": {},
+    "posthocSensitivityRatedPairs": 0,
+    "posthocSensitivityDirections": {},
+    "meanScore": {
+      "baseline": null,
+      "memex": null
+    },
+    "fullTokenPairs": 1,
+    "tokenTotals": {
+      "baseline": {
+        "input": 199967,
+        "output": 7929,
+        "cacheRead": 153981,
+        "cacheWrite": 45881
+      },
+      "memex": {
+        "input": 301713,
+        "output": 8311,
+        "cacheRead": 254183,
+        "cacheWrite": 47390
+      }
+    },
+    "completePairToolAttempts": {
+      "baseline": {
+        "total": 72,
+        "exactRepeated": 0,
+        "memory": 0,
+        "source": 47,
+        "archive": 25,
+        "other": 0
+      },
+      "memex": {
+        "total": 86,
+        "exactRepeated": 0,
+        "memory": 11,
+        "source": 49,
+        "archive": 24,
+        "other": 2
+      }
+    },
+    "completeTokenPairMessageContexts": {
+      "baseline": {
+        "messageIds": 19,
+        "inputTokens": 199967
+      },
+      "memex": {
+        "messageIds": 26,
+        "inputTokens": 301713
+      }
+    },
+    "completeTokenPairFirstSessionInitialContexts": {
+      "baseline": {
+        "sessions": 1,
+        "inputTokens": 5559
+      },
+      "memex": {
+        "sessions": 1,
+        "inputTokens": 7794
+      }
+    },
+    "completePairClientListPriceUsd": {
+      "baseline": 0.242504,
+      "memex": 0.344479
+    },
+    "sessionOutcomes": {
+      "notCompletedByStatus": {},
+      "resumedAfterBudget": 1,
+      "resumedAndCompleted": 1,
+      "unavailableToolAttempts": 2,
+      "unexpectedToolAttempts": 0,
+      "runnerErrors": 0
+    },
+    "recoveryInputReconciliation": {
+      "matched": 0,
+      "different": 1,
+      "missing": 0
+    },
+    "posthocDiscussionExposure": {},
+    "clientListPriceKnownUsd": 0.586984,
+    "clientListPriceMissingSessions": 0,
+    "agentWrites": 1,
+    "writtenRecordOpenedNext": 1,
+    "writtenRecordAutomaticallyRecalled": 1,
+    "automaticCheckpoints": 2,
+    "automaticCheckpointOpenedNext": 2,
+    "automaticCheckpointRecalledNext": 2,
+    "reviewUsageByModel": {},
+    "rawConsistencyProblems": [],
+    "sourceCommit": "c47e4456451d3e9990be40ce52bfbe6fda6cc7cc",
+    "registrationSha256": "42bcfa4e01901234bc19ba73c5340f7798840abb299fe699e4ae4e6837839164",
+    "independentlyRecountedDirections": {},
+    "laterDiscussionExposure": {
+      "baseline": {
+        "hasLaterComments": 2,
+        "openedLaterComment": 1,
+        "exposedLaterComment": 2
+      },
+      "memex": {
+        "hasLaterComments": 2,
+        "openedLaterComment": 2,
+        "exposedLaterComment": 2
+      }
+    },
+    "tasks": []
+  },
+  "limits": [
+    "Different commits and prompts: do not pool as one randomized protocol.",
+    "Open-source historical triage replay is not a deployed production outcome.",
+    "AI judges and model client list prices do not establish human-rated correctness or actual wallet cost.",
+    "Memory calls and matching IDs do not establish that the memory caused the answer."
+  ]
+}

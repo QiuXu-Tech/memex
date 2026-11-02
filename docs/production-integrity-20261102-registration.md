@@ -9,7 +9,7 @@ This registration was frozen before solver and review calls. It specifies an ini
 
 [Machine-readable registration](assets/benchmarks/production-integrity-20261102/registration.json) · [Frozen review plan](assets/benchmarks/production-integrity-20261102/review-plan.json)
 
-The eight [anonymous packet and salted label commitments](assets/benchmarks/production-integrity-20261102/packet-commitments.json) were published before blind-review calls. The salts and arm mapping remain private until review is complete.
+The eight [anonymous packet and salted label commitments](assets/benchmarks/production-integrity-20261102/packet-commitments.json) were published before blind-review calls. Review is complete; [salts and arm mappings](assets/benchmarks/production-integrity-followup-20261102/packet-unblinding.json) were published afterward.
 
 The compared version is commit `af610afa30a77e56f69bc1379ebd76b66760e6f4`. Issue snapshots and source tarballs are retained privately with the SHA-256 values in the registration. The source revision can postdate the issue discussion, and public issue material may be present in model training.
 

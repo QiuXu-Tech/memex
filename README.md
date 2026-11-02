@@ -21,6 +21,8 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 
 **Archive and privacy repairs:** compaction records, canonical events and completion markers now commit together; incomplete sources remain retryable. Claude transcript copies are split into untrusted, session-private parts, and adapter level restrictions no longer inherit a previously enabled shared scope. Complete backups require both record files and the matching SQLite database. [Behavior and remaining limits](docs/archive-integrity-20261102.md).
 
+**Integrity follow-up (2026-11-02):** Eight randomized real-issue replays completed: after AI disagreement review, control scored higher in 3, five tied, and Memex scored higher in none. A separate 25-issue long-discussion cohort is registered and running; these are compressed historical triage replays, not evidence of a production correctness or cost benefit. [Results, costs, charts and limits](docs/production-integrity-followup-20261102.md).
+
 ## 7B KV strategy comparison (latest)
 
 Same real **Qwen2.5-7B-AWQ** model, 8 prefixes ×2 requests (1,856-token prefix), RTX PRO 6000 96GB:
