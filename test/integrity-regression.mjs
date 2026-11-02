@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { lstatSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
+import { chmodSync, lstatSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, statSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
@@ -21,10 +21,52 @@ const codexCli = fileURLToPath(new URL('../packages/memex-codex/bin/cli.mjs', im
 const mcp = fileURLToPath(new URL('../packages/memex-mcp/bin/server.mjs', import.meta.url))
 const initFault = fileURLToPath(new URL('./claude-init-fault.mjs', import.meta.url))
 const codexInitFault = fileURLToPath(new URL('./codex-init-fault.mjs', import.meta.url))
+const sqlitePermissionFault = fileURLToPath(new URL('./sqlite-permission-fault.mjs', import.meta.url))
 const root = () => mkdtempSync(join(tmpdir(), 'memex-integrity-test-'))
 const node = (args, input = '', env = {}) => spawnSync(process.execPath, ['--import', register, cli, ...args], { input, encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
 const codexNode = (args, env = {}) => spawnSync(process.execPath, ['--import', register, codexCli, ...args], { encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
 const pause = () => new Promise((resolve) => setTimeout(resolve, 100))
+
+test('new SQLite database and sidecars remain private under a permissive existing root', { skip: process.platform === 'win32' }, () => {
+  const dir = root(), previousMask = process.umask(0o022)
+  chmodSync(dir, 0o755)
+  const store = new LocalStoreCore({ root: dir })
+  try {
+    store.database()
+    for (const name of ['index.db', 'index.db-wal', 'index.db-shm']) {
+      assert.equal(statSync(join(dir, name)).mode & 0o077, 0, `${name} must not be group/world accessible`)
+    }
+    assert.equal(statSync(dir).mode & 0o777, 0o755, 'existing root permissions must not be changed')
+  } finally { store.close(); process.umask(previousMask); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('reopening an existing store restricts database and active sidecars without losing records', { skip: process.platform === 'win32' }, () => {
+  const dir = root()
+  const first = new LocalStoreCore({ root: dir }), second = new LocalStoreCore({ root: dir })
+  try {
+    first.write({ id: 'mem_permissions', kind: 'fact', title: 'permission fixture', body: 'preserved', workspaceKey: 'wk' })
+    for (const name of ['index.db', 'index.db-wal', 'index.db-shm']) chmodSync(join(dir, name), 0o644)
+    assert.equal(second.get('mem_permissions').body, 'preserved')
+    for (const name of ['index.db', 'index.db-wal', 'index.db-shm']) assert.equal(statSync(join(dir, name)).mode & 0o077, 0, name)
+  } finally { second.close(); first.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('a failed SQLite permission repair stops opening and a later retry keeps the record', { skip: process.platform === 'win32' }, () => {
+  const dir = root()
+  const store = new LocalStoreCore({ root: dir })
+  try {
+    store.write({ id: 'mem_permission_retry', kind: 'fact', title: 'permission retry', body: 'keep this record', workspaceKey: 'wk' })
+    store.close()
+    chmodSync(join(dir, 'index.db'), 0o644)
+    const script = `import { LocalStoreCore } from ${JSON.stringify(new URL('../packages/memex-core/lib/store.js', import.meta.url).href)}; new LocalStoreCore({ root: process.env.MEMEX_TEST_ROOT }).database()`
+    const failed = spawnSync(process.execPath, ['--import', sqlitePermissionFault, '--input-type=module', '-e', script], { encoding: 'utf8', env: { ...process.env, MEMEX_TEST_ROOT: dir } })
+    assert.notEqual(failed.status, 0)
+    assert.match(failed.stderr, /injected permission failure/)
+    const retry = new LocalStoreCore({ root: dir })
+    try { assert.equal(retry.get('mem_permission_retry').body, 'keep this record') } finally { retry.close() }
+    assert.equal(statSync(join(dir, 'index.db')).mode & 0o077, 0)
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
 
 test('compaction record, canonical events and marker roll back together and can be retried', () => {
   const dir = root()

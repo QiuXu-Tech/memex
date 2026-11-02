@@ -12,7 +12,7 @@
  * @module @qiuxu/memex-core/store
  */
 import { DatabaseSync } from 'node:sqlite'
-import { mkdirSync, readFileSync, readdirSync, existsSync } from 'node:fs'
+import { chmodSync, closeSync, mkdirSync, openSync, readFileSync, readdirSync, existsSync, statSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash, randomUUID } from 'node:crypto'
 import { canonicalContextEvent, checksumContextEvent } from './context-events.js'
@@ -87,6 +87,23 @@ function bodyTermHashes(body) {
 
 const DB_FILE = 'index.db'
 const RECORDS_DIR = 'records'
+
+/** Keep SQLite's raw event data private even when the configured root already exists. */
+function preparePrivateDatabase(path) {
+  if (process.platform === 'win32') return
+  try { closeSync(openSync(path, 'wx', 0o600)) } catch (error) { if (error?.code !== 'EEXIST') throw error }
+  for (const suffix of ['', '-wal', '-shm', '-journal']) {
+    const file = path + suffix
+    try {
+      const stat = statSync(file)
+      if (!stat.isFile()) throw new Error(`memory: database path is not a regular file: ${file}`)
+      if ((stat.mode & 0o077) !== 0) chmodSync(file, stat.mode & ~0o077)
+    } catch (error) {
+      if (suffix && error?.code === 'ENOENT') continue
+      throw error
+    }
+  }
+}
 
 /** Detect surviving store data before creating a new, empty index. */
 function hasFiles(path) {
@@ -193,7 +210,9 @@ export class LocalStoreCore {
       throw new Error('memory: index is missing while archive files exist; restore the matching database backup before opening the store')
     }
     mkdirSync(join(this.root, RECORDS_DIR), { recursive: true, mode: 0o700 })
-    const db = new DatabaseSync(join(this.root, DB_FILE))
+    const databasePath = join(this.root, DB_FILE)
+    preparePrivateDatabase(databasePath)
+    const db = new DatabaseSync(databasePath)
     db.exec('PRAGMA busy_timeout = 5000')
     db.exec('PRAGMA journal_mode = WAL')
     db.exec('PRAGMA synchronous = NORMAL')
