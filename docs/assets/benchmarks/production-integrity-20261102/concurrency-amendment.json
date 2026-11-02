@@ -1,0 +1,11 @@
+{
+  "registeredAt": "2026-11-02T04:28:18.238410+00:00",
+  "studyRegistrationSha256": "bbe1243f556443ef6e66295d42c528b949b0d1070edc8669a9a10b712ba8edf9",
+  "runnerSha256": "7e07bf2dd1eb9fb71a35ee21b3fa28c2e049c02f8b9d368779035e6efc784ea9",
+  "initialTaskCount": 2,
+  "initialCompletedSessions": 8,
+  "initialRecoverySessions": 3,
+  "initialClientListPriceUsd": 0.55870855,
+  "revision": "Run only the six not-yet-started tasks with at most two tasks concurrently instead of one. Keep the frozen allocation, prompts, model, session budgets and review plan unchanged. Initial trial results remain separate and unknown usage remains unknown.",
+  "reason": "Both initial pairs completed and the VM has space for two bounded workspaces; increased concurrency reduces wall time."
+}
