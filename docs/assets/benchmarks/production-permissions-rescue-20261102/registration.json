@@ -1,0 +1,68 @@
+{
+  "registeredAt": "2026-11-02T06:06:37.181509+00:00",
+  "kind": "post-permissions-rescue-issue-after-invalid-adjudication",
+  "tasks": [
+    {
+      "id": "rescue-01",
+      "repo": "markedjs/marked",
+      "issue": 4099,
+      "issueUrl": "https://github.com/markedjs/marked/issues/4099",
+      "title": "emStrong is quadratic in the number of unmatched emphasis delimiters (12 KB input takes ~16 s)",
+      "sourceCommit": "8babc796802dbf2d27daee51dcb7306935900033",
+      "issueSha256": "16f3fa6f3c77a9c7805a333852b69e289460495003f16e4d6176f57c293d7f90",
+      "archiveSha256": "1ea091192dd60f86b0723a493684194f7ae7fceba993a913f7574a2d006d9054",
+      "archiveBytes": 296729,
+      "expandedBytes": 1384717,
+      "commentCount": 5,
+      "createdAt": "2026-09-19T21:00:15Z",
+      "lastCommentAt": "2026-10-11T19:03:10Z",
+      "discussionSpanDays": 21,
+      "frozenAcceptance": "Explain the reported quadratic unmatched-emphasis scan and a targeted scaling reproduction; distinguish worker isolation from a parser fix, record the proposed early-exit PR as unverified, and identify CommonMark delimiter-compatibility checks without treating reported timings as confirmed."
+    }
+  ],
+  "memexCommit": "62441b70513a3f1123b88c55b04a0b6cf0998274",
+  "manifestSha256": "14e9d56e71ddc4b138b9f24cb1617b5c151771515f7125b3785463cd2875c3ce",
+  "allocationCommitmentSha256": "6caf988c773cd447cccdbcd15df94d866521b75909a9a7447c7336acd18df9bd",
+  "runnerSha256": "3fc4a85f9300eb5c03d9818097075b56d16515c863ff06364660c767d236d1d4",
+  "wrapperSha256": "30b24d386bc114821fc6c83ac28f3412df6072b6fdf3bb0cce8d0361d21a310f",
+  "extraRunnerSha256": "31ff23558e9708b0e492a5d126c835a14d7748b0d8244f0417dcf87b14604edd",
+  "postRunnerSha256": "97bbd9b6ec670baaae52715c0ef6dfaa4fd242b6a5edaba5010177ec202841f3",
+  "sourceHashes": {
+    "packages/memex-claude/bin/cli.mjs": "4103dd4f0362177a37884cd064d11e637caf75d71082623ced66547491fc1d58",
+    "packages/memex-core/index.js": "bc91d38126f844325a0c9f4c0f94a1b57989c3d20e362058f6f1aee238798c98",
+    "packages/memex-core/lib/context-encoder.js": "1a63cf12028f349cf226fcffc45a721fd0e8a46c761c459988f43fc3d549e76b",
+    "packages/memex-core/lib/context-events.js": "076686dcbf8e7e0422f3a62ab60b435a931e934fed177efaebba78d1cf9f70e5",
+    "packages/memex-core/lib/context-kv-host.js": "0efcb2440c38a142026c1abcbe9cff995adeeced084bfd7b95a21f7c910c1650",
+    "packages/memex-core/lib/context-kv.js": "978d5cd37ee4c54fb5ddb18dc448540b452f9d3de48af839b989c488148c0898",
+    "packages/memex-core/lib/context-materializer.js": "e89883fc5beccf57693f84a1d392c5bee64b9fa853ffa1a02c514e5f0ef2a143",
+    "packages/memex-core/lib/context-pager.js": "5229e7257719c428c8a9971be970b0a4468f3b57f0d88489fc9fb1eca5f49977",
+    "packages/memex-core/lib/context-transformer.js": "87c8c72dba74783ca4e29b771a4ae1898584930b091bbace5cc7b2dd2548bf0a",
+    "packages/memex-core/lib/engine.js": "7c2c427c9e8da63f4397edea56bd38f876dacd6198fb1043d95377916965cc50",
+    "packages/memex-core/lib/file-transactions.js": "a51df23d7365e06bac9a8a0ae40e54221e98b52919cbc783615a89f5e76bc8b8",
+    "packages/memex-core/lib/manual.js": "e1dc9b81a5bcf3928fca02ce0401f2aea166ec25423924327d33214b907e9e98",
+    "packages/memex-core/lib/model-profiles.js": "be80caed6662098a7766c9b125b098e65d2f355672ac131e2c9fc806825f0b37",
+    "packages/memex-core/lib/store.js": "9beb6b6f43491ad81634db916f3995e3c849ebdeeb457ac4752eab0c96c2a084",
+    "packages/memex-mcp/bin/server.mjs": "84068a2ec249b0058afa0e0c06e1351e00fe0567df00635fc318ec758e67cc8c",
+    "scripts/prospective-agent-mcp-v5.mjs": "f4bdb9b4b151a8403b1bc989c6a69f188d2eb189cd44c899253511ce1bd2c48a",
+    "scripts/prospective-agent-worker-v7.py": "db00de27b07ef4f2a7daa8e6e967e5455e1ec5b75911ad7b8839118bc257a586"
+  },
+  "bridgeSha256": "f4bdb9b4b151a8403b1bc989c6a69f188d2eb189cd44c899253511ce1bd2c48a",
+  "workerSha256": "db00de27b07ef4f2a7daa8e6e967e5455e1ec5b75911ad7b8839118bc257a586",
+  "model": "claude-haiku-4-5",
+  "prompts": {
+    "stage1": "Investigate this real issue against the pinned repository and early discussion. Use targeted source and discussion lookups; do not repeat a lookup unless new information makes it useful. Once you have a relevant source location and a relevant discussion record, stop searching and give a concise handoff with evidence and unresolved questions. If evidence is unavailable, state that. Do not edit code.",
+    "stage2": "Continue the earlier investigation using the later discussion and your own prior handoff, available in the archive. Use targeted lookups only for specific remaining uncertainties; do not repeat information already retrieved. Once the available evidence suffices, produce a concise triage with source file and line, discussion or disagreement with comment IDs, a recommended next check, and uncertainty. Do not edit code."
+  },
+  "maxConcurrentTasks": 1,
+  "perSessionClientListBudgetUsd": 0.1,
+  "sameSessionRecoveryExtraUsd": 0.04,
+  "perSessionReservationUsd": 0.18,
+  "aggregateClientListReservationUsd": 1.0,
+  "protocol": "One new owner-disjoint public issue, randomized paired arms, two distinct Claude Code sessions per arm, read-only source and staged comments; both arms have their own handoff and Memex adds hooks and MCP.",
+  "selection": "Added after observing an invalid adjudication and before this task or its review calls; report separately from the original preregistered cohorts.",
+  "limits": [
+    "Historical issue material may be in model training and source may postdate comments.",
+    "Compressed triage is not a deployed production outcome.",
+    "AI reviewers are not humans and client list prices are not gateway charges."
+  ]
+}
