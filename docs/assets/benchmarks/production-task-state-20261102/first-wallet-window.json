@@ -1,0 +1,13 @@
+{
+  "windowLocal": "2026-11-02 17:00:46 through 17:08:01 Asia/Shanghai",
+  "scope": "Account-wide visible Claude Haiku rows overlapping the two initial randomized issue pairs; separately timed synthetic reviewer preflight is below.",
+  "visibleDistinctSuccessfulRowTexts": 123,
+  "visibleTotals": {"uncachedInputTokens": 695, "cacheReadInputTokens": 1221229, "cacheCreationInputTokens": 398263, "outputTokens": 52789, "walletUsd": 0.097162},
+  "localDistinctStreamedAssistantMessageIds": 123,
+  "localStreamedInputTotals": {"uncachedInputTokens": 695, "cacheReadInputTokens": 1221229, "cacheCreationInputTokens": 398263},
+  "visibleRowsWithoutWalletAmount": 0,
+  "reviewerPreflight": {"description": "Three synthetic schema checks, not issue reviews.", "successfulCalls": 3, "uniqueCandidateMatches": 3, "candidateWalletUsd": 0.003834,
+    "matching": "model, input and output tokens, and completion time within three seconds; no request ID linkage",
+    "byModel": {"gpt-6.1-sol": {"inputTokens": 4480, "outputTokens": 131, "candidateWalletUsd": 0.000790}, "deepseek-flash": {"inputTokens": 268, "outputTokens": 115, "candidateWalletUsd": 0.000138}, "gemini-3.8-flash": {"inputTokens": 268, "outputTokens": 1779, "candidateWalletUsd": 0.002906}}},
+  "limitations": ["Account-wide visible rows can include unrelated activity or omit rows; matching input/cache totals does not establish individual or per-arm charges.", "Displayed-row text deduplication can merge identical requests, and moving pagination can omit rows.", "Streamed assistant output tokens are not equivalent to final gateway output counts; no output-token reconciliation is asserted.", "Reviewer matches are candidates, not request-ID proof. Failed calls, late reconciliation, infrastructure and human labor remain unknown."]
+}
