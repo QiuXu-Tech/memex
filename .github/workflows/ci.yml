@@ -73,6 +73,13 @@ jobs:
           python3 scripts/test-prospective-issue-triage-recovery-20261102.py
           python3 test/prospective-task-state-runner.py
           python3 test/prospective-task-state-aggregate.py
+          python3 test/prospective-agent-search-limit.py
+          python3 test/prospective-task-state-canary.py
+          python3 test/prospective-task-state-citations.py
+          python3 test/prospective-task-state-stream-usage.py
+          python3 test/prospective-task-state-tool-health.py
+          python3 test/rescue-task-state-reviews.py
+          python3 test/aggregate-task-state-rescue.py
           python3 scripts/test-prospective-review-triage-recovery-20261102.py
           python3 scripts/test-aggregate-production-autonomy-20261102.py
           python3 scripts/test-supplement-blind-commitments-20261102.py
