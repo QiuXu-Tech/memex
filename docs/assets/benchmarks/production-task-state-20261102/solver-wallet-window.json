@@ -1,0 +1,16 @@
+{
+  "kind": "account-window-observation-not-request-attribution",
+  "source": "APIMaster usage-log UI, read-only",
+  "windowLocalTime": {"timezone": "Asia/Shanghai", "fromInclusive": "2026-11-02 17:00:46", "toInclusive": "2026-11-02 18:17:16"},
+  "model": "claude-haiku-4-5",
+  "displayedSuccessfulRowsAfterExactVisibleRowDeduplication": 1695,
+  "exactVisibleRowDuplicatesRemoved": 3,
+  "displayedUncachedInputTokens": 9576,
+  "displayedOutputTokens": 704579,
+  "displayedCacheReadTokens": 16765550,
+  "displayedCacheWriteTokens": 5332185,
+  "displayedWalletUsd": 1.305480,
+  "displayedRowsWithMissingTokenOrWalletValue": 0,
+  "corroboration": "Count and all three input/cache totals match the 1695 distinct assistant message IDs and streamed input usage for the registered solver window. Output tokens are displayed gateway values and are not independently reconciled to terminal summaries.",
+  "limits": ["The UI does not expose a verified per-experiment or per-arm join. Window coincidence and matching aggregates corroborate but do not prove attribution.", "The current account received later concurrent traffic while pages were read; three exact duplicate rows were removed to compensate for observed shifting pagination. Exact visible rows may also be identical for legitimate distinct requests.", "The two-issue first-window value is a subset and must not be added again.", "This is not a complete invoice and excludes review, host, human and unsettled or unavailable charges."]
+}

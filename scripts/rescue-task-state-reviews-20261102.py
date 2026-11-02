@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """Separately registered blind replacement for missing task-state reviews."""
+import concurrent.futures
 import datetime
 import hashlib
 import importlib.util
@@ -66,6 +67,7 @@ def prepare():
            'fallbackReviewer': 'gpt-6.1-terra', 'adjudicator': plan['adjudicator'], 'reviewPrompt': plan['reviewPrompt'],
            'adjudicationPrompt': plan['adjudicationPrompt'], 'reviewMaxOutputTokens': plan['reviewMaxOutputTokens'],
            'adjudicationMaxOutputTokens': plan['adjudicationMaxOutputTokens'],
+           'maxConcurrentTasks': 2,
            'protocol': 'Retain primary results. Replace at most one missing or invalid reviewer with a fresh blind Terra review. Re-adjudicate disagreements or a previously invalid adjudication using the unchanged packet. Do not replace explicit insufficient-evidence scores.',
            'limits': ['Post-hoc sensitivity analysis, not the primary review.', 'A timed-out request may have incurred an unknown charge.', 'Model identity and independence are not independently verified.']}
     save(OUT / 'registration.json', reg)
@@ -88,7 +90,7 @@ def run():
     reg = load(OUT / 'registration.json'); verify(reg)
     key = subprocess.run(['ruby', '-ryaml', '-e', 'print YAML.load_file(File.expand_path("~/.dsh/.credentials.yaml")).dig("refs","APIMASTER_API_KEY")'], capture_output=True, text=True, check=True).stdout
     assert key; save(OUT / 'started.json', {'at': now()}); plan = load(BASE / 'reviews/plan.json')
-    for task in reg['tasks']:
+    def review_one(task):
         tid = task['task']; folder = BASE / 'reviews' / tid; packet = load(folder / 'packet.json'); rows = []; replacements = []
         for model in plan['reviewers']:
             path = folder / f'{model}.json'; row = load(path) if path.exists() else {'model': model, 'rating': None, 'status': 'MISSING'}
@@ -112,6 +114,9 @@ def run():
                 adjud = {'model': reg['adjudicator'], 'status': event.get('status'), 'rating': rating, 'error': error}
         save(OUT / f'{tid}-result.json', {'task': tid, 'replacedModels': replacements, 'reviews': rows, 'adjudication': adjud})
         print(json.dumps({'task': tid, 'validReviews': sum(bool(row.get('rating')) for row in rows), 'adjudicationStatus': adjud.get('status'), 'adjudicationValid': bool(adjud.get('rating'))}), flush=True)
+    with concurrent.futures.ThreadPoolExecutor(max_workers=reg['maxConcurrentTasks']) as pool:
+        for future in [pool.submit(review_one, task) for task in reg['tasks']]:
+            future.result()
     save(OUT / 'finished.json', {'at': now()})
 
 if __name__ == '__main__':
