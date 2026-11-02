@@ -708,8 +708,8 @@ export class LocalStoreCore {
     if (filter.excludeExpired === true) {
       const source = evidence('source'), expiry = evidence('validUntil')
       // Unknown or legacy metadata is not an expiry claim. New evidence uses
-      // UTC ISO timestamps; julianday rejects malformed historical values.
-      clauses.push(`(typeof(${source}) != 'text' OR trim(${source}) = '' OR typeof(${expiry}) != 'text' OR ${expiry} NOT GLOB '????-??-??T??:??:??*Z' OR julianday(${expiry}) IS NULL OR julianday(${expiry}) > julianday(?))`)
+      // canonical UTC timestamps; normalize dates to reject malformed historical values.
+      clauses.push(`(typeof(${source}) != 'text' OR trim(${source}) = '' OR typeof(${expiry}) != 'text' OR ${expiry} NOT GLOB '????-??-??T??:??:??.???Z' OR strftime('%Y-%m-%dT%H:%M:%fZ', julianday(${expiry})) IS NOT ${expiry} OR ${expiry} > ?)`)
       params.push(new Date().toISOString())
     }
     if (filter.source !== undefined) { clauses.push(`${evidence('source')} = ?`); params.push(filter.source) }

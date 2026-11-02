@@ -85,6 +85,14 @@ export const MEMORY_STATUSES = Object.freeze(['active', 'open', 'resolved', 'sup
 /** Trust level of the record content. `untrusted` content must never be obeyed as instructions. */
 export const MEMORY_TRUST = Object.freeze(['trusted', 'untrusted', 'derived'])
 
+/** Return a canonical UTC timestamp only when the supplied date is valid. */
+function normalizeEvidenceTimestamp(value) {
+  const match = typeof value === 'string' && value.match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:\.(\d{1,3}))?Z$/)
+  const normalized = match && `${match[1]}.${(match[2] ?? '').padEnd(3, '0')}Z`
+  const time = normalized && Date.parse(normalized)
+  return normalized && Number.isFinite(time) && new Date(time).toISOString() === normalized ? normalized : undefined
+}
+
 /** Normalize an agent-supplied source reference without asserting it is true. */
 export function normalizeMemoryEvidence(value) {
   if (value === undefined) return undefined
@@ -99,10 +107,8 @@ export function normalizeMemoryEvidence(value) {
   }
   for (const key of ['observedAt', 'validUntil']) {
     if (value[key] === undefined) continue
-    const match = typeof value[key] === 'string' && value[key].match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:\.(\d{1,3}))?Z$/)
-    const normalized = match && `${match[1]}.${(match[2] ?? '').padEnd(3, '0')}Z`
-    const time = normalized && Date.parse(normalized)
-    if (!normalized || !Number.isFinite(time) || new Date(time).toISOString() !== normalized) throw new TypeError(`memory: ${key} must be a valid UTC ISO timestamp`)
+    const normalized = normalizeEvidenceTimestamp(value[key])
+    if (normalized === undefined) throw new TypeError(`memory: ${key} must be a valid UTC ISO timestamp`)
     result[key] = normalized
   }
   if (result.observedAt && result.validUntil && result.validUntil < result.observedAt) throw new TypeError('memory: validUntil must not precede observedAt')
@@ -114,7 +120,8 @@ export function memoryEvidenceLabel(record, now = Date.now()) {
   const evidence = record?.provenance?.evidence
   const safe = (value) => String(value ?? 'unknown').replace(/\s+/g, ' ').slice(0, 1024)
   if (!evidence || typeof evidence !== 'object') return `source=${safe(record?.provenance?.source)}; version=unknown; validity=unknown`
-  const expiry = typeof evidence.validUntil === 'string' ? Date.parse(evidence.validUntil) : NaN
+  const timestamp = typeof evidence.source === 'string' && evidence.source.trim() ? normalizeEvidenceTimestamp(evidence.validUntil) : undefined
+  const expiry = timestamp === evidence.validUntil ? Date.parse(timestamp) : NaN
   const validity = Number.isFinite(expiry) ? (expiry <= now ? 'expired' : 'not expired') : 'unknown'
   return `source=${safe(evidence.source)}; version=${safe(evidence.version)}; observedAt=${safe(evidence.observedAt)}; validUntil=${safe(evidence.validUntil)}; validity=${validity} (source not verified)`
 }

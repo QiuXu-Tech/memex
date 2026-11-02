@@ -7,7 +7,7 @@ import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
 import { LocalStoreCore } from '../packages/memex-core/lib/store.js'
 import { AgentMemory } from '../packages/memex-core/lib/engine.js'
-import { MEMORY_TEXT_LIMITS, archiveRecordId, memoryWorkspaceKey } from '../packages/memex-core/index.js'
+import { MEMORY_TEXT_LIMITS, archiveRecordId, memoryEvidenceLabel, memoryWorkspaceKey } from '../packages/memex-core/index.js'
 import { canonicalEventsFromDsh } from '../packages/memex-core/lib/context-events.js'
 import LocalMemoryStore from '../packages/memex-local/index.js'
 import * as checkpoint from '../packages/memex-checkpoint/index.js'
@@ -90,8 +90,17 @@ test('legacy arbitrary provenance remains visible and can change status', () => 
     const file = readFileSync(original.path, 'utf8').replace(/^provenance: .*$/m, `provenance: ${JSON.stringify(legacy)}`)
     writeFileSync(original.path, file)
     assert.equal(store.search({ query: 'Sprocket legacy', workspaceKey: 'wk' }).hits[0]?.id, original.id)
+    assert.match(memoryEvidenceLabel(store.get(original.id)), /validity=unknown/)
     const updated = store.setStatus(original.id, 'resolved', { workspaceKey: 'wk' })
     assert.deepEqual(updated.provenance, legacy)
+    const other = store.write({ id: 'mem_legacy_date', kind: 'fact', title: 'Sprocket legacy date', body: 'Second body', workspaceKey: 'wk' })
+    const badDate = { evidence: { source: 'legacy-file', validUntil: '2025-02-30T00:00:00.000Z' } }
+    store.database().prepare('UPDATE records SET provenance_json = ? WHERE id = ?').run(JSON.stringify(badDate), other.id)
+    writeFileSync(other.path, readFileSync(other.path, 'utf8').replace(/^provenance: .*$/m, `provenance: ${JSON.stringify(badDate)}`))
+    assert.ok(store.search({ query: 'Sprocket legacy date', workspaceKey: 'wk' }).hits.some((hit) => hit.id === other.id))
+    assert.match(memoryEvidenceLabel(store.get(other.id)), /validity=unknown/)
+    assert.match(memoryEvidenceLabel({ provenance: { evidence: { source: 'legacy-file', validUntil: '2025-01-01T00:00:00Z' } } }), /validity=unknown/)
+    assert.deepEqual(store.setStatus(other.id, 'resolved', { workspaceKey: 'wk' }).provenance, badDate)
     store.close()
     const reopened = new LocalStoreCore({ root: dir })
     try {
