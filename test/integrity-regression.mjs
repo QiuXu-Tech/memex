@@ -231,6 +231,10 @@ test('disabling automatic archives leaves configured recall active', async () =>
     const decision = createPreStepDecision(session, 'What is the Sprocket target?')
     const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(decision))
     assert.ok(result.messages.some((message) => message.source?.form === 'recall' && message.source.recordIds.includes(record.id)))
+    let eventSequenceReads = 0
+    const ordinaryEvent = { type: 'message', get seq() { eventSequenceReads += 1; return 1 } }
+    await ctx.emit('session/event', session, ordinaryEvent)
+    assert.equal(eventSequenceReads, 0, 'disabled automatic archiving must not buffer conversation events')
     await ctx.emit('session/event', session, createCompactionEvent())
     await pause()
     assert.equal(await backend.wasArchived(session.id, 'cmp-1'), undefined)

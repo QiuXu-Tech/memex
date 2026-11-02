@@ -66,6 +66,7 @@ jobs:
           python3 scripts/test-prospective-agent-mcp-v3.py
           python3 scripts/test-prospective-agent-mcp-v4.py
           python3 scripts/test-prospective-agent-mcp-v5.py
+          python3 test/prospective-agent-search-limit.py
           python3 scripts/test-prospective-review-axios-20261102.py
           python3 scripts/test-prospective-review-triage-20261102.py
           python3 scripts/test-prospective-issue-triage-20261102.py

@@ -123,8 +123,11 @@ async function callTool(name, input) {
     }
   }
   const { refresh, ...workerInput } = input
+  const requestedLimit = name === 'repo_search' && Number.isInteger(workerInput.limit) && workerInput.limit > 30 ? workerInput.limit : undefined
+  if (requestedLimit !== undefined) workerInput.limit = 30
   const response = await workerCall({ op: operations[name], ...workerInput })
   if (!response.ok) throw new Error(response.error || 'Worker rejected request')
+  if (requestedLimit !== undefined) response.result = { ...response.result, limitAdjustment: { requested: requestedLimit, applied: 30 } }
   if (name === 'repo_edit') { readWindows.delete(input.path); seenSearchHits.clear() }
   if (name === 'repo_read' && typeof response.result?.text === 'string' && response.result.text.length < 24000 && Number.isInteger(response.result.totalLines)) {
     const start = input.start ?? 1, end = Math.min(response.result.totalLines, start + (input.count ?? 100) - 1)

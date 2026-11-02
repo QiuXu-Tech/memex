@@ -477,6 +477,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
 
   // ── live event tracking ────────────────────────────────────────────────────
   ctx.on('session/event', (session, event) => {
+    if (!policyConfig.autoArchive) return
     try {
       bufferEvent(session, event)
       if (event.type === 'compaction/summary') enqueue(session, event)
