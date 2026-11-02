@@ -14,6 +14,7 @@ PRIVATE = pathlib.Path.home() / '.local/share/memex-forward-20261102'
 BASE, SOURCE = PRIVATE / 'task-state-triage', PRIVATE / 'task-state-source'
 RUNNER = ROOT / 'scripts/prospective-task-state-runner-20261102.py'
 REVIEWER = ROOT / 'scripts/prospective-task-state-review-20261102.py'
+AUDIT_FILES = [ROOT / 'scripts/aggregate-task-state-20261102.py', ROOT / 'scripts/aggregate-integrity-followup-20261102.py', ROOT / 'scripts/aggregate-production-autonomy-20261102.py']
 sys.path.insert(0, str(ROOT / 'scripts'))
 
 def module(path, name):
@@ -38,6 +39,9 @@ def source_hashes():
     files += [ROOT / 'package.json', ROOT / 'test/register.mjs', ROOT / 'scripts/prospective-agent-mcp-v5.mjs', ROOT / 'scripts/prospective-agent-worker-v7.py']
     return {str(p.relative_to(ROOT)): digest(p) for p in sorted(files)}
 
+def audit_hashes():
+    return {str(path.relative_to(ROOT)): digest(path) for path in AUDIT_FILES}
+
 def verify():
     reg = agent.load(BASE / 'registration.json')
     assert reg['wrapperSha256'] == digest(pathlib.Path(__file__))
@@ -45,6 +49,7 @@ def verify():
     assert reg['reviewerSha256'] == digest(REVIEWER)
     assert reg['manifestSha256'] == digest(SOURCE / 'manifest.json')
     assert reg['sourceHashes'] == source_hashes()
+    assert reg['auditHashes'] == audit_hashes()
     assert reg['allocationCommitmentSha256'] == digest(BASE / 'allocation.json')
     assert reg['prompts'] == agent.PROMPTS
     assert reg['aggregateClientListReservationUsd'] == agent.TOTAL_BUDGET
@@ -76,7 +81,7 @@ def freeze():
            'tasks': tasks, 'memexCommit': subprocess.check_output(['git', '-C', str(ROOT), 'rev-parse', 'HEAD'], text=True).strip(),
            'manifestSha256': digest(SOURCE / 'manifest.json'), 'allocationCommitmentSha256': digest(BASE / 'allocation.json'),
            'runnerSha256': digest(RUNNER), 'reviewerSha256': digest(REVIEWER), 'wrapperSha256': digest(pathlib.Path(__file__)),
-           'sourceHashes': source_hashes(), 'bridgeSha256': digest(ROOT / 'scripts/prospective-agent-mcp-v5.mjs'),
+           'sourceHashes': source_hashes(), 'auditHashes': audit_hashes(), 'bridgeSha256': digest(ROOT / 'scripts/prospective-agent-mcp-v5.mjs'),
            'workerSha256': digest(ROOT / 'scripts/prospective-agent-worker-v7.py'), 'model': 'claude-haiku-4-5',
            'prompts': agent.PROMPTS, 'perSessionClientListBudgetUsd': agent.FIRST_BUDGET,
            'sameSessionRecoveryExtraUsd': agent.RECOVERY_BUDGET, 'perSessionReservationUsd': agent.BUDGET,
