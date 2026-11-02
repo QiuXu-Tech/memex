@@ -32,12 +32,14 @@ The profile links the package and reads its `dsh.bundle.patch` (`packages/memex/
 |---|---|---|
 | `memory` | `@qiuxu/memex/local` | backend (`ctx.memory`) |
 | `memory-checkpoint` | `@qiuxu/memex/checkpoint` | archive/receipt/catalog/recall, capacity notice |
-| `memory-tools` | `@qiuxu/memex/tools` | seven model tools + manual section |
+| `memory-tools` | `@qiuxu/memex/tools` | four core tools + optional maintenance tools and manual section |
 | `memory-evict` | `@qiuxu/memex/evict` | L1 eviction policy |
 | `memory-compress` | `@qiuxu/memex/compress` | cold/digest compression |
 | `memory-api` | `@qiuxu/memex/api` | nine `/api/memory.*` routes |
 | `memory-ui` | `@qiuxu/memex/ui` | Web panel + ring bridge |
 | `memory-commands` | `@qiuxu/memex/commands` | `/memory` command |
+
+The `memory-tools` row exposes search, open, write and set-status by default. To expose the existing grep, index and restore tools as well, set `advancedTools: true` in that row’s config. Compression is registered separately by `memory-compress`.
 
 If your client-plugin loader requests a manifest whose package name must match the row specifier, some local DSH builds need the UI row addressed as a file URL instead of the subpath:
 

@@ -1,7 +1,7 @@
 /**
  * `@qiuxu/memex/tools` — model-facing memory tools and the static manual.
  *
- * Depends on the `memory` service row and registers five tools plus one stable
+ * Depends on the `memory` service row and registers four core tools plus one stable
  * system-prompt section. The section deliberately never changes at runtime; the
  * changing index lives in the bounded catalog message from the checkpoint row.
  *
@@ -17,6 +17,8 @@ export const inject = ['tools', 'systemPrompt', 'memory']
 export const Config = z.object({
   /** Maximum characters one tool result may inline before it is clipped with a pointer. */
   maxInlineChars: z.number().step(1).min(400).default(14_000),
+  /** Expose grep, index and restore maintenance tools in addition to the core set. */
+  advancedTools: z.boolean().default(false),
 })
 
 /** Prompt position: after file-reference guidance (900), before shell-tool guidance (1000). */
@@ -28,5 +30,5 @@ export function apply(ctx, config = {}) {
     order: SECTION_ORDER,
     text: MEMORY_MANUAL,
   })
-  registerMemoryTools(ctx, ctx.memory, { maxInlineChars: config.maxInlineChars ?? 14_000 })
+  registerMemoryTools(ctx, ctx.memory, { maxInlineChars: config.maxInlineChars ?? 14_000, advancedTools: config.advancedTools === true })
 }

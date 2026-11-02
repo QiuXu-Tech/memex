@@ -5,7 +5,7 @@
 #
 #   memory            @qiuxu/memex/local       backend  — owns ctx.memory
 #   memory-checkpoint @qiuxu/memex/checkpoint  policy   — archive/receipt/catalog/recall
-#   memory-tools      @qiuxu/memex/tools       surface  — 6 model tools + manual section
+#   memory-tools      @qiuxu/memex/tools       surface  — 4 core tools + optional maintenance tools and manual section
 #   memory-api        @qiuxu/memex/api         surface  — owner-authenticated /api/memory.* HTTP routes
 #   memory-ui         @qiuxu/memex/ui           surface  — Web client half (panel trigger + overlay)
 #     Local-deployment note: the Web client half must resolve to a manifest whose

@@ -139,6 +139,63 @@ test('expired evidence stays available by id but is excluded from normal search 
   } finally { engine.close(); rmSync(dir, { recursive: true, force: true }) }
 })
 
+test('DSH exposes four core memory tools and optional maintenance tools', async () => {
+  const ctx = createFakeContext(), advanced = createFakeContext()
+  try {
+    ctx.provideService('memory', {}); toolsRow.apply(ctx, {})
+    assert.deepEqual(ctx.defs.map((definition) => definition.name).sort(), ['memory_open', 'memory_search', 'memory_set_status', 'memory_write'])
+    advanced.provideService('memory', {}); toolsRow.apply(advanced, { advancedTools: true })
+    for (const name of ['memory_grep', 'memory_index', 'memory_restore', 'memory_set_status']) assert.ok(advanced.tool(name), name)
+  } finally { await ctx.dispose(); await advanced.dispose() }
+})
+
+test('DSH status updates respect workspace and session visibility', async () => {
+  const dir = root(), ctx = createFakeContext()
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'both' })
+  ctx.provideService('memory', backend); toolsRow.apply(ctx, {})
+  const first = createSession({ id: 'status-dsh-a', cwd: '/tmp/memex-status-dsh-a' })
+  const second = createSession({ id: 'status-dsh-b', cwd: '/tmp/memex-status-dsh-a' })
+  const other = createSession({ id: 'status-dsh-c', cwd: '/tmp/memex-status-dsh-other' })
+  const workspaceKey = memoryWorkspaceKey(first.header.cwd, first.id)
+  try {
+    const shared = await backend.write({ kind: 'decision', title: 'Shared target', body: 'staging', scope: 'workspace', workspaceKey })
+    const personal = await backend.write({ kind: 'decision', title: 'Private target', body: 'private', scope: 'session', sessionId: first.id, workspaceKey })
+    const tool = ctx.tool('memory_set_status')
+    assert.match(await tool.execute({ id: shared.id, status: 'superseded' }, { agent: { session: second } }), /superseded/)
+    assert.match(await tool.execute({ id: personal.id, status: 'superseded' }, { agent: { session: second } }), /No memory record/)
+    assert.match(await tool.execute({ id: shared.id, status: 'active' }, { agent: { session: other } }), /No memory record/)
+    assert.equal((await backend.get(shared.id)).status, 'superseded')
+    assert.equal((await backend.get(personal.id)).status, 'active')
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('DSH refuses status mutation on a backend without scoped updates', async () => {
+  const ctx = createFakeContext(); let writes = 0
+  try {
+    ctx.provideService('memory', { async getLevels() { return { l2: false, l3: true } }, async setStatus() { writes += 1 } })
+    toolsRow.apply(ctx, {})
+    const session = createSession({ id: 'unsupported-status', cwd: '/tmp/memex-status-unsupported' })
+    await assert.rejects(ctx.tool('memory_set_status').execute({ id: 'mem_x', status: 'superseded' }, { agent: { session } }), /does not support scoped/)
+    assert.equal(writes, 0)
+  } finally { await ctx.dispose() }
+})
+
+test('status update cannot overwrite a record whose session visibility changed', () => {
+  const dir = root(), first = new LocalStoreCore({ root: dir }), second = new LocalStoreCore({ root: dir })
+  try {
+    const record = first.write({ id: 'mem_scope_race', kind: 'fact', title: 'private', body: 'old', workspaceKey: 'wk', scope: 'session', sessionId: 'a' })
+    const get = first.get.bind(first); let changed = false
+    first.get = (id, filter) => {
+      const value = get(id, filter)
+      if (!changed && value) { changed = true; second.write({ ...value, scope: 'session', sessionId: 'b', body: 'new' }) }
+      return value
+    }
+    assert.throws(() => first.setStatus(record.id, 'superseded', { workspaceKey: 'wk', scopes: ['session'], sessionId: 'a' }), /record changed during update/)
+    const current = second.get(record.id)
+    assert.equal(current.sessionId, 'b'); assert.equal(current.body, 'new'); assert.equal(current.status, 'active')
+  } finally { first.close(); second.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
 test('DSH tools persist source metadata and expose it on a later session read', async () => {
   const dir = root(), ctx = createFakeContext()
   const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l3' })

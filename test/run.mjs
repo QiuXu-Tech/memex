@@ -234,7 +234,7 @@ function mountRows(ctx, options = {}) {
   // stays minimal, so the test mounts the service explicitly right after the row.
   ctx.provideService('memory', instance)
   checkpointRow.apply(ctx, options.checkpoint ?? {})
-  toolsRow.apply(ctx, options.tools ?? {})
+  toolsRow.apply(ctx, { advancedTools: true, ...(options.tools ?? {}) })
   const commands = commandsRow.apply(ctx, options.commands ?? {})
   return { instance, commands }
 }
@@ -466,7 +466,7 @@ async function withApiStack(label, optionsOrFn, maybeFn) {
     const disposersBefore = ctx.disposers.length
     apiRow.apply(ctx)
     if (options.checkpoint === true) checkpointRow.apply(ctx, options.checkpointConfig ?? {})
-    if (options.tools !== false) toolsRow.apply(ctx, options.toolsConfig ?? {})
+    if (options.tools !== false) toolsRow.apply(ctx, { advancedTools: true, ...(options.toolsConfig ?? {}) })
     const routeEffects = ctx.disposers.length - disposersBefore
     return await fn({ backend, ctx, routes, sessions, routeEffects, root })
   } finally {
@@ -1246,7 +1246,7 @@ await test('J4', 'corrupt record input throws', async () => {
 // `packages/memex/modules/`, gitignored), which is the layer the host
 // loads; it skips cleanly when `node scripts/build-bundle.mjs` has not run.
 
-const MEMORY_TOOL_NAMES = ['memory_grep', 'memory_index', 'memory_open', 'memory_restore', 'memory_search', 'memory_write']
+const MEMORY_TOOL_NAMES = ['memory_open', 'memory_search', 'memory_set_status', 'memory_write']
 
 await test('K1', 'backend row alone owns ctx.memory and registers no surfaces', async () => {
   const root = makeRoot('k1')
@@ -1309,7 +1309,7 @@ await test('K2', 'checkpoint row alone registers the policy listeners and no sur
   }
 })
 
-await test('K3', 'tools row registers exactly six memory_* tools and one tool:memory section', async () => {
+await test('K3', 'tools row registers four core memory tools and one tool:memory section', async () => {
   const ctx = createFakeContext({ services: { llm: undefined } })
   try {
     ctx.provideService('memory', {}) // tool bodies are not executed here
@@ -1323,7 +1323,7 @@ await test('K3', 'tools row registers exactly six memory_* tools and one tool:me
     assert.equal(Object.keys(ctx.listeners).length, 0, 'tools row must register no listeners')
     assert.equal(toolsRow.name, 'memory-tools')
     assert.deepEqual(toolsRow.inject, ['tools', 'systemPrompt', 'memory'])
-    assert.deepEqual(Object.keys(toolsRow.Config.properties), ['maxInlineChars'])
+    assert.deepEqual(Object.keys(toolsRow.Config.properties), ['maxInlineChars', 'advancedTools'])
   } finally {
     await ctx.dispose()
   }

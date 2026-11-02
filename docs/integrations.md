@@ -32,7 +32,8 @@ memex is now an **agent-agnostic memory layer**. One core, four ways in:
 
 - **Storage root**: `$MEMEX_HOME` (default `~/.memex`). The DSH plugin uses `$DSH_HOME/memories` unless it is configured otherwise — set `MEMEX_HOME` to share one store across agents.
 - **Levels**: `l2` = session-private (needs a session id), `l3` = workspace-shared (keyed by cwd). DSH's stored level switches are sticky; the agent adapters also restrict visibility and writes to the levels requested for that adapter process.
-- **Scope selection on write**: the deepest enabled level wins (L3 over L2). Write with `scope: "session"` to force private capture.
+- **Scope selection on write**: the deepest enabled level wins (L3 over L2). MCP can explicitly write with `scope: "session"`; DSH writes to its deepest enabled level.
+- **Core tools**: DSH and MCP expose search, open, write and set-status by default. Set `advancedTools: true` on the DSH `memory-tools` row or pass `--all-tools` to MCP for their maintenance tools. DSH compression is a separate tool.
 - **Model profile**: resolve with `--model <id>` (MCP/adapters) or `MEMEX_MODEL`. Profiles change budgets, injection format and manual tone; see [model profiles](model-profiles.html).
 
 ## Security

@@ -86,6 +86,7 @@ export default class LocalMemoryStore extends MemoryStore {
     }
     this.root = this.config.root
     protectExistingTrace(this.root)
+    this.supportsScopedStatus = true
     this.supportsAtomicContextArchive = true
     this.core = new LocalStoreCore({
       root: this.root,
@@ -130,8 +131,8 @@ export default class LocalMemoryStore extends MemoryStore {
     return this.core.forget(id)
   }
 
-  async setStatus(id, status) {
-    return this.core.setStatus(id, status)
+  async setStatus(id, status, filter) {
+    return this.core.setStatus(id, status, filter)
   }
 
   async markRead(ids) {

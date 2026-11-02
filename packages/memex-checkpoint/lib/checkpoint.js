@@ -338,7 +338,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     list.push({
       recordId: stored.id,
       title: stored.title,
-      text: `[MEMORY CHECKPOINT] The context that just left the window (seq #${seqs[0]}–#${seqs[seqs.length - 1]}, ~${record.tokens ?? '?'} tokens) was archived as ${stored.id} (${stored.kind}) "${stored.title}". The rendered record may omit or clip content; call memory_open ${stored.id} or memory_grep for details.`,
+      text: `[MEMORY CHECKPOINT] The context that just left the window (seq #${seqs[0]}–#${seqs[seqs.length - 1]}, ~${record.tokens ?? '?'} tokens) was archived as ${stored.id} (${stored.kind}) "${stored.title}". The rendered record may omit or clip content; call memory_open ${stored.id} for details.`,
     })
     while (list.length > RECEIPT_LIMIT) list.shift()
     receipts.set(session.id, list)

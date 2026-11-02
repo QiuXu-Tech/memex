@@ -78,8 +78,8 @@ export class MemoryStore extends Service {
     throw new Error('memory: forget() is not implemented by this backend')
   }
 
-  /** @returns {Promise<object | undefined>} The updated record. */
-  async setStatus(_id, _status) {
+  /** @param {object} [_filter] Visibility scope, required for agent-facing updates. @returns {Promise<object | undefined>} The updated record. */
+  async setStatus(_id, _status, _filter) {
     throw new Error('memory: setStatus() is not implemented by this backend')
   }
 

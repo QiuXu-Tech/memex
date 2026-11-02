@@ -11,13 +11,13 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 
 | Agent | Integration |
 |---|---|
-| **DeepSeek Harness** | native Cordis bundle (L1 eviction seam, Web panel, 9 HTTP routes, 7 tools) |
+| **DeepSeek Harness** | native Cordis bundle (L1 eviction seam, Web panel, 9 HTTP routes, four core memory tools) |
 | **Claude Code** | MCP server + `SessionStart` / `UserPromptSubmit` / `PreCompact` hooks + `CLAUDE.md` manual |
 | **OpenAI Codex** | MCP server + `AGENTS.md` manual + `config.toml` snippet |
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 4 default tools, optional advanced tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **196/196 offline tests**, **38/38 SQLite consistency tests**, **45/45 integrity and isolation tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **196/196 offline tests**, **38/38 SQLite consistency tests**, **50/50 integrity and isolation tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
 
 **Archive and privacy repairs:** compaction records, canonical events and completion markers now commit together; incomplete sources remain retryable. Claude transcript copies are split into untrusted, session-private parts, and adapter level restrictions no longer inherit a previously enabled shared scope. Superseded and expired records are excluded from normal recall; new materializer traces record metadata rather than full text. Complete backups require both record files and the matching SQLite database. [Behavior and remaining limits](docs/archive-integrity-20261102.md).
 
@@ -245,7 +245,7 @@ These are logical storage scopes, not operating-system security boundaries: a pr
 - **Cold tier + compression**: `memory_compress` with `cold` (lossless, zero LLM) and `digest` (bounded batched summaries, 2-way concurrency, retry/fallback, `ids:` enforcement, cold quota GC).
 - **Capacity consent protocol**: `[EXTRA CONTEXT CAPACITY]` notice at 80% hot usage tells the model to ask the user before compressing.
 - **Sensitive-content policy**: secret-looking spans (keys/tokens/passwords) are forced into private L2, or eviction is skipped when only L3 is available.
-- **Observability**: `compression_runs` history, `GET /api/memory.metrics`, `/memory status`, `memory_index`.
+- **Observability**: `compression_runs` history, `GET /api/memory.metrics`, `/memory status`, and optional `memory_index`.
 - **Operations**: restore/回热, cold GC, backup/verify/restore (SQLite `VACUUM INTO` + sha256 manifest).
 - **UI**: composer context-ring inner arc (teal = L2 capture, blue = L3), a popover mode row, a full memory panel with compression/restore buttons and capacity warnings.
 
@@ -270,7 +270,7 @@ DSH agent session
  ├─ L2 session archive (10M)  ─┐
  ├─ L3 workspace archive (100M)┘   sticky, verbatim, scoped
  │
- ├─ retrieval: memory_search / memory_grep / memory_open (hybrid FTS + cold abstracts)
+ ├─ retrieval: memory_search / memory_open (optional memory_grep; hybrid FTS + cold abstracts)
  ├─ capacity: hot/cold accounting, memory_compress (cold/digest), quota GC
  └─ Web: context ring + memory panel via /api/memory.* (9 owner-scoped routes)
 ```
@@ -289,7 +289,7 @@ Full design: [docs/architecture.md](docs/architecture.md). Measured results: [do
 | `packages/memex-seam` | DSH `ctx.memory` service over the core (re-exports its vocabulary) |
 | `packages/memex-local` | SQLite + markdown store: hot/cold tiers, FTS, compression history |
 | `packages/memex-checkpoint` | checkpoint policy: archive/receipt/catalog/recall, capacity notice |
-| `packages/memex-tool` | seven model tools + the stable memory manual prompt section |
+| `packages/memex-tool` | four core tools, optional maintenance tools and the stable memory manual prompt section |
 | `packages/memex-command` | `/memory on|off|status|compress|restore|gc|search|remember|pin|…` |
 | `packages/memex-evict` | L1 → L2/L3 eviction policy (sensitive-content aware) |
 | `packages/memex-compress` | capacity compression (cold + digest) and compression history |
@@ -346,7 +346,7 @@ node scripts/check-bundle.mjs        # verifies generated modules match sources
 ## Use
 
 - **Enable**: ring popover / memory panel → `L2 本会话` or `L3 工作区`; or `/memory on l2|l3|both`. Levels are sticky.
-- **Use memory**: MCP defaults to `memory_search`, `memory_open`, `memory_write` and `memory_set_status`; add `--all-tools` for maintenance tools. DSH retains its existing tool set and automatic catalog/recall behavior.
+- **Use memory**: MCP defaults to `memory_search`, `memory_open`, `memory_write` and `memory_set_status`; add `--all-tools` for maintenance tools. DSH uses the same four core names; set `advancedTools: true` on its `memory-tools` row for grep, index and restore. Compression remains a separate DSH tool.
 - **Capacity**: at 80% hot usage the model receives a bilingual capacity notice and asks the user first; `/memory compress [l2|l3] [ratio]` or the panel button runs the lossless cold compression; `memory_compress strategy=digest` additionally produces bounded batch summaries.
 - **Maintain**: `/memory status` (hot/cold/history), `/memory restore <id>`, `/memory gc <keepTokens>`, `node --import ./test/register.mjs scripts/memory-backup.mjs backup|verify|restore`.
 
@@ -363,7 +363,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **196/196**, with **38/38 SQLite consistency** checks and **45/45 integrity and isolation** checks.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **196/196**, with **38/38 SQLite consistency** checks and **50/50 integrity and isolation** checks.
 
 | Metric | Result |
 |---|---|
