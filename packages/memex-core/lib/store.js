@@ -712,8 +712,8 @@ export class LocalStoreCore {
       clauses.push(`(typeof(${source}) != 'text' OR trim(${source}) = '' OR typeof(${expiry}) != 'text' OR ${expiry} NOT GLOB '????-??-??T??:??:??.???Z' OR strftime('%Y-%m-%dT%H:%M:%fZ', julianday(${expiry})) IS NOT ${expiry} OR ${expiry} > ?)`)
       params.push(new Date().toISOString())
     }
-    if (filter.source !== undefined) { clauses.push(`${evidence('source')} = ?`); params.push(filter.source) }
-    if (filter.version !== undefined) { clauses.push(`${evidence('version')} = ?`); params.push(filter.version) }
+    if (filter.source !== undefined) { clauses.push(`${evidence('source')} = ?`); params.push(typeof filter.source === 'string' ? filter.source.trim() : filter.source) }
+    if (filter.version !== undefined) { clauses.push(`${evidence('version')} = ?`); params.push(typeof filter.version === 'string' ? filter.version.trim() : filter.version) }
     if (filter.cold !== undefined) {
       clauses.push(`${col('cold')} = ?`)
       params.push(filter.cold ? 1 : 0)

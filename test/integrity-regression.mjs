@@ -63,6 +63,8 @@ test('MCP source, version and validity survive reopen and govern normal recall',
     const write = mcpCall(dir, project, [rpc(1, 'tools/call', { name: 'memory_write', arguments: { kind: 'decision', title: 'Sprocket deploy target', summary: 'Sprocket deploy target', body: 'Use staging', evidence } })])[0]
     assert.equal(write.result.isError, false)
     const id = write.result.content[0].text.match(/mem_[a-f0-9]+/)[0]
+    const spaced = mcpCall(dir, project, [rpc(9, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket deploy target', source: '  src/deploy.json ', version: ' commit-abc ' } })])[0]
+    assert.match(spaced.result.content[0].text, new RegExp(id))
     const responses = mcpCall(dir, project, [
       rpc(2, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket deploy target', source: evidence.source, version: evidence.version } }),
       rpc(3, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket deploy target', source: evidence.source, version: 'commit-wrong' } }),
@@ -151,6 +153,8 @@ test('DSH tools persist source metadata and expose it on a later session read', 
     const match = await ctx.tool('memory_search').execute({ query: 'Sprocket source decision', source: 'deploy.yml', version: 'rev-123' }, { agent: { session: second } })
     const miss = await ctx.tool('memory_search').execute({ query: 'Sprocket source decision', source: 'deploy.yml', version: 'other' }, { agent: { session: second } })
     assert.match(match, new RegExp(id)); assert.doesNotMatch(miss, new RegExp(id))
+    const spaced = await ctx.tool('memory_search').execute({ query: 'Sprocket source decision', source: ' deploy.yml ', version: ' rev-123 ' }, { agent: { session: second } })
+    assert.match(spaced, new RegExp(id))
     assert.equal((await backend.get(id)).trust, 'untrusted')
   } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
 })
