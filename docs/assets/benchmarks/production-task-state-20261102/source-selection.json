@@ -1,0 +1,530 @@
+{
+  "frozenAt": "2026-11-02T08:59:40.240119+00:00",
+  "ordering": "Eligible primary candidates in screened order, followed by available backup candidates in listed order; first 30 selected before any trial calls.",
+  "primaryScreeningAtFreeze": [
+    {
+      "candidate": "candidate-00",
+      "shortlistIndex": 0,
+      "repo": "openstreetmap/iD",
+      "issue": 9529,
+      "sourceCommit": "c659f34ae3481f023bbc7f2b6ebf562907466592",
+      "archiveSha256": "f5e8eec229a64b2b9c52c8055bb706eecc3ec310571bbeb29e3046ae187d7838",
+      "issueSha256": "9173c0b17a02dd1d5587706b161500be2f2677a845dbab1ea6406c11907cd2a4",
+      "archiveBytes": 6924782,
+      "expandedBytes": 29621510,
+      "discussionSpanDays": 1336,
+      "commentCount": 6,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-01",
+      "shortlistIndex": 1,
+      "repo": "advplyr/audiobookshelf",
+      "issue": 2661,
+      "sourceCommit": "ce41ce489cebaf00e008919f6f2901b428acfd56",
+      "archiveSha256": "57e73060c537212f2be0172e70df37f6680e9346a75bf2b1a9503bf0d5ca2c1a",
+      "issueSha256": "88b28492ce7ee9e81142a9f669d11ad839137310d9394432a3d9bc718a1061ac",
+      "archiveBytes": 5706496,
+      "expandedBytes": 14221104,
+      "discussionSpanDays": 981,
+      "commentCount": 8,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-03",
+      "shortlistIndex": 3,
+      "repo": "ckeditor/ckeditor5",
+      "issue": 17737,
+      "status": "rejected",
+      "reason": "compressed archive exceeds 50 MiB",
+      "partialArchiveBytes": 53477376,
+      "partialArchiveSha256": "779a8cfd6731d1e81961466faddbad2db070a8deb6263021ced3c45b65f618a6"
+    },
+    {
+      "candidate": "candidate-04",
+      "shortlistIndex": 4,
+      "repo": "icedman/dash2dock-lite",
+      "issue": 305,
+      "sourceCommit": "98ef2ae08dfc0210f71767e4a1b6a10cdb06d6d8",
+      "archiveSha256": "0b89ac3e686ece5b409c339dcbc6d261214685220fc4e990402eb4692cdf42b5",
+      "issueSha256": "e2acb3c7b0592cd75ef94c845f1ebc6d82072c144b5940b0d2ad305d03e3b549",
+      "archiveBytes": 10580308,
+      "expandedBytes": 11646985,
+      "discussionSpanDays": 218,
+      "commentCount": 4,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-06",
+      "shortlistIndex": 6,
+      "repo": "udecode/plate",
+      "issue": 5052,
+      "sourceCommit": "0744d21985d13831c5788d06fffdbc8fe2eaeb4f",
+      "archiveSha256": "0f8abd1cca43408f75690a0a5587eb540dbdfd662516b1b58b4ede405dcd922d",
+      "issueSha256": "6a1203e9027ad011498f79b4cdb9e1c08313530a68ab1c016534f725d5ae87ad",
+      "archiveBytes": 10639961,
+      "expandedBytes": 40126294,
+      "discussionSpanDays": 122,
+      "commentCount": 5,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-09",
+      "shortlistIndex": 9,
+      "repo": "suchnsuch/Tangent",
+      "issue": 437,
+      "sourceCommit": "a1e1e6cb7b685d585938aef3649fc49444135339",
+      "archiveSha256": "2120813c041aeca2b5eb6c955d8859712200442231e98d9e54b6f798faee9b18",
+      "issueSha256": "576e5949a6fec7e4ffbef481523c3a0ac6fb7ab11d81095f99ab660943069d79",
+      "archiveBytes": 12902250,
+      "expandedBytes": 16992884,
+      "discussionSpanDays": 67,
+      "commentCount": 4,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-10",
+      "shortlistIndex": 10,
+      "repo": "puppeteer/puppeteer",
+      "issue": 7863,
+      "sourceCommit": "72317747dbead16bcb53334cb8c356ccc9f01ce3",
+      "archiveSha256": "5756aa243e592cde32f7e86400a6da54b3a920d0a0536a30164d187598f10891",
+      "issueSha256": "5242ad029d103f2cc3488ca62e9662402522180ac2891cf6f8da720342ab39d6",
+      "archiveBytes": 2166961,
+      "expandedBytes": 8677240,
+      "discussionSpanDays": 1776,
+      "commentCount": 5,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-11",
+      "shortlistIndex": 11,
+      "repo": "vuetifyjs/vuetify",
+      "issue": 23110,
+      "sourceCommit": "3f676e2129e9c7a1a00736e3fd8e9611f248f969",
+      "archiveSha256": "ea367e59b6c5cb206e00c3eb4c248bee836194f17b34df87b5823e42013797db",
+      "issueSha256": "4f34119d41d71e95b31bb6d9a50157fdcc8c6264f18d456c305d94395415a562",
+      "archiveBytes": 2714461,
+      "expandedBytes": 10380131,
+      "discussionSpanDays": 80,
+      "commentCount": 5,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-12",
+      "shortlistIndex": 12,
+      "repo": "lingui/js-lingui",
+      "issue": 1640,
+      "sourceCommit": "57f72cf02973c34bc9fc2b03e0b148c5589ec9e6",
+      "archiveSha256": "9da63ecd104ee376eec7aee5da7fc5e2fbc1e3501bed15c2e86c49c6faadb366",
+      "issueSha256": "fce2fc0826ec2773e4a8259594837cf13260c03a6af1e03e1a53a9b1678599a2",
+      "archiveBytes": 8484285,
+      "expandedBytes": 16369766,
+      "discussionSpanDays": 1275,
+      "commentCount": 19,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-13",
+      "shortlistIndex": 13,
+      "repo": "louislam/uptime-kuma",
+      "issue": 5911,
+      "sourceCommit": "cbd357eb3982700132531dd8e7d66158d6c1f3e1",
+      "archiveSha256": "d75ab0e84b5de10b927f099607e6aa3b51f2bf2590bea8b42db6a1b48644c111",
+      "issueSha256": "c406886ce4c1d9087f697dc1684056b305c8d10e5fb2ead650225efae4069c19",
+      "archiveBytes": 2416357,
+      "expandedBytes": 9235488,
+      "discussionSpanDays": 506,
+      "commentCount": 6,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-15",
+      "shortlistIndex": 15,
+      "repo": "nextcloud/mail",
+      "issue": 7984,
+      "sourceCommit": "455cffa6efe72706b809ebb49873555a6cd7ad4d",
+      "archiveSha256": "356431a450bb52ac88b614a6b8d28204684d3951f0c825ce9dccaa893221304b",
+      "issueSha256": "78acbe66aec39d169d8e18c969c67cbd322c03a4692ee583e9b5e1962b78d61b",
+      "archiveBytes": 5286783,
+      "expandedBytes": 16828705,
+      "discussionSpanDays": 1365,
+      "commentCount": 6,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-17",
+      "shortlistIndex": 17,
+      "repo": "jquery-form/form",
+      "issue": 353,
+      "sourceCommit": "d1ab5ffe0f34f6855c8296a3407cdba81429255b",
+      "archiveSha256": "2ccfe303e1163be741fed1d7c86c53295e4f6339c98013475e34257d650f92c5",
+      "issueSha256": "26a9214999d8674405d0516df832b489fd1b75113d645cdee2b5cd62b67a1e13",
+      "archiveBytes": 223553,
+      "expandedBytes": 819962,
+      "discussionSpanDays": 4813,
+      "commentCount": 5,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-18",
+      "shortlistIndex": 18,
+      "repo": "josdejong/mathjs",
+      "issue": 1305,
+      "sourceCommit": "f1135be4ff1c077da02f23c07df8b16fbdfd2bdc",
+      "archiveSha256": "17bb89ea9dffc86da59c55717f04bc67e789422b4d8532223c9a19682fb32ca6",
+      "issueSha256": "b4977ae8d8642185c12d44f6d6c27aac2dba12815f1830a8e9e306f39f918be0",
+      "archiveBytes": 1183296,
+      "expandedBytes": 5991323,
+      "discussionSpanDays": 2924,
+      "commentCount": 6,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-19",
+      "shortlistIndex": 19,
+      "repo": "openwisp/netjsongraph.js",
+      "issue": 581,
+      "status": "rejected",
+      "reason": "compressed archive exceeds 50 MiB",
+      "partialArchiveBytes": 53477376,
+      "partialArchiveSha256": "8d1af965dac1d9a85014b2be5b837e00f39fb0d11532170fe8e293c3df47a557"
+    },
+    {
+      "candidate": "candidate-20",
+      "shortlistIndex": 20,
+      "repo": "frappe/charts",
+      "issue": 295,
+      "sourceCommit": "7b15424c3af80b1c8e178d8e612c290d2d630904",
+      "archiveSha256": "a984b3b24981f1b746e963c52370c2b7094a1423a030c19166823accf0932e30",
+      "issueSha256": "205ca52c5df6d0a51ba5c9d5fdebe34617f513d67e57e8e6ae61dd7103dd2533",
+      "archiveBytes": 1597722,
+      "expandedBytes": 2832248,
+      "discussionSpanDays": 1801,
+      "commentCount": 21,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-21",
+      "shortlistIndex": 21,
+      "repo": "usebruno/bruno",
+      "issue": 7362,
+      "sourceCommit": "48afeeea1b95df1238276ffd56c8a6abbab109ab",
+      "archiveSha256": "e3ea1f8ba6f73b0405e67f11aef5e49a918bd54734927608370d7ff8ea54b7b0",
+      "issueSha256": "22e4e8db1c70d60f042da2e8f7605f2278456004a60ba9d694b46734c30b5967",
+      "archiveBytes": 8085829,
+      "expandedBytes": 25806328,
+      "discussionSpanDays": 139,
+      "commentCount": 10,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-22",
+      "shortlistIndex": 22,
+      "repo": "cdxgen/cdxgen",
+      "issue": 1797,
+      "sourceCommit": "b3d0710cb59120d81866c4465c95c6cdfed0bf40",
+      "archiveSha256": "3089a91f344fbaec80b9a67c2aef28805955c363d69976046566f920ad7335a1",
+      "issueSha256": "475f05cef987ff8c2d3ee3acb3fac8975e1c19800f36af7ec880cc6ba7d63925",
+      "archiveBytes": 24125892,
+      "expandedBytes": 104032940,
+      "discussionSpanDays": 69,
+      "commentCount": 8,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-24",
+      "shortlistIndex": 24,
+      "repo": "camunda/camunda-modeler",
+      "issue": 3902,
+      "sourceCommit": "6b06ce9788b3d0bb311a7b1ef32fff86883890d9",
+      "archiveSha256": "ec6a738697baf933c7fda19f272869bf522ebb7b9e62eb0f236551ebdd2f95f8",
+      "issueSha256": "a937a8215872e2858b0ff641914b23ddf4ed6ba581386f966cb6bd0e2e96687a",
+      "archiveBytes": 1664005,
+      "expandedBytes": 7399112,
+      "discussionSpanDays": 1075,
+      "commentCount": 20,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-25",
+      "shortlistIndex": 25,
+      "repo": "SGrondin/bottleneck",
+      "issue": 95,
+      "sourceCommit": "b83528333ba4d27cf70b81cc2be12e09d7ff692f",
+      "archiveSha256": "70a7a16bcf62673d4e1658721848a400f8a654dbe1b4434207df41d95728d9da",
+      "issueSha256": "456f634a91a137a69056f2055cadb10787c4d19cd93d8f71555a2760d06b5b9f",
+      "archiveBytes": 159041,
+      "expandedBytes": 809581,
+      "discussionSpanDays": 2899,
+      "commentCount": 24,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-26",
+      "shortlistIndex": 26,
+      "repo": "vue-leaflet/Vue2Leaflet",
+      "issue": 599,
+      "sourceCommit": "2fd50c3b51cda5492399011b959012f44d4e473b",
+      "archiveSha256": "7d6b76c2a0d586eac974c14d29911b3d32c0530e8e77371c45820194dc1fb6da",
+      "issueSha256": "38cbf9633cebd6e6b3982ac91a67eeeaba0d98daad280423dcd14f8632f722c3",
+      "archiveBytes": 344454,
+      "expandedBytes": 1234255,
+      "discussionSpanDays": 2310,
+      "commentCount": 11,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-27",
+      "shortlistIndex": 27,
+      "repo": "padloc/padloc",
+      "issue": 314,
+      "sourceCommit": "81f492cbfcfb9c656b91d6b7d424af2f19c0a1ed",
+      "archiveSha256": "3adf3448dd6ad14f1ce5959921530bf01ade9a93bd428fe3e18e9532f74ff9ce",
+      "issueSha256": "c37a1b86efa8bb6b2321f2c29d0320d5a5cd392329256d9dd630031d6256b71b",
+      "archiveBytes": 9595058,
+      "expandedBytes": 23022055,
+      "discussionSpanDays": 481,
+      "commentCount": 9,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-28",
+      "shortlistIndex": 28,
+      "repo": "kalkih/mini-graph-card",
+      "issue": 780,
+      "sourceCommit": "f203f4883a99cf930c86a35f2f0b3e655e444651",
+      "archiveSha256": "c428234123ebab59012a44e53436c7954cb9f36ad45e044167659d8611505e6b",
+      "issueSha256": "2e9e03d904eaefe6a9e74131bb101e3c5671fd8385ed9f39774e3ff9b3ffce53",
+      "archiveBytes": 282129,
+      "expandedBytes": 1208740,
+      "discussionSpanDays": 1643,
+      "commentCount": 7,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-30",
+      "shortlistIndex": 30,
+      "repo": "clangd/vscode-clangd",
+      "issue": 579,
+      "sourceCommit": "58df17edac6c7edf5734d33e574429e4b03a78bd",
+      "archiveSha256": "b22573fd5199d9a51bb5a99f8e940f402de4ceecde66f057530f632ea4e80f06",
+      "issueSha256": "0fd84baa993395ca38691e31c762fe2e9761b2d1a96eb6dc1e9879c9991aa026",
+      "archiveBytes": 486849,
+      "expandedBytes": 891079,
+      "discussionSpanDays": 1030,
+      "commentCount": 5,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-32",
+      "shortlistIndex": 32,
+      "repo": "garethgeorge/backrest",
+      "issue": 400,
+      "sourceCommit": "148ba12c12a7a4fef6d3c6c8e675ca2c5e7d3635",
+      "archiveSha256": "1fe59f88b271e17001ebd27d7af7b1854841f68734101409273b9c68350bb281",
+      "issueSha256": "dfcba8fa78ee3620c434d99a73d30c5b4449ba6072b05d3a96792dcd458e6ee1",
+      "archiveBytes": 1129214,
+      "expandedBytes": 4395238,
+      "discussionSpanDays": 831,
+      "commentCount": 6,
+      "status": "available"
+    },
+    {
+      "candidate": "candidate-33",
+      "shortlistIndex": 33,
+      "repo": "yarnpkg/berry",
+      "issue": 6301,
+      "status": "rejected",
+      "reason": "compressed archive exceeds 50 MiB",
+      "partialArchiveBytes": 53477376,
+      "partialArchiveSha256": "af88f5fe0b4b1b1a58aecdf6012180b420cbfe9b16a5bd218f278e381158c51c"
+    }
+  ],
+  "backupCandidateOrder": [
+    "ljharb/qs",
+    "thoughtbot/administrate",
+    "NginxProxyManager/nginx-proxy-manager",
+    "getpaseo/paseo",
+    "plotly/plotly.js",
+    "monkeytypegame/monkeytype",
+    "saihgupr/HomeAssistantTimeMachine",
+    "quarto-dev/quarto-cli",
+    "bambanah/deemix",
+    "hackademix/noscript",
+    "gioxx/MarvellousSuspender",
+    "mugiwara85/CodeblockCustomizer",
+    "floccusaddon/floccus",
+    "code-charity/youtube"
+  ],
+  "backupAvailableAtFreeze": [
+    "ljharb/qs",
+    "thoughtbot/administrate",
+    "NginxProxyManager/nginx-proxy-manager",
+    "getpaseo/paseo",
+    "saihgupr/HomeAssistantTimeMachine",
+    "bambanah/deemix",
+    "hackademix/noscript",
+    "gioxx/MarvellousSuspender",
+    "code-charity/youtube"
+  ],
+  "excludedBeforeFreeze": [
+    {
+      "candidate": "candidate-13",
+      "repo": "louislam/uptime-kuma",
+      "reason": "public discussion contains example session or push URL details; excluded to avoid unnecessary transmission"
+    }
+  ],
+  "selected": [
+    {
+      "id": "state-01",
+      "repo": "openstreetmap/iD",
+      "issue": 9529
+    },
+    {
+      "id": "state-02",
+      "repo": "advplyr/audiobookshelf",
+      "issue": 2661
+    },
+    {
+      "id": "state-03",
+      "repo": "icedman/dash2dock-lite",
+      "issue": 305
+    },
+    {
+      "id": "state-04",
+      "repo": "udecode/plate",
+      "issue": 5052
+    },
+    {
+      "id": "state-05",
+      "repo": "suchnsuch/Tangent",
+      "issue": 437
+    },
+    {
+      "id": "state-06",
+      "repo": "puppeteer/puppeteer",
+      "issue": 7863
+    },
+    {
+      "id": "state-07",
+      "repo": "vuetifyjs/vuetify",
+      "issue": 23110
+    },
+    {
+      "id": "state-08",
+      "repo": "lingui/js-lingui",
+      "issue": 1640
+    },
+    {
+      "id": "state-09",
+      "repo": "nextcloud/mail",
+      "issue": 7984
+    },
+    {
+      "id": "state-10",
+      "repo": "jquery-form/form",
+      "issue": 353
+    },
+    {
+      "id": "state-11",
+      "repo": "josdejong/mathjs",
+      "issue": 1305
+    },
+    {
+      "id": "state-12",
+      "repo": "frappe/charts",
+      "issue": 295
+    },
+    {
+      "id": "state-13",
+      "repo": "usebruno/bruno",
+      "issue": 7362
+    },
+    {
+      "id": "state-14",
+      "repo": "cdxgen/cdxgen",
+      "issue": 1797
+    },
+    {
+      "id": "state-15",
+      "repo": "camunda/camunda-modeler",
+      "issue": 3902
+    },
+    {
+      "id": "state-16",
+      "repo": "SGrondin/bottleneck",
+      "issue": 95
+    },
+    {
+      "id": "state-17",
+      "repo": "vue-leaflet/Vue2Leaflet",
+      "issue": 599
+    },
+    {
+      "id": "state-18",
+      "repo": "padloc/padloc",
+      "issue": 314
+    },
+    {
+      "id": "state-19",
+      "repo": "kalkih/mini-graph-card",
+      "issue": 780
+    },
+    {
+      "id": "state-20",
+      "repo": "clangd/vscode-clangd",
+      "issue": 579
+    },
+    {
+      "id": "state-21",
+      "repo": "garethgeorge/backrest",
+      "issue": 400
+    },
+    {
+      "id": "state-22",
+      "repo": "ljharb/qs",
+      "issue": 471
+    },
+    {
+      "id": "state-23",
+      "repo": "thoughtbot/administrate",
+      "issue": 2978
+    },
+    {
+      "id": "state-24",
+      "repo": "NginxProxyManager/nginx-proxy-manager",
+      "issue": 3678
+    },
+    {
+      "id": "state-25",
+      "repo": "getpaseo/paseo",
+      "issue": 2574
+    },
+    {
+      "id": "state-26",
+      "repo": "saihgupr/HomeAssistantTimeMachine",
+      "issue": 69
+    },
+    {
+      "id": "state-27",
+      "repo": "bambanah/deemix",
+      "issue": 272
+    },
+    {
+      "id": "state-28",
+      "repo": "hackademix/noscript",
+      "issue": 450
+    },
+    {
+      "id": "state-29",
+      "repo": "gioxx/MarvellousSuspender",
+      "issue": 346
+    },
+    {
+      "id": "state-30",
+      "repo": "code-charity/youtube",
+      "issue": 2735
+    }
+  ]
+}
