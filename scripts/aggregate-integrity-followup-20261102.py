@@ -121,7 +121,10 @@ def cohort(name, source):
     reg = read(base / 'registration.json')
     tasks = {t['id']: t for t in reg['tasks']}
     finished_review = (base / 'reviews/finished.json').exists()
-    published = ROOT / ('docs/assets/benchmarks/production-integrity-20261102/packet-commitments.json' if name == 'integrity-triage' else 'docs/assets/benchmarks/production-long-integrity-20261102/packet-commitments.json')
+    published_dirs = {'integrity-triage': 'production-integrity-20261102',
+                      'integrity-long-triage': 'production-long-integrity-20261102',
+                      'integrity-post-permissions-triage': 'production-post-permissions-20261102'}
+    published = ROOT / 'docs/assets/benchmarks' / published_dirs[name] / 'packet-commitments.json'
     unblind = verify_blind(base, published) if finished_review else []
     assert not data['rawConsistencyProblems'], data['rawConsistencyProblems']
     simplified = []
@@ -173,17 +176,18 @@ def main():
     output = pathlib.Path(sys.argv[1])
     first, first_unblind = cohort('integrity-triage', 'integrity-source')
     long, long_unblind = cohort('integrity-long-triage', 'integrity-long-source')
-    result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'firstEight': first, 'longFollowup': long,
+    post, post_unblind = cohort('integrity-post-permissions-triage', 'integrity-post-permissions-source')
+    result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'firstEight': first, 'longFollowup': long, 'postPermissionsSmoke': post,
               'limits': ['Different commits and prompts: do not pool as one randomized protocol.',
                          'Open-source historical triage replay is not a deployed production outcome.',
                          'AI judges and model client list prices do not establish human-rated correctness or actual wallet cost.',
                          'Memory calls and matching IDs do not establish that the memory caused the answer.']}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
-    unblind = {'firstEight': first_unblind, 'longFollowup': long_unblind}
+    unblind = {'firstEight': first_unblind, 'longFollowup': long_unblind, 'postPermissionsSmoke': post_unblind}
     (output.parent / 'packet-unblinding.json').write_text(json.dumps(unblind, indent=2) + '\n')
-    print(json.dumps({'firstRated': first.get('validRatedPairs'), 'longRated': long.get('validRatedPairs'),
-                      'firstDirections': first.get('scoreDirections'), 'longDirections': long.get('scoreDirections')}))
+    print(json.dumps({'firstRated': first.get('validRatedPairs'), 'longRated': long.get('validRatedPairs'), 'postRated': post.get('validRatedPairs'),
+                      'firstDirections': first.get('scoreDirections'), 'longDirections': long.get('scoreDirections'), 'postDirections': post.get('scoreDirections')}))
 
 
 if __name__ == '__main__':

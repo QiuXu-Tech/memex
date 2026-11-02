@@ -5,13 +5,34 @@
   "windowStart": "12:21:05",
   "windowEnd": "12:47:35",
   "model": "claude-haiku-4-5",
-  "visibleDistinctRows": 383,
   "rowsWithDisplayedWalletCost": 383,
   "displayedWalletUsd": 0.294406,
-  "method": "Read and deduplicate the visible model rows from seven paginated gateway UI pages. This is an account-wide time window, not a request-ID match to the study. Pagination could shift while other activity continues.",
+  "method": "Read the model rows from seven paginated gateway UI pages and deduplicate identical displayed row text. This is an account-wide time window, not a request-ID match. Pagination can shift and identical legitimate rows can collapse.",
   "limits": [
     "Concurrent account activity may be included.",
     "Unshown or failed attempts may be missing.",
     "No per-arm attribution or total study invoice can be established from this window."
-  ]
+  ],
+  "traceMessageUsageByArm": {
+    "baseline": {
+      "assistantMessageIds": 178,
+      "uncachedInputTokens": 1000,
+      "cacheReadInputTokens": 1586567,
+      "cacheCreationInputTokens": 565029
+    },
+    "memex": {
+      "assistantMessageIds": 205,
+      "uncachedInputTokens": 1145,
+      "cacheReadInputTokens": 2323310,
+      "cacheCreationInputTokens": 682799
+    }
+  },
+  "visibleWalletTokenSums": {
+    "inputTokens": 2145,
+    "outputTokens": 145472,
+    "cacheReadInputTokens": 3909877,
+    "cacheCreationInputTokens": 1247828
+  },
+  "aggregateInputCrossCheck": "383 distinct assistant message IDs and their combined uncached, cache-read and cache-creation input sums equal the model/time-window deduplicated UI row-text count and input sums. This is not a per-request or per-arm match.",
+  "distinctVisibleRowTexts": 383
 }
