@@ -1,0 +1,25 @@
+{
+  "createdAt": "2026-11-02T10:38:39.324086+00:00",
+  "packets": [
+    {
+      "task": "canary-01",
+      "packetSha256": "45c9441ca18089b63f847f6dd335b53bc67de3bc6879056a2e87b244e9b9e825",
+      "saltedKeyCommitmentSha256": "63a85b3dfef46e450acf19542710970ccd62cbd3a50d68d2b581eb0e23da6d78"
+    },
+    {
+      "task": "canary-02",
+      "packetSha256": "fb6fb5179e23d30dd49e1b3dcc7bab4c0c630b282fb582a8b8da360f0ef7ca3a",
+      "saltedKeyCommitmentSha256": "0e28c7a3a09c1f309aef9589a56549d131f76e463ac5d26d0adf56827d178c18"
+    },
+    {
+      "task": "canary-03",
+      "packetSha256": "3dd8b3420cf91c1d4ab84e5f3048e6cb45e0ebf8e898364c3cf35c0d547d9501",
+      "saltedKeyCommitmentSha256": "154eab629de9128ada4435ce1c11d8b3b86dec57fd3e8fc66409f96918870bb7"
+    },
+    {
+      "task": "canary-04",
+      "packetSha256": "ca54f32edf8f2168c3ce1b5677a1f97ca6cc6eba76bb24e5d8cdfbe961e4dfcd",
+      "saltedKeyCommitmentSha256": "d2e626899a063fe8b4f1113d6373ef38ed46587d62def6e126c0c45ba964a4bf"
+    }
+  ]
+}
