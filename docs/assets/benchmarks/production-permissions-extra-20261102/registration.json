@@ -1,0 +1,68 @@
+{
+  "registeredAt": "2026-11-02T05:50:52.777418+00:00",
+  "kind": "post-permissions-extra-issue-after-timeouts",
+  "tasks": [
+    {
+      "id": "extra-01",
+      "repo": "cheeriojs/cheerio",
+      "issue": 3457,
+      "issueUrl": "https://github.com/cheeriojs/cheerio/issues/3457",
+      "title": "text() method merges text parts",
+      "sourceCommit": "07271f7643f72dc7619b7037d814b527f9ad32ee",
+      "issueSha256": "0a244995581e251928c57bb3913ce6521862aecf25e3ef237580878a3c0ea187",
+      "archiveSha256": "e4201b6325e948e8e22f9611319563bbe459bda2eaa50951ecbc10a2136dffb3",
+      "archiveBytes": 331640,
+      "expandedBytes": 1371159,
+      "commentCount": 3,
+      "createdAt": "2023-10-25T17:12:04Z",
+      "lastCommentAt": "2024-01-15T11:49:26Z",
+      "discussionSpanDays": 81,
+      "frozenAcceptance": "Explain the reported adjacent text concatenation and expected spacing, the regex workaround and its limitations, and propose a minimal whitespace regression without treating comparative library behavior as verified."
+    }
+  ],
+  "memexCommit": "b93d798441b4b25d3f0fad9e40a4b961e64e8648",
+  "manifestSha256": "2510c5d6411e8bbdafdd95eaccfec6857be4ba8104bf006201a842fa0fd94d2f",
+  "allocationCommitmentSha256": "b50e90f0067ab829fefd122c038fce7df415df4474f98958821d1c4b7f4d36fd",
+  "runnerSha256": "3fc4a85f9300eb5c03d9818097075b56d16515c863ff06364660c767d236d1d4",
+  "wrapperSha256": "30b24d386bc114821fc6c83ac28f3412df6072b6fdf3bb0cce8d0361d21a310f",
+  "extraRunnerSha256": "ab30c1130270cb1bf6a55e1035887d61c27e623aa1c7e33a82e8d6c3d8ef1254",
+  "postRunnerSha256": "97bbd9b6ec670baaae52715c0ef6dfaa4fd242b6a5edaba5010177ec202841f3",
+  "sourceHashes": {
+    "packages/memex-claude/bin/cli.mjs": "4103dd4f0362177a37884cd064d11e637caf75d71082623ced66547491fc1d58",
+    "packages/memex-core/index.js": "bc91d38126f844325a0c9f4c0f94a1b57989c3d20e362058f6f1aee238798c98",
+    "packages/memex-core/lib/context-encoder.js": "1a63cf12028f349cf226fcffc45a721fd0e8a46c761c459988f43fc3d549e76b",
+    "packages/memex-core/lib/context-events.js": "076686dcbf8e7e0422f3a62ab60b435a931e934fed177efaebba78d1cf9f70e5",
+    "packages/memex-core/lib/context-kv-host.js": "0efcb2440c38a142026c1abcbe9cff995adeeced084bfd7b95a21f7c910c1650",
+    "packages/memex-core/lib/context-kv.js": "978d5cd37ee4c54fb5ddb18dc448540b452f9d3de48af839b989c488148c0898",
+    "packages/memex-core/lib/context-materializer.js": "e89883fc5beccf57693f84a1d392c5bee64b9fa853ffa1a02c514e5f0ef2a143",
+    "packages/memex-core/lib/context-pager.js": "5229e7257719c428c8a9971be970b0a4468f3b57f0d88489fc9fb1eca5f49977",
+    "packages/memex-core/lib/context-transformer.js": "87c8c72dba74783ca4e29b771a4ae1898584930b091bbace5cc7b2dd2548bf0a",
+    "packages/memex-core/lib/engine.js": "7c2c427c9e8da63f4397edea56bd38f876dacd6198fb1043d95377916965cc50",
+    "packages/memex-core/lib/file-transactions.js": "a51df23d7365e06bac9a8a0ae40e54221e98b52919cbc783615a89f5e76bc8b8",
+    "packages/memex-core/lib/manual.js": "e1dc9b81a5bcf3928fca02ce0401f2aea166ec25423924327d33214b907e9e98",
+    "packages/memex-core/lib/model-profiles.js": "be80caed6662098a7766c9b125b098e65d2f355672ac131e2c9fc806825f0b37",
+    "packages/memex-core/lib/store.js": "9beb6b6f43491ad81634db916f3995e3c849ebdeeb457ac4752eab0c96c2a084",
+    "packages/memex-mcp/bin/server.mjs": "84068a2ec249b0058afa0e0c06e1351e00fe0567df00635fc318ec758e67cc8c",
+    "scripts/prospective-agent-mcp-v5.mjs": "f4bdb9b4b151a8403b1bc989c6a69f188d2eb189cd44c899253511ce1bd2c48a",
+    "scripts/prospective-agent-worker-v7.py": "db00de27b07ef4f2a7daa8e6e967e5455e1ec5b75911ad7b8839118bc257a586"
+  },
+  "bridgeSha256": "f4bdb9b4b151a8403b1bc989c6a69f188d2eb189cd44c899253511ce1bd2c48a",
+  "workerSha256": "db00de27b07ef4f2a7daa8e6e967e5455e1ec5b75911ad7b8839118bc257a586",
+  "model": "claude-haiku-4-5",
+  "prompts": {
+    "stage1": "Investigate this real issue against the pinned repository and early discussion. Use targeted source and discussion lookups; do not repeat a lookup unless new information makes it useful. Once you have a relevant source location and a relevant discussion record, stop searching and give a concise handoff with evidence and unresolved questions. If evidence is unavailable, state that. Do not edit code.",
+    "stage2": "Continue the earlier investigation using the later discussion and your own prior handoff, available in the archive. Use targeted lookups only for specific remaining uncertainties; do not repeat information already retrieved. Once the available evidence suffices, produce a concise triage with source file and line, discussion or disagreement with comment IDs, a recommended next check, and uncertainty. Do not edit code."
+  },
+  "maxConcurrentTasks": 1,
+  "perSessionClientListBudgetUsd": 0.1,
+  "sameSessionRecoveryExtraUsd": 0.04,
+  "perSessionReservationUsd": 0.18,
+  "aggregateClientListReservationUsd": 1.0,
+  "protocol": "One new owner-disjoint public issue, randomized paired arms, two distinct Claude Code sessions per arm, read-only source and staged comments; both arms have their own handoff and Memex adds hooks and MCP.",
+  "selection": "Added after observing incomplete pairs and before this task or its review calls; report separately from the original preregistered cohorts.",
+  "limits": [
+    "Historical issue material may be in model training and source may postdate comments.",
+    "Compressed triage is not a deployed production outcome.",
+    "AI reviewers are not humans and client list prices are not gateway charges."
+  ]
+}
