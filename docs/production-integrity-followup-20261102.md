@@ -9,6 +9,8 @@ The initial eight-task randomized replay and AI blind review are complete. A sep
 
 [Results and per-task statuses](assets/benchmarks/production-integrity-followup-20261102/results.json) · [Initial registration](production-integrity-20261102-registration.html) · [Long-discussion registration](production-long-integrity-20261102-registration.html) · [Post-review label unblinding](assets/benchmarks/production-integrity-followup-20261102/packet-unblinding.json) · [Initial allocation unblinding](assets/benchmarks/production-integrity-followup-20261102/first-allocation-unblinding.json) · [Candidate review-wallet matches](assets/benchmarks/production-integrity-followup-20261102/first-review-wallet-matches.json) · [Solver account-window context](assets/benchmarks/production-integrity-followup-20261102/first-solver-wallet-window.json) · [Repair details and limitations](archive-integrity-20261102.html)
 
+During the later long-discussion run, a separate [single 8-output-token-cap diagnostic](assets/benchmarks/production-integrity-followup-20261102/anthropic-route-diagnostic.json) to the same Claude model route timed out after about 26 seconds without an HTTP status. It was not retried and its actual charge is **UNKNOWN**. This observation does not isolate the gateway, upstream model or network as the cause.
+
 ![Initial blinded review results and later-discussion exposure by arm](assets/benchmarks/production-integrity-followup-20261102/integrity-followup.svg)
 
 ## Repairs and tests

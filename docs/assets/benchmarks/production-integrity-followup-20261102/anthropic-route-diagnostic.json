@@ -1,0 +1,11 @@
+{
+  "startedAt": "2026-11-02T05:40:01.310814+00:00",
+  "model": "claude-haiku-4-5",
+  "purpose": "one-shot route diagnostic outside randomized study",
+  "maxOutputTokens": 8,
+  "status": "error",
+  "errorType": "TimeoutError",
+  "elapsedSeconds": 25.792,
+  "actualChargeUsd": "UNKNOWN",
+  "interpretation": "One direct non-stream request timed out without an HTTP status; this does not distinguish gateway, upstream model or network causes. No retry was made."
+}
