@@ -44,12 +44,21 @@ def independent_scores(base, task):
     if not (folder / 'key.json').exists():
         return None
     key = read(folder / 'key.json')
-    paths = [folder / 'gpt-6.1-sol.json', folder / 'deepseek-flash.json']
+    plan = read(base / 'reviews/plan.json')
+    paths = [folder / f'{model}.json' for model in plan['reviewers']]
     if not all(p.exists() for p in paths):
         return None
     ratings = [read(p).get('rating') for p in paths]
     if any(not isinstance(r, dict) or len(r.get('candidates', [])) != 2 for r in ratings):
         return None
+    gateway = a.events(folder / 'gateway.jsonl')
+    def verify_saved_rating(label, rating):
+        terminal = [event for event in gateway if event.get('operationLabel') == f'{task}:{label}' and event.get('status') != 'started']
+        assert terminal and terminal[-1].get('status') == 'ok'
+        text = terminal[-1]['message']['content'].strip().removeprefix('```json').removeprefix('```').removesuffix('```').strip()
+        assert json.loads(text) == rating
+    for model, rating in zip(plan['reviewers'], ratings):
+        verify_saved_rating(model, rating)
     evidence = set(read(folder / 'packet.json')['evidence'])
     def rows(r):
         for candidate in r['candidates']:
@@ -66,7 +75,9 @@ def independent_scores(base, task):
         path = folder / 'adjudication.json'
         if not path.exists() or not read(path).get('rating'):
             return None
-        final = rows(read(path)['rating'])
+        adjudicated = read(path)['rating']
+        verify_saved_rating('adjudication', adjudicated)
+        final = rows(adjudicated)
         if set(final) != set(key) or any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in final.values()):
             return None
     if any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in final.values()):
@@ -113,6 +124,12 @@ def verified_input_totals(base, row):
     return total
 
 
+def session_tools(base, task, name):
+    trace = base / task / 'traces'
+    events = a.events(trace / f'{name}-events.jsonl') + a.events(trace / f'{name}-recovery-events.jsonl')
+    return a.tool_counts([events])
+
+
 def cohort(name, source):
     base = BASE / name
     data = a.cohort(name)
@@ -123,12 +140,14 @@ def cohort(name, source):
     finished_review = (base / 'reviews/finished.json').exists()
     published_dirs = {'integrity-triage': 'production-integrity-20261102',
                       'integrity-long-triage': 'production-long-integrity-20261102',
-                      'integrity-post-permissions-triage': 'production-post-permissions-20261102'}
+                      'integrity-post-permissions-triage': 'production-post-permissions-20261102',
+                      'integrity-permissions-extra-triage': 'production-permissions-extra-20261102'}
     published = ROOT / 'docs/assets/benchmarks' / published_dirs[name] / 'packet-commitments.json'
     unblind = verify_blind(base, published) if finished_review else []
     assert not data['rawConsistencyProblems'], data['rawConsistencyProblems']
     simplified = []
     verified_inputs = []
+    all_tools = {arm: collections.Counter() for arm in ('baseline', 'memex')}
     directions = collections.Counter()
     later = {arm: collections.Counter() for arm in ('baseline', 'memex')}
     for row in data['tasks']:
@@ -151,6 +170,9 @@ def cohort(name, source):
         verified = verified_input_totals(base, row)
         if verified:
             verified_inputs.append(verified)
+        tool_counts = {name: session_tools(base, tid, name) for name in row['sessions']}
+        for name, counts in tool_counts.items():
+            all_tools[name.split('-s')[0]].update(counts)
         simplified.append({'id': tid, 'issueUrl': row['issueUrl'], 'sourceCommit': row['sourceCommit'],
             'discussionSpanDays': tasks[tid].get('discussionSpanDays'), 'completePair': row['completePair'],
             'started': row['started'], 'finished': row['finished'],
@@ -158,6 +180,7 @@ def cohort(name, source):
             'sessionStatuses': {k: {'status': v.get('status'), 'completed': v.get('responseCompleted'),
                                     'timeout': v.get('timeout'), 'unavailableToolAttempts': len(v.get('unavailableToolAttempts') or [])} for k, v in row['sessions'].items()},
             'missingSessions': sorted({f'{arm}-s{stage}' for arm in ('baseline', 'memex') for stage in (1, 2)} - set(row['sessions'])),
+            'sessionToolAttempts': tool_counts,
             'sessionRecoveries': sum(bool(v.get('recovery')) for v in row['sessions'].values()),
             'reviewStatus': row['review']['status'], 'blindReview': score,
             **opens})
@@ -167,6 +190,7 @@ def cohort(name, source):
                    'independentlyRecountedDirections': dict(directions), 'laterDiscussionExposure': {k: dict(v) for k, v in later.items()},
                    'verifiedInputPairs': len(verified_inputs),
                    'verifiedInputTotals': {arm: sum(item[arm] for item in verified_inputs) for arm in ('baseline', 'memex')},
+                   'allStartedSessionToolAttempts': {arm: dict(counts) for arm, counts in all_tools.items()},
                    'successfulOpens': {key: sum(t[key] for t in simplified) for key in ('agentWriteThenSuccessfulOpen', 'automaticCheckpointThenSuccessfulOpen')},
                    'tasks': simplified if finished_review else []})
     return result, unblind
@@ -177,17 +201,18 @@ def main():
     first, first_unblind = cohort('integrity-triage', 'integrity-source')
     long, long_unblind = cohort('integrity-long-triage', 'integrity-long-source')
     post, post_unblind = cohort('integrity-post-permissions-triage', 'integrity-post-permissions-source')
-    result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'firstEight': first, 'longFollowup': long, 'postPermissionsSmoke': post,
+    extra, extra_unblind = cohort('integrity-permissions-extra-triage', 'integrity-permissions-extra-source')
+    result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'firstEight': first, 'longFollowup': long, 'postPermissionsSmoke': post, 'extraIssue': extra,
               'limits': ['Different commits and prompts: do not pool as one randomized protocol.',
                          'Open-source historical triage replay is not a deployed production outcome.',
                          'AI judges and model client list prices do not establish human-rated correctness or actual wallet cost.',
                          'Memory calls and matching IDs do not establish that the memory caused the answer.']}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
-    unblind = {'firstEight': first_unblind, 'longFollowup': long_unblind, 'postPermissionsSmoke': post_unblind}
+    unblind = {'firstEight': first_unblind, 'longFollowup': long_unblind, 'postPermissionsSmoke': post_unblind, 'extraIssue': extra_unblind}
     (output.parent / 'packet-unblinding.json').write_text(json.dumps(unblind, indent=2) + '\n')
-    print(json.dumps({'firstRated': first.get('validRatedPairs'), 'longRated': long.get('validRatedPairs'), 'postRated': post.get('validRatedPairs'),
-                      'firstDirections': first.get('scoreDirections'), 'longDirections': long.get('scoreDirections'), 'postDirections': post.get('scoreDirections')}))
+    print(json.dumps({'firstRated': first.get('validRatedPairs'), 'longRated': long.get('validRatedPairs'), 'postRated': post.get('validRatedPairs'), 'extraRated': extra.get('validRatedPairs'),
+                      'firstDirections': first.get('scoreDirections'), 'longDirections': long.get('scoreDirections'), 'postDirections': post.get('scoreDirections'), 'extraDirections': extra.get('scoreDirections')}))
 
 
 if __name__ == '__main__':

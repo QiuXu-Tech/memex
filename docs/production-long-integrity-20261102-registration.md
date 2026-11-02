@@ -9,7 +9,7 @@ This separate 25-task cohort was registered before solver or review calls, after
 
 The tested Memex commit is `c47e4456451d3e9990be40ce52bfbe6fda6cc7cc`. Public issue snapshots and pinned source archives are retained privately; their SHA-256 hashes and individual acceptance criteria are in the registration. Source revisions can postdate the discussion, and the public material may appear in model training.
 
-[Machine-readable registration](assets/benchmarks/production-long-integrity-20261102/registration.json) · [Frozen review plan](assets/benchmarks/production-long-integrity-20261102/review-plan.json) · [Source selection rejections](assets/benchmarks/production-long-integrity-20261102/source-rejections.json)
+[Machine-readable registration](assets/benchmarks/production-long-integrity-20261102/registration.json) · [Frozen review plan](assets/benchmarks/production-long-integrity-20261102/review-plan.json) · [Source selection rejections](assets/benchmarks/production-long-integrity-20261102/source-rejections.json) · [Anonymous packet and salted-label commitments](assets/benchmarks/production-long-integrity-20261102/packet-commitments.json)
 
 | Public issue | Discussion span | Frozen acceptance focus |
 | --- | ---: | --- |
