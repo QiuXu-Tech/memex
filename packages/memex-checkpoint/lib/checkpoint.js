@@ -8,14 +8,14 @@
  *
  * It deliberately does not replace `ctx.compaction` and does not mutate the
  * session log beyond ordinary user messages with a memory source. The shipped
- * compaction backend keeps working unchanged; the archive is the lossless
- * counterpart to its lossy summary.
+ * compaction backend keeps working unchanged. The rendered card can be clipped;
+ * complete source events are stored separately in the canonical event table.
  *
  * @module @qiuxu/memex-checkpoint/checkpoint
  */
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
-import { archiveRecordId, canonicalEventsFromDsh, memoryCaptureScope, memoryMessage, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
+import { archiveRecordId, canonicalEventsFromDsh, containsSensitive, memoryCaptureScope, memoryMessage, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
 import { buildCard } from './render.js'
 
 /** Bound on buffered live events per session (fallback when no query service exists). */
@@ -172,21 +172,17 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
 
   /** Read the raw events behind a set of shadowed sequence numbers. */
   async function readShadowedEvents(session, seqs) {
+    const bySeq = new Map(buffers.get(session.id) ?? [])
     const queryService = query()
     if (queryService !== undefined) {
       try {
         const { events } = await queryService.readSession(session.id)
-        const bySeq = new Map(events.map((event) => [event.seq, event]))
-        const selected = seqs.map((seq) => bySeq.get(seq)).filter((event) => event !== undefined)
-        if (selected.length === seqs.length) return selected
-        warn(`session query returned ${selected.length}/${seqs.length} shadowed events for ${session.id}`)
-        return selected
+        for (const event of events) bySeq.set(event.seq, event)
       } catch (error) {
         warn(`readSession failed, falling back to the live buffer: ${String(error?.message ?? error)}`)
       }
     }
-    const buffered = buffers.get(session.id) ?? new Map()
-    return seqs.map((seq) => buffered.get(seq)).filter((event) => event !== undefined)
+    return seqs.map((seq) => bySeq.get(seq)).filter((event) => event !== undefined)
   }
 
   /** Mark these record ids as already shown to one session. */
@@ -276,20 +272,31 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
   async function archiveCompaction(session, summaryEvent) {
     if (disposed || policyConfig.autoArchive === false) return
     const levels = await sessionLevels(session)
-    const scope = memoryCaptureScope(levels)
+    let scope = memoryCaptureScope(levels)
     if (scope === undefined) return
     const data = summaryEvent.data ?? {}
     const compactionId = data.compactionId
     const seqs = Array.isArray(data.shadowedSeqs) ? data.shadowedSeqs : []
     if (typeof compactionId !== 'string' || seqs.length === 0) return
-    const existing = await memory.wasArchived(session.id, compactionId)
+    if (memory.supportsAtomicContextArchive !== true) {
+      warn('compaction archive skipped: the memory backend does not support atomic context-event archives')
+      return
+    }
+    const existing = await memory.wasArchived(session.id, compactionId, { requireComplete: true })
     if (existing !== undefined) return
     const cwd = session.header?.cwd
     const workspaceKey = memoryWorkspaceKey(cwd, session.id)
     const events = await readShadowedEvents(session, seqs)
-    if (events.length === 0) {
-      warn(`no readable events for compaction ${compactionId} of ${session.id}`)
+    if (seqs.some((seq) => !Number.isSafeInteger(seq) || seq < 0) || new Set(seqs).size !== seqs.length || events.length !== seqs.length) {
+      warn(`incomplete shadowed events for compaction ${compactionId} of ${session.id}: ${events.length}/${seqs.length}; retry when the source is complete`)
       return
+    }
+    if (scope === 'workspace' && containsSensitive(JSON.stringify(events))) {
+      if (levels.l2 === true) scope = 'session'
+      else {
+        warn(`compaction ${compactionId} was not archived: detected credentials require L2`)
+        return
+      }
     }
     const record = {
       ...buildCard({
@@ -317,25 +324,21 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
         seqStart: seqs[0],
         seqEnd: seqs[seqs.length - 1],
         shadowedEventCount: events.length,
+        shadowedSeqs: seqs,
+        archiveIntegrityVersion: 2,
         shadowedTokenCount: data.shadowedTokenCount,
         provider: data.provider,
         model: data.model,
         cwd: cwd ?? '',
       },
     }
-    const stored = await memory.archiveRegion({ sessionId: session.id, compactionId, record })
-    // Context-materialization step 1: keep the exact role/tool/sequence
-    // envelope alongside the rendered card. A backend without support no-ops.
-    try {
-      await memory.appendContextEvents({ recordId: stored.id, events: canonicalEventsFromDsh(events, { sessionId: session.id, recordId: stored.id }) })
-    } catch (error) {
-      warn(`canonical context-event capture skipped: ${String(error?.message ?? error)}`)
-    }
+    const canonicalEvents = canonicalEventsFromDsh(events, { sessionId: session.id, recordId: record.id })
+    const stored = await memory.archiveRegion({ sessionId: session.id, compactionId, record, events: canonicalEvents })
     const list = receipts.get(session.id) ?? []
     list.push({
       recordId: stored.id,
       title: stored.title,
-      text: `[MEMORY CHECKPOINT] The context that just left the window (seq #${seqs[0]}–#${seqs[seqs.length - 1]}, ~${record.tokens ?? '?'} tokens) is archived losslessly as ${stored.id} (${stored.kind}) "${stored.title}". The checkpoint above is a lossy summary; call memory_open ${stored.id} when you need exact details, or memory_grep a distinctive string.`,
+      text: `[MEMORY CHECKPOINT] The context that just left the window (seq #${seqs[0]}–#${seqs[seqs.length - 1]}, ~${record.tokens ?? '?'} tokens) was archived as ${stored.id} (${stored.kind}) "${stored.title}". The rendered record may omit or clip content; call memory_open ${stored.id} or memory_grep for details.`,
     })
     while (list.length > RECEIPT_LIMIT) list.shift()
     receipts.set(session.id, list)
@@ -369,7 +372,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
         const observed = await queryService.readEvent({ sessionId: session.id, seq: record.seq })
         const target = observed.target
         if (target?.type !== 'compaction/summary') continue
-        if (await memory.wasArchived(session.id, target.data?.compactionId) !== undefined) continue
+        if (await memory.wasArchived(session.id, target.data?.compactionId, { requireComplete: true }) !== undefined) continue
         await archiveCompaction(session, target)
       }
     } catch (error) {

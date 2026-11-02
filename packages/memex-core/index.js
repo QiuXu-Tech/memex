@@ -93,6 +93,14 @@ export const MEMORY_TEXT_LIMITS = Object.freeze({
   body: 8 * 1024 * 1024,
 })
 
+/** Detect some common credential formats. This is not a complete privacy filter. */
+export function containsSensitive(text) {
+  const value = String(text ?? '')
+  return /-----BEGIN [A-Z ]*PRIVATE KEY-----/.test(value) ||
+    /\b(?:sk-[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})\b/.test(value) ||
+    /(?:password|passwd|secret|api[_-]?key|access[_-]?token|authorization)["']?\s*[:=]\s*["']?[^\s"']{6,}/i.test(value)
+}
+
 /**
  * Derive the stable workspace key used to partition records.
  *

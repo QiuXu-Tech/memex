@@ -10,6 +10,10 @@ try {
     body: 'generated body', workspaceKey: 'wk-lock', scope: 'workspace' })
   else if (action === 'loop') for (let i = 0; i < 12; i += 1) update(label + ':' + i)
   else if (action === 'archive') store.archiveCold(id)
+  else if (action === 'compaction') store.archiveRegion({ sessionId: 'fault-session', compactionId: 'fault-compaction',
+    record: { id, kind: 'episode', title: 'Compaction fixture', body: 'complete archive', workspaceKey: 'wk-lock',
+      provenance: { sessionId: 'fault-session', compactionId: 'fault-compaction' } },
+    events: [{ id: id + ':1', sequence: 1, content: 'complete event' }] })
   else if (action === 'restore') store.restoreCold(id)
   else if (action === 'forget') store.forget(id)
   else if (action === 'gc') store.gcCold({ workspaceKey: 'wk-lock', keepTokens: 0 })

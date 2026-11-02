@@ -51,4 +51,4 @@ For a focused query, `memory_search` accepts `openTop: true` to include up to 2,
 
 ## Sharing one store
 
-All agents can share `~/.memex` (or `$MEMEX_HOME`). Use `--session ID` for L2 isolation; without it, the session is treated as `default-session`. Workspace keys are derived from `--cwd`, so a project opened by Claude Code and Codex sees the same L3 records.
+All agents can share `~/.memex` (or `$MEMEX_HOME`). Use a unique `--session ID` for an L2 namespace that must persist across processes; without an explicit id or session environment variable, each MCP server uses a fresh random id. Reusing an id shares that L2 namespace. Workspace keys are derived from `--cwd`, so a project opened by Claude Code and Codex sees the same L3 records when their workspace paths agree.

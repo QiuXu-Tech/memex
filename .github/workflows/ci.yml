@@ -22,6 +22,8 @@ jobs:
         run: node --import ./test/register.mjs ./test/run.mjs
       - name: SQLite concurrency and recovery
         run: node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs
+      - name: Archive integrity, privacy and configuration regression
+        run: node --import ./test/register.mjs --test ./test/integrity-regression.mjs
       - name: Pilot loop, review and accounting regressions
         run: |
           python3 scripts/test-pilot-loop.py

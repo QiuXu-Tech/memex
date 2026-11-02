@@ -1,0 +1,345 @@
+import test from 'node:test'
+import assert from 'node:assert/strict'
+import { mkdtempSync, mkdirSync, readFileSync, renameSync, rmSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
+import { join } from 'node:path'
+import { spawnSync } from 'node:child_process'
+import { fileURLToPath } from 'node:url'
+import { LocalStoreCore } from '../packages/memex-core/lib/store.js'
+import { AgentMemory } from '../packages/memex-core/lib/engine.js'
+import { MEMORY_TEXT_LIMITS, archiveRecordId } from '../packages/memex-core/index.js'
+import { canonicalEventsFromDsh } from '../packages/memex-core/lib/context-events.js'
+import LocalMemoryStore from '../packages/memex-local/index.js'
+import * as checkpoint from '../packages/memex-checkpoint/index.js'
+import { createFakeContext, createSessionQueryMock } from './fake-ctx.mjs'
+import { createSession, createSurfaceEvents, createCompactionEvent } from './fixtures.mjs'
+
+const register = fileURLToPath(new URL('./register.mjs', import.meta.url))
+const cli = fileURLToPath(new URL('../packages/memex-claude/bin/cli.mjs', import.meta.url))
+const root = () => mkdtempSync(join(tmpdir(), 'memex-integrity-test-'))
+const node = (args, input = '', env = {}) => spawnSync(process.execPath, ['--import', register, cli, ...args], { input, encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
+const pause = () => new Promise((resolve) => setTimeout(resolve, 100))
+
+test('compaction record, canonical events and marker roll back together and can be retried', () => {
+  const dir = root()
+  const store = new LocalStoreCore({ root: dir, capacityTokens: 10000 })
+  const input = { sessionId: 's', compactionId: 'c', record: { id: 'mem_fixture', kind: 'episode', title: 'fixture', body: 'original body', workspaceKey: 'wk' }, events: [{ id: 'event-a', sequence: 1, content: 'original event' }] }
+  try {
+    store.database().exec("CREATE TRIGGER injected_failure BEFORE INSERT ON context_events BEGIN SELECT RAISE(ABORT, 'injected failure'); END")
+    assert.throws(() => store.archiveRegion(input), /injected failure/)
+    assert.equal(store.wasArchived('s', 'c'), undefined)
+    assert.equal(store.get('mem_fixture'), undefined)
+    store.database().exec('DROP TRIGGER injected_failure')
+    store.archiveRegion(input)
+    assert.equal(store.wasArchived('s', 'c'), 'mem_fixture')
+    assert.equal(store.listContextEvents('mem_fixture')[0].content, 'original event')
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('a partial compaction is never marked complete and can be retried when missing events arrive', async () => {
+  const dir = root()
+  const events = createSurfaceEvents()
+  const source = { session: events.slice(0, 2) }
+  const ctx = createFakeContext({ sessionQuery: createSessionQueryMock(source) })
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l3' })
+  ctx.provideService('memory', backend)
+  checkpoint.apply(ctx, { cardModel: 'off' })
+  const session = createSession({ id: 'session', cwd: '/tmp/memex-test' })
+  const compaction = createCompactionEvent()
+  try {
+    await ctx.emit('session/event', session, compaction)
+    await pause()
+    assert.equal(await backend.wasArchived(session.id, 'cmp-1'), undefined)
+    source.session = events
+    await ctx.emit('session/event', session, compaction)
+    await pause()
+    const id = await backend.wasArchived(session.id, 'cmp-1')
+    assert.ok(id)
+    const saved = backend.core.listContextEvents(id)
+    assert.deepEqual([...new Set(saved.map((event) => event.sequence))], [1, 2, 3])
+    assert.deepEqual(saved.filter((event) => event.attachments.some((part) => part.rawEvent)).map((event) => event.attachments[0].rawEvent), events)
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('a partial persisted query can be completed by the live event buffer', async () => {
+  const dir = root()
+  const events = createSurfaceEvents()
+  const ctx = createFakeContext({ sessionQuery: createSessionQueryMock({ session: events.slice(0, 2) }) })
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l3' })
+  ctx.provideService('memory', backend)
+  checkpoint.apply(ctx, { cardModel: 'off' })
+  const session = createSession({ id: 'session', cwd: '/tmp/memex-test' })
+  try {
+    await ctx.emit('session/event', session, events[2])
+    await ctx.emit('session/event', session, createCompactionEvent())
+    await pause()
+    const id = await backend.wasArchived(session.id, 'cmp-1')
+    assert.ok(id)
+    assert.deepEqual([...new Set(backend.core.listContextEvents(id).map((event) => event.sequence))], [1, 2, 3])
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('a legacy completion marker is repaired from the original complete source', async () => {
+  const dir = root()
+  const events = createSurfaceEvents()
+  const session = createSession({ id: 'session', cwd: '/tmp/memex-test' })
+  const ctx = createFakeContext({ sessionQuery: createSessionQueryMock({ session: events }) })
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l3' })
+  ctx.provideService('memory', backend)
+  checkpoint.apply(ctx, { cardModel: 'off' })
+  const id = archiveRecordId('session', 'cmp-1')
+  try {
+    await backend.archiveRegion({ sessionId: 'session', compactionId: 'cmp-1', record: { id, kind: 'episode', title: 'legacy partial', body: 'partial', workspaceKey: 'wk', provenance: { sessionId: 'session', compactionId: 'cmp-1' } } })
+    assert.equal(await backend.wasArchived('session', 'cmp-1'), id)
+    assert.equal(await backend.wasArchived('session', 'cmp-1', { requireComplete: true }), undefined)
+    await ctx.emit('session/event', session, createCompactionEvent())
+    await pause()
+    assert.equal(await backend.wasArchived('session', 'cmp-1', { requireComplete: true }), id)
+    assert.equal(backend.core.listContextEvents(id).filter((event) => event.attachments.some((part) => part.rawEvent)).length, 3)
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('canonical event identities do not collide across archives with the same sequence', () => {
+  const dir = root()
+  const store = new LocalStoreCore({ root: dir, capacityTokens: 10000 })
+  try {
+    for (const id of ['mem_one', 'mem_two']) {
+      store.archiveRegion({ sessionId: id, compactionId: 'c', record: { id, kind: 'episode', title: id, body: id, workspaceKey: 'wk' }, events: canonicalEventsFromDsh([{ seq: 1, message: { role: 'user', content: [{ type: 'text', text: id }] } }], { sessionId: id, recordId: id }) })
+    }
+    assert.equal(store.listContextEvents('mem_one')[0].content, 'mem_one')
+    assert.equal(store.listContextEvents('mem_two')[0].content, 'mem_two')
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('detected credentials in DSH compaction stay in L2 or are not archived', async () => {
+  for (const levels of ['both', 'l3']) {
+    const dir = root()
+    const ctx = createFakeContext()
+    const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: levels })
+    ctx.provideService('memory', backend)
+    checkpoint.apply(ctx, { cardModel: 'off' })
+    const session = createSession({ id: 'private-session', cwd: '/tmp/memex-test' })
+    const events = createSurfaceEvents()
+    events[0].data.content[0].text = 'password=synthetic-private-value'
+    try {
+      for (const event of events) await ctx.emit('session/event', session, event)
+      await ctx.emit('session/event', session, createCompactionEvent())
+      await pause()
+      const id = await backend.wasArchived(session.id, 'cmp-1')
+      if (levels === 'both') {
+        assert.ok(id)
+        assert.equal((await backend.get(id)).scope, 'session')
+      } else assert.equal(id, undefined)
+    } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+  }
+})
+
+test('explicit levels limit sticky levels rather than re-enabling workspace visibility', () => {
+  const dir = root()
+  try {
+    let engine = new AgentMemory({ root: dir, cwd: dir, sessionId: 's', levels: ['l2', 'l3'] })
+    engine.close()
+    engine = new AgentMemory({ root: dir, cwd: dir, sessionId: 's', levels: ['l2'] })
+    try {
+      assert.deepEqual(engine.levels, { l2: true, l3: false })
+      assert.equal(engine.write({ kind: 'fact', title: 'private', body: 'secret' }).scope, 'session')
+    } finally { engine.close() }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('implicit agent sessions never share the same private L2 namespace', () => {
+  const dir = root()
+  const saved = [process.env.MEMEX_SESSION, process.env.DSH_MEMORY_SESSION]
+  delete process.env.MEMEX_SESSION
+  delete process.env.DSH_MEMORY_SESSION
+  try {
+    const first = new AgentMemory({ root: dir, cwd: dir, levels: ['l2'] })
+    const second = new AgentMemory({ root: dir, cwd: dir, levels: ['l2'] })
+    try {
+      assert.notEqual(first.sessionId, second.sessionId)
+      first.write({ kind: 'fact', title: 'private', body: 'private session record' })
+      assert.equal(second.list({ limit: 10 }).length, 0)
+    } finally { first.close(); second.close() }
+  } finally {
+    if (saved[0] !== undefined) process.env.MEMEX_SESSION = saved[0]
+    if (saved[1] !== undefined) process.env.DSH_MEMORY_SESSION = saved[1]
+    rmSync(dir, { recursive: true, force: true })
+  }
+})
+
+test('an absent index with existing files fails closed without deleting the archive', () => {
+  const dir = root()
+  let store = new LocalStoreCore({ root: dir, capacityTokens: 10000 })
+  try {
+    const record = store.write({ kind: 'fact', title: 'fixture', body: 'archive contents', workspaceKey: 'wk' })
+    store.close()
+    renameSync(join(dir, 'index.db'), join(dir, 'index.saved'))
+    store = new LocalStoreCore({ root: dir, capacityTokens: 10000 })
+    assert.throws(() => store.database(), /index.*missing/i)
+    assert.match(readFileSync(record.path, 'utf8'), /archive contents/)
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('record bodies preserve leading and trailing newlines', () => {
+  const dir = root()
+  const store = new LocalStoreCore({ root: dir, capacityTokens: 10000 })
+  try {
+    const body = '\n\nfirst line\nlast line\n'
+    const card = store.write({ kind: 'fact', title: 'newlines', body, workspaceKey: 'wk' })
+    assert.equal(store.get(card.id).body, body)
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Claude init preserves malformed configuration and co-located user hooks', () => {
+  const dir = root()
+  try {
+    const project = join(dir, 'project')
+    mkdirSync(join(project, '.claude'), { recursive: true })
+    const mcpPath = join(project, '.mcp.json')
+    const settingsPath = join(project, '.claude', 'settings.json')
+    const initialMcp = '{"mcpServers":{"other":{"command":"other"}}}\n'
+    const invalidSettings = '{not valid json\n'
+    writeFileSync(mcpPath, initialMcp)
+    writeFileSync(settingsPath, invalidSettings)
+    const failed = node(['init', '--project', project, '--root', join(dir, 'memory')])
+    assert.notEqual(failed.status, 0)
+    assert.equal(readFileSync(mcpPath, 'utf8'), initialMcp)
+    assert.equal(readFileSync(settingsPath, 'utf8'), invalidSettings)
+    const userHook = { type: 'command', command: 'my-own-hook' }
+    writeFileSync(settingsPath, JSON.stringify({ hooks: { PreCompact: [{ matcher: 'manual|auto', hooks: [userHook, { type: 'command', command: 'node /old/memex-claude/bin/cli.mjs hook PreCompact' }] }] } }))
+    const ok = node(['init', '--project', project, '--root', join(dir, 'memory')])
+    assert.equal(ok.status, 0, ok.stderr)
+    const settings = JSON.parse(readFileSync(settingsPath, 'utf8'))
+    assert.ok(settings.hooks.PreCompact.flatMap((entry) => entry.hooks).some((hook) => hook.command === 'my-own-hook'))
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Claude project namespace stays fixed and raw transcripts use the actual client session', () => {
+  const dir = root()
+  const project = join(dir, 'project')
+  const child = join(project, 'child')
+  const memory = join(dir, 'memory')
+  mkdirSync(child, { recursive: true })
+  const transcript = join(project, 'transcript.jsonl')
+  writeFileSync(transcript, 'private transcript')
+  try {
+    const result = node(['hook', 'PreCompact', '--root', memory, '--project', project, '--levels', 'l2,l3', '--session', 'shared-id'], JSON.stringify({ session_id: 'real-client-id', cwd: child, transcript_path: transcript }))
+    assert.equal(result.status, 0, result.stderr)
+    const actual = new AgentMemory({ root: memory, cwd: project, sessionId: 'real-client-id', levels: ['l2'] })
+    const shared = new AgentMemory({ root: memory, cwd: project, sessionId: 'shared-id', levels: ['l2'] })
+    const nested = new AgentMemory({ root: memory, cwd: child, sessionId: 'real-client-id', levels: ['l2'] })
+    try {
+      assert.equal(actual.list({ limit: 10 }).length, 1)
+      assert.equal(shared.list({ limit: 10 }).length, 0)
+      assert.equal(nested.list({ limit: 10 }).length, 0)
+    } finally { actual.close(); shared.close(); nested.close() }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Claude user initialization registers the user MCP server without forcing the home workspace', () => {
+  const dir = root()
+  try {
+    const result = node(['init', '--user', '--root', join(dir, 'memory')], '', { HOME: dir })
+    assert.equal(result.status, 0, result.stderr)
+    const config = JSON.parse(readFileSync(join(dir, '.claude.json'), 'utf8'))
+    assert.ok(!config.mcpServers.memex.args.includes('--cwd'))
+    const hooks = JSON.parse(readFileSync(join(dir, '.claude/settings.json'), 'utf8')).hooks
+    assert.match(hooks.PreCompact[0].hooks[0].command, /--user/)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('generated Claude hook commands quote special characters in project paths', () => {
+  const dir = root()
+  const marker = join(dir, 'unexpected')
+  const project = join(dir, "project ' quote $(touch unexpected)")
+  mkdirSync(project)
+  try {
+    const result = node(['init', '--project', project, '--root', join(dir, 'memory'), '--levels', 'l2'])
+    assert.equal(result.status, 0, result.stderr)
+    const hooks = JSON.parse(readFileSync(join(project, '.claude/settings.json'), 'utf8')).hooks
+    const command = hooks.SessionStart[0].hooks[0].command
+    const invoked = spawnSync('/bin/sh', ['-c', command], { cwd: dir, input: JSON.stringify({ session_id: 's', cwd: project }), encoding: 'utf8', timeout: 60000, env: { ...process.env, NODE_OPTIONS: `--import=${register}` } })
+    assert.equal(invoked.status, 0, invoked.stderr)
+    assert.throws(() => readFileSync(marker), /ENOENT/)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Claude leaves a transcript in place when only workspace sharing is enabled', () => {
+  const dir = root()
+  const transcript = join(dir, 'transcript.jsonl')
+  writeFileSync(transcript, 'private transcript')
+  try {
+    const result = node(['hook', 'PreCompact', '--root', join(dir, 'memory'), '--project', dir, '--levels', 'l3'], JSON.stringify({ session_id: 's', cwd: dir, transcript_path: transcript }))
+    assert.equal(result.status, 0, result.stderr)
+    assert.match(result.stderr, /skipped.*L2/)
+    assert.equal(readFileSync(transcript, 'utf8'), 'private transcript')
+    const other = new AgentMemory({ root: join(dir, 'memory'), cwd: dir, sessionId: 'other', levels: ['l3'] })
+    try { assert.equal(other.list({ limit: 10 }).length, 0) } finally { other.close() }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('a non-UTF-8 transcript is not silently rewritten with replacement characters', () => {
+  const dir = root()
+  const transcript = join(dir, 'transcript.jsonl')
+  const bytes = Buffer.from([0x66, 0x80, 0x6f])
+  writeFileSync(transcript, bytes)
+  try {
+    const result = node(['hook', 'PreCompact', '--root', join(dir, 'memory'), '--project', dir, '--levels', 'l2'], JSON.stringify({ session_id: 's', cwd: dir, transcript_path: transcript }))
+    assert.match(result.stderr, /hook failed/i)
+    assert.deepEqual(readFileSync(transcript), bytes)
+    const owner = new AgentMemory({ root: join(dir, 'memory'), cwd: dir, sessionId: 's', levels: ['l2'] })
+    try { assert.equal(owner.list({ limit: 10 }).length, 0) } finally { owner.close() }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Claude long transcript is complete, untrusted and private to its actual session', () => {
+  const dir = root()
+  const project = join(dir, 'project')
+  const memory = join(dir, 'memory')
+  mkdirSync(project)
+  const transcriptPath = join(project, 'transcript.jsonl')
+  const prefix = '\uFEFFpassword=synthetic-private-value\n'
+  const text = `${prefix}${'x'.repeat(MEMORY_TEXT_LIMITS.body - prefix.length - 1)}😀end-of-transcript`
+  writeFileSync(transcriptPath, text)
+  try {
+    const result = node(['hook', 'PreCompact', '--root', memory, '--project', project, '--levels', 'l2,l3'], JSON.stringify({ session_id: 'session-a', cwd: project, transcript_path: transcriptPath }))
+    assert.equal(result.status, 0, result.stderr)
+    assert.doesNotMatch(result.stderr, /failed/i)
+    const owner = new AgentMemory({ root: memory, cwd: project, sessionId: 'session-a', levels: ['l2', 'l3'] })
+    const other = new AgentMemory({ root: memory, cwd: project, sessionId: 'session-b', levels: ['l2', 'l3'] })
+    try {
+      const cards = owner.list({ limit: 20 }).filter((card) => card.provenance?.source === 'claude-precompact').sort((a, b) => a.provenance.part - b.provenance.part)
+      assert.ok(cards.length >= 2)
+      assert.ok(cards.every((card) => card.scope === 'session' && card.trust === 'untrusted'))
+      assert.equal(cards.map((card) => owner.store.get(card.id).body).join(''), text)
+      assert.equal(other.list({ limit: 20 }).length, 0)
+    } finally { owner.close(); other.close() }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('an interrupted multi-part Claude transcript can be retried without losing or duplicating parts', () => {
+  const dir = root()
+  const memory = join(dir, 'memory')
+  const transcript = join(dir, 'transcript.jsonl')
+  const text = 'x'.repeat(MEMORY_TEXT_LIMITS.body) + '\nlast part'
+  writeFileSync(transcript, text)
+  const store = new LocalStoreCore({ root: memory, capacityTokens: 10000 })
+  try {
+    store.database().exec("CREATE TRIGGER fail_second_part BEFORE INSERT ON records WHEN NEW.title LIKE '%part 2/%' BEGIN SELECT RAISE(ABORT, 'injected failure'); END")
+    store.close()
+    const invoke = () => node(['hook', 'PreCompact', '--root', memory, '--project', dir, '--levels', 'l2'], JSON.stringify({ session_id: 's', cwd: dir, transcript_path: transcript }))
+    const failed = invoke()
+    assert.match(failed.stderr, /injected failure/)
+    assert.equal(readFileSync(transcript, 'utf8'), text)
+    store.database().exec('DROP TRIGGER fail_second_part')
+    store.close()
+    assert.doesNotMatch(invoke().stderr, /failed/i)
+    assert.doesNotMatch(invoke().stderr, /failed/i)
+    const engine = new AgentMemory({ root: memory, cwd: dir, sessionId: 's', levels: ['l2'] })
+    try {
+      const cards = engine.list({ limit: 10 }).filter((card) => card.provenance?.source === 'claude-precompact').sort((a, b) => a.provenance.part - b.provenance.part)
+      assert.equal(cards.length, 2)
+      assert.equal(cards.map((card) => engine.store.get(card.id).body).join(''), text)
+    } finally { engine.close() }
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})

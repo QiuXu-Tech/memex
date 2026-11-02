@@ -65,19 +65,19 @@ export function canonicalEventsFromDsh(events, options = {}) {
   const output = []
   for (const event of Array.isArray(events) ? events : []) {
     const sequence = Number.isFinite(event?.seq) ? Number(event.seq) : 0
-    const message = event?.message
+    const message = event?.message ?? (event?.type === 'user/message' ? event.data : event?.data?.message)
     if (message === undefined) {
-      output.push(canonicalContextEvent({ id: `${options.recordId ?? 'record'}:${sequence}:0`, sequence, role: 'assistant', type: 'attachment', content: contentOf(event), sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time }))
+      output.push(canonicalContextEvent({ id: `${options.recordId ?? 'record'}:${sequence}:0`, sequence, role: 'assistant', type: 'attachment', content: contentOf(event), attachments: [{ rawEvent: event }], sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time }))
       continue
     }
     const role = CONTEXT_EVENT_ROLES.includes(message.role) ? message.role : 'assistant'
     const blocks = Array.isArray(message.content) ? message.content : []
     if (blocks.length === 0) {
-      output.push({ ...canonicalContextEvent({ id: `${sequence}:0`, sequence, role, type: 'message', content: '', sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time }), checksum: '' })
+      output.push({ ...canonicalContextEvent({ id: `${options.recordId ?? 'record'}:${sequence}:0`, sequence, role, type: 'message', content: '', attachments: [{ rawEvent: event }], sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time }), checksum: '' })
       continue
     }
     for (const [index, block] of blocks.entries()) {
-      const base = { id: `${sequence}:${index}`, sequence, role, sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time }
+      const base = { id: `${options.recordId ?? 'record'}:${sequence}:${index}`, sequence, role, sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time, attachments: index === 0 ? [{ rawEvent: event }] : [] }
       if (block?.type === 'text') {
         output.push(withChecksum({ ...base, type: 'message', content: String(block.text ?? '') }))
       } else if (block?.type === 'tool-call') {
@@ -85,7 +85,7 @@ export function canonicalEventsFromDsh(events, options = {}) {
       } else if (role === 'tool' || block?.type === 'tool-result') {
         output.push(withChecksum({ ...base, type: 'tool_result', content: contentOf(block.content ?? block), toolCallId: block.id }))
       } else {
-        output.push(withChecksum({ ...base, type: 'attachment', content: contentOf(block), attachments: [{ blockType: block?.type ?? 'unknown' }] }))
+        output.push(withChecksum({ ...base, type: 'attachment', content: contentOf(block), attachments: [...base.attachments, { blockType: block?.type ?? 'unknown' }] }))
       }
     }
   }

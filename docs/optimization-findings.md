@@ -57,7 +57,7 @@ Claude Code `PreCompact` stored a generic summary ("Verbatim Claude Code transcr
 ## P1 — MCP/adapters parity gaps (fixed in 0.3.0)
 
 - ~~Tools: only 7~~ — MCP now also exposes `memory_list`, `memory_forget` and `memory_set_status` (10 tools total).
-- **L2 session mismatch (verified, documented):** hooks write with the client session id while MCP tools use `default-session`; the Claude `init` now warns on L2-only setups and recommends `--levels l2,l3`/`l3` or `--session`. L3 remains the shared path.
+- **L2 session mismatch (verified, documented):** hooks use the client session id while an MCP server without an explicit id uses a fresh random id. A shared `--session` aligns ordinary L2 writes but shares that namespace; private PreCompact copies retain their actual client session id. L3 remains the shared path.
 - Compression: MCP/Codex support cold only; digest summaries remain a DSH-tool/agent responsibility.
 - Codex has no hooks: no automatic transcript capture (manual `memory_write` only).
 

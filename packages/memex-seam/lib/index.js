@@ -103,7 +103,7 @@ export class MemoryStore extends Service {
     throw new Error('memory: wasArchived() is not implemented by this backend')
   }
 
-  /** @returns {Promise<object>} The neutral record data extracted from a compacted region. */
+  /** Backends advertising supportsAtomicContextArchive must commit input.events, the record and marker together. */
   async archiveRegion(_input) {
     throw new Error('memory: archiveRegion() is not implemented by this backend')
   }

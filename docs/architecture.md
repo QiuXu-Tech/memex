@@ -24,7 +24,7 @@ layout: default
 | 压缩可观测 | 每次**工具**压缩写 `compression_runs`（level/strategy/before-after hot/cold moved/digests/llm calls/errors/time）；`memory_compress` 报告、`/memory status`、`memory_index`、API index 暴露 history。面板/API 的 cold 压缩直接走 `compressCold`，当前不写该表（见限制）。 |
 | 会话设置 TTL | 打开数据库时 `DELETE FROM session_settings WHERE updated_at < now - settingsTtlDays`（默认 90 天）；层级读取不刷新 `updated_at`，只有 enable 等写操作刷新。 |
 | 压缩需用户同意且分批幂等 | `memory_compress` 不自动运行：容量提示（`capacity-notice`）要求模型先问用户。压缩按层/可见池进行：cold 零 LLM；digest 每批 ≤`batchRecords`/`batchChars`、单次 ≤`maxBatches` 次 LLM 调用，digest id 由 `(sessionId, level, 批内 id)` 决定，已冷记录不再选中 ⇒ 可恢复/幂等；失败批保留原记录为热 |
-| 文件是记录真源 | 每个记录一个 md 文件；SQLite 只是可重建投影与检索索引；`write`/`setStatus`/`forget` 同步文件与索引（当前代码尚未实现“从文件重建索引”的入口） |
+| 文件与数据库共同构成归档 | 每个记录有 md 文件；SQLite 还存有规范事件、归档完成标记与索引。必须一起备份；当前没有完整的文件重建入口，索引缺失且留有记录文件时会拒绝静默创建空库。 |
 | 工作区 + 作用域分区 | 读写一律带 `workspaceKey = sha256('cwd:' + cwd)[0:16]`；记录再按 `scope: session|workspace` 分池，session 池再加 `session_id` 过滤。无 cwd 时 key 退回 session id |
 | 信任分级 | 归档记录 `trust: 'derived'`（原始对话，数据不是指令）；显式写入 `trust: 'trusted'`；manual 与 `memory_open` 对非 trusted 记录追加警告 |
 
@@ -338,7 +338,7 @@ memoryMessage({
 | 压缩历史 | 工具压缩写 `compression_runs`（level/strategy/before-after/cold/digests/llm/errors/time） | API/面板 cold 压缩路径当前不写该表（见限制） |
 | 冷回热/GC | `restoreCold` rename 回热并 `cold=0`、清空 abstract（已热幂等）；`gcCold` 删除文件+索引行、最老优先、单次 ≤5000 行 | GC 是永久删除；配额 GC 只在工具压缩结束时检查 |
 | abstract 迁移/回填 | 打开时 `ALTER TABLE records ADD COLUMN abstract`；FTS 缺 abstract/含 body 时重建 5 列并全量重索引；冷记录 `abstract=''` 时从文件回填前 ~1000 字 | 热记录 abstract 为空；回填失败（文件缺失）时卡片字段仍可搜 |
-| 敏感驱逐 | `sensitivePolicy:auto` 正则扫描；命中且 L2 on → 强制 session；仅 L3 → 跳过驱逐（warn）；`tags.sensitive=['true']` | 启发式，不保证覆盖所有秘密；compaction 兜底归档不走该扫描 |
+| 敏感驱逐及压缩归档 | `sensitivePolicy:auto` 对驱逐做正则扫描；压缩归档也检查常见凭据格式。命中且 L2 on → session；仅 L3 → 跳过（warn） | 启发式，不保证覆盖所有秘密 |
 | digest ids 强制 | digest 回复缺 `ids:` 行视为失败：重试一次；仍缺则无损冷移回退（不写 digest、errors 记录） | 只影响 digest 结果质量，不阻塞压缩（回退是 lossless） |
 | 容量提示去重 | 每会话 `capacityNoticed` 记录最近一次提示时间；`capacityNoticeCooldownMs` 内不再提示 | 只影响提示，不影响压缩能力 |
 | 并发 | 单服务实例一条 `chain` 串行化所有会话的归档 job | 多进程/多实例写同一 root 无协调 |
@@ -524,7 +524,7 @@ CREATE TABLE compression_runs (
 - **层级与作用域**：层级粘性存在 `session_settings`，只增不减；新增层级只影响后续写入与读取过滤，不迁移既有记录；旧记录（升级前）全部是 workspace scope，只在 L3 可见。
 - **与 `compaction/prune` 契约同步**：`memory-evict` 依赖随附的 `compaction/prune` 影子价格事件（`shadowedRange/shadowedSeqs/shadowedTokenCount`）与 `user/message` 的 `surfaceOp:{op:'replace'}` + `sourceEventSeqs`；若上游改变 prune payload 或 replace 校验，evict 行需同步。compaction backend 本身未被替换。含图片/超限事件停批是本地加固（依赖 `dsh-llm` 的 `contentHasImage`）。
 - **冷存/压缩是本地扩展**：`records.cold`、`cold/` 目录、`memory_compress` 与 `capacity-notice` 都不写会话事件；压缩只调用 `ctx.memory.write/archiveCold/compressCold/gcCold`，提示只注入普通 memory-recall user 消息。冷记录仍遵守“文件是记录真源”；压缩的幂等/恢复由已冷过滤 + 确定性 digest id 保证，无跨进程锁。
-- **敏感策略与备份**：L1 驱逐的 `sensitivePolicy:auto` 用正则启发式（不是 DLP），命中时秘密强制 L2、仅 L3 时跳过；compaction 兜底归档没有敏感扫描。`scripts/memory-backup.mjs` 是手动备份/校验/恢复工具（`VACUUM INTO` + manifest + `--force` guard），没有定时/轮转；`GET /api/memory.metrics` 只读观测，不进 prompt。
+- **敏感策略与备份**：L1 驱逐和 compaction 兜底归档均检查常见凭据格式（不是 DLP），命中时强制 L2、仅 L3 时跳过。`scripts/memory-backup.mjs` 是手动备份/校验/恢复工具（`VACUUM INTO` + manifest + `--force` guard），没有定时/轮转；`GET /api/memory.metrics` 只读观测，不进 prompt。
 - **FTS 迁移与检索权衡**：FTS 5 列含冷摘要（前 ~1000 字），正文-only 词依赖热回退或 `memory_grep`；LIKE leg 是 OR 扫描（10k 记录 Phase-3 仍 <50ms，再大需重新评估）；`memoryQueryTerms` 是词法启发式（无词干/语义）；若上游改变 FTS 字段或 trigram 可用性，需同步 `ensure()` 迁移与回退路径。
 - **压缩历史是工具路径专有**：只有 `memory_compress`（compress 行）写 `compression_runs`；API/面板的 `compressCold` 没有写历史。若要把历史做成“所有压缩入口一致”，需要把 `recordCompression` 下沉到 `compressCold`/API。
 

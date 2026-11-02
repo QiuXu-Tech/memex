@@ -20,7 +20,7 @@ Memex treats context as a hierarchy, not a notes store: when the native context 
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
 node scripts/build-bundle.mjs && node scripts/check-bundle.mjs
-node --import ./test/register.mjs ./test/run.mjs   # offline harness (165 tests)
+node --import ./test/register.mjs ./test/run.mjs   # offline harness
 ```
 
 Install the built bundle into a DSH profile: [install guide](install.html).
@@ -28,6 +28,7 @@ Install the built bundle into a DSH profile: [install guide](install.html).
 ## Documentation
 
 - [Architecture and behavior](architecture.html) — levels, eviction seam, retrieval, compression, API/UI.
+- [Archive integrity and privacy repairs](archive-integrity-20261102.html) — atomic compaction, private transcripts, namespace and backup limitations.
 - [Evaluation](evaluation.html) — recall and scale benchmarks with methodology.
 - [Benchmark report](benchmark.html) — synthetic long-horizon availability and retrieval, with charts.
 - [Cross-session memory and issue triage (2026-11-02)](production-autonomy-20261102.html) — real-issue replay, agent and hook writes, blinded AI review, usage gaps and retained failures.

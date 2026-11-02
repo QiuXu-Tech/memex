@@ -306,6 +306,29 @@ test('interrupted archive and restore recover the indexed tier and original body
   }
 })
 
+test('interrupted compaction never commits a partial record, event or completion marker', async () => {
+  for (const fault of ['after-stage', 'after-target', 'after-commit']) {
+    await withStore(async (store, root) => {
+      store.database()
+      store.close()
+      const child = runWorker('compaction', root, 'mem_fault_archive', fault)
+      assert.equal(child.signal, 'SIGKILL', child.stderr)
+      const recovered = reopen(root)
+      try {
+        const committed = fault === 'after-commit'
+        assert.equal(recovered.wasArchived('fault-session', 'fault-compaction') !== undefined, committed)
+        assert.equal(recovered.get('mem_fault_archive') !== undefined, committed)
+        assert.equal(recovered.listContextEvents('mem_fault_archive').length, committed ? 1 : 0)
+        const retry = { sessionId: 'fault-session', compactionId: 'fault-compaction', record: { id: 'mem_fault_archive', kind: 'episode', title: 'Compaction fixture', body: 'complete archive', workspaceKey: 'wk-lock', provenance: { sessionId: 'fault-session', compactionId: 'fault-compaction' } }, events: [{ id: 'mem_fault_archive:1', sequence: 1, content: 'complete event' }] }
+        recovered.archiveRegion(retry)
+        assert.equal(recovered.get('mem_fault_archive').body, 'complete archive')
+        assert.equal(recovered.listContextEvents('mem_fault_archive')[0].content, 'complete event')
+        assert.ok(noPending(root))
+      } finally { recovered.close() }
+    })
+  }
+})
+
 test('interrupted deletion preserves a rolled-back body or finishes a committed delete', async () => {
   for (const fault of ['after-journal', 'after-commit']) {
     await withStore(async (store, root) => {

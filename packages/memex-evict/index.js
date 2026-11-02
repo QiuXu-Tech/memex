@@ -22,7 +22,7 @@
 import z from '@deepseek-ai/schemastery'
 import { toolPairingBalancedBefore } from '@deepseek-ai/dsh-compaction'
 import { contentHasImage } from '@deepseek-ai/dsh-llm'
-import { memoryCaptureScope, memoryMessage, memoryWorkspaceKey } from '@qiuxu/memex-seam'
+import { containsSensitive, memoryCaptureScope, memoryMessage, memoryWorkspaceKey } from '@qiuxu/memex-seam'
 import { createHash } from 'node:crypto'
 
 export const name = 'memory-evict'
@@ -49,18 +49,6 @@ export const Config = z.object({
    */
   sensitivePolicy: z.string().default('auto'),
 })
-
-/** High-confidence secret patterns; a hit keeps the batch session-private. */
-const SENSITIVE_PATTERNS = [
-  /-----BEGIN [A-Z ]*PRIVATE KEY-----/,
-  /\b(?:sk-[A-Za-z0-9]{16,}|ghp_[A-Za-z0-9]{20,}|AKIA[A-Z0-9]{16})\b/,
-  /(?:password|passwd|secret|api[_-]?key|access[_-]?token|authorization)\s*[:=]\s*["']?[^\s"']{6,}/i,
-]
-
-/** Whether a rendered batch looks like it contains credentials. */
-function containsSensitive(body) {
-  return SENSITIVE_PATTERNS.some((pattern) => pattern.test(body))
-}
 
 /**
  * Resolve the routed window capacity, or undefined before the first routed request.

@@ -4017,7 +4017,7 @@ await test('U6a', 'installed Claude hook commands handle real event names', asyn
   const project = makeRoot('u6a-project')
   const root = makeRoot('u6a-mem')
   const session = 'u6a-session'
-  const init = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l3'])
+  const init = runNode(CLAUDE_CLI, ['init', '--project', project, '--root', root, '--model', 'claude-sonnet-4', '--levels', 'l2,l3'])
   assert.equal(init.status, 0, init.stderr)
   const engine = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l3'] })
   try {
@@ -4044,7 +4044,7 @@ await test('U6a', 'installed Claude hook commands handle real event names', asyn
   const compact = invoke('PreCompact', { transcript_path: transcript, trigger: 'auto' })
   assert.equal(compact.status, 0, compact.stderr)
   assert.equal(compact.stdout.trim(), '', 'PreCompact must not emit unsupported hook-specific context')
-  const check = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l3'] })
+  const check = new AgentMemory({ root, cwd: project, sessionId: session, levels: ['l2', 'l3'] })
   try { assert.ok(check.search({ query: 'Claude Code transcript' }).hits.length > 0) } finally { check.close() }
 })
 
@@ -4251,23 +4251,21 @@ await test('U10', 'engine applies the model profile rerank and accepts per-integ
 })
 
 
-await test('U11', 'PreCompact archives transcripts larger than the store body limit instead of failing', async () => {
+await test('U11', 'PreCompact archives the entire long transcript in private parts', async () => {
   const project = makeRoot('u11-project')
   const root = makeRoot('u11-mem')
   const transcript = join(project, 'transcript-big.jsonl')
   const line = JSON.stringify({ type: 'assistant', message: { role: 'assistant', content: 'x'.repeat(180) } })
   const targetBytes = MEMORY_TEXT_LIMITS.body + 1024
   writeFileSync(transcript, Array.from({ length: Math.ceil(targetBytes / line.length) }, () => line).join('\n'))
-  const result = runNode(CLAUDE_CLI, ['hook', 'pre-compact', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l3'], { input: JSON.stringify({ session_id: 'u11-session', cwd: project, transcript_path: transcript, trigger: 'auto' }) })
+  const result = runNode(CLAUDE_CLI, ['hook', 'pre-compact', '--root', root, '--project', project, '--model', 'claude-sonnet-4', '--levels', 'l2'], { input: JSON.stringify({ session_id: 'u11-session', cwd: project, transcript_path: transcript, trigger: 'auto' }) })
   assert.equal(result.status, 0, result.stderr)
   assert.equal(result.stdout.trim(), '')
-  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u11-session', levels: ['l3'], model: 'claude-sonnet-4', agent: 'test' })
+  const engine = new AgentMemory({ root, cwd: project, sessionId: 'u11-session', levels: ['l2'], model: 'claude-sonnet-4', agent: 'test' })
   try {
-    const hit = engine.search({ query: 'Claude Code transcript' }).hits[0]
-    assert.ok(hit, 'the oversized transcript must still be archived')
-    const record = engine.store.get(hit.id)
-    assert.ok(record.body.length <= MEMORY_TEXT_LIMITS.body, 'archived body must respect the store limit')
-    assert.ok(record.body.includes('clipped at the memory body limit'), 'the archive must be explicitly clipped')
+    const records = engine.list({ limit: 20 }).filter((card) => card.provenance?.source === 'claude-precompact').sort((a, b) => a.provenance.part - b.provenance.part)
+    assert.ok(records.length > 1, 'the oversized transcript must be split')
+    assert.equal(records.map((card) => engine.store.get(card.id).body).join(''), readFileSync(transcript, 'utf8'))
   } finally {
     engine.close()
   }
@@ -4456,7 +4454,7 @@ await test('U19', 'Claude init --session aligns hooks and MCP L2 namespace; appr
   const args = mcp.mcpServers['memex'].args
   assert.deepEqual(args.slice(args.indexOf('--session'), args.indexOf('--session') + 2), ['--session', 'proj-session'])
   const settings = JSON.parse(readFileSync(join(project, '.claude', 'settings.json'), 'utf8'))
-  assertIncludes(settings.hooks.SessionStart[0].hooks[0].command, '--session "proj-session"')
+  assertIncludes(settings.hooks.SessionStart[0].hooks[0].command, "--session 'proj-session'")
   // Seed a session-scoped (L2) record; the hook must use the explicit --session
   // rather than the payload's client session id.
   const engine = new AgentMemory({ root, cwd: project, sessionId: 'proj-session', levels: ['l2', 'l3'], model: 'claude-opus-5-5', agent: 'test' })

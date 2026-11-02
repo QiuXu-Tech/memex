@@ -2,9 +2,9 @@
  * Filesystem + SQLite storage core for `@qiuxu/memex` and agent adapters.
  *
  * One record is one human-readable markdown file with JSON-in-YAML
- * frontmatter; the SQLite database holds only the queryable projection and an
- * FTS5 index. Files stay the source of truth so the model can reach them with
- * ordinary file tools, while the index makes ranked lookup cheap.
+ * frontmatter; SQLite holds the queryable projection, FTS5 index, canonical
+ * context events and archive markers. Both the files and matching database
+ * are needed for a complete backup.
  *
  * All methods are synchronous against SQLite except the file reads/writes that
  * wrap them; the service exposes them behind promises for the seam.
@@ -12,7 +12,7 @@
  * @module @qiuxu/memex-core/store
  */
 import { DatabaseSync } from 'node:sqlite'
-import { mkdirSync, readFileSync, existsSync } from 'node:fs'
+import { mkdirSync, readFileSync, readdirSync, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { createHash, randomUUID } from 'node:crypto'
 import { canonicalContextEvent, checksumContextEvent } from './context-events.js'
@@ -88,6 +88,17 @@ function bodyTermHashes(body) {
 const DB_FILE = 'index.db'
 const RECORDS_DIR = 'records'
 
+/** Detect surviving store data before creating a new, empty index. */
+function hasFiles(path) {
+  if (!existsSync(path)) return false
+  for (const entry of readdirSync(path, { withFileTypes: true })) {
+    if (entry.isDirectory()) {
+      if (hasFiles(join(path, entry.name))) return true
+    } else return true
+  }
+  return false
+}
+
 /** JSON.stringify that survives a circular argv-like object. */
 function safeJson(value, fallback = '{}') {
   try {
@@ -135,7 +146,7 @@ export function recordBodyFromFile(fileText) {
   if (end < 0) return fileText
   // `renderRecordFile` terminates the file with one newline; strip exactly that
   // terminator so a write→read round-trip returns the body that was written.
-  const body = fileText.slice(end + 5).replace(/^\n/, '')
+  const body = fileText.slice(end + 5)
   return body.endsWith('\n') ? body.slice(0, -1) : body
 }
 
@@ -178,6 +189,9 @@ export class LocalStoreCore {
   /** Lazily create the root, records tree and database. */
   ensure() {
     if (this.ready) return this
+    if (!existsSync(join(this.root, DB_FILE)) && [RECORDS_DIR, 'cold', '.file-transactions', '.file-recovery'].some((name) => hasFiles(join(this.root, name)))) {
+      throw new Error('memory: index is missing while archive files exist; restore the matching database backup before opening the store')
+    }
     mkdirSync(join(this.root, RECORDS_DIR), { recursive: true, mode: 0o700 })
     const db = new DatabaseSync(join(this.root, DB_FILE))
     db.exec('PRAGMA busy_timeout = 5000')
@@ -449,7 +463,24 @@ export class LocalStoreCore {
     try {
       const db = this.database()
       return withFileTransaction(this.root, db, (stage) => {
+        if (options.archive !== undefined) {
+          const archivedId = db.prepare('SELECT record_id FROM archived_compactions WHERE session_id = ? AND compaction_id = ?')
+            .get(options.archive.sessionId, options.archive.compactionId)?.record_id
+          if (archivedId !== undefined) {
+            const archived = this.get(archivedId)
+            if (archived === undefined) throw new Error('memory: archived compaction points to a missing record')
+            if (options.archive.events === undefined || record.provenance?.archiveIntegrityVersion !== 2 || this.wasArchived(options.archive.sessionId, options.archive.compactionId, { requireComplete: true }) !== undefined) return archived
+            if (archivedId !== record.id) throw new Error('memory: legacy archive id does not match the requested compaction')
+            db.prepare('DELETE FROM context_events WHERE record_id = ?').run(archivedId)
+          }
+        }
         const existing = db.prepare('SELECT rowid, path, cold, created_at FROM records WHERE id = ?').get(record.id)
+        if (options.archive !== undefined && existing !== undefined) {
+          const prior = this.get(record.id)
+          if (prior?.provenance?.sessionId !== options.archive.sessionId || prior?.provenance?.compactionId !== options.archive.compactionId) {
+            throw new Error('memory: archive record id already belongs to a different record')
+          }
+        }
         if (options.expectedPath !== undefined && existing?.path !== options.expectedPath) {
           throw new Error('memory: record changed during update; retry after re-reading it')
         }
@@ -495,6 +526,11 @@ export class LocalStoreCore {
         const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
         const cardText = [record.title, record.summary, record.useWhen, tagsText(record.tags)].join(' ')
         for (const hash of new Set([...bodyTermHashes(record.body), ...bodyTermHashes(cardText)])) insertTerm.run(record.id, hash)
+        if (options.archive !== undefined) {
+          this.insertContextEvents(db, record.id, options.archive.events)
+          db.prepare('INSERT INTO archived_compactions (session_id, compaction_id, record_id, created_at) VALUES (?, ?, ?, ?) ON CONFLICT(session_id, compaction_id) DO UPDATE SET record_id = excluded.record_id, created_at = excluded.created_at')
+            .run(options.archive.sessionId, options.archive.compactionId, record.id, Date.now())
+        }
         return { ...record, path: file }
       }, (error) => this.logger?.()?.warn?.('memory: file cleanup deferred: ' + error.message))
     } catch (error) {
@@ -542,9 +578,7 @@ export class LocalStoreCore {
    * @param {{recordId:string, events:object[]}} input
    * @returns {number} number of persisted events
    */
-  appendContextEvents({ recordId, events } = {}) {
-    if (typeof recordId !== 'string' || recordId.length === 0) throw new TypeError('appendContextEvents: recordId is required')
-    const db = this.database()
+  insertContextEvents(db, recordId, events) {
     const insert = db.prepare(`
       INSERT INTO context_events (event_id, record_id, session_id, sequence, role, type, content, content_format, tool_name, tool_call_id, tool_arguments, attachments_json, checksum, created_at)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -554,14 +588,21 @@ export class LocalStoreCore {
         tool_call_id=excluded.tool_call_id, tool_arguments=excluded.tool_arguments,
         attachments_json=excluded.attachments_json, checksum=excluded.checksum, created_at=excluded.created_at
     `)
+    let count = 0
+    for (const input of Array.isArray(events) ? events : []) {
+      const event = canonicalContextEvent({ ...input, recordId })
+      insert.run(event.id, recordId, event.sessionId ?? null, event.sequence, event.role, event.type, event.content, event.contentFormat, event.toolName ?? null, event.toolCallId ?? null, event.toolArguments === undefined ? null : event.toolArguments, JSON.stringify(event.attachments), checksumContextEvent(event), event.createdAt ?? 0)
+      count += 1
+    }
+    return count
+  }
+
+  appendContextEvents({ recordId, events } = {}) {
+    if (typeof recordId !== 'string' || recordId.length === 0) throw new TypeError('appendContextEvents: recordId is required')
+    const db = this.database()
     db.exec('BEGIN IMMEDIATE')
     try {
-      let count = 0
-      for (const input of Array.isArray(events) ? events : []) {
-        const event = canonicalContextEvent({ ...input, recordId })
-        insert.run(event.id, recordId, event.sessionId ?? null, event.sequence, event.role, event.type, event.content, event.contentFormat, event.toolName ?? null, event.toolCallId ?? null, event.toolArguments === undefined ? null : event.toolArguments, JSON.stringify(event.attachments), checksumContextEvent(event), event.createdAt ?? 0)
-        count += 1
-      }
+      const count = this.insertContextEvents(db, recordId, events)
       db.exec('COMMIT')
       return count
     } catch (error) {
@@ -1508,23 +1549,21 @@ export class LocalStoreCore {
   }
 
   /** Whether this compaction already has a record. */
-  wasArchived(sessionId, compactionId) {
-    return this.database().prepare('SELECT record_id FROM archived_compactions WHERE session_id = ? AND compaction_id = ?')
+  wasArchived(sessionId, compactionId, options = {}) {
+    const id = this.database().prepare('SELECT record_id FROM archived_compactions WHERE session_id = ? AND compaction_id = ?')
       .get(sessionId, compactionId)?.record_id
+    if (id === undefined || !options.requireComplete) return id
+    const record = this.get(id)
+    const expected = record?.provenance?.shadowedEventCount
+    const expectedSeqs = record?.provenance?.shadowedSeqs
+    if (record?.provenance?.archiveIntegrityVersion !== 2 || !Number.isSafeInteger(expected) || expected <= 0 || !Array.isArray(expectedSeqs) || expectedSeqs.length !== expected || new Set(expectedSeqs).size !== expected) return undefined
+    const sequences = new Set(this.listContextEvents(id).filter((event) => event.attachments.some((item) => item?.rawEvent !== undefined)).map((event) => event.sequence))
+    return sequences.size === expected && expectedSeqs.every((seq) => sequences.has(seq)) ? id : undefined
   }
 
   /** Persist an archived compaction and its idempotency marker. */
   archiveRegion(input) {
-    const existingId = this.wasArchived(input.sessionId, input.compactionId)
-    if (existingId !== undefined) {
-      const existing = this.get(existingId)
-      if (existing !== undefined) return existing
-    }
-    const record = this.normalize(input.record)
-    const stored = this.write(record)
-    this.database().prepare('INSERT OR IGNORE INTO archived_compactions (session_id, compaction_id, record_id, created_at) VALUES (?, ?, ?, ?)')
-      .run(input.sessionId, input.compactionId, stored.id, Date.now())
-    return stored
+    return this.write(input.record, { archive: { sessionId: input.sessionId, compactionId: input.compactionId, events: input.events } })
   }
 
   /** No-op hook: SQLite WAL commits synchronously enough for this store. */

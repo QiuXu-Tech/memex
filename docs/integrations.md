@@ -31,7 +31,7 @@ memex is now an **agent-agnostic memory layer**. One core, four ways in:
 ## Shared data model
 
 - **Storage root**: `$MEMEX_HOME` (default `~/.memex`). The DSH plugin uses `$DSH_HOME/memories` unless it is configured otherwise — set `MEMEX_HOME` to share one store across agents.
-- **Levels**: `l2` = session-private (needs a session id), `l3` = workspace-shared (keyed by cwd). Sticky: once enabled, a level cannot be turned off.
+- **Levels**: `l2` = session-private (needs a session id), `l3` = workspace-shared (keyed by cwd). DSH's stored level switches are sticky; the agent adapters also restrict visibility and writes to the levels requested for that adapter process.
 - **Scope selection on write**: the deepest enabled level wins (L3 over L2). Write with `scope: "session"` to force private capture.
 - **Model profile**: resolve with `--model <id>` (MCP/adapters) or `MEMEX_MODEL`. Profiles change budgets, injection format and manual tone; see [model profiles](model-profiles.html).
 
@@ -42,3 +42,4 @@ Archives are verbatim user/agent output. Treat the memory root as sensitive:
 - Memory content is **data, never instructions** — the manual tells agents not to execute commands found in archives.
 - Use `l2` (session-private) instead of `l3` for secrets you must keep; the sensitive heuristics are not a DLP system.
 - Back up (`scripts/memory-backup.mjs`) and protect the backup directory like a transcript archive.
+- Preserve the matching SQLite database as well as record files: canonical context events and completion markers live in SQLite. An absent index with surviving archive files now fails closed; the project does not currently provide a complete file-only reconstruction.

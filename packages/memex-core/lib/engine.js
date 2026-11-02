@@ -13,6 +13,7 @@
  */
 import { existsSync } from 'node:fs'
 import { homedir } from 'node:os'
+import { randomUUID } from 'node:crypto'
 import { join } from 'node:path'
 import { LocalStoreCore } from './store.js'
 import { materializeStoreContext } from './context-pager.js'
@@ -49,7 +50,7 @@ export class AgentMemory {
   constructor(options = {}) {
     this.root = options.root ?? defaultMemoryRoot()
     this.cwd = options.cwd ?? process.cwd()
-    this.sessionId = options.sessionId ?? process.env.MEMEX_SESSION ?? process.env.DSH_MEMORY_SESSION ?? 'default-session'
+    this.sessionId = options.sessionId ?? (process.env.MEMEX_SESSION || process.env.DSH_MEMORY_SESSION || `session-${randomUUID()}`)
     this.workspaceKey = options.workspaceKey ?? memoryWorkspaceKey(this.cwd, this.sessionId)
     this.agent = options.agent ?? 'generic-agent'
     this.modelId = options.model ?? ''
@@ -60,7 +61,8 @@ export class AgentMemory {
       sessionCapacityTokens: options.sessionCapacityTokens ?? 10_000_000,
       defaultLevels: { l2: false, l3: false },
     })
-    const requested = Array.isArray(options.levels) && options.levels.length > 0 ? options.levels : this.profile.levels
+    const requested = Array.isArray(options.levels) ? options.levels : this.profile.levels
+    this.requestedLevels = new Set(requested)
     for (const level of requested) {
       if (level === 'l2' || level === 'l3') this.store.enableLevel(this.sessionId, level)
     }
@@ -69,7 +71,8 @@ export class AgentMemory {
 
   /** Current sticky levels for this session. */
   get levels() {
-    return this.store.getLevels(this.sessionId)
+    const sticky = this.store.getLevels(this.sessionId)
+    return { l2: sticky.l2 && this.requestedLevels.has('l2'), l3: sticky.l3 && this.requestedLevels.has('l3') }
   }
 
   /** Scopes visible under the current levels. */

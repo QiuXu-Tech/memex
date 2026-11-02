@@ -67,6 +67,7 @@ export default class LocalMemoryStore extends MemoryStore {
       defaultLevels: resolveDefaultLevels(config),
     }
     this.root = this.config.root
+    this.supportsAtomicContextArchive = true
     this.core = new LocalStoreCore({
       root: this.root,
       capacityTokens: this.config.capacityTokens,
@@ -187,8 +188,8 @@ export default class LocalMemoryStore extends MemoryStore {
     return this.core.evictionStats(sessionId)
   }
 
-  async wasArchived(sessionId, compactionId) {
-    return this.core.wasArchived(sessionId, compactionId)
+  async wasArchived(sessionId, compactionId, options) {
+    return this.core.wasArchived(sessionId, compactionId, options)
   }
 
   async archiveRegion(input) {
