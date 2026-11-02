@@ -1,0 +1,15 @@
+[
+  {
+    "repo": "marmelab/react-admin",
+    "issue": 10892,
+    "reason": "compressed source archive exceeded the 50 MiB limit",
+    "partialArchiveBytes": 53477376,
+    "partialArchiveSha256": "1b06fd591e0774dfa2a973bcec76120ca2383df2bd5701ee8138b4ec8c100a8b"
+  },
+  {
+    "repo": "lodash/lodash",
+    "issue": 6274,
+    "reason": "the issue appeared in an earlier baseline-only screening; excluded to keep this follow-up independent",
+    "screenedManifestSha256": "134c67ee30bcdfed79228b7383438c4908d82d1f3059c426bdbafd765646cd7f"
+  }
+]
