@@ -237,9 +237,9 @@ agent loop                    agent/pre-step waterfall (memory 注册在最前) 
 压缩归档成功后写入 pending 列表；下一次 `pre-step` 一次性取走并清空：
 
 ```
-[MEMORY CHECKPOINT] The context that just left the window (seq #a–#b, ~N tokens) is archived
-losslessly as mem_xxx (episode) "<title>". The checkpoint above is a lossy summary; call
-memory_open mem_xxx when you need exact details, or memory_grep a distinctive string.
+[MEMORY CHECKPOINT] The context that just left the window (seq #a–#b, ~N tokens) was archived
+as mem_xxx (episode) "<title>". The rendered record may omit or clip content;
+call memory_open mem_xxx or memory_grep for details.
 ```
 
 多条回执换行拼接后 `clip(..., 1600)`；source 额外携带 `recordIds`。
@@ -503,7 +503,7 @@ CREATE TABLE compression_runs (
 | 回执消息 | 1600 字符（多条合并后 clip） | `memory-checkpoint` 行 → `memex-checkpoint/lib/checkpoint.js` |
 | 召回消息 | `recallMaxChars`（默认 600，下限 200） | `memory-checkpoint` 行 Config → `memex-checkpoint/lib/checkpoint.js` |
 | 工具内联 | `maxInlineChars`（默认 14_000，≥400，仅结果渲染上限）与 `memory_open` 的 `maxChars`（默认 30_000，2000-60000）分页上限 | `memory-tools` 行 Config → `dsh-tool-memory/lib/tools.js` |
-| 归档正文字节 | 2 MiB，超出截断 | `memory-checkpoint` 行归档渲染 `memex-checkpoint/lib/render.js` |
+| 渲染归档正文字节 | 2 MiB，超出截断；源事件封套另存 SQLite | `memory-checkpoint` 行归档渲染 `memex-checkpoint/lib/render.js` |
 | L3 池容量 | `capacityTokens`（默认 100M）≈ 400 MB 文本；正文 trigram ≈13 bytes/token（旧方案 100M 池可达 GB 级），card-only FTS 降到 MB 级 | `memory` 行 Config；**热池**软目标，冷存不计 |
 | L2 池容量 | `sessionCapacityTokens`（默认 10M / 会话）≈ 40 MB 文本；SQLite+FTS 约 2 倍 | `memory` 行 Config；**热池**软目标，冷存不计 |
 | 冷存 | 无软容量；文件在 `cold/` 下，仅检索/打开时读盘；可选 `coldQuotaTokens` 配额 | `memory` 行；`records.cold` |

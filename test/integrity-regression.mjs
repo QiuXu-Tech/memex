@@ -1,6 +1,6 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
-import { lstatSync, mkdtempSync, mkdirSync, readFileSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
+import { lstatSync, mkdtempSync, mkdirSync, readFileSync, readdirSync, renameSync, rmSync, symlinkSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
@@ -17,10 +17,13 @@ import { createSession, createSurfaceEvents, createCompactionEvent } from './fix
 
 const register = fileURLToPath(new URL('./register.mjs', import.meta.url))
 const cli = fileURLToPath(new URL('../packages/memex-claude/bin/cli.mjs', import.meta.url))
+const codexCli = fileURLToPath(new URL('../packages/memex-codex/bin/cli.mjs', import.meta.url))
 const mcp = fileURLToPath(new URL('../packages/memex-mcp/bin/server.mjs', import.meta.url))
 const initFault = fileURLToPath(new URL('./claude-init-fault.mjs', import.meta.url))
+const codexInitFault = fileURLToPath(new URL('./codex-init-fault.mjs', import.meta.url))
 const root = () => mkdtempSync(join(tmpdir(), 'memex-integrity-test-'))
 const node = (args, input = '', env = {}) => spawnSync(process.execPath, ['--import', register, cli, ...args], { input, encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
+const codexNode = (args, env = {}) => spawnSync(process.execPath, ['--import', register, codexCli, ...args], { encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
 const pause = () => new Promise((resolve) => setTimeout(resolve, 100))
 
 test('compaction record, canonical events and marker roll back together and can be retried', () => {
@@ -262,6 +265,120 @@ test('Claude init refuses to replace a dangling configuration symlink', () => {
     const result = node(['init', '--project', project, '--root', join(dir, 'memory')])
     assert.notEqual(result.status, 0)
     assert.ok(lstatSync(link).isSymbolicLink())
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Codex init preserves existing backup and instructions when adding configuration', () => {
+  const dir = root()
+  const project = join(dir, 'project')
+  const codexHome = join(dir, 'codex')
+  mkdirSync(project); mkdirSync(codexHome)
+  const agents = join(project, 'AGENTS.md')
+  const config = join(codexHome, 'config.toml')
+  const oldInstructions = '# Existing instructions\n\n  \n'
+  const oldConfig = 'model = "existing"\n\n  \n'
+  writeFileSync(agents, oldInstructions)
+  writeFileSync(config, oldConfig)
+  writeFileSync(`${config}.bak`, 'older backup must survive\n')
+  try {
+    const args = ['init', '--project', project, '--root', join(dir, 'memory'), '--write-config']
+    const first = codexNode(args, { CODEX_HOME: codexHome })
+    assert.equal(first.status, 0, first.stderr)
+    assert.ok(readFileSync(agents, 'utf8').startsWith(oldInstructions))
+    assert.ok(readFileSync(config, 'utf8').startsWith(oldConfig))
+    assert.equal(readFileSync(`${config}.bak`, 'utf8'), 'older backup must survive\n')
+    const backups = readdirSync(codexHome).filter((name) => /^config\.toml\.memex-.*\.bak$/.test(name))
+    assert.equal(backups.length, 1)
+    assert.equal(readFileSync(join(codexHome, backups[0]), 'utf8'), oldConfig)
+    const updatedAgents = readFileSync(agents, 'utf8')
+    const updatedConfig = readFileSync(config, 'utf8')
+    const second = codexNode(args, { CODEX_HOME: codexHome })
+    assert.equal(second.status, 0, second.stderr)
+    assert.equal(readFileSync(agents, 'utf8'), updatedAgents)
+    assert.equal(readFileSync(config, 'utf8'), updatedConfig)
+    assert.equal(readdirSync(codexHome).filter((name) => /^config\.toml\.memex-.*\.bak$/.test(name)).length, 1)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('an interrupted Codex config write preserves the old configuration', () => {
+  const dir = root(), project = join(dir, 'project'), codexHome = join(dir, 'codex')
+  mkdirSync(project); mkdirSync(codexHome)
+  const config = join(codexHome, 'config.toml')
+  const original = 'model = "preserve"\n'
+  writeFileSync(config, original)
+  try {
+    const result = codexNode(['init', '--project', project, '--root', join(dir, 'memory'), '--write-config'], { CODEX_HOME: codexHome, NODE_OPTIONS: `--import=${codexInitFault}` })
+    assert.notEqual(result.status, 0)
+    assert.equal(readFileSync(config, 'utf8'), original)
+    assert.throws(() => readFileSync(join(project, 'AGENTS.md'), 'utf8'), { code: 'ENOENT' })
+    const retry = codexNode(['init', '--project', project, '--root', join(dir, 'memory'), '--write-config'], { CODEX_HOME: codexHome })
+    assert.equal(retry.status, 0, retry.stderr)
+    assert.ok(readFileSync(config, 'utf8').startsWith(original))
+    assert.ok(readFileSync(config, 'utf8').includes('[mcp_servers.memex]'))
+    const backups = readdirSync(codexHome).filter((name) => /^config\.toml\.memex-.*\.bak$/.test(name))
+    assert.equal(backups.length, 2)
+    for (const backup of backups) assert.equal(readFileSync(join(codexHome, backup), 'utf8'), original)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Codex init rejects incomplete manual markers before changing configuration', () => {
+  const dir = root(), project = join(dir, 'project'), codexHome = join(dir, 'codex')
+  mkdirSync(project); mkdirSync(codexHome)
+  const agents = join(project, 'AGENTS.md'), config = join(codexHome, 'config.toml')
+  writeFileSync(agents, '# existing\n<!-- memex:start -->\nunfinished\n')
+  writeFileSync(config, 'model = "keep"\n')
+  try {
+    const result = codexNode(['init', '--project', project, '--root', join(dir, 'memory'), '--write-config'], { CODEX_HOME: codexHome })
+    assert.notEqual(result.status, 0)
+    assert.equal(readFileSync(agents, 'utf8'), '# existing\n<!-- memex:start -->\nunfinished\n')
+    assert.equal(readFileSync(config, 'utf8'), 'model = "keep"\n')
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Codex init respects an existing quoted memex server table', () => {
+  const dir = root(), project = join(dir, 'project'), codexHome = join(dir, 'codex')
+  mkdirSync(project); mkdirSync(codexHome)
+  const config = join(codexHome, 'config.toml'), original = '[mcp_servers."memex"]\ncommand = "other"\n'
+  writeFileSync(config, original)
+  try {
+    const result = codexNode(['init', '--project', project, '--root', join(dir, 'memory'), '--write-config'], { CODEX_HOME: codexHome })
+    assert.equal(result.status, 0, result.stderr)
+    assert.equal(readFileSync(config, 'utf8'), original)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Codex init respects inline memex entries but ignores a commented table', () => {
+  const dir = root()
+  try {
+    for (const [name, original, shouldChange] of [
+      ['inline', '[mcp_servers]\nmemex = { command = "other" }\n', false],
+      ['array', '[[mcp_servers.memex]]\ncommand = "other"\n', false],
+      ['comment', '# [mcp_servers.memex]\nmodel = "existing"\n', true],
+    ]) {
+      const project = join(dir, `${name}-project`), codexHome = join(dir, `${name}-codex`)
+      mkdirSync(project); mkdirSync(codexHome)
+      const config = join(codexHome, 'config.toml')
+      writeFileSync(config, original)
+      const result = codexNode(['init', '--project', project, '--root', join(dir, 'memory'), '--write-config'], { CODEX_HOME: codexHome })
+      assert.equal(result.status, 0, result.stderr)
+      const current = readFileSync(config, 'utf8')
+      assert.equal(current !== original, shouldChange)
+      if (shouldChange) assert.ok(current.startsWith(original) && current.includes('\n[mcp_servers.memex]\n'))
+    }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('Codex init retains an existing configuration symlink', () => {
+  const dir = root(), project = join(dir, 'project'), codexHome = join(dir, 'codex')
+  mkdirSync(project); mkdirSync(codexHome)
+  const config = join(codexHome, 'config.toml'), target = join(dir, 'shared.toml')
+  writeFileSync(target, 'model = "existing"\n')
+  symlinkSync(target, config)
+  try {
+    const result = codexNode(['init', '--project', project, '--root', join(dir, 'memory'), '--write-config'], { CODEX_HOME: codexHome })
+    assert.equal(result.status, 0, result.stderr)
+    assert.ok(lstatSync(config).isSymbolicLink())
+    assert.ok(readFileSync(target, 'utf8').includes('[mcp_servers.memex]'))
   } finally { rmSync(dir, { recursive: true, force: true }) }
 })
 

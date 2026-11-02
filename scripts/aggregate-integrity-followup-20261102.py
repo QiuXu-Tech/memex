@@ -54,9 +54,10 @@ def independent_scores(base, task):
     def rows(r):
         for candidate in r['candidates']:
             assert candidate['references'] and set(candidate['references']) <= evidence
+            assert any(f'{kind}:{candidate["id"]}' in candidate['references'] for kind in ('final', 'source', 'session'))
         return {v['id']: (v['score'], tuple(sorted(v['unsupportedClaims']))) for v in r['candidates']}
     original = [rows(r) for r in ratings]
-    if any(set(x) != set(key) or any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in x.values()) for x in original):
+    if any(set(x) != set(key) or any(v[0] is not None and (type(v[0]) is not int or v[0] not in (0, 1, 2)) for v in x.values()) for x in original):
         return None
     different = original[0] != original[1]
     numeric_difference = any(original[0][k][0] != original[1][k][0] for k in key)
@@ -68,6 +69,8 @@ def independent_scores(base, task):
         final = rows(read(path)['rating'])
         if set(final) != set(key) or any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in final.values()):
             return None
+    if any(type(v[0]) is not int or v[0] not in (0, 1, 2) for v in final.values()):
+        return None
     return {'scores': {key[k]: v[0] for k, v in final.items()}, 'adjudicated': different,
             'numericReviewerDisagreement': numeric_difference,
             'reviewerScores': [{key[k]: v[0] for k, v in review.items()} for review in original]}
@@ -92,6 +95,24 @@ def successful_opens(base, row):
             'automaticCheckpointThenSuccessfulOpen': bool(opened & set(chain.get('automaticCheckpointIds') or []))}
 
 
+def verified_input_totals(base, row):
+    if not row['completePair']:
+        return None
+    total = {}
+    for arm in ('baseline', 'memex'):
+        total[arm] = 0
+        for stage in (1, 2):
+            name = f'{arm}-s{stage}'
+            expected = a.model_tokens(row['sessions'][name])
+            trace = base / row['id'] / 'traces'
+            events = a.events(trace / f'{name}-events.jsonl') + a.events(trace / f'{name}-recovery-events.jsonl')
+            observed = a.message_contexts([events])
+            if expected is None or observed is None or expected['input'] != observed['inputTokens']:
+                return None
+            total[arm] += expected['input']
+    return total
+
+
 def cohort(name, source):
     base = BASE / name
     data = a.cohort(name)
@@ -104,6 +125,7 @@ def cohort(name, source):
     unblind = verify_blind(base, published) if finished_review else []
     assert not data['rawConsistencyProblems'], data['rawConsistencyProblems']
     simplified = []
+    verified_inputs = []
     directions = collections.Counter()
     later = {arm: collections.Counter() for arm in ('baseline', 'memex')}
     for row in data['tasks']:
@@ -113,7 +135,7 @@ def cohort(name, source):
             assert row['review']['status'] == 'VALID' and score['scores'] == row['review']['scoresByArm']
             delta = score['scores']['memex'] - score['scores']['baseline']
             directions['memexHigher' if delta > 0 else 'baselineHigher' if delta < 0 else 'tie'] += 1
-        elif row['review']['status'] == 'VALID' and row['completePair']:
+        elif row['review']['status'] == 'VALID' and row['completePair'] and all(type(row['review'].get('scoresByArm', {}).get(arm)) is int for arm in ('baseline', 'memex')):
             raise AssertionError(f'{tid}: independent scoring mismatch')
         for arm in ('baseline', 'memex'):
             if not row['completePair']:
@@ -123,9 +145,16 @@ def cohort(name, source):
             exposure = a.later_discussion_exposure(BASE / source / f'{tid}.issue.json', trace)
             for k, v in exposure.items(): later[arm][k] += int(bool(v))
         opens = successful_opens(base, row) if row.get('started') else {'agentWriteThenSuccessfulOpen': False, 'automaticCheckpointThenSuccessfulOpen': False}
+        verified = verified_input_totals(base, row)
+        if verified:
+            verified_inputs.append(verified)
         simplified.append({'id': tid, 'issueUrl': row['issueUrl'], 'sourceCommit': row['sourceCommit'],
             'discussionSpanDays': tasks[tid].get('discussionSpanDays'), 'completePair': row['completePair'],
-            'sessionStatuses': {k: v.get('status') for k, v in row['sessions'].items()},
+            'started': row['started'], 'finished': row['finished'],
+            'runnerErrorType': (row['runnerError'] or {}).get('type'),
+            'sessionStatuses': {k: {'status': v.get('status'), 'completed': v.get('responseCompleted'),
+                                    'timeout': v.get('timeout'), 'unavailableToolAttempts': len(v.get('unavailableToolAttempts') or [])} for k, v in row['sessions'].items()},
+            'missingSessions': sorted({f'{arm}-s{stage}' for arm in ('baseline', 'memex') for stage in (1, 2)} - set(row['sessions'])),
             'sessionRecoveries': sum(bool(v.get('recovery')) for v in row['sessions'].values()),
             'reviewStatus': row['review']['status'], 'blindReview': score,
             **opens})
@@ -133,6 +162,8 @@ def cohort(name, source):
     result = {k: v for k, v in data.items() if k != 'tasks'}
     result.update({'sourceCommit': reg['memexCommit'], 'registrationSha256': digest(base / 'registration.json'),
                    'independentlyRecountedDirections': dict(directions), 'laterDiscussionExposure': {k: dict(v) for k, v in later.items()},
+                   'verifiedInputPairs': len(verified_inputs),
+                   'verifiedInputTotals': {arm: sum(item[arm] for item in verified_inputs) for arm in ('baseline', 'memex')},
                    'successfulOpens': {key: sum(t[key] for t in simplified) for key in ('agentWriteThenSuccessfulOpen', 'automaticCheckpointThenSuccessfulOpen')},
                    'tasks': simplified if finished_review else []})
     return result, unblind

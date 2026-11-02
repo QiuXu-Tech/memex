@@ -11,8 +11,9 @@
  *   node bin/cli.mjs config [--root DIR] [--model ID]
  *   node bin/cli.mjs status [--project DIR]
  */
-import { existsSync, readFileSync, writeFileSync, copyFileSync, mkdirSync } from 'node:fs'
-import { dirname, join, resolve } from 'node:path'
+import { constants, readFileSync, writeFileSync, copyFileSync, mkdirSync, lstatSync, statSync, realpathSync, renameSync, unlinkSync } from 'node:fs'
+import { randomUUID } from 'node:crypto'
+import { basename, dirname, join, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { homedir } from 'node:os'
 import { AgentMemory, defaultMemoryRoot } from '@qiuxu/memex-core/engine'
@@ -60,31 +61,78 @@ ${manual}
 <!-- memex:end -->`
 }
 
+function readExisting(path) {
+  let info
+  try { info = lstatSync(path) } catch (error) { if (error?.code === 'ENOENT') return ''; throw error }
+  if (info.isSymbolicLink()) realpathSync(path)
+  return readFileSync(path, 'utf8')
+}
+
+function writeAtomic(path, value) {
+  mkdirSync(dirname(path), { recursive: true })
+  let info
+  try { info = lstatSync(path) } catch (error) { if (error?.code !== 'ENOENT') throw error }
+  const target = info?.isSymbolicLink() ? realpathSync(path) : path
+  const mode = info ? statSync(target).mode & 0o777 : 0o600
+  const temporary = join(dirname(target), `.memex-codex-${basename(path)}-${randomUUID()}.tmp`)
+  try {
+    writeFileSync(temporary, value, { flag: 'wx', mode })
+    renameSync(temporary, target)
+  } finally {
+    try { unlinkSync(temporary) } catch (error) { if (error?.code !== 'ENOENT') throw error }
+  }
+}
+
+// Conservatively avoid appending to a TOML table that may already define memex.
+function hasMemexServer(config) {
+  const parent = '(?:mcp_servers|"mcp_servers"|\'mcp_servers\')'
+  const key = '(?:memex|"memex"|\'memex\')'
+  const table = new RegExp(`^\\s*\\[{1,2}\\s*${parent}\\s*\\.\\s*${key}\\s*(?:\\.|\\])`)
+  const dotted = new RegExp(`^\\s*${parent}\\s*\\.\\s*${key}\\s*(?:\\.|=)`)
+  const parentTable = new RegExp(`^\\s*\\[\\s*${parent}\\s*\\]\\s*(?:#.*)?$`)
+  const parentInline = new RegExp(`^\\s*${parent}\\s*=\\s*\\{`)
+  const member = new RegExp(`^\\s*${key}\\s*=`)
+  let inParent = false
+  for (const line of config.split('\n')) {
+    if (/^\s*#/.test(line)) continue
+    if (table.test(line) || dotted.test(line) || parentInline.test(line)) return true
+    if (/^\s*\[/.test(line)) inParent = parentTable.test(line)
+    else if (inParent && member.test(line)) return true
+  }
+  return false
+}
+
 function init() {
   const profile = resolveModelProfile(args.model)
   mkdirSync(args.project, { recursive: true })
   const agentsPath = join(args.project, 'AGENTS.md')
-  const existing = existsSync(agentsPath) ? readFileSync(agentsPath, 'utf8') : ''
+  const existing = readExisting(agentsPath)
   const section = manualSection(profile)
   let next
-  if (existing.includes('<!-- memex:start -->')) {
+  const starts = existing.match(/<!-- memex:start -->/g) ?? []
+  const ends = existing.match(/<!-- memex:end -->/g) ?? []
+  if (starts.length !== ends.length || starts.length > 1 || (starts.length === 1 && !/<!-- memex:start -->[\s\S]*?<!-- memex:end -->/.test(existing))) throw new Error(`${agentsPath}: incomplete or duplicate memex manual markers`)
+  if (starts.length === 1) {
     next = existing.replace(/<!-- memex:start -->[\s\S]*?<!-- memex:end -->/, section)
   } else {
-    next = `${existing.trimEnd()}${existing.length > 0 ? '\n\n' : ''}${section}\n`
+    next = existing ? `${existing}${existing.endsWith('\n') ? '' : '\n'}\n${section}\n` : `${section}\n`
   }
-  writeFileSync(agentsPath, next)
+  let configMessage
   if (args.writeConfig) {
     mkdirSync(CONFIG_DIR, { recursive: true })
-    const current = existsSync(CONFIG_PATH) ? readFileSync(CONFIG_PATH, 'utf8') : ''
-    if (!current.includes('[mcp_servers.memex]')) {
-      if (current.length > 0) copyFileSync(CONFIG_PATH, `${CONFIG_PATH}.bak`)
-      writeFileSync(CONFIG_PATH, `${current.trimEnd()}${current.length > 0 ? '\n\n' : ''}${tomlSnippet()}\n`)
-      console.log(`  Config:        ${CONFIG_PATH} (backup: ${CONFIG_PATH}.bak)`)
+    const current = readExisting(CONFIG_PATH)
+    if (!hasMemexServer(current)) {
+      const backup = current ? `${CONFIG_PATH}.memex-${randomUUID()}.bak` : undefined
+      if (backup) copyFileSync(CONFIG_PATH, backup, constants.COPYFILE_EXCL)
+      const prefix = current ? `${current}${current.endsWith('\n') ? '' : '\n'}\n` : ''
+      writeAtomic(CONFIG_PATH, `${prefix}${tomlSnippet()}\n`)
+      configMessage = `  Config:        ${CONFIG_PATH}${backup ? ` (backup: ${backup})` : ''}`
     } else {
-      console.log(`  Config:        ${CONFIG_PATH} already has [mcp_servers.memex]`)
-      console.log('  Review the existing entry: a fixed --cwd pins all sessions to that workspace.')
+      configMessage = `  Config:        ${CONFIG_PATH} may already define memex; left unchanged.\n  Review the existing entry: a fixed --cwd pins all sessions to that workspace.`
     }
   }
+  if (next !== existing) writeAtomic(agentsPath, next)
+  if (configMessage) console.log(configMessage)
   console.log(`memex + Codex (${profile.id} profile) initialised in ${args.project}`)
   console.log(`  AGENTS.md:     ${agentsPath}`)
   console.log(`  Memory root:   ${args.root}`)

@@ -1,0 +1,47 @@
+{
+  "taskOrder": [
+    "integrity-01",
+    "integrity-07",
+    "integrity-02",
+    "integrity-05",
+    "integrity-03",
+    "integrity-08",
+    "integrity-04",
+    "integrity-06"
+  ],
+  "armOrder": {
+    "integrity-01": [
+      "baseline",
+      "memex"
+    ],
+    "integrity-07": [
+      "memex",
+      "baseline"
+    ],
+    "integrity-02": [
+      "baseline",
+      "memex"
+    ],
+    "integrity-05": [
+      "baseline",
+      "memex"
+    ],
+    "integrity-03": [
+      "baseline",
+      "memex"
+    ],
+    "integrity-08": [
+      "memex",
+      "baseline"
+    ],
+    "integrity-04": [
+      "memex",
+      "baseline"
+    ],
+    "integrity-06": [
+      "baseline",
+      "memex"
+    ]
+  },
+  "nonce": "795a2eb0e82b38d3b001c06e5721cb128f1cdeebef627ef348d1510bdb04d01b"
+}
