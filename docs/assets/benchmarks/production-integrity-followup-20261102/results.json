@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-02T05:04:16.527061+00:00",
+  "generatedAt": "2026-11-02T06:12:29.233725+00:00",
   "firstEight": {
     "status": "FINISHED",
     "reviewStatus": "FINISHED",
@@ -139,6 +139,29 @@
         "exposedLaterComment": 2
       }
     },
+    "verifiedInputPairs": 1,
+    "verifiedInputTotals": {
+      "baseline": 127803,
+      "memex": 149792
+    },
+    "allStartedSessionToolAttempts": {
+      "baseline": {
+        "total": 325,
+        "exactRepeated": 2,
+        "memory": 0,
+        "source": 225,
+        "archive": 100,
+        "other": 0
+      },
+      "memex": {
+        "total": 333,
+        "exactRepeated": 2,
+        "memory": 43,
+        "source": 265,
+        "archive": 25,
+        "other": 0
+      }
+    },
     "successfulOpens": {
       "agentWriteThenSuccessfulOpen": 3,
       "automaticCheckpointThenSuccessfulOpen": 8
@@ -150,11 +173,69 @@
         "sourceCommit": "8bd11143a95ef7653733e043981b46255a790e79",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 34,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 32,
+            "archive": 2,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 16,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 10,
+            "archive": 6,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 27,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 24,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 4,
+            "exactRepeated": 0,
+            "memory": 4,
+            "source": 0,
+            "archive": 0,
+            "other": 0
+          }
         },
         "sessionRecoveries": 2,
         "reviewStatus": "VALID",
@@ -185,11 +266,69 @@
         "sourceCommit": "805fadd286dea7053b875f71c91222444c5d1228",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 29,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 22,
+            "archive": 7,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 12,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 6,
+            "archive": 6,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 32,
+            "exactRepeated": 1,
+            "memory": 3,
+            "source": 26,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 8,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 5,
+            "archive": 0,
+            "other": 0
+          }
         },
         "sessionRecoveries": 2,
         "reviewStatus": "VALID",
@@ -220,11 +359,69 @@
         "sourceCommit": "9358b480889c2c858aa7ca276125977ce62e22c1",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 9,
+            "archive": 2,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 6,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 1,
+            "archive": 5,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 6,
+            "archive": 2,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 2,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 0,
+            "archive": 0,
+            "other": 0
+          }
         },
         "sessionRecoveries": 0,
         "reviewStatus": "VALID",
@@ -255,11 +452,69 @@
         "sourceCommit": "2faedf9db171a2e924d58d313992621054417971",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 9,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 5,
+            "archive": 4,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 5,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 0,
+            "archive": 5,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 20,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 14,
+            "archive": 4,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 18,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 12,
+            "archive": 5,
+            "other": 0
+          }
         },
         "sessionRecoveries": 1,
         "reviewStatus": "VALID",
@@ -290,11 +545,69 @@
         "sourceCommit": "cad3d26f92c266f22d8d8877f53c7350d9718eee",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 45,
+            "exactRepeated": 1,
+            "memory": 0,
+            "source": 38,
+            "archive": 7,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 17,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 0,
+            "archive": 17,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 29,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 27,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 13,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 4,
+            "archive": 7,
+            "other": 0
+          }
         },
         "sessionRecoveries": 2,
         "reviewStatus": "VALID",
@@ -325,11 +638,69 @@
         "sourceCommit": "53d1e8a6199fff85a8d6cd7d9bf0f3487f0cf798",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 30,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 27,
+            "archive": 3,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 5,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 0,
+            "archive": 5,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 39,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 38,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 43,
+            "exactRepeated": 0,
+            "memory": 9,
+            "source": 34,
+            "archive": 0,
+            "other": 0
+          }
         },
         "sessionRecoveries": 3,
         "reviewStatus": "VALID",
@@ -360,11 +731,69 @@
         "sourceCommit": "89a34a44b7a6a5311dc84f3b8a1b8b45c0905aea",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 33,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 27,
+            "archive": 6,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 6,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 1,
+            "archive": 5,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 16,
+            "exactRepeated": 1,
+            "memory": 2,
+            "source": 10,
+            "archive": 4,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 4,
+            "exactRepeated": 0,
+            "memory": 4,
+            "source": 0,
+            "archive": 0,
+            "other": 0
+          }
         },
         "sessionRecoveries": 1,
         "reviewStatus": "VALID",
@@ -395,11 +824,69 @@
         "sourceCommit": "5b9c009d9fc13d73bc48cf884778214402713739",
         "discussionSpanDays": null,
         "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
         "sessionStatuses": {
-          "baseline-s1": "success",
-          "baseline-s2": "success",
-          "memex-s1": "success",
-          "memex-s2": "success"
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 1
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 1
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 42,
+            "exactRepeated": 1,
+            "memory": 0,
+            "source": 35,
+            "archive": 7,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 25,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 12,
+            "archive": 13,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 29,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 27,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 39,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 38,
+            "archive": 0,
+            "other": 0
+          }
         },
         "sessionRecoveries": 3,
         "reviewStatus": "VALID",
@@ -427,121 +914,3271 @@
     ]
   },
   "longFollowup": {
-    "status": "IN_PROGRESS",
-    "reviewStatus": "NOT_STARTED",
+    "status": "FINISHED",
+    "reviewStatus": "FINISHED",
     "registered": 25,
-    "started": 7,
-    "finished": 5,
-    "completePairs": 5,
-    "validRatedPairs": 0,
-    "scoreDirections": {},
-    "posthocSensitivityRatedPairs": 0,
-    "posthocSensitivityDirections": {},
-    "meanScore": {
-      "baseline": null,
-      "memex": null
+    "started": 25,
+    "finished": 25,
+    "completePairs": 22,
+    "validRatedPairs": 21,
+    "scoreDirections": {
+      "tie": 15,
+      "baselineHigher": 3,
+      "memexHigher": 3
     },
-    "fullTokenPairs": 3,
+    "posthocSensitivityRatedPairs": 21,
+    "posthocSensitivityDirections": {
+      "tie": 15,
+      "baselineHigher": 3,
+      "memexHigher": 3
+    },
+    "meanScore": {
+      "baseline": 0.9523809523809523,
+      "memex": 0.9523809523809523
+    },
+    "fullTokenPairs": 12,
     "tokenTotals": {
       "baseline": {
-        "input": 593123,
-        "output": 23203,
-        "cacheRead": 459621,
-        "cacheWrite": 133197
+        "input": 2675727,
+        "output": 95775,
+        "cacheRead": 2179416,
+        "cacheWrite": 495183
       },
       "memex": {
-        "input": 865342,
-        "output": 25432,
-        "cacheRead": 722381,
-        "cacheWrite": 142596
+        "input": 2881215,
+        "output": 85968,
+        "cacheRead": 2399474,
+        "cacheWrite": 480619
       }
     },
     "completePairToolAttempts": {
       "baseline": {
-        "total": 173,
-        "exactRepeated": 1,
+        "total": 919,
+        "exactRepeated": 5,
         "memory": 0,
-        "source": 108,
-        "archive": 65,
+        "source": 639,
+        "archive": 280,
         "other": 0
       },
       "memex": {
-        "total": 180,
+        "total": 770,
         "exactRepeated": 0,
-        "memory": 24,
-        "source": 114,
-        "archive": 40,
+        "memory": 94,
+        "source": 509,
+        "archive": 165,
         "other": 2
       }
     },
     "completeTokenPairMessageContexts": {
       "baseline": {
-        "messageIds": 55,
-        "inputTokens": 593123
+        "messageIds": 232,
+        "inputTokens": 2675727
       },
       "memex": {
-        "messageIds": 67,
-        "inputTokens": 865342
+        "messageIds": 224,
+        "inputTokens": 2881215
       }
     },
     "completeTokenPairFirstSessionInitialContexts": {
       "baseline": {
-        "sessions": 3,
-        "inputTokens": 16718
+        "sessions": 12,
+        "inputTokens": 70119
       },
       "memex": {
-        "sessions": 3,
-        "inputTokens": 23423
+        "sessions": 12,
+        "inputTokens": 96931
       }
     },
     "completePairClientListPriceUsd": {
-      "baseline": 0.629078,
-      "memex": 0.713591
+      "baseline": 3.204043,
+      "memex": 2.9989
     },
     "sessionOutcomes": {
-      "notCompletedByStatus": {},
-      "resumedAfterBudget": 2,
-      "resumedAndCompleted": 2,
-      "unavailableToolAttempts": 2,
+      "notCompletedByStatus": {
+        "NO_RESULT": 4
+      },
+      "resumedAfterBudget": 16,
+      "resumedAndCompleted": 16,
+      "unavailableToolAttempts": 4,
       "unexpectedToolAttempts": 0,
       "runnerErrors": 0
     },
     "recoveryInputReconciliation": {
       "matched": 0,
-      "different": 2,
+      "different": 16,
       "missing": 0
     },
     "posthocDiscussionExposure": {},
-    "clientListPriceKnownUsd": 1.457349,
-    "clientListPriceMissingSessions": 0,
-    "agentWrites": 4,
-    "writtenRecordOpenedNext": 4,
-    "writtenRecordAutomaticallyRecalled": 4,
-    "automaticCheckpoints": 5,
-    "automaticCheckpointOpenedNext": 5,
-    "automaticCheckpointRecalledNext": 5,
-    "reviewUsageByModel": {},
+    "clientListPriceKnownUsd": 6.570441,
+    "clientListPriceMissingSessions": 4,
+    "agentWrites": 12,
+    "writtenRecordOpenedNext": 11,
+    "writtenRecordAutomaticallyRecalled": 12,
+    "automaticCheckpoints": 24,
+    "automaticCheckpointOpenedNext": 24,
+    "automaticCheckpointRecalledNext": 24,
+    "reviewUsageByModel": {
+      "gpt-6.1-sol": {
+        "calls": 22,
+        "promptTokens": 458016,
+        "completionTokens": 13401,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "deepseek-flash": {
+        "calls": 22,
+        "promptTokens": 324060,
+        "completionTokens": 9825,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "gemini-3.8-flash": {
+        "calls": 22,
+        "promptTokens": 423679,
+        "completionTokens": 12775,
+        "missingUsageOrFailedAttempts": 0
+      }
+    },
     "rawConsistencyProblems": [],
     "sourceCommit": "c47e4456451d3e9990be40ce52bfbe6fda6cc7cc",
     "registrationSha256": "42bcfa4e01901234bc19ba73c5340f7798840abb299fe699e4ae4e6837839164",
-    "independentlyRecountedDirections": {},
+    "independentlyRecountedDirections": {
+      "tie": 15,
+      "baselineHigher": 3,
+      "memexHigher": 3
+    },
     "laterDiscussionExposure": {
       "baseline": {
-        "hasLaterComments": 5,
-        "openedLaterComment": 4,
-        "exposedLaterComment": 5
+        "hasLaterComments": 22,
+        "openedLaterComment": 17,
+        "exposedLaterComment": 21
       },
       "memex": {
-        "hasLaterComments": 5,
-        "openedLaterComment": 5,
-        "exposedLaterComment": 5
+        "hasLaterComments": 22,
+        "openedLaterComment": 15,
+        "exposedLaterComment": 15
+      }
+    },
+    "verifiedInputPairs": 12,
+    "verifiedInputTotals": {
+      "baseline": 2675727,
+      "memex": 2881215
+    },
+    "allStartedSessionToolAttempts": {
+      "baseline": {
+        "total": 1022,
+        "exactRepeated": 5,
+        "memory": 0,
+        "source": 723,
+        "archive": 299,
+        "other": 0
+      },
+      "memex": {
+        "total": 843,
+        "exactRepeated": 0,
+        "memory": 98,
+        "source": 569,
+        "archive": 174,
+        "other": 2
       }
     },
     "successfulOpens": {
-      "agentWriteThenSuccessfulOpen": 4,
-      "automaticCheckpointThenSuccessfulOpen": 5
+      "agentWriteThenSuccessfulOpen": 11,
+      "automaticCheckpointThenSuccessfulOpen": 24
     },
-    "tasks": []
+    "tasks": [
+      {
+        "id": "long-01",
+        "issueUrl": "https://github.com/SBoudrias/Inquirer.js/issues/1783",
+        "sourceCommit": "967430c576751c294ca3be8bc60b7b93f3cc1a07",
+        "discussionSpanDays": 338,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 26,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 18,
+            "archive": 8,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 7,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 3,
+            "archive": 4,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 28,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 19,
+            "archive": 7,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 20,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 2,
+            "archive": 16,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": false,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 1,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-02",
+        "issueUrl": "https://github.com/actions/checkout/issues/2484",
+        "sourceCommit": "f548e57e544e1ff5a4c46bf1e1b8685f8e4a348a",
+        "discussionSpanDays": 35,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 31,
+            "exactRepeated": 2,
+            "memory": 0,
+            "source": 29,
+            "archive": 2,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 23,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 13,
+            "archive": 10,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 27,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 24,
+            "archive": 1,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 43,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 4,
+            "archive": 36,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 0,
+            "memex": 0
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 0,
+              "memex": 0
+            },
+            {
+              "baseline": 1,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-03",
+        "issueUrl": "https://github.com/brianc/node-postgres/issues/3700",
+        "sourceCommit": "2a5850fb0db18f5e40a642bbb4a4743de412ab54",
+        "discussionSpanDays": 102,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 23,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 18,
+            "archive": 5,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 7,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 29,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 24,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 3,
+            "archive": 5,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 1
+            },
+            {
+              "memex": 2,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-04",
+        "issueUrl": "https://github.com/chaijs/chai/issues/1728",
+        "sourceCommit": "8cd999c735f025102a4294217309650f60d8cf96",
+        "discussionSpanDays": 33,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 15,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 12,
+            "archive": 3,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 8,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 5,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 17,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 12,
+            "archive": 4,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 2,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 1,
+            "archive": 0,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 0,
+            "memex": 0
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 0,
+              "memex": 0
+            },
+            {
+              "baseline": 2,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-05",
+        "issueUrl": "https://github.com/grpc/grpc-node/issues/3068",
+        "sourceCommit": "ca7f83f719ba1e69ee9b832b84d5375de15eeca6",
+        "discussionSpanDays": 107,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 25,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 22,
+            "archive": 3,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 20,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 9,
+            "archive": 11,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 18,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 15,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 5,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 2,
+            "archive": 0,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 2,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-06",
+        "issueUrl": "https://github.com/jimp-dev/jimp/issues/1402",
+        "sourceCommit": "e1bfa9340b6a889a5c107e6f074683ea3ca6f55d",
+        "discussionSpanDays": 186,
+        "completePair": false,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "NO_RESULT",
+            "completed": false,
+            "timeout": true,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [
+          "baseline-s2"
+        ],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 20,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 14,
+            "archive": 6,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 24,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 22,
+            "archive": 1,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 8,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 5,
+            "archive": 1,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "NOT_REVIEWABLE",
+        "blindReview": null,
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-07",
+        "issueUrl": "https://github.com/less/less.js/issues/4371",
+        "sourceCommit": "713331655e437401dfea6cd233893a69762734e1",
+        "discussionSpanDays": 148,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 48,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 43,
+            "archive": 5,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 35,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 30,
+            "archive": 5,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 38,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 35,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 6,
+            "exactRepeated": 0,
+            "memory": 6,
+            "source": 0,
+            "archive": 0,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 3,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 0
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 0
+            },
+            {
+              "memex": 1,
+              "baseline": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-08",
+        "issueUrl": "https://github.com/nock/nock/issues/2919",
+        "sourceCommit": "415fc645e663aa79d3f9aaa8abbb82f4229ee524",
+        "discussionSpanDays": 284,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 39,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 34,
+            "archive": 5,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 35,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 29,
+            "archive": 6,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 32,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 30,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 29,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 22,
+            "archive": 5,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 4,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 0
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 0
+            },
+            {
+              "memex": 2,
+              "baseline": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-09",
+        "issueUrl": "https://github.com/node-red/node-red/issues/5852",
+        "sourceCommit": "22d019c4eccac31d95f3b6167c7334de72ef02a6",
+        "discussionSpanDays": 7,
+        "completePair": false,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "NO_RESULT",
+            "completed": false,
+            "timeout": true,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 54,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 48,
+            "archive": 6,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 2,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 0,
+            "archive": 2,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 27,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 24,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 12,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 8,
+            "archive": 3,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "NOT_REVIEWABLE",
+        "blindReview": null,
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-10",
+        "issueUrl": "https://github.com/stylelint/stylelint/issues/9297",
+        "sourceCommit": "106c1f044c6cab65a6749d9cc15437177b37e8da",
+        "discussionSpanDays": 29,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 34,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 26,
+            "archive": 8,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 27,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 10,
+            "archive": 17,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 19,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 17,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 8,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 4,
+            "archive": 3,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-11",
+        "issueUrl": "https://github.com/terser/terser/issues/1724",
+        "sourceCommit": "707c978227009aa6948f2a1048aa59f5fdd5bc40",
+        "discussionSpanDays": 58,
+        "completePair": false,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "NO_RESULT",
+            "completed": false,
+            "timeout": true,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "NO_RESULT",
+            "completed": false,
+            "timeout": true,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [
+          "baseline-s2",
+          "memex-s2"
+        ],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 27,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 22,
+            "archive": 5,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 2,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 1,
+            "archive": 1,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "NOT_REVIEWABLE",
+        "blindReview": null,
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": false
+      },
+      {
+        "id": "long-12",
+        "issueUrl": "https://github.com/typestack/class-validator/issues/2677",
+        "sourceCommit": "2e1a5c27dbd65b80e27fe96b49bd6e6641fa3603",
+        "discussionSpanDays": 157,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 28,
+            "exactRepeated": 1,
+            "memory": 0,
+            "source": 23,
+            "archive": 5,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 9,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 2,
+            "archive": 7,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 18,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 15,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 7,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 2,
+            "archive": 3,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 1
+            },
+            {
+              "memex": 2,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-13",
+        "issueUrl": "https://github.com/vitest-dev/vitest/issues/11019",
+        "sourceCommit": "9859940af07aa45b21aee1dea65d18ead9cfa321",
+        "discussionSpanDays": 12,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 1
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 19,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 19,
+            "archive": 0,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 6,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 0,
+            "archive": 6,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 35,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 34,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 19,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 16,
+            "archive": 0,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 1
+            },
+            {
+              "memex": 2,
+              "baseline": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-14",
+        "issueUrl": "https://github.com/cucumber/cucumber-js/issues/2912",
+        "sourceCommit": "ad2e9a326aeaa3ed667cee4ddc7b87b464424197",
+        "discussionSpanDays": 23,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 15,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 12,
+            "archive": 3,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 4,
+            "archive": 7,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 17,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 14,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 3,
+            "archive": 6,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-15",
+        "issueUrl": "https://github.com/nodejs/undici/issues/5500",
+        "sourceCommit": "f0719c4d2148181d850f1ca486fbb8042dfbd01e",
+        "discussionSpanDays": 86,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 2
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 13,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 9,
+            "archive": 4,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 18,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 9,
+            "archive": 9,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 15,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 12,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 28,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 16,
+            "archive": 7,
+            "other": 2
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 1
+            },
+            {
+              "memex": 2,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-16",
+        "issueUrl": "https://github.com/tapjs/tapjs/issues/1049",
+        "sourceCommit": "8ab84eb1daae6dedbfcf07b8e0bf2c2a965ad81f",
+        "discussionSpanDays": 537,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 67,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 50,
+            "archive": 17,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 3,
+            "archive": 8,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 20,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 16,
+            "archive": 1,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 3,
+            "archive": 4,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 1,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-17",
+        "issueUrl": "https://github.com/nestjs/nest/issues/13158",
+        "sourceCommit": "8d9dd9d174921cc03882d1b39e91fb7bb1b1ca5a",
+        "discussionSpanDays": 981,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 28,
+            "exactRepeated": 1,
+            "memory": 0,
+            "source": 23,
+            "archive": 5,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 16,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 8,
+            "archive": 8,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 30,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 24,
+            "archive": 5,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 13,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 2,
+            "archive": 9,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-18",
+        "issueUrl": "https://github.com/helmetjs/helmet/issues/460",
+        "sourceCommit": "e91d88f6586656531df99816a2e26441feab0e45",
+        "discussionSpanDays": 11,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 12,
+            "exactRepeated": 1,
+            "memory": 0,
+            "source": 10,
+            "archive": 2,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 5,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 2,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 10,
+            "archive": 1,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 3,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 2,
+            "archive": 0,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": false,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 1,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-19",
+        "issueUrl": "https://github.com/jasmine/jasmine/issues/2075",
+        "sourceCommit": "6f499cda8d24daa734fb26a9becbeac6586d56f7",
+        "discussionSpanDays": 371,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 22,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 11,
+            "archive": 11,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 9,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 0,
+            "archive": 9,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 23,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 21,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 7,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 0,
+            "archive": 5,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-20",
+        "issueUrl": "https://github.com/mqttjs/MQTT.js/issues/1939",
+        "sourceCommit": "0ceae419ff0542105fa258b3ae9760798db7b44d",
+        "discussionSpanDays": 719,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 1
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 15,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 9,
+            "archive": 6,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 7,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 1,
+            "archive": 6,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 15,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 13,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 5,
+            "source": 6,
+            "archive": 0,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": false,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 1,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-21",
+        "issueUrl": "https://github.com/google/zx/issues/876",
+        "sourceCommit": "1e1cdb46b96f2d54abc04c713c91b069000c9c50",
+        "discussionSpanDays": 29,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 34,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 28,
+            "archive": 6,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 6,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 2,
+            "archive": 4,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 18,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 16,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 2,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 0,
+            "archive": 0,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 2,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 2,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-22",
+        "issueUrl": "https://github.com/mswjs/msw/issues/2635",
+        "sourceCommit": "28c74aad78b343a77e62978349c8317df398d408",
+        "discussionSpanDays": 251,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 9,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 4,
+            "archive": 5,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 35,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 21,
+            "archive": 14,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 29,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 26,
+            "archive": 0,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 6,
+            "source": 0,
+            "archive": 5,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 1,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 1,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": true,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-23",
+        "issueUrl": "https://github.com/socketio/socket.io/issues/5512",
+        "sourceCommit": "1eaa582d3b453e3e6f522300ed05b10da0a0799b",
+        "discussionSpanDays": 122,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 21,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 17,
+            "archive": 4,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 19,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 11,
+            "archive": 8,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 9,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 5,
+            "archive": 4,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 4,
+            "archive": 6,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 2,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 2
+            },
+            {
+              "memex": 2,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-24",
+        "issueUrl": "https://github.com/webpack/webpack/issues/20536",
+        "sourceCommit": "7aca5347fb904adc4be488896b0ec589b800a0ed",
+        "discussionSpanDays": 229,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 19,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 13,
+            "archive": 6,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 18,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 11,
+            "archive": 7,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 14,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 10,
+            "archive": 4,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 4,
+            "archive": 5,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "UNRESOLVED_DISAGREEMENT",
+        "blindReview": null,
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "long-25",
+        "issueUrl": "https://github.com/open-telemetry/opentelemetry-js/issues/6816",
+        "sourceCommit": "cc2a315edefa532f84812c568aeeb1eabb01c924",
+        "discussionSpanDays": 83,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 33,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 29,
+            "archive": 4,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 8,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 0,
+            "archive": 8,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 23,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 21,
+            "archive": 2,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 20,
+            "exactRepeated": 0,
+            "memory": 5,
+            "source": 0,
+            "archive": 15,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 2
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": false,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 2
+            },
+            {
+              "memex": 1,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      }
+    ]
+  },
+  "postPermissionsSmoke": {
+    "status": "FINISHED",
+    "reviewStatus": "FINISHED",
+    "registered": 2,
+    "started": 2,
+    "finished": 2,
+    "completePairs": 2,
+    "validRatedPairs": 2,
+    "scoreDirections": {
+      "tie": 1,
+      "baselineHigher": 1
+    },
+    "posthocSensitivityRatedPairs": 2,
+    "posthocSensitivityDirections": {
+      "tie": 1,
+      "baselineHigher": 1
+    },
+    "meanScore": {
+      "baseline": 1.5,
+      "memex": 1
+    },
+    "fullTokenPairs": 2,
+    "tokenTotals": {
+      "baseline": {
+        "input": 302091,
+        "output": 13066,
+        "cacheRead": 267622,
+        "cacheWrite": 34367
+      },
+      "memex": {
+        "input": 475181,
+        "output": 18488,
+        "cacheRead": 418015,
+        "cacheWrite": 57052
+      }
+    },
+    "completePairToolAttempts": {
+      "baseline": {
+        "total": 61,
+        "exactRepeated": 0,
+        "memory": 0,
+        "source": 28,
+        "archive": 33,
+        "other": 0
+      },
+      "memex": {
+        "total": 62,
+        "exactRepeated": 0,
+        "memory": 5,
+        "source": 41,
+        "archive": 16,
+        "other": 0
+      }
+    },
+    "completeTokenPairMessageContexts": {
+      "baseline": {
+        "messageIds": 34,
+        "inputTokens": 302091
+      },
+      "memex": {
+        "messageIds": 38,
+        "inputTokens": 475181
+      }
+    },
+    "completeTokenPairFirstSessionInitialContexts": {
+      "baseline": {
+        "sessions": 2,
+        "inputTokens": 9997
+      },
+      "memex": {
+        "sessions": 2,
+        "inputTokens": 13945
+      }
+    },
+    "completePairClientListPriceUsd": {
+      "baseline": 0.135153,
+      "memex": 0.205671
+    },
+    "sessionOutcomes": {
+      "notCompletedByStatus": {},
+      "resumedAfterBudget": 0,
+      "resumedAndCompleted": 0,
+      "unavailableToolAttempts": 0,
+      "unexpectedToolAttempts": 0,
+      "runnerErrors": 0
+    },
+    "recoveryInputReconciliation": {
+      "matched": 0,
+      "different": 0,
+      "missing": 0
+    },
+    "posthocDiscussionExposure": {},
+    "clientListPriceKnownUsd": 0.340823,
+    "clientListPriceMissingSessions": 0,
+    "agentWrites": 0,
+    "writtenRecordOpenedNext": 0,
+    "writtenRecordAutomaticallyRecalled": 0,
+    "automaticCheckpoints": 2,
+    "automaticCheckpointOpenedNext": 2,
+    "automaticCheckpointRecalledNext": 2,
+    "reviewUsageByModel": {
+      "gpt-6.1-sol": {
+        "calls": 2,
+        "promptTokens": 35153,
+        "completionTokens": 1318,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "deepseek-flash": {
+        "calls": 2,
+        "promptTokens": 27787,
+        "completionTokens": 868,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "gemini-3.8-flash": {
+        "calls": 2,
+        "promptTokens": 37394,
+        "completionTokens": 1861,
+        "missingUsageOrFailedAttempts": 0
+      }
+    },
+    "rawConsistencyProblems": [],
+    "sourceCommit": "e24bc06af255c648017cb7895905ef53f4e95a56",
+    "registrationSha256": "ad8146e9cfb1132a8982aea6a400cb3c002d0ffe682a0aa4fc4fdf1081bfd5a2",
+    "independentlyRecountedDirections": {
+      "tie": 1,
+      "baselineHigher": 1
+    },
+    "laterDiscussionExposure": {
+      "baseline": {
+        "hasLaterComments": 2,
+        "openedLaterComment": 2,
+        "exposedLaterComment": 2
+      },
+      "memex": {
+        "hasLaterComments": 2,
+        "openedLaterComment": 1,
+        "exposedLaterComment": 1
+      }
+    },
+    "verifiedInputPairs": 2,
+    "verifiedInputTotals": {
+      "baseline": 302091,
+      "memex": 475181
+    },
+    "allStartedSessionToolAttempts": {
+      "baseline": {
+        "total": 61,
+        "exactRepeated": 0,
+        "memory": 0,
+        "source": 28,
+        "archive": 33,
+        "other": 0
+      },
+      "memex": {
+        "total": 62,
+        "exactRepeated": 0,
+        "memory": 5,
+        "source": 41,
+        "archive": 16,
+        "other": 0
+      }
+    },
+    "successfulOpens": {
+      "agentWriteThenSuccessfulOpen": 0,
+      "automaticCheckpointThenSuccessfulOpen": 2
+    },
+    "tasks": [
+      {
+        "id": "perm-01",
+        "issueUrl": "https://github.com/zloirock/core-js/issues/1556",
+        "sourceCommit": "49ba68e12dab5395ad4690f5f75731a704ab3a4e",
+        "discussionSpanDays": 38,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 15,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 9,
+            "archive": 6,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 16,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 8,
+            "archive": 8,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 8,
+            "archive": 2,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 5,
+            "archive": 5,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 1
+            },
+            {
+              "memex": 2,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      },
+      {
+        "id": "perm-02",
+        "issueUrl": "https://github.com/localForage/localForage/issues/1101",
+        "sourceCommit": "fb78c77ee583fb727a558c439b5174aca38c5924",
+        "discussionSpanDays": 308,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 18,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 9,
+            "archive": 9,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 12,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 2,
+            "archive": 10,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 20,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 13,
+            "archive": 6,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 21,
+            "exactRepeated": 0,
+            "memory": 3,
+            "source": 15,
+            "archive": 3,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "baseline": 2,
+            "memex": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "baseline": 1,
+              "memex": 1
+            },
+            {
+              "baseline": 2,
+              "memex": 1
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      }
+    ]
+  },
+  "extraIssue": {
+    "status": "FINISHED",
+    "reviewStatus": "FINISHED",
+    "registered": 1,
+    "started": 1,
+    "finished": 1,
+    "completePairs": 1,
+    "validRatedPairs": 1,
+    "scoreDirections": {
+      "tie": 1
+    },
+    "posthocSensitivityRatedPairs": 1,
+    "posthocSensitivityDirections": {
+      "tie": 1
+    },
+    "meanScore": {
+      "baseline": 1,
+      "memex": 1
+    },
+    "fullTokenPairs": 1,
+    "tokenTotals": {
+      "baseline": {
+        "input": 77479,
+        "output": 5213,
+        "cacheRead": 65749,
+        "cacheWrite": 11697
+      },
+      "memex": {
+        "input": 144089,
+        "output": 7446,
+        "cacheRead": 128263,
+        "cacheWrite": 15784
+      }
+    },
+    "completePairToolAttempts": {
+      "baseline": {
+        "total": 19,
+        "exactRepeated": 0,
+        "memory": 0,
+        "source": 10,
+        "archive": 9,
+        "other": 0
+      },
+      "memex": {
+        "total": 20,
+        "exactRepeated": 0,
+        "memory": 1,
+        "source": 12,
+        "archive": 7,
+        "other": 0
+      }
+    },
+    "completeTokenPairMessageContexts": {
+      "baseline": {
+        "messageIds": 11,
+        "inputTokens": 77479
+      },
+      "memex": {
+        "messageIds": 14,
+        "inputTokens": 144089
+      }
+    },
+    "completeTokenPairFirstSessionInitialContexts": {
+      "baseline": {
+        "sessions": 1,
+        "inputTokens": 5001
+      },
+      "memex": {
+        "sessions": 1,
+        "inputTokens": 6973
+      }
+    },
+    "completePairClientListPriceUsd": {
+      "baseline": 0.047294,
+      "memex": 0.069828
+    },
+    "sessionOutcomes": {
+      "notCompletedByStatus": {},
+      "resumedAfterBudget": 0,
+      "resumedAndCompleted": 0,
+      "unavailableToolAttempts": 0,
+      "unexpectedToolAttempts": 0,
+      "runnerErrors": 0
+    },
+    "recoveryInputReconciliation": {
+      "matched": 0,
+      "different": 0,
+      "missing": 0
+    },
+    "posthocDiscussionExposure": {},
+    "clientListPriceKnownUsd": 0.117122,
+    "clientListPriceMissingSessions": 0,
+    "agentWrites": 0,
+    "writtenRecordOpenedNext": 0,
+    "writtenRecordAutomaticallyRecalled": 0,
+    "automaticCheckpoints": 1,
+    "automaticCheckpointOpenedNext": 1,
+    "automaticCheckpointRecalledNext": 1,
+    "reviewUsageByModel": {
+      "gpt-6.1-sol": {
+        "calls": 1,
+        "promptTokens": 17450,
+        "completionTokens": 583,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "deepseek-flash": {
+        "calls": 1,
+        "promptTokens": 13684,
+        "completionTokens": 449,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "gemini-3.8-flash": {
+        "calls": 1,
+        "promptTokens": 17857,
+        "completionTokens": 416,
+        "missingUsageOrFailedAttempts": 0
+      }
+    },
+    "rawConsistencyProblems": [],
+    "sourceCommit": "b93d798441b4b25d3f0fad9e40a4b961e64e8648",
+    "registrationSha256": "0fa8f69876f643217ec6551e5fea209cfdf4755ae1722d4c3dffba03daf63c48",
+    "independentlyRecountedDirections": {
+      "tie": 1
+    },
+    "laterDiscussionExposure": {
+      "baseline": {
+        "hasLaterComments": 1,
+        "openedLaterComment": 1,
+        "exposedLaterComment": 1
+      },
+      "memex": {
+        "hasLaterComments": 1,
+        "openedLaterComment": 1,
+        "exposedLaterComment": 1
+      }
+    },
+    "verifiedInputPairs": 1,
+    "verifiedInputTotals": {
+      "baseline": 77479,
+      "memex": 144089
+    },
+    "allStartedSessionToolAttempts": {
+      "baseline": {
+        "total": 19,
+        "exactRepeated": 0,
+        "memory": 0,
+        "source": 10,
+        "archive": 9,
+        "other": 0
+      },
+      "memex": {
+        "total": 20,
+        "exactRepeated": 0,
+        "memory": 1,
+        "source": 12,
+        "archive": 7,
+        "other": 0
+      }
+    },
+    "successfulOpens": {
+      "agentWriteThenSuccessfulOpen": 0,
+      "automaticCheckpointThenSuccessfulOpen": 1
+    },
+    "tasks": [
+      {
+        "id": "extra-01",
+        "issueUrl": "https://github.com/cheeriojs/cheerio/issues/3457",
+        "sourceCommit": "07271f7643f72dc7619b7037d814b527f9ad32ee",
+        "discussionSpanDays": 81,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 8,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 6,
+            "archive": 2,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 4,
+            "archive": 7,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 11,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 8,
+            "archive": 3,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 9,
+            "exactRepeated": 0,
+            "memory": 1,
+            "source": 4,
+            "archive": 4,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 1
+            },
+            {
+              "memex": 2,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      }
+    ]
+  },
+  "rescueIssue": {
+    "status": "FINISHED",
+    "reviewStatus": "FINISHED",
+    "registered": 1,
+    "started": 1,
+    "finished": 1,
+    "completePairs": 1,
+    "validRatedPairs": 1,
+    "scoreDirections": {
+      "tie": 1
+    },
+    "posthocSensitivityRatedPairs": 1,
+    "posthocSensitivityDirections": {
+      "tie": 1
+    },
+    "meanScore": {
+      "baseline": 1,
+      "memex": 1
+    },
+    "fullTokenPairs": 1,
+    "tokenTotals": {
+      "baseline": {
+        "input": 98476,
+        "output": 5228,
+        "cacheRead": 78085,
+        "cacheWrite": 20358
+      },
+      "memex": {
+        "input": 114919,
+        "output": 3693,
+        "cacheRead": 95743,
+        "cacheWrite": 19143
+      }
+    },
+    "completePairToolAttempts": {
+      "baseline": {
+        "total": 20,
+        "exactRepeated": 0,
+        "memory": 0,
+        "source": 8,
+        "archive": 12,
+        "other": 0
+      },
+      "memex": {
+        "total": 15,
+        "exactRepeated": 0,
+        "memory": 2,
+        "source": 6,
+        "archive": 7,
+        "other": 0
+      }
+    },
+    "completeTokenPairMessageContexts": {
+      "baseline": {
+        "messageIds": 11,
+        "inputTokens": 98476
+      },
+      "memex": {
+        "messageIds": 11,
+        "inputTokens": 114919
+      }
+    },
+    "completeTokenPairFirstSessionInitialContexts": {
+      "baseline": {
+        "sessions": 1,
+        "inputTokens": 5693
+      },
+      "memex": {
+        "sessions": 1,
+        "inputTokens": 7973
+      }
+    },
+    "completePairClientListPriceUsd": {
+      "baseline": 0.059429,
+      "memex": 0.052001
+    },
+    "sessionOutcomes": {
+      "notCompletedByStatus": {},
+      "resumedAfterBudget": 0,
+      "resumedAndCompleted": 0,
+      "unavailableToolAttempts": 0,
+      "unexpectedToolAttempts": 0,
+      "runnerErrors": 0
+    },
+    "recoveryInputReconciliation": {
+      "matched": 0,
+      "different": 0,
+      "missing": 0
+    },
+    "posthocDiscussionExposure": {},
+    "clientListPriceKnownUsd": 0.11143,
+    "clientListPriceMissingSessions": 0,
+    "agentWrites": 0,
+    "writtenRecordOpenedNext": 0,
+    "writtenRecordAutomaticallyRecalled": 0,
+    "automaticCheckpoints": 1,
+    "automaticCheckpointOpenedNext": 1,
+    "automaticCheckpointRecalledNext": 1,
+    "reviewUsageByModel": {
+      "gpt-6.1-sol": {
+        "calls": 1,
+        "promptTokens": 17169,
+        "completionTokens": 805,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "deepseek-flash": {
+        "calls": 1,
+        "promptTokens": 13294,
+        "completionTokens": 377,
+        "missingUsageOrFailedAttempts": 0
+      },
+      "gemini-3.8-flash": {
+        "calls": 1,
+        "promptTokens": 17751,
+        "completionTokens": 607,
+        "missingUsageOrFailedAttempts": 0
+      }
+    },
+    "rawConsistencyProblems": [],
+    "sourceCommit": "62441b70513a3f1123b88c55b04a0b6cf0998274",
+    "registrationSha256": "6a632b8159a9d95915bb8f27ecf8c1bc58578d943b8759acc15d98984c564eb8",
+    "independentlyRecountedDirections": {
+      "tie": 1
+    },
+    "laterDiscussionExposure": {
+      "baseline": {
+        "hasLaterComments": 1,
+        "openedLaterComment": 1,
+        "exposedLaterComment": 1
+      },
+      "memex": {
+        "hasLaterComments": 1,
+        "openedLaterComment": 1,
+        "exposedLaterComment": 1
+      }
+    },
+    "verifiedInputPairs": 1,
+    "verifiedInputTotals": {
+      "baseline": 98476,
+      "memex": 114919
+    },
+    "allStartedSessionToolAttempts": {
+      "baseline": {
+        "total": 20,
+        "exactRepeated": 0,
+        "memory": 0,
+        "source": 8,
+        "archive": 12,
+        "other": 0
+      },
+      "memex": {
+        "total": 15,
+        "exactRepeated": 0,
+        "memory": 2,
+        "source": 6,
+        "archive": 7,
+        "other": 0
+      }
+    },
+    "successfulOpens": {
+      "agentWriteThenSuccessfulOpen": 0,
+      "automaticCheckpointThenSuccessfulOpen": 1
+    },
+    "tasks": [
+      {
+        "id": "rescue-01",
+        "issueUrl": "https://github.com/markedjs/marked/issues/4099",
+        "sourceCommit": "8babc796802dbf2d27daee51dcb7306935900033",
+        "discussionSpanDays": 21,
+        "completePair": true,
+        "started": true,
+        "finished": true,
+        "runnerErrorType": null,
+        "sessionStatuses": {
+          "baseline-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "baseline-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s1": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          },
+          "memex-s2": {
+            "status": "success",
+            "completed": true,
+            "timeout": false,
+            "unavailableToolAttempts": 0
+          }
+        },
+        "missingSessions": [],
+        "sessionToolAttempts": {
+          "baseline-s1": {
+            "total": 8,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 5,
+            "archive": 3,
+            "other": 0
+          },
+          "baseline-s2": {
+            "total": 12,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 3,
+            "archive": 9,
+            "other": 0
+          },
+          "memex-s1": {
+            "total": 5,
+            "exactRepeated": 0,
+            "memory": 0,
+            "source": 3,
+            "archive": 2,
+            "other": 0
+          },
+          "memex-s2": {
+            "total": 10,
+            "exactRepeated": 0,
+            "memory": 2,
+            "source": 3,
+            "archive": 5,
+            "other": 0
+          }
+        },
+        "sessionRecoveries": 0,
+        "reviewStatus": "VALID",
+        "blindReview": {
+          "scores": {
+            "memex": 1,
+            "baseline": 1
+          },
+          "adjudicated": true,
+          "numericReviewerDisagreement": true,
+          "reviewerScores": [
+            {
+              "memex": 1,
+              "baseline": 1
+            },
+            {
+              "memex": 2,
+              "baseline": 2
+            }
+          ]
+        },
+        "agentWriteThenSuccessfulOpen": false,
+        "automaticCheckpointThenSuccessfulOpen": true
+      }
+    ]
   },
   "limits": [
     "Different commits and prompts: do not pool as one randomized protocol.",

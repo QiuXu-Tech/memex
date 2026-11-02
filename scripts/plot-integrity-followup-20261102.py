@@ -11,10 +11,12 @@ import numpy as np
 root = pathlib.Path(__file__).resolve().parent.parent
 out = root / 'docs/assets/benchmarks/production-integrity-followup-20261102'
 data = json.loads((out / 'results.json').read_text())
-cohorts = [('Initial follow-up', data['firstEight']), ('Long-discussion follow-up', data['longFollowup']), ('Post-permissions smoke', data.get('postPermissionsSmoke', {})), ('Additional issue', data.get('extraIssue', {}))]
+cohorts = [('Initial follow-up', data['firstEight']), ('Long-discussion follow-up', data['longFollowup']),
+           ('Post-permissions smoke', data.get('postPermissionsSmoke', {})),
+           ('Additional issue', data.get('extraIssue', {})), ('Rescue issue', data.get('rescueIssue', {}))]
 cohorts = [(name, row) for name, row in cohorts if row.get('validRatedPairs', 0) > 0]
 matplotlib.rcParams.update({'font.family': 'DejaVu Sans', 'svg.fonttype': 'none', 'font.size': 10})
-fig, (ax, bx) = plt.subplots(1, 2, figsize=(12, 4.3), gridspec_kw={'width_ratios': [1.12, 1]})
+fig, (ax, bx) = plt.subplots(1, 2, figsize=(12.5, 5.2), gridspec_kw={'width_ratios': [1.12, 1]})
 fig.patch.set_facecolor('#f9fafc')
 for axis in (ax, bx):
     axis.set_facecolor('#f9fafc')

@@ -7,7 +7,7 @@ layout: default
 
 One new owner-disjoint issue was selected after a prior long-cohort adjudication returned malformed JSON. The invalid adjudication remains missing under the original review plan; this additional issue is separately registered before any calls on it and must not be pooled as if it were part of the original fixed cohort. The tested Memex source commit is `62441b70513a3f1123b88c55b04a0b6cf0998274`.
 
-[Machine-readable registration](assets/benchmarks/production-permissions-rescue-20261102/registration.json) · [Frozen AI review plan](assets/benchmarks/production-permissions-rescue-20261102/review-plan.json)
+[Machine-readable registration](assets/benchmarks/production-permissions-rescue-20261102/registration.json) · [Frozen AI review plan](assets/benchmarks/production-permissions-rescue-20261102/review-plan.json) · [Anonymous packet and salted-label commitments](assets/benchmarks/production-permissions-rescue-20261102/packet-commitments.json)
 
 | Public issue | Discussion span | Frozen acceptance focus |
 | --- | ---: | --- |

@@ -1,0 +1,34 @@
+{
+  "solver": {
+    "localTimeWindow": "2026-11-02 14:06:50 through 14:11:20 Asia/Shanghai",
+    "visibleDistinctSuccessfulRowTexts": 22,
+    "visibleTotals": {
+      "uncachedInputTokens": 66,
+      "cacheReadInputTokens": 173828,
+      "cacheCreationInputTokens": 39501,
+      "outputTokens": 8921,
+      "walletUsd": 0.027988
+    },
+    "localDistinctStreamedAssistantMessageIds": 22,
+    "localStreamedInputTotals": {
+      "uncachedInputTokens": 66,
+      "cacheReadInputTokens": 173828,
+      "cacheCreationInputTokens": 39501
+    },
+    "localCompletedSessionOutputTokens": 8921,
+    "visibleCancelledRows": 0
+  },
+  "review": {
+    "successfulCalls": 3,
+    "uniqueCandidateWalletRows": 3,
+    "distinctMatchedRows": 3,
+    "candidateWalletUsd": 0.01205,
+    "matching": "model, input and output tokens, and completion time within three seconds"
+  },
+  "limitations": [
+    "The solver account window and its aggregate token cross-check do not establish per-request or per-arm charges and may include or omit account activity.",
+    "Displayed-row text deduplication can collapse identical real entries; dynamic pagination can omit rows.",
+    "Review matches are candidates, not request-ID proof.",
+    "Other infrastructure, labor, unallocated activity and any unresolved provider reconciliation remain unknown."
+  ]
+}

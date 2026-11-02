@@ -141,7 +141,8 @@ def cohort(name, source):
     published_dirs = {'integrity-triage': 'production-integrity-20261102',
                       'integrity-long-triage': 'production-long-integrity-20261102',
                       'integrity-post-permissions-triage': 'production-post-permissions-20261102',
-                      'integrity-permissions-extra-triage': 'production-permissions-extra-20261102'}
+                      'integrity-permissions-extra-triage': 'production-permissions-extra-20261102',
+                      'integrity-permissions-rescue-triage': 'production-permissions-rescue-20261102'}
     published = ROOT / 'docs/assets/benchmarks' / published_dirs[name] / 'packet-commitments.json'
     unblind = verify_blind(base, published) if finished_review else []
     assert not data['rawConsistencyProblems'], data['rawConsistencyProblems']
@@ -202,17 +203,18 @@ def main():
     long, long_unblind = cohort('integrity-long-triage', 'integrity-long-source')
     post, post_unblind = cohort('integrity-post-permissions-triage', 'integrity-post-permissions-source')
     extra, extra_unblind = cohort('integrity-permissions-extra-triage', 'integrity-permissions-extra-source')
-    result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'firstEight': first, 'longFollowup': long, 'postPermissionsSmoke': post, 'extraIssue': extra,
+    rescue, rescue_unblind = cohort('integrity-permissions-rescue-triage', 'integrity-permissions-rescue-source')
+    result = {'generatedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'firstEight': first, 'longFollowup': long, 'postPermissionsSmoke': post, 'extraIssue': extra, 'rescueIssue': rescue,
               'limits': ['Different commits and prompts: do not pool as one randomized protocol.',
                          'Open-source historical triage replay is not a deployed production outcome.',
                          'AI judges and model client list prices do not establish human-rated correctness or actual wallet cost.',
                          'Memory calls and matching IDs do not establish that the memory caused the answer.']}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(result, ensure_ascii=False, indent=2) + '\n')
-    unblind = {'firstEight': first_unblind, 'longFollowup': long_unblind, 'postPermissionsSmoke': post_unblind, 'extraIssue': extra_unblind}
+    unblind = {'firstEight': first_unblind, 'longFollowup': long_unblind, 'postPermissionsSmoke': post_unblind, 'extraIssue': extra_unblind, 'rescueIssue': rescue_unblind}
     (output.parent / 'packet-unblinding.json').write_text(json.dumps(unblind, indent=2) + '\n')
-    print(json.dumps({'firstRated': first.get('validRatedPairs'), 'longRated': long.get('validRatedPairs'), 'postRated': post.get('validRatedPairs'), 'extraRated': extra.get('validRatedPairs'),
-                      'firstDirections': first.get('scoreDirections'), 'longDirections': long.get('scoreDirections'), 'postDirections': post.get('scoreDirections'), 'extraDirections': extra.get('scoreDirections')}))
+    print(json.dumps({'firstRated': first.get('validRatedPairs'), 'longRated': long.get('validRatedPairs'), 'postRated': post.get('validRatedPairs'), 'extraRated': extra.get('validRatedPairs'), 'rescueRated': rescue.get('validRatedPairs'),
+                      'firstDirections': first.get('scoreDirections'), 'longDirections': long.get('scoreDirections'), 'postDirections': post.get('scoreDirections'), 'extraDirections': extra.get('scoreDirections'), 'rescueDirections': rescue.get('scoreDirections')}))
 
 
 if __name__ == '__main__':

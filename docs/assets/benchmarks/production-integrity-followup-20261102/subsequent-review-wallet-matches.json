@@ -1,0 +1,35 @@
+{
+  "localTimeWindow": "2026-11-02 13:59:27 through 14:05:52 Asia/Shanghai",
+  "scope": "Long follow-up, post-permissions two-issue smoke, and separately registered extra issue; excludes initial eight and the later rescue issue.",
+  "gatewaySuccessfulCalls": 75,
+  "uniqueCandidateWalletRows": 75,
+  "distinctMatchedRows": 75,
+  "matching": "model, input and output tokens, and completion timestamp within three seconds; no request ID linkage",
+  "candidateWalletUsd": 0.336336,
+  "byModel": {
+    "gpt-6.1-sol": {
+      "calls": 25,
+      "inputTokens": 510619,
+      "outputTokens": 15302,
+      "candidateWalletUsd": 0.08776
+    },
+    "deepseek-flash": {
+      "calls": 25,
+      "inputTokens": 365531,
+      "outputTokens": 11142,
+      "candidateWalletUsd": 0.072834
+    },
+    "gemini-3.8-flash": {
+      "calls": 25,
+      "inputTokens": 478930,
+      "outputTokens": 15052,
+      "candidateWalletUsd": 0.175742
+    }
+  },
+  "invalidAdjudicationsIncluded": 1,
+  "limitations": [
+    "A unique match on displayed fields is not request-ID proof and the model provider may later reconcile charges.",
+    "An HTTP-successful but malformed adjudication remains invalid even though its candidate wallet entry is counted.",
+    "Separate diagnostics, the initial cohort, and future calls are not included."
+  ]
+}

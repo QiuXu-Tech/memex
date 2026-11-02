@@ -1,0 +1,27 @@
+{
+  "timeWindowLocal": "2026-11-02 12:53:40 through 14:01:24 Asia/Shanghai",
+  "scope": "Account-wide visible claude-haiku-4-5 entries overlapping the 25-issue long follow-up, two-issue post-permissions smoke and one-issue extra; the later rescue issue is outside this window.",
+  "visibleSuccessfulDistinctRowTexts": 1143,
+  "visibleSuccessfulTotals": {
+    "uncachedInputTokens": 5698,
+    "outputTokens": 474806,
+    "cacheReadInputTokens": 11648346,
+    "cacheCreationInputTokens": 2898247,
+    "walletUsd": 0.968358
+  },
+  "localDistinctStreamedAssistantMessageIds": 1143,
+  "localStreamedInputTotals": {
+    "uncachedInputTokens": 5698,
+    "cacheReadInputTokens": 11648346,
+    "cacheCreationInputTokens": 2898247
+  },
+  "visibleCancelledRowsWithUnavailableUpstreamUsageAndPendingReconciliation": 5,
+  "limitations": [
+    "The count and three input-token totals match the local streamed-message aggregate, not individual request IDs or per-arm charges.",
+    "Visible output tokens and streamed initial message output are not equivalent, so no output reconciliation is claimed.",
+    "Rows were collected from dynamically shifting pages and deduplicated by displayed text; identical real rows can collapse and moving rows can be missed.",
+    "The time window can contain other account activity, including a separately recorded diagnostic.",
+    "Five visible cancellations displayed zero while upstream usage was unavailable and cost pending reconciliation; those costs remain UNKNOWN.",
+    "This is not a full invoice, a per-arm allocation, or proof that all failed calls are represented."
+  ]
+}
