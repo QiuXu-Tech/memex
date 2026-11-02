@@ -14,12 +14,12 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **DeepSeek Harness** | native Cordis bundle (L1 eviction seam, Web panel, 9 HTTP routes, 7 tools) |
 | **Claude Code** | MCP server + `SessionStart` / `UserPromptSubmit` / `PreCompact` hooks + `CLAUDE.md` manual |
 | **OpenAI Codex** | MCP server + `AGENTS.md` manual + `config.toml` snippet |
-| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 10 tools + catalog resource |
+| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 4 default tools, optional advanced tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **196/196 offline tests**, **37/37 SQLite consistency tests**, **33/33 integrity and isolation tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **196/196 offline tests**, **38/38 SQLite consistency tests**, **45/45 integrity and isolation tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
 
-**Archive and privacy repairs:** compaction records, canonical events and completion markers now commit together; incomplete sources remain retryable. Claude transcript copies are split into untrusted, session-private parts, and adapter level restrictions no longer inherit a previously enabled shared scope. Complete backups require both record files and the matching SQLite database. [Behavior and remaining limits](docs/archive-integrity-20261102.md).
+**Archive and privacy repairs:** compaction records, canonical events and completion markers now commit together; incomplete sources remain retryable. Claude transcript copies are split into untrusted, session-private parts, and adapter level restrictions no longer inherit a previously enabled shared scope. Superseded and expired records are excluded from normal recall; new materializer traces record metadata rather than full text. Complete backups require both record files and the matching SQLite database. [Behavior and remaining limits](docs/archive-integrity-20261102.md).
 
 **Integrity follow-up (2026-11-02):** In a separate 25-issue long-discussion replay, 22 pairs completed and 21 had valid final AI ratings: control scored higher in 3, 15 tied, and Memex scored higher in 3. Only 4 further issues ran after the SQLite permissions repair. These are compressed historical triage replays, not evidence of a production correctness or cost benefit. [Results, costs, charts and limits](docs/production-integrity-followup-20261102.md).
 
@@ -235,8 +235,8 @@ These are logical storage scopes, not operating-system security boundaries: a pr
 ## Features
 
 - **Agent-agnostic core** (`@qiuxu/memex-core`): markdown + SQLite store, hot/cold tiers, hybrid retrieval and capacity compression with zero host dependencies. DSH, MCP and CLI adapters share one record vocabulary.
-- **MCP server** (`@qiuxu/memex-mcp`): stdio JSON-RPC, **10 tools** (`memory_search/open/grep/write/index/list/forget/set_status/restore/compress`) + `memory://catalog` resource, model-tailored `instructions`.
-- **Claude Code adapter** (`@qiuxu/memex-claude`): one command registers MCP, merges `.claude/settings.json` hooks and injects a model-tailored `CLAUDE.md` manual; with L2 enabled, `PreCompact` copies the transcript into session-private parts, `Stop` saves completed assistant responses as untrusted checkpoints, and `UserPromptSubmit` auto-recalls relevant previews from earlier sessions.
+- **MCP server** (`@qiuxu/memex-mcp`): stdio JSON-RPC, **4 default tools** (`memory_search/open/write/set_status`); `--all-tools` advertises 6 additional maintenance tools. The `memory://catalog` resource and model-tailored instructions remain available.
+- **Claude Code adapter** (`@qiuxu/memex-claude`): one command registers MCP, merges `.claude/settings.json` hooks and injects a model-tailored `CLAUDE.md` manual; `PreCompact` copies the transcript into session-private parts when L2 is enabled, `Stop` saves completed assistant responses as untrusted checkpoints, and `UserPromptSubmit` auto-recalls relevant previews from earlier sessions.
 - **Codex adapter** (`@qiuxu/memex-codex`): `AGENTS.md` manual + `codex mcp add` / `config.toml` entry.
 - **Model profiles**: per-family windows, token-estimation ratios, injection budgets and digest prompts; overridable by the integration.
 - **L1 eviction** through the shipped `compaction/prune` + surface-replace seam; no custom session events, no replacement of the compaction backend.
@@ -295,7 +295,7 @@ Full design: [docs/architecture.md](docs/architecture.md). Measured results: [do
 | `packages/memex-compress` | capacity compression (cold + digest) and compression history |
 | `packages/memex-api` | nine `/api/memory.*` HTTP routes for the panel |
 | `packages/memex-ui` | Web client half: panel + context-ring bridge |
-| `test/` | offline harness (106 tests, no `node_modules`; stubs for host packages) |
+| `test/` | offline harness (196 tests, no `node_modules`; stubs for host packages) |
 | `scripts/` | build/check bundle, scale & recall benchmarks, backup/verify/restore |
 
 ## Requirements
@@ -346,7 +346,7 @@ node scripts/check-bundle.mjs        # verifies generated modules match sources
 ## Use
 
 - **Enable**: ring popover / memory panel → `L2 本会话` or `L3 工作区`; or `/memory on l2|l3|both`. Levels are sticky.
-- **Use memory**: the model has `memory_search`, `memory_open`, `memory_grep`, `memory_write`, `memory_index`, `memory_restore`, `memory_compress`; automatic catalog/recall injections keep it oriented.
+- **Use memory**: MCP defaults to `memory_search`, `memory_open`, `memory_write` and `memory_set_status`; add `--all-tools` for maintenance tools. DSH retains its existing tool set and automatic catalog/recall behavior.
 - **Capacity**: at 80% hot usage the model receives a bilingual capacity notice and asks the user first; `/memory compress [l2|l3] [ratio]` or the panel button runs the lossless cold compression; `memory_compress strategy=digest` additionally produces bounded batch summaries.
 - **Maintain**: `/memory status` (hot/cold/history), `/memory restore <id>`, `/memory gc <keepTokens>`, `node --import ./test/register.mjs scripts/memory-backup.mjs backup|verify|restore`.
 
@@ -363,7 +363,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **196/196**, with **37/37 SQLite consistency** checks.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **196/196**, with **38/38 SQLite consistency** checks and **45/45 integrity and isolation** checks.
 
 | Metric | Result |
 |---|---|
@@ -390,7 +390,7 @@ Reproduction commands, including the required saved summary and cold target rati
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (131 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (196 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```

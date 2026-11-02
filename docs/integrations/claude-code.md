@@ -15,13 +15,13 @@ node packages/memex-claude/bin/cli.mjs init --model claude-sonnet-5-5
 
 | File | What it does |
 |---|---|
-| `.mcp.json` | registers `memex` MCP server (`memory_search`, `memory_open`, `memory_grep`, `memory_write`, `memory_index`, `memory_restore`, `memory_compress` + `memory://catalog`) |
+| `.mcp.json` | registers `memex` MCP server (search, open, write, set-status and `memory://catalog`; use `--all-tools` in server args for advanced tools) |
 | `.claude/settings.json` | merges `SessionStart`, `UserPromptSubmit`, `PreCompact`, `Stop`, `SessionEnd` hooks (keeps your existing hooks) |
 | `CLAUDE.md` | appends a model-tailored memory manual in a `<!-- memex:start -->…<!-- memex:end -->` section |
 
 ## How the hooks behave
 
-- **SessionStart** — injects a short availability notice (no-op when the store is empty); use `memory_index` when a catalog is needed.
+- **SessionStart** — injects a short availability notice (no-op when the store is empty); use `memory_search` when earlier context is needed.
 - **UserPromptSubmit** — searches the visible levels with the user's prompt and injects a `<memory-recall>` block when there are hits (cheap: one search, no LLM).
 - **PreCompact** — copies the raw JSONL into one or more untrusted L2 records keyed to the actual Claude client session. The records include part numbers and a SHA-256; retrying the same transcript fills missing parts without duplicating completed ones. With L2 disabled or no client session id, the hook skips this copy and leaves the original transcript in place. The copy is complete only when all parts are present and match the digest. PreCompact does not inject context.
 - **Stop** — automatically stores the assistant’s completed response as an untrusted episode (minimum 32 characters), without another model call. Repeated identical responses in the same session are deduplicated, and generic refusal-only replies are skipped. High-confidence credential patterns are skipped; this is not a complete sensitive-data detector. The record follows the enabled L2/L3 scope, so L3 makes it visible to later sessions in the same workspace.

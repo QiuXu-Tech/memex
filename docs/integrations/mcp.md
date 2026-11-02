@@ -12,26 +12,27 @@ node packages/memex-mcp/bin/server.mjs \
   --root ~/.memex --model deepseek-flash --agent <agent-name> --levels l3
 ```
 
-Options: `--root DIR`, `--levels l2,l3`, `--model ID`, `--agent NAME`, `--session ID`, `--cwd DIR`, `--capacity N`, `--session-capacity N`. stdout is protocol-only; diagnostics go to stderr.
+Options: `--root DIR`, `--levels l2,l3`, `--model ID`, `--agent NAME`, `--session ID`, `--cwd DIR`, `--capacity N`, `--session-capacity N`, `--all-tools`. stdout is protocol-only; diagnostics go to stderr.
 
 ## Tools
 
-| Tool | Purpose |
-|---|---|
-| `memory_search` | ranked card search; returns ids + titles + "when to read" |
-| `memory_open` | read one record (offset/limit/maxChars) |
-| `memory_grep` | literal/regex line search across bodies |
-| `memory_write` | persist decision/fact/procedure/incident/episode |
-| `memory_index` | catalog + hot/cold capacity |
-| `memory_list` | recent cards with kind/status filters |
-| `memory_forget` | delete an obsolete/wrong record |
-| `memory_set_status` | active/open/resolved/superseded/pinned |
-| `memory_restore` | cold record → hot pool |
-| `memory_compress` | lossless cold-tier compression (no LLM) |
+By default, discovery advertises four tools: `memory_search`, `memory_open`, `memory_write`, and `memory_set_status`. The status tool is included so an agent can mark a replaced record `superseded`. Add `--all-tools` to advertise the existing `memory_grep`, `memory_index`, `memory_list`, `memory_forget`, `memory_restore`, and `memory_compress` maintenance tools. Existing direct JSON-RPC calls to those names still work, but a client normally discovers only the advertised set.
 
 Plus a `memory://catalog` resource and model-tailored `instructions` on `initialize`.
 
 For a focused query, `memory_search` accepts `openTop: true` to include up to 2,000 characters from the first hit. Verify its relevance and use `memory_open` with `nextCharOffset` to continue a truncated preview.
+
+## Source, version and validity
+
+`memory_write` accepts an optional `evidence` object, for example:
+
+```json
+{"kind":"decision","title":"Deployment target","body":"Use staging","evidence":{"source":"deploy.yml","version":"git-commit-id","observedAt":"2026-11-02T00:00:00Z","validUntil":"2026-12-02T00:00:00Z"}}
+```
+
+`source` is required when `evidence` is supplied; the remaining fields are optional. Times use valid UTC ISO timestamps. The source and version are assertions supplied by the caller: Memex does not verify that the source exists or automatically compare it with a current Git checkout. Search and open display the stored metadata and trust label. Search accepts exact `source` plus `version` filters; a version filter requires a source.
+
+Superseded and expired records are excluded from normal search and materialized windows. Search can explicitly select `status: "superseded"` or set `includeExpired: true`; an expired record can also be opened by id. Unknown validity does not mean current. Writing a new version does not automatically supersede another record: set its status after deciding it has been replaced. Existing records without the new metadata remain readable with unknown version/validity.
 
 ## Client config examples
 

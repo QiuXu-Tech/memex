@@ -38,7 +38,7 @@ For a specific query where the first result is likely to be relevant, MCP `memor
 
 The manual advises the agent to avoid rereading a duplicate handoff when a retrieved record already covers it, while consulting original sources for verification or gaps. This is guidance, not automatic deduplication or a guaranteed token saving.
 
-`memory_grep` searches visible hot and cold record files until it reaches the requested hit limit. A miss can require reading every visible record and therefore takes longer on larger stores. If an indexed record file is missing or unreadable, grep reports an error rather than claiming that the pattern is absent.
+The default MCP interface advertises search, open, write and set-status. Add `--all-tools` to the server arguments to advertise advanced tools including `memory_grep`. Grep searches visible, non-expired, non-superseded hot and cold records until the hit limit; specifying an id permits historical inspection. A miss can require reading every visible record and therefore takes longer on larger stores. If an indexed record file is missing or unreadable, grep reports an error rather than claiming that the pattern is absent.
 
 `memory_search` reports how many ranked results it shows; the bounded retrieval does not report the total number of possible matches.
 

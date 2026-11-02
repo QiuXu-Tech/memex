@@ -1298,12 +1298,12 @@ await test('K2', 'checkpoint row alone registers the policy listeners and no sur
     await ctx.dispose()
   }
 
-  // autoArchive: false disables the whole policy row (no listeners at all).
+  // autoArchive: false leaves the independent recall policy available.
   const disabledCtx = createFakeContext({ services: { llm: undefined } })
   try {
     disabledCtx.provideService('memory', {})
     checkpointRow.apply(disabledCtx, { autoArchive: false })
-    assert.equal(Object.keys(disabledCtx.listeners).length, 0, 'autoArchive:false must not register listeners')
+    assert.ok(disabledCtx.listeners['agent/pre-step']?.length, 'autoArchive:false must retain the recall listener')
   } finally {
     await disabledCtx.dispose()
   }
@@ -3599,7 +3599,7 @@ await test('U2', 'model profiles resolve per family and tune injection, budgets 
 
 await test('U3', 'generic MCP server speaks JSON-RPC: tools list/call, search, open, index', async () => {
   const root = makeRoot('u3')
-  const replies = mcpExchange(root, ['--agent', 'test', '--model', 'claude-sonnet-4', '--levels', 'l2,l3', '--session', 'u3-session'], [
+  const replies = mcpExchange(root, ['--agent', 'test', '--model', 'claude-sonnet-4', '--levels', 'l2,l3', '--session', 'u3-session', '--all-tools'], [
     { jsonrpc: '2.0', id: 1, method: 'initialize', params: {} },
     { jsonrpc: '2.0', method: 'notifications/initialized' },
     { jsonrpc: '2.0', id: 2, method: 'tools/list' },
@@ -3891,7 +3891,7 @@ await test('U3j', 'MCP search preserves existing trust labels and clips summary 
 await test('U3i', 'MCP distinguishes an empty archive from a search miss', async () => {
   const root = makeRoot('u3i-mem')
   const call = (id, name, input) => ({ jsonrpc: '2.0', id, method: 'tools/call', params: { name, arguments: input } })
-  const replies = mcpExchange(root, ['--levels', 'l3', '--session', 'u3i-session'], [
+  const replies = mcpExchange(root, ['--levels', 'l3', '--session', 'u3i-session', '--all-tools'], [
     call(1, 'memory_search', { query: 'unmatched-topic-1837' }),
     call(2, 'memory_write', { kind: 'fact', title: 'Different record', body: 'UNRELATED_DATA_2094' }),
     call(3, 'memory_search', { query: 'unmatched-topic-1837' }),
@@ -5437,7 +5437,7 @@ await test('U73', 'MCP opens the requested body lines rather than characters', a
 
 await test('U74', 'MCP advertises read-only and destructive tool behavior', async () => {
   const root = makeRoot('u74')
-  const reply = mcpExchange(root, ['--cwd', '/tmp/memex-u74', '--levels', 'l3'], [
+  const reply = mcpExchange(root, ['--cwd', '/tmp/memex-u74', '--levels', 'l3', '--all-tools'], [
     { jsonrpc: '2.0', id: 1, method: 'tools/list' },
   ]).get(1).result.tools
   const byName = new Map(reply.map((tool) => [tool.name, tool.annotations]))

@@ -66,7 +66,6 @@ export function apply(ctx, config = {}) {
   if (!['off', 'timeline-exact', 'edge-attention'].includes(resolved.materializer)) {
     throw new TypeError(`memory-checkpoint: materializer must be off/timeline-exact/edge-attention, got ${JSON.stringify(resolved.materializer)}`)
   }
-  if (!resolved.autoArchive) return
   const policy = registerCheckpointPolicy(ctx, ctx.memory, resolved)
   ctx.effect(() => () => policy.dispose())
 }

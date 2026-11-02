@@ -6,6 +6,7 @@ const update = (value) => store.write({ id, kind: 'fact', title: 'Concurrency fi
   summary: value, body: value, workspaceKey: 'wk-lock', scope: 'workspace' })
 try {
   if (action === 'update') update('new body and summary')
+  else if (action === 'evidence-update') store.write({ id, kind: 'fact', title: 'Versioned fixture', body: 'new version body', workspaceKey: 'wk-lock', scope: 'workspace', provenance: { evidence: { source: 'deploy.yml', version: 'v2', validUntil: '2999-01-01T00:00:00Z' } } })
   else if (action === 'new') store.write({ kind: 'fact', title: 'Generated record', summary: 'generated summary',
     body: 'generated body', workspaceKey: 'wk-lock', scope: 'workspace' })
   else if (action === 'loop') for (let i = 0; i < 12; i += 1) update(label + ':' + i)

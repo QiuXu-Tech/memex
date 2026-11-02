@@ -20,7 +20,7 @@ import { recoverOnOpen, withFileTransaction } from './file-transactions.js'
 import {
   MEMORY_KINDS, MEMORY_STATUSES, MEMORY_TRUST, MEMORY_TEXT_LIMITS,
   MEMORY_LEVELS, MEMORY_MODES, MEMORY_SCOPES, MEMORY_LEVEL_SCOPE, memoryCaptureScope, memoryLevelsFromRow, memoryVisibleScopes,
-  archiveRecordId, clipText, estimateTokens, memoryQueryTerms, DEFAULT_RERANK_WEIGHTS,
+  archiveRecordId, clipText, estimateTokens, memoryQueryTerms, normalizeMemoryEvidence, DEFAULT_RERANK_WEIGHTS,
 } from '../index.js'
 
 /** Bounded prompt-free abstract of a raw body, used for cold-tier search. */
@@ -453,6 +453,8 @@ export class LocalStoreCore {
       throw new TypeError('memory: a session-scoped record requires a non-empty sessionId')
     }
     const workspaceKey = String(input.workspaceKey ?? 'global')
+    const provenance = input.provenance !== null && typeof input.provenance === 'object' && !Array.isArray(input.provenance) ? { ...input.provenance } : {}
+    if (provenance.evidence !== undefined) provenance.evidence = normalizeMemoryEvidence(provenance.evidence)
     const now = Date.now()
     return {
       id: typeof input.id === 'string' && input.id.length > 0 ? input.id : `mem_${randomUUID().replace(/-/g, '').slice(0, 10)}`,
@@ -466,7 +468,7 @@ export class LocalStoreCore {
       useWhen: clipText(String(input.useWhen ?? '').trim(), MEMORY_TEXT_LIMITS.useWhen),
       tags: input.tags !== null && typeof input.tags === 'object' && !Array.isArray(input.tags) ? input.tags : {},
       links: input.links !== null && typeof input.links === 'object' && !Array.isArray(input.links) ? input.links : {},
-      provenance: input.provenance !== null && typeof input.provenance === 'object' ? input.provenance : {},
+      provenance,
       body,
       tokens: Number.isSafeInteger(input.tokens) && input.tokens > 0 ? input.tokens : estimateTokens(`${title}${body}`),
       trust,
@@ -691,6 +693,13 @@ export class LocalStoreCore {
     } else if (filter.excludeSuperseded === true) {
       clauses.push(`${col('status')} != 'superseded'`)
     }
+    const evidence = (key) => `CASE WHEN json_valid(${col('provenance_json')}) THEN json_extract(${col('provenance_json')}, '$.evidence.${key}') ELSE NULL END`
+    if (filter.excludeExpired === true) {
+      clauses.push(`(${evidence('validUntil')} IS NULL OR ${evidence('validUntil')} > ?)`)
+      params.push(new Date().toISOString())
+    }
+    if (filter.source !== undefined) { clauses.push(`${evidence('source')} = ?`); params.push(filter.source) }
+    if (filter.version !== undefined) { clauses.push(`${evidence('version')} = ?`); params.push(filter.version) }
     if (filter.cold !== undefined) {
       clauses.push(`${col('cold')} = ?`)
       params.push(filter.cold ? 1 : 0)
@@ -737,6 +746,9 @@ export class LocalStoreCore {
    * one answered. `total` counts the returned hits, not all possible matches.
    */
   search(query) {
+    // Historical records remain explicitly searchable by status, but must not
+    // enter ordinary search or automatic recall after they are superseded.
+    query = { excludeSuperseded: query.status === undefined, excludeExpired: query.includeExpired !== true, ...query }
     const db = this.database()
     const limit = clampLimit(query.limit, 12)
     // Natural-language queries are decomposed into bounded retrieval terms; the
@@ -797,7 +809,7 @@ export class LocalStoreCore {
     if (keyTerms.length === 0 && coldTerms.length >= 2 && !hasFullyCoveredColdCandidate) {
       const likeTerms = [...new Set(coldTerms.filter((term) => term.length >= 5 && /[a-z]/.test(term)).map((term) => term.slice(0, 4)))].slice(0, 4)
       if (likeTerms.length > 0) {
-        const { clauses: coldClauses, params: coldParams } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 1, kind: query.kind, status: query.status }, { alias: 'r.' })
+        const { clauses: coldClauses, params: coldParams } = this.workspaceClause({ ...query, cold: 1 }, { alias: 'r.' })
         const coldWhere = coldClauses.length > 0 ? `AND ${coldClauses.join(' AND ')}` : ''
         const likeSql = likeTerms.map(() => 'r.abstract LIKE ?').join(' OR ')
         const coldLikes = db.prepare(`
@@ -840,6 +852,10 @@ export class LocalStoreCore {
           scopes: query.scopes,
           kind: query.kind,
           status: query.status,
+          excludeSuperseded: query.excludeSuperseded,
+          excludeExpired: query.excludeExpired,
+          source: query.source,
+          version: query.version,
           sessionId: query.sessionId,
           includeStatus: query.status !== undefined || query.scope !== undefined || query.scopes !== undefined,
           cold: 0,
@@ -885,7 +901,7 @@ export class LocalStoreCore {
           .map((term) => fnv1a32(term))
         if (anchors.length > 0) {
           const placeholders = anchors.map(() => '?').join(', ')
-          const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0, kind: query.kind, status: query.status }, { alias: 'r.' })
+          const { clauses, params } = this.workspaceClause({ ...query, cold: 0 }, { alias: 'r.' })
           const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
           const candidateRows = this.database().prepare(`
             SELECT t.record_id AS recordId, COUNT(*) AS matches
@@ -929,7 +945,7 @@ export class LocalStoreCore {
       const rareHashes = counts.filter((entry) => Number(entry.count) <= 2).map((entry) => Number(entry.hash))
       if (rareHashes.length > 0) {
         const rarePlaceholders = rareHashes.map(() => '?').join(', ')
-        const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0, kind: query.kind, status: query.status }, { alias: 'r.' })
+        const { clauses, params } = this.workspaceClause({ ...query, cold: 0 }, { alias: 'r.' })
         const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
         const candidates = this.database().prepare(`
           SELECT t.record_id AS recordId, COUNT(*) AS matches
@@ -970,7 +986,7 @@ export class LocalStoreCore {
     if (keyTerms.length > 0) {
       const hashes = [...new Set(keyTerms.map((term) => fnv1a32(term)))]
       const placeholders = hashes.map(() => '?').join(', ')
-      const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 1, kind: query.kind, status: query.status }, { alias: 'r.' })
+      const { clauses, params } = this.workspaceClause({ ...query, cold: 1 }, { alias: 'r.' })
       const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
       const coldRows = this.database().prepare(`
         SELECT r.*, '' AS snippet, 0 AS rank, COUNT(*) AS anchorHits
@@ -996,7 +1012,7 @@ export class LocalStoreCore {
       }
       const requiredCoverage = Math.max(2, Math.ceil(meaningfulTerms.length * 0.5))
       if (bestCoverage === 0) {
-        const { clauses, params } = this.workspaceClause({ workspaceKey: query.workspaceKey, scopes: query.scopes, sessionId: query.sessionId, cold: 0, kind: query.kind, status: query.status }, { alias: 'r.' })
+        const { clauses, params } = this.workspaceClause({ ...query, cold: 0 }, { alias: 'r.' })
         const where = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : ''
         const hotRows = this.database().prepare(`
           SELECT r.*, '' AS snippet, 0 AS rank FROM records r ${where}
@@ -1100,6 +1116,7 @@ export class LocalStoreCore {
 
   /** Card-level listing in the requested order. */
   list(filter = {}) {
+    filter = { excludeExpired: filter.includeExpired !== true, ...filter }
     const { clauses, params } = this.workspaceClause(filter)
     const limit = clampLimit(filter.limit, 20)
     if (filter.status === undefined && filter.includeStatus === undefined) {
@@ -1122,7 +1139,7 @@ export class LocalStoreCore {
       throw new Error(`memory: invalid grep pattern: ${error instanceof Error ? error.message : String(error)}`)
     }
     const limit = clampLimit(request.limit, 30)
-    const filter = { workspaceKey: request.workspaceKey }
+    const filter = { workspaceKey: request.workspaceKey, excludeSuperseded: request.id === undefined, excludeExpired: request.id === undefined }
     if (request.scopes !== undefined) filter.scopes = request.scopes
     if (request.scope !== undefined) filter.scope = request.scope
     if (request.sessionId !== undefined) filter.sessionId = request.sessionId
@@ -1130,7 +1147,7 @@ export class LocalStoreCore {
     if (request.id === undefined) {
       const { clauses, params } = this.workspaceClause(filter)
       const where = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : ''
-      rows = this.database().prepare(`SELECT id, title, path FROM records ${where} ORDER BY updated_at DESC`).all(...params)
+      rows = this.database().prepare(`SELECT id, title, path, status, provenance_json FROM records ${where} ORDER BY updated_at DESC`).all(...params)
     } else {
       rows = this.database().prepare('SELECT * FROM records WHERE id = ?').all(request.id).filter((row) => {
         if (row.workspace_key !== request.workspaceKey) return false
@@ -1164,7 +1181,7 @@ export class LocalStoreCore {
       const lines = text.split('\n')
       for (let index = 0; index < lines.length; index += 1) {
         if (!expression.test(lines[index])) continue
-        hits.push({ id: row.id, title: row.title, line: index + 1, text: clipText(lines[index].trim(), 240) })
+        hits.push({ id: row.id, title: row.title, status: current.status, provenance: parseJson(current.provenance_json), line: index + 1, text: clipText(lines[index].trim(), 240) })
         if (hits.length >= limit) return hits
       }
     }
@@ -1240,7 +1257,7 @@ export class LocalStoreCore {
     const moveCap = Math.min(Math.max(Number(request.limit) || 2000, 1), 5000)
     // list() clamps to 100 rows, so drain in bounded batches until the target.
     while (report.freedTokens < needed && report.coldMoved.length < moveCap) {
-      const batch = this.list({ ...filter, cold: 0, sort: 'oldest', limit: 100 })
+      const batch = this.list({ ...filter, cold: 0, sort: 'oldest', limit: 100, includeExpired: true })
         .filter((card) => card.status !== 'pinned' && card.kind !== 'open-thread' && (card.updatedAt ?? 0) < cutoff)
       if (batch.length === 0) break
       let movedInBatch = 0
@@ -1273,7 +1290,7 @@ export class LocalStoreCore {
     const report = { removed, freedTokens: 0 }
     // list() clamps to 100 rows, so drain the oldest cold rows in batches.
     while (coldTotal > keepTokens) {
-      const rows = this.list({ ...filter, sort: 'oldest', limit: 100 })
+      const rows = this.list({ ...filter, sort: 'oldest', limit: 100, includeExpired: true })
       if (rows.length === 0) break
       for (const card of rows) {
         if (coldTotal <= keepTokens) break

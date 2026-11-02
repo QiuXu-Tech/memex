@@ -85,6 +85,40 @@ export const MEMORY_STATUSES = Object.freeze(['active', 'open', 'resolved', 'sup
 /** Trust level of the record content. `untrusted` content must never be obeyed as instructions. */
 export const MEMORY_TRUST = Object.freeze(['trusted', 'untrusted', 'derived'])
 
+/** Normalize an agent-supplied source reference without asserting it is true. */
+export function normalizeMemoryEvidence(value) {
+  if (value === undefined) return undefined
+  if (value === null || typeof value !== 'object' || Array.isArray(value)) throw new TypeError('memory: evidence must be an object')
+  const allowed = ['source', 'version', 'observedAt', 'validUntil']
+  if (Object.keys(value).some((key) => !allowed.includes(key))) throw new TypeError('memory: evidence contains an unsupported field')
+  if (typeof value.source !== 'string' || !value.source.trim() || value.source.length > 1024) throw new TypeError('memory: evidence requires a source of at most 1024 characters')
+  const result = { source: value.source.trim() }
+  if (value.version !== undefined) {
+    if (typeof value.version !== 'string' || !value.version.trim() || value.version.length > 256) throw new TypeError('memory: evidence version must be a non-empty string of at most 256 characters')
+    result.version = value.version.trim()
+  }
+  for (const key of ['observedAt', 'validUntil']) {
+    if (value[key] === undefined) continue
+    const match = typeof value[key] === 'string' && value[key].match(/^(\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2})(?:\.(\d{1,3}))?Z$/)
+    const normalized = match && `${match[1]}.${(match[2] ?? '').padEnd(3, '0')}Z`
+    const time = normalized && Date.parse(normalized)
+    if (!normalized || !Number.isFinite(time) || new Date(time).toISOString() !== normalized) throw new TypeError(`memory: ${key} must be a valid UTC ISO timestamp`)
+    result[key] = normalized
+  }
+  if (result.observedAt && result.validUntil && result.validUntil < result.observedAt) throw new TypeError('memory: validUntil must not precede observedAt')
+  return result
+}
+
+/** Render recorded evidence and expiry; the record remains an unverified claim. */
+export function memoryEvidenceLabel(record, now = Date.now()) {
+  const evidence = record?.provenance?.evidence
+  const safe = (value) => String(value ?? 'unknown').replace(/\s+/g, ' ').slice(0, 1024)
+  if (!evidence || typeof evidence !== 'object') return `source=${safe(record?.provenance?.source)}; version=unknown; validity=unknown`
+  const expiry = typeof evidence.validUntil === 'string' ? Date.parse(evidence.validUntil) : NaN
+  const validity = Number.isFinite(expiry) ? (expiry <= now ? 'expired' : 'not expired') : 'unknown'
+  return `source=${safe(evidence.source)}; version=${safe(evidence.version)}; observedAt=${safe(evidence.observedAt)}; validUntil=${safe(evidence.validUntil)}; validity=${validity} (source not verified)`
+}
+
 /** Longest accepted title / summary / use-when text, in Unicode code points. */
 export const MEMORY_TEXT_LIMITS = Object.freeze({
   title: 160,

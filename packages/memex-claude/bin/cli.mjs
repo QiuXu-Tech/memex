@@ -202,7 +202,7 @@ async function hook() {
       if ((facets.hotCount ?? 0) + (facets.coldCount ?? 0) === 0) return
       // UserPromptSubmit supplies relevant previews; don't inject the same
       // record titles again at the start of every session.
-      emitHook('SessionStart', buildCatalogInjection(engine.profile, 'Earlier context is available. Relevant previews may be recalled automatically; use memory_search or memory_index when needed.'))
+      emitHook('SessionStart', buildCatalogInjection(engine.profile, 'Earlier context is available. Relevant previews may be recalled automatically; use memory_search when needed.'))
       return
     }
     if (event === 'user-prompt') {

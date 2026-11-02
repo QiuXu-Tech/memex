@@ -7,10 +7,11 @@ import { createInterface } from 'node:readline'
 const separator = process.argv.indexOf('--')
 const options = process.argv.slice(2, separator < 0 ? undefined : separator)
 const command = separator < 0 ? [] : process.argv.slice(separator + 1)
-let archivePath = '', tracePath = '', workerTimeoutMs = 120000
+let archivePath = '', tracePath = '', workerTimeoutMs = 120000, readOnly = false
 for (let i = 0; i < options.length; i += 1) {
   if (options[i] === '--archive') archivePath = options[++i]
   else if (options[i] === '--trace') tracePath = options[++i]
+  else if (options[i] === '--read-only') readOnly = true
   else if (options[i] === '--worker-timeout-ms') {
     workerTimeoutMs = Number(options[++i])
     if (!Number.isInteger(workerTimeoutMs) || workerTimeoutMs <= 0 || workerTimeoutMs > 2147483647) throw new Error('Invalid worker timeout')
@@ -81,7 +82,8 @@ const tools = [
   tool('archive_search', 'Search earlier project-history records for relevant evidence.', { query: str }, ['query'], true),
   tool('archive_open', 'Read an earlier project-history record by ID.', { id: str }, ['id'], true),
 ]
-const definitions = new Map(tools.map((x) => [x.name, x]))
+const visibleTools = readOnly ? tools.filter((tool) => !['repo_edit', 'repo_test'].includes(tool.name)) : tools
+const definitions = new Map(visibleTools.map((x) => [x.name, x]))
 const operations = { repo_read: 'read', repo_search: 'search', repo_edit: 'edit', repo_test: 'public_test' }
 const readWindows = new Map()
 const seenArchiveRecords = new Set()
@@ -146,7 +148,7 @@ async function handle(message) {
   try {
     if (method === 'initialize') send({ jsonrpc: '2.0', id, result: { protocolVersion: '2024-11-05', capabilities: { tools: {} }, serverInfo: { name: 'prospective-agent', version: '1.0.0' } } })
     else if (method === 'ping') send({ jsonrpc: '2.0', id, result: {} })
-    else if (method === 'tools/list') send({ jsonrpc: '2.0', id, result: { tools } })
+    else if (method === 'tools/list') send({ jsonrpc: '2.0', id, result: { tools: visibleTools } })
     else if (method === 'tools/call') {
       const name = params?.name, args = params?.arguments ?? {}
       try {

@@ -16,13 +16,13 @@ import { resolve } from 'node:path'
 import { AgentMemory, defaultMemoryRoot } from '@qiuxu/memex-core/engine'
 import { buildCatalogInjection, buildMemoryManual } from '@qiuxu/memex-core/manual'
 import { RECOMMENDED_PROFILES } from '@qiuxu/memex-core/model-profiles'
-import { MEMORY_KINDS, MEMORY_STATUSES } from '@qiuxu/memex-core'
+import { MEMORY_KINDS, MEMORY_STATUSES, memoryEvidenceLabel } from '@qiuxu/memex-core'
 
 const VERSION = JSON.parse(readFileSync(new URL('../package.json', import.meta.url), 'utf8')).version
 const PROTOCOL = '2024-11-05'
 
 function parseArgs(argv) {
-  const args = { root: defaultMemoryRoot(), levels: undefined, model: '', agent: 'mcp-client', session: undefined, cwd: process.cwd(), capacity: undefined, sessionCapacity: undefined }
+  const args = { root: defaultMemoryRoot(), levels: undefined, model: '', agent: 'mcp-client', session: undefined, cwd: process.cwd(), capacity: undefined, sessionCapacity: undefined, allTools: false }
   for (let index = 2; index < argv.length; index += 1) {
     const token = argv[index]
     const next = () => argv[++index]
@@ -34,12 +34,13 @@ function parseArgs(argv) {
     else if (token === '--cwd') args.cwd = resolve(next())
     else if (token === '--capacity') args.capacity = Number(next())
     else if (token === '--session-capacity') args.sessionCapacity = Number(next())
+    else if (token === '--all-tools') args.allTools = true
     else if (token === '--list-profiles') {
       process.stderr.write(`${RECOMMENDED_PROFILES.mcp.join('\n')}\n`)
       process.exit(0)
     }
     else if (token === '--help' || token === '-h') {
-      process.stderr.write('Usage: memex-mcp [--root DIR] [--levels l2,l3] [--model ID] [--agent NAME] [--session ID] [--cwd DIR]\n')
+      process.stderr.write('Usage: memex-mcp [--root DIR] [--levels l2,l3] [--model ID] [--agent NAME] [--session ID] [--cwd DIR] [--all-tools]\n')
       process.stderr.write(`Recommended --model values: ${RECOMMENDED_PROFILES.mcp.join(', ')}\n`)
       process.exit(0)
     }
@@ -76,6 +77,9 @@ const TOOLS = [
       limit: { type: 'integer', minimum: 1, maximum: 20 },
       kind: { type: 'string', enum: MEMORY_KINDS },
       status: { type: 'string', enum: MEMORY_STATUSES },
+      source: { type: 'string', description: 'Optional exact evidence source reference.' },
+      version: { type: 'string', description: 'Optional exact source version; requires source.' },
+      includeExpired: { type: 'boolean', description: 'Include records past their stated validity time for historical inspection.' },
       openTop: { type: 'boolean', description: 'Include up to 2,000 characters from the top-ranked record; use only when the first hit is likely to be relevant.' },
     },
     required: ['query'],
@@ -113,6 +117,8 @@ const TOOLS = [
       tags: { type: 'object', additionalProperties: { type: 'array', items: { type: 'string' } } },
       scope: { type: 'string', enum: ['session', 'workspace'] },
       status: { type: 'string', enum: MEMORY_STATUSES },
+      evidence: { type: 'object', description: 'An asserted source, version and validity; these are not independently verified.', additionalProperties: false,
+        properties: { source: { type: 'string' }, version: { type: 'string' }, observedAt: { type: 'string', description: 'UTC ISO timestamp' }, validUntil: { type: 'string', description: 'UTC ISO timestamp' } }, required: ['source'] },
     },
     required: ['kind', 'title', 'body'],
   }),
@@ -153,6 +159,7 @@ const TOOLS = [
     },
   }),
 ]
+const CORE_TOOLS = new Set(['memory_search', 'memory_open', 'memory_write', 'memory_set_status'])
 
 const RESOURCES = [
   { uri: 'memory://catalog', name: 'Memory catalog', description: 'Bounded catalog of archived memory cards for the visible levels.', mimeType: 'text/markdown' },
@@ -165,7 +172,7 @@ const textResult = (text, isError = false) => ({ content: [{ type: 'text', text 
 
 function formatOpenedRecord(record) {
   const continuation = record.bodyNextCharOffset === undefined ? '' : ` · nextCharOffset=${record.bodyNextCharOffset}`
-  const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · trust=${record.trust} · tokens=${record.tokens} · body lines ${record.bodyOffset}-${record.bodyOffset + record.bodyLimit - 1} of ${record.bodyTotalLines}${record.bodyTruncated ? ' (truncated)' : ''}${continuation}\n`
+  const meta = `# ${record.title} (${record.id})\nkind=${record.kind} · scope=${record.scope} · status=${record.status} · trust=${record.trust} · tokens=${record.tokens} · body lines ${record.bodyOffset}-${record.bodyOffset + record.bodyLimit - 1} of ${record.bodyTotalLines}${record.bodyTruncated ? ' (truncated)' : ''}${continuation}\n${memoryEvidenceLabel(record)}\n`
   return `${meta}\n${record.body}`
 }
 
@@ -174,15 +181,15 @@ function callTool(name, input = {}) {
     case 'memory_search': {
       if (typeof input.query !== 'string' || input.query.trim().length === 0) throw new Error('memory_search requires a non-empty query')
       if (input.openTop !== undefined && typeof input.openTop !== 'boolean') throw new Error('memory_search openTop must be a boolean')
-      const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status })
-      const empty = result.hits.length === 0 && engine.list({ limit: 1, includeStatus: true }).length === 0
+      const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status, source: input.source, version: input.version, includeExpired: input.includeExpired })
+      const empty = result.hits.length === 0 && engine.list({ limit: 1, includeStatus: true, includeExpired: true }).length === 0
       const header = result.hits.length === 0
-        ? empty ? 'No matching memory records. The visible archive is currently empty; further searches cannot find records until some are added.' : 'No matching memory records. Try memory_grep or memory_index.'
+        ? empty ? 'No matching memory records. The visible archive is currently empty; further searches cannot find records until some are added.' : args.allTools ? 'No matching memory records. Try memory_grep or memory_index.' : 'No matching memory records. Refine the query or check original sources.'
         : `Memory search "${input.query}" (${result.hits.length} result${result.hits.length === 1 ? '' : 's'} shown)`
       const lines = result.hits.map((card, index) => {
         const summary = Array.from(String(card.summary || card.useWhen || '').replace(/\s+/g, ' ').trim())
         const preview = summary.slice(0, 240).join('') + (summary.length > 240 ? '…' : '')
-        return `${index + 1}. ${card.id}${card.trust === 'untrusted' ? ' [unverified]' : ''} · ${card.title}${preview ? ` · ${preview}` : ''}`
+        return `${index + 1}. ${card.id}${card.trust === 'untrusted' ? ' [unverified]' : ''} [${card.status}] · ${card.title}${preview ? ` · ${preview}` : ''}\n   ${memoryEvidenceLabel(card)}`
       })
       let text = `${header}\n${lines.join('\n')}`
       if (input.openTop && result.hits.length > 0) {
@@ -205,16 +212,17 @@ function callTool(name, input = {}) {
     case 'memory_grep': {
       if (typeof input.pattern !== 'string' || input.pattern.length === 0) throw new Error('memory_grep requires a pattern')
       const result = engine.grep({ pattern: input.pattern, limit: input.limit, id: input.id })
-      const lines = result.map((hit) => `${hit.id}:${hit.line}: ${hit.text}`)
+      const lines = result.map((hit) => `${hit.id}:${hit.line} [${hit.status}; ${memoryEvidenceLabel(hit)}]: ${hit.text}`)
       return textResult(lines.length === 0 ? `No lines matching /${input.pattern}/.` : lines.join('\n'))
     }
     case 'memory_write': {
       if (typeof input.kind !== 'string' || !input.kind || typeof input.title !== 'string' || typeof input.body !== 'string') throw new Error('memory_write requires kind, title and body')
-      const allowed = new Set(['kind', 'title', 'body', 'summary', 'useWhen', 'tags', 'scope', 'status'])
+      const allowed = new Set(['kind', 'title', 'body', 'summary', 'useWhen', 'tags', 'scope', 'status', 'evidence'])
       if (Object.keys(input).some((key) => !allowed.has(key))) throw new Error('memory_write received an unsupported field')
       // An agent's assertion is useful context, but is not automatically a
       // verified fact. Explicit core/API writes retain their existing policy.
-      const record = engine.write({ ...input, trust: 'untrusted' })
+      const { evidence, ...fields } = input
+      const record = engine.write({ ...fields, trust: 'untrusted', ...(evidence === undefined ? {} : { provenance: { evidence } }) })
       return textResult(`Stored ${record.id} (${record.kind}, scope=${record.scope}, ~${record.tokens} tokens). Path: ${record.path}`)
     }
     case 'memory_index': {
@@ -251,8 +259,8 @@ function callTool(name, input = {}) {
 
 const handlers = {
   initialize: (id, params) => {
-    const manual = buildMemoryManual(profile, { agent: args.agent, root: engine.root, levels: Object.entries(engine.levels).filter(([, on]) => on).map(([level]) => level) })
-    const empty = engine.list({ limit: 1, includeStatus: true }).length === 0
+    const manual = buildMemoryManual(profile, { agent: args.agent, root: engine.root, levels: Object.entries(engine.levels).filter(([, on]) => on).map(([level]) => level), allTools: args.allTools })
+    const empty = engine.list({ limit: 1, includeStatus: true, includeExpired: true }).length === 0
     const snapshot = empty ? '\n\nNo visible memory records at initialization. This is a snapshot: other sessions or later writes may add records. Skip an empty search only when you know no records have since been added.' : ''
     reply(id, {
       protocolVersion: PROTOCOL,
@@ -264,7 +272,7 @@ const handlers = {
   'notifications/initialized': () => {},
   'notifications/cancelled': () => {},
   ping: (id) => reply(id, {}),
-  'tools/list': (id) => reply(id, { tools: TOOLS }),
+  'tools/list': (id) => reply(id, { tools: args.allTools ? TOOLS : TOOLS.filter((tool) => CORE_TOOLS.has(tool.name)) }),
   'tools/call': (id, params) => {
     try {
       const result = callTool(params?.name, params?.arguments ?? {})

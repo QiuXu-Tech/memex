@@ -363,6 +363,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
 
   /** Archive any persisted compactions this process never saw (resume/crash recovery). */
   async function reconcile(session) {
+    if (!policyConfig.autoArchive) return
     const queryService = query()
     if (queryService === undefined) return
     try {

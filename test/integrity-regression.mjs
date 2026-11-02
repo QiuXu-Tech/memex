@@ -13,7 +13,7 @@ import LocalMemoryStore from '../packages/memex-local/index.js'
 import * as checkpoint from '../packages/memex-checkpoint/index.js'
 import * as toolsRow from '../packages/memex-tool/index.js'
 import { createFakeContext, createSessionQueryMock } from './fake-ctx.mjs'
-import { createSession, createSurfaceEvents, createCompactionEvent } from './fixtures.mjs'
+import { createSession, createSurfaceEvents, createCompactionEvent, createPreStepDecision, terminalNext } from './fixtures.mjs'
 
 const register = fileURLToPath(new URL('./register.mjs', import.meta.url))
 const cli = fileURLToPath(new URL('../packages/memex-claude/bin/cli.mjs', import.meta.url))
@@ -22,10 +22,220 @@ const mcp = fileURLToPath(new URL('../packages/memex-mcp/bin/server.mjs', import
 const initFault = fileURLToPath(new URL('./claude-init-fault.mjs', import.meta.url))
 const codexInitFault = fileURLToPath(new URL('./codex-init-fault.mjs', import.meta.url))
 const sqlitePermissionFault = fileURLToPath(new URL('./sqlite-permission-fault.mjs', import.meta.url))
+const tracePermissionFault = fileURLToPath(new URL('./trace-permission-fault.mjs', import.meta.url))
 const root = () => mkdtempSync(join(tmpdir(), 'memex-integrity-test-'))
 const node = (args, input = '', env = {}) => spawnSync(process.execPath, ['--import', register, cli, ...args], { input, encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
 const codexNode = (args, env = {}) => spawnSync(process.execPath, ['--import', register, codexCli, ...args], { encoding: 'utf8', timeout: 60000, env: { ...process.env, ...env } })
 const pause = () => new Promise((resolve) => setTimeout(resolve, 100))
+const mcpCall = (dir, project, requests, extra = []) => {
+  const result = spawnSync(process.execPath, ['--import', register, mcp, '--root', dir, '--cwd', project, '--session', 'evidence-test', '--levels', 'l3', ...extra],
+    { input: requests.map((request) => JSON.stringify(request)).join('\n') + '\n', encoding: 'utf8', timeout: 60000 })
+  assert.equal(result.status, 0, result.stderr)
+  return result.stdout.trim().split('\n').filter(Boolean).map((line) => JSON.parse(line))
+}
+const rpc = (id, method, params = {}) => ({ jsonrpc: '2.0', id, method, params })
+
+test('read-only pilot bridge hides and rejects editing and test execution', () => {
+  const bridge = fileURLToPath(new URL('../scripts/prospective-agent-mcp-v5.mjs', import.meta.url))
+  const requests = [rpc(1, 'tools/list'), rpc(2, 'tools/call', { name: 'repo_edit', arguments: { path: 'x.js', old: 'x', new: 'y' } }), rpc(3, 'tools/call', { name: 'repo_test', arguments: {} })]
+  const result = spawnSync(process.execPath, [bridge, '--read-only', '--', process.execPath, '-e', 'process.stdin.resume()'], { input: requests.map(JSON.stringify).join('\n') + '\n', encoding: 'utf8', timeout: 10000 })
+  assert.equal(result.status, 0, result.stderr)
+  const responses = result.stdout.trim().split('\n').map(JSON.parse)
+  assert.deepEqual(responses[0].result.tools.map((tool) => tool.name).sort(), ['archive_open', 'archive_search', 'repo_read', 'repo_search'])
+  assert.equal(responses[1].result.isError, true)
+  assert.equal(responses[2].result.isError, true)
+})
+
+test('MCP defaults to a small memory interface and retains explicit advanced tools', () => {
+  const dir = root(), project = '/tmp/memex-interface-regression'
+  try {
+    const names = (extra = []) => mcpCall(dir, project, [rpc(1, 'tools/list')], extra)[0].result.tools.map((tool) => tool.name).sort()
+    assert.deepEqual(names(), ['memory_open', 'memory_search', 'memory_set_status', 'memory_write'])
+    assert.ok(names(['--all-tools']).includes('memory_forget'))
+    assert.ok(names(['--all-tools']).includes('memory_grep'))
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('MCP source, version and validity survive reopen and govern normal recall', () => {
+  const dir = root(), project = '/tmp/memex-evidence-regression'
+  const evidence = { source: 'src/deploy.json', version: 'commit-abc', observedAt: '2025-01-01T00:00:00Z', validUntil: '2999-01-01T00:00:00Z' }
+  try {
+    const write = mcpCall(dir, project, [rpc(1, 'tools/call', { name: 'memory_write', arguments: { kind: 'decision', title: 'Sprocket deploy target', summary: 'Sprocket deploy target', body: 'Use staging', evidence } })])[0]
+    assert.equal(write.result.isError, false)
+    const id = write.result.content[0].text.match(/mem_[a-f0-9]+/)[0]
+    const responses = mcpCall(dir, project, [
+      rpc(2, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket deploy target', source: evidence.source, version: evidence.version } }),
+      rpc(3, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket deploy target', source: evidence.source, version: 'commit-wrong' } }),
+      rpc(4, 'tools/call', { name: 'memory_open', arguments: { id } }),
+      rpc(6, 'tools/call', { name: 'memory_set_status', arguments: { id, status: 'superseded' } }),
+      rpc(7, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket deploy target' } }),
+      rpc(8, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket deploy target', status: 'superseded' } }),
+    ])
+    const text = (index) => responses[index].result.content[0].text
+    assert.match(text(0), new RegExp(id)); assert.doesNotMatch(text(1), new RegExp(id))
+    assert.match(text(0), /src\/deploy\.json/); assert.match(text(0), /commit-abc/)
+    assert.match(text(2), /src\/deploy\.json/); assert.match(text(2), /commit-abc/); assert.match(text(2), /2999-01-01/)
+    assert.doesNotMatch(text(4), new RegExp(id)); assert.match(text(5), /\[superseded\]/)
+    const invalid = mcpCall(dir, project, [rpc(5, 'tools/call', { name: 'memory_write', arguments: { kind: 'fact', title: 'bad expiry', body: 'bad', evidence: { source: 'x', validUntil: '2025-02-30T00:00:00Z' } } })])[0]
+    assert.equal(invalid.result.isError, true)
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('expired evidence stays available by id but is excluded from normal search and paging', () => {
+  const dir = root(), project = '/tmp/memex-expiry-regression'
+  const engine = new AgentMemory({ root: dir, cwd: project, sessionId: 'evidence-test', levels: ['l3'] })
+  try {
+    const expired = engine.write({ kind: 'decision', title: 'Sprocket expired deploy', summary: 'Sprocket expired deploy', body: 'old deploy', status: 'pinned', provenance: { evidence: { source: 'src/deploy.json', version: 'old', validUntil: '2025-01-01T00:00:00Z' } } })
+    assert.equal(engine.search({ query: 'Sprocket expired deploy' }).hits.length, 0)
+    assert.equal(engine.search({ query: 'Sprocket expired deploy', includeExpired: true }).hits[0].id, expired.id)
+    assert.equal(engine.grep({ pattern: 'old deploy' }).length, 0)
+    assert.equal(engine.grep({ pattern: 'old deploy', id: expired.id })[0].id, expired.id)
+    assert.equal(engine.open({ id: expired.id }).id, expired.id)
+    assert.ok(!engine.materializeContext({ query: 'Sprocket expired deploy', budgetTokens: 1800 }).includedIds.includes(expired.id))
+    const replies = mcpCall(dir, project, [
+      rpc(1, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket expired deploy' } }),
+      rpc(2, 'tools/call', { name: 'memory_search', arguments: { query: 'Sprocket expired deploy', includeExpired: true } }),
+      rpc(3, 'tools/call', { name: 'memory_open', arguments: { id: expired.id } }),
+    ])
+    assert.doesNotMatch(replies[0].result.content[0].text, new RegExp(expired.id))
+    assert.match(replies[1].result.content[0].text, /validity=expired/)
+    assert.match(replies[2].result.content[0].text, /validity=expired/)
+    const hook = node(['hook', 'UserPromptSubmit', '--root', dir, '--project', project, '--session', 'evidence-test', '--levels', 'l3'], JSON.stringify({ session_id: 'evidence-test', prompt: 'What is the Sprocket expired deploy?' }))
+    assert.equal(hook.status, 0, hook.stderr); assert.doesNotMatch(hook.stdout, new RegExp(expired.id))
+  } finally { engine.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('DSH tools persist source metadata and expose it on a later session read', async () => {
+  const dir = root(), ctx = createFakeContext()
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l3' })
+  ctx.provideService('memory', backend); toolsRow.apply(ctx, {})
+  const first = createSession({ id: 'evidence-dsh-first', cwd: '/tmp/memex-evidence-dsh' })
+  const second = createSession({ id: 'evidence-dsh-second', cwd: '/tmp/memex-evidence-dsh' })
+  try {
+    const saved = await ctx.tool('memory_write').execute({ kind: 'decision', title: 'Sprocket source decision', body: 'use staging', source: 'deploy.yml', source_version: 'rev-123', observed_at: '2025-01-01T00:00:00Z', valid_until: '2999-01-01T00:00:00Z' }, { agent: { session: first } })
+    const id = saved.match(/mem_[a-f0-9]+/)[0]
+    const opened = await ctx.tool('memory_open').execute({ id }, { agent: { session: second } })
+    assert.match(opened, /deploy\.yml/); assert.match(opened, /rev-123/); assert.match(opened, /2999-01-01/)
+    const match = await ctx.tool('memory_search').execute({ query: 'Sprocket source decision', source: 'deploy.yml', version: 'rev-123' }, { agent: { session: second } })
+    const miss = await ctx.tool('memory_search').execute({ query: 'Sprocket source decision', source: 'deploy.yml', version: 'other' }, { agent: { session: second } })
+    assert.match(match, new RegExp(id)); assert.doesNotMatch(miss, new RegExp(id))
+    assert.equal((await backend.get(id)).trust, 'untrusted')
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('failed metadata update keeps the old source/version and succeeds after retry', () => {
+  const dir = root(), store = new LocalStoreCore({ root: dir })
+  try {
+    const old = store.write({ id: 'mem_evidence_retry', kind: 'decision', title: 'deploy', body: 'v1', workspaceKey: 'wk', provenance: { evidence: { source: 'deploy.yml', version: 'v1' } } })
+    store.database().exec("CREATE TRIGGER injected_evidence_failure BEFORE UPDATE ON records BEGIN SELECT RAISE(ABORT, 'injected evidence failure'); END")
+    assert.throws(() => store.write({ ...old, body: 'v2', provenance: { evidence: { source: 'deploy.yml', version: 'v2' } } }), /injected evidence failure/)
+    store.close()
+    const reopened = new LocalStoreCore({ root: dir })
+    try {
+      assert.equal(reopened.get(old.id).body, 'v1'); assert.equal(reopened.get(old.id).provenance.evidence.version, 'v1')
+      reopened.database().exec('DROP TRIGGER injected_evidence_failure')
+      reopened.write({ ...reopened.get(old.id), body: 'v2', provenance: { evidence: { source: 'deploy.yml', version: 'v2' } } })
+      assert.equal(reopened.get(old.id).body, 'v2'); assert.equal(reopened.get(old.id).provenance.evidence.version, 'v2')
+    } finally { reopened.close() }
+  } finally { store.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('superseded memories stay out of default MCP search and Claude auto-recall', () => {
+  const dir = root(), project = '/tmp/memex-status-regression'
+  const engine = new AgentMemory({ root: dir, cwd: project, sessionId: 'status-test', levels: ['l3'] })
+  try {
+    const old = engine.write({ kind: 'decision', title: 'Sprocket deployment target', summary: 'Sprocket deployment target', body: 'old target' })
+    engine.setStatus(old.id, 'superseded')
+    assert.equal(engine.search({ query: 'Sprocket deployment target' }).hits.length, 0)
+    assert.equal(engine.search({ query: 'Sprocket deployment target', status: 'superseded' }).hits[0].id, old.id)
+    assert.equal(engine.grep({ pattern: 'old target' }).length, 0)
+    assert.equal(engine.grep({ pattern: 'old target', id: old.id })[0].status, 'superseded')
+    const request = JSON.stringify({ jsonrpc: '2.0', id: 1, method: 'tools/call', params: { name: 'memory_search', arguments: { query: 'Sprocket deployment target' } } }) + '\n'
+    const result = spawnSync(process.execPath, ['--import', register, mcp, '--root', dir, '--cwd', project, '--session', 'status-test', '--levels', 'l3'], { input: request, encoding: 'utf8' })
+    assert.equal(result.status, 0, result.stderr)
+    assert.doesNotMatch(result.stdout, new RegExp(old.id))
+    const hook = node(['hook', 'UserPromptSubmit', '--root', dir, '--project', project, '--session', 'status-test', '--levels', 'l3'], JSON.stringify({ session_id: 'status-test', prompt: 'What is the Sprocket deployment target?' }))
+    assert.equal(hook.status, 0, hook.stderr)
+    assert.doesNotMatch(hook.stdout, new RegExp(old.id))
+  } finally { engine.close(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('materialization trace keeps only metadata and protects an existing file', { skip: process.platform === 'win32' }, async () => {
+  const dir = root(), ctx = createFakeContext()
+  const trace = join(dir, 'materializer-trace.jsonl')
+  chmodSync(dir, 0o755)
+  writeFileSync(trace, 'legacy trace preserved\n', { mode: 0o644 }); chmodSync(trace, 0o644)
+  const backend = new LocalMemoryStore(ctx, { root: dir })
+  try {
+    const record = await backend.write({ kind: 'fact', title: 'trace sentinel', body: 'PRIVATE_TRACE_SENTINEL', workspaceKey: 'wk' })
+    assert.equal(await backend.recordMaterialization({ sessionId: 's', workspaceKey: 'wk', form: 'materialized-context', text: 'PRIVATE_TRACE_SENTINEL' }), true)
+    assert.equal(await backend.forget(record.id), true)
+    const text = readFileSync(trace, 'utf8')
+    assert.match(text, /^legacy trace preserved\n/)
+    assert.doesNotMatch(text, /PRIVATE_TRACE_SENTINEL/)
+    assert.equal(statSync(trace).mode & 0o077, 0)
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('opening DSH memory secures a legacy trace before any new injection', { skip: process.platform === 'win32' }, async () => {
+  const dir = root(), trace = join(dir, 'materializer-trace.jsonl'), ctx = createFakeContext()
+  chmodSync(dir, 0o755); writeFileSync(trace, 'legacy text\n', { mode: 0o644 }); chmodSync(trace, 0o644)
+  try {
+    new LocalMemoryStore(ctx, { root: dir })
+    assert.equal(statSync(trace).mode & 0o077, 0)
+    assert.equal(readFileSync(trace, 'utf8'), 'legacy text\n')
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('trace permission failure preserves the old file and a retry writes metadata only', { skip: process.platform === 'win32' }, async () => {
+  const dir = root(), trace = join(dir, 'materializer-trace.jsonl')
+  writeFileSync(trace, 'old trace\n', { mode: 0o644 }); chmodSync(trace, 0o644)
+  try {
+    const local = new URL('../packages/memex-local/index.js', import.meta.url).href
+    const script = `import LocalMemoryStore from ${JSON.stringify(local)}; try { new LocalMemoryStore({effect(){}}, {root:process.env.MEMEX_TEST_ROOT}); console.log('unexpected') } catch (error) { console.log(error.message) }`
+    const child = spawnSync(process.execPath, ['--import', register, '--import', tracePermissionFault, '--input-type=module', '-e', script], { encoding: 'utf8', env: { ...process.env, MEMEX_TEST_ROOT: dir } })
+    assert.equal(child.status, 0, child.stderr); assert.match(child.stdout, /injected trace permission failure/)
+    assert.equal(readFileSync(trace, 'utf8'), 'old trace\n')
+    const ctx = createFakeContext(), backend = new LocalMemoryStore(ctx, { root: dir })
+    try {
+      assert.equal(await backend.recordMaterialization({ text: 'SENSITIVE_FIXTURE' }), true)
+      assert.doesNotMatch(readFileSync(trace, 'utf8'), /SENSITIVE_FIXTURE/)
+      assert.equal(statSync(trace).mode & 0o077, 0)
+    } finally { await ctx.dispose() }
+  } finally { rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('configured session-settings TTL is applied when a store reopens', async () => {
+  const dir = root(), ctx = createFakeContext()
+  const backend = new LocalMemoryStore(ctx, { root: dir, settingsTtlDays: 7 })
+  try {
+    assert.equal(backend.core.settingsTtlMs, 7 * 86400000)
+    const db = backend.core.database()
+    const insert = db.prepare("INSERT INTO session_settings (session_id, mode, l2, l3, updated_at) VALUES (?, 'off', 0, 1, ?)")
+    insert.run('old', Date.now() - 8 * 86400000); insert.run('recent', Date.now() - 6 * 86400000)
+    backend.core.close()
+    const reopened = new LocalMemoryStore(ctx, { root: dir, settingsTtlDays: 7 })
+    const rows = reopened.core.database().prepare('SELECT session_id FROM session_settings ORDER BY session_id').all()
+    assert.deepEqual(rows.map((row) => row.session_id), ['recent'])
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
+
+test('disabling automatic archives leaves configured recall active', async () => {
+  const dir = root(), ctx = createFakeContext()
+  const backend = new LocalMemoryStore(ctx, { root: dir, defaultLevels: 'l3' })
+  ctx.provideService('memory', backend)
+  checkpoint.apply(ctx, { autoArchive: false, autoRecall: true, materializer: 'off', cardModel: 'off' })
+  const session = createSession({ id: 'recall-only', cwd: '/tmp/memex-recall-only' })
+  try {
+    const record = await backend.write({ kind: 'decision', title: 'Sprocket target', summary: 'Sprocket target', body: 'Sprocket uses staging', workspaceKey: memoryWorkspaceKey(session.header.cwd, session.id), scope: 'workspace' })
+    const decision = createPreStepDecision(session, 'What is the Sprocket target?')
+    const result = await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(decision))
+    assert.ok(result.messages.some((message) => message.source?.form === 'recall' && message.source.recordIds.includes(record.id)))
+    await ctx.emit('session/event', session, createCompactionEvent())
+    await pause()
+    assert.equal(await backend.wasArchived(session.id, 'cmp-1'), undefined)
+  } finally { await ctx.dispose(); rmSync(dir, { recursive: true, force: true }) }
+})
 
 test('new SQLite database and sidecars remain private under a permissive existing root', { skip: process.platform === 'win32' }, () => {
   const dir = root(), previousMask = process.umask(0o022)

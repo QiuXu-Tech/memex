@@ -184,6 +184,25 @@ test('interrupted updates recover the old or committed new body and metadata', a
   }
 })
 
+test('interrupted version updates recover matching source metadata and body', async () => {
+  for (const fault of ['after-stage', 'after-target', 'after-commit']) {
+    await withStore(async (store, root) => {
+      const card = store.write({ id: 'mem_versioned', kind: 'fact', title: 'Versioned fixture', body: 'old version body', workspaceKey: 'wk-lock', scope: 'workspace', provenance: { evidence: { source: 'deploy.yml', version: 'v1', validUntil: '2998-01-01T00:00:00Z' } } })
+      store.close()
+      const child = runWorker('evidence-update', root, card.id, fault)
+      assert.equal(child.signal, 'SIGKILL', child.stderr)
+      const recovered = reopen(root)
+      try {
+        const record = recovered.get(card.id), committed = fault === 'after-commit'
+        assert.equal(record.body, committed ? 'new version body' : 'old version body')
+        assert.equal(record.provenance.evidence.version, committed ? 'v2' : 'v1')
+        assert.equal(record.provenance.evidence.validUntil, committed ? '2999-01-01T00:00:00.000Z' : '2998-01-01T00:00:00.000Z')
+        assert.ok(noPending(root))
+      } finally { recovered.close() }
+    })
+  }
+})
+
 test('an interrupted new record leaves no indexed or active file and retains its staged body', async () => {
   await withStore(async (store, root) => {
     write(store)

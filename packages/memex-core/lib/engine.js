@@ -124,7 +124,10 @@ export class AgentMemory {
   }
 
   /** Ranked card-level search over the visible levels. */
-  search({ query, limit, kind, status } = {}) {
+  search({ query, limit, kind, status, source, version, includeExpired } = {}) {
+    if (source !== undefined && (typeof source !== 'string' || !source.trim())) throw new TypeError('memory: source must be a non-empty string')
+    if (version !== undefined && (typeof version !== 'string' || !version.trim() || source === undefined)) throw new TypeError('memory: version requires a non-empty source and version')
+    if (includeExpired !== undefined && typeof includeExpired !== 'boolean') throw new TypeError('memory: includeExpired must be a boolean')
     return this.store.search({
       query,
       workspaceKey: this.workspaceKey,
@@ -135,6 +138,9 @@ export class AgentMemory {
       maxTerms: this.profile.queryTerms?.maxTerms,
       ...(kind === undefined ? {} : { kind }),
       ...(status === undefined ? {} : { status }),
+      ...(source === undefined ? {} : { source }),
+      ...(version === undefined ? {} : { version }),
+      ...(includeExpired === undefined ? {} : { includeExpired }),
     })
   }
 
@@ -241,7 +247,7 @@ export class AgentMemory {
   }
 
   /** Card-level listing over the visible levels. */
-  list({ kind, status, limit, sort, includeStatus } = {}) {
+  list({ kind, status, limit, sort, includeStatus, includeExpired } = {}) {
     return this.store.list({
       workspaceKey: this.workspaceKey,
       scopes: this.scopes,
@@ -251,6 +257,7 @@ export class AgentMemory {
       ...(limit === undefined ? {} : { limit }),
       ...(sort === undefined ? {} : { sort }),
       ...(includeStatus === undefined ? {} : { includeStatus }),
+      ...(includeExpired === undefined ? {} : { includeExpired }),
     })
   }
 

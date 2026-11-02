@@ -17,7 +17,8 @@ import z from '@deepseek-ai/schemastery'
 import { dshHomePath } from '@deepseek-ai/dsh-home-paths'
 import { MemoryStore } from '@qiuxu/memex-seam'
 import { LocalStoreCore } from './lib/store.js'
-import { appendFileSync } from 'node:fs'
+import { closeSync, constants, fchmodSync, fstatSync, openSync, writeSync } from 'node:fs'
+import { createHash } from 'node:crypto'
 import { join } from 'node:path'
 import { materializeStoreContext } from '@qiuxu/memex-core/context-pager'
 
@@ -34,6 +35,22 @@ function resolveDefaultLevels(config) {
   if (value === 'both') return { l2: true, l3: true }
   if (value === 'none' || value === 'off') return { l2: false, l3: false }
   throw new TypeError(`memory: defaultLevels must be "none", "l2", "l3" or "both", got ${JSON.stringify(value)}`)
+}
+
+/** Protect an old trace without changing or deleting its historical contents. */
+function protectExistingTrace(root) {
+  if (process.platform === 'win32') return
+  let fd
+  try {
+    fd = openSync(join(root, 'materializer-trace.jsonl'), constants.O_RDONLY | (constants.O_NOFOLLOW ?? 0))
+    const stat = fstatSync(fd)
+    if (!stat.isFile()) throw new Error('materializer trace is not a regular file')
+    if ((stat.mode & 0o077) !== 0) fchmodSync(fd, stat.mode & ~0o077)
+  } catch (error) {
+    if (error?.code !== 'ENOENT') throw error
+  } finally {
+    if (fd !== undefined) closeSync(fd)
+  }
 }
 
 /**
@@ -65,8 +82,10 @@ export default class LocalMemoryStore extends MemoryStore {
       capacityTokens: config.capacityTokens ?? 100_000_000,
       sessionCapacityTokens: config.sessionCapacityTokens ?? 10_000_000,
       defaultLevels: resolveDefaultLevels(config),
+      settingsTtlDays: config.settingsTtlDays ?? 90,
     }
     this.root = this.config.root
+    protectExistingTrace(this.root)
     this.supportsAtomicContextArchive = true
     this.core = new LocalStoreCore({
       root: this.root,
@@ -132,11 +151,21 @@ export default class LocalMemoryStore extends MemoryStore {
   }
 
   async recordMaterialization(entry) {
+    let fd
     try {
-      appendFileSync(join(this.root, 'materializer-trace.jsonl'), JSON.stringify({ at: new Date().toISOString(), ...entry }) + '\n', { mode: 0o600 })
+      const text = String(entry.text ?? '')
+      const trace = { at: new Date().toISOString(), sessionId: entry.sessionId, workspaceKey: entry.workspaceKey,
+        form: entry.form, characters: text.length, sha256: createHash('sha256').update(text).digest('hex') }
+      fd = openSync(join(this.root, 'materializer-trace.jsonl'), constants.O_WRONLY | constants.O_APPEND | constants.O_CREAT | (constants.O_NOFOLLOW ?? 0), 0o600)
+      const stat = fstatSync(fd)
+      if (!stat.isFile()) throw new Error('materializer trace is not a regular file')
+      if (process.platform !== 'win32' && (stat.mode & 0o077) !== 0) fchmodSync(fd, stat.mode & ~0o077)
+      writeSync(fd, JSON.stringify(trace) + '\n')
       return true
     } catch {
       return false
+    } finally {
+      if (fd !== undefined) closeSync(fd)
     }
   }
 
