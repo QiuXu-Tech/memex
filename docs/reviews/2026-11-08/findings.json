@@ -1,0 +1,282 @@
+{
+  "baseline": "5bf65f6ede777c00cf35ec2ba1e4b14dbc17f182",
+  "status": "unfixed audit findings",
+  "findings": [
+    {
+      "id": "F01",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "干净检出后的三个 Agent 入口无法直接启动",
+      "source": [
+        {
+          "path": "packages/memex-mcp/bin/server.mjs",
+          "lines": "L12-L26"
+        },
+        {
+          "path": "scripts/link-workspace.sh",
+          "lines": "L6-L10"
+        },
+        {
+          "path": "docs/integrations/mcp.md",
+          "lines": "L8-L13"
+        }
+      ],
+      "minimalFix": "先补一个明确的本地安装/链接步骤，覆盖 core 与三个适配器，并让文档命令执行它；保留正式包名与导出契约。下一步才考虑可发布打包，不能把测试 loader 当正式启动依赖，也不要求为了本问题引入全部 DSH 依赖。",
+      "acceptance": "干净归档、空 HOME、没有 node_modules 时，按文档完成安装后，三个入口无 test loader 可启动；再做真正 stdio initialize/list/write/search/open 流程。所有生成配置中的命令必须在新进程可运行。"
+    },
+    {
+      "id": "F02",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "硬预算选项没有约束强制页，宿主仍可能注入超限窗口",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/context-materializer.js",
+          "lines": "L145-L231"
+        },
+        {
+          "path": "packages/memex-checkpoint/lib/checkpoint.js",
+          "lines": "L409-L424"
+        },
+        {
+          "path": "packages/memex/cordis.patch.yml",
+          "lines": "L28-L34"
+        }
+      ],
+      "minimalFix": "明确 hard/soft 两种预算契约：hard 模式必须先为标题、前缀、回执等预留预算；固定页装不下时按公开规则节选或返回明确遗漏，不能悄悄越界。注入边界再做总量校验；可用时用宿主真实 tokenizer，否则标记估算与保守余量。",
+      "acceptance": "覆盖固定页/必选页大于预算、零预算、多页元数据、CJK/emoji、非法数值与真实 tokenizer。hard 模式输出总 tokens 不超限；soft 模式必须明确报告 exceeded，宿主不得无条件消费。"
+    },
+    {
+      "id": "F03",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "canonical block 次序与跨来源时间排序不可靠",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/context-events.js",
+          "lines": "L92-L142"
+        },
+        {
+          "path": "packages/memex-core/lib/store.js",
+          "lines": "L647-L663"
+        },
+        {
+          "path": "packages/memex-core/lib/context-materializer.js",
+          "lines": "L187-L212"
+        },
+        {
+          "path": "packages/memex-core/lib/context-pager.js",
+          "lines": "L105-L133"
+        }
+      ],
+      "minimalFix": "新增明确的 session/turn/event/block ordinal；存储与 materializer 共用排序元组。跨会话使用事件时间加确定性 tie-break，同会话保留 event+block 原始次序。关联 tool-call/result 保持拓扑约束；无法确定的跨来源顺序应标明不确定，而不是声称精确还原。",
+      "acceptance": "12/100 blocks、同毫秒、多会话从 sequence=1 重置、普通记录与 canonical 混排、tool-call/result、重启读回，顺序均符合冻结预期。迁移不丢失旧事件。"
+    },
+    {
+      "id": "F04",
+      "priority": "P2",
+      "evidence": "R",
+      "title": "必选记录并未保证进入候选集，record/page ID 映射也会失效",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/context-pager.js",
+          "lines": "L90-L153"
+        },
+        {
+          "path": "packages/memex-core/lib/context-materializer.js",
+          "lines": "L149-L156"
+        }
+      ],
+      "minimalFix": "在现有可见域内显式读取必选 record ID，再展开到 page ID；返回 missing/not-visible/over-budget 原因。必选读入数量有上限，但不得绕过 workspace/session 或有效期策略；与 F02 共同定义“必须纳入”遇到硬预算时的失败语义。",
+      "acceptance": "超过 recentLimit 的旧必选记录仍可选择；canonical 记录整组或被明确选择的块可追踪；不可见 ID 不泄露内容；缺失/超限不能伪装成功。"
+    },
+    {
+      "id": "F05",
+      "priority": "P2",
+      "evidence": "R",
+      "title": "参考 KV 宿主与通用适配函数契约不兼容",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/context-kv.js",
+          "lines": "L53-L64"
+        },
+        {
+          "path": "packages/memex-core/lib/context-kv-host.js",
+          "lines": "L33-L49"
+        }
+      ],
+      "minimalFix": "统一为显式 createBlock + registerPrefixIds，或者单独命名 putPrefixTexts，禁止同名不同语义。prefix 命中必须表示完整且连续的有效块，淘汰应整体失效或返回明确最长连续前缀；检查必要方法而非仅相信 capabilities 字符串。",
+      "acceptance": "用真实 PagedKvContextHost 跑通 materializeWithHost；检查内容与引用未变、容量不足、缺失块、空方法宿主及部分淘汰。GPU 路径另行验证，不借此单测宣布 GPU 正确。"
+    },
+    {
+      "id": "F06",
+      "priority": "P2",
+      "evidence": "R",
+      "title": "grep 返回的行号不能直接交给 open",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/store.js",
+          "lines": "L1180-L1209"
+        },
+        {
+          "path": "packages/memex-core/lib/engine.js",
+          "lines": "L139-L178"
+        }
+      ],
+      "minimalFix": "统一工具坐标为正文 1-based 行号；或者返回显式 coordinateSpace 与可执行的 continuation 参数。保留原文件行号时必须另标，不允许由模型猜测 frontmatter 长度。",
+      "acceptance": "grep→open 自动链路在普通、冷存、元数据长度变化、多行 Unicode 正文上均能读到同一匹配；分页边界不重复或跳行。"
+    },
+    {
+      "id": "F07",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "独立层级的并发启用存在丢失更新",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/store.js",
+          "lines": "L1492-L1520"
+        }
+      ],
+      "minimalFix": "用单条原子 UPSERT，更新列使用 stored OR requested / MAX，而不是把两列整体覆盖；若以后支持关闭，使用独立且版本化的显式操作，不能混入此启用路径。",
+      "acceptance": "两连接交错启用、重复启用、跨进程并发均不会撤销已开启层级；adapter requestedLevels 仍保持更窄的读取限制。"
+    },
+    {
+      "id": "F08",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "未显式提供事件 ID 时会跨记录覆盖 canonical event",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/store.js",
+          "lines": "L603-L640"
+        }
+      ],
+      "minimalFix": "默认 ID 纳入 workspace/session/record/event/block 的稳定命名空间；同 ID 更新必须验证 owner 与来源，不允许用 UPSERT 隐式转移归属。新记录与更新记录分开定义，迁移前检查现有冲突。",
+      "acceptance": "不同记录相同 sequence 均保留；相同事件重试幂等；跨归属相同 ID 拒绝且不修改任何旧事件。"
+    },
+    {
+      "id": "F09",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "FTS 迁移中断可留下永久不完整索引",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/store.js",
+          "lines": "L324-L402"
+        }
+      ],
+      "minimalFix": "对 schema+回填采用事务或 staging FTS 表原子切换；记录明确 schema/index generation 与 BUILDING/READY，启动对账行数/抽样内容。失败必须重试重建，不把“列存在”当完成条件。",
+      "acceptance": "每个迁移阶段中断后恢复，检索与未中断对照一致；保留正文与 canonical event；升级前后都测大库与并发读写。"
+    },
+    {
+      "id": "F10",
+      "priority": "P2",
+      "evidence": "R",
+      "title": "零 identifier 的正常记录在每次打开库时反复全文重建",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/store.js",
+          "lines": "L388-L402"
+        }
+      ],
+      "minimalFix": "单独记录 terms_index_version/terms_indexed，即使词项数量为零也表示构建完成；只对版本落后或正文 checksum 改变的记录增量更新。不要为避免扫描而悄悄丢失正文索引。",
+      "acceptance": "正常空 posting 的第二次打开不读全部正文；变更正文和迁移版本时恰好重建；用 1k/10k 记录测启动耗时、文件读取次数与 RSS。"
+    },
+    {
+      "id": "F11",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "异步卡片精修会覆盖较新的生命周期状态",
+      "source": [
+        {
+          "path": "packages/memex-checkpoint/lib/checkpoint.js",
+          "lines": "L222-L255"
+        }
+      ],
+      "minimalFix": "给 enrichment 使用预期 recordVersion/checksum 的 CAS patch，仅允许更新 title/summary/useWhen 等指定字段；版本变化时跳过或重新读取并重评，不能把旧整行写回。删除之后的迟到任务不得重新创建同一记录。",
+      "acceptance": "精修期间发生 supersede、正文更新、冷移、删除、作用域变化，各自不被旧结果撤销；并发 patch 冲突有可观测状态。保留不调用模型的确定性归档路径。"
+    },
+    {
+      "id": "F12",
+      "priority": "P2",
+      "evidence": "R",
+      "title": "摘要失败重试没有计入实际模型调用次数",
+      "source": [
+        {
+          "path": "packages/memex-compress/index.js",
+          "lines": "L238-L267"
+        }
+      ],
+      "minimalFix": "在 dispatch 前记录 attempt；分别统计 attempted/succeeded/failed/cancelled 与 usageKnown/chargeKnown。重试受独立 request/token/money budget 限制，未知费用保留 UNKNOWN，不猜测。",
+      "acceptance": "首轮失败、重试失败、超时、取消、部分 usage 都能与逐请求账本对齐；成功数和调用数不混用，摘要失败不删除原文。"
+    },
+    {
+      "id": "F13",
+      "priority": "P2",
+      "evidence": "R",
+      "title": "HTTP 字节截断破坏 Unicode，分页没有可靠续读位置",
+      "source": [
+        {
+          "path": "packages/memex-api/index.js",
+          "lines": "L36-L40"
+        },
+        {
+          "path": "packages/memex-api/index.js",
+          "lines": "L199-L229"
+        },
+        {
+          "path": "packages/memex-ui/client.js",
+          "lines": "L138-L141"
+        },
+        {
+          "path": "packages/memex-ui/client.js",
+          "lines": "L365-L379"
+        }
+      ],
+      "minimalFix": "先在 Unicode 边界切片，再按 UTF-8 字节预算收紧；返回 consumedChars/nextCharOffset，采用统一字符坐标。UI 添加继续读取与截断提示，并用请求序号/AbortController 丢弃过期响应，不引入新页面体系。",
+      "acceptance": "汉字、emoji、组合字符、超长单行、多页拼接无替换/丢失/重复；A/B 响应逆序时当前展开项仍显示正确正文。UI 竞态部分为静态发现，尚未运行真实浏览器复现。"
+    },
+    {
+      "id": "F14",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "空清单也能被备份校验器判为 OK",
+      "source": [
+        {
+          "path": "scripts/memory-backup.mjs",
+          "lines": "L94-L111"
+        }
+      ],
+      "minimalFix": "校验 manifest 版本、必需数据库项、完整文件清单、路径约束、数据库与记录的一致性；缺少必需项或未知 schema 必须失败。校验分 integrity（字节）与 restorability（数据库/引用），不要用一个 OK 夸大保障。",
+      "acceptance": "空清单、缺失 DB、损坏 DB、缺正文、错误 root/path、残留恢复日志、陌生格式都明确失败；正常备份必须经过临时恢复后能读回记录与事件。"
+    },
+    {
+      "id": "F15",
+      "priority": "P1",
+      "evidence": "R",
+      "title": "强制恢复先删除旧目标，复制失败会丢失原状态",
+      "source": [
+        {
+          "path": "scripts/memory-backup.mjs",
+          "lines": "L114-L184"
+        }
+      ],
+      "minimalFix": "先恢复到目标同文件系统的私有 staging 目录，完成哈希、DB 完整性、路径重定位和引用检查，再在停写/锁定条件下交换目录；旧目录保留为可回滚副本直到验证成功。记录中断状态并提供明确恢复命令，禁止运行中的两个写实例并存。",
+      "acceptance": "复制、磁盘空间、校验、重定位、交换前后、进程中断等故障点，至少旧状态或完整新状态始终可恢复；不允许半目录被当作活动库。断电持久性需要另外验证，不能用进程中断测试替代。"
+    },
+    {
+      "id": "F16",
+      "priority": "P2",
+      "evidence": "R",
+      "title": "SQLite BM25 的负分被重排公式压成相同贡献",
+      "source": [
+        {
+          "path": "packages/memex-core/lib/store.js",
+          "lines": "L1074-L1105"
+        }
+      ],
+      "minimalFix": "采用保持正确方向的归一化，或按名次做简单 fusion；权重由独立验证集确定。避免为了修负号顺便重写所有检索规则；先加入贡献可观测日志与 A/B。",
+      "acceptance": "不同有效 BM25 值的贡献有正确单调关系；精确标识符/CJK/冷记录测试不退化；冻结检索集上报告 MRR/nDCG 与尾延迟，而非只看两条样例。"
+    }
+  ]
+}
