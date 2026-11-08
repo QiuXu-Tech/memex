@@ -1,0 +1,616 @@
+{
+  "baseline": "5bf65f6ede777c00cf35ec2ba1e4b14dbc17f182",
+  "invocations": [
+    {
+      "name": "build",
+      "command": "node scripts/build-bundle.mjs",
+      "exit": 0,
+      "seconds": 0.09,
+      "classification": "PASS"
+    },
+    {
+      "name": "check",
+      "command": "node scripts/check-bundle.mjs",
+      "exit": 0,
+      "seconds": 0.061,
+      "classification": "PASS"
+    },
+    {
+      "name": "offline",
+      "command": "node --import ./test/register.mjs ./test/run.mjs",
+      "exit": 0,
+      "seconds": 36.507,
+      "classification": "PASS"
+    },
+    {
+      "name": "sqlite",
+      "command": "node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs",
+      "exit": 0,
+      "seconds": 4.391,
+      "classification": "PASS"
+    },
+    {
+      "name": "integrity",
+      "command": "node --import ./test/register.mjs --test ./test/integrity-regression.mjs",
+      "exit": 0,
+      "seconds": 4.672,
+      "classification": "PASS"
+    },
+    {
+      "name": "recall",
+      "command": "node --import ./test/register.mjs ./scripts/recall-eval.mjs --suite synthetic --threshold 0.9",
+      "exit": 0,
+      "seconds": 0.431,
+      "classification": "PASS"
+    },
+    {
+      "name": "scale",
+      "command": "node --import ./test/register.mjs ./scripts/scale-bench.mjs --records 1000 --tokens 1000",
+      "exit": 0,
+      "seconds": 2.145,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-pilot-loop.py",
+      "command": "python3 scripts/test-pilot-loop.py",
+      "exit": 0,
+      "seconds": 0.048,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-pilot-review.py",
+      "command": "python3 scripts/test-pilot-review.py",
+      "exit": 0,
+      "seconds": 0.029,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-pilot-review-guard.py",
+      "command": "python3 scripts/test-pilot-review-guard.py",
+      "exit": 0,
+      "seconds": 0.025,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-production-prospective-guard.py",
+      "command": "python3 scripts/test-production-prospective-guard.py",
+      "exit": 0,
+      "seconds": 0.054,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-candidate-review.py",
+      "command": "python3 scripts/test-prospective-candidate-review.py",
+      "exit": 0,
+      "seconds": 0.083,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-vote-normalize.py",
+      "command": "python3 scripts/test-prospective-vote-normalize.py",
+      "exit": 0,
+      "seconds": 0.063,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot.py",
+      "exit": 0,
+      "seconds": 0.093,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v2.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v2.py",
+      "exit": 0,
+      "seconds": 0.076,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v3.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v3.py",
+      "exit": 0,
+      "seconds": 0.076,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v4.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v4.py",
+      "exit": 0,
+      "seconds": 0.077,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v5.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v5.py",
+      "exit": 0,
+      "seconds": 0.076,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v6.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v6.py",
+      "exit": 0,
+      "seconds": 0.077,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v7.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v7.py",
+      "exit": 0,
+      "seconds": 0.077,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v8.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v8.py",
+      "exit": 0,
+      "seconds": 0.076,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v9.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v9.py",
+      "exit": 0,
+      "seconds": 0.079,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v10.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v10.py",
+      "exit": 0,
+      "seconds": 0.078,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v11.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v11.py",
+      "exit": 0,
+      "seconds": 0.076,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v12.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v12.py",
+      "exit": 0,
+      "seconds": 0.079,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v13.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v13.py",
+      "exit": 0,
+      "seconds": 0.079,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-real-agent-pilot-v14.py",
+      "command": "python3 scripts/test-prospective-real-agent-pilot-v14.py",
+      "exit": 0,
+      "seconds": 0.079,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway.py",
+      "command": "python3 scripts/test-prospective-gateway.py",
+      "exit": 0,
+      "seconds": 0.06,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v15.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v15.py",
+      "exit": 0,
+      "seconds": 0.079,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v16.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v16.py",
+      "exit": 0,
+      "seconds": 0.081,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v17.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v17.py",
+      "exit": 0,
+      "seconds": 0.076,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v18.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v18.py",
+      "exit": 0,
+      "seconds": 0.065,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v19.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v19.py",
+      "exit": 0,
+      "seconds": 0.066,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v20.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v20.py",
+      "exit": 0,
+      "seconds": 0.066,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v21.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v21.py",
+      "exit": 0,
+      "seconds": 0.066,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v22.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v22.py",
+      "exit": 0,
+      "seconds": 0.067,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v23.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v23.py",
+      "exit": 0,
+      "seconds": 0.068,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v24.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v24.py",
+      "exit": 0,
+      "seconds": 0.069,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v25.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v25.py",
+      "exit": 0,
+      "seconds": 0.069,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v26.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v26.py",
+      "exit": 0,
+      "seconds": 0.071,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v27.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v27.py",
+      "exit": 0,
+      "seconds": 0.081,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-agent-v28.py",
+      "command": "python3 scripts/test-prospective-agent-v28.py",
+      "exit": 0,
+      "seconds": 0.045,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-agent-mcp.py",
+      "command": "python3 scripts/test-prospective-agent-mcp.py",
+      "exit": 0,
+      "seconds": 1.242,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-agent-mcp-v2.py",
+      "command": "python3 scripts/test-prospective-agent-mcp-v2.py",
+      "exit": 0,
+      "seconds": 1.263,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-agent-mcp-v3.py",
+      "command": "python3 scripts/test-prospective-agent-mcp-v3.py",
+      "exit": 0,
+      "seconds": 1.25,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-agent-mcp-v4.py",
+      "command": "python3 scripts/test-prospective-agent-mcp-v4.py",
+      "exit": 0,
+      "seconds": 1.32,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-agent-mcp-v5.py",
+      "command": "python3 scripts/test-prospective-agent-mcp-v5.py",
+      "exit": 0,
+      "seconds": 1.332,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__prospective-agent-search-limit.py",
+      "command": "python3 test/prospective-agent-search-limit.py",
+      "exit": 0,
+      "seconds": 0.142,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-review-axios-20261102.py",
+      "command": "python3 scripts/test-prospective-review-axios-20261102.py",
+      "exit": 0,
+      "seconds": 0.06,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-review-triage-20261102.py",
+      "command": "python3 scripts/test-prospective-review-triage-20261102.py",
+      "exit": 0,
+      "seconds": 0.071,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-issue-triage-20261102.py",
+      "command": "python3 scripts/test-prospective-issue-triage-20261102.py",
+      "exit": 0,
+      "seconds": 0.073,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-issue-triage-recovery-20261102.py",
+      "command": "python3 scripts/test-prospective-issue-triage-recovery-20261102.py",
+      "exit": 0,
+      "seconds": 0.064,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__prospective-task-state-runner.py",
+      "command": "python3 test/prospective-task-state-runner.py",
+      "exit": 0,
+      "seconds": 0.059,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__prospective-task-state-aggregate.py",
+      "command": "python3 test/prospective-task-state-aggregate.py",
+      "exit": 0,
+      "seconds": 0.093,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__prospective-agent-search-limit.py",
+      "command": "python3 test/prospective-agent-search-limit.py",
+      "exit": 0,
+      "seconds": 0.119,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__prospective-task-state-canary.py",
+      "command": "python3 test/prospective-task-state-canary.py",
+      "exit": 1,
+      "seconds": 0.143,
+      "classification": "ENVIRONMENT_BLOCKED",
+      "note": "Invokes git rev-parse; local Git/Xcode license was not accepted and the pinned source archive has no .git. No product failure conclusion."
+    },
+    {
+      "name": "test__prospective-task-state-citations.py",
+      "command": "python3 test/prospective-task-state-citations.py",
+      "exit": 0,
+      "seconds": 0.109,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__prospective-task-state-stream-usage.py",
+      "command": "python3 test/prospective-task-state-stream-usage.py",
+      "exit": 0,
+      "seconds": 0.068,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__prospective-task-state-tool-health.py",
+      "command": "python3 test/prospective-task-state-tool-health.py",
+      "exit": 0,
+      "seconds": 0.067,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__rescue-task-state-reviews.py",
+      "command": "python3 test/rescue-task-state-reviews.py",
+      "exit": 0,
+      "seconds": 0.074,
+      "classification": "PASS"
+    },
+    {
+      "name": "test__aggregate-task-state-rescue.py",
+      "command": "python3 test/aggregate-task-state-rescue.py",
+      "exit": 0,
+      "seconds": 0.081,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-review-triage-recovery-20261102.py",
+      "command": "python3 scripts/test-prospective-review-triage-recovery-20261102.py",
+      "exit": 0,
+      "seconds": 0.072,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-aggregate-production-autonomy-20261102.py",
+      "command": "python3 scripts/test-aggregate-production-autonomy-20261102.py",
+      "exit": 0,
+      "seconds": 0.055,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-supplement-blind-commitments-20261102.py",
+      "command": "python3 scripts/test-supplement-blind-commitments-20261102.py",
+      "exit": 0,
+      "seconds": 0.066,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-recover-supplement-reviews-20261102.py",
+      "command": "python3 scripts/test-recover-supplement-reviews-20261102.py",
+      "exit": 0,
+      "seconds": 0.068,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-review.py",
+      "command": "python3 scripts/test-prospective-gateway-review.py",
+      "exit": 0,
+      "seconds": 0.058,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-revalidate-triage-limits-20261102.py",
+      "command": "python3 scripts/test-revalidate-triage-limits-20261102.py",
+      "exit": 0,
+      "seconds": 0.066,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-adjudication-v33.py",
+      "command": "python3 scripts/test-prospective-gateway-adjudication-v33.py",
+      "exit": 0,
+      "seconds": 0.065,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-review-v34.py",
+      "command": "python3 scripts/test-prospective-gateway-review-v34.py",
+      "exit": 0,
+      "seconds": 0.069,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-pilot-v35.py",
+      "command": "python3 scripts/test-prospective-gateway-pilot-v35.py",
+      "exit": 0,
+      "seconds": 0.084,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-posthoc-v15.py",
+      "command": "python3 scripts/test-prospective-gateway-posthoc-v15.py",
+      "exit": 0,
+      "seconds": 0.067,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-posthoc-v15-budgeted.py",
+      "command": "python3 scripts/test-prospective-gateway-posthoc-v15-budgeted.py",
+      "exit": 0,
+      "seconds": 0.076,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-posthoc-v16-budgeted.py",
+      "command": "python3 scripts/test-prospective-gateway-posthoc-v16-budgeted.py",
+      "exit": 0,
+      "seconds": 0.065,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-adjudication-v16-fallback.py",
+      "command": "python3 scripts/test-prospective-gateway-adjudication-v16-fallback.py",
+      "exit": 0,
+      "seconds": 0.067,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-gateway-fallback-adjudications.py",
+      "command": "python3 scripts/test-prospective-gateway-fallback-adjudications.py",
+      "exit": 0,
+      "seconds": 0.065,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-batch17-unstarted-reviews.py",
+      "command": "python3 scripts/test-prospective-batch17-unstarted-reviews.py",
+      "exit": 0,
+      "seconds": 0.07,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-budgeted-reference-normalize.py",
+      "command": "python3 scripts/test-prospective-budgeted-reference-normalize.py",
+      "exit": 0,
+      "seconds": 0.063,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-posthoc-rubric-review.py",
+      "command": "python3 scripts/test-prospective-posthoc-rubric-review.py",
+      "exit": 0,
+      "seconds": 0.078,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-unstarted-adjudication.py",
+      "command": "python3 scripts/test-prospective-unstarted-adjudication.py",
+      "exit": 0,
+      "seconds": 0.072,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-summarize-prospective-agent-batches.py",
+      "command": "python3 scripts/test-summarize-prospective-agent-batches.py",
+      "exit": 0,
+      "seconds": 0.057,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-prospective-review-normalize-v2.py",
+      "command": "python3 scripts/test-prospective-review-normalize-v2.py",
+      "exit": 0,
+      "seconds": 0.064,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-pilot-citations.py",
+      "command": "python3 scripts/test-pilot-citations.py",
+      "exit": 0,
+      "seconds": 0.024,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-pilot-batch-stop.py",
+      "command": "python3 scripts/test-pilot-batch-stop.py",
+      "exit": 0,
+      "seconds": 0.104,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-pilot-expanded-ledger.py",
+      "command": "python3 scripts/test-pilot-expanded-ledger.py",
+      "exit": 0,
+      "seconds": 0.068,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-production-pilot-worker.py",
+      "command": "python3 scripts/test-production-pilot-worker.py",
+      "exit": 0,
+      "seconds": 0.213,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-production-pilot-analyze.py",
+      "command": "python3 scripts/test-production-pilot-analyze.py",
+      "exit": 0,
+      "seconds": 0.075,
+      "classification": "PASS"
+    },
+    {
+      "name": "scripts__test-pilot-autonomy-analyze.py",
+      "command": "python3 scripts/test-pilot-autonomy-analyze.py",
+      "exit": 0,
+      "seconds": 0.074,
+      "classification": "PASS"
+    }
+  ],
+  "note": "Commands may overlap or repeat; counts are not independent test-case counts."
+}

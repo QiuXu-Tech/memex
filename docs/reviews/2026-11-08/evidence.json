@@ -1,0 +1,262 @@
+{
+  "baseline": "5bf65f6ede777c00cf35ec2ba1e4b14dbc17f182",
+  "date": "2026-11-08",
+  "environment": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "node": "v25.9.0",
+    "python": "3.14.3",
+    "isolatedHome": true,
+    "networkDeniedForTests": true,
+    "fixture": "synthetic only"
+  },
+  "baselineSummary": {
+    "commandInvocations": 87,
+    "exitZero": 86,
+    "environmentBlocked": 1,
+    "offlinePassed": 196,
+    "offlineTotal": 196,
+    "sqlitePassed": 38,
+    "sqliteTotal": 38,
+    "integrityPassed": 50,
+    "integrityTotal": 50
+  },
+  "extraValidation": {
+    "trackedFiles": 1405,
+    "runtimeJsFilesSyntaxChecked": 33,
+    "runtimeSyntaxErrors": [],
+    "pythonFilesParsed": 279,
+    "pythonSyntaxErrors": [],
+    "bm25": [
+      {
+        "raw": -1.6923076923076922e-06,
+        "currentFormula": 1
+      },
+      {
+        "raw": -1e-06,
+        "currentFormula": 1
+      }
+    ],
+    "reviewRecount": {
+      "pairs": 28,
+      "baselineHigher": 4,
+      "ties": 20,
+      "memexHigher": 4,
+      "meanBaseline": 0.8928571428571429,
+      "meanMemex": 0.8928571428571429
+    }
+  },
+  "publicCoreProbes": [
+    {
+      "name": "pinned_hard_budget",
+      "observation": {
+        "requested": 100,
+        "returned": 1534,
+        "status": "exceeded",
+        "overBudget": 1434
+      }
+    },
+    {
+      "name": "canonical_block_order",
+      "observation": {
+        "expected": [
+          "block-0",
+          "block-1",
+          "block-2",
+          "block-3",
+          "block-4",
+          "block-5",
+          "block-6",
+          "block-7",
+          "block-8",
+          "block-9",
+          "block-10",
+          "block-11"
+        ],
+        "actual": [
+          "block-0",
+          "block-1",
+          "block-10",
+          "block-11",
+          "block-2",
+          "block-3",
+          "block-4",
+          "block-5",
+          "block-6",
+          "block-7",
+          "block-8",
+          "block-9"
+        ]
+      }
+    },
+    {
+      "name": "forced_nonresident_record",
+      "observation": {
+        "forcedRecordIncluded": false,
+        "candidatePages": 40
+      }
+    },
+    {
+      "name": "forced_canonical_record_mapping",
+      "observation": {
+        "included": [
+          "audit-canonical:block"
+        ],
+        "forced": []
+      }
+    },
+    {
+      "name": "mixed_ordering_units",
+      "observation": {
+        "expected": [
+          "older-note",
+          "newer-event"
+        ],
+        "actual": [
+          "newer-event",
+          "older-note"
+        ]
+      }
+    },
+    {
+      "name": "kv_reference_contract",
+      "observation": {
+        "expected": "ACTUAL-CONTENT",
+        "actual": "audit:block:0"
+      }
+    },
+    {
+      "name": "grep_open_coordinates",
+      "observation": {
+        "grepLine": 20,
+        "expectedBodyLine": 2,
+        "openedBody": ""
+      }
+    },
+    {
+      "name": "concurrent_sticky_enable",
+      "observation": {
+        "expected": {
+          "l2": true,
+          "l3": true
+        },
+        "actual": {
+          "l2": true,
+          "l3": false
+        }
+      }
+    },
+    {
+      "name": "zero_term_reindex_on_reopen",
+      "observation": {
+        "bodyReadsOnSuccessiveOpen": [
+          1,
+          1
+        ]
+      }
+    },
+    {
+      "name": "canonical_default_id_collision",
+      "observation": {
+        "expected": [
+          1,
+          1
+        ],
+        "actual": [
+          0,
+          1
+        ]
+      }
+    },
+    {
+      "name": "backup_manifest_validation",
+      "observation": {
+        "exit": 0,
+        "output": "verify: OK (0 files, 0 in manifest, created synthetic)"
+      }
+    },
+    {
+      "name": "restore_failure_preserves_existing_target",
+      "observation": {
+        "exit": 1,
+        "injectedErrorObserved": true,
+        "oldStateSurvives": false
+      }
+    },
+    {
+      "name": "clean_adapter_startup",
+      "observation": [
+        {
+          "entry": "packages/memex-mcp/bin/server.mjs",
+          "exit": 1,
+          "missingCore": true
+        },
+        {
+          "entry": "packages/memex-claude/bin/cli.mjs",
+          "exit": 1,
+          "missingCore": true
+        },
+        {
+          "entry": "packages/memex-codex/bin/cli.mjs",
+          "exit": 1,
+          "missingCore": true
+        }
+      ]
+    },
+    {
+      "name": "bm25_score_direction",
+      "observation": [
+        {
+          "raw": -1.6923076923076922e-06,
+          "currentFormula": 1
+        },
+        {
+          "raw": -1e-06,
+          "currentFormula": 1
+        }
+      ]
+    }
+  ],
+  "publicIntegrationProbes": [
+    {
+      "name": "async_refinement_overwrites_new_status",
+      "observation": {
+        "statusDuringPendingRefinement": "superseded",
+        "statusAfterRefinement": "active"
+      }
+    },
+    {
+      "name": "failed_digest_attempt_accounting",
+      "observation": {
+        "actualAttempts": 2,
+        "recordedCalls": 0
+      }
+    },
+    {
+      "name": "http_unicode_pagination",
+      "observation": {
+        "returnedChars": 87395,
+        "declaredBodyLimit": 200000,
+        "totalChars": 100000,
+        "truncated": true,
+        "containsReplacementCharacter": true,
+        "hasNextOffset": false
+      }
+    },
+    {
+      "name": "fts_migration_interruption",
+      "observation": {
+        "faultExit": 91,
+        "records": 1,
+        "ftsRowsAfterRecovery": 0
+      }
+    }
+  ],
+  "limitations": [
+    "No real DSH or GUI execution",
+    "No GPU inference, paid model calls or new live task study",
+    "No power-loss test",
+    "No independent human audit",
+    "No security-sensitive reproductions in public evidence"
+  ]
+}
