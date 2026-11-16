@@ -9,6 +9,7 @@
  * can later replace the heuristic layout without changing callers.
  */
 import { createHash } from 'node:crypto'
+import { types } from 'node:util'
 import { estimateTokens } from '../index.js'
 import { orderContextPages } from './context-events.js'
 
@@ -129,6 +130,21 @@ function stableHash(text) {
   return createHash('sha256').update(String(text), 'utf8').digest('hex').slice(0, 16)
 }
 
+// Request-local indexes assume data cannot change during selection. Inspect
+// descriptors without invoking accessors; callbacks/coercible objects retain
+// the original scans. Repeated object references conservatively fall back too.
+function hasStaticMaterializerData(value, seen = new WeakSet(), depth = 0) {
+  if (value === null || typeof value !== 'object') return typeof value !== 'function'
+  if (depth > 4 || types.isProxy(value) || seen.has(value)) return false
+  const prototype = Object.getPrototypeOf(value)
+  if (prototype !== null && prototype !== Object.prototype && !(Array.isArray(value) && prototype === Array.prototype)) return false
+  seen.add(value)
+  return Reflect.ownKeys(value).every(key => {
+    const descriptor = Object.getOwnPropertyDescriptor(value, key)
+    return 'value' in descriptor && hasStaticMaterializerData(descriptor.value, seen, depth + 1)
+  })
+}
+
 /**
  * Materialize a resident page set into a deterministic context block.
  *
@@ -195,6 +211,22 @@ export function materializeContext(input = {}) {
     byId.set(page.id, { ...page, sequence: pageSequence(page, index) })
   }
   const sorted = orderContextPages([...byId.values()]).map(preparePage)
+  const useIndexes = counter === undefined && hasStaticMaterializerData(input)
+    && sorted.every(page => Object.values(page).every(value => value === null || (typeof value !== 'object' && typeof value !== 'function')))
+  const toolGroups = new Map()
+  const recordPages = new Map()
+  if (useIndexes) for (const page of sorted) {
+    const recordId = page.recordId ?? page.id
+    if (!Number.isNaN(recordId)) {
+      const group = recordPages.get(recordId) ?? []
+      group.push(page); recordPages.set(recordId, group)
+    }
+    // Map uses SameValueZero, but the original dependency match uses ===.
+    if (page.toolCallId === undefined || Number.isNaN(page.toolCallId) || Number.isNaN(page.sessionId)) continue
+    const session = toolGroups.get(page.sessionId) ?? new Map()
+    const group = session.get(page.toolCallId) ?? []
+    group.push(page); session.set(page.toolCallId, group); toolGroups.set(page.sessionId, session)
+  }
   const renderEntries = (entries) => {
     const prefixText = entries.length === 0 ? '' : [
       `## Extra-context materialized window (${variant.id})`,
@@ -217,13 +249,17 @@ export function materializeContext(input = {}) {
   const canonicalEntries = orderContextPages
   const costFor = (entries) => tokenCost(renderEntries(canonicalEntries(entries)).text)
   const selected = []
+  const selectedIds = useIndexes ? new Set() : undefined
+  const isSelected = page => selectedIds === undefined ? selected.some(entry => entry.id === page.id) : selectedIds.has(page.id)
   const forced = []
   const omitted = []
   const omittedReasons = {}
   let overBudgetReason = undefined
   const tryAdd = (page, force = false) => {
-    if (selected.some((entry) => entry.id === page.id)) return true
-    const related = page.toolCallId === undefined ? [page] : sorted.filter(entry => entry.toolCallId === page.toolCallId && entry.sessionId === page.sessionId)
+    if (isSelected(page)) return true
+    const related = page.toolCallId === undefined ? [page] : useIndexes
+      ? (toolGroups.get(page.sessionId)?.get(page.toolCallId) ?? [])
+      : sorted.filter(entry => entry.toolCallId === page.toolCallId && entry.sessionId === page.sessionId)
     if (page.type === 'tool_result' && !related.some(entry => entry.type === 'tool_call')) {
       omittedReasons[page.id] = 'missing-tool-call'
       return false
@@ -232,13 +268,14 @@ export function materializeContext(input = {}) {
       omittedReasons[page.id] = 'missing-tool-result'
       return false
     }
-    const additions = related.filter(entry => !selected.some(chosen => chosen.id === entry.id))
+    const additions = related.filter(entry => !isSelected(entry))
     const forceIt = force === true
     if ((!forceIt || input.enforceTotalBudget === true) && costFor([...selected, ...additions]) > available) {
       for (const entry of additions) omittedReasons[entry.id] = 'over-budget'
       return false
     }
     selected.push(...additions)
+    if (selectedIds !== undefined) for (const entry of additions) selectedIds.add(entry.id)
     for (const entry of additions) delete omittedReasons[entry.id]
     if (forceIt) {
       forced.push(page.id)
@@ -251,8 +288,8 @@ export function materializeContext(input = {}) {
   for (const page of sorted) if (coreIds.has(page.id)) tryAdd(page, true)
   for (const page of sorted) if (pinned.has(page.id)) tryAdd(page, true)
   if (variant.pinnedEdges) {
-    const first = sorted.find((page) => !selected.some((entry) => entry.id === page.id))
-    const last = [...sorted].reverse().find((page) => !selected.some((entry) => entry.id === page.id))
+    const first = sorted.find((page) => !isSelected(page))
+    const last = [...sorted].reverse().find((page) => !isSelected(page))
     for (const page of [first, last]) if (page !== undefined) tryAdd(page)
   }
   if (input.query !== undefined && input.learnedRerank !== undefined) {
@@ -281,7 +318,7 @@ export function materializeContext(input = {}) {
     })
     let added = 0
     for (const { page } of ranked) {
-      if (selected.some((entry) => entry.id === page.id)) continue
+      if (isSelected(page)) continue
       if (maxPageTokens > 0 && pageCost(page) > maxPageTokens) continue
       if (diversify && selected.some((entry) => isNearDuplicate(entry, page))) continue
       if (tryAdd(page)) {
@@ -292,7 +329,9 @@ export function materializeContext(input = {}) {
   } else if (Array.isArray(input.retrievedIds)) {
     // Rule selection uses search order before filling the remaining budget by chronology.
     for (const id of input.retrievedIds) {
-      for (const page of sorted) if ((page.recordId ?? page.id) === id) tryAdd(page)
+      for (const page of useIndexes ? (recordPages.get(id) ?? []) : sorted) {
+        if (useIndexes || (page.recordId ?? page.id) === id) tryAdd(page)
+      }
     }
   }
   for (const page of sorted) {

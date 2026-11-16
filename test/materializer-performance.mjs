@@ -91,6 +91,30 @@ for (const seed of BENCHMARK_SEEDS) {
       compareMaterializers(input, ['default', 'pure', 'nonmonotonic', 'stateful', 'throw', 'invalid'][c % 6])
     }
   })
+
+  test(`indexed selection differential: seed ${seed}, 100 default-counter cases`, () => {
+    const rng = random(seed + 4109)
+    const keys = [undefined, null, NaN, -0, 0, '0', false, true, '', 'shared', Symbol.for('materializer-key')]
+    for (let c = 0; c < 100; c++) {
+      const n = 1 + Math.floor(rng() * 40)
+      const pages = freeze(pagesFor({ n, streams: 1 + Math.floor(rng() * n), chars: 32, tools: true }, seed + c)
+        .map((page, i) => ({ ...page,
+          id: i % 11 === 0 ? 'duplicate' : page.id,
+          sessionId: keys[Math.floor(rng() * keys.length)],
+          toolCallId: keys[Math.floor(rng() * keys.length)],
+          recordId: keys[Math.floor(rng() * keys.length)],
+          type: ['message', 'tool_call', 'tool_result'][i % 3],
+          createdAt: Math.floor(rng() * 10), sequence: Math.floor(rng() * 5),
+        })))
+      const input = { pages, budgetTokens: [0, 40, 120, 2400][c % 4], reserveTokens: c % 9,
+        enforceTotalBudget: c % 2 === 0, pinnedIds: [pages[0].id], alwaysIncludeIds: [pages.at(-1).id],
+        variant: ['timeline-exact', 'edge-attention', 'context-specialist-v1'][c % 3] }
+      if (c % 2) Object.assign(input, { query: 'context evidence', queryAlternatives: ['汉'],
+        learnedRerank: { weights: [1, -1, 2, -2, 0, 0, 1] }, learnedTopK: 3, diversify: c % 3 === 0 })
+      else input.retrievedIds = [pages[0].recordId, pages.at(-1).recordId, pages[0].recordId, NaN, 'missing']
+      compareMaterializers(input)
+    }
+  })
 }
 
 test('advancing queue stays before equal heads, independent of initial stream ordinal', () => {
@@ -196,9 +220,65 @@ test('dependency matching keeps strict-equality behavior for unusual session/too
         { id: 'result', sessionId, toolCallId, type: 'tool_result', sequence: 2, createdAt: 1, body: 'result' },
         { id: 'other', sessionId: 'other', toolCallId, type: 'tool_result', sequence: 1, createdAt: 0, body: 'other' },
       ])
-      compareMaterializers({ pages, budgetTokens: 1000, retrievedIds: ['call', 'call'], enforceTotalBudget: true }, 'stateful')
+      for (const mode of ['default', 'stateful']) {
+        compareMaterializers({ pages, budgetTokens: 1000, retrievedIds: ['call', 'call'], enforceTotalBudget: true }, mode)
+      }
     }
   }
+})
+
+test('dynamic input fallback preserves access, coercion, iterator and counter traces', () => {
+  for (const kind of ['input-getter', 'page-getter', 'page-proxy', 'key-object', 'body-object', 'coercion-throw', 'reranker-proxy', 'iterator', 'custom-mutation']) {
+    const invoke = materialize => {
+      const trace = []
+      const pages = [
+        { id: 'a', recordId: 'r-a', sessionId: 's', toolCallId: 't', type: 'tool_call', sequence: 1, createdAt: 2, title: 'needle', body: 'call' },
+        { id: 'b', recordId: 'r-b', sessionId: 's', toolCallId: 't', type: 'tool_result', sequence: 2, createdAt: 1, title: 'needle', body: 'result' },
+        { id: 'c', recordId: 'r-c', sequence: 1, createdAt: 0, body: 'ordinary' },
+      ]
+      const input = { pages, budgetTokens: 1000, retrievedIds: ['r-b', 'r-b', 'r-a'], enforceTotalBudget: true }
+      if (kind === 'input-getter') Object.defineProperty(input, 'enforceTotalBudget', { get() { trace.push('enforce'); return true } })
+      if (kind === 'page-getter') Object.defineProperty(pages[0], 'recordId', { enumerable: true, get() { trace.push('record-id'); return 'r-a' } })
+      if (kind === 'page-proxy') pages[0] = new Proxy(pages[0], { get(target, key, receiver) { trace.push(`page:${String(key)}`); return Reflect.get(target, key, receiver) } })
+      if (kind === 'key-object') {
+        const key = { toString() { trace.push('key-string'); return 'shared' } }
+        pages[0].toolCallId = key; pages[1].toolCallId = key
+      }
+      if (kind === 'body-object' || kind === 'coercion-throw') {
+        let count = 0
+        pages[0].body = { toString() {
+          trace.push(`body:${++count}`)
+          if (kind === 'coercion-throw' && count === 3) throw new Error('body-stop')
+          return `needle-${count}`
+        } }
+      }
+      if (kind === 'reranker-proxy') {
+        input.query = 'needle'
+        input.learnedRerank = new Proxy({ weights: [1, 0, 1], bias: 0 }, { get(target, key, receiver) { trace.push(`rank:${String(key)}`); return Reflect.get(target, key, receiver) } })
+      }
+      if (kind === 'iterator') input.retrievedIds[Symbol.iterator] = function* () {
+        for (const id of ['r-b', 'r-b', 'r-a']) { trace.push(`yield:${id}`); yield id }
+      }
+      if (kind === 'custom-mutation') {
+        let version = 0
+        pages[0].body = { toString() { trace.push(`render:${version}`); return `needle-${version}` } }
+        input.tokenCounter = text => { trace.push(`counter:${text}`); version++; return Math.ceil(text.length / 4) + version % 2 }
+      }
+      return { outcome: capture(() => materialize(input)), trace }
+    }
+    assert.deepEqual(invoke(materializeContext), invoke(referenceMaterialize), kind)
+  }
+})
+
+test('conservative guard accepts no new failure from unused cyclic/deep/shared data', () => {
+  const pages = freeze([{ id: 'a', sequence: 1, body: 'a' }, { id: 'b', sequence: 2, body: 'b' }])
+  const cyclic = { pages, budgetTokens: 1000 }; cyclic.unused = cyclic
+  compareMaterializers(cyclic)
+  let deep = null
+  for (let i = 0; i < 10000; i++) deep = { unused: deep }
+  compareMaterializers({ pages, budgetTokens: 1000, unused: deep })
+  const shared = ['a']
+  compareMaterializers({ pages, budgetTokens: 1000, pinnedIds: shared, alwaysIncludeIds: shared })
 })
 
 test('invalid budgets preserve exceptions before token callbacks', () => {
