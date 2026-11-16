@@ -29,8 +29,8 @@
  */
 import z from '@deepseek-ai/schemastery'
 import { defineTool } from '@deepseek-ai/dsh-tools'
-import { estimateTokens, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
-import { createHash } from 'node:crypto'
+import { consumeModelStream, estimateTokens, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
+import { createHash, randomUUID } from 'node:crypto'
 
 export const name = 'memory-compress'
 export const inject = ['memory', 'llm', 'tools']
@@ -41,6 +41,8 @@ export const Config = z.object({
   batchChars: z.number().step(1).min(2_000).default(120_000),
   /** Maximum digest calls in one tool invocation; the rest resumes on the next call. */
   maxBatches: z.number().step(1).min(1).max(64).default(6),
+  maxLlmCalls: z.number().step(1).min(0).max(128).default(12),
+  llmTimeoutMs: z.number().step(1).min(1).default(30000),
   /** Newest record age that stays hot; very recent records are still being used. */
   minAgeMs: z.number().step(1).min(0).default(60 * 60 * 1000),
   /** Batches below this token size skip the LLM and go straight to the cold tier. */
@@ -153,7 +155,7 @@ async function coldSpill(memory, records, neededTokens) {
 }
 
 /** Summarize one batch of records into a digest body. */
-async function digestBatch(ctx, exec, batch) {
+async function digestBatch(ctx, exec, batch, onDispatch, timeoutMs) {
   const target = routedTarget(exec)
   if (target === undefined) throw new Error('no routed provider/model for digest; run one request first')
   const lines = []
@@ -176,18 +178,26 @@ async function digestBatch(ctx, exec, batch) {
   const accumulator = new TextAccumulator()
   let textChunks = 0
   let reasoningChars = 0
-  for await (const chunk of ctx.llm.stream({
+  let attemptRecord
+  await consumeModelStream(ctx.llm, {
     provider: target.provider,
     model: target.model,
     purpose: 'memory-compress',
     messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }],
     maxTokens: 1600,
     sessionId: exec.agent?.session?.id,
-  })) {
+  }, chunk => {
+    if (chunk?.usage && attemptRecord) {
+      const usage = Object.fromEntries(['inputTokens', 'outputTokens', 'cachedInputTokens', 'cacheCreationInputTokens'].filter(key => Number.isFinite(chunk.usage[key]) && chunk.usage[key] >= 0).map(key => [key, chunk.usage[key]]))
+      if (Object.keys(usage).length > 0) {
+        attemptRecord.usage = { ...(typeof attemptRecord.usage === 'object' ? attemptRecord.usage : {}), ...usage }
+        attemptRecord.usageKnown = true
+      }
+    }
     if (chunk?.type === 'text-delta') textChunks += 1
     if (typeof chunk?.type === 'string' && chunk.type.startsWith('reasoning') && typeof chunk.text === 'string') reasoningChars += chunk.text.length
     accumulator.push(chunk)
-  }
+  }, { onDispatch: () => { attemptRecord = onDispatch() }, timeoutMs, signal: exec.signal })
   const text = accumulator.text().trim()
   if (text.length === 0) {
     throw new Error(`digest response was empty (textChunks=${textChunks}, reasoningChars=${reasoningChars}, promptChars=${prompt.length})`)
@@ -199,7 +209,7 @@ async function digestBatch(ctx, exec, batch) {
  * Compress one level: cold-spill and, when requested, batch-digest first.
  * @returns {Promise<object>} Per-level report.
  */
-async function compressLevel(ctx, exec, args, policy, workspaceKey, sessionId, level) {
+async function compressLevel(ctx, exec, args, policy, workspaceKey, sessionId, level, callBudget) {
   const meta = LEVEL_META[level]
   const scopeFilter = { workspaceKey, scope: meta.scope, ...meta.scope === 'session' ? { sessionId } : {} }
   const usage = await levelUsage(ctx.memory, workspaceKey, sessionId, level)
@@ -214,6 +224,7 @@ async function compressLevel(ctx, exec, args, policy, workspaceKey, sessionId, l
     coldMoved: [],
     digests: 0,
     llmCalls: 0,
+    attempts: [],
     errors: [],
     gc: undefined,
     afterHot: usage.hot,
@@ -252,17 +263,30 @@ async function compressLevel(ctx, exec, args, policy, workspaceKey, sessionId, l
       let lastError
       let llmCalls = 0
       for (let attempt = 0; attempt < 2 && summary === undefined; attempt += 1) {
+        let dispatched
         try {
-          summary = await digestBatch(ctx, exec, batch)
-          llmCalls += 1
+          summary = await digestBatch(ctx, exec, batch, () => {
+            if (callBudget.remaining <= 0) throw new Error('digest request budget exhausted')
+            callBudget.remaining -= 1
+            dispatched = { id: randomUUID(), idSource: 'local-dispatch', startedAt: Date.now(), status: 'dispatched', usage: 'UNKNOWN', usageKnown: false, charge: 'UNKNOWN', chargeKnown: false }
+            report.attempts.push(dispatched)
+            llmCalls += 1
+            return dispatched
+          }, policy.llmTimeoutMs)
+          dispatched.status = 'succeeded'
+          dispatched.finishedAt = Date.now()
           if (!/ids\s*[:：]/i.test(summary)) {
+            dispatched.status = 'failed'
+            dispatched.reason = 'invalid-output'
             lastError = new Error('digest response missing the required `ids:` line')
             summary = undefined
             ctx.logger.warn('memory_compress: digest missing ids line; retrying')
           }
         } catch (error) {
+          if (dispatched) { dispatched.status = error?.name === 'AbortError' ? 'cancelled' : 'failed'; dispatched.finishedAt = Date.now(); dispatched.reason = error?.name ?? 'Error' }
           lastError = error
           ctx.logger.warn(`memory_compress: digest attempt failed: ${String(error?.message ?? error)}`)
+          if (callBudget.remaining <= 0 || error?.name === 'TimeoutError' || error?.name === 'AbortError') break
         }
       }
       if (summary === undefined) {
@@ -335,6 +359,7 @@ async function compressLevel(ctx, exec, args, policy, workspaceKey, sessionId, l
     coldMoved: report.coldMoved.length,
     digests: report.digests,
     llmCalls: report.llmCalls,
+    attempts: report.attempts,
     errors: report.errors,
   })
   report.history = await ctx.memory.compressionStats(sessionId, 3)
@@ -361,8 +386,9 @@ const tool = (ctx, policy) => defineTool({
     }
     const strategy = args.strategy === 'digest' ? 'digest' : 'cold'
     const lines = [`memory_compress (${strategy}${args.level && args.level !== 'auto' ? `, ${args.level}` : ', auto'})`]
+    const callBudget = { remaining: policy.maxLlmCalls }
     for (const level of requested) {
-      const report = await compressLevel(ctx, exec, { ...args, strategy }, policy, scope.workspaceKey, scope.sessionId, level)
+      const report = await compressLevel(ctx, exec, { ...args, strategy }, policy, scope.workspaceKey, scope.sessionId, level, callBudget)
       const fmt = (value) => value >= 1_000_000 ? `${(value / 1_000_000).toFixed(2)}M` : value >= 1_000 ? `${(value / 1_000).toFixed(1)}K` : String(value)
       const pct = (value) => fmt(value)
       lines.push(`- ${LEVEL_META[level].label}: hot ${pct(report.before.hot)}/${pct(report.before.capacity)} (${Math.round(report.before.ratio * 100)}%) → target ${pct(report.targetTokens)}`)
@@ -383,6 +409,8 @@ export function apply(ctx, config = {}) {
     batchRecords: config.batchRecords ?? 20,
     batchChars: config.batchChars ?? 120_000,
     maxBatches: config.maxBatches ?? 6,
+    maxLlmCalls: Number.isSafeInteger(config.maxLlmCalls) && config.maxLlmCalls >= 0 ? config.maxLlmCalls : (config.maxBatches ?? 6) * 2,
+    llmTimeoutMs: config.llmTimeoutMs ?? 30000,
     minAgeMs: config.minAgeMs ?? 60 * 60 * 1000,
     minDigestTokens: config.minDigestTokens ?? 2000,
     coldQuotaTokens: config.coldQuotaTokens ?? 0,

@@ -54,10 +54,11 @@ export function canonicalContextEvent(input = {}) {
   const content = contentOf(input.content)
   const toolArguments = input.toolArguments === undefined ? undefined : contentOf(input.toolArguments)
   return {
-    id: String(input.id ?? `ctx-${sequence}-${type}`),
+    id: String(input.id ?? `ctx-${sha256(JSON.stringify([input.recordId ?? '', input.sessionId ?? '', sequence, type, input.blockIndex ?? 0])).slice(0, 32)}`),
     role,
     type,
     sequence,
+    ...(input.blockIndex === undefined ? {} : { blockIndex: Number(input.blockIndex) }),
     sessionId: input.sessionId === undefined ? undefined : String(input.sessionId),
     recordId: input.recordId === undefined ? undefined : String(input.recordId),
     content,
@@ -109,7 +110,7 @@ export function canonicalEventsFromDsh(events, options = {}) {
       continue
     }
     for (const [index, block] of blocks.entries()) {
-      const base = { id: `${options.recordId ?? 'record'}:${sequence}:${index}`, sequence, role, sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time, attachments: index === 0 ? [{ rawEvent: event }] : [] }
+      const base = { id: `${options.recordId ?? 'record'}:${sequence}:${index}`, sequence, blockIndex: index, role, sessionId: options.sessionId, recordId: options.recordId, createdAt: event?.time, attachments: index === 0 ? [{ rawEvent: event }] : [] }
       if (block?.type === 'text') {
         output.push(withChecksum({ ...base, type: 'message', content: String(block.text ?? '') }))
       } else if (block?.type === 'tool-call') {
@@ -137,7 +138,32 @@ export function eventsToMaterializerPages(events) {
     summary: '',
     body: event.content,
     sequence: Number(event.sequence ?? 0),
+    sessionId: event.sessionId,
+    blockIndex: event.blockIndex ?? Number(String(event.id).match(/:(\d+)$/)?.[1] ?? 0),
     createdAt: Number(event.createdAt ?? 0),
     role: event.role,
+    type: event.type,
+    toolCallId: event.toolCallId,
   }))
+}
+
+/** Merge source-ordered session streams using timestamps only between streams. */
+export function orderContextPages(pages) {
+  const groups = new Map()
+  for (const page of pages) {
+    const key = page.sessionId ?? Symbol()
+    const group = groups.get(key) ?? []
+    group.push(page); groups.set(key, group)
+  }
+  const local = (a, b) => a.sequence - b.sequence || Number(a.blockIndex ?? 0) - Number(b.blockIndex ?? 0) || a.id.localeCompare(b.id)
+  const queues = [...groups.values()].map(group => ({ pages: group.sort(local), index: 0 }))
+  const ordered = []
+  while (queues.length > 0) {
+    queues.sort((a, b) => Number(a.pages[a.index].createdAt ?? 0) - Number(b.pages[b.index].createdAt ?? 0)
+      || local(a.pages[a.index], b.pages[b.index]))
+    const next = queues[0]
+    ordered.push(next.pages[next.index++])
+    if (next.index === next.pages.length) queues.shift()
+  }
+  return ordered
 }

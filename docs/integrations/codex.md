@@ -5,10 +5,16 @@ layout: default
 
 # OpenAI Codex
 
+First complete the [local source installation](../install.md): use Node.js 24+ and npm on a POSIX shell, then run `npm run bootstrap` from the checkout root. A DSH bundle build does not replace that linking step. Run the following from the checkout, choosing the project to receive the manual:
+
 ```bash
-node packages/memex-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
+node packages/memex-codex/bin/cli.mjs init --project /absolute/path/to/project --model gpt-6.1-sol --write-config
 # or print the config only:  node packages/memex-codex/bin/cli.mjs config
 ```
+
+Initialization and the local MCP server require no provider credential or test loader. `--model` chooses profile guidance; setup makes no model API call. `--write-config` updates the active Codex configuration directory (`CODEX_HOME` when set, otherwise `~/.codex`); without it, init writes the project manual and prints a configuration snippet. Use `--root /absolute/path/to/store` to isolate records from the default `~/.memex`. Keep the checkout at its installed path, since generated entries use absolute executable and server paths.
+
+Verify the local installation contract with `node --test test/audit-install.mjs` from the checkout root. The test runs the generated configuration's command/args in fresh processes, with empty temporary user directories and synthetic project/store data, then checks persistence after restart. It parses the adapter's emitted fields rather than implementing a general TOML parser; actual Codex startup and client permission prompts remain separate checks.
 
 Codex has **no hook surface**, so the integration is:
 

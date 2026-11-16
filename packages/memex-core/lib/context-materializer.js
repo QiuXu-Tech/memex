@@ -10,6 +10,7 @@
  */
 import { createHash } from 'node:crypto'
 import { estimateTokens } from '../index.js'
+import { orderContextPages } from './context-events.js'
 
 export const CONTEXT_MATERIALIZER_VERSION = '0.13.0'
 
@@ -53,7 +54,7 @@ export function resolveContextVariant(id = 'timeline-exact') {
 
 const pageText = (page) => `${page.id} ${page.title ?? ''} ${page.summary ?? ''} ${page.useWhen ?? ''} ${page.body ?? ''}`
 const pageTokens = (page) => Number.isFinite(page.tokenCount) ? Math.max(1, Number(page.tokenCount)) : Math.max(1, estimateTokens(pageText(page)))
-const pageSequence = (page, index) => Number.isFinite(page.sequence) ? Number(page.sequence) : (Number.isFinite(page.createdAt) ? Number(page.createdAt) : index)
+const pageSequence = (page, index) => Number.isFinite(page.sequence) ? Number(page.sequence) : index
 const pageBody = (page) => String(page.body ?? page.summary ?? '')
 
 function lexicalFeatures(query, page, idf) {
@@ -142,14 +143,19 @@ function stableHash(text) {
  */
 export function materializeContext(input = {}) {
   const variant = resolveContextVariant(input.variant)
-  const budgetTokens = Math.max(0, Number(input.budgetTokens ?? 2400))
-  const reserveTokens = Math.max(0, Number(input.reserveTokens ?? 0))
+  const budgetTokens = Number(input.budgetTokens ?? 2400)
+  const reserveTokens = Number(input.reserveTokens ?? 0)
+  if (!Number.isFinite(budgetTokens) || budgetTokens < 0 || !Number.isFinite(reserveTokens) || reserveTokens < 0) throw new RangeError('context budget must be finite and nonnegative')
   const available = Math.max(0, budgetTokens - reserveTokens)
   const pinned = new Set(Array.isArray(input.pinnedIds) ? input.pinnedIds : [])
   const coreIds = new Set(Array.isArray(input.alwaysIncludeIds) ? input.alwaysIncludeIds : [])
   const counter = typeof input.tokenCounter === 'function' ? input.tokenCounter : undefined
   const tokenizerName = typeof input.tokenizerName === 'string' ? input.tokenizerName : (counter === undefined ? 'chars/4' : 'custom')
-  const tokenCost = (text) => counter === undefined ? estimateTokens(text) : counter(String(text))
+  const tokenCost = (text) => {
+    const value = counter === undefined ? estimateTokens(text) : counter(String(text))
+    if (!Number.isFinite(value) || value < 0) throw new RangeError('context token counter returned an invalid budget cost')
+    return Math.ceil(value)
+  }
   const pageCost = (page) => Number.isFinite(page.tokenCount) ? Math.max(1, Number(page.tokenCount)) : Math.max(1, tokenCost(pageText(page)))
   const pageTokenCap = Math.max(0, Number.isSafeInteger(input.pageTokenCap) ? input.pageTokenCap : 0)
   const queryForExcerpt = [input.query, ...(Array.isArray(input.queryAlternatives) ? input.queryAlternatives : [])].filter((q) => typeof q === 'string').join(' ')
@@ -188,7 +194,7 @@ export function materializeContext(input = {}) {
     if (page === null || typeof page !== 'object' || typeof page.id !== 'string' || page.id.length === 0) continue
     byId.set(page.id, { ...page, sequence: pageSequence(page, index) })
   }
-  const sorted = [...byId.values()].sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id)).map(preparePage)
+  const sorted = orderContextPages([...byId.values()]).map(preparePage)
   const renderEntries = (entries) => {
     const prefixText = entries.length === 0 ? '' : [
       `## Extra-context materialized window (${variant.id})`,
@@ -208,17 +214,32 @@ export function materializeContext(input = {}) {
     const text = entries.length === 0 ? '' : `${prefixText}\n\n${timelineText}`.trimEnd()
     return { text, prefixText, timelineText }
   }
-  const canonicalEntries = (entries) => [...entries].sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
+  const canonicalEntries = orderContextPages
   const costFor = (entries) => tokenCost(renderEntries(canonicalEntries(entries)).text)
   const selected = []
   const forced = []
   const omitted = []
+  const omittedReasons = {}
   let overBudgetReason = undefined
   const tryAdd = (page, force = false) => {
     if (selected.some((entry) => entry.id === page.id)) return true
+    const related = page.toolCallId === undefined ? [page] : sorted.filter(entry => entry.toolCallId === page.toolCallId && entry.sessionId === page.sessionId)
+    if (page.type === 'tool_result' && !related.some(entry => entry.type === 'tool_call')) {
+      omittedReasons[page.id] = 'missing-tool-call'
+      return false
+    }
+    if (page.type === 'tool_call' && !related.some(entry => entry.type === 'tool_result')) {
+      omittedReasons[page.id] = 'missing-tool-result'
+      return false
+    }
+    const additions = related.filter(entry => !selected.some(chosen => chosen.id === entry.id))
     const forceIt = force === true
-    if (!forceIt && costFor([...selected, page]) > available) return false
-    selected.push(page)
+    if ((!forceIt || input.enforceTotalBudget === true) && costFor([...selected, ...additions]) > available) {
+      for (const entry of additions) omittedReasons[entry.id] = 'over-budget'
+      return false
+    }
+    selected.push(...additions)
+    for (const entry of additions) delete omittedReasons[entry.id]
     if (forceIt) {
       forced.push(page.id)
       const reason = coreIds.has(page.id) ? 'core' : pinned.has(page.id) ? 'pinned' : 'forced'
@@ -277,7 +298,8 @@ export function materializeContext(input = {}) {
   for (const page of sorted) {
     if (!tryAdd(page)) omitted.push(page.id)
   }
-  selected.sort((left, right) => left.sequence - right.sequence || left.id.localeCompare(right.id))
+  const ordered = orderContextPages(selected)
+  selected.splice(0, selected.length, ...ordered)
   const rendered = renderEntries(selected)
   const { text, prefixText, timelineText } = rendered
   const chars = text.length
@@ -295,6 +317,8 @@ export function materializeContext(input = {}) {
     stablePrefixHash: stableHash(prefixText),
     includedIds: selected.map((page) => page.id),
     omittedIds: omitted,
+    omittedReasons,
+    orderingUncertain: selected.some((page, index) => !page.createdAt || (index > 0 && Number(page.createdAt) < Number(selected[index - 1].createdAt))),
     forcedIds: forced,
     truncatedIds: selected.filter((page) => page.truncated === true).map((page) => page.sourceId ?? page.id),
     tokens: actualTokens,

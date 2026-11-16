@@ -136,8 +136,8 @@ window.__ModuleLoader__.load({
     }
 
     /** Load one record body. */
-    async function loadRecord(sessionId, id) {
-      return api(`api/memory.record?sessionId=${encodeURIComponent(sessionId)}&id=${encodeURIComponent(id)}`)
+    async function loadRecord(sessionId, id, offset = 0) {
+      return api(`api/memory.record?sessionId=${encodeURIComponent(sessionId)}&id=${encodeURIComponent(id)}&offset=${offset}`)
     }
 
     /** Persist one extra-context mode for a session. */
@@ -205,7 +205,7 @@ window.__ModuleLoader__.load({
 
     /** One record row, expandable to its raw archived body. */
     function MemoryRow(props) {
-      const { record, expanded, body, loading, onToggle, onPin, onRestore } = props
+      const { record, expanded, body, loading, nextOffset, onReadMore, onToggle, onPin, onRestore } = props
       const pinned = record.status === 'pinned'
       return h(
         'div',
@@ -253,11 +253,14 @@ window.__ModuleLoader__.load({
             : null,
         ),
         expanded
-          ? loading
+          ? loading && body === undefined
             ? h('div', { className: 'memex-pre' }, '加载中…')
             : body !== undefined
               ? h('pre', { className: 'memex-pre' }, body)
               : null
+          : null,
+        expanded && nextOffset !== null && nextOffset !== undefined
+          ? h('button', { type: 'button', className: 'memex-btn', disabled: loading, onClick: event => { event.stopPropagation(); onReadMore() } }, loading ? '加载中…' : '继续读取（正文未读完）')
           : null,
       )
     }
@@ -273,8 +276,19 @@ window.__ModuleLoader__.load({
       const [expandedId, setExpandedId] = React.useState(undefined)
       const [expandedBody, setExpandedBody] = React.useState(undefined)
       const [expandedLoading, setExpandedLoading] = React.useState(false)
+      const [expandedNextOffset, setExpandedNextOffset] = React.useState(null)
+      const expandedRequest = React.useRef(0)
       const [reloadKey, setReloadKey] = React.useState(0)
       const [notice, setNotice] = React.useState(undefined)
+
+      React.useEffect(() => {
+        expandedRequest.current += 1
+        setExpandedId(undefined)
+        setExpandedBody(undefined)
+        setExpandedNextOffset(null)
+        setExpandedLoading(false)
+        return () => { expandedRequest.current += 1 }
+      }, [state.open, sessionId])
 
       React.useEffect(() => {
         if (!state.open || sessionId === undefined) return undefined
@@ -363,9 +377,12 @@ window.__ModuleLoader__.load({
       }
 
       const toggleRow = (record) => {
+        const request = ++expandedRequest.current
+        setExpandedNextOffset(null)
         if (expandedId === record.id) {
           setExpandedId(undefined)
           setExpandedBody(undefined)
+          setExpandedLoading(false)
           return
         }
         setExpandedId(record.id)
@@ -373,10 +390,26 @@ window.__ModuleLoader__.load({
         setExpandedLoading(true)
         loadRecord(sessionId, record.id)
           .then((data) => {
+            if (request !== expandedRequest.current) return
             setExpandedBody(data.body)
+            setExpandedNextOffset(data.nextCharOffset ?? null)
           })
-          .catch((failure) => setExpandedBody(`读取失败：${failure.message}`))
-          .finally(() => setExpandedLoading(false))
+          .catch((failure) => { if (request === expandedRequest.current) setExpandedBody(`读取失败：${failure.message}`) })
+          .finally(() => { if (request === expandedRequest.current) setExpandedLoading(false) })
+      }
+
+      const readMore = (record) => {
+        if (expandedLoading || expandedId !== record.id || expandedNextOffset === null) return
+        const request = ++expandedRequest.current
+        setExpandedLoading(true)
+        loadRecord(sessionId, record.id, expandedNextOffset)
+          .then(data => {
+            if (request !== expandedRequest.current) return
+            setExpandedBody(current => String(current ?? '') + data.body)
+            setExpandedNextOffset(data.nextCharOffset ?? null)
+          })
+          .catch(failure => { if (request === expandedRequest.current) setNotice(`读取失败：${failure.message}`) })
+          .finally(() => { if (request === expandedRequest.current) setExpandedLoading(false) })
       }
 
       const pin = (record, status) => {
@@ -500,6 +533,8 @@ window.__ModuleLoader__.load({
                     expanded: expandedId === record.id,
                     loading: expandedLoading && expandedId === record.id,
                     body: expandedId === record.id ? expandedBody : undefined,
+                    nextOffset: expandedId === record.id ? expandedNextOffset : null,
+                    onReadMore: () => readMore(record),
                     onToggle: () => toggleRow(record),
                     onPin: pin,
                     onRestore: restoreRecord,

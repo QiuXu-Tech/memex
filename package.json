@@ -8,6 +8,7 @@
     "node": ">=24"
   },
   "scripts": {
+    "bootstrap": "sh scripts/link-workspace.sh",
     "build": "node scripts/build-bundle.mjs",
     "check": "node scripts/check-bundle.mjs",
     "test": "node --import ./test/register.mjs ./test/run.mjs",
@@ -17,9 +18,10 @@
     "eval:long-horizon": "node --import ./test/register.mjs ./scripts/long-horizon-eval.mjs --mode compaction --tokens 160000 --window 80000 --out /tmp/lh-compaction",
     "bench:scale": "node --import ./test/register.mjs ./scripts/scale-bench.mjs",
     "backup": "node --import ./test/register.mjs ./scripts/memory-backup.mjs backup",
-    "mcp": "node --import ./test/register.mjs ./packages/memex-mcp/bin/server.mjs",
-    "claude:init": "node --import ./test/register.mjs ./packages/memex-claude/bin/cli.mjs init",
-    "codex:init": "node --import ./test/register.mjs ./packages/memex-codex/bin/cli.mjs init"
+    "test:audit": "node --import ./test/register.mjs --test test/audit-regression.mjs test/audit-integration.mjs test/audit-ui.mjs test/audit-install.mjs",
+    "mcp": "node ./packages/memex-mcp/bin/server.mjs",
+    "claude:init": "node ./packages/memex-claude/bin/cli.mjs init",
+    "codex:init": "node ./packages/memex-codex/bin/cli.mjs init"
   },
   "license": "MIT"
 }

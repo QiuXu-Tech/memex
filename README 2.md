@@ -1,0 +1,406 @@
+# Memex — the extra-context layer for AI agents
+
+[![CI](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+
+**A high-performance extra-context layer between an agent's history and its model window.** Memex treats context as a hierarchy: eligible older text spans can be moved to sticky L2/L3 archives, capacity is managed through a cold tier and bounded batch digests, and a model can retrieve matching records with hybrid search. Capture, retrieval and window selection do not guarantee that every relevant fact is included.
+
+**Context, not just memory.** DSH can archive eligible text spans and retain compaction source-event envelopes. Selected records can be paged back under a context budget; referenced external attachment bytes are not guaranteed to be captured. Read the concept: [Extra context, not just memory](docs/context-layer.md). Next direction: [Context materialization](docs/context-materialization.md) — exact window materialization and transformer context-specialist variants. Implemented: canonical events, materialized resident window (optional in the repository checkpoint; host profiles can enable it), trained transformer encoder reference, runnable paged-KV/prefix host, structural fidelity eval. **A-route validated on GPU:** vLLM 0.10.2 + Qwen2.5-0.5B reused a 2,498-token stable prefix via native paged-KV prefix cache (99.2% second-request prefix hit). A separate KV-tensor probe paged 720 blocks CPU↔GPU and reconstructed the cache **exactly** (paged-vs-direct logit diff 0.0). A **custom vLLM KV connector** now stores materialized prefixes externally; 8/8 second requests hit at 0.5B, **Qwen2.5-3B**, and **real Qwen2.5-7B-AWQ** (36 layers, 420MB KV, 91% GPU utilization; steady store 0.147s → hit 0.094s). End-to-end: a real materializer window was stored through the connector and hit on the second request (1,488 KV tokens, 0.018s hit).
+
+It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
+
+| Agent | Integration |
+|---|---|
+| **DeepSeek Harness** | native Cordis bundle (L1 eviction seam, Web panel, 9 HTTP routes, four core memory tools) |
+| **Claude Code** | MCP server + `SessionStart` / `UserPromptSubmit` / `PreCompact` hooks + `CLAUDE.md` manual |
+| **OpenAI Codex** | MCP server + `AGENTS.md` manual + `config.toml` snippet |
+| **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 4 default tools, optional advanced tools + catalog resource |
+| **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
+
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **196/196 offline tests**, **38/38 SQLite consistency tests**, **50/50 integrity and isolation tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+
+**Archive and privacy repairs:** compaction records, canonical events and completion markers now commit together; incomplete sources remain retryable. Claude transcript copies are split into untrusted, session-private parts, and adapter level restrictions no longer inherit a previously enabled shared scope. Superseded and expired records are excluded from normal recall; new materializer traces record metadata rather than full text. Complete backups require both record files and the matching SQLite database. [Behavior and remaining limits](docs/archive-integrity-20261102.md).
+
+**Task-state follow-up (2026-11-02):** Memory records can carry caller-asserted source, version, observation time and expiry; normal recall hides superseded or explicitly expired entries. In a separately registered 30-issue, three-session historical replay, 28 paired tasks completed. The original blind review rated 13; after separately registered replacement reviews for 15 missing ratings, control scored higher on 4, 20 tied and Memex scored higher on 4. Eight of 28 final answers explicitly cited an earlier record that had been opened later. A later four-issue follow-up on the repaired bridge completed and was rated 4/4, with control higher on 1, two ties and Memex higher on 1. The cohorts use different commits and must be interpreted separately. These are AI-reviewed historical triage replays, not proof of production correctness gains or cost savings. [Results, usage and limitations](docs/production-task-state-20261102.md).
+
+![Three-session issue replay results and observed memory activity](docs/assets/benchmarks/production-task-state-20261102/summary.svg)
+
+**Integrity follow-up (2026-11-02):** In a separate 25-issue long-discussion replay, 22 pairs completed and 21 had valid final AI ratings: control scored higher in 3, 15 tied, and Memex scored higher in 3. Only 4 further issues ran after the SQLite permissions repair. These are compressed historical triage replays, not evidence of a production correctness or cost benefit. [Results, costs, charts and limits](docs/production-integrity-followup-20261102.md).
+
+## 7B KV strategy comparison (latest)
+
+Same real **Qwen2.5-7B-AWQ** model, 8 prefixes ×2 requests (1,856-token prefix), RTX PRO 6000 96GB:
+
+| strategy | first request | second request | notes |
+|---|---:|---:|---|
+| no cache | 0.0907s | 0.0924s | recompute prefix |
+| native vLLM prefix cache | 0.0922s | **0.0187s** | fastest hot path |
+| Memex external KV | 0.1468s | 0.0583s | 8/8 external hits, 654MiB disk, ~91% GPU |
+
+Takeaways:
+
+- Native GPU prefix cache is **~3× faster** than external disk KV on the second request.
+- External KV still beats recompute (~37% faster) and adds persistence, tenant isolation and cross-restart reuse.
+- The first external-store request pays significant overhead; gzip makes hit latency worse.
+- Next: **hybrid routing** (native hot cache + external cold cache), async/pinned KV loading, prefix-length crossover tuning, and lower GPU KV reservation to free memory.
+
+Raw data: `docs/assets/benchmarks/kv-strategy-comparison.json`.
+
+## Historical GPU connector experiment and DSH integration
+
+- Real 7B-AWQ + external connector: throughput saturates ~**19 rps**; p50 75.6ms @1 concurrency, 1637ms @32 (single process).
+- A prior DSH profile was configured with a **`local-memex`** provider backed by the connector vLLM through an SSH tunnel; current runtime state has not been verified by this retest.
+- Real-trace encoder: pretrained **BGE-small** lifts real-archive ranking from 0.518 to **0.593** (still small-corpus limited).
+
+## Six KV optimizations (v0.31.0)
+
+- Hybrid native-first routing: hot prefixes stay on native prefix cache; external KV only for cold/uncached prefixes.
+- Prefix threshold (`min_prefix_tokens`), parallel batch layer loads, cold-only gzip.
+- Low GPU reservation test: 50,103/97,887 MiB with external cold KV still working.
+- Crossover evidence: 512/1024/1856-token prefixes ~0.013–0.020s native; cold 2,800-token external 0.363s then native 0.024s.
+
+## Prefix-length crossover (v0.32.0)
+
+Real 7B-AWQ, unique prefixes, 50% GPU reservation: native prefix cache is fastest at every length (**0.0175–0.0249s** for the second request). External KV beats recompute at 2,833 tokens (0.102s vs 0.139s) but pays a first-store cost; hybrid short prefixes hit native ~0.017–0.022s.
+
+## Learned real-trace cross-encoder (v0.34.0)
+
+Fine-tuned BGE-small cross-encoder on the real archive split: **0.963 sample accuracy / pairwise ranking** (vs 0.593 bi-encoder), but on a small, record-shared, templated-query split. Key next step: record-disjoint real-query evaluation and query-aware materializer integration.
+
+## Learned materializer prototype (v0.35.0)
+
+Query-aware BGE cross-encoder selector vs current rule materializer on real archive split (27 val groups, 500-token budget):
+
+- rule materializer positive recall **0.519** (327 tokens avg)
+- learned selector **0.963** (388 tokens avg), **8.64ms/query** on GPU
+
+Caveat: templated queries and record-shared split; not production generalization, not yet integrated into JS/DSH.
+
+## Real-query generalization: negative result (v0.36.0)
+
+Real DSH session queries, record-disjoint validation (4 val groups): rule materializer **0.50** recall; learned cross-encoder **0.25**; zero-shot BGE **0.25**. The earlier templated 0.963 was optimistic; learned materializer is not production-ready.
+
+## Hybrid rule + learned materializer (v0.37.0)
+
+On real session-query validation, rule recall 0.222 → learned top-1 0.500 → **rule ∪ learned 0.667**. On the small manual real-query set: 0.500 → 0.750. Learned alone is unstable; the hybrid keeps rules as a safety net and adds the learned candidate.
+
+## JS hybrid materializer hook (v0.38.0)
+
+Optional `query` + `learnedRerank` adds a learned candidate to the materialized window. Real session-query val: rule 0.222 → hybrid 0.333 at 500 tokens; 0.722 → 0.833 at 1,000; 0.778 → 0.889 at 1,500–2,400. At that time the default rule path was unchanged.
+
+## Long-horizon memex A/B (v0.44.0)
+
+Synthetic 60-decision archive, 10 evicted-fact probes, two real API models: baseline recent-tail **0/10**, memex materialized archive **10/10**, same-size decoy archive **0/10**. The gain is content-specific, not just extra tokens. Cost: +2.3k/+3.6k prompt tokens.
+
+<!-- autonomy20261102:start -->
+**Cross-session follow-up (2026-11-02; runs finished; gaps and post-hoc reviews shown below):** Real public issues were replayed in two separately registered, randomized Claude Code cohorts. At this snapshot, 10/30 original and 30/30 recovery-protocol pairs completed both sessions. In the supplemental primary AI ratings (28 pairs), control scored higher on 12, tied on 16, and Memex scored higher on 0. These are historical triage replays assessed by AI, not live production correctness or cost-saving evidence. Automatic and agent-initiated writes, failures and missing usage are reported separately. [Results and limitations](docs/production-autonomy-20261102.md).
+
+![Cross-session issue replay progress](docs/assets/benchmarks/production-autonomy-20261102/autonomy-summary.svg)
+<!-- autonomy20261102:end -->
+
+## Prospective engineering canary (2026-10-31)
+
+**Three-session issue replay (2026-11-01):** An analysis of the previous study found 28/28 treatment first sessions searched empty stores. MCP now distinguishes an empty archive from a nonempty search miss and avoids suggesting unnecessary fallback calls. Three new public-issue coding replays had **0/3 complete original Codex pairs** after interrupted sessions. A separately registered Claude continuation on one reused issue wrote and later opened a memory, but its candidate failed an additional inherited-setter regression despite passing the original fixed checks. AI review disagreed on the candidate; the adjudicator scored control/Memex **2/1**. A fourth, new Chalk issue initially timed out in both arms. A separately registered longer-timeout retry on that same issue completed 3/3 sessions per arm and both passed the frozen check; Memex wrote no memory and used **18.7% more input tokens**, while its account-window solver charge candidate was lower for this single retry. A post-hoc reproduction of an existing upstream assertion failed on both patches, and both final explanations made inaccurate underline-color claims that the frozen-criteria AI scores did not flag. Claude and Qwen review failures were retained; GPT and post-hoc DeepSeek scored both 2/2, as did a Gemini adjudicator. Contradictory model-specific search/open hints were aligned with the shared manual, and guidance now labels unverified hypotheses. These historical replays do not establish production correctness or savings. [Methods, failures, cost and results](docs/production-longhorizon-20261101.md).
+
+![Agent replay coverage, prior token use and a supplemental compatibility check](docs/assets/benchmarks/production-longhorizon-20261101.svg)
+
+![Post-hoc Chalk retry: session completion, token use, blinded scores and legacy assertion](docs/assets/benchmarks/production-longhorizon-20261101/chalk-retry.svg)
+
+<!-- real30:start -->
+**Post-repair 30-issue study (completed with post-hoc retries):** 28/30 original public-issue attempts completed both two-session Codex arms; 25/30 have two blinded AI ratings and adjudication without recovery, plus 3 supplemental adjudications. 30/30 distinct tasks have an evaluable pair including post-hoc retries. 3 adjudication rationales are flagged. These are historical source investigations without project acceptance tests; full cost and production impact remain unknown. [Results, usage and limits](docs/production-real30-20261101.md).
+
+![Coverage, AI reviews and paired token use for the 30-issue study](docs/assets/benchmarks/production-real30-20261101.svg)
+
+In the post-hoc sensitivity view, AI adjudication was equal on 27 tasks, higher for Memex on 0, and higher for control on 3. The 28 complete original pairs reported 8.59M control versus 12.04M Memex input tokens, including cache.
+
+**Preview mechanism canary:** In two reused, memory-prompted Codex pairs, the new option used two searches and no opens versus two searches and two opens; reported input was 26.6% lower. Both answers per pair received 2/2 from two AI reviewers and the adjudicator. This is a small mechanism check, not evidence of production savings.
+<!-- real30:end -->
+
+**Executable real-agent follow-up (2026-11-01):** Two more registered public-issue shadow tasks were run in three fresh Codex sessions per arm. Both arms passed the original issue checks; on a related extra Happy DOM check, control passed and Memex failed. In both Memex arms the agent wrote, later opened and cited the same record, while also having access to the ordinary handoff. The Memex arms reported more input tokens in these two trials; cached input and unknown subscription costs prevent a cost-savings conclusion. This brings the original cohort to **6/30** paired investigations, with one interrupted and 23 not started. Two `memory_grep` defects were fixed and regression-tested. These are historical replays with AI-only review; one task uses mocked ML dependencies. [Results, usage, repairs and limitations](docs/production-value-20261101.md).
+
+![Executable checks and reported input for two paired tasks](docs/assets/benchmarks/production-value-20261101.svg)
+
+**Earlier independent-issue checkpoint (2026-11-01):** Thirty public-issue investigations from different repositories and owners have frozen source snapshots and criteria. At this checkpoint, **4/30** completed randomized three-session Codex arms; one was interrupted and 25 had not started. All four Memex arms searched but did not write a record; the first two encountered a `memory_grep` defect that was fixed before the other two ran. These were source investigations with AI-only review, without project-specific executable acceptance tests. In a separate Krkn coding canary, both arms passed a frozen mocked sandbox test and one Memex record was written, opened and cited across sessions; overlapping archive access leaves its necessity unknown. Fourteen matched gateway-review rows total a candidate **$0.062814**; Codex subscription and other costs remain unknown. [Results, task registration, review disagreements and limitations](docs/production-cohort-30-20261101.md).
+
+![Earlier checkpoint across 30 registered public-issue investigations](docs/assets/benchmarks/production-cohort-30-20261101.svg)
+
+**Real-agent follow-up (2026-11-01):** The isolated repository and test worker is now available through MCP to actual Codex and Claude Code clients. In two related paired Codex tasks, **4/4 candidates passed frozen tests**; both audit candidates also failed the original unadapted test fixture, which was updated for integration. In a separately registered, adaptive third session, Codex searched, opened and cited a record it had written in the previous process under the standard Memex manual. Two AI audits agreed on trace fidelity and cited use but disagreed on necessity; the adjudicated necessity is **unknown**. An earlier run with an unexpectedly loaded connector was interrupted and retained. Codex's reported usage and subscription cost gaps, AI-review disagreements, and the **$0.010644 candidate APIMaster subtotal** are documented in the [report](docs/production-real-agent-20261101.md). This is not a completed independent production study or a demonstrated cost saving. [Agent setup](docs/integrations/isolated-pilot.md).
+
+![Real-agent paired tests and an observed cross-session memory lifecycle](docs/assets/benchmarks/production-real-agent-20261101.svg)
+
+**Two-task shadow follow-up (2026-11-01):** An isolated Memex maintenance task and a public Axios issue were each tried with and without Memex. The four initial attempts made **0/4 requested edits**. An adaptive retry made four edits, but both Memex candidates failed the frozen ordering test; the Axios candidates received partial or conflicting AI assessments and remain unverified. A further Memex-only repeat with a sandbox test tool passed the frozen checks in both arms, but both candidates failed additional checks prompted by AI-review disagreement. A later fresh session did not use the available memory tools. An investigator fixed the audit-validator defect and added tests. Across the attempts and reviews, **124 successful requests** match a candidate **$0.065068** subtotal; 11 failed 503 attempts and non-model costs retain unknown charges. These repeated shadow tasks do not complete the 30–50-task production study. [Results, review, billing and limitations](docs/production-forward-pilot-20261101.md).
+
+![Initial and retry results for the same two shadow tasks](docs/assets/benchmarks/production-forward-pilot-20261101.svg)
+
+**Integration readiness follow-up (2026-11-01, unreleased):** MCP record operations now respect workspace and session visibility, default L2 sessions no longer span MCP processes, new global Codex configuration does not pin the setup project, and long single-line bodies can be continued. Four synthetic Codex checks retained a denied write and an invalid fixture; a corrected read confirmed the project scope, and a scripted write-search-open cycle worked in a temporary writable workspace and was read back by a new MCP process. This is not a production A/B or evidence of autonomous memory management. [Repairs, checks, usage and limitations](docs/production-readiness-20261101.md).
+
+![Four synthetic Codex integration checks, including the denied write and invalid fixture](docs/assets/benchmarks/codex-readiness-smoke.svg)
+
+**Earlier API-agent follow-up (separate cohort):** **30 distinct public-issue pairs** have both randomized arms completed, two format-valid AI ratings per arm and the necessary format-valid disagreement adjudications. This combines **18 earlier issues and 12 new follow-up issues**, includes separately registered post-hoc ratings and adjudications, and excludes two no-history controls. Among these selected pairs, the resolved AI correctness score was equal on 25, higher for Memex on three and higher for keyword retrieval on two. The adaptive batches, shared projects, public solution exposure and AI-only judging prevent a claim of independent production improvement, cost savings or autonomous memory management. [Results, method and limits](docs/production-prospective-canary.md#follow-up-30-evaluable-public-issue-pairs-with-post-hoc-recovery).
+
+The new follow-up registered 20 distinct issues; 24 of 40 consolidated arm slots passed partial checks, five had nonzero checks, four were incomplete, two were unknown after timeouts and five were not started. Successful provider rows for this follow-up match **$0.631912** by model and aggregate token counts; two timeout charges and full non-model costs remain **UNKNOWN**. Earlier 503s carried `system_cpu_overloaded`, but the issuing upstream and its CPU metrics were not verified. [Gateway evidence and billing](docs/production-prospective-canary.md#gateway-503-investigation-and-usage).
+
+![Follow-up issue pairs, partial-check outcomes and AI review coverage](docs/assets/benchmarks/production-prospective-independent-pairs.svg)
+
+A preregistered, isolated canary compared three conditions on **one manually selected public Lodash issue**. The original patch filter rejected all three outputs before testing; a corrected, uniformly applied post-hoc check passed **3/3** unchanged candidates. Two blinded AI reviewers agreed on correctness but disagreed on side-effect safety in **3/3** paired ratings. This is a narrow process check, not evidence of a production improvement or autonomous memory management; the requested 30–50-task study remains **incomplete**.
+
+An initial engineering canary and earlier separate instrumentation batches are followed by **30 additional open-source issues**, each with checks and a randomized paired order registered before its calls. Both arms completed and passed the partial checks for **21/30 issues**, including two explicitly marked no-history controls. Only **16/30** had complete final responses and two format-valid original AI ratings per arm; 14 remain after excluding the two no-history controls. Including separately registered supplementary ratings gives 20/30, or 18 without those controls, without requiring valid adjudications. Across 41 candidates with two valid original ratings, 28 had score disagreements, and 19 of those original adjudications were invalid. Separately registered post-hoc reviews and failures are retained in the ledger. These adaptive, correlated batches and short public issue discussions are **not a completed independent production study**; they do not establish a production gain, savings or autonomous memory management. [Results, registrations and limitations](docs/production-prospective-canary.md#gateway-recovery-and-30-additional-public-issues).
+
+For the new gateway work, 637 requests reported **5,389,529 input / 160,684 output tokens** where available. Successful provider rows match a candidate subtotal of **$1.229982**; four failed requests lack usage and their final charges are **UNKNOWN**. Eight Qwen reviews reported output-token usage above the requested limit, whose gateway enforcement is unverified. Logged retries are limited to explicit 503 responses and tested with mocks; no live 503 occurred in the new trials, while timeouts and a transport error did occur. [Billing evidence and gaps](docs/production-prospective-canary.md#gateway-recovery-and-30-additional-public-issues).
+
+![Real-issue agent instrumentation outcomes by separate registration](docs/assets/benchmarks/production-prospective-agent-outcomes.svg)
+
+![New issue pairs by retrieval arm and partial-check outcome](docs/assets/benchmarks/production-prospective-new-pairs.svg)
+
+## Retrospective pilot follow-up (2026-10-31)
+
+A follow-up fixed the pilot harness's bounded answer continuation and separated historical-source IDs from observed-memory IDs in the unblinded audit. Twelve historical questions from six correlated sessions were replayed in five randomized conditions. A first cohort suffered 32 incomplete answers during a gateway outage; the separately registered post-outage replication completed **60/60** answers, including **6** that continued after the output limit. This is replay, not verified completion of the original tasks.
+
+In the replication, **24/24** unblinded AI autonomy audits passed the then-current citation/schema checks, while model opinions about memory fidelity diverged. A later stricter prior-write-use check has not been applied to those historical ratings. Blind answer reviews were valid in **92/120** calls; Astra returned **27 HTTP 403** errors and the two reviewers agreed on **15/29** comparable non-null correctness ratings. Both cohorts and connectivity probes generated **728 recorded calls** with **4,410,105 prompt / 316,373 completion tokens reported**; **77 calls lack prompt/completion usage**, and actual charges remain **UNKNOWN**. Results do not demonstrate production accuracy, savings or reliable autonomous memory. [Results, methods, failure evidence and full cost gaps](docs/production-pilot-followup.md).
+
+![Retrospective follow-up task usage and observed memory actions](docs/assets/benchmarks/production-pilot-followup-usage.png)
+
+## Earlier expanded retrospective validation pilot (2026-10-31)
+
+A preregistered five-condition replay of nine historical questions from three correlated sessions produced **41/45 complete answers** and four truncated answers. After tool budgets were exhausted, the pilot harness produced complete fallback answers in 8/9 affected answer phases. In the nine write-enabled runs, the agent wrote before the question in eight and searched, opened and cited its own earlier write in three. These are replay observations, not verified production success or proof of faithful memory management.
+
+Two blinded AI reviewers produced **79/82** format- and source-ID-valid ratings; DeepSeek returned 41/41 valid ratings after its thinking mode was disabled. Their correctness scores agreed on **17/36** answers for which both gave a non-null rating. The separately planned unblinded autonomy audit had only **8/18** valid results. The gateway reported **2,409,708 prompt / 153,749 completion tokens** across this follow-up's trials, reviews, audits and six diagnostic calls; one failed call lacked usage and actual costs remain **UNKNOWN**. Sample reuse, clipped evidence and AI review preclude claims of a production accuracy gain or cost savings. [Methods, full results, ledger and limitations](docs/production-pilot-expanded.md).
+
+![Expanded pilot reported usage and observed memory actions](docs/assets/benchmarks/production-pilot-expanded-usage.png)
+
+## Earlier exploratory production-validation pilot (2026-10-31)
+
+A preregistered, isolated five-condition replay used four actual historical questions from two sessions, including Memex-related work. **17/20 runs** produced nonempty answers; three reached the tool-round limit. In four write-enabled runs, the agent wrote before the question in three, and in one it later searched, opened and cited its own write. This is a mechanical observation, not verified fidelity or production success.
+
+The user requested AI instead of human review. Only **29/51** blind machine-review responses passed format and historical-source-ID checks; the second useful model was added post hoc after repeated empty DeepSeek responses. The 0/1/2 rubric and clipped evidence limit interpretation. Across task runs, blind reviews, post-hoc audits and synthetic preflight, the gateway reported **1,110,947 prompt / 113,967 completion tokens**; invoices and total cost are **UNKNOWN**. The four questions are not a production benchmark or proof of improved correctness or savings. [Methods, results, cost ledger and limits](docs/production-pilot.md).
+
+![Pilot reported usage and observed memory actions](docs/assets/benchmarks/production-pilot-usage.png)
+
+## Synonym and archive excerpt retest (2026-10-31)
+
+The pager can optionally ask the configured model for search paraphrases (`materializerQueryExpansion: true`, **off by default**) and can extract a query-relevant excerpt from an oversized archive body before building its card. The option sends the question to that provider and adds model latency and cost. In ten seeded layouts of 12 handcrafted questions, rule included target facts **4/120 → 91/120** and hybrid **0/120 → 104/120** with rewriting enabled; the same 12 questions were reused across seeds. One English question failed across all layouts. A deep-archive probe now includes its fact, but complete recall is not guaranteed. Ten exact-cue 10M assigned-token stores retained **400/400** rule and hybrid fact availability without rewriting; none of the quiet-start gates passed. [Results, charts and limitations](docs/pager-semantic-evaluation.md).
+
+A one-session replay compared the prior rule against the repaired rule with query rewriting: two-order machine judging favored the prior rule in 3/18 valid pairs, the expanded rule in 8/18, tied in 1/18, and changed with order in 6/18; two of 20 pairs were excluded for empty answers. Neither synthetic fact availability nor a single-session replay establishes production accuracy, cost savings or autonomous memory management. The [production validation protocol](docs/production-validation-plan.md) specifies randomized controls, independent human review and complete cost accounting.
+
+![Synthetic query expansion diagnostic across seeded layouts](docs/assets/benchmarks/pager-semantic-comparison.png)
+
+## Historical query-aware pager and hybrid ranking repair (2026-10-31)
+
+At [repair commit `a0a33db`](https://github.com/QiuXu-Tech/memex/commit/a0a33db5319ead359b089b3f5fb585212245e044), the pager adds scoped search hits to its candidates, and hybrid ranking prioritizes query-term coverage before using learned scores as a tie-breaker. Query-aware rule selection now tries search hits within the budget; hybrid remains opt-in. On 400 **paired exact-cue synthetic** 10M assigned-token probes, rule fact availability changed **22/400 → 400/400** and hybrid **0/400 → 400/400**. With identical post-fix candidates, the hybrid ranking ablation was **0/400 → 400/400**. All ten quiet-start gates failed; this is not a production or low-load performance claim.
+
+A separate 20-question synthetic topic diagnostic found the target fact **16/16** when searchable vocabulary overlapped, but **0/4** for lexically disjoint synonym questions. The system therefore still needs broader, human-verified evaluation. [Methods, raw data, replay and limitations](docs/pager-recall-evaluation.md).
+
+In a retrospective replay of 10 questions from one real session, two-order machine judging of 20 question/model pairs favored rule in both orders for 6, hybrid for 10, tied in 1 and changed with order in 3. These are not human labels or proof of production accuracy; at that historical commit a synthetic archive card omitted a deep fact even after its record was selected; the reproduced case is fixed in the newer retest above.
+
+![Paired 10M synthetic pager results before and after repair](docs/assets/benchmarks/pager-recall-comparison.png)
+
+## Historical pager body repair and 10M retest (2026-10-31)
+
+The pager now loads stored bodies, forwards excerpt/tokenizer options and preserves source-marked excerpts. At v0.65.0 + [pager fix `bfeee59`](https://github.com/QiuXu-Tech/memex/commit/bfeee596cc7a06fd304b025b0b031de05bbd2f12), two five-seed synthetic cohorts each yielded separate search hit@1 **200/200**. Rule/hybrid pager windows contained the target fact **12/200 / 0/200** on Node 25.9, and **10/200 / 0/200** on Node 24.21. Each cohort was deliberately split 50/50 between resident and nonresident targets; these are availability checks, not production answer accuracy. No quiet-start gate passed. [Methods, raw data and limitations](docs/pager-retest.md).
+
+A separate retrospective replay from one real session produced 16 valid question/model answer pairs. In two-order **machine** judging, rule won both orders in 4 pairs, hybrid in 5, ties in 2, and the outcome changed with presentation order in 5. Four pairs were excluded for empty answers. This is not human annotation or a production benchmark; no default strategy change was made.
+
+![10M synthetic pager materializer comparison](docs/assets/benchmarks/pager-10m-comparison.png)
+
+## 10M-token controlled long-context experiment (2026-10-31)
+
+Synthetic **10,000,000-token archive** (2,000 records ×5,000 tokens; 50% cold), 40 probes whose facts exist only in the archive:
+
+| condition | DeepSeek Flash | Claude Haiku | avg prompt tokens |
+|---|---:|---:|---:|
+| recent tail only | **0/40** | **0/40** | 536 / 548 |
+| **memex retrieved evidence** | **40/40** | **40/40** | 234 / 216 |
+| same-size distractor | **0/40** | **0/40** | 234 / 216 |
+
+- Retrieval hit@1: **40/40 = 100%**, median **4.94 ms**
+- Store: 10M tokens written in **1.65 s**; cold archive **1.32 s**; DB **6.0 MB**
+- Wilson 95% CI for memex accuracy: **91.2–100%**; baseline/distractor: **0–8.8%**
+- Exact FACT-id metric; synthetic, one stochastic run, 40 probes; the seed was not recorded. Full methods, limitations, and reproduction: [docs/long-context-10m.md](docs/long-context-10m.md), raw aggregate: [long-context-10m.json](docs/assets/benchmarks/long-context-10m.json)
+
+## Why
+
+Long conversations and long-running projects hit the same wall: the native context window is finite. The usual answers are lossy — truncate, or summarize and lose the details that turn out to matter later. memex treats conversation history like a cache hierarchy instead:
+
+| Level | What it is | Capacity | Semantics |
+|---|---|---|---|
+| **L1** | The model's native context window | model window | untouched; eviction removes the oldest balanced span |
+| **L2** | Session-private archive | 10M tokens / session | Memex filters reads by workspace and session id |
+| **L3** | Workspace-shared archive | 100M tokens / cwd | Memex sessions in the same workspace can read it |
+
+These are logical storage scopes, not operating-system security boundaries: a process with access to the database or record files can inspect them directly.
+
+- **L2 and L3 are independent, sticky switches** — once enabled a level cannot be turned off (recorded context never silently disappears).
+- **Stored source events**: DSH compaction retains captured event envelopes in SQLite alongside a rendered record, without an LLM on the critical path; rendered excerpts and referenced external files may be incomplete.
+- **Capacity compression on demand**: when a pool is near full the model asks the user first; compression then applies a **cold tier** (lossless, zero-LLM) and optionally **bounded map-reduce digests** (batched, resumable, never one giant prompt).
+- **Cheap recall**: hybrid keyword retrieval (FTS + card fields + bounded cold abstracts + lexical rerank), ~1–5 ms on realistic archives, tens of tokens per hit.
+- **Model-specific adaptation**: profiles tuned per model family — context window, chars/token ratio, injection format (XML/Markdown/plain), catalog/recall budgets, digest prompt style, bilingual CJK guidance **and retrieval rerank weights** (title/tags/summary/useWhen/abstract/body/recency/bm25) passed into hybrid search. 13 family bases plus **dedicated GPT-6.1 Sol / Claude Opus 5.5 / Claude Sonnet 5.5 / DeepSeek Flash** profiles with vendor-current context limits and reasoning-mode guidance. See [docs/model-profiles.md](docs/model-profiles.md) and the [cold-start + long-horizon profile validation](docs/profile-validation.md).
+- **Hot-body rescue**: identifier-like body tokens are indexed (`record_terms`) so facts that never made it into a title/summary are still found when card matches fill the limit; a `body` rerank weight ranks them. On the controlled fixture this took hot-body hit@1/@5 from **0%/0% to 100%/100%**.
+
+## Features
+
+- **Agent-agnostic core** (`@qiuxu/memex-core`): markdown + SQLite store, hot/cold tiers, hybrid retrieval and capacity compression with zero host dependencies. DSH, MCP and CLI adapters share one record vocabulary.
+- **MCP server** (`@qiuxu/memex-mcp`): stdio JSON-RPC, **4 default tools** (`memory_search/open/write/set_status`); `--all-tools` advertises 6 additional maintenance tools. The `memory://catalog` resource and model-tailored instructions remain available.
+- **Claude Code adapter** (`@qiuxu/memex-claude`): one command registers MCP, merges `.claude/settings.json` hooks and injects a model-tailored `CLAUDE.md` manual; `PreCompact` copies the transcript into session-private parts when L2 is enabled, `Stop` saves completed assistant responses as untrusted checkpoints, and `UserPromptSubmit` auto-recalls relevant previews from earlier sessions.
+- **Codex adapter** (`@qiuxu/memex-codex`): `AGENTS.md` manual + `codex mcp add` / `config.toml` entry.
+- **Model profiles**: per-family windows, token-estimation ratios, injection budgets and digest prompts; overridable by the integration.
+- **L1 eviction** through the shipped `compaction/prune` + surface-replace seam; no custom session events, no replacement of the compaction backend.
+- **Sticky L2/L3 levels** with a session-private/shared split, capture policy (deepest enabled level wins) and per-level capacities.
+- **Hybrid retrieval** shared by `memory_search` and auto-recall: latin identifiers, quoted spans, CJK n-grams, stopword filtering, FTS + LIKE legs, bounded cold abstracts, lexical rerank with recency.
+- **Cold tier + compression**: `memory_compress` with `cold` (lossless, zero LLM) and `digest` (bounded batched summaries, 2-way concurrency, retry/fallback, `ids:` enforcement, cold quota GC).
+- **Capacity consent protocol**: `[EXTRA CONTEXT CAPACITY]` notice at 80% hot usage tells the model to ask the user before compressing.
+- **Sensitive-content policy**: secret-looking spans (keys/tokens/passwords) are forced into private L2, or eviction is skipped when only L3 is available.
+- **Observability**: `compression_runs` history, `GET /api/memory.metrics`, `/memory status`, and optional `memory_index`.
+- **Operations**: restore/回热, cold GC, backup/verify/restore (SQLite `VACUUM INTO` + sha256 manifest).
+- **UI**: composer context-ring inner arc (teal = L2 capture, blue = L3), a popover mode row, a full memory panel with compression/restore buttons and capacity warnings.
+
+## Demo
+
+![memex panel and compression flow](docs/assets/demo.gif)
+
+*A condensed illustration of the context-ring popover, the capacity notice, a lossless compression run, and the memory panel (rendered animation, not a screen recording).*
+
+## Architecture (short version)
+
+```
+Any agent (DSH · Claude Code · Codex · Cursor · …)
+ ├─ adapters: DSH bundle / MCP server / Claude hooks / Codex CLI
+ │      • one shared agent-agnostic core, one record vocabulary
+ │      • model profile → budgets, injection format, manual, digest prompt
+ │
+DSH agent session
+ ├─ L1 (native window) ── evict oldest balanced span ──► extra context
+ │      • compaction/prune shadow price + user/message surfaceOp replace
+ │      • receipt message keeps the model oriented
+ ├─ L2 session archive (10M)  ─┐
+ ├─ L3 workspace archive (100M)┘   sticky, verbatim, scoped
+ │
+ ├─ retrieval: memory_search / memory_open (optional memory_grep; hybrid FTS + cold abstracts)
+ ├─ capacity: hot/cold accounting, memory_compress (cold/digest), quota GC
+ └─ Web: context ring + memory panel via /api/memory.* (9 owner-scoped routes)
+```
+
+Full design: [docs/architecture.md](docs/architecture.md). Measured results: [docs/evaluation.md](docs/evaluation.md). Hosted docs: <https://qiuxu-tech.github.io/memex/>. Security policy: [SECURITY.md](SECURITY.md). Upstreaming plan: [docs/upstream.md](docs/upstream.md).
+
+## Repository layout
+
+| Path | Purpose |
+|---|---|
+| `packages/memex` | installable DSH bundle (patch + exports; `modules/` is generated and git-ignored) |
+| `packages/memex-core` | **agent-agnostic core**: vocabulary, query terms, store/retrieval/compression, model profiles, manual + engine facade |
+| `packages/memex-mcp` | **universal MCP stdio server** (Claude Code, Codex, Gemini CLI, Cursor, Cline, …) |
+| `packages/memex-claude` | Claude Code integration: `init` (MCP+hooks+CLAUDE.md) and hook handlers |
+| `packages/memex-codex` | Codex integration: `AGENTS.md` manual + MCP config snippet/writer |
+| `packages/memex-seam` | DSH `ctx.memory` service over the core (re-exports its vocabulary) |
+| `packages/memex-local` | SQLite + markdown store: hot/cold tiers, FTS, compression history |
+| `packages/memex-checkpoint` | checkpoint policy: archive/receipt/catalog/recall, capacity notice |
+| `packages/memex-tool` | four core tools, optional maintenance tools and the stable memory manual prompt section |
+| `packages/memex-command` | `/memory on|off|status|compress|restore|gc|search|remember|pin|…` |
+| `packages/memex-evict` | L1 → L2/L3 eviction policy (sensitive-content aware) |
+| `packages/memex-compress` | capacity compression (cold + digest) and compression history |
+| `packages/memex-api` | nine `/api/memory.*` HTTP routes for the panel |
+| `packages/memex-ui` | Web client half: panel + context-ring bridge |
+| `test/` | offline harness (196 tests, no `node_modules`; stubs for host packages) |
+| `scripts/` | build/check bundle, scale & recall benchmarks, backup/verify/restore |
+
+## Requirements
+
+- **Node.js 24+** (`node:sqlite`, ESM) — for every integration.
+- **DeepSeek Harness `0.2.1-rc.3`** only for DSH mode (this repo is an extension, not a fork).
+- **An MCP-capable agent** for universal mode (Claude Code, Codex, Gemini CLI, Cursor, Cline, Windsurf, Zed, …).
+- No npm dependencies for the offline test suite; the MCP server and adapters need only the core package.
+
+## Quick start — any MCP agent
+
+```bash
+git clone https://github.com/QiuXu-Tech/memex.git
+cd memex
+node scripts/build-bundle.mjs        # only needed for DSH mode; MCP/adapters read the source packages
+
+# Claude Code: registers MCP + hooks + CLAUDE.md manual in this project
+node packages/memex-claude/bin/cli.mjs init --model claude-sonnet-5-5
+
+# Codex: writes AGENTS.md + prints/installs the MCP config
+node packages/memex-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
+
+# Any MCP client: point it at the stdio server
+node packages/memex-mcp/bin/server.mjs --root ~/.memex --model deepseek-flash --levels l3
+```
+
+See [docs/integrations.md](docs/integrations.md), [Claude Code](docs/integrations/claude-code.md), [Codex](docs/integrations/codex.md), [generic MCP clients](docs/integrations/mcp.md) and [model profiles](docs/model-profiles.md).
+
+MCP writes are marked untrusted because an agent's assertion is not itself verification; existing records keep their labels. Search results show bounded summaries and trust labels. For a focused query, `memory_search` can also include up to 2,000 characters of the top record with `openTop: true`. Check that the result is relevant, and use `memory_open` to continue a truncated preview.
+
+## Install (DSH local bundle)
+
+memex ships as a DSH **bundle** (a patch plus runtime modules). It is not published to npm; install it as a linked local bundle in a DSH profile:
+
+```bash
+git clone https://github.com/QiuXu-Tech/memex.git
+cd memex
+node scripts/build-bundle.mjs        # generates packages/memex/modules
+node scripts/check-bundle.mjs        # verifies generated modules match sources
+```
+
+1. Register `packages/memex` as an installed bundle in your DSH profile (see [docs/install.md](docs/install.md) for the profile/plugin-manager and manual-patch options).
+2. Reload the profile. It contributes eight rows (`memory`, `memory-checkpoint`, `memory-tools`, `memory-evict`, `memory-compress`, `memory-api`, `memory-ui`, `memory-commands`) with the config in `packages/memex/cordis.patch.yml`.
+3. Open a session: the composer context ring gains an “额外上下文” popover row with **L2 / L3** switches (off by default; sticky once on).
+
+> Some local DSH builds require the client row to be addressed by a `file:` URL instead of the `@qiuxu/memex/ui` subpath; docs/install.md has the fallback row.
+
+## Use
+
+- **Enable**: ring popover / memory panel → `L2 本会话` or `L3 工作区`; or `/memory on l2|l3|both`. Levels are sticky.
+- **Use memory**: MCP defaults to `memory_search`, `memory_open`, `memory_write` and `memory_set_status`; add `--all-tools` for maintenance tools. DSH uses the same four core names; set `advancedTools: true` on its `memory-tools` row for grep, index and restore. Compression remains a separate DSH tool.
+- **Capacity**: at 80% hot usage the model receives a bilingual capacity notice and asks the user first; `/memory compress [l2|l3] [ratio]` or the panel button runs the lossless cold compression; `memory_compress strategy=digest` additionally produces bounded batch summaries.
+- **Maintain**: `/memory status` (hot/cold/history), `/memory restore <id>`, `/memory gc <keepTokens>`, `node --import ./test/register.mjs scripts/memory-backup.mjs backup|verify|restore`.
+
+## Configuration (row config via the bundle patch)
+
+| Row | Config fields |
+|---|---|
+| `memory` (backend) | `root`, `capacityTokens` (L3, 100M), `sessionCapacityTokens` (L2, 10M), `defaultLevels` (`none|l2|l3|both`), `settingsTtlDays` (90) |
+| `memory-checkpoint` | `autoArchive`, `autoRecall`, `catalogMaxChars`, `recallMaxChars`, `cardModel`, `materializer`, `materializerMaxTokens`, `materializerPageTokenCap`, `materializerHybridRerank`, `materializerQueryExpansion`, `materializerLearnedTopK`, `materializerLearnedPageMaxTokens`, `capacityNoticeRatio` (0.8), `capacityNoticeCooldownMs` (10 min) |
+| `memory-evict` | `evictAtRatio` (0.6), `retainRatio` (0.35), `maxChars` (250k), `captureLevel` (`deepest|l2`), `sensitivePolicy` (`auto|off`) |
+| `memory-compress` | `batchRecords` (20), `batchChars` (120k), `maxBatches` (6), `minAgeMs` (1h), `minDigestTokens` (2000), `coldQuotaTokens` (0 = unlimited) |
+
+HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.status|level|compress|restore|gc` (owner-scoped by the host; document-relative paths).
+
+## Evaluation
+
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **196/196**, with **38/38 SQLite consistency** checks and **50/50 integrity and isolation** checks.
+
+| Metric | Result |
+|---|---|
+| Private archive re-check (40 curated questions; v0.5.1) | Reported hit@1 **68%** / hit@3 90% / hit@5 **93%**, cold recall 94%, p50 **1.5 ms**; this private archive cannot be independently reproduced from the public fixture |
+| Synthetic recall suite (v0.30.0) | 80/80 target-record hits at rank 1 |
+| Codex / GPT-6.1 Sol A/B (v0.30.0; 3 synthetic histories) | Exact answers: control with tail titles/summaries **3/60**, treatment with pre-retrieved evidence **60/60**; evicted subset **0/57 → 57/57**. [Method and limits](docs/live-testing.md#f-codex-cli--gpt-family-historical-results-and-fixed-sol-rerun) |
+| 10k records / 100M assigned tokens (v0.30.0, synthetic, quiet-start gate) | write 9.4 s; cold spill 5,000 records/50M tokens in 14.45 s; cold GC 2,500 records/25M tokens in 5.36 s. [Timing context](docs/benchmark.md#4-synthetic-capacity-and-cold-operations) |
+| SQLite index (synthetic v0.30.0 100M-token pool) | 10.7 MiB after writing, 28.3 MiB after cold spill; x-only bodies do not measure identifier-bearing body index overhead |
+
+**Synthetic 160K history / 80K window, on v0.30.0:** the retained tail made 20/40 target facts available; the previously supplied summary plus tail made 24/40 available. memex search returned the target record for 40/40 probes. These are availability and retrieval checks, not end-to-end answer accuracy. Full charts, timing conditions and methodology: **[docs/benchmark.md](docs/benchmark.md)**. Recent experiments and the optimization backlog: [docs/optimization-findings.md](docs/optimization-findings.md). Post-rename verification and improvement points: [docs/experiments-v040.md](docs/experiments-v040.md). Live endpoint A/B harness/status: [docs/live-testing.md](docs/live-testing.md).
+
+**SQLite consistency:** the fix included since v0.15.0 serializes file-backed operations with SQLite and recovers process-interrupted transactions without overwriting existing records. Previously damaged legacy stores require inspection; process-crash recovery and its limits are described in [SQLite and file consistency](docs/storage-consistency.md).
+
+Reproduction commands, including the required saved summary and cold target ratios, are in [docs/benchmark.md](docs/benchmark.md). Additional context is in [docs/evaluation.md](docs/evaluation.md).
+
+## Privacy
+
+- Memex records are stored locally in `$DSH_HOME/memories` (SQLite index + markdown files + `cold/` tier), with no Memex telemetry. An agent's model calls can transmit prompts containing recalled memory; host integrations may have their own network behavior.
+- Archives are raw conversation/tool output — treat them with the same care as your transcripts. L3 is intentionally shared across sessions in the same working directory; sensitive-looking spans are routed to L2 when possible.
+- Backup files contain the same data: store them securely (`scripts/memory-backup.mjs` writes a sha256 manifest).
+
+## Development
+
+```bash
+node scripts/build-bundle.mjs                        # generate bundle modules
+node scripts/check-bundle.mjs                        # source/bundle parity
+node --import ./test/register.mjs ./test/run.mjs     # offline harness (196 tests)
+node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
+node --import ./test/register.mjs scripts/scale-bench.mjs
+```
+
+The test harness stubs the host packages (`@deepseek-ai/*`) with ESM loader hooks, so it needs no `node_modules` and no DSH install; it spawns the MCP server and adapter CLIs to test the universal path end-to-end. See [test/README.md](test/README.md) and [CONTRIBUTING.md](CONTRIBUTING.md). Upstream package export: `node scripts/export-upstream.mjs` (see [docs/upstream.md](docs/upstream.md)).
+
+## License
+
+[MIT](LICENSE) © QiuXu-Tech. Not affiliated with or endorsed by DeepSeek; DeepSeek Harness is a separate project and is not bundled here.

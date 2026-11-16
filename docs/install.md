@@ -3,22 +3,36 @@ title: Install guide
 layout: default
 ---
 
-# Installing memex into a DSH profile
+# Local source installation
 
-memex is a **bundle** for DeepSeek Harness `0.2.1-rc.3`. It is installed into a DSH profile as a linked local package; it is not published to npm.
+memex is installed from a local checkout; it is not published to npm. Use Node.js 24+ and npm with a POSIX shell. The installation regression is exercised locally with Node.js 25.9.0; it does not establish Windows compatibility or every Node.js minor version.
 
-## 1. Build the runtime modules
+## 1. Link the source packages
 
 ```bash
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
+npm run bootstrap              # creates node_modules/@qiuxu/* links to this checkout's packages
+```
+
+`bootstrap` is repeatable and links the core, MCP server, Claude Code and Codex adapters and sibling workspace packages. It does not download registry dependencies or call a model. These source entry points do not need DSH, a provider key, a generated bundle, or `test/register.mjs`. A bundle build alone does not create the repository-root links needed by source entry points.
+
+Keep this checkout at its installed path: generated configurations contain absolute Node and entry paths. If you move it, regenerate or update the client configuration and inspect any existing Memex entry retained by the adapter.
+
+Choose the [Claude Code](integrations/claude-code.md), [Codex](integrations/codex.md), or [generic MCP](integrations/mcp.md) integration. For DSH, continue below.
+
+## 2. Build the DSH bundle
+
+The DSH integration is a **bundle** for DeepSeek Harness `0.2.1-rc.3`, installed into a DSH profile as a linked local package. After the common bootstrap step:
+
+```bash
 node scripts/build-bundle.mjs   # writes packages/memex/modules + @qiuxu/* symlinks
 node scripts/check-bundle.mjs   # sources and generated modules must match
 ```
 
 `packages/memex/modules/` and `packages/memex/node_modules/` are generated; do not commit or edit them.
 
-## 2. Register the bundle
+## 3. Register the DSH bundle
 
 Use your DSH profile's plugin manager to install the **bundle package path**:
 
@@ -49,7 +63,7 @@ If your client-plugin loader requests a manifest whose package name must match t
   config: {}
 ```
 
-## 3. Reload and enable
+## 4. Reload and enable DSH
 
 Reload the profile (or restart DSH). In a session:
 
@@ -57,8 +71,14 @@ Reload the profile (or restart DSH). In a session:
 2. The memory panel button (“记忆”) appears in the composer tool row; the `/memory` command is available.
 3. Optional config lives in the bundle patch per-row (see README) — override it in your profile patch to tune eviction ratios, compression batches, or notice thresholds.
 
-## 4. Verify
+## 5. Verify
 
-- `/memory status` shows the two pools, cold counts and compression history.
-- `node --import ../memex/test/register.mjs ../memex/test/run.mjs` from the repo passes 98/98.
-- Data lives under `$DSH_HOME/memories` (`index.db`, `records/`, `cold/`).
+From the repository root, run the installation regression without a test loader:
+
+```bash
+node --test test/audit-install.mjs
+```
+
+It starts from a separate source copy with no `node_modules`, runs `npm run bootstrap`, initializes adapters under empty temporary user directories with provider credentials absent, and launches fresh MCP processes from the generated Claude JSON and Codex TOML entries. It verifies initialize, tools/list, write, search, open, set-status and restart persistence, plus preservation of unrelated configuration/manual content. All projects and records are synthetic. It does not launch an actual Claude/Codex agent, exercise client approval UI, or verify a live DSH profile.
+
+In DSH, check `/memory status` after registration and reload. Data lives under `$DSH_HOME/memories` (`index.db`, `records/`, `cold/`). The existing loader-based offline suite is a separate check of host behavior, not an installation prerequisite or proof of live profile registration.

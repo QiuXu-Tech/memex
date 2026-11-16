@@ -23,8 +23,9 @@ export function negotiateContextHost(host) {
   return {
     host: host ?? null,
     capabilities,
-    canPageKV: capabilities[CONTEXT_HOST_CAPABILITIES.pagedKV] && capabilities[CONTEXT_HOST_CAPABILITIES.tokenSpans],
-    canPrefix: capabilities[CONTEXT_HOST_CAPABILITIES.prefixCache],
+    canPageKV: capabilities[CONTEXT_HOST_CAPABILITIES.pagedKV] && capabilities[CONTEXT_HOST_CAPABILITIES.tokenSpans]
+      && typeof host?.createBlock === 'function' && typeof host?.pageIn === 'function',
+    canPrefix: capabilities[CONTEXT_HOST_CAPABILITIES.prefixCache] && typeof host?.registerPrefixIds === 'function',
     canAttentionSinks: capabilities[CONTEXT_HOST_CAPABILITIES.attentionSinks],
   }
 }
@@ -40,6 +41,7 @@ export class MockKvContextHost {
   }
   createBlock(id, text) { this.blocks.set(id, { id, text, tokens: Math.ceil(String(text).length / 4) }); return id }
   registerPrefix(key, blockIds) { this.prefixes.set(key, [...blockIds]); return key }
+  registerPrefixIds(key, blockIds) { return this.registerPrefix(key, blockIds) }
   pageIn(span, blockIds) { this.pages.set(span, [...blockIds]); return this.pages.get(span) }
   pageOut(span) { return this.pages.delete(span) }
   resolvePrefix(key) { return [...(this.prefixes.get(key) ?? [])] }
@@ -60,6 +62,6 @@ export function materializeWithHost(materialized, host, { prefixKey, spans = [] 
     host.pageIn?.(span.id ?? `span-${index}`, [blockId])
     paged.push({ span: span.id ?? `span-${index}`, blockId })
   }
-  if (negotiation.canPrefix) host.registerPrefix?.(prefixKey ?? 'ctx', paged.map((entry) => entry.blockId))
+  if (negotiation.canPrefix) host.registerPrefixIds(prefixKey ?? 'ctx', paged.map((entry) => entry.blockId))
   return { mode: 'kv-paging', negotiation, materialized, paged }
 }

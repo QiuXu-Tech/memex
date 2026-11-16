@@ -75,8 +75,13 @@ export function materializeStoreContext(input = {}) {
     sessionId: input.sessionId,
     kind: input.kind,
     status: undefined,
+    excludeSuperseded: true,
+    excludeExpired: true,
   }
   const noVisibleScopes = Array.isArray(input.scopes) && !input.scopes.some((scope) => scope === 'workspace' || scope === 'session')
+  const requiredIds = [...new Set([...(input.alwaysIncludeIds ?? []), ...(input.pinnedIds ?? [])])]
+  if (requiredIds.length > 256) throw new RangeError('context pager: at most 256 required record IDs')
+  const requiredRows = noVisibleScopes || typeof store.get !== 'function' ? [] : requiredIds.map(id => store.get(id, filter)).filter(Boolean)
   const queries = typeof input.query === 'string' && input.query.trim() !== ''
     ? [...new Set([input.query, ...(Array.isArray(input.queryAlternatives) ? input.queryAlternatives.filter((q) => typeof q === 'string' && q.trim() && q.length <= 160).slice(0, 3) : [])])]
     : []
@@ -96,6 +101,7 @@ export function materializeStoreContext(input = {}) {
       return true
     }).slice(0, 8)
   const rows = noVisibleScopes ? [] : byId([
+    ...requiredRows,
     ...store.list({ ...filter, status: 'pinned', limit: 24, includeStatus: true }),
     ...store.list({ ...filter, status: 'open', limit: 16 }),
     ...store.list({ ...filter, limit: 40 }),
@@ -108,7 +114,7 @@ export function materializeStoreContext(input = {}) {
     const canonical = input.includeCanonicalEvents === false || typeof store.listContextEvents !== 'function' ? [] : store.listContextEvents(row.id)
     if (canonical.length > 0) {
       sources.push({ recordId: row.id, source: 'canonical', events: canonical.length })
-      for (const page of eventsToMaterializerPages(canonical)) pages.push({ ...page, id: `${row.id}:${page.id}`, recordId: row.id, pinned: pinnedIds.has(row.id) })
+      for (const page of eventsToMaterializerPages(canonical)) pages.push({ ...page, createdAt: page.createdAt || row.createdAt, id: `${row.id}:${page.id}`, recordId: row.id, pinned: pinnedIds.has(row.id) })
     } else {
       const record = typeof store.get === 'function' ? store.get(row.id) : row
       if (record === undefined) continue
@@ -144,7 +150,7 @@ export function materializeStoreContext(input = {}) {
     queryAlternatives: queries.slice(1),
     learnedRerank: input.learnedRerank,
     learnedTopK: input.learnedTopK,
-    alwaysIncludeIds: input.alwaysIncludeIds,
+    alwaysIncludeIds: pages.filter(page => (input.alwaysIncludeIds ?? []).includes(page.recordId ?? page.id)).map(page => page.id),
     learnedPageMaxTokens: input.learnedPageMaxTokens,
     retrievedIds: queryHits.map((row) => row.id),
     pageTokenCap: input.pageTokenCap,
@@ -153,5 +159,5 @@ export function materializeStoreContext(input = {}) {
     enforceTotalBudget: input.enforceTotalBudget,
     diversify: input.diversify,
   })
-  return { ...materialized, sources, pages: pages.length, pager: CONTEXT_PAGER_VERSION }
+  return { ...materialized, unavailableIds: requiredIds.filter(id => !rows.some(row => row.id === id)), sources, pages: pages.length, pager: CONTEXT_PAGER_VERSION }
 }

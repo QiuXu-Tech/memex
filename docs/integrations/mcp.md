@@ -8,6 +8,8 @@ layout: default
 The MCP server is dependency-free stdio JSON-RPC 2.0; if a client supports MCP tools it works.
 
 ```bash
+# Once per source checkout, from the repository root (no network dependencies):
+npm run bootstrap
 node packages/memex-mcp/bin/server.mjs \
   --root ~/.memex --model deepseek-flash --agent <agent-name> --levels l3
 ```
