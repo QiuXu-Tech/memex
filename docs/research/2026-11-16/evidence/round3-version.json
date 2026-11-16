@@ -1,0 +1,24 @@
+{
+  "round": 3,
+  "commit": "5fda3fbc764ffa914bb6c755a5adb6dcc77c94a6",
+  "coreSha256": {
+    "packages/memex-core/index.js": "a6bd16eb73ece279c99fa99a0e28f65a6444658002e643648ac796bf78b0f447",
+    "packages/memex-core/lib/context-encoder.js": "1a63cf12028f349cf226fcffc45a721fd0e8a46c761c459988f43fc3d549e76b",
+    "packages/memex-core/lib/context-events.js": "5d05852dabf1eadd1ece1834db82dec9d6c62b6ea63c74e876c6136c5880ef5d",
+    "packages/memex-core/lib/context-kv-host.js": "7a8bba4de049ee680d42b6b6423faefccf02786c159d2668a251f3640d888bc2",
+    "packages/memex-core/lib/context-kv.js": "7e8da759e9b6bc3ae43b395c63a99d2aeb73abc1289fa792c5ea9de14da266bf",
+    "packages/memex-core/lib/context-materializer.js": "d4e31a28ddf5398a984f401207abcaf6f66b7166df4fce2151eb706304ddad3f",
+    "packages/memex-core/lib/context-pager.js": "948c49f9f81fcc4d508b2a9bc179229d16df4b496339beab9a692d6386d0ce0e",
+    "packages/memex-core/lib/context-transformer.js": "87c8c72dba74783ca4e29b771a4ae1898584930b091bbace5cc7b2dd2548bf0a",
+    "packages/memex-core/lib/engine.js": "2cc634da3e8332d4c4b0a097c05c09b3a5daf8009b80c963b564cacbd8c10659",
+    "packages/memex-core/lib/file-transactions.js": "7e2d31be5cce17a36d1bb01057aa6f1c5c581af00182d9bdb8bad704de9af80c",
+    "packages/memex-core/lib/lexical-reranker.json": "57681cf6d6859aab17a7a51e1ce25f282ecac5df1b503c2a167e713622a2ca1a",
+    "packages/memex-core/lib/manual.js": "f5be6bf93207e50ee451a0bb00ec3618374f085b9bb88680c15345b7b8927f75",
+    "packages/memex-core/lib/model-profiles.js": "be80caed6662098a7766c9b125b098e65d2f355672ac131e2c9fc806825f0b37",
+    "packages/memex-core/lib/store-lease.js": "c9d042eed1363ea5698867bfbb777f543f7b328fa79bde7baa959dbb0209ab54",
+    "packages/memex-core/lib/store.js": "bfa3d09cba27fdaced1b3fc20fc6a76a808a0ce82ebf720db6f856be3b270d27",
+    "packages/memex-core/lib/stream-deadline.js": "39500e84df9be29daeeb8e584f5c2319d095bbf60c336031d5e7eee87f9b6317",
+    "packages/memex-core/package.json": "3505c27c100a37693f0cdc533d4309d83adfd14a5f7b9cc29f8e24a723f58eac"
+  },
+  "testSha256": "700629268a780485fd1a4834c33774ace3e96f693e0e7a69721c611955da66f6"
+}
