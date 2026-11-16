@@ -115,6 +115,42 @@ for (const seed of BENCHMARK_SEEDS) {
       compareMaterializers(input)
     }
   })
+
+  test(`rendered-length boundaries: seed ${seed}, 100 fixtures at exact budget +/- 1`, () => {
+    const rng = random(seed + 8031)
+    const tails = ['', ' \t\r\n', '\u00a0\u3000\ufeff', '\u2028\u2029', '\u200b', '😀', '\ud800', '\udfff']
+    for (let c = 0; c < 100; c++) {
+      const n = 1 + Math.floor(rng() * 8)
+      const pages = freeze(pagesFor({ n, streams: 1 + Math.floor(rng() * n), chars: 24 }, seed + c)
+        .map((page, i) => ({ ...page,
+          id: `${page.id}${i % 3 === 0 ? '\n汉😀' : ''}`,
+          body: c % 7 === 0 ? null : `needle ${'x'.repeat(c % 4)}${tails[(c + i) % tails.length]}`,
+          summary: i % 2 ? '' : 'summary fallback\n\t',
+          title: [undefined, null, '', '汉😀\n title \t'][Math.floor(rng() * 4)],
+          role: [undefined, null, '', 'tool', 0, false][Math.floor(rng() * 6)],
+          useWhen: [undefined, null, '', 'when\n😀'][Math.floor(rng() * 4)],
+          sequence: i, createdAt: Math.floor(rng() * 10),
+          truncated: c % 3 === 0, sourceId: [undefined, null, '', 'source\n汉'][i % 4],
+          tokenCount: c % 2 ? 1 : undefined,
+        })))
+      const input = { pages, reserveTokens: [0, 3.5, 20][c % 3],
+        variant: ['timeline-exact', 'edge-attention', 'context-specialist-v1'][c % 3],
+        pinnedIds: c % 3 === 0 ? [pages.at(-1).id] : [],
+        alwaysIncludeIds: c % 4 === 0 ? [pages[0].id] : [],
+        retrievedIds: [pages.at(-1).recordId, pages[0].recordId],
+        enforceTotalBudget: c % 2 === 0, pageTokenCap: c % 5 === 0 ? 8 : 0,
+        query: 'needle', queryAlternatives: ['fallback'] }
+      const full = referenceMaterialize({ ...input, budgetTokens: 1000000 })
+      for (const offset of [-1, 0, 1]) {
+        const budgetTokens = Math.max(0, full.tokens + offset) + input.reserveTokens
+        const { outcome } = compareMaterializers({ ...input, budgetTokens })
+        assert.ok(outcome.result)
+        const result = outcome.result
+        assert.equal(result.tokens, result.text === '' ? 0 : Math.max(1, Math.ceil(result.text.length / 4)))
+        if (input.enforceTotalBudget) assert.ok(result.tokens <= result.availableTokens)
+      }
+    }
+  })
 }
 
 test('advancing queue stays before equal heads, independent of initial stream ordinal', () => {
@@ -279,6 +315,69 @@ test('conservative guard accepts no new failure from unused cyclic/deep/shared d
   compareMaterializers({ pages, budgetTokens: 1000, unused: deep })
   const shared = ['a']
   compareMaterializers({ pages, budgetTokens: 1000, pinnedIds: shared, alwaysIncludeIds: shared })
+})
+
+test('all JS trailing whitespace, retained non-whitespace and final-page changes match exact budgets', () => {
+  const endings = ['\t', '\n', '\v', '\f', '\r', ' ', '\u00a0', '\u1680',
+    ...Array.from({ length: 11 }, (_, i) => String.fromCharCode(0x2000 + i)),
+    '\u2028', '\u2029', '\u202f', '\u205f', '\u3000', '\ufeff',
+    '\u0085', '\u180e', '\u200b', '\u2060', '😀', '\ud800', '\udfff']
+  for (const tail of endings) {
+    const pages = freeze([
+      { id: 'old', sessionId: 'a', sequence: 1, createdAt: 10, body: `one${tail}` },
+      { id: 'backwards', sessionId: 'a', sequence: 2, createdAt: 1, body: tail, title: '' },
+      { id: 'other', sessionId: 'b', sequence: 1, createdAt: 5, body: `two${tail}`, role: null, useWhen: null },
+    ])
+    // Every subset may order differently from a filtered full stream. Test
+    // internal whitespace becoming final (and vice versa) at the fit boundary.
+    for (let mask = 1; mask < 8; mask++) {
+      const subset = pages.filter((_, i) => mask & (1 << i))
+      const full = referenceMaterialize({ pages: subset, budgetTokens: 10000 })
+      for (const offset of [-1, 0, 1]) compareMaterializers({ pages: subset,
+        budgetTokens: full.tokens + offset, enforceTotalBudget: true,
+        pinnedIds: [subset.at(-1).id], retrievedIds: [subset[0].id] })
+    }
+  }
+})
+
+test('empty-body accounting, null fallback and empty budget probes retain separate token semantics', () => {
+  for (const body of [undefined, null, '', ' \t\n', false, 0]) {
+    const pages = freeze([{ id: 'empty-body', sequence: 1, body, summary: '' }])
+    const { outcome } = compareMaterializers({ pages, budgetTokens: 1000 })
+    assert.equal(outcome.result.budgetBreakdown.pageTokens, Math.max(1, Math.ceil(String(body ?? '').length / 4)))
+  }
+  for (const budgetTokens of [0, 1]) {
+    assert.equal(compareMaterializers({ pages: [], budgetTokens }).outcome.result.tokens, 0)
+    const pages = freeze([{ id: 'empty-group', sequence: 1, type: 'message', toolCallId: NaN }])
+    const { outcome } = compareMaterializers({ pages, budgetTokens, enforceTotalBudget: true })
+    assert.equal(outcome.result.tokens, 0)
+    assert.deepEqual(outcome.result.omittedIds, budgetTokens === 0 ? ['empty-group'] : [])
+  }
+})
+
+test('atomic tools, excerpts and core/pinned hard/soft probes agree at the complete rendered boundary', () => {
+  const pages = freeze([
+    { id: 'call', sessionId: 's', sequence: 1, createdAt: 20, type: 'tool_call', toolCallId: 't', body: '汉😀 '.repeat(70) + 'needle END \t\ufeff' },
+    { id: 'result', sessionId: 's', sequence: 2, createdAt: 10, type: 'tool_result', toolCallId: 't', body: '\r\n\u3000', title: null, role: 'tool' },
+    { id: 'ordinary', sequence: 1, createdAt: 15, body: 'ordinary\n\t', useWhen: null },
+  ])
+  for (const pageTokenCap of [0, 20]) for (const enforceTotalBudget of [false, true]) {
+    for (const force of ['none', 'core', 'pinned']) {
+      const input = { pages, pageTokenCap, enforceTotalBudget, query: 'needle', reserveTokens: 7,
+        alwaysIncludeIds: force === 'core' ? ['call'] : [], pinnedIds: force === 'pinned' ? ['result'] : [] }
+      const full = referenceMaterialize({ ...input, budgetTokens: 10000 })
+      for (const budgetTokens of [0, 7, full.tokens + 6, full.tokens + 7, full.tokens + 8]) {
+        for (const mode of ['default', 'pure', 'stateful', 'throw', 'invalid']) compareMaterializers({ ...input, budgetTokens }, mode)
+      }
+    }
+  }
+})
+
+test('symbol fields preserve legacy rendering results or exceptions on the full-render path', () => {
+  for (const field of ['body', 'summary', 'title', 'role', 'useWhen', 'sourceId', 'recordId', 'toolCallId', 'sessionId']) {
+    const pages = freeze([{ id: 'symbol', sequence: 1, truncated: true, [field]: Symbol('value') }, { id: 'other', sequence: 2, body: '' }])
+    for (const mode of ['default', 'stateful']) compareMaterializers({ pages, budgetTokens: 1000 }, mode)
+  }
 })
 
 test('invalid budgets preserve exceptions before token callbacks', () => {

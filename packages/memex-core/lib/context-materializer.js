@@ -227,27 +227,50 @@ export function materializeContext(input = {}) {
     const group = session.get(page.toolCallId) ?? []
     group.push(page); session.set(page.toolCallId, group); toolGroups.set(page.sessionId, session)
   }
+  const prefixHeader = `## Extra-context materialized window (${variant.id})\n<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`
+  const prefixLine = page => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`
+  const pageLines = page => {
+    const lines = [page.role === undefined ? `### context page ${page.id}` : `### context page ${page.id} [role=${page.role}]`]
+    if (page.title !== undefined) lines.push(`Title: ${page.title}`)
+    lines.push(pageBody(page))
+    if (page.truncated === true) lines.push(`> [truncated excerpt; source: ${page.sourceId ?? page.id}]`)
+    lines.push('')
+    return lines
+  }
   const renderEntries = (entries) => {
-    const prefixText = entries.length === 0 ? '' : [
-      `## Extra-context materialized window (${variant.id})`,
-      `<!-- memex-materializer ${CONTEXT_MATERIALIZER_VERSION} -->`,
-      ...entries.map((page) => `- ${page.id} · ${page.title ?? '(untitled)'}${page.useWhen === undefined ? '' : ` — ${page.useWhen}`}`),
-    ].join('\n')
+    const prefixText = entries.length === 0 ? '' : [prefixHeader, ...entries.map(prefixLine)].join('\n')
     const timelineLines = []
-    for (const page of entries) {
-      const header = page.role === undefined ? `### context page ${page.id}` : `### context page ${page.id} [role=${page.role}]`
-      timelineLines.push(header)
-      if (page.title !== undefined) timelineLines.push(`Title: ${page.title}`)
-      timelineLines.push(pageBody(page))
-      if (page.truncated === true) timelineLines.push(`> [truncated excerpt; source: ${page.sourceId ?? page.id}]`)
-      timelineLines.push('')
-    }
+    for (const page of entries) timelineLines.push(...pageLines(page))
     const timelineText = timelineLines.join('\n').trimEnd()
     const text = entries.length === 0 ? '' : `${prefixText}\n\n${timelineText}`.trimEnd()
     return { text, prefixText, timelineText }
   }
   const canonicalEntries = orderContextPages
-  const costFor = (entries) => tokenCost(renderEntries(canonicalEntries(entries)).text)
+  const pageLengths = useIndexes && sorted.every(page => Object.values(page).every(value => typeof value !== 'symbol')) ? new Map() : undefined
+  const costFor = (entries) => {
+    const ordered = canonicalEntries(entries)
+    if (pageLengths === undefined) return tokenCost(renderEntries(ordered).text)
+    // Empty budget probes count estimateTokens('') = 1, while the final empty
+    // window still reports zero tokens. Round once for the whole rendered text.
+    if (ordered.length === 0) return 1
+    // Prefix newlines are counted per page; timeline joins add n - 1.
+    let length = prefixHeader.length + 2 + (ordered.length - 1)
+    let trailing = 0
+    for (const page of ordered) {
+      let cached = pageLengths.get(page)
+      if (cached === undefined) {
+        const prefix = prefixLine(page)
+        const timeline = pageLines(page).join('\n')
+        cached = { length: 1 + prefix.length + timeline.length, trailing: timeline.length - timeline.trimEnd().length }
+        pageLengths.set(page, cached)
+      }
+      length += cached.length
+      trailing = cached.trailing
+    }
+    // Each page starts with a non-whitespace header: only the last page's
+    // trailing whitespace is removed by the full timeline/text trimEnd.
+    return Math.max(1, Math.ceil((length - trailing) / 4))
+  }
   const selected = []
   const selectedIds = useIndexes ? new Set() : undefined
   const isSelected = page => selectedIds === undefined ? selected.some(entry => entry.id === page.id) : selectedIds.has(page.id)
