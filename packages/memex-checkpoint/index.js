@@ -25,6 +25,8 @@ export const Config = z.object({
   recallMaxChars: z.number().step(1).min(200).default(600),
   /** `auto` asks the routed model for higher-quality cards; `off` keeps deterministic cards. */
   cardModel: z.string().default('auto'),
+  cardTimeoutMs: z.number().step(1).min(1).default(30000),
+  maxEnrichmentJobs: z.number().step(1).min(1).max(32).default(4),
   /** Materializer mode: `off` keeps catalog/recall injection; `timeline-exact`/`edge-attention` injects a materialized resident window instead. */
   materializer: z.string().default('off'),
   /** Token budget for the materialized resident window. */
@@ -50,6 +52,8 @@ export function apply(ctx, config = {}) {
     catalogMaxChars: config.catalogMaxChars ?? 2400,
     recallMaxChars: config.recallMaxChars ?? 600,
     cardModel: config.cardModel ?? 'auto',
+    cardTimeoutMs: config.cardTimeoutMs ?? 30000,
+    maxEnrichmentJobs: config.maxEnrichmentJobs ?? 4,
     materializer: config.materializer ?? 'off',
     materializerMaxTokens: config.materializerMaxTokens ?? 1800,
     materializerPageTokenCap: config.materializerPageTokenCap ?? 0,

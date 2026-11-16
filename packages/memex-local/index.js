@@ -103,6 +103,10 @@ export default class LocalMemoryStore extends MemoryStore {
     return this.core.write(record)
   }
 
+  async patchCard(id, patch, options) {
+    return this.core.patchCard(id, patch, options)
+  }
+
   async get(id) {
     return this.core.get(id)
   }

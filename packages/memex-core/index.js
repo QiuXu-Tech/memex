@@ -288,3 +288,4 @@ export function archiveRecordId(sessionId, compactionId) {
 }
 
 export * from './lib/context-events.js'
+export * from './lib/stream-deadline.js'

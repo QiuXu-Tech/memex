@@ -314,17 +314,19 @@ Full design: [docs/architecture.md](docs/architecture.md). Measured results: [do
 ```bash
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
-node scripts/build-bundle.mjs        # only needed for DSH mode; MCP/adapters read the source packages
+npm run bootstrap                  # local @qiuxu/* package links; no registry install or model call
 
 # Claude Code: registers MCP + hooks + CLAUDE.md manual in this project
-node packages/memex-claude/bin/cli.mjs init --model claude-sonnet-5-5
+node packages/memex-claude/bin/cli.mjs init --project /absolute/path/to/project --model claude-sonnet-5-5
 
 # Codex: writes AGENTS.md + prints/installs the MCP config
-node packages/memex-codex/bin/cli.mjs init --model gpt-6.1-sol --write-config
+node packages/memex-codex/bin/cli.mjs init --project /absolute/path/to/project --model gpt-6.1-sol --write-config
 
 # Any MCP client: point it at the stdio server
 node packages/memex-mcp/bin/server.mjs --root ~/.memex --model deepseek-flash --levels l3
 ```
+
+Run these source-install commands with Node.js 24+ and npm on a POSIX shell. Keep the checkout at its installed path: generated client configurations refer to its absolute entry paths. MCP and the adapters use source packages and require `bootstrap`; building the DSH bundle alone does not install those links. No test loader or provider credential is needed. Verify this local installation contract with `node --test test/audit-install.mjs`; it creates temporary source, home, project and store directories and makes no model API calls. See [the install guide](docs/install.md) for scope and limitations.
 
 See [docs/integrations.md](docs/integrations.md), [Claude Code](docs/integrations/claude-code.md), [Codex](docs/integrations/codex.md), [generic MCP clients](docs/integrations/mcp.md) and [model profiles](docs/model-profiles.md).
 
@@ -337,6 +339,7 @@ memex ships as a DSH **bundle** (a patch plus runtime modules). It is not publis
 ```bash
 git clone https://github.com/QiuXu-Tech/memex.git
 cd memex
+npm run bootstrap                  # installs local workspace package links
 node scripts/build-bundle.mjs        # generates packages/memex/modules
 node scripts/check-bundle.mjs        # verifies generated modules match sources
 ```

@@ -26,8 +26,8 @@ export class PagedKvContextHost {
       for (const block of this.blocks.values()) if (victim === undefined || block.lastUsed < victim.lastUsed) victim = block
       if (victim === undefined) break
       this.blocks.delete(victim.id)
-      for (const [key, ids] of this.prefixes) { const next = ids.filter((id) => id !== victim.id); if (next.length === 0) this.prefixes.delete(key); else this.prefixes.set(key, next) }
-      for (const [span, ids] of this.pages) { const next = ids.filter((id) => id !== victim.id); if (next.length === 0) this.pages.delete(span); else this.pages.set(span, next) }
+      for (const [key, ids] of this.prefixes) if (ids.includes(victim.id)) this.prefixes.delete(key)
+      for (const [span, ids] of this.pages) if (ids.includes(victim.id)) this.pages.delete(span)
     }
   }
   createBlock(id, text) {
@@ -42,11 +42,15 @@ export class PagedKvContextHost {
       this.createBlock(id, text)
       requested.push(id)
     }
-    const ids = requested.filter((id) => this.blocks.has(id))
+    return this.registerPrefixIds(key, requested)
+  }
+  registerPrefixIds(key, requested) {
+    const ids = [...requested]
+    if (ids.some(id => !this.blocks.has(id))) { this.prefixes.delete(key); return [] }
     this.prefixes.set(key, ids)
     return [...ids]
   }
-  pageIn(span, blockIds) { this.pages.set(span, [...blockIds]); for (const id of blockIds) this.#touch(id); return [...blockIds] }
+  pageIn(span, blockIds) { if (blockIds.some(id => !this.blocks.has(id))) return []; this.pages.set(span, [...blockIds]); for (const id of blockIds) this.#touch(id); return [...blockIds] }
   pageOut(span) { return this.pages.delete(span) }
   resolvePrefix(key) { const ids = [...(this.prefixes.get(key) ?? [])]; for (const id of ids) this.#touch(id); return ids }
   stats() {

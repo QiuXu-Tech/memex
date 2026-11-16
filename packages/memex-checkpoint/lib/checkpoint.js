@@ -15,7 +15,7 @@
  */
 import { createHash } from 'node:crypto'
 import { readFileSync } from 'node:fs'
-import { archiveRecordId, canonicalEventsFromDsh, containsSensitive, memoryCaptureScope, memoryMessage, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
+import { archiveRecordId, canonicalEventsFromDsh, consumeModelStream, containsSensitive, estimateTokens, memoryCaptureScope, memoryMessage, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
 import { buildCard } from './render.js'
 
 /** Bound on buffered live events per session (fallback when no query service exists). */
@@ -90,6 +90,8 @@ function messageText(message) {
 export function registerCheckpointPolicy(ctx, memory, config = {}) {
   const policyConfig = {
     cardModel: config.cardModel ?? 'auto',
+    cardTimeoutMs: Number.isSafeInteger(config.cardTimeoutMs) && config.cardTimeoutMs > 0 ? config.cardTimeoutMs : 30000,
+    maxEnrichmentJobs: Number.isSafeInteger(config.maxEnrichmentJobs) && config.maxEnrichmentJobs > 0 && config.maxEnrichmentJobs <= 32 ? config.maxEnrichmentJobs : 4,
     capacityNoticeRatio: config.capacityNoticeRatio ?? 0.8,
     capacityNoticeCooldownMs: config.capacityNoticeCooldownMs ?? 10 * 60 * 1000,
     catalogMaxChars: config.catalogMaxChars ?? 2400,
@@ -123,6 +125,10 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
   const reconciled = new Set()
   /** In-flight archive jobs (drained by the disposer). */
   const jobs = new Set()
+  const enrichmentJobs = new Set()
+  const lifecycle = new AbortController()
+  let enhancementStopped = false
+  let queryJobs = 0
   let disposed = false
 
   const query = () => {
@@ -199,6 +205,8 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
   /** Ask the routed model for a higher-quality card; keep the deterministic one on any failure. */
   async function refineCard(session, record, attempt = 1) {
     if (policyConfig.cardModel === 'off') return
+    if (enhancementStopped || disposed) return
+    if (typeof memory.patchCard !== 'function') return
     const llm = (() => {
       try {
         return ctx.get('llm')
@@ -224,23 +232,20 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     ].join('\n')
     try {
       const accumulator = new TextAccumulator()
-      const stream = llm.stream({
+      await consumeModelStream(llm, {
         provider: target.provider,
         model: target.model,
         messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }],
         maxTokens: 600,
         sessionId: session.id,
-      })
-      for await (const chunk of stream) accumulator.push(chunk)
+      }, chunk => accumulator.push(chunk), { timeoutMs: policyConfig.cardTimeoutMs, signal: lifecycle.signal })
       const text = accumulator.text()
       const start = text.indexOf('{')
       const end = text.lastIndexOf('}')
       if (start < 0 || end <= start) throw new Error('card response had no JSON object')
       const parsed = JSON.parse(text.slice(start, end + 1))
       if (typeof parsed.title !== 'string' || parsed.title.trim().length === 0) throw new Error('card response missing title')
-      const updated = await memory.write({
-        ...record,
-        id: record.id,
+      const result = await memory.patchCard(record.id, {
         title: parsed.title,
         summary: typeof parsed.summary === 'string' && parsed.summary.length > 0 ? parsed.summary : record.summary,
         useWhen: typeof parsed.use_when === 'string' && parsed.use_when.length > 0 ? parsed.use_when : record.useWhen,
@@ -249,8 +254,9 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
           ...record.tags,
           card: Array.isArray(parsed.tags) ? parsed.tags.filter((tag) => typeof tag === 'string').slice(0, 6) : [],
         },
-        tokens: record.tokens,
-      })
+      }, { expectedRevision: record.revision })
+      if (result.status !== 'updated') { warn(`card refinement skipped: ${result.status}`); return }
+      const updated = result.record
       if (updated !== undefined) {
         record.title = updated.title
         record.summary = updated.summary
@@ -259,6 +265,8 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
         record.tags = updated.tags
       }
     } catch (error) {
+      if (error?.name === 'TimeoutError') enhancementStopped = true
+      if (error?.name === 'TimeoutError' || error?.name === 'AbortError') { warn(`card refinement skipped: ${error.name}`); return }
       if (attempt < 2 && !disposed) {
         warn(`card refinement attempt ${attempt} failed, retrying: ${String(error?.message ?? error)}`)
         await new Promise((resolve) => setTimeout(resolve, 1500))
@@ -343,22 +351,27 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     while (list.length > RECEIPT_LIMIT) list.shift()
     receipts.set(session.id, list)
     markShown(session.id, [stored.id])
-    await refineCard(session, stored)
+    if (!disposed && !enhancementStopped && enrichmentJobs.size < policyConfig.maxEnrichmentJobs) {
+      const job = refineCard(session, stored).finally(() => { enrichmentJobs.delete(job); jobs.delete(job) })
+      enrichmentJobs.add(job)
+      jobs.add(job)
+    }
   }
 
   /** Enqueue one archive job on a serial queue so overlapping compactions cannot race. */
-  let chain = Promise.resolve()
+  const chains = new Map()
   function enqueue(session, event) {
-    const job = chain
+    const job = (chains.get(session.id) ?? Promise.resolve())
       .then(() => archiveCompaction(session, event))
       .catch((error) => {
         warn(`archive failed: ${String(error?.message ?? error?.stack ?? error)}`)
       })
       .finally(() => {
         jobs.delete(job)
+        if (chains.get(session.id) === job) chains.delete(session.id)
       })
     jobs.add(job)
-    chain = job
+    chains.set(session.id, job)
   }
 
   /** Archive any persisted compactions this process never saw (resume/crash recovery). */
@@ -383,21 +396,25 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
 
   /** Optional bounded query paraphrases; failures fall back to the original query. */
   async function expandQuery(session, query) {
-    if (!policyConfig.materializerQueryExpansion || typeof query !== 'string' || !query.trim()) return []
+    if (enhancementStopped || queryJobs >= policyConfig.maxEnrichmentJobs || !policyConfig.materializerQueryExpansion || typeof query !== 'string' || !query.trim()) return []
+    queryJobs += 1
     try {
       const llm = ctx.get('llm')
       const target = session.requestHeader?.()?.config
       if (!llm || !target?.provider || !target?.model) return []
       const accumulator = new TextAccumulator()
       const prompt = 'Return only JSON {"queries":["..."]} containing up to three short alternative search phrases for this question. Include relevant synonyms or abbreviations; do not answer or assume facts. Question:\n' + clip(query, 800)
-      for await (const chunk of llm.stream({ provider: target.provider, model: target.model, messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }], maxTokens: 200, sessionId: session.id })) accumulator.push(chunk)
+      await consumeModelStream(llm, { provider: target.provider, model: target.model, messages: [{ role: 'user', content: [{ type: 'text', text: prompt }] }], maxTokens: 200, sessionId: session.id }, chunk => accumulator.push(chunk), { timeoutMs: policyConfig.cardTimeoutMs, signal: lifecycle.signal })
       const text = accumulator.text()
       const start = text.indexOf('{'), end = text.lastIndexOf('}')
       if (start < 0 || end <= start) return []
       const parsed = JSON.parse(text.slice(start, end + 1))
       return Array.isArray(parsed.queries) ? parsed.queries.filter((q) => typeof q === 'string' && q.trim() && q.length <= 160).slice(0, 3) : []
-    } catch {
+    } catch (error) {
+      if (error?.name === 'TimeoutError') enhancementStopped = true
       return []
+    } finally {
+      queryJobs -= 1
     }
   }
 
@@ -416,8 +433,13 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
       learnedRerank: query ? lexicalReranker : undefined,
       learnedTopK: policyConfig.materializerLearnedTopK,
       learnedPageMaxTokens: policyConfig.materializerLearnedPageMaxTokens,
+      enforceTotalBudget: true,
     })
     if (result === undefined || typeof result.text !== 'string' || result.text.length === 0) return undefined
+    if (result.budgetStatus === 'exceeded' || estimateTokens(result.text) > policyConfig.materializerMaxTokens) {
+      warn('materialized context rejected: rendered text exceeds the injection budget')
+      return undefined
+    }
     const digest = createHash('sha256').update(result.text).digest('hex')
     if (materializerDigest.get(session.id) === digest) return undefined
     materializerDigest.set(session.id, digest)
@@ -617,6 +639,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     /** Registered for symmetry with other policy plugins; the fiber owns event disposal. */
     dispose() {
       disposed = true
+      lifecycle.abort(new DOMException('checkpoint disposed', 'AbortError'))
       buffers.clear()
       receipts.clear()
       catalogDigest.clear()
@@ -625,7 +648,7 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
     },
     /** Wait for in-flight archive jobs; used by teardown and tests. */
     async drain() {
-      await Promise.allSettled([...jobs])
+      while (jobs.size > 0) await Promise.allSettled([...jobs])
     },
   }
 }
