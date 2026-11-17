@@ -1,0 +1,332 @@
+[
+  {
+    "node": "v25.9.0",
+    "suite": "build",
+    "exit": 0,
+    "seconds": 0.128831148147583,
+    "log": "final-v25.9.0-build.log",
+    "sha256": "40c43aa4602ad4d2a241d50c207d3ae5dbaca29dc76bd570e4aa634b07ef882c",
+    "command": [
+      "node",
+      "scripts/build-bundle.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root"
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "bundle-check",
+    "exit": 0,
+    "seconds": 0.07760405540466309,
+    "log": "final-v25.9.0-bundle-check.log",
+    "sha256": "cd6c0cb7d66200ede0438c09fb98f7e30698af87c4e75b2540537156cc4c4b26",
+    "command": [
+      "node",
+      "scripts/check-bundle.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root"
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "core",
+    "exit": 0,
+    "seconds": 39.09654712677002,
+    "log": "final-v25.9.0-core.log",
+    "sha256": "6e8a69a5df84a308d7058790fed621d643a9a2cc071ddfa4820aacef682f7cc2",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "./test/run.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "passed": 196,
+    "total": 196
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "sqlite",
+    "exit": 0,
+    "seconds": 4.716447114944458,
+    "log": "final-v25.9.0-sqlite.log",
+    "sha256": "2cc405f2195f660c7716b7538ae2ae06f829010cec3e745dce10b559ba4545b0",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "./test/sqlite-consistency.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 38,
+    "pass": 38,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "integrity",
+    "exit": 0,
+    "seconds": 5.100980997085571,
+    "log": "final-v25.9.0-integrity.log",
+    "sha256": "f8d6b7559d99b40caf3cb9bc3f36251505126f87913aa3addea7ea57faba4cf0",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "./test/integrity-regression.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 50,
+    "pass": 50,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "audit",
+    "exit": 0,
+    "seconds": 4.157021760940552,
+    "log": "final-v25.9.0-audit.log",
+    "sha256": "72263ac905bf4d7ced6cc31431c37146cfa3e93ecdfd36c6d49f20ae7fcfe018",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "test/audit-regression.mjs",
+      "test/audit-integration.mjs",
+      "test/audit-ui.mjs",
+      "test/audit-install.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 43,
+    "pass": 43,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "materializer",
+    "exit": 0,
+    "seconds": 0.5072989463806152,
+    "log": "final-v25.9.0-materializer.log",
+    "sha256": "c1914573515601af13d7b4c610dc5c3aa8554128c68e3eea52cedecf3ac15354",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "./test/materializer-performance.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 36,
+    "pass": 36,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "recall",
+    "exit": 0,
+    "seconds": 0.5158300399780273,
+    "log": "final-v25.9.0-recall.log",
+    "sha256": "0cb8c431b65b1706c656a203a3fdacbdff6b8173416f7931d7d5812edbe74326",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "./scripts/recall-eval.mjs",
+      "--suite",
+      "synthetic",
+      "--threshold",
+      "0.9"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "syntheticSummary": "synthetic suite: n=80 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 2.19ms p95 2.76ms"
+  },
+  {
+    "node": "v25.9.0",
+    "suite": "scale",
+    "exit": 0,
+    "seconds": 2.552851915359497,
+    "log": "final-v25.9.0-scale.log",
+    "sha256": "3d07a81248c1bf469a7d155879a7d69f25d0926dbbcb955f0e6108087c4666dc",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "./scripts/scale-bench.mjs",
+      "--records",
+      "1000",
+      "--tokens",
+      "1000"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root"
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "build",
+    "exit": 0,
+    "seconds": 0.18305492401123047,
+    "log": "final-v24.22.1-build.log",
+    "sha256": "40c43aa4602ad4d2a241d50c207d3ae5dbaca29dc76bd570e4aa634b07ef882c",
+    "command": [
+      "node",
+      "scripts/build-bundle.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root"
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "bundle-check",
+    "exit": 0,
+    "seconds": 0.03835892677307129,
+    "log": "final-v24.22.1-bundle-check.log",
+    "sha256": "cd6c0cb7d66200ede0438c09fb98f7e30698af87c4e75b2540537156cc4c4b26",
+    "command": [
+      "node",
+      "scripts/check-bundle.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root"
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "core",
+    "exit": 0,
+    "seconds": 35.64745235443115,
+    "log": "final-v24.22.1-core.log",
+    "sha256": "175fd8d736a08833cf390ab62dd5fe86b91a80969fe35e5c844586adf4469d95",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "./test/run.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "passed": 196,
+    "total": 196
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "sqlite",
+    "exit": 0,
+    "seconds": 2.998088836669922,
+    "log": "final-v24.22.1-sqlite.log",
+    "sha256": "0be219548a953fb1a1909dd9f3bfe41c29992312269b93d8027c92aa2b757589",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "./test/sqlite-consistency.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 38,
+    "pass": 38,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "integrity",
+    "exit": 0,
+    "seconds": 3.506408929824829,
+    "log": "final-v24.22.1-integrity.log",
+    "sha256": "b0c9e53bbc7e23d75df161bd8134edc52862ca5a09a8ea212ee26538f4b20f0b",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "./test/integrity-regression.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 50,
+    "pass": 50,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "audit",
+    "exit": 0,
+    "seconds": 2.2782859802246094,
+    "log": "final-v24.22.1-audit.log",
+    "sha256": "ed6c0e00e07e3788a83244101b5ed3f7c785ac1ab758c4dbcd5e28ffc0fa7f6a",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "test/audit-regression.mjs",
+      "test/audit-integration.mjs",
+      "test/audit-ui.mjs",
+      "test/audit-install.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 43,
+    "pass": 43,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "materializer",
+    "exit": 0,
+    "seconds": 0.4586818218231201,
+    "log": "final-v24.22.1-materializer.log",
+    "sha256": "e6bbb22330b3465111da8edab9967a2a63f1ee6cb077fd5aaf8c3bb45536daa8",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "./test/materializer-performance.mjs"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "tests": 36,
+    "pass": 36,
+    "fail": 0,
+    "skipped": 0
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "recall",
+    "exit": 0,
+    "seconds": 0.40583109855651855,
+    "log": "final-v24.22.1-recall.log",
+    "sha256": "c70d60c7aafa575ef63a6bb3cac05dce16111df26ca971451faff78a2a0d1766",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "./scripts/recall-eval.mjs",
+      "--suite",
+      "synthetic",
+      "--threshold",
+      "0.9"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root",
+    "syntheticSummary": "synthetic suite: n=80 hit@1 100% | hit@3 100% | hit@5 100% | MRR 1.00 | cold recall 100% | p50 1.69ms p95 2.06ms"
+  },
+  {
+    "node": "v24.22.1",
+    "suite": "scale",
+    "exit": 0,
+    "seconds": 2.2461252212524414,
+    "log": "final-v24.22.1-scale.log",
+    "sha256": "edfa3c69dac421df29162e18785bc4cb710c84fa24d238c6a65b6fbd0f64b2c4",
+    "command": [
+      "node",
+      "--import",
+      "./test/register.mjs",
+      "./scripts/scale-bench.mjs",
+      "--records",
+      "1000",
+      "--tokens",
+      "1000"
+    ],
+    "runtimeSelection": "node executable version equals node field; command shown relative to repository root"
+  }
+]
