@@ -5,7 +5,7 @@
 set -eu
 HERE=$(cd "$(dirname "$0")/.." && pwd)
 mkdir -p "$HERE/node_modules/@qiuxu"
-for pkg in memex memex-seam memex-local memex-checkpoint memex-tool memex-command memex-api memex-ui memex-evict memex-compress; do
+for pkg in memex memex-core memex-mcp memex-claude memex-codex memex-seam memex-local memex-checkpoint memex-tool memex-command memex-api memex-ui memex-evict memex-compress; do
   ln -sfn "../../packages/$pkg" "$HERE/node_modules/@qiuxu/$pkg"
 done
 echo "linked @qiuxu/* into $HERE/node_modules/@qiuxu"

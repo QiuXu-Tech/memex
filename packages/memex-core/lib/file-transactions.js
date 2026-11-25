@@ -12,6 +12,7 @@ import {
 } from 'node:fs'
 import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path'
 import { createHash, randomUUID } from 'node:crypto'
+import { storeCoordinationRoot } from './store-lease.js'
 
 const JOURNALS = '.file-transactions'
 const RECOVERY = '.file-recovery'
@@ -247,6 +248,7 @@ export function withFileTransaction(root, db, work, onCleanupError) {
   let staged = false
   let result
   try {
+    if (existsSync(storeCoordinationRoot(root) + '.restore-lock')) throw new Error('memory: restore in progress; retry only after restore recovery')
     recoverFileTransactions(root, db)
     const stage = (kind, id, oldPath, preferred, text) => {
       staged = true

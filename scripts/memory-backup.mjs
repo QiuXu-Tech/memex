@@ -11,11 +11,12 @@
  *   node --import ./test/register.mjs scripts/memory-backup.mjs verify --dir DIR
  *   node --import ./test/register.mjs scripts/memory-backup.mjs restore --dir DIR --to ROOT [--force]
  */
-import { cpSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs'
-import { createHash } from 'node:crypto'
-import { isAbsolute, join, relative, resolve, sep } from 'node:path'
+import { chmodSync, cpSync, existsSync, lstatSync, mkdirSync, mkdtempSync, readdirSync, readFileSync, renameSync, statSync, unlinkSync, writeFileSync } from 'node:fs'
+import { createHash, randomUUID } from 'node:crypto'
+import { basename, dirname, isAbsolute, join, relative, resolve, sep } from 'node:path'
 import { DatabaseSync } from 'node:sqlite'
 import { recoverFileTransactions } from '../packages/memex-core/lib/file-transactions.js'
+import { acquireStoreLease, storeCoordinationRoot } from '../packages/memex-core/lib/store-lease.js'
 
 const HOME = process.env.HOME
 const DEFAULT_ROOT = join(HOME, '.dsh', 'memories')
@@ -44,10 +45,48 @@ const walk = (dir) => {
 }
 const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
 
+/** Byte integrity and database/reference restorability are checked separately. */
+function validateBackup(dir) {
+  const manifest = JSON.parse(readFileSync(join(dir, 'manifest.json'), 'utf8'))
+  if (manifest.format !== 1 || !Array.isArray(manifest.files) || manifest.files.length === 0
+    || typeof manifest.sourceRoot !== 'string' || !isAbsolute(manifest.sourceRoot)
+    || manifest.db?.path !== 'index.db') throw new Error('backup FAILED: unsupported or incomplete manifest')
+  const entries = new Map()
+  for (const entry of manifest.files) {
+    if (typeof entry.path !== 'string' || isAbsolute(entry.path) || !entry.path || entries.has(entry.path)
+      || relative(dir, resolve(dir, entry.path)) !== entry.path || !/^[a-f0-9]{64}$/.test(entry.sha256)) throw new Error('backup FAILED: invalid manifest file')
+    if (entry.path !== 'index.db' && !['records', 'cold', '.file-recovery'].includes(entry.path.split(sep)[0])) throw new Error('backup FAILED: unsupported manifest file: ' + entry.path)
+    const file = resolve(dir, entry.path)
+    if (!within(dir, file) || !lstatSync(file).isFile() || sha256(file) !== entry.sha256) throw new Error('backup FAILED: missing, unsafe or corrupt file: ' + entry.path)
+    entries.set(entry.path, entry)
+  }
+  if (entries.get('index.db')?.sha256 !== manifest.db.sha256) throw new Error('backup FAILED: required database entry is missing or inconsistent')
+  const actual = walk(dir).map(file => relative(dir, file)).filter(file => file !== 'manifest.json')
+  if (actual.length !== entries.size || actual.some(file => !entries.has(file))) throw new Error('backup FAILED: file list is incomplete')
+  if (actual.some(file => file.startsWith('.file-transactions' + sep))) throw new Error('backup FAILED: unresolved recovery journals need manual review')
+  const db = new DatabaseSync(join(dir, 'index.db'), { readOnly: true })
+  try {
+    if (db.prepare('PRAGMA integrity_check').all().some(row => row.integrity_check !== 'ok')) throw new Error('backup FAILED: database integrity check')
+    const records = db.prepare('SELECT id, path FROM records').all().map(row => {
+      if (!isAbsolute(row.path)) throw new Error('backup FAILED: record path is not absolute')
+      const rel = relative(resolve(manifest.sourceRoot), resolve(row.path))
+      if (!rel || !['records', 'cold'].includes(rel.split(sep)[0])) throw new Error('restore FAILED: record path is outside the source store')
+      if (!entries.has(rel)) throw new Error('backup FAILED: record body is missing from manifest')
+      return { id: row.id, rel }
+    })
+    return { manifest, records }
+  } finally { db.close() }
+}
+
 if (command === 'backup') {
   const root = resolve(arg('root', DEFAULT_ROOT))
   const out = resolve(arg('out', join(HOME, '.dsh', 'memory-backups', new Date().toISOString().replace(/[:.]/g, '-'))))
-  if (within(root, out)) throw new Error('backup output must be outside the source store')
+  const source = storeCoordinationRoot(root), destination = storeCoordinationRoot(out)
+  if (within(source, destination) || within(destination, source)) throw new Error('backup output must be outside the source store and must not contain it')
+  if (existsSync(out) && readdirSync(out).length > 0) throw new Error('backup output must be empty')
+  const releaseLease = acquireStoreLease(root)
+  process.once('exit', releaseLease)
+  if (existsSync(storeCoordinationRoot(root) + '.restore-lock')) throw new Error('backup FAILED: complete interrupted restore recovery first')
   if (!existsSync(join(root, 'index.db'))) {
     console.error('no memory database at ' + join(root, 'index.db'))
     process.exit(1)
@@ -70,7 +109,7 @@ if (command === 'backup') {
       for (const directory of ['records', 'cold', '.file-recovery']) {
         if (existsSync(join(root, directory))) cpSync(join(root, directory), join(out, directory), { recursive: true })
       }
-      const files = walk(out).filter((path) => !path.endsWith('manifest.json'))
+      const files = walk(out).filter((path) => path !== join(out, 'manifest.json'))
       const manifest = {
         format: 1,
         createdAt: new Date().toISOString(),
@@ -92,95 +131,122 @@ if (command === 'backup') {
 }
 
 if (command === 'verify') {
-  const dir = arg('dir')
-  if (!existsSync(join(dir, 'manifest.json'))) {
-    console.error(`no manifest in ${dir}`)
+  const dir = resolve(arg('dir'))
+  try {
+    const { manifest, records } = validateBackup(dir)
+    console.log(`verify: OK; integrity OK (${manifest.files.length} files); restorability OK (${records.length} record references); format ${manifest.format}`)
+  } catch (error) {
+    console.error('verify FAILED: ' + error.message)
     process.exit(1)
   }
-  const manifest = JSON.parse(readFileSync(join(dir, 'manifest.json'), 'utf8'))
-  let checked = 0
-  for (const entry of manifest.files) {
-    const path = join(dir, entry.path)
-    if (!existsSync(path) || sha256(path) !== entry.sha256) {
-      console.error(`verify FAILED: ${entry.path}`)
-      process.exit(1)
-    }
-    checked += 1
-  }
-  console.log(`verify: OK (${checked} files, ${manifest.files.length} in manifest, created ${manifest.createdAt})`)
   process.exit(0)
 }
 
 if (command === 'restore') {
   const dir = resolve(arg('dir'))
-  const to = resolve(arg('to'))
-  if (!existsSync(join(dir, 'manifest.json'))) {
-    console.error('no manifest in ' + dir)
-    process.exit(1)
-  }
-  const manifest = JSON.parse(readFileSync(join(dir, 'manifest.json'), 'utf8'))
-  if (within(dir, to) || within(to, dir)) throw new Error('restore FAILED: backup and target paths overlap')
-  for (const entry of manifest.files) {
-    const source = resolve(dir, entry.path)
-    if (!within(dir, source)) throw new Error('restore FAILED: backup file path escapes the backup')
-    if (!existsSync(source) || sha256(source) !== entry.sha256) {
-      console.error('restore FAILED: backup file ' + entry.path + ' is missing or corrupt')
-      process.exit(1)
-    }
-  }
+  const requestedTarget = resolve(arg('to'))
+  if (existsSync(requestedTarget) && lstatSync(requestedTarget).isSymbolicLink()) throw new Error('restore FAILED: target must be a directory, not a symlink')
+  const to = storeCoordinationRoot(requestedTarget)
+  const source = storeCoordinationRoot(dir)
+  if (within(source, to) || within(to, source)) throw new Error('restore FAILED: backup and target paths overlap')
+  const releaseLease = acquireStoreLease(to, { exclusive: true, timeoutMs: 0 })
+  process.once('exit', releaseLease)
+  const { manifest, records } = validateBackup(dir)
+  if (existsSync(to) && (!lstatSync(to).isDirectory() || lstatSync(to).isSymbolicLink())) throw new Error('restore FAILED: target must be a directory, not a symlink')
   if (existsSync(to) && readdirSync(to).length > 0 && !has('force')) {
     console.error('restore target ' + to + ' is not empty; pass --force to overwrite')
     process.exit(1)
   }
-  if (typeof manifest.sourceRoot !== 'string' || !isAbsolute(manifest.sourceRoot)) {
-    throw new Error('restore FAILED: backup source root is missing or not absolute')
+  mkdirSync(dirname(to), { recursive: true })
+  const lockPath = to + '.restore-lock'
+  if (existsSync(lockPath)) throw new Error('restore FAILED: an existing restore guard requires explicit recovery')
+  const stage = mkdtempSync(join(dirname(to), basename(to) + '.restore-'))
+  const previous = to + '.previous-' + randomUUID()
+  const state = { format: 1, to, stage, previous, phase: 'preparing' }
+  const saveState = () => {
+    const temporary = lockPath + '.state-' + randomUUID()
+    writeFileSync(temporary, JSON.stringify(state) + '\n', { flag: 'wx', mode: 0o600 })
+    renameSync(temporary, lockPath)
   }
-  const manifestFiles = new Set(manifest.files.map((entry) => entry.path))
-  const snapshot = new DatabaseSync(join(dir, 'index.db'), { readOnly: true })
-  let records
+  saveState()
   try {
-    records = snapshot.prepare('SELECT id, path FROM records').all().map((row) => {
-      if (!isAbsolute(row.path)) throw new Error('restore FAILED: record path is not absolute')
-      const rel = relative(resolve(manifest.sourceRoot), resolve(row.path))
-      if (!rel || rel === '..' || rel.startsWith('..' + sep) || isAbsolute(rel)
-        || !['records', 'cold'].includes(rel.split(sep)[0])) {
-        throw new Error('restore FAILED: record path is outside the source store')
-      }
-      if (!manifestFiles.has(rel) || !existsSync(join(dir, rel))) {
-        throw new Error('restore FAILED: backup record file is missing or not in the manifest: ' + rel)
-      }
-      return { id: row.id, rel }
-    })
-  } finally {
-    snapshot.close()
-  }
-  rmSync(to, { recursive: true, force: true })
-  mkdirSync(to, { recursive: true })
-  cpSync(join(dir, 'index.db'), join(to, 'index.db'))
-  for (const directory of ['records', 'cold', '.file-recovery']) {
-    if (existsSync(join(dir, directory))) cpSync(join(dir, directory), join(to, directory), { recursive: true })
-  }
-  // The snapshot stores absolute source paths. Rebase each one to the copied
-  // record file, refusing paths that escape the source or do not exist.
-  const db = new DatabaseSync(join(to, 'index.db'))
-  try {
-    db.exec('BEGIN IMMEDIATE')
-    try {
-      const update = db.prepare('UPDATE records SET path = ? WHERE id = ?')
-      for (const record of records) {
-        const target = join(to, record.rel)
-        if (!existsSync(target)) throw new Error('restore FAILED: copied record file is missing: ' + record.rel)
-        update.run(target, record.id)
-      }
-      db.exec('COMMIT')
-    } catch (error) {
-      try { db.exec('ROLLBACK') } catch {}
-      throw error
+    cpSync(join(dir, 'index.db'), join(stage, 'index.db'))
+    chmodSync(join(stage, 'index.db'), 0o600)
+    for (const directory of ['records', 'cold', '.file-recovery']) {
+      if (existsSync(join(dir, directory))) cpSync(join(dir, directory), join(stage, directory), { recursive: true })
     }
-  } finally {
-    db.close()
+    for (const entry of manifest.files) {
+      if (sha256(join(stage, entry.path)) !== entry.sha256) throw new Error('restore FAILED: staged file checksum mismatch: ' + entry.path)
+    }
+    const db = new DatabaseSync(join(stage, 'index.db'))
+    try {
+      db.exec('BEGIN IMMEDIATE')
+      const update = db.prepare('UPDATE records SET path = ? WHERE id = ?')
+      for (const record of records) update.run(join(requestedTarget, record.rel), record.id)
+      db.exec('COMMIT; PRAGMA wal_checkpoint(TRUNCATE)')
+      if (db.prepare('PRAGMA integrity_check').all().some(row => row.integrity_check !== 'ok')) throw new Error('restore FAILED: staged database integrity')
+    } finally { db.close() }
+    // Refuse an active writer. All Memex processes must be stopped for restore;
+    // the sibling guard also blocks new Store operations during the exchange.
+    if (existsSync(join(to, 'index.db'))) {
+      const old = new DatabaseSync(join(to, 'index.db'))
+      try { old.exec('PRAGMA busy_timeout = 0; BEGIN IMMEDIATE; ROLLBACK') } finally { old.close() }
+    }
+    state.phase = 'prepared'; saveState()
+    if (existsSync(to)) renameSync(to, previous)
+    state.phase = 'previous-retained'; saveState()
+    renameSync(stage, to)
+    state.phase = 'installed'; saveState()
+    unlinkSync(lockPath)
+  } catch (error) {
+    // Leave the staged candidate and previous state for explicit recovery.
+    if (!existsSync(to) && existsSync(previous)) renameSync(previous, to)
+    if (existsSync(to) && existsSync(stage)) unlinkSync(lockPath)
+    error.message += `; staged data preserved at ${stage}; recovery: node scripts/memory-backup.mjs recover --to ${JSON.stringify(to)}`
+    throw error
   }
-  console.log('restore: ' + dir + ' -> ' + to + ' (' + manifest.files.length + ' files, source snapshot sha256 ' + manifest.db.sha256.slice(0, 12) + '…)')
+  console.log('restore: ' + dir + ' -> ' + to + '; previous state retained at ' + previous + ' (' + manifest.files.length + ' files)')
+  process.exit(0)
+}
+
+if (command === 'recover') {
+  const to = storeCoordinationRoot(arg('to')), lockPath = to + '.restore-lock'
+  const releaseLease = acquireStoreLease(to, { exclusive: true, timeoutMs: 0 })
+  process.once('exit', releaseLease)
+  let state
+  try { state = JSON.parse(readFileSync(lockPath, 'utf8')) } catch (error) {
+    if (error?.code === 'ENOENT') { console.log('restore recovery: no guard remains'); process.exit(0) }
+    if (!(error instanceof SyntaxError)) throw error
+    if (!existsSync(to)) throw new Error('restore recovery: incomplete guard and absent target; inspect retained previous/staged directories; nothing was changed')
+    if (existsSync(join(to, 'index.db'))) {
+      const db = new DatabaseSync(join(to, 'index.db'), { readOnly: true })
+      try {
+        if (db.prepare('PRAGMA integrity_check').all().some(row => row.integrity_check !== 'ok')) throw new Error('restore recovery: incomplete guard and damaged target; nothing was changed')
+        for (const row of db.prepare('SELECT path FROM records').all()) if (!within(to, storeCoordinationRoot(row.path)) || !existsSync(row.path)) throw new Error('restore recovery: incomplete guard and missing body; nothing was changed')
+      } finally { db.close() }
+    } else if (['records', 'cold', '.file-transactions', '.file-recovery'].some(directory => existsSync(join(to, directory)) && walk(join(to, directory)).length > 0)) {
+      throw new Error('restore recovery: archive files exist without their matching database; nothing was changed')
+    }
+    unlinkSync(lockPath)
+    console.log('restore recovery: inactive incomplete guard cleared; existing target and candidates retained')
+    process.exit(0)
+  }
+  if (state.format !== 1 || state.to !== to || dirname(state.stage) !== dirname(to) || !basename(state.stage).startsWith(basename(to) + '.restore-')
+    || dirname(state.previous) !== dirname(to) || !basename(state.previous).startsWith(basename(to) + '.previous-')) throw new Error('restore recovery: invalid state')
+  if (!existsSync(to) && existsSync(state.previous)) renameSync(state.previous, to)
+  if (existsSync(to) && !existsSync(state.stage)) {
+    const db = new DatabaseSync(join(to, 'index.db'), { readOnly: true })
+    try {
+      if (db.prepare('PRAGMA integrity_check').all().some(row => row.integrity_check !== 'ok')) throw new Error('restore recovery: database integrity failed')
+      for (const row of db.prepare('SELECT path FROM records').all()) {
+        if (!within(to, storeCoordinationRoot(row.path)) || !existsSync(row.path)) throw new Error('restore recovery: record reference failed')
+      }
+    } finally { db.close() }
+  } else if (!existsSync(to) && state.phase !== 'preparing' && state.phase !== 'prepared') {
+    throw new Error('restore recovery: target missing; staged and previous states preserved')
+  }
+  unlinkSync(lockPath)
+  console.log('restore recovery: guard cleared; candidate and previous directories retained for review')
   process.exit(0)
 }
 

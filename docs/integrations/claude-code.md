@@ -5,11 +5,15 @@ layout: default
 
 # Claude Code
 
+First complete the [local source installation](../install.md): use Node.js 24+ and npm on a POSIX shell, then run `npm run bootstrap` from the checkout root. A DSH bundle build is optional for this adapter and does not replace bootstrap. Run the following from that checkout, replacing the project path with the project you intend to configure:
+
 ```bash
-node packages/memex-claude/bin/cli.mjs init --model claude-sonnet-5-5
+node packages/memex-claude/bin/cli.mjs init --project /absolute/path/to/project --model claude-sonnet-5-5
 # or: --model claude-opus-5-5  (1M context, adaptive thinking)
 # or: --project /path/to/project  --root ~/.memex --levels l2,l3
 ```
+
+No provider credential or test loader is needed for initialization or the local MCP server. `--model` selects profile guidance; initialization itself does not invoke that model. The checkout must remain available at the absolute paths written to the configuration. After moving it, rerun init and inspect the generated entries. Use an explicit `--root /absolute/path/to/store` for an isolated store; otherwise the default is `~/.memex`.
 
 `init` is idempotent and writes three things in the project:
 
@@ -45,6 +49,8 @@ Hooks never break a session: failures are logged to stderr and the exit code sta
 - Existing malformed JSON configurations cause `init` to stop before changing its files. Co-located non-Memex hooks and existing configuration symlinks are retained. Each file replacement is atomic, but the three files are not a single transaction. Existing archives are not automatically reclassified or erased by these changes.
 
 ## Manual workflows
+
+The credential-free installation regression is `node --test test/audit-install.mjs` from the checkout root. It starts MCP from the generated `.mcp.json` in a new process and verifies record persistence after restart, using temporary user/project/store directories. This does not replace the actual client's approval and `/mcp` checks above.
 
 Ask Claude to "remember this" (it calls `memory_write`), or run:
 

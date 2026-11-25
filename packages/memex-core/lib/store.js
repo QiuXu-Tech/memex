@@ -18,6 +18,7 @@ import { createHash, randomUUID } from 'node:crypto'
 import { isDeepStrictEqual } from 'node:util'
 import { canonicalContextEvent, checksumContextEvent } from './context-events.js'
 import { recoverOnOpen, withFileTransaction } from './file-transactions.js'
+import { acquireStoreLease, storeCoordinationRoot } from './store-lease.js'
 import {
   MEMORY_KINDS, MEMORY_STATUSES, MEMORY_TRUST, MEMORY_TEXT_LIMITS,
   MEMORY_LEVELS, MEMORY_MODES, MEMORY_SCOPES, MEMORY_LEVEL_SCOPE, memoryCaptureScope, memoryLevelsFromRow, memoryVisibleScopes,
@@ -206,7 +207,26 @@ export class LocalStoreCore {
 
   /** Lazily create the root, records tree and database. */
   ensure() {
-    if (this.ready) return this
+    if (existsSync(storeCoordinationRoot(this.root) + '.restore-lock')) throw new Error('memory: restore in progress; stop clients and complete restore recovery before opening')
+    if (this.ready) {
+      const current = statSync(join(this.root, DB_FILE))
+      if (current.dev !== this.databaseIdentity.dev || current.ino !== this.databaseIdentity.ino) throw new Error('memory: database was replaced; close and reopen the store')
+      return this
+    }
+    const release = acquireStoreLease(this.root)
+    try {
+      if (existsSync(storeCoordinationRoot(this.root) + '.restore-lock')) throw new Error('memory: restore in progress; complete restore recovery before opening')
+      const result = this.openDatabase()
+      this.releaseStoreLease = release
+      return result
+    } catch (error) {
+      release()
+      throw error
+    }
+  }
+
+  /** Open under a lifetime shared lease, excluding directory replacement. */
+  openDatabase() {
     if (!existsSync(join(this.root, DB_FILE)) && [RECORDS_DIR, 'cold', '.file-transactions', '.file-recovery'].some((name) => hasFiles(join(this.root, name)))) {
       throw new Error('memory: index is missing while archive files exist; restore the matching database backup before opening the store')
     }
@@ -251,6 +271,7 @@ export class LocalStoreCore {
         PRIMARY KEY (record_id, term_hash)
       );
       CREATE INDEX IF NOT EXISTS record_terms_hash ON record_terms(term_hash);
+      CREATE TABLE IF NOT EXISTS index_metadata (name TEXT PRIMARY KEY, version INTEGER NOT NULL);
       CREATE TABLE IF NOT EXISTS context_events (
         event_id TEXT PRIMARY KEY,
         record_id TEXT NOT NULL,
@@ -316,14 +337,28 @@ export class LocalStoreCore {
     }
     // Migration: earlier rounds stored a single `mode`; the sticky L2/L3 levels
     // replaced it. Add the level columns to an existing table and backfill once.
-    const columns = db.prepare('PRAGMA table_info(session_settings)').all().map((row) => row.name)
-    if (!columns.includes('l2')) db.exec('ALTER TABLE session_settings ADD COLUMN l2 INTEGER NOT NULL DEFAULT 0')
-    if (!columns.includes('l3')) db.exec('ALTER TABLE session_settings ADD COLUMN l3 INTEGER NOT NULL DEFAULT 0')
-    db.exec("UPDATE session_settings SET l2 = 1 WHERE l2 = 0 AND l3 = 0 AND mode = 'session'")
-    db.exec("UPDATE session_settings SET l3 = 1 WHERE l2 = 0 AND l3 = 0 AND mode = 'workspace'")
-    const recordColumns = db.prepare('PRAGMA table_info(records)').all().map((row) => row.name)
-    if (!recordColumns.includes('cold')) db.exec('ALTER TABLE records ADD COLUMN cold INTEGER NOT NULL DEFAULT 0')
-    if (!recordColumns.includes('abstract')) db.exec("ALTER TABLE records ADD COLUMN abstract TEXT NOT NULL DEFAULT ''")
+    db.exec('BEGIN IMMEDIATE')
+    try {
+      const columns = db.prepare('PRAGMA table_info(session_settings)').all().map((row) => row.name)
+      if (!columns.includes('l2')) db.exec('ALTER TABLE session_settings ADD COLUMN l2 INTEGER NOT NULL DEFAULT 0')
+      if (!columns.includes('l3')) db.exec('ALTER TABLE session_settings ADD COLUMN l3 INTEGER NOT NULL DEFAULT 0')
+      db.exec("UPDATE session_settings SET l2 = 1 WHERE l2 = 0 AND l3 = 0 AND mode = 'session'")
+      db.exec("UPDATE session_settings SET l3 = 1 WHERE l2 = 0 AND l3 = 0 AND mode = 'workspace'")
+      const recordColumns = db.prepare('PRAGMA table_info(records)').all().map((row) => row.name)
+      if (!recordColumns.includes('cold')) db.exec('ALTER TABLE records ADD COLUMN cold INTEGER NOT NULL DEFAULT 0')
+      if (!recordColumns.includes('abstract')) db.exec("ALTER TABLE records ADD COLUMN abstract TEXT NOT NULL DEFAULT ''")
+      if (!recordColumns.includes('terms_indexed')) db.exec('ALTER TABLE records ADD COLUMN terms_indexed INTEGER NOT NULL DEFAULT 0')
+      if (!recordColumns.includes('revision')) db.exec('ALTER TABLE records ADD COLUMN revision INTEGER NOT NULL DEFAULT 0')
+      const eventColumns = db.prepare('PRAGMA table_info(context_events)').all().map((row) => row.name)
+      if (!eventColumns.includes('block_index')) db.exec('ALTER TABLE context_events ADD COLUMN block_index INTEGER')
+      const compressionColumns = db.prepare('PRAGMA table_info(compression_runs)').all().map(row => row.name)
+      if (!compressionColumns.includes('attempts_json')) db.exec("ALTER TABLE compression_runs ADD COLUMN attempts_json TEXT NOT NULL DEFAULT '[]'")
+      db.exec('COMMIT')
+    } catch (error) {
+      db.exec('ROLLBACK')
+      db.close()
+      throw error
+    }
     // Migration: older rounds indexed record bodies in FTS. Trigram bodies are
     // the dominant index cost (roughly 13 bytes/token, GBs for a 100M pool), so
     // the index carries card fields plus a bounded cold abstract only. Cold
@@ -332,13 +367,23 @@ export class LocalStoreCore {
     const ftsColumns = db.prepare('PRAGMA table_info(records_fts)').all().map((row) => row.name)
     const desiredFts = ['title', 'summary', 'use_when', 'tags', 'abstract']
     const needsRebuild = ftsColumns.includes('body') || desiredFts.some((column) => !ftsColumns.includes(column))
+      || db.prepare("SELECT version FROM index_metadata WHERE name = 'fts'").get()?.version !== 1
     if (needsRebuild) {
       const hadBody = ftsColumns.includes('body')
-      db.exec('DROP TABLE IF EXISTS records_fts')
-      db.exec("CREATE VIRTUAL TABLE records_fts USING fts5(title, summary, use_when, tags, abstract, tokenize = 'trigram')")
-      const rows = db.prepare('SELECT rowid, title, summary, use_when, tags_json, abstract FROM records').all()
-      const insert = db.prepare('INSERT INTO records_fts (rowid, title, summary, use_when, tags, abstract) VALUES (?, ?, ?, ?, ?, ?)')
-      for (const row of rows) insert.run(row.rowid, row.title, row.summary, row.use_when, row.tags_json, row.abstract ?? '')
+      db.exec('BEGIN IMMEDIATE')
+      try {
+        db.exec('DROP TABLE IF EXISTS records_fts')
+        db.exec("CREATE VIRTUAL TABLE records_fts USING fts5(title, summary, use_when, tags, abstract, tokenize = 'trigram')")
+        const rows = db.prepare('SELECT rowid, title, summary, use_when, tags_json, abstract FROM records').all()
+        const insert = db.prepare('INSERT INTO records_fts (rowid, title, summary, use_when, tags, abstract) VALUES (?, ?, ?, ?, ?, ?)')
+        for (const row of rows) insert.run(row.rowid, row.title, row.summary, row.use_when, row.tags_json, row.abstract ?? '')
+        db.prepare("INSERT OR REPLACE INTO index_metadata (name, version) VALUES ('fts', 1)").run()
+        db.exec('COMMIT')
+      } catch (error) {
+        db.exec('ROLLBACK')
+        db.close()
+        throw error
+      }
       if (hadBody) {
         // Reclaim the old trigram-body index pages once.
         try {
@@ -391,14 +436,17 @@ export class LocalStoreCore {
     }
     // Backfill the body-term index for records whose bodies were written
     // before `record_terms` existed (one-time migration).
-    const missingTerms = db.prepare('SELECT id, path FROM records WHERE bytes > 0 AND id NOT IN (SELECT record_id FROM record_terms)').all()
+    const missingTerms = db.prepare('SELECT id, path, title, summary, use_when, tags_json FROM records WHERE terms_indexed = 0').all()
     if (missingTerms.length > 0) {
       const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
       db.exec('BEGIN IMMEDIATE')
       try {
         for (const row of missingTerms) {
           try {
-            for (const hash of bodyTermHashes(recordBodyFromFile(readFileSync(row.path, 'utf8')))) insertTerm.run(row.id, hash)
+            const body = recordBodyFromFile(readFileSync(row.path, 'utf8'))
+            const card = `${row.title} ${row.summary} ${row.use_when} ${row.tags_json}`
+            for (const hash of new Set(bodyTermHashes(body + ' ' + card))) insertTerm.run(row.id, hash)
+            db.prepare('UPDATE records SET terms_indexed = 1 WHERE id = ?').run(row.id)
           } catch {
             // Missing file: card fields remain searchable; rescue treats it as empty.
           }
@@ -412,20 +460,22 @@ export class LocalStoreCore {
     // TTL prune for sticky-level settings rows of long-dead sessions.
     db.prepare('DELETE FROM session_settings WHERE updated_at < ?').run(Date.now() - this.settingsTtlMs)
     this.db = db
+    this.databaseIdentity = statSync(databasePath)
     this.ready = true
     return this
   }
 
   /** Close the database; safe to call more than once. */
   close() {
-    if (this.db === undefined) return
     try {
-      this.db.close()
+      this.db?.close()
     } catch {
       // Closing an already-closed handle is not an error for teardown.
     }
     this.db = undefined
     this.ready = false
+    this.releaseStoreLease?.()
+    this.releaseStoreLease = undefined
   }
 
   /** @returns {DatabaseSync} The open database. */
@@ -496,7 +546,12 @@ export class LocalStoreCore {
             db.prepare('DELETE FROM context_events WHERE record_id = ?').run(archivedId)
           }
         }
-        const existing = db.prepare('SELECT rowid, path, cold, created_at, provenance_json FROM records WHERE id = ?').get(record.id)
+        const existing = db.prepare('SELECT rowid, path, cold, created_at, provenance_json, revision FROM records WHERE id = ?').get(record.id)
+        if (options.expectedRevision !== undefined && existing?.revision !== options.expectedRevision) {
+          const error = new Error('memory: record changed during update; retry after re-reading it')
+          error.code = 'MEMEX_CONFLICT'
+          throw error
+        }
         if (record.provenance.evidence !== undefined) {
           try {
             record.provenance.evidence = normalizeMemoryEvidence(record.provenance.evidence)
@@ -558,6 +613,8 @@ export class LocalStoreCore {
         const insertTerm = db.prepare('INSERT OR IGNORE INTO record_terms (record_id, term_hash) VALUES (?, ?)')
         const cardText = [record.title, record.summary, record.useWhen, tagsText(record.tags)].join(' ')
         for (const hash of new Set([...bodyTermHashes(record.body), ...bodyTermHashes(cardText)])) insertTerm.run(record.id, hash)
+        record.revision = db.prepare("INSERT INTO index_metadata (name, version) VALUES ('record_revision', 1) ON CONFLICT(name) DO UPDATE SET version = index_metadata.version + 1 RETURNING version").get().version
+        db.prepare('UPDATE records SET terms_indexed = 1, revision = ? WHERE id = ?').run(record.revision, record.id)
         if (options.archive !== undefined) {
           this.insertContextEvents(db, record.id, options.archive.events)
           db.prepare('INSERT INTO archived_compactions (session_id, compaction_id, record_id, created_at) VALUES (?, ?, ?, ?) ON CONFLICT(session_id, compaction_id) DO UPDATE SET record_id = excluded.record_id, created_at = excluded.created_at')
@@ -598,6 +655,7 @@ export class LocalStoreCore {
       status: row.status,
       createdAt: row.created_at,
       updatedAt: row.updated_at,
+      revision: row.revision,
       readCount: row.read_count,
       lastReadAt: row.last_read_at ?? undefined,
       cold: Number(row.cold) === 1,
@@ -612,18 +670,20 @@ export class LocalStoreCore {
    */
   insertContextEvents(db, recordId, events) {
     const insert = db.prepare(`
-      INSERT INTO context_events (event_id, record_id, session_id, sequence, role, type, content, content_format, tool_name, tool_call_id, tool_arguments, attachments_json, checksum, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+      INSERT INTO context_events (event_id, record_id, session_id, sequence, role, type, content, content_format, tool_name, tool_call_id, tool_arguments, attachments_json, checksum, created_at, block_index)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ON CONFLICT(event_id) DO UPDATE SET
         record_id=excluded.record_id, sequence=excluded.sequence, role=excluded.role, type=excluded.type,
         content=excluded.content, content_format=excluded.content_format, tool_name=excluded.tool_name,
         tool_call_id=excluded.tool_call_id, tool_arguments=excluded.tool_arguments,
-        attachments_json=excluded.attachments_json, checksum=excluded.checksum, created_at=excluded.created_at
+        attachments_json=excluded.attachments_json, checksum=excluded.checksum, created_at=excluded.created_at, block_index=excluded.block_index
     `)
     let count = 0
     for (const input of Array.isArray(events) ? events : []) {
       const event = canonicalContextEvent({ ...input, recordId })
-      insert.run(event.id, recordId, event.sessionId ?? null, event.sequence, event.role, event.type, event.content, event.contentFormat, event.toolName ?? null, event.toolCallId ?? null, event.toolArguments === undefined ? null : event.toolArguments, JSON.stringify(event.attachments), checksumContextEvent(event), event.createdAt ?? 0)
+      const owner = db.prepare('SELECT record_id, session_id FROM context_events WHERE event_id = ?').get(event.id)
+      if (owner !== undefined && (owner.record_id !== recordId || owner.session_id !== (event.sessionId ?? null))) throw new Error('memory: context event ID belongs to another owner')
+      insert.run(event.id, recordId, event.sessionId ?? null, event.sequence, event.role, event.type, event.content, event.contentFormat, event.toolName ?? null, event.toolCallId ?? null, event.toolArguments === undefined ? null : event.toolArguments, JSON.stringify(event.attachments), checksumContextEvent(event), event.createdAt ?? 0, event.blockIndex ?? null)
       count += 1
     }
     return count
@@ -654,12 +714,12 @@ export class LocalStoreCore {
         id: row.event_id, role: row.role, type: row.type, sequence: row.sequence, sessionId: row.session_id ?? undefined,
         content: row.content, contentFormat: row.content_format, toolName: row.tool_name ?? undefined,
         toolCallId: row.tool_call_id ?? undefined, toolArguments: row.tool_arguments ?? undefined,
-        attachments: JSON.parse(row.attachments_json ?? '[]'), recordId: row.record_id, createdAt: row.created_at,
+        attachments: JSON.parse(row.attachments_json ?? '[]'), recordId: row.record_id, createdAt: row.created_at, blockIndex: row.block_index ?? undefined,
       })
       const checksum = checksumContextEvent(event)
       if (row.checksum !== checksum) throw new Error(`context event checksum mismatch: ${row.event_id}`)
       return { ...event, checksum }
-    })
+    }).sort((a, b) => a.sequence - b.sequence || (a.blockIndex ?? Number(a.id.match(/:(\d+)$/)?.[1] ?? 0)) - (b.blockIndex ?? Number(b.id.match(/:(\d+)$/)?.[1] ?? 0)) || a.id.localeCompare(b.id))
   }
 
   /** Load one record including its body read from the file. */
@@ -1072,10 +1132,11 @@ export class LocalStoreCore {
       return hits * weight
     }
     const ranked = []
+    const rankScale = Math.max(Number.EPSILON, ...[...rowsById.values()].map(row => Math.max(0, -Number(row.rank ?? 0))))
     for (const row of rowsById.values()) {
       const card = this.cardFromRow(row)
       const ageDays = Math.max(0, (now - (card.updatedAt ?? now)) / 86_400_000)
-      const rankScore = row.rank === 0 || row.rank === undefined ? 0.35 : 1 / (1 + Math.max(0, Number(row.rank)))
+      const rankScore = row.rank === 0 || row.rank === undefined ? 0.35 : Math.max(0, -Number(row.rank)) / rankScale
       const sweep = { ...DEFAULT_RERANK_WEIGHTS, ...(query.rerank ?? {}) }
       const score = rankScore * sweep.bm25
         + fieldHits(card.title, sweep.title)
@@ -1192,7 +1253,7 @@ export class LocalStoreCore {
       }
       if (current === undefined) continue
       if (text === undefined) throw new Error('memory: record changed repeatedly while reading: ' + row.id)
-      const lines = text.split('\n')
+      const lines = recordBodyFromFile(text).split('\n')
       for (let index = 0; index < lines.length; index += 1) {
         if (!expression.test(lines[index])) continue
         hits.push({ id: row.id, title: row.title, status: current.status, provenance: parseJson(current.provenance_json), line: index + 1, text: clipText(lines[index].trim(), 240) })
@@ -1326,9 +1387,9 @@ export class LocalStoreCore {
    */
   recordCompression(entry) {
     this.database().prepare(`
-      INSERT INTO compression_runs (session_id, level, strategy, before_hot, after_hot, cold_moved, digests, llm_calls, errors, created_at)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `).run(entry.sessionId ?? '', entry.level, entry.strategy, entry.beforeHot, entry.afterHot, entry.coldMoved, entry.digests, entry.llmCalls, (entry.errors ?? []).join('; '), Date.now())
+      INSERT INTO compression_runs (session_id, level, strategy, before_hot, after_hot, cold_moved, digests, llm_calls, errors, created_at, attempts_json)
+      VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    `).run(entry.sessionId ?? '', entry.level, entry.strategy, entry.beforeHot, entry.afterHot, entry.coldMoved, entry.digests, entry.llmCalls, (entry.errors ?? []).join('; '), Date.now(), JSON.stringify(entry.attempts ?? []))
   }
 
   /**
@@ -1353,6 +1414,7 @@ export class LocalStoreCore {
       coldMoved: row.cold_moved,
       digests: row.digests,
       llmCalls: row.llm_calls,
+      attempts: JSON.parse(row.attempts_json),
       errors: row.errors,
       createdAt: row.created_at,
     }))
@@ -1509,7 +1571,7 @@ export class LocalStoreCore {
     const next = { l2: current.l2 || level === 'l2', l3: current.l3 || level === 'l3' }
     this.database().prepare(`
       INSERT INTO session_settings (session_id, mode, l2, l3, updated_at) VALUES (?, 'off', ?, ?, ?)
-      ON CONFLICT(session_id) DO UPDATE SET l2 = excluded.l2, l3 = excluded.l3, updated_at = excluded.updated_at
+      ON CONFLICT(session_id) DO UPDATE SET l2 = MAX(session_settings.l2, excluded.l2), l3 = MAX(session_settings.l3, excluded.l3), updated_at = excluded.updated_at
     `).run(sessionId, next.l2 ? 1 : 0, next.l3 ? 1 : 0, Date.now())
     return this.getLevels(sessionId)
   }
@@ -1589,7 +1651,23 @@ export class LocalStoreCore {
     if (!MEMORY_STATUSES.includes(status)) throw new Error(`memory: unknown status "${status}"`)
     const record = this.get(id, filter)
     if (record === undefined) return undefined
-    return this.write({ ...record, id, status, createdAt: record.createdAt, body: record.body }, { expectedPath: record.path })
+    return this.write({ ...record, id, status, createdAt: record.createdAt, body: record.body }, { expectedPath: record.path, expectedRevision: record.revision })
+  }
+
+  /** Compare-and-swap only card fields; a late model response cannot recreate a record. */
+  patchCard(id, patch, { expectedRevision } = {}) {
+    if (!Number.isSafeInteger(expectedRevision)) throw new TypeError('memory: expectedRevision is required')
+    const allowed = ['title', 'summary', 'useWhen', 'kind', 'tags']
+    if (Object.keys(patch).some(key => !allowed.includes(key))) throw new TypeError('memory: unsupported card patch field')
+    const record = this.get(id)
+    if (record === undefined) return { status: 'missing' }
+    if (record.revision !== expectedRevision) return { status: 'conflict', revision: record.revision }
+    try {
+      return { status: 'updated', record: this.write({ ...record, ...patch }, { expectedPath: record.path, expectedRevision }) }
+    } catch (error) {
+      if (error.code === 'MEMEX_CONFLICT') return { status: 'conflict' }
+      throw error
+    }
   }
 
   /** Record read usage for ranking later. */

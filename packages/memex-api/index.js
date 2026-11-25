@@ -13,7 +13,7 @@
  *
  * @module @qiuxu/memex-api
  */
-import { memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey } from '@qiuxu/memex-seam'
+import { memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey, sliceContextText } from '@qiuxu/memex-seam'
 
 export const name = 'memory-api'
 
@@ -36,7 +36,9 @@ const ROUTES = Object.freeze({
 function bufferSlice(text, maxBytes) {
   const buffer = Buffer.from(text, 'utf8')
   if (buffer.length <= maxBytes) return text
-  return buffer.subarray(0, maxBytes).toString('utf8')
+  let end = maxBytes
+  while (end > 0 && (buffer[end] & 0xc0) === 0x80) end -= 1
+  return buffer.subarray(0, end).toString('utf8')
 }
 
 /** JSON response helper. */
@@ -210,16 +212,23 @@ function handlers(ctx) {
         return fail(404, 'MEMORY_NOT_FOUND', 'no such memory record in the enabled extra-context levels')
       }
       const fullBody = String(record.body ?? '')
-      const offset = clamp(url.searchParams.get('offset'), 0, 0, Math.max(0, fullBody.length - 1))
-      const limit = clamp(url.searchParams.get('limit'), 200_000, 1, 1_000_000)
+      const offset = clamp(url.searchParams.get('offset'), 0, 0, fullBody.length)
+      const limit = clamp(url.searchParams.get('limit'), 200_000, 2, 1_000_000)
       const totalChars = fullBody.length
-      const window = fullBody.slice(offset, offset + limit)
+      let window
+      try { window = sliceContextText(fullBody, offset, limit).content } catch (error) {
+        return fail(400, 'MEMORY_INVALID_OFFSET', error.message)
+      }
       const maxBytes = 256 * 1024
-      const truncated = Buffer.byteLength(window, 'utf8') > maxBytes || offset + limit < totalChars
+      const body = bufferSlice(window, maxBytes)
+      const nextCharOffset = offset + body.length < totalChars ? offset + body.length : null
+      const truncated = nextCharOffset !== null
       return json({
         ok: true,
         record: card(record),
-        body: truncated && Buffer.byteLength(window, 'utf8') > maxBytes ? `${bufferSlice(window, maxBytes)}\n…[truncated]` : window,
+        body,
+        consumedChars: body.length,
+        nextCharOffset,
         truncated,
         bodyOffset: offset,
         bodyLimit: limit,

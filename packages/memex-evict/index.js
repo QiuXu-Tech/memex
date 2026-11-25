@@ -82,7 +82,8 @@ function renderEvent(session, event) {
     message = undefined
   }
   const header = `## seq ${event.seq} · ${event.type}`
-  if (message === undefined) return { text: `${header}\n(no derived message)`, hasImage: false }
+  if (message === undefined || !Array.isArray(message.content)
+    || message.content.some(block => !['text', 'tool-call', 'tool-result'].includes(block?.type))) return { text: '', hasImage: false, unsupported: true }
   let hasImage = false
   try {
     hasImage = contentHasImage(message.content ?? [])
@@ -92,11 +93,10 @@ function renderEvent(session, event) {
   const blocks = []
   for (const block of message.content ?? []) {
     if (block.type === 'text') blocks.push(block.text)
-    else if (block.type === 'tool-call') blocks.push(`tool-call ${block.name ?? ''} ${JSON.stringify(block.arguments ?? {})}`)
-    else if (block.type === 'tool-result') blocks.push(`tool-result ${JSON.stringify(block.content ?? block.output ?? '')}`)
-    else blocks.push(`[${block.type}]`)
+    else if (block.type === 'tool-call') blocks.push(`tool-call ${JSON.stringify(block)}`)
+    else if (block.type === 'tool-result') blocks.push(`tool-result ${JSON.stringify(block)}`)
   }
-  return { text: `${header}\n${blocks.join('\n')}`, hasImage }
+  return { text: `${header}\n${blocks.join('\n')}\nSource event JSON:\n${JSON.stringify({ event, message })}`, hasImage }
 }
 
 /**
@@ -131,7 +131,7 @@ function selectRange(session, tokenMeter, measurement, retainTokens, maxChars) {
     const event = session.eventAt(node.seq)
     const rendered = renderEvent(session, event)
     // Never evict image-bearing content: the archive is text-only.
-    if (rendered.hasImage) break
+    if (rendered.hasImage || rendered.unsupported) break
     // A single oversized event cannot be archived safely in one batch.
     if (rendered.text.length > maxChars) break
     if (shadowedSeqs.length > 0 && chars + rendered.text.length > maxChars) break
