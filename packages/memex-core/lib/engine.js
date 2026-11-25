@@ -17,7 +17,7 @@ import { randomUUID } from 'node:crypto'
 import { join } from 'node:path'
 import { LocalStoreCore } from './store.js'
 import { materializeStoreContext } from './context-pager.js'
-import { contextEventPage, memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
+import { contextEventPage, memoryCaptureScope, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
 import { profileTokens, resolveModelProfile } from './model-profiles.js'
 
 /** Default storage location for non-DSH agents (with legacy DSH_MEMORY_HOME fallback). */
@@ -124,11 +124,12 @@ export class AgentMemory {
   }
 
   /** Ranked card-level search over the visible levels. */
-  search({ query, limit, kind, status, source, version, includeExpired } = {}) {
+  search({ query, limit, kind, status, source, version, includeExpired, sourceEvents = false } = {}) {
     if (source !== undefined && (typeof source !== 'string' || !source.trim())) throw new TypeError('memory: source must be a non-empty string')
     if (version !== undefined && (typeof version !== 'string' || !version.trim() || source === undefined)) throw new TypeError('memory: version requires a non-empty source and version')
     if (includeExpired !== undefined && typeof includeExpired !== 'boolean') throw new TypeError('memory: includeExpired must be a boolean')
-    return this.store.search({
+    if (typeof sourceEvents !== 'boolean') throw new TypeError('memory: sourceEvents must be a boolean')
+    const result = this.store.search({
       query,
       workspaceKey: this.workspaceKey,
       scopes: this.scopes,
@@ -142,6 +143,39 @@ export class AgentMemory {
       ...(version === undefined ? {} : { version }),
       ...(includeExpired === undefined ? {} : { includeExpired }),
     })
+    if (sourceEvents) {
+      const patterns = memoryQueryTerms(query, 8).sort((left, right) => right.length - left.length)
+        .map(term => new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'iu'))
+      for (const card of result.hits.slice(0, 8)) {
+        const event = this.#findSourceEvent(card, patterns)
+        if (event !== undefined) card.sourceEvent = event
+      }
+    }
+    return result
+  }
+
+  // Search only the canonical events behind the already visible card hits.
+  // Return an offset into the same JSON representation as openEvent.
+  #findSourceEvent(card, patterns) {
+    const seqs = card.provenance?.shadowedSeqs
+    if (!Array.isArray(seqs) || seqs.length === 0 || patterns.length === 0) return undefined
+    const events = this.store.listContextEvents(card.id)
+    const seen = new Set()
+    let best
+    for (const event of events) {
+      const eventIndex = seqs.indexOf(event.sequence) + 1
+      const part = event.attachments.find(item => item?.rawEvent !== undefined)
+      if (!eventIndex || part === undefined || seen.has(eventIndex)) continue
+      seen.add(eventIndex)
+      const raw = JSON.stringify(part.rawEvent)
+      const matches = patterns.map(pattern => pattern.exec(raw)).filter(Boolean)
+      if (matches.length === 0 || matches.length < (best?.count ?? 0)) continue
+      const anchor = matches[0].index
+      let charOffset = Math.max(0, anchor - 80)
+      if (charOffset > 0 && /[\uDC00-\uDFFF]/.test(raw[charOffset]) && /[\uD800-\uDBFF]/.test(raw[charOffset - 1])) charOffset -= 1
+      best = { count: matches.length, locator: { id: card.id, eventIndex, charOffset } }
+    }
+    return best?.locator
   }
 
   /**

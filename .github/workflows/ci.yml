@@ -20,6 +20,8 @@ jobs:
         run: node scripts/check-bundle.mjs
       - name: Run offline harness
         run: node --import ./test/register.mjs ./test/run.mjs
+      - name: MCP source event locators
+        run: node --test ./test/codex-source-locators.mjs
       - name: SQLite concurrency and recovery
         run: node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs
       - name: Archive integrity, privacy and configuration regression
