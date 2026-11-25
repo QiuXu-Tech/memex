@@ -7,6 +7,7 @@
  * a record, and the materializer can replay them in order.
  */
 import { createHash } from 'node:crypto'
+import { types } from 'node:util'
 
 export const CONTEXT_EVENT_ROLES = Object.freeze(['system', 'user', 'assistant', 'tool'])
 export const CONTEXT_EVENT_TYPES = Object.freeze(['message', 'tool_call', 'tool_result', 'attachment', 'summary'])
@@ -147,6 +148,27 @@ export function eventsToMaterializerPages(events) {
   }))
 }
 
+// Only ordinary data properties provide stable, finite comparison keys. Inspect
+// descriptors without invoking accessors; unusual inputs keep the legacy sort.
+function hasStableOrderKeys(page) {
+  if (page === null || typeof page !== 'object' || types.isProxy(page)) return false
+  const prototype = Object.getPrototypeOf(page)
+  if (prototype !== Object.prototype && prototype !== null) return false
+  for (const field of ['id', 'sequence', 'blockIndex', 'createdAt']) {
+    const descriptor = Object.getOwnPropertyDescriptor(page, field)
+    if (descriptor === undefined) {
+      if (field === 'id' || field === 'sequence' || field in page) return false
+      continue
+    }
+    if (!('value' in descriptor)) return false
+    const value = descriptor.value
+    if (field === 'id') {
+      if (typeof value !== 'string') return false
+    } else if (!((field !== 'sequence' && value == null) || (typeof value === 'number' && Number.isFinite(value)))) return false
+  }
+  return true
+}
+
 /** Merge source-ordered session streams using timestamps only between streams. */
 export function orderContextPages(pages) {
   const groups = new Map()
@@ -156,11 +178,35 @@ export function orderContextPages(pages) {
     group.push(page); groups.set(key, group)
   }
   const local = (a, b) => a.sequence - b.sequence || Number(a.blockIndex ?? 0) - Number(b.blockIndex ?? 0) || a.id.localeCompare(b.id)
-  const queues = [...groups.values()].map(group => ({ pages: group.sort(local), index: 0 }))
+  const streams = [...groups.values()]
+  const stableKeys = streams.length > 1 && streams.every(group => group.every(hasStableOrderKeys))
+  const queues = streams.map(group => ({ pages: group.sort(local), index: 0 }))
+  if (queues.length <= 1) return queues[0]?.pages ?? []
+  const compareHeads = (a, b) => Number(a.pages[a.index].createdAt ?? 0) - Number(b.pages[b.index].createdAt ?? 0)
+    || local(a.pages[a.index], b.pages[b.index])
+  if (stableKeys) {
+    queues.sort(compareHeads)
+    if (queues.every(queue => queue.pages.length === 1)) return queues.map(queue => queue.pages[0])
+    const ordered = []
+    while (queues.length > 0) {
+      const next = queues.shift()
+      ordered.push(next.pages[next.index++])
+      if (next.index === next.pages.length) continue
+      let low = 0, high = queues.length
+      while (low < high) {
+        const middle = (low + high) >>> 1
+        if (compareHeads(queues[middle], next) < 0) low = middle + 1
+        else high = middle
+      }
+      // The advanced queue was first before the legacy stable sort, so it
+      // stays ahead of all equal heads rather than using an initial stream ID.
+      queues.splice(low, 0, next)
+    }
+    return ordered
+  }
   const ordered = []
   while (queues.length > 0) {
-    queues.sort((a, b) => Number(a.pages[a.index].createdAt ?? 0) - Number(b.pages[b.index].createdAt ?? 0)
-      || local(a.pages[a.index], b.pages[b.index]))
+    queues.sort(compareHeads)
     const next = queues[0]
     ordered.push(next.pages[next.index++])
     if (next.index === next.pages.length) queues.shift()

@@ -1,0 +1,13 @@
+{
+  "round": 1,
+  "commit": "6c460d7f9e23f60237edd870fe36b64b47a02684",
+  "testAndHarnessSha256": {
+    "packages/memex-core/lib/context-events.js": "5d05852dabf1eadd1ece1834db82dec9d6c62b6ea63c74e876c6136c5880ef5d",
+    "test/materializer-performance.mjs": "97370817ac9911102afec74ef1e7ae19c73113d349e97ea50e6f1497437dab17",
+    "test/reference/context-events.mjs": "e9fb49a7cac6871098616dc02432c462d31f7ed4bc8f9028a5ac483d2910b8d2",
+    "test/reference/context-materializer.mjs": "4b5949c6f8301666d442a0ac4ad4e446c26e0d84e6921a9bd7e320fbe28038b1",
+    "test/materializer-fixtures.mjs": "dbca116dc80a6c0641399a05048b4842f4581de2629844a4f39e9367bbf2fbc5",
+    "scripts/materializer-bench.mjs": "88719717a3e8043fea5556c8a104b89c5f37a15f828108a2c1fd4c0a89621e27",
+    "docs/research/2026-11-16/PROTOCOL.md": "6366c99d6f4df74e2e30cea86159c0ab13f76266c4acd4cd7263033e7df1442e"
+  }
+}
