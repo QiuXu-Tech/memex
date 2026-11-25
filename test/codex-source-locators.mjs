@@ -4,7 +4,11 @@ import { mkdirSync, mkdtempSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import test from 'node:test'
+import { fileURLToPath } from 'node:url'
 import { AgentMemory } from '../packages/memex-core/lib/engine.js'
+
+const register = fileURLToPath(new URL('./register.mjs', import.meta.url))
+const server = fileURLToPath(new URL('../packages/memex-mcp/bin/server.mjs', import.meta.url))
 
 test('opt-in MCP search can open the matching original source outside its rendered card', () => {
   const fixture = mkdtempSync(join(tmpdir(), 'memex-source-locator-'))
@@ -25,7 +29,7 @@ test('opt-in MCP search can open the matching original source outside its render
       ] })
     }
     const invoke = (...requests) => {
-      const exchange = spawnSync(process.execPath, ['packages/memex-mcp/bin/server.mjs', '--cwd', cwd, '--root', root, '--session', 'study', '--levels', 'l2,l3'], {
+      const exchange = spawnSync(process.execPath, ['--import', register, server, '--cwd', cwd, '--root', root, '--session', 'study', '--levels', 'l2,l3'], {
         encoding: 'utf8',
         input: [
           { jsonrpc: '2.0', id: 0, method: 'initialize', params: { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'locator-test', version: '1' } } },
