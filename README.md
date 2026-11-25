@@ -1,9 +1,22 @@
-# Memex — the extra-context layer for AI agents
+# Memex — Extra Context for Long-Running AI Agents
 
 [![CI](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml/badge.svg)](https://github.com/QiuXu-Tech/memex/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-**A high-performance extra-context layer between an agent's history and its model window.** Memex treats context as a hierarchy: eligible older text spans can be moved to sticky L2/L3 archives, capacity is managed through a cold tier and bounded batch digests, and a model can retrieve matching records with hybrid search. Capture, retrieval and window selection do not guarantee that every relevant fact is included.
+**Beyond the context window. Back to the evidence.**
+
+Memex is an open-source, agent-agnostic extra-context layer designed to help AI agents maintain access to their working history, recover original evidence, and continue complex tasks beyond the limits of a model's native context window.
+
+Instead of relying entirely on increasingly compressed summaries, Memex treats context as a structured storage and retrieval hierarchy. Eligible earlier information can be archived locally, retrieved when relevant, and brought back into the model's active context within a configurable evidence budget. The goal is not simply to give AI agents more memory, but to make their accumulated context more useful, accessible, and verifiable.
+
+- **Long-horizon continuity:** Recover earlier requirements, decisions, tool outputs, and technical evidence across extended development sessions.
+- **Evidence-oriented retrieval:** Retrieve supporting source material rather than relying exclusively on generated summaries.
+- **Budget-aware context materialization:** Select and reconstruct relevant context under configurable token budgets.
+- **Hierarchical storage:** Combine session-private L2 archives, workspace-shared L3 archives, and lossless cold-tier compression.
+- **Efficient local retrieval:** SQLite-backed hybrid search, lexical ranking, and optimized record access.
+- **Agent-independent integration:** DeepSeek Harness, Claude Code, OpenAI Codex, and other MCP-compatible agents share one core.
+
+Capture, retrieval, and window selection do not guarantee that every relevant fact is included.
 
 **Context, not just memory.** DSH can archive eligible text spans and retain compaction source-event envelopes. Selected records can be paged back under a context budget; referenced external attachment bytes are not guaranteed to be captured. Read the concept: [Extra context, not just memory](docs/context-layer.md). Next direction: [Context materialization](docs/context-materialization.md) — exact window materialization and transformer context-specialist variants. Implemented: canonical events, materialized resident window (optional in the repository checkpoint; host profiles can enable it), trained transformer encoder reference, runnable paged-KV/prefix host, structural fidelity eval. **A-route validated on GPU:** vLLM 0.10.2 + Qwen2.5-0.5B reused a 2,498-token stable prefix via native paged-KV prefix cache (99.2% second-request prefix hit). A separate KV-tensor probe paged 720 blocks CPU↔GPU and reconstructed the cache **exactly** (paged-vs-direct logit diff 0.0). A **custom vLLM KV connector** now stores materialized prefixes externally; 8/8 second requests hit at 0.5B, **Qwen2.5-3B**, and **real Qwen2.5-7B-AWQ** (36 layers, 420MB KV, 91% GPU utilization; steady store 0.147s → hit 0.094s). End-to-end: a real materializer window was stored through the connector and hit on the second request (1,488 KV tokens, 0.018s hit).
 
@@ -17,7 +30,36 @@ It started as a DeepSeek Harness plugin and is now **agent-agnostic**:
 | **Gemini CLI, Cursor, Cline, Windsurf, Zed, …** | one stdio MCP server (`packages/memex-mcp`), 4 default tools, optional advanced tools + catalog resource |
 | **Any HTTP agent** | the same core can be embedded (`@qiuxu/memex-core`) |
 
-> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **196/196 offline tests**, **38/38 SQLite consistency tests**, **50/50 integrity and isolation tests**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+> Status: **0.65.0 (Memex), with unreleased fixes on main** — agent-agnostic core, MCP server, hot-body rescue, Claude Code/Codex adapters, **21 model profiles** (13 family bases + dedicated **GPT-6.1 Sol/Terra/GPT-6 Astra, Claude Opus 5.5/Sonnet 5.5/Fable 5.1/Haiku 5.5, DeepSeek Flash** variants), **365 local unit and integration tests passed on the November 25 main-branch candidate**, and a vLLM paged-KV prefix-cache validation on a Blackwell GPU. DSH `0.2.1-rc.3` for DSH mode; any MCP-capable agent otherwise. Memex stores records locally and adds no telemetry; an agent can send recalled content to its model provider.
+
+## Latest research results — November 25, 2026
+
+Our latest research investigates evidence recovery across repeated context compaction and the efficiency of local memory operations.
+
+| Evaluation | Reference | Memex |
+| --- | ---: | ---: |
+| Complete source receipts recovered (1,200 estimated-token ceiling) | 20/36 (rolling summaries) | **36/36** |
+| Correctly cited Codex answers (paired synthetic questions) | 6/12 (rolling summaries) | **12/12** |
+| Warm local mixed MCP median latency | W47 baseline | **~40% lower** |
+| Local unit and integration tests | — | **365 passed** |
+
+In two synthetic software-development trajectories, each with three scripted compaction boundaries, Memex's opt-in query-ranked paging recovered all 36 expected source receipts under a shared 1,200-estimated-token evidence ceiling. The separate archive round-trip audit reconstructed all 118 shadowed events. A paired Codex evaluation recovered and correctly cited all 12 target answers, compared with six using rolling summaries; the six remaining summary answers appropriately abstained.
+
+The final runtime optimization reduced median latency by 40.33% and 40.12% in two controlled mixed MCP comparisons against W47, and by 32.27% and 31.92% against the earlier PR #6 candidate. The 512-record search-only subset improved 28.24% and 28.23% against W47. All final comparisons preserved full tool responses and passed the per-stratum regression guards. The warm local stdio workload used synthetic 12- and 512-record stores on one machine (Node.js 25.9.0), and included search, preview, open, misses, and access-denied requests.
+
+The final local verification on Node.js 24.22.3 passed 365 unit and integration tests (197 core, 39 SQLite, 50 integrity, 36 materializer, and 43 audit), plus build, bundle parity, synthetic recall, scale smoke, and differential checks.
+
+These results demonstrate the potential of evidence-oriented context management to support more continuous, grounded, and efficient agent workflows.
+
+**Research transparency:** These are controlled synthetic experiments, not native live-host workflow evaluations. Query-ranked paging is opt-in. Conflicting claims remained alongside supporting evidence in 16/36 probes, and neither answer arm produced unsupported assertions. The findings do not establish universal retrieval accuracy, end-to-end agent speedups, or a reduction in hallucination rates.
+
+- [Latest research report](docs/research/2026-11-25/followup/RESULTS.md)
+- [Repeated compaction evaluation](docs/context-compaction-evaluation.md)
+- [Paired latency measurements](docs/research/2026-11-25/followup/latency.json)
+- [Validation receipt](docs/research/2026-11-25/followup/validation.json)
+- [Implementation and research PR #6](https://github.com/QiuXu-Tech/memex/pull/6)
+
+Developed as part of Nobilum's research into more capable and reliable AI agent systems. Open-source under the MIT License.
 
 **Archive and privacy repairs:** compaction records, canonical events and completion markers now commit together; incomplete sources remain retryable. Claude transcript copies are split into untrusted, session-private parts, and adapter level restrictions no longer inherit a previously enabled shared scope. Superseded and expired records are excluded from normal recall; new materializer traces record metadata rather than full text. Complete backups require both record files and the matching SQLite database. [Behavior and remaining limits](docs/archive-integrity-20261102.md).
 
@@ -299,7 +341,7 @@ Full design: [docs/architecture.md](docs/architecture.md). Measured results: [do
 | `packages/memex-compress` | capacity compression (cold + digest) and compression history |
 | `packages/memex-api` | nine `/api/memory.*` HTTP routes for the panel |
 | `packages/memex-ui` | Web client half: panel + context-ring bridge |
-| `test/` | offline harness (196 tests, no `node_modules`; stubs for host packages) |
+| `test/` | offline harness (197 core tests; no `node_modules`; stubs for host packages) |
 | `scripts/` | build/check bundle, scale & recall benchmarks, backup/verify/restore |
 
 ## Requirements
@@ -370,7 +412,7 @@ HTTP API: `GET /api/memory.index|record|search|metrics`, `POST /api/memory.statu
 
 ## Evaluation
 
-The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The latest offline harness passed **196/196**, with **38/38 SQLite consistency** checks and **50/50 integrity and isolation** checks.
+The public benchmark below is the historical v0.30.0 run; later materializer/selection experiments are in `docs/context-materialization.md` and are not a rerun of the public benchmark suite. The November 25, 2026 follow-up passed **365 local unit and integration tests**: **197 core**, **39 SQLite consistency**, **50 integrity and isolation**, **36 materializer**, and **43 audit** tests, plus separate build, parity, recall, scale, and differential checks. See [the final report](docs/research/2026-11-25/followup/RESULTS.md) and [validation receipt](docs/research/2026-11-25/followup/validation.json).
 
 | Metric | Result |
 |---|---|
@@ -397,7 +439,7 @@ Reproduction commands, including the required saved summary and cold target rati
 ```bash
 node scripts/build-bundle.mjs                        # generate bundle modules
 node scripts/check-bundle.mjs                        # source/bundle parity
-node --import ./test/register.mjs ./test/run.mjs     # offline harness (196 tests)
+node --import ./test/register.mjs ./test/run.mjs     # offline core harness (197 tests)
 node --import ./test/register.mjs scripts/recall-eval.mjs --suite all
 node --import ./test/register.mjs scripts/scale-bench.mjs
 ```
