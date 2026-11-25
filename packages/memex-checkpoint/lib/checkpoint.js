@@ -499,6 +499,14 @@ export function registerCheckpointPolicy(ctx, memory, config = {}) {
 
   // ── live event tracking ────────────────────────────────────────────────────
   ctx.on('session/event', (session, event) => {
+    if (event.type === 'compaction/summary') {
+      // Previously injected evidence may have been shadowed with the old
+      // window. Deduplicate again only after it is offered in the new one.
+      catalogDigest.delete(session.id)
+      materializerDigest.delete(session.id)
+      shown.delete(session.id)
+      lastRecall.delete(session.id)
+    }
     if (!policyConfig.autoArchive) return
     try {
       bufferEvent(session, event)

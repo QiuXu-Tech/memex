@@ -52,6 +52,25 @@ const write = (store, body = 'original body') => store.write({
   body, workspaceKey: 'wk-lock', scope: 'workspace',
 })
 
+test('cold search works through migration from an archive without the cold column', async () => {
+  await withStore(async (store, root) => {
+    const card = write(store, 'a one-of-a-kind body with migrationneedle836')
+    const query = { workspaceKey: card.workspaceKey, query: 'migrationneedle836', limit: 5 }
+    store.close()
+    const legacy = new DatabaseSync(join(root, 'index.db'))
+    try {
+      legacy.exec('DROP INDEX records_cold_probe; ALTER TABLE records DROP COLUMN cold')
+    } finally {
+      legacy.close()
+    }
+    assert.equal(store.search(query).hits[0]?.id, card.id)
+    const plan = store.database().prepare('EXPLAIN QUERY PLAN SELECT 1 FROM records WHERE cold = 1 LIMIT 1').all()
+    assert.ok(plan.some(row => row.detail.includes('records_cold_probe')))
+    store.archiveCold(card.id)
+    assert.equal(store.search(query).hits[0]?.cold, true)
+  })
+})
+
 test('a blocked update never changes the existing body or metadata', async () => {
   await withStore(async (store) => {
     const card = write(store)

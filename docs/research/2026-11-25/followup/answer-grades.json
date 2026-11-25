@@ -1,0 +1,385 @@
+{
+  "kind": "single-pass-synthetic-context-answer-comparison",
+  "modelRequested": "gpt-6.2-sol / medium",
+  "evidenceCeilingEstimatedTokens": 1200,
+  "summary": {
+    "query-ranked-pager": {
+      "questions": 12,
+      "groundedCorrect": 12,
+      "appropriateAbstentions": 0,
+      "unsupportedAssertions": 0
+    },
+    "rolling-summary": {
+      "questions": 12,
+      "groundedCorrect": 6,
+      "appropriateAbstentions": 6,
+      "unsupportedAssertions": 0
+    }
+  },
+  "rows": [
+    {
+      "id": "01ea57e3c1b8",
+      "trajectory": "forge-release",
+      "boundary": 2,
+      "probe": "retained-tail",
+      "arm": "query-ranked-pager",
+      "source": "[forge-release/retained-2] Forge release queue review stays read-only this turn.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The user authorizes only a read-only review of the Forge release queue this turn. [forge-release/retained-2]",
+      "panel": "one",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "10402e3103ae",
+      "trajectory": "keel-migration",
+      "boundary": 2,
+      "probe": "retained-tail",
+      "arm": "query-ranked-pager",
+      "source": "[keel-migration/retained-2] Keel schema migration review stays read-only this turn.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The user authorizes only a read-only review of the Keel schema migration this turn. [keel-migration/retained-2]",
+      "panel": "one",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "1f92e9b40c97",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "verification-status",
+      "arm": "query-ranked-pager",
+      "source": "[keel-migration/check-r2] Keel schema migration replica restore: FAIL with EXIT_42. Preserve the first failing receipt.",
+      "sourceRole": "tool",
+      "lures": [
+        "Keel schema migration replica restore: PASS."
+      ],
+      "sourceVisible": true,
+      "answer": "The latest replica restore tool receipt records FAIL with EXIT_42 and calls for preserving the first failing receipt [keel-migration/check-r2].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "222e996789b5",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "latest-readback",
+      "arm": "query-ranked-pager",
+      "source": "[forge-release/readback-r3] Forge release queue config/release-queue.toml selected queue-cypress; overrides queue-saffron.",
+      "sourceRole": "tool",
+      "lures": [
+        "config/release-queue.toml selected queue-indigo",
+        "config/release-queue.toml selected queue-saffron"
+      ],
+      "sourceVisible": true,
+      "answer": "The current tool readback selects queue-cypress in config/release-queue.toml, overriding queue-saffron [forge-release/readback-r3].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "27d57eaab05b",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "verification-status",
+      "arm": "query-ranked-pager",
+      "source": "[forge-release/check-r2] Forge release queue cross-region rollback: FAIL with EXIT_17. Preserve the first failing receipt.",
+      "sourceRole": "tool",
+      "lures": [
+        "Forge release queue cross-region rollback: PASS."
+      ],
+      "sourceVisible": true,
+      "answer": "The latest cross-region rollback tool receipt records FAIL with EXIT_17 and calls for preserving the first failing receipt [forge-release/check-r2].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "2b923bb8eec9",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "clipped-receipt",
+      "arm": "rolling-summary",
+      "source": "[keel-migration/long-log] Keel schema migration restoresigil84: verification artifact digest abcdef4268.",
+      "sourceRole": "tool",
+      "lures": [],
+      "sourceVisible": false,
+      "answer": "UNKNOWN. The supplied evidence lacks a restoresigil84 log or receipt reporting the artifact digest.",
+      "panel": "one",
+      "score": "appropriate_abstention"
+    },
+    {
+      "id": "2bad1f5a43e1",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "explicit-unknown",
+      "arm": "rolling-summary",
+      "source": "[keel-migration/audit-r3] Keel schema migration production cutover receipt: UNKNOWN. Staging readback confirmed, production verification pending.",
+      "sourceRole": "tool",
+      "lures": [
+        "Keel schema migration production cutover receipt: CUTOVER_KEEL_99."
+      ],
+      "sourceVisible": true,
+      "answer": "The production cutover receipt is UNKNOWN. The tool audit confirms staging readback and says production verification is pending [keel-migration/audit-r3].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "41b200137937",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "verification-status",
+      "arm": "rolling-summary",
+      "source": "[keel-migration/check-r2] Keel schema migration replica restore: FAIL with EXIT_42. Preserve the first failing receipt.",
+      "sourceRole": "tool",
+      "lures": [
+        "Keel schema migration replica restore: PASS."
+      ],
+      "sourceVisible": false,
+      "answer": "UNKNOWN. The PASS claim appears only in the assistant handoff, and the supplied evidence lacks a replica restore tool receipt.",
+      "panel": "one",
+      "score": "appropriate_abstention"
+    },
+    {
+      "id": "4f2ed48c891e",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "clipped-receipt",
+      "arm": "rolling-summary",
+      "source": "[forge-release/long-log] Forge release queue drainseal82: verification artifact digest abcdef4268.",
+      "sourceRole": "tool",
+      "lures": [],
+      "sourceVisible": false,
+      "answer": "UNKNOWN. The supplied evidence lacks a drainseal82 log or receipt reporting the artifact digest.",
+      "panel": "one",
+      "score": "appropriate_abstention"
+    },
+    {
+      "id": "4fbeadb079a4",
+      "trajectory": "forge-release",
+      "boundary": 2,
+      "probe": "retained-tail",
+      "arm": "rolling-summary",
+      "source": "[forge-release/retained-2] Forge release queue review stays read-only this turn.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The retained user instruction permits only a read-only review of the Forge release queue this turn [forge-release/retained-2].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "53a86bedb7a3",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "explicit-unknown",
+      "arm": "query-ranked-pager",
+      "source": "[forge-release/audit-r3] Forge release queue production settlement receipt: UNKNOWN. Staging readback confirmed, production verification pending.",
+      "sourceRole": "tool",
+      "lures": [
+        "Forge release queue production settlement receipt: SETTLED_FORGE_99."
+      ],
+      "sourceVisible": true,
+      "answer": "The production settlement receipt is UNKNOWN. The audit confirms a staging readback and reports that production verification is pending. [forge-release/audit-r3]",
+      "panel": "one",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "65808cd43f39",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "explicit-unknown",
+      "arm": "query-ranked-pager",
+      "source": "[keel-migration/audit-r3] Keel schema migration production cutover receipt: UNKNOWN. Staging readback confirmed, production verification pending.",
+      "sourceRole": "tool",
+      "lures": [
+        "Keel schema migration production cutover receipt: CUTOVER_KEEL_99."
+      ],
+      "sourceVisible": true,
+      "answer": "The production cutover receipt is UNKNOWN. The audit confirms a staging readback and reports that production verification is pending. [keel-migration/audit-r3]",
+      "panel": "one",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "72181326c7a8",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "latest-readback",
+      "arm": "query-ranked-pager",
+      "source": "[keel-migration/readback-r3] Keel schema migration db/keel/migrate.toml selected schema-clover; overrides schema-pine.",
+      "sourceRole": "tool",
+      "lures": [
+        "db/keel/migrate.toml selected schema-poppy",
+        "db/keel/migrate.toml selected schema-pine"
+      ],
+      "sourceVisible": true,
+      "answer": "The current tool readback selects schema-clover in db/keel/migrate.toml, overriding schema-pine [keel-migration/readback-r3].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "857a56160930",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "old-constraint",
+      "arm": "rolling-summary",
+      "source": "[forge-release/owner-constraint] Forge release queue. Keep rollback tag forge-v210 until the release receipt is signed.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": false,
+      "answer": "UNKNOWN. The supplied evidence lacks the original user instruction specifying the Forge release queue compatibility constraint.",
+      "panel": "two",
+      "score": "appropriate_abstention"
+    },
+    {
+      "id": "a47662098156",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "clipped-receipt",
+      "arm": "query-ranked-pager",
+      "source": "[forge-release/long-log] Forge release queue drainseal82: verification artifact digest abcdef4268.",
+      "sourceRole": "tool",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The tool log reports verification artifact digest abcdef4268 for drainseal82 [forge-release/long-log].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "ae5fa5af5e2a",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "old-constraint",
+      "arm": "rolling-summary",
+      "source": "[keel-migration/owner-constraint] Keel schema migration. Keep the v34 reader active until its consumer inventory is signed.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": false,
+      "answer": "UNKNOWN. The supplied evidence lacks the original user instruction specifying the Keel schema migration compatibility constraint.",
+      "panel": "two",
+      "score": "appropriate_abstention"
+    },
+    {
+      "id": "bbf73b5d17c7",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "old-constraint",
+      "arm": "query-ranked-pager",
+      "source": "[forge-release/owner-constraint] Forge release queue. Keep rollback tag forge-v210 until the release receipt is signed.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The user instructed that rollback tag forge-v210 be kept until the release receipt is signed. [forge-release/owner-constraint]",
+      "panel": "one",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "c00a44a1b103",
+      "trajectory": "keel-migration",
+      "boundary": 2,
+      "probe": "retained-tail",
+      "arm": "rolling-summary",
+      "source": "[keel-migration/retained-2] Keel schema migration review stays read-only this turn.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The retained user instruction permits only a read-only review of the Keel schema migration this turn [keel-migration/retained-2].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "c27e13e6d8d2",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "old-constraint",
+      "arm": "query-ranked-pager",
+      "source": "[keel-migration/owner-constraint] Keel schema migration. Keep the v34 reader active until its consumer inventory is signed.",
+      "sourceRole": "user",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The user instructed that the v34 reader stay active until its consumer inventory is signed. [keel-migration/owner-constraint]",
+      "panel": "one",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "d722b88d981a",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "clipped-receipt",
+      "arm": "query-ranked-pager",
+      "source": "[keel-migration/long-log] Keel schema migration restoresigil84: verification artifact digest abcdef4268.",
+      "sourceRole": "tool",
+      "lures": [],
+      "sourceVisible": true,
+      "answer": "The tool log reports verification artifact digest abcdef4268 for restoresigil84 [keel-migration/long-log].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "dac038d8545e",
+      "trajectory": "keel-migration",
+      "boundary": 3,
+      "probe": "latest-readback",
+      "arm": "rolling-summary",
+      "source": "[keel-migration/readback-r3] Keel schema migration db/keel/migrate.toml selected schema-clover; overrides schema-pine.",
+      "sourceRole": "tool",
+      "lures": [
+        "db/keel/migrate.toml selected schema-poppy",
+        "db/keel/migrate.toml selected schema-pine"
+      ],
+      "sourceVisible": true,
+      "answer": "The latest tool readback for db/keel/migrate.toml selects schema-clover, overriding schema-pine. [keel-migration/readback-r3]",
+      "panel": "one",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "e4e5c9c9b7ab",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "verification-status",
+      "arm": "rolling-summary",
+      "source": "[forge-release/check-r2] Forge release queue cross-region rollback: FAIL with EXIT_17. Preserve the first failing receipt.",
+      "sourceRole": "tool",
+      "lures": [
+        "Forge release queue cross-region rollback: PASS."
+      ],
+      "sourceVisible": false,
+      "answer": "UNKNOWN. The PASS claim appears only in the assistant handoff, and the supplied evidence lacks a cross-region rollback tool receipt.",
+      "panel": "one",
+      "score": "appropriate_abstention"
+    },
+    {
+      "id": "ebf7a56ba4d5",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "explicit-unknown",
+      "arm": "rolling-summary",
+      "source": "[forge-release/audit-r3] Forge release queue production settlement receipt: UNKNOWN. Staging readback confirmed, production verification pending.",
+      "sourceRole": "tool",
+      "lures": [
+        "Forge release queue production settlement receipt: SETTLED_FORGE_99."
+      ],
+      "sourceVisible": true,
+      "answer": "The production settlement receipt is UNKNOWN. The tool audit confirms staging readback and says production verification is pending [forge-release/audit-r3].",
+      "panel": "two",
+      "score": "grounded_correct"
+    },
+    {
+      "id": "eda0c0e3527a",
+      "trajectory": "forge-release",
+      "boundary": 3,
+      "probe": "latest-readback",
+      "arm": "rolling-summary",
+      "source": "[forge-release/readback-r3] Forge release queue config/release-queue.toml selected queue-cypress; overrides queue-saffron.",
+      "sourceRole": "tool",
+      "lures": [
+        "config/release-queue.toml selected queue-indigo",
+        "config/release-queue.toml selected queue-saffron"
+      ],
+      "sourceVisible": true,
+      "answer": "The latest tool readback for config/release-queue.toml selects queue-cypress, overriding queue-saffron. [forge-release/readback-r3]",
+      "panel": "one",
+      "score": "grounded_correct"
+    }
+  ]
+}

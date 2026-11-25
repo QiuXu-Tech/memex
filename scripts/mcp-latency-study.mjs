@@ -9,7 +9,9 @@ import { createInterface } from 'node:readline'
 import { syncBuiltinESMExports } from 'node:module'
 import { performance } from 'node:perf_hooks'
 
-const [base, candidate, output] = process.argv.slice(2)
+const [base, candidate, output, mode] = process.argv.slice(2)
+const paired = mode === '--paired'
+if (mode !== undefined && !paired) throw new Error('Unknown benchmark mode')
 if (!base || !candidate || !output) throw new Error('Usage: node scripts/mcp-latency-study.mjs BASELINE CANDIDATE NEW_OUTPUT.json')
 const repos = { A: resolve(base), B: resolve(candidate) }
 const sha = value => createHash('sha256').update(value).digest('hex')
@@ -17,7 +19,8 @@ const digest = value => sha(JSON.stringify(value, (_, item) => item && typeof it
   ? Object.fromEntries(Object.keys(item).sort().map(key => [key, item[key]])) : item))
 const sessionId = 'study-visible'
 const levels = ['l2', 'l3']
-const repeats = 12, warmups = 4
+const repeats = paired ? 32 : 12, warmups = paired ? 24 : 4
+const pairCount = 4
 const sequence = ['A', 'B', 'B', 'A']
 const search = (query, limit = 8, openTop = false) => ({ name: 'memory_search', arguments: { query, limit, openTop } })
 const open = id => ({ name: 'memory_open', arguments: { id, maxChars: 2000 } })
@@ -28,13 +31,14 @@ const codePaths = repo => [entry, 'packages/memex-mcp/package.json', ...fs.readd
 const source = repo => Object.fromEntries(codePaths(repo).map(path => [path, sha(fs.readFileSync(join(repo, path)))]))
 const statusOf = repo => {
   try {
-    const git = fs.existsSync('/Library/Developer/CommandLineTools/usr/bin/git') ? '/Library/Developer/CommandLineTools/usr/bin/git' : 'git'
+    const git = process.env.MEMEX_STUDY_GIT ?? (fs.existsSync('/Library/Developer/CommandLineTools/usr/bin/git') ? '/Library/Developer/CommandLineTools/usr/bin/git' : 'git')
     return execFileSync(git, ['--no-optional-locks', '-C', repo, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim()
   } catch { return null }
 }
 const report = { status: 'RUNNING', repos, node: process.version, sqlite: process.versions.sqlite,
   platform: platform(), arch: arch(), scriptSha256: sha(fs.readFileSync(new URL(import.meta.url))),
-  warmups, repeats, sequence, runs: [], probes: [], fixtures: [], startedAt: new Date().toISOString() }
+  warmups, repeats, schedule: paired ? 'alternating-adjacent-rpcs' : 'ABBA',
+  sequence: paired ? undefined : sequence, runs: [], probes: [], fixtures: [], startedAt: new Date().toISOString() }
 const outputPath = resolve(output)
 fs.mkdirSync(dirname(outputPath), { recursive: true })
 fs.writeFileSync(outputPath, JSON.stringify(report, null, 2), { flag: 'wx' })
@@ -83,8 +87,8 @@ function fixture(AgentMemory, n) {
   return { cwd, root, n, cases }
 }
 
-async function run(label, dataset, slot) {
-  const { cwd, root, n, cases } = dataset
+function startWorker(label, dataset, slot) {
+  const { cwd, root, n } = dataset
   const result = { label, slot, n, loadBefore: loadavg(), samples: [], stderr: '' }
   report.runs.push(result)
   const start = performance.now()
@@ -96,7 +100,7 @@ async function run(label, dataset, slot) {
   child.on('error', error => { result.spawnError = error.stack })
   child.stdin.on('error', error => { result.stdinError = error.stack })
   child.stderr.on('data', chunk => { result.stderr += chunk.toString() })
-  const timer = setTimeout(() => { result.timeout = true; child.kill('SIGKILL') }, 15000)
+  const timer = setTimeout(() => { result.timeout = true; child.kill('SIGKILL') }, 60000)
   let id = 0
   const notify = (method, params) => child.stdin.write(JSON.stringify({ jsonrpc: '2.0', method, params }) + '\n')
   async function rpc(method, params) {
@@ -110,36 +114,62 @@ async function run(label, dataset, slot) {
     if (response.id !== id || response.error || !response.result) throw new Error(`${method}: ${value}`)
     return { ms, response: response.result, bytes: Buffer.byteLength(value) + 1 }
   }
-  try {
+  const startMcp = async () => {
     const init = await rpc('initialize', { protocolVersion: '2024-11-05', capabilities: {}, clientInfo: { name: 'memex-local-study', version: '1' } })
     result.startupInitializeMs = performance.now() - start
     result.serverInfo = init.response.serverInfo
     notify('notifications/initialized', {})
     const listed = await rpc('tools/list', {})
-    for (const name of ['memory_search', 'memory_open']) if (!listed.response.tools.some(tool => tool.name === name)) throw new Error(`Missing tool ${name}`)
-    for (let i = 0; i < warmups + repeats; i++) for (let j = 0; j < cases.length; j++) {
-      const spec = cases[(j + i) % cases.length], index = i < warmups ? i : i - warmups
-      const request = spec.request(index)
-      const sample = await rpc('tools/call', request)
-      const text = sample.response.content?.map(block => block.text).join('\n') ?? ''
-      const sampleRow = { case: spec.id, index, warmup: i < warmups, ms: sample.ms, bytes: sample.bytes, sha256: digest(sample.response) }
-      result.samples.push(sampleRow)
-      if (Boolean(sample.response.isError) !== Boolean(spec.error) || !text.includes(spec.marker(index)) || text.includes('hidden-body')) {
-        result.badResponse = { case: spec.id, request, response: sample.response }
-        throw new Error(`Unexpected ${spec.id} response: ${text}`)
-      }
+    for (const name of ['memory_search', 'memory_open']) {
+      if (!listed.response.tools.some(tool => tool.name === name)) throw new Error(`Missing tool ${name}`)
     }
-  } catch (error) {
-    result.error = error.stack
-    throw error
-  } finally {
+  }
+  const sample = async (spec, index, warmup, first) => {
+    const request = spec.request(index)
+    const reply = await rpc('tools/call', request)
+    const text = reply.response.content?.map(block => block.text).join('\n') ?? ''
+    result.samples.push({ case: spec.id, index, warmup, first, ms: reply.ms, bytes: reply.bytes, sha256: digest(reply.response) })
+    if (Boolean(reply.response.isError) !== Boolean(spec.error) || !text.includes(spec.marker(index)) || text.includes('hidden-body')) {
+      result.badResponse = { case: spec.id, request, response: reply.response }
+      throw new Error(`Unexpected ${spec.id} response: ${text}`)
+    }
+  }
+  const finish = async () => {
     child.stdin.end()
     result.exit = await closed
     clearTimeout(timer)
     result.loadAfter = loadavg()
     save()
+    if (result.exit.code !== 0) throw new Error(`MCP worker exited ${JSON.stringify(result.exit)}`)
   }
-  if (result.exit.code !== 0) throw new Error(`MCP worker exited ${JSON.stringify(result.exit)}`)
+  return { startMcp, sample, finish }
+}
+
+async function runBlock(dataset, slots) {
+  const workers = []
+  try {
+    for (const [slot, label] of slots) {
+      const worker = startWorker(label, dataset, slot)
+      workers.push(worker)
+      await worker.startMcp()
+    }
+    const { cases } = dataset
+    for (let i = 0; i < warmups + repeats; i++) {
+      const warmup = i < warmups
+      const index = warmup ? i : i - warmups
+      for (let j = 0; j < cases.length; j++) {
+        const spec = cases[(j + i) % cases.length]
+        // Alternate who goes first per case on successive sweeps. The
+        // second RPC is issued only after the first reply was received.
+        const first = workers.length === 1 ? 0 : (i + cases.indexOf(spec)) % 2
+        await workers[first].sample(spec, index, warmup, true)
+        if (workers.length === 2) await workers[1 - first].sample(spec, index, warmup, false)
+      }
+    }
+  } finally {
+    const outcomes = await Promise.allSettled(workers.map(worker => worker.finish()))
+    for (const outcome of outcomes) if (outcome.status === 'rejected') throw outcome.reason
+  }
 }
 
 function probe(AgentMemory, dataset, label) {
@@ -192,18 +222,34 @@ try {
   const [Base, Candidate] = await Promise.all([importEngine(repos.A), importEngine(repos.B)])
   const datasets = [fixture(Base, 12), fixture(Base, 512)]
   save()
-  for (const dataset of datasets) for (const [slot, label] of sequence.entries()) await run(label, dataset, slot)
+  for (const dataset of datasets) {
+    if (paired) for (let pair = 0; pair < pairCount; pair++) {
+      const slots = [[pair * 2, 'A'], [pair * 2 + 1, 'B']]
+      if (pair % 2) slots.reverse()
+      await runBlock(dataset, slots)
+    }
+    else for (const [slot, label] of sequence.entries()) await runBlock(dataset, [[slot, label]])
+  }
+  const comparisons = paired ? Array.from({ length: pairCount }, (_, i) => [i * 2, i * 2 + 1]) : [[0, 1], [3, 2]]
+  const bySlot = n => report.runs.filter(item => item.n === n).sort((left, right) => left.slot - right.slot)
+  const timed = (n, slot) => bySlot(n)[slot].samples.filter(sample => !sample.warmup)
+  report.mixedPairs = comparisons.map(([a, b]) => {
+    const baselineMs = median(datasets.flatMap(({ n }) => timed(n, a).map(s => s.ms)))
+    const candidateMs = median(datasets.flatMap(({ n }) => timed(n, b).map(s => s.ms)))
+    return { a, b, baselineMs, candidateMs, reduction: 1 - candidateMs / baselineMs }
+  })
+  report.mixedMedianReduction = median(report.mixedPairs.map(pair => pair.reduction))
   report.summary = []
   for (const { n, cases } of datasets) for (const spec of cases) {
-    const workers = report.runs.filter(item => item.n === n).map(item => item.samples.filter(s => s.case === spec.id && !s.warmup))
+    const workers = bySlot(n).map(item => item.samples.filter(s => s.case === spec.id && !s.warmup))
     for (const group of workers) for (const [i, sample] of group.entries()) {
       if (sample.sha256 !== workers[0][i].sha256) throw new Error(`Complete MCP result mismatch for n=${n}, ${spec.id}, sample ${i}`)
     }
     const medians = workers.map(worker => median(worker.map(s => s.ms)))
-    const pairs = [[0, 1], [3, 2]].map(([a, b]) => ({ baselineMs: medians[a], candidateMs: medians[b], deltaMs: medians[b] - medians[a], reduction: 1 - medians[b] / medians[a] }))
+    const pairs = comparisons.map(([a, b]) => ({ baselineMs: medians[a], candidateMs: medians[b], deltaMs: medians[b] - medians[a], reduction: 1 - medians[b] / medians[a] }))
     report.summary.push({ n, case: spec.id, outputParity: true, pairs, pairedMedianDeltaMs: median(pairs.map(p => p.deltaMs)), pairedMedianReduction: median(pairs.map(p => p.reduction)) })
   }
-  for (const dataset of datasets) for (const [label, Engine] of [['A', Base], ['B', Candidate]]) probe(Engine, dataset, label)
+  if (!paired) for (const dataset of datasets) for (const [label, Engine] of [['A', Base], ['B', Candidate]]) probe(Engine, dataset, label)
   report.sourceAfter = Object.fromEntries(Object.entries(repos).map(([label, repo]) => [label, source(repo)]))
   if (digest(report.sourceBefore) !== digest(report.sourceAfter)) throw new Error('Repository sources changed during measurement')
   report.status = 'PASS'

@@ -1,5 +1,7 @@
 # W48 local MCP search latency study
 
+The subsequent [follow-up](followup/RESULTS.md) repeats the latency study with a stabilized baseline and adds repeated-compaction quality measurements.
+
 25 November 2026, Asia/Shanghai. The starting point is `ece03e38e9e70c6ea57111bc1991b58987b1ae1d` from PR #5. The study measures a local stdio server and synthetic persisted archives. The planned 30% reduction in mixed warm request latency was **not achieved**.
 
 ## Three rounds

@@ -1113,6 +1113,41 @@ await test('G2', 'pre-step does not repeat the recall for identical user text', 
   })
 })
 
+await test('G3', 'a new compacted window can receive unchanged evidence again', async () => {
+  for (const [materializer, forms] of [
+    ['off', ['catalog', 'recall']],
+    ['timeline-exact', ['materialized-context']],
+  ]) {
+    await withInstance('g3', {
+      checkpoint: { autoArchive: false, materializer },
+      ctx: { services: { llm: undefined } },
+    }, async ({ instance, ctx }) => {
+      const session = createSession({ id: 'sess-g3', cwd: '/tmp/ws-g3' })
+      const record = await instance.write({
+        kind: 'incident',
+        title: 'ECONNREFUSED port 8787',
+        body: 'Listener port 8787 diagnosis requires the original receipt.',
+        workspaceKey: workspaceKeyFor(session),
+        sessionId: session.id,
+      })
+      const step = async () => {
+        const decision = createPreStepDecision(session, RECALL_QUERY)
+        return (await ctx.emit('agent/pre-step', { agent: { session } }, terminalNext(decision))).messages
+          .filter(message => forms.includes(message.source?.form))
+      }
+      for (let boundary = 0; boundary <= 3; boundary++) {
+        if (boundary > 0) {
+          await ctx.emit('session/event', session, createCompactionEvent({ seq: boundary * 100, compactionId: `g3-${boundary}` }))
+        }
+        const messages = await step()
+        assert.deepEqual(messages.map(message => message.source.form), forms, `compaction boundary ${boundary}`)
+        assert.ok(messages.some(message => message.source.recordIds?.includes(record.id)))
+        assert.deepEqual(await step(), [], 'unchanged evidence is deduplicated within one window')
+      }
+    })
+  }
+})
+
 // H. LLM card refinement ─────────────────────────────────────────────────────
 
 const REFINED_CARD = {
