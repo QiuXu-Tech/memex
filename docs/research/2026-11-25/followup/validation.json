@@ -1,0 +1,91 @@
+{
+  "node": "24.22.3",
+  "unitAndIntegrationCount": 365,
+  "localChecks": [
+    {
+      "check": "build",
+      "status": "PASS",
+      "log": "validation-build.log",
+      "sha256": "d670c0f96387e667ee76586b2b0f20e2a5c9da1dfed39ddcecf82ae2c7e4278f"
+    },
+    {
+      "check": "parity",
+      "status": "PASS",
+      "log": "validation-parity.log",
+      "sha256": "cd6c0cb7d66200ede0438c09fb98f7e30698af87c4e75b2540537156cc4c4b26"
+    },
+    {
+      "check": "core",
+      "status": "PASS",
+      "log": "validation-core.log",
+      "sha256": "ec6bc0220f529f29372ab723fd814429a43b31abd024d94784c049346ddbd566",
+      "tests": 197
+    },
+    {
+      "check": "sqlite",
+      "status": "PASS",
+      "log": "validation-sqlite.log",
+      "sha256": "770bf17add4d252beca25730e0a12284dfd04352d0f5fa6a58300a1c166104cf",
+      "tests": 39
+    },
+    {
+      "check": "integrity",
+      "status": "PASS",
+      "log": "validation-integrity.log",
+      "sha256": "b1ae77bca6b20fc5420f8b55eed81703d994fc6af6925e8360d70c468ff7c842",
+      "tests": 50
+    },
+    {
+      "check": "materializer",
+      "status": "PASS",
+      "log": "validation-materializer.log",
+      "sha256": "9ce9e6be1f20ddcb7fd9b155c678fc19420783e50af08d701f9557524b1b5978",
+      "tests": 36
+    },
+    {
+      "check": "audit",
+      "status": "PASS",
+      "log": "validation-audit.log",
+      "sha256": "4676f80aa08f022d68cb2cdea2217e9308b339e3dcb421be83809ff09afcc0af",
+      "tests": 43
+    },
+    {
+      "check": "recall",
+      "status": "PASS",
+      "log": "validation-recall.log",
+      "sha256": "ccf8ea50c5463aa7f899aaa154057104c4a289f5b9fe94176e4aa56f1f95b1cc"
+    },
+    {
+      "check": "scale",
+      "status": "PASS",
+      "log": "validation-scale.log",
+      "sha256": "e82c7b7d10e89990dd94ac5fc93d686f4079d5b9c78eade7c86d7e3a29f08a4d"
+    },
+    {
+      "check": "search-differential",
+      "status": "PASS",
+      "log": "validation-search-differential.log",
+      "sha256": "44c54123b6bdf05902cac7df883a88a396977e0c9c3c3e50ebe402fb41c97808"
+    },
+    {
+      "check": "search-lifecycle",
+      "status": "PASS",
+      "log": "validation-search-lifecycle.log",
+      "sha256": "240beee104cea6c9f6ed243faba6f2ce39758c0a805cf594f6ecc29f21016d56"
+    },
+    {
+      "check": "cold-differential",
+      "status": "PASS",
+      "log": "validation-cold-differential.log",
+      "sha256": "b97e1feb63ccef0525cf98fcd9e99e96a447591ea9640b04172becacf0af3050"
+    },
+    {
+      "check": "context",
+      "status": "PASS",
+      "log": "validation-context.log",
+      "sha256": "a9fec07f8d1c1a4964f298a3a0ca35f6d4f44bbba418eba8f87e0e9cd10e085f"
+    }
+  ],
+  "redBeforeFix": "196/197 passed. G3 failed at boundary 1 on the unchanged checkpoint policy.",
+  "validationScope": "offline and synthetic"
+}
