@@ -1,0 +1,112 @@
+[
+  {
+    "node": "v24.22.3",
+    "suite": "build",
+    "args": [
+      "scripts/build-bundle.mjs"
+    ],
+    "exit": 0,
+    "sha256": "d670c0f96387e667ee76586b2b0f20e2a5c9da1dfed39ddcecf82ae2c7e4278f"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "bundle-parity",
+    "args": [
+      "scripts/check-bundle.mjs"
+    ],
+    "exit": 0,
+    "sha256": "cd6c0cb7d66200ede0438c09fb98f7e30698af87c4e75b2540537156cc4c4b26"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "core",
+    "args": [
+      "--import",
+      "./test/register.mjs",
+      "test/run.mjs"
+    ],
+    "exit": 0,
+    "sha256": "cc287872014b87cb6a19eeb29ba9e59e6a9f4c6c53b8f1a4c17d1f1e2ab6a110"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "sqlite",
+    "args": [
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "test/sqlite-consistency.mjs"
+    ],
+    "exit": 0,
+    "sha256": "b11e717d827125eac8bcc964fbde1fd68f96f0a86b54011c3f12c174aad27e49"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "integrity",
+    "args": [
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "test/integrity-regression.mjs"
+    ],
+    "exit": 0,
+    "sha256": "ac0a4a9555913398666f517339bda0eaf23d419b0ca39a1b6fb6e9d29b16f768"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "audit",
+    "args": [
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "test/audit-regression.mjs",
+      "test/audit-integration.mjs",
+      "test/audit-ui.mjs",
+      "test/audit-install.mjs"
+    ],
+    "exit": 0,
+    "sha256": "26c12e53030ea98619e1bca4e5cf681fb622b19bcf91f4ee1d05ad1c2573a09b"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "materializer",
+    "args": [
+      "--import",
+      "./test/register.mjs",
+      "--test",
+      "test/materializer-performance.mjs"
+    ],
+    "exit": 0,
+    "sha256": "ceedd4c8bc864cd47394965d712b3b7e6f4ee1f845e2f8dbf321897895608a4a"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "recall",
+    "args": [
+      "--import",
+      "./test/register.mjs",
+      "scripts/recall-eval.mjs",
+      "--suite",
+      "synthetic",
+      "--threshold",
+      "0.9"
+    ],
+    "exit": 0,
+    "sha256": "2056b76ce7ee6951eb9dfaaec8da63a54b902f5264067488576a0fdf80e85d4c"
+  },
+  {
+    "node": "v24.22.3",
+    "suite": "scale",
+    "args": [
+      "--import",
+      "./test/register.mjs",
+      "scripts/scale-bench.mjs",
+      "--records",
+      "1000",
+      "--tokens",
+      "1000"
+    ],
+    "exit": 0,
+    "sha256": "a0d771e8c769a567457aa80ec38a9881ac6ae3f6d9522ce8d0307f7dec527e8f"
+  }
+]

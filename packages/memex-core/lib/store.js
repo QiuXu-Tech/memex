@@ -186,6 +186,9 @@ function makeSnippet(text, query, max = 180) {
  * workspace-scoped and (later) cross-workspace queries.
  */
 export class LocalStoreCore {
+  #searchConnection
+  #searchStatements = new Map()
+
   /**
    * @param {object} options - Storage options.
    * @param {string} options.root - Absolute memory root directory.
@@ -467,6 +470,8 @@ export class LocalStoreCore {
 
   /** Close the database; safe to call more than once. */
   close() {
+    this.#searchStatements.clear()
+    this.#searchConnection = undefined
     try {
       this.db?.close()
     } catch {
@@ -481,6 +486,22 @@ export class LocalStoreCore {
   /** @returns {DatabaseSync} The open database. */
   database() {
     return this.ensure().db
+  }
+
+  #prepareSearch(db, sql) {
+    if (this.#searchConnection !== db) {
+      this.#searchStatements.clear()
+      this.#searchConnection = db
+    }
+    let statement = this.#searchStatements.get(sql)
+    if (statement === undefined) {
+      statement = db.prepare(sql)
+      // Filter shapes and placeholder counts vary. Retain only the latest
+      // 32 distinct shapes, and always execute with the caller's parameters.
+      if (this.#searchStatements.size === 32) this.#searchStatements.delete(this.#searchStatements.keys().next().value)
+      this.#searchStatements.set(sql, statement)
+    }
+    return statement
   }
 
   /** Path of one record file. */
@@ -847,7 +868,7 @@ export class LocalStoreCore {
       ? ftsTerms.map((term) => `"${term.replaceAll('"', '""')}"`).join(' OR ')
       : undefined
     if (ftsMatch !== undefined) {
-      const rows = db.prepare(`
+      const rows = this.#prepareSearch(db, `
         SELECT r.*, snippet(records_fts, 1, '[', ']', '…', 16) AS snippet, bm25(records_fts) AS rank
         FROM records_fts JOIN records r ON r.rowid = records_fts.rowid
         WHERE records_fts MATCH ? ${where}
@@ -867,7 +888,7 @@ export class LocalStoreCore {
     ])]
     const coldFtsMatch = coldFtsTerms.length > 0 ? coldFtsTerms.map((term) => `"${term.replaceAll('"', '""')}"`).join(' OR ') : undefined
     if (coldFtsMatch !== undefined && keyTerms.length === 0 && !hasFullyCoveredColdCandidate) {
-      const coldRows = db.prepare(`
+      const coldRows = this.#prepareSearch(db, `
         SELECT r.*, snippet(records_fts, 1, '[', ']', '…', 16) AS snippet, bm25(records_fts) AS rank
         FROM records_fts JOIN records r ON r.rowid = records_fts.rowid
         WHERE records_fts MATCH ? ${where} AND r.cold = 1
@@ -886,7 +907,7 @@ export class LocalStoreCore {
         const { clauses: coldClauses, params: coldParams } = this.workspaceClause({ ...query, cold: 1 }, { alias: 'r.' })
         const coldWhere = coldClauses.length > 0 ? `AND ${coldClauses.join(' AND ')}` : ''
         const likeSql = likeTerms.map(() => 'r.abstract LIKE ?').join(' OR ')
-        const coldLikes = db.prepare(`
+        const coldLikes = this.#prepareSearch(db, `
           SELECT r.*, '' AS snippet, 0 AS rank FROM records r
           WHERE (${likeSql}) ${coldWhere}
           ORDER BY r.updated_at DESC LIMIT 40
@@ -907,7 +928,7 @@ export class LocalStoreCore {
       : terms.filter((term) => Array.from(term).length < 3 || /[\u4e00-\u9fff]/.test(term)).slice(0, 8)
     if (likeTerms.length > 0) {
       const like = likeTerms.map(() => '(r.title LIKE ? OR r.summary LIKE ? OR r.use_when LIKE ? OR r.abstract LIKE ?)').join(' OR ')
-      const rows = db.prepare(`
+      const rows = this.#prepareSearch(db, `
         SELECT r.*, '' AS snippet, 0 AS rank FROM records r
         WHERE (${like}) ${where}
         ORDER BY r.updated_at DESC LIMIT ?
@@ -918,9 +939,13 @@ export class LocalStoreCore {
     // abstracts, but a distinctive identifier may live only in a hot body.
     // Hot tier only: cold bodies live on disk and are reached by grep/open.
     if (rowsById.size < limit) {
-      const pattern = terms.filter((term) => term.length >= 3).slice(0, 4).map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
-      if (pattern.length > 0) {
-        const expression = new RegExp(pattern, 'i')
+      // A quoted phrase containing LF could never match one line. Apply the
+      // same four-term cap before dropping those phrases.
+      const scanTerms = terms.filter((term) => term.length >= 3).slice(0, 4)
+      if (scanTerms.length > 0) {
+        const pattern = scanTerms.filter((term) => !term.includes('\n')).map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
+        // Keep the legacy list/read path even when every phrase spans lines.
+        const expression = new RegExp(pattern || '(?!)', 'i')
         const candidates = this.list({
           workspaceKey: query.workspaceKey,
           scopes: query.scopes,
@@ -944,8 +969,11 @@ export class LocalStoreCore {
           } catch {
             continue
           }
-          const line = text.split('\n').find((entry) => expression.test(entry))
-          if (line === undefined) continue
+          const match = expression.exec(text)
+          if (match === null) continue
+          const start = text.lastIndexOf('\n', match.index - 1) + 1
+          const end = text.indexOf('\n', match.index)
+          const line = text.slice(start, end < 0 ? text.length : end)
           rowsById.set(card.id, { ...this.rowById(card.id), snippet: clipText(line.trim(), 240), rank: 0 })
         }
       }
@@ -977,7 +1005,7 @@ export class LocalStoreCore {
           const placeholders = anchors.map(() => '?').join(', ')
           const { clauses, params } = this.workspaceClause({ ...query, cold: 0 }, { alias: 'r.' })
           const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
-          const candidateRows = this.database().prepare(`
+          const candidateRows = this.#prepareSearch(this.database(), `
             SELECT t.record_id AS recordId, COUNT(*) AS matches
             FROM record_terms t JOIN records r ON r.id = t.record_id
             WHERE t.term_hash IN (${placeholders}) ${where}
@@ -1012,7 +1040,7 @@ export class LocalStoreCore {
     if (numericAnchors.length > 0 && rowsById.size > 0) {
       const numericHashes = [...new Set(numericAnchors.map((term) => fnv1a32(term)))]
       const numericPlaceholders = numericHashes.map(() => '?').join(', ')
-      const counts = this.database().prepare(`
+      const counts = this.#prepareSearch(this.database(), `
         SELECT term_hash AS hash, COUNT(*) AS count FROM record_terms
         WHERE term_hash IN (${numericPlaceholders}) GROUP BY term_hash
       `).all(...numericHashes)
@@ -1021,7 +1049,7 @@ export class LocalStoreCore {
         const rarePlaceholders = rareHashes.map(() => '?').join(', ')
         const { clauses, params } = this.workspaceClause({ ...query, cold: 0 }, { alias: 'r.' })
         const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
-        const candidates = this.database().prepare(`
+        const candidates = this.#prepareSearch(this.database(), `
           SELECT t.record_id AS recordId, COUNT(*) AS matches
           FROM record_terms t JOIN records r ON r.id = t.record_id
           WHERE t.term_hash IN (${rarePlaceholders}) ${where}
@@ -1062,7 +1090,7 @@ export class LocalStoreCore {
       const placeholders = hashes.map(() => '?').join(', ')
       const { clauses, params } = this.workspaceClause({ ...query, cold: 1 }, { alias: 'r.' })
       const where = clauses.length > 0 ? `AND ${clauses.join(' AND ')}` : ''
-      const coldRows = this.database().prepare(`
+      const coldRows = this.#prepareSearch(this.database(), `
         SELECT r.*, '' AS snippet, 0 AS rank, COUNT(*) AS anchorHits
         FROM record_terms t JOIN records r ON r.id = t.record_id
         WHERE t.term_hash IN (${placeholders}) ${where}
@@ -1088,7 +1116,7 @@ export class LocalStoreCore {
       if (bestCoverage === 0) {
         const { clauses, params } = this.workspaceClause({ ...query, cold: 0 }, { alias: 'r.' })
         const where = clauses.length > 0 ? `WHERE ${clauses.join(' AND ')}` : ''
-        const hotRows = this.database().prepare(`
+        const hotRows = this.#prepareSearch(this.database(), `
           SELECT r.*, '' AS snippet, 0 AS rank FROM records r ${where}
           ORDER BY r.updated_at DESC LIMIT 240
         `).all(...params)
