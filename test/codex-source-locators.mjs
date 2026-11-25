@@ -19,13 +19,14 @@ test('opt-in MCP search can open the matching original source outside its render
   const visible = makeEngine('study')
   const foreign = makeEngine('other')
   try {
-    const raw = { type: 'commandExecution', aggregatedOutput: '𝔄'.repeat(2_500) + ' QUEUECAPSULE77 evidence: failed, exit 17' }
+    const raw = { type: 'commandExecution', command: 'probe QUEUECAPSULE77', aggregatedOutput: '𝔄'.repeat(2_500) + ' QUEUECAPSULE77 evidence: failed, exit 17' }
     for (const [engine, id] of [[visible, 'visible'], [foreign, 'foreign']]) {
       engine.write({ id, scope: 'session', kind: 'episode', title: 'QUEUECAPSULE77 diagnostic',
-        body: 'Rendered diagnostic excludes the tool receipt.', provenance: { shadowedSeqs: [20, 21] }, trust: 'untrusted' })
+        body: 'Rendered diagnostic excludes the tool receipt.', provenance: { shadowedSeqs: [20, 21, 22] }, trust: 'untrusted' })
       engine.store.appendContextEvents({ recordId: id, events: [
         { sequence: 20, role: 'assistant', content: 'Draft handoff claims success.', attachments: [{ rawEvent: { role: 'assistant', text: 'Draft handoff claims success.' } }] },
         { sequence: 21, role: 'tool', content: raw.aggregatedOutput, attachments: [{ rawEvent: raw }] },
+        { sequence: 22, role: 'tool', content: 'Unrelated item.', attachments: [{ rawEvent: { command: 'other', status: 'completed', result: 'passed' } }] },
       ] })
     }
     const invoke = (...requests) => {
@@ -39,7 +40,7 @@ test('opt-in MCP search can open the matching original source outside its render
       assert.equal(exchange.status, 0, exchange.stderr)
       return exchange.stdout.trim().split('\n').slice(1).map(line => JSON.parse(line).result)
     }
-    const search = sourceEvents => ({ name: 'memory_search', arguments: { query: 'QUEUECAPSULE77', sourceEvents } })
+    const search = sourceEvents => ({ name: 'memory_search', arguments: { query: 'QUEUECAPSULE77 command status result', sourceEvents } })
     const [normal, located, invalid] = invoke(search(undefined), search(true), search('yes'))
     assert.doesNotMatch(normal.content[0].text, /Source event:/)
     assert.equal(invalid.isError, true)

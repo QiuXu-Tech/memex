@@ -1,0 +1,56 @@
+{
+  "node": "24.22.3",
+  "countedUnitAndIntegrationTests": 366,
+  "suites": {
+    "build": {
+      "status": "PASS",
+      "logSha256": "edb5f5a909cdd8e8479e7388b9df412128e466bc9036711a3665baf45dc35671"
+    },
+    "parity": {
+      "status": "PASS",
+      "logSha256": "cd6c0cb7d66200ede0438c09fb98f7e30698af87c4e75b2540537156cc4c4b26"
+    },
+    "locator": {
+      "status": "PASS",
+      "logSha256": "9f93dae3758de2f847bd7f0f1c1159d6ee8f9eff3711d9a7b0c008dfb624a56b",
+      "tests": 1
+    },
+    "core": {
+      "status": "PASS",
+      "logSha256": "ec6bc0220f529f29372ab723fd814429a43b31abd024d94784c049346ddbd566",
+      "tests": 197
+    },
+    "sqlite": {
+      "status": "PASS",
+      "logSha256": "9db979e605bb0a6e0699aaf64acfecb86a92695e9fc5092c61dbc5ca34c6aff3",
+      "tests": 39
+    },
+    "integrity": {
+      "status": "PASS",
+      "logSha256": "5c22e86c38fb7dd0a11cd4fd0d2df5521c02af9d4a98d5a1e04fb965ba14a3ec",
+      "tests": 50
+    },
+    "materializer": {
+      "status": "PASS",
+      "logSha256": "01cc381c616e0e5c111e83ed0447950926aed8098c3b5ca2c3c843c9e2715084",
+      "tests": 36
+    },
+    "audit": {
+      "status": "PASS",
+      "logSha256": "fa84779840f63d5b445f53de64a2c13444bd1dc41232bebf9bd28433bc4c8329",
+      "tests": 43
+    },
+    "recall": {
+      "status": "PASS",
+      "logSha256": "ccf8ea50c5463aa7f899aaa154057104c4a289f5b9fe94176e4aa56f1f95b1cc"
+    },
+    "context": {
+      "status": "PASS",
+      "logSha256": "a9fec07f8d1c1a4964f298a3a0ca35f6d4f44bbba418eba8f87e0e9cd10e085f"
+    }
+  },
+  "formalBehaviorChecks": 144,
+  "actualNativeFormalBoundaries": 72,
+  "initialCiFailure": "Regression subprocess did not load workspace dependencies in a clean checkout. It now uses the existing test resolver, which passed on a clean source snapshot.",
+  "rankingRegression": "Preserved failure showed metadata keys outranking a distinctive argument. Corrected search opens the intended original data value."
+}

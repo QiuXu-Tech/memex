@@ -13,6 +13,7 @@ Two persisted, nested synthetic engineering archives were queried separately thr
 | Correct source-backed values | 3 | 4 |
 | Correct unavailable outcomes | 3 | 2 |
 | Actual Memex tool calls | 18 | 16 |
+| Returned Memex text characters | 36,549 | 27,831 |
 | Actual Codex turn time | 37.8 s | 36.4 s |
 | Median tool search duration | 62 ms | 242 ms |
 | Median tool grep duration | 996 ms | 2,271 ms |
@@ -20,7 +21,7 @@ Two persisted, nested synthetic engineering archives were queried separately thr
 | Last Codex request input tokens | 26,539 | 24,213 |
 | Reported model context window | 258,400 | 258,400 |
 
-The large archive's additional witness ticket was found, while cross-session and absent controls remained unavailable. A different-workspace copy of the early cold receipt did not appear in tool results. An older superseded export receipt did not replace the signed current one. Reports of accumulated input tokens represent the sum across actual model requests, including its cache usage. The archive body counts use each persisted body independently under the public o200k_base reference tokenizer. They represent the retrievable backing store.
+The large archive's additional witness ticket was found, while cross-session and absent controls remained unavailable. A different-workspace copy of the early cold receipt did not appear in tool results. An older superseded export receipt did not replace the signed current one. Reports of accumulated input tokens represent the sum across actual model requests, including its cache usage. The archive body counts use each persisted body independently under the public o200k_base reference tokenizer. They represent the retrievable backing store. Each cited opening was of a normal stored record body. No opening used a source-event index, so this scale result measures standard retrieval.
 
 Direct MCP preflights retained first-pass misses from distractors. Two broad searches missed top ten in the smaller store and one missed in the larger store. Targeted decision searches recovered all visible positives. Independent SQLite and stratified physical-body checks passed for 114 and 110 records. Actual Codex retrieval had one run per archive. Per-tool durations describe these calls and query choices. The observed turn times do not estimate a general speed difference.
 

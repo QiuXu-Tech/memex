@@ -145,7 +145,8 @@ export class AgentMemory {
     })
     if (sourceEvents) {
       const patterns = memoryQueryTerms(query, 8).sort((left, right) => right.length - left.length)
-        .map(term => new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'iu'))
+        .map(term => ({ anchor: /[\d._:/-]/.test(term),
+          expression: new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'iu') }))
       for (const card of result.hits.slice(0, 8)) {
         const event = this.#findSourceEvent(card, patterns)
         if (event !== undefined) card.sourceEvent = event
@@ -168,12 +169,28 @@ export class AgentMemory {
       if (!eventIndex || part === undefined || seen.has(eventIndex)) continue
       seen.add(eventIndex)
       const raw = JSON.stringify(part.rawEvent)
-      const matches = patterns.map(pattern => pattern.exec(raw)).filter(Boolean)
-      if (matches.length === 0 || matches.length < (best?.count ?? 0)) continue
-      const anchor = matches[0].index
-      let charOffset = Math.max(0, anchor - 80)
-      if (charOffset > 0 && /[\uDC00-\uDFFF]/.test(raw[charOffset]) && /[\uD800-\uDBFF]/.test(raw[charOffset - 1])) charOffset -= 1
-      best = { count: matches.length, locator: { id: card.id, eventIndex, charOffset } }
+      for (const token of raw.matchAll(/"(?:[^"\\]|\\.)*"/g)) {
+        // JSON property names and protocol metadata must not outrank a
+        // distinctive query term in a captured text value.
+        if (raw[token.index + token[0].length] === ':') continue
+        const value = JSON.parse(token[0])
+        let score = 0
+        let firstMatch
+        let firstAnchor
+        for (const { anchor, expression } of patterns) {
+          const match = expression.exec(value)
+          if (match === null) continue
+          score += anchor ? patterns.length + 1 : 1
+          firstMatch ??= match
+          if (anchor) firstAnchor ??= match
+        }
+        if (!score || score < (best?.score ?? 0) || (score === best?.score && value.length < best.valueLength)) continue
+        const at = (firstAnchor ?? firstMatch).index
+        const encodedPrefix = JSON.stringify(value.slice(0, at)).length - 2
+        let charOffset = Math.max(0, token.index + 1 + encodedPrefix - 80)
+        if (charOffset > 0 && /[\uDC00-\uDFFF]/.test(raw[charOffset]) && /[\uD800-\uDBFF]/.test(raw[charOffset - 1])) charOffset -= 1
+        best = { score, valueLength: value.length, locator: { id: card.id, eventIndex, charOffset } }
+      }
     }
     return best?.locator
   }
