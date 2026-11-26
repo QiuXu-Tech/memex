@@ -1,0 +1,75 @@
+{
+  "manifest": {
+    "type": "synthetic-engineering-archive",
+    "targetVisibleTokens": 100000000,
+    "nominalSize": "100m",
+    "tokenizer": {
+      "name": "o200k_base",
+      "library": "tiktoken",
+      "version": "0.12.0",
+      "vocabularySha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+      "countedUnit": "independently encoded persisted record body; excludes frontmatter and inaccessible namespaces"
+    },
+    "workspaceKey": "4126cf305e8102dd",
+    "sessionId": "retention-scale-reader",
+    "archiveCapacity": 110000000,
+    "datasetSha256": "c3d50bad9742b39288aa3089ab56d0da77b90b17c8174d07b4d842c11dfe04c3",
+    "prefixVerified": {
+      "documents": 1572,
+      "sha256": "5f346e8d71a995c0a41e2ca604e163128ce09d0bbb8bc6dbd69030240801c40d"
+    },
+    "verifiedUniqueBodies": 15769,
+    "visibleRecords": 15767,
+    "visibleTokens": 100005571,
+    "visibleBodyBytes": 488823700,
+    "hot": 6308,
+    "cold": 9461,
+    "visibleHot": 6307,
+    "visibleCold": 9460,
+    "namespaces": {
+      "4126cf305e8102dd/workspace/-": {
+        "records": 15766,
+        "tokens": 100005525
+      },
+      "e06866486dfb7050/workspace/-": {
+        "records": 1,
+        "tokens": 26
+      },
+      "4126cf305e8102dd/session/retention-scale-isolated": {
+        "records": 1,
+        "tokens": 26
+      },
+      "4126cf305e8102dd/session/retention-scale-reader": {
+        "records": 1,
+        "tokens": 46
+      }
+    },
+    "archiveUsage": {
+      "logicalBytes": 902053976,
+      "allocatedBytes": 936640512
+    },
+    "totalUsage": {
+      "logicalBytes": 996820070,
+      "allocatedBytes": 1035116544
+    },
+    "maxDiskBytes": 3221225472,
+    "buildMs": 336168.8185,
+    "tokenizerMs": 36010.73392600021,
+    "writeMs": 223953.37314600038,
+    "coldMs": 70926.13670700118,
+    "readbackMs": 7531.8295830000425,
+    "node": "v25.9.0",
+    "platform": "darwin",
+    "architecture": "arm64",
+    "ordinaryRecords": "Deterministically generated, mixed engineering notes with distinct bodies and repeated realistic vocabulary. All data is synthetic."
+  },
+  "originalIndexSha256": "65850a1c6ccfa4fccced6c8ff37bafcddeebe252bd05d0e1b6b3eee3e909d169",
+  "bodyLedgerSha256": "952bc378deedbe42b94aace37889013c94b17af1f23a9779ecd2a5691d036aeb",
+  "allClonedBodiesVerified": 15769,
+  "requests": 602,
+  "sourceValidityDeadlines": 0,
+  "requestsSha256": "8d9552897d87a5950f6c138dd0310b499124a643917c6b82c345d776300efc56",
+  "seed": 2026112601,
+  "metric": "A positive succeeds when any of its prelabelled relevant ids appears in the returned top 5. A negative succeeds only with zero hits. Nearest-rank end-to-end MCP p50 and p95 across all requests, including misses. New service per round, warm machine cache allowed. Same request order within a pair; independent seeded shuffles across rounds.",
+  "limits": "Synthetic engineering archive. Topic items have multiple correct records. Notebook-reference and source/version inputs are known locators. Body observations require the topic and quoted phrase in the persisted body. Expiry timestamps absent here; supersession and wrong revisions exist."
+}

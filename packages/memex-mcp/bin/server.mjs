@@ -34,13 +34,14 @@ function parseArgs(argv) {
     else if (token === '--cwd') args.cwd = resolve(next())
     else if (token === '--capacity') args.capacity = Number(next())
     else if (token === '--session-capacity') args.sessionCapacity = Number(next())
+    else if (token === '--evidence-search') args.evidenceSearch = true
     else if (token === '--all-tools') args.allTools = true
     else if (token === '--list-profiles') {
       process.stderr.write(`${RECOMMENDED_PROFILES.mcp.join('\n')}\n`)
       process.exit(0)
     }
     else if (token === '--help' || token === '-h') {
-      process.stderr.write('Usage: memex-mcp [--root DIR] [--levels l2,l3] [--model ID] [--agent NAME] [--session ID] [--cwd DIR] [--all-tools]\n')
+      process.stderr.write('Usage: memex-mcp [--root DIR] [--levels l2,l3] [--model ID] [--agent NAME] [--session ID] [--cwd DIR] [--all-tools] [--evidence-search]\n')
       process.stderr.write(`Recommended --model values: ${RECOMMENDED_PROFILES.mcp.join(', ')}\n`)
       process.exit(0)
     }
@@ -182,7 +183,7 @@ function callTool(name, input = {}) {
     case 'memory_search': {
       if (typeof input.query !== 'string' || input.query.trim().length === 0) throw new Error('memory_search requires a non-empty query')
       if (input.openTop !== undefined && typeof input.openTop !== 'boolean') throw new Error('memory_search openTop must be a boolean')
-      const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status, source: input.source, version: input.version, includeExpired: input.includeExpired, sourceEvents: input.sourceEvents })
+      const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status, source: input.source, version: input.version, includeExpired: input.includeExpired, sourceEvents: input.sourceEvents, evidenceSearch: args.evidenceSearch })
       const empty = result.hits.length === 0 && engine.list({ limit: 1, includeStatus: true, includeExpired: true }).length === 0
       const header = result.hits.length === 0
         ? empty ? 'No matching memory records. The visible archive is currently empty; further searches cannot find records until some are added.' : args.allTools ? 'No matching memory records. Try memory_grep or memory_index.' : 'No matching memory records. Refine the query or check original sources.'
@@ -199,7 +200,14 @@ function callTool(name, input = {}) {
         if (record === undefined) throw new Error(`memory_open: no record ${result.hits[0].id}`)
         text += `\n\nTop result preview (up to 2,000 characters):\n${formatOpenedRecord(record)}`
       }
-      return textResult(text)
+      const response = textResult(text)
+      if (args.evidenceSearch) {
+        response.structuredContent = { hits: result.hits.map(card => ({
+          id: card.id, status: card.status, scope: card.scope, trust: card.trust,
+          evidence: card.provenance?.evidence ?? null, sourceEvent: card.sourceEvent ?? null,
+        })) }
+      }
+      return response
     }
     case 'memory_open': {
       if (input.eventIndex !== undefined) {

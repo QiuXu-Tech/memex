@@ -831,6 +831,70 @@ export class LocalStoreCore {
     return { clauses, params }
   }
 
+  // Evidence mode uses exact identifiers or a conjunction of title terms first.
+  // Explicit quotes are verified against the card or original body. One ranked
+  // FTS retry is available if the first bounded candidate set yields no hit.
+  #evidenceSearch(query, db, limit) {
+    const quotes = [...String(query.query).matchAll(/"([^"\n]{2,160})"/gu)].slice(0, 4)
+    const phrases = quotes.map(match => match[1].toLowerCase())
+    const topic = quotes.reduce((text, match) => text.replace(match[0], ' '), String(query.query))
+    const terms = memoryQueryTerms(topic, query.maxTerms).map(term => term.toLowerCase())
+    const anchors = terms.filter(term => /[0-9_/:]/.test(term) || (terms.length === 1 && term.includes('-'))).slice(0, 4)
+    const lexical = terms.filter(term => [...term].length >= 3)
+    const { clauses, params } = this.workspaceClause(query, { alias: 'r.' })
+    const where = clauses.map(clause => ` AND ${clause}`).join('')
+    const cap = Math.min(80, Math.max(16, limit * 8))
+    const ftsTerm = term => '"' + term.replaceAll('"', '""') + '"'
+    const fts = (expression, ranked) => this.#prepareSearch(db, `
+      SELECT r.* FROM records_fts JOIN records r ON r.rowid = records_fts.rowid
+      WHERE records_fts MATCH ? ${where} ${ranked ? 'ORDER BY rank' : ''} LIMIT ?
+    `).all(expression, ...params, cap)
+    const boundary = anchors.map(term =>
+      new RegExp('(?:^|[^a-z0-9_./:-])' + term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + '(?=$|[^a-z0-9_./:-]|[.]($|\\s))', 'i'))
+    const scoreRows = rows => {
+      const ranked = []
+      for (const row of rows) {
+        const title = row.title.toLowerCase()
+        const metadata = [row.id, title, row.summary, row.use_when, row.abstract].join(' ').toLowerCase()
+        const matches = text => boundary.every(pattern => pattern.test(text)) && phrases.every(phrase => text.includes(phrase))
+        let text = metadata
+        if (!matches(text)) {
+          text += '\n' + recordBodyFromFile(readFileSync(row.path, 'utf8')).toLowerCase()
+          if (!matches(text)) continue
+        }
+        const score = terms.reduce((n, term) => n + 3 * Number(title.includes(term)) + Number(text.includes(term)), 0)
+        if (!score && !phrases.length && row.id !== query.query) continue
+        ranked.push({ row, score: score + (anchors.includes(row.id.toLowerCase()) ? 100 : 0) })
+      }
+      ranked.sort((a, b) => b.score - a.score || b.row.updated_at - a.row.updated_at || a.row.id.localeCompare(b.row.id))
+      return ranked.slice(0, limit).map(({ row }) => ({
+        ...this.cardFromRow(row), snippet: makeSnippet(row.summary || row.title, query.query),
+      }))
+    }
+
+    let rows
+    if (anchors.length) {
+      const slots = anchors.map(() => '?').join(', ')
+      rows = this.#prepareSearch(db, `
+        SELECT r.* FROM records r WHERE r.id IN (
+          SELECT id FROM records WHERE id IN (${slots})
+          UNION SELECT record_id FROM record_terms WHERE term_hash IN (${slots})
+        ) ${where} ORDER BY (r.id IN (${slots})) DESC, r.updated_at DESC LIMIT ?
+      `).all(...anchors, ...anchors.map(fnv1a32), ...params, ...anchors, cap)
+    } else if (lexical.length) {
+      rows = fts('title : (' + lexical.map(ftsTerm).join(' AND ') + ')', false)
+    } else {
+      rows = []
+    }
+    let hits = scoreRows(rows)
+    if (!hits.length) {
+      const retryTerms = [...new Set([...anchors, ...phrases, ...lexical])].filter(term => [...term].length >= 3)
+      if (retryTerms.length) hits = scoreRows(fts(retryTerms.map(ftsTerm).join(' OR '), true))
+      else if (terms.length) return this.search({ ...query, evidenceSearch: false })
+    }
+    return { hits, total: hits.length }
+  }
+
   /**
    * Ranked search over card fields and bodies.
    *
@@ -847,6 +911,7 @@ export class LocalStoreCore {
     query = { excludeSuperseded: query.status === undefined, excludeExpired: query.includeExpired !== true, ...query }
     const db = this.database()
     const limit = clampLimit(query.limit, 12)
+    if (query.evidenceSearch === true && !query.tags?.length) return this.#evidenceSearch(query, db, limit)
     // Natural-language queries are decomposed into bounded retrieval terms; the
     // same extractor drives auto-recall so both paths agree.
     const terms = memoryQueryTerms(query.query, query.maxTerms)

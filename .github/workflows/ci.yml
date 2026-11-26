@@ -22,6 +22,8 @@ jobs:
         run: node --import ./test/register.mjs ./test/run.mjs
       - name: MCP source event locators
         run: node --test ./test/codex-source-locators.mjs
+      - name: Evidence gate and retrieval controls
+        run: node --test ./test/evidence-check-gate.mjs ./test/evidence-retrieval.mjs
       - name: SQLite concurrency and recovery
         run: node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs
       - name: Archive integrity, privacy and configuration regression

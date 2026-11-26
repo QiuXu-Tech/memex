@@ -124,13 +124,15 @@ export class AgentMemory {
   }
 
   /** Ranked card-level search over the visible levels. */
-  search({ query, limit, kind, status, source, version, includeExpired, sourceEvents = false } = {}) {
+  search({ query, limit, kind, status, source, version, includeExpired, sourceEvents = false, evidenceSearch = false } = {}) {
     if (source !== undefined && (typeof source !== 'string' || !source.trim())) throw new TypeError('memory: source must be a non-empty string')
     if (version !== undefined && (typeof version !== 'string' || !version.trim() || source === undefined)) throw new TypeError('memory: version requires a non-empty source and version')
     if (includeExpired !== undefined && typeof includeExpired !== 'boolean') throw new TypeError('memory: includeExpired must be a boolean')
     if (typeof sourceEvents !== 'boolean') throw new TypeError('memory: sourceEvents must be a boolean')
+    if (typeof evidenceSearch !== 'boolean') throw new TypeError('memory: evidenceSearch must be a boolean')
     const result = this.store.search({
       query,
+      evidenceSearch,
       workspaceKey: this.workspaceKey,
       scopes: this.scopes,
       sessionId: this.sessionId,
