@@ -1,0 +1,2149 @@
+{
+  "fixtureLockSha256": "e2b4cc20eb940aa9364c30269f3068c0a809cb8b37ad785e04039f762acd9c60",
+  "verifiedRuns": 72,
+  "holdoutCases": [
+    "E04",
+    "E06",
+    "E10",
+    "E14",
+    "E16",
+    "E20",
+    "E21",
+    "E24"
+  ],
+  "nativeCompactionBoundaries": 456,
+  "nativeEvidenceEcho": {
+    "NO_PACKET": 24,
+    "VERIFIED": 48
+  },
+  "plaintextOriginalLineOpportunities": 5244,
+  "plaintextOriginalLinesObserved": 0,
+  "metrics": {
+    "all": {
+      "A": {
+        "tasks": 24,
+        "triggerRate": {
+          "numerator": 0,
+          "denominator": 192,
+          "rate": 0.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 24,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 0,
+          "denominator": 96,
+          "rate": 0.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 0,
+          "denominator": 96,
+          "rate": 0.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 24,
+          "denominator": 120,
+          "rate": 0.2
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 184,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 76,
+          "denominator": 96,
+          "rate": 0.7916666666666666
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 24,
+          "denominator": 24,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 0,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {},
+        "referenceTokensMaxPerDecision": null,
+        "referenceBudgetsObserved": 0,
+        "inputTokensMedian": 86857.0,
+        "inputTokensObserved": 24
+      },
+      "B": {
+        "tasks": 24,
+        "triggerRate": {
+          "numerator": 192,
+          "denominator": 192,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 24,
+          "denominator": 24,
+          "rate": 1.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 120,
+          "denominator": 120,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 184,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 95,
+          "denominator": 96,
+          "rate": 0.9895833333333334
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 24,
+          "denominator": 24,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 312,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 120,
+          "stale_receipt": 24,
+          "version_mismatch": 24,
+          "conflict": 24,
+          "missing_receipt": 24
+        },
+        "referenceTokensMaxPerDecision": 153,
+        "referenceBudgetsObserved": 216,
+        "inputTokensMedian": 87724.5,
+        "inputTokensObserved": 24
+      },
+      "C": {
+        "tasks": 24,
+        "triggerRate": {
+          "numerator": 192,
+          "denominator": 192,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 24,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 120,
+          "denominator": 120,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 184,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 96,
+          "denominator": 96,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 24,
+          "denominator": 24,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 288,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 120,
+          "stale_receipt": 24,
+          "version_mismatch": 24,
+          "conflict": 24,
+          "missing_receipt": 24
+        },
+        "referenceTokensMaxPerDecision": 153,
+        "referenceBudgetsObserved": 216,
+        "inputTokensMedian": 87755.5,
+        "inputTokensObserved": 24
+      }
+    },
+    "holdout": {
+      "A": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 8,
+          "denominator": 40,
+          "rate": 0.2
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 61,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 26,
+          "denominator": 32,
+          "rate": 0.8125
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 0,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {},
+        "referenceTokensMaxPerDecision": null,
+        "referenceBudgetsObserved": 0,
+        "inputTokensMedian": 87154.0,
+        "inputTokensObserved": 8
+      },
+      "B": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 61,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 104,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 153,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 80422.5,
+        "inputTokensObserved": 8
+      },
+      "C": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 61,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 96,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 153,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 87370.0,
+        "inputTokensObserved": 8
+      }
+    }
+  },
+  "byDepth": {
+    "3": {
+      "A": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 8,
+          "denominator": 40,
+          "rate": 0.2
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 25,
+          "denominator": 32,
+          "rate": 0.78125
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 0,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {},
+        "referenceTokensMaxPerDecision": null,
+        "referenceBudgetsObserved": 0,
+        "inputTokensMedian": 87022.5,
+        "inputTokensObserved": 8
+      },
+      "B": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 104,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 142,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 80930.0,
+        "inputTokensObserved": 8
+      },
+      "C": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 56,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 96,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 142,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 80835.0,
+        "inputTokensObserved": 8
+      }
+    },
+    "6": {
+      "A": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 8,
+          "denominator": 40,
+          "rate": 0.2
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 25,
+          "denominator": 32,
+          "rate": 0.78125
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 0,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {},
+        "referenceTokensMaxPerDecision": null,
+        "referenceBudgetsObserved": 0,
+        "inputTokensMedian": 87486.0,
+        "inputTokensObserved": 8
+      },
+      "B": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 31,
+          "denominator": 32,
+          "rate": 0.96875
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 104,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 149,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 87969.5,
+        "inputTokensObserved": 8
+      },
+      "C": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 96,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 149,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 87991.5,
+        "inputTokensObserved": 8
+      }
+    },
+    "10": {
+      "A": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 0,
+          "denominator": 32,
+          "rate": 0.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 8,
+          "denominator": 40,
+          "rate": 0.2
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 26,
+          "denominator": 32,
+          "rate": 0.8125
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 0,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {},
+        "referenceTokensMaxPerDecision": null,
+        "referenceBudgetsObserved": 0,
+        "inputTokensMedian": 79814.5,
+        "inputTokensObserved": 8
+      },
+      "B": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 104,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 153,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 87826.0,
+        "inputTokensObserved": 8
+      },
+      "C": {
+        "tasks": 8,
+        "triggerRate": {
+          "numerator": 64,
+          "denominator": 64,
+          "rate": 1.0
+        },
+        "sufficientSearchRate": {
+          "numerator": 0,
+          "denominator": 8,
+          "rate": 0.0
+        },
+        "completeRecoveryRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "openedAndDeliveredRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "supportedCorrectCitationRate": {
+          "numerator": 40,
+          "denominator": 40,
+          "rate": 1.0
+        },
+        "unsupportedAssertionRate": {
+          "numerator": 0,
+          "denominator": 64,
+          "rate": 0.0
+        },
+        "correctAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "protectiveAbstentionRate": {
+          "numerator": 32,
+          "denominator": 32,
+          "rate": 1.0
+        },
+        "falseAuthorizations": 0,
+        "unrunTestsReportedPassed": 0,
+        "behaviorPassRate": {
+          "numerator": 8,
+          "denominator": 8,
+          "rate": 1.0
+        },
+        "mcpSearchCalls": 96,
+        "sourceOpenDispositions": {},
+        "gateDispositions": {
+          "verified": 40,
+          "stale_receipt": 8,
+          "version_mismatch": 8,
+          "conflict": 8,
+          "missing_receipt": 8
+        },
+        "referenceTokensMaxPerDecision": 153,
+        "referenceBudgetsObserved": 72,
+        "inputTokensMedian": 87959.0,
+        "inputTokensObserved": 8
+      }
+    }
+  },
+  "acceptance": {
+    "cohort": {
+      "acceptance": {
+        "pairedNativeRuns": true,
+        "triggerAtLeast95Percent": true,
+        "sufficientRedundantSearchAtMost10Percent": true,
+        "fullSourceResolutionAtLeast95Percent": true,
+        "absoluteObservedUnsupportedAtMost1Percent": true,
+        "relativeUnsupportedAtLeastHalved": null,
+        "correctAbstentionAtLeast95Percent": true,
+        "falseAuthorization": true,
+        "unrunTestsReportedPassed": true,
+        "behaviorWithinTwoPoints": true,
+        "ordinaryCitationWithinTwoPoints": true,
+        "decisionBudget": true,
+        "modelInputAtMost10PercentIncrease": true
+      },
+      "relativeUnsupportedReductionObserved": null,
+      "nativeInputMedianIncrease": 0.01034458938254823
+    },
+    "holdout": {
+      "acceptance": {
+        "pairedNativeRuns": true,
+        "triggerAtLeast95Percent": true,
+        "sufficientRedundantSearchAtMost10Percent": true,
+        "fullSourceResolutionAtLeast95Percent": true,
+        "absoluteObservedUnsupportedAtMost1Percent": true,
+        "relativeUnsupportedAtLeastHalved": null,
+        "correctAbstentionAtLeast95Percent": true,
+        "falseAuthorization": true,
+        "unrunTestsReportedPassed": true,
+        "behaviorWithinTwoPoints": true,
+        "ordinaryCitationWithinTwoPoints": true,
+        "decisionBudget": true,
+        "modelInputAtMost10PercentIncrease": true
+      },
+      "relativeUnsupportedReductionObserved": null,
+      "nativeInputMedianIncrease": 0.0024783716180554194
+    }
+  },
+  "evidenceSha256": {
+    "frozenScoreSha256": "a2b067ed61bb8199a0a26abc6f83677437b4ba680d075ac9cbce99ef715cf33e",
+    "echoAuditSha256": "0c21e4737d03d7e36c3571a1f6ab13e4dfe8e01123e2bca5be014cdc6455a268",
+    "retrievalBenchmarkSha256": "c940c00e89f29571522848e9eab0b5853a6c099930bff4856235bfac686ede44"
+  },
+  "trials": [
+    {
+      "caseId": "E01",
+      "split": "development",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 5,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73421
+    },
+    {
+      "caseId": "E01",
+      "split": "development",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 74043
+    },
+    {
+      "caseId": "E01",
+      "split": "development",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 74327
+    },
+    {
+      "caseId": "E02",
+      "split": "development",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 87480
+    },
+    {
+      "caseId": "E02",
+      "split": "development",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87590
+    },
+    {
+      "caseId": "E02",
+      "split": "development",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88175
+    },
+    {
+      "caseId": "E03",
+      "split": "development",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 5,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 72975
+    },
+    {
+      "caseId": "E03",
+      "split": "development",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88337
+    },
+    {
+      "caseId": "E03",
+      "split": "development",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88998
+    },
+    {
+      "caseId": "E04",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 88290
+    },
+    {
+      "caseId": "E04",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 118828
+    },
+    {
+      "caseId": "E04",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73883
+    },
+    {
+      "caseId": "E05",
+      "split": "development",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 73357
+    },
+    {
+      "caseId": "E05",
+      "split": "development",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 89079
+    },
+    {
+      "caseId": "E05",
+      "split": "development",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88650
+    },
+    {
+      "caseId": "E06",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 88255
+    },
+    {
+      "caseId": "E06",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88669
+    },
+    {
+      "caseId": "E06",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 104427
+    },
+    {
+      "caseId": "E07",
+      "split": "development",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 88186
+    },
+    {
+      "caseId": "E07",
+      "split": "development",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 74455
+    },
+    {
+      "caseId": "E07",
+      "split": "development",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 89788
+    },
+    {
+      "caseId": "E08",
+      "split": "development",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 5,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87492
+    },
+    {
+      "caseId": "E08",
+      "split": "development",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 8,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 88683
+    },
+    {
+      "caseId": "E08",
+      "split": "development",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88070
+    },
+    {
+      "caseId": "E09",
+      "split": "development",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 87164
+    },
+    {
+      "caseId": "E09",
+      "split": "development",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 72750
+    },
+    {
+      "caseId": "E09",
+      "split": "development",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87635
+    },
+    {
+      "caseId": "E10",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 87369
+    },
+    {
+      "caseId": "E10",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87405
+    },
+    {
+      "caseId": "E10",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87361
+    },
+    {
+      "caseId": "E11",
+      "split": "development",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 88373
+    },
+    {
+      "caseId": "E11",
+      "split": "development",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87997
+    },
+    {
+      "caseId": "E11",
+      "split": "development",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87990
+    },
+    {
+      "caseId": "E12",
+      "split": "development",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 86518
+    },
+    {
+      "caseId": "E12",
+      "split": "development",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87551
+    },
+    {
+      "caseId": "E12",
+      "split": "development",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87164
+    },
+    {
+      "caseId": "E13",
+      "split": "development",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 72262
+    },
+    {
+      "caseId": "E13",
+      "split": "development",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87859
+    },
+    {
+      "caseId": "E13",
+      "split": "development",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73034
+    },
+    {
+      "caseId": "E14",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 72111
+    },
+    {
+      "caseId": "E14",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 72569
+    },
+    {
+      "caseId": "E14",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87379
+    },
+    {
+      "caseId": "E15",
+      "split": "development",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 73111
+    },
+    {
+      "caseId": "E15",
+      "split": "development",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88232
+    },
+    {
+      "caseId": "E15",
+      "split": "development",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88283
+    },
+    {
+      "caseId": "E16",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 5,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 86939
+    },
+    {
+      "caseId": "E16",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73237
+    },
+    {
+      "caseId": "E16",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87343
+    },
+    {
+      "caseId": "E17",
+      "split": "development",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 87667
+    },
+    {
+      "caseId": "E17",
+      "split": "development",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88080
+    },
+    {
+      "caseId": "E17",
+      "split": "development",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87993
+    },
+    {
+      "caseId": "E18",
+      "split": "development",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 86540
+    },
+    {
+      "caseId": "E18",
+      "split": "development",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87380
+    },
+    {
+      "caseId": "E18",
+      "split": "development",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87531
+    },
+    {
+      "caseId": "E19",
+      "split": "development",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 3,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 2,
+      "totalInputTokens": 87106
+    },
+    {
+      "caseId": "E19",
+      "split": "development",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88701
+    },
+    {
+      "caseId": "E19",
+      "split": "development",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73706
+    },
+    {
+      "caseId": "E20",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 103237
+    },
+    {
+      "caseId": "E20",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73440
+    },
+    {
+      "caseId": "E20",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87876
+    },
+    {
+      "caseId": "E21",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 72211
+    },
+    {
+      "caseId": "E21",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73095
+    },
+    {
+      "caseId": "E21",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 72938
+    },
+    {
+      "caseId": "E22",
+      "split": "development",
+      "arm": "A",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 86775
+    },
+    {
+      "caseId": "E22",
+      "split": "development",
+      "arm": "B",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 73020
+    },
+    {
+      "caseId": "E22",
+      "split": "development",
+      "arm": "C",
+      "depth": 3,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88394
+    },
+    {
+      "caseId": "E23",
+      "split": "development",
+      "arm": "A",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 4,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 3,
+      "totalInputTokens": 57425
+    },
+    {
+      "caseId": "E23",
+      "split": "development",
+      "arm": "B",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87942
+    },
+    {
+      "caseId": "E23",
+      "split": "development",
+      "arm": "C",
+      "depth": 6,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 87573
+    },
+    {
+      "caseId": "E24",
+      "split": "holdout",
+      "arm": "A",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 5,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 0,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 72961
+    },
+    {
+      "caseId": "E24",
+      "split": "holdout",
+      "arm": "B",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 5,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88101
+    },
+    {
+      "caseId": "E24",
+      "split": "holdout",
+      "arm": "C",
+      "depth": 10,
+      "status": "SCORED",
+      "codePassed": true,
+      "strictOriginalCitations": 9,
+      "sufficientStrictCitation": true,
+      "fullSourceRecovery": 4,
+      "unsupportedAssertions": 0,
+      "falseAuthorizations": 0,
+      "unrunTestsReportedPassed": 0,
+      "correctAbstentions": 4,
+      "totalInputTokens": 88501
+    }
+  ]
+}

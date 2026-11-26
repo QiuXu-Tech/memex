@@ -28,3 +28,9 @@
 - [原文打开、权限拒绝与无范围负例](readback-summary.json)
 - [修复前回归失败](regression-before.tap) 与 [修复后回归](regression-after.tap)
 - 每轮的 `baseline-rN.jsonl` 与 `candidate-rN.jsonl` 含完整请求、返回、耗时与对应题号。
+
+原始工作副本保存了含本机路径的冻结配置和同一份克隆数据库。使用 `scripts/run-retrieval-round.py` 在新的输出目录按表中顺序回放，分别传入基线和候选代码目录。最后用 `scripts/verify-retrieval-rounds.py` 复算返回、分位数与语料哈希。证据包提供六轮完整响应及原始配置，冷档案和索引留在本机工作副本。
+
+## 独立真实 Codex 抽查
+
+同一组 1 亿档六问，另用真实 Codex 调用开启候选的 Memex 服务。六项均正确，其中四项实际打开并引用了原始记录，两项正确报告不可见或缺失。该轮发出 8 次搜索、4 次打开和 2 次正文查找，搜索中位 83.5 ms，整轮 36.2 秒。模型报告累计输入 97,018 token（含 71,296 缓存输入），模型窗口 258,400 token。这是单次工具选择不同的端到端核对，延迟应和冻结 MCP 批次单独解读。[真实 Codex 抽查](native-spot-check.json)

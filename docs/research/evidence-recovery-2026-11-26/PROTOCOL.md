@@ -13,3 +13,21 @@ The prior native study observed zero voluntary Memex calls in the on-demand arm,
 ## 100M archive protocol
 
 Use the independently hash-verified existing 100M synthetic corpus. Lock at least 600 search requests with original candidate and negative controls. Replay the identical query bytes in independent MCP processes on the base and candidate configurations three times each. Record p50, p95, Top 5 hits, negatives and scope probes. Preserve the ordinary search path and use the evidence-search feature only in the targeted study entry. Report diagnostic misses beyond the frozen query set separately.
+
+## Reproduction
+
+Use Node 24, Python with `tiktoken==0.12.0`, and a local Codex CLI with an existing ChatGPT login. Run from the repository root, using new result directories. The runner checks the recreated fixture hashes and the frozen scoring script before opening any threads. Use `--jobs` to match available resources. The reported run used eight workers.
+
+```bash
+npm run bootstrap
+python3 -B scripts/evidence-recovery-fixtures.py generate ./evaluation-fixtures --cohort formal
+python3 -B scripts/run-evidence-recovery-native.py ./evaluation-fixtures ./evaluation-runs \
+  --cases E{01..24} --jobs 2
+python3 -B scripts/evidence-recovery-score.py ./evaluation-fixtures ./evaluation-runs \
+  --output ./evaluation-score.json
+python3 -B scripts/audit-evidence-delivery.py ./evaluation-runs > ./native-delivery.json
+```
+
+If sessions have been archived after collection, add `--rollouts` to the last command and supply the verified copy directory. That audit reads the native same-thread rollout, counts compaction records, and checks that the exact evidence packet appears after the final boundary. The count of exact original lines in plaintext replacement history does not decode the native compacted item.
+
+To rescore the reported runs, use the byte-for-byte fixtures in the evidence package. Regenerating the fixtures reproduces the task inputs, keys and checks. The retained baseline Python tracebacks include workspace paths, so reproducing in a different directory can change the fixture-lock digest.
