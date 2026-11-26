@@ -1,0 +1,286 @@
+{
+  "datasetSha256": "c3d50bad9742b39288aa3089ab56d0da77b90b17c8174d07b4d842c11dfe04c3",
+  "originalIndexSha256": "65850a1c6ccfa4fccced6c8ff37bafcddeebe252bd05d0e1b6b3eee3e909d169",
+  "verifiedCloneBodies": 15769,
+  "queriesSha256": "8d9552897d87a5950f6c138dd0310b499124a643917c6b82c345d776300efc56",
+  "requests": 602,
+  "positives": 495,
+  "negatives": 107,
+  "perRound": {
+    "baseline": [
+      {
+        "wireTimes": {
+          "firstFileCreationUtc": "2026-11-26T00:34:20.248224+00:00",
+          "lastWriteUtc": "2026-11-26T00:35:27.805185+00:00"
+        },
+        "round": 1,
+        "positiveHits": 453,
+        "negativeCorrect": 107,
+        "p50ms": 126.655792,
+        "p95ms": 189.272292,
+        "meetsTargets": false,
+        "tierCounts": {
+          "hot": {
+            "n": 147,
+            "success": 107
+          },
+          "cold-hot": {
+            "n": 130,
+            "success": 130
+          },
+          "cold": {
+            "n": 218,
+            "success": 216
+          }
+        },
+        "wireSha256": "2fd558869d35504bed7af6b9ebfa7eb55f17a83a585dbfccd9d843cb2aa8410d",
+        "sources": {
+          "packages/memex-mcp/bin/server.mjs": "67285bfbfd3a515398dbb56dcd7f0e8824b33b7d1691c36f7428feca3659d88d",
+          "packages/memex-core/lib/engine.js": "dc9b557eef2fa550cbf1bbbbbfa06e515cf92bc3435642610dd5c5e7ea120da8",
+          "packages/memex-core/lib/store.js": "c90df4b584a35d08bc3a9a51d9a6ffb3d5a347da192447b68a0653464d970862"
+        }
+      },
+      {
+        "wireTimes": {
+          "firstFileCreationUtc": "2026-11-26T00:36:39.525168+00:00",
+          "lastWriteUtc": "2026-11-26T00:37:49.837411+00:00"
+        },
+        "round": 2,
+        "positiveHits": 453,
+        "negativeCorrect": 107,
+        "p50ms": 127.59025,
+        "p95ms": 189.55925,
+        "meetsTargets": false,
+        "tierCounts": {
+          "cold-hot": {
+            "n": 130,
+            "success": 130
+          },
+          "hot": {
+            "n": 147,
+            "success": 107
+          },
+          "cold": {
+            "n": 218,
+            "success": 216
+          }
+        },
+        "wireSha256": "6a2db42559049968140c1af97abb7550bbd4ad5cd29cb06d5413ca32481f0707",
+        "sources": {
+          "packages/memex-mcp/bin/server.mjs": "67285bfbfd3a515398dbb56dcd7f0e8824b33b7d1691c36f7428feca3659d88d",
+          "packages/memex-core/lib/engine.js": "dc9b557eef2fa550cbf1bbbbbfa06e515cf92bc3435642610dd5c5e7ea120da8",
+          "packages/memex-core/lib/store.js": "c90df4b584a35d08bc3a9a51d9a6ffb3d5a347da192447b68a0653464d970862"
+        }
+      },
+      {
+        "wireTimes": {
+          "firstFileCreationUtc": "2026-11-26T00:37:49.905038+00:00",
+          "lastWriteUtc": "2026-11-26T00:38:56.324959+00:00"
+        },
+        "round": 3,
+        "positiveHits": 453,
+        "negativeCorrect": 107,
+        "p50ms": 125.009542,
+        "p95ms": 186.765041,
+        "meetsTargets": false,
+        "tierCounts": {
+          "cold-hot": {
+            "n": 130,
+            "success": 130
+          },
+          "cold": {
+            "n": 218,
+            "success": 216
+          },
+          "hot": {
+            "n": 147,
+            "success": 107
+          }
+        },
+        "wireSha256": "14a37fc5950a59a9d2273445ae889994ad8a97d1b3015296655dda78cf7c518a",
+        "sources": {
+          "packages/memex-mcp/bin/server.mjs": "67285bfbfd3a515398dbb56dcd7f0e8824b33b7d1691c36f7428feca3659d88d",
+          "packages/memex-core/lib/engine.js": "dc9b557eef2fa550cbf1bbbbbfa06e515cf92bc3435642610dd5c5e7ea120da8",
+          "packages/memex-core/lib/store.js": "c90df4b584a35d08bc3a9a51d9a6ffb3d5a347da192447b68a0653464d970862"
+        }
+      }
+    ],
+    "candidate": [
+      {
+        "wireTimes": {
+          "firstFileCreationUtc": "2026-11-26T00:36:25.554652+00:00",
+          "lastWriteUtc": "2026-11-26T00:36:33.319069+00:00"
+        },
+        "round": 1,
+        "positiveHits": 495,
+        "negativeCorrect": 107,
+        "p50ms": 5.268833,
+        "p95ms": 42.970833,
+        "meetsTargets": true,
+        "tierCounts": {
+          "hot": {
+            "n": 147,
+            "success": 147
+          },
+          "cold-hot": {
+            "n": 130,
+            "success": 130
+          },
+          "cold": {
+            "n": 218,
+            "success": 218
+          }
+        },
+        "wireSha256": "64aaaaac6da67bba27ec0b00a55060024cc12ed8fe83d87db50c6b42c0dfbdc9",
+        "sources": {
+          "packages/memex-mcp/bin/server.mjs": "672c0cfc09646c3c7f5b13571f32bd088ae11eb0100709a6b5071e4a122285f9",
+          "packages/memex-core/lib/engine.js": "e108a06fcf9b117a5cba91227d9c995a58d936d28bc44c0d617b2340dee92595",
+          "packages/memex-core/lib/store.js": "c9b185f8bc4ecf953313f0684b255540dcde738ff966c2dafcae0d05c6941ec7"
+        }
+      },
+      {
+        "wireTimes": {
+          "firstFileCreationUtc": "2026-11-26T00:36:33.371118+00:00",
+          "lastWriteUtc": "2026-11-26T00:36:39.473027+00:00"
+        },
+        "round": 2,
+        "positiveHits": 495,
+        "negativeCorrect": 107,
+        "p50ms": 3.38525,
+        "p95ms": 41.564375,
+        "meetsTargets": true,
+        "tierCounts": {
+          "cold-hot": {
+            "n": 130,
+            "success": 130
+          },
+          "hot": {
+            "n": 147,
+            "success": 147
+          },
+          "cold": {
+            "n": 218,
+            "success": 218
+          }
+        },
+        "wireSha256": "da588eb74aba80983eb05b9233a0fb8dda2be81475104ac9542c14da8b792b1f",
+        "sources": {
+          "packages/memex-mcp/bin/server.mjs": "672c0cfc09646c3c7f5b13571f32bd088ae11eb0100709a6b5071e4a122285f9",
+          "packages/memex-core/lib/engine.js": "e108a06fcf9b117a5cba91227d9c995a58d936d28bc44c0d617b2340dee92595",
+          "packages/memex-core/lib/store.js": "c9b185f8bc4ecf953313f0684b255540dcde738ff966c2dafcae0d05c6941ec7"
+        }
+      },
+      {
+        "wireTimes": {
+          "firstFileCreationUtc": "2026-11-26T00:38:56.644392+00:00",
+          "lastWriteUtc": "2026-11-26T00:39:03.071389+00:00"
+        },
+        "round": 3,
+        "positiveHits": 495,
+        "negativeCorrect": 107,
+        "p50ms": 4.022792,
+        "p95ms": 42.032958,
+        "meetsTargets": true,
+        "tierCounts": {
+          "cold-hot": {
+            "n": 130,
+            "success": 130
+          },
+          "cold": {
+            "n": 218,
+            "success": 218
+          },
+          "hot": {
+            "n": 147,
+            "success": 147
+          }
+        },
+        "wireSha256": "f0db67299f1c4397f172fc96e95924810d2dc6b513354aeebaf892c022a90710",
+        "sources": {
+          "packages/memex-mcp/bin/server.mjs": "672c0cfc09646c3c7f5b13571f32bd088ae11eb0100709a6b5071e4a122285f9",
+          "packages/memex-core/lib/engine.js": "e108a06fcf9b117a5cba91227d9c995a58d936d28bc44c0d617b2340dee92595",
+          "packages/memex-core/lib/store.js": "c9b185f8bc4ecf953313f0684b255540dcde738ff966c2dafcae0d05c6941ec7"
+        }
+      }
+    ]
+  },
+  "extraReadback": [
+    {
+      "probe": "alder",
+      "returned": "scale-alder-current",
+      "source": "synthetic://retention/alder-circuit/export-contract",
+      "version": "rev-2",
+      "openedSignedValue": true
+    },
+    {
+      "probe": "fern",
+      "returned": "scale-fern-final",
+      "source": "synthetic://retention/fern-lantern/continuity-ledger",
+      "version": "rev-3",
+      "openedSignedValue": true
+    },
+    {
+      "probe": "sable",
+      "returned": "scale-sable-checkpoint",
+      "source": "synthetic://retention/sable-orchard/checkpoint-register",
+      "version": "rev-5",
+      "openedSignedValue": true
+    },
+    {
+      "probe": "heliotrope",
+      "returned": "scale-heliotrope-checkpoint",
+      "source": "synthetic://retention/heliotrope-pier/late-checkpoint",
+      "version": "rev-8",
+      "openedSignedValue": true
+    },
+    {
+      "probe": "scale-fern-foreign",
+      "denied": true
+    },
+    {
+      "probe": "scale-indigo-private",
+      "denied": true
+    },
+    {
+      "probe": "Marigold Narrows post recovery confirmation signature",
+      "unscopedAbsence": true,
+      "returned": [
+        "scale-fern-final"
+      ],
+      "empty": false
+    },
+    {
+      "probe": "Indigo Lantern signed maintenance waiver",
+      "unscopedAbsence": true,
+      "returned": [
+        "scale-fern-final",
+        "scale-note-14468",
+        "scale-note-14408",
+        "scale-note-14004",
+        "scale-note-13488"
+      ],
+      "empty": false
+    },
+    {
+      "probe": "unknown-receipt-824901",
+      "unscopedAbsence": true,
+      "returned": [],
+      "empty": true
+    },
+    {
+      "probe": "\"Marigold Narrows\" confirmation",
+      "unscopedAbsence": true,
+      "returned": [],
+      "empty": true
+    }
+  ],
+  "limitations": "Synthetic engineering archive. Topic items have multiple correct records. Notebook-reference and source/version inputs are known locators. Body observations require the topic and quoted phrase in the persisted body. Expiry timestamps absent here; supersession and wrong revisions exist.",
+  "roundOrder": [
+    "B1",
+    "C1",
+    "C2",
+    "B2",
+    "B3",
+    "C3"
+  ]
+}

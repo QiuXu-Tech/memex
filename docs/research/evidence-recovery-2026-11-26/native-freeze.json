@@ -1,0 +1,43 @@
+{
+  "fixtureLockSha256": "e2b4cc20eb940aa9364c30269f3068c0a809cb8b37ad785e04039f762acd9c60",
+  "runtimeSha256": {
+    "scripts/run-evidence-recovery-native.py": "100ebee754e6253460ce1b25d884564c7e0a6283c31f12e6678b72f6c5901047",
+    "scripts/evidence-check-gate.mjs": "8e7a5592b85c00b6fafc519ae90640b51a9b1e4bc144e43988a87616b1569d76",
+    "scripts/evidence-recovery-archive.mjs": "1533515566aa7ef96a8d604f986483d9fb738a1920f10fbb55fba41fc0c9318c",
+    "scripts/codex-retention-host.py": "663201794332653973754e4f3c27c5b6c63672341f580a8368a4316bbd7d46e9",
+    "packages/memex-core/lib/engine.js": "e108a06fcf9b117a5cba91227d9c995a58d936d28bc44c0d617b2340dee92595",
+    "packages/memex-core/lib/store.js": "c9b185f8bc4ecf953313f0684b255540dcde738ff966c2dafcae0d05c6941ec7",
+    "packages/memex-mcp/bin/server.mjs": "672c0cfc09646c3c7f5b13571f32bd088ae11eb0100709a6b5071e4a122285f9"
+  },
+  "cases": [
+    "E01",
+    "E02",
+    "E03",
+    "E04",
+    "E05",
+    "E06",
+    "E07",
+    "E08",
+    "E09",
+    "E10",
+    "E11",
+    "E12",
+    "E13",
+    "E14",
+    "E15",
+    "E16",
+    "E17",
+    "E18",
+    "E19",
+    "E20",
+    "E21",
+    "E22",
+    "E23",
+    "E24"
+  ],
+  "model": "gpt-5.6-sol",
+  "version": "codex-cli 0.153.0",
+  "jobs": 8,
+  "tokenizer": "tiktoken@0.12.0/o200k_base",
+  "claimBudget": 1200
+}

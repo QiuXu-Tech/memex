@@ -1,0 +1,29 @@
+{
+  "nodeVersion": "24.22.3",
+  "bundleBuild": "PASS",
+  "bundleSourceParity": "PASS",
+  "assertionsPassed": {
+    "core": 197,
+    "originalLocators": 1,
+    "evidenceGateAndSearch": 19,
+    "sqlite": 39,
+    "integrity": 50,
+    "materializer": 36,
+    "audit": 43,
+    "scorerRegression": 8
+  },
+  "originalEventPaging": {
+    "moreThanOneActualMcpPage": "PASS",
+    "boundedClippingRefusal": "PASS"
+  },
+  "frozenFixtureReproduction": {
+    "cases": 24,
+    "files": 192,
+    "verifiedNewLock": true,
+    "historicalTracebackPathsCanDiffer": true
+  },
+  "ordinarySyntheticRecall": {
+    "probes": 80,
+    "hitAt1": 1
+  }
+}

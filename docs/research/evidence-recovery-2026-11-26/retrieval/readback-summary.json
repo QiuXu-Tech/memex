@@ -1,0 +1,70 @@
+[
+  {
+    "probe": "alder",
+    "returned": "scale-alder-current",
+    "source": "synthetic://retention/alder-circuit/export-contract",
+    "version": "rev-2",
+    "openedSignedValue": true
+  },
+  {
+    "probe": "fern",
+    "returned": "scale-fern-final",
+    "source": "synthetic://retention/fern-lantern/continuity-ledger",
+    "version": "rev-3",
+    "openedSignedValue": true
+  },
+  {
+    "probe": "sable",
+    "returned": "scale-sable-checkpoint",
+    "source": "synthetic://retention/sable-orchard/checkpoint-register",
+    "version": "rev-5",
+    "openedSignedValue": true
+  },
+  {
+    "probe": "heliotrope",
+    "returned": "scale-heliotrope-checkpoint",
+    "source": "synthetic://retention/heliotrope-pier/late-checkpoint",
+    "version": "rev-8",
+    "openedSignedValue": true
+  },
+  {
+    "probe": "scale-fern-foreign",
+    "denied": true
+  },
+  {
+    "probe": "scale-indigo-private",
+    "denied": true
+  },
+  {
+    "probe": "Marigold Narrows post recovery confirmation signature",
+    "unscopedAbsence": true,
+    "returned": [
+      "scale-fern-final"
+    ],
+    "empty": false
+  },
+  {
+    "probe": "Indigo Lantern signed maintenance waiver",
+    "unscopedAbsence": true,
+    "returned": [
+      "scale-fern-final",
+      "scale-note-14468",
+      "scale-note-14408",
+      "scale-note-14004",
+      "scale-note-13488"
+    ],
+    "empty": false
+  },
+  {
+    "probe": "unknown-receipt-824901",
+    "unscopedAbsence": true,
+    "returned": [],
+    "empty": true
+  },
+  {
+    "probe": "\"Marigold Narrows\" confirmation",
+    "unscopedAbsence": true,
+    "returned": [],
+    "empty": true
+  }
+]

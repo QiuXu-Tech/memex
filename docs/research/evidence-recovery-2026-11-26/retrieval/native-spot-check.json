@@ -1,0 +1,112 @@
+{
+  "status": "scored-live-codex",
+  "nominalSize": "100m",
+  "tokenizer": {
+    "name": "o200k_base",
+    "library": "tiktoken",
+    "version": "0.12.0",
+    "vocabularySha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+    "countedUnit": "independently encoded persisted record body; excludes frontmatter and inaccessible namespaces"
+  },
+  "visibleTokens": 100005571,
+  "visibleRecords": 15767,
+  "visibleHot": 6307,
+  "visibleCold": 9460,
+  "archiveUsage": {
+    "logicalBytes": 902053976,
+    "allocatedBytes": 936640512
+  },
+  "datasetSha256": "c3d50bad9742b39288aa3089ab56d0da77b90b17c8174d07b4d842c11dfe04c3",
+  "timeSeconds": 36.209984999964945,
+  "tools": {
+    "memory_search": 8,
+    "memory_open": 4,
+    "memory_grep": 2
+  },
+  "medianToolMs": {
+    "memory_search": 83.5,
+    "memory_open": 5.0,
+    "memory_grep": 3957.0
+  },
+  "returnedMcpTextChars": 25039,
+  "providerUsage": {
+    "total": {
+      "totalTokens": 97820,
+      "inputTokens": 97018,
+      "cachedInputTokens": 71296,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 802,
+      "reasoningOutputTokens": 159
+    },
+    "last": {
+      "totalTokens": 25824,
+      "inputTokens": 25647,
+      "cachedInputTokens": 22784,
+      "cacheWriteInputTokens": 0,
+      "outputTokens": 177,
+      "reasoningOutputTokens": 0
+    },
+    "modelContextWindow": 258400
+  },
+  "requestedModel": "gpt-5.6-sol",
+  "correct": 6,
+  "total": 6,
+  "probes": {
+    "fern": {
+      "correct": true,
+      "answer": {
+        "value": "9A387A03A2D1",
+        "evidence_record_id": "scale-fern-final"
+      },
+      "sourceOpenedAndCited": true,
+      "scopeControlExposed": false,
+      "control": "early/cold; same title and higher version in another workspace"
+    },
+    "alder": {
+      "correct": true,
+      "answer": {
+        "receipt": "5C9D5895476A",
+        "hold_minutes": 7,
+        "evidence_record_id": "scale-alder-current"
+      },
+      "sourceOpenedAndCited": true,
+      "scopeControlExposed": null,
+      "control": "current version supersedes early/cold revision"
+    },
+    "sable": {
+      "correct": true,
+      "answer": {
+        "value": "CB2E3A84AC2D",
+        "evidence_record_id": "scale-sable-checkpoint"
+      },
+      "sourceOpenedAndCited": true,
+      "scopeControlExposed": null,
+      "control": "near end of 10M and visible only in the configured current session"
+    },
+    "indigo": {
+      "correct": true,
+      "answer": "NOT_FOUND",
+      "sourceOpenedAndCited": null,
+      "scopeControlExposed": false,
+      "control": "present solely in another session"
+    },
+    "heliotrope": {
+      "correct": true,
+      "answer": {
+        "value": "FDA1A4CAD511",
+        "evidence_record_id": "scale-heliotrope-checkpoint"
+      },
+      "sourceOpenedAndCited": true,
+      "scopeControlExposed": null,
+      "control": "near end of 100M, present only in large archive"
+    },
+    "marigold": {
+      "correct": true,
+      "answer": "NOT_FOUND",
+      "sourceOpenedAndCited": null,
+      "scopeControlExposed": null,
+      "control": "absent from all tiers and namespaces"
+    }
+  },
+  "rawEventsSha256": "2c3fa0a1331ad4edf0b732fb2c1c2cca1599c764f80a761fc9c3e5732a4df2b0"
+}
