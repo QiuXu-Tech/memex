@@ -1,0 +1,1346 @@
+{
+  "scope": "native observed, synthetic incidents and executable development tasks",
+  "protocolCompletedTriplets": [
+    "R01",
+    "R02",
+    "R03",
+    "R04",
+    "R05",
+    "R06",
+    "R07",
+    "R08"
+  ],
+  "formal": {
+    "A": {
+      "statuses": {
+        "SCORED": 8
+      },
+      "scored": 8,
+      "implementation_pass": 8,
+      "evidence_facts": 40,
+      "facts_source_supported": 39,
+      "facts_correct_value": 39,
+      "facts_with_trace_resolvable_alias": 0,
+      "unsupported_claims": 1,
+      "unsupported_after_alias_check": 1,
+      "incorrect_asserted_values": 1,
+      "current_revision_correct": 8,
+      "denial_bound_to_source": 7,
+      "source_supported_completion": 7,
+      "correct_abstentions": 16,
+      "incorrect_abstentions": 0,
+      "local_validation_statuses": {
+        "SUPPORTED": 8
+      },
+      "host_reported_token_totals_scored_cells": {
+        "totalTokens": 2691166,
+        "inputTokens": 2651090,
+        "cachedInputTokens": 2255360,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 40076,
+        "reasoningOutputTokens": 7774
+      },
+      "verifiedBoundaries": 24,
+      "verifiedStageReceipts": 24,
+      "proactiveSelections": 0,
+      "proactiveSelectionsWithStagedItem": 0,
+      "proactiveFullOriginalSourceLines": 0,
+      "replacementHistoryFullSourceLines": 0,
+      "replacementHistoryInspectedSourceLines": 56,
+      "mcp": {},
+      "trialsUsedMemex": 0,
+      "medianRunnerSeconds": 204.0006208124687,
+      "budgetRefusals": 0,
+      "totalRecoveredChars": 0
+    },
+    "B": {
+      "statuses": {
+        "SCORED": 8
+      },
+      "scored": 8,
+      "implementation_pass": 8,
+      "evidence_facts": 40,
+      "facts_source_supported": 33,
+      "facts_correct_value": 35,
+      "facts_with_trace_resolvable_alias": 0,
+      "unsupported_claims": 5,
+      "unsupported_after_alias_check": 5,
+      "incorrect_asserted_values": 4,
+      "current_revision_correct": 8,
+      "denial_bound_to_source": 3,
+      "source_supported_completion": 3,
+      "correct_abstentions": 15,
+      "incorrect_abstentions": 2,
+      "local_validation_statuses": {
+        "COMMAND_OR_RESULT_UNMATCHED": 1,
+        "SUPPORTED": 7
+      },
+      "host_reported_token_totals_scored_cells": {
+        "totalTokens": 2820355,
+        "inputTokens": 2779750,
+        "cachedInputTokens": 2424448,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 40605,
+        "reasoningOutputTokens": 8033
+      },
+      "verifiedBoundaries": 24,
+      "verifiedStageReceipts": 24,
+      "proactiveSelections": 0,
+      "proactiveSelectionsWithStagedItem": 0,
+      "proactiveFullOriginalSourceLines": 0,
+      "replacementHistoryFullSourceLines": 0,
+      "replacementHistoryInspectedSourceLines": 56,
+      "mcp": {},
+      "trialsUsedMemex": 0,
+      "medianRunnerSeconds": 208.39301808347227,
+      "budgetRefusals": 0,
+      "totalRecoveredChars": 0
+    },
+    "C": {
+      "statuses": {
+        "SCORED": 8
+      },
+      "scored": 8,
+      "implementation_pass": 8,
+      "evidence_facts": 40,
+      "facts_source_supported": 36,
+      "facts_correct_value": 37,
+      "facts_with_trace_resolvable_alias": 0,
+      "unsupported_claims": 4,
+      "unsupported_after_alias_check": 4,
+      "incorrect_asserted_values": 3,
+      "current_revision_correct": 8,
+      "denial_bound_to_source": 4,
+      "source_supported_completion": 4,
+      "correct_abstentions": 16,
+      "incorrect_abstentions": 0,
+      "local_validation_statuses": {
+        "SUPPORTED": 5,
+        "COMMAND_OR_RESULT_UNMATCHED": 3
+      },
+      "host_reported_token_totals_scored_cells": {
+        "totalTokens": 3447896,
+        "inputTokens": 3400692,
+        "cachedInputTokens": 3002496,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 47204,
+        "reasoningOutputTokens": 9125
+      },
+      "verifiedBoundaries": 24,
+      "verifiedStageReceipts": 24,
+      "proactiveSelections": 24,
+      "proactiveSelectionsWithStagedItem": 8,
+      "proactiveFullOriginalSourceLines": 0,
+      "replacementHistoryFullSourceLines": 0,
+      "replacementHistoryInspectedSourceLines": 56,
+      "mcp": {},
+      "trialsUsedMemex": 0,
+      "medianRunnerSeconds": 222.9058078750386,
+      "budgetRefusals": 0,
+      "totalRecoveredChars": 58681
+    }
+  },
+  "pairComparisons": {
+    "A->B": {
+      "exactValues": {
+        "pairs": 8,
+        "higher": 0,
+        "same": 5,
+        "lower": 3,
+        "deltaSum": -4
+      },
+      "originalCitations": {
+        "pairs": 8,
+        "higher": 0,
+        "same": 4,
+        "lower": 4,
+        "deltaSum": -6
+      },
+      "unsupportedAfterAliasCheck": {
+        "pairs": 8,
+        "higher": 4,
+        "same": 4,
+        "lower": 0,
+        "deltaSum": 4
+      }
+    },
+    "B->C": {
+      "exactValues": {
+        "pairs": 8,
+        "higher": 1,
+        "same": 7,
+        "lower": 0,
+        "deltaSum": 2
+      },
+      "originalCitations": {
+        "pairs": 8,
+        "higher": 1,
+        "same": 7,
+        "lower": 0,
+        "deltaSum": 3
+      },
+      "unsupportedAfterAliasCheck": {
+        "pairs": 8,
+        "higher": 0,
+        "same": 7,
+        "lower": 1,
+        "deltaSum": -1
+      }
+    }
+  },
+  "cases": {
+    "R01": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 4,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 194.71389233297668,
+        "rawNativeEventLogSha256": "112bb8d4238904385b5e305d802d1c457450beadddaf89a8061744ed1c2da97c"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 4,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 2,
+        "localValidation": "COMMAND_OR_RESULT_UNMATCHED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 176.97264341590926,
+        "rawNativeEventLogSha256": "74d61e0afc03d081967d157f104dda67bcbcf24deeed900e911d80247b7ac98f"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 4,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 3769,
+            "proactive": 1031,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 2704,
+            "proactive": 2096,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 1885,
+            "proactive": 2915,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 210.71737595798913,
+        "rawNativeEventLogSha256": "629be00da224cf583cb27884d644d6ed7ec4fea70647747130f1dbef310723bd"
+      }
+    },
+    "R02": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 181.17331041698344,
+        "rawNativeEventLogSha256": "19ac4f0419d92e5ed1b42cca406ab9f1985ce1feb415b4760a729548926fed9e"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 191.394530709018,
+        "rawNativeEventLogSha256": "694f0fe1ec5a9bd11ab8e9a39f8954291528e484e2a08153cca2f6374a6dc199"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "COMMAND_OR_RESULT_UNMATCHED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 571,
+            "proactive": 4229,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 1736,
+            "proactive": 3064,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 1717,
+            "proactive": 3083,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 220.90785225003492,
+        "rawNativeEventLogSha256": "eb31fa2a95c02c46bebd6016f867718f40bfd15cd0aed125b29af7a8598363a8"
+      }
+    },
+    "R03": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 182.02750279102474,
+        "rawNativeEventLogSha256": "3d6fd6387f81af3a723f4936b7146944c495e3623a6e2721daaa0ea670249a66"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 4,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 188.5043045419734,
+        "rawNativeEventLogSha256": "1b9a4788ef11360851cfcd4f53782e82bfaa94fdde91a2137266408dc7f0f7b1"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 4,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 2,
+        "localValidation": "COMMAND_OR_RESULT_UNMATCHED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 3769,
+            "proactive": 1031,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 2813,
+            "proactive": 1987,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 2383,
+            "proactive": 2417,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 177.1547096669674,
+        "rawNativeEventLogSha256": "318fde53a952e13370fae8a58df0aa5ace0df1c344c947f5f7d4b6d415f5847d"
+      }
+    },
+    "R04": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 224.43375008297153,
+        "rawNativeEventLogSha256": "2d359e5ec0e74f0e83dcc258f902ef9091b69a3d1fe3ff7106202d3f0b41afdc"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 227.72815220803022,
+        "rawNativeEventLogSha256": "0a8bbbb9e9751697acb8d9e0aba864c60ebd3d89fd6d5191be953e4d062c8547"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 3769,
+            "proactive": 1031,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 1842,
+            "proactive": 2958,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 1755,
+            "proactive": 3045,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 234.77253054094035,
+        "rawNativeEventLogSha256": "b8e2a5518f49f27c922be1d6fa4a5436ee27339b7d254ef2c7309277f1ef5792"
+      }
+    },
+    "R05": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 239.46195887494832,
+        "rawNativeEventLogSha256": "0b0210c7873cea81db0d8a336cfdd3b668f5f7a760e24abfc85bd6f8c6f07921"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 4,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 224.85609166696668,
+        "rawNativeEventLogSha256": "074aac7feb75e3935494219dfdba4370f02bc2ae4b45161eb115274fd34b33d9"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 4,
+        "originalCitations": 4,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 2,
+        "localValidation": "COMMAND_OR_RESULT_UNMATCHED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 3769,
+            "proactive": 1031,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 1755,
+            "proactive": 3045,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 1717,
+            "proactive": 3083,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 268.864055416896,
+        "rawNativeEventLogSha256": "cc09141149422f09cb38cfa49deda10a3d9c3c3158b2c2763bd40414f271279f"
+      }
+    },
+    "R06": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 213.2873492919607,
+        "rawNativeEventLogSha256": "3151090b95727b879fd5cb8c9e31b0c4514586a6c20bb6e79d94ceaabbaaed90"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 3,
+        "originalCitations": 2,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 1,
+        "incorrectAssertedValues": 1,
+        "correctAbstentions": 1,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 227.2824894170044,
+        "rawNativeEventLogSha256": "e8a108358f25ca9d2a80b1a68a36f1208e0b2b0ed3184a2f1433c2b10164fcb2"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 1637,
+            "proactive": 3163,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 1641,
+            "proactive": 3159,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 1717,
+            "proactive": 3083,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 229.74456800008193,
+        "rawNativeEventLogSha256": "8adfbe2c2f08c078f794c98cf00b305fdf1db2e3167ff5e92e711700a9d2664c"
+      }
+    },
+    "R07": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 189.4107628329657,
+        "rawNativeEventLogSha256": "4b59387fa9be0032a0e7a24d11aa2e752451b8ad16341c3f511d0b1ab5f17c86"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 206.93345741694793,
+        "rawNativeEventLogSha256": "d94fbc4faec29180c3c12491a24837bfde9f47cde6ef6673ea4738252e483eec"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 3769,
+            "proactive": 1031,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 2739,
+            "proactive": 2061,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 1882,
+            "proactive": 2918,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 201.8511099590687,
+        "rawNativeEventLogSha256": "e7315dc314a14fe5d3edcfc78138ae267fab329f9f68e15e292dddc532c5f41b"
+      }
+    },
+    "R08": {
+      "A": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 225.4124432920944,
+        "rawNativeEventLogSha256": "a126daee54eb81084a8b3dabbe713094841a411ed5cf385563e0d56e9500f035"
+      },
+      "B": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 0,
+        "proactiveSelectionsWithStagedItem": 0,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 209.8525787499966,
+        "rawNativeEventLogSha256": "72e718d5fe420bbc3c0c27058a99449281573f77fc24f818c1a29b2158754726"
+      },
+      "C": {
+        "status": "SCORED",
+        "implementationPass": true,
+        "requiredFacts": 5,
+        "exactValues": 5,
+        "originalCitations": 5,
+        "traceableAliases": 0,
+        "unsupportedAfterAliasCheck": 0,
+        "incorrectAssertedValues": 0,
+        "correctAbstentions": 2,
+        "localValidation": "SUPPORTED",
+        "scope": "NO_SIGNAL_IN_TRACE",
+        "verifiedBoundaries": 3,
+        "verifiedStageReceipts": 3,
+        "mcp": {},
+        "recoveryBudgets": [
+          {
+            "ordinal": 0,
+            "remaining": 4800,
+            "proactive": 0,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 1,
+            "remaining": 3769,
+            "proactive": 1031,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 2,
+            "remaining": 1694,
+            "proactive": 3106,
+            "delivered": 0,
+            "refused": 0
+          },
+          {
+            "ordinal": 3,
+            "remaining": 1717,
+            "proactive": 3083,
+            "delivered": 0,
+            "refused": 0
+          }
+        ],
+        "proactiveSelections": 3,
+        "proactiveSelectionsWithStagedItem": 1,
+        "proactiveFullOriginalSourceLines": 0,
+        "replacementHistoryFullSourceLines": 0,
+        "replacementHistoryInspectedSourceLines": 7,
+        "elapsedSeconds": 224.90376350004226,
+        "rawNativeEventLogSha256": "0b00790c65aa804f8fa80f4407fed203e247ac8b353e3110a57a66cea083c62e"
+      }
+    }
+  },
+  "pilots": {
+    "A": {
+      "statuses": {
+        "SCORED": 2
+      },
+      "scored": 2,
+      "implementation_pass": 2,
+      "evidence_facts": 8,
+      "facts_source_supported": 8,
+      "facts_correct_value": 8,
+      "facts_with_trace_resolvable_alias": 0,
+      "unsupported_claims": 0,
+      "unsupported_after_alias_check": 0,
+      "incorrect_asserted_values": 0,
+      "current_revision_correct": 2,
+      "denial_bound_to_source": 2,
+      "source_supported_completion": 2,
+      "correct_abstentions": 2,
+      "incorrect_abstentions": 0,
+      "local_validation_statuses": {
+        "SUPPORTED": 2
+      },
+      "host_reported_token_totals_scored_cells": {
+        "totalTokens": 598659,
+        "inputTokens": 588052,
+        "cachedInputTokens": 492288,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 10607,
+        "reasoningOutputTokens": 1669
+      }
+    },
+    "B": {
+      "statuses": {
+        "SCORED": 2
+      },
+      "scored": 2,
+      "implementation_pass": 2,
+      "evidence_facts": 8,
+      "facts_source_supported": 8,
+      "facts_correct_value": 8,
+      "facts_with_trace_resolvable_alias": 0,
+      "unsupported_claims": 0,
+      "unsupported_after_alias_check": 0,
+      "incorrect_asserted_values": 0,
+      "current_revision_correct": 2,
+      "denial_bound_to_source": 2,
+      "source_supported_completion": 2,
+      "correct_abstentions": 2,
+      "incorrect_abstentions": 0,
+      "local_validation_statuses": {
+        "SUPPORTED": 2
+      },
+      "host_reported_token_totals_scored_cells": {
+        "totalTokens": 736786,
+        "inputTokens": 726291,
+        "cachedInputTokens": 609792,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 10495,
+        "reasoningOutputTokens": 1809
+      }
+    },
+    "C": {
+      "statuses": {
+        "SCORED": 2
+      },
+      "scored": 2,
+      "implementation_pass": 2,
+      "evidence_facts": 8,
+      "facts_source_supported": 5,
+      "facts_correct_value": 8,
+      "facts_with_trace_resolvable_alias": 3,
+      "unsupported_claims": 2,
+      "unsupported_after_alias_check": 0,
+      "incorrect_asserted_values": 0,
+      "current_revision_correct": 2,
+      "denial_bound_to_source": 1,
+      "source_supported_completion": 0,
+      "correct_abstentions": 1,
+      "incorrect_abstentions": 1,
+      "local_validation_statuses": {
+        "COMMAND_OR_RESULT_UNMATCHED": 1,
+        "SUPPORTED": 1
+      },
+      "host_reported_token_totals_scored_cells": {
+        "totalTokens": 578894,
+        "inputTokens": 569212,
+        "cachedInputTokens": 466560,
+        "cacheWriteInputTokens": 0,
+        "outputTokens": 9682,
+        "reasoningOutputTokens": 1774
+      }
+    }
+  },
+  "pilotCompletedTriplets": [
+    "P01",
+    "P02"
+  ]
+}

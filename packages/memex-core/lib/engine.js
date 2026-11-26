@@ -17,7 +17,7 @@ import { randomUUID } from 'node:crypto'
 import { join } from 'node:path'
 import { LocalStoreCore } from './store.js'
 import { materializeStoreContext } from './context-pager.js'
-import { contextEventPage, memoryCaptureScope, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
+import { contextEventPage, memoryCaptureScope, memoryQueryTerms, memoryVisibleScopes, memoryWorkspaceKey } from '../index.js'
 import { profileTokens, resolveModelProfile } from './model-profiles.js'
 
 /** Default storage location for non-DSH agents (with legacy DSH_MEMORY_HOME fallback). */
@@ -124,11 +124,12 @@ export class AgentMemory {
   }
 
   /** Ranked card-level search over the visible levels. */
-  search({ query, limit, kind, status, source, version, includeExpired } = {}) {
+  search({ query, limit, kind, status, source, version, includeExpired, sourceEvents = false } = {}) {
     if (source !== undefined && (typeof source !== 'string' || !source.trim())) throw new TypeError('memory: source must be a non-empty string')
     if (version !== undefined && (typeof version !== 'string' || !version.trim() || source === undefined)) throw new TypeError('memory: version requires a non-empty source and version')
     if (includeExpired !== undefined && typeof includeExpired !== 'boolean') throw new TypeError('memory: includeExpired must be a boolean')
-    return this.store.search({
+    if (typeof sourceEvents !== 'boolean') throw new TypeError('memory: sourceEvents must be a boolean')
+    const result = this.store.search({
       query,
       workspaceKey: this.workspaceKey,
       scopes: this.scopes,
@@ -142,6 +143,56 @@ export class AgentMemory {
       ...(version === undefined ? {} : { version }),
       ...(includeExpired === undefined ? {} : { includeExpired }),
     })
+    if (sourceEvents) {
+      const patterns = memoryQueryTerms(query, 8).sort((left, right) => right.length - left.length)
+        .map(term => ({ anchor: /[\d._:/-]/.test(term),
+          expression: new RegExp(term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'iu') }))
+      for (const card of result.hits.slice(0, 8)) {
+        const event = this.#findSourceEvent(card, patterns)
+        if (event !== undefined) card.sourceEvent = event
+      }
+    }
+    return result
+  }
+
+  // Search only the canonical events behind the already visible card hits.
+  // Return an offset into the same JSON representation as openEvent.
+  #findSourceEvent(card, patterns) {
+    const seqs = card.provenance?.shadowedSeqs
+    if (!Array.isArray(seqs) || seqs.length === 0 || patterns.length === 0) return undefined
+    const events = this.store.listContextEvents(card.id)
+    const seen = new Set()
+    let best
+    for (const event of events) {
+      const eventIndex = seqs.indexOf(event.sequence) + 1
+      const part = event.attachments.find(item => item?.rawEvent !== undefined)
+      if (!eventIndex || part === undefined || seen.has(eventIndex)) continue
+      seen.add(eventIndex)
+      const raw = JSON.stringify(part.rawEvent)
+      for (const token of raw.matchAll(/"(?:[^"\\]|\\.)*"/g)) {
+        // JSON property names and protocol metadata must not outrank a
+        // distinctive query term in a captured text value.
+        if (raw[token.index + token[0].length] === ':') continue
+        const value = JSON.parse(token[0])
+        let score = 0
+        let firstMatch
+        let firstAnchor
+        for (const { anchor, expression } of patterns) {
+          const match = expression.exec(value)
+          if (match === null) continue
+          score += anchor ? patterns.length + 1 : 1
+          firstMatch ??= match
+          if (anchor) firstAnchor ??= match
+        }
+        if (!score || score < (best?.score ?? 0) || (score === best?.score && value.length < best.valueLength)) continue
+        const at = (firstAnchor ?? firstMatch).index
+        const encodedPrefix = JSON.stringify(value.slice(0, at)).length - 2
+        let charOffset = Math.max(0, token.index + 1 + encodedPrefix - 80)
+        if (charOffset > 0 && /[\uDC00-\uDFFF]/.test(raw[charOffset]) && /[\uD800-\uDBFF]/.test(raw[charOffset - 1])) charOffset -= 1
+        best = { score, valueLength: value.length, locator: { id: card.id, eventIndex, charOffset } }
+      }
+    }
+    return best?.locator
   }
 
   /**

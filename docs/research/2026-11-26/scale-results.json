@@ -1,0 +1,228 @@
+{
+  "runs": [
+    {
+      "status": "scored-live-codex",
+      "nominalSize": "10m",
+      "tokenizer": {
+        "name": "o200k_base",
+        "library": "tiktoken",
+        "version": "0.12.0",
+        "vocabularySha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+        "countedUnit": "independently encoded persisted record body; excludes frontmatter and inaccessible namespaces"
+      },
+      "visibleTokens": 10005683,
+      "visibleRecords": 1570,
+      "visibleHot": 628,
+      "visibleCold": 942,
+      "archiveUsage": {
+        "logicalBytes": 89342998,
+        "allocatedBytes": 92934144
+      },
+      "datasetSha256": "5f346e8d71a995c0a41e2ca604e163128ce09d0bbb8bc6dbd69030240801c40d",
+      "timeSeconds": 37.75014741695486,
+      "tools": {
+        "memory_search": 9,
+        "memory_open": 3,
+        "memory_grep": 6
+      },
+      "medianToolMs": {
+        "memory_search": 62,
+        "memory_open": 1,
+        "memory_grep": 995.5
+      },
+      "returnedMcpTextChars": 36549,
+      "providerUsage": {
+        "total": {
+          "totalTokens": 99085,
+          "inputTokens": 98199,
+          "cachedInputTokens": 71552,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 886,
+          "reasoningOutputTokens": 244
+        },
+        "last": {
+          "totalTokens": 26798,
+          "inputTokens": 26539,
+          "cachedInputTokens": 24192,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 259,
+          "reasoningOutputTokens": 95
+        },
+        "modelContextWindow": 258400
+      },
+      "requestedModel": "gpt-5.6-sol",
+      "correct": 6,
+      "total": 6,
+      "probes": {
+        "fern": {
+          "correct": true,
+          "answer": {
+            "signed_recovery_seal": "9A387A03A2D1",
+            "evidence_record_id": "scale-fern-final"
+          },
+          "sourceOpenedAndCited": true,
+          "scopeControlExposed": false,
+          "control": "early/cold; same title and higher version in another workspace"
+        },
+        "alder": {
+          "correct": true,
+          "answer": {
+            "signed_export_receipt": "5C9D5895476A",
+            "hold_length_minutes": 7,
+            "evidence_record_id": "scale-alder-current"
+          },
+          "sourceOpenedAndCited": true,
+          "scopeControlExposed": null,
+          "control": "current version supersedes early/cold revision"
+        },
+        "sable": {
+          "correct": true,
+          "answer": {
+            "reviewer_verification_stamp": "CB2E3A84AC2D",
+            "evidence_record_id": "scale-sable-checkpoint"
+          },
+          "sourceOpenedAndCited": true,
+          "scopeControlExposed": null,
+          "control": "near end of 10M and visible only in the configured current session"
+        },
+        "indigo": {
+          "correct": true,
+          "answer": "NOT_FOUND",
+          "sourceOpenedAndCited": null,
+          "scopeControlExposed": false,
+          "control": "present solely in another session"
+        },
+        "heliotrope": {
+          "correct": true,
+          "answer": "NOT_FOUND",
+          "sourceOpenedAndCited": null,
+          "scopeControlExposed": null,
+          "control": "large-only"
+        },
+        "marigold": {
+          "correct": true,
+          "answer": "NOT_FOUND",
+          "sourceOpenedAndCited": null,
+          "scopeControlExposed": null,
+          "control": "absent from all tiers and namespaces"
+        }
+      },
+      "rawEventsSha256": "b685c083c185f1a19db78253dc25a2a60672731c548c406c65d12a768fcbf070",
+      "promptSha256": "80574de0705fe074c23c7d9a6abb52e5a837d5bc89735a11cd9225081e97a9a5"
+    },
+    {
+      "status": "scored-live-codex",
+      "nominalSize": "100m",
+      "tokenizer": {
+        "name": "o200k_base",
+        "library": "tiktoken",
+        "version": "0.12.0",
+        "vocabularySha256": "446a9538cb6c348e3516120d7c08b09f57c36495e2acfffe59a5bf8b0cfb1a2d",
+        "countedUnit": "independently encoded persisted record body; excludes frontmatter and inaccessible namespaces"
+      },
+      "visibleTokens": 100005571,
+      "visibleRecords": 15767,
+      "visibleHot": 6307,
+      "visibleCold": 9460,
+      "archiveUsage": {
+        "logicalBytes": 902053976,
+        "allocatedBytes": 936640512
+      },
+      "datasetSha256": "c3d50bad9742b39288aa3089ab56d0da77b90b17c8174d07b4d842c11dfe04c3",
+      "timeSeconds": 36.44259749993216,
+      "tools": {
+        "memory_search": 10,
+        "memory_open": 4,
+        "memory_grep": 2
+      },
+      "medianToolMs": {
+        "memory_search": 242.0,
+        "memory_open": 2.0,
+        "memory_grep": 2270.5
+      },
+      "returnedMcpTextChars": 27831,
+      "providerUsage": {
+        "total": {
+          "totalTokens": 94135,
+          "inputTokens": 93311,
+          "cachedInputTokens": 68864,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 824,
+          "reasoningOutputTokens": 209
+        },
+        "last": {
+          "totalTokens": 24492,
+          "inputTokens": 24213,
+          "cachedInputTokens": 21504,
+          "cacheWriteInputTokens": 0,
+          "outputTokens": 279,
+          "reasoningOutputTokens": 100
+        },
+        "modelContextWindow": 258400
+      },
+      "requestedModel": "gpt-5.6-sol",
+      "correct": 6,
+      "total": 6,
+      "probes": {
+        "fern": {
+          "correct": true,
+          "answer": {
+            "value": "9A387A03A2D1",
+            "evidence_record_id": "scale-fern-final"
+          },
+          "sourceOpenedAndCited": true,
+          "scopeControlExposed": false,
+          "control": "early/cold; same title and higher version in another workspace"
+        },
+        "alder": {
+          "correct": true,
+          "answer": {
+            "receipt": "5C9D5895476A",
+            "hold_minutes": 7,
+            "evidence_record_id": "scale-alder-current"
+          },
+          "sourceOpenedAndCited": true,
+          "scopeControlExposed": null,
+          "control": "current version supersedes early/cold revision"
+        },
+        "sable": {
+          "correct": true,
+          "answer": {
+            "value": "CB2E3A84AC2D",
+            "evidence_record_id": "scale-sable-checkpoint"
+          },
+          "sourceOpenedAndCited": true,
+          "scopeControlExposed": null,
+          "control": "near end of 10M and visible only in the configured current session"
+        },
+        "indigo": {
+          "correct": true,
+          "answer": "NOT_FOUND",
+          "sourceOpenedAndCited": null,
+          "scopeControlExposed": false,
+          "control": "present solely in another session"
+        },
+        "heliotrope": {
+          "correct": true,
+          "answer": {
+            "value": "FDA1A4CAD511",
+            "evidence_record_id": "scale-heliotrope-checkpoint"
+          },
+          "sourceOpenedAndCited": true,
+          "scopeControlExposed": null,
+          "control": "near end of 100M, present only in large archive"
+        },
+        "marigold": {
+          "correct": true,
+          "answer": "NOT_FOUND",
+          "sourceOpenedAndCited": null,
+          "scopeControlExposed": null,
+          "control": "absent from all tiers and namespaces"
+        }
+      },
+      "rawEventsSha256": "ef953d47fab89cefc65d18b06260f7d9664a18478472924e30bee66d2a8c9fb3",
+      "promptSha256": "80574de0705fe074c23c7d9a6abb52e5a837d5bc89735a11cd9225081e97a9a5"
+    }
+  ],
+  "codingContext": "synthetic archive, native Codex MCP retrieval"
+}

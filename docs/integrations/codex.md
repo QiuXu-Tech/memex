@@ -16,7 +16,7 @@ Initialization and the local MCP server require no provider credential or test l
 
 Verify the local installation contract with `node --test test/audit-install.mjs` from the checkout root. The test runs the generated configuration's command/args in fresh processes, with empty temporary user directories and synthetic project/store data, then checks persistence after restart. It parses the adapter's emitted fields rather than implementing a general TOML parser; actual Codex startup and client permission prompts remain separate checks.
 
-Codex has **no hook surface**, so the integration is:
+The standard Memex Codex integration has two parts:
 
 1. **MCP server** for tools. `--write-config` appends (and backs up) `~/.codex/config.toml`:
 
@@ -50,4 +50,19 @@ The default MCP interface advertises search, open, write and set-status. Add `--
 
 Note: GPT-6.1 Sol allows a 1,050,000-token API context, but Codex/ChatGPT Work default to a 500k context; the `gpt-6.1` profile models the API limit and can be overridden (`profileOverrides: { windowTokens: 500_000 }`).
 
-Because there is no transcript hook, capture happens when the agent calls `memory_write` (the manual instructs it to write durable decisions/facts). For verbatim transcript archiving in Codex, run the MCP server in the same root and let the agent call `memory_write` with the span, or use a wrapper script that pipes the session log into `memory_write`.
+In the standard integration, capture happens when the agent calls `memory_write` (the manual instructs it to write durable decisions/facts). For verbatim transcript archiving in Codex, run the MCP server in the same root and let the agent call `memory_write` with the span, or use a wrapper script that pipes the session log into `memory_write`.
+
+
+To discover a matching captured source event in a returned record, request
+`memory_search` with `sourceEvents: true`. For up to the first eight visible
+hits that have matching captured events, Memex returns an `id`, `eventIndex`
+and `charOffset` locator. Pass those fields to `memory_open` to open the
+original JSON at that location, including evidence omitted from a rendered
+preview. Use subsequent offsets to continue. The locator follows ordinary
+card visibility and ranking. It only examines captured events in the returned
+cards, and a source may be incomplete, stale, or unverified.
+
+The [native compaction study](../research/2026-11-26/PROTOCOL.md) uses an
+isolated Codex app-server runner to capture approved source items and test
+bounded recovery. The standard installer continues to configure MCP and the
+manual.

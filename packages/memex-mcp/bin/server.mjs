@@ -81,14 +81,15 @@ const TOOLS = [
       version: { type: 'string', description: 'Optional exact source version; requires source.' },
       includeExpired: { type: 'boolean', description: 'Include records past their stated validity time for historical inspection.' },
       openTop: { type: 'boolean', description: 'Include up to 2,000 characters from the top-ranked record; use only when the first hit is likely to be relevant.' },
+      sourceEvents: { type: 'boolean', description: 'For the first eight visible hits, show a matching original captured event locator usable with memory_open. Archived events can contain unverified claims.' },
     },
     required: ['query'],
   }),
-  tool('memory_open', 'Read a record by id. Use offset/limit for lines; when nextCharOffset is returned, continue the same window with charOffset. For captured DSH compactions, eventIndex opens one original event as paginated JSON.', {
+  tool('memory_open', 'Read a record by id. Use offset/limit for lines; when nextCharOffset is returned, continue the same window with charOffset. For archived records with captured source events, eventIndex opens one original event as paginated JSON.', {
     type: 'object',
     properties: {
       id: { type: 'string' },
-      eventIndex: { type: 'integer', minimum: 1, description: '1-based source event within a DSH compaction archive; use charOffset to page its JSON.' },
+      eventIndex: { type: 'integer', minimum: 1, description: '1-based captured source event within an archive; use charOffset to page its JSON.' },
       offset: { type: 'integer', minimum: 1, description: '1-based first line.' },
       limit: { type: 'integer', minimum: 1, maximum: 400 },
       maxChars: { type: 'integer', minimum: 400, maximum: 240000 },
@@ -181,7 +182,7 @@ function callTool(name, input = {}) {
     case 'memory_search': {
       if (typeof input.query !== 'string' || input.query.trim().length === 0) throw new Error('memory_search requires a non-empty query')
       if (input.openTop !== undefined && typeof input.openTop !== 'boolean') throw new Error('memory_search openTop must be a boolean')
-      const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status, source: input.source, version: input.version, includeExpired: input.includeExpired })
+      const result = engine.search({ query: input.query, limit: input.limit, kind: input.kind, status: input.status, source: input.source, version: input.version, includeExpired: input.includeExpired, sourceEvents: input.sourceEvents })
       const empty = result.hits.length === 0 && engine.list({ limit: 1, includeStatus: true, includeExpired: true }).length === 0
       const header = result.hits.length === 0
         ? empty ? 'No matching memory records. The visible archive is currently empty; further searches cannot find records until some are added.' : args.allTools ? 'No matching memory records. Try memory_grep or memory_index.' : 'No matching memory records. Refine the query or check original sources.'
@@ -189,7 +190,8 @@ function callTool(name, input = {}) {
       const lines = result.hits.map((card, index) => {
         const summary = Array.from(String(card.summary || card.useWhen || '').replace(/\s+/g, ' ').trim())
         const preview = summary.slice(0, 240).join('') + (summary.length > 240 ? '…' : '')
-        return `${index + 1}. ${card.id}${card.trust === 'untrusted' ? ' [unverified]' : ''} [${card.status}] · ${card.title}${preview ? ` · ${preview}` : ''}\n   ${memoryEvidenceLabel(card)}`
+        const event = card.sourceEvent === undefined ? '' : `\n   Source event: ${JSON.stringify(card.sourceEvent)}`
+        return `${index + 1}. ${card.id}${card.trust === 'untrusted' ? ' [unverified]' : ''} [${card.status}] · ${card.title}${preview ? ` · ${preview}` : ''}\n   ${memoryEvidenceLabel(card)}${event}`
       })
       let text = `${header}\n${lines.join('\n')}`
       if (input.openTop && result.hits.length > 0) {

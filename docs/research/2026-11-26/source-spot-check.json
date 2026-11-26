@@ -1,0 +1,19 @@
+{
+  "kind": "separate-native-post-review-spot-check",
+  "status": "PASS",
+  "model": "gpt-5.6-sol",
+  "host": "codex-cli 0.153.0",
+  "successfulOriginalSourceOpen": {
+    "id": "codex-item-7ae577809363830cd13dd905c77c7255",
+    "eventIndex": 1,
+    "charOffset": 574,
+    "maxChars": 4000
+  },
+  "answer": {
+    "revision": "window-union/3",
+    "receipt_id": "R03-REV-58",
+    "memex_record_id": "codex-item-7ae577809363830cd13dd905c77c7255"
+  },
+  "mcpToolCount": 2,
+  "rawEventLogSha256": "ba51f2693225b22d37055541bcd28749aa567a953d099e1d42211ab202d54134"
+}
