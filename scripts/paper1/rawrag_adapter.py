@@ -4,7 +4,8 @@
 Default --check is offline: inspect source, dependency metadata, configuration and
 credential *presence*. It never reads .env, imports the upstream adapter, loads a
 tokenizer or makes a model request. --run requires explicit public archive,
-original-request file and a new output directory.
+original-request file and a new output directory. Live requests additionally
+require the bound controller API; the standalone CLI has no cash admission.
 
 Archive schema:
   {schema:1, taskId, snapshot:{cutoff,watermark,complete:true}, sources:[...]}
@@ -134,8 +135,12 @@ def read_bytes_bounded(path: Path, limit: int) -> bytes:
 
 
 def read_json_bounded(path: Path, limit: int):
+    return decode_json_bytes(read_bytes_bounded(path, limit))
+
+
+def decode_json_bytes(content):
     try:
-        return json.loads(read_bytes_bounded(path, limit).decode("utf-8"),
+        return json.loads(content.decode("utf-8"),
                           object_pairs_hook=_unique_object,
                           parse_constant=_invalid_number)
     except (UnicodeDecodeError, json.JSONDecodeError, RecursionError):
@@ -408,7 +413,8 @@ def write_json(path, value):
 
 
 class RunBudget:
-    def __init__(self, limits, ledger_path=None):
+    def __init__(self, limits, ledger_path=None, *, authorize_dispatch=None,
+                 dispatch_binding=None):
         self.limits = dict(limits)
         self.started = time.monotonic()
         self.ledger_path = Path(ledger_path) if ledger_path is not None else None
@@ -416,6 +422,9 @@ class RunBudget:
         self.sessions = []
         self.dispatches = []
         self.upstream_logs = []
+        self.admissions = []
+        self.authorize_dispatch = authorize_dispatch
+        self.dispatch_binding = dispatch_binding
         self.tokens = 0
         self.closed = False
         self._persist()
@@ -453,6 +462,80 @@ class RunBudget:
             self._persist()
             return number
 
+    def admit_dispatch(self, kind, reference_tokens, *, endpoint, model, request_bytes,
+                       timeout_ms=30000):
+        """Bind durable controller admission to one HTTP attempt, before sending.
+
+        The trusted callback owns cash reservations. A matching receipt is an
+        integration contract, not independent proof that a caller kept a ledger.
+        Each upstream retry reaches this boundary with a fresh dispatch identity.
+        """
+        with self.lock:
+            if not callable(self.authorize_dispatch):
+                raise ContractError("dispatch_controller_required")
+            binding = self.dispatch_binding
+            if (not isinstance(binding, dict)
+                    or set(binding) != {"attempt_id", "config_sha256", "checkpoint_sha256"}
+                    or not isinstance(binding["attempt_id"], str)
+                    or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}", binding["attempt_id"])
+                    or binding["attempt_id"].startswith("sk-")
+                    or any(not isinstance(binding[k], str) or not re.fullmatch(r"[a-f0-9]{64}", binding[k])
+                           for k in ("config_sha256", "checkpoint_sha256"))):
+                raise ContractError("dispatch_binding_required")
+            self.remaining()
+            if type(reference_tokens) is not int or reference_tokens < 0:
+                raise ContractError("invalid_reference_token_count")
+            if len(self.dispatches) >= self.limits["max_http_dispatches"]:
+                raise BudgetExceeded("http_dispatch_limit")
+            if self.tokens + reference_tokens > self.limits["max_processed_input_tokens"]:
+                raise BudgetExceeded("processed_input_token_limit")
+            if kind not in {"embedding", "rerank"} or not isinstance(request_bytes, bytes):
+                raise ContractError("invalid_dispatch_intent")
+            sequence = len(self.admissions) + 1
+            identity = {**binding, "kind": kind, "sequence": sequence,
+                        "request_sha256": hashlib.sha256(request_bytes).hexdigest()}
+            intent = {"schema_version": 1, "kind": "p1-provider-dispatch-intent",
+                      **binding, "provider": "openai" if kind == "embedding" else "cohere",
+                      "component": kind, "model": model, "endpoint": endpoint,
+                      "dispatch_id": "rawrag-" + digest_text(canonical(identity))[:40],
+                      "request_sha256": identity["request_sha256"],
+                      "request_bytes": len(request_bytes),
+                      "reference_input_tokens": reference_tokens, "max_output_tokens": 0,
+                      "max_response_bytes": self.limits["max_response_bytes"], "timeout_ms": timeout_ms}
+            intent["intent_sha256"] = digest_text(canonical(intent))
+            record = {"intent": intent, "status": "requested", "receipt": None}
+            self.admissions.append(record)
+            self._persist()
+            try:
+                receipt = self.authorize_dispatch(json.loads(canonical(intent)))
+            except Exception:
+                record["status"] = "unconfirmed"
+                self._persist()
+                raise ContractError("dispatch_admission_failed") from None
+            required = {"schema_version", "kind", "decision", "dispatch_id",
+                        "intent_sha256", "request_sha256", "admission_id"}
+            if (not isinstance(receipt, dict) or set(receipt) != required
+                    or type(receipt["schema_version"]) is not int or receipt["schema_version"] != 1
+                    or receipt["kind"] != "p1-dispatch-admission-receipt" or receipt["decision"] != "allow"
+                    or any(receipt[k] != intent[k] for k in ("dispatch_id", "intent_sha256", "request_sha256"))
+                    or not isinstance(receipt["admission_id"], str)
+                    or not re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}", receipt["admission_id"])
+                    or receipt["admission_id"].startswith("sk-")):
+                record["status"] = "unconfirmed"
+                self._persist()
+                raise ContractError("dispatch_admission_unconfirmed")
+            record.update(status="admitted", receipt=dict(receipt))
+            self._persist()
+            # A slow synchronous controller must not permit a send past expiry.
+            self.remaining()
+            number = self.reserve_dispatch(kind, reference_tokens)
+            self.dispatches[-1].update(operation_id=intent["dispatch_id"],
+                request_sha256=intent["request_sha256"], intent_sha256=intent["intent_sha256"],
+                provider=intent["provider"], model=model, endpoint=endpoint,
+                admission_id=receipt["admission_id"])
+            self._persist()
+            return number
+
     def observe_response(self, dispatch_id, status, provider_request_id=None):
         with self.lock:
             for record in self.dispatches:
@@ -483,6 +566,8 @@ class RunBudget:
                 "reference_tokenizer": "gpt-4/cl100k_base",
                 "upstream_log_entries_observed": len(self.upstream_logs),
                 "provider_usage_observed": list(self.upstream_logs),
+                "dispatch_admissions": list(self.admissions),
+                "controller_binding": self.dispatch_binding,
                 "provider_cost_total": None, "reader_calls": 0,
                 "closed": self.closed,
                 "wall_seconds_observed": round(time.monotonic() - self.started, 6),
@@ -559,6 +644,9 @@ def instrument_adapter(adapter, budget, encoding, config):
     SDK hook support is checked before add/search. These observed attempts are
     deliberately not labeled a complete provider/server HTTP request census.
     """
+    if (budget.dispatch_binding is not None
+            and budget.dispatch_binding.get("config_sha256") != digest_text(canonical(config))):
+        raise ContractError("dispatch_config_binding_mismatch")
     client = adapter.embedding_client
     transport = getattr(client, "_client", None)
     hooks = getattr(transport, "event_hooks", None)
@@ -568,8 +656,12 @@ def instrument_adapter(adapter, budget, encoding, config):
     transport.follow_redirects = False
     embedding_url = config["models"]["embedding"]["base_url"].rstrip("/") + "/embeddings"
     rerank_url = config["models"]["reranker"]["base_url"].rstrip("/") + config["models"]["reranker"]["endpoint"]
+    active = {"embedding": None, "rerank": None}
+    active_lock = threading.RLock()
 
     async def before_embedding(request):
+        with active_lock:
+            active["embedding"] = None
         if request.method != "POST" or str(request.url) != embedding_url:
             raise ContractError("unexpected_embedding_http_target")
         try:
@@ -579,7 +671,11 @@ def instrument_adapter(adapter, budget, encoding, config):
         texts = payload.get("input")
         if payload.get("model") != "text-embedding-3-small" or not isinstance(texts, list) or not all(isinstance(x, str) for x in texts):
             raise ContractError("unexpected_embedding_payload")
-        number = budget.reserve_dispatch("embedding", sum(token_count(encoding, x) for x in texts))
+        number = budget.admit_dispatch("embedding", sum(token_count(encoding, x) for x in texts),
+            endpoint=embedding_url, model="text-embedding-3-small", request_bytes=request.content,
+            timeout_ms=config["runtime"]["request_timeout_seconds"] * 1000)
+        with active_lock:
+            active["embedding"] = number
         extensions = getattr(request, "extensions", None)
         if isinstance(extensions, dict):
             extensions["p1_dispatch_id"] = number
@@ -593,12 +689,39 @@ def instrument_adapter(adapter, budget, encoding, config):
         if number is not None:
             budget.observe_response(number, getattr(response, "status_code", None),
                                     response.headers.get("x-request-id"))
+        if not callable(getattr(response, "aiter_bytes", None)) or not callable(getattr(response, "aclose", None)):
+            raise ContractError("sdk_response_body_not_bounded")
+        limit = config["limits"]["max_response_bytes"]
+        length = response.headers.get("content-length")
+        try:
+            if length is not None:
+                if not isinstance(length, str) or len(length) > 32 or not length.isascii() or not length.isdigit():
+                    raise ContractError("invalid_embedding_response_length")
+                if int(length) > limit:
+                    raise BudgetExceeded("embedding_response_byte_limit")
+            body, size = [], 0
+            async for chunk in response.aiter_bytes(chunk_size=min(65536, limit + 1)):
+                budget.remaining()
+                if not isinstance(chunk, bytes):
+                    raise ContractError("invalid_embedding_response_bytes")
+                size += len(chunk)
+                if size > limit:
+                    raise BudgetExceeded("embedding_response_byte_limit")
+                body.append(chunk)
+            # Preserve the bounded body for the SDK parser. This is the cache
+            # slot used by httpx/httpx2 Response.aread(), verified by SDK tests.
+            response._content = b"".join(body)
+        except BaseException:
+            await response.aclose()
+            raise
 
     hooks.setdefault("request", []).append(before_embedding)
     hooks.setdefault("response", []).append(after_embedding)
     opener = urllib.request.build_opener(_NoRedirect())
 
     def post_json(url, payload, timeout_seconds):
+        with active_lock:
+            active["rerank"] = None
         if url != rerank_url or payload.get("model") != "rerank-v3.5":
             raise ContractError("unexpected_rerank_http_target_or_model")
         query, documents = payload.get("query"), payload.get("documents")
@@ -606,7 +729,11 @@ def instrument_adapter(adapter, budget, encoding, config):
             raise ContractError("unexpected_rerank_payload")
         reference_tokens = sum(token_count(encoding, query + "\n" + text) for text in documents)
         encoded = json.dumps(payload, ensure_ascii=False).encode("utf-8")
-        number = budget.reserve_dispatch("rerank", reference_tokens)
+        number = budget.admit_dispatch("rerank", reference_tokens, endpoint=url,
+            model="rerank-v3.5", request_bytes=encoded,
+            timeout_ms=config["runtime"]["request_timeout_seconds"] * 1000)
+        with active_lock:
+            active["rerank"] = number
         headers = {"Content-Type": "application/json", "Authorization": "Bearer " + adapter.rerank_api_key}
         request = urllib.request.Request(url, data=encoded, headers=headers, method="POST")
         timeout = min(timeout_seconds, config["runtime"]["request_timeout_seconds"], budget.remaining())
@@ -627,23 +754,33 @@ def instrument_adapter(adapter, budget, encoding, config):
             raise ContractError("invalid_rerank_response_json") from None
 
     async def capture_log(*, call_type, stage, request, response, started, **kwargs):
+        response_returned = isinstance(response, dict)
         response = response if isinstance(response, dict) else {}
         meta = response.get("meta") if isinstance(response.get("meta"), dict) else {}
         model = response.get("model")
         if not isinstance(model, str) or len(model) > 512:
             model = None
-        for kind in ("embedding", "reranker"):
-            secret = os.environ.get(config["models"][kind]["api_key_env"], "")
-            if model is not None and secret and secret in model:
-                model = None
+        wanted_model = "text-embedding-3-small" if call_type == "embedding" else "rerank-v3.5"
+        model_mismatch = ((model is not None and model != wanted_model)
+                          or call_type == "embedding" and response_returned and not kwargs.get("error") and model is None)
+        if model_mismatch:
+            model = None
+        with active_lock:
+            dispatch_id = active.get(call_type)
+            if call_type in active:
+                active[call_type] = None
         budget.observe_upstream_log({
             "call_type": call_type, "stage": stage,
+            "dispatch_id": dispatch_id,
             "attempt": kwargs.get("attempt"),
             "error_present": bool(kwargs.get("error")),
             "provider_model": model,
+            "provider_model_mismatch": model_mismatch,
             "usage": _numeric_usage(response.get("usage")),
             "billed_units": _numeric_usage(meta.get("billed_units")),
         })
+        if model_mismatch:
+            raise ContractError("provider_" + ("embedding" if call_type == "embedding" else "rerank") + "_model_mismatch")
 
     async def no_reader(*args, **kwargs):
         raise ContractError("reader_calls_forbidden_in_retrieval_adapter")
@@ -784,25 +921,37 @@ async def _retrieve(root, config, archive, request, output, mode, budget):
         await adapter.close()
 
 
-def run_retrieval(root, config, archive_path, request_path, output_path, mode):
+def run_retrieval(root, config, archive_path, request_path, output_path, mode, *,
+                  authorize_dispatch=None, dispatch_binding=None, expected_inputs=None):
+    if not callable(authorize_dispatch):
+        return {"mode": "run", "status": "blocked", "errors": ["dispatch_controller_required"],
+                "model_requests_sent": 0}
     check = preflight(root, config)
     if check["status"] != "ready":
         return {"mode": "run", "status": "blocked", "errors": check["errors"],
                 "credentials_available": check["credentials_available"],
                 "model_requests_sent": 0}
-    archive = validate_archive(read_json_bounded(archive_path, config["limits"]["max_archive_bytes"]),
-                               config["limits"])
+    archive_bytes = read_bytes_bounded(archive_path, config["limits"]["max_archive_bytes"])
+    archive = validate_archive(decode_json_bytes(archive_bytes), config["limits"])
+    request_bytes = read_bytes_bounded(request_path, config["limits"]["max_request_bytes"])
     try:
-        request = read_bytes_bounded(request_path, config["limits"]["max_request_bytes"]).decode("utf-8")
+        request = request_bytes.decode("utf-8")
     except UnicodeDecodeError:
         raise ContractError("request_must_be_utf8") from None
     request = validate_request(request, config["limits"])
+    if expected_inputs is not None:
+        actual = {"task_id": archive["taskId"],
+                  "source_archive_sha256": hashlib.sha256(archive_bytes).hexdigest(),
+                  "original_request_sha256": hashlib.sha256(request_bytes).hexdigest()}
+        if actual != expected_inputs:
+            raise ContractError("bound_run_input_changed")
     output = Path(output_path).resolve()
     try:
         output.mkdir(parents=True, exist_ok=False)
     except FileExistsError:
         raise ContractError("output_directory_must_be_new") from None
-    budget = RunBudget(config["limits"], output / "ledger.json")
+    budget = RunBudget(config["limits"], output / "ledger.json",
+                       authorize_dispatch=authorize_dispatch, dispatch_binding=dispatch_binding)
     budget.reserve_session(archive["taskId"])
     write_json(output / "config.public.json", config)
     write_json(output / "preflight.json", check)

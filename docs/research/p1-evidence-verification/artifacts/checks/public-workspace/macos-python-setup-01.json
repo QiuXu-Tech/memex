@@ -1,0 +1,62 @@
+{
+  "failure_code": "exact_pinned_interpreter_not_found",
+  "finished_at": "2026-11-28T10:53:36.907366+00:00",
+  "global_path_modified": false,
+  "kind": "p1_pinned_python_setup",
+  "method_units_reserved": 0,
+  "model_requests": 0,
+  "native_attempts_reserved": 0,
+  "provider_requests": 0,
+  "requirements": {
+    "w-101": "5817943cece5ddfb25e91eb00ca3c608502f9c029b970fd570a92b7aef96801a",
+    "w-102": "652d5312533e0ef8ab830f85811c20391d520b55624ae516de28d325d4578313"
+  },
+  "root": "<SETUP_ROOT>",
+  "schema_version": 1,
+  "sdist_builds_allowed": false,
+  "source_manifest": {
+    "experiment.py": "548b4b57683c230a652b8fbf3a9b9ea2542d13984e47860d7ce1d26477cf5cbb",
+    "public_workspace.py": "9f65c8131d80b428e94cc3006c1d86cb66f703cd460c947fab23bb4319281807",
+    "python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+    "python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc"
+  },
+  "started_at": "2026-11-28T10:53:05.995259+00:00",
+  "status": "failed",
+  "steps": [
+    {
+      "command": [
+        "<HOME>/.local/bin/uv",
+        "python",
+        "install",
+        "3.10.16",
+        "--install-dir",
+        "<SETUP_ROOT>/python",
+        "--no-bin",
+        "--no-config",
+        "--no-progress",
+        "--cache-dir",
+        "<SETUP_ROOT>/cache"
+      ],
+      "elapsed_seconds": 30.910808458000247,
+      "error": null,
+      "finished_at": "2026-11-28T10:53:36.906590+00:00",
+      "label": "01-python-install",
+      "model_requests": 0,
+      "returncode": 0,
+      "started_at": "2026-11-28T10:53:05.995683+00:00",
+      "stderr": {
+        "bytes": 465,
+        "sha256": "de3e82aaa21c0180967ede4c19b225e084e81f94cfd3e4aa02d9ef8ad60431e9"
+      },
+      "stderr_preview": "Downloading cpython-3.10.16-macos-aarch64-none (download) (16.6MiB)\n Downloaded cpython-3.10.16-macos-aarch64-none (download)\nwarning: Failed to patch the install name of the dynamic library for <SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10. This may cause issues when building Python native extensions.\nInstalled Python 3.10.16 in 30.84s\n + cpython-3.10.16-macos-aarch64-none\n",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "task_source_executions": 0
+    }
+  ],
+  "taskpacks_modified": false,
+  "tasks": {},
+  "third_party_source_executions": 0
+}

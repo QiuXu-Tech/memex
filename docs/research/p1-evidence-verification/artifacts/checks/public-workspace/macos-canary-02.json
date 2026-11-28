@@ -1,0 +1,70 @@
+{
+  "candidate_change": "literal root directory read only; private file roots and network remain denied",
+  "kind": "p1_actual_own_code_os_sandbox_canary",
+  "method_units_reserved": 0,
+  "model_requests": 0,
+  "native_attempts_reserved": 0,
+  "provider_requests": 0,
+  "python_version": "3.14.3",
+  "receipt": {
+    "binding": {
+      "config_sha256": "37d5163dd810dd94c7bf4c281e9cf772848137c6d2afd2848ea2215cc9d1e6dd",
+      "dependencies_sha256": "1e96e83f50249b677bff40132e481cc8241600197ba77811c065ea099da8285f",
+      "executable_sha256": "7455283df45ef13eaffae9ca3f0063aebf235b1e621e8c95b3609db2e3d7e493",
+      "kernel": "27.3.0",
+      "platform": "darwin",
+      "python_sha256": "cbf84109626aa1013bbe408fbb9590bd0f1c1548f038b2221c6b8b87de26ca43"
+    },
+    "checks": {
+      "allowed_read": true,
+      "allowed_write": true,
+      "loopback_connection_denied": true,
+      "private_read_denied": true,
+      "private_write_denied": true
+    },
+    "kind": "actual_os_sandbox_probe",
+    "launch_sha256": "a666c0be1147abc12e8f0a41b40764ea2c71885ed3651281517436be31b0301a",
+    "model_requests": 0,
+    "private_sentinel_unchanged": true,
+    "probe_source_sha256": "344065ff28cf81eb73a1ded06ff8ccc83e135622c8ee637780016ef394cdfa4a",
+    "process": {
+      "elapsed_seconds": 0.03392712500135531,
+      "error": null,
+      "finished_at": "2026-11-28T10:44:35.181741+00:00",
+      "output_complete": true,
+      "output_limit_exceeded": false,
+      "returncode": 0,
+      "signal": null,
+      "spawned": true,
+      "started_at": "2026-11-28T10:44:35.147732+00:00",
+      "stderr": "stderr.raw",
+      "stdout": "stdout.raw",
+      "streams": {
+        "stderr": {
+          "bytes": 0,
+          "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+        },
+        "stdout": {
+          "bytes": 198,
+          "sha256": "4914c85e3cb913b40c07541ade871cce27c92e6b0736977dcec601478d261ab2"
+        }
+      },
+      "timed_out": false
+    },
+    "provider_requests": 0,
+    "real_source_executions": 0,
+    "schema_version": 1,
+    "status": "passed"
+  },
+  "runner_verified": true,
+  "source_manifest": {
+    "experiment.py": "548b4b57683c230a652b8fbf3a9b9ea2542d13984e47860d7ce1d26477cf5cbb",
+    "public_workspace.py": "9b13a67ceaeba519a0628d6f92abd65dae12c8a210fa7e0e9244aa6ebbc03ce9",
+    "python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+    "python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc"
+  },
+  "status": "passed",
+  "stderr_preview": "",
+  "stdout_preview": "{\"nonce\": \"5b8e4d9a057c49e1ba1f58b1792783ec\", \"checks\": {\"allowed_read\": true, \"allowed_write\": true, \"private_read_denied\": true, \"private_write_denied\": true, \"loopback_connection_denied\": true}}\n",
+  "third_party_source_executions": 0
+}

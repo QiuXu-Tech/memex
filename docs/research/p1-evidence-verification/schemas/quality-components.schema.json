@@ -1,0 +1,133 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:memex:paper1:quality-components:1",
+  "title": "P1 evaluator frozen-label set or sealed-run assessment",
+  "description": "Evaluator-only input. Schema validity does not authenticate humans, semantic judgments, task acceptance, preregistration or research readiness. score.py additionally revalidates annotation records, all planned public snapshots, exact obligation/check sets, timestamps, source bytes and the experiment.py output seals. Fixture records are never research evidence.",
+  "oneOf": [
+    {"$ref": "#/$defs/labelSet"},
+    {"$ref": "#/$defs/assessment"}
+  ],
+  "$defs": {
+    "label": {"type": "string", "pattern": "^\\S(?:[\\s\\S]*\\S)?$"},
+    "sha256": {"type": "string", "pattern": "^[a-f0-9]{64}$"},
+    "dataKind": {"enum": ["research", "fixture"]},
+    "relativePath": {
+      "type": "string",
+      "minLength": 1,
+      "description": "Canonical relative path without absolute prefixes, dot/dot-dot segments, backslashes or symlinks. Runtime enforces the filesystem boundary."
+    },
+    "fileRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256"],
+      "properties": {"path": {"$ref": "#/$defs/relativePath"}, "sha256": {"$ref": "#/$defs/sha256"}}
+    },
+    "evidenceRef": {
+      "type": "object", "additionalProperties": false,
+      "required": ["path", "sha256", "locator"],
+      "properties": {
+        "path": {"$ref": "#/$defs/relativePath"}, "sha256": {"$ref": "#/$defs/sha256"},
+        "locator": {"$ref": "#/$defs/label"}
+      },
+      "description": "A file inside the captured sealed-run output. Locator and bytes are checked for presence/binding; semantic entailment is not inferred."
+    },
+    "annotation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["origin", "bundle", "reviews", "adjudication"],
+      "properties": {
+        "origin": {"enum": ["human", "fixture"]},
+        "bundle": {"$ref": "#/$defs/relativePath"},
+        "reviews": {"type": "array", "minItems": 2, "maxItems": 2, "items": {"$ref": "#/$defs/fileRef"}},
+        "adjudication": {"$ref": "#/$defs/fileRef"}
+      },
+      "description": "Paths are relative to the label-set file. annotation.py validates the two original review records and adjudication. Origin is a declaration, not an identity credential."
+    },
+    "frozenObligation": {
+      "type": "object", "additionalProperties": false,
+      "required": ["obligation_id", "requires_evidence", "behavior_check_ids"],
+      "properties": {
+        "obligation_id": {"$ref": "#/$defs/label"},
+        "requires_evidence": {"type": "boolean"},
+        "behavior_check_ids": {"type": "array", "uniqueItems": true, "items": {"$ref": "#/$defs/label"}}
+      },
+      "description": "The obligation IDs must exactly match the bound adjudication. At least one behavior check must exist across each task's obligations."
+    },
+    "taskLabels": {
+      "type": "object", "additionalProperties": false,
+      "required": ["task_id", "project_id", "public_sha256_by_replicate", "annotation", "obligations"],
+      "properties": {
+        "task_id": {"$ref": "#/$defs/label"}, "project_id": {"$ref": "#/$defs/label"},
+        "public_sha256_by_replicate": {
+          "type": "object", "minProperties": 1,
+          "propertyNames": {"pattern": "^[1-9][0-9]*$"},
+          "additionalProperties": {"$ref": "#/$defs/sha256"}
+        },
+        "annotation": {"$ref": "#/$defs/annotation"},
+        "obligations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/frozenObligation"}}
+      },
+      "description": "Version 1 requires the same annotated public tree across this task's replicates. Different public trajectories require an extended per-replicate annotation contract; do not duplicate task IDs to increase N."
+    },
+    "labelSet": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "data_kind", "frozen", "frozen_at", "study_freeze_sha256", "tasks"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1},
+        "data_kind": {"$ref": "#/$defs/dataKind"}, "frozen": {"const": true},
+        "frozen_at": {"type": "string", "format": "date-time"},
+        "study_freeze_sha256": {"$ref": "#/$defs/sha256"},
+        "tasks": {"type": "array", "items": {"$ref": "#/$defs/taskLabels"}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"data_kind": {"const": "research"}}, "required": ["data_kind"]},
+          "then": {"properties": {"tasks": {"items": {"properties": {"annotation": {"properties": {"origin": {"const": "human"}}}}}}}},
+          "else": {"properties": {"tasks": {"items": {"properties": {"annotation": {"properties": {"origin": {"const": "fixture"}}}}}}}}
+        }
+      ]
+    },
+    "obligationJudgment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["obligation_id", "decision", "evidence", "incorrect_high_impact_affirmative", "unnecessary_abstention", "evidence_refs"],
+      "properties": {
+        "obligation_id": {"$ref": "#/$defs/label"},
+        "decision": {"enum": ["satisfied", "unsatisfied", "unmeasured"]},
+        "evidence": {"enum": ["supported", "unsupported", "not_required", "unmeasured"]},
+        "incorrect_high_impact_affirmative": {"type": ["boolean", "null"]},
+        "unnecessary_abstention": {"type": ["boolean", "null"]},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/evidenceRef"}}
+      },
+      "description": "Null/unmeasured means not scored. Known judgments need a bound evidence reference. Evidence not_required is permitted only by a frozen requires_evidence=false rule."
+    },
+    "behaviorJudgment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["check_id", "status", "evidence_refs"],
+      "properties": {
+        "check_id": {"$ref": "#/$defs/label"}, "status": {"enum": ["passed", "failed", "unmeasured"]},
+        "evidence_refs": {"type": "array", "items": {"$ref": "#/$defs/evidenceRef"}}
+      },
+      "description": "An explicit evaluator judgment about a frozen check, with an actual sealed trace/receipt. This does not cause the hidden check to execute."
+    },
+    "assessment": {
+      "type": "object", "additionalProperties": false,
+      "required": ["schema_version", "data_kind", "task_id", "project_id", "arm", "replicate", "run_id", "freeze_sha256", "sealed_run_sha256", "output_sha256", "labels_sha256", "judgment_origin", "reviewer_id", "reviewed_at", "human_review_attestation", "obligations", "behavior_checks"],
+      "properties": {
+        "schema_version": {"type": "integer", "const": 1}, "data_kind": {"$ref": "#/$defs/dataKind"},
+        "task_id": {"$ref": "#/$defs/label"}, "project_id": {"$ref": "#/$defs/label"},
+        "arm": {"$ref": "#/$defs/label"}, "replicate": {"type": "integer", "minimum": 1},
+        "run_id": {"$ref": "#/$defs/label"}, "freeze_sha256": {"$ref": "#/$defs/sha256"},
+        "sealed_run_sha256": {"$ref": "#/$defs/sha256"}, "output_sha256": {"$ref": "#/$defs/sha256"},
+        "labels_sha256": {"$ref": "#/$defs/sha256"},
+        "judgment_origin": {"enum": ["human", "fixture"]}, "reviewer_id": {"$ref": "#/$defs/label"},
+        "reviewed_at": {"type": "string", "format": "date-time"}, "human_review_attestation": {"type": "boolean"},
+        "obligations": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/obligationJudgment"}},
+        "behavior_checks": {"type": "array", "minItems": 1, "items": {"$ref": "#/$defs/behaviorJudgment"}}
+      },
+      "allOf": [
+        {
+          "if": {"properties": {"data_kind": {"const": "research"}}, "required": ["data_kind"]},
+          "then": {"properties": {"judgment_origin": {"const": "human"}, "human_review_attestation": {"const": true}}},
+          "else": {"properties": {"judgment_origin": {"const": "fixture"}, "human_review_attestation": {"const": false}}}
+        }
+      ]
+    }
+  }
+}

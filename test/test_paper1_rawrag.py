@@ -58,6 +58,13 @@ def public_archive():
     }
 
 
+def fixture_admission(intent):
+    """A test callback only; never a production cash reservation."""
+    return {"schema_version": 1, "kind": "p1-dispatch-admission-receipt", "decision": "allow",
+            "dispatch_id": intent["dispatch_id"], "intent_sha256": intent["intent_sha256"],
+            "request_sha256": intent["request_sha256"], "admission_id": "fixture-ledger"}
+
+
 class RawRagContractTests(unittest.TestCase):
     def module(self):
         self.assertTrue(ADAPTER.is_file(), "Raw-RAG adapter implementation is missing")
@@ -440,7 +447,9 @@ const source = { eventId: 'grant', sourceId: 'decisions', sourceSequence: 7,
             url = f"http://127.0.0.1:{server.server_port}/rerank"
             config["models"]["reranker"]["base_url"] = url.rsplit("/", 1)[0]
             config["models"]["reranker"]["endpoint"] = "/rerank"
-            budget = module.RunBudget(config["limits"])
+            budget = module.RunBudget(config["limits"], authorize_dispatch=fixture_admission,
+                dispatch_binding={"attempt_id": "fixture", "config_sha256": module.digest_text(module.canonical(config)),
+                                  "checkpoint_sha256": "a" * 64})
             adapter = self.adapter_boundary()
             module.instrument_adapter(adapter, budget, CharacterEncoding(), config)
             payload = {"model": "rerank-v3.5", "query": "q", "documents": ["d"], "top_n": 1}
@@ -474,7 +483,7 @@ const source = { eventId: 'grant', sourceId: 'decisions', sourceSequence: 7,
         module.instrument_adapter(adapter, budget, CharacterEncoding(), config)
         asyncio.run(adapter._write_request_log(
             call_type="embedding", stage="add", request={"secret": "never-store-this"},
-            response={"usage": {"prompt_tokens": 12, "total_tokens": 12}},
+            response={"model": "text-embedding-3-small", "usage": {"prompt_tokens": 12, "total_tokens": 12}},
             started=0, error="possibly sensitive never-store-this",
         ))
         ledger = budget.snapshot()
@@ -515,7 +524,10 @@ const source = { eventId: 'grant', sourceId: 'decisions', sourceSequence: 7,
             with mock.patch.object(module, "preflight", return_value=preflight), mock.patch.object(
                 module, "_retrieve", side_effect=blocked_before_inference
             ):
-                result = module.run_retrieval(root, self.config(), archive, request, output, "faithful")
+                result = module.run_retrieval(root, self.config(), archive, request, output, "faithful",
+                    authorize_dispatch=fixture_admission,
+                    dispatch_binding={"attempt_id": "fixture", "config_sha256": module.digest_text(module.canonical(self.config())),
+                                      "checkpoint_sha256": "a" * 64})
             self.assertEqual(result["status"], "failed")
             self.assertEqual(result["observed_http_dispatch_attempts"], 0)
             self.assertTrue((output / "preflight.json").is_file())

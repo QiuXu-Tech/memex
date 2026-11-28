@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "kind": "p1-native-driver-local-readonly-observation",
+  "recorded_at_utc": "2026-11-28T11:10:37.802667+00:00",
+  "command": [
+    "python",
+    "-B",
+    "scripts/paper1/native_driver.py"
+  ],
+  "exit_code": 0,
+  "inspection_only": true,
+  "remote_device_queried": false,
+  "settings_provided": false,
+  "scope_specs_provided": false,
+  "driver_model_requests": 0,
+  "driver_ledger_writes": 0,
+  "driver_subprocesses_started": 0,
+  "actual_existing_ledger_events": 7,
+  "existing_native_attempts_consumed": 2,
+  "existing_diagnostics": 1,
+  "historical_method_units_dispatched": 0,
+  "protected_files_unchanged": true,
+  "protected_file_sha256": {
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/authorization.json": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+    "docs/research/p1-evidence-verification/tasks/workflows/shared-budget.json": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2",
+    "docs/research/p1-evidence-verification/tasks/workflows/source-draft-plan.json": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db",
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/ledger/HEAD.json": "2054e97ffabdd8db167c9f5928b5dcc59b696182a9bf43664e140b0344f871d7",
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/ledger/events.jsonl": "d675c9c1f868d6169615c877bb6ffc0d88f73813eab0ccf830669ef97f6e47fa",
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/ledger/ledger.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  "driver_sha256": "d98eb5999f635b30a27a9c815a24d75051a9e6a42e3cf611c5544dfbff35fed4",
+  "dispatch_ready": false,
+  "scientific_ready": false,
+  "credential_file_contents_read": false,
+  "environment_credential_values_reported": false,
+  "limit": "Checks the current local process only. No settings were provided; this is not a new observation of service configuration on the previously used Mac device. The zero calls describe this preflight, not the historical native attempts or live extraction diagnostic."
+}

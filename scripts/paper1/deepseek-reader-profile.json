@@ -1,0 +1,42 @@
+{
+  "schema_version": 1,
+  "kind": "p1-deepseek-native-reader-profile",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "endpoint": "https://api.deepseek.com/responses",
+  "reasoning_effort": "none",
+  "temperature": 0,
+  "retries": 0,
+  "max_request_bytes": 262144,
+  "max_response_bytes": 4194304,
+  "timeout_seconds": 30,
+  "max_output_tokens": 8192,
+  "max_model_input_tokens": 65536,
+  "max_model_output_tokens": 8192,
+  "max_http_dispatches": 8,
+  "reference_input_token_limit": 65536,
+  "tokenizer": {
+    "source": "https://cdn.deepseek.com/api-docs/deepseek_v4_tokenizer.zip",
+    "archive_sha256": "e7310d1dafe0a86d8a5629fe78a7c763760f651db9b8682718a1781dcd6fe495",
+    "tokenizer_json_sha256": "89085f12ef79460ac5f66d1119325ddfc694b4ab209d80bbd81d35f081dc9614",
+    "tokenizer_config_sha256": "841f8cf146e3f0ad1082594a31f68ecf7608c20467ef355081333d85bbaeb1cb",
+    "runtime": "tokenizers==0.22.2",
+    "add_special_tokens": false,
+    "measurement": "canonical_request_JSON_reference_count",
+    "provider_billable_input_exact": false
+  },
+  "host": {
+    "implementation": "codex-cli",
+    "version": "0.153.0",
+    "source_commit": "41e22fee981a63b3698df7ed36bad393cda24715",
+    "provider_id": "memex_deepseek_p1",
+    "wire_api": "responses",
+    "request_max_retries": 0,
+    "stream_max_retries": 0,
+    "native_state_transport": "thread/resume and thread/fork of actual persisted host state"
+  },
+  "shared_budget_sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2",
+  "formal_study_frozen": false,
+  "checked_date": "2026-11-28",
+  "scope": "versioned development configuration; no native quota or scientific acceptance is created"
+}

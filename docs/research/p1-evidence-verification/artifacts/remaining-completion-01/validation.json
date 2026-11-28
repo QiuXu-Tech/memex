@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "kind": "p1-remaining-integration-validation",
+  "date": "2026-11-28",
+  "timezone": "Asia/Shanghai",
+  "scientific_ready": false,
+  "submission_performed": false,
+  "new_external_model_requests": 0,
+  "new_native_attempts": 0,
+  "new_method_units": 0,
+  "canonical_ledger_writes": 0,
+  "research_node": {
+    "total": 123,
+    "passed": 123,
+    "failed": 0,
+    "skipped": 0
+  },
+  "research_python": {
+    "total": 496,
+    "passed": 487,
+    "failed": 0,
+    "errors": 0,
+    "skipped": 9,
+    "skip_reason": "Existing old pinned Python 3.10 fixture environments are absent on this inspection machine; no passing assertion is imputed. Separate real Mac runtime preparation/canaries are retained."
+  },
+  "repository_suite": {
+    "passed": 197,
+    "skipped": 4,
+    "skip_reason": "generated bundles not built",
+    "separate_from_research_suite": true
+  },
+  "external_generation_requests_in_tests": 0,
+  "in_memory_upstream_and_actual_loopback_tests": true,
+  "initial_failures_retained": [
+    "Node copied-ledger fixture assumed no prior diagnostic cash reservation.",
+    "Python copied-ledger fixture assumed no prior diagnostic cash reservation.",
+    "Legacy preparation fixtures assumed the current checkout path equals archived absolute plan paths.",
+    "New native-driver fixture lacked the now-required exact same-day price-basis fields."
+  ],
+  "fix_scope": "Only temporary test fixtures/expectations were updated for these full-suite failures. Original authorization, frozen plan, public source bytes and historical ledger were preserved.",
+  "logs": {
+    "research-node-initial.txt": {
+      "sha256": "a33806bd0f9b9113f7d3bc9d54a4a7bdf8b14197f1534a6166756fde1e78ba63",
+      "bytes": 12557,
+      "repository_and_scratch_paths_redacted": true
+    },
+    "research-node-final.txt": {
+      "sha256": "c7d662570fa6106894b701924667347a883f6ec75b809f2b37aaea02c58e4b0d",
+      "bytes": 11883,
+      "repository_and_scratch_paths_redacted": true
+    },
+    "research-python-initial.txt": {
+      "sha256": "6eb1e91584f08c74cef7ed51552277ca3dc86e56b75333f0b29a7d8575b740a6",
+      "bytes": 97924,
+      "repository_and_scratch_paths_redacted": true
+    },
+    "research-python-final.txt": {
+      "sha256": "7d1bf811f951924a279a4a25b8073d90ec8b7fd9e9835c8dc5bc3dc159241792",
+      "bytes": 87231,
+      "repository_and_scratch_paths_redacted": true
+    },
+    "portable-fixture-regression.txt": {
+      "sha256": "6c8a07deb4380f860c7f12b46dcb2f3cd88e90fa9cc7400b0f118bf7363d1997",
+      "bytes": 6211,
+      "repository_and_scratch_paths_redacted": true
+    },
+    "native-driver-fixture-initial.txt": {
+      "sha256": "cf2b446b9b171b05db9695b56cd4c5186b5648487747a1c872fb0b44961ef840",
+      "bytes": 1768,
+      "repository_and_scratch_paths_redacted": true
+    },
+    "native-driver-final.txt": {
+      "sha256": "91b16802cdb2baedd6048004b4756d609e8465cf336be5fa0471693eb7834982",
+      "bytes": 3521,
+      "repository_and_scratch_paths_redacted": true
+    },
+    "repository-suite.txt": {
+      "sha256": "35047a7736408710687b124cff5caf899c7250e7bf69a5cd58a535d12d2da279",
+      "bytes": 14465,
+      "repository_and_scratch_paths_redacted": true
+    }
+  },
+  "protected_file_check": "ledger-verification.json",
+  "public_mac_runtime_evidence": "../checks/public-workspace/macos-python-setup-03.json",
+  "limits": [
+    "Offline fixtures and implementation review do not validate live DeepSeek/Codex native integration or create paper samples.",
+    "Neither token estimates nor held reservations settle actual cash.",
+    "Human annotations, authorship facts, real paired pilot and formal results remain absent."
+  ]
+}

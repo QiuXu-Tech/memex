@@ -9,8 +9,8 @@
 | 角色 | DeepSeek 的接入方式 | 当前边界 |
 |---|---|---|
 | 候选 claim 抽取 | 使用独立 completion adapter，作为 `claims.mjs::extractClaims(input, complete)` 的回调 | 保留已有 JSON、原文 grounding 与 unknown 规则；直连 API 输出不能标记为 native auxiliary thread 产物 |
-| 四臂共同 reader | 后续统一采用同一已冻结的 DeepSeek 配置，所有臂同时变更 | 当前真实来源 shared reader 未实现；普通聊天请求不能继承此前不透明的 native compacted parent |
-| 原生压缩与分叉 | 需要真实 host 支持与完成收据 | DeepSeek 的 Responses 协议支持不证明本仓库 Codex 0.153.0 路径已接通；当前 host 仍显式指定 ChatGPT/OpenAI |
+| 四臂共同 reader | 已有统一 reader/profile、参考 tokenizer 与 native backend 接口，正式研究配置仍未冻结 | 新实现只有离线合同，尚无真实四臂结果；普通聊天请求不能继承此前不透明的 native compacted parent |
+| 原生压缩与分叉 | 新 backend 通过独立 host 进程和有界 loopback relay 对接真实 thread/resume、thread/fork 与 compaction | Responses 协议与本地实现不证明 Codex 0.153.0 的真实 DeepSeek 全链路已验证；历史原生记录仍属于原 ChatGPT/OpenAI 配置 |
 | B：官方 Raw-RAG 检索 | 保留固定上游版本及既定 embedding/reranker | 固定模型为 `text-embedding-3-small` 与 `rerank-v3.5`；不能将 DeepSeek 聊天、网页搜索或聊天排序包装成这两个模型 |
 
 核查的 DeepSeek 官方 API 目录提供 Chat Completions、Responses、工具调用等生成接口；本次未找到可以直接供应上述固定 embedding/reranker 的 DeepSeek 官方端点。因此，新配置只处理生成角色。若以后替换检索模型或检索算法，须单列可复核的替代基线，不能沿用“忠实官方 Raw-RAG”标签。`rawrag-config.json` 不做改写。
@@ -40,7 +40,19 @@
 node --input-type=module -e "import { inspectDeepSeek } from './scripts/paper1/deepseek.mjs'; console.log(JSON.stringify(inspectDeepSeek(), null, 2))"
 ```
 
-即使检测到密钥，通用组件预检仍报告 `live_dispatch_ready=false`。独立接入诊断只实现下述有限现金路径；任务原生 checkpoint、共享 reader/tokenizer、运行隔离和四臂统一预算集成仍未完成。
+即使检测到密钥，通用组件预检仍报告 `live_dispatch_ready=false`。独立接入诊断只实现下述有限现金路径；后续新增的 reader/tokenizer、受限公共工作区、relay 与四臂控制器已有实现，仍没有任务对应的已验证原生 checkpoint 或真实四臂集成结果。实现入口见 [PAIRED_RUNTIME.md](PAIRED_RUNTIME.md)、[BASELINE_RUNTIME.md](BASELINE_RUNTIME.md) 以及 `scripts/paper1/native_backend.py`、`reader_profile.py`、`deepseek_native_relay.py`、`runtime_controller.py`。
+
+统一的 [native driver](NATIVE_DRIVER.md) 默认只检查原授权/账本、输入迁移、profile、tokenizer 和设备配置；服务环境变量只检查名称存在，DeepSeek 私有文件只检查元数据，不读取凭据内容。显式 `--run` 也不能越过已耗尽的 native 额度。四臂共享一个 backend/helper 生命周期的 block 入口与 `experiment.py` 的逐单元 ABI 分开记录。
+
+新的共同 controller 仍使用原 canonical ledger，provider 请求必须匹配最近一次准入操作。native 的每次实际生成/压缩请求分别核销 `generation_start` 或 `compaction_start`，method scope 不得发送 prelude/compaction，embedding/rerank 只属于 B。DeepSeek 请求须满足不超过 scope 剩余时间且不超过 30 秒、输出不超过 8,192 tokens、请求/响应不超过 262,144 / 4,194,304 bytes、参考输入不超过 65,536 tokens。B 的界限从原固定 Raw-RAG 配置读取，不把其 16 KiB query-file 界限误当成批量 HTTP 正文界限。
+
+scope 的全部 dispatch 必须由每 provider 的 `checked_upper_bound_cny`、SHA-256 绑定的价格依据和明确的计量模式覆盖。**原逐请求模式**仍要求上界至少为 `max_http_dispatches × max(provider 上界)`，DeepSeek 每请求至少 CNY 3.00；8 次就是至少 CNY 24.00。
+
+新增的 `deepseek-native-serial-envelope-v1` 只允许当前完整 reader profile、固定 Responses/Flash、实际 relay 源码摘要和恰为 CNY 3.00 的单请求上界。控制器独立登记 transport/profile/私有审计目录；每次真实请求都须先准入，再以不可变实际用量回执完成握手，才允许下一次请求。串行在途限制、65,536 累计 input / 8,192 累计 output 和最多 8 次请求共同约束它；未知、超额、迟到或握手缺失会持续阻断该 scope。
+
+该模式的已观察用量前缀按本文已记录高峰 CNY 2/M input、8/M output 保守计为 `65536×2/10^6 + 8192×8/10^6 = 0.196608`，再覆盖最后一条未知或越限请求的 CNY 3.00，向上取分得到 **CNY 3.20 的 DeepSeek scope 现金上界**。它不是实际费用，也不释放已预留现金；调用方声明更高单请求上界时不能套用这个固定 v1。混合 B scope 另加原 16 次检索的 `16 × max(非 DeepSeek 每请求 checked 上界)`，相应真实计费依据仍须提供。完整字段与入口见 [NATIVE_DRIVER.md](NATIVE_DRIVER.md)。
+
+这两种模式均不证明剩余容量足以运行所有开发单元或先导。原 CNY 100、已用 2 次 native 和历史事件不变；本轮没有用虚构 usage/费用核销制造可用预算，也没有为新 runtime 发起 live 请求。
 
 ## 独立接入诊断
 
@@ -98,7 +110,7 @@ node scripts/paper1/deepseek-diagnostic.mjs --run
 
 首次本机部署保留了当时已公开的四条台账事件及同一授权摘要；只有指定的设备执行副本用于真实诊断，其他 checkout 用于测试和发布。代码不声称提供跨设备、跨克隆的分布式互斥。真实生成之前的历史接入检查累计三次只读元数据请求，停止于现金预留之前；该阶段为零生成、零新增预留、原台账字节未变。随后上节所记诊断另有一次只读账户检查和一次实际生成。账户状态回执始终保留在设备私有运行目录，未发布。
 
-独立生成诊断已通过当次账户检查、现金准入与实际返回校验；无需重复请求来证明同一接入结果。正式研究还需冻结并实施共同 tokenizer/token/工具上限、取得任务对应的真实压缩 checkpoint、接通四臂共同 reader 和完整费用采集，并单独解决 B 的固定检索服务。接入诊断不替代这些步骤。
+独立生成诊断已通过当次账户检查、现金准入与实际返回校验；无需重复请求来证明同一接入结果。正式研究还需冻结共同 reader/tokenizer/token/工具上限，在实际宿主验证新增接口，取得任务对应的真实压缩 checkpoint，完成四臂与费用采集，并单独解决 B 的固定检索服务。接入诊断不替代这些步骤。新增[评分](SCORING.md)、[报告](REPORTING.md)及[设计分析](DESIGN_ANALYSIS.md)工具不会把组件诊断计入研究结果；当前[空结果产物](artifacts/remaining-completion-01/reporting/README.md)保持 **NOT MEASURED**。
 
 ## 核查依据
 

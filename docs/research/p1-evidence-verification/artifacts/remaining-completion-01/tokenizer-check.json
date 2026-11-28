@@ -1,0 +1,32 @@
+{
+  "schema_version": 1,
+  "kind": "actual_offline_reader_tokenizer_check",
+  "checked_at_utc": "2026-11-28T10:50:27.186409+00:00",
+  "profile_file_sha256": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709",
+  "profile_canonical_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+  "identity": {
+    "tokenizer_json_sha256": "89085f12ef79460ac5f66d1119325ddfc694b4ab209d80bbd81d35f081dc9614",
+    "runtime_version": "0.22.2",
+    "add_special_tokens": false,
+    "vocab_size": 129280,
+    "provider_billable_input_exact": false
+  },
+  "counts": [
+    {
+      "text": "Hello, world.",
+      "reference_tokens": 4
+    },
+    {
+      "text": "请核验当前版本的测试结果。",
+      "reference_tokens": 8
+    },
+    {
+      "text": "The maintainer approved publishing release c1 in project demo.",
+      "reference_tokens": 12
+    }
+  ],
+  "model_requests": 0,
+  "provider_requests": 0,
+  "provider_billable_tokens": null,
+  "scientific_ready": false
+}

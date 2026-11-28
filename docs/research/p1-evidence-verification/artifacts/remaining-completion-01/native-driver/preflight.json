@@ -1,0 +1,174 @@
+{
+  "blockers": [
+    "native_attempt_budget_exhausted",
+    "settings_required",
+    "deepseek_credential_file_metadata_unavailable",
+    "embedding_environment_unavailable",
+    "reranker_environment_unavailable",
+    "scope_specs_required",
+    "new_state_and_output_paths_required"
+  ],
+  "checks": {
+    "authorization": {
+      "batch_id": "p1-20261128-approved-batch1",
+      "new_authorization_created": false,
+      "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+      "status": "verified"
+    },
+    "ledger": {
+      "actual_added_cash_total": null,
+      "added_cash_cap": "100.00",
+      "budget_breach_observed": false,
+      "committed_cash_upper_bound": "3.00",
+      "diagnostic_attempts_reserved": 1,
+      "journal_events": 7,
+      "journal_head_sha256": "1e13c9ccee1cc0ce56846ee9929c3d4a72b356aad5cf82c7f346ef7b5f9315f2",
+      "method_units_remaining": 16,
+      "method_units_reserved": 0,
+      "native_attempts_remaining": 0,
+      "native_attempts_reserved": 2,
+      "remaining_cash_capacity": "97.00"
+    },
+    "reader": {
+      "formal_study_frozen": false,
+      "host_runtime_executed": false,
+      "profile_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+      "status": "configuration_verified"
+    },
+    "relocation": {
+      "method_attempts_reserved": 0,
+      "native_attempts_created": 0,
+      "original_plan_modified": false,
+      "planned_development_units": 16,
+      "receipt_sha256": "4a40c96e4929f493d728db7d2817dc1def08189d2c15b97022816ed746ce51c1",
+      "status": "verified"
+    },
+    "services": {
+      "credential_file_contents_read": false,
+      "deepseek_file_metadata_acceptable": false,
+      "embedding_environment_present": false,
+      "provider_authentication_checked": false,
+      "provider_billing_checked": false,
+      "reranker_environment_present": false
+    }
+  },
+  "credential_file_contents_read": false,
+  "dispatch_ready": false,
+  "environment_credential_values_reported": false,
+  "input_file_sha256": [
+    {
+      "filename": "authorization.json",
+      "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887"
+    },
+    {
+      "filename": "source-draft-plan.json",
+      "sha256": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db"
+    },
+    {
+      "filename": "deepseek-reader-profile.json",
+      "sha256": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709"
+    }
+  ],
+  "inspection_environment": {
+    "platform": "linux",
+    "python_version": "3.12.14",
+    "remote_device_queried": false,
+    "scope_specs_provided": false,
+    "settings_provided": false
+  },
+  "kind": "p1-native-driver-preflight",
+  "ledger_writes": 0,
+  "limits": [
+    "Local eligibility is not service authentication, a price audit, native-host validation, or scientific readiness.",
+    "Actual host version, Python version, OS isolation and HTTP behavior remain checked during an explicit run.",
+    "Every real scope and provider request still requires the original canonical controller admission.",
+    "This block entry is not the experiment.py single-unit executable ABI."
+  ],
+  "mode": "check",
+  "model_requests": 0,
+  "network_requests": 0,
+  "required_scope_bindings": {
+    "p1-method-7d35d75fc60b4f8d3fcda2ad": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        },
+        {
+          "config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "endpoint": "https://api.openai.com/v1/embeddings",
+          "model": "text-embedding-3-small",
+          "provider": "openai"
+        },
+        {
+          "config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "endpoint": "https://api.cohere.com/v2/rerank",
+          "model": "rerank-v3.5",
+          "provider": "cohere"
+        }
+      ],
+      "public_path": "/workspace/scratch/d5292d3ebcac/memex-p1-deepseek-live/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:B:1"
+    },
+    "p1-method-ce765d97c9a7c5b6e1a76a34": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": "/workspace/scratch/d5292d3ebcac/memex-p1-deepseek-live/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:D:1"
+    },
+    "p1-method-f728f2175d72e071510c74dd": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": "/workspace/scratch/d5292d3ebcac/memex-p1-deepseek-live/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:C:1"
+    },
+    "p1-method-faba23566d8e3862ad799fe7": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": "/workspace/scratch/d5292d3ebcac/memex-p1-deepseek-live/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:A:1"
+    },
+    "p1-native-322069793b9d23b62a3e8d4d": {
+      "kind": "native",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": null,
+      "unit": null
+    }
+  },
+  "schema_version": 1,
+  "scientific_ready": false,
+  "source_executions": 0,
+  "status": "blocked",
+  "subprocesses_started": 0
+}

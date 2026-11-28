@@ -662,9 +662,14 @@ def result_metadata(output):
         return {}, "runner_result_missing_or_invalid"
 
 
-def dispatch(plan, state, *, run=False):
+def dispatch(plan, state, *, run=False, launcher=None):
     frozen = load_frozen(plan)
     schedule, state = frozen["schedule"], Path(state).absolute()
+    launcher_binding = None
+    if launcher is not None:
+        if not callable(launcher) or not callable(getattr(launcher, "validate_frozen", None)):
+            raise ContractError("bound_launcher_contract_required")
+        launcher_binding = launcher.validate_frozen(frozen, state)
     records = read_ledger(state / "run-ledger.jsonl")
     _, attempts, _ = state_snapshot(frozen, records)
     pending = [u for u in schedule["units"] if u["run_id"] not in attempts]
@@ -686,11 +691,15 @@ def dispatch(plan, state, *, run=False):
         runs = Journal(state / "run-ledger.jsonl")
         usage = Journal(state / "usage-ledger.jsonl")
         start, attempts, finished = state_snapshot(frozen, runs.records)
+        if start is not None and start.get('launcher_binding') != launcher_binding:
+            raise ContractError('launcher_binding_changed_within_study')
         if start is None:
             now = time.time()
             start = {"event": "study_started", "plan_sha256": digest(frozen["freeze"]), "started_epoch": now,
                      "deadline_epoch": now + schedule["budgets"]["max_wall_seconds"],
                      "recorded_at": datetime.fromtimestamp(now, timezone.utc).isoformat()}
+            if launcher_binding is not None:
+                start["launcher_binding"] = launcher_binding
             runs.append(start)
         remaining_at_entry = max(0, start["deadline_epoch"] - time.time())
         monotonic_deadline = time.monotonic() + remaining_at_entry
@@ -738,14 +747,20 @@ def dispatch(plan, state, *, run=False):
             with (output / "stdout.log").open("xb") as stdout, (output / "stderr.log").open("xb") as stderr:
                 try:
                     launched += 1
-                    returncode = launch_runner(argv, cwd=output, env=environment, timeout=timeout,
+                    returncode = (launcher or launch_runner)(argv, cwd=output, env=environment, timeout=timeout,
                                                stdout=stdout, stderr=stderr)
                 except subprocess.TimeoutExpired:
                     status = "budget_exhausted" if timeout < schedule["budgets"]["per_run_seconds"] else "host_timeout"
                     reason = "controller_timeout"
                 except OSError:
                     status, reason = "host_error", "runner_launch_failed"
+                except Exception:
+                    if launcher is None:
+                        raise
+                    status, reason = "capture_incomplete", "bound_launcher_failed"
             elapsed = max(0, time.monotonic() - before)
+            if launcher is not None and elapsed > timeout:
+                status, reason = "host_timeout", "bound_launcher_deadline_exceeded"
             result, result_error = result_metadata(output)
             if status is None:
                 if returncode != 0:
@@ -755,7 +770,7 @@ def dispatch(plan, state, *, run=False):
                 else:
                     status = result["status"]
             captured = collect_usage(output, unit, usage)
-            if status in {"host_timeout", "budget_exhausted"}:
+            if status in {"host_timeout", "budget_exhausted", "capture_incomplete"}:
                 # A killed worker cannot certify that its earlier seal includes
                 # all in-flight/provider work, even when that file parses.
                 captured["usage_capture_complete"] = False
@@ -765,7 +780,11 @@ def dispatch(plan, state, *, run=False):
                          "recorded_at": datetime.now(timezone.utc).isoformat()}
             runs.append(seal_terminal(frozen, reservation, terminal, output))
     return {"mode": "run", "planned_runs": len(schedule["units"]), "attempted_runs": len(attempts),
-            "external_processes_started": launched, "model_requests": None,
+            "external_processes_started": launched if launcher is None else 0,
+            "launcher_invocations": launched,
+            "launcher_mode": "subprocess" if launcher is None else "bound_in_process",
+            "external_process_counter_scope": "runner_wrapper_only",
+            "model_requests": None,
             "run_ledger": str(state / "run-ledger.jsonl"), "usage_ledger": str(state / "usage-ledger.jsonl")}
 
 

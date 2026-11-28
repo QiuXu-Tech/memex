@@ -11,15 +11,18 @@
 | 历史 24 个合成任务 | 开发回归材料；包含预设声明和便利定位，不进入新先导或确认性样本。 |
 | 当前离线接口、评分和统计测试 | 检查实现约定和已知反事实；测试用例、声明和随机种子不计为独立研究任务。 |
 | 一次实际 native-compaction smoke | 执行负责人保留成功收据；只支持宿主调用、原生压缩及续跑链路可运行，不支持 H1/H2、长期可靠性或跨任务效度。 |
-| 8 个开发任务包 | 下文是待完成的设计槽位；现有单元测试不能替代 8 个已验收的完整工作流任务包。 |
-| 16 个独立真实工作流先导任务 | 已采集 16 个真实来源候选/8 项目，2 项已做程序 base→fix；**0 个 P1 工作流验收/冻结**。来源候选不是先导成品，不能直接填入槽位或算研究 N。 |
-| 实时状态与第二批原生接入 | 当前 Node 文件/环境绑定及实际 L2 读写已通过本地工程测试；原生写工具审批阻断。独立抽取首次语义漏项后通用 prompt v2 同家族复测有记录，不能估计准确率。 |
-| 强 Raw-RAG 与近邻方法 | 有配置/适配与检查入口，不等于真实端到端基线已运行；依赖、访问权限及忠实性仍须逐项验收。 |
+| 8 个开发家族槽位 | 已有 8 个合成家族的 9 个材料分支，连同 2 个真实来源种子共 11 个未验收包；完整工作流验收仍为 0。同家族分支和程序测试不能增加独立 N。见[材料目录](tasks/workflows/catalog.json)。 |
+| 16 个独立真实工作流先导任务 | 已采集并检查 16 个真实来源候选/8 项目，**12/16 通过来源与环境资格检查、4 项保留限制；0 个 P1 工作流验收/冻结**。来源候选不是先导成品，不能直接填入槽位或算研究 N。见[资格汇总](tasks/reproduction-expansion/summary.json)。 |
+| 实时状态与已批准的原生接入 | Node 文件/环境绑定、实际 L2 读写及 `run_current_tests` / `record_decision` 的一次性审批与工具执行已有真实记录。原批次 **2 次 native 额度均已消耗**；第 2 次的最后 changed-state 决定超时，完整集成 checks 为 null。先前审批阻断及抽取漏项/复测均保留，不能估计准确率。见[本批记录](artifacts/authorized-batch1/README.md)。 |
+| DeepSeek 候选抽取接入 | 固定合成输入上完成 **1 次真实生成诊断、0 次重试**，HTTP 200，434 输入 / 210 输出 tokens；不是 P1 方法单元或新增 native 额度。见[诊断记录](artifacts/deepseek-live-01/README.md)。 |
+| 强 Raw-RAG 与近邻方法 | 已有固定配置、受控检索、共同 runtime 接口与离线检查；没有真实端到端基线结果。服务访问、任务 checkpoint、独立标签及忠实性仍须逐项验收。见 [BASELINE_RUNTIME.md](BASELINE_RUNTIME.md) 与 [PAIRED_RUNTIME.md](PAIRED_RUNTIME.md)。 |
 | 正式 N、确认性比较、成本优势、投稿 | 均未完成。正式 N 必须在先导和样本量论证之后冻结。 |
 
 自动抽取契约、程序验证通过、宿主 smoke、真实先导和确认性实验是不同证据层次。任何一层的通过都不能替代后一层。
 
 当前开发抽取策略为 `observable-obligations-v2`，对应第一次真实提取暴露的“决策前提未提出”问题；原始失败和修订复测见 [LIVE_HOST.md](LIVE_HOST.md)。此版本变更不构成正式预注册；正式计划必须重新冻结 prompt、代码和全部方法臂。具体运行由 [EXPERIMENT.md](EXPERIMENT.md) 规定的封存执行与独立评分绑定衔接。
+
+当前实际空研究输入已由 [report.py 的报告](artifacts/remaining-completion-01/reporting/report/report.md)及[设计分析](artifacts/remaining-completion-01/reporting/design-analysis/design-analysis.md)复算为 **NOT MEASURED**。空开发清单表达 0 个已验收/冻结研究任务，不撤销另行保留的 16 单元开发计划；现有工程尝试不能被填入科学结果表。冻结标签与封存输出的评分合同见 [SCORING.md](SCORING.md)，报告及设计分析口径见 [REPORTING.md](REPORTING.md) 与 [DESIGN_ANALYSIS.md](DESIGN_ANALYSIS.md)。
 
 ## 2. 可见性边界：公开任务、控制器与 evaluator
 
@@ -61,7 +64,7 @@
 
 这些槽位可以使用合成材料验证程序行为。每个槽位的反事实变体属于同一任务家族，不能增加独立 N。开发任务包需包含公开输入、环境、原始事件、私有义务、隐藏检查和可重算运行记录，不能只交一条 gate 单元测试。
 
-### 3.2 十六个真实先导槽位：全部待采集
+### 3.2 十六个真实先导槽位：全部待工作流验收与冻结
 
 | 槽位 | 采集目标 | 拟议数量 |
 |---|---|---:|
@@ -156,7 +159,9 @@ head、epoch、对象 digest、parser/policy revision 或有效期改变时，�
 
 共享 prelude 或抽取在部署估算中按每 arm 每任务一次计入；研究实际支付只记真实发生的次数。一度建库的摊销工作负载、分摊规则和敏感性范围预先冻结。实际支出按币种单列，不能拿实际账单替补 `standardized_cost` 或与其混算。
 
-`cost_model` 要提供 `frozen`、`currency`、`rate_card_id`、非空数值 `rates`、`cost_scope=full_pipeline_per_scheduled_task` 和 `allocation_rule`。完整组件账本和费率来源另行封存。当前分析器只审查提交的总额及声明，**不会从未提供的 usage 重算成本，也不能认证账本覆盖了所有组件**；人工成本审计仍是 H2 门槛。
+`cost_model` 要提供 `frozen`、`currency`、`rate_card_id`、非空数值 `rates`、`cost_scope=full_pipeline_per_scheduled_task` 和 `allocation_rule`。完整组件账本和费率来源另行封存。[experiment.py 的 join](EXPERIMENT.md) 会核对封存执行、计量合同、组件结束记录和冻结分摊，从实际提供的 usage 与费率重新计算 `standardized_cost`；缺少必要计量、费率或组件闭合时保持 null。它不从 token 估价推定实际现金已结算。
+
+[analyze.py](../../../scripts/paper1/analyze.py) 消费 join 产生的总额及冻结成本声明，执行任务聚合、区间与 H2 门控；[report.py](REPORTING.md) 直接沿用这些结果，**不另造计价器，也不会从未提供的 usage 补出成本**。join 的可重算合同与 analyze 的总额消费是不同步骤，两者都不能自行认证供应商实际账单、未捕获组件或费率来源真实性；独立成本审计仍是 H2 门槛。
 
 ### 已修复的关键统计约束
 

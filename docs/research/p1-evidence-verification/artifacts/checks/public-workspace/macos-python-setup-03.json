@@ -1,0 +1,355 @@
+{
+  "finished_at": "2026-11-28T10:56:16.817849+00:00",
+  "global_path_modified": false,
+  "interpreter_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc",
+  "kind": "p1_pinned_wheels_and_sandbox_setup",
+  "method_units_reserved": 0,
+  "model_requests": 0,
+  "native_attempts_reserved": 0,
+  "prior_command_correction": "Remove redundant --no-build, which uv rejects together with --only-binary; --only-binary :all: remains mandatory.",
+  "prior_continuation_receipt_sha256": "5641403928dd6c0a407aac4105aeccb2350cd660263d515f09b4cc6e8264f136",
+  "prior_setup_receipt_sha256": "dc7cf51e13de1c4a21fd3397a0bc65d949b66baaa1c1903ac44800aec2ffd216",
+  "provider_requests": 0,
+  "python_version_observation": {
+    "executable": "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10",
+    "prefix": "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none",
+    "version": [
+      3,
+      10,
+      16
+    ]
+  },
+  "requirements": {
+    "w-101": "5817943cece5ddfb25e91eb00ca3c608502f9c029b970fd570a92b7aef96801a",
+    "w-102": "652d5312533e0ef8ab830f85811c20391d520b55624ae516de28d325d4578313"
+  },
+  "root": "<SETUP_ROOT>",
+  "schema_version": 1,
+  "sdist_builds_allowed": false,
+  "source_manifest": {
+    "experiment.py": "548b4b57683c230a652b8fbf3a9b9ea2542d13984e47860d7ce1d26477cf5cbb",
+    "public_workspace.py": "9f65c8131d80b428e94cc3006c1d86cb66f703cd460c947fab23bb4319281807",
+    "python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+    "python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc"
+  },
+  "started_at": "2026-11-28T10:56:02.095364+00:00",
+  "status": "prepared",
+  "steps": [
+    {
+      "command": [
+        "<HOME>/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "<SETUP_ROOT>/w-101/bin/python",
+        "--requirements",
+        "<SETUP_ROOT>/requirements/w-101.txt",
+        "--only-binary",
+        ":all:",
+        "--no-deps",
+        "--link-mode",
+        "copy",
+        "--default-index",
+        "https://pypi.org/simple",
+        "--keyring-provider",
+        "disabled",
+        "--no-python-downloads",
+        "--no-config",
+        "--no-sources",
+        "--no-progress",
+        "--cache-dir",
+        "<SETUP_ROOT>/cache"
+      ],
+      "elapsed_seconds": 6.71252183300021,
+      "error": null,
+      "finished_at": "2026-11-28T10:56:08.836212+00:00",
+      "label": "5-w-101-binary-install",
+      "model_requests": 0,
+      "returncode": 0,
+      "started_at": "2026-11-28T10:56:02.123520+00:00",
+      "stderr": {
+        "bytes": 513,
+        "sha256": "e318d31f11c6442004aaa4386df50d6e3e83056997cd8b1bc8303534b19fb2b7"
+      },
+      "stderr_preview": "Using Python 3.10.16 environment at: w-101\nResolved 17 packages in 2.97s\nDownloading setuptools (1.0MiB)\n Downloaded setuptools\nPrepared 17 packages in 3.47s\nInstalled 17 packages in 103ms\n + asgiref==3.6.0\n + attrs==22.2.0\n + blinker==1.5\n + click==8.1.3\n + exceptiongroup==1.1.0\n + iniconfig==2.0.0\n + itsdangerous==2.1.2\n + jinja2==3.1.2\n + markupsafe==2.1.2\n + packaging==23.0\n + pluggy==1.0.0\n + pytest==7.2.2\n + python-dotenv==1.0.0\n + setuptools==67.6.0\n + tomli==2.0.1\n + werkzeug==2.2.3\n + wheel==0.38.4\n",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "task_source_executions": 0
+    },
+    {
+      "command": [
+        "<HOME>/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "<SETUP_ROOT>/w-102/bin/python",
+        "--requirements",
+        "<SETUP_ROOT>/requirements/w-102.txt",
+        "--only-binary",
+        ":all:",
+        "--no-deps",
+        "--link-mode",
+        "copy",
+        "--default-index",
+        "https://pypi.org/simple",
+        "--keyring-provider",
+        "disabled",
+        "--no-python-downloads",
+        "--no-config",
+        "--no-sources",
+        "--no-progress",
+        "--cache-dir",
+        "<SETUP_ROOT>/cache"
+      ],
+      "elapsed_seconds": 7.423636583000189,
+      "error": null,
+      "finished_at": "2026-11-28T10:56:16.548762+00:00",
+      "label": "5-w-102-binary-install",
+      "model_requests": 0,
+      "returncode": 0,
+      "started_at": "2026-11-28T10:56:09.125010+00:00",
+      "stderr": {
+        "bytes": 420,
+        "sha256": "f0d57379d259fd42e39ab6e3de04c501e1af62b5764534c35f87772bbff8273e"
+      },
+      "stderr_preview": "Using Python 3.10.16 environment at: w-102\nResolved 15 packages in 3.46s\nPrepared 12 packages in 3.70s\nInstalled 15 packages in 115ms\n + attrs==21.4.0\n + certifi==2021.10.8\n + charset-normalizer==2.0.12\n + idna==3.3\n + iniconfig==1.1.1\n + packaging==21.3\n + pluggy==1.0.0\n + py==1.11.0\n + pyparsing==3.0.9\n + pytest==6.2.5\n + pytest-mock==2.0.0\n + setuptools==67.6.0\n + toml==0.10.2\n + urllib3==1.26.18\n + wheel==0.38.4\n",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "task_source_executions": 0
+    }
+  ],
+  "taskpacks_modified": false,
+  "tasks": {
+    "w-101": {
+      "own_canary_only": true,
+      "probe": {
+        "binding": {
+          "config_sha256": "87ed098b8b2912530494a6141742c8090d0e94ccbcd7997959c232739f4c4b3f",
+          "dependencies_sha256": "2c1851f900d622538952ea3df56262886df007182b865d553484d6d74a819d16",
+          "executable_sha256": "7455283df45ef13eaffae9ca3f0063aebf235b1e621e8c95b3609db2e3d7e493",
+          "kernel": "27.3.0",
+          "platform": "darwin",
+          "python_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc"
+        },
+        "checks": {
+          "allowed_read": true,
+          "allowed_write": true,
+          "loopback_connection_denied": true,
+          "private_read_denied": true,
+          "private_write_denied": true
+        },
+        "kind": "actual_os_sandbox_probe",
+        "launch_sha256": "5ff0eb6aaff139f874cce4a3b05edf1dd4dfeeee8e4fa8c35a005a528135ff82",
+        "model_requests": 0,
+        "private_sentinel_unchanged": true,
+        "probe_source_sha256": "344065ff28cf81eb73a1ded06ff8ccc83e135622c8ee637780016ef394cdfa4a",
+        "process": {
+          "elapsed_seconds": 0.06613733400081401,
+          "error": null,
+          "finished_at": "2026-11-28T10:56:09.068336+00:00",
+          "output_complete": true,
+          "output_limit_exceeded": false,
+          "returncode": 0,
+          "signal": null,
+          "spawned": true,
+          "started_at": "2026-11-28T10:56:09.002201+00:00",
+          "stderr": "stderr.raw",
+          "stdout": "stdout.raw",
+          "streams": {
+            "stderr": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stdout": {
+              "bytes": 198,
+              "sha256": "21dcefa0b021b11714b124151c96772186908f053c304afa6f9a2cd6d3eb25ad"
+            }
+          },
+          "timed_out": false
+        },
+        "provider_requests": 0,
+        "real_source_executions": 0,
+        "schema_version": 1,
+        "status": "passed"
+      },
+      "probe_stderr_preview": "",
+      "probe_stdout_preview": "{\"nonce\": \"d06e1e767ead42a7a0d1d0141f6648b1\", \"checks\": {\"allowed_read\": true, \"allowed_write\": true, \"private_read_denied\": true, \"private_write_denied\": true, \"loopback_connection_denied\": true}}\n",
+      "python": "<SETUP_ROOT>/w-101/bin/python",
+      "runtime_report": {
+        "dependency_tree_sha256": "2c1851f900d622538952ea3df56262886df007182b865d553484d6d74a819d16",
+        "interpreter_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc",
+        "mismatched_dependencies": [],
+        "observed_versions": {
+          "asgiref": "3.6.0",
+          "attrs": "22.2.0",
+          "blinker": "1.5",
+          "click": "8.1.3",
+          "exceptiongroup": "1.1.0",
+          "iniconfig": "2.0.0",
+          "itsdangerous": "2.1.2",
+          "jinja2": "3.1.2",
+          "markupsafe": "2.1.2",
+          "packaging": "23.0",
+          "pluggy": "1.0.0",
+          "pytest": "7.2.2",
+          "python-dotenv": "1.0.0",
+          "setuptools": "67.6.0",
+          "tomli": "2.0.1",
+          "werkzeug": "2.2.3",
+          "wheel": "0.38.4"
+        },
+        "os_isolation": false,
+        "pth_processing": "disabled_by_python_-I_-S",
+        "python_version_not_yet_executed": true,
+        "required_versions": {
+          "asgiref": "3.6.0",
+          "attrs": "22.2.0",
+          "blinker": "1.5",
+          "click": "8.1.3",
+          "exceptiongroup": "1.1.0",
+          "iniconfig": "2.0.0",
+          "itsdangerous": "2.1.2",
+          "jinja2": "3.1.2",
+          "markupsafe": "2.1.2",
+          "packaging": "23.0",
+          "pluggy": "1.0.0",
+          "pytest": "7.2.2",
+          "python-dotenv": "1.0.0",
+          "setuptools": "67.6.0",
+          "tomli": "2.0.1",
+          "werkzeug": "2.2.3",
+          "wheel": "0.38.4"
+        },
+        "requirements_match": true,
+        "runtime_ready_for_formal_method": false
+      },
+      "sandbox_configuration": {
+        "dependencies": "<SETUP_ROOT>/w-101/lib/python3.10/site-packages",
+        "executable": "/usr/bin/sandbox-exec",
+        "kind": "sandbox-exec",
+        "python": "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10",
+        "runtime_roots": [
+          "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none"
+        ]
+      },
+      "status": "prepared",
+      "task_source_executed": false
+    },
+    "w-102": {
+      "own_canary_only": true,
+      "probe": {
+        "binding": {
+          "config_sha256": "131f3e76cd14349e4e6d0f2dc8c9b6719232d329dc5454fa19f36a6d0c7412b7",
+          "dependencies_sha256": "0e60a828ccb8ff8f659ee3c17f176c8ae859e7e20c5279336070e3d6d244eae7",
+          "executable_sha256": "7455283df45ef13eaffae9ca3f0063aebf235b1e621e8c95b3609db2e3d7e493",
+          "kernel": "27.3.0",
+          "platform": "darwin",
+          "python_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc"
+        },
+        "checks": {
+          "allowed_read": true,
+          "allowed_write": true,
+          "loopback_connection_denied": true,
+          "private_read_denied": true,
+          "private_write_denied": true
+        },
+        "kind": "actual_os_sandbox_probe",
+        "launch_sha256": "e5b0734c0b86d61cf65130a82a2fe94bfeb26ed5468ac71eed07d2af3bc8a3bb",
+        "model_requests": 0,
+        "private_sentinel_unchanged": true,
+        "probe_source_sha256": "344065ff28cf81eb73a1ded06ff8ccc83e135622c8ee637780016ef394cdfa4a",
+        "process": {
+          "elapsed_seconds": 0.06756025000140653,
+          "error": null,
+          "finished_at": "2026-11-28T10:56:16.762316+00:00",
+          "output_complete": true,
+          "output_limit_exceeded": false,
+          "returncode": 0,
+          "signal": null,
+          "spawned": true,
+          "started_at": "2026-11-28T10:56:16.694756+00:00",
+          "stderr": "stderr.raw",
+          "stdout": "stdout.raw",
+          "streams": {
+            "stderr": {
+              "bytes": 0,
+              "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            "stdout": {
+              "bytes": 198,
+              "sha256": "2c7341cdbefbce25ef8d4761867b622ec5420ad9928741207e5a5ff2dff381ac"
+            }
+          },
+          "timed_out": false
+        },
+        "provider_requests": 0,
+        "real_source_executions": 0,
+        "schema_version": 1,
+        "status": "passed"
+      },
+      "probe_stderr_preview": "",
+      "probe_stdout_preview": "{\"nonce\": \"cf81cf5079cd40aa98a2da0df578a59a\", \"checks\": {\"allowed_read\": true, \"allowed_write\": true, \"private_read_denied\": true, \"private_write_denied\": true, \"loopback_connection_denied\": true}}\n",
+      "python": "<SETUP_ROOT>/w-102/bin/python",
+      "runtime_report": {
+        "dependency_tree_sha256": "0e60a828ccb8ff8f659ee3c17f176c8ae859e7e20c5279336070e3d6d244eae7",
+        "interpreter_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc",
+        "mismatched_dependencies": [],
+        "observed_versions": {
+          "attrs": "21.4.0",
+          "certifi": "2021.10.8",
+          "charset-normalizer": "2.0.12",
+          "idna": "3.3",
+          "iniconfig": "1.1.1",
+          "packaging": "21.3",
+          "pluggy": "1.0.0",
+          "py": "1.11.0",
+          "pyparsing": "3.0.9",
+          "pytest": "6.2.5",
+          "pytest-mock": "2.0.0",
+          "setuptools": "67.6.0",
+          "toml": "0.10.2",
+          "urllib3": "1.26.18",
+          "wheel": "0.38.4"
+        },
+        "os_isolation": false,
+        "pth_processing": "disabled_by_python_-I_-S",
+        "python_version_not_yet_executed": true,
+        "required_versions": {
+          "attrs": "21.4.0",
+          "certifi": "2021.10.8",
+          "charset-normalizer": "2.0.12",
+          "idna": "3.3",
+          "iniconfig": "1.1.1",
+          "packaging": "21.3",
+          "pluggy": "1.0.0",
+          "py": "1.11.0",
+          "pyparsing": "3.0.9",
+          "pytest": "6.2.5",
+          "pytest-mock": "2.0.0",
+          "setuptools": "67.6.0",
+          "toml": "0.10.2",
+          "urllib3": "1.26.18",
+          "wheel": "0.38.4"
+        },
+        "requirements_match": true,
+        "runtime_ready_for_formal_method": false
+      },
+      "sandbox_configuration": {
+        "dependencies": "<SETUP_ROOT>/w-102/lib/python3.10/site-packages",
+        "executable": "/usr/bin/sandbox-exec",
+        "kind": "sandbox-exec",
+        "python": "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10",
+        "runtime_roots": [
+          "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none"
+        ]
+      },
+      "status": "prepared",
+      "task_source_executed": false
+    }
+  },
+  "third_party_source_executions": 0
+}

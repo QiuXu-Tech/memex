@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "inputs": {
+    "manifest": {
+      "filename": "manifest.json",
+      "sha256": "0a0b8828fbd2f0eae1d50fb751ed21e8bec7ae5d02ffee01cc5f25ce3c126092"
+    },
+    "runs": {
+      "filename": "runs.jsonl",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  },
+  "implementation": {
+    "report.py": "3a8d9fc7cabe2aae51d3f978e326f5bb410b51d4c950905e7b1271e9dcd4de08",
+    "analyze.py": "0ff22e7b734e9cc8dd46894a11b14751774924207551229c0a2cd2396de4f0d2",
+    "experiment.py": "6d046f6b53cd2b287d3a2d3c628bfb79dae3789121a9675c41a1a6ccaa1bc6ea"
+  },
+  "python_version": "3.12.14",
+  "numpy_version": "2.3.5",
+  "model_requests": 0,
+  "cost_recomputed_here": false
+}

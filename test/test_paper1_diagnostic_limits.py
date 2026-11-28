@@ -181,7 +181,9 @@ class DiagnosticLimitsTests(unittest.TestCase):
         self.assertEqual(after['native_attempts_remaining'], 0)
         self.assertEqual(after['method_units_reserved'], 0)
         self.assertEqual(after['method_units_remaining'], 16)
-        self.assertEqual(after['committed_cash_upper_bound'], '3.00')
+        self.assertEqual(after['committed_cash_upper_bound'],
+                         M.money(M.fen(before['committed_cash_upper_bound']) + 300))
+        self.assertEqual(after['diagnostic_attempts_reserved'], before['diagnostic_attempts_reserved'] + 1)
 
     def test_concurrent_diagnostic_and_native_reservations_share_same_cash_lock(self):
         self.assertTrue(callable(getattr(self.ledger, 'reserve_diagnostic', None)))

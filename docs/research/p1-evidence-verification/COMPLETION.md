@@ -2,7 +2,7 @@
 
 更新：2026-11-28（Asia/Shanghai）。论文：**When to Reopen the Source: Evidence Verification after Native Agent Compaction**。
 
-本轮在已有来源扩展、任务材料、只读联调和官方格式基础上，实际执行了批准的两次原生尝试，打通普通工具单次审批，并补齐两份真实 Python 公开源码的固定测试采集。第二次原生尝试的最后决定超时，完整联调及正式比较仍未完成。论文当前是方法与实验协议工作稿，正式实验和人类研究贡献尚未完成，不能标记为“可投稿”或“已投稿”。
+此前在已有来源扩展、任务材料、只读联调和官方格式基础上，实际执行了批准的两次原生尝试，打通普通工具单次审批，并补齐两份真实 Python 公开源码的固定测试采集。第二次原生尝试的最后决定超时，完整联调及正式比较仍未完成。本轮补齐配对运行、原生后端、强基线接线、计量、评分和报告工具，新增模型调用为 0。论文当前是方法与实验协议工作稿，正式实验和人类研究贡献尚未完成，不能标记为“可投稿”或“已投稿”。
 
 后续配置更新：用户已选择 DeepSeek 作为生成服务，并已完成一次真实候选抽取诊断；HTTP 200，1 次生成、0 次自动重试，434 输入与 210 输出 tokens，取得一条通过现有校验的候选 claim。见[真实诊断记录](artifacts/deepseek-live-01/README.md)与 [DEEPSEEK.md](DEEPSEEK.md)。这项接入验证不增加论文样本，不替换 B 臂固定的 embedding/reranker；原授权及历史事件保留，现金台账只追加本次诊断事件，正式研究状态仍未就绪。
 
@@ -15,6 +15,9 @@
 | 可重建源码包 | [review-source.zip](submission/review-source.zip)：22 个成员；独立解包重建的页面文字、尺寸和像素一致 |
 | 研究协议与执行证据 | [PROTOCOL.md](PROTOCOL.md)、[EXECUTION.md](EXECUTION.md)、[REVIEW.md](REVIEW.md) |
 | 来源资格与任务材料 | [来源汇总](tasks/reproduction-expansion/summary.json)、[TASKPACKS.md](TASKPACKS.md)、[ANNOTATION.md](ANNOTATION.md) |
+| 本轮运行与科学工具接口 | [NATIVE_DRIVER.md](NATIVE_DRIVER.md)、[PAIRED_RUNTIME.md](PAIRED_RUNTIME.md)、[PAIRED_DISPATCH.md](PAIRED_DISPATCH.md)、[BASELINE_RUNTIME.md](BASELINE_RUNTIME.md)、[SCORING.md](SCORING.md)、[REPORTING.md](REPORTING.md)、[DESIGN_ANALYSIS.md](DESIGN_ANALYSIS.md) |
+| 当前真实零结果的复算产物 | [零结果说明与来源绑定](artifacts/remaining-completion-01/reporting/README.md)：NOT MEASURED，未选择正式 N |
+| 最新完成记录与外部前提 | [REMAINING_WORK.md](REMAINING_WORK.md)：实现、实际验证、原额度与集中列出的新增条件 |
 | 投稿条件与贡献记录 | [SUBMISSION.md](SUBMISSION.md)、[SUBMISSION_PACKAGE.md](SUBMISSION_PACKAGE.md)、[CONTRIBUTIONS.md](CONTRIBUTIONS.md) |
 
 ## 已实际完成的工作
@@ -25,9 +28,15 @@
 
 原生与来源阶段的独立 AI 审查发现并修复三项问题：公共 JSONL 嵌套字段可能携带评估标签；审批处理器的允许范围过宽；来源资格检查记录了测试文件一致性，却没有把它作为通过前提。修复后的定向套件分别为 26、12、18 项通过。审查不冒充独立人工评审。
 
+最新剩余工作集成又执行完整研究回归：**Node 123 项通过；Python 487 项通过、9 项因检查机缺少旧固定环境而跳过，0 失败**。主仓库另有 197 项通过、4 项因 bundle 未构建跳过。初次失败、测试夹具修正、最终日志和原账本字节核对均见[本轮证据](artifacts/remaining-completion-01/README.md)。这些工程验证不增加论文样本。
+
 审批处理器已按 Codex 0.153.0 的真实协议实现两条一次性请求路径。本批已真实观察到 `run_current_tests` 和 `record_decision` 的单次批准与后续工具执行，来源记录为 `prior_chat_authorization`，不声称新的真人点击、设备验证或持久授权。原来的审批阻断记录保持不变。
 
-### 1a. 本次批准后的真实原生运行
+本轮又补充 task-bound 配对运行、受限公共工作区、共同 DeepSeek reader/profile、逐请求 relay、固定 Raw-RAG 受控接口，以及绑定原现金台账的 runtime controller。它们提供可检查代码和离线合同，尚没有新的真实四臂执行。控制器将 provider 请求绑定到最近一次准入操作，强制核销 native generation/compaction，限制请求与剩余时间；现金采用显式逐请求上界，或固定 relay 的串行累计用量证明及 completion 握手。后者仍预留完整 scope 上界、未知时停止且不核销实际费用。细则见 [DEEPSEEK.md](DEEPSEEK.md)。这不退还已用 native 额度，也不证明原 CNY 100 足够完成全部待运行单元。
+
+离线评分工具只聚合已冻结标签、行为检查与封存证据；报告直接调用现有分析器，成本沿用 `experiment.py join` 重算值。设计分析在无真实先导时保留 null，不拟合功效或自动选 N。当前空研究清单和空结果已实际生成[报告](artifacts/remaining-completion-01/reporting/report/report.md)与[设计分析](artifacts/remaining-completion-01/reporting/design-analysis/design-analysis.md)，状态均为 **NOT MEASURED**。0 个已验收研究任务不撤销单独的 16 单元未运行开发计划，工具测试也不增加人类评审或论文 N。
+
+### 1a. 此前第 1 批批准后的真实原生运行
 
 第 1 次尝试启动 1 个生成 turn，在响应流多次重连后于 125.473 秒超时。第 2 次启动 5 个生成 turn、完成其中 4 个，实际完成 2 次原生压缩与 2 次候选抽取；一次真实测试通过，压缩后的稳定状态模拟决定为 release。未变化的收据被复用，改变字节后旧的通过收据被重新打开并以版本不匹配拒绝。
 
@@ -81,9 +90,9 @@ D 的前置核验实际打开过 2 次原文，仍有目录读取和证据重新
 |---|---|---|
 | 原生可变工具完整链路 | 单次审批/工具执行、两次压缩、收据复用与版本拒绝已观察；最后 changed-state 决定超时，本批 2 次额度已用完 | 保留现有部分证据，在新的明确批次额度下完成最后的重新测试与决定 |
 | 强基线实际调用 | 当前缺少可用 embedding/reranker 服务配置 | 用固定官方 Raw-RAG 跑真实请求，保留调用、失败与计量 |
-| 全方法任务验收与执行 | 任务尚未验收；共享 reader、完整方法调度和运行隔离尚未集成验证 | 接通实际执行器，验证等输入、等模型、预算与工具边界 |
+| 全方法任务验收与执行 | 任务尚未验收；共享 reader、配对调度、工作区和现金控制已有实现，尚未在真实四臂运行中集成验证 | 验证实际执行器的等输入、等模型、预算、工具边界与完整计量 |
 | 独立标签及裁决 | 22 份材料尚无人填写 | 两名独立真人审阅，处理分歧并记录裁决 |
-| 正式实验冻结 | 缺少配对 pilot 和完整成本数据 | 冻结方法、预算、价格与分析方案，用 pilot 设计样本量，再跑确认及外部验证 |
+| 正式实验冻结 | 缺少配对 pilot 和完整成本数据；新报告/设计工具的当前输出为未测量 | 冻结方法、预算、价格与分析方案，用实际 pilot 设计样本量，再跑确认及外部验证 |
 | 投稿资格与提交 | 缺少真实人类思想来源、作者责任及完整结果 | 依据目标期刊当时政策核实资格，完成结果稿及作者声明后提交 |
 
 公开及第 1 批运行授权均已生效，不需要重复确认同一范围。上述运行条件、研究证据与真人工作尚未满足；本轮没有合并 main、提交预印本或向期刊/会议送稿。

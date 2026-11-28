@@ -54,7 +54,9 @@
 
 上述候选尚无已验收冻结的 P1 工作流，22 份评审包均未填，已完成的人类独立评审数为 0。只读联调没有运行强 Raw-RAG B，也没有执行可变工作区测试；缓存输入子项不同，compaction 计量仍有缺口，actual spend 与完整标准化成本保持 null。`PENDING` 是未测量，不能换成 0、成功或“趋势”。论文是否最终主张优势，应由完成的研究记录决定，而不是投稿目标决定。
 
-**审批宿主的边界。** 当前相关实现只支持窄原型的审批语义与记录检查，尚未通过真实宿主 profile 和真人审批链路的端到端验证。只读分叉成功不表示先前被审批阻断的可变工具流程已经打通，也不能将本地状态机检查称为 approval host client 已验证。[APPROVALS.md](APPROVALS.md) 保留具体边界。
+**审批宿主的边界。** 已批准批次中，Codex 0.153.0 的实际 `run_current_tests` 和 `record_decision` 一次性审批与后续工具执行已有收据，来源为 `prior_chat_authorization`，不声称新的真人点击或持久授权。两次 native 额度均已消耗；第 2 次最后的 changed-state 决定超时，完整集成 checks 为 null。先前阻断记录继续保留，局部通过也不证明完整可变工作流或跨宿主兼容性。[APPROVALS.md](APPROVALS.md) 与[本批原始记录](artifacts/authorized-batch1/README.md)保留具体边界。
+
+一次固定合成输入的 [DeepSeek 抽取诊断](artifacts/deepseek-live-01/README.md)已经完成，但未增加研究任务或方法运行。新增[评分](SCORING.md)、[报告](REPORTING.md)及[设计分析](DESIGN_ANALYSIS.md)工具有离线复核入口；当前[真实空结果报告](artifacts/remaining-completion-01/reporting/README.md)仍为 **NOT MEASURED**，不提供科学效果或正式 N。
 
 ## 4. 当前工作稿与已完成的官方格式包
 
@@ -64,14 +66,14 @@
 
 | 文件 | 当前版面 | PDF SHA-256 |
 |---|---|---|
-| [Canonical manuscript.pdf](manuscript.pdf) | **25 页 A4**；标题、摘要与主文第 1–20 页；参考文献第 21 页；附录第 22–25 页 | `ff21ec2c9b72ab26df0719416483b42e4e8cafe87f560416efea24a6f849331b` |
-| [官方 TMLR main.pdf](submission/tmlr-review/main.pdf) | **26 页 US Letter**；正文截至第 20 页；参考文献第 21–22 页；附录第 23–26 页 | `7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607` |
+| [Canonical manuscript.pdf](manuscript.pdf) | **26 页 A4**；标题、摘要与主文第 1–21 页；参考文献第 22 页；附录第 23–26 页 | `0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95` |
+| [官方 TMLR main.pdf](submission/tmlr-review/main.pdf) | **27 页 US Letter**；正文截至第 20 页；参考文献第 21–22 页；附录第 23–27 页 | `1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8` |
 
 官方稿使用 commit `7bf90efe3a0debbba703c05c43f3ff7e4d4a2992` 的默认 review 样式；官方文件原字节已核验，没有使用 `accepted` 或 `preprint`。首页显示 **NOT READY — NOT SUBMITTED**，解释模板固定 review 标签，并以脚注明确披露实质性 AI 辅助和未解决的人类来源条件。[S7]
 
-[review-source.zip](submission/review-source.zip) 为文档源码包，含 22 个成员，压缩后 458,444 bytes，SHA-256 为 `db8ef92abfc07e28ac45b9836481800b4de5380fd8d48c82b326d4a0fe40d97e`。它已在项目目录之外解包并实际重编；26 页文字、尺寸和渲染像素全部相同，PDF 创建元数据导致字节散列不同。它没有被当作完整科学复现制品。
+[review-source.zip](submission/review-source.zip) 为文档源码包，含 22 个成员，压缩后 462,960 bytes，SHA-256 为 `c421382e189a0e0ab3333032998e26263e1d1644f5028223fa1d48b65764288b`。它已在项目目录之外解包并实际重编；27 页文字、尺寸和渲染像素全部相同，PDF 创建元数据导致字节散列不同。它没有被当作完整科学复现制品。
 
-两份 PDF 均保留 16 条参考文献和 56 个 `PENDING`；没有未解析引用、缺字、行溢出或未解决的重编译请求。Canonical 与官方稿分别有 8 和 1 个非致命 underfull 警告。全页以 110 dpi 渲染，全部变化的 canonical 页面和全部官方页面已经检查。构建命令、样式来源、QA 及独立重建收据见 [BUILD.md](BUILD.md)、[SUBMISSION_PACKAGE.md](SUBMISSION_PACKAGE.md) 和 [zip-rebuild-report.json](submission/zip-rebuild-report.json)。机械匿名筛查通过不等于人类匿名审查完成。
+两份 PDF 均保留 16 条参考文献和 56 个 `PENDING`；没有未解析引用、缺字、行溢出或未解决的重编译请求。Canonical 与官方稿分别有 8 和 0 个非致命 underfull 警告。既有 QA 记录保留全页 110 dpi 渲染和逐页 AI 视觉检查；本次仅重新核对现有文件页数、分节与摘要，未重建 PDF。构建命令、样式来源、QA 及独立重建收据见 [BUILD.md](BUILD.md)、[SUBMISSION_PACKAGE.md](SUBMISSION_PACKAGE.md)、[canonical-qa-report.json](submission/canonical-qa-report.json)、[qa-report.json](submission/qa-report.json) 和 [zip-rebuild-report.json](submission/zip-rebuild-report.json)。机械匿名筛查或 AI 视觉检查通过不等于人类匿名审查完成。
 
 **历史检查记录，非当前版本：** 2026-11-28 Asia/Shanghai（UTC+08:00）08:58 左右首次核对网页规则，09:00 检查的 canonical 为 24 页（主文截至 19 页、参考文献第 20 页、附录第 21–24 页）。该旧 PDF SHA-256 为 `b49157afe45dee02aa9d1a4a469f205466ecace8442febb2a798e39a3134aa2e`，旧 Markdown SHA-256 为 `e472ca2d2883d6c177c84398efbb694754d5d5e11991aa83e288d47855a99ca6`。这组时间和散列只标识早先检查点。
 
@@ -110,7 +112,7 @@
 | G8 人类独立复核 | **BLOCKED** | 真实研究者复核关键引用、方法正确性、所有主结果和异常；由能理解实现与统计的人检查代码/日志；说明审查人、范围、发现及处理。一般签名不能替代实际核查。 |
 | G9 COI、资助、伦理与来源许可 | **UNKNOWN / BLOCKED** | 每位作者真实 COI 与资助记录；确定标注/参与者安排是否需相应伦理审查并记录判断。逐项审核上游文本、代码、日志和身份信息；不得把“网上可读”视为全部可再分发。 |
 | G10 重用、匿名与制品 | **UNKNOWN / BLOCKED** | 所有相关论文/预印本/归档投稿的重叠清单；匿名审稿包与公开仓库版本分开；完成可从记录重算的制品快照及合法发布范围。必要的第三方许可通知须保留，不能为匿名而删除。 |
-| G11 格式与文档复现 | **COMPLETE（工作稿格式范围）** | 官方 pin、26 页默认 review 稿、首页实质性 AI 脚注、文档源码 ZIP、引用/占位检查、页面 QA 与项目外独立重建均有记录；不包含研究完成、人类匿名审查或实际投递。 |
+| G11 格式与文档复现 | **COMPLETE（工作稿格式范围）** | 官方 pin、27 页默认 review 稿、首页实质性 AI 脚注、文档源码 ZIP、引用/占位检查、页面 QA 与项目外独立重建均有记录；不包含研究完成、人类匿名审查或实际投递。 |
 | G12 最终作者批准与实际投递 | **NOT READY / NOT PERFORMED** | 完成其他研究与人类责任 gates，核对当天规则、真实账户与表单，完成科学补充材料和所有声明；最后由真实作者批准确切版本及投递。现有格式稿和 ZIP 不是已获批准的最终研究稿。 |
 
 其中 G1/G8 尤其不能通过美化措辞解决。当前工作稿已说明 AI 参与文献检查、方法表述与英文写作；本轮又有 AI 协助实现审查、来源采集和程序复现。应建立实际使用与人类复核记录。FAQ 的 human-sourced 期待是思想、主张、结果源于人类，而非由 LLM 生成；它不等同于事后由人类负责。当前真实研究贡献是否满足该要求仍须按来源事实核对，不能以签字或修改披露措辞替代。占位的人类贡献或尚未发生的审查也不能写成事实。[S2][S3][S4]

@@ -21,15 +21,26 @@ class PairedRunnerPreparationTests(unittest.TestCase):
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.root = Path(self.temp.name)
+        # The archived approval intentionally binds its original absolute
+        # locations. Exercise this legacy preparation API with an explicit
+        # temporary fixture plan for this checkout, never by rewriting the
+        # archived plan/authorization or weakening their identity checks.
+        self.plan = self.root / 'fixture-plan.json'
+        value = API['TASKPACK']['draft_plan'](PACKAGES, list('ABCD'), 2)
+        self.plan.write_text(json.dumps(value))
+        self.auth = self.root / 'fixture-authorization.json'
+        approval = json.loads(AUTH.read_text())
+        approval['source_plan']['sha256'] = API['file_sha'](self.plan)
+        self.auth.write_text(json.dumps(approval))
 
     def tearDown(self):
         self.temp.cleanup()
 
     def inspect(self, **kwargs):
-        return API['inspect'](PLAN, PACKAGES, environ={}, **kwargs)
+        return API['inspect'](self.plan, PACKAGES, environ={}, **kwargs)
 
     def changed_plan(self, change):
-        value = json.loads(PLAN.read_text())
+        value = json.loads(self.plan.read_text())
         change(value)
         path = self.root / 'plan.json'
         path.write_text(json.dumps(value))
@@ -58,7 +69,7 @@ class PairedRunnerPreparationTests(unittest.TestCase):
             self.assertFalse(component['method_runtime_ready'])
 
     def test_recorded_permission_never_becomes_host_or_scientific_acceptance(self):
-        result = self.inspect(authorization=AUTH)
+        result = self.inspect(authorization=self.auth)
         self.assertTrue(result['permissions_granted'])
         self.assertFalse(result['authorization_evidence']['host_approval_attested'])
         self.assertFalse(result['runtime_ready'])
@@ -68,12 +79,12 @@ class PairedRunnerPreparationTests(unittest.TestCase):
 
     def test_authorization_is_bound_to_exact_plan_bytes_not_just_equal_json(self):
         alternate = self.root / 'reformatted.json'
-        alternate.write_text(json.dumps(json.loads(PLAN.read_text()), separators=(',', ':')))
+        alternate.write_text(json.dumps(json.loads(self.plan.read_text()), separators=(',', ':')))
         with self.assertRaisesRegex(ValueError, 'authorization_plan_binding'):
-            API['inspect'](alternate, PACKAGES, environ={}, authorization=AUTH)
+            API['inspect'](alternate, PACKAGES, environ={}, authorization=self.auth)
 
     def test_authorization_cannot_expand_the_approved_cash_limit(self):
-        value = json.loads(AUTH.read_text())
+        value = json.loads(self.auth.read_text())
         value['limits']['added_cash_total'] = '101.00'
         changed = self.root / 'authorization.json'
         changed.write_text(json.dumps(value))
@@ -82,7 +93,7 @@ class PairedRunnerPreparationTests(unittest.TestCase):
 
     def test_credential_presence_never_becomes_provider_verification_or_leaks_value(self):
         secret = 'FORBIDDEN-CREDENTIAL-FIXTURE'
-        result = API['inspect'](PLAN, PACKAGES,
+        result = API['inspect'](self.plan, PACKAGES,
             environ={'VECTORIZE_API_KEY': secret, 'RERANK_API_KEY': secret})
         self.assertTrue(all(result['credentials_present'].values()))
         self.assertFalse(result['credential_access_verified'])
@@ -106,7 +117,7 @@ class PairedRunnerPreparationTests(unittest.TestCase):
     def test_mutated_public_hash_is_not_overridden_by_authorization(self):
         path = self.changed_plan(lambda x: x['units'][0].__setitem__('public_sha256', '0' * 64))
         with self.assertRaisesRegex(ValueError, 'source_plan_changed'):
-            API['inspect'](path, PACKAGES, authorization=AUTH)
+            API['inspect'](path, PACKAGES, authorization=self.auth)
 
     def test_foreign_or_duplicate_source_package_is_rejected(self):
         for packages in ([PACKAGES[0], PACKAGES[0]], [PACKAGES[0], BASE / 'packages/d-201']):
@@ -134,7 +145,7 @@ class PairedRunnerPreparationTests(unittest.TestCase):
     def test_staging_detaches_only_public_and_preserves_equal_inputs_for_all_arms(self):
         output = self.root / 'prepared'
         with mock.patch('subprocess.Popen', side_effect=AssertionError('preparation cannot launch processes')):
-            result = API['stage'](PLAN, PACKAGES, output, environ={}, authorization=AUTH)
+            result = API['stage'](self.plan, PACKAGES, output, environ={}, authorization=self.auth)
         self.assertEqual(set(p.name for p in output.iterdir()), {'public', 'controller'})
         self.assertEqual(len(result['prepared_units']), 16)
         self.assertEqual(len({u['unit_id'] for u in result['prepared_units']}), 16)
@@ -155,7 +166,7 @@ class PairedRunnerPreparationTests(unittest.TestCase):
     def test_restrictive_controller_umask_does_not_change_public_root_identity(self):
         previous = os.umask(0o077)
         try:
-            result = API['stage'](PLAN, PACKAGES, self.root / 'restricted', environ={})
+            result = API['stage'](self.plan, PACKAGES, self.root / 'restricted', environ={})
         finally:
             os.umask(previous)
         for source in result['sources']:
@@ -165,15 +176,26 @@ class PairedRunnerPreparationTests(unittest.TestCase):
     def test_staging_cannot_overwrite_or_land_inside_a_source_package(self):
         for output in (self.root, PACKAGES[0] / 'new-preparation'):
             with self.subTest(output=output), self.assertRaises(ValueError):
-                API['stage'](PLAN, PACKAGES, output, environ={})
+                API['stage'](self.plan, PACKAGES, output, environ={})
         self.assertFalse((PACKAGES[0] / 'new-preparation').exists())
 
     def test_symlink_destination_parent_cannot_redirect_staging(self):
         real = self.root / 'real'; real.mkdir()
         link = self.root / 'link'; link.symlink_to(real, target_is_directory=True)
         with self.assertRaisesRegex(ValueError, 'symlink'):
-            API['stage'](PLAN, PACKAGES, link / 'staged', environ={})
+            API['stage'](self.plan, PACKAGES, link / 'staged', environ={})
         self.assertEqual(list(real.iterdir()), [])
+
+    def test_archived_plan_and_authorization_are_not_silently_relocated(self):
+        original_plan, original_auth = PLAN.read_bytes(), AUTH.read_bytes()
+        if json.loads(original_plan) == json.loads(self.plan.read_bytes()):
+            result = API['inspect'](PLAN, PACKAGES, environ={}, authorization=AUTH)
+            self.assertTrue(result['permissions_granted'])
+        else:
+            with self.assertRaisesRegex(ValueError, 'source_plan_changed'):
+                API['inspect'](PLAN, PACKAGES, environ={}, authorization=AUTH)
+        self.assertEqual(PLAN.read_bytes(), original_plan)
+        self.assertEqual(AUTH.read_bytes(), original_auth)
 
     def test_runner_abi_reports_failure_without_launching_backend(self):
         output = self.root / 'run'; output.mkdir()
