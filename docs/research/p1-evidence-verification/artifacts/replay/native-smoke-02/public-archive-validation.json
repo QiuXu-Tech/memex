@@ -1,0 +1,16 @@
+{
+  "validator": "rawrag_adapter.validate_archive",
+  "archives": [
+    {
+      "file": "source-archive-prefix.json",
+      "sources": 1,
+      "valid": true
+    },
+    {
+      "file": "source-archive.json",
+      "sources": 2,
+      "valid": true
+    }
+  ],
+  "modelCalls": 0
+}

@@ -1,0 +1,19 @@
+---
+id: "native-replay-prelude"
+kind: "fact"
+scope: "session"
+workspace: ""
+workspace_key: "37c226281b8349e3"
+session_id: "01a21dfb-37dc-7bf2-ac93-361b53c5c285"
+title: "native-smoke-02 node --test --test-reporter=tap sum.test.mjs test_result"
+use_when: ""
+status: "active"
+trust: "untrusted"
+tokens: 375
+tags: {}
+links: {}
+provenance: {"shadowedSeqs":[1]}
+created_at: 1795800939478
+updated_at: 1795800939478
+---
+{"eventId":"exec-85443c13-0b93-41a3-8422-2c823399185d","sourceId":"01a21dfb-37dc-7bf2-ac93-361b53c5c285:node-tests","sourceSequence":1,"observedAt":"2026-11-27T17:09:12.422944+00:00","type":"test_result","scope":"native-smoke-02","entity":"node --test --test-reporter=tap sum.test.mjs","version":"c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709","role":"tool","kind":"command_execution","command":"node --test --test-reporter=tap sum.test.mjs","status":"passed","complete":true,"completed":true,"executed":true,"exitCode":0,"testCount":1,"skippedCount":0,"todoCount":0,"text":"# Subtest: sums\nok 1 - sums\n  ---\n  duration_ms: 0.472708\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 63.122209\n","parserVersion":"native-node-tap-v1","transport":{"nativeLog":"native-smoke-02/host/events.jsonl","line":13,"phase":"prelude","threadId":"01a21dfb-37dc-7bf2-ac93-361b53c5c285","turnId":"01a21dfb-387e-7ec1-96e8-131ccc640229","utc":"2026-11-27T17:09:12.422944+00:00","completedAtMs":1795799352422,"artifactBindingMode":"offline_controller_summary_version_mapping","artifact":"sum.mjs","versionStage":"original","summaryPath":"native-smoke-02-resumed-final/summary.json","summarySha256":"19132202672f6c05d38e7a965a5db52477eb5b54c92ae977a18563c27863e37c","independentLiveBeforeAfterMeasurements":false,"liveWorkspaceRevalidation":false}}

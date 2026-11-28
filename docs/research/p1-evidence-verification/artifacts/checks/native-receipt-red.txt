@@ -1,0 +1,16 @@
+test_fork_metadata_stays_separate_from_original_usage (test_paper1_native.NativeBoundaryTest.test_fork_metadata_stays_separate_from_original_usage) ... ok
+test_smoke_requires_one_exact_real_test_receipt (test_paper1_native.NativeBoundaryTest.test_smoke_requires_one_exact_real_test_receipt) ... FAIL
+test_unexpected_foreign_execution_is_still_rejected (test_paper1_native.NativeBoundaryTest.test_unexpected_foreign_execution_is_still_rejected) ... ok
+
+======================================================================
+FAIL: test_smoke_requires_one_exact_real_test_receipt (test_paper1_native.NativeBoundaryTest.test_smoke_requires_one_exact_real_test_receipt)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REPO>/test/test_paper1_native.py", line 40, in test_smoke_requires_one_exact_real_test_receipt
+    self.assertFalse(MODULE.valid_test_receipt([fake], 'a' * 64, 'passed'))
+AssertionError: True is not false
+
+----------------------------------------------------------------------
+Ran 3 tests in 0.001s
+
+FAILED (failures=1)

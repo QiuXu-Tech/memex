@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "mode": "manual_development_inputs_not_model_extraction",
+  "original": {
+    "type": "test_result",
+    "scope": "native-smoke-02",
+    "entity": "node --test --test-reporter=tap sum.test.mjs",
+    "version": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709"
+  },
+  "changed": {
+    "type": "test_result",
+    "scope": "native-smoke-02",
+    "entity": "node --test --test-reporter=tap sum.test.mjs",
+    "version": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec"
+  }
+}

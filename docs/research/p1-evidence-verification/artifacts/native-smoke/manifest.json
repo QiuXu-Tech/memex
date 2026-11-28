@@ -1,0 +1,61 @@
+{
+  "schema": 1,
+  "kind": "sanitized_native_development_artifacts",
+  "confirmatory": false,
+  "redactions": [
+    "remote temporary root -> <RUN_ROOT>",
+    "user home -> <USER_HOME>"
+  ],
+  "files": [
+    {
+      "path": "preflight/summary.json",
+      "original_sha256": "50eb51581615a7a60ee4b1d1af9e3ac04d057203261fdb215838b11692365bf0",
+      "sanitized_sha256": "50eb51581615a7a60ee4b1d1af9e3ac04d057203261fdb215838b11692365bf0"
+    },
+    {
+      "path": "preflight/host/events.jsonl",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-smoke-01/summary.json",
+      "original_sha256": "ac8dcef59abdb59aa7b734595fd973a0e571fb9fc7bb83f6fb982028f4b69886",
+      "sanitized_sha256": "ac8dcef59abdb59aa7b734595fd973a0e571fb9fc7bb83f6fb982028f4b69886"
+    },
+    {
+      "path": "native-smoke-01/host/events.jsonl",
+      "original_sha256": "62a34d4a0100295afac452f0e5b891dab4fe9a04cc4a38be205d0cec041aa8d5",
+      "sanitized_sha256": "17dd099156a068d86ddb445739f69327ac0816501eecc21f3b373dc5c8ecefdd"
+    },
+    {
+      "path": "native-smoke-02/summary.json",
+      "original_sha256": "51a274b34a69ad632420b36a1869dc37087fb4aa18d9535444f9c46e3d37d2bd",
+      "sanitized_sha256": "51a274b34a69ad632420b36a1869dc37087fb4aa18d9535444f9c46e3d37d2bd"
+    },
+    {
+      "path": "native-smoke-02/host/events.jsonl",
+      "original_sha256": "375d96adc7032c60477a25ede4b7d91abeb541ddb76d625e1912805969e87539",
+      "sanitized_sha256": "684018546c26761cf2fca475626111d12ebf64f65f95d80616e144a9151c9a65"
+    },
+    {
+      "path": "native-smoke-02-resumed/summary.json",
+      "original_sha256": "350dad22d027a3bd924d952cabbb1f52547a8e25e571179ab1068c965611ac3e",
+      "sanitized_sha256": "006c9c3872919f97473694295d2ab0e954d6824895b7d52c075495809849077a"
+    },
+    {
+      "path": "native-smoke-02-resumed/host/events.jsonl",
+      "original_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "sanitized_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "path": "native-smoke-02-resumed-final/summary.json",
+      "original_sha256": "964f1bee932771a21d0cd0dc2d715b3bda8aa52da37b27c913ca6a4813555ce9",
+      "sanitized_sha256": "19132202672f6c05d38e7a965a5db52477eb5b54c92ae977a18563c27863e37c"
+    },
+    {
+      "path": "native-smoke-02-resumed-final/host/events.jsonl",
+      "original_sha256": "b1efa2f32ff1d9216ee93dd4550ab71121832d9e57eb9616636a9d663fb7ac5c",
+      "sanitized_sha256": "9bf68799d4fa47a637a6a70558f2883a13703850923ef0c21896c1111ecd67a9"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema": 1,
+  "kind": "native_host_integration_smoke",
+  "confirmatory": false,
+  "host_version": "codex-cli 0.153.0",
+  "requested_model": null,
+  "model_turns": 0,
+  "compactions": [],
+  "turns": [],
+  "actual_spend": null,
+  "source_versions": [],
+  "status": "preflight_complete",
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "model": "gpt-6-astra",
+      "displayName": "GPT-6-Astra",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    }
+  ],
+  "elapsed_seconds": 5.1811779589625075
+}

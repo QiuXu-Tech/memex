@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "synchronized": true,
+  "entries": [
+    {
+      "eventId": "exec-85443c13-0b93-41a3-8422-2c823399185d",
+      "sourceId": "01a21dfb-37dc-7bf2-ac93-361b53c5c285:node-tests",
+      "sourceSequence": 1,
+      "key": "[\"test_result\",\"native-smoke-02\",\"node --test --test-reporter=tap sum.test.mjs\"]",
+      "sourceDigest": "e0f007c742b89bdcfb06d3c2ed186ac6f5b2f38d6afe8f25266237180521c81a",
+      "recordId": "native-replay-prelude",
+      "eventIndex": 1
+    },
+    {
+      "eventId": "exec-0fc7450a-e3a0-487e-986f-cf1689853d09",
+      "sourceId": "01a21dfb-37dc-7bf2-ac93-361b53c5c285:node-tests",
+      "sourceSequence": 2,
+      "key": "[\"test_result\",\"native-smoke-02\",\"node --test --test-reporter=tap sum.test.mjs\"]",
+      "sourceDigest": "e5ae6606aa7f91680f996885a2b436dbb724db22b7c3e28a79811e0a7f5c6995",
+      "recordId": "native-replay-continuation",
+      "eventIndex": 1
+    }
+  ]
+}

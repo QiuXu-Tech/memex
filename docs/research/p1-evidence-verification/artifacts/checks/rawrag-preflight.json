@@ -1,0 +1,49 @@
+{
+  "mode": "check",
+  "status": "blocked",
+  "upstream": {
+    "commit": "95639191e9547219b426710e50fe1a36235e26fc",
+    "source_files_verified": 9,
+    "tracked_worktree_clean": true
+  },
+  "config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+  "dependencies": {
+    "available": true,
+    "missing": [],
+    "python": "3.12.14",
+    "python_supported": true,
+    "modules": {
+      "openai": {
+        "available": true,
+        "version": "3.60.0"
+      },
+      "yaml": {
+        "available": true,
+        "version": "6.0.4"
+      },
+      "rich": {
+        "available": true,
+        "version": "15.0.0"
+      },
+      "tqdm": {
+        "available": true,
+        "version": "4.70.1"
+      },
+      "tiktoken": {
+        "available": true,
+        "version": "0.14.0"
+      }
+    }
+  },
+  "credentials_available": {
+    "embedding": false,
+    "reranker": false
+  },
+  "model_requests_sent": 0,
+  "errors": [
+    "provider_credentials_unavailable"
+  ],
+  "tokenizer_runtime_verified": false,
+  "transport_hook_compatibility": "verified_only_during_run_preflight",
+  "environment_files_read": false
+}

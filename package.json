@@ -12,6 +12,7 @@
     "build": "node scripts/build-bundle.mjs",
     "check": "node scripts/check-bundle.mjs",
     "test": "node --import ./test/register.mjs ./test/run.mjs",
+    "test:paper1": "node --test test/paper1-*.mjs && python3 -B -m unittest discover -s test -p 'test_paper1_*.py' -v",
     "test:sqlite": "node --import ./test/register.mjs --test ./test/sqlite-consistency.mjs",
     "test:integrity": "node --import ./test/register.mjs --test ./test/integrity-regression.mjs",
     "test:materializer": "node --import ./test/register.mjs --test ./test/materializer-performance.mjs",

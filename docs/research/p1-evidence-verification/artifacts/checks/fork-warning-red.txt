@@ -1,0 +1,21 @@
+test_fork_metadata_stays_separate_from_original_usage (test_paper1_native.NativeBoundaryTest.test_fork_metadata_stays_separate_from_original_usage) ... ok
+test_fork_warnings_are_recorded_for_the_returned_thread (test_paper1_native.NativeBoundaryTest.test_fork_warnings_are_recorded_for_the_returned_thread) ... ERROR
+test_smoke_requires_one_exact_real_test_receipt (test_paper1_native.NativeBoundaryTest.test_smoke_requires_one_exact_real_test_receipt) ... ok
+test_unexpected_foreign_execution_is_still_rejected (test_paper1_native.NativeBoundaryTest.test_unexpected_foreign_execution_is_still_rejected) ... ok
+
+======================================================================
+ERROR: test_fork_warnings_are_recorded_for_the_returned_thread (test_paper1_native.NativeBoundaryTest.test_fork_warnings_are_recorded_for_the_returned_thread)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<REPO>/test/test_paper1_native.py", line 29, in test_fork_warnings_are_recorded_for_the_returned_thread
+    host.dispatch({'method': 'warning', 'params': {'threadId': 'fork-thread', 'message': 'configuration warning'}})
+  File "<REPO>/scripts/paper1/native_smoke.py", line 33, in dispatch
+    super().dispatch(message)
+  File "<REPO>/scripts/codex-retention-host.py", line 114, in dispatch
+    raise RuntimeError("foreign thread notification")
+RuntimeError: foreign thread notification
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.376s
+
+FAILED (errors=1)

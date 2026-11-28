@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "inputRoot": "docs/research/p1-evidence-verification/artifacts/native-smoke",
+  "files": [
+    {
+      "path": "native-smoke-02-resumed-final/summary.json",
+      "sha256": "19132202672f6c05d38e7a965a5db52477eb5b54c92ae977a18563c27863e37c",
+      "bytes": 8874
+    },
+    {
+      "path": "native-smoke-02/host/events.jsonl",
+      "sha256": "684018546c26761cf2fca475626111d12ebf64f65f95d80616e144a9151c9a65",
+      "bytes": 19510
+    },
+    {
+      "path": "native-smoke-02-resumed-final/host/events.jsonl",
+      "sha256": "9bf68799d4fa47a637a6a70558f2883a13703850923ef0c21896c1111ecd67a9",
+      "bytes": 9081
+    }
+  ],
+  "threadId": "01a21dfb-37dc-7bf2-ac93-361b53c5c285",
+  "bounds": {
+    "maxInputBytes": 1048576,
+    "maxLogRows": 2000,
+    "maxCommands": 32,
+    "maxEvidenceBytes": 16384,
+    "maxReferenceTokens": 16384,
+    "maxHits": 8,
+    "pageChars": 512
+  },
+  "artifactBindingMode": "offline_known_controller_version_mapping_not_live_polling",
+  "bindings": [
+    {
+      "stage": "original",
+      "artifact": "sum.mjs",
+      "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+      "contentEventId": "exec-1759ed71-0b97-46d0-b87b-f0b07ec34d58",
+      "readbackEventId": "exec-449abb04-458d-4509-88be-55fe53c373c2",
+      "readbackUtc": "2026-11-27T17:09:15.740049+00:00"
+    },
+    {
+      "stage": "changed",
+      "artifact": "sum.mjs",
+      "sha256": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec",
+      "contentEventId": "exec-b237d446-dda0-4bad-b106-201c780d6d07",
+      "readbackEventId": "exec-5acfb1e3-3de9-4bbf-b524-1c6a9ec6cfb3",
+      "readbackUtc": "2026-11-27T17:09:26.103122+00:00"
+    }
+  ],
+  "captures": [
+    {
+      "eventId": "exec-85443c13-0b93-41a3-8422-2c823399185d",
+      "capture": {
+        "threadId": "01a21dfb-37dc-7bf2-ac93-361b53c5c285",
+        "scope": "native-smoke-02",
+        "observedAt": "2026-11-27T17:09:12.422944+00:00",
+        "sourceSequence": 1,
+        "artifactBefore": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+        "artifactAfter": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709"
+      },
+      "independentLiveBeforeAfterMeasurements": false
+    },
+    {
+      "eventId": "exec-0fc7450a-e3a0-487e-986f-cf1689853d09",
+      "capture": {
+        "threadId": "01a21dfb-37dc-7bf2-ac93-361b53c5c285",
+        "scope": "native-smoke-02",
+        "observedAt": "2026-11-27T17:26:15.480693+00:00",
+        "sourceSequence": 2,
+        "artifactBefore": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec",
+        "artifactAfter": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec"
+      },
+      "independentLiveBeforeAfterMeasurements": false
+    }
+  ]
+}

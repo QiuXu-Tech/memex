@@ -1,0 +1,107 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:memex:paper1:study-manifest:1",
+  "title": "P1 research study manifest",
+  "description": "Controller/evaluator input, never an agent-visible task. This is an authoring contract; runtime validation additionally checks key uniqueness, task-to-project consistency and frozen analysis settings. Schema validity does not certify preregistration, independence, cost coverage or adequate power.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schema_version", "study_phase", "frozen", "runs"],
+  "properties": {
+    "schema_version": {"type": "integer", "const": 1},
+    "study_phase": {"enum": ["development", "pilot", "confirmatory", "external"]},
+    "frozen": {"type": "boolean"},
+    "analysis_plan": {"$ref": "#/$defs/analysisPlan"},
+    "cost_model": {"$ref": "#/$defs/costModel"},
+    "runs": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/runKey"},
+      "description": "The complete scheduled denominator. An empty development manifest expresses no collected tasks. Never remove failed or absent observations from this array."
+    }
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"study_phase": {"const": "confirmatory"}}, "required": ["study_phase"]},
+      "then": {
+        "required": ["analysis_plan"],
+        "properties": {
+          "frozen": {"const": true},
+          "analysis_plan": {
+            "properties": {
+              "frozen": {"const": true},
+              "bootstrap_samples": {"minimum": 1000}
+            }
+          }
+        }
+      }
+    }
+  ],
+  "$defs": {
+    "label": {"type": "string", "pattern": "^\\S(?:[\\s\\S]*\\S)?$"},
+    "runKey": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["task_id", "project_id", "arm", "replicate"],
+      "properties": {
+        "task_id": {"$ref": "#/$defs/label"},
+        "project_id": {
+          "$ref": "#/$defs/label",
+          "description": "The frozen top-level resampling cluster. A task belongs to exactly one project_id; shared upstream lineage must not be disguised as independent projects."
+        },
+        "arm": {
+          "$ref": "#/$defs/label",
+          "description": "A/B/C/D are the main arms. Additional registered arms, including candidate T, are allowed as labels; analyze.py currently implements only D-B and D-C contrasts."
+        },
+        "replicate": {"type": "integer", "minimum": 1}
+      }
+    },
+    "analysisPlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "frozen", "primary_contrast", "secondary_contrast", "confidence_level",
+        "noninferiority_margin", "bootstrap_method", "task_weighting",
+        "replicate_aggregation", "seed", "bootstrap_samples", "min_tasks", "min_projects"
+      ],
+      "properties": {
+        "frozen": {"type": "boolean"},
+        "primary_contrast": {"const": "D-B"},
+        "secondary_contrast": {"const": "D-C"},
+        "confidence_level": {"type": "number", "const": 0.95},
+        "noninferiority_margin": {"type": "number", "const": 0.03},
+        "bootstrap_method": {"const": "project_then_task_percentile"},
+        "task_weighting": {"const": "equal"},
+        "replicate_aggregation": {"const": "mean"},
+        "seed": {"type": "integer", "minimum": 0},
+        "bootstrap_samples": {"type": "integer", "minimum": 1},
+        "min_tasks": {
+          "type": "integer", "minimum": 2,
+          "description": "An explicitly frozen operational computation guard, not a sample-size or power justification."
+        },
+        "min_projects": {
+          "type": "integer", "minimum": 2,
+          "description": "An explicitly frozen cluster-count guard, not a coverage theorem."
+        }
+      }
+    },
+    "costModel": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["frozen", "currency", "rate_card_id", "rates", "cost_scope", "allocation_rule"],
+      "properties": {
+        "frozen": {"type": "boolean"},
+        "currency": {"type": "string", "pattern": "^[A-Z]{3}$"},
+        "rate_card_id": {"$ref": "#/$defs/label"},
+        "rates": {
+          "type": "object",
+          "minProperties": 1,
+          "propertyNames": {"$ref": "#/$defs/label"},
+          "additionalProperties": {"type": "number", "minimum": 0},
+          "description": "Reference prices with units named by each key. Retain dated sources, complete usage components and the frozen rate-card artifact separately. Unknown rates must not be replaced by zero."
+        },
+        "cost_scope": {"const": "full_pipeline_per_scheduled_task"},
+        "allocation_rule": {"$ref": "#/$defs/label"}
+      }
+    }
+  }
+}
