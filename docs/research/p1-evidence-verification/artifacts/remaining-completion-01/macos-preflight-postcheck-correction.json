@@ -1,0 +1,21 @@
+{
+  "actual_counters_confirmed_readonly": {
+    "diagnostic_attempts_reserved": 1,
+    "journal_events": 7,
+    "method_units_remaining": 16,
+    "method_units_reserved": 0,
+    "native_attempts_remaining": 0,
+    "native_attempts_reserved": 2
+  },
+  "cause": "The deployment wrapper incorrectly expected native_attempts_remaining=2; the original 7/2/0 tuple meant journal_events/native_attempts_reserved/method_units_reserved.",
+  "kind": "p1_readonly_preflight_postcheck_correction",
+  "ledger_writes": 0,
+  "model_requests": 0,
+  "prior_driver_report_retained": false,
+  "prior_driver_returncode": 0,
+  "prior_guard_checks_passed": true,
+  "prior_postcheck_error": "canonical_counters_changed",
+  "prior_protected_hash_checks_passed": true,
+  "repeat_scope": "Repeat only default no-run inspection to retain its report; no redeployment, task source execution, provider request, reservation or ledger mutation.",
+  "schema_version": 1
+}

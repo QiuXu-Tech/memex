@@ -1,0 +1,219 @@
+{
+  "schema_version": 1,
+  "kind": "p1_macos_native_dependency_setup_receipt",
+  "finished_at": "2026-11-28T11:24:51.993760+00:00",
+  "status": "dependencies_prepared_true_B_blocked",
+  "platform": "darwin",
+  "architecture": "arm64",
+  "setup_root": "<P1_PRIVATE_ROOT>/dependencies/native-reader-20261128-01",
+  "setup_root_mode": "0o700",
+  "canonical_runtime": "<P1_PRIVATE_ROOT>/runtime",
+  "python": {
+    "version": "3.12.13",
+    "reused_existing_interpreter": true,
+    "venv": "<SETUP_ROOT>/venv",
+    "wheels_only": true,
+    "source_builds_allowed": false
+  },
+  "packages": {
+    "annotated-types": "0.8.0",
+    "anyio": "4.16.0",
+    "certifi": "2026.11.20",
+    "charset-normalizer": "3.5.3",
+    "click": "8.5.1",
+    "filelock": "4.3.2",
+    "fsspec": "2026.9.0",
+    "h11": "0.16.0",
+    "hf-xet": "1.8.0",
+    "httpcore": "1.0.9",
+    "httpcore2": "2.16.2",
+    "httpx": "0.29.0",
+    "httpx2": "2.16.2",
+    "huggingface_hub": "1.33.0",
+    "idna": "3.20",
+    "jiter": "0.19.0",
+    "markdown-it-py": "4.3.0",
+    "mdurl": "0.1.2",
+    "openai": "3.60.0",
+    "packaging": "26.4",
+    "pip": "25.0.1",
+    "pydantic": "2.14.4",
+    "pydantic_core": "2.50.5",
+    "Pygments": "2.21.0",
+    "PyYAML": "6.0.4",
+    "regex": "2026.11.25",
+    "requests": "2.34.2",
+    "rich": "15.0.0",
+    "sniffio": "1.3.1",
+    "socksio": "1.0.0",
+    "tiktoken": "0.14.0",
+    "tokenizers": "0.22.2",
+    "tqdm": "4.70.1",
+    "truststore": "0.10.5",
+    "typing-inspection": "0.4.5",
+    "typing_extensions": "4.16.0",
+    "urllib3": "2.8.0"
+  },
+  "existing_task_runtimes_reused": {
+    "python": "3.10.16",
+    "tasks": [
+      "w-101",
+      "w-102"
+    ],
+    "settings_source_sha256": "8ebd257f80a8ca2020539a40cad7f74818bef228555b2ff543e5cc050a4b2f34"
+  },
+  "offline_checks": {
+    "status": "passed",
+    "openai_sdk": {
+      "class": "openai._base_client.AsyncHttpxClientWrapper",
+      "max_retries": 0,
+      "constructed": true,
+      "api_methods_called": 0
+    },
+    "reference_tokenizer": {
+      "fixture": "canonical_request_JSON",
+      "reference_tokens": 13,
+      "provider_billable_input_exact": false,
+      "runtime": "tokenizers==0.22.2"
+    },
+    "rawrag_tokenizer": {
+      "encoding": "cl100k_base",
+      "fixture_ids": [
+        15339,
+        1917
+      ]
+    },
+    "network_attempts": 0,
+    "credential_file_attempts": 0
+  },
+  "deepseek_tokenizer": {
+    "existing_archive_reused": true,
+    "archive_sha256": "e7310d1dafe0a86d8a5629fe78a7c763760f651db9b8682718a1781dcd6fe495",
+    "files": {
+      "tokenizer.json": {
+        "sha256": "89085f12ef79460ac5f66d1119325ddfc694b4ab209d80bbd81d35f081dc9614",
+        "bytes": 6367096
+      },
+      "tokenizer_config.json": {
+        "sha256": "841f8cf146e3f0ad1082594a31f68ecf7608c20467ef355081333d85bbaeb1cb",
+        "bytes": 3128
+      }
+    }
+  },
+  "cl100k_cache": {
+    "source": "official_public_encoding_asset",
+    "data_url": "https://openaipublic.blob.core.windows.net/encodings/cl100k_base.tiktoken",
+    "cache_key": "9b5ad71b2ce5302211f9c61530b329a4922fc6a4",
+    "sha256": "223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7",
+    "bytes": 1681126
+  },
+  "rawrag_source_asset": {
+    "source_url": "https://codeload.github.com/Litmeb/RAW-RAG/tar.gz/95639191e9547219b426710e50fe1a36235e26fc",
+    "requested_upstream_commit": "95639191e9547219b426710e50fe1a36235e26fc",
+    "archive_sha256": "4eea4762cd97268d10680fc6a18c9f7b1e905c65a587570cc57b273b37d3aebb",
+    "archive_bytes": 2375658,
+    "regular_files": 731,
+    "total_file_bytes": 7605986,
+    "verified_pinned_files": {
+      "methods/EverCore/evaluation/src/adapters/rag_adapter.py": "997c35db93feea77eed897b3d5640bd9cd6f114da40bff5128efae65a6466637",
+      "methods/EverCore/evaluation/src/adapters/base.py": "c8a3683bfe2565541c0182dfda0b20f6780f49023c8333e9ec7aeb29adae8475",
+      "methods/EverCore/evaluation/src/adapters/rag_pgvector_store.py": "143cc750dcd6c70206c7c3f30640dba4378593bf1667415dfc2184a7006b758f",
+      "methods/EverCore/evaluation/src/adapters/registry.py": "537ca1724a9a5d2967b6d520860cd9c3cfadaa1926467bbfa071ddd1ebfbb912",
+      "methods/EverCore/evaluation/src/core/data_models.py": "66a0005d55d9dc2e0c53ab0a5d788f8b263a685a6d4e06a90a9a248a54f59208",
+      "methods/EverCore/evaluation/src/utils/config.py": "db2b6329a6c52847b0ed693e8c697fc3d470c39479c68f237b1241e97c6ba26e",
+      "methods/EverCore/evaluation/src/utils/fingerprint.py": "969a35b869e61b23a6406b8cf744550efe9f7422c7dcf4f74421dc037674cf6e",
+      "methods/EverCore/evaluation/config/prompts.yaml": "cfbfb39fc0a805ddf2da84f62b174f291ad47495d059523ad9ba64d320b94cdd",
+      "scripts/paper/configs/systems/textemb3-gpt4omini.yaml": "9d7ec314dd66e1019c19514b7da50b7a87799f8d3e456ae869a4feb312f18737"
+    },
+    "git_checkout": false,
+    "git_status_verified": false,
+    "official_adapter_executed": false,
+    "ready_for_true_B": false
+  },
+  "git_blocker": {
+    "system_git_version_returncode": 69,
+    "brew_bottle_install_returncode": 1,
+    "reason": "xcode_license_not_accepted",
+    "license_accepted_by_agent": false,
+    "alternative_known_git_locations_present": false,
+    "install_retried": false
+  },
+  "private_settings": {
+    "path": "<SETUP_ROOT>/native-settings.json",
+    "schema_fields": [
+      "codex",
+      "node",
+      "tokenizer_path",
+      "credential_file",
+      "rawrag_upstream",
+      "tasks"
+    ],
+    "credential_field_is_path_only": true,
+    "rawrag_upstream_points_to_source_asset_not_checkout": true
+  },
+  "launch_environment": {
+    "PATH": "<SETUP_ROOT>/venv/bin:<HOME>/.local/bin:/opt/homebrew/bin:<HOME>/.npm-global/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+    "TIKTOKEN_CACHE_DIR": "<SETUP_ROOT>/tiktoken-cache",
+    "PYTHONDONTWRITEBYTECODE": "1"
+  },
+  "artifacts": {
+    "rawrag-requirements.txt": {
+      "sha256": "9756c03efe4ea45289fc86a4a9b272873fbcd30a9443a8853ff39aaea73f577a",
+      "mode": "0o600"
+    },
+    "native-requirements.txt": {
+      "sha256": "c5080dcd99b788fe6642a72760b16c4b541f8d47b2edcfdad26da827a8beaec7",
+      "mode": "0o600"
+    },
+    "requirements-resolved.txt": {
+      "sha256": "03ee825ea2c7060e7505a2ea300f4467b47856abea129d09e1cce5ad26d16335",
+      "mode": "0o600"
+    },
+    "dependency-install-receipt.json": {
+      "sha256": "3ba2ce5afba912c40a271523f35f6e1617d368d5566548eeeecc912ab240ea0c",
+      "mode": "0o600"
+    },
+    "package-runtime-check.json": {
+      "sha256": "d362dedc51efd85f3bff8485a0a53a3d5dd70375e1fe168ff006e98abf8e2e91",
+      "mode": "0o600"
+    },
+    "tokenizer-cache-receipt.json": {
+      "sha256": "1e8d7bc4fb4ff75b40803498f4a44e1d078b6f88781d7416272a69088426c4b9",
+      "mode": "0o600"
+    },
+    "rawrag-source-asset-receipt.json": {
+      "sha256": "1a2db2740bcfe6c97018cbeced057640e8fb417c0057fc5a0c8358f5f4d30309",
+      "mode": "0o600"
+    },
+    "git-install-receipt.json": {
+      "sha256": "dbc3265a190ee6cec44ec2f14b636cdafea5ea8c3dc8ebdd0329724df40164ff",
+      "mode": "0o600"
+    },
+    "native-settings.json": {
+      "sha256": "9cdfa70f57f03e9746fbda59f7efe0695f0562fd25abdbdf4d17e1f376c81487",
+      "mode": "0o600"
+    },
+    "launch-settings.json": {
+      "sha256": "d6c1805560d3dd3d491f429f030bb3d33bd2c76dac3de0af258baec22fe4704e",
+      "mode": "0o600"
+    }
+  },
+  "model_requests": 0,
+  "provider_requests": 0,
+  "native_attempts_created": 0,
+  "method_units_reserved": 0,
+  "canonical_ledger_writes": 0,
+  "authorization_sourceplan_sharedbudget_writes": 0,
+  "credential_file_contents_read": false,
+  "credential_environment_values_reported": false,
+  "global_path_modified": false,
+  "canonical_runtime_code_deployed": false,
+  "actual_added_cash_cny": null,
+  "scientific_ready": false,
+  "remaining_prerequisites": [
+    "published_stable_runtime_deployment_by_owner",
+    "usable_git_and_pinned_clean_checkout_verification",
+    "fixed_B_provider_access_and_checked_billing_evidence",
+    "separately_authorized_live_native_and_provider_observations"
+  ]
+}

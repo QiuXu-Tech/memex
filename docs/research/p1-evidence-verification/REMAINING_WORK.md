@@ -16,6 +16,8 @@
 | 现金控制 | 同一 canonical ledger；固定 relay 注册；不可变逐请求完成证据；串行累计用量上界；未知、过期、超额、迟到即停止，未知现金不核销 | [NATIVE_RELAY.md](NATIVE_RELAY.md) |
 | 评分、报告和设计分析 | 封存输出与冻结标签绑定；直接调用现有统计器；真实无结果时效果、区间和正式 N 均保留 null | [SCORING.md](SCORING.md)、[REPORTING.md](REPORTING.md)、[DESIGN_ANALYSIS.md](DESIGN_ANALYSIS.md) |
 | 真实任务环境 | 指定 Mac 安装 Python 3.10.16；两套固定依赖分别 17/17、15/15 匹配；各自真实隔离探针通过，历史失败回执保留 | [macos-python-setup-03.json](artifacts/checks/public-workspace/macos-python-setup-03.json) |
+| 主进程依赖 | 指定 Mac 准备独立 Python 3.12.13 环境、37 个 wheel 包、两套 tokenizer/缓存和私有配置；实际 SDK 构造与编码检查未触发网络或凭据读取 | [macos-dependency-setup.json](artifacts/remaining-completion-01/macos-dependency-setup.json) |
+| 目标机部署与预检 | 已发布实现部署到原 canonical runtime；核对 771 个静态文件、两份 public digest 和原授权/账本；实际默认预检正常完成，dispatch 因原配额及缺少 B 配置/已核验 scope 而阻断 | [部署回执](artifacts/remaining-completion-01/macos-runtime-deployment.json)、[实际预检](artifacts/remaining-completion-01/macos-native-preflight.json) |
 | 文档和投稿包核对 | 修正页数、来源资格、旧运行状态及成本语义；保留 26 页正文稿、27 页 TMLR 格式稿和源码包的原始字节 | [COMPLETION.md](COMPLETION.md)、[SUBMISSION.md](SUBMISSION.md) |
 | 集成审查与回归 | 原生状态继承、失败用量、source-open 身份、现金完成握手均有独立 AI 审查和回归；不冒充真人科学评审 | [NATIVE_INTEGRATION_REVIEW.md](NATIVE_INTEGRATION_REVIEW.md)、[本轮验证](artifacts/remaining-completion-01/README.md) |
 
@@ -28,6 +30,7 @@
 - 仓库主套件 **197 项通过**，另外 **4 项因 bundle 未构建跳过**；不与研究套件合并计数。
 - 全量首次回归暴露两类旧测试假设：复制账本后仍假定已有预留为零，以及把冻结计划内旧绝对路径当作当前 checkout。测试已改为校验准确增量、使用明确的临时 fixture，并新增历史计划不得被静默迁移的检查。原计划、授权与历史账本未修改。新 driver 的价格 fixture 也已补齐严格价格证据字段。初次失败日志与后续通过日志均保留。
 - 已运行的默认 driver 仅作只读预检：模型、网络、任务源码执行、子进程和账本写入均为 0；结果为 `dispatch_ready=false`。它不把缺少配置的本地检查机误报成指定 Mac 的真实服务状态。
+- 随后已在指定 Mac 使用真实私有配置完成默认预检，reader/tokenizer、路径迁移、授权和两任务依赖检查通过。缺原生额度、embedding/reranker 环境及已核验 scope 的四项阻断均原样保留。部署封装脚本首次误把已使用次数当作剩余次数；错误说明留存，仅重做只读检查保存报告，未重做部署、任务或模型调用。
 
 ## 原有授权和账本保持有效
 
@@ -51,7 +54,7 @@
 | 条件 | 为什么当前无法代填或执行 | 条件到位后的具体动作 |
 |---|---|---|
 | 新增原生准备次数 | 原批准上限 2 次已经用完；当前两份真实任务没有可使用的 task-bound native checkpoint | 对 2 个任务 × 2 个 replicate 创建 4 个实际父会话/压缩检查点，再执行原有 16 个开发单元 |
-| B 的既有账户配置与价格依据 | 指定进程此前检查到 `VECTORIZE_API_KEY`、`RERANK_API_KEY` 未配置；固定 `rerank-v3.5` 的当前账户计费与可用性未核实 | 通过私有配置提供凭据，核对实际模型和人民币上界后准入；保持固定基线，不改用 DeepSeek 生成结果代替检索 |
+| B 的 Git、既有账户配置与价格依据 | 指定进程此前检查到 `VECTORIZE_API_KEY`、`RERANK_API_KEY` 未配置；固定 `rerank-v3.5` 的当前账户计费与可用性未核实；Mac 的 Git 与一次瓶装安装均停在 Xcode 许可前提 | 由用户处理本机许可或提供已可用 Git，取得并核对固定 clean checkout；通过私有配置提供既有凭据，核对实际模型和人民币上界后准入。已下载源码和构造 SDK 不冒充真实 B 运行 |
 | 独立标签与作者事实 | 22 份真人双审材料仍为空；作者顺序、机构、真实贡献、责任与利益冲突未知 | 两名独立真人完成标签与裁决，作者提供真实事实，再验收任务和更新声明 |
 | 真实先导与正式研究 | 尚无可用于估计效应/成本的完整配对数据，正式 N 未决定 | 完成有计量的先导；据此冻结方法、预算、样本量与分析；再执行确认研究和外部验证 |
 | 最终投稿 | 当前稿件保留 PENDING，科学和作者条件尚未满足 | 完成结果稿、作者审阅与最终提交资格核对后，再进行具体的投稿批准与提交 |

@@ -86,5 +86,18 @@
     "Offline fixtures and implementation review do not validate live DeepSeek/Codex native integration or create paper samples.",
     "Neither token estimates nor held reservations settle actual cash.",
     "Human annotations, authorship facts, real paired pilot and formal results remain absent."
-  ]
+  ],
+  "published_runtime_commit": "b0af94569d3915d1dc3364b899b18881aa0e3afc",
+  "published_runtime_tree": "107a0b93b62678022ec26928535f69310f82b222",
+  "implementation_identity": "runtime-code-identity.json",
+  "source_document_whitespace_check": "passed; original formatter whitespace in retained failure logs and standards-compliant CSV CRLF are preserved",
+  "macos_deployment": {
+    "receipt": "macos-runtime-deployment.json",
+    "preflight": "macos-native-preflight.json",
+    "postcheck_correction": "macos-preflight-postcheck-correction.json",
+    "source_tree_verified": true,
+    "canonical_protected_files_unchanged": true,
+    "dispatch_ready": false,
+    "new_external_model_requests": 0
+  }
 }
