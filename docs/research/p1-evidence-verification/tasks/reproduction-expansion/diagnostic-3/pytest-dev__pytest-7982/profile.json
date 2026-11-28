@@ -1,0 +1,38 @@
+{
+  "requirements": [
+    "setuptools==67.6.0",
+    "wheel==0.38.4",
+    "attrs==21.4.0",
+    "iniconfig==1.1.1",
+    "packaging==21.3",
+    "py==1.11.0",
+    "toml==0.10.2",
+    "pyparsing==3.0.9",
+    "pluggy==0.13.1",
+    "setuptools-scm==6.4.2",
+    "tomli==2.0.1",
+    "more-itertools==8.10.0",
+    "atomicwrites==1.4.0",
+    "wcwidth==0.2.5",
+    "six==1.16.0",
+    "hypothesis==5.43.3",
+    "sortedcontainers==2.4.0",
+    "mock==4.0.3",
+    "nose==1.3.7",
+    "argcomplete==1.12.3",
+    "requests==2.26.0",
+    "charset-normalizer==2.0.12",
+    "idna==3.3",
+    "urllib3==1.26.18",
+    "certifi==2021.10.8"
+  ],
+  "test_runner": "pytest",
+  "plugins": [
+    "pytester"
+  ],
+  "policy": "Pinned local compatibility environment; no claim of official Docker equivalence. Exact resolved freeze is retained.",
+  "rationale": "Source checkout supplies pytest itself; plugin and setup dependencies follow source setup.py/setup.cfg; historical pluggy <1 retained. Explicit pytester plugin.",
+  "followup_reason": "First attempt lacked an atomicwrites 1.4.1 binary wheel. 1.4.0 satisfies the source requirement and has a compatible wheel.",
+  "requires_scm_history": true,
+  "diagnostic_reason": "Shallow base clone made setuptools_scm report 0.1.dev1, failing the project minversion guard. Fetch official ancestry and tags; do not pretend a version or alter minversion."
+}

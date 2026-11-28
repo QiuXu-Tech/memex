@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "kind": "owner_private_evaluator_evidence_preservation",
+  "filename": "p1-private-source-qualification-20261128.tar.gz",
+  "bytes": 1417624,
+  "sha256": "53479817071ecd04bc633be9802242979cd6dbde75be4e84adefa7ef7c7323b4",
+  "archive_entries": 1242,
+  "public_stdout_stderr_references_matched": 598,
+  "original_attempts": 29,
+  "original_dataset_rows": 14,
+  "junit_reports": 24,
+  "contains_controller_path_map_and_file_hashes": true,
+  "credential_values_intentionally_collected": false,
+  "credential_stores_included": false,
+  "owner_private_copy_saved": true,
+  "public_download_available": false,
+  "model_input": false,
+  "excluded": ["source clones", ".git", "virtual environments", "package caches", "full 500-row dataset"],
+  "scope": "Exact retained raw execution and source reconstruction records for the 14-candidate expansion, with executed driver versions; later code hardening does not alter the original attempt bytes."
+}

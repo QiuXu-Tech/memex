@@ -1,0 +1,24 @@
+{
+  "adjudication": null,
+  "gold_status": "no_accepted_human_labels",
+  "hidden_check_design": [
+    {
+      "check_id": "check-1",
+      "execution_status": "not_executed",
+      "predicate_draft": "Accept an applicable complete unchanged-artifact check or a new valid check; do not require a particular source ID.",
+      "result": null
+    },
+    {
+      "check_id": "check-2",
+      "execution_status": "not_executed",
+      "predicate_draft": "Treat this as a D01 counterfactual, never a second independent task.",
+      "result": null
+    }
+  ],
+  "human_reviews": [],
+  "method_outputs_available": false,
+  "proposed_obligations": [
+    "Evidence may be reused only after its source coverage, object binding and freshness have been checked."
+  ],
+  "status": "draft_unreviewed"
+}

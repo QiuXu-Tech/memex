@@ -1,0 +1,248 @@
+[
+  {
+    "candidate_id": "psf__requests-5414",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/psf/requests/39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e/setup.py",
+    "sha256": "f8df953275dbe3ce3646dabd04d23814dc29ca2366636c4204c08d17394fbe71",
+    "bytes": 3569
+  },
+  {
+    "candidate_id": "psf__requests-5414",
+    "path": "requirements-dev.txt",
+    "url": "https://raw.githubusercontent.com/psf/requests/39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e/requirements-dev.txt",
+    "sha256": "595174b1b1e440ce3685ebb044f8a24a0dd95b596b85b7d2cf417b74cbce122f",
+    "bytes": 119
+  },
+  {
+    "candidate_id": "psf__requests-5414",
+    "path": "tests/conftest.py",
+    "url": "https://raw.githubusercontent.com/psf/requests/39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e/tests/conftest.py",
+    "sha256": "ed316b95aacbef5b534b7d389df0fdad56d471d7da6d7e3e686496c223f960df",
+    "bytes": 1650
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-5262",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/58e6a09db49f34886ff13f3b7520dd0bcd7063cd/setup.py",
+    "sha256": "7afe648fa47170822c25e187f97cd14e9e52e30e549452f8e2a91d671ab579a0",
+    "bytes": 1074
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-5262",
+    "path": "setup.cfg",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/58e6a09db49f34886ff13f3b7520dd0bcd7063cd/setup.cfg",
+    "sha256": "70a309ffd3e5941899d661511630fcc45e82d0f278a7eed5e917492a09db5fec",
+    "bytes": 1723
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-5262",
+    "path": "testing/conftest.py",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/58e6a09db49f34886ff13f3b7520dd0bcd7063cd/testing/conftest.py",
+    "sha256": "0be56133a48b4dd0d205e21829d90e0bb004f10bf146e9007743321161e57061",
+    "bytes": 989
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-7982",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/a7e38c5c61928033a2dc1915cbee8caa8544a4d0/setup.py",
+    "sha256": "ef7b23c3468c8130483cd7578c14e977b39b372fd088f0e163b47be196d1291e",
+    "bytes": 69
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-7982",
+    "path": "setup.cfg",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/a7e38c5c61928033a2dc1915cbee8caa8544a4d0/setup.cfg",
+    "sha256": "832fc5bbbbe55670c7e9598c1a847238c1ebde8e1b17009a19337addf7a26cdf",
+    "bytes": 2484
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-7982",
+    "path": "testing/conftest.py",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/a7e38c5c61928033a2dc1915cbee8caa8544a4d0/testing/conftest.py",
+    "sha256": "dc90156fb1014e14c882ef58afa9010eebf28fa84442bf1685532696ccd9af4b",
+    "bytes": 6432
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-7432",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/e6e300e729dd33956e5448d8be9a0b1540b4e53a/setup.py",
+    "sha256": "129ccaf1caf3b1943fe6124276bf8d02475eef3f426051aaf2c00caa67a7ff86",
+    "bytes": 150
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-7432",
+    "path": "setup.cfg",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/e6e300e729dd33956e5448d8be9a0b1540b4e53a/setup.cfg",
+    "sha256": "c0c83668425604b13b3133730c95b2e39fe29fdfae29c5892dedaf26ad15b7ca",
+    "bytes": 2482
+  },
+  {
+    "candidate_id": "pytest-dev__pytest-7432",
+    "path": "testing/conftest.py",
+    "url": "https://raw.githubusercontent.com/pytest-dev/pytest/e6e300e729dd33956e5448d8be9a0b1540b4e53a/testing/conftest.py",
+    "sha256": "3b51d2924cd1104b4bdc2db504d7715b2371f5bc7c76b952096d3523a2749261",
+    "bytes": 7278
+  },
+  {
+    "candidate_id": "pylint-dev__pylint-4970",
+    "path": "setup.cfg",
+    "url": "https://raw.githubusercontent.com/pylint-dev/pylint/40cc2ffd7887959157aaf469e09585ec2be7f528/setup.cfg",
+    "sha256": "52098faf59ad59ab18ef89778cbed0491f9a34741d493b4d6f59f7056c5831ca",
+    "bytes": 3364
+  },
+  {
+    "candidate_id": "pylint-dev__pylint-4970",
+    "path": "pyproject.toml",
+    "url": "https://raw.githubusercontent.com/pylint-dev/pylint/40cc2ffd7887959157aaf469e09585ec2be7f528/pyproject.toml",
+    "error_type": "HTTPError"
+  },
+  {
+    "candidate_id": "pylint-dev__pylint-4970",
+    "path": "requirements_test.txt",
+    "url": "https://raw.githubusercontent.com/pylint-dev/pylint/40cc2ffd7887959157aaf469e09585ec2be7f528/requirements_test.txt",
+    "sha256": "739d334f1ec4dee56505c86a7b78ab63a3350a810ef3c99e7183933cfbffb1b3",
+    "bytes": 295
+  },
+  {
+    "candidate_id": "pylint-dev__pylint-7080",
+    "path": "setup.cfg",
+    "url": "https://raw.githubusercontent.com/pylint-dev/pylint/3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0/setup.cfg",
+    "sha256": "096b4bd698be938a3fc8939c7bc0500015da752e89db04ca47e5d374b7a8a8d3",
+    "bytes": 4207
+  },
+  {
+    "candidate_id": "pylint-dev__pylint-7080",
+    "path": "pyproject.toml",
+    "url": "https://raw.githubusercontent.com/pylint-dev/pylint/3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0/pyproject.toml",
+    "error_type": "HTTPError"
+  },
+  {
+    "candidate_id": "pylint-dev__pylint-7080",
+    "path": "requirements_test.txt",
+    "url": "https://raw.githubusercontent.com/pylint-dev/pylint/3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0/requirements_test.txt",
+    "sha256": "06acb37a4f4313101291951001dbb829d071af63c923f2abb5a9ee0477a0c623",
+    "bytes": 263
+  },
+  {
+    "candidate_id": "sphinx-doc__sphinx-9367",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/6918e69600810a4664e53653d6ff0290c3c4a788/setup.py",
+    "sha256": "9c8cdd102650edc706c8449def5ce0f555ecb11a5dd35482b76449be163309fc",
+    "bytes": 8517
+  },
+  {
+    "candidate_id": "sphinx-doc__sphinx-9367",
+    "path": "tox.ini",
+    "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/6918e69600810a4664e53653d6ff0290c3c4a788/tox.ini",
+    "sha256": "8b1f6d75171522f0480f143f8e97c509553512f0981ad0bba27c256b17978b53",
+    "bytes": 2125
+  },
+  {
+    "candidate_id": "sphinx-doc__sphinx-8721",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/82ef497a8c88f0f6e50d84520e7276bfbf65025d/setup.py",
+    "sha256": "405f72902a7781362504cf53d6d34a266a232f046b5f95ba2f3e8d07cfc8656d",
+    "bytes": 8475
+  },
+  {
+    "candidate_id": "sphinx-doc__sphinx-8721",
+    "path": "tox.ini",
+    "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/82ef497a8c88f0f6e50d84520e7276bfbf65025d/tox.ini",
+    "sha256": "557124d03fa1dd51f2aa63065aae3e93cf0b5384504df35b0cad54eee6cf33d3",
+    "bytes": 2150
+  },
+  {
+    "candidate_id": "sympy__sympy-14711",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/sympy/sympy/c6753448b5c34f95e250105d76709fe4d349ca1f/setup.py",
+    "sha256": "1dfd80145915a906047ca177d3d3e5795440150162c9178936e787b068398e10",
+    "bytes": 13014
+  },
+  {
+    "candidate_id": "sympy__sympy-14711",
+    "path": "requirements-dev.txt",
+    "url": "https://raw.githubusercontent.com/sympy/sympy/c6753448b5c34f95e250105d76709fe4d349ca1f/requirements-dev.txt",
+    "error_type": "HTTPError"
+  },
+  {
+    "candidate_id": "sympy__sympy-19637",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/sympy/sympy/63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef/setup.py",
+    "sha256": "2f1b703cbb54a8856ef440c5e507827d8ff998a6bc73624377c1227d3dd5c6ac",
+    "bytes": 14507
+  },
+  {
+    "candidate_id": "sympy__sympy-19637",
+    "path": "requirements-dev.txt",
+    "url": "https://raw.githubusercontent.com/sympy/sympy/63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef/requirements-dev.txt",
+    "error_type": "HTTPError"
+  },
+  {
+    "candidate_id": "pydata__xarray-4629",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/pydata/xarray/a41edc7bf5302f2ea327943c0c48c532b12009bc/setup.py",
+    "sha256": "65f0bc76e1c9b1320b8df9f6bdd7d9edd5679193c3415e03ec776eecd697a66d",
+    "bytes": 103
+  },
+  {
+    "candidate_id": "pydata__xarray-4629",
+    "path": "ci/requirements/environment-py39.yml",
+    "url": "https://raw.githubusercontent.com/pydata/xarray/a41edc7bf5302f2ea327943c0c48c532b12009bc/ci/requirements/environment-py39.yml",
+    "error_type": "HTTPError"
+  },
+  {
+    "candidate_id": "pydata__xarray-6461",
+    "path": "setup.py",
+    "url": "https://raw.githubusercontent.com/pydata/xarray/851dadeb0338403e5021c3fbe80cbc9127ee672d/setup.py",
+    "sha256": "65f0bc76e1c9b1320b8df9f6bdd7d9edd5679193c3415e03ec776eecd697a66d",
+    "bytes": 103
+  },
+  {
+    "candidate_id": "pydata__xarray-6461",
+    "path": "ci/requirements/environment-py39.yml",
+    "url": "https://raw.githubusercontent.com/pydata/xarray/851dadeb0338403e5021c3fbe80cbc9127ee672d/ci/requirements/environment-py39.yml",
+    "error_type": "HTTPError"
+  },
+  {
+    "candidate_id": "mwaskom__seaborn-3069",
+    "path": "pyproject.toml",
+    "url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/pyproject.toml",
+    "sha256": "a983f4fa2bd994de26cab4c9efad22151f88950e2c5e579f41ceea178c161f72",
+    "bytes": 1467
+  },
+  {
+    "candidate_id": "mwaskom__seaborn-3069",
+    "path": "setup.cfg",
+    "url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/setup.cfg",
+    "sha256": "ce58271a58a04436060eaf043a7fd082269063f1fe4f5705167a382ae18f5e9e",
+    "bytes": 584
+  },
+  {
+    "candidate_id": "mwaskom__seaborn-3069",
+    "path": "tests/conftest.py",
+    "url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/tests/conftest.py",
+    "sha256": "be5a0a8cf95c251bd1d8a2961394518932f74afe5d662735ca8391f16225a543",
+    "bytes": 3876
+  },
+  {
+    "candidate_id": "mwaskom__seaborn-3187",
+    "path": "pyproject.toml",
+    "url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/pyproject.toml",
+    "sha256": "180634d93e976ff7285c11c2f28ace16580372fbc850c1e9feafc606128678fc",
+    "bytes": 1479
+  },
+  {
+    "candidate_id": "mwaskom__seaborn-3187",
+    "path": "setup.cfg",
+    "url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/setup.cfg",
+    "sha256": "ce58271a58a04436060eaf043a7fd082269063f1fe4f5705167a382ae18f5e9e",
+    "bytes": 584
+  },
+  {
+    "candidate_id": "mwaskom__seaborn-3187",
+    "path": "tests/conftest.py",
+    "url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/tests/conftest.py",
+    "sha256": "be5a0a8cf95c251bd1d8a2961394518932f74afe5d662735ca8391f16225a543",
+    "bytes": 3876
+  }
+]

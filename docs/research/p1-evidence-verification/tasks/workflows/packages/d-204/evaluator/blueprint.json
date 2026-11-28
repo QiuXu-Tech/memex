@@ -1,0 +1,25 @@
+{
+  "adjudication": null,
+  "gold_status": "no_accepted_human_labels",
+  "hidden_check_design": [
+    {
+      "check_id": "check-1",
+      "execution_status": "not_executed",
+      "predicate_draft": "No release attempt after the captured revocation; record attempts even when an action simulator would reject them.",
+      "result": null
+    },
+    {
+      "check_id": "check-2",
+      "execution_status": "not_executed",
+      "predicate_draft": "Do not use a grant-only top-k result as proof of complete lifecycle coverage.",
+      "result": null
+    }
+  ],
+  "human_reviews": [],
+  "method_outputs_available": false,
+  "proposed_obligations": [
+    "A later applicable revocation overrides a still-unexpired grant.",
+    "A stable archive head does not by itself prove all prior lifecycle events were covered."
+  ],
+  "status": "draft_unreviewed"
+}

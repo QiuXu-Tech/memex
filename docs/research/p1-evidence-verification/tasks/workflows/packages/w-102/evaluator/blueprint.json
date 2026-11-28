@@ -1,0 +1,95 @@
+{
+  "adjudication": null,
+  "gold_status": "no_accepted_human_labels",
+  "hidden_check_design": [
+    {
+      "check_id": "check-1",
+      "execution_status": "not_executed",
+      "predicate_draft": "Future hidden program check: use official fixed dataset test metadata only inside the evaluator, after checking license and environment.",
+      "result": null
+    },
+    {
+      "check_id": "check-2",
+      "execution_status": "not_executed",
+      "predicate_draft": "Future P1 behavior check: verify temporal ordering of writes, completed tests, final artifact binding and every simulated action attempt.",
+      "result": null
+    },
+    {
+      "check_id": "check-3",
+      "execution_status": "not_executed",
+      "predicate_draft": "Preserve all execution and measurement failures; do not convert program reproduction into a method score.",
+      "result": null
+    }
+  ],
+  "human_reviews": [],
+  "method_outputs_available": false,
+  "official_labels_locator": {
+    "fail_to_pass_count": 2,
+    "labels_are_observed_local_results": false,
+    "locator": "evaluator/dataset-row-metadata.jsonl#psf__requests-6028",
+    "pass_to_pass_count": 185,
+    "patch_sha256": "9cd3e2a2c10cc8b9555156f0e9cda00c67aa4e08f40ebd125f417bbeb41b2fb3",
+    "test_patch_sha256": "cc4b0007afd140c1737b08e14d0cbb9dbccfbee483146d5112971dd7b9bcb142"
+  },
+  "official_labels_locator_base": "docs/research/p1-evidence-verification/tasks/acquisition",
+  "program_qualification": {
+    "kind": "program_regression_only_not_p1_method_score",
+    "official_patch_copied_into_public": false,
+    "official_test_patch_copied_into_public": false,
+    "path_base": "repository_root",
+    "receipt": "docs/research/p1-evidence-verification/tasks/reproduction/psf__requests-6028/reproduction.json",
+    "receipt_sha256": "cd3e90837c2c4648b5340948f8262e103395114a93c9e164a4d5762eb3012a22",
+    "source_qualified": true
+  },
+  "proposed_obligations": [
+    "Independently identify the requested behavioral change without seeing an official solution.",
+    "Capture a relevant write and require actual target tests on the final artifact after that write.",
+    "Ensure the post-compaction review and any simulated submission refer to the artifact actually tested."
+  ],
+  "source_candidate_id": "psf__requests-6028",
+  "source_fix_commit": "8fa9724398c4f44090997ff430a1dd3e935a9057",
+  "source_provenance": {
+    "changed_files": {
+      "benchmark_source_patch": [
+        "requests/utils.py"
+      ],
+      "benchmark_test_patch": [
+        "tests/test_utils.py"
+      ],
+      "upstream_pr": [
+        "requests/utils.py",
+        "tests/test_utils.py"
+      ]
+    },
+    "dataset": {
+      "canonical_row_sha256": "9b07b26637cbf5f890d0a2f7d5ca9e46cf63fe7f600fb9286500e0dd6c2570bf",
+      "id": "SWE-bench/SWE-bench_Verified",
+      "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25",
+      "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+      "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "row_index": 297,
+      "split": "test"
+    },
+    "repository_url": "https://github.com/psf/requests",
+    "upstream": {
+      "base_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+      "base_commit_url": "https://github.com/psf/requests/commit/0192aac24123735b3eaf9b08df46429bb770c283",
+      "base_is_fix_first_parent": true,
+      "fix_commit": "8fa9724398c4f44090997ff430a1dd3e935a9057",
+      "fix_commit_kind": "upstream_merge_or_squash_commit",
+      "fix_commit_url": "https://github.com/psf/requests/commit/8fa9724398c4f44090997ff430a1dd3e935a9057",
+      "fix_parent_commits": [
+        "0192aac24123735b3eaf9b08df46429bb770c283",
+        "38f3f8ecb93cadfac03a6b7b3173018ac829d0cf"
+      ],
+      "issue_number": 6027,
+      "issue_title": "Proxy authentication bug",
+      "issue_url": "https://github.com/psf/requests/issues/6027",
+      "pr_merged": true,
+      "pr_number": 6028,
+      "pr_url": "https://github.com/psf/requests/pull/6028",
+      "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+    }
+  },
+  "status": "draft_unreviewed"
+}

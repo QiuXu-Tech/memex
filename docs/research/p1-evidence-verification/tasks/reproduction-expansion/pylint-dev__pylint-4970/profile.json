@@ -1,0 +1,25 @@
+{
+  "requirements": [
+    "setuptools==67.6.0",
+    "wheel==0.38.4",
+    "pytest==6.2.5",
+    "attrs==21.4.0",
+    "iniconfig==1.1.1",
+    "packaging==21.3",
+    "py==1.11.0",
+    "pluggy==1.0.0",
+    "toml==0.10.2",
+    "pyparsing==3.0.9",
+    "astroid==2.7.3",
+    "wrapt==1.12.1",
+    "lazy-object-proxy==1.6.0",
+    "platformdirs==2.4.0",
+    "isort==5.9.3",
+    "mccabe==0.6.1",
+    "typing-extensions==3.10.0.2"
+  ],
+  "test_runner": "pytest",
+  "plugins": [],
+  "policy": "Pinned local compatibility environment; no claim of official Docker equivalence. Exact resolved freeze is retained.",
+  "rationale": "Source setup.cfg requires astroid >=2.7.3,<2.8. Old wrapt binary availability may block this profile; no forced dependency substitution."
+}

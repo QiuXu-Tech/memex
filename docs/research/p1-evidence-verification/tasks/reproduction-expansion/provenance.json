@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-28T02:05:02.480804+00:00",
+  "record_scope": "source/environment qualification; no official container run",
+  "dataset": {
+    "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+    "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+    "sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25",
+    "bytes": 6304616,
+    "selected_rows": 14,
+    "full_500_row_dataset_excluded_from_private_archive": true
+  },
+  "python_install": {
+    "command": [
+      "uv",
+      "python",
+      "install",
+      "3.9.21",
+      "--install-dir",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/python",
+      "--no-bin",
+      "--no-registry",
+      "--no-config",
+      "--system-certs",
+      "--no-progress"
+    ],
+    "returncode": 0,
+    "elapsed_seconds": 6.181072004000271,
+    "environment_keys": [
+      "ALL_PROXY",
+      "HTTPS_PROXY",
+      "HTTP_PROXY",
+      "LANG",
+      "NO_PROXY",
+      "PATH",
+      "UV_CACHE_DIR",
+      "UV_NO_CONFIG",
+      "all_proxy",
+      "http_proxy",
+      "https_proxy",
+      "no_proxy"
+    ]
+  },
+  "tool_versions": {
+    "git": {
+      "returncode": 0,
+      "version_output": "git version 2.47.3"
+    },
+    "bwrap": {
+      "returncode": 0,
+      "version_output": "bubblewrap 0.12.0"
+    },
+    "uv": {
+      "returncode": 0,
+      "version_output": "uv 0.13.9 (x86_64-unknown-linux-gnu)"
+    }
+  },
+  "bootstrap_packages": [
+    "pyarrow==16.1.0",
+    "numpy==1.26.4"
+  ],
+  "driver_versions": {
+    "initial": {
+      "sha256": "aae3540e4fa6c8a82dc9dee2cb16b4acadf93679b3438bfcdffcfa2bf42d6c5a",
+      "private_snapshot": "reproduce_sources.executed.py",
+      "use": "initial fourteen attempts"
+    },
+    "setup_followups_first_ten": {
+      "sha256": "a7cb3dfbc61ae0f9d22031385860b3c8f6246870f02ed4926fc7565dcf066c3f",
+      "private_snapshot": "reproduce_sources.followup-2-executed.py",
+      "snapshot_restoration": "Reconstructed by reversing two known later edits; byte hash exactly matches original execution receipts."
+    },
+    "final": {
+      "sha256": "cf135491d93240c7c246336c061b4fe3c106591103d04dec9a0ff70bfeb7cca8",
+      "private_snapshot": "reproduce_sources.final.py",
+      "use": "final diagnostic helpers and Sphinx8721 setup followup"
+    }
+  },
+  "diagnostic_script": {
+    "sha256": "8a2d0fc3c687029ecb39274fd658e6e755693e7982a137531e529f419f077026",
+    "private_snapshot": "diagnostic-final.py"
+  },
+  "model_requests": 0,
+  "private_evidence_policy": "No official patch/label values or raw test trace are published. Public receipts include raw-log hashes; archive path map resolves them."
+}

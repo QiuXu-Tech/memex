@@ -1,0 +1,191 @@
+{
+  "schema_version": 1,
+  "kind": "read_only_evidence_integrity_audit",
+  "recorded_at": "2026-11-28T02:06:12.067997+00:00",
+  "receipts_verified": 29,
+  "raw_stdout_stderr_references_verified": 598,
+  "junit_files_verified": 24,
+  "source_test_phase_invocations_verified": 34,
+  "selected_row_hashes_verified": 14,
+  "profile_digests_verified": 29,
+  "patch_hashes_verified": 58,
+  "all_commands_within_timeout": true,
+  "raw_official_patches_or_test_identities_in_public_release": false,
+  "original_receipt_bytes_not_modified": true,
+  "receipt_index": [
+    {
+      "receipt": "diagnostic-3/psf__requests-5414/reproduction.json",
+      "sha256": "b942a92a4675b4adef7689a8659644c9366397fe8f56525b02026bff633050fe",
+      "candidate_id": "psf__requests-5414",
+      "commands": 8
+    },
+    {
+      "receipt": "diagnostic-3/pytest-dev__pytest-5262/reproduction.json",
+      "sha256": "e23154cb149c206de410e3c971242045e62940036719e8babf3bb64704414660",
+      "candidate_id": "pytest-dev__pytest-5262",
+      "commands": 12
+    },
+    {
+      "receipt": "diagnostic-3/pytest-dev__pytest-7432/reproduction.json",
+      "sha256": "70ce3b78b94e68153f4327ec64a1a6ec98d65518277f6a82ed1a377b2f89f545",
+      "candidate_id": "pytest-dev__pytest-7432",
+      "commands": 12
+    },
+    {
+      "receipt": "diagnostic-3/pytest-dev__pytest-7982/reproduction.json",
+      "sha256": "340be520e9049548924295383862d0198044140d1deab93fe8cbafb884b7fdca",
+      "candidate_id": "pytest-dev__pytest-7982",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/psf__requests-5414/reproduction.json",
+      "sha256": "1519f97baf40f8fad045dd2089c87833d2043b1eba7e423b4a23db287a6e2da7",
+      "candidate_id": "psf__requests-5414",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/pydata__xarray-4629/reproduction.json",
+      "sha256": "5af1c23519aa9996614378dde8a15fc868214329f5106c05e9f9657d1045ebfc",
+      "candidate_id": "pydata__xarray-4629",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/pydata__xarray-6461/reproduction.json",
+      "sha256": "26496eae9930c6e8480df12df08991111499acdf686f35fc0c331a3434781793",
+      "candidate_id": "pydata__xarray-6461",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/pylint-dev__pylint-7080/reproduction.json",
+      "sha256": "b00bb00d5640a03501a3fd8c0a657cd0fd0acd611bd0aa98ee45597c54f8ac14",
+      "candidate_id": "pylint-dev__pylint-7080",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/pytest-dev__pytest-5262/reproduction.json",
+      "sha256": "dd6eae55866f394a635c4bc05d0f253a0a54652557f98b0dc698df26bc5c9f5c",
+      "candidate_id": "pytest-dev__pytest-5262",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/pytest-dev__pytest-7432/reproduction.json",
+      "sha256": "460326b4eb792b9a8fc4efc6932e6c62d2c8ff2c5b88963d2dfd18d53e6933e0",
+      "candidate_id": "pytest-dev__pytest-7432",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/pytest-dev__pytest-7982/reproduction.json",
+      "sha256": "17e6f4dd932d7704520192c669d801fdd09a79cdb71e5a9895efa7b8e45e749c",
+      "candidate_id": "pytest-dev__pytest-7982",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/sphinx-doc__sphinx-8721/reproduction.json",
+      "sha256": "6cc2c7689307a7a20d7b011d77572d37067a39c68a5b3d56e8e5225c3f9ee690",
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/sphinx-doc__sphinx-9367/reproduction.json",
+      "sha256": "404fe7dec140183a3859fde5d262f92bdc46175135d872162151171c8a15073d",
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/sympy__sympy-14711/reproduction.json",
+      "sha256": "db9679acc366733de318830ae0bf495e4c879fe6b609b80eceed180f8491cf23",
+      "candidate_id": "sympy__sympy-14711",
+      "commands": 12
+    },
+    {
+      "receipt": "followup-2/sympy__sympy-19637/reproduction.json",
+      "sha256": "f01540a31263d864e39429e95dd35ca9a8f7e8b6b680c78ee96971247c67b5df",
+      "candidate_id": "sympy__sympy-19637",
+      "commands": 12
+    },
+    {
+      "receipt": "mwaskom__seaborn-3069/reproduction.json",
+      "sha256": "062f3d1dc1b4b9959f334dceda0f7569814e16878a5107015c18874f2aa829e1",
+      "candidate_id": "mwaskom__seaborn-3069",
+      "commands": 16
+    },
+    {
+      "receipt": "mwaskom__seaborn-3187/reproduction.json",
+      "sha256": "172aef68aaca3ce182ba53cc7971fe167ba59871e995bdda4bdf24dc3f6077f0",
+      "candidate_id": "mwaskom__seaborn-3187",
+      "commands": 16
+    },
+    {
+      "receipt": "psf__requests-5414/reproduction.json",
+      "sha256": "35251b5ef2a2ffc938551f4feaead2220f51bd09c9d2e80804cc64ebc493fc21",
+      "candidate_id": "psf__requests-5414",
+      "commands": 8
+    },
+    {
+      "receipt": "pydata__xarray-4629/reproduction.json",
+      "sha256": "af7f8d5e5eff7202a22dd9df54da5997bdad773e8cce9be3eefa9f1c33a61885",
+      "candidate_id": "pydata__xarray-4629",
+      "commands": 8
+    },
+    {
+      "receipt": "pydata__xarray-6461/reproduction.json",
+      "sha256": "fac776d3042af0145f36578d0e82feb89754fb7a391c01580ab01ea48101e84f",
+      "candidate_id": "pydata__xarray-6461",
+      "commands": 8
+    },
+    {
+      "receipt": "pylint-dev__pylint-4970/reproduction.json",
+      "sha256": "6de1243e3c0542dfdabea135e3822943a43e1cbbdf7cef6598b88a4e7c41f047",
+      "candidate_id": "pylint-dev__pylint-4970",
+      "commands": 7
+    },
+    {
+      "receipt": "pylint-dev__pylint-7080/reproduction.json",
+      "sha256": "5f2cf3117d03658718f4d00a3a7213afa8303ed11daaeb236bc0f380d074d4c4",
+      "candidate_id": "pylint-dev__pylint-7080",
+      "commands": 7
+    },
+    {
+      "receipt": "pytest-dev__pytest-5262/reproduction.json",
+      "sha256": "4a562d7d7fff4b5099a5d71bff22ef4f625d9b7eb65ee1004ecacd235c594ed0",
+      "candidate_id": "pytest-dev__pytest-5262",
+      "commands": 7
+    },
+    {
+      "receipt": "pytest-dev__pytest-7432/reproduction.json",
+      "sha256": "1b7046daa236dca81edf4c2c21cf6a13c843ca5cf01529e8fbe6326daf5ce666",
+      "candidate_id": "pytest-dev__pytest-7432",
+      "commands": 7
+    },
+    {
+      "receipt": "pytest-dev__pytest-7982/reproduction.json",
+      "sha256": "3b9ef0d83f6a4885655be92b146411a12efc4440001eb8b41191490491379bfd",
+      "candidate_id": "pytest-dev__pytest-7982",
+      "commands": 7
+    },
+    {
+      "receipt": "sphinx-doc__sphinx-8721/reproduction.json",
+      "sha256": "08cc4b3a502fb21e7b478f6d32ec235799bbe5eae33c822288cd2f9a374bd88c",
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "commands": 8
+    },
+    {
+      "receipt": "sphinx-doc__sphinx-9367/reproduction.json",
+      "sha256": "a1a5878cc0d0c42f57dada71cb5915abea7dbcd0fc0fe17f6f18a68b61733d55",
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "commands": 8
+    },
+    {
+      "receipt": "sympy__sympy-14711/reproduction.json",
+      "sha256": "d4029594fe8f49ebaeb551792aa5e7c4bf06f233152308c9f50732ad0486e655",
+      "candidate_id": "sympy__sympy-14711",
+      "commands": 8
+    },
+    {
+      "receipt": "sympy__sympy-19637/reproduction.json",
+      "sha256": "5e8e02837f1df5f6113ddebe6c41adebb3c6d5809411513675f06b8ea9ecc43a",
+      "candidate_id": "sympy__sympy-19637",
+      "commands": 8
+    }
+  ]
+}

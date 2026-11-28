@@ -1,0 +1,24 @@
+{
+  "accepted": false,
+  "actual_reviewers_assigned": null,
+  "assignment_seed_sha256": "0330eefee83dca331445847a1583919adf225b8678b08c00330cf58d530903f7",
+  "domain": "controller_evaluator_only",
+  "frozen": false,
+  "independent_human_review_count": 0,
+  "material_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5",
+  "reviews": [
+    {
+      "packet_id": "review-996959f2f4b781314b76",
+      "packet_sha256": "a27f45a237638fed5109ece46c61d7963610fb222d0c2a7263db1aa94c22d068",
+      "slot": 1
+    },
+    {
+      "packet_id": "review-973c5da10786caad74ef",
+      "packet_sha256": "fdbd9db6a767dd6ab46ddc11cd4ba6886cdbcfd74647897e0013399304b4a967",
+      "slot": 2
+    }
+  ],
+  "schema_version": 1,
+  "task_id": "w-101",
+  "workflow_family_id": "pallets/flask#5010"
+}

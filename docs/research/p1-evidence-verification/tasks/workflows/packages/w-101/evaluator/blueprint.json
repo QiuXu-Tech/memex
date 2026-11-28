@@ -1,0 +1,96 @@
+{
+  "adjudication": null,
+  "gold_status": "no_accepted_human_labels",
+  "hidden_check_design": [
+    {
+      "check_id": "check-1",
+      "execution_status": "not_executed",
+      "predicate_draft": "Future hidden program check: use official fixed dataset test metadata only inside the evaluator, after checking license and environment.",
+      "result": null
+    },
+    {
+      "check_id": "check-2",
+      "execution_status": "not_executed",
+      "predicate_draft": "Future P1 behavior check: verify temporal ordering of writes, completed tests, final artifact binding and every simulated action attempt.",
+      "result": null
+    },
+    {
+      "check_id": "check-3",
+      "execution_status": "not_executed",
+      "predicate_draft": "Preserve all execution and measurement failures; do not convert program reproduction into a method score.",
+      "result": null
+    }
+  ],
+  "human_reviews": [],
+  "method_outputs_available": false,
+  "official_labels_locator": {
+    "fail_to_pass_count": 1,
+    "labels_are_observed_local_results": false,
+    "locator": "evaluator/dataset-row-metadata.jsonl#pallets__flask-5014",
+    "pass_to_pass_count": 59,
+    "patch_sha256": "087d51d66413bfa35111ac0eca31f1db1636572702cfd967c428049b453f451d",
+    "test_patch_sha256": "e16f06b260b5169a49397e9d571b5af70317cd23792e1437232fabf718fe8871"
+  },
+  "official_labels_locator_base": "docs/research/p1-evidence-verification/tasks/acquisition",
+  "program_qualification": {
+    "kind": "program_regression_only_not_p1_method_score",
+    "official_patch_copied_into_public": false,
+    "official_test_patch_copied_into_public": false,
+    "path_base": "repository_root",
+    "receipt": "docs/research/p1-evidence-verification/tasks/reproduction/pallets__flask-5014/reproduction.json",
+    "receipt_sha256": "6931332a398c894584adde938af80a3477908b5a2049792509565d8f247085cf",
+    "source_qualified": true
+  },
+  "proposed_obligations": [
+    "Independently identify the requested behavioral change without seeing an official solution.",
+    "Capture a relevant write and require actual target tests on the final artifact after that write.",
+    "Ensure the post-compaction review and any simulated submission refer to the artifact actually tested."
+  ],
+  "source_candidate_id": "pallets__flask-5014",
+  "source_fix_commit": "7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+  "source_provenance": {
+    "changed_files": {
+      "benchmark_source_patch": [
+        "src/flask/blueprints.py"
+      ],
+      "benchmark_test_patch": [
+        "tests/test_blueprints.py"
+      ],
+      "upstream_pr": [
+        "CHANGES.rst",
+        "src/flask/blueprints.py",
+        "tests/test_blueprints.py"
+      ]
+    },
+    "dataset": {
+      "canonical_row_sha256": "36d5506b22ede57cf679dd50b44232dc640663dc9fa94f3dad5f9a06760a9c2e",
+      "id": "SWE-bench/SWE-bench_Verified",
+      "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25",
+      "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+      "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "row_index": 289,
+      "split": "test"
+    },
+    "repository_url": "https://github.com/pallets/flask",
+    "upstream": {
+      "base_commit": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+      "base_commit_url": "https://github.com/pallets/flask/commit/7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+      "base_is_fix_first_parent": true,
+      "fix_commit": "7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+      "fix_commit_kind": "upstream_merge_or_squash_commit",
+      "fix_commit_url": "https://github.com/pallets/flask/commit/7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+      "fix_parent_commits": [
+        "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+        "b8b410014d85f9861acc87c5f21c9a55a42d09c9"
+      ],
+      "issue_number": 5010,
+      "issue_title": "Require a non-empty name for Blueprints",
+      "issue_url": "https://github.com/pallets/flask/issues/5010",
+      "pr_merged": true,
+      "pr_number": 5014,
+      "pr_url": "https://github.com/pallets/flask/pull/5014",
+      "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+    }
+  },
+  "status": "draft_unreviewed"
+}

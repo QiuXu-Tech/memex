@@ -1,0 +1,33 @@
+{
+  "schema": 1,
+  "kind": "development_readonly_component_check",
+  "confirmatory": false,
+  "independent_workflows": 1,
+  "checkpoint_count": 1,
+  "arms": [
+    "D",
+    "A",
+    "C"
+  ],
+  "strong_rawrag_B_run": false,
+  "source_archive_sha256": "f60642624d0e6d6bf34b845d4000cdc121f12fc7fbb389d4f858910c9457effb",
+  "generation_start_limit": 5,
+  "native_compaction_limit": 1,
+  "fork_limit": 3,
+  "timeout_seconds": 90,
+  "wall_seconds": 600,
+  "packet_byte_limit": 16000,
+  "first_attempt_only": true,
+  "requested_model": null,
+  "source_sha256": {
+    "scripts/paper1/native_readonly.py": "244de8991ba61ed3cdad031a126656d2f85fdbe6b9babefa6f8c1eb7347a4b7d",
+    "scripts/paper1/readonly_replay.mjs": "793bca6ed539700a319fe56fca53c64b8cbc0abd9dd6af1ad7f3a539730fe273",
+    "scripts/paper1/native_live.py": "e9ed277f7d706e56b14781cf221f7787ce5cd3a637b31b69e36b5c1e7b3817d8",
+    "scripts/paper1/native_smoke.py": "b01e9e2b651594d17dfcec7c9f7e1e37b9569a06c3848db9e563edc61abeb56b",
+    "scripts/paper1/approvals.py": "04d7404baf6af7111778efa27d9c14abffd910fe92402a44ca084bf245efa136",
+    "scripts/paper1/claims.mjs": "1ee88630009125bbd2c1d616a7cea7b38770a9219380e94dd69f9e28e7a7bde1",
+    "scripts/paper1/verification.mjs": "1bb0a530dea41824db656a52574679c9b321b338b59147542243b5487b8db82d",
+    "scripts/paper1/archive.mjs": "866ed5fb075c25f06a704c7e28004f059904e45bce23fb7665f8467ee8249437",
+    "scripts/codex-retention-host.py": "663201794332653973754e4f3c27c5b6c63672341f580a8368a4316bbd7d46e9"
+  }
+}

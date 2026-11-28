@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "recorded_at": "2026-11-28T02:08:35.530397+00:00",
+  "kind": "post_execution_driver_guard_revision",
+  "reason": "Independent review found that a test-file integrity result was recorded but did not prevent a qualified status if a fixed test process changed its own test file.",
+  "change": "The driver now fails closed with evidence_integrity_failure unless test_file_unchanged_between_phases is exactly true, before any qualification or partial-transition classification.",
+  "regression_test": "Synthetic runner mutates the test file during the fixed phase after the prior check; old driver incorrectly qualified. Test does not run a source project or model.",
+  "red": {
+    "tests": 18,
+    "failed": 1,
+    "returncode": 1,
+    "stderr_sha256": "c68da4873ada9b81ec8328353c23ce91158a7f62de8026601b8c831defa411c1"
+  },
+  "green": {
+    "tests": 18,
+    "passed": 18,
+    "returncode": 0,
+    "stderr_sha256": "018672d0a9a303275ef1973da2ab733e4e1d791c42b00fe7b6d5c5f0e7818299"
+  },
+  "previous_executed_driver_sha256": "cf135491d93240c7c246336c061b4fe3c106591103d04dec9a0ff70bfeb7cca8",
+  "current_driver_sha256": "f6d0f9e93ebac952d9d16852f3158f494793bbcc326736b1abd349e065e3ca00",
+  "current_test_file_sha256": "b6078bebe8fe1bfad036e8cce8e5fd29d6ba3a587c97d1544405c9bbd332e2bf",
+  "historical_original_qualified_receipts_checked": 9,
+  "sympy14711_revised_qualification_checked": 1,
+  "historical_qualification_receipts": [
+    {
+      "receipt": "diagnostic-3/pytest-dev__pytest-5262/reproduction.json",
+      "sha256": "e23154cb149c206de410e3c971242045e62940036719e8babf3bb64704414660",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "diagnostic-3/pytest-dev__pytest-7432/reproduction.json",
+      "sha256": "70ce3b78b94e68153f4327ec64a1a6ec98d65518277f6a82ed1a377b2f89f545",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "diagnostic-3/pytest-dev__pytest-7982/reproduction.json",
+      "sha256": "340be520e9049548924295383862d0198044140d1deab93fe8cbafb884b7fdca",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "followup-2/pydata__xarray-4629/reproduction.json",
+      "sha256": "5af1c23519aa9996614378dde8a15fc868214329f5106c05e9f9657d1045ebfc",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "followup-2/pydata__xarray-6461/reproduction.json",
+      "sha256": "26496eae9930c6e8480df12df08991111499acdf686f35fc0c331a3434781793",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "followup-2/pylint-dev__pylint-7080/reproduction.json",
+      "sha256": "b00bb00d5640a03501a3fd8c0a657cd0fd0acd611bd0aa98ee45597c54f8ac14",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "followup-2/sphinx-doc__sphinx-8721/reproduction.json",
+      "sha256": "6cc2c7689307a7a20d7b011d77572d37067a39c68a5b3d56e8e5225c3f9ee690",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "followup-2/sympy__sympy-14711/reproduction.json",
+      "sha256": "db9679acc366733de318830ae0bf495e4c879fe6b609b80eceed180f8491cf23",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "mwaskom__seaborn-3069/reproduction.json",
+      "sha256": "062f3d1dc1b4b9959f334dceda0f7569814e16878a5107015c18874f2aa829e1",
+      "test_file_unchanged_between_phases": true
+    },
+    {
+      "receipt": "mwaskom__seaborn-3187/reproduction.json",
+      "sha256": "172aef68aaca3ce182ba53cc7971fe167ba59871e995bdda4bdf24dc3f6077f0",
+      "test_file_unchanged_between_phases": true
+    }
+  ],
+  "all_29_original_attempt_receipt_bytes_unchanged": true,
+  "existing_private_archive_sha256_unchanged": "53479817071ecd04bc633be9802242979cd6dbde75be4e84adefa7ef7c7323b4",
+  "source_test_phases_rerun": 0,
+  "model_requests": 0,
+  "summary_and_qualification_revision_bytes_changed": false
+}

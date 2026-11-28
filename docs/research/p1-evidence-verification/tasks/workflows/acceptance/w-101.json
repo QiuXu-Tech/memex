@@ -1,0 +1,33 @@
+{
+  "acceptance": {
+    "accepted": false,
+    "blocking_gates": [
+      "actual_native_prelude_missing",
+      "native_compaction_receipt_missing",
+      "post_retrieval_behavior_trace_missing",
+      "independent_double_review_missing",
+      "adjudication_missing",
+      "hidden_p1_behavior_check_not_executed",
+      "shared_reader_and_tokenizer_unfrozen",
+      "arm_runner_not_integrated",
+      "study_budget_and_assignment_unfrozen",
+      "relevant_workflow_state_change_not_captured"
+    ],
+    "eligible_for_pilot": false,
+    "frozen": false,
+    "independent_human_reviews": 0,
+    "stage": "ready_for_acceptance_review"
+  },
+  "budget_sha256": "79b8e96e3066118dbddafaefae19888e575e5fe996dd2ef94557f3bf1155ff7a",
+  "isolation_enforced_by_packager": false,
+  "kind": "real_source_seed",
+  "model_requests": 0,
+  "project_id": "pallets/flask",
+  "public_bytes": 546845,
+  "public_file_count": 102,
+  "public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5",
+  "schema_version": 1,
+  "task_id": "w-101",
+  "validation": "pass",
+  "workflow_family_id": "pallets/flask#5010"
+}

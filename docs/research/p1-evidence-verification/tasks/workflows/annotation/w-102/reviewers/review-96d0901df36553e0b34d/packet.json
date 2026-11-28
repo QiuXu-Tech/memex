@@ -1,0 +1,339 @@
+{
+  "evaluator_answers_provided": false,
+  "material_kind": "real_source_seed",
+  "material_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2",
+  "method_arm": null,
+  "method_outputs": null,
+  "packet_id": "review-96d0901df36553e0b34d",
+  "public_files": [
+    {
+      "bytes": 397,
+      "kind": "file",
+      "mode": 420,
+      "path": "budget.json",
+      "sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2"
+    },
+    {
+      "bytes": 374,
+      "kind": "file",
+      "mode": 420,
+      "path": "request.txt",
+      "sha256": "dc169cce35f95fa57a842813e599e9bb9c1acc097f1d5b8ac3cdec63171c919c"
+    },
+    {
+      "bytes": 230,
+      "kind": "file",
+      "mode": 420,
+      "path": "task.json",
+      "sha256": "878965e0b8d311b1e4cbe4d23fb5c65de5887705f3ca70623a261f42b98c1107"
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "path": "workspace"
+    },
+    {
+      "bytes": 10142,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/LICENSE",
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b"
+    },
+    {
+      "bytes": 105,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/MANIFEST.in",
+      "sha256": "7caa1d6b5f562ee868f8719eb9a311b00c1baec207d65fa65ab087664dcaf3c4"
+    },
+    {
+      "bytes": 38,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/NOTICE",
+      "sha256": "f5110972dedad2b4e9d314518daf3b7d72d6e02e499acd802181de6f74571dcc"
+    },
+    {
+      "bytes": 2928,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/README.md",
+      "sha256": "301f72762931ba53f6789938808219336503842b899c2ec6a173890016116490"
+    },
+    {
+      "bytes": 102,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/pytest.ini",
+      "sha256": "b044db9f7c5abde27b895d150d3a893847918f6e5bc1c21cdbb70d4c22a2f0f7"
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "path": "workspace/requests"
+    },
+    {
+      "bytes": 4924,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/__init__.py",
+      "sha256": "060341ac062bdc3751583b64735230a12ada541073d7bd7673f797e06f21f9a9"
+    },
+    {
+      "bytes": 441,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/__version__.py",
+      "sha256": "1687a5be192ee870eaff81c51593a237d3a57e9c61658d922ff76b1eac16eff5"
+    },
+    {
+      "bytes": 1096,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/_internal_utils.py",
+      "sha256": "671dcf9c451c7327ec07e89ed759d95405bca82949cb4831d6a34c13bae04f5f"
+    },
+    {
+      "bytes": 21645,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/adapters.py",
+      "sha256": "6097ffd12d892f97c4b3ac8f282de243e22ed146710dbf47e96e62a5506b2171"
+    },
+    {
+      "bytes": 6402,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/api.py",
+      "sha256": "863ba83fbf48004997e83cacaf0f2dd37d9c2dfc0b1f16c8ff0338802e46f6dd"
+    },
+    {
+      "bytes": 10207,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/auth.py",
+      "sha256": "38ca092152b244bcbd4c7afdd72f2bc72b19b9c9703c1f8ad57835cc1a265214"
+    },
+    {
+      "bytes": 453,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/certs.py",
+      "sha256": "74e079ad5d83675ddd121abd0546bfe21779900aa0e7d7bfcd4641d347da633f"
+    },
+    {
+      "bytes": 2054,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/compat.py",
+      "sha256": "c32ddb50eabc68a384ee631988b2493171426976e1a12f9b68e37ad040ef0088"
+    },
+    {
+      "bytes": 18430,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/cookies.py",
+      "sha256": "63e6ca5fa4ef5b716762513a02ed125ed55559c68d745bee030431c3e1b48932"
+    },
+    {
+      "bytes": 3434,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/exceptions.py",
+      "sha256": "5542b27cd6665e3b2390f822a59ba91df91c1373957582b1f06a9fbd67247f00"
+    },
+    {
+      "bytes": 3968,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/help.py",
+      "sha256": "cb03cdb2c3e886b721fd0feae3f24b24cd73d9b3f44e2ac7900f509e8385d2c6"
+    },
+    {
+      "bytes": 757,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/hooks.py",
+      "sha256": "411786cb2d1b45caf9ae4c02b8e6cd6a46d8b1cec492229e0701b8a877a4af64"
+    },
+    {
+      "bytes": 35051,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/models.py",
+      "sha256": "45f5df806519e57e8259485438392eefe30e40d595b3b94364f57a6c30b9ddc6"
+    },
+    {
+      "bytes": 932,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/packages.py",
+      "sha256": "92bf49f5d619afd11fe099b01db084520c158b0702c8e50f81f5d9bc82fce0eb"
+    },
+    {
+      "bytes": 29835,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/sessions.py",
+      "sha256": "66ef98f583e5c1322cc85c7586f22b737ce2c9e169b853ea70eb92bb3f01356b"
+    },
+    {
+      "bytes": 4188,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/status_codes.py",
+      "sha256": "813efd3dbb3f7108c1829f9fbeb520835767d8340edf66c38f84c89e39cc3d27"
+    },
+    {
+      "bytes": 3005,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/structures.py",
+      "sha256": "9ac02dafd9aad49c4777e251ca220b7dd165a5b270bef16e3f7adf5104ff4311"
+    },
+    {
+      "bytes": 33128,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requests/utils.py",
+      "sha256": "7938f802679da01f5768d41526f22b63fcef2a96c491ec030b755c87bab3958d"
+    },
+    {
+      "bytes": 119,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/requirements-dev.txt",
+      "sha256": "595174b1b1e440ce3685ebb044f8a24a0dd95b596b85b7d2cf417b74cbce122f"
+    },
+    {
+      "bytes": 63,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/setup.cfg",
+      "sha256": "9dd20a5ada090b01dd22055f32bdaa56315d3a14b0fd168dbe12013fa09fe5b1"
+    },
+    {
+      "bytes": 3753,
+      "kind": "file",
+      "mode": 493,
+      "path": "workspace/setup.py",
+      "sha256": "afd03934f72d32ec4fc0bf4f4e355fe76fca93a88b61c0aafafcd6e88a53af0e"
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "path": "workspace/tests"
+    },
+    {
+      "bytes": 369,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/__init__.py",
+      "sha256": "c8ab77e22835e6fade87775e5a32a16ef5135c591a5362b9497fa9025fab9104"
+    },
+    {
+      "bytes": 333,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/compat.py",
+      "sha256": "f0d759088eaea9caf469465e88589e8af2485ac63257de86619481e4a7ac678f"
+    },
+    {
+      "bytes": 1650,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/conftest.py",
+      "sha256": "ed316b95aacbef5b534b7d389df0fdad56d471d7da6d7e3e686496c223f960df"
+    },
+    {
+      "bytes": 866,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_help.py",
+      "sha256": "298d717f8d54a9137ff7860457c61f361211310b3f4864ee4cb77dbc2d56acf2"
+    },
+    {
+      "bytes": 444,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_hooks.py",
+      "sha256": "051dd8f381e959f3fac9247a6d7991c2459be88a6d2f4bf605759c7374fa6e71"
+    },
+    {
+      "bytes": 14885,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_lowlevel.py",
+      "sha256": "96b0af34e34da09b0cd146bb1600bd8a2c85b0cdffbbb6a75e0f43d7bae58e98"
+    },
+    {
+      "bytes": 229,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_packages.py",
+      "sha256": "90875423db059d65b39416d7b6d01b18938851b8071279877400beb506e08676"
+    },
+    {
+      "bytes": 93588,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_requests.py",
+      "sha256": "34a857d3ce6eb50653a07ca4855dc08cbc9ecbf6f7b3757b9c5397963f818887"
+    },
+    {
+      "bytes": 2250,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_structures.py",
+      "sha256": "f26f8702aee16cdba4152a76c456669199a5b9fd3899a5b96d1b033cc37138ba"
+    },
+    {
+      "bytes": 5603,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_testserver.py",
+      "sha256": "ede9f99c7a0645bcf37a1dd09d64f6bf65199abaf0682354a94c063d4d8a2e72"
+    },
+    {
+      "bytes": 26662,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/test_utils.py",
+      "sha256": "87c468e405cda3f3e3ba78faaae1720dc11da2ab7a6ad6a8274aede0f83ec7e3"
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "path": "workspace/tests/testserver"
+    },
+    {
+      "bytes": 0,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/testserver/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "bytes": 3868,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/testserver/server.py",
+      "sha256": "136ca6c6b9bc10bd36fc3ad106450489d62f77bc5890bb1a603eb378cd0c41ee"
+    },
+    {
+      "bytes": 391,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tests/utils.py",
+      "sha256": "b131b5b05b82de365aa41c820ff92d80fc70f9578dc49d728b4894128388d0af"
+    },
+    {
+      "bytes": 269,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/tox.ini",
+      "sha256": "54a128b0287a154ff3a2b61d0e22d5f387ed1f6b5917be6ecc1d3b4e5d40a68e"
+    }
+  ],
+  "schema_version": "p1-review-packet-1"
+}

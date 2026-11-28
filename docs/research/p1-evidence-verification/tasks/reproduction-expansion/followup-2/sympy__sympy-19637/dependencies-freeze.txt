@@ -1,0 +1,5 @@
+mpmath==1.2.1
+pip==23.0.1
+setuptools==67.6.0
+-e git+https://github.com/sympy/sympy.git@63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef#egg=sympy
+wheel==0.38.4

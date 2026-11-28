@@ -1,0 +1,27 @@
+attrs==21.4.0
+contourpy==1.0.7
+cycler==0.11.0
+flit_core==3.8.0
+fonttools==4.38.0
+iniconfig==1.1.1
+kiwisolver==1.4.4
+matplotlib==3.6.3
+numpy==1.23.5
+packaging==21.3
+pandas==1.5.3
+patsy==0.5.3
+Pillow==9.4.0
+pip==23.0.1
+pluggy==1.0.0
+py==1.11.0
+pyparsing==3.0.9
+pytest==6.2.5
+python-dateutil==2.8.2
+pytz==2022.7.1
+scipy==1.9.3
+-e git+https://github.com/mwaskom/seaborn.git@54cab15bdacfaa05a88fbc5502a5b322d99f148e#egg=seaborn
+setuptools==67.6.0
+six==1.16.0
+statsmodels==0.13.5
+toml==0.10.2
+wheel==0.38.4

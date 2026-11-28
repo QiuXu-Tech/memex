@@ -4,7 +4,7 @@ Updated **2026-11-28 (Asia/Shanghai)**. Base commit: `49e772bbf60532682771874b7e
 
 ## Outcome of this execution batch
 
-The first paper now has a publicly reviewable English methods/protocol manuscript, a live-state research prototype, a frozen execution/cost/scoring controller, a pinned strong-baseline adapter, sixteen real source candidates and two actual base-to-fix reproductions. **The end-to-end proposed method, independent real-task pilot, confirmatory experiment and manuscript submission are not completed.** No result table has been filled with engineering tests or historical synthetic results. Public research branch and [draft PR #9](https://github.com/QiuXu-Tech/memex/pull/9) are created under the user's explicit public-disclosure authorization.
+The first paper now has a publicly reviewable English methods/protocol manuscript, an official-template review-format draft, a live-state research prototype, a frozen execution/cost/scoring controller, a pinned strong-baseline adapter, sixteen inspected real source candidates and twelve qualified source environments. Eleven unaccepted task-material packages and twenty-two unfilled independent-review packets are prepared. A separate read-only native continuation check completed extraction, L2 verification, actual compaction and three forks of a common parent. **The approved mutable-tool method loop, independent real-task pilot, confirmatory experiment and manuscript submission are not completed.** No formal result table has been filled with engineering tests or development observations. Public research branch and [draft PR #9](https://github.com/QiuXu-Tech/memex/pull/9) are maintained under the user's explicit public-disclosure authorization.
 
 The manuscript's editable sources and PDF are in this directory. Its build and presentation checks are recorded in [BUILD.md](BUILD.md). [PROTOCOL.md](PROTOCOL.md) defines the research input boundary, task acquisition, scoring, failure denominator and freezing rules. [BASELINE.md](BASELINE.md) records the official Raw-RAG adaptation and actual dependency checks.
 
@@ -25,6 +25,29 @@ The manuscript's editable sources and PDF are in this directory. Its build and p
 The historical `scripts/evidence-check-gate.mjs` and old experiment driver are unchanged. Their predefined claims and convenient source positions cannot be relabeled as the new automatic method or strong Raw-RAG.
 
 ## Fresh verification evidence
+
+### Third batch: finish independently executable preparation
+
+The user instructed **“把你能完成的部分全部做完”**. This batch extends concrete preparation and observed component behavior; it does not fill external-service, real-human or scientific-evidence gaps with placeholders presented as facts.
+
+| Work | Actual observed result | Evidence |
+|---|---|---|
+| Approval-handler prototype | Two exact one-call terminal question profiles; active-request binding, no automatic accept, cancellation and unknown-flow rejection; actual host-question compatibility and human-approved execution unverified | [APPROVALS.md](APPROVALS.md) |
+| Read-only native continuation | Five actual generation starts, one native compaction, three same-parent forks in order D/A/C; all recommend hold with the later failure receipt | [readonly-native](artifacts/readonly-native/README.md) |
+| Source I/O versus reader usage | C opens two originals for the test claim; D opens zero after real priming; both added packets 3,447 bytes and both native inputs 15,350 tokens | [C trace](artifacts/readonly-native/attempt-01/C-verification.json), [D trace](artifacts/readonly-native/attempt-01/D-verification.json) |
+| Usage observation audit | Five generation deltas reconcile: 71,077 input and 937 output; one compaction notification remains unmetered; full cost and actual spend null | [usage audit](artifacts/readonly-native/usage-audit.json) |
+| Source qualifications | All remaining 14 candidates attempted; 10 newly qualified plus two earlier = 12/16; four bounded limitations retained | [expansion summary](tasks/reproduction-expansion/summary.json) |
+| Retained source attempts | 29 numbered setup/diagnostic attempts; 34 top-level test-phase invocations (30 pytest, four native SymPy), including six pytest precollection exits | [source records](tasks/reproduction-expansion/README.md) |
+| Task material | Two real-source seeds and nine branches across eight synthetic families = 11 unaccepted packages; fixed-base exports and independent input-domain validation | [TASKPACKS.md](TASKPACKS.md) |
+| Human review preparation | 22 self-contained unfilled packets; validators reject incomplete/foreign/duplicate or unbound reviews; no human review or adjudication completed | [ANNOTATION.md](ANNOTATION.md) |
+| Submission formatting | Pinned official TMLR review-style draft, source package and transparent AI-use/contribution materials; PENDING cells retained | [SUBMISSION_PACKAGE.md](SUBMISSION_PACKAGE.md), [CONTRIBUTIONS.md](CONTRIBUTIONS.md) |
+| Complete research suite | **70 Node + 195 Python = 265 passes**, zero failures/skips; includes the three final review fixes | [phase3 suite](artifacts/checks/phase3/paper1-suite.txt), [REVIEW.md](REVIEW.md) |
+
+The A/C/D labels above identify narrow archived continuation components, not complete accepted-task method-arm runs. Strong Raw-RAG B was not run. Identical recommendations in one convenient scenario do not estimate a method effect. D's source-open reduction does not imply lower reader usage or lower cost, and cache priming is not free. The real current-workspace MCP execution still requires the actual user's supported approval exchange.
+
+The source expansion used compatible pinned local environments, not exact official Docker images. Skips and expected failures remain distinct from passes. Requests 5414 retains network-dependent failures; Pylint 4970 is setup-blocked under the chosen wheel-only profile; SymPy 19637 retains two module errors outside the official listed transitions; Sphinx 9367 retains unresolved official node-ID alignment. SymPy's ERROR-to-PASS qualification correction is an append-only interpretation bound to the existing logs, not a rewritten attempt or a new test run. No candidate was excluded from a formal sample.
+
+The public task trees contain neither Git history nor future fix/test patches. Their adjacent evaluator folders must not be mounted for a model. Names and hashes provide distribution/integrity contracts, not OS isolation or proof of real human independence. The common budget and 80-unit draft schedule remain explicitly unexecuted and unfrozen.
 
 ### Second batch after public authorization
 
@@ -68,8 +91,8 @@ The Raw-RAG runtime check constructed real SDK clients and attached hooks, but d
 1. **Keep the novelty claim narrow.** Selective reopening and provenance already have close predecessors. The empirical question is incremental decision value beyond faithful Raw-RAG and neighboring sufficiency/governance methods under native compaction.
 2. **Preserve input fairness.** Faithful B uses the original user request. C/D and claim-driven ablations share the extractor. A claim-expanded B is a distinct future adaptation, with its own frozen cost and name.
 3. **Freeze a real shared budget.** The current 5,000-token Raw-RAG display adaptation and per-claim verifier defaults are not yet a frozen matched total budget. Addition of TierMem/sufficiency T changes the old run and cost plan.
-4. **Complete the host integration.** The current-state binder and bounded broker exist, but native write-tool approval still blocks the online continuation path. Add a supported approval-capable client and preserve the actual user's decisions; do not falsely mark tools read-only. General source coverage and extraction-omission scoring remain necessary.
-5. **Accept the real workflows.** Sixteen traceable source candidates exist, with two reproduced environments; zero P1 tasks are accepted/frozen. Build public/hidden workflow packages, independent annotation and behavioral checks before counting them. Eight development workflow packages still need full acceptance.
+4. **Complete the host integration.** The current-state binder, bounded broker and a narrow approval-handler prototype exist. Its two allowed question profiles have not been observed in a successful actual host exchange, and the native mutable-tool path has not received a human-approved execution. Verify the real host request shape before widening the handler and preserve the user's actual decisions. General source coverage and extraction-omission scoring remain necessary. A successful archived read-only continuation is not a substitute.
+5. **Accept the real workflows.** Sixteen source candidates were checked and twelve source environments qualified. Eleven material packages and twenty-two review packets exist; zero P1 tasks are accepted/frozen. Complete actual native workflow capture, isolated method execution, independent annotation and behavioral checks before counting them. Eight synthetic development families still need full workflow acceptance.
 6. **Run the actual strong baseline and paired pilot.** The first external resource blocker is usable embedding and reranker service configuration. Do not substitute lexical retrieval or dummy embeddings, or put keys in Git/chat. Credentials alone do not satisfy the remaining task/method gates.
 7. **Only then choose formal N and complete the paper.** Use pilot evidence for power/precision, freeze the full protocol and cost model, run confirmation and external validation, and write the result-supported submission version. Human authorship and the chosen venue's current requirements remain to be finalized.
 

@@ -1,0 +1,22 @@
+{
+  "archive_byte_hashes": "not inferred from installed metadata",
+  "distributions": [
+    {
+      "METADATA_sha256": "3ce87cf6eb73f87d5ed0afb10d8f422fd82cfb1d0c8c7f805b16e1246dda6951",
+      "RECORD_sha256": "fc4e4d4dc5593f34a02ab8127e7655806a8ab4adae79c023bf73e1a0961cec17",
+      "direct_url.json_sha256": null,
+      "name": "pip",
+      "recorded_file_count": 1002,
+      "version": "23.0.1"
+    },
+    {
+      "METADATA_sha256": "8e338b1b202ba568e5cf8253994fd312116bb8e393001463658a81cc95eeb390",
+      "RECORD_sha256": "6e91ba1b58a012344602c16148d75a3d2b1cfdeb988d6e3aca48b24a5d9ba5a3",
+      "direct_url.json_sha256": null,
+      "name": "setuptools",
+      "recorded_file_count": 296,
+      "version": "58.1.0"
+    }
+  ],
+  "python_version": "3.9.21 (main, Mar 17 2025, 21:01:54) \n[Clang 20.1.0 ]"
+}

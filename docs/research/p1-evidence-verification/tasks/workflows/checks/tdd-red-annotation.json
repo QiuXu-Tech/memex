@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "test",
+    "-p",
+    "test_paper1_annotation.py",
+    "-v"
+  ],
+  "returncode": 1,
+  "stage": "before implementation",
+  "interpretation": "new module not implemented; import failure is the initial red phase, not an executed experiment"
+}

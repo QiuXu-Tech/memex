@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/JmlrOrg/tmlr-style-file",
+  "commit": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
+  "retrieved_at_utc": "2026-11-28T01:49:08.935188+00:00",
+  "upstream_head_when_retrieved": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
+  "review_option": "default (no accepted or preprint option)",
+  "files": {
+    "tmlr.sty": {
+      "upstream_path": "tmlr.sty",
+      "sha256": "816214ff5919aa457b6b443bee52b15d9561421417b7f8a50cc84651519f0002",
+      "git_blob": "c0c62d03c6e2383c688b20965de03800dc15c79c",
+      "bytes": 6560,
+      "modified": false
+    },
+    "tmlr.bst": {
+      "upstream_path": "tmlr.bst",
+      "sha256": "306fd454cf40771bee01293eeb98d2c1cd5f4e11ed0cd7296b335f354fc45206",
+      "git_blob": "310ed3e74455269ad97d0b30639851af72cec965",
+      "bytes": 26969,
+      "modified": false
+    },
+    "fancyhdr.sty": {
+      "upstream_path": "fancyhdr.sty",
+      "sha256": "3d2922548e0e5f1a6c5676eda6ebb6dc20d7d305b4d8c2be5f1c833fb1084e6d",
+      "git_blob": "01f87f2edda07ab44133ed36f7016f4552479ac6",
+      "bytes": 17086,
+      "modified": false
+    },
+    "upstream/LICENSE": {
+      "upstream_path": "LICENSE",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "git_blob": "261eeb9e9f8b2b4b0d119366dda99c6fd7d35c64",
+      "bytes": 11357,
+      "modified": false
+    },
+    "upstream/README.md": {
+      "upstream_path": "README.md",
+      "sha256": "91310b3f169ecd2d48f6c62ca8b2c9fb3f537d432d8e5d6aa4b6ac88f5c064f9",
+      "git_blob": "9779fb477d924eab92a5fa3ea12d4f3faf54f00c",
+      "bytes": 81,
+      "modified": false
+    },
+    "upstream/main.tex": {
+      "upstream_path": "main.tex",
+      "sha256": "85a994256fae53477e935bbacdf45b7e0e031abff660991485a61bff9bd4704c",
+      "git_blob": "eaee66f4e06fb328d654ce6e11af639b0259c373",
+      "bytes": 16787,
+      "modified": false
+    }
+  }
+}

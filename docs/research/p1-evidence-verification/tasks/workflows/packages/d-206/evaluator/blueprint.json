@@ -1,0 +1,19 @@
+{
+  "adjudication": null,
+  "gold_status": "no_accepted_human_labels",
+  "hidden_check_design": [
+    {
+      "check_id": "check-1",
+      "execution_status": "not_executed",
+      "predicate_draft": "Require a resolving authoritative readback or a justified abstention; never label a conflict as settled solely by timestamp.",
+      "result": null
+    }
+  ],
+  "human_reviews": [],
+  "method_outputs_available": false,
+  "proposed_obligations": [
+    "Arrival and wall-clock order do not replace native revision semantics.",
+    "Conflicting authoritative records at the same revision need resolution or an explicit unknown."
+  ],
+  "status": "draft_unreviewed"
+}

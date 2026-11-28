@@ -20,6 +20,7 @@ import uuid
 HERE = Path(__file__).resolve().parent
 SMOKE = runpy.run_path(str(HERE / 'native_smoke.py'))
 PROXY = runpy.run_path(str(HERE / 'live_mcp.py'))
+APPROVALS = runpy.run_path(str(HERE / 'approvals.py'))
 TrialHost = SMOKE['TrialHost']
 HOST = SMOKE['HOST']
 GOOD = 'export const sum = (a, b) => a + b;\n'
@@ -33,9 +34,29 @@ REQUEST = ('Prepare a release decision for the current workspace. It is releasab
 
 class DeadlineHost(TrialHost):
     """Each protocol wait is bounded by the same controller wall deadline."""
-    def __init__(self, *args, deadline, **kwargs):
+    def __init__(self, *args, deadline, interactive_approval=False, **kwargs):
         self.deadline = deadline
+        self.active_turn_id = None
+        self.approvals = None
+        if interactive_approval:
+            # Validate the real terminal before starting the native process.
+            self.approvals = APPROVALS['InteractiveApprovals'](record=self.record)
         super().__init__(*args, **kwargs)
+
+    def dispatch(self, message):
+        if message.get('method') == 'turn/started' and 'id' not in message:
+            params = message.get('params', {})
+            if params.get('threadId') == self.tid:
+                self.active_turn_id = params['turn']['id']
+        if 'id' in message and message.get('method') and self.approvals:
+            response = self.approvals.handle(message, thread_id=self.tid,
+                turn_id=self.active_turn_id, timeout=min(self.timeout, self.deadline - time.monotonic()))
+            self.send({'id': message['id'], 'result': response})
+            return
+        super().dispatch(message)
+        if message.get('method') == 'turn/completed' and 'id' not in message:
+            if message.get('params', {}).get('turn', {}).get('id') == self.active_turn_id:
+                self.active_turn_id = None
 
     def wait(self, ready):
         self.timeout = min(self.timeout, self.deadline - time.monotonic())
@@ -84,6 +105,10 @@ def offered_model(report, requested):
 
 
 def run(args):
+    interactive = bool(getattr(args, 'interactive_approval', False))
+    if interactive:
+        APPROVALS['InteractiveApprovals']()  # No output or process before TTY check.
+    approval_policy = 'on-request' if interactive else 'never'
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     workspace = output / 'workspace'
@@ -109,6 +134,7 @@ def run(args):
               'cost_completeness': 'unmeasured_provider_billing_and_compaction_semantics',
               'execution_producer': 'p1_live_process_broker',
               'execution_delivery': 'native MCP tool result; not a native shell commandExecution',
+              'approval_mode': 'interactive_terminal' if interactive else 'never',
               'source_sha256': {p.name: sha(p.read_bytes()) for p in [HERE / 'live-broker.mjs',
                   HERE / 'live-state.mjs', HERE / 'live_mcp.py', Path(__file__)]}}
     started = time.monotonic()
@@ -142,7 +168,8 @@ def run(args):
                'enabled_tools': ['workspace_inspect', 'run_current_tests', 'record_decision'],
                'startup_timeout_sec': 20, 'tool_timeout_sec': 35} if public_tools else None
         flags = HOST['codex_overrides'](mcp, True)
-        host = DeadlineHost(args.codex, flags, workspace, logs, os.environ.copy(), remaining(), deadline=deadline)
+        host = DeadlineHost(args.codex, flags, workspace, logs, os.environ.copy(), remaining(),
+                            deadline=deadline, interactive_approval=interactive and public_tools)
         active_hosts.append(host)
         report['host_traces'].append({'label': label, 'events': label + '/events.jsonl',
             'stderr': label + '/host.stderr', 'usage_notifications': [], 'status': 'started'})
@@ -155,7 +182,7 @@ def run(args):
     def start_thread(host, base):
         host.timeout = remaining()
         result = host.rpc('thread/start', {'model': args.model, 'modelProvider': 'openai',
-            'cwd': str(workspace), 'approvalPolicy': 'never', 'sandbox': 'read-only',
+            'cwd': str(workspace), 'approvalPolicy': approval_policy, 'sandbox': 'read-only',
             'baseInstructions': base, 'experimentalRawEvents': False})
         if result.get('model') != args.model or result.get('modelProvider') != 'openai':
             raise RuntimeError('host model/provider mismatch')
@@ -177,7 +204,7 @@ def run(args):
         before = time.monotonic()
         result = host.rpc('turn/start', {'threadId': host.tid,
             'input': [{'type': 'text', 'text': prompt}], 'effort': 'low',
-            'approvalPolicy': 'never', 'sandboxPolicy': {'type': 'readOnly'}})
+            'approvalPolicy': approval_policy, 'sandboxPolicy': {'type': 'readOnly'}})
         attempt['turn_id'] = result['turn']['id']
         completed = host.complete(attempt['turn_id'])
         attempt.update({'status': 'completed', 'seconds': time.monotonic() - before,
@@ -367,6 +394,8 @@ if __name__ == '__main__':
     parser.add_argument('--run', action='store_true')
     parser.add_argument('--extraction-only', action='store_true',
                         help='Independent read-only model/schema check; no tests, compaction or decisions')
+    parser.add_argument('--interactive-approval', action='store_true',
+                        help='Ask the actual terminal user for each supported host approval; never auto-accept')
     parser.add_argument('--model')
     parser.add_argument('--codex', default=shutil.which('codex') or 'codex')
     parser.add_argument('--node', default=shutil.which('node') or 'node')

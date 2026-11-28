@@ -1,0 +1,46 @@
+{
+  "archive_byte_hashes": "not inferred from installed metadata",
+  "distributions": [
+    {
+      "METADATA_sha256": "90cb11ad1e3088ecf87b33a8982d76cd1a6af47e35812e53e139aae57d5fcfe4",
+      "RECORD_sha256": "94582e73f58d5a84b931198c338e9f804684293a4737e0c6ee7e48193c3a668b",
+      "direct_url.json_sha256": null,
+      "name": "mpmath",
+      "recorded_file_count": 179,
+      "version": "1.2.1"
+    },
+    {
+      "METADATA_sha256": "3ce87cf6eb73f87d5ed0afb10d8f422fd82cfb1d0c8c7f805b16e1246dda6951",
+      "RECORD_sha256": "ca088505cb5cb12f2f51807568f74bb544ac26f93cc1ce807a1459e2c0ac1c64",
+      "direct_url.json_sha256": null,
+      "name": "pip",
+      "recorded_file_count": 1002,
+      "version": "23.0.1"
+    },
+    {
+      "METADATA_sha256": "aba465c453bdad46c5082775c32cd89e3c5015734c43284fdd5402dbaf1ef86a",
+      "RECORD_sha256": "ed0452704a7439785d67487e93af3836a4a13b850371b0b7ef9411f334eff917",
+      "direct_url.json_sha256": null,
+      "name": "setuptools",
+      "recorded_file_count": 452,
+      "version": "67.6.0"
+    },
+    {
+      "METADATA_sha256": null,
+      "RECORD_sha256": null,
+      "direct_url.json_sha256": null,
+      "name": "sympy",
+      "recorded_file_count": 1493,
+      "version": "1.1.2.dev0"
+    },
+    {
+      "METADATA_sha256": "de3e0a81564263b799c8eaf00ca6284ee01c7ebfe05c06f1c75c86851f43b2c0",
+      "RECORD_sha256": "ca41706982dd82fc5604906516de5e7b4d0970beff5f97f25402eec0755099d8",
+      "direct_url.json_sha256": null,
+      "name": "wheel",
+      "recorded_file_count": 43,
+      "version": "0.38.4"
+    }
+  ],
+  "python_version": "3.9.21 (main, Mar 17 2025, 21:01:54) \n[Clang 20.1.0 ]"
+}

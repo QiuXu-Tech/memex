@@ -1,0 +1,338 @@
+{
+  "schema": 1,
+  "kind": "development_readonly_component_check",
+  "confirmatory": false,
+  "freeze_sha256": "98c7c704ce9f0d36916d48f09a6559c9578f307ba452da64ff69d4254b57dede",
+  "status": "development_check_passed",
+  "model_turns_started": 5,
+  "compactions_started": 1,
+  "forks_started": 3,
+  "turns": [
+    {
+      "phase": "extraction",
+      "thread_id": "01a21fd9-e26b-71d3-85e9-0d34a48d8bd8",
+      "status": "completed",
+      "prompt_sha256": "be368ea826186255331e23fb339e9dcdc960b7955cb1ff1faaece428ef74e9ea",
+      "turn_id": "01a21fd9-e2fc-77d0-b812-bb645bc96154",
+      "final": "{\"claims\":[{\"type\":\"test_result\",\"scope\":\"native-smoke-02\",\"entity\":\"node --test --test-reporter=tap sum.test.mjs\",\"version\":\"b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\",\"basis\":{\"field\":\"request\",\"quote\":\"Recommend release only if the configured tests pass for that artifact; otherwise recommend hold.\"},\"uncertainty\":[\"No test result or receipt was supplied.\",\"The artifact digest covers sum.mjs only, so whether the test suite and dependencies are included in the tested revision is unknown.\"]},{\"type\":\"current_version\",\"scope\":\"native-smoke-02\",\"entity\":\"sum.mjs\",\"version\":\"b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\",\"basis\":{\"field\":\"context\",\"quote\":\"Recorded target artifact SHA-256: b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\"},\"uncertainty\":[\"This is a recorded snapshot artifact, not a live workspace observation.\",\"The digest covers only the recorded sum.mjs file.\"]}],\"unresolved\":[\"The configured test result for artifact SHA-256 b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec is missing, so the release-versus-hold condition cannot be resolved.\",\"The original test receipt event ID requested for citation was not supplied.\",\"The relationship between the recorded sum.mjs digest and the versions of sum.test.mjs, Node.js, and other test inputs is unspecified.\",\"No operation is authorized; therefore no operation_authorization claim can be established.\"]}"
+    },
+    {
+      "phase": "prelude",
+      "thread_id": "01a21fda-2a1f-7d83-8f36-72e8ca736c49",
+      "status": "completed",
+      "prompt_sha256": "1c7b4c880bbf96a7f5bb763f96eaad7a761e2e79c9e81f766b9a43b7668e417b",
+      "turn_id": "01a21fda-2a71-7793-8a91-9dcd800ba50e",
+      "final": "Received and retained the archived event stream."
+    },
+    {
+      "phase": "D_recommendation",
+      "thread_id": "01a21fda-71e2-7180-9842-cc1f6d32655f",
+      "status": "completed",
+      "prompt_sha256": "861fb202edbba065043471cbe20506c4e75fc19417b38dfcd88b66d5fc651ea5",
+      "turn_id": "01a21fda-7230-72a1-a8b7-2eb9ea8da49b",
+      "final": "{\"recommendation\":\"hold\",\"targetVersion\":\"b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\",\"evidenceEventIds\":[\"exec-0fc7450a-e3a0-487e-986f-cf1689853d09\"],\"explanation\":\"The archived receipt for the configured command records one failed test with exit code 1 for the target artifact (expected 42, actual 43).\"}"
+    },
+    {
+      "phase": "A_recommendation",
+      "thread_id": "01a21fda-98c7-7692-8817-c65719c58276",
+      "status": "completed",
+      "prompt_sha256": "cd09c1f8201eb6796806f3bc2bc87a10af6461eacd3e72ea75753f1a1bfb76e7",
+      "turn_id": "01a21fda-9914-7b13-961b-2872ad72351f",
+      "final": "{\"recommendation\":\"hold\",\"targetVersion\":\"b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\",\"evidenceEventIds\":[\"exec-0fc7450a-e3a0-487e-986f-cf1689853d09\"],\"explanation\":\"The archived receipt for the target artifact records the configured test command failing with exit code 1: expected 42, actual 43.\"}"
+    },
+    {
+      "phase": "C_recommendation",
+      "thread_id": "01a21fda-c116-78d0-9e39-feee996cb88c",
+      "status": "completed",
+      "prompt_sha256": "861fb202edbba065043471cbe20506c4e75fc19417b38dfcd88b66d5fc651ea5",
+      "turn_id": "01a21fda-c165-7dc1-850e-fba4b9ed0335",
+      "final": "{\"recommendation\":\"hold\",\"targetVersion\":\"b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\",\"evidenceEventIds\":[\"exec-0fc7450a-e3a0-487e-986f-cf1689853d09\"],\"explanation\":\"The archived test receipt for the target artifact records the configured test as failed with exit code 1 (expected 42, actual 43).\"}"
+    }
+  ],
+  "arms": [
+    {
+      "arm": "D",
+      "status": "completed",
+      "first_attempt": true,
+      "parent_thread_id": "01a21fda-2a1f-7d83-8f36-72e8ca736c49",
+      "thread_id": "01a21fda-71e2-7180-9842-cc1f6d32655f",
+      "additional_packet_bytes": 3447,
+      "additional_packet_sha256": "60abb0c45360668cc7298895b5283b53ded53d0e4030435a6f117f7d7a42741e",
+      "evaluation": {
+        "parse_ok": true,
+        "recorded_target_version": true,
+        "recommendation_matches_recorded_receipt": true,
+        "cites_only_actual_current_receipt": true,
+        "all_checks": true,
+        "parsed": {
+          "recommendation": "hold",
+          "targetVersion": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec",
+          "evidenceEventIds": [
+            "exec-0fc7450a-e3a0-487e-986f-cf1689853d09"
+          ],
+          "explanation": "The archived receipt for the configured command records one failed test with exit code 1 for the target artifact (expected 42, actual 43)."
+        }
+      }
+    },
+    {
+      "arm": "A",
+      "status": "completed",
+      "first_attempt": true,
+      "parent_thread_id": "01a21fda-2a1f-7d83-8f36-72e8ca736c49",
+      "thread_id": "01a21fda-98c7-7692-8817-c65719c58276",
+      "additional_packet_bytes": 0,
+      "additional_packet_sha256": null,
+      "evaluation": {
+        "parse_ok": true,
+        "recorded_target_version": true,
+        "recommendation_matches_recorded_receipt": true,
+        "cites_only_actual_current_receipt": true,
+        "all_checks": true,
+        "parsed": {
+          "recommendation": "hold",
+          "targetVersion": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec",
+          "evidenceEventIds": [
+            "exec-0fc7450a-e3a0-487e-986f-cf1689853d09"
+          ],
+          "explanation": "The archived receipt for the target artifact records the configured test command failing with exit code 1: expected 42, actual 43."
+        }
+      }
+    },
+    {
+      "arm": "C",
+      "status": "completed",
+      "first_attempt": true,
+      "parent_thread_id": "01a21fda-2a1f-7d83-8f36-72e8ca736c49",
+      "thread_id": "01a21fda-c116-78d0-9e39-feee996cb88c",
+      "additional_packet_bytes": 3447,
+      "additional_packet_sha256": "60abb0c45360668cc7298895b5283b53ded53d0e4030435a6f117f7d7a42741e",
+      "evaluation": {
+        "parse_ok": true,
+        "recorded_target_version": true,
+        "recommendation_matches_recorded_receipt": true,
+        "cites_only_actual_current_receipt": true,
+        "all_checks": true,
+        "parsed": {
+          "recommendation": "hold",
+          "targetVersion": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec",
+          "evidenceEventIds": [
+            "exec-0fc7450a-e3a0-487e-986f-cf1689853d09"
+          ],
+          "explanation": "The archived test receipt for the target artifact records the configured test as failed with exit code 1 (expected 42, actual 43)."
+        }
+      }
+    }
+  ],
+  "host_traces": [
+    {
+      "label": "main-host",
+      "status": "closed",
+      "usage_notifications": [
+        {
+          "threadId": "01a21fda-2a1f-7d83-8f36-72e8ca736c49",
+          "turnId": "01a21fda-2a71-7793-8a91-9dcd800ba50e",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 13540,
+              "inputTokens": 13528,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 12,
+              "reasoningOutputTokens": 0
+            },
+            "last": {
+              "totalTokens": 13540,
+              "inputTokens": 13528,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 12,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a21fda-2a1f-7d83-8f36-72e8ca736c49",
+          "turnId": "01a21fda-49c7-7662-bfd1-ba51656ce5c4",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 13540,
+              "inputTokens": 13528,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 12,
+              "reasoningOutputTokens": 0
+            },
+            "last": {
+              "totalTokens": 2656,
+              "inputTokens": 0,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 0,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a21fda-71e2-7180-9842-cc1f6d32655f",
+          "turnId": "01a21fda-7230-72a1-a8b7-2eb9ea8da49b",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 15467,
+              "inputTokens": 15350,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 117,
+              "reasoningOutputTokens": 0
+            },
+            "last": {
+              "totalTokens": 15467,
+              "inputTokens": 15350,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 117,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a21fda-98c7-7692-8817-c65719c58276",
+          "turnId": "01a21fda-9914-7b13-961b-2872ad72351f",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 14345,
+              "inputTokens": 14230,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 115,
+              "reasoningOutputTokens": 0
+            },
+            "last": {
+              "totalTokens": 14345,
+              "inputTokens": 14230,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 115,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a21fda-c116-78d0-9e39-feee996cb88c",
+          "turnId": "01a21fda-c165-7dc1-850e-fba4b9ed0335",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 15466,
+              "inputTokens": 15350,
+              "cachedInputTokens": 14080,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 116,
+              "reasoningOutputTokens": 0
+            },
+            "last": {
+              "totalTokens": 15466,
+              "inputTokens": 15350,
+              "cachedInputTokens": 14080,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 116,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ]
+    },
+    {
+      "label": "extract-host",
+      "status": "closed",
+      "usage_notifications": [
+        {
+          "threadId": "01a21fd9-e26b-71d3-85e9-0d34a48d8bd8",
+          "turnId": "01a21fd9-e2fc-77d0-b812-bb645bc96154",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 13196,
+              "inputTokens": 12619,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 577,
+              "reasoningOutputTokens": 160
+            },
+            "last": {
+              "totalTokens": 13196,
+              "inputTokens": 12619,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 577,
+              "reasoningOutputTokens": 160
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ]
+    }
+  ],
+  "actual_spend": null,
+  "standardized_cost": null,
+  "cost_completeness": "raw_native_usage_only_no_billing_or_compaction_reconciliation",
+  "live_execution_count": 0,
+  "live_workspace_binding": false,
+  "claim_extraction_coverage_established": false,
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "model": "gpt-6-astra",
+      "displayName": "GPT-6-Astra",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    }
+  ],
+  "elapsed_seconds": 72.680136415991,
+  "compaction": {
+    "turnId": "01a21fda-49c7-7662-bfd1-ba51656ce5c4",
+    "itemId": "01a21fda-49ce-7471-bcc6-30044c87bc88",
+    "elapsedSeconds": 10.23546133399941
+  },
+  "shared_prefix": {
+    "parent_thread_id": "01a21fda-2a1f-7d83-8f36-72e8ca736c49",
+    "prelude_prompt_sha256": "1c7b4c880bbf96a7f5bb763f96eaad7a761e2e79c9e81f766b9a43b7668e417b",
+    "prelude_final_sha256": "0b4823bdc2c81df19f5295a6e75a6423d06ae4262b4b0bfc39260aeb3aec68d9",
+    "compaction": {
+      "turnId": "01a21fda-49c7-7662-bfd1-ba51656ce5c4",
+      "itemId": "01a21fda-49ce-7471-bcc6-30044c87bc88",
+      "elapsedSeconds": 10.23546133399941
+    },
+    "fork_semantics": "native thread/fork of the same unchanged compacted parent; internal compacted text is not exposed"
+  },
+  "checks": {
+    "one_actual_native_compaction": true,
+    "three_forks_same_parent": true,
+    "C_D_full_packets_identical": true,
+    "D_reuses_test_original": true,
+    "C_reopens_test_original": true,
+    "all_recommendations_match_fixture": true,
+    "no_workspace_files_created": true
+  }
+}

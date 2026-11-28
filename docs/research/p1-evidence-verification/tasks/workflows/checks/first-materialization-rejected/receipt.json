@@ -1,0 +1,8 @@
+{
+  "status": "failed",
+  "error": "private_public_path",
+  "source_candidate": "pallets__flask-5014",
+  "cause": "A tracked base test fixture named tests/test_apps/.env was selected by the broad tests whitelist. No file from this attempt was published as a public package.",
+  "resolution": "Retain the strict no-dotenv boundary; explicitly exclude that fixture and record its Git blob in the export receipt. The exported tree does not support claims that all upstream CLI dotenv tests run unchanged.",
+  "model_requests": 0
+}

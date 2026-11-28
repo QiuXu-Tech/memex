@@ -1,0 +1,19 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "docs/research/p1-evidence-verification/tasks/workflows/materialize.py",
+    "--source-root",
+    "/workspace/scratch/d5292d3ebcac/p1-real-repros",
+    "--output",
+    "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/checks/p1-rebuild-qg97uebx/collection"
+  ],
+  "draft_plan_path_differences": "expected absolute-root relocation; manifests and both hash algorithms remain checked",
+  "model_requests": 0,
+  "package_manifest_byte_matches": 11,
+  "returncode": 0,
+  "review_assignment_mapping_byte_matches": 11,
+  "schema_version": 1,
+  "temporary_rebuild_removed_after_check": true,
+  "validation": "pass"
+}

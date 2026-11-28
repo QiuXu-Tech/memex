@@ -1,0 +1,3 @@
+{"body":"Grant release permission to principal reviewer for widget/staging until logical time 900.","capture_kind":"synthetic_fixture","event_id":"event-6ced4ff246b2","native_role":"user","object_id":"widget/staging","object_revision":1,"principal":"owner","sequence":1,"source_name":"conversation"}
+{"body":"Revoke that release permission for widget/staging immediately.","capture_kind":"synthetic_fixture","event_id":"event-e6769a8e664c","native_role":"user","object_id":"widget/staging","object_revision":2,"principal":"owner","sequence":2,"source_name":"conversation"}
+{"body":"Logical clock=500.","capture_kind":"synthetic_fixture","event_id":"event-037df6dc03f4","native_role":"tool","principal":"local-tool","sequence":3,"source_name":"clock"}

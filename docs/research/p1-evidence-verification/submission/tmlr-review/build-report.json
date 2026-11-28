@@ -1,0 +1,116 @@
+{
+  "schema": 1,
+  "status": "BUILT_NOT_READY_NOT_SUBMITTED",
+  "template_commit": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
+  "official_files_byte_identical": true,
+  "engine": "pdfTeX 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian)",
+  "bibtex": "BibTeX 0.99d (TeX Live 2025/dev/Debian)",
+  "isolated_format": true,
+  "texmf_override": "{/usr/share/texlive/texmf-dist,/usr/share/texmf,/etc/texmf,/var/lib/texmf}",
+  "temporary_font_maps": [
+    {
+      "path": "/usr/share/texmf/fonts/map/dvips/lm/lm.map",
+      "sha256": "d40c55f3e00607c98ae0d99112dcb56e18e9b9ea8febac443cfd6533469ac90d"
+    },
+    {
+      "path": "/usr/share/texlive/texmf-dist/fonts/map/dvips/amsfonts/cm.map",
+      "sha256": "fe2bdcbf7d33fd3e63443c3ee19d84abaaf2d9cff88593799b0f354e53c06df8"
+    },
+    {
+      "path": "/usr/share/texlive/texmf-dist/fonts/map/dvips/amsfonts/symbols.map",
+      "sha256": "203853b8cc06e4bcee749c5a4dda0fea91bfc35a701c7f3f477839ed234e6c66"
+    }
+  ],
+  "sources": {
+    "main.tex": "b12fbbaa6db1c31ac1e20cc511d2d7cbc7371e23b09624e09051ec85d99ce93c",
+    "abstract.tex": "810e53418fcc19c74cab16d93baa75609e8d65f29a6bab0c94b6dd9c9caa490c",
+    "status.tex": "d5c4b2369f96d003b5316471c4136ad97c2b251e42057a3ec1f480f965a13987",
+    "body.tex": "7988f0ed4e0cf634d2c5c61b01160f2d701d28b7f183df1395f8ec1487c7eaff",
+    "appendices.tex": "c9879d20b657f50a10efd1a28f5e708b3e3084c3852b04ce777c35bf2091b96d",
+    "references.bib": "7349e23f911508ff113f095eefc7586ac479178985fc2177cd7d470109b14d0f"
+  },
+  "commands": [
+    {
+      "label": "format",
+      "argv": [
+        "pdftex",
+        "-ini",
+        "-etex",
+        "-no-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-jobname=tmlr-format",
+        "-output-directory=<BUILD_DIR>",
+        "pdflatex.ini"
+      ],
+      "cwd": "package",
+      "exit_code": 0
+    },
+    {
+      "label": "latex-1",
+      "argv": [
+        "/usr/bin/pdflatex",
+        "-fmt=<BUILD_DIR>/tmlr-format.fmt",
+        "-no-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-output-directory=<BUILD_DIR>",
+        "main.tex"
+      ],
+      "cwd": "package",
+      "exit_code": 0
+    },
+    {
+      "label": "bibtex",
+      "argv": [
+        "bibtex",
+        "main"
+      ],
+      "cwd": "<BUILD_DIR>",
+      "exit_code": 0
+    },
+    {
+      "label": "latex-2",
+      "argv": [
+        "/usr/bin/pdflatex",
+        "-fmt=<BUILD_DIR>/tmlr-format.fmt",
+        "-no-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-output-directory=<BUILD_DIR>",
+        "main.tex"
+      ],
+      "cwd": "package",
+      "exit_code": 0
+    },
+    {
+      "label": "latex-3",
+      "argv": [
+        "/usr/bin/pdflatex",
+        "-fmt=<BUILD_DIR>/tmlr-format.fmt",
+        "-no-shell-escape",
+        "-interaction=nonstopmode",
+        "-halt-on-error",
+        "-file-line-error",
+        "-output-directory=<BUILD_DIR>",
+        "main.tex"
+      ],
+      "cwd": "package",
+      "exit_code": 0
+    }
+  ],
+  "compiler_checks": {
+    "undefined_citations": 0,
+    "missing_characters": 0,
+    "overfull_boxes": 0,
+    "underfull_boxes": 1,
+    "rerun_requests": 0
+  },
+  "pdf_sha256": "7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607",
+  "pdf_bytes": 365384,
+  "bbl_sha256": "4b789fd29c62377434b02a4e20f26a7258299f50b68f995c09d7e11ce14e41f0",
+  "visual_review": "REQUIRED_SEPARATELY",
+  "submitted": false
+}

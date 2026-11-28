@@ -1,0 +1,732 @@
+{
+  "schema_version": 1,
+  "kind": "source_environment_qualification_only",
+  "recorded_at": "2026-11-28T02:02:29.754319+00:00",
+  "dataset_revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+  "candidate_count_total": 16,
+  "project_count": 8,
+  "previously_qualified_not_repeated": 2,
+  "remaining_candidates_attempted": 14,
+  "remaining_candidates_not_attempted": 0,
+  "newly_qualified_candidates": 10,
+  "qualified_candidates_total": 12,
+  "candidates_with_bounded_limitations": 4,
+  "attempt_count_this_expansion": 29,
+  "attempt_counts_by_number": {
+    "1": 14,
+    "2": 11,
+    "3": 4
+  },
+  "original_attempt_receipt_status_counts": {
+    "setup_or_acquisition_failure": 12,
+    "test_or_environment_failure": 8,
+    "qualified_expected_transitions": 9
+  },
+  "source_test_phase_invocations": {
+    "pytest": 30,
+    "sympy_bin_test": 4,
+    "pytest_precollection_exit": 6,
+    "total": 34,
+    "scope": "top-level actual driver invocations, including 6 pytest precollection version-guard exits; nested pytester subprocess invocation count not instrumented",
+    "nested_pytester_invocations": null
+  },
+  "model_requests": 0,
+  "formal_tasks_constructed": 0,
+  "formal_method_arm_runs": 0,
+  "formal_sample_exclusions": 0,
+  "budget_policy": "per candidate, all attempts combined: setup <=360 seconds, each base/fixed phase <=180 seconds; postprocessing separate read-only",
+  "rule_revision_file": "qualification-revisions.json",
+  "candidates": [
+    {
+      "candidate_id": "psf__requests-5414",
+      "project_id": "psf/requests",
+      "qualified": false,
+      "qualification_status": "bounded_limitation",
+      "attempts_this_expansion": 3,
+      "latest_attempt_number": 3,
+      "latest_receipt": "diagnostic-3/psf__requests-5414/reproduction.json",
+      "latest_receipt_sha256": "b942a92a4675b4adef7689a8659644c9366397fe8f56525b02026bff633050fe",
+      "base": {
+        "tests": 290,
+        "passed": 283,
+        "failures": 5,
+        "errors": 1,
+        "skipped": 1
+      },
+      "fixed": {
+        "tests": 290,
+        "passed": 284,
+        "failures": 4,
+        "errors": 1,
+        "skipped": 1
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": false,
+        "all_official_p2p_pass_after_fix": false,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 130,
+        "all_expected_transitions_verified": false
+      },
+      "phase_log_sha256": {
+        "base.stdout": "62c2ac0d23b1000eba256ddf329ce64e7749088f4dbb2178ada9e0fdd8e50e6f",
+        "base.stderr": "3b9a8372dd4413082b451c5db5185d03d68e2dc7c72b0240e57a7e4f2b9a8cce",
+        "fixed.stdout": "8448b20e987bc93608616ef74d77dee7b99f7a9bc9bf00c1ee3755a1f4a173b0",
+        "fixed.stderr": "ea83e2ecdceabfa9a9f5f14c821ff7f58bcadd210ce68de1dd84cb066ea24079"
+      },
+      "cumulative_setup_seconds": 28.309591155997623,
+      "cumulative_phase_seconds": {
+        "base": 34.54853954600003,
+        "fixed": 34.3205200400007
+      },
+      "limitation": "Target regression changes fail to pass, but unchanged isolation has no host resolver and unreachable-network assumptions cause 4 failures and 1 error after fix; full official P2P inventory does not pass. No network controls changed.",
+      "formal_task": false
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "project_id": "psf/requests",
+      "qualified": true,
+      "qualification_status": "previously_qualified_not_repeated",
+      "attempts_this_expansion": 0,
+      "latest_receipt": "../reproduction/psf__requests-6028/reproduction.json",
+      "latest_receipt_sha256": "cd3e90837c2c4648b5340948f8262e103395114a93c9e164a4d5762eb3012a22",
+      "base": {
+        "tests": 214,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 11,
+        "passed": 201
+      },
+      "fixed": {
+        "tests": 214,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 11,
+        "passed": 203
+      },
+      "counts_source": "prior JUnit",
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pallets__flask-5014",
+      "project_id": "pallets/flask",
+      "qualified": true,
+      "qualification_status": "previously_qualified_not_repeated",
+      "attempts_this_expansion": 0,
+      "latest_receipt": "../reproduction/pallets__flask-5014/reproduction.json",
+      "latest_receipt_sha256": "6931332a398c894584adde938af80a3477908b5a2049792509565d8f247085cf",
+      "base": {
+        "tests": 60,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 59
+      },
+      "fixed": {
+        "tests": 60,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 60
+      },
+      "counts_source": "prior JUnit",
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-5262",
+      "project_id": "pytest-dev/pytest",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 3,
+      "latest_attempt_number": 3,
+      "latest_receipt": "diagnostic-3/pytest-dev__pytest-5262/reproduction.json",
+      "latest_receipt_sha256": "e23154cb149c206de410e3c971242045e62940036719e8babf3bb64704414660",
+      "base": {
+        "tests": 116,
+        "passed": 109,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 6
+      },
+      "fixed": {
+        "tests": 116,
+        "passed": 110,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 6
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 108,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "430e13ed0c1af2f14e10808a102475daf40fcc3b804be5fc7e6e76cc9e6cb000",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "95abb3b30d998937b485c5fd0526f7c85ad4a43318fb2fc0732cc30c0ffac3ef",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 55.60956215299939,
+      "cumulative_phase_seconds": {
+        "base": 8.909533240999735,
+        "fixed": 8.711950724000417
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7982",
+      "project_id": "pytest-dev/pytest",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 3,
+      "latest_attempt_number": 3,
+      "latest_receipt": "diagnostic-3/pytest-dev__pytest-7982/reproduction.json",
+      "latest_receipt_sha256": "340be520e9049548924295383862d0198044140d1deab93fe8cbafb884b7fdca",
+      "base": {
+        "tests": 80,
+        "passed": 78,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 1
+      },
+      "fixed": {
+        "tests": 80,
+        "passed": 79,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 78,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "9a96f0f1003f1fd2b2dcbe9ab084e92dfdb6edcd7abf0e54d15fabc3b34d1112",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "f9ff98ed0da79723b505e2c91ecdbbf80876bd8c14ff520959c5234b35875d0d",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 44.19937701700019,
+      "cumulative_phase_seconds": {
+        "base": 3.0896137849995284,
+        "fixed": 2.989573263001148
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7432",
+      "project_id": "pytest-dev/pytest",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 3,
+      "latest_attempt_number": 3,
+      "latest_receipt": "diagnostic-3/pytest-dev__pytest-7432/reproduction.json",
+      "latest_receipt_sha256": "70ce3b78b94e68153f4327ec64a1a6ec98d65518277f6a82ed1a377b2f89f545",
+      "base": {
+        "tests": 79,
+        "passed": 78,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "fixed": {
+        "tests": 79,
+        "passed": 79,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 77,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "600b1ae51e9cebbab3ed01a7790453028bbee69f3ba5d3b4c4e25c91e29c54e9",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "e59da8cf95507ebfaf2ef87f5edc48370e588695b84de38047f16aa9a66f0c40",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 44.50724257100046,
+      "cumulative_phase_seconds": {
+        "base": 2.9373427129994525,
+        "fixed": 2.842918635999922
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-4970",
+      "project_id": "pylint-dev/pylint",
+      "qualified": false,
+      "qualification_status": "setup_blocked",
+      "attempts_this_expansion": 1,
+      "latest_attempt_number": 1,
+      "latest_receipt": "pylint-dev__pylint-4970/reproduction.json",
+      "latest_receipt_sha256": "6de1243e3c0542dfdabea135e3822943a43e1cbbdf7cef6598b88a4e7c41f047",
+      "base": null,
+      "fixed": null,
+      "counts_source": "JUnit",
+      "official_label_coverage": null,
+      "phase_log_sha256": {},
+      "cumulative_setup_seconds": 19.108443922000333,
+      "cumulative_phase_seconds": {
+        "base": 0,
+        "fixed": 0
+      },
+      "limitation": "Pinned astroid 2.7.3 requires old wrapt; wrapt 1.12.1 has no compatible binary wheel under this CPython 3.9 wheel-only profile. Setup blocked, zero test phases. Not a claim that the official container cannot run.",
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-7080",
+      "project_id": "pylint-dev/pylint",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 2,
+      "latest_attempt_number": 2,
+      "latest_receipt": "followup-2/pylint-dev__pylint-7080/reproduction.json",
+      "latest_receipt_sha256": "b00bb00d5640a03501a3fd8c0a657cd0fd0acd611bd0aa98ee45597c54f8ac14",
+      "base": {
+        "tests": 125,
+        "passed": 123,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 1
+      },
+      "fixed": {
+        "tests": 125,
+        "passed": 124,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 120,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "d0d8d987abf7287bf27ebb1d98d69acbec9b2341727ce0a26f0cb3c24171485b",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "d22d8ef55df17ee01cc5ed71b02930914ea4b4072bd01db4411c96c174350488",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 36.81752415900064,
+      "cumulative_phase_seconds": {
+        "base": 20.63978129000043,
+        "fixed": 19.837224806999984
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "project_id": "sphinx-doc/sphinx",
+      "qualified": false,
+      "qualification_status": "bounded_limitation",
+      "attempts_this_expansion": 2,
+      "latest_attempt_number": 2,
+      "latest_receipt": "followup-2/sphinx-doc__sphinx-9367/reproduction.json",
+      "latest_receipt_sha256": "404fe7dec140183a3859fde5d262f92bdc46175135d872162151171c8a15073d",
+      "base": {
+        "tests": 42,
+        "passed": 41,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "fixed": {
+        "tests": 42,
+        "passed": 42,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": false,
+        "all_official_p2p_pass_after_fix": false,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 25,
+        "all_expected_transitions_verified": false
+      },
+      "phase_log_sha256": {
+        "base.stdout": "8f8754b83b47b183ddef37657b2bf0a59fe63838021f34c79f82d4cbba2ab6b9",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "7a4563b0134ab9d02941b366ea71199108d76740068594df300cfc7e8434e0ae",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 27.123698526001135,
+      "cumulative_phase_seconds": {
+        "base": 0.5150425969995922,
+        "fixed": 0.5154215040001873
+      },
+      "limitation": "Actual module goes from 41 pass/1 failure to 42 pass; target F2P agrees. Fifteen of 25 old P2P label identities do not match current pinned official parser/pytest names. No custom permissive normalization applied.",
+      "formal_task": false
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "project_id": "sphinx-doc/sphinx",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 2,
+      "latest_attempt_number": 2,
+      "latest_receipt": "followup-2/sphinx-doc__sphinx-8721/reproduction.json",
+      "latest_receipt_sha256": "6cc2c7689307a7a20d7b011d77572d37067a39c68a5b3d56e8e5225c3f9ee690",
+      "base": {
+        "tests": 5,
+        "passed": 4,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "fixed": {
+        "tests": 5,
+        "passed": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 3,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "fcadad07e0eeb7184970a05e7962f471d1f019a18aa60d0d7c91535df686189d",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "aa132ac254621c8f010a0af448839690f8bd9e52a8cbd9e1b4f100e2531b0460",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 27.08313002700106,
+      "cumulative_phase_seconds": {
+        "base": 1.8190789410000434,
+        "fixed": 1.7691633229997024
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "project_id": "sympy/sympy",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 2,
+      "latest_attempt_number": 2,
+      "latest_receipt": "followup-2/sympy__sympy-14711/reproduction.json",
+      "latest_receipt_sha256": "db9679acc366733de318830ae0bf495e4c879fe6b609b80eceed180f8491cf23",
+      "base": {
+        "tests": 4,
+        "passed": 3,
+        "failures": 0,
+        "errors": 1,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_passes": 0
+      },
+      "fixed": {
+        "tests": 4,
+        "passed": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "expected_failures": 0,
+        "unexpected_passes": 0
+      },
+      "counts_source": "upstream native runner terminal summary (not JUnit)",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 2,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "fab49a538b7c4034691b1b7396ae2559efb6d59fd4dd3ca2c3cf52715e88985e",
+        "base.stderr": "e29c07bc33b332a104d8b9040f4f8cb9493fce27d1a33ed7aea6c0e99f625f90",
+        "fixed.stdout": "d483e74a8b19ab04b14fa665a3c02aeb7f5b665df93d9ee14c497793afe7e0b9",
+        "fixed.stderr": "e29c07bc33b332a104d8b9040f4f8cb9493fce27d1a33ed7aea6c0e99f625f90"
+      },
+      "cumulative_setup_seconds": 21.94188794799993,
+      "cumulative_phase_seconds": {
+        "base": 2.824269834000006,
+        "fixed": 2.8771412030000647
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "project_id": "sympy/sympy",
+      "qualified": false,
+      "qualification_status": "bounded_limitation",
+      "attempts_this_expansion": 2,
+      "latest_attempt_number": 2,
+      "latest_receipt": "followup-2/sympy__sympy-19637/reproduction.json",
+      "latest_receipt_sha256": "f01540a31263d864e39429e95dd35ca9a8f7e8b6b680c78ee96971247c67b5df",
+      "base": {
+        "tests": 50,
+        "passed": 40,
+        "failures": 0,
+        "errors": 3,
+        "skipped": 5,
+        "expected_failures": 2,
+        "unexpected_passes": 0
+      },
+      "fixed": {
+        "tests": 50,
+        "passed": 41,
+        "failures": 0,
+        "errors": 2,
+        "skipped": 5,
+        "expected_failures": 2,
+        "unexpected_passes": 0
+      },
+      "counts_source": "upstream native runner terminal summary (not JUnit)",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 40,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "e38683d08e877e3d36355a9ddeaa868c101f10128ace26cd246d07b7821c3a2f",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "aa351b32bf2afed542c1dca84ca59162ab93ff521848465502bc0b8657e775ec",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 20.53855157200087,
+      "cumulative_phase_seconds": {
+        "base": 1.4681006279997746,
+        "fixed": 1.4189900629999102
+      },
+      "limitation": "All official expected transitions pass, but native module still has 2 Python 3.9 AST compatibility exceptions outside that inventory; fixed process exits 1. Not full-module qualified.",
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pydata__xarray-4629",
+      "project_id": "pydata/xarray",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 2,
+      "latest_attempt_number": 2,
+      "latest_receipt": "followup-2/pydata__xarray-4629/reproduction.json",
+      "latest_receipt_sha256": "5af1c23519aa9996614378dde8a15fc868214329f5106c05e9f9657d1045ebfc",
+      "base": {
+        "tests": 33,
+        "passed": 32,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "fixed": {
+        "tests": 33,
+        "passed": 33,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 32,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "057e2e56f49563fe2aceba28dde70907015213a03ac79c46f1c9c99e93cdf60a",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "cc1fa99468fb29c750313da5992774765518d7dc0c91c00d337ecb6560c9af8c",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 32.02423959999851,
+      "cumulative_phase_seconds": {
+        "base": 1.4689957180007696,
+        "fixed": 1.3734821719999672
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "pydata__xarray-6461",
+      "project_id": "pydata/xarray",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 2,
+      "latest_attempt_number": 2,
+      "latest_receipt": "followup-2/pydata__xarray-6461/reproduction.json",
+      "latest_receipt_sha256": "26496eae9930c6e8480df12df08991111499acdf686f35fc0c331a3434781793",
+      "base": {
+        "tests": 249,
+        "passed": 247,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 1
+      },
+      "fixed": {
+        "tests": 249,
+        "passed": 248,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 1
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 247,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "dc55931171f35eda33f8e0ea5b4c742dc1614f8cf218527e7ace9385d16fc975",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "a1c81a65ce0ff8a97c2e2d15af253cf07654d7f7e1173c109844dfc7db9c429d",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 29.857034951999594,
+      "cumulative_phase_seconds": {
+        "base": 5.045379534999483,
+        "fixed": 5.492689264000546
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3069",
+      "project_id": "mwaskom/seaborn",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 1,
+      "latest_attempt_number": 1,
+      "latest_receipt": "mwaskom__seaborn-3069/reproduction.json",
+      "latest_receipt_sha256": "062f3d1dc1b4b9959f334dceda0f7569814e16878a5107015c18874f2aa829e1",
+      "base": {
+        "tests": 175,
+        "passed": 168,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 5
+      },
+      "fixed": {
+        "tests": 175,
+        "passed": 170,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 5
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 2,
+        "official_pass_to_pass_count": 94,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "77af59cf9588290ac6d041b49c40ade7af5cd626d6e6f330323c564b3ec32eac",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "e4cf2eabd54323212dcb99362bd8786b3b32f00b7ef0c7bea00fa253d5f53c39",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 39.7284224849991,
+      "cumulative_phase_seconds": {
+        "base": 12.263219710000158,
+        "fixed": 11.71821174300021
+      },
+      "limitation": null,
+      "formal_task": false
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3187",
+      "project_id": "mwaskom/seaborn",
+      "qualified": true,
+      "qualification_status": "qualified_expected_transitions_and_module",
+      "attempts_this_expansion": 1,
+      "latest_attempt_number": 1,
+      "latest_receipt": "mwaskom__seaborn-3187/reproduction.json",
+      "latest_receipt_sha256": "172aef68aaca3ce182ba53cc7971fe167ba59871e995bdda4bdf24dc3f6077f0",
+      "base": {
+        "tests": 256,
+        "passed": 249,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 5
+      },
+      "fixed": {
+        "tests": 256,
+        "passed": 251,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 5
+      },
+      "counts_source": "JUnit",
+      "official_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 2,
+        "official_pass_to_pass_count": 248,
+        "all_expected_transitions_verified": true
+      },
+      "phase_log_sha256": {
+        "base.stdout": "5e9c25f2b8d5f0367086f8e7f7ed36cee10a82ab554378c5929d0c4b004beee6",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "7a47e1d6953b279d8377fb7fce28d69fdf80a9437d6110b5de6054e6b08fb259",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "cumulative_setup_seconds": 50.82224911400044,
+      "cumulative_phase_seconds": {
+        "base": 39.649826949999806,
+        "fixed": 40.758312805999594
+      },
+      "limitation": null,
+      "formal_task": false
+    }
+  ]
+}

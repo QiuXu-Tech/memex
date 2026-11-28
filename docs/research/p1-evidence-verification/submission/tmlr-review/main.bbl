@@ -1,0 +1,132 @@
+\begin{thebibliography}{16}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Bao et~al.(2026)Bao, Zhang, Zhang, Lou, Wen, and Luo]{bao2026rawrag}
+Zhengye Bao, Shengtao Zhang, Haokai Zhang, Shiqi Lou, Muning Wen, and Minnan
+  Luo.
+\newblock Is complex agentic memory always needed? naive {RAG} is stronger than
+  we thought, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.30755}.
+\newblock Version 1 inspected.
+
+\bibitem[Chen et~al.(2026)Chen, Chen, Chen, Dou, Zhang, Ge, Ni, Gui, Zhang,
+  Huang, and Pan]{chen2026compactbench}
+Jiayi Chen, Lizhe Chen, Yujia Chen, Shihan Dou, Ming Zhang, Chendi Ge, Shiguang
+  Ni, Tao Gui, Qi~Zhang, Xuanjing Huang, and Maxm Pan.
+\newblock {CompAct-Bench}: A benchmark for working-context compaction in
+  long-horizon agent tasks, 2026.
+\newblock URL \url{https://arxiv.org/abs/2611.25673}.
+\newblock Version 1 inspected; author spelling follows the primary record.
+
+\bibitem[Feng et~al.(2026)Feng, Zhang, Yang, and
+  Xie]{feng2026missingcomplement}
+Zhexi Feng, Ruiyi Zhang, Yongbo Yang, and Pengtao Xie.
+\newblock The missing complement: State-conditioned minimal sufficient evidence
+  for coding agents, 2026.
+\newblock URL \url{https://arxiv.org/abs/2609.20050}.
+\newblock Version 3 inspected.
+
+\bibitem[Jin et~al.(2026)Jin, Wang, Li, Xu, and Zhang]{jin2026memir}
+Zhengda Jin, Bingbing Wang, Jing Li, Ruifeng Xu, and Min Zhang.
+\newblock Mitigating provenance-role collapse in long-term agents via typed
+  memory representation, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.25869}.
+\newblock Version 1 inspected.
+
+\bibitem[Joshi(2026)]{joshi2026eywa}
+Resham Joshi.
+\newblock {Eywa}: Provenance-grounded long-term memory for {AI} agents, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.30771}.
+\newblock Version 1 inspected.
+
+\bibitem[Liu et~al.(2026)Liu, Shi, Li, and Wang]{liu2026helm}
+Jialong Liu, Yuling Shi, Zuchao Li, and Ping Wang.
+\newblock {HELM}: Steering long-horizon agents with learned hierarchical memory
+  and epistemic governance.
+\newblock In \emph{Proceedings of the 2026 Conference on Empirical Methods in
+  Natural Language Processing}, pp.\  16728--16753, Budapest, Hungary, October
+  2026. Association for Computational Linguistics.
+\newblock \doi{10.18653/2026.emnlp-main.721}.
+\newblock URL \url{https://aclanthology.org/2026.emnlp-main.721/}.
+
+\bibitem[{Project record (anonymized)}(2026)]{memex2026pilot}
+{Project record (anonymized)}.
+\newblock Development-only evidence-recovery report.
+\newblock Non-archival project artifact, 2026.
+\newblock Identity and direct link withheld in this unsubmitted review-format
+  draft. The non-anonymous provenance remains in the canonical project record.
+  Synthetic development evidence, not a confirmatory study.
+
+\bibitem[Ruan et~al.(2026)Ruan, Peng, Zhang, Ma, Xu, Zhou, Wang, Lv, Zhou, Fan,
+  Wang, Zhang, Miao, and Li]{ruan2026folio}
+Yubo Ruan, Tao Peng, Jiao Zhang, Chuanguo Ma, Lei Xu, Han Zhou, Wenwu Wang,
+  Xiafei Lv, Xingjie Zhou, Guiju Fan, Hao Wang, Fenghui Zhang, Mao Miao, and
+  Shuo Li.
+\newblock {Folio}: Recoverable multi-resolution context folding for
+  long-horizon language agents, 2026.
+\newblock URL \url{https://arxiv.org/abs/2611.16627}.
+\newblock Version 1 inspected.
+
+\bibitem[Salle et~al.(2026)Salle, Bhatnagar, Bethge, Abdelnabi, and
+  Andriushchenko]{salle2026compactionfriendly}
+Jeanne Salle, Hardik Bhatnagar, Matthias Bethge, Sahar Abdelnabi, and Maksym
+  Andriushchenko.
+\newblock Benchmarks are surprisingly compaction-friendly, 2026.
+\newblock URL \url{https://arxiv.org/abs/2610.31778}.
+\newblock Version 2 inspected.
+
+\bibitem[Volkov et~al.(2026)Volkov, Li, and Luo]{volkov2026statefuse}
+Sergey Volkov, Yang Li, and Ye~Luo.
+\newblock {StateFuse}: Deterministic conflict-preserving memory for multi-agent
+  systems, 2026.
+\newblock URL \url{https://arxiv.org/abs/2607.05844}.
+\newblock Version 1 inspected.
+
+\bibitem[Wu \& Zhu(2026)Wu and Zhu]{wu2026agentzero}
+Ming Wu and Pengyuan Zhu.
+\newblock Agent zero memory: Provenance-aware long-term memory for {LLM}
+  agents, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.29606}.
+\newblock Version 1 inspected.
+
+\bibitem[Xu(2026)]{xu2026gpm}
+Guodong Xu.
+\newblock Governed persistent memory: Source-bound state semantics and
+  fail-closed release for long-horizon agents, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.12476}.
+\newblock Version 2 inspected.
+
+\bibitem[Xu et~al.(2026)Xu, Xiao, Shao, Liu, and
+  Li]{xuj2026provenancelaundering}
+Jinghan Xu, Yiyong Xiao, Wanru Shao, Hankai Liu, and Xinjin Li.
+\newblock Memory provenance laundering in {LLM} agents: A non-amplification
+  firewall for persistent memory, 2026.
+\newblock URL \url{https://arxiv.org/abs/2607.29167}.
+\newblock Version 1 inspected; no acceptance status is asserted.
+
+\bibitem[Zerhoudi et~al.(2026)Zerhoudi, Mitrovic, and
+  Granitzer]{zerhoudi2026compactioncliff}
+Saber Zerhoudi, Jelena Mitrovic, and Michael Granitzer.
+\newblock The compaction cliff in long-running {AI} agent memory, 2026.
+\newblock URL \url{https://arxiv.org/abs/2608.22752}.
+\newblock arXiv version 1 inspected; the primary record also lists a CIKM 2026
+  publication.
+
+\bibitem[Zhao et~al.(2026)Zhao, Dai, Kou, and Xiu]{zhao2026memorepair}
+Yang Zhao, Chengxiao Dai, Mengying Kou, and Yue Xiu.
+\newblock {MemoRepair}: Barrier-first cascade repair in agentic memory, 2026.
+\newblock URL \url{https://arxiv.org/abs/2605.07242}.
+\newblock Version 1 inspected.
+
+\bibitem[Zhu et~al.(2026)Zhu, Chen, Yu, Wu, and Wang]{zhu2026tiermem}
+Qiming Zhu, Shunian Chen, Rui Yu, Zhehao Wu, and Benyou Wang.
+\newblock From lossy to verified: A provenance-aware tiered memory for agents,
+  2026.
+\newblock URL \url{https://arxiv.org/abs/2602.17913}.
+\newblock Version 1 inspected.
+
+\end{thebibliography}

@@ -1,0 +1,57 @@
+test_budget_limits_are_consistent_and_initial_context_is_bounded (test_paper1_taskpack.TaskPackTests.test_budget_limits_are_consistent_and_initial_context_is_bounded) ... ok
+test_cannot_inject_private_top_level_fields_into_public_metadata (test_paper1_taskpack.TaskPackTests.test_cannot_inject_private_top_level_fields_into_public_metadata) ... ok
+test_draft_plan_pairs_identical_public_inputs_without_executing (test_paper1_taskpack.TaskPackTests.test_draft_plan_pairs_identical_public_inputs_without_executing) ... ok
+test_draft_plan_rejects_different_shared_budget_contracts (test_paper1_taskpack.TaskPackTests.test_draft_plan_rejects_different_shared_budget_contracts) ... ok
+test_draft_plan_rejects_pseudo_independent_counterfactual_variants (test_paper1_taskpack.TaskPackTests.test_draft_plan_rejects_pseudo_independent_counterfactual_variants) ... ok
+test_draft_plan_uses_experiment_freezer_public_hash_algorithm (test_paper1_taskpack.TaskPackTests.test_draft_plan_uses_experiment_freezer_public_hash_algorithm) ... FAIL
+test_duplicate_json_keys_are_rejected (test_paper1_taskpack.TaskPackTests.test_duplicate_json_keys_are_rejected) ... ok
+test_future_fix_identifier_is_guarded_even_if_author_forgets_explicit_needle (test_paper1_taskpack.TaskPackTests.test_future_fix_identifier_is_guarded_even_if_author_forgets_explicit_needle) ... FAIL
+test_gold_needle_in_public_body_is_rejected (test_paper1_taskpack.TaskPackTests.test_gold_needle_in_public_body_is_rejected) ... ok
+test_identical_inputs_produce_identical_manifest_and_public_hash (test_paper1_taskpack.TaskPackTests.test_identical_inputs_produce_identical_manifest_and_public_hash) ... ok
+test_included_git_symlink_is_rejected (test_paper1_taskpack.TaskPackTests.test_included_git_symlink_is_rejected) ... ok
+test_missing_required_license_notice_blocks_export (test_paper1_taskpack.TaskPackTests.test_missing_required_license_notice_blocks_export) ... ok
+test_prepared_material_never_claims_workflow_accepted_or_human_reviewed (test_paper1_taskpack.TaskPackTests.test_prepared_material_never_claims_workflow_accepted_or_human_reviewed) ... ok
+test_public_archive_does_not_accept_evaluator_claim_fields (test_paper1_taskpack.TaskPackTests.test_public_archive_does_not_accept_evaluator_claim_fields) ... ok
+test_public_byte_mutation_is_detected (test_paper1_taskpack.TaskPackTests.test_public_byte_mutation_is_detected) ... ok
+test_public_export_contains_only_verified_public_material (test_paper1_taskpack.TaskPackTests.test_public_export_contains_only_verified_public_material) ... ok
+test_public_symlink_and_hardlink_are_rejected (test_paper1_taskpack.TaskPackTests.test_public_symlink_and_hardlink_are_rejected) ... ok
+test_source_export_cannot_overlay_gold_test_or_patch_on_base (test_paper1_taskpack.TaskPackTests.test_source_export_cannot_overlay_gold_test_or_patch_on_base) ... ok
+test_source_export_uses_exact_base_and_never_dirty_tree_or_future_git (test_paper1_taskpack.TaskPackTests.test_source_export_uses_exact_base_and_never_dirty_tree_or_future_git) ... ok
+test_synthetic_archive_cannot_claim_native_capture (test_paper1_taskpack.TaskPackTests.test_synthetic_archive_cannot_claim_native_capture) ... ok
+test_traversal_and_secret_paths_are_rejected (test_paper1_taskpack.TaskPackTests.test_traversal_and_secret_paths_are_rejected) ... ok
+test_unexpected_file_is_not_silently_left_in_public_export (test_paper1_taskpack.TaskPackTests.test_unexpected_file_is_not_silently_left_in_public_export) ... ok
+test_workspace_json_cannot_smuggle_an_answer_key (test_paper1_taskpack.TaskPackTests.test_workspace_json_cannot_smuggle_an_answer_key) ... FAIL
+
+======================================================================
+FAIL: test_draft_plan_uses_experiment_freezer_public_hash_algorithm (test_paper1_taskpack.TaskPackTests.test_draft_plan_uses_experiment_freezer_public_hash_algorithm)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_taskpack.py", line 183, in test_draft_plan_uses_experiment_freezer_public_hash_algorithm
+    self.assertEqual(result["units"][0]["public_sha256"], experiment.public_digest(pack / "public"))
+AssertionError: '4119e95c4e4d843e533330e1854d21cf5e2d577556fd5f939bda1c4bd4622aac' != '7459ad06c33c28aa73f1e889d3131375da30f145b38bb5e78b395af40122857f'
+- 4119e95c4e4d843e533330e1854d21cf5e2d577556fd5f939bda1c4bd4622aac
++ 7459ad06c33c28aa73f1e889d3131375da30f145b38bb5e78b395af40122857f
+
+
+======================================================================
+FAIL: test_future_fix_identifier_is_guarded_even_if_author_forgets_explicit_needle (test_paper1_taskpack.TaskPackTests.test_future_fix_identifier_is_guarded_even_if_author_forgets_explicit_needle)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_taskpack.py", line 257, in test_future_fix_identifier_is_guarded_even_if_author_forgets_explicit_needle
+    with self.assertRaisesRegex(tp.ContractError, "forbidden_public_literal"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_workspace_json_cannot_smuggle_an_answer_key (test_paper1_taskpack.TaskPackTests.test_workspace_json_cannot_smuggle_an_answer_key)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_taskpack.py", line 105, in test_workspace_json_cannot_smuggle_an_answer_key
+    with self.assertRaisesRegex(tp.ContractError, "evaluator_field_in_public_json"):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ContractError not raised
+
+----------------------------------------------------------------------
+Ran 23 tests in 0.227s
+
+FAILED (failures=3)

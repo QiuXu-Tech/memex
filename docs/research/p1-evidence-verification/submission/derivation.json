@@ -1,0 +1,38 @@
+{
+  "schema": 1,
+  "status": "NOT_READY_NOT_SUBMITTED",
+  "canonical_source": "../manuscript.md",
+  "canonical_source_sha256": "8694bf0573e05a6737eb4206f03599af9a5a1f2f48bf8467fb9f3f3ebae799ae",
+  "canonical_bibliography": "../references.bib",
+  "canonical_bibliography_sha256": "77ccc281ef95fd7dd9a822ee9aa7bc5248935889ebabb8cfc10d4d27b1592ca7",
+  "canonical_files_modified": false,
+  "template_commit": "7bf90efe3a0debbba703c05c43f3ff7e4d4a2992",
+  "source_revision_when_initialized": "19497ff",
+  "pending_markers_preserved": 56,
+  "reference_count": 16,
+  "scientific_text_policy": "Preserve the canonical working draft; no new results, author facts, or claims of readiness.",
+  "transformations": [
+    "Remove canonical A4/11pt/custom-margin/font/header metadata; use official default 10pt review style.",
+    "Separate abstract, body, and appendices; use automatic section numbering and natbib/BibTeX.",
+    "Allow a source filename to break at path punctuation without shrinking its font or changing a style dimension.",
+    "Keep generated section headings with following content using local page-break guards.",
+    "Add visible NOT READY/NOT SUBMITTED text and a first-page AI-use disclosure.",
+    "Replace the identifying project bibliography entry with an explicitly anonymized project record.",
+    "Withhold the exact legacy project commit in review prose; retain canonical provenance unchanged.",
+    "Do not add human names, affiliations, author contributions, acknowledgments, or funding claims."
+  ],
+  "human_origin_condition": "UNRESOLVED",
+  "human_anonymity_review": "NOT_RECORDED",
+  "generated": {
+    "abstract.md": "a1697c38ae3b9a84bc9fcd7c16e105e76bb60caa6259211602b39b35525cbda8",
+    "abstract.tex": "810e53418fcc19c74cab16d93baa75609e8d65f29a6bab0c94b6dd9c9caa490c",
+    "appendices.md": "e54a44d3a70314b00da98c76a004accd5bebc67012889c230475a33180b86f86",
+    "appendices.tex": "c9879d20b657f50a10efd1a28f5e708b3e3084c3852b04ce777c35bf2091b96d",
+    "body.md": "3c82246f43524351353b4401d33800641dd789755ffe56a07fa16e4efd8c4a21",
+    "body.tex": "7988f0ed4e0cf634d2c5c61b01160f2d701d28b7f183df1395f8ec1487c7eaff",
+    "main.tex": "b12fbbaa6db1c31ac1e20cc511d2d7cbc7371e23b09624e09051ec85d99ce93c",
+    "references.bib": "7349e23f911508ff113f095eefc7586ac479178985fc2177cd7d470109b14d0f",
+    "status.md": "a3ff86ab516e77f5b02b0b071d3aa40a03e07fe74bb7c7500cd325f7d799e7a8",
+    "status.tex": "d5c4b2369f96d003b5316471c4136ad97c2b251e42057a3ec1f480f965a13987"
+  }
+}

@@ -1,0 +1,22 @@
+An agent continuing a task after native context compaction may retain a
+conclusion while losing the evidence needed to determine whether that
+conclusion still applies. Reopening raw history can recover missing
+information, but a relevant passage may describe an earlier code
+revision, an incomplete test run, or an authorization that was later
+withdrawn. This working draft studies whether explicit verification
+improves subsequent decisions beyond strong raw-history retrieval. We
+specify a selective verification layer that discovers candidate claims
+from observable task state, retrieves and opens original sources without
+evaluator-provided locations, and checks type-specific requirements for
+test status, current versions, and historical authorization. Reuse of
+previously verified evidence requires a certificate bound to a complete
+archive view, a current archive watermark, the relevant object state,
+and a valid time interval; a recent timestamp alone is insufficient. The
+proposed evaluation pairs native continuations under a shared model,
+archive, and evidence budget, comparing the method with Raw-RAG,
+always-on verification, and reproducible neighboring approaches. Its
+primary endpoint is task-level evidence-supported decision success. Cost
+claims require both quality noninferiority and lower total standardized
+processing cost. The draft makes no claim of empirical superiority: it
+provides the method specification, falsifiable hypotheses, and evidence
+required to determine when source verification is useful.

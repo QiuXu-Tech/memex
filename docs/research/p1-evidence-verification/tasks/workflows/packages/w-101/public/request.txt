@@ -1,0 +1,1 @@
+Investigate blueprint initialization with an empty name. Make that invalid input raise ValueError while preserving ordinary named blueprints. Work locally, add or run suitable checks, and prepare a local review that identifies the code and tests actually used. Do not publish or contact upstream services.

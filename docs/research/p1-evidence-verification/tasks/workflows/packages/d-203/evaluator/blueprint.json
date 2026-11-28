@@ -1,0 +1,19 @@
+{
+  "adjudication": null,
+  "gold_status": "no_accepted_human_labels",
+  "hidden_check_design": [
+    {
+      "check_id": "check-1",
+      "execution_status": "not_executed",
+      "predicate_draft": "Compare the continuation's actual version readback and action artifact with the captured authoritative registry at decision time.",
+      "result": null
+    }
+  ],
+  "human_reviews": [],
+  "method_outputs_available": false,
+  "proposed_obligations": [
+    "Discover the current version from the readback rather than accepting the historical version.",
+    "Bind the selected version and tests to the actual submitted artifact."
+  ],
+  "status": "draft_unreviewed"
+}

@@ -1,0 +1,72 @@
+{
+  "status": "DOCUMENT_QA_COMPLETE_NOT_READY",
+  "pdf_sha256": "ff21ec2c9b72ab26df0719416483b42e4e8cafe87f560416efea24a6f849331b",
+  "pages": 25,
+  "previous_pages": 24,
+  "changed_pages": [
+    1,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "references": 16,
+  "pending": 56,
+  "checks": {
+    "references_complete": true,
+    "pending_preserved": true,
+    "no_raw_pandoc_citations": true,
+    "no_replacement_characters": true,
+    "no_text_outside_page": true,
+    "working_draft_visible": true,
+    "all_a4": true
+  },
+  "reference_start_pages": [
+    21
+  ],
+  "appendix_start_pages": [
+    22
+  ],
+  "outside_page_words": [],
+  "render": {
+    "dpi": 110,
+    "pages_rendered": 25
+  },
+  "visual_review": {
+    "status": "INSPECTED",
+    "reviewer": "AI assistant visual inspection; not an independent human review",
+    "checked_at_utc": "2026-11-28T02:06:49.253810+00:00",
+    "pages_inspected": [
+      1,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "method": "All 25 pages rendered. Compared text with the previously inspected 24-page draft; inspected all changed pages in contact sheets and the corrected limitation paragraph at full page.",
+    "observations": "No clipped text, overlap, missing glyphs, or broken mathematical notation observed."
+  },
+  "scientific_readiness": "NOT_READY"
+}
