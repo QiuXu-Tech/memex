@@ -1,0 +1,49 @@
+{
+  "kind": "source_environment_qualification_only",
+  "reproductions": [
+    {
+      "candidate_id": "pallets__flask-5014",
+      "base": {
+        "tests": 60,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 59
+      },
+      "fixed": {
+        "tests": 60,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0,
+        "passed": 60
+      },
+      "official_labels_verified": true,
+      "report": "pallets__flask-5014/reproduction.json",
+      "official_label_comparison": "pinned upstream parser normalization; raw nodeid mismatches retained"
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "base": {
+        "tests": 214,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 11,
+        "passed": 201
+      },
+      "fixed": {
+        "tests": 214,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 11,
+        "passed": 203
+      },
+      "official_labels_verified": true,
+      "report": "psf__requests-6028/reproduction.json",
+      "official_label_comparison": "pinned upstream parser normalization; raw nodeid mismatches retained"
+    }
+  ],
+  "validated_p1_workflows": 0,
+  "agent_runs": 0,
+  "paired_arm_comparisons": 0,
+  "human_annotations": 0
+}

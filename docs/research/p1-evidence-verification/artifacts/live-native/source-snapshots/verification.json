@@ -1,0 +1,78 @@
+{
+  "checks": [
+    {
+      "run": "attempt-01",
+      "source": "live-broker.mjs",
+      "matches_recorded": true,
+      "sha256": "ec6f03275c89a72e1da6c13bbbf7dc56eac15be1ad8f978418570d589dfc7ed5"
+    },
+    {
+      "run": "attempt-01",
+      "source": "live-state.mjs",
+      "matches_recorded": true,
+      "sha256": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a"
+    },
+    {
+      "run": "attempt-01",
+      "source": "live_mcp.py",
+      "matches_recorded": true,
+      "sha256": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a"
+    },
+    {
+      "run": "attempt-01",
+      "source": "native_live.py",
+      "matches_recorded": true,
+      "sha256": "a95b67347cae3c56bfc19fbf48b11b4b0ad136df996c428a53934c8601d198b5"
+    },
+    {
+      "run": "extraction-only-01",
+      "source": "live-broker.mjs",
+      "matches_recorded": true,
+      "sha256": "9585de000b1988606af0c2367679be3385750991cadb21df14eee09e81bcfb66"
+    },
+    {
+      "run": "extraction-only-01",
+      "source": "live-state.mjs",
+      "matches_recorded": true,
+      "sha256": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a"
+    },
+    {
+      "run": "extraction-only-01",
+      "source": "live_mcp.py",
+      "matches_recorded": true,
+      "sha256": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a"
+    },
+    {
+      "run": "extraction-only-01",
+      "source": "native_live.py",
+      "matches_recorded": true,
+      "sha256": "8066f31ef5900bbeb4633911f2b6324c537ef77d26ce0e6a4ce9d5006e48f664"
+    },
+    {
+      "run": "extraction-only-02",
+      "source": "live-broker.mjs",
+      "matches_recorded": true,
+      "sha256": "9585de000b1988606af0c2367679be3385750991cadb21df14eee09e81bcfb66"
+    },
+    {
+      "run": "extraction-only-02",
+      "source": "live-state.mjs",
+      "matches_recorded": true,
+      "sha256": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a"
+    },
+    {
+      "run": "extraction-only-02",
+      "source": "live_mcp.py",
+      "matches_recorded": true,
+      "sha256": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a"
+    },
+    {
+      "run": "extraction-only-02",
+      "source": "native_live.py",
+      "matches_recorded": true,
+      "sha256": "8066f31ef5900bbeb4633911f2b6324c537ef77d26ce0e6a4ce9d5006e48f664"
+    }
+  ],
+  "initial_bundle_sha256": "3fc83289ec3855214536858de46a4283b283d0855c11e125e4be2f07ee5b034f",
+  "reconstruction": "Unpack initial-runtime.tar.gz. For extraction-only-01 overlay read-only-components/live-broker.mjs and native_live.py. For extraction-only-02 also overlay read-only-components/claims.mjs. No source file was retroactively assigned to an earlier attempt."
+}

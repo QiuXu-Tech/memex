@@ -1,0 +1,31 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/uv",
+    "python",
+    "install",
+    "3.10.16",
+    "--install-dir",
+    "/workspace/scratch/d5292d3ebcac/p1-real-repros/python",
+    "--no-bin",
+    "--no-registry",
+    "--no-config",
+    "--system-certs",
+    "--no-progress"
+  ],
+  "returncode": 0,
+  "elapsed_s": 6.487270415000012,
+  "environment_keys": [
+    "ALL_PROXY",
+    "HTTPS_PROXY",
+    "HTTP_PROXY",
+    "LANG",
+    "NO_PROXY",
+    "PATH",
+    "UV_CACHE_DIR",
+    "UV_NO_CONFIG",
+    "all_proxy",
+    "http_proxy",
+    "https_proxy",
+    "no_proxy"
+  ]
+}

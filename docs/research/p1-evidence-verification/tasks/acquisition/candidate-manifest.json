@@ -1,0 +1,2075 @@
+{
+  "schema_version": "p1-candidate-acquisition-1",
+  "domain": "controller_evaluator_only",
+  "study_phase": "acquisition",
+  "frozen": false,
+  "acquired_at": "2026-11-28T00:39:05.693285+00:00",
+  "source_candidate_count": 16,
+  "project_count": 8,
+  "validated_p1_workflow_count": 0,
+  "independent_human_annotation_count": 0,
+  "formal_runs": 0,
+  "planned_first_reproductions": [
+    "pallets__flask-5014",
+    "psf__requests-6028"
+  ],
+  "selection_rule": "Source-only feasibility sampling before any arm output: eight Python projects; small localized production/test diffs; distinct issues/PRs; three distinct pytest modules compensate for the single Flask Verified item. This is a convenience candidate sample, not a representative or frozen pilot. No benchmark model success rates were used.",
+  "candidate_ids_are_not_study_task_ids": true,
+  "candidates": [
+    {
+      "candidate_id": "psf__requests-5414",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "psf/requests",
+      "repository_url": "https://github.com/psf/requests",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 296,
+        "canonical_row_sha256": "79accc6860e7b6b6dc048268a0251038a50fc9fc947a401ebe063f3c237a0117",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/psf/requests/issues/5367",
+        "issue_number": 5367,
+        "issue_title": "Getting http://.example.com raises UnicodeError",
+        "pr_url": "https://github.com/psf/requests/pull/5414",
+        "pr_number": 5414,
+        "pr_merged": true,
+        "base_commit": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+        "base_commit_url": "https://github.com/psf/requests/commit/39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+        "fix_commit": "d09659997cd1e3eca49a07c59ece5557071c0ab9",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/psf/requests/commit/d09659997cd1e3eca49a07c59ece5557071c0ab9",
+        "fix_parent_commits": [
+          "2b06a952a9e6e23e9eda2c8759adb62739730a75",
+          "658c10e84a461e5298199f20f17b510b90ac478a"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "requests/models.py",
+          "tests/test_requests.py"
+        ],
+        "benchmark_source_patch": [
+          "requests/models.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/test_requests.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "a1a6a549a0143d9b32717dbe3d75cd543ae5a4f6",
+        "dataset_installation_version": "2.26",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.psf_1776_requests-5414:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.psf_1776_requests-5414@sha256:71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10",
+        "oci_manifest_sha256": "71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10",
+        "oci_manifest_path": "raw/oci-psf__requests-5414.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "4377d9706acaf9ca53b0be93cc7aaf262bbac6a24cb0f79bf76ba68451ffe25a",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA tests/test_requests.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "Apache-2.0",
+        "code_license_url": "https://raw.githubusercontent.com/psf/requests/39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e/LICENSE",
+        "code_license_file": "licenses/psf__requests-09e8a9bcec80.txt",
+        "code_license_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 130,
+        "patch_sha256": "41e9433ac5e2cdb17a3972bec818a1118ea4a3f2b7485cd11fff7e27f6f3f680",
+        "test_patch_sha256": "46e0fcf881a426fb44dcd64c29be1f1d81113fcbfffe658404fc6298bc028a53",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#psf__requests-5414"
+      },
+      "independence": {
+        "project_cluster": "psf/requests",
+        "upstream_issue_family": "psf/requests#5367",
+        "upstream_pr_family": "psf/requests#5414",
+        "workflow_family": "psf__requests-5414",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "URL host validation",
+        "rationale": "Old successful URL checks do not certify the changed URL parser; re-run local exception checks on the final artifact.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "psf/requests",
+      "repository_url": "https://github.com/psf/requests",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 297,
+        "canonical_row_sha256": "9b07b26637cbf5f890d0a2f7d5ca9e46cf63fe7f600fb9286500e0dd6c2570bf",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/psf/requests/issues/6027",
+        "issue_number": 6027,
+        "issue_title": "Proxy authentication bug",
+        "pr_url": "https://github.com/psf/requests/pull/6028",
+        "pr_number": 6028,
+        "pr_merged": true,
+        "base_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+        "base_commit_url": "https://github.com/psf/requests/commit/0192aac24123735b3eaf9b08df46429bb770c283",
+        "fix_commit": "8fa9724398c4f44090997ff430a1dd3e935a9057",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/psf/requests/commit/8fa9724398c4f44090997ff430a1dd3e935a9057",
+        "fix_parent_commits": [
+          "0192aac24123735b3eaf9b08df46429bb770c283",
+          "38f3f8ecb93cadfac03a6b7b3173018ac829d0cf"
+        ],
+        "base_is_fix_first_parent": true,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "requests/utils.py",
+          "tests/test_utils.py"
+        ],
+        "benchmark_source_patch": [
+          "requests/utils.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/test_utils.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+        "dataset_installation_version": "2.27",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.psf_1776_requests-6028:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.psf_1776_requests-6028@sha256:639088346355ea7076bc6faf2eadb23b1e1f1ed4f34b291e843061b2fc87cbe2",
+        "oci_manifest_sha256": "639088346355ea7076bc6faf2eadb23b1e1f1ed4f34b291e843061b2fc87cbe2",
+        "oci_manifest_path": "raw/oci-psf__requests-6028.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "bd1f0181942f1aab50797169a4c706c3f841eafb235d833d6fecdcaef85933ba",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA tests/test_utils.py"
+        ],
+        "environment_tested_locally": true,
+        "local_reproduction_ref": "../reproduction/psf__requests-6028/reproduction.json"
+      },
+      "license": {
+        "code_spdx_at_base": "Apache-2.0",
+        "code_license_url": "https://raw.githubusercontent.com/psf/requests/0192aac24123735b3eaf9b08df46429bb770c283/LICENSE",
+        "code_license_file": "licenses/psf__requests-09e8a9bcec80.txt",
+        "code_license_sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 2,
+        "pass_to_pass_count": 185,
+        "patch_sha256": "9cd3e2a2c10cc8b9555156f0e9cda00c67aa4e08f40ebd125f417bbeb41b2fb3",
+        "test_patch_sha256": "cc4b0007afd140c1737b08e14d0cbb9dbccfbee483146d5112971dd7b9bcb142",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#psf__requests-6028"
+      },
+      "independence": {
+        "project_cluster": "psf/requests",
+        "upstream_issue_family": "psf/requests#6027",
+        "upstream_pr_family": "psf/requests#6028",
+        "workflow_family": "psf__requests-6028",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Proxy URL authentication parsing",
+        "rationale": "A version-bound local parsing regression can check credentials preservation without contacting a proxy.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": true,
+        "base_failure_reproduced": true,
+        "official_fix_pass_reproduced": true,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "pallets__flask-5014",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pallets/flask",
+      "repository_url": "https://github.com/pallets/flask",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 289,
+        "canonical_row_sha256": "36d5506b22ede57cf679dd50b44232dc640663dc9fa94f3dad5f9a06760a9c2e",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pallets/flask/issues/5010",
+        "issue_number": 5010,
+        "issue_title": "Require a non-empty name for Blueprints",
+        "pr_url": "https://github.com/pallets/flask/pull/5014",
+        "pr_number": 5014,
+        "pr_merged": true,
+        "base_commit": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+        "base_commit_url": "https://github.com/pallets/flask/commit/7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+        "fix_commit": "7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pallets/flask/commit/7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+        "fix_parent_commits": [
+          "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+          "b8b410014d85f9861acc87c5f21c9a55a42d09c9"
+        ],
+        "base_is_fix_first_parent": true,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "CHANGES.rst",
+          "src/flask/blueprints.py",
+          "tests/test_blueprints.py"
+        ],
+        "benchmark_source_patch": [
+          "src/flask/blueprints.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/test_blueprints.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "182ce3dd15dfa3537391c3efaf9c3ff407d134d4",
+        "dataset_installation_version": "2.3",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pallets_1776_flask-5014:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pallets_1776_flask-5014@sha256:bde4fbdafa36141d4396944da88ec37aabdef612ed36920090675bccd0ca5d72",
+        "oci_manifest_sha256": "bde4fbdafa36141d4396944da88ec37aabdef612ed36920090675bccd0ca5d72",
+        "oci_manifest_path": "raw/oci-pallets__flask-5014.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "a752d2d3520db71513c263dd476e8da457395a447a346f6b5c18782dc0faf034",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA tests/test_blueprints.py"
+        ],
+        "environment_tested_locally": true,
+        "local_reproduction_ref": "../reproduction/pallets__flask-5014/reproduction.json"
+      },
+      "license": {
+        "code_spdx_at_base": "BSD-3-Clause",
+        "code_license_url": "https://raw.githubusercontent.com/pallets/flask/7ee9ceb71e868944a46e1ff00b506772a53a4f1d/LICENSE.rst",
+        "code_license_file": "licenses/pallets__flask-489a8e110850.txt",
+        "code_license_sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 59,
+        "patch_sha256": "087d51d66413bfa35111ac0eca31f1db1636572702cfd967c428049b453f451d",
+        "test_patch_sha256": "e16f06b260b5169a49397e9d571b5af70317cd23792e1437232fabf718fe8871",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pallets__flask-5014"
+      },
+      "independence": {
+        "project_cluster": "pallets/flask",
+        "upstream_issue_family": "pallets/flask#5010",
+        "upstream_pr_family": "pallets/flask#5014",
+        "workflow_family": "pallets__flask-5014",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Blueprint name validation",
+        "rationale": "A local application API check must execute after the final edit; an old passing Blueprint suite is stale.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": true,
+        "base_failure_reproduced": true,
+        "official_fix_pass_reproduced": true,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-5262",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pytest-dev/pytest",
+      "repository_url": "https://github.com/pytest-dev/pytest",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 333,
+        "canonical_row_sha256": "73c12d33566d494f19f4e05aa671d12aecbc4a5c63f2e5449fbf75c781ea413d",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pytest-dev/pytest/issues/5257",
+        "issue_number": 5257,
+        "issue_title": "_pytest.capture.EncodedFile mode should not include `b` (binary)",
+        "pr_url": "https://github.com/pytest-dev/pytest/pull/5262",
+        "pr_number": 5262,
+        "pr_merged": true,
+        "base_commit": "58e6a09db49f34886ff13f3b7520dd0bcd7063cd",
+        "base_commit_url": "https://github.com/pytest-dev/pytest/commit/58e6a09db49f34886ff13f3b7520dd0bcd7063cd",
+        "fix_commit": "c8f7e50c47cc771142f2681aebf7dd9f86c83853",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pytest-dev/pytest/commit/c8f7e50c47cc771142f2681aebf7dd9f86c83853",
+        "fix_parent_commits": [
+          "494ac28a320f9095d0a60d7d9a0158a04d1a09ed",
+          "4318698baeab38a413d8c3684248f95a2fed3979"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "changelog/5257.bugfix.rst",
+          "src/_pytest/capture.py",
+          "testing/test_capture.py"
+        ],
+        "benchmark_source_patch": [
+          "src/_pytest/capture.py"
+        ],
+        "benchmark_test_patch": [
+          "testing/test_capture.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "693c3b7f61d4d32f8927a74f34ce8ac56d63958e",
+        "dataset_installation_version": "4.5",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-5262:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-5262@sha256:0d6480e4b7519e81cdc8359fedfeb5389e1949f31a8bc9da7869b0d66a7ce2a4",
+        "oci_manifest_sha256": "0d6480e4b7519e81cdc8359fedfeb5389e1949f31a8bc9da7869b0d66a7ce2a4",
+        "oci_manifest_path": "raw/oci-pytest-dev__pytest-5262.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "adbc73dc6e01945e96cec786299d9081c9bf5ea9916f53eb393b4f73ca3aaab9",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA testing/test_capture.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "MIT",
+        "code_license_url": "https://raw.githubusercontent.com/pytest-dev/pytest/58e6a09db49f34886ff13f3b7520dd0bcd7063cd/LICENSE",
+        "code_license_file": "licenses/pytest-dev__pytest-4be38574daf0.txt",
+        "code_license_sha256": "4be38574daf05665b6194e4fd84c5ef6ce7c3a2810308a5222d5cdffc2d04d18",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 108,
+        "patch_sha256": "2dbcd95f7a4bf52ae721d6289d1d4ee68dbb08ada5082e98784a7138fc126428",
+        "test_patch_sha256": "7d7d191cf84e7e37f084ce8f22ff5364de7bb44a76053451dd9990198136a939",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pytest-dev__pytest-5262"
+      },
+      "independence": {
+        "project_cluster": "pytest-dev/pytest",
+        "upstream_issue_family": "pytest-dev/pytest#5257",
+        "upstream_pr_family": "pytest-dev/pytest#5262",
+        "workflow_family": "pytest-dev__pytest-5262",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Captured stdout stream mode",
+        "rationale": "Observe the stream mode in the current code version and verify the actual test invocation completed.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": [
+        {
+          "code": "official_p2p_progress_artifact",
+          "value": "[100%]",
+          "evidence": "Present in pinned dataset PASS_TO_PASS and documented in official parser _is_skip_summary comment.",
+          "parser_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/log_parsers/python.py",
+          "must_resolve_before_pilot": true,
+          "action": "Reconstruct executable test identities from real runs and independent annotation; never count progress output as a test or import the official P2P list as P1 gold."
+        }
+      ]
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7982",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pytest-dev/pytest",
+      "repository_url": "https://github.com/pytest-dev/pytest",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 347,
+        "canonical_row_sha256": "f3eadd16a5aca9724ae0aa8038e746d360ae872a10e3c353a1e7add5201ad69e",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pytest-dev/pytest/issues/7981",
+        "issue_number": 7981,
+        "issue_title": "Symlinked directories not collected since pytest 6.1.0",
+        "pr_url": "https://github.com/pytest-dev/pytest/pull/7982",
+        "pr_number": 7982,
+        "pr_merged": true,
+        "base_commit": "a7e38c5c61928033a2dc1915cbee8caa8544a4d0",
+        "base_commit_url": "https://github.com/pytest-dev/pytest/commit/a7e38c5c61928033a2dc1915cbee8caa8544a4d0",
+        "fix_commit": "a14a229d1bb9a7fe75799caa974b2cfb8f02f8b3",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pytest-dev/pytest/commit/a14a229d1bb9a7fe75799caa974b2cfb8f02f8b3",
+        "fix_parent_commits": [
+          "dd323980f9b89335dd0b8e84a50838bee2500a93",
+          "6cdae8ed40e329d82c6ae96dbb3eeff4be5ef5f4"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "changelog/7981.bugfix.rst",
+          "src/_pytest/pathlib.py",
+          "testing/test_collection.py"
+        ],
+        "benchmark_source_patch": [
+          "src/_pytest/pathlib.py"
+        ],
+        "benchmark_test_patch": [
+          "testing/test_collection.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "902739cfc3bbc3379e6ef99c8e250de35f52ecde",
+        "dataset_installation_version": "6.2",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7982:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7982@sha256:1b6cd660102de29c36d28954eb2f6158b93d11b855a9bbfc577a55eb67a8f375",
+        "oci_manifest_sha256": "1b6cd660102de29c36d28954eb2f6158b93d11b855a9bbfc577a55eb67a8f375",
+        "oci_manifest_path": "raw/oci-pytest-dev__pytest-7982.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "ea23bc251f932837af34e132386997c8c91485ec90e5042f6c80c5a44aa53285",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA testing/test_collection.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "MIT",
+        "code_license_url": "https://raw.githubusercontent.com/pytest-dev/pytest/a7e38c5c61928033a2dc1915cbee8caa8544a4d0/LICENSE",
+        "code_license_file": "licenses/pytest-dev__pytest-7898b9b164d4.txt",
+        "code_license_sha256": "7898b9b164d4f93fd9a562fd0f592935518b48c4745303964110eb7f7fe64faf",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 78,
+        "patch_sha256": "76762ad86ffeec79de2f946c2dd097c003a9dd6097b8c9e7829d71338056222f",
+        "test_patch_sha256": "0c7f10b352b18f6ed1cbb204fde0f077fcad14d7472bbc564c9dd72cdd47167f",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pytest-dev__pytest-7982"
+      },
+      "independence": {
+        "project_cluster": "pytest-dev/pytest",
+        "upstream_issue_family": "pytest-dev/pytest#7981",
+        "upstream_pr_family": "pytest-dev/pytest#7982",
+        "workflow_family": "pytest-dev__pytest-7982",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Symlinked test collection",
+        "rationale": "Test discovery changes make a zero exit code insufficient; collect and execute the intended test set after the path change.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7432",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pytest-dev/pytest",
+      "repository_url": "https://github.com/pytest-dev/pytest",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 343,
+        "canonical_row_sha256": "f69b000a945120f6656f305b3a394eb56b44d6425f64c291aff29aa1975e3a4a",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pytest-dev/pytest/issues/7392",
+        "issue_number": 7392,
+        "issue_title": "skipping: --runxfail breaks pytest.mark.skip location reporting",
+        "pr_url": "https://github.com/pytest-dev/pytest/pull/7432",
+        "pr_number": 7432,
+        "pr_merged": true,
+        "base_commit": "e6e300e729dd33956e5448d8be9a0b1540b4e53a",
+        "base_commit_url": "https://github.com/pytest-dev/pytest/commit/e6e300e729dd33956e5448d8be9a0b1540b4e53a",
+        "fix_commit": "c3e2b11a62234c283b4ed4a7bfe5edf7eb6f3d4d",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pytest-dev/pytest/commit/c3e2b11a62234c283b4ed4a7bfe5edf7eb6f3d4d",
+        "fix_parent_commits": [
+          "678c1a0745f1cf175c442c719906a1f13e496910"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "changelog/7392.bugfix.rst",
+          "src/_pytest/skipping.py",
+          "testing/test_skipping.py"
+        ],
+        "benchmark_source_patch": [
+          "src/_pytest/skipping.py"
+        ],
+        "benchmark_test_patch": [
+          "testing/test_skipping.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "678c1a0745f1cf175c442c719906a1f13e496910",
+        "dataset_installation_version": "5.4",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7432:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7432@sha256:5ec7065f9477542610ea5137247539d8f1c9762112803b0690d5ccb2e64d2f07",
+        "oci_manifest_sha256": "5ec7065f9477542610ea5137247539d8f1c9762112803b0690d5ccb2e64d2f07",
+        "oci_manifest_path": "raw/oci-pytest-dev__pytest-7432.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "61c218bbd690a0709d38cda924840d1157ad956b9e60409abcb04318edcb37e1",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA testing/test_skipping.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "MIT",
+        "code_license_url": "https://raw.githubusercontent.com/pytest-dev/pytest/e6e300e729dd33956e5448d8be9a0b1540b4e53a/LICENSE",
+        "code_license_file": "licenses/pytest-dev__pytest-7898b9b164d4.txt",
+        "code_license_sha256": "7898b9b164d4f93fd9a562fd0f592935518b48c4745303964110eb7f7fe64faf",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 77,
+        "patch_sha256": "fe1bcec846085b964928724c5e75591b1e0280ef37dd9cdb7faf31a89cfcf062",
+        "test_patch_sha256": "5e498d11d5bffa2d19f34627d2aa16ecadd805d313fc0fec5f197373d1df9937",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pytest-dev__pytest-7432"
+      },
+      "independence": {
+        "project_cluster": "pytest-dev/pytest",
+        "upstream_issue_family": "pytest-dev/pytest#7392",
+        "upstream_pr_family": "pytest-dev/pytest#7432",
+        "workflow_family": "pytest-dev__pytest-7432",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Skip and xfail reporting",
+        "rationale": "The source issue concerns skip location reporting; a P1 extension must separately check skip/pass semantics and cannot relabel the original issue as false passing.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-4970",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pylint-dev/pylint",
+      "repository_url": "https://github.com/pylint-dev/pylint",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 323,
+        "canonical_row_sha256": "25fa23a5147c92d8ccca6f844062447d1b7181d0a64685617d34bbe3a38900c9",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pylint-dev/pylint/issues/4901",
+        "issue_number": 4901,
+        "issue_title": "Setting `min-similarity-lines` to `0` should stop pylint from checking duplicate code",
+        "pr_url": "https://github.com/pylint-dev/pylint/pull/4970",
+        "pr_number": 4970,
+        "pr_merged": true,
+        "base_commit": "40cc2ffd7887959157aaf469e09585ec2be7f528",
+        "base_commit_url": "https://github.com/pylint-dev/pylint/commit/40cc2ffd7887959157aaf469e09585ec2be7f528",
+        "fix_commit": "cf33d82635569da924d82538f806a5242481f06f",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pylint-dev/pylint/commit/cf33d82635569da924d82538f806a5242481f06f",
+        "fix_parent_commits": [
+          "fab2de272b3fc36dc4480d89840b8bfe0fbfbd0c"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "ChangeLog",
+          "doc/whatsnew/2.11.rst",
+          "pylint/checkers/similar.py",
+          "tests/checkers/unittest_similar.py"
+        ],
+        "benchmark_source_patch": [
+          "pylint/checkers/similar.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/checkers/unittest_similar.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "bc95cd34071ec2e71de5bca8ff95cc9b88e23814",
+        "dataset_installation_version": "2.10",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-4970:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-4970@sha256:5d331d487e49480c4098366cd094aae9dd2e8d365f0412174d5e1a2e9a3d5893",
+        "oci_manifest_sha256": "5d331d487e49480c4098366cd094aae9dd2e8d365f0412174d5e1a2e9a3d5893",
+        "oci_manifest_path": "raw/oci-pylint-dev__pylint-4970.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "7a6faf7f0dc28a1a5be841222d53030e4dc815abdef68f930944e50f979a175d",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA tests/checkers/unittest_similar.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "NOASSERTION",
+        "code_license_url": "https://raw.githubusercontent.com/pylint-dev/pylint/40cc2ffd7887959157aaf469e09585ec2be7f528/LICENSE",
+        "code_license_file": "licenses/pylint-dev__pylint-f97b14080de8.txt",
+        "code_license_sha256": "f97b14080de8b8490d60eb3d620ebc419943e0779466d1dd0d5d6f68fe195dcd",
+        "scope_note": "GPL v2 text and source header observed; do not infer only/or-later from this evidence. Full source redistribution requires separate license review.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 17,
+        "patch_sha256": "7eb3a09727133387bf81fa3a1596746a2dcca2c0c9eba95caaa69b65d619dccd",
+        "test_patch_sha256": "c3c6cf31d76aa8769731b35f87511ff007dddb47a2349f8d4e5da3355ff9cf7b",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pylint-dev__pylint-4970"
+      },
+      "independence": {
+        "project_cluster": "pylint-dev/pylint",
+        "upstream_issue_family": "pylint-dev/pylint#4901",
+        "upstream_pr_family": "pylint-dev/pylint#4970",
+        "workflow_family": "pylint-dev__pylint-4970",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Similarity-check configuration",
+        "rationale": "The configured zero threshold changes whether a checker should execute; bind the result to current configuration.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-7080",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pylint-dev/pylint",
+      "repository_url": "https://github.com/pylint-dev/pylint",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 327,
+        "canonical_row_sha256": "c19d3ab0c087f47e696c981fd79fd0c50f32bc6e3f303df75eb558039fb3f5bb",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pylint-dev/pylint/issues/6964",
+        "issue_number": 6964,
+        "issue_title": "`--recursive=y` ignores `ignore-paths`",
+        "pr_url": "https://github.com/pylint-dev/pylint/pull/7080",
+        "pr_number": 7080,
+        "pr_merged": true,
+        "base_commit": "3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0",
+        "base_commit_url": "https://github.com/pylint-dev/pylint/commit/3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0",
+        "fix_commit": "c74493bdb969c40b0b9bc503b239c572ee31641b",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pylint-dev/pylint/commit/c74493bdb969c40b0b9bc503b239c572ee31641b",
+        "fix_parent_commits": [
+          "c603f0e74972fd1edbc9d713cb917936a6a155de"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "doc/whatsnew/2/2.14/full.rst",
+          "pylint/lint/expand_modules.py",
+          "tests/test_self.py"
+        ],
+        "benchmark_source_patch": [
+          "pylint/lint/expand_modules.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/test_self.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "e90702074e68e20dc8e5df5013ee3ecf22139c3e",
+        "dataset_installation_version": "2.15",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-7080:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-7080@sha256:3389f0d1319ca611d04a209fc30990c131e0bae9acfeb2163938c75ad23479fe",
+        "oci_manifest_sha256": "3389f0d1319ca611d04a209fc30990c131e0bae9acfeb2163938c75ad23479fe",
+        "oci_manifest_path": "raw/oci-pylint-dev__pylint-7080.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "f19f19799be3225727fe3c1024f0613619db73cd31895de9482365b7923b20ae",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA tests/test_self.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "NOASSERTION",
+        "code_license_url": "https://raw.githubusercontent.com/pylint-dev/pylint/3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0/LICENSE",
+        "code_license_file": "licenses/pylint-dev__pylint-f97b14080de8.txt",
+        "code_license_sha256": "f97b14080de8b8490d60eb3d620ebc419943e0779466d1dd0d5d6f68fe195dcd",
+        "scope_note": "GPL v2 text and source header observed; do not infer only/or-later from this evidence. Full source redistribution requires separate license review.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 120,
+        "patch_sha256": "f908ad1f6d4b8df3755a634c6741abf8ae613bc59278a54c16560c16d255580f",
+        "test_patch_sha256": "7d42b9582d23667623d84307132d46e63588cbcfe63c35bccb7a52940bf5ca08",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pylint-dev__pylint-7080"
+      },
+      "independence": {
+        "project_cluster": "pylint-dev/pylint",
+        "upstream_issue_family": "pylint-dev/pylint#6964",
+        "upstream_pr_family": "pylint-dev/pylint#7080",
+        "workflow_family": "pylint-dev__pylint-7080",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Recursive ignore-path configuration",
+        "rationale": "Path normalization and current ignore rules determine which files were checked; old configuration evidence may be inapplicable.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "sphinx-doc/sphinx",
+      "repository_url": "https://github.com/sphinx-doc/sphinx",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 417,
+        "canonical_row_sha256": "ae821e6cfd7543602c6b52da74c98e78e1588bad3063798444cb87f060f236ea",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/sphinx-doc/sphinx/issues/9364",
+        "issue_number": 9364,
+        "issue_title": "1-element tuple rendered incorrectly",
+        "pr_url": "https://github.com/sphinx-doc/sphinx/pull/9367",
+        "pr_number": 9367,
+        "pr_merged": true,
+        "base_commit": "6918e69600810a4664e53653d6ff0290c3c4a788",
+        "base_commit_url": "https://github.com/sphinx-doc/sphinx/commit/6918e69600810a4664e53653d6ff0290c3c4a788",
+        "fix_commit": "bc616d3b1a2c0c41ef6fb4e27181cf2b177f02fb",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/sphinx-doc/sphinx/commit/bc616d3b1a2c0c41ef6fb4e27181cf2b177f02fb",
+        "fix_parent_commits": [
+          "ec351bdf3d9405e664e8f793d3cddfa2fddfd07e",
+          "b9158b96d261eb6126dbd035aa72c621ddea91e8"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "CHANGES",
+          "sphinx/pycode/ast.py",
+          "tests/test_pycode_ast.py"
+        ],
+        "benchmark_source_patch": [
+          "sphinx/pycode/ast.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/test_pycode_ast.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "9a2c3c4a1559e37e95fdee88c128bb116642c897",
+        "dataset_installation_version": "4.1",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9367:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9367@sha256:ce3659548ac712a11d3c45a9c47fe8010de0e3a83efee229dcdd9646069dfec1",
+        "oci_manifest_sha256": "ce3659548ac712a11d3c45a9c47fe8010de0e3a83efee229dcdd9646069dfec1",
+        "oci_manifest_path": "raw/oci-sphinx-doc__sphinx-9367.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "84d534fee85aeb883cc80969d1429430a83b763daf52fbb95020ecca7cc9d91b",
+        "official_test_commands_evaluator_only": [
+          "tox --current-env -epy39 -v -- tests/test_pycode_ast.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "BSD-2-Clause",
+        "code_license_url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/6918e69600810a4664e53653d6ff0290c3c4a788/LICENSE",
+        "code_license_file": "licenses/sphinx-doc__sphinx-058abe6d05d2.txt",
+        "code_license_sha256": "058abe6d05d2fd185ed5cbc89d473a4722e43131582c93a040f78c4581f32943",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 25,
+        "patch_sha256": "ec53e5fbf7ff38374de4700b9f6c2fb91630d7b525f2e0bafafa00c1cec42a77",
+        "test_patch_sha256": "b1bc20d773cab4c012782bcee77d374fa2ffd33567f0d1a4757198204641bf4f",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#sphinx-doc__sphinx-9367"
+      },
+      "independence": {
+        "project_cluster": "sphinx-doc/sphinx",
+        "upstream_issue_family": "sphinx-doc/sphinx#9364",
+        "upstream_pr_family": "sphinx-doc/sphinx#9367",
+        "workflow_family": "sphinx-doc__sphinx-9367",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Documentation AST rendering",
+        "rationale": "A current rendered default argument must match the final source artifact, not an earlier build.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "sphinx-doc/sphinx",
+      "repository_url": "https://github.com/sphinx-doc/sphinx",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 411,
+        "canonical_row_sha256": "89596e8d6be144e28097ab733624832707d396ee2fa77ae5442e413a212214f5",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/sphinx-doc/sphinx/issues/8720",
+        "issue_number": 8720,
+        "issue_title": "viewcode creates pages for epub even if `viewcode_enable_epub=False` on `make html epub`",
+        "pr_url": "https://github.com/sphinx-doc/sphinx/pull/8721",
+        "pr_number": 8721,
+        "pr_merged": true,
+        "base_commit": "82ef497a8c88f0f6e50d84520e7276bfbf65025d",
+        "base_commit_url": "https://github.com/sphinx-doc/sphinx/commit/82ef497a8c88f0f6e50d84520e7276bfbf65025d",
+        "fix_commit": "86c75cea13d87f1cbc7e9c30916bef0cf972eb5c",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/sphinx-doc/sphinx/commit/86c75cea13d87f1cbc7e9c30916bef0cf972eb5c",
+        "fix_parent_commits": [
+          "b9f603da5f9a6c7ef01a50f33a1995e9f3d3e4a8",
+          "b2bb12ad9193ce0c0047ae7bf3cde9ea10f46d8a"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "CHANGES",
+          "sphinx/ext/viewcode.py",
+          "tests/test_ext_viewcode.py"
+        ],
+        "benchmark_source_patch": [
+          "sphinx/ext/viewcode.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/test_ext_viewcode.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "4f8cb861e3b29186b38248fe81e4944fd987fcce",
+        "dataset_installation_version": "3.5",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-8721:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-8721@sha256:8f02afdb324767a2e56b7940569ea822cfa58c3c1f0ef9a910162d21cf52c3f5",
+        "oci_manifest_sha256": "8f02afdb324767a2e56b7940569ea822cfa58c3c1f0ef9a910162d21cf52c3f5",
+        "oci_manifest_path": "raw/oci-sphinx-doc__sphinx-8721.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "2c1670f7629deb4348311bc713e5e44a40b93ca865abcff9724640c81e5971ff",
+        "official_test_commands_evaluator_only": [
+          "tox --current-env -epy39 -v -- tests/test_ext_viewcode.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "BSD-2-Clause",
+        "code_license_url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/82ef497a8c88f0f6e50d84520e7276bfbf65025d/LICENSE",
+        "code_license_file": "licenses/sphinx-doc__sphinx-058abe6d05d2.txt",
+        "code_license_sha256": "058abe6d05d2fd185ed5cbc89d473a4722e43131582c93a040f78c4581f32943",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 3,
+        "patch_sha256": "b280454dbde68b9fd743d03c4d07172306c61477330f337287c48af6e8fced04",
+        "test_patch_sha256": "58f6ddb683f14cee7ab55e9c33a32dd141d2fffb5f8f366d0a3037f214b67227",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#sphinx-doc__sphinx-8721"
+      },
+      "independence": {
+        "project_cluster": "sphinx-doc/sphinx",
+        "upstream_issue_family": "sphinx-doc/sphinx#8720",
+        "upstream_pr_family": "sphinx-doc/sphinx#8721",
+        "workflow_family": "sphinx-doc__sphinx-8721",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Incremental HTML and EPUB builds",
+        "rationale": "The upstream issue itself spans builder state; verify current builder/configuration and emitted artifact after incremental builds.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "sympy/sympy",
+      "repository_url": "https://github.com/sympy/sympy",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 445,
+        "canonical_row_sha256": "0c684674d5b2ae54bae709a4140479f3eb1b4c907edd64464bacc19626fd8dec",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/sympy/sympy/issues/14710",
+        "issue_number": 14710,
+        "issue_title": "vector add 0 error",
+        "pr_url": "https://github.com/sympy/sympy/pull/14711",
+        "pr_number": 14711,
+        "pr_merged": true,
+        "base_commit": "c6753448b5c34f95e250105d76709fe4d349ca1f",
+        "base_commit_url": "https://github.com/sympy/sympy/commit/c6753448b5c34f95e250105d76709fe4d349ca1f",
+        "fix_commit": "fb0d290816dcaefc1bc874dd7380e4ceba8af1d4",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/sympy/sympy/commit/fb0d290816dcaefc1bc874dd7380e4ceba8af1d4",
+        "fix_parent_commits": [
+          "c6753448b5c34f95e250105d76709fe4d349ca1f",
+          "09f1dd2e7da0a1a189b00323130b8cbc6161f164"
+        ],
+        "base_is_fix_first_parent": true,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "sympy/physics/vector/tests/test_vector.py",
+          "sympy/physics/vector/vector.py"
+        ],
+        "benchmark_source_patch": [
+          "sympy/physics/vector/vector.py"
+        ],
+        "benchmark_test_patch": [
+          "sympy/physics/vector/tests/test_vector.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "ec9e3c0436fbff934fa84e22bf07f1b3ef5bfac3",
+        "dataset_installation_version": "1.1",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.sympy_1776_sympy-14711:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.sympy_1776_sympy-14711@sha256:c5366c33ed254ded2f8b39f7350deada09fc6ff5b1fe252041d10844fab54997",
+        "oci_manifest_sha256": "c5366c33ed254ded2f8b39f7350deada09fc6ff5b1fe252041d10844fab54997",
+        "oci_manifest_path": "raw/oci-sympy__sympy-14711.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "b6c4351c36c32145b46d63c5cd604e05985515020f975f80aee503259081febe",
+        "official_test_commands_evaluator_only": [
+          "PYTHONWARNINGS='ignore::UserWarning,ignore::SyntaxWarning' bin/test -C --verbose sympy/physics/vector/tests/test_vector.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "BSD-3-Clause",
+        "code_license_url": "https://raw.githubusercontent.com/sympy/sympy/c6753448b5c34f95e250105d76709fe4d349ca1f/LICENSE",
+        "code_license_file": "licenses/sympy__sympy-3c98bbadf4c3.txt",
+        "code_license_sha256": "3c98bbadf4c3f229dcd4565ba5ac9de649a9db689770e5ad759f9eaeecbe6cd9",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 2,
+        "patch_sha256": "603fc55c24e66a70d67dac2cb8661fdb9be0c08333133151cfd7a72fbe9881eb",
+        "test_patch_sha256": "955dfb3e264f06cbee6285bcf20d1346b33d3826fc901ddd51a21e823b44bb3d",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#sympy__sympy-14711"
+      },
+      "independence": {
+        "project_cluster": "sympy/sympy",
+        "upstream_issue_family": "sympy/sympy#14710",
+        "upstream_pr_family": "sympy/sympy#14711",
+        "workflow_family": "sympy__sympy-14711",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Vector arithmetic regression",
+        "rationale": "A small deterministic local algebra regression supports final-artifact retesting with few dependencies.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "sympy/sympy",
+      "repository_url": "https://github.com/sympy/sympy",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 471,
+        "canonical_row_sha256": "dd1ee0b0386d96bae6ef31bf767ad0d295a6ea455986df91f5d905f7f93762cf",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/sympy/sympy/issues/19608",
+        "issue_number": 19608,
+        "issue_title": "kernS: 'kern' referenced before assignment",
+        "pr_url": "https://github.com/sympy/sympy/pull/19637",
+        "pr_number": 19637,
+        "pr_merged": true,
+        "base_commit": "63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+        "base_commit_url": "https://github.com/sympy/sympy/commit/63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+        "fix_commit": "ff1bc63fe9c5b75fa0bd99e0f9342df80c7eca86",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/sympy/sympy/commit/ff1bc63fe9c5b75fa0bd99e0f9342df80c7eca86",
+        "fix_parent_commits": [
+          "5177f1533df934668b70ff853fb68365db2abcfa",
+          "3a75341adfb39b889095276a0b668c8a4e52d17d"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "sympy/core/sympify.py",
+          "sympy/core/tests/test_sympify.py"
+        ],
+        "benchmark_source_patch": [
+          "sympy/core/sympify.py"
+        ],
+        "benchmark_test_patch": [
+          "sympy/core/tests/test_sympify.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "cffd4e0f86fefd4802349a9f9b19ed70934ea354",
+        "dataset_installation_version": "1.7",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.sympy_1776_sympy-19637:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.sympy_1776_sympy-19637@sha256:956f0b8b048011ead5ff6d46007527a4cb4e1007e4f74fd1c935df6420730d8f",
+        "oci_manifest_sha256": "956f0b8b048011ead5ff6d46007527a4cb4e1007e4f74fd1c935df6420730d8f",
+        "oci_manifest_path": "raw/oci-sympy__sympy-19637.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "2028cc3dd567e483a610f81c6fc933f8cc254255051ce69052db832298f11766",
+        "official_test_commands_evaluator_only": [
+          "PYTHONWARNINGS='ignore::UserWarning,ignore::SyntaxWarning' bin/test -C --verbose sympy/core/tests/test_sympify.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "BSD-3-Clause",
+        "code_license_url": "https://raw.githubusercontent.com/sympy/sympy/63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef/LICENSE",
+        "code_license_file": "licenses/sympy__sympy-a7212a73709d.txt",
+        "code_license_sha256": "a7212a73709d040d7b932440f84c71e2334c045faaae589e9905ec1e9fbfd443",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 40,
+        "patch_sha256": "dd1eacb8e24bdf90c3483442372f2bb2f6e3549c35ff9182f78422ceeb61bdb8",
+        "test_patch_sha256": "b8c88d7b9c59cdc88030f940dc9f6df2e1aa5b332f5f5c8392211e178628afb6",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#sympy__sympy-19637"
+      },
+      "independence": {
+        "project_cluster": "sympy/sympy",
+        "upstream_issue_family": "sympy/sympy#19608",
+        "upstream_pr_family": "sympy/sympy#19637",
+        "workflow_family": "sympy__sympy-19637",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Symbolic parser regression",
+        "rationale": "Current parser behavior can be checked locally after a relevant edit; prior parser tests must not certify the new artifact.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "pydata__xarray-4629",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pydata/xarray",
+      "repository_url": "https://github.com/pydata/xarray",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 307,
+        "canonical_row_sha256": "434c34529606154661d43fd2d99c8e6c21b9e33672347835e02e9f91802dce3e",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pydata/xarray/issues/4627",
+        "issue_number": 4627,
+        "issue_title": "merge(combine_attrs='override') does not copy attrs but instead references attrs from the first object",
+        "pr_url": "https://github.com/pydata/xarray/pull/4629",
+        "pr_number": 4629,
+        "pr_merged": true,
+        "base_commit": "a41edc7bf5302f2ea327943c0c48c532b12009bc",
+        "base_commit_url": "https://github.com/pydata/xarray/commit/a41edc7bf5302f2ea327943c0c48c532b12009bc",
+        "fix_commit": "9396605d8358a621c89478dbbd286b1b4cd72e64",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pydata/xarray/commit/9396605d8358a621c89478dbbd286b1b4cd72e64",
+        "fix_parent_commits": [
+          "a41edc7bf5302f2ea327943c0c48c532b12009bc"
+        ],
+        "base_is_fix_first_parent": true,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "doc/whats-new.rst",
+          "xarray/core/merge.py",
+          "xarray/tests/test_merge.py"
+        ],
+        "benchmark_source_patch": [
+          "xarray/core/merge.py"
+        ],
+        "benchmark_test_patch": [
+          "xarray/tests/test_merge.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "1c198a191127c601d091213c4b3292a8bb3054e1",
+        "dataset_installation_version": "0.12",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pydata_1776_xarray-4629:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pydata_1776_xarray-4629@sha256:033589865b8522fd28ad477db28dccb4fcfcc3e56174bbc95e7996b2a948135b",
+        "oci_manifest_sha256": "033589865b8522fd28ad477db28dccb4fcfcc3e56174bbc95e7996b2a948135b",
+        "oci_manifest_path": "raw/oci-pydata__xarray-4629.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "98843fa5ec0fdcddbca81355e578ba6e52d296ea43bf160af0f6abc7815c3d9f",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA xarray/tests/test_merge.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "Apache-2.0",
+        "code_license_url": "https://raw.githubusercontent.com/pydata/xarray/a41edc7bf5302f2ea327943c0c48c532b12009bc/LICENSE",
+        "code_license_file": "licenses/pydata__xarray-73ba74dfaa52.txt",
+        "code_license_sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 32,
+        "patch_sha256": "2d14d22404ac99712ca5fbe084fc6fe646388f2028a01aade72cfcabfdaca2bc",
+        "test_patch_sha256": "0cbc7c89d00a72d764bf74b9fa5406d3a08713d511b87380a468e396549036f6",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pydata__xarray-4629"
+      },
+      "independence": {
+        "project_cluster": "pydata/xarray",
+        "upstream_issue_family": "pydata/xarray#4627",
+        "upstream_pr_family": "pydata/xarray#4629",
+        "workflow_family": "pydata__xarray-4629",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Merged metadata copy semantics",
+        "rationale": "Check ownership and mutation of output attributes against current source objects rather than reusing old object evidence.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "pydata__xarray-6461",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "pydata/xarray",
+      "repository_url": "https://github.com/pydata/xarray",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 311,
+        "canonical_row_sha256": "ae4c921e7c91278185d257f7d172818cedf471b990c8af5b3712b39954460709",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/pydata/xarray/issues/6444",
+        "issue_number": 6444,
+        "issue_title": "xr.where with scalar as second argument fails with keep_attrs=True",
+        "pr_url": "https://github.com/pydata/xarray/pull/6461",
+        "pr_number": 6461,
+        "pr_merged": true,
+        "base_commit": "851dadeb0338403e5021c3fbe80cbc9127ee672d",
+        "base_commit_url": "https://github.com/pydata/xarray/commit/851dadeb0338403e5021c3fbe80cbc9127ee672d",
+        "fix_commit": "0cd5285c56c5375da9f4d27836ec41eea4d069f3",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/pydata/xarray/commit/0cd5285c56c5375da9f4d27836ec41eea4d069f3",
+        "fix_parent_commits": [
+          "c12cb3d11789bbc3660ac43ed1c7705410beb93d"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "doc/whats-new.rst",
+          "xarray/core/computation.py",
+          "xarray/tests/test_computation.py"
+        ],
+        "benchmark_source_patch": [
+          "xarray/core/computation.py"
+        ],
+        "benchmark_test_patch": [
+          "xarray/tests/test_computation.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "d7931f9014a26e712ff5f30c4082cf0261f045d3",
+        "dataset_installation_version": "2022.03",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.pydata_1776_xarray-6461:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.pydata_1776_xarray-6461@sha256:88efae745c9629cc34677c9ff042a8a488c97aae47b915799c4efad2ab603632",
+        "oci_manifest_sha256": "88efae745c9629cc34677c9ff042a8a488c97aae47b915799c4efad2ab603632",
+        "oci_manifest_path": "raw/oci-pydata__xarray-6461.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "e0d1f18973654061bc842f11b49c8cf1eadd27bb64a6a08552c072620c8875b0",
+        "official_test_commands_evaluator_only": [
+          "pytest -rA xarray/tests/test_computation.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "Apache-2.0",
+        "code_license_url": "https://raw.githubusercontent.com/pydata/xarray/851dadeb0338403e5021c3fbe80cbc9127ee672d/LICENSE",
+        "code_license_file": "licenses/pydata__xarray-73ba74dfaa52.txt",
+        "code_license_sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 1,
+        "pass_to_pass_count": 247,
+        "patch_sha256": "f4043eceaf8852c1c3027b5beafe65e7ca86d1d65a90a16e3d33df5acc6c98c6",
+        "test_patch_sha256": "3de04a73e4226b0a72f3f1d42def8bc6190068e2267a90ab16bc02203686f806",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#pydata__xarray-6461"
+      },
+      "independence": {
+        "project_cluster": "pydata/xarray",
+        "upstream_issue_family": "pydata/xarray#6444",
+        "upstream_pr_family": "pydata/xarray#6461",
+        "workflow_family": "pydata__xarray-6461",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Scalar where metadata handling",
+        "rationale": "Current argument types and keep_attrs configuration determine applicability of earlier passing evidence.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3069",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "mwaskom/seaborn",
+      "repository_url": "https://github.com/mwaskom/seaborn",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 287,
+        "canonical_row_sha256": "a0fcb5012752dd56a6f9a5d7caf68bf5821b3242556c6f9219245b6d4c81d62f",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/mwaskom/seaborn/issues/2967",
+        "issue_number": 2967,
+        "issue_title": "Nominal scale should be drawn the same way as categorical scales",
+        "pr_url": "https://github.com/mwaskom/seaborn/pull/3069",
+        "pr_number": 3069,
+        "pr_merged": true,
+        "base_commit": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+        "base_commit_url": "https://github.com/mwaskom/seaborn/commit/54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+        "fix_commit": "a767d666d45a6f105177e4720669b85c92ee2432",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/mwaskom/seaborn/commit/a767d666d45a6f105177e4720669b85c92ee2432",
+        "fix_parent_commits": [
+          "85c8ed632a5e9ec45b7d69d89518bb784a6e05a5"
+        ],
+        "base_is_fix_first_parent": false,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "doc/whatsnew/v0.12.1.rst",
+          "seaborn/_core/plot.py",
+          "tests/_core/test_plot.py"
+        ],
+        "benchmark_source_patch": [
+          "seaborn/_core/plot.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/_core/test_plot.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "d25872b0fc99dbf7e666a91f59bd4ed125186aa1",
+        "dataset_installation_version": "0.12",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069@sha256:10f78850ebb5de5a4bdb70099159131fa819601dc885955d7be6f1009b23b4ea",
+        "oci_manifest_sha256": "10f78850ebb5de5a4bdb70099159131fa819601dc885955d7be6f1009b23b4ea",
+        "oci_manifest_path": "raw/oci-mwaskom__seaborn-3069.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "7a00ea831cdaddd4a34231b77aef2cef321e3ec54a18b7e5e86d862bfa4ce324",
+        "official_test_commands_evaluator_only": [
+          "pytest --no-header -rA tests/_core/test_plot.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "BSD-3-Clause",
+        "code_license_url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/LICENSE.md",
+        "code_license_file": "licenses/mwaskom__seaborn-0874bfc01308.txt",
+        "code_license_sha256": "0874bfc01308833385b2f5ca62205525739f6a57b8688afea1b078d0f845d6d4",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 2,
+        "pass_to_pass_count": 94,
+        "patch_sha256": "f209d3f9733c3c4bdcafb48f8601948c53ee16451e7775b33186439ccac7096c",
+        "test_patch_sha256": "803d1a61b7ead9a5a445af41a94de488c5a2eb1a038b8ca53dc7ce620baaa7af",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#mwaskom__seaborn-3069"
+      },
+      "independence": {
+        "project_cluster": "mwaskom/seaborn",
+        "upstream_issue_family": "mwaskom/seaborn#2967",
+        "upstream_pr_family": "mwaskom/seaborn#3069",
+        "workflow_family": "mwaskom__seaborn-3069",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Nominal plot scale state",
+        "rationale": "Inspect numeric axes properties on the newly generated figure; do not infer success from an old plot or image-only judgment.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3187",
+      "acquisition_status": "acquired",
+      "workflow_status": "candidate_not_constructed",
+      "eligible_for_pilot": false,
+      "domain": "controller_evaluator_only",
+      "project_id": "mwaskom/seaborn",
+      "repository_url": "https://github.com/mwaskom/seaborn",
+      "source_dataset": {
+        "id": "SWE-bench/SWE-bench_Verified",
+        "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+        "split": "test",
+        "row_index": 288,
+        "canonical_row_sha256": "02c402871b2465f1a64cfd490b6d91d5c116f144e3191920fe491f530f03102f",
+        "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+        "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+      },
+      "upstream": {
+        "issue_url": "https://github.com/mwaskom/seaborn/issues/3174",
+        "issue_number": 3174,
+        "issue_title": "Wrong legend values of large ranges",
+        "pr_url": "https://github.com/mwaskom/seaborn/pull/3187",
+        "pr_number": 3187,
+        "pr_merged": true,
+        "base_commit": "22cdfb0c93f8ec78492d87edb810f10cb7f57a31",
+        "base_commit_url": "https://github.com/mwaskom/seaborn/commit/22cdfb0c93f8ec78492d87edb810f10cb7f57a31",
+        "fix_commit": "9bd166565beea99ab2e43a0576c59efab196940b",
+        "fix_commit_kind": "upstream_merge_or_squash_commit",
+        "fix_commit_url": "https://github.com/mwaskom/seaborn/commit/9bd166565beea99ab2e43a0576c59efab196940b",
+        "fix_parent_commits": [
+          "22cdfb0c93f8ec78492d87edb810f10cb7f57a31"
+        ],
+        "base_is_fix_first_parent": true,
+        "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+      },
+      "changed_files": {
+        "upstream_pr": [
+          "doc/whatsnew/v0.12.2.rst",
+          "seaborn/_core/scales.py",
+          "seaborn/utils.py",
+          "tests/_core/test_plot.py",
+          "tests/test_relational.py"
+        ],
+        "benchmark_source_patch": [
+          "seaborn/_core/scales.py",
+          "seaborn/utils.py"
+        ],
+        "benchmark_test_patch": [
+          "tests/_core/test_plot.py",
+          "tests/test_relational.py"
+        ]
+      },
+      "reconstruction": {
+        "environment_setup_commit": "d25872b0fc99dbf7e666a91f59bd4ed125186aa1",
+        "dataset_installation_version": "0.12",
+        "dataset_version_is_current_target_truth": false,
+        "image_tag_as_published": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3187:latest",
+        "immutable_image_ref": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3187@sha256:aea7e43b20703256f5cb807b54cd78a12601f21086d3a62a41de18c254771f4e",
+        "oci_manifest_sha256": "aea7e43b20703256f5cb807b54cd78a12601f21086d3a62a41de18c254771f4e",
+        "oci_manifest_path": "raw/oci-mwaskom__seaborn-3187.json",
+        "platform": "linux/amd64",
+        "harness_repository": "https://github.com/SWE-bench/SWE-bench",
+        "harness_commit": "02e7a74ffd0b707aab73d203fe87bdc7c76afc8e",
+        "official_eval_script_sha256": "14bcc83cc1af6a326b5100c16b129e37a5b4bfbeb89bce583e20019f3e8f8a5d",
+        "official_test_commands_evaluator_only": [
+          "pytest --no-header -rA tests/_core/test_plot.py tests/test_relational.py"
+        ],
+        "environment_tested_locally": false
+      },
+      "license": {
+        "code_spdx_at_base": "BSD-3-Clause",
+        "code_license_url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/LICENSE.md",
+        "code_license_file": "licenses/mwaskom__seaborn-0874bfc01308.txt",
+        "code_license_sha256": "0874bfc01308833385b2f5ca62205525739f6a57b8688afea1b078d0f845d6d4",
+        "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+        "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+        "dataset_card_license_field": null,
+        "release_scope": "metadata, locators, hashes and unmodified license notices"
+      },
+      "official_benchmark_labels_evaluator_only": {
+        "fail_to_pass_count": 2,
+        "pass_to_pass_count": 248,
+        "patch_sha256": "578f98370810261561a8936dd7202e8c6644ef8d9ae52a54578a680f3cb4fc1f",
+        "test_patch_sha256": "580a0ee004bb0143ba24afcaf0e45ec309635fa4610049ed91a8a15f7e9e1fc8",
+        "labels_are_observed_local_results": false,
+        "locator": "evaluator/dataset-row-metadata.jsonl#mwaskom__seaborn-3187"
+      },
+      "independence": {
+        "project_cluster": "mwaskom/seaborn",
+        "upstream_issue_family": "mwaskom/seaborn#3174",
+        "upstream_pr_family": "mwaskom/seaborn#3187",
+        "workflow_family": "mwaskom__seaborn-3187",
+        "distinct_issue_and_pr_verified": true,
+        "cross_split_contamination_review": "pending",
+        "model_pretraining_contamination": "unknown; established public benchmark is not a claim of unseen code"
+      },
+      "proposed_p1_relevance": {
+        "topic": "Legend formatting across numeric ranges",
+        "rationale": "Bind legend values to current data range and generated figure; scientific dependencies require a reproducible environment.",
+        "status": "design_inference_not_executed_workflow",
+        "real_components": [
+          "upstream issue",
+          "repository at base commit",
+          "merged fix provenance",
+          "official benchmark evaluation metadata"
+        ],
+        "simulated_components_created": [],
+        "additional_work_required": [
+          "capture actual prelude with work before and after compaction",
+          "introduce and document at least one relevant state change",
+          "freeze hidden post-retrieval behavior checks",
+          "use local simulator for any authorization or irreversible-action scenario"
+        ]
+      },
+      "acceptance": {
+        "source_metadata_verified": true,
+        "license_snapshot_obtained": true,
+        "image_manifest_resolved": true,
+        "source_clone_verified": false,
+        "base_failure_reproduced": null,
+        "official_fix_pass_reproduced": null,
+        "public_input_sha256": null,
+        "p1_gold_sha256": null,
+        "native_compaction_receipt": null,
+        "hidden_behavior_checks": null,
+        "independent_annotators": [],
+        "adjudication": null,
+        "frozen": false
+      },
+      "source_data_quality_flags": []
+    }
+  ],
+  "updated_after_local_program_qualification_at": "2026-11-28T00:49:13.896432+00:00",
+  "locally_reproduced_source_instances": 2
+}

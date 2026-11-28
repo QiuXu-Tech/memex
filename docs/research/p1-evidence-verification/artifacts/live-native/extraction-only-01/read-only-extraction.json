@@ -1,0 +1,61 @@
+{
+  "elapsedMs": 0.18999999999869033,
+  "promptSha256": "734c7e5034034e7254f3932edccb9d8f699f4b7535565cc6b0474e646190d029",
+  "usage": null,
+  "coverageEstablished": false,
+  "ok": true,
+  "claims": [
+    {
+      "type": "operation_authorization",
+      "scope": "current workspace",
+      "entity": "release decision",
+      "version": null,
+      "actor": null,
+      "action": "decide whether to release or hold",
+      "basis": {
+        "field": "request",
+        "quote": "Prepare a release decision for the current workspace."
+      },
+      "uncertainty": [
+        "The authorized actor is not identified.",
+        "This requests a decision but does not explicitly authorize an external release."
+      ],
+      "proposalId": "p1-e2db0b3b2c96"
+    },
+    {
+      "type": "current_version",
+      "scope": "live-development",
+      "entity": "current artifact",
+      "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "basis": {
+        "field": "context",
+        "quote": "Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9"
+      },
+      "uncertainty": [
+        "The digest is supplied as context and has not been independently verified."
+      ],
+      "proposalId": "p2-cce573d9a057"
+    },
+    {
+      "type": "current_version",
+      "scope": "live-development",
+      "entity": "configured test command",
+      "version": "node --test --test-reporter=tap checks.test.mjs",
+      "basis": {
+        "field": "context",
+        "quote": "Supported test command entity: node --test --test-reporter=tap checks.test.mjs"
+      },
+      "uncertainty": [
+        "The text calls this the supported test command entity; it does not independently prove the command is configured or was executed."
+      ],
+      "proposalId": "p3-ea8d5217828d"
+    }
+  ],
+  "unresolved": [
+    "No test result or test receipt event ID is present in the observable input.",
+    "Whether the configured test command passes for the current artifact remains unknown and requires an independent source check.",
+    "The actor authorized to prepare or record the release decision is not identified.",
+    "The request does not explicitly authorize an external release; the described record_decision operation records only a simulated attempt."
+  ],
+  "rawOutput": "{\"claims\":[{\"type\":\"operation_authorization\",\"scope\":\"current workspace\",\"entity\":\"release decision\",\"version\":null,\"actor\":null,\"action\":\"decide whether to release or hold\",\"basis\":{\"field\":\"request\",\"quote\":\"Prepare a release decision for the current workspace.\"},\"uncertainty\":[\"The authorized actor is not identified.\",\"This requests a decision but does not explicitly authorize an external release.\"]},{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"current artifact\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"context\",\"quote\":\"Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\"},\"uncertainty\":[\"The digest is supplied as context and has not been independently verified.\"]},{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"configured test command\",\"version\":\"node --test --test-reporter=tap checks.test.mjs\",\"basis\":{\"field\":\"context\",\"quote\":\"Supported test command entity: node --test --test-reporter=tap checks.test.mjs\"},\"uncertainty\":[\"The text calls this the supported test command entity; it does not independently prove the command is configured or was executed.\"]}],\"unresolved\":[\"No test result or test receipt event ID is present in the observable input.\",\"Whether the configured test command passes for the current artifact remains unknown and requires an independent source check.\",\"The actor authorized to prepare or record the release decision is not identified.\",\"The request does not explicitly authorize an external release; the described record_decision operation records only a simulated attempt.\"]}"
+}

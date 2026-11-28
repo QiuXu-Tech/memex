@@ -1,0 +1,202 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm. See `npm help npmrc` for supported config options.
+
+> @qiuxu/memex-workspace@0.65.0 test:paper1
+> node --test test/paper1-*.mjs && python3 -B -m unittest discover -s test -p 'test_paper1_*.py' -v
+
+✔ Memex opens the discovered original index, including multi-page content (35.357321ms)
+✔ an incomplete ingestion is explicit and restart invalidates an old reuse certificate (16.749787ms)
+✔ view reads observe another writer even when no invalidation notification was received (11.776256ms)
+✔ immutable event identity and source-order ambiguity fail conservatively (6.017012ms)
+✔ automatic extraction sees only observable input and validates a grounded proposal (1.839831ms)
+✔ gold fields never reach the extractor, including innocuous-looking unknown keys (0.613671ms)
+✔ source IDs and hidden event positions cannot be returned as claim hints (0.709151ms)
+✔ hallucinated grounding, missing actor and malformed model output are counted failures (0.410692ms)
+✔ empty extraction does not assert that all hidden obligations were covered (0.21114ms)
+✔ a null model response is retained as an extraction failure (0.20424ms)
+✔ real execution, live binding, archive and unchanged reuse form one persistent broker session (498.249095ms)
+✔ the execution broker refuses source bytes outside the approved development program set (9.134708ms)
+✔ public tool dispatcher cannot invoke controller operations or accept arbitrary paths (9.27173ms)
+✔ unknown or empty model claims cannot silently become a successful verification packet (21.994144ms)
+✔ broker refuses used session state instead of restarting its sequence and budgets (98.03209ms)
+✔ current-only extraction rejects historical requests, altered inputs and consumed preparations (34.011445ms)
+✔ starting a new extraction invalidates the previous installed proposals (152.860108ms)
+✔ combined delivery budget is checked and does not silently truncate original evidence (144.099032ms)
+✔ simulated decisions are recorded as attempts without the broker declaring their correctness (6.354267ms)
+✔ content-addressed snapshots are repeatable and include declared lockfiles and observed Node environment (38.019334ms)
+✔ a same-size content mutation invalidates the version even when mtime is restored (18.117093ms)
+✔ adding a directory member and changing a declared lockfile both invalidate snapshots (32.742818ms)
+✔ a missing declared artifact has no usable version (4.16228ms)
+✔ noncanonical paths, traversal, and both leaf and parent symlinks are rejected (4.954734ms)
+✔ file-count and byte budgets fail before returning an incomplete digest (2.0098ms)
+✔ a real mutation during an open file read is rejected rather than sealed (5.001972ms)
+✔ current-workspace claim binding retains the proposal and refuses implicit or historical retargeting (11.108215ms)
+✔ execution sources bind only equal successful observations and cannot relabel an unrelated version (31.242451ms)
+✔ equal content hashes do not hide metadata changes observed across an execution boundary (13.308861ms)
+✔ file ordering is canonical by code unit rather than host locale (7.007356ms)
+✔ live mutation defeats cached success even while the archive catalog is unchanged (153.338614ms)
+✔ a file change inside the archive view read cannot become a stable live view (25.213471ms)
+✔ a change at the final cached-delivery check rejects the would-be reused result (56.829719ms)
+✔ an execution without before/after binding is rejected even if its version equals the live digest (21.699242ms)
+✔ an actual Node execution produces evidence without manually supplied status or entity (196.051992ms)
+✔ echoed TAP, assistant statements and shell chains do not become execution evidence (0.467496ms)
+✔ zero assertions, cancelled tests and missing completion footer cannot establish pass (0.508136ms)
+✔ artifact changes during a test and incomplete native events invalidate normalization (0.230028ms)
+✔ the native shell envelope can contain one standalone Node command (0.265579ms)
+✔ native failed-completion events can provide a genuine failing-test receipt (0.233113ms)
+✔ native TAP with an explicit test plan may omit the version header (0.322985ms)
+✔ script arguments, eval mode and an arbitrary binary named node cannot impersonate Node test mode (0.195397ms)
+✔ actual saved native executions survive archive roundtrip and failure is not reported as a pass (202.956739ms)
+✔ offline version mapping fails when controller metadata disagrees with logged artifact bytes (2.743587ms)
+✔ an unexpired cached grant cannot hide a later revocation (6.827742ms)
+✔ stable complete view allows reuse only after a fresh view read (2.518417ms)
+✔ unavailable or incomplete current view never falls back to a cached grant (2.578204ms)
+✔ a missed newer source cannot be certified by a matching older retrieval (0.479063ms)
+✔ opening only one of two same-head events cannot hide a conflict (0.550348ms)
+✔ a changed view during source opening leaves the result unverified (0.768538ms)
+✔ out-of-order delivery follows the source sequence rather than ingestion order (1.068639ms)
+✔ same-head contradiction and expired latest evidence cannot use an older grant (12.339503ms)
+✔ restart and tampered cache force opening rather than trusting the old receipt (3.012512ms)
+✔ wrong actor, wrong action and assistant summaries cannot prove authorization (1.747565ms)
+✔ always-verify uses the same source path even when reuse is possible (1.700856ms)
+✔ a supported historical grant never becomes an instruction to execute (0.78384ms)
+✔ serialized evidence is bounded and is not silently truncated (0.823028ms)
+✔ current-version discovery accepts an unknown candidate version (0.942684ms)
+✔ unresolved artifact binding abstains rather than taking a version from hidden labels (1.969812ms)
+✔ a future-effective decision is not active merely because it was already ingested (0.732996ms)
+✔ reuse rechecks the view after asynchronous evidence preparation (0.84452ms)
+✔ zero-test success and wrong-artifact receipts cannot certify a passing suite (0.656453ms)
+✔ rewriting a cache source and its own hash cannot forge an archive receipt (0.70849ms)
+✔ a half-written cache is a miss, not an uncaught verification exception (0.939679ms)
+✔ opened content must match the complete trusted head commitment (0.290426ms)
+ℹ tests 65
+ℹ suites 0
+ℹ pass 65
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1095.210374
+test_bad_jsonl_line_cannot_selectively_remove_a_planned_run (test_paper1_analysis.AnalysisCliTests.test_bad_jsonl_line_cannot_selectively_remove_a_planned_run) ... ok
+test_bad_ratecard_fields_do_not_change_quality (test_paper1_analysis.AnalysisCliTests.test_bad_ratecard_fields_do_not_change_quality) ... ok
+test_collection_gap_blocks_confirmation_while_retaining_failure (test_paper1_analysis.AnalysisCliTests.test_collection_gap_blocks_confirmation_while_retaining_failure) ... ok
+test_cost_corruption_preserves_a_valid_quality_comparison (test_paper1_analysis.AnalysisCliTests.test_cost_corruption_preserves_a_valid_quality_comparison) ... ok
+test_damaged_b_costs_cannot_create_false_h1_from_72_successful_runs (test_paper1_analysis.AnalysisCliTests.test_damaged_b_costs_cannot_create_false_h1_from_72_successful_runs) ... ok
+test_degenerate_bootstrap_does_not_report_certain_effect (test_paper1_analysis.AnalysisCliTests.test_degenerate_bootstrap_does_not_report_certain_effect) ... ok
+test_duplicate_observations_are_rejected_even_with_distinct_seed_or_attempt (test_paper1_analysis.AnalysisCliTests.test_duplicate_observations_are_rejected_even_with_distinct_seed_or_attempt) ... ok
+test_duplicate_plan_and_inconsistent_project_are_rejected (test_paper1_analysis.AnalysisCliTests.test_duplicate_plan_and_inconsistent_project_are_rejected) ... ok
+test_invalid_cost_is_unknown_without_overriding_valid_quality (test_paper1_analysis.AnalysisCliTests.test_invalid_cost_is_unknown_without_overriding_valid_quality) ... ok
+test_invalid_manifest_types_return_structured_errors (test_paper1_analysis.AnalysisCliTests.test_invalid_manifest_types_return_structured_errors) ... ok
+test_malformed_success_is_failure_and_replicates_do_not_inflate_n (test_paper1_analysis.AnalysisCliTests.test_malformed_success_is_failure_and_replicates_do_not_inflate_n) ... ok
+test_missing_and_host_failed_runs_remain_in_planned_denominator (test_paper1_analysis.AnalysisCliTests.test_missing_and_host_failed_runs_remain_in_planned_denominator) ... ok
+test_missing_failure_cost_blocks_cost_interval_not_just_one_task (test_paper1_analysis.AnalysisCliTests.test_missing_failure_cost_blocks_cost_interval_not_just_one_task) ... ok
+test_missing_planned_arm_does_not_become_a_complete_case_comparison (test_paper1_analysis.AnalysisCliTests.test_missing_planned_arm_does_not_become_a_complete_case_comparison) ... ok
+test_missing_standardized_cost_is_not_filled_from_actual_spend (test_paper1_analysis.AnalysisCliTests.test_missing_standardized_cost_is_not_filled_from_actual_spend) ... ok
+test_nonpositive_bootstrap_count_is_rejected (test_paper1_analysis.AnalysisCliTests.test_nonpositive_bootstrap_count_is_rejected) ... ok
+test_operational_sample_guards_are_configurable_and_not_power_claims (test_paper1_analysis.AnalysisCliTests.test_operational_sample_guards_are_configurable_and_not_power_claims) ... ok
+test_pilot_is_descriptive_even_when_interval_is_strictly_positive (test_paper1_analysis.AnalysisCliTests.test_pilot_is_descriptive_even_when_interval_is_strictly_positive) ... ok
+test_predefined_method_invalid_output_is_an_itt_failure_not_a_data_gap (test_paper1_analysis.AnalysisCliTests.test_predefined_method_invalid_output_is_an_itt_failure_not_a_data_gap) ... ok
+test_project_bootstrap_keeps_cluster_dependence_and_task_weighting (test_paper1_analysis.AnalysisCliTests.test_project_bootstrap_keeps_cluster_dependence_and_task_weighting) ... ok
+test_seed_and_input_order_reproduce_intervals (test_paper1_analysis.AnalysisCliTests.test_seed_and_input_order_reproduce_intervals) ... ok
+test_single_retry_record_is_not_accepted_as_first_attempt (test_paper1_analysis.AnalysisCliTests.test_single_retry_record_is_not_accepted_as_first_attempt) ... ok
+test_structurally_bad_status_is_scored_failure_without_crashing (test_paper1_analysis.AnalysisCliTests.test_structurally_bad_status_is_scored_failure_without_crashing) ... ok
+test_too_few_projects_blocks_primary_inference_despite_many_tasks (test_paper1_analysis.AnalysisCliTests.test_too_few_projects_blocks_primary_inference_despite_many_tasks) ... ok
+test_unknown_status_blocks_confirmation_without_removing_runs (test_paper1_analysis.AnalysisCliTests.test_unknown_status_blocks_confirmation_without_removing_runs) ... ok
+test_unparseable_jsonl_is_reported_without_dropping_planned_runs (test_paper1_analysis.AnalysisCliTests.test_unparseable_jsonl_is_reported_without_dropping_planned_runs) ... ok
+test_unplanned_run_is_rejected_instead_of_silently_selected (test_paper1_analysis.AnalysisCliTests.test_unplanned_run_is_rejected_instead_of_silently_selected) ... ok
+test_unreadable_completed_outcome_blocks_confirmation (test_paper1_analysis.AnalysisCliTests.test_unreadable_completed_outcome_blocks_confirmation) ... ok
+test_h2_requires_all_three_strict_conditions (test_paper1_analysis.HypothesisGateTests.test_h2_requires_all_three_strict_conditions) ... ok
+test_missing_cost_or_rate_information_cannot_establish_h2 (test_paper1_analysis.HypothesisGateTests.test_missing_cost_or_rate_information_cannot_establish_h2) ... ok
+test_nonconfirmatory_or_unfrozen_protocol_never_supports_hypotheses (test_paper1_analysis.HypothesisGateTests.test_nonconfirmatory_or_unfrozen_protocol_never_supports_hypotheses) ... ok
+test_settings_override_or_unassigned_bad_record_blocks_confirmation (test_paper1_analysis.HypothesisGateTests.test_settings_override_or_unassigned_bad_record_blocks_confirmation) ... ok
+test_absent_quality_does_not_erase_a_complete_measured_cost (test_paper1_experiment.ExperimentTests.test_absent_quality_does_not_erase_a_complete_measured_cost) ... ok
+test_all_components_cannot_be_declared_not_applicable (test_paper1_experiment.ExperimentTests.test_all_components_cannot_be_declared_not_applicable) ... ok
+test_cached_tokens_are_a_partition_not_double_priced (test_paper1_experiment.ExperimentTests.test_cached_tokens_are_a_partition_not_double_priced) ... ok
+test_completed_model_stage_cannot_have_only_zero_usage (test_paper1_experiment.ExperimentTests.test_completed_model_stage_cannot_have_only_zero_usage) ... ok
+test_completed_selective_arm_requires_extraction_activity (test_paper1_experiment.ExperimentTests.test_completed_selective_arm_requires_extraction_activity) ... ok
+test_component_seal_cannot_precede_its_measurements (test_paper1_experiment.ExperimentTests.test_component_seal_cannot_precede_its_measurements) ... ok
+test_default_dry_run_does_not_start_subprocess_or_create_state (test_paper1_experiment.ExperimentTests.test_default_dry_run_does_not_start_subprocess_or_create_state) ... ok
+test_dispatch_only_passes_public_and_output_data_paths (test_paper1_experiment.ExperimentTests.test_dispatch_only_passes_public_and_output_data_paths) ... ok
+test_documented_zero_reference_rate_still_requires_measured_work (test_paper1_experiment.ExperimentTests.test_documented_zero_reference_rate_still_requires_measured_work) ... ok
+test_duplicate_evaluator_rows_are_not_selected_for_best_quality (test_paper1_experiment.ExperimentTests.test_duplicate_evaluator_rows_are_not_selected_for_best_quality) ... ok
+test_failure_before_model_work_does_not_invent_positive_usage (test_paper1_experiment.ExperimentTests.test_failure_before_model_work_does_not_invent_positive_usage) ... ok
+test_first_attempt_resume_never_repeats_finished_units (test_paper1_experiment.ExperimentTests.test_first_attempt_resume_never_repeats_finished_units) ... ok
+test_frozen_manifest_is_paired_and_analyzer_schema_compatible (test_paper1_experiment.ExperimentTests.test_frozen_manifest_is_paired_and_analyzer_schema_compatible) ... ok
+test_gold_paths_cannot_be_added_to_controller_runner_spec (test_paper1_experiment.ExperimentTests.test_gold_paths_cannot_be_added_to_controller_runner_spec) ... ok
+test_interrupted_reserved_unit_is_not_dispatched_again (test_paper1_experiment.ExperimentTests.test_interrupted_reserved_unit_is_not_dispatched_again) ... ok
+test_invalid_analysis_plan_cannot_be_frozen_as_analyzer_compatible (test_paper1_experiment.ExperimentTests.test_invalid_analysis_plan_cannot_be_frozen_as_analyzer_compatible) ... ok
+test_known_zero_prices_cannot_create_complete_reference_cost (test_paper1_experiment.ExperimentTests.test_known_zero_prices_cannot_create_complete_reference_cost) ... ok
+test_missing_unknown_and_cumulative_measurements_do_not_yield_full_cost (test_paper1_experiment.ExperimentTests.test_missing_unknown_and_cumulative_measurements_do_not_yield_full_cost) ... ok
+test_mutated_public_input_and_tampered_ledger_fail_closed (test_paper1_experiment.ExperimentTests.test_mutated_public_input_and_tampered_ledger_fail_closed) ... ok
+test_not_performed_is_only_allowed_for_noncompleted_execution (test_paper1_experiment.ExperimentTests.test_not_performed_is_only_allowed_for_noncompleted_execution) ... ok
+test_omitted_extraction_mandatory_rule_cannot_be_frozen_for_d (test_paper1_experiment.ExperimentTests.test_omitted_extraction_mandatory_rule_cannot_be_frozen_for_d) ... ok
+test_output_mutation_after_sealing_invalidates_the_score (test_paper1_experiment.ExperimentTests.test_output_mutation_after_sealing_invalidates_the_score) ... ok
+test_public_digest_covers_directory_permissions (test_paper1_experiment.ExperimentTests.test_public_digest_covers_directory_permissions) ... ok
+test_public_digest_covers_file_permissions_and_empty_directories (test_paper1_experiment.ExperimentTests.test_public_digest_covers_file_permissions_and_empty_directories) ... ok
+test_quality_binding_is_mandatory_not_only_a_run_key (test_paper1_experiment.ExperimentTests.test_quality_binding_is_mandatory_not_only_a_run_key) ... ok
+test_quality_join_is_separate_and_bad_cost_does_not_flip_success (test_paper1_experiment.ExperimentTests.test_quality_join_is_separate_and_bad_cost_does_not_flip_success) ... ok
+test_run_budget_is_global_across_resumes (test_paper1_experiment.ExperimentTests.test_run_budget_is_global_across_resumes) ... ok
+test_runner_change_between_arms_stops_before_next_attempt (test_paper1_experiment.ExperimentTests.test_runner_change_between_arms_stops_before_next_attempt) ... ok
+test_score_from_another_execution_of_same_plan_cannot_join (test_paper1_experiment.ExperimentTests.test_score_from_another_execution_of_same_plan_cannot_join) ... ok
+test_score_from_different_public_freeze_cannot_join (test_paper1_experiment.ExperimentTests.test_score_from_different_public_freeze_cannot_join) ... ok
+test_score_input_export_supplies_the_required_sealed_binding (test_paper1_experiment.ExperimentTests.test_score_input_export_supplies_the_required_sealed_binding) ... ok
+test_timeout_cannot_certify_full_cost_from_an_earlier_seal (test_paper1_experiment.ExperimentTests.test_timeout_cannot_certify_full_cost_from_an_earlier_seal) ... ok
+test_total_cost_overflow_is_unknown_instead_of_nonfinite (test_paper1_experiment.ExperimentTests.test_total_cost_overflow_is_unknown_instead_of_nonfinite) ... ok
+test_unit_mismatch_and_unknown_rate_fail_cost_without_crashing (test_paper1_experiment.ExperimentTests.test_unit_mismatch_and_unknown_rate_fail_cost_without_crashing) ... ok
+test_usage_digest_mismatch_keeps_quality_but_makes_cost_unknown (test_paper1_experiment.ExperimentTests.test_usage_digest_mismatch_keeps_quality_but_makes_cost_unknown) ... ok
+test_wall_budget_is_rechecked_after_input_verification_before_launch (test_paper1_experiment.ExperimentTests.test_wall_budget_is_rechecked_after_input_verification_before_launch) ... ok
+test_wall_budget_stops_later_units (test_paper1_experiment.ExperimentTests.test_wall_budget_stops_later_units) ... ok
+test_current_decision_cannot_cite_a_passing_receipt_for_old_bytes (test_paper1_live_host.NativeIntegrationBoundaryTests.test_current_decision_cannot_cite_a_passing_receipt_for_old_bytes) ... ok
+test_earlier_wrong_attempt_is_not_erased_by_later_right_decision (test_paper1_live_host.NativeIntegrationBoundaryTests.test_earlier_wrong_attempt_is_not_erased_by_later_right_decision) ... ok
+test_expired_wall_deadline_stops_before_a_new_protocol_wait (test_paper1_live_host.NativeIntegrationBoundaryTests.test_expired_wall_deadline_stops_before_a_new_protocol_wait) ... ok
+test_requested_model_must_be_explicit_and_offered (test_paper1_live_host.NativeIntegrationBoundaryTests.test_requested_model_must_be_explicit_and_offered) ... ok
+test_controller_operations_are_not_exposed_as_model_tools (test_paper1_live_host.PublicProxyTests.test_controller_operations_are_not_exposed_as_model_tools) ... ok
+test_initialization_requires_no_broker_or_model_call (test_paper1_live_host.PublicProxyTests.test_initialization_requires_no_broker_or_model_call) ... ok
+test_public_calls_have_a_fixed_controller_operation (test_paper1_live_host.PublicProxyTests.test_public_calls_have_a_fixed_controller_operation) ... ok
+test_unknown_protocol_method_does_not_reach_broker (test_paper1_live_host.PublicProxyTests.test_unknown_protocol_method_does_not_reach_broker) ... ok
+test_fork_metadata_stays_separate_from_original_usage (test_paper1_native.NativeBoundaryTest.test_fork_metadata_stays_separate_from_original_usage) ... ok
+test_fork_warnings_are_recorded_for_the_returned_thread (test_paper1_native.NativeBoundaryTest.test_fork_warnings_are_recorded_for_the_returned_thread) ... ok
+test_smoke_requires_one_exact_real_test_receipt (test_paper1_native.NativeBoundaryTest.test_smoke_requires_one_exact_real_test_receipt) ... ok
+test_unexpected_foreign_execution_is_still_rejected (test_paper1_native.NativeBoundaryTest.test_unexpected_foreign_execution_is_still_rejected) ... ok
+test_archive_file_size_limit_precedes_json_parsing (test_paper1_rawrag.RawRagContractTests.test_archive_file_size_limit_precedes_json_parsing) ... ok
+test_authorization_source_is_preserved_across_arms (test_paper1_rawrag.RawRagContractTests.test_authorization_source_is_preserved_across_arms) ... ok
+test_budget_matched_display_clips_only_after_full_expansion (test_paper1_rawrag.RawRagContractTests.test_budget_matched_display_clips_only_after_full_expansion) ... ok
+test_call_cap_rejects_before_a_third_dispatch_is_reserved (test_paper1_rawrag.RawRagContractTests.test_call_cap_rejects_before_a_third_dispatch_is_reserved) ... ok
+test_capture_log_discards_request_secrets_and_keeps_usage (test_paper1_rawrag.RawRagContractTests.test_capture_log_discards_request_secrets_and_keeps_usage) ... ok
+test_changed_upstream_file_is_rejected (test_paper1_rawrag.RawRagContractTests.test_changed_upstream_file_is_rejected) ... ok
+test_check_reports_only_credential_availability (test_paper1_rawrag.RawRagContractTests.test_check_reports_only_credential_availability) ... ok
+test_default_check_never_dispatches_or_creates_output (test_paper1_rawrag.RawRagContractTests.test_default_check_never_dispatches_or_creates_output) ... ok
+test_duplicate_event_identity_is_rejected (test_paper1_rawrag.RawRagContractTests.test_duplicate_event_identity_is_rejected) ... ok
+test_duplicate_json_keys_cannot_hide_supervision_or_cutoff (test_paper1_rawrag.RawRagContractTests.test_duplicate_json_keys_cannot_hide_supervision_or_cutoff) ... ok
+test_embedding_hook_rejects_non_embedding_requests_before_dispatch (test_paper1_rawrag.RawRagContractTests.test_embedding_hook_rejects_non_embedding_requests_before_dispatch) ... ok
+test_faithful_display_never_silently_truncates (test_paper1_rawrag.RawRagContractTests.test_faithful_display_never_silently_truncates) ... ok
+test_incomplete_snapshot_cannot_run (test_paper1_rawrag.RawRagContractTests.test_incomplete_snapshot_cannot_run) ... ok
+test_missing_dependencies_fail_closed (test_paper1_rawrag.RawRagContractTests.test_missing_dependencies_fail_closed) ... ok
+test_missing_event_timestamp_is_not_synthesized (test_paper1_rawrag.RawRagContractTests.test_missing_event_timestamp_is_not_synthesized) ... ok
+test_nested_expected_result_and_answer_annotations_are_rejected (test_paper1_rawrag.RawRagContractTests.test_nested_expected_result_and_answer_annotations_are_rejected) ... ok
+test_original_request_is_not_rewritten_or_trimmed (test_paper1_rawrag.RawRagContractTests.test_original_request_is_not_rewritten_or_trimmed) ... ok
+test_raw_test_output_is_preserved_even_when_it_mentions_expected (test_paper1_rawrag.RawRagContractTests.test_raw_test_output_is_preserved_even_when_it_mentions_expected) ... ok
+test_real_node_normalizer_source_is_preserved_across_arms (test_paper1_rawrag.RawRagContractTests.test_real_node_normalizer_source_is_preserved_across_arms) ... ok
+test_rerank_cap_blocks_before_another_local_http_request (test_paper1_rawrag.RawRagContractTests.test_rerank_cap_blocks_before_another_local_http_request) ... ok
+test_retrieval_model_substitution_is_rejected (test_paper1_rawrag.RawRagContractTests.test_retrieval_model_substitution_is_rejected) ... ok
+test_returned_provider_model_is_recorded_instead_of_assumed (test_paper1_rawrag.RawRagContractTests.test_returned_provider_model_is_recorded_instead_of_assumed) ... ok
+test_run_requires_explicit_inputs_and_output (test_paper1_rawrag.RawRagContractTests.test_run_requires_explicit_inputs_and_output) ... ok
+test_run_retains_dependency_preflight_when_local_runtime_fails (test_paper1_rawrag.RawRagContractTests.test_run_retains_dependency_preflight_when_local_runtime_fails) ... ok
+test_same_day_future_source_fails_before_retrieval (test_paper1_rawrag.RawRagContractTests.test_same_day_future_source_fails_before_retrieval) ... ok
+test_session_cap_rejects_a_second_task (test_paper1_rawrag.RawRagContractTests.test_session_cap_rejects_a_second_task) ... ok
+test_supervision_fields_are_rejected_at_all_structured_levels (test_paper1_rawrag.RawRagContractTests.test_supervision_fields_are_rejected_at_all_structured_levels) ... ok
+test_text_cap_blocks_before_any_dispatch (test_paper1_rawrag.RawRagContractTests.test_text_cap_blocks_before_any_dispatch) ... ok
+test_turn_expansion_cannot_be_silently_disabled (test_paper1_rawrag.RawRagContractTests.test_turn_expansion_cannot_be_silently_disabled) ... ok
+test_unexpected_run_failure_does_not_claim_zero_requests (test_paper1_rawrag.RawRagContractTests.test_unexpected_run_failure_does_not_claim_zero_requests) ... ok
+test_unknown_metadata_does_not_become_an_implicit_answer_channel (test_paper1_rawrag.RawRagContractTests.test_unknown_metadata_does_not_become_an_implicit_answer_channel) ... ok
+test_upstream_log_rows_are_not_http_call_counts (test_paper1_rawrag.RawRagContractTests.test_upstream_log_rows_are_not_http_call_counts) ... ok
+test_wrong_checkout_commit_is_rejected (test_paper1_rawrag.RawRagContractTests.test_wrong_checkout_commit_is_rejected) ... ok
+test_wrong_window_size_is_not_labeled_official (test_paper1_rawrag.RawRagContractTests.test_wrong_window_size_is_not_labeled_official) ... ok
+test_environment_file_reads_are_blocked (test_paper1_rawrag_runtime.RuntimeSafetyTests.test_environment_file_reads_are_blocked) ... ok
+test_environment_view_never_reads_credentials_and_preserves_proxy (test_paper1_rawrag_runtime.RuntimeSafetyTests.test_environment_view_never_reads_credentials_and_preserves_proxy) ... ok
+test_missing_tokenizer_cache_fails_without_network_attempt (test_paper1_rawrag_runtime.RuntimeSafetyTests.test_missing_tokenizer_cache_fails_without_network_attempt) ... ok
+test_network_is_blocked_before_any_connection (test_paper1_rawrag_runtime.RuntimeSafetyTests.test_network_is_blocked_before_any_connection) ... ok
+
+----------------------------------------------------------------------
+Ran 119 tests in 6.580s
+
+OK

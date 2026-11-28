@@ -1,0 +1,27 @@
+[
+  {
+    "command": [
+      "git",
+      "-C",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/repo",
+      "apply",
+      "--check",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/patches/patch.diff"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/repo",
+      "apply",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/patches/patch.diff"
+    ],
+    "returncode": 0,
+    "stdout": "",
+    "stderr": ""
+  }
+]

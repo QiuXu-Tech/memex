@@ -1,0 +1,1182 @@
+{
+  "schema_version": 1,
+  "hash_canonicalization": "Python json.dumps(value, ensure_ascii=False, sort_keys=True, separators=(comma,colon)), UTF-8; HTTP body/file hashes are byte hashes.",
+  "sources": [
+    {
+      "candidate_id": "psf__requests-5414",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/psf/requests/pulls/5414",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "b5a4e1f754f6be22a631f42fa4a81ca875539e56b2a6df896c4bade1309f8230",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "psf__requests-5414",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/psf/requests/issues/5367",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "376ef3c27448c9ca34a1f0b8c9e6927d4b2ac6b8641acf7c15d0e840492aefff",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "psf__requests-5414",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/psf/requests/pulls/5414/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "9d395e40214bdf68b92c1b3467f7a1b1e72e6a0623aef7716fcd224f2560c0a5",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "psf__requests-5414",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/psf/requests/commits/d09659997cd1e3eca49a07c59ece5557071c0ab9",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "af1f9afe362837eaa35533477c75efb350ebce4c5500fed03121304afce740d1",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/psf/requests/pulls/6028",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "ef26364552026c056380d6aecae44e9f57bd40722165ba1c7a9eda9da60b1462",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/psf/requests/issues/6027",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "e45a896ec17a0c91104e577438deebdcbdf2508f334b3e3f0b897bba580c8a6d",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/psf/requests/pulls/6028/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "a5ad70a9ada40167c0bfecc1d4a3d6d56c1e9b22cde0f5d51da7bd3719de94c4",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/psf/requests/commits/8fa9724398c4f44090997ff430a1dd3e935a9057",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "cedc6ff8c31af64374a4044440fa0e6e0858c573d164999ad123de62371deb73",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pallets__flask-5014",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pallets/flask/pulls/5014",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "b49b06b4c093818332ae6a2e8b7def23d24c005d8cc9933c7798243f2089216a",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pallets__flask-5014",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pallets/flask/issues/5010",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "27b164da313465288a1fa57fd74c3fdc65910d14752396ff0988ff8b5b8506a5",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pallets__flask-5014",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pallets/flask/pulls/5014/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "fa5924bed617de9cb87cdf1b70d75c4ed4d1e8233f0aff2675c41889ff129035",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pallets__flask-5014",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pallets/flask/commits/7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "5aee9af9f89975ed436fbe0a01dcb2f631f13c6522855eb2aea83b4996c9d837",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-5262",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/pulls/5262",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "4f1acc43cb962d7c5123675fb88654917feb31449e96b1a79caeac0dfaf6401f",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-5262",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/issues/5257",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "1649a2adda6ecc418d2acef54ac1500e5f42bf7a18592b4d67b5241edf740223",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-5262",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/pulls/5262/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "fde2b369fb610f548de46581ab2f3235bc4156baa2198b49ea48d764b2aad387",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-5262",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/commits/c8f7e50c47cc771142f2681aebf7dd9f86c83853",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "a556d4b293ae0c2a49751f6f26b81a518138b3a88d6bc37c3aaf02d363fbc65c",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7982",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/pulls/7982",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "27f0d0577f61ebb0de831e00892e6887d91895d625d1f2ed39a444ad5aaef35d",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7982",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/issues/7981",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "08cc840480090c446c35db994bc1844c2ed893499bcc20d502931e6a0545535d",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7982",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/pulls/7982/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "ea0a3e1e9a73bcfd49346992953d091fa33e40106dd7e9615d4e704dbc20437a",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7982",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/commits/a14a229d1bb9a7fe75799caa974b2cfb8f02f8b3",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "eea9f3c6e0c5feb2f2ed10fd80accf1bb283427a7842bd40d7d09268a394f21b",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7432",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/pulls/7432",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "5ac881bc6127643e3e2569c93855519424618aa8d43e6b616e606c34fcb64f96",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7432",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/issues/7392",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "0026054185b83cc71ffc5e303d50f7ba3e94a09c7601a0a6de1e8d67c24a76bc",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7432",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/pulls/7432/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "a10d52f65b6678e46bc593b8e421e48fcc4e8ff77c855f266a5d0a74f1da5ea0",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7432",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pytest-dev/pytest/commits/c3e2b11a62234c283b4ed4a7bfe5edf7eb6f3d4d",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "7947d3ace26dac80e5d149513d841196a075a4dea275d26e11bed6cf5cb47a55",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-4970",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/pulls/4970",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "6e809a8f77c60efdfbe8420bfd6626ac4fab25f50bcc27e6f778bd647e567e60",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-4970",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/issues/4901",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "1f4f087e35b641fdecf5e491b32575c78e0d10f2f302d31de6f7167d4e24676f",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-4970",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/pulls/4970/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "0995438c4f9fa0797972e94b956eb49be595f218efad5b73e1c36d8684274a02",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-4970",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/commits/cf33d82635569da924d82538f806a5242481f06f",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "c61c8178a7242eac2d8b70d33a648f0230f777bffd6fab1da1ee3c6a5fd5ca57",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-7080",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/pulls/7080",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "e5400b2cd8d02f8730ea5a7061763beb517506b5e94a37b3d3087cfb7aef0ff6",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-7080",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/issues/6964",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "4eda0770b6f3a920944d88920ebfabbdaefd2fefa32541476e31d751c7b86850",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-7080",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/pulls/7080/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "da9ec5ff4ea7fed8a0c1a2aedcf9d60912640388d9712c651ed0a6937513eb51",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-7080",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pylint-dev/pylint/commits/c74493bdb969c40b0b9bc503b239c572ee31641b",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "c2f6eb7a699909b5b1d150d25800046383c2b5d852ebef689d50caa7618b7fb8",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/pulls/9367",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "a5aa4046daddebbd97fe5a3142726855ce07c2dc77e6ba139b980857a14319f5",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/issues/9364",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "b4ad06c1138e50408311789d77c35934d3349038240a0eed09d95ce3a91e3ecd",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/pulls/9367/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "56e123ba4d0d3b65e67093fbc666045f6c1dcb3771cd83b9a6005edd3095d0e0",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/commits/bc616d3b1a2c0c41ef6fb4e27181cf2b177f02fb",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "91dc508bff248c5b985c13a6224da43a9f4eeb119e9fb3cb76818f3444c8dbf7",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/pulls/8721",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "030cbb3d254d256426f53960e1124500318184bc0cd0379a6ae0453065e854f4",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/issues/8720",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "3daa360195032bcfed84cd702ab54945685e1127626115fdf147c0af5072a564",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/pulls/8721/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "61ec4638a71eced431804833b8a1fd8dcd0f322d1a1ca8f6aab797fdc4beeccc",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/sphinx-doc/sphinx/commits/86c75cea13d87f1cbc7e9c30916bef0cf972eb5c",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "197ebb0105b7b13ac44ff31036ad6d7f1375793b0a43dc7513ad96ef31f86c43",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/sympy/sympy/pulls/14711",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "c543876b4b0366fd8d68e3ec12c1f78d36a72ce262e8e8d98d53e60718304360",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/sympy/sympy/issues/14710",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "1a0abe6c72a03279ea2bf0ccb331060cd4ca15e62414958bc9782a90a685970a",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/sympy/sympy/pulls/14711/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "e049f5161a8e5569625ce5d2ee1f4b887d7358f8dda03c0ab0c87be1b61aca7e",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/sympy/sympy/commits/fb0d290816dcaefc1bc874dd7380e4ceba8af1d4",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "d0de3721613225885224544af5045fd0fd36d06012dc5bd52dc5aadf041d8347",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/sympy/sympy/pulls/19637",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "6c73fe6171d98c4289babb0ef66844cd90cdae5c72c481a58c453afee10ca2a6",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/sympy/sympy/issues/19608",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "0914bad5e9aa76207b7d603ac4445b34832f2e94d05ccc1bfe6f48e0c2a4a904",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/sympy/sympy/pulls/19637/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "0204a7dde551ae9e9c45d99b3a35166214169a150dfd4c49510a73e8b5d3460c",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/sympy/sympy/commits/ff1bc63fe9c5b75fa0bd99e0f9342df80c7eca86",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "7266600270cab4366c36dc069b948b9b6f8656fa66ef693ff8d7e467f4c4accf",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-4629",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pydata/xarray/pulls/4629",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "28ac6ff6dd2333ecd2abbdcf7fe82a44f0361cb07cbafbf7a0fdb4cf4c558357",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-4629",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pydata/xarray/issues/4627",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "9b955636f6fd150c4bd08f2c0fd6aa0bd73e2e839587cc6ee45775198a89a948",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-4629",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pydata/xarray/pulls/4629/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "19acc62f9279a9771704a819901923f62c6e56143d60a6b2e0d3daa69d3120df",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-4629",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pydata/xarray/commits/9396605d8358a621c89478dbbd286b1b4cd72e64",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "e08dffcf7bac5e730c965ea81ac12d94de6689ee471cad48a44d6546811910b8",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-6461",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/pydata/xarray/pulls/6461",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "516b6588a4a57c6d902c8ec6c022d5481226edd27d0e7d168153e81c235fc195",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-6461",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/pydata/xarray/issues/6444",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "900153fc66e6b1760b6c031e71202f31ab747a0440aad90818377b80751da3f7",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-6461",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/pydata/xarray/pulls/6461/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "06e5d9e12f4214b76b01e8ce47b0dd72228ed4ec471502260e22cb49add45eb1",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "pydata__xarray-6461",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/pydata/xarray/commits/0cd5285c56c5375da9f4d27836ec41eea4d069f3",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "6958f654811055cae87639ad0ce0b7a787a4854ffb9119e6c7d201ec538a2346",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3069",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/pulls/3069",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "7061871a739c2f928bcc63565bcbc1267c0cc0e217972bed688cc14522f6523f",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3069",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/issues/2967",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "d011baa0d450e47ec4183ee1c1b7d60f36d75241fd7366b5eb609a0a6a2b2b0e",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3069",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/pulls/3069/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "7f2fa7c8f613bc13a645803bfeec365583fd58e2fc54c5286f04ee378ea3ec18",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3069",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/commits/a767d666d45a6f105177e4720669b85c92ee2432",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "e872fa9be8bf64281980062f051ea571c484a38b354a23cc2e09e4ee01dc2034",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3187",
+      "type": "github_pr",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/pulls/3187",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "1cc06967834ab1199599ec89151410b01108a28fec07854b32a8f80f2aaf6588",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3187",
+      "type": "github_issue",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/issues/3174",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "54495521c79a0373abe06bb74ab58fa719d4a22d431c71522a06baffbf244af4",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3187",
+      "type": "github_files",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/pulls/3187/files?per_page=100",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "6579c6f7341458fae689b931d610c19b768661b0c184bf2a70c97a07129fc5ef",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3187",
+      "type": "github_fix_commit",
+      "url": "https://api.github.com/repos/mwaskom/seaborn/commits/9bd166565beea99ab2e43a0576c59efab196940b",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "canonical_payload_sha256": "a9f82725e4dbd1926a40b7f58f9a05a4f6f16b6dacee9b799b2ca10e3917f2df",
+      "projection_path": "evaluator/github-metadata.jsonl"
+    },
+    {
+      "url": "https://huggingface.co/api/datasets/SWE-bench/SWE-bench_Verified/revision/78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "local_path": "raw/dataset-api.json",
+      "sha256": "083d107b17561c175b8771f217ee65294861c98eb820a139cd4dcccb4a38463e",
+      "bytes": 2201,
+      "retrieved_at": "2026-11-28T00:36:32.326804+00:00"
+    },
+    {
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/raw/78f471bf655a3137b2e8a75af1501690ec009ec3/README.md",
+      "local_path": null,
+      "sha256": "923e6b481ff75c709737251e602bdc311a9be49235b5c20107366747f5640fe4",
+      "bytes": 3485,
+      "retrieved_at": "2026-11-28T00:36:32.292984+00:00",
+      "retention": "locator_and_hash_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/LICENSE",
+      "local_path": "licenses/SWE-bench-harness-MIT.txt",
+      "sha256": "2bd2e08df7147f67a69b42c10efae09bd4bf119df397371036187d5dd1b02f57",
+      "bytes": 1159,
+      "retrieved_at": "2026-11-28T00:36:32.498216+00:00"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/constants/python.py",
+      "local_path": null,
+      "error": "HTTPError: HTTP Error 404: Not Found",
+      "retention": "locator_and_hash_only"
+    },
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/README.md",
+      "local_path": null,
+      "sha256": "06841624d7b5130dfe3cc6714642e9a8fd2a608c95c66ae0180e409f12b73aaa",
+      "bytes": 13302,
+      "retrieved_at": "2026-11-28T00:36:32.539361+00:00",
+      "retention": "locator_and_hash_only"
+    },
+    {
+      "type": "pinned_parquet",
+      "retrieved_at": "2026-11-28T00:39:05.693285+00:00",
+      "url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+      "sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25",
+      "bytes": 6304616,
+      "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+      "rows": 500,
+      "retention": "locator_hash_and_selected_metadata_projection; full gold omitted"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "psf__requests-5414",
+      "image_tag": "swebench/sweb.eval.x86_64.psf_1776_requests-5414:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.psf_1776_requests-5414/manifests/latest",
+      "digest": "sha256:71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.psf_1776_requests-5414@sha256:71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10",
+      "response_sha256": "71c78211f16803c111ed1807ded20f8defd5f6917fb958ace4e076d5ea7d8b10",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-psf__requests-5414.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "psf__requests-6028",
+      "image_tag": "swebench/sweb.eval.x86_64.psf_1776_requests-6028:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.psf_1776_requests-6028/manifests/latest",
+      "digest": "sha256:639088346355ea7076bc6faf2eadb23b1e1f1ed4f34b291e843061b2fc87cbe2",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.psf_1776_requests-6028@sha256:639088346355ea7076bc6faf2eadb23b1e1f1ed4f34b291e843061b2fc87cbe2",
+      "response_sha256": "639088346355ea7076bc6faf2eadb23b1e1f1ed4f34b291e843061b2fc87cbe2",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-psf__requests-6028.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pallets__flask-5014",
+      "image_tag": "swebench/sweb.eval.x86_64.pallets_1776_flask-5014:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pallets_1776_flask-5014/manifests/latest",
+      "digest": "sha256:bde4fbdafa36141d4396944da88ec37aabdef612ed36920090675bccd0ca5d72",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pallets_1776_flask-5014@sha256:bde4fbdafa36141d4396944da88ec37aabdef612ed36920090675bccd0ca5d72",
+      "response_sha256": "bde4fbdafa36141d4396944da88ec37aabdef612ed36920090675bccd0ca5d72",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pallets__flask-5014.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pytest-dev__pytest-5262",
+      "image_tag": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-5262:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-5262/manifests/latest",
+      "digest": "sha256:0d6480e4b7519e81cdc8359fedfeb5389e1949f31a8bc9da7869b0d66a7ce2a4",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-5262@sha256:0d6480e4b7519e81cdc8359fedfeb5389e1949f31a8bc9da7869b0d66a7ce2a4",
+      "response_sha256": "0d6480e4b7519e81cdc8359fedfeb5389e1949f31a8bc9da7869b0d66a7ce2a4",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pytest-dev__pytest-5262.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pytest-dev__pytest-7982",
+      "image_tag": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7982:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7982/manifests/latest",
+      "digest": "sha256:1b6cd660102de29c36d28954eb2f6158b93d11b855a9bbfc577a55eb67a8f375",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7982@sha256:1b6cd660102de29c36d28954eb2f6158b93d11b855a9bbfc577a55eb67a8f375",
+      "response_sha256": "1b6cd660102de29c36d28954eb2f6158b93d11b855a9bbfc577a55eb67a8f375",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pytest-dev__pytest-7982.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pytest-dev__pytest-7432",
+      "image_tag": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7432:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7432/manifests/latest",
+      "digest": "sha256:5ec7065f9477542610ea5137247539d8f1c9762112803b0690d5ccb2e64d2f07",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pytest-dev_1776_pytest-7432@sha256:5ec7065f9477542610ea5137247539d8f1c9762112803b0690d5ccb2e64d2f07",
+      "response_sha256": "5ec7065f9477542610ea5137247539d8f1c9762112803b0690d5ccb2e64d2f07",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pytest-dev__pytest-7432.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pylint-dev__pylint-4970",
+      "image_tag": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-4970:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-4970/manifests/latest",
+      "digest": "sha256:5d331d487e49480c4098366cd094aae9dd2e8d365f0412174d5e1a2e9a3d5893",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-4970@sha256:5d331d487e49480c4098366cd094aae9dd2e8d365f0412174d5e1a2e9a3d5893",
+      "response_sha256": "5d331d487e49480c4098366cd094aae9dd2e8d365f0412174d5e1a2e9a3d5893",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pylint-dev__pylint-4970.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pylint-dev__pylint-7080",
+      "image_tag": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-7080:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-7080/manifests/latest",
+      "digest": "sha256:3389f0d1319ca611d04a209fc30990c131e0bae9acfeb2163938c75ad23479fe",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pylint-dev_1776_pylint-7080@sha256:3389f0d1319ca611d04a209fc30990c131e0bae9acfeb2163938c75ad23479fe",
+      "response_sha256": "3389f0d1319ca611d04a209fc30990c131e0bae9acfeb2163938c75ad23479fe",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pylint-dev__pylint-7080.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "image_tag": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9367:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9367/manifests/latest",
+      "digest": "sha256:ce3659548ac712a11d3c45a9c47fe8010de0e3a83efee229dcdd9646069dfec1",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-9367@sha256:ce3659548ac712a11d3c45a9c47fe8010de0e3a83efee229dcdd9646069dfec1",
+      "response_sha256": "ce3659548ac712a11d3c45a9c47fe8010de0e3a83efee229dcdd9646069dfec1",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-sphinx-doc__sphinx-9367.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "image_tag": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-8721:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-8721/manifests/latest",
+      "digest": "sha256:8f02afdb324767a2e56b7940569ea822cfa58c3c1f0ef9a910162d21cf52c3f5",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.sphinx-doc_1776_sphinx-8721@sha256:8f02afdb324767a2e56b7940569ea822cfa58c3c1f0ef9a910162d21cf52c3f5",
+      "response_sha256": "8f02afdb324767a2e56b7940569ea822cfa58c3c1f0ef9a910162d21cf52c3f5",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-sphinx-doc__sphinx-8721.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "sympy__sympy-14711",
+      "image_tag": "swebench/sweb.eval.x86_64.sympy_1776_sympy-14711:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.sympy_1776_sympy-14711/manifests/latest",
+      "digest": "sha256:c5366c33ed254ded2f8b39f7350deada09fc6ff5b1fe252041d10844fab54997",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.sympy_1776_sympy-14711@sha256:c5366c33ed254ded2f8b39f7350deada09fc6ff5b1fe252041d10844fab54997",
+      "response_sha256": "c5366c33ed254ded2f8b39f7350deada09fc6ff5b1fe252041d10844fab54997",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-sympy__sympy-14711.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "sympy__sympy-19637",
+      "image_tag": "swebench/sweb.eval.x86_64.sympy_1776_sympy-19637:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.sympy_1776_sympy-19637/manifests/latest",
+      "digest": "sha256:956f0b8b048011ead5ff6d46007527a4cb4e1007e4f74fd1c935df6420730d8f",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.sympy_1776_sympy-19637@sha256:956f0b8b048011ead5ff6d46007527a4cb4e1007e4f74fd1c935df6420730d8f",
+      "response_sha256": "956f0b8b048011ead5ff6d46007527a4cb4e1007e4f74fd1c935df6420730d8f",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-sympy__sympy-19637.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pydata__xarray-4629",
+      "image_tag": "swebench/sweb.eval.x86_64.pydata_1776_xarray-4629:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pydata_1776_xarray-4629/manifests/latest",
+      "digest": "sha256:033589865b8522fd28ad477db28dccb4fcfcc3e56174bbc95e7996b2a948135b",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pydata_1776_xarray-4629@sha256:033589865b8522fd28ad477db28dccb4fcfcc3e56174bbc95e7996b2a948135b",
+      "response_sha256": "033589865b8522fd28ad477db28dccb4fcfcc3e56174bbc95e7996b2a948135b",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pydata__xarray-4629.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "pydata__xarray-6461",
+      "image_tag": "swebench/sweb.eval.x86_64.pydata_1776_xarray-6461:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.pydata_1776_xarray-6461/manifests/latest",
+      "digest": "sha256:88efae745c9629cc34677c9ff042a8a488c97aae47b915799c4efad2ab603632",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.pydata_1776_xarray-6461@sha256:88efae745c9629cc34677c9ff042a8a488c97aae47b915799c4efad2ab603632",
+      "response_sha256": "88efae745c9629cc34677c9ff042a8a488c97aae47b915799c4efad2ab603632",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-pydata__xarray-6461.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "mwaskom__seaborn-3069",
+      "image_tag": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069/manifests/latest",
+      "digest": "sha256:10f78850ebb5de5a4bdb70099159131fa819601dc885955d7be6f1009b23b4ea",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3069@sha256:10f78850ebb5de5a4bdb70099159131fa819601dc885955d7be6f1009b23b4ea",
+      "response_sha256": "10f78850ebb5de5a4bdb70099159131fa819601dc885955d7be6f1009b23b4ea",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-mwaskom__seaborn-3069.json"
+    },
+    {
+      "type": "oci_manifest",
+      "candidate_id": "mwaskom__seaborn-3187",
+      "image_tag": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3187:latest",
+      "retrieved_at": "2026-11-28T00:35:31.942484+00:00",
+      "manifest_url": "https://registry-1.docker.io/v2/swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3187/manifests/latest",
+      "digest": "sha256:aea7e43b20703256f5cb807b54cd78a12601f21086d3a62a41de18c254771f4e",
+      "immutable_image_ref": "swebench/sweb.eval.x86_64.mwaskom_1776_seaborn-3187@sha256:aea7e43b20703256f5cb807b54cd78a12601f21086d3a62a41de18c254771f4e",
+      "response_sha256": "aea7e43b20703256f5cb807b54cd78a12601f21086d3a62a41de18c254771f4e",
+      "media_type": "application/vnd.oci.image.index.v1+json",
+      "manifest_bytes": 856,
+      "platforms": [
+        {
+          "architecture": "amd64",
+          "os": "linux"
+        },
+        {
+          "architecture": "unknown",
+          "os": "unknown"
+        }
+      ],
+      "downloaded_layers": false,
+      "started_container": false,
+      "local_manifest_path": "raw/oci-mwaskom__seaborn-3187.json"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "psf__requests-5414",
+      "repo": "psf/requests",
+      "revision": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/psf/requests/39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "bytes": 10142,
+      "local_path": "licenses/psf__requests-09e8a9bcec80.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "psf__requests-6028",
+      "repo": "psf/requests",
+      "revision": "0192aac24123735b3eaf9b08df46429bb770c283",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/psf/requests/0192aac24123735b3eaf9b08df46429bb770c283/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "bytes": 10142,
+      "local_path": "licenses/psf__requests-09e8a9bcec80.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pallets__flask-5014",
+      "repo": "pallets/flask",
+      "revision": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+      "path": "LICENSE.rst",
+      "url": "https://raw.githubusercontent.com/pallets/flask/7ee9ceb71e868944a46e1ff00b506772a53a4f1d/LICENSE.rst",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+      "bytes": 1475,
+      "local_path": "licenses/pallets__flask-489a8e110850.txt",
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pytest-dev__pytest-5262",
+      "repo": "pytest-dev/pytest",
+      "revision": "58e6a09db49f34886ff13f3b7520dd0bcd7063cd",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/58e6a09db49f34886ff13f3b7520dd0bcd7063cd/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "4be38574daf05665b6194e4fd84c5ef6ce7c3a2810308a5222d5cdffc2d04d18",
+      "bytes": 1096,
+      "local_path": "licenses/pytest-dev__pytest-4be38574daf0.txt",
+      "code_spdx_observation": "MIT"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pytest-dev__pytest-7982",
+      "repo": "pytest-dev/pytest",
+      "revision": "a7e38c5c61928033a2dc1915cbee8caa8544a4d0",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/a7e38c5c61928033a2dc1915cbee8caa8544a4d0/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "7898b9b164d4f93fd9a562fd0f592935518b48c4745303964110eb7f7fe64faf",
+      "bytes": 1096,
+      "local_path": "licenses/pytest-dev__pytest-7898b9b164d4.txt",
+      "code_spdx_observation": "MIT"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pytest-dev__pytest-7432",
+      "repo": "pytest-dev/pytest",
+      "revision": "e6e300e729dd33956e5448d8be9a0b1540b4e53a",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/e6e300e729dd33956e5448d8be9a0b1540b4e53a/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "7898b9b164d4f93fd9a562fd0f592935518b48c4745303964110eb7f7fe64faf",
+      "bytes": 1096,
+      "local_path": "licenses/pytest-dev__pytest-7898b9b164d4.txt",
+      "code_spdx_observation": "MIT"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pylint-dev__pylint-4970",
+      "repo": "pylint-dev/pylint",
+      "revision": "40cc2ffd7887959157aaf469e09585ec2be7f528",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pylint-dev/pylint/40cc2ffd7887959157aaf469e09585ec2be7f528/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "f97b14080de8b8490d60eb3d620ebc419943e0779466d1dd0d5d6f68fe195dcd",
+      "bytes": 17984,
+      "local_path": "licenses/pylint-dev__pylint-f97b14080de8.txt",
+      "code_spdx_observation": "NOASSERTION"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pylint-dev__pylint-7080",
+      "repo": "pylint-dev/pylint",
+      "revision": "3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pylint-dev/pylint/3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "f97b14080de8b8490d60eb3d620ebc419943e0779466d1dd0d5d6f68fe195dcd",
+      "bytes": 17984,
+      "local_path": "licenses/pylint-dev__pylint-f97b14080de8.txt",
+      "code_spdx_observation": "NOASSERTION"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "repo": "sphinx-doc/sphinx",
+      "revision": "6918e69600810a4664e53653d6ff0290c3c4a788",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/6918e69600810a4664e53653d6ff0290c3c4a788/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "058abe6d05d2fd185ed5cbc89d473a4722e43131582c93a040f78c4581f32943",
+      "bytes": 8998,
+      "local_path": "licenses/sphinx-doc__sphinx-058abe6d05d2.txt",
+      "code_spdx_observation": "BSD-2-Clause"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "repo": "sphinx-doc/sphinx",
+      "revision": "82ef497a8c88f0f6e50d84520e7276bfbf65025d",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/82ef497a8c88f0f6e50d84520e7276bfbf65025d/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "058abe6d05d2fd185ed5cbc89d473a4722e43131582c93a040f78c4581f32943",
+      "bytes": 8998,
+      "local_path": "licenses/sphinx-doc__sphinx-058abe6d05d2.txt",
+      "code_spdx_observation": "BSD-2-Clause"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "sympy__sympy-14711",
+      "repo": "sympy/sympy",
+      "revision": "c6753448b5c34f95e250105d76709fe4d349ca1f",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sympy/sympy/c6753448b5c34f95e250105d76709fe4d349ca1f/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "3c98bbadf4c3f229dcd4565ba5ac9de649a9db689770e5ad759f9eaeecbe6cd9",
+      "bytes": 4942,
+      "local_path": "licenses/sympy__sympy-3c98bbadf4c3.txt",
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "sympy__sympy-19637",
+      "repo": "sympy/sympy",
+      "revision": "63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sympy/sympy/63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "a7212a73709d040d7b932440f84c71e2334c045faaae589e9905ec1e9fbfd443",
+      "bytes": 6632,
+      "local_path": "licenses/sympy__sympy-a7212a73709d.txt",
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pydata__xarray-4629",
+      "repo": "pydata/xarray",
+      "revision": "a41edc7bf5302f2ea327943c0c48c532b12009bc",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pydata/xarray/a41edc7bf5302f2ea327943c0c48c532b12009bc/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+      "bytes": 10273,
+      "local_path": "licenses/pydata__xarray-73ba74dfaa52.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "pydata__xarray-6461",
+      "repo": "pydata/xarray",
+      "revision": "851dadeb0338403e5021c3fbe80cbc9127ee672d",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pydata/xarray/851dadeb0338403e5021c3fbe80cbc9127ee672d/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+      "bytes": 10273,
+      "local_path": "licenses/pydata__xarray-73ba74dfaa52.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "mwaskom__seaborn-3069",
+      "repo": "mwaskom/seaborn",
+      "revision": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/LICENSE.md",
+      "retrieved_at": "2026-11-28T00:36:09.831440+00:00",
+      "sha256": "0874bfc01308833385b2f5ca62205525739f6a57b8688afea1b078d0f845d6d4",
+      "bytes": 1491,
+      "local_path": "licenses/mwaskom__seaborn-0874bfc01308.txt",
+      "prior_locator_failure": {
+        "candidate_id": "mwaskom__seaborn-3069",
+        "url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/LICENSE",
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "type": "code_license",
+      "candidate_id": "mwaskom__seaborn-3187",
+      "repo": "mwaskom/seaborn",
+      "revision": "22cdfb0c93f8ec78492d87edb810f10cb7f57a31",
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/LICENSE.md",
+      "retrieved_at": "2026-11-28T00:36:16.275521+00:00",
+      "sha256": "0874bfc01308833385b2f5ca62205525739f6a57b8688afea1b078d0f845d6d4",
+      "bytes": 1491,
+      "local_path": "licenses/mwaskom__seaborn-0874bfc01308.txt",
+      "prior_locator_failure": {
+        "candidate_id": "mwaskom__seaborn-3187",
+        "url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/LICENSE",
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      "code_spdx_observation": "BSD-3-Clause"
+    }
+  ]
+}

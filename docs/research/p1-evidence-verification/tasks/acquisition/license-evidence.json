@@ -1,0 +1,208 @@
+{
+  "domain": "controller_evaluator_only",
+  "dataset_notice": "No license field in the pinned dataset card metadata and no LICENSE file in its recorded sibling list. Do not apply the harness MIT license to all issue bodies or nested source code.",
+  "records": [
+    {
+      "candidate_id": "psf__requests-5414",
+      "repo": "psf/requests",
+      "revision": "39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/psf/requests/39d0fdd9096f7dceccbc8f82e1eda7dd64717a8e/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "bytes": 10142,
+      "local_path": "licenses/psf__requests-09e8a9bcec80.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "candidate_id": "psf__requests-6028",
+      "repo": "psf/requests",
+      "revision": "0192aac24123735b3eaf9b08df46429bb770c283",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/psf/requests/0192aac24123735b3eaf9b08df46429bb770c283/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "09e8a9bcec8067104652c168685ab0931e7868f9c8284b66f5ae6edae5f1130b",
+      "bytes": 10142,
+      "local_path": "licenses/psf__requests-09e8a9bcec80.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "candidate_id": "pallets__flask-5014",
+      "repo": "pallets/flask",
+      "revision": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+      "path": "LICENSE.rst",
+      "url": "https://raw.githubusercontent.com/pallets/flask/7ee9ceb71e868944a46e1ff00b506772a53a4f1d/LICENSE.rst",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "489a8e1108509ed98a37bb983e11e0f7e1d31f0bd8f99a79c8448e7ff37d07ea",
+      "bytes": 1475,
+      "local_path": "licenses/pallets__flask-489a8e110850.txt",
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-5262",
+      "repo": "pytest-dev/pytest",
+      "revision": "58e6a09db49f34886ff13f3b7520dd0bcd7063cd",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/58e6a09db49f34886ff13f3b7520dd0bcd7063cd/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "4be38574daf05665b6194e4fd84c5ef6ce7c3a2810308a5222d5cdffc2d04d18",
+      "bytes": 1096,
+      "local_path": "licenses/pytest-dev__pytest-4be38574daf0.txt",
+      "code_spdx_observation": "MIT"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7982",
+      "repo": "pytest-dev/pytest",
+      "revision": "a7e38c5c61928033a2dc1915cbee8caa8544a4d0",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/a7e38c5c61928033a2dc1915cbee8caa8544a4d0/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "7898b9b164d4f93fd9a562fd0f592935518b48c4745303964110eb7f7fe64faf",
+      "bytes": 1096,
+      "local_path": "licenses/pytest-dev__pytest-7898b9b164d4.txt",
+      "code_spdx_observation": "MIT"
+    },
+    {
+      "candidate_id": "pytest-dev__pytest-7432",
+      "repo": "pytest-dev/pytest",
+      "revision": "e6e300e729dd33956e5448d8be9a0b1540b4e53a",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pytest-dev/pytest/e6e300e729dd33956e5448d8be9a0b1540b4e53a/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "7898b9b164d4f93fd9a562fd0f592935518b48c4745303964110eb7f7fe64faf",
+      "bytes": 1096,
+      "local_path": "licenses/pytest-dev__pytest-7898b9b164d4.txt",
+      "code_spdx_observation": "MIT"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-4970",
+      "repo": "pylint-dev/pylint",
+      "revision": "40cc2ffd7887959157aaf469e09585ec2be7f528",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pylint-dev/pylint/40cc2ffd7887959157aaf469e09585ec2be7f528/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "f97b14080de8b8490d60eb3d620ebc419943e0779466d1dd0d5d6f68fe195dcd",
+      "bytes": 17984,
+      "local_path": "licenses/pylint-dev__pylint-f97b14080de8.txt",
+      "code_spdx_observation": "NOASSERTION"
+    },
+    {
+      "candidate_id": "pylint-dev__pylint-7080",
+      "repo": "pylint-dev/pylint",
+      "revision": "3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pylint-dev/pylint/3c5eca2ded3dd2b59ebaf23eb289453b5d2930f0/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "f97b14080de8b8490d60eb3d620ebc419943e0779466d1dd0d5d6f68fe195dcd",
+      "bytes": 17984,
+      "local_path": "licenses/pylint-dev__pylint-f97b14080de8.txt",
+      "code_spdx_observation": "NOASSERTION"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-9367",
+      "repo": "sphinx-doc/sphinx",
+      "revision": "6918e69600810a4664e53653d6ff0290c3c4a788",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/6918e69600810a4664e53653d6ff0290c3c4a788/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "058abe6d05d2fd185ed5cbc89d473a4722e43131582c93a040f78c4581f32943",
+      "bytes": 8998,
+      "local_path": "licenses/sphinx-doc__sphinx-058abe6d05d2.txt",
+      "code_spdx_observation": "BSD-2-Clause"
+    },
+    {
+      "candidate_id": "sphinx-doc__sphinx-8721",
+      "repo": "sphinx-doc/sphinx",
+      "revision": "82ef497a8c88f0f6e50d84520e7276bfbf65025d",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sphinx-doc/sphinx/82ef497a8c88f0f6e50d84520e7276bfbf65025d/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "058abe6d05d2fd185ed5cbc89d473a4722e43131582c93a040f78c4581f32943",
+      "bytes": 8998,
+      "local_path": "licenses/sphinx-doc__sphinx-058abe6d05d2.txt",
+      "code_spdx_observation": "BSD-2-Clause"
+    },
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "repo": "sympy/sympy",
+      "revision": "c6753448b5c34f95e250105d76709fe4d349ca1f",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sympy/sympy/c6753448b5c34f95e250105d76709fe4d349ca1f/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "3c98bbadf4c3f229dcd4565ba5ac9de649a9db689770e5ad759f9eaeecbe6cd9",
+      "bytes": 4942,
+      "local_path": "licenses/sympy__sympy-3c98bbadf4c3.txt",
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "repo": "sympy/sympy",
+      "revision": "63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/sympy/sympy/63f8f465d48559fecb4e4bf3c48b75bf15a3e0ef/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "a7212a73709d040d7b932440f84c71e2334c045faaae589e9905ec1e9fbfd443",
+      "bytes": 6632,
+      "local_path": "licenses/sympy__sympy-a7212a73709d.txt",
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "candidate_id": "pydata__xarray-4629",
+      "repo": "pydata/xarray",
+      "revision": "a41edc7bf5302f2ea327943c0c48c532b12009bc",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pydata/xarray/a41edc7bf5302f2ea327943c0c48c532b12009bc/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+      "bytes": 10273,
+      "local_path": "licenses/pydata__xarray-73ba74dfaa52.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "candidate_id": "pydata__xarray-6461",
+      "repo": "pydata/xarray",
+      "revision": "851dadeb0338403e5021c3fbe80cbc9127ee672d",
+      "path": "LICENSE",
+      "url": "https://raw.githubusercontent.com/pydata/xarray/851dadeb0338403e5021c3fbe80cbc9127ee672d/LICENSE",
+      "retrieved_at": "2026-11-28T00:35:04.063104+00:00",
+      "sha256": "73ba74dfaa520b49a401b5d21459a8523a146f3b7518a833eea5efa85130bf68",
+      "bytes": 10273,
+      "local_path": "licenses/pydata__xarray-73ba74dfaa52.txt",
+      "code_spdx_observation": "Apache-2.0"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3069",
+      "repo": "mwaskom/seaborn",
+      "revision": "54cab15bdacfaa05a88fbc5502a5b322d99f148e",
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/LICENSE.md",
+      "retrieved_at": "2026-11-28T00:36:09.831440+00:00",
+      "sha256": "0874bfc01308833385b2f5ca62205525739f6a57b8688afea1b078d0f845d6d4",
+      "bytes": 1491,
+      "local_path": "licenses/mwaskom__seaborn-0874bfc01308.txt",
+      "prior_locator_failure": {
+        "candidate_id": "mwaskom__seaborn-3069",
+        "url": "https://raw.githubusercontent.com/mwaskom/seaborn/54cab15bdacfaa05a88fbc5502a5b322d99f148e/LICENSE",
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      "code_spdx_observation": "BSD-3-Clause"
+    },
+    {
+      "candidate_id": "mwaskom__seaborn-3187",
+      "repo": "mwaskom/seaborn",
+      "revision": "22cdfb0c93f8ec78492d87edb810f10cb7f57a31",
+      "path": "LICENSE.md",
+      "url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/LICENSE.md",
+      "retrieved_at": "2026-11-28T00:36:16.275521+00:00",
+      "sha256": "0874bfc01308833385b2f5ca62205525739f6a57b8688afea1b078d0f845d6d4",
+      "bytes": 1491,
+      "local_path": "licenses/mwaskom__seaborn-0874bfc01308.txt",
+      "prior_locator_failure": {
+        "candidate_id": "mwaskom__seaborn-3187",
+        "url": "https://raw.githubusercontent.com/mwaskom/seaborn/22cdfb0c93f8ec78492d87edb810f10cb7f57a31/LICENSE",
+        "error": "HTTPError: HTTP Error 404: Not Found"
+      },
+      "code_spdx_observation": "BSD-3-Clause"
+    }
+  ]
+}

@@ -1,0 +1,80 @@
+[
+  {
+    "command": [
+      "git",
+      "-c",
+      "core.hooksPath=/dev/null",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "https://github.com/pallets/flask.git",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/repo"
+    ],
+    "returncode": 0,
+    "environment_keys": [
+      "ALL_PROXY",
+      "GIT_CONFIG_GLOBAL",
+      "GIT_CONFIG_NOSYSTEM",
+      "GIT_TERMINAL_PROMPT",
+      "HTTPS_PROXY",
+      "HTTP_PROXY",
+      "LANG",
+      "NO_PROXY",
+      "PATH",
+      "all_proxy",
+      "http_proxy",
+      "https_proxy",
+      "no_proxy"
+    ]
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/repo",
+      "checkout",
+      "--detach",
+      "7ee9ceb71e868944a46e1ff00b506772a53a4f1d"
+    ],
+    "returncode": 0,
+    "environment_keys": [
+      "ALL_PROXY",
+      "GIT_CONFIG_GLOBAL",
+      "GIT_CONFIG_NOSYSTEM",
+      "GIT_TERMINAL_PROMPT",
+      "HTTPS_PROXY",
+      "HTTP_PROXY",
+      "LANG",
+      "NO_PROXY",
+      "PATH",
+      "all_proxy",
+      "http_proxy",
+      "https_proxy",
+      "no_proxy"
+    ]
+  },
+  {
+    "command": [
+      "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python3",
+      "-m",
+      "venv",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/venv"
+    ],
+    "returncode": 0,
+    "environment_keys": [
+      "ALL_PROXY",
+      "GIT_CONFIG_GLOBAL",
+      "GIT_CONFIG_NOSYSTEM",
+      "GIT_TERMINAL_PROMPT",
+      "HTTPS_PROXY",
+      "HTTP_PROXY",
+      "LANG",
+      "NO_PROXY",
+      "PATH",
+      "all_proxy",
+      "http_proxy",
+      "https_proxy",
+      "no_proxy"
+    ]
+  }
+]

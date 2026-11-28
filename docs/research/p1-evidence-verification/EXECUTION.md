@@ -4,7 +4,7 @@ Updated **2026-11-28 (Asia/Shanghai)**. Base commit: `49e772bbf60532682771874b7e
 
 ## Outcome of this execution batch
 
-The first paper now has an English methods/protocol working manuscript, a separate executable research prototype, a pinned strong-baseline adapter, a task-level analysis entry point, and preserved development evidence. **The end-to-end proposed method, independent real-task pilot, confirmatory experiment and manuscript submission are not completed.** No result table has been filled with engineering tests or historical synthetic results.
+The first paper now has a publicly reviewable English methods/protocol manuscript, a live-state research prototype, a frozen execution/cost/scoring controller, a pinned strong-baseline adapter, sixteen real source candidates and two actual base-to-fix reproductions. **The end-to-end proposed method, independent real-task pilot, confirmatory experiment and manuscript submission are not completed.** No result table has been filled with engineering tests or historical synthetic results. Public research branch and [draft PR #9](https://github.com/QiuXu-Tech/memex/pull/9) are created under the user's explicit public-disclosure authorization.
 
 The manuscript's editable sources and PDF are in this directory. Its build and presentation checks are recorded in [BUILD.md](BUILD.md). [PROTOCOL.md](PROTOCOL.md) defines the research input boundary, task acquisition, scoring, failure denominator and freezing rules. [BASELINE.md](BASELINE.md) records the official Raw-RAG adaptation and actual dependency checks.
 
@@ -12,18 +12,35 @@ The manuscript's editable sources and PDF are in this directory. Its build and p
 
 | Component | What is implemented | Boundary |
 |---|---|---|
-| Candidate extraction | Observable-input whitelist, frozen extraction instruction, strict output and grounding validation, explicit invalid/null handling | Model extraction accuracy on natural tasks not measured |
+| Candidate extraction | Observable-input whitelist, versioned instruction, strict grounding/schema validation; actual auxiliary-model component calls retained | First real output missed a prerequisite; generic prompt v2 passed one same-family retest; no natural-task accuracy estimate |
 | Original-source storage | Real Memex L2 ingestion, dynamic locators, paginated original open, immutable identifiers, durable catalog | Trusted single-writer complete normalized snapshots; general lifecycle projection absent |
 | Typed verification | Test execution/version qualification, current-version evidence, historical authorization, expiry/effective time, conflict/missing-head/race checks | No action permission is granted; complete source coverage must come from the host observer |
-| Reuse | Policy/claim/version/epoch/view binding and trusted head content commitment; fresh view rereads before delivery | Later live workspace/object state binding remains to be integrated |
+| Reuse and live state | Policy/claim/version/epoch/view binding, trusted head content commitment, current selected-file/environment observation and execution binding | Current Node test target only; no atomic filesystem or arbitrary external-world coverage |
 | Native event parsing | Narrow Node/TAP grammar; real exit/completion/test count; captured version equality | Unsupported relevant events invalidate completeness; not a general semantic parser |
 | Raw-RAG adapter | Direct official add/search; fixed upstream commit and exact tokenizer; original request; faithful/full-turn and separately named budget display | Provider calls, reader and quality comparison unrun |
 | Analysis | Frozen schedule left join, first-attempt policy, failure-inclusive task denominator, replicate averaging, hierarchical bootstrap, H1/H2 gates | Requires independently acquired tasks, valid labels, freeze and complete cost accounting |
+| Execution and measurement | `freeze → dispatch → score-inputs → join`, hash-chained first-attempt ledger, frozen input/runner identity, complete component seals, evaluator score binding | Actual all-arm deployment, trace-derived complete billing and shared reference budget remain unrun |
 | Native smoke and replay | Actual native compaction and resumed continuation; real terminal-event replay through L2 and verifier; same public archive accepted by Raw-RAG validator | One synthetic development workflow; manual offline version mapping and claims; no paired method result |
 
 The historical `scripts/evidence-check-gate.mjs` and old experiment driver are unchanged. Their predefined claims and convenient source positions cannot be relabeled as the new automatic method or strong Raw-RAG.
 
 ## Fresh verification evidence
+
+### Second batch after public authorization
+
+| Check | Actual observed result | Evidence |
+|---|---|---|
+| Complete research suite | Exit 0; **65 Node + 119 Python = 184 passes**, no failures/skips | [phase2 suite](artifacts/checks/phase2/paper1-phase2-suite.txt) |
+| Live-state / broker | Real local Node execution → live binding → actual L2 → unchanged reuse → changed bytes rejected → later failure reported; 15 live-state and 9 broker tests | [LIVE_STATE.md](LIVE_STATE.md), [LIVE_HOST.md](LIVE_HOST.md) |
+| Controller review | 37 tests; cross-run scoring, false zero costs, file-mode/empty-directory drift fixed and independently rechecked | [EXPERIMENT.md](EXPERIMENT.md), [REVIEW.md](REVIEW.md) |
+| Native online attempt | Actual MCP read succeeded; test call blocked by required approval; 1 generation turn, 0 executions/compactions/decisions | [attempt-01](artifacts/live-native/attempt-01/summary.json) |
+| Actual model extraction components | First schema-valid output omitted test obligation; prompt v2 produced one test claim on a same-family retest; 2 generation turns | [live-native record](artifacts/live-native/README.md) |
+| Real task acquisition | 16 traceable candidates / 8 projects; 0 accepted or frozen P1 workflows | [acquisition](tasks/acquisition/README.md) |
+| Real program reproduction | Flask 1 fail/59 pass → 60 pass; Requests 2 fail/201 pass/11 skip → 203 pass/11 skip | [reproduction](tasks/reproduction/README.md) |
+
+This batch has three new generation-turn starts in total and no new native compaction. The previous batch's native compaction is not reused as evidence of this online method. Raw notifications are retained without summing repeated cumulative snapshots; actual spend and full standardized cost remain unknown. Unit tests, source candidates, pytest items and development retries are not independent P1 task counts.
+
+### Earlier preserved snapshot
 
 | Check | Actual observed result | Evidence |
 |---|---|---|
@@ -51,8 +68,8 @@ The Raw-RAG runtime check constructed real SDK clients and attached hooks, but d
 1. **Keep the novelty claim narrow.** Selective reopening and provenance already have close predecessors. The empirical question is incremental decision value beyond faithful Raw-RAG and neighboring sufficiency/governance methods under native compaction.
 2. **Preserve input fairness.** Faithful B uses the original user request. C/D and claim-driven ablations share the extractor. A claim-expanded B is a distinct future adaptation, with its own frozen cost and name.
 3. **Freeze a real shared budget.** The current 5,000-token Raw-RAG display adaptation and per-claim verifier defaults are not yet a frozen matched total budget. Addition of TierMem/sufficiency T changes the old run and cost plan.
-4. **Complete the host integration.** Automatically bind current live artifact/environment state, establish source coverage, deliver evidence to native continuations, and score extractor omissions against all independent obligations.
-5. **Acquire the new tasks.** Eight development workflow packages still need full acceptance; sixteen independent real-workflow pilot tasks have not been collected/frozen. Obtain traceable source/licensing records, independent annotation and behavioral checks before counting tasks.
+4. **Complete the host integration.** The current-state binder and bounded broker exist, but native write-tool approval still blocks the online continuation path. Add a supported approval-capable client and preserve the actual user's decisions; do not falsely mark tools read-only. General source coverage and extraction-omission scoring remain necessary.
+5. **Accept the real workflows.** Sixteen traceable source candidates exist, with two reproduced environments; zero P1 tasks are accepted/frozen. Build public/hidden workflow packages, independent annotation and behavioral checks before counting them. Eight development workflow packages still need full acceptance.
 6. **Run the actual strong baseline and paired pilot.** The first external resource blocker is usable embedding and reranker service configuration. Do not substitute lexical retrieval or dummy embeddings, or put keys in Git/chat. Credentials alone do not satisfy the remaining task/method gates.
 7. **Only then choose formal N and complete the paper.** Use pilot evidence for power/precision, freeze the full protocol and cost model, run confirmation and external validation, and write the result-supported submission version. Human authorship and the chosen venue's current requirements remain to be finalized.
 
@@ -60,6 +77,8 @@ No new paid service account or GPU allocation was opened in this batch. The exis
 
 ## Preservation and publication status
 
-The implementation and artifacts are committed locally on the research branch. The attempted branch push was rejected by automatic approval review because the destination repository is public and the conversation did not explicitly authorize disclosure of the unpublished manuscript, research artifacts and code. A subsequent read-only remote-ref check returned no branch, and no matching push process remained. No alternate upload method was attempted, and no pull request was created.
+The earlier push was rejected by automatic approval review because public disclosure of the unpublished research had not yet been explicitly authorized. On **2026-11-28**, the user stated **“授权公开，并继续补齐缺失流程步骤”**. That authorization resolved the public-disclosure restriction.
 
-[PR_DRAFT.md](PR_DRAFT.md) contains the concrete proposed title and body for a draft PR. Publishing this research package to the public repository requires the user's explicit authorization. This restriction concerns public GitHub disclosure, separately from manuscript submission and the unavailable embedding/reranker credentials.
+The research branch was then published through the authenticated GitHub connector after local Git lacked HTTPS credentials. The initial API-created commit is `f7cda0c4af886e6bfb37340d5126cd1c748e91b6`; its tree `e96b94036ace72f3a4cb6c503698410ee95e957f` exactly matched the local reviewed snapshot. [Draft PR #9](https://github.com/QiuXu-Tech/memex/pull/9) is open against main. Subsequent updates preserve the same research branch and draft status. No main merge, journal submission or public preprint submission was performed. [PR_DRAFT.md](PR_DRAFT.md) holds the review description, not a new request for public authorization.
+
+The separate native MCP execution-approval issue and missing embedding/reranker services are technical/runtime dependencies; public-disclosure permission does not silently override either.

@@ -1,0 +1,66 @@
+{
+  "elapsedMs": 0.1157920000005106,
+  "promptSha256": "a3afe92dfc8dd484489f214ab9d8055c5ddb690e1cb3b65d069f20bd13e6b9c1",
+  "extractionPolicy": "observable-obligations-v2",
+  "usage": null,
+  "coverageEstablished": false,
+  "ok": true,
+  "claims": [
+    {
+      "type": "current_version",
+      "scope": "live-development",
+      "entity": "current workspace artifact",
+      "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "basis": {
+        "field": "context",
+        "quote": "Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9"
+      },
+      "uncertainty": [
+        "The digest requires independent workspace verification."
+      ],
+      "proposalId": "p1-58cc62077598"
+    },
+    {
+      "type": "test_result",
+      "scope": "live-development",
+      "entity": "node --test --test-reporter=tap checks.test.mjs",
+      "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "basis": {
+        "field": "request",
+        "quote": "It is releasable only if the configured test command passes for the current artifact."
+      },
+      "uncertainty": [
+        "No test result or complete receipt was supplied.",
+        "Passing must be verified independently against the stated artifact digest.",
+        "The test receipt event ID is absent."
+      ],
+      "proposalId": "p2-3b7baaa7c31e"
+    },
+    {
+      "type": "operation_authorization",
+      "scope": "live-development",
+      "entity": "current workspace",
+      "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "actor": null,
+      "action": "prepare and record a simulated release-or-hold decision",
+      "basis": {
+        "field": "request",
+        "quote": "Decide whether to release or hold and cite the test receipt event ID."
+      },
+      "uncertainty": [
+        "The authorized actor is not identified.",
+        "The request authorizes a decision preparation, not an external release.",
+        "A release decision remains conditional on independently verified test success."
+      ],
+      "proposalId": "p3-17d69e440007"
+    }
+  ],
+  "unresolved": [
+    "No verified result is supplied for `node --test --test-reporter=tap checks.test.mjs` against artifact digest `7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9`.",
+    "No test receipt event ID is supplied.",
+    "The actor authorized to prepare or record the decision is not identified.",
+    "The artifact digest has not been independently checked against the current workspace.",
+    "No release-or-hold outcome can be supported until the prerequisite test evidence is verified."
+  ],
+  "rawOutput": "{\"claims\":[{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"current workspace artifact\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"context\",\"quote\":\"Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\"},\"uncertainty\":[\"The digest requires independent workspace verification.\"]},{\"type\":\"test_result\",\"scope\":\"live-development\",\"entity\":\"node --test --test-reporter=tap checks.test.mjs\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"request\",\"quote\":\"It is releasable only if the configured test command passes for the current artifact.\"},\"uncertainty\":[\"No test result or complete receipt was supplied.\",\"Passing must be verified independently against the stated artifact digest.\",\"The test receipt event ID is absent.\"]},{\"type\":\"operation_authorization\",\"scope\":\"live-development\",\"entity\":\"current workspace\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"actor\":null,\"action\":\"prepare and record a simulated release-or-hold decision\",\"basis\":{\"field\":\"request\",\"quote\":\"Decide whether to release or hold and cite the test receipt event ID.\"},\"uncertainty\":[\"The authorized actor is not identified.\",\"The request authorizes a decision preparation, not an external release.\",\"A release decision remains conditional on independently verified test success.\"]}],\"unresolved\":[\"No verified result is supplied for `node --test --test-reporter=tap checks.test.mjs` against artifact digest `7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9`.\",\"No test receipt event ID is supplied.\",\"The actor authorized to prepare or record the decision is not identified.\",\"The artifact digest has not been independently checked against the current workspace.\",\"No release-or-hold outcome can be supported until the prerequisite test evidence is verified.\"]}"
+}

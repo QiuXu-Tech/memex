@@ -1,0 +1,17 @@
+attrs==21.4.0
+certifi==2021.10.8
+charset-normalizer==2.0.12
+idna==3.3
+iniconfig==1.1.1
+packaging==21.3
+pip==23.0.1
+pluggy==1.0.0
+py==1.11.0
+pyparsing==3.0.9
+pytest==6.2.5
+pytest-mock==2.0.0
+-e git+https://github.com/psf/requests.git@0192aac24123735b3eaf9b08df46429bb770c283#egg=requests
+setuptools==67.6.0
+toml==0.10.2
+urllib3==1.26.18
+wheel==0.38.4

@@ -2,6 +2,8 @@
 
 更新：**2026-11-28，Asia/Shanghai**。研究分支：`research/p1-evidence-verification`。基于 Memex `49e772bbf60532682771874b7ec96958f4a179e3`。
 
+用户已明确授权公开；[研究分支](https://github.com/QiuXu-Tech/memex/tree/research/p1-evidence-verification)和[草稿 PR #9](https://github.com/QiuXu-Tech/memex/pull/9)已建立。
+
 ## 当前交付
 
 英文题目：**When to Reopen the Source: Evidence Verification after Native Agent Compaction**。
@@ -10,12 +12,16 @@
 
 | 内容 | 入口 | 状态 |
 |---|---|---|
-| 英文工作稿 | [PDF](manuscript.pdf)、[Markdown](manuscript.md)、[LaTeX](manuscript.tex)、[参考文献](references.bib) | 21 页；16 条参考记录；56 个 `PENDING` 结果占位符 |
+| 英文工作稿 | [PDF](manuscript.pdf)、[Markdown](manuscript.md)、[LaTeX](manuscript.tex)、[参考文献](references.bib) | 扩展方法与协议稿；16 条参考记录；56 个 `PENDING` 结果占位符；页数以 BUILD 为准 |
 | 实验与统计协议 | [PROTOCOL.md](PROTOCOL.md) | 公开输入、独立任务、失败分母、H1/H2、成本口径与冻结条件 |
 | 强基线 | [BASELINE.md](BASELINE.md) | 固定官方 Raw-RAG commit；实际供应商检索调用仍待凭据 |
 | 执行与审查证据 | [EXECUTION.md](EXECUTION.md)、[REVIEW.md](REVIEW.md) | 记录完成事项、修复、失败和未解决边界 |
 | 原生宿主开发验证 | [运行说明](artifacts/native-smoke/README.md)、[最终摘要](artifacts/native-smoke/native-smoke-02-resumed-final/summary.json) | 真实原生压缩与续跑完成；一个合成开发工作流 |
 | 真实日志离线回放 | [回放说明](artifacts/replay/native-smoke-02/REPORT.md) | 原生工具事件接入研究核验器；不是在线方法臂的性能实验 |
+| 实时状态与新原生接入 | [LIVE_STATE.md](LIVE_STATE.md)、[LIVE_HOST.md](LIVE_HOST.md) | 本地实际执行/L2/失鲜拒绝链路通过；原生写工具审批阻断；只读抽取同家族修订复测有记录 |
+| 执行、成本与评分绑定 | [EXPERIMENT.md](EXPERIMENT.md) | 冻结、首次调度、完整组件封口、具体执行绑定、独立评分合并；37 项契约测试 |
+| 真实来源与环境复现 | [候选采集](tasks/acquisition/README.md)、[真实复现](tasks/reproduction/README.md) | 16 来源候选/8 项目；2 项实际红→绿；0 个验收冻结的 P1 任务 |
+| 投稿准备 | [SUBMISSION.md](SUBMISSION.md) | 暂定目标、官方要求、作者与结果门槛；尚未提交 |
 | 排版与重建 | [BUILD.md](BUILD.md) | 可编辑源文件、构建命令与逐页 PDF 检查记录 |
 
 ## 论文要回答的问题
@@ -35,6 +41,9 @@
 - `rawrag_adapter.py`：调用固定官方 Raw-RAG 的 `add/search`，保留原始公开来源；官方完整展示与固定预算适配分别命名。默认预检不调用模型。
 - `analyze.py`：以冻结计划左连接运行记录，保留缺失和失败分母；先在任务内聚合重复运行，再进行项目与任务分层 bootstrap；质量和成本损坏分别处理。
 - `native_smoke.py`：有界的原生宿主预检与开发验证，保留实际命令结果、原生压缩事件及失败尝试。
+- `live-state.mjs`、`live-broker.mjs`：每次决策重读指定文件/环境，绑定实际执行前后状态；真实 L2 接入、缓存失效、有界公开工具与新会话限制。
+- `native_live.py`、`live_mcp.py`：当前工作区原生接入控制器和三工具公开界面；真实运行的阻断与独立抽取结果见 [记录](artifacts/live-native/README.md)。
+- `experiment.py`：`freeze → dispatch → score-inputs → join`；完整费用未知时保留 null，评分必须绑定具体封存执行，首次失败不能被重跑覆盖。
 
 这些组件是研究代码，历史 `scripts/evidence-check-gate.mjs` 及旧实验驱动保持原样。旧驱动和新协议不能混用后合并为同一研究结果。
 
@@ -53,6 +62,8 @@ npm test
 
 `test:paper1` 包含新的研究回归测试；原有 `npm test` 不会自动包含它们。测试数量和实际退出码以 [EXECUTION.md](EXECUTION.md) 及随附日志为准。单元测试、开发用例、模型轮次、claims 和压缩次数均不增加正式研究的独立任务数。
 
+最新完整套件实际为 **65 项 Node + 119 项 Python = 184 项通过**，零失败/跳过。原仓库测试另为 193 项实际通过、4 项跳过；不能把跳过计成执行通过。
+
 原生宿主默认只进行能力发现：
 
 ```bash
@@ -64,9 +75,9 @@ python3 scripts/paper1/native_smoke.py --output /tmp/p1-host-preflight
 ## 尚未具备的实证条件
 
 1. **忠实 Raw-RAG 的实际服务调用。** 官方 checkout 和适配器已准备；运行环境尚无 embedding 与 reranker 的供应商凭据。预检只报告是否存在，不展示密钥。当前未产生这两类模型请求或可报告的基线质量分数。
-2. **端到端真实任务链路。** 正式 host adapter 仍需在每次决定时读取并绑定 live workspace/object state；一般自然语言日志的生命周期归一化和抽取准确率仍待建立。当前 archive 接口依赖可信、完整的归一化状态快照。
-3. **独立数据与标注。** 8 个开发任务槽位和 16 个新真实任务的 pilot 设计不等于已采集数据。需要不同项目或独立工作流、完整来源、人工审阅义务与成功条件。
+2. **端到端真实任务链路。** 当前 Node 目标的实时状态绑定和执行 broker 已实现；原生联调实际停在写工具审批，须由支持审批的客户端接通。一般自然语言生命周期归一化、其他运行时和抽取准确率仍待建立。单独抽取复测不能替代原生闭环。
+3. **独立数据与标注。** 已有 16 个真实来源候选、8 个项目和 2 项程序复现；这些尚未转化为验收冻结的 P1 工作流。还需公开/隐藏输入隔离、相关状态变化与压缩后行为，以及独立双人义务标注。
 4. **可比性及预算冻结。** 当前 Raw-RAG 的 5,000-token 展示适配和 verifier 的每 claim 默认预算不构成已冻结的跨臂总预算。近邻 TierMem/sufficiency 对照新增后，调用量、总成本与运行计划必须重新冻结。
 5. **正式结果和投稿版本。** Pilot、功效设计、正式成对实验、外部验证及目标 venue 篇幅改写尚未执行。不能用旧合成试验或本次 smoke 填写结果表。
 
-下一项外部依赖是提供可用的 embedding/reranker 服务配置；不应在聊天、Git 或日志里提交密钥。接入后仍须完成上述真实任务和方法链路，才进入成对 pilot，而不是直接启动大规模实验。
+当前外部依赖包括原生写工具的真实批准通道、可用的 embedding/reranker 服务和人工研究标注/作者确认。密钥不应进入聊天、Git 或日志。接入后仍须完成真实任务和方法验收、共享预算冻结与成对 pilot，才进入正式实验。

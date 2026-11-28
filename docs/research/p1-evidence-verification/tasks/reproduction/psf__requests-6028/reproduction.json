@@ -1,0 +1,212 @@
+{
+  "schema_version": 1,
+  "candidate_id": "psf__requests-6028",
+  "kind": "program_regression_reproduction_not_agent_evaluation",
+  "recorded_at": "2026-11-28T00:45:26.725908+00:00",
+  "source_dataset": {
+    "id": "SWE-bench/SWE-bench_Verified",
+    "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+    "split": "test",
+    "row_index": 297,
+    "canonical_row_sha256": "9b07b26637cbf5f890d0a2f7d5ca9e46cf63fe7f600fb9286500e0dd6c2570bf",
+    "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+    "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+  },
+  "upstream": {
+    "issue_url": "https://github.com/psf/requests/issues/6027",
+    "issue_number": 6027,
+    "issue_title": "Proxy authentication bug",
+    "pr_url": "https://github.com/psf/requests/pull/6028",
+    "pr_number": 6028,
+    "pr_merged": true,
+    "base_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+    "base_commit_url": "https://github.com/psf/requests/commit/0192aac24123735b3eaf9b08df46429bb770c283",
+    "fix_commit": "8fa9724398c4f44090997ff430a1dd3e935a9057",
+    "fix_commit_kind": "upstream_merge_or_squash_commit",
+    "fix_commit_url": "https://github.com/psf/requests/commit/8fa9724398c4f44090997ff430a1dd3e935a9057",
+    "fix_parent_commits": [
+      "0192aac24123735b3eaf9b08df46429bb770c283",
+      "38f3f8ecb93cadfac03a6b7b3173018ac829d0cf"
+    ],
+    "base_is_fix_first_parent": true,
+    "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+  },
+  "patches": {
+    "hash_algorithm": "sha256",
+    "source": "fixed official dataset field UTF-8 bytes",
+    "hashes": {
+      "patch": "9cd3e2a2c10cc8b9555156f0e9cda00c67aa4e08f40ebd125f417bbeb41b2fb3",
+      "test_patch": "cc4b0007afd140c1737b08e14d0cbb9dbccfbee483146d5112971dd7b9bcb142",
+      "eval_script": "bd1f0181942f1aab50797169a4c706c3f841eafb235d833d6fecdcaef85933ba"
+    },
+    "public_patch_copy": false,
+    "private_source_row": "/workspace/scratch/d5292d3ebcac/p1-real-repros/evaluator-only/psf__requests-6028.official-row.json",
+    "source_code_license": "Apache-2.0",
+    "license_evidence": "docs/research/p1-evidence-verification/tasks/acquisition/licenses/psf__requests-09e8a9bcec80.txt"
+  },
+  "environment": {
+    "python": {
+      "version": "3.10.16 (main, Mar 17 2025, 21:01:46) [Clang 20.1.0 ]",
+      "executable": "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/venv310/bin/python",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+    },
+    "dependency_freeze": "dependencies-freeze.txt",
+    "requirements": "requirements-pinned.txt",
+    "python_executable_sha256": "510c9a7201c5c78c81774bc3bddaf434b8f037d6351714629a7177537253f704",
+    "official_container_used": false,
+    "docker_equivalence_claimed": false,
+    "dependency_version_policy": "explicit compatible versions; Flask pytest pins follow source requirements/tests.txt and Requests pytest follows source requirements-dev.txt cap; transitive versions frozen",
+    "installation_environment_keys": [
+      "PATH",
+      "LANG",
+      "PIP_CONFIG_FILE",
+      "PYTHONNOUSERSITE",
+      "GIT_CONFIG_NOSYSTEM",
+      "GIT_CONFIG_GLOBAL",
+      "HTTP_PROXY",
+      "HTTPS_PROXY",
+      "ALL_PROXY",
+      "NO_PROXY",
+      "http_proxy",
+      "https_proxy",
+      "all_proxy",
+      "no_proxy"
+    ],
+    "test_environment_keys": [
+      "PATH",
+      "LANG",
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD",
+      "PYTHONNOUSERSITE",
+      "PYTHONDONTWRITEBYTECODE"
+    ],
+    "pytest_plugins": "auto-loading disabled; pytest_mock explicitly enabled for Requests test utility fixture"
+  },
+  "isolation": {
+    "tool": "bubblewrap",
+    "filesystem_user_pid_ipc_uts_namespaces": true,
+    "network_namespace_isolated": false,
+    "full_network_unshare_failed": "NETLINK_ROUTE Operation not permitted; no escalation or permission bypass attempted",
+    "mounts": "own repository, own venv and log directory, fixed Python runtime, read-only system binaries/libraries, private /tmp and /proc",
+    "other_project_directories_mounted": false,
+    "user_home_mounted": false,
+    "user_env_or_api_keys_forwarded": false,
+    "upstream_clone_contains_future_git_history": "evaluator-only; must not be reused directly as agent-public workspace"
+  },
+  "base_result": {
+    "returncode": 1,
+    "counts": {
+      "tests": 214,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 11,
+      "passed": 201
+    },
+    "stdout": "base.stdout.txt",
+    "stderr": "base.stderr.txt",
+    "junit": "base.junit.xml",
+    "command_record": "base-command.json"
+  },
+  "fixed_result": {
+    "returncode": 0,
+    "counts": {
+      "tests": 214,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 11,
+      "passed": 203
+    },
+    "stdout": "fixed.stdout.txt",
+    "stderr": "fixed.stderr.txt",
+    "junit": "fixed.junit.xml",
+    "command_record": "fixed-command.json"
+  },
+  "fixed_file_checks": [
+    {
+      "path": "requests/utils.py",
+      "working_sha256": "30a4cadddbbf5a698eda7bff4a4795f3cd15c1f2188496ef7752f3eee0e2a0ff",
+      "working_git_blob_sha1": "153776c7f3ad09673c4d178e013322cd0b3d3368",
+      "upstream_fix_commit_blob_sha1": "153776c7f3ad09673c4d178e013322cd0b3d3368",
+      "matches_upstream_fix": true,
+      "source_url": "https://github.com/psf/requests/blob/8fa9724398c4f44090997ff430a1dd3e935a9057/requests/utils.py"
+    },
+    {
+      "path": "tests/test_utils.py",
+      "working_sha256": "ee75e15b6d5338db46eaa56fde5e2e34ab21fe5c97ccb6d3d7ce9c1a50a126cf",
+      "working_git_blob_sha1": "8e983972040b3976e304e739b189c608eb411613",
+      "upstream_fix_commit_blob_sha1": "8e983972040b3976e304e739b189c608eb411613",
+      "matches_upstream_fix": true,
+      "source_url": "https://github.com/psf/requests/blob/8fa9724398c4f44090997ff430a1dd3e935a9057/tests/test_utils.py"
+    }
+  ],
+  "test_file_unchanged_between_base_and_fixed": true,
+  "environment_failure_ledger": [
+    "initial clone without required public proxy route failed DNS and is retained",
+    "initial bwrap missing dynamic-loader mounts failed and is retained",
+    "full namespace bwrap failed at NETLINK_ROUTE setup and is retained"
+  ],
+  "method_arm_results": null,
+  "native_compaction_run": false,
+  "human_annotators": [],
+  "p1_pilot_validated": false,
+  "limitations": [
+    "single local environment and one invocation per phase",
+    "no frozen P1 prelude or post-compaction agent action",
+    "not a full repository test suite",
+    "not a container reproducibility claim",
+    "network namespace shared although no resolver/proxy or user secrets were mounted"
+  ],
+  "literal_nodeid_coverage_before_official_normalization": {
+    "official_fail_to_pass_count": 2,
+    "official_pass_to_pass_count": 185,
+    "base_failed_matches_official_f2p": true,
+    "all_official_f2p_pass_after_fix": true,
+    "all_official_p2p_pass_at_base": false,
+    "all_official_p2p_pass_after_fix": false,
+    "missing_base_f2p": [],
+    "unexpected_base_failures": [],
+    "missing_base_p2p": [
+      "tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<?xml",
+      "tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta",
+      "tests/test_utils.py::TestExtractZippedPaths::test_unzipped_paths_unchanged[/__init__.py]",
+      "tests/test_utils.py::TestExtractZippedPaths::test_unzipped_paths_unchanged[/location]",
+      "tests/test_utils.py::TestExtractZippedPaths::test_unzipped_paths_unchanged[/test_utils.py]",
+      "tests/test_utils.py::test__parse_content_type_header[application/json",
+      "tests/test_utils.py::test__parse_content_type_header[multipart/form-data;",
+      "tests/test_utils.py::test_get_auth_from_url[http://user:pass",
+      "tests/test_utils.py::test_parse_dict_header[foo=\"is",
+      "tests/test_utils.py::test_parse_header_links[<http:/.../front.jpeg>;"
+    ],
+    "missing_fixed_f2p": [],
+    "missing_fixed_p2p": [
+      "tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<?xml",
+      "tests/test_utils.py::TestContentEncodingDetection::test_pragmas[<meta",
+      "tests/test_utils.py::TestExtractZippedPaths::test_unzipped_paths_unchanged[/__init__.py]",
+      "tests/test_utils.py::TestExtractZippedPaths::test_unzipped_paths_unchanged[/location]",
+      "tests/test_utils.py::TestExtractZippedPaths::test_unzipped_paths_unchanged[/test_utils.py]",
+      "tests/test_utils.py::test__parse_content_type_header[application/json",
+      "tests/test_utils.py::test__parse_content_type_header[multipart/form-data;",
+      "tests/test_utils.py::test_get_auth_from_url[http://user:pass",
+      "tests/test_utils.py::test_parse_dict_header[foo=\"is",
+      "tests/test_utils.py::test_parse_header_links[<http:/.../front.jpeg>;"
+    ]
+  },
+  "official_label_coverage": {
+    "parser_source_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/log_parsers/python.py",
+    "parser_source_sha256": "cd56156414f8327221e525665ace9b184f7d73e83b272d9eb3f545fb17c2d9bc",
+    "parser_function": "parse_log_pytest_options",
+    "constants_source_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/constants/__init__.py",
+    "constants_sha256": "8895ab5313d874349c4b07bd223bb9eb00acaee377b432e67cc7ad840341e79b",
+    "execution": "Unmodified AST function bodies and TestStatus enum extracted from the pinned upstream source, with re and type-annotation placeholder only; no full harness or model used.",
+    "official_fail_to_pass_count": 2,
+    "official_pass_to_pass_count": 185,
+    "base_failed_matches_official_f2p": true,
+    "all_official_f2p_pass_after_fix": true,
+    "all_official_p2p_pass_at_base": true,
+    "all_official_p2p_pass_after_fix": true,
+    "missing_or_nonpassing": {
+      "base": [],
+      "fixed": []
+    },
+    "limitation": "Official parser truncates at whitespace; Requests additionally normalizes absolute-path parameter basenames. Normalized labels can collapse distinct actual tests. JUnit counts remain the primary executed-test count."
+  }
+}

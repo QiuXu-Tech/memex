@@ -1,0 +1,113 @@
+test_absent_quality_does_not_erase_a_complete_measured_cost (test_paper1_experiment.ExperimentTests.test_absent_quality_does_not_erase_a_complete_measured_cost) ... ok
+test_all_components_cannot_be_declared_not_applicable (test_paper1_experiment.ExperimentTests.test_all_components_cannot_be_declared_not_applicable) ... FAIL
+test_cached_tokens_are_a_partition_not_double_priced (test_paper1_experiment.ExperimentTests.test_cached_tokens_are_a_partition_not_double_priced) ... ok
+test_completed_model_stage_cannot_have_only_zero_usage (test_paper1_experiment.ExperimentTests.test_completed_model_stage_cannot_have_only_zero_usage) ... FAIL
+test_component_seal_cannot_precede_its_measurements (test_paper1_experiment.ExperimentTests.test_component_seal_cannot_precede_its_measurements) ... ok
+test_default_dry_run_does_not_start_subprocess_or_create_state (test_paper1_experiment.ExperimentTests.test_default_dry_run_does_not_start_subprocess_or_create_state) ... ok
+test_dispatch_only_passes_public_and_output_data_paths (test_paper1_experiment.ExperimentTests.test_dispatch_only_passes_public_and_output_data_paths) ... ok
+test_duplicate_evaluator_rows_are_not_selected_for_best_quality (test_paper1_experiment.ExperimentTests.test_duplicate_evaluator_rows_are_not_selected_for_best_quality) ... ok
+test_first_attempt_resume_never_repeats_finished_units (test_paper1_experiment.ExperimentTests.test_first_attempt_resume_never_repeats_finished_units) ... ok
+test_frozen_manifest_is_paired_and_analyzer_schema_compatible (test_paper1_experiment.ExperimentTests.test_frozen_manifest_is_paired_and_analyzer_schema_compatible) ... ok
+test_gold_paths_cannot_be_added_to_controller_runner_spec (test_paper1_experiment.ExperimentTests.test_gold_paths_cannot_be_added_to_controller_runner_spec) ... ok
+test_interrupted_reserved_unit_is_not_dispatched_again (test_paper1_experiment.ExperimentTests.test_interrupted_reserved_unit_is_not_dispatched_again) ... ok
+test_invalid_analysis_plan_cannot_be_frozen_as_analyzer_compatible (test_paper1_experiment.ExperimentTests.test_invalid_analysis_plan_cannot_be_frozen_as_analyzer_compatible) ... ok
+test_known_zero_prices_cannot_create_complete_reference_cost (test_paper1_experiment.ExperimentTests.test_known_zero_prices_cannot_create_complete_reference_cost) ... FAIL
+test_missing_unknown_and_cumulative_measurements_do_not_yield_full_cost (test_paper1_experiment.ExperimentTests.test_missing_unknown_and_cumulative_measurements_do_not_yield_full_cost) ... ok
+test_mutated_public_input_and_tampered_ledger_fail_closed (test_paper1_experiment.ExperimentTests.test_mutated_public_input_and_tampered_ledger_fail_closed) ... ok
+test_output_mutation_after_sealing_invalidates_the_score (test_paper1_experiment.ExperimentTests.test_output_mutation_after_sealing_invalidates_the_score) ... FAIL
+test_public_digest_covers_directory_permissions (test_paper1_experiment.ExperimentTests.test_public_digest_covers_directory_permissions) ... FAIL
+test_public_digest_covers_file_permissions_and_empty_directories (test_paper1_experiment.ExperimentTests.test_public_digest_covers_file_permissions_and_empty_directories) ... FAIL
+test_quality_binding_is_mandatory_not_only_a_run_key (test_paper1_experiment.ExperimentTests.test_quality_binding_is_mandatory_not_only_a_run_key) ... FAIL
+test_quality_join_is_separate_and_bad_cost_does_not_flip_success (test_paper1_experiment.ExperimentTests.test_quality_join_is_separate_and_bad_cost_does_not_flip_success) ... ok
+test_run_budget_is_global_across_resumes (test_paper1_experiment.ExperimentTests.test_run_budget_is_global_across_resumes) ... ok
+test_runner_change_between_arms_stops_before_next_attempt (test_paper1_experiment.ExperimentTests.test_runner_change_between_arms_stops_before_next_attempt) ... ok
+test_score_from_another_execution_of_same_plan_cannot_join (test_paper1_experiment.ExperimentTests.test_score_from_another_execution_of_same_plan_cannot_join) ... FAIL
+test_score_from_different_public_freeze_cannot_join (test_paper1_experiment.ExperimentTests.test_score_from_different_public_freeze_cannot_join) ... FAIL
+test_timeout_cannot_certify_full_cost_from_an_earlier_seal (test_paper1_experiment.ExperimentTests.test_timeout_cannot_certify_full_cost_from_an_earlier_seal) ... ok
+test_total_cost_overflow_is_unknown_instead_of_nonfinite (test_paper1_experiment.ExperimentTests.test_total_cost_overflow_is_unknown_instead_of_nonfinite) ... ok
+test_unit_mismatch_and_unknown_rate_fail_cost_without_crashing (test_paper1_experiment.ExperimentTests.test_unit_mismatch_and_unknown_rate_fail_cost_without_crashing) ... ok
+test_usage_digest_mismatch_keeps_quality_but_makes_cost_unknown (test_paper1_experiment.ExperimentTests.test_usage_digest_mismatch_keeps_quality_but_makes_cost_unknown) ... ok
+test_wall_budget_is_rechecked_after_input_verification_before_launch (test_paper1_experiment.ExperimentTests.test_wall_budget_is_rechecked_after_input_verification_before_launch) ... ok
+test_wall_budget_stops_later_units (test_paper1_experiment.ExperimentTests.test_wall_budget_stops_later_units) ... ok
+
+======================================================================
+FAIL: test_all_components_cannot_be_declared_not_applicable (test_paper1_experiment.ExperimentTests.test_all_components_cannot_be_declared_not_applicable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 437, in test_all_components_cannot_be_declared_not_applicable
+    with self.assertRaises(module().ContractError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_completed_model_stage_cannot_have_only_zero_usage (test_paper1_experiment.ExperimentTests.test_completed_model_stage_cannot_have_only_zero_usage)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 451, in test_completed_model_stage_cannot_have_only_zero_usage
+    self.assertIsNone(module().standardized_cost(self.measurement(), "A", rows)["standardized_cost"])
+AssertionError: 0.0 is not None
+
+======================================================================
+FAIL: test_known_zero_prices_cannot_create_complete_reference_cost (test_paper1_experiment.ExperimentTests.test_known_zero_prices_cannot_create_complete_reference_cost)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 444, in test_known_zero_prices_cannot_create_complete_reference_cost
+    self.assertIsNone(module().standardized_cost(measurement, "A", self.usage())["standardized_cost"])
+AssertionError: 0.0 is not None
+
+======================================================================
+FAIL: test_output_mutation_after_sealing_invalidates_the_score (test_paper1_experiment.ExperimentTests.test_output_mutation_after_sealing_invalidates_the_score)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 430, in test_output_mutation_after_sealing_invalidates_the_score
+    with self.assertRaises(module().ContractError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_public_digest_covers_directory_permissions (test_paper1_experiment.ExperimentTests.test_public_digest_covers_directory_permissions)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 467, in test_public_digest_covers_directory_permissions
+    self.assertNotEqual(module().public_digest(self.public), before)
+AssertionError: '2d20ae7f9638f1c09086f94fbcf5eb75b3be90ad398e8314dca283ea237155dc' == '2d20ae7f9638f1c09086f94fbcf5eb75b3be90ad398e8314dca283ea237155dc'
+
+======================================================================
+FAIL: test_public_digest_covers_file_permissions_and_empty_directories (test_paper1_experiment.ExperimentTests.test_public_digest_covers_file_permissions_and_empty_directories)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 458, in test_public_digest_covers_file_permissions_and_empty_directories
+    self.assertNotEqual(module().public_digest(self.public), before)
+AssertionError: '2d20ae7f9638f1c09086f94fbcf5eb75b3be90ad398e8314dca283ea237155dc' == '2d20ae7f9638f1c09086f94fbcf5eb75b3be90ad398e8314dca283ea237155dc'
+
+======================================================================
+FAIL: test_quality_binding_is_mandatory_not_only_a_run_key (test_paper1_experiment.ExperimentTests.test_quality_binding_is_mandatory_not_only_a_run_key)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 418, in test_quality_binding_is_mandatory_not_only_a_run_key
+    with self.assertRaises(module().ContractError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_score_from_another_execution_of_same_plan_cannot_join (test_paper1_experiment.ExperimentTests.test_score_from_another_execution_of_same_plan_cannot_join)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 408, in test_score_from_another_execution_of_same_plan_cannot_join
+    with self.assertRaises(module().ContractError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ContractError not raised
+
+======================================================================
+FAIL: test_score_from_different_public_freeze_cannot_join (test_paper1_experiment.ExperimentTests.test_score_from_different_public_freeze_cannot_join)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_experiment.py", line 397, in test_score_from_different_public_freeze_cannot_join
+    with self.assertRaises(module().ContractError):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ContractError not raised
+
+----------------------------------------------------------------------
+Ran 31 tests in 0.328s
+
+FAILED (failures=9)
