@@ -1,0 +1,26 @@
+{
+  "schema_version": 1,
+  "kind": "p1-deepseek-real-diagnostic-ledger-audit",
+  "source_public_commit": "396c7e12bfe007371caa7131c743837d1b157ee3",
+  "observed_at_local": "2026-11-28T18:05:49.021000+08:00",
+  "historical_prefix_preserved": true,
+  "historical_prefix_sha256": "c0ade028fd5b1cb7468c8fd1873655e91b1ce0d0b20fde1abea2aad9ce0d1cc7",
+  "journal_events_before": 4,
+  "journal_events_after": 7,
+  "appended_events": [
+    "reserved",
+    "operation_reserved",
+    "finished"
+  ],
+  "journal_head_sha256": "1e13c9ccee1cc0ce56846ee9929c3d4a72b356aad5cf82c7f346ef7b5f9315f2",
+  "request_and_configuration_and_pricing_binding_verified": true,
+  "operation_single_dispatch_verified": true,
+  "cash_reservation_cny": "3.00",
+  "actual_added_cash_total": null,
+  "remaining_cash_capacity_cny": "97.00",
+  "native_attempts_reserved": 2,
+  "method_units_reserved": 0,
+  "diagnostic_attempts_reserved": 1,
+  "scientific_ready": false,
+  "original_authorization_unchanged": true
+}

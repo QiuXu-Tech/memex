@@ -1,0 +1,29 @@
+{
+  "schema_version": 1,
+  "kind": "p1-deepseek-real-diagnostic-request-audit",
+  "request_bytes": 2303,
+  "request_sha256_verified": true,
+  "intent_sha256_verified": true,
+  "diagnostic_and_transport_config_hashes_verified": true,
+  "input_hash_verified": true,
+  "grounded_claims": 1,
+  "semantically_relevant_authorization_claim": true,
+  "qualitative_limitation": "The extra unresolved test_result observation was not required by the input. No accuracy or coverage estimate is claimed.",
+  "generation_requests": 1,
+  "automatic_retries": 0,
+  "usage": {
+    "input_tokens": 434,
+    "cached_input_tokens": 0,
+    "output_tokens": 210,
+    "total_tokens": 644
+  },
+  "client_extraction_elapsed_ms": 1388,
+  "elapsed_scope": "Includes admission/controller operations; excludes the preceding account check. Not a model-speed benchmark.",
+  "standardized_peak_cost_estimate_cny": "0.00254800",
+  "actual_added_cost_cny": null,
+  "reservation_cny": "3.00",
+  "scientific_ready": false,
+  "all_arm_runtime_ready": false,
+  "native_compaction": false,
+  "source_result_sha256": "57e86d5cebd379bf0ce1fe7bc77853734d9a156ac197efe7c84695598ad14fe0"
+}
