@@ -2,7 +2,11 @@
 
 **状态：NOT READY — 研究准备文件，不是可投递稿、投稿声明或已完成实验的证明。**
 
-**暂定目标：Transactions on Machine Learning Research（TMLR），标准 PDF 路线。** 更新日期为 **2026-11-28**。官方模板派生、源码 ZIP、页面 QA 与独立解包重建已完成；当前 canonical 为 25 页，官方 TMLR 格式稿为 26 页。科学证据、人类来源与作者责任仍未闭合，实际投稿未执行。早先 24 页检查的时间与散列作为历史记录保留在 §4.1。
+**暂定目标：Transactions on Machine Learning Research（TMLR），标准 PDF 路线。** 状态文档更新于 **2026-11-29（Asia/Shanghai）**。官方模板派生、源码 ZIP、页面 QA 与独立解包重建已完成；当前 canonical 为 26 页，官方 TMLR 格式稿为 27 页。本次仅更新状态叙述，未改写 manuscript、PDF 或 ZIP。科学证据、真实作者贡献与责任仍未闭合，实际投稿未执行。早先版面的检查时间与散列作为历史记录保留在 §4.1。
+
+**本轮四次具名补充 native 授权已执行完毕，原生准备均未成立，不能自动补尝试或改预算。** 实际完成 10 次 DeepSeek 请求，但没有有效 task-bound checkpoint，16 个方法单元均未派发或评分。固定 Git checkout 及独立私有运行绑定已验证，11 包程序预审、37 条 AI-assisted 义务草案及两套有限 oracle 的参考源码资格已完成。22 份旧真人表不是 development 运行的前置条件；这些自动与辅助产物也不是正式 gold。B 仍缺指定服务凭据和固定模型计费依据，正式研究结果仍为 0。最终失败、次数、用量和现金见 [REMAINING_WORK.md](REMAINING_WORK.md)及[机器汇总](artifacts/native-supplement-01/observations.json)。
+
+实际运行、部署、账本镜像和记录导出的完整入口为[补充执行证据索引](artifacts/native-supplement-01/README.md)；后续准备设计的必要约束见 [NATIVE_NEXT_STEP.md](NATIVE_NEXT_STEP.md)，该设计文档本身不改变授权或配置。
 
 ## 1. 目标判断
 
@@ -47,14 +51,17 @@
 | 16 个来源候选、8 个项目 | 真实 issue/PR、固定来源与重建入口已采集 | 16 个已验收或冻结的 P1 先导工作流 |
 | 12/16 来源通过资格检查 | 初始 Flask / Requests 两项加扩展十项；扩展尝试了其余 14 个候选，保留 29 次尝试、34 次顶层测试调用及四项有界限制 | 智能体压缩后决策效果、方法臂得分、12 个正式独立任务 |
 | 11 个未验收任务包、22 份空白人工评审包 | 可检查的材料导出、来源绑定与未闭合验收项 | 已冻结 P1 工作流、已经发生的双人标注或裁决 |
+| v2 的 11 包程序预审、37 条 AI-assisted 义务草案 | 可重算的材料事实、明确披露来源的开发标签草案、部分确定性组件检查 | 37 个 gold 标签、完整语义覆盖、方法最终制品上的目标行为结果或已验证的正式复合终点 |
+| [有限 oracle 的参考源码资格验证](artifacts/remaining-completion-01/oracle-qualification-01/README.md) | Flask 原版与 Requests 明确 URL 格式的 v2 各 5 个真实 pytest 用例，在官方 fixed 上通过、在 base/错误实现上检出失败；15 个 observer、5 个隔离 probe 和 282 份发布记录可复算 | 方法臂得分、完整代理网络行为、证据采用与决策成功或正式预注册。Requests 原六项版的 1 项 fixed 失败保留，v2 为看过参考结果后的开发修订 |
 | 固定归档证据上的只读原生联调 | 5 次 generation starts、1 次真实 native compaction、3 个相同压缩父会话的分叉；A/C/D 均建议 hold | 独立自然任务效果、可变工作区端到端闭环、强 Raw-RAG 比较或非劣效结论 |
 | 同一 test-result 命题的 C/D 记录 | C 打开 2 条原文，D 复用后新打开 0 条；完整证据包相同，C/D 均为 15,350 input tokens | 模型 token 节省、完整成本下降或一般性性能优势 |
+| 四次补充 native 的真实执行 | 两次 `w-101` 在 provider 前失败；两个 `w-102` 各完成 5 次 provider 请求及 7 次只读公共工具调用，随后触及累计输入上限，生成次数也已用尽；全部 backend 已关闭 | 有效 task-bound checkpoint、方法最终制品、任何 A/B/C/D 得分或原生准备成功；不能从未用方法额度或现金余量推导重试许可 |
 | 官方格式 PDF、源码 ZIP 与 QA | 固定官方样式可编译；项目外解包重建的逐页文字、尺寸和渲染像素一致 | 科学研究复现完成、人类匿名审查完成或已经投稿 |
 | 当前主结果表 | 预先陈述将测量什么 | 实测效应、置信区间、H1/H2、完整成本结论 |
 
-上述候选尚无已验收冻结的 P1 工作流，22 份评审包均未填，已完成的人类独立评审数为 0。只读联调没有运行强 Raw-RAG B，也没有执行可变工作区测试；缓存输入子项不同，compaction 计量仍有缺口，actual spend 与完整标准化成本保持 null。`PENDING` 是未测量，不能换成 0、成功或“趋势”。论文是否最终主张优势，应由完成的研究记录决定，而不是投稿目标决定。
+上述候选尚无已验收冻结的研究工作流，22 份旧评审包均未填，已完成的人类独立评审数为 0。后续 [development-assurance v2](ANNOTATION_V2.md) 已替代开发阶段普遍等待固定双真人/第三人表单的流程依赖；human-v1 的记录要求本身未被放宽，AI 记录不能冒充它。正式使用程序或 AI 辅助标签前仍需验证独立真值依据、覆盖和误差，并冻结相应合同。只读联调没有运行强 Raw-RAG B，也没有执行可变工作区测试；其缓存、compaction 和成本边界仍保持原记录。`PENDING` 是未测量，不能换成 0、成功或“趋势”。论文主张应由实际研究证据决定。
 
-**审批宿主的边界。** 已批准批次中，Codex 0.153.0 的实际 `run_current_tests` 和 `record_decision` 一次性审批与后续工具执行已有收据，来源为 `prior_chat_authorization`，不声称新的真人点击或持久授权。两次 native 额度均已消耗；第 2 次最后的 changed-state 决定超时，完整集成 checks 为 null。先前阻断记录继续保留，局部通过也不证明完整可变工作流或跨宿主兼容性。[APPROVALS.md](APPROVALS.md) 与[本批原始记录](artifacts/authorized-batch1/README.md)保留具体边界。
+**审批宿主的边界。** 原批准批次中，Codex 0.153.0 的实际 `run_current_tests` 和 `record_decision` 一次性审批与后续工具执行已有收据，来源为 `prior_chat_authorization`，不声称新的真人点击或持久授权。原两次 native 已消耗；第 2 次最后的 changed-state 决定超时，完整集成 checks 为 null。随后另行批准的四次 task-bound 准备也全部结束并消耗：两个 `w-101` 在 provider 前失败；两个 `w-102` 各完成 5 次生成和 7 次只读公共工具调用，无 write/test/review，第 6 请求由本地 relay 在 provider 派发前以 `scope_reference_input_budget_exhausted` 拒绝。65,536 的累计 reference-input 边界与 5 次 generation_start 边界同时限制后续进度；仅放宽输入不能续跑。没有有效 checkpoint、没有方法调用或评分。旧失败不回填成功，不能自动重放、返还或新增次数。具体边界见 [APPROVALS.md](APPROVALS.md)、[原批次记录](artifacts/authorized-batch1/README.md)、[NATIVE_SUPPLEMENT.md](NATIVE_SUPPLEMENT.md)及[最终观察](artifacts/native-supplement-01/observations.json)。
 
 一次固定合成输入的 [DeepSeek 抽取诊断](artifacts/deepseek-live-01/README.md)已经完成，但未增加研究任务或方法运行。新增[评分](SCORING.md)、[报告](REPORTING.md)及[设计分析](DESIGN_ANALYSIS.md)工具有离线复核入口；当前[真实空结果报告](artifacts/remaining-completion-01/reporting/README.md)仍为 **NOT MEASURED**，不提供科学效果或正式 N。
 
@@ -98,34 +105,34 @@
 
 ## 5. 投递前必须闭合的 ready gates
 
-这些是**本项目针对当前主张的验收要求**，不是声称 TMLR 规定了 16 个任务、3% 界限或某个统计模型。所有 unknown 都需要真实资料；此文件不要求现在重复确认公开授权。
+这些是**本项目针对当前主张的验收要求**，不是声称 TMLR 规定了 16 个任务、22 份真人表、3% 界限或某个统计模型。开发运行不必等齐投稿关卡，但本轮原生准备次数已经耗尽；未用方法额度和剩余现金不产生新的原生许可。程序核验、AI 辅助起草与复算可继续进行；涉及本人事实和最终责任的 unknown 必须由实际作者如实提供。
 
 | Gate | 当前状态 | 闭合时必须有的证据 / 负责人 |
 |---|---|---|
 | G1 真实作者与研究责任 | **UNKNOWN / BLOCKED**：真实作者、机构、作者顺序和可归属的人类智力贡献未确认 | 每名拟作者的真实身份、具体工作记录、全文审查和共同同意；核对思想、主张、结果的真实来源及实际人类研究贡献是否满足 human-sourced 期待；不能仅凭人工选择、复核、承担责任或签字推定满足，也不能用 AI 草拟的贡献声明替代。 |
 | G2 通讯与投稿账户 | **UNKNOWN** | 明确实际负责沟通的人及邮箱、OpenReview 有效档案、每名作者额度。通讯联系人是项目组织要求；当前表单是否另有独立 corresponding-author 栏位尚未核实，不能填猜测信息。 |
-| G3 无特权的真实工作流 | **BLOCKED**：16 个来源候选中 12 个通过资格检查；11 个任务包均未验收，冻结 P1 工作流为 0 | 完成开发与独立先导包；真实 prelude、相关状态变化、native compaction、后续实际行动及完整失败台账；物理分离 public/controller/evaluator。受控轨迹与自然工作部分逐项标明。 |
-| G4 人工标注与裁决 | **BLOCKED**：22 份评审包为空，已完成人类独立评审为 0 | 至少两名具备能力的人独立标注关键状态、义务和证据等价规则，记录盲法、分歧与裁决。LLM 标签或 SWE-bench 原标签不替代该项；`[100%]` 进度伪标签等来源缺陷先修正并留账。 |
-| G5 公平、强且近邻的对照 | **BLOCKED** | 冻结并实际运行 A/B/C/D；验证 B 的 faithful `original_request` 配置和实际 dense/rerank；C/D 共用核心；决定 TierMem 忠实复现或清楚命名的独立 sufficiency 对照，并重新冻结预算。 |
+| G3 无特权的真实工作流 | **BLOCKED**：16 个来源候选中 12 个通过资格检查；11 个任务包均未验收，冻结 P1 工作流为 0；四次补充 native 均无有效 checkpoint，次数已耗尽 | 先离线修订读取策略及完整准备的输入/生成预算设计，不直接同配置重跑或改原计划。未来实际开发与独立先导仍须有合法运行依据、真实 prelude、相关状态变化、native compaction、后续行动及完整失败台账；物理分离 public/controller/evaluator。 |
+| G4 独立标签与测量合同 | **PARTIAL DETERMINISTIC VALIDATION COMPLETE / FORMAL VALIDATION PENDING**：11 包预审、37 条 AI-assisted 草案及两套有限 oracle 的参考源码资格已完成；方法最终制品行为、完整语义和复合终点仍未测量 | 将已验证的有限 oracle 独立绑定到封存方法制品，保留原版失败与开发修订；正式使用前补齐所选人类、程序或 AI 辅助标签路线的独立真值、接触史、覆盖、误差、分歧和版本冻结。若选 human-v1，继续遵守其双审/裁决合同；AI 草案或 SWE-bench 原标签不能直接改称完整 gold，开发执行无需先填完 22 张表。 |
+| G5 公平、强且近邻的对照 | **BLOCKED FOR FULL COMPARISON**：B 的固定 Git checkout、独立私有绑定与启动 Git 优先级已准备；指定 embedding/rerank 凭据及固定 `rerank-v3.5` 计费/可用性证据尚缺。本轮 A/C/D 也因无父检查点而未派发 | 支持保留主张的实际比较仍须有合法可用 parent 与完整准入；验证 B 的 faithful `original_request` 配置和实际 dense/rerank，C/D 共用核心。保留 B 缺席与四臂分母，不以开发部分观察声称胜过强 B；无需用户再修 Git/PATH。新对照若纳入须明确实现并另行冻结设计。 |
 | G6 完整效果与统计 | **BLOCKED**：当前结果为 PENDING | 冻结 manifest、任务级分母、replicate 聚合、项目依赖处理和区间方案；依据独立先导论证正式样本与 H2 界限；完成计划比较、失败保留及独立复算。负结果可闭合此 gate；不能要求先看到正结果再决定样本。 |
 | G7 成本及主张边界 | **BLOCKED** | 若保留 H2，须冻结全流水费率/分摊并保留失败成本，按 H1→H2 层级解释。费率或费用缺失写 unknown，不补零；不能以搜索次数替代成本。若证据不足，删除优势主张并明确报告限制。 |
-| G8 人类独立复核 | **BLOCKED** | 真实研究者复核关键引用、方法正确性、所有主结果和异常；由能理解实现与统计的人检查代码/日志；说明审查人、范围、发现及处理。一般签名不能替代实际核查。 |
+| G8 作者科学复核与责任 | **NOT RECORDED** | 程序和 AI 可完成引用查证、代码审查、复算与异常整理；责任作者须实际检查关键主张及其证据、理解适用范围并确认最终内容。对无法可靠形式化的关键争议安排具备相应能力的复核，记录范围、发现及处理；不预设另找固定人数的外部真人，也不能用一般签名代替实际核查。 |
 | G9 COI、资助、伦理与来源许可 | **UNKNOWN / BLOCKED** | 每位作者真实 COI 与资助记录；确定标注/参与者安排是否需相应伦理审查并记录判断。逐项审核上游文本、代码、日志和身份信息；不得把“网上可读”视为全部可再分发。 |
 | G10 重用、匿名与制品 | **UNKNOWN / BLOCKED** | 所有相关论文/预印本/归档投稿的重叠清单；匿名审稿包与公开仓库版本分开；完成可从记录重算的制品快照及合法发布范围。必要的第三方许可通知须保留，不能为匿名而删除。 |
 | G11 格式与文档复现 | **COMPLETE（工作稿格式范围）** | 官方 pin、27 页默认 review 稿、首页实质性 AI 脚注、文档源码 ZIP、引用/占位检查、页面 QA 与项目外独立重建均有记录；不包含研究完成、人类匿名审查或实际投递。 |
 | G12 最终作者批准与实际投递 | **NOT READY / NOT PERFORMED** | 完成其他研究与人类责任 gates，核对当天规则、真实账户与表单，完成科学补充材料和所有声明；最后由真实作者批准确切版本及投递。现有格式稿和 ZIP 不是已获批准的最终研究稿。 |
 
-其中 G1/G8 尤其不能通过美化措辞解决。当前工作稿已说明 AI 参与文献检查、方法表述与英文写作；本轮又有 AI 协助实现审查、来源采集和程序复现。应建立实际使用与人类复核记录。FAQ 的 human-sourced 期待是思想、主张、结果源于人类，而非由 LLM 生成；它不等同于事后由人类负责。当前真实研究贡献是否满足该要求仍须按来源事实核对，不能以签字或修改披露措辞替代。占位的人类贡献或尚未发生的审查也不能写成事实。[S2][S3][S4]
+G1/G8 需要实际事实和责任记录。当前工作稿已说明 AI 参与文献检查、方法表述与英文写作；后续还有实现审查、来源采集、程序复现和明确披露的开发标签草案，应据实保留。官方政策允许 LLM 辅助并要求作者负责，FAQ 仍保留 human-sourced 的思想、主张和结果期待；本项目不能自行将其解释为已被豁免，也不能用事后签字或改写披露证明来源条件已满足。已查政策没有逐任务两位真人或 22 张表的固定要求；这是对政策范围的判断，不是期刊对本自动评价路线的预先认可。[S2][S3][S4]
 
 人工标注的安排、公开 issue 中的人类信息以及未来数据使用都需要具体判断。伦理审查是否适用目前为 unknown；不得虚构“IRB approved”，也不自动把所有代码任务宣称为必须或无需 IRB。保留受限动作的本地模拟边界并解释适用风险。[S9]
 
 ## 6. 实际准备顺序
 
-1. **先完成研究证据。** 按 [PROTOCOL.md](PROTOCOL.md) 执行 G3–G7，冻结变更和偏离。正式样本不足时收窄问题及主张，而不是把开发测试混入正式 N。
-2. **同步建立人类责任与来源记录。** 由真实作者处理 G1/G2/G8/G9；建立 author/contribution、AI assistance、COI/funding、related-work overlap 和许可台账。未知项保持 unknown。
+1. **先处理准备阶段的设计与证据缺口。** 四次补充执行已结束，不再重放已消费 scope。用真实请求和工具轨迹离线修订分页、读取与完整准备所需的输入/生成预算设计，保留原 [PROTOCOL.md](PROTOCOL.md)、计划、授权及失败记录，不把新次数或改预算写成已获批准。B 的私有绑定已完成，服务凭据与固定计费证据仍需闭合；后续真实比较还须有合法可用的 parent。正式样本不足时收窄问题及主张，不把开发测试混入正式 N。
+2. **同步建立作者事实与来源记录。** AI 继续整理 author/contribution、AI assistance、COI/funding、related-work overlap 和许可材料；真实作者提供本人事实并实际履行 G1/G2/G8/G9 中的责任。无需让作者代做已经能可靠自动完成的逐文件机械检查，未知个人事实仍保持 unknown。
 3. **锁定科学叙述。** 用同一封存记录重算所有表图，决定可支持的正、负或边界结论；全文主张与结果逐项相连，单独报告来源资格与工程检查。
 4. **维护两种格式，补齐科学制品。** Canonical 与官方 TMLR 派生稿、文档源码包已完成；研究更新后从同一来源重新派生。完整科学补充包仍需冻结。公开仓库/预印本不必撤回，但审稿包须按匿名规则处理，不直接放暴露作者身份的版本链接。[S5]
-5. **完成科学制品与投递前复核。** 文档的项目外独立重建已经通过；后续还须核查科学复算入口、完整材料、人工匿名审查、链接、许可和实际表单字段，不向 OpenReview 创建“试投”。附录中才出现的关键论证移回主文。
+5. **完成科学制品与投递前复核。** 文档的项目外独立重建已经通过；继续核查科学复算入口、完整材料、匿名性、链接、许可和实际表单字段，由作者实际确认最终审稿包。不向 OpenReview 创建“试投”。附录中才出现的关键论证移回主文。
 6. **最后由真实作者核对。** 确认作者集合、责任、元数据、年度额度和当天规则，再批准确切 PDF/补充文件的摘要。此准备任务到此为止；没有发起投稿、联系编辑或发送邮件。
 
 正式表单可从 [OpenReview TMLR](https://openreview.net/group?id=TMLR) 进入；本次公开页面只返回加载界面，未核验登录后所有栏位。不要据此宣称当前表单可投、账户有资格、额度充足或某栏目必填。[S8]
@@ -148,7 +155,8 @@ Claims removed or limited: [按真实结果填写，不隐藏负结果]
 Related prior / parallel archival submissions: UNKNOWN
 Preprints / public artifacts and anonymous review package: [确切版本及处理]
 Funding / competing interests / COI: UNKNOWN
-Human annotation / adjudication / applicable ethics determination: UNKNOWN
+Label/oracle version, validation and unresolved adjudication: NOT FROZEN FOR FORMAL STUDY
+Human participant involvement / applicable ethics determination: [按实际采用的方法如实记录]
 Data and code rights / reproducibility access: [实际完成的许可与访问方式]
 
 AI assistance record: [工具、版本、日期、实际用途、范围、人工检查记录]
@@ -161,7 +169,7 @@ Author-approved final study manuscript and scientific supplement: NOT FROZEN
 
 ## 8. 官方一手来源与检索日期
 
-以下来源均于 **2026-11-28（Asia/Shanghai）**实际读取或通过官方仓库只读接口核对。日期是本次核验日期；除页面明确给出的生效日期外，不假称政策有发布日期或固定版本号。提交前重新访问。
+以下来源最初于 **2026-11-28（Asia/Shanghai）**实际读取或通过官方仓库只读接口核对。本次于 **2026-11-29（Asia/Shanghai）**重新打开 S2、S3、S4，核对 LLM 辅助、作者责任、human-sourced 期待及证据标准；其余条目仍对应原核验记录，不宣称已重新检查投稿表单。日期是核验日期，不假称政策有发布日期或固定版本号。提交前重新访问。
 
 - **[S1] TMLR 首页（目标、rolling、BeyondPDF、公告）：** https://www.jmlr.org/tmlr/index.html
 - **[S2] Editorial Policies（scope、双投/重用、作者、LLM、COI、额度）：** https://www.jmlr.org/tmlr/editorial-policies.html
@@ -173,4 +181,4 @@ Author-approved final study manuscript and scientific supplement: NOT FROZEN
 - **[S8] 官方投稿入口（动态表单未核验）：** https://openreview.net/group?id=TMLR
 - **[S9] Ethics Guidelines（数据、隐私、同意、监督与风险讨论）：** https://www.jmlr.org/tmlr/ethics.html
 
-早先版本只建立了投稿准备计划。本轮仅更新本文件，使其与已经完成的格式包及当前收据一致；未修改正文或 PDF，未填写未知作者事实，也未执行投稿、联系编辑或发送信件。
+本轮仅更新状态与投稿关卡叙述，使其与已完成的格式包、已激活授权、v2 预审及实际失败收据一致；未修改正文或 PDF，未填写未知作者事实，也未执行投稿、联系编辑或发送信件。剩余待作者本人提供的事项是身份/机构/贡献和利益关系等真实事实、对研究内容的实际复核与责任、账户资格及最终确切版本的投递同意；不是重复确认既有执行授权或补填 22 份虚构真人表。

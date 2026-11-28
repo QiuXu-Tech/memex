@@ -1,0 +1,61 @@
+{
+  "accepted_research_tasks": 0,
+  "actual_os_sandbox_probe_processes": 5,
+  "archive": "evidence.zip",
+  "archive_sha256": "81af1648cd1bce5251646a3bcebea66507bd7a1a774573e283a4c7f54fb9408a",
+  "canonical_ledger_accessed": false,
+  "count_is_not_assert_statement_count_or_independent_task_N": true,
+  "decision_success": null,
+  "export_recheck": "verification.json",
+  "frozen": false,
+  "human_annotators": 0,
+  "independent_reference_observer_processes": 15,
+  "kind": "development_assurance_reference_oracle_addendum",
+  "method_results_scored": 0,
+  "model_requests": 0,
+  "native_attempts": 0,
+  "new_native_or_method_outputs_read": false,
+  "oracle_provided_to_model": false,
+  "origin": "programmatic_with_nonblind_ai_assisted_design",
+  "original_assisted_review_snapshot_modified": false,
+  "original_public_taskplan_venvs_modified": false,
+  "original_requests_six_case_draft": {
+    "failure_retained": true,
+    "fixed_failed": 1,
+    "fixed_passed": 5,
+    "fully_qualified": false,
+    "path": "../assisted-review-v2/oracle-drafts/test_requests_request_contract.py",
+    "sha256": "fe45e346f5b7e3f50f86764f6a070edf2d2a69136ad2e55d4d60c6f7bf74e255"
+  },
+  "phase": "development",
+  "posthoc_integrity_audit": "evidence/posthoc-integrity-audit.json",
+  "provider_requests": 0,
+  "qualified_partial_oracles": [
+    {
+      "oracle": "../assisted-review-v2/oracle-drafts/test_flask_request_contract.py",
+      "oracle_sha256": "20e543d7c63ee7d07b527c0c90f3e662427207fb69b875944ae6c597dd4444ac",
+      "pytest_case_count": 5,
+      "qualified_scope": "empty blueprint name, three ordinary named local routes, dotted-name rejection",
+      "revised_after_reference_observation": false,
+      "task_id": "w-101"
+    },
+    {
+      "oracle": "test_requests_request_contract_v2.py",
+      "oracle_sha256": "563a181adb212479be2d9c905aaa9e2cb9cf40a5459faff3a3b9c51c853f3417",
+      "pytest_case_count": 5,
+      "qualified_scope": "explicit HTTP/HTTPS proxy credentials, encoded credentials, two unauthenticated URL cases",
+      "revised_after_reference_observation": true,
+      "task_id": "w-102"
+    }
+  ],
+  "remaining_scope_limits": [
+    "Requests Python 3.8.12 equivalence",
+    "end-to-end HTTP 407 proxy scenario",
+    "ambiguous scheme-less ordinary credentials",
+    "complete P1 semantic and evidence-use obligations",
+    "sealed method-artifact/evaluator-output binding"
+  ],
+  "revision": "oracle-qualification-01",
+  "schema_version": 1,
+  "total_qualified_pytest_cases": 10
+}

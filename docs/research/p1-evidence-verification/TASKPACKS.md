@@ -2,6 +2,10 @@
 
 **状态：材料已生成并通过完整性检查；P1 工作流验收数仍为 0。** 本批不调用模型，不执行原生压缩，不报告方法成功率。来源程序的 base→fix 复现、合成开发事件、完整 P1 工作流是三个不同的证据层次。
 
+后续的 [development-assurance v2](ANNOTATION_V2.md) 已对本页全部 11 包完成程序预审、核对 22 份旧审阅和 11 份裁决模板仍为空，并生成 37 条 AI-assisted 义务草案。它重算源码 Git blob、既有 JUnit 和合成状态事实；不改写本批 public/manifest/acceptance 历史收据。固定“双真人＋逐包第三人裁决”不再作为 development 材料核验或采集的普遍前置条件。正式研究、作者资格和真实执行权限仍按各自合同处理。
+
+随后两个有限行为 oracle 又在独立 base / 官方 fixed / 负对照中完成 [真实隔离资格验证](artifacts/remaining-completion-01/oracle-qualification-01/README.md)：Flask 原版与 Requests 明确 URL 版本各 5 个实际 pytest 用例；Requests 原六项草案的一项 fixed 失败单独保留。15 个 observer 和 5 个实际 probe 只用于 oracle 开发，不是方法结果；原 public/taskplan/venv 和本页 accepted/frozen 状态未改变。
+
 本页对应 [任务材料目录](tasks/workflows/README.md)、[机器可读目录](tasks/workflows/catalog.json) 和 [标注流程](ANNOTATION.md)。正式设计仍以 [PROTOCOL.md](PROTOCOL.md) 为准；这里补齐可检查的文件和操作入口，不替代协议或真实实验。
 
 ## 1. 本批实际交付
@@ -14,6 +18,7 @@
 | 物理任务包 | 11 | 2 个真实来源种子 + 9 个合成分支；不是 11 个已验收研究任务。 |
 | 盲审模板包 | 22 | 每个物理包两份自包含材料，身份、标签、签署时间均未填。 |
 | 已完成独立人工审阅 / 裁决 | 0 / 0 | 生成模板不增加人工审阅计数。 |
+| v2 程序材料预审 / AI-assisted 义务草案 | 11 / 37 | 实际审阅产物可复算；不是 11 个已验收研究任务或 37 个人工标签。 |
 | 本批原生压缩 / 方法调用 / 行为评分 | 0 / 0 / 0 | 其他宿主 smoke 收据不能自动归属于这些任务。 |
 | accepted P1 工作流 / frozen pilot 任务 | 0 / 0 | 各包的 acceptance 收据逐项列出缺口。 |
 
@@ -106,7 +111,9 @@ python -B docs/research/p1-evidence-verification/tasks/workflows/materialize.py 
 
 ## 6. 验收收据与剩余工作
 
-`validate` 成功只表示材料一致；它始终保留 `accepted=false`、`frozen=false`、`eligible_for_pilot=false`。`stage=ready_for_acceptance_review` 的意思是可以检查材料，不能解读为实验 ready。每个包都有实际生成的 [acceptance 收据](tasks/workflows/acceptance/w-101.json)，至少阻断以下事项：真实 native prelude、原生压缩回执、后续行动轨迹、实际状态变化、独立双审与裁决、隐藏 P1 行为检查执行、共同 reader/tokenizer、通用 arm runner、研究预算和分配冻结。
+`validate` 成功只表示材料一致；它始终保留 `accepted=false`、`frozen=false`、`eligible_for_pilot=false`。`stage=ready_for_acceptance_review` 的意思是可以检查材料，不能解读为实验 ready。每个包的 [acceptance 收据](tasks/workflows/acceptance/w-101.json) 是物化时的 v1 缺口记录，包含双审、宿主和 runner 等旧状态；该静态列表不是当前 runtime 准入器，也没有因实现后来完成而被改写。当前实现与实际执行应另看原生 controller/driver 收据；开发标注范围按 [v2 方法](ANNOTATION_V2.md) 处理。
+
+两来源包可在实际 native 轨迹补齐后继续做 development 工作流验收，不需要先假填 22 份真人表。验收仍要观察到相关的状态变化、真实压缩和同父续跑，并对最终制品运行请求所需的行为检查；仅 checkpoint 合法、旧公开测试通过或本轮程序预审通过都不保证这些条件成立。九个 synthetic 分支继续只作合成开发材料。
 
 验收前，负责人还需确认当前任务对模型可解/应弃答的边界、等价可接受证据、测量失败处理、家族跨集分配和人工标签独立性。来源包已经用于开发设计后，不应未经污染复核又被称为全新独立先导或确认任务。
 

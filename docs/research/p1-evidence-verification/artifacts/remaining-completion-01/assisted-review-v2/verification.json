@@ -1,0 +1,62 @@
+{
+  "ai_assisted_obligation_drafts": 37,
+  "artifact_kind": "actual_material_review_and_engineering_verification_not_method_results",
+  "artifacts_sha256": {
+    "README.md": "1ede1282f0f0310ebf955e63668230804c24ea195f649bfcfb97ec4e70d9500f",
+    "drafts.json": "cce2b65bfe2cf6f739e5c3f0eae8195f823d0f5d8a7d51f6f8e01c45555f135e",
+    "history/ANNOTATION.md": "171ee3c6ec3470d731cce11da9cd4efebe5b925892ef399ea10f5bd51979190c",
+    "history/SCORING.md": "a130ed4eab955ffe74049e705bb0bdd087c6f3d8dfcda7d0fd796b8f483ef567",
+    "history/TASKPACKS.md": "fabf8c16b5787e5a2a8b605cab986a1b1e1bc7e79e0fd339e1938e6070dd398a",
+    "method.json": "677b054e5171aa1bdc525767af1eca7cb4e8c22ada537f1c6d3b1c6299dd971e",
+    "oracle-drafts/test_flask_request_contract.py": "20e543d7c63ee7d07b527c0c90f3e662427207fb69b875944ae6c597dd4444ac",
+    "oracle-drafts/test_requests_request_contract.py": "fe45e346f5b7e3f50f86764f6a070edf2d2a69136ad2e55d4d60c6f7bf74e255",
+    "oracle-plan.json": "54fdab717b049dde8a89c2dcbc3594f6ad3c767e83ae15512b51a979c49972ce",
+    "policy-sources.json": "78c2f47a1e1ae9768e7db5107f53032674ddad47d6cda57da22ad96e36474a13",
+    "programmatic/report.md": "d559b1a6ea8a9311d0e6996470e903f1e0f810e6607d9fd352037da00f935df7",
+    "programmatic/reviews.json": "5bbf5f84c60a0244c1e0bf5f89ec16b04d2bc5ecbe7e9391d99a96fdc57d5e52",
+    "programmatic/summary.json": "3f63a04539e3ba5b6011cd6b37f522a53e4e67da0e1a66b306a0f2f0e49fa41e"
+  },
+  "draft_schema_valid": true,
+  "human_reviews_completed": 0,
+  "implementation_sha256": {
+    "development_oracle.py": "c0813faeb30ca5dff1fa321ea42c14e36a0bc92146f1ab655a835b67dcdcf0a6",
+    "taskpack_review.py": "39ac7d1b63ce76d0c3335b41965d2a3725b452f5333c036514c10b7db79d7c95"
+  },
+  "independent_ai_code_review": {
+    "correction": "Unknown observer receipts keep related components null and typed_trace_complete false; all receipt counts remain explicit.",
+    "finding": "One revalidated passing test plus an unknown second observer could hide the unknown component denominator.",
+    "human_review": false,
+    "new_method_outputs_read": false,
+    "red_log_sha256": "acbfc62abf03bd99a94ee36c9cb39a00cb4837da38041ddf136933f2d2b13628",
+    "regression": "test_missing_second_observer_cannot_disappear_from_the_test_denominator",
+    "reviewer": "separate AI coding agent"
+  },
+  "ledger_writes": 0,
+  "legacy_adjudication_templates_verified_blank": 11,
+  "legacy_review_templates_verified_blank": 22,
+  "limitations": [
+    "AI reviewer is not independently blind; prior design/source-review exposure disclosed.",
+    "No current native method outputs were read in preparing the request-derived drafts.",
+    "AST parsing and owned unit fixtures do not validate the target program regression tests.",
+    "Programmatic material checks and partial typed components do not establish scientific readiness or authorship."
+  ],
+  "local_markdown_links_verified": 52,
+  "method_composite_scores": 0,
+  "native_or_provider_requests": 0,
+  "original_document_hashes_preserved": true,
+  "programmatic_package_reviews": 11,
+  "request_oracle_drafts_ast_parsed": 2,
+  "request_oracle_drafts_executed": 0,
+  "research_tasks_accepted": 0,
+  "schema_version": 1,
+  "source_program_executions": 0,
+  "synthetic_archive_records_retained_as_synthetic": 34,
+  "targeted_tests": {
+    "command": "PYTHONPATH=test:scripts/paper1 python -B -m unittest test_paper1_taskpack_review test_paper1_development_oracle -v",
+    "count": 26,
+    "errors": 0,
+    "failures": 0,
+    "log_sha256": "86e10d24fa612a2c1e997f4c3aea98c6dba0f15d4603654ecb8967caaf490d76",
+    "skipped": 0
+  }
+}

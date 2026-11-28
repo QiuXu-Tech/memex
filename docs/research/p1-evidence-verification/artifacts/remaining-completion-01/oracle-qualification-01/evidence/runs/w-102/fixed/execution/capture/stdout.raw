@@ -1,0 +1,25 @@
+F.....                                                                   [100%]
+=================================== FAILURES ===================================
+_ test_proxy_credentials_survive_normalization_and_header_generation[reviewer:fixture-password@proxy.example.invalid:3128-http] _
+
+proxy = 'reviewer:fixture-password@proxy.example.invalid:3128', scheme = 'http'
+
+    @pytest.mark.parametrize("proxy,scheme", [
+        ("reviewer:fixture-password@proxy.example.invalid:3128", "http"),
+        ("http://reviewer:fixture-password@proxy.example.invalid:3128", "http"),
+        ("https://reviewer:fixture-password@proxy.example.invalid:3128", "http"),
+    ])
+    def test_proxy_credentials_survive_normalization_and_header_generation(proxy, scheme):
+        normalized = prepend_scheme_if_needed(proxy, scheme)
+>       assert get_auth_from_url(normalized) == ("reviewer", "fixture-password")
+E       AssertionError: assert ('', '') == ('reviewer', ...ure-password')
+E         At index 0 diff: '' != 'reviewer'
+E         Full diff:
+E         - ('reviewer', 'fixture-password')
+E         + ('', '')
+
+_p1_oracles/test_request_contract.py:22: AssertionError
+- generated xml file: <oracle-qualification>/runs/w-102/fixed/execution/sandbox-output/pytest.junit.xml -
+=========================== short test summary info ============================
+FAILED _p1_oracles/test_request_contract.py::test_proxy_credentials_survive_normalization_and_header_generation[reviewer:fixture-password@proxy.example.invalid:3128-http]
+1 failed, 5 passed in 0.03s

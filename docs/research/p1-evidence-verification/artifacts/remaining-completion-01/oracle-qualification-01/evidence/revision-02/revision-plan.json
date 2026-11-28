@@ -1,0 +1,57 @@
+{
+  "excluded_exploratory_input": "ordinary_username_colon_password_at_host_without_url_scheme",
+  "expected_test_counts": {
+    "w-102": {
+      "base": [
+        5,
+        2,
+        3
+      ],
+      "fixed": [
+        5,
+        5,
+        0
+      ],
+      "incorrect_behavior": [
+        5,
+        2,
+        3
+      ]
+    }
+  },
+  "human_annotators": 0,
+  "kind": "request_oracle_reference_revision_plan",
+  "method_score_produced": false,
+  "new_method_outputs_read": false,
+  "original_controller_sha256": "8ca352809f14eaaf2400bb921214be7675ba5fab0dd7cf26aae3dd39e3c7fd7a",
+  "original_draft_six_cases_preserved": true,
+  "original_fixed_failures_preserved": 1,
+  "original_qualification_sha256": "727f21323d36d998e998055077be5b0d63228d591e3c8e97e80ff220b5511b46",
+  "public_before_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+  "rationale": "The original draft assumed this ambiguous string is parsed as credentials; the known fixed reference does not satisfy it. The revised contract explicitly scopes ordinary credential URLs; the original failure remains an unresolved extension.",
+  "request_oracle_sha256": "563a181adb212479be2d9c905aaa9e2cb9cf40a5459faff3a3b9c51c853f3417",
+  "revision_after_reference_observation": true,
+  "revision_controller_sha256": "f9e2add75e6214c8615893a1c9f0b9d5cd77c67778f39b3916bdcd0b4fb4bdd1",
+  "selected_scope": "explicit_http_https_proxy_credentials_plus_unauthenticated_proxy_controls",
+  "settings_sha256": "8ebd257f80a8ca2020539a40cad7f74818bef228555b2ff543e5cc050a4b2f34",
+  "source_preparation_sha256": "2521a1d8b51dd7624eab78866791fdc1f763f33855d5811171558943fe4f59de",
+  "source_reference": {
+    "base_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+    "base_inventory_sha256": "0a26d524611cf4692427a73e0867f09a3d0922549b5c3a502d5994ebe4b602df",
+    "base_source": "existing_verified_canonical_public_workspace",
+    "fixed_commit": "8fa9724398c4f44090997ff430a1dd3e935a9057",
+    "fixed_export_sha256": "1f5f0f83ddb10f1f340d313ea1a38f1932ffb3346d45d1cb20f2095b6ab0e5ae",
+    "fixed_inventory_sha256": "dbfcfb51cfe8a49bacb74366f5a22ee24366e380f581a5bda23c39b566752735",
+    "fixed_relevant_files_match_original_qualification": true,
+    "original_qualification_sha256": "cd3e90837c2c4648b5340948f8262e103395114a93c9e164a4d5762eb3012a22",
+    "repository_url": "https://github.com/psf/requests",
+    "task_id": "w-102",
+    "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+  },
+  "uncovered_behavior": [
+    "full_HTTP_407_end_to_end",
+    "Python_3_8_12",
+    "ambiguous_schemeless_credential_URL"
+  ],
+  "version": 2
+}

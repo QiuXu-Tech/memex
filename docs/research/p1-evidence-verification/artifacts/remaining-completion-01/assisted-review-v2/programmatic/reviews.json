@@ -1,0 +1,957 @@
+{
+  "tasks": [
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-201",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D01",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d",
+      "manifest_sha256": "c11d40e2835aade7b14d1502c76dcc6c8407add5aea1e00b98323d33a7ba7039",
+      "public_file_count": 6,
+      "public_bytes": 2145,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [
+          {
+            "event_id": "event-e7fd2a0cc12f",
+            "archived_sha256": "65a0297de7e499ccd3d0c45585dce983c262c3a89c8f31ff49ed71fd232d27e4",
+            "current_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "matches_current_bytes": false
+          }
+        ],
+        "test_records": [
+          {
+            "event_id": "event-e7fd2a0cc12f",
+            "source_name": "unit-check.log",
+            "completion": "completed",
+            "body_bytes": 132,
+            "assertions_reported_in_text": 4,
+            "actual_test_passed": null
+          }
+        ],
+        "registry": null,
+        "authorization": null,
+        "revision_conflict": null,
+        "archive_records": 3,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-201-unchanged",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D01",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "400400516c75b2bd823cff60ab4e8f5d3064c6716883d3dda139234a20a7cc3a",
+      "manifest_sha256": "989d132663f4d09f3e215fad1aa3973c13a9a0f5a023a4320f618570b0e0a398",
+      "public_file_count": 6,
+      "public_bytes": 2110,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [
+          {
+            "event_id": "event-e7fd2a0cc12f",
+            "archived_sha256": "65a0297de7e499ccd3d0c45585dce983c262c3a89c8f31ff49ed71fd232d27e4",
+            "current_sha256": "65a0297de7e499ccd3d0c45585dce983c262c3a89c8f31ff49ed71fd232d27e4",
+            "matches_current_bytes": true
+          }
+        ],
+        "test_records": [
+          {
+            "event_id": "event-e7fd2a0cc12f",
+            "source_name": "unit-check.log",
+            "completion": "completed",
+            "body_bytes": 132,
+            "assertions_reported_in_text": 4,
+            "actual_test_passed": null
+          }
+        ],
+        "registry": null,
+        "authorization": null,
+        "revision_conflict": null,
+        "archive_records": 3,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-202",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D02",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff",
+      "manifest_sha256": "366ca6a9ede56501002a6f88d759075b843896654abe259055529df47c2c2c48",
+      "public_file_count": 6,
+      "public_bytes": 2701,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [
+          {
+            "event_id": "event-4f1c773bf5f8",
+            "archived_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "current_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "matches_current_bytes": true
+          }
+        ],
+        "test_records": [
+          {
+            "event_id": "event-4f1c773bf5f8",
+            "source_name": "parser-check.log",
+            "completion": "completed",
+            "body_bytes": 130,
+            "assertions_reported_in_text": 5,
+            "actual_test_passed": null
+          },
+          {
+            "event_id": "event-f966d125803d",
+            "source_name": "transport-check.log",
+            "completion": "cancelled",
+            "body_bytes": 51,
+            "assertions_reported_in_text": null,
+            "actual_test_passed": null
+          },
+          {
+            "event_id": "event-143145f76cd0",
+            "source_name": "transport-check.retry.log",
+            "completion": "not_run",
+            "body_bytes": 49,
+            "assertions_reported_in_text": null,
+            "actual_test_passed": null
+          },
+          {
+            "event_id": "event-6e2c9c9e4dd0",
+            "source_name": "transport-check.empty.log",
+            "completion": "completed",
+            "body_bytes": 61,
+            "assertions_reported_in_text": 0,
+            "actual_test_passed": null
+          },
+          {
+            "event_id": "event-54eb4ca90861",
+            "source_name": "unrelated-command.log",
+            "completion": "completed",
+            "body_bytes": 20,
+            "assertions_reported_in_text": null,
+            "actual_test_passed": null
+          }
+        ],
+        "registry": null,
+        "authorization": null,
+        "revision_conflict": null,
+        "archive_records": 5,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-203",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D03",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf",
+      "manifest_sha256": "4505232c3ec3662f9bf21cdb8989a2ad95657a8bc7f6c0645c9c2f4411cccdb9",
+      "public_file_count": 7,
+      "public_bytes": 1931,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [],
+        "test_records": [],
+        "registry": {
+          "file_sha256": "83787bebbb4e5a68be360aa2837554a4037d97ae1f194ce2005399f63c1e022d",
+          "observed_json": {
+            "object": "widget-interface",
+            "revision": 3,
+            "active_release": "r3",
+            "authority": "local-registry"
+          },
+          "native_tool_readback_observed": false
+        },
+        "authorization": null,
+        "revision_conflict": null,
+        "archive_records": 2,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-204",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D04",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152",
+      "manifest_sha256": "884ae751b34418a385df08b69830682d515febc5f93b9d1c6ff7d68a0652b6aa",
+      "public_file_count": 7,
+      "public_bytes": 2089,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [],
+        "test_records": [],
+        "registry": null,
+        "authorization": {
+          "status": "withdrawn",
+          "target": {
+            "principal": "reviewer",
+            "object": "widget/staging",
+            "action": "release"
+          },
+          "logical_time_from_fixture_file": 500,
+          "applicable_event_ids": [
+            "event-6ced4ff246b2",
+            "event-e6769a8e664c"
+          ],
+          "ignored_nonmatching_event_ids": [
+            "event-037df6dc03f4"
+          ],
+          "real_world_authorization": null,
+          "rule_scope": "only_the_explicit_synthetic_fixture_grammar"
+        },
+        "revision_conflict": null,
+        "archive_records": 3,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-205",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D05",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3",
+      "manifest_sha256": "f2bc1b35b0da0b20daa2333438d21b4e6b925452914df6ca96c5e7f3bf97637c",
+      "public_file_count": 6,
+      "public_bytes": 2186,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [],
+        "test_records": [],
+        "registry": null,
+        "authorization": {
+          "status": "no_matching_native_grant",
+          "target": {
+            "principal": "reviewer",
+            "object": "widget/staging",
+            "action": "release"
+          },
+          "logical_time_from_fixture_file": null,
+          "applicable_event_ids": [],
+          "ignored_nonmatching_event_ids": [
+            "event-086d11a2c5b9",
+            "event-a32c74aa644a",
+            "event-7c842e63e312",
+            "event-36463c296085"
+          ],
+          "real_world_authorization": null,
+          "rule_scope": "only_the_explicit_synthetic_fixture_grammar"
+        },
+        "revision_conflict": null,
+        "archive_records": 4,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-206",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D06",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8",
+      "manifest_sha256": "fed78b9efde632b66a050646e7b8432623fc1fff143873ad4eb44134abe8e35d",
+      "public_file_count": 7,
+      "public_bytes": 2279,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [],
+        "test_records": [],
+        "registry": null,
+        "authorization": null,
+        "revision_conflict": {
+          "latest_native_revision_in_fixture": 8,
+          "candidate_values": [
+            "preview",
+            "stable"
+          ],
+          "status": "conflict_at_latest_revision",
+          "resolved_value": null,
+          "records": [
+            {
+              "event_id": "event-ecf0415cfa5f",
+              "revision": 8,
+              "value": "stable",
+              "source_name": "alpha-readback"
+            },
+            {
+              "event_id": "event-cbe36ce3291d",
+              "revision": 7,
+              "value": "preview",
+              "source_name": "alpha-readback"
+            },
+            {
+              "event_id": "event-42f2fb375551",
+              "revision": 8,
+              "value": "preview",
+              "source_name": "beta-readback"
+            }
+          ],
+          "wall_clock_used_as_order": false,
+          "new_readback_observed": false
+        },
+        "archive_records": 3,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-207",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D07",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349",
+      "manifest_sha256": "41ea0c9c5f9f6a8cb44cbf55c9f998ae67c4e1b5c7b93a29c06294e56fdf0f1e",
+      "public_file_count": 6,
+      "public_bytes": 19347,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [
+          {
+            "event_id": "event-8007ca5511e1",
+            "archived_sha256": "65a0297de7e499ccd3d0c45585dce983c262c3a89c8f31ff49ed71fd232d27e4",
+            "current_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "matches_current_bytes": false
+          },
+          {
+            "event_id": "event-f66fb18affd0",
+            "archived_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "current_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "matches_current_bytes": true
+          },
+          {
+            "event_id": "event-61929c5f6552",
+            "archived_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "current_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "matches_current_bytes": true
+          }
+        ],
+        "test_records": [
+          {
+            "event_id": "event-8007ca5511e1",
+            "source_name": "old-transport.log",
+            "completion": "unknown",
+            "body_bytes": 52,
+            "assertions_reported_in_text": null,
+            "actual_test_passed": null
+          },
+          {
+            "event_id": "event-f66fb18affd0",
+            "source_name": "transport-long.log",
+            "completion": "completed",
+            "body_bytes": 16011,
+            "assertions_reported_in_text": 330,
+            "actual_test_passed": null
+          },
+          {
+            "event_id": "event-61929c5f6552",
+            "source_name": "storage-truncated.log",
+            "completion": "unknown",
+            "body_bytes": 87,
+            "assertions_reported_in_text": null,
+            "actual_test_passed": null
+          }
+        ],
+        "registry": null,
+        "authorization": null,
+        "revision_conflict": null,
+        "archive_records": 7,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "d-208",
+      "project_id": "synthetic/fixture-suite",
+      "workflow_family_id": "D08",
+      "material_kind": "synthetic_fixture",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d",
+      "manifest_sha256": "75f83d9c0ad489214649c3643f7d408f79cffd23506b31c21fc82a477bf39e86",
+      "public_file_count": 7,
+      "public_bytes": 2495,
+      "source_qualification": null,
+      "material_facts": {
+        "evidence_domain": "synthetic_fixture_content_only",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [
+          {
+            "event_id": "event-239fc5770783",
+            "archived_sha256": "65a0297de7e499ccd3d0c45585dce983c262c3a89c8f31ff49ed71fd232d27e4",
+            "current_sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e",
+            "matches_current_bytes": false
+          }
+        ],
+        "test_records": [
+          {
+            "event_id": "event-cdd5662101ee",
+            "source_name": "formatter.log",
+            "completion": "completed",
+            "body_bytes": 19,
+            "assertions_reported_in_text": null,
+            "actual_test_passed": null
+          }
+        ],
+        "registry": {
+          "file_sha256": "cf337b3ee2a7c2163842eb7d262c418ca0f163a4869b5cb5a364e2937a87acb1",
+          "observed_json": {
+            "object": "widget-interface",
+            "revision": 4,
+            "active_release": "r4",
+            "authority": "local-registry"
+          },
+          "native_tool_readback_observed": false
+        },
+        "authorization": {
+          "status": "no_matching_native_grant",
+          "target": {
+            "principal": "reviewer",
+            "object": "widget/staging",
+            "action": "release"
+          },
+          "logical_time_from_fixture_file": null,
+          "applicable_event_ids": [],
+          "ignored_nonmatching_event_ids": [
+            "event-cdd5662101ee",
+            "event-239fc5770783",
+            "event-3bedcc4be286",
+            "event-48777f3824cf"
+          ],
+          "real_world_authorization": null,
+          "rule_scope": "only_the_explicit_synthetic_fixture_grammar"
+        },
+        "revision_conflict": null,
+        "archive_records": 4,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "synthetic_fixture_is_not_real_pilot_source"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "w-101",
+      "project_id": "pallets/flask",
+      "workflow_family_id": "pallets/flask#5010",
+      "material_kind": "real_source_seed",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5",
+      "manifest_sha256": "f151b21d56daf2d70d0d69b019d1d3371c0ab66ddc9ca24c617f2b63b113c885",
+      "public_file_count": 102,
+      "public_bytes": 546845,
+      "source_qualification": {
+        "kind": "rechecked_existing_source_qualification_not_method_evaluation",
+        "new_source_execution": false,
+        "git_blob_files_recomputed": 99,
+        "base_commit": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+        "required_notices_present": true,
+        "excluded_files": [
+          {
+            "git_blob": "0890b615f109a3685a820c8948d74f4fab6c96c0",
+            "path": "tests/test_apps/.env",
+            "reason": "explicit_source_exclusion"
+          }
+        ],
+        "junit_recomputed": {
+          "base": {
+            "tests": 60,
+            "passed": 59,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          },
+          "fixed": {
+            "tests": 60,
+            "passed": 60,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "evidence": [
+          {
+            "path": "docs/research/p1-evidence-verification/tasks/reproduction/pallets__flask-5014/reproduction.json",
+            "sha256": "6931332a398c894584adde938af80a3477908b5a2049792509565d8f247085cf"
+          },
+          {
+            "path": "docs/research/p1-evidence-verification/tasks/reproduction/pallets__flask-5014/base.junit.xml",
+            "sha256": "1c1357776d1e66c9c1042b51194b236a4bbc31f945789d1133fd51cb3c13e558"
+          },
+          {
+            "path": "docs/research/p1-evidence-verification/tasks/reproduction/pallets__flask-5014/fixed.junit.xml",
+            "sha256": "40f2e7615d436105086a0cbbe3ef4cfa36f5331dd51a127ecafdde25e214922d"
+          }
+        ],
+        "original_limitations": [
+          "single local environment and one invocation per phase",
+          "no frozen P1 prelude or post-compaction agent action",
+          "not a full repository test suite",
+          "not a container reproducibility claim",
+          "network namespace shared although no resolver/proxy or user secrets were mounted"
+        ],
+        "historical_environment_equals_current_device": null,
+        "method_success": null
+      },
+      "material_facts": {
+        "evidence_domain": "public_source_bytes",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [],
+        "test_records": [],
+        "registry": null,
+        "authorization": null,
+        "revision_conflict": null,
+        "archive_records": 0,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "relevant_workflow_state_change_not_captured"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    },
+    {
+      "schema_version": "p1-programmatic-task-inspection-2",
+      "task_id": "w-102",
+      "project_id": "psf/requests",
+      "workflow_family_id": "psf/requests#6027",
+      "material_kind": "real_source_seed",
+      "origin": "programmatic",
+      "material_integrity_verified": true,
+      "public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2",
+      "manifest_sha256": "0672a74c20566a21ddf2fd6c8d01ea4a3f623193a945cde7eaba043deaa215b8",
+      "public_file_count": 44,
+      "public_bytes": 349608,
+      "source_qualification": {
+        "kind": "rechecked_existing_source_qualification_not_method_evaluation",
+        "new_source_execution": false,
+        "git_blob_files_recomputed": 41,
+        "base_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+        "required_notices_present": true,
+        "excluded_files": [],
+        "junit_recomputed": {
+          "base": {
+            "tests": 214,
+            "passed": 201,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 11
+          },
+          "fixed": {
+            "tests": 214,
+            "passed": 203,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 11
+          }
+        },
+        "evidence": [
+          {
+            "path": "docs/research/p1-evidence-verification/tasks/reproduction/psf__requests-6028/reproduction.json",
+            "sha256": "cd3e90837c2c4648b5340948f8262e103395114a93c9e164a4d5762eb3012a22"
+          },
+          {
+            "path": "docs/research/p1-evidence-verification/tasks/reproduction/psf__requests-6028/base.junit.xml",
+            "sha256": "dd9b2f8621831d1d8665ddabc75baa42143c4258b942d870448a921399165f77"
+          },
+          {
+            "path": "docs/research/p1-evidence-verification/tasks/reproduction/psf__requests-6028/fixed.junit.xml",
+            "sha256": "6f2b14a4ea0259bc28bf39e34bb7a735c2d87c44e060d6958a33eb9dc37c502d"
+          }
+        ],
+        "original_limitations": [
+          "single local environment and one invocation per phase",
+          "no frozen P1 prelude or post-compaction agent action",
+          "not a full repository test suite",
+          "not a container reproducibility claim",
+          "network namespace shared although no resolver/proxy or user secrets were mounted"
+        ],
+        "historical_environment_equals_current_device": null,
+        "method_success": null
+      },
+      "material_facts": {
+        "evidence_domain": "public_source_bytes",
+        "actual_test_execution": null,
+        "actual_restricted_action": null,
+        "artifact_bindings": [],
+        "test_records": [],
+        "registry": null,
+        "authorization": null,
+        "revision_conflict": null,
+        "archive_records": 0,
+        "archive_is_real_native_capture": false
+      },
+      "development_material_inspection_complete": true,
+      "live_dispatch_authorization_evaluated": false,
+      "research_task_accepted": false,
+      "frozen": false,
+      "workflow_outcome": "NOT_MEASURED",
+      "independent_human_review_count": 0,
+      "human_review_attestation": false,
+      "method_outputs_read": false,
+      "model_requests": 0,
+      "provider_requests": 0,
+      "source_program_executions": 0,
+      "ledger_writes": 0,
+      "legacy_v1_acceptance_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "relevant_workflow_state_change_not_captured"
+      ],
+      "legacy_assignment_inspection": {
+        "blank_review_templates_verified": 2,
+        "blank_adjudication_templates_verified": 1,
+        "completed_human_reviews": 0,
+        "human_identity_verified": false
+      }
+    }
+  ]
+}

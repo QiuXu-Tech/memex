@@ -1,0 +1,80 @@
+{
+  "active_execution_files_modified": false,
+  "actual_added_cash_cny": null,
+  "api_credentials_available": null,
+  "completed_at_utc": "2026-11-28T17:35:22.448142+00:00",
+  "config_diff_keys": [
+    "rawrag_upstream"
+  ],
+  "credential_contents_read": 0,
+  "dependency_metadata": {
+    "available": true,
+    "missing": [],
+    "modules": {
+      "openai": {
+        "available": true,
+        "version": "3.60.0"
+      },
+      "rich": {
+        "available": true,
+        "version": "15.0.0"
+      },
+      "tiktoken": {
+        "available": true,
+        "version": "0.14.0"
+      },
+      "tqdm": {
+        "available": true,
+        "version": "4.70.1"
+      },
+      "yaml": {
+        "available": true,
+        "version": "6.0.4"
+      }
+    },
+    "python": "3.12.13",
+    "python_supported": true
+  },
+  "frozen_adapter_sha256": "cff65315547b43f84d834a931a24cc460a68c7e6110928b5b67d74db624cf242",
+  "frozen_config_sha256": "008c4c92181141a1c8de42931c906aad23e959da4fd5db1e300c64ba2e664b27",
+  "git_binary_sha256": "5c5d6527325adcf024e229a9eb540cc0bdd21e1e23ce8f125cf3d8b3704e2659",
+  "git_version": "git version 2.54.0 (Apple Git-157)",
+  "kind": "p1-fixed-rawrag-private-binding-preparation",
+  "launch_git_path_priority": "verified_command_line_tools_git_before_system_git",
+  "ledger_calls": 0,
+  "metadata_service_calls": 0,
+  "method_units_created": 0,
+  "model_requests": 0,
+  "native_attempts_created": 0,
+  "new_config_modes": "0600",
+  "new_directory_mode": "0700",
+  "new_launch_settings_sha256": "d546229707cd13f8a88b6da65fdbe97dba89c257e46783dffb514541e1348278",
+  "new_native_settings_sha256": "ff6e2506c000a8b6cd49ff0480688316fcade52c9e216d1f17521ae8963a8686",
+  "original_launch_settings_unchanged": true,
+  "original_settings_unchanged": true,
+  "provider_account_pricing_verified": false,
+  "provider_requests": 0,
+  "remaining_blockers": [
+    "fixed_embedding_credential_not_bound",
+    "fixed_rerank_credential_not_bound",
+    "rerank_v3_5_account_availability_unverified",
+    "rerank_v3_5_account_price_evidence_unverified",
+    "canonical_B_billing_scope_not_prepared"
+  ],
+  "reservations_created": 0,
+  "schema_version": 1,
+  "source_launch_settings_sha256": "d6c1805560d3dd3d491f429f030bb3d33bd2c76dac3de0af258baec22fe4704e",
+  "source_native_settings_sha256": "9cdfa70f57f03e9746fbda59f7efe0695f0562fd25abdbdf4d17e1f376c81487",
+  "status": "isolated_binding_prepared_provider_dispatch_still_blocked",
+  "system_license_or_global_config_changes": 0,
+  "upstream": {
+    "commit": "95639191e9547219b426710e50fe1a36235e26fc",
+    "real_git_checkout": true,
+    "repository": "https://github.com/Litmeb/RAW-RAG.git",
+    "source_files_verified": 9,
+    "tracked_worktree_clean": true,
+    "tree": "ad681db4f72be98565eaedd81c3a3ad99631c431",
+    "untracked_worktree_clean": true
+  },
+  "verification": "actual frozen adapter.verify_upstream applied to the installed new setting; no provider preflight or credential callback"
+}

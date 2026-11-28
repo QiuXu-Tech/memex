@@ -2,9 +2,28 @@
 
 **评分器聚合显式判断，不自动生成标签或执行隐藏测试。** 当前仓库没有由此产生的真实 P1 人工评分。所有新增测试均为清楚标记的 fixture，零个人工评审、零个研究样本。
 
+## Development 的新增程序路径：v2
+
+本页其余部分描述已有 `score.py` 的 **human-v1 / fixture-v1 完整复合评分合同**，其中“两份真人审阅加裁决”是该版本的输入类型要求，不是所有开发运行必须先满足的条件。用户授权尽量采用可靠的自动核验后，现另有 [development-assurance v2](ANNOTATION_V2.md)：11 包程序预审、37 条 AI-assisted 义务草案，以及 `development_oracle.py` 的封存轨迹部分检查。原人工来源检查没有被改成信任 `ai_assisted` 字符串，也没有伪造任何人名或签署。
+
+`development_oracle.py` 复用 `experiment.py` 的首次尝试账本与完整 output seal，重新调用 `python_workflow.summarize` 核验原始 observer 收据、nonce、测试 phase、代码快照及实际测试数。它可以报告当前公开测试是否通过、local review 是否引用有效的当前测试；**隐藏请求行为、证据语义和完整决策成功仍为 null**，不会生成可误送入 join 的 `quality.jsonl`。完整任务尚无记录时输出 NOT_MEASURED，不将未运行判成实测失败。
+
+```bash
+python -B scripts/paper1/development_oracle.py \
+  --plan /absolute/frozen-development-plan \
+  --state /absolute/original-experiment-state \
+  --output /absolute/new-development-oracle-report
+```
+
+该入口只读已有封存数据，不执行任务或隐藏程序，不补建运行记录，不写原账本；拒绝 pilot、confirmatory 和 external 研究计划。直接由 `development_driver.py` 保留的原生开发输出尚未经过 `experiment.py` 的 seal 时，不得伪造一个 study/ledger 供此命令接受。可先保留原始开发收据，按未来明确的 evaluator 绑定合同另作审查。原 v1 文档已保存为 [历史副本](artifacts/remaining-completion-01/assisted-review-v2/history/SCORING.md)。
+
+如果正式研究最终选择程序 oracle 或 AI 辅助标签，应在正式数据收集前明确更换标签版本，验证独立真值依据、未覆盖语义、等价证据与误差，再扩展完整评分合同；不得把 development 的部分检查当作已经验证的新正式终点。
+
+后续已实际完成 [两来源行为 oracle 的独立隔离资格验证](artifacts/remaining-completion-01/oracle-qualification-01/README.md)：Flask 原版与 Requests 明确 URL 范围的 v2 各 5 个 pytest 用例能区分已知 base、fixed 和错误实现；空测试、缺源码与依赖目录同名包不能产生通过。Requests 原六项版本在 fixed 上的一项失败仍保留。此工作只运行独立参考源码，15 个 observer / 5 个 sandbox probe，不读取方法最终制品，不产生 `quality.jsonl`，也不改变本合同的 `decision_success`、人工数或任务验收状态；十个行为用例不是十个人工 gold 标签。
+
 ## 1. 流水线与边界
 
-先用现有 `annotation.py` 形成真实双审与裁决，再冻结义务和检查清单；方法执行由 `experiment.py` 封存；人类 evaluator 审查具体输出及行为收据；最后 `score.py` 聚合，供现有 `experiment.py join` 使用。完整费用仍由 join 计算。
+在选择 human-v1 路线时，先用现有 `annotation.py` 形成真实双审与裁决，再冻结义务和检查清单；方法执行由 `experiment.py` 封存；人类 evaluator 审查具体输出及行为收据；最后 `score.py` 聚合，供现有 `experiment.py join` 使用。完整费用仍由 join 计算。
 
 ```bash
 python -B scripts/paper1/score.py \

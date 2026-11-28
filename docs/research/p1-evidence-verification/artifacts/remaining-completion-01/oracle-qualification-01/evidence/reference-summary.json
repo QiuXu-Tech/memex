@@ -1,0 +1,90 @@
+{
+  "accepted_research_tasks": 0,
+  "all_probes_passed": true,
+  "canonical_ledger_accessed": false,
+  "captured_input_reconstructions_passed": 15,
+  "decision_success": null,
+  "empty_test_controls": {
+    "observed": 2,
+    "pytest_exit": 5,
+    "scored_passes": 0
+  },
+  "flask_original_five_case_oracle": {
+    "base": {
+      "failed": 1,
+      "passed": 4
+    },
+    "incorrect_behavior": {
+      "failed": 3,
+      "passed": 2
+    },
+    "official_fixed": {
+      "failed": 0,
+      "passed": 5
+    }
+  },
+  "human_annotators": 0,
+  "input_binding_audit_timing": "posthoc_for_round_1_and_pre_run_plus_posthoc_for_revision_2",
+  "kind": "reference_oracle_qualification_summary",
+  "method_units": 0,
+  "missing_source_controls": {
+    "observed": 2,
+    "observer_exit": 78,
+    "scored_passes": 0
+  },
+  "model_requests": 0,
+  "native_attempts": 0,
+  "new_native_or_method_outputs_read": false,
+  "observer_processes": 15,
+  "oracle_delivered_to_model": false,
+  "original_draft_failure_retained": true,
+  "original_settings_and_dependencies_unchanged": true,
+  "provider_requests": 0,
+  "requests_explicit_url_v2_five_case_oracle": {
+    "base": {
+      "failed": 3,
+      "passed": 2
+    },
+    "incorrect_behavior": {
+      "failed": 3,
+      "passed": 2
+    },
+    "official_fixed": {
+      "failed": 0,
+      "passed": 5
+    }
+  },
+  "requests_original_six_case_draft": {
+    "base": {
+      "failed": 4,
+      "passed": 2
+    },
+    "fully_qualified": false,
+    "incorrect_behavior": {
+      "failed": 3,
+      "passed": 3
+    },
+    "official_fixed": {
+      "failed": 1,
+      "passed": 5
+    },
+    "unresolved_input": "reviewer:fixture-password@proxy.example.invalid:3128"
+  },
+  "sandbox_probe_processes": 5,
+  "schema_version": 2,
+  "source_qualification_not_method_evaluation": true,
+  "source_qualification_not_task_acceptance": true,
+  "status": "two_partial_behavior_oracles_qualified_on_known_references",
+  "uncovered_behavior": [
+    "Requests Python 3.8.12 equivalence",
+    "end-to-end HTTP 407 proxy scenario",
+    "ambiguous scheme-less ordinary credentials",
+    "all P1 evidence-use and decision obligations"
+  ],
+  "wrong_origin_dependency_controls": {
+    "error": "project_import_outside_current_workspace",
+    "observed": 2,
+    "observer_exit": 78,
+    "scored_passes": 0
+  }
+}

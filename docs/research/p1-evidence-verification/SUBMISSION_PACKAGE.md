@@ -1,8 +1,16 @@
 # P1 official-format submission preparation package
 
-**NOT READY — NOT SUBMITTED.** This package completes document-format preparation that can be done from the current record. It does not establish scientific readiness, human authorship, or compliance with the unresolved human-origin condition. No OpenReview submission, editor message, cover-letter delivery, or author declaration has been made. Updated 2026-11-28.
+**NOT READY — NOT SUBMITTED.** Document-format preparation is complete for the recorded working-paper version. It does not establish scientific readiness, human authorship, or compliance with the unresolved human-origin condition. No OpenReview submission, editor message, cover-letter delivery, or author declaration has been made. Status narrative updated **2026-11-29 (Asia/Shanghai)**; the manuscript, PDFs and document-source ZIP were not rebuilt or modified in this update.
 
 The canonical research document remains [manuscript.md](manuscript.md). The new TMLR derivative is separate and is regenerated only when the canonical record is deliberately updated. The earlier [submission plan](SUBMISSION.md) remains the broader readiness assessment.
+
+**All four authorized supplemental native attempts have ended, without a valid task-bound checkpoint.** Two stopped before any provider dispatch; the two Requests preparations each completed five DeepSeek calls and seven read-only public-tool calls before the sixth request was rejected locally by the cumulative reference-input budget. Their five generation starts were also exhausted. No files were written, no tests or reviews were run in those preparations, and none of the sixteen method units was dispatched or scored. All backends are closed; attempts are neither refunded nor automatically replenished. The final [execution record](artifacts/native-supplement-01/observations.json) and [status summary](REMAINING_WORK.md) retain the failures, known token counters and unknown actual spending.
+
+The fixed Raw-RAG Git checkout and its isolated private runtime binding are verified. [Development-assurance v2](ANNOTATION_V2.md) has completed 11 package reviews with 37 explicitly AI-assisted obligation drafts. The 22 blank human-v1 forms are not a prerequisite for development. Neither the new draft labels nor a successful engineering check establishes formal gold, an accepted research task, or a measured method effect. This completed round of execution does not establish successful native preparation or permission for another attempt.
+
+The [execution evidence index](artifacts/native-supplement-01/README.md) records deployment, accounting and original-versus-redacted export boundaries. The [next-step design diagnosis](NATIVE_NEXT_STEP.md) records the joint preparation constraints without changing a configuration, budget or grant.
+
+The [reference-source qualification](artifacts/remaining-completion-01/oracle-qualification-01/README.md) has now actually tested two bounded behavioral oracles: five pytest cases for Flask and five for the explicit-URL Requests v2. It retains 15 observer executions, five real isolation probes and an independently checked 282-record export. The original six-case Requests draft still has its observed fixed-source failure; the v2 revision and reduced scope are explicit. These tests qualify reference behavior and rejection controls, not the final artifacts of a method arm or a complete scientific endpoint.
 
 ## 1. Files and their purpose
 
@@ -100,7 +108,7 @@ The current ZIP is a **document-source package**. It contains the review PDF, ed
 
 The supplementary manifest separately inventories available development/protocol materials and outstanding research categories. Original project links, controller provenance, this human worksheet, cover-letter placeholders, evaluator/gold material, source clones with future history, credentials, and complete raw third-party datasets are excluded from the review-source ZIP. Exclusion is not a claim that all other material has passed rights or anonymity review.
 
-A completed scientific supplement still needs an immutable code/configuration snapshot, accepted workflow definitions, public/evaluator separation, independent labels, all scheduled first attempts and failures, actual delivered evidence, reproducible outcome analysis, usage reconciliation, and the permitted release/access mechanism. Existing developer tests, source candidates, environment qualifications, and host/component smoke records retain their own scope. They must not be relabeled as formal task outcomes or independent replications.
+A completed scientific supplement still needs an immutable code/configuration snapshot, accepted workflow definitions, public/evaluator separation, a validated and frozen label/oracle contract with independent truth evidence, all scheduled first attempts and failures, actual delivered evidence, reproducible outcome analysis, usage reconciliation, and the permitted release/access mechanism. Existing developer tests, source candidates, environment qualifications, and host/component smoke records retain their own scope. The current v2 programmatic checks and AI-assisted drafts remain development material; their unmeasured semantic and hidden-behavior components cannot be relabeled as formal gold or outcomes.
 
 ## 5. QA and readiness are different
 
@@ -108,7 +116,7 @@ Document QA checks the official file hashes, US Letter page size, first-page sta
 
 The canonical manuscript is retained as the expanded research record. This official-template derivative has not yet been condensed into a final findings-led paper. No page target justifies deleting necessary evidence, hiding failures, narrowing a denominator after observing results, or altering the official typography.
 
-### Completed checks for this revision
+### Completed checks for the unchanged PDF/ZIP revision
 
 | Check | Observed result |
 |---|---|
@@ -122,7 +130,7 @@ The canonical manuscript is retained as the expanded research record. This offic
 | Frozen document-source ZIP | 22 members; 462,960 compressed bytes and 664,991 uncompressed bytes; member bytes and ZIP integrity verified. |
 | Independent extracted build | Succeeded outside the project directory using only the ZIP and installed TeX dependencies; all 27 page texts, dimensions, and rendered pixels matched. |
 
-The current update adds bounded native retry observations and separate clean public-base test captures to the development record. It retains the earlier approval rejection as a historical event, records the later observed one-call approvals truthfully, and does not promote the timed-out changed continuation to a whole-run pass. The abstract, formal result section, limitations and conclusion remain unchanged. Newly inventoried native summaries, protocol evidence and public-base capture summary remain controller-side material outside the document-source ZIP.
+The last PDF update added the earlier bounded native retry observations and separate clean public-base test captures. It retained the earlier approval rejection, recorded the observed one-call approvals truthfully, and did not promote the timed-out changed continuation to a whole-run pass. That revision's abstract, formal result section, limitations and conclusion remained unchanged. The later DeepSeek/supplemental execution records, wire repairs and v2 review materials are separate engineering artifacts; this status edit has not silently inserted them into the existing PDF or source ZIP. A later findings-led manuscript must deliberately incorporate the actual evidence and regenerate the package.
 
 PDF byte identity is not asserted: the separately compiled PDF has different creation metadata. This is reproducibility in the same installed TeX environment, not a cross-platform typography guarantee. The full record is in `submission/zip-rebuild-report.json`; the original missing-font-map attempt and final compiler logs are retained in `submission/build-logs/`.
 
@@ -135,19 +143,21 @@ Document-source ZIP SHA-256: `c421382e189a0e0ab3333032998e26263e1d1644f5028223fa
 | Blocker | What must actually happen |
 |---|---|
 | Human-origin and authorship | Real humans document qualifying intellectual contributions, origin and review, agree on the complete author set, and resolve the current FAQ expectation truthfully. |
+| Viable native preparation | First revise and validate the reading/paging strategy and full preparation input/generation budget design offline, using the retained real request shapes. The four supplemental attempts are consumed; raising only the input limit would not restore the exhausted generation count. Do not rerun the same configuration, rewrite the original freeze or imply a new grant. |
 | Scientific result | Complete the accepted task design and the actual comparisons needed for the retained claims; no result may be inferred from `PENDING`. |
-| Independent labels and review | Establish the required human annotation/adjudication and independent scientific verification. |
+| Validated labels and scientific verification | Two bounded oracles have passed reference-source qualification; method-artifact behavior and complete semantic endpoints remain unmeasured. Independently bind evaluation to sealed method artifacts, retain the original failed draft and development revision, and complete truth evidence, coverage, errors and unresolved judgments before formal use. Programmatic checks and disclosed AI assistance can do reliable portions. If human-v1 is selected, its real-review contract still applies; 22 blank forms are not a universal development or venue requirement. |
+| Fixed B provider access | Supply the designated embedding/rerank credentials privately and establish account availability, billing units and a checked CNY bound for the fixed models, including `rerank-v3.5`. The verified Git checkout, isolated private binding and launch Git priority are already prepared; neither license work nor a manual PATH change remains an author task. Any method execution also requires a genuinely available authorized parent; this round produced none. |
 | Full accounting | Preserve all scheduled attempts, outcomes, failures, usage and unknown costs; support or remove cost-effectiveness claims. |
 | Review-safe evidence access | Freeze the complete permitted artifact and review access, with actual rights and anonymity checks. |
 | Author declarations and accounts | Supply factual author/profile/quota, funding, conflicts, overlap, and applicable ethics records. None are guessed here. |
-| Final editorial pass | Reconcile the completed evidence with the abstract, methods, limitations, conclusion, and every table; approve exact final hashes. |
+| Final editorial pass and author responsibility | Reconcile the completed evidence with the abstract, methods, limitations, conclusion, and every table. Tools can prepare and check this material; the real authors must actually review and take responsibility for the resulting claims and approve the exact final version. No fixed extra panel of human reviewers is imposed here. |
 | Day-of-submission check | Re-read current rules and inspect the real form with eligible human accounts, then obtain authorization for an actual submission. |
 
-The cover letter and contribution worksheet are concrete preparation materials, not substitutes for those facts. This task creates no acceptance expectation and does not contact the journal.
+The cover letter and contribution worksheet are concrete preparation materials. The remaining personal facts are author identities, affiliations, actual contributions, conflicts/funding/overlap, account eligibility and final consent; they cannot be invented by an assistant or replaced with completed-looking review templates. Citation checks, code audits, source verification, analysis preparation, drafting and document QA can continue with explicit AI/programmatic provenance. This task creates no acceptance expectation and does not contact the journal.
 
 ## Official primary sources
 
-Checked on 2026-11-28; direct HTTP retrieval metadata and hashes are in `submission/policy-provenance.json`. The style provenance is pinned separately. No current invitation, login, quota, or account eligibility was tested.
+Initially checked on 2026-11-28; those direct HTTP retrieval records and hashes remain in `submission/policy-provenance.json`. T4–T6 were reopened on 2026-11-29 (Asia/Shanghai) for the assistance, responsibility and evidence boundary. The original provenance record and style pin were not rewritten. No current invitation, login, quota, or account eligibility was tested.
 
 - **[T1]** [Official pinned template](https://github.com/JmlrOrg/tmlr-style-file/tree/7bf90efe3a0debbba703c05c43f3ff7e4d4a2992), including `main.tex`, style, bibliography style, and license notices.
 - **[T2]** [Submission instructions](https://jmlr.org/tmlr/submissions.html).

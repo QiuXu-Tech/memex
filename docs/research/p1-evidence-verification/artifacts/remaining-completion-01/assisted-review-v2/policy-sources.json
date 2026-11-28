@@ -1,0 +1,33 @@
+{
+  "author_eligibility_established": false,
+  "checked_date": "2026-11-28",
+  "inference": "The inspected author policies do not prescribe 22 human task reviews or dual-human labels per benchmark task. Author responsibility is distinct from the choice of annotation method.",
+  "not_a_journal_approval": true,
+  "schema_version": 1,
+  "source_kind": "official_primary_sources",
+  "sources": [
+    {
+      "finding": "General-purpose LLM assistance is permitted; human authors remain responsible and must meet the listed authorship criteria. LLMs cannot be authors.",
+      "sections": [
+        "LLM use policy for authors",
+        "Criteria for Authorship"
+      ],
+      "url": "https://www.jmlr.org/tmlr/editorial-policies.html"
+    },
+    {
+      "finding": "The FAQ still states a human-source expectation for ideas, claims and results and calls for first-page disclosure; no withdrawal is asserted.",
+      "sections": [
+        "Authors: ChatGPT assistance"
+      ],
+      "url": "https://jmlr.org/tmlr/faq.html"
+    },
+    {
+      "finding": "Claims need accurate, convincing evidence and clear communication; reducing unsupported claims is an available remedy.",
+      "sections": [
+        "Acceptance Criteria"
+      ],
+      "url": "https://www.jmlr.org/tmlr/acceptance-criteria.html"
+    }
+  ],
+  "submission_performed": false
+}

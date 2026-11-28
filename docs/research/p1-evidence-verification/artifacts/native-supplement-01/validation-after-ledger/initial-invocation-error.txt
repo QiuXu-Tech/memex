@@ -1,0 +1,65 @@
+test_paper1_batch_limits (unittest.loader._FailedTest.test_paper1_batch_limits) ... ERROR
+test_paper1_diagnostic_limits (unittest.loader._FailedTest.test_paper1_diagnostic_limits) ... ERROR
+test_paper1_native_supplement (unittest.loader._FailedTest.test_paper1_native_supplement) ... ERROR
+test_paper1_native_driver (unittest.loader._FailedTest.test_paper1_native_driver) ... ERROR
+test_paper1_development_driver (unittest.loader._FailedTest.test_paper1_development_driver) ... ERROR
+
+======================================================================
+ERROR: test_paper1_batch_limits (unittest.loader._FailedTest.test_paper1_batch_limits)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper1_batch_limits
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'test.test_paper1_batch_limits'
+
+
+======================================================================
+ERROR: test_paper1_diagnostic_limits (unittest.loader._FailedTest.test_paper1_diagnostic_limits)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper1_diagnostic_limits
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'test.test_paper1_diagnostic_limits'
+
+
+======================================================================
+ERROR: test_paper1_native_supplement (unittest.loader._FailedTest.test_paper1_native_supplement)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper1_native_supplement
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'test.test_paper1_native_supplement'
+
+
+======================================================================
+ERROR: test_paper1_native_driver (unittest.loader._FailedTest.test_paper1_native_driver)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper1_native_driver
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'test.test_paper1_native_driver'
+
+
+======================================================================
+ERROR: test_paper1_development_driver (unittest.loader._FailedTest.test_paper1_development_driver)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper1_development_driver
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 137, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'test.test_paper1_development_driver'
+
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.001s
+
+FAILED (errors=5)

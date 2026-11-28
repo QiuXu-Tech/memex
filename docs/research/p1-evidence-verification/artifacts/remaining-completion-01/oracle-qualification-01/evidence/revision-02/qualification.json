@@ -1,0 +1,152 @@
+{
+  "accepted_research_tasks": 0,
+  "canonical_ledger_accessed": false,
+  "decision_success": null,
+  "human_annotators": 0,
+  "kind": "request_derived_oracle_reference_revision_qualification",
+  "method_units": 0,
+  "model_requests": 0,
+  "native_attempts": 0,
+  "new_native_or_method_outputs_read": false,
+  "observed_main_import_required_scope": "workspace",
+  "observer_processes": 3,
+  "original_six_case_draft_remains_not_fully_qualified": true,
+  "provider_requests": 0,
+  "public_after_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+  "public_before_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+  "request_oracle_sha256": "563a181adb212479be2d9c905aaa9e2cb9cf40a5459faff3a3b9c51c853f3417",
+  "results": [
+    {
+      "decision_success": null,
+      "expected_control_outcome_observed": true,
+      "human_annotators": 0,
+      "kind": "independent_reference_oracle_observation",
+      "method_units": 0,
+      "model_requests": 0,
+      "native_attempts": 0,
+      "observed_main_import": {
+        "path": "requests/__init__.py",
+        "scope": "workspace",
+        "sha256": "060341ac062bdc3751583b64735230a12ada541073d7bd7673f797e06f21f9a9"
+      },
+      "observed_python_version": [
+        3,
+        10,
+        16
+      ],
+      "observer_error": null,
+      "observer_processes": 1,
+      "original_runtime_unchanged": true,
+      "process_returncode": 1,
+      "provider_requests": 0,
+      "research_method_result": false,
+      "run": "runs/w-102/base",
+      "same_sandbox_instance_still_verified": true,
+      "selected_test_file_sha256": "563a181adb212479be2d9c905aaa9e2cb9cf40a5459faff3a3b9c51c853f3417",
+      "summary": {
+        "current_workspace_bound": true,
+        "reason": "observed_test_failure",
+        "status": "tests_failed",
+        "test_counts": {
+          "collected": 5,
+          "errors": 0,
+          "failed": 3,
+          "passed": 2,
+          "skipped": 0
+        }
+      },
+      "task_id": "w-102",
+      "variant": "base"
+    },
+    {
+      "decision_success": null,
+      "expected_control_outcome_observed": true,
+      "human_annotators": 0,
+      "kind": "independent_reference_oracle_observation",
+      "method_units": 0,
+      "model_requests": 0,
+      "native_attempts": 0,
+      "observed_main_import": {
+        "path": "requests/__init__.py",
+        "scope": "workspace",
+        "sha256": "060341ac062bdc3751583b64735230a12ada541073d7bd7673f797e06f21f9a9"
+      },
+      "observed_python_version": [
+        3,
+        10,
+        16
+      ],
+      "observer_error": null,
+      "observer_processes": 1,
+      "original_runtime_unchanged": true,
+      "process_returncode": 0,
+      "provider_requests": 0,
+      "research_method_result": false,
+      "run": "runs/w-102/fixed",
+      "same_sandbox_instance_still_verified": true,
+      "selected_test_file_sha256": "563a181adb212479be2d9c905aaa9e2cb9cf40a5459faff3a3b9c51c853f3417",
+      "summary": {
+        "current_workspace_bound": true,
+        "reason": null,
+        "status": "tests_passed",
+        "test_counts": {
+          "collected": 5,
+          "errors": 0,
+          "failed": 0,
+          "passed": 5,
+          "skipped": 0
+        }
+      },
+      "task_id": "w-102",
+      "variant": "fixed"
+    },
+    {
+      "decision_success": null,
+      "expected_control_outcome_observed": true,
+      "human_annotators": 0,
+      "kind": "independent_reference_oracle_observation",
+      "method_units": 0,
+      "model_requests": 0,
+      "native_attempts": 0,
+      "observed_main_import": {
+        "path": "requests/__init__.py",
+        "scope": "workspace",
+        "sha256": "060341ac062bdc3751583b64735230a12ada541073d7bd7673f797e06f21f9a9"
+      },
+      "observed_python_version": [
+        3,
+        10,
+        16
+      ],
+      "observer_error": null,
+      "observer_processes": 1,
+      "original_runtime_unchanged": true,
+      "process_returncode": 1,
+      "provider_requests": 0,
+      "research_method_result": false,
+      "run": "runs/w-102/incorrect_behavior",
+      "same_sandbox_instance_still_verified": true,
+      "selected_test_file_sha256": "563a181adb212479be2d9c905aaa9e2cb9cf40a5459faff3a3b9c51c853f3417",
+      "summary": {
+        "current_workspace_bound": true,
+        "reason": "observed_test_failure",
+        "status": "tests_failed",
+        "test_counts": {
+          "collected": 5,
+          "errors": 0,
+          "failed": 3,
+          "passed": 2,
+          "skipped": 0
+        }
+      },
+      "task_id": "w-102",
+      "variant": "incorrect_behavior"
+    }
+  ],
+  "sandbox_probe_processes": 1,
+  "schema_version": 2,
+  "settings_unchanged": true,
+  "status": "reference_controls_validated",
+  "task_id": "w-102",
+  "vacuity_and_wrong_origin_controls": "../qualification.json (first round, same frozen observer code)"
+}

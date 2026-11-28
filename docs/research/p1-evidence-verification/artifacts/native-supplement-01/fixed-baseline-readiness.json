@@ -4,15 +4,26 @@
   "B_run_unit_called": false,
   "actual_added_cash_cny": null,
   "admission_status": "blocked",
+  "binding_does_not_admit_B": true,
+  "binding_receipt": {
+    "ref": "macos-rawrag-private-binding.json",
+    "sha256": "0ce11252ba1ebfcdb2898c3f21c767cc22b7db3d605d6508ce51dcab0da6cc70"
+  },
   "blocking_missing_evidence": [
     "designated_embedding_credential",
     "designated_reranker_credential",
-    "verified_fixed_model_account_billing_and_CNY_request_bound",
-    "usable_git_and_verified_clean_pinned_upstream_checkout"
+    "verified_fixed_model_account_billing_and_CNY_request_bound"
   ],
   "checked_local_date": "2026-11-29",
   "credential_values_read_or_reported": false,
   "fixed_configuration_unchanged": true,
+  "future_runtime_binding_prepared": true,
+  "future_runtime_binding_required": false,
+  "git_checkout_prepared_and_verified": true,
+  "git_receipt": {
+    "ref": "macos-rawrag-git-checkout.json",
+    "sha256": "b207eb58e142ca053d62786eefcc99dcc481fb38359f4ce8584d82cb4b466d7b"
+  },
   "kind": "p1-fixed-baseline-readiness-recheck",
   "model_requests": 0,
   "observed_mac_environment_names": {

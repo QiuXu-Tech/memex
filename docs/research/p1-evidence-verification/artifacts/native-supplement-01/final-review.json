@@ -1,0 +1,45 @@
+{
+  "actual_costs_remain_unknown": true,
+  "current_readonly_review_no_mac_provider_or_ledger_mutation": true,
+  "formal_results": 0,
+  "historical_seven_event_prefix_sha256": "d675c9c1f868d6169615c877bb6ffc0d88f73813eab0ccf830669ef97f6e47fa",
+  "journal_head_sha256": "9daabc2b62eff8efd17bd5783decc619f25094c2748fd4e838f2735150a25ed0",
+  "kind": "p1-final-read-only-evidence-review",
+  "pattern_scan_is_not_absolute_absence_proof": true,
+  "rechecked": {
+    "actual_host_public_tool_calls": 14,
+    "cash_journal_records": 50,
+    "ledger_public_tool_operation_reservations": 24,
+    "method_units_reserved": 0,
+    "native_checkpoint_count": 0,
+    "native_export_records": 38,
+    "oracle_observers": 15,
+    "oracle_probes": 5,
+    "oracle_published_record_hashes": 282,
+    "provider_cached_input_subset_tokens": 87168,
+    "provider_input_tokens": 102041,
+    "provider_output_tokens": 1087,
+    "provider_unique_completed_dispatches": 10,
+    "reference_input_tokens": 108606
+  },
+  "reviewer": "separate AI reviewer; not a human, blind reviewer, editor or external scientific auditor",
+  "schema_version": 1,
+  "scope": [
+    "assisted-review-v2",
+    "oracle-qualification-01",
+    "native-supplement-01",
+    "exact canonical cash-journal mirror"
+  ],
+  "sensitive_pattern_matches": 0,
+  "sensitive_pattern_scan_scope": "all members of the two evidence ZIPs and their publication directories; known user paths and common API-key, AWS-key, Bearer and PEM patterns",
+  "status": "no_blocking_defect_found_for_development_evidence_publication",
+  "unchanged_protected_files": {
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/authorization.json": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+    "docs/research/p1-evidence-verification/manuscript.pdf": "0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95",
+    "docs/research/p1-evidence-verification/submission/review-source.zip": "c421382e189a0e0ab3333032998e26263e1d1644f5028223fa1d48b65764288b",
+    "docs/research/p1-evidence-verification/submission/tmlr-review/main.pdf": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
+    "docs/research/p1-evidence-verification/tasks/workflows/shared-budget.json": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2",
+    "docs/research/p1-evidence-verification/tasks/workflows/source-draft-plan.json": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db",
+    "scripts/paper1/deepseek-reader-profile.json": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709"
+  }
+}

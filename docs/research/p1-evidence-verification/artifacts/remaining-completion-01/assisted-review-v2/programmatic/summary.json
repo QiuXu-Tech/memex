@@ -1,0 +1,37 @@
+{
+  "schema_version": "p1-development-assurance-2",
+  "phase": "development",
+  "frozen": false,
+  "package_count": 11,
+  "programmatic_material_reviews": 11,
+  "ai_assisted_task_drafts": 11,
+  "ai_assisted_obligation_drafts": 37,
+  "independent_human_review_count": 0,
+  "adjudication_count": 0,
+  "blank_legacy_review_templates_verified": 22,
+  "blank_legacy_adjudication_templates_verified": 11,
+  "accepted_p1_workflow_count": 0,
+  "method_quality_observations": 0,
+  "scientific_ready": false,
+  "model_requests": 0,
+  "provider_requests": 0,
+  "source_program_executions": 0,
+  "ledger_writes": 0,
+  "live_dispatch_authorization_evaluated": false,
+  "method_outputs_used": false,
+  "catalog_sha256": "0da0217e01754ff29c45c4adbf822e515db22fa0be0b7a7e9486a584cc4edae9",
+  "drafts_sha256": "cce2b65bfe2cf6f739e5c3f0eae8195f823d0f5d8a7d51f6f8e01c45555f135e",
+  "implementation_sha256": {
+    "taskpack_review.py": "39ac7d1b63ce76d0c3335b41965d2a3725b452f5333c036514c10b7db79d7c95",
+    "taskpack.py": "d44903d914a88f40a55d9f86623fa10a8fd07710e888ad842b0c2f1105208570",
+    "annotation.py": "eef52ad66fd862022e6272e3b3d91e7d651bdf766d0b4d0d194e1c30eb80b016"
+  },
+  "scope": "material_pre_review_and_deterministic_existing_evidence_only",
+  "limitations": [
+    "Programmatic evidence checks do not authenticate the author of prior source records.",
+    "AI-assisted obligations are explicit nonblind drafts, not independent human or validated study labels.",
+    "Synthetic archive content is never counted as actual native activity or a completed target test.",
+    "Source qualification does not establish hidden behavior or success of any method continuation.",
+    "The human-only v1 route remains intact; it is not a requirement to collect development observations."
+  ]
+}

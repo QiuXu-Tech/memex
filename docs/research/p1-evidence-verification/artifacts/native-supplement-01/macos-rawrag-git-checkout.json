@@ -1,0 +1,119 @@
+{
+  "baseline_live_ready": false,
+  "bounded_local_verification_commands_started": 12,
+  "checked_at_utc": "2026-11-28T16:55:01.338721+00:00",
+  "checkout_kind": "real_git_detached_checkout",
+  "credential_file_contents_read": false,
+  "credential_helper_disabled": true,
+  "environment_credential_values_read": false,
+  "existing_source_asset_modified": false,
+  "frozen_adapter_sha256": "cff65315547b43f84d834a931a24cc460a68c7e6110928b5b67d74db624cf242",
+  "frozen_adapter_verification": {
+    "commit": "95639191e9547219b426710e50fe1a36235e26fc",
+    "source_files_verified": 9,
+    "tracked_worktree_clean": true
+  },
+  "frozen_config_file_sha256": "008c4c92181141a1c8de42931c906aad23e959da4fd5db1e300c64ba2e664b27",
+  "git": {
+    "distribution": "Apple Command Line Tools Git",
+    "executable_sha256": "5c5d6527325adcf024e229a9eb540cc0bdd21e1e23ce8f125cf3d8b3704e2659",
+    "license_accepted_or_modified": false,
+    "version": "git version 2.54.0 (Apple Git-157)",
+    "wrapper_used": false
+  },
+  "git_candidate_inventory": [
+    {
+      "candidate": "Apple Command Line Tools Git",
+      "executable": true,
+      "exists": true,
+      "sha256": "5c5d6527325adcf024e229a9eb540cc0bdd21e1e23ce8f125cf3d8b3704e2659",
+      "version": "git version 2.54.0 (Apple Git-157)",
+      "version_exit_code": 0
+    },
+    {
+      "candidate": "Apple Xcode-bundle Git",
+      "executable": true,
+      "exists": true,
+      "sha256": "775851091335fd0f0e3eba68e92667b95115208e57ad5ca312936d10edb9ffd3",
+      "version": "git version 2.54.0 (Apple Git-157)",
+      "version_exit_code": 0
+    },
+    {
+      "candidate": "Homebrew prefix Git",
+      "executable": false,
+      "exists": false
+    },
+    {
+      "candidate": "User local bin Git",
+      "executable": false,
+      "exists": false
+    }
+  ],
+  "git_object_integrity_verified": true,
+  "git_user_and_system_config_disabled": true,
+  "kind": "p1-rawrag-git-checkout-preparation",
+  "launch_settings_modified": false,
+  "ledger_operations": 0,
+  "model_calls": 0,
+  "native_runtime_modified": false,
+  "native_settings_modified": false,
+  "optional_netrc_files_absent": true,
+  "original_receipt_sha256": "81fd1a7630902c7eca905c0af25cf2ea726ffe54dc1005e830804f4c157a6e0b",
+  "paid_service_calls": 0,
+  "pinned_source_file_count": 9,
+  "pinned_source_files": [
+    {
+      "path": "methods/EverCore/evaluation/src/adapters/rag_adapter.py",
+      "sha256": "997c35db93feea77eed897b3d5640bd9cd6f114da40bff5128efae65a6466637"
+    },
+    {
+      "path": "methods/EverCore/evaluation/src/adapters/base.py",
+      "sha256": "c8a3683bfe2565541c0182dfda0b20f6780f49023c8333e9ec7aeb29adae8475"
+    },
+    {
+      "path": "methods/EverCore/evaluation/src/adapters/rag_pgvector_store.py",
+      "sha256": "143cc750dcd6c70206c7c3f30640dba4378593bf1667415dfc2184a7006b758f"
+    },
+    {
+      "path": "methods/EverCore/evaluation/src/adapters/registry.py",
+      "sha256": "537ca1724a9a5d2967b6d520860cd9c3cfadaa1926467bbfa071ddd1ebfbb912"
+    },
+    {
+      "path": "methods/EverCore/evaluation/src/core/data_models.py",
+      "sha256": "66a0005d55d9dc2e0c53ab0a5d788f8b263a685a6d4e06a90a9a248a54f59208"
+    },
+    {
+      "path": "methods/EverCore/evaluation/src/utils/config.py",
+      "sha256": "db2b6329a6c52847b0ed693e8c697fc3d470c39479c68f237b1241e97c6ba26e"
+    },
+    {
+      "path": "methods/EverCore/evaluation/src/utils/fingerprint.py",
+      "sha256": "969a35b869e61b23a6406b8cf744550efe9f7422c7dcf4f74421dc037674cf6e"
+    },
+    {
+      "path": "methods/EverCore/evaluation/config/prompts.yaml",
+      "sha256": "cfbfb39fc0a805ddf2da84f62b174f291ad47495d059523ad9ba64d320b94cdd"
+    },
+    {
+      "path": "scripts/paper/configs/systems/textemb3-gpt4omini.yaml",
+      "sha256": "9d7ec314dd66e1019c19514b7da50b7a87799f8d3e456ae869a4feb312f18737"
+    }
+  ],
+  "public_source_fetch_attempts": 1,
+  "receipt_revision": 2,
+  "receipt_revision_note": "The command counter includes the Python adapter-verification entry and is not a count of every Git subprocess; no checkout action was repeated.",
+  "remaining_baseline_requirements": [
+    "fixed embedding/reranker credential and billing readiness",
+    "explicit later runtime binding to the new checkout and real Git path"
+  ],
+  "schema_version": 1,
+  "status": "prepared_verified_checkout",
+  "tracked_and_untracked_worktree_clean": true,
+  "upstream": {
+    "observed_commit": "95639191e9547219b426710e50fe1a36235e26fc",
+    "observed_tree": "ad681db4f72be98565eaedd81c3a3ad99631c431",
+    "origin_exact": true,
+    "repository": "https://github.com/Litmeb/RAW-RAG.git",
+    "required_commit": "95639191e9547219b426710e50fe1a36235e26fc"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "accepted_research_tasks": 0,
+  "canonical_ledger_accessed": false,
+  "expected_test_counts": {
+    "w-101": {
+      "base": [
+        5,
+        4,
+        1
+      ],
+      "fixed": [
+        5,
+        5,
+        0
+      ],
+      "incorrect_behavior": [
+        5,
+        2,
+        3
+      ]
+    },
+    "w-102": {
+      "base": [
+        6,
+        2,
+        4
+      ],
+      "fixed": [
+        6,
+        6,
+        0
+      ],
+      "incorrect_behavior": [
+        6,
+        3,
+        3
+      ]
+    }
+  },
+  "human_annotators": 0,
+  "kind": "reference_oracle_qualification_plan",
+  "max_wall_seconds_per_observer": 60,
+  "negative_control_mutations": {
+    "w-101": [
+      "src/flask/blueprints.py",
+      "\n\n# Deliberately incorrect qualification control: rejects all names.\ndef _p1_reject_every_blueprint_name(self, *args, **kwargs):\n    raise ValueError(\"qualification control: every name rejected\")\nBlueprint.__init__ = _p1_reject_every_blueprint_name\n"
+    ],
+    "w-102": [
+      "requests/utils.py",
+      "\n\n# Deliberately incorrect qualification control: invents the same credentials.\ndef get_auth_from_url(url):\n    return (\"reviewer\", \"fixture-password\")\n"
+    ]
+  },
+  "new_native_or_method_outputs_read": false,
+  "request_oracle_sha256": {
+    "w-101": "20e543d7c63ee7d07b527c0c90f3e662427207fb69b875944ae6c597dd4444ac",
+    "w-102": "fe45e346f5b7e3f50f86764f6a070edf2d2a69136ad2e55d4d60c6f7bf74e255"
+  },
+  "request_oracles_changed_after_reference_observation": false,
+  "settings_sha256": "8ebd257f80a8ca2020539a40cad7f74818bef228555b2ff543e5cc050a4b2f34",
+  "source_only_oracle_qualification": true,
+  "source_preparation_sha256": "2521a1d8b51dd7624eab78866791fdc1f763f33855d5811171558943fe4f59de",
+  "tasks": [
+    "w-101",
+    "w-102"
+  ],
+  "tooling": {
+    "docs/research/p1-evidence-verification/tasks/reproduction/pallets__flask-5014/requirements-pinned.txt": "5817943cece5ddfb25e91eb00ca3c608502f9c029b970fd570a92b7aef96801a",
+    "docs/research/p1-evidence-verification/tasks/reproduction/psf__requests-6028/requirements-pinned.txt": "652d5312533e0ef8ab830f85811c20391d520b55624ae516de28d325d4578313",
+    "scripts/paper1/experiment.py": "6d046f6b53cd2b287d3a2d3c628bfb79dae3789121a9675c41a1a6ccaa1bc6ea",
+    "scripts/paper1/public_workspace.py": "9f65c8131d80b428e94cc3006c1d86cb66f703cd460c947fab23bb4319281807",
+    "scripts/paper1/python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+    "scripts/paper1/python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc",
+    "scripts/paper1/taskpack.py": "d44903d914a88f40a55d9f86623fa10a8fd07710e888ad842b0c2f1105208570"
+  },
+  "variants": [
+    "base",
+    "fixed",
+    "incorrect_behavior",
+    "empty_oracle",
+    "missing_source",
+    "installed_fallback"
+  ]
+}
