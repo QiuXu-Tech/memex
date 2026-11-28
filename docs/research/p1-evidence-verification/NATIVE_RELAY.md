@@ -31,6 +31,7 @@ activation = relay.activate(
 relay.deactivate()
 records = relay.records                # Sanitized deep copy.
 scopes = relay.scope_states             # Cumulative, including blocked old scopes.
+rejections = relay.local_rejections     # Relative immutable file/hash refs; not API records.
 relay.close()
 ```
 
@@ -102,6 +103,62 @@ Completed evidence is rechecked before later work; replacement is rejected.
 Unknown, excess, failed or late results permanently block further dispatches in
 that scope. Late evidence can still be retained, and known usage is preserved;
 it does not reopen the scope or settle actual cash.
+
+## Pinned host wire compatibility
+
+The compatibility map is derived from official Codex commit
+`41e22fee981a63b3698df7ed36bad393cda24715` (0.153), not from an invented host
+transcript. Its normal Responses request always includes `prompt_cache_key`,
+`client_metadata`, and `include=["reasoning.encrypted_content"]`. The relay
+validates those client hints and removes them before provider admission. The
+incoming wire hash and exact forwarded-request hash remain distinct. Full
+`input`, instructions and tool declarations are retained without rewriting.
+
+The cache key is a 1–256 character ASCII identifier. Client metadata admits only
+the ten keys emitted by that pinned client's `client_metadata()` method. Normal
+values are printable ASCII strings of at most 256 bytes. The nested
+`x-codex-turn-metadata` value is bounded to 16 KiB and parsed with duplicate-key
+rejection. Its known identity, integer, Boolean, request-kind, workspace,
+tool-inventory and compaction fields have explicit typed schemas and bounded
+collections. Rust's arbitrary flattened user metadata is deliberately excluded;
+unknown keys or malformed nested fields fail closed. No metadata values are
+written to an audit or forwarded. Tool inventory metadata confers no tool
+permissions: actual tools remain the five permitted flat dynamic functions.
+
+Only the exact encrypted-reasoning include hint is discarded. Reasoning input,
+events and nonzero reasoning usage remain forbidden. The host must explicitly
+configure reasoning effort and summary to `none`; the pinned client omits the
+summary field for that setting. `service_tier`, `stream_options`, namespaces,
+unrecognized fields and extra tools remain rejected. Complete function-call and
+output history is still required. The source-defined assistant phase
+`final_answer` is accepted and preserved.
+
+Primary source anchors at the pinned commit:
+
+- [Request construction and reasoning summary](https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/client.rs)
+- [Exact client and nested turn metadata](https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/responses_metadata.rs)
+- [Flat dynamic tools](https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tools/handlers/dynamic.rs)
+- [History and assistant phase types](https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/protocol/src/models.rs)
+- [Compaction metadata enums](https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/analytics/src/facts.rs)
+
+### Rejections before an API record exists
+
+An authenticated request with a valid operation lease that is rejected before
+record creation creates an exclusive, fsynced `0600`
+`rejections/<ordinal>.json`. It binds transport/profile/source, the original
+lease's scope, component, checkpoint and epoch to a fixed error code,
+`provider_dispatch_started=false`, and actual received byte count/hash. It
+contains no request body, metadata value, header, path or exception text.
+Header rejection has zero bytes and a null hash. A truncated body records only
+the received prefix and marks `request_body_complete=false`; Content-Length is
+never substituted for actual bytes. No valid lease means no scope-attributed
+receipt. A later API-record failure uses the existing dispatch audit instead.
+
+`local_rejections` in the aggregate and the corresponding property contain only
+relative file/hash references. These are diagnostics, not usage rows, API calls,
+cash settlement, native-host evidence or successful attempts. Pre-record
+rejection does not obtain a provider credential, invoke admission, or send to a
+provider. An audit-write failure blocks that scope locally.
 
 ## Request and dispatch boundary
 
@@ -224,7 +281,7 @@ Tests in `test/test_paper1_deepseek_native_relay.py` exercise the real loopback
 HTTP server with an in-memory upstream. They cover profile hashing, fixed wire
 settings, callback proof, deadline expiry, allowed tools, credential reflection,
 SSE validity, byte limits, missing/over-budget usage, epoch rotation, cumulative
-quotas and deactivation of an in-flight request. On 2026-11-28, the relay's 16
+quotas and deactivation of an in-flight request. On 2026-11-28, the relay's 22
 tests and the controller's 40 tests passed. One integration test connects the
 real loopback server to an actual canonical controller over a temporary fixture
 ledger, checks immutable usage completion, and makes a second admitted request.
@@ -232,6 +289,15 @@ Controller tests cover restart with pending work, immutable evidence replacement
 late/unknown/excess completion, remaining output allowance, same-day pricing and
 mixed B cash bounds. These tests do not contact a provider, touch the original
 cash ledger or read a real credential.
+
+Six wire-compatibility/diagnostic tests were first run against the old relay and
+failed on the demonstrated unsupported fields and missing rejection receipts.
+After the scoped changes they passed, including source-derived first request,
+full tool history and compaction shapes; metadata/schema mutation rejection;
+unchanged tool/tier/history barriers; and real loopback header, truncated-body,
+scope-rotation, immutable-receipt and exception-privacy checks. The upstream in
+these tests is an in-memory fixture. They do not claim a captured Codex request,
+a new native attempt, or observed compatibility with a live provider.
 
 An authorized live run still requires the canonical budget controller, a real
 credential broker, the pinned public tokenizer, a correctly restricted Codex

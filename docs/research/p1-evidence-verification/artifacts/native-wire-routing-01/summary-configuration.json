@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "kind": "p1-pinned-reasoning-summary-configuration",
+  "analysis_id": "native-wire-routing-01-summary",
+  "checked_at_utc": "2026-11-28T17:04:08Z",
+  "scientific_ready": false,
+  "research_result": false,
+  "provider_requests_during_this_change": 0,
+  "actual_codex_turns_started_by_this_agent": 0,
+  "canonical_ledger_writes_by_this_agent": 0,
+  "host_version": "0.153.0",
+  "host_commit": "41e22fee981a63b3698df7ed36bad393cda24715",
+  "sources": [
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/models-manager/src/model_info.rs",
+      "git_blob_sha": "b79c67b2cf5e42e450e8054fb1a0ae17d03e13e1",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/models-manager/src/model_info.rs",
+      "finding": "Unknown model fallback supports reasoning summaries, defaults to Auto, and disables Responses Lite."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/core/src/client.rs",
+      "git_blob_sha": "9f03c939e09c87824aabb6108c051786908d6204",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/client.rs",
+      "finding": "build_reasoning sets summary to None when the configured summary enum is None; disabled Responses Lite omits context."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/codex-api/src/common.rs",
+      "git_blob_sha": "5adfe8db6a013a0f3e434445eda0378e0f4962ee",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/codex-api/src/common.rs",
+      "finding": "Reasoning.summary and Reasoning.context are optional and omitted by serde when their values are None."
+    }
+  ],
+  "change": {
+    "file": "scripts/paper1/reader_profile.py",
+    "sha256": "7b7ea6c8498be4aa7b948facc894572987ffb2c53367fe9af6339ccabddae963",
+    "function": "codex_flags",
+    "added_override": {
+      "model_reasoning_summary": "none"
+    },
+    "existing_reasoning_effort": "none",
+    "expected_wire_reasoning": {
+      "effort": "none"
+    },
+    "summary_wire_field": "omitted_by_pinned_builder_and_serializer",
+    "actual_wire_request_captured": false,
+    "relay_reasoning_contract_broadened": false,
+    "profile_json_modified": false,
+    "profile_json_raw_sha256": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709",
+    "grant_modified": false,
+    "failed_attempt_replayed": false,
+    "summary_stage_sha256": "500b9d03b7ab6b1046f63021ecc839b770fa68679e24eda0e7bd4ff7ab0d0a08",
+    "additional_changes_in_same_file": "See the adjacent summary-configuration.json and tool-registration-configuration.json for separately authorized pinned-host configuration corrections."
+  },
+  "validation": {
+    "command": "python -m unittest discover -s test -p test_paper1_reader_profile.py -v",
+    "test_file": "test/test_paper1_reader_profile.py",
+    "test_file_sha256": "c93c114631a7aab197de6e9aec1379aace550aff109c287eab290cabcf5e1ae9",
+    "before_summary_flag": {
+      "tests": 9,
+      "failures": 1,
+      "exit_code": 1,
+      "failing_test": "test_custom_provider_disables_default_reasoning_summary"
+    },
+    "after_summary_flag": {
+      "tests": 9,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "final_combined_regression": {
+      "tests": 10,
+      "failures": 0,
+      "exit_code": 0,
+      "test_file_sha256": "9da5498177b4714d3605d95c05cdccccc74d153790bc0053bfb9788ebead894e"
+    }
+  },
+  "remaining_boundary": "Other pinned Responses transport fields and the full actual wire shape are reviewed separately; this record does not authorize relaxing thinking mode or consuming another preparation grant for debugging."
+}

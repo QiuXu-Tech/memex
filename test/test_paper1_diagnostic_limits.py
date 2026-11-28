@@ -3,7 +3,6 @@ import importlib.util
 import json
 import multiprocessing
 from pathlib import Path
-import shutil
 import subprocess
 import sys
 import unittest
@@ -163,12 +162,21 @@ class DiagnosticLimitsTests(unittest.TestCase):
                 action()
 
     def test_real_historical_prefix_and_authorization_remain_byte_identical_after_diagnostic_append(self):
-        # Copy the published history into a disposable root; do not mutate it.
+        # Fix this fixture to the original exhausted two-attempt history. Later
+        # explicitly activated supplements in the real journal are not part of
+        # this historical assertion and must never be copied or mutated here.
         self.auth_path.write_bytes(BASE.REAL_AUTH.read_bytes())
         self.ledger = M.BatchLedger(self.auth_path, repo_root=self.root)
         self.ledger.state_dir.mkdir(parents=True)
-        for name in ('events.jsonl', 'HEAD.json', 'ledger.lock'):
-            shutil.copyfile(ROOT / M.LEDGER_RELATIVE / name, self.ledger.state_dir / name)
+        history = b''.join((ROOT / M.LEDGER_RELATIVE / 'events.jsonl').read_bytes().splitlines(keepends=True)[:7])
+        rows = [json.loads(line) for line in history.splitlines()]
+        self.assertEqual(len(rows), 7)
+        self.assertEqual(sum(row['event'] == 'reserved' and row['data']['kind'] == 'native' for row in rows), 2)
+        self.ledger.journal.write_bytes(history)
+        (self.ledger.state_dir / 'HEAD.json').write_text(json.dumps({
+            'authorization_sha256': rows[-1]['authorization_sha256'],
+            'seq': 7, 'sha256': rows[-1]['sha256']}) + '\n')
+        (self.ledger.state_dir / 'ledger.lock').touch(mode=0o600)
         original = self.ledger.journal.read_bytes()
         auth_before = self.auth_path.read_bytes()
         before = self.ledger.status()

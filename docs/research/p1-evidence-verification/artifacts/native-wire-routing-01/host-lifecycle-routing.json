@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "kind": "p1-pinned-host-lifecycle-route-analysis",
+  "checked_at_utc": "2026-11-28T17:13:33.033067+00:00",
+  "host_version": "0.153.0",
+  "host_commit": "41e22fee981a63b3698df7ed36bad393cda24715",
+  "scientific_ready": false,
+  "research_result": false,
+  "scope": "Static check of the existing custom-provider compaction and persisted dynamic-tool paths.",
+  "provider": {
+    "id": "memex_deepseek_p1",
+    "name": "P1 scoped DeepSeek relay",
+    "model": "deepseek-flash",
+    "base_url_kind": "127.0.0.1 loopback"
+  },
+  "conclusions": {
+    "manual_compaction": "ordinary Responses local summary",
+    "expected_relay_route": "/responses",
+    "remote_compact_route_required": false,
+    "resume_dynamic_tools": "restored from persisted SessionMeta when no replacement definitions are supplied",
+    "fork_dynamic_tools": "inherited through retained parent SessionMeta",
+    "native_backend_retransmission_required": false,
+    "new_host_overrides_added": false
+  },
+  "effective_feature_observation_reported_by_root": {
+    "token_budget": false,
+    "respect_system_proxy": false,
+    "exit_code": 0,
+    "stderr_empty": true,
+    "started_turns": 0,
+    "configuration_modified": false,
+    "directly_repeated_by_this_agent": false
+  },
+  "sources": [
+    {
+      "path": "codex-rs/app-server/src/request_processors/thread_processor.rs",
+      "git_blob_sha": "56eb6fdc9353b4ec79fe2ee2edcec0f8abd06ac3",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/app-server/src/request_processors/thread_processor.rs",
+      "finding": "thread_compact_start submits Op::Compact. Fork loads the source history and passes it to the thread manager; cold resume also supplies persisted history."
+    },
+    {
+      "path": "codex-rs/model-provider/src/provider.rs",
+      "git_blob_sha": "198cd6373192e86cd005ba9807a7c68f17da1b2c",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/model-provider/src/provider.rs",
+      "finding": "Configured providers only advertise remote compaction for OpenAI or Azure Responses. The named loopback custom provider advertises Unsupported."
+    },
+    {
+      "path": "codex-rs/core/src/tasks/compact.rs",
+      "git_blob_sha": "99e21134856a95ad25ba7f675b35dc06d62067d3",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tasks/compact.rs",
+      "finding": "With TokenBudget disabled and remote compaction Unsupported, manual compaction invokes core compact run_compact_task using the configured or default summary prompt."
+    },
+    {
+      "path": "codex-rs/core/src/compact.rs",
+      "git_blob_sha": "49306c357cbda0167695b418eab01b50acc59301",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/compact.rs",
+      "finding": "The local compaction implementation builds a Prompt and calls ModelClientSession.stream, the ordinary Responses inference path."
+    },
+    {
+      "path": "codex-rs/core/src/session/mod.rs",
+      "git_blob_sha": "91300365bbecb511d1f1fcc37f4ec3f24d99a7b5",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/session/mod.rs",
+      "finding": "Empty dynamic_tools at session startup restores conversation_history.get_dynamic_tools rather than clearing the persisted definitions."
+    },
+    {
+      "path": "codex-rs/core/src/session/session.rs",
+      "git_blob_sha": "6d1953e3a2665139e328cc31250ccae32763bb62",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/session/session.rs",
+      "finding": "New thread persistence stores the session configuration dynamic tools in metadata."
+    },
+    {
+      "path": "codex-rs/history/src/lib.rs",
+      "git_blob_sha": "069a243fe490c79cd95d7841443c5cffa40aea25",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/history/src/lib.rs",
+      "finding": "get_dynamic_tools handles both Resumed and Forked by cloning dynamic tools from SessionMeta."
+    },
+    {
+      "path": "codex-rs/core/src/thread_manager.rs",
+      "git_blob_sha": "cfa619697f2be42c025fe8ba39912c61277c616e",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/thread_manager.rs",
+      "finding": "Cold resume and fork pass initial history with default empty dynamic tools. ForkSnapshot::Interrupted retains all resumed history; an already completed source turn needs no appended interruption marker."
+    }
+  ],
+  "validation_boundary": "Pinned-source inspection only; this agent did not start a Codex turn or execute native compaction/fork/resume.",
+  "provider_requests_by_this_agent": 0,
+  "mac_operations_by_this_agent": 0,
+  "canonical_ledger_writes_by_this_agent": 0,
+  "failed_scope_status_changed": false
+}

@@ -33,6 +33,23 @@ HEX = re.compile(r"[a-f0-9]{64}\Z")
 LABEL = re.compile(r"[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}\Z")
 COMPONENTS = {"reader", "prelude", "extraction", "compaction"}
 PUBLIC_TOOLS = {"read_file", "write_file", "list_files", "run_current_tests", "record_review"}
+# Fixed local rejection codes only: never persist an exception's arbitrary text,
+# request field name, header value, or any client metadata value.
+LOCAL_REJECTION_CODES = {
+    "unknown_relay_path", "bounded_content_length_required", "request_byte_limit", "json_request_required",
+    "request_body_incomplete", "relay_deadline_exhausted", "relay_epoch_expired", "relay_request_failed",
+    "duplicate_json_key", "nonfinite_json_number", "invalid_json", "unsupported_request_fields",
+    "fixed_model_and_stream_required", "stateless_complete_input_required", "unsupported_include",
+    "invalid_client_metadata", "invalid_prompt_cache_key", "complete_input_required", "unsupported_input_item",
+    "unsupported_input_message", "text_only_input_required", "unsupported_input_tool_call",
+    "unsupported_input_tool_output", "complete_tool_history_required", "invalid_instructions",
+    "unsupported_tools", "server_or_unknown_tools_forbidden", "unsupported_function_tool",
+    "unsupported_tool_choice", "invalid_parallel_tool_calls", "nonthinking_mode_required",
+    "fixed_temperature_required", "store_false_required", "invalid_request_output_limit",
+    "unsupported_text_format", "scope_output_budget_exhausted", "scope_dispatch_budget_exhausted",
+    "reference_token_measurement_failed", "invalid_reference_token_measurement",
+    "scope_reference_input_budget_exhausted", "scope_input_budget_exhausted",
+}
 TERMINAL = {"response.completed": "completed", "response.incomplete": "incomplete", "response.failed": "failed"}
 EVENTS = set(TERMINAL) | {"response.created", "response.in_progress", "response.output_item.added",
     "response.output_item.done", "response.content_part.added", "response.content_part.done",
@@ -127,7 +144,7 @@ def _input(value):
         if kind == "message":
             if (set(item) - common - {"role", "content", "phase"}
                     or item.get("role") not in {"user", "assistant", "system", "developer"}
-                    or item.get("phase") not in (None, "commentary", "final")):
+                    or item.get("phase") not in (None, "commentary", "final", "final_answer")):
                 raise RelayError("unsupported_input_message")
             _parts(item.get("content"))
         elif kind == "function_call":
@@ -168,19 +185,120 @@ def _tools(value):
     return names
 
 
+def _metadata_string(value, maximum=256, *, ascii_only=False):
+    if not isinstance(value, str) or len(value) > maximum:
+        return False
+    try:
+        return (len(value.encode("utf-8")) <= maximum
+            and all(ord(c) >= 32 and ord(c) != 127 and (not ascii_only or ord(c) <= 126) for c in value))
+    except UnicodeEncodeError:
+        return False
+
+
+def _turn_metadata(raw):
+    """Bounded, typed Codex 0.153 metadata; validated then discarded in full.
+
+    Schema: openai/codex 41e22fee981a63b3698df7ed36bad393cda24715,
+    core/src/responses_metadata.rs and analytics/src/facts.rs. Rust's flattened
+    arbitrary user extras deliberately are not part of this compatibility map.
+    This metadata never grants tools, changes history, or reaches the provider.
+    """
+    if not _metadata_string(raw, 16384):
+        raise RelayError("invalid_client_metadata")
+    value = strict_json(raw)
+    strings = {"installation_id", "session_id", "thread_id", "agent_name", "turn_id", "window_id",
+        "context_window_id", "forked_from_thread_id", "parent_thread_id", "parent_turn_id", "root_turn_id",
+        "subagent_kind", "thread_source", "turn_trigger", "sandbox", "sandbox_mode"}
+    unsigned = {"window_number", "forked_from_ordinal_exclusive"}
+    booleans = {"auto_review_enabled", "node_repl_auto_review_required", "node_repl_disabled", "history_ingest_requested"}
+    known = strings | unsigned | booleans | {"request_kind", "turn_started_at_unix_ms", "workspaces", "tool_namespaces_info", "compaction"}
+    if not isinstance(value, dict) or set(value) - known:
+        raise RelayError("invalid_client_metadata")
+    for key, item in value.items():
+        if ((key in strings and not _metadata_string(item))
+                or (key in unsigned and (type(item) is not int or not 0 <= item < 2**64))
+                or (key in booleans and type(item) is not bool)
+                or (key == "turn_started_at_unix_ms" and (type(item) is not int or not -(2**63) <= item < 2**63))
+                or (key == "request_kind" and item not in ("turn", "prewarm", "compaction", "memory"))):
+            raise RelayError("invalid_client_metadata")
+    if "workspaces" in value:
+        workspaces = value["workspaces"]
+        if not isinstance(workspaces, dict) or len(workspaces) > 16:
+            raise RelayError("invalid_client_metadata")
+        for path, workspace in workspaces.items():
+            if (not _metadata_string(path, 4096) or not isinstance(workspace, dict)
+                    or set(workspace) - {"associated_remote_urls", "latest_git_commit_hash", "has_changes"}
+                    or "latest_git_commit_hash" in workspace and not _metadata_string(workspace["latest_git_commit_hash"])
+                    or "has_changes" in workspace and type(workspace["has_changes"]) is not bool):
+                raise RelayError("invalid_client_metadata")
+            if "associated_remote_urls" in workspace:
+                remotes = workspace["associated_remote_urls"]
+                if (not isinstance(remotes, dict) or len(remotes) > 16 or any(
+                        not _metadata_string(name) or not _metadata_string(url, 4096)
+                        for name, url in remotes.items())):
+                    raise RelayError("invalid_client_metadata")
+    if "tool_namespaces_info" in value:
+        namespaces = value["tool_namespaces_info"]
+        if not isinstance(namespaces, dict) or len(namespaces) > 16:
+            raise RelayError("invalid_client_metadata")
+        for key, namespace in namespaces.items():
+            if (not _metadata_string(key) or not isinstance(namespace, dict)
+                    or set(namespace) != {"name", "functions"} or not _metadata_string(namespace["name"])
+                    or not isinstance(namespace["functions"], dict) or len(namespace["functions"]) > 128):
+                raise RelayError("invalid_client_metadata")
+            for name, function in namespace["functions"].items():
+                if (not _metadata_string(name) or not isinstance(function, dict)
+                        or set(function) != {"name", "direct", "code_mode_name", "deferred", "source"}
+                        or not _metadata_string(function["name"]) or type(function["direct"]) is not bool
+                        or type(function["deferred"]) is not bool
+                        or function["code_mode_name"] is not None and not _metadata_string(function["code_mode_name"])):
+                    raise RelayError("invalid_client_metadata")
+                source = function["source"]
+                if not isinstance(source, dict) or not (
+                        source == {"kind": "harness"} or set(source) == {"kind", "server_name"}
+                        and source["kind"] == "mcp" and _metadata_string(source["server_name"])):
+                    raise RelayError("invalid_client_metadata")
+    if "compaction" in value:
+        enums = {"trigger": ("manual", "auto"),
+            "reason": ("user_requested", "context_limit", "model_downshift", "comp_hash_changed"),
+            "implementation": ("responses", "responses_compaction_v2", "responses_compact"),
+            "phase": ("standalone_turn", "pre_turn", "mid_turn"), "strategy": ("memento", "prefix_compaction")}
+        compaction = value["compaction"]
+        if (not isinstance(compaction, dict) or set(compaction) != set(enums)
+                or any(compaction[key] not in choices for key, choices in enums.items())):
+            raise RelayError("invalid_client_metadata")
+
+
+def _client_metadata(value):
+    keys = {"x-codex-installation-id", "session_id", "thread_id", "x-codex-window-id", "turn_id",
+        "x-openai-subagent", "x-codex-parent-thread-id", "parent_turn_id", "root_turn_id", "x-codex-turn-metadata"}
+    if not isinstance(value, dict) or set(value) - keys:
+        raise RelayError("invalid_client_metadata")
+    for key, item in value.items():
+        if key == "x-codex-turn-metadata":
+            _turn_metadata(item)
+        elif not _metadata_string(item, ascii_only=True):
+            raise RelayError("invalid_client_metadata")
+
+
 def prepare_request(raw, profile, remaining_output):
     value = strict_json(raw)
     allowed = {"model", "input", "instructions", "stream", "tools", "tool_choice", "parallel_tool_calls",
         "reasoning", "text", "max_output_tokens", "temperature", "store", "previous_response_id",
-        "conversation", "include"}
+        "conversation", "include", "prompt_cache_key", "client_metadata"}
     if not isinstance(value, dict) or set(value) - allowed:
         raise RelayError("unsupported_request_fields")
     if value.get("model") != MODEL or value.get("stream") is not True:
         raise RelayError("fixed_model_and_stream_required")
     if value.get("previous_response_id") is not None or value.get("conversation") is not None:
         raise RelayError("stateless_complete_input_required")
-    if value.get("include") not in (None, []):
+    if value.get("include") not in (None, [], ["reasoning.encrypted_content"]):
         raise RelayError("unsupported_include")
+    if "prompt_cache_key" in value and (not isinstance(value["prompt_cache_key"], str)
+            or not re.fullmatch(r"[A-Za-z0-9_.:-]{1,256}", value["prompt_cache_key"])):
+        raise RelayError("invalid_prompt_cache_key")
+    if "client_metadata" in value:
+        _client_metadata(value["client_metadata"])
     _input(value.get("input"))
     if "instructions" in value and not isinstance(value["instructions"], str):
         raise RelayError("invalid_instructions")
@@ -210,7 +328,8 @@ def prepare_request(raw, profile, remaining_output):
         form = value["text"].get("format", {"type": "text"})
         if not isinstance(form, dict) or form.get("type") not in {"text", "json_object", "json_schema"}:
             raise RelayError("unsupported_text_format")
-    forwarded = {k: v for k, v in value.items() if k not in {"previous_response_id", "conversation", "include"}}
+    forwarded = {k: v for k, v in value.items() if k not in {
+        "previous_response_id", "conversation", "include", "prompt_cache_key", "client_metadata"}}
     forwarded.update(reasoning={"effort": "none"}, store=False, temperature=0,
                      max_output_tokens=min(maximum, remaining_output))
     if forwarded["max_output_tokens"] < 1:
@@ -372,7 +491,7 @@ class DeepSeekRelay:
             raise RelayError("relay_output_must_be_new")
         self.output.mkdir(parents=True, mode=0o700, exist_ok=False)
         self._lock = threading.RLock()
-        self._records, self._scopes = [], {}
+        self._records, self._scopes, self._rejections = [], {}, []
         self._active, self._inflight = None, None
         self._closed, self._epoch = False, 0
         self._registration_receipt = None
@@ -395,6 +514,7 @@ class DeepSeekRelay:
                 pass
             def do_POST(self):
                 lease = None
+                received, received_hash, body_complete = 0, hashlib.sha256(), False
                 try:
                     if self.path != "/responses":
                         raise RelayError("unknown_relay_path")
@@ -415,9 +535,12 @@ class DeepSeekRelay:
                         chunk = self.rfile.read1(min(65536, remaining))
                         if not chunk:
                             raise RelayError("request_body_incomplete")
+                        received += len(chunk)
+                        received_hash.update(chunk)
                         chunks.append(chunk)
                         remaining -= len(chunk)
                     raw = b"".join(chunks)
+                    body_complete = True
                     body = relay._process(raw, lease)
                     # Epoch invalidation cannot race the reviewed local replay.
                     with relay._lock:
@@ -431,6 +554,17 @@ class DeepSeekRelay:
                         self.wfile.write(body)
                 except BaseException as exc:
                     code = str(exc) if isinstance(exc, RelayError) else "relay_request_failed"
+                    if lease is not None and lease["record_id"] is None:
+                        code = code if code in LOCAL_REJECTION_CODES else "relay_request_failed"
+                        try:
+                            relay._reject_local(lease, code=code, received=received,
+                                received_hash=received_hash.hexdigest() if received else None,
+                                body_complete=body_complete)
+                        except Exception:
+                            # An unrecordable rejection cannot be used to probe then dispatch.
+                            code = "local_rejection_audit_failed"
+                            with relay._lock:
+                                relay._scopes[lease["scope_id"]].update(blocked=True, block_reason=code)
                     status = 401 if code == "relay_token_rejected" else 409 if code in {"relay_busy", "scope_blocked", "relay_inactive"} else 502 if lease and relay._has_dispatch(lease) else 400
                     body = canonical({"error": {"code": code, "message": "Controlled relay request rejected."}}).encode()
                     try:
@@ -484,6 +618,11 @@ class DeepSeekRelay:
             return copy.deepcopy(self._records)
 
     @property
+    def local_rejections(self):
+        with self._lock:
+            return copy.deepcopy(self._rejections)
+
+    @property
     def scope_states(self):
         with self._lock:
             return copy.deepcopy(self._scopes)
@@ -493,7 +632,7 @@ class DeepSeekRelay:
             "epoch": self._epoch, "closed": self._closed, "records": self._records, "scopes": self._scopes,
             "actual_spend": None, "native_host_attested": False,
             "transport_id": self._transport_id, "relay_source_sha256": self.relay_source_sha256,
-            "registration_receipt": self._registration_receipt}
+            "registration_receipt": self._registration_receipt, "local_rejections": self._rejections}
         temporary = self.output / ("relay-state-" + secrets.token_hex(8) + ".tmp")
         with temporary.open("x", encoding="utf-8") as stream:
             os.chmod(temporary, 0o600)
@@ -520,6 +659,23 @@ class DeepSeekRelay:
         finally:
             os.close(directory)
         return hashlib.sha256(raw).hexdigest()
+
+    def _reject_local(self, lease, *, code, received, received_hash, body_complete):
+        """Evidence of a local refusal; never a dispatch, usage observation or bill."""
+        with self._lock:
+            if lease["record_id"] is not None:
+                return
+            name = "rejections/" + str(len(self._rejections) + 1).zfill(6) + ".json"
+            value = {"schema_version": 1, "kind": "p1-native-relay-local-rejection",
+                "transport_id": self._transport_id, "relay_source_sha256": self.relay_source_sha256,
+                "config_sha256": self.config_sha256, "scope_id": lease["scope_id"],
+                "component": lease["component"], "checkpoint_sha256": lease["checkpoint_sha256"],
+                "epoch": lease["epoch"], "error_code": code, "request_bytes_received": received,
+                "request_bytes_sha256": received_hash, "request_body_complete": body_complete,
+                "provider_dispatch_started": False}
+            record_hash = self._write_immutable(name, value)
+            self._rejections.append({"path": name, "sha256": record_hash})
+            self._persist()
 
     def _complete(self, record):
         """One immutable actual observation and one required controller handshake."""

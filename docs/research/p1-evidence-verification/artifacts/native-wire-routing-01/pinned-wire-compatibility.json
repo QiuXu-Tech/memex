@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "kind": "p1-pinned-codex-wire-compatibility-offline-validation",
+  "checked_date_utc": "2026-11-28",
+  "source": {
+    "repository": "openai/codex",
+    "commit": "41e22fee981a63b3698df7ed36bad393cda24715",
+    "version": "0.153.0",
+    "files": [
+      {
+        "path": "codex-rs/core/src/client.rs",
+        "git_blob": "9f03c939e09c87824aabb6108c051786908d6204",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/client.rs"
+      },
+      {
+        "path": "codex-rs/core/src/responses_metadata.rs",
+        "git_blob": "5c97c16a249d71b3fe39e07c71dd88f64d3c5a45",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/responses_metadata.rs"
+      },
+      {
+        "path": "codex-rs/codex-api/src/common.rs",
+        "git_blob": "5adfe8db6a013a0f3e434445eda0378e0f4962ee",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/codex-api/src/common.rs"
+      },
+      {
+        "path": "codex-rs/protocol/src/models.rs",
+        "git_blob": "71846545fe8c80f8fc388e41c597ec38acf7ddc9",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/protocol/src/models.rs"
+      },
+      {
+        "path": "codex-rs/protocol/src/dynamic_tools.rs",
+        "git_blob": "bbe92b8fe0c75802cc1784d900926612b170a6b5",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/protocol/src/dynamic_tools.rs"
+      },
+      {
+        "path": "codex-rs/protocol/src/openai_models.rs",
+        "git_blob": "9bd7e1b1b6f0115057767d419c2b162c98f4c112",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/protocol/src/openai_models.rs"
+      },
+      {
+        "path": "codex-rs/core/src/tools/spec_plan.rs",
+        "git_blob": "908bb143afcbe3b8f0523ce5c3406c7b8c443603",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tools/spec_plan.rs"
+      },
+      {
+        "path": "codex-rs/core/src/tools/handlers/dynamic.rs",
+        "git_blob": "f2b7860d06385301ebefa9bdd70eb0a43a8639ad",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tools/handlers/dynamic.rs"
+      },
+      {
+        "path": "codex-rs/tools/src/responses_api.rs",
+        "git_blob": "e450dcf35f93ab4af7bf3f34956755066114ccae",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/tools/src/responses_api.rs"
+      },
+      {
+        "path": "codex-rs/tools/src/tool_spec.rs",
+        "git_blob": "530da1be164ce3c6aa4b128ccb878bda7025e217",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/tools/src/tool_spec.rs"
+      },
+      {
+        "path": "codex-rs/tools/src/dynamic_tool.rs",
+        "git_blob": "192a730b4849cfedddcbf8b337aad5c8d51dcb08",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/tools/src/dynamic_tool.rs"
+      },
+      {
+        "path": "codex-rs/models-manager/src/model_info.rs",
+        "git_blob": "b79c67b2cf5e42e450e8054fb1a0ae17d03e13e1",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/models-manager/src/model_info.rs"
+      },
+      {
+        "path": "codex-rs/core/src/compact.rs",
+        "git_blob": "49306c357cbda0167695b418eab01b50acc59301",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/compact.rs"
+      },
+      {
+        "path": "codex-rs/analytics/src/facts.rs",
+        "git_blob": "4fb8bbca3d7efed803d2f2600d04ac117040bf2d",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/analytics/src/facts.rs"
+      },
+      {
+        "path": "codex-rs/analytics/src/lib.rs",
+        "git_blob": "7d2f86b9799c52c09d0c230384b980665451bf5d",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/analytics/src/lib.rs"
+      },
+      {
+        "path": "codex-rs/protocol/src/sanitized_git_url.rs",
+        "git_blob": "daf6345d8b423168306671c6686d9b8678235aac",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/protocol/src/sanitized_git_url.rs"
+      },
+      {
+        "path": "codex-rs/core/src/config/mod.rs",
+        "git_blob": "dca329ab98ea218f7b96f1bd2d4cf25612a5fc1f",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/config/mod.rs"
+      },
+      {
+        "path": "codex-rs/protocol/src/protocol.rs",
+        "git_blob": "ae2107b801b7115654b7a076b060a8686a3b3e68",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/protocol/src/protocol.rs"
+      },
+      {
+        "path": "codex-rs/core/src/tools/tool_namespaces_info.rs",
+        "git_blob": "f43cb1fe3671aa07e37f4944f184099015c3aea8",
+        "source_url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tools/tool_namespaces_info.rs"
+      }
+    ]
+  },
+  "changed_source": {
+    "path": "scripts/paper1/deepseek_native_relay.py",
+    "sha256": "9ba2c41ff0a6f9a1120dfc4a6d616f1200ca17c95864d1149fa296040adbe067"
+  },
+  "changed_tests": {
+    "path": "test/test_paper1_deepseek_native_relay.py",
+    "sha256": "c565bcf05b7d41f127b170b6a4b9bc37ed884d17e7289761722c2fc633e56507"
+  },
+  "diagnosis": {
+    "proven_first_request_fields": [
+      "prompt_cache_key",
+      "client_metadata",
+      "include"
+    ],
+    "exact_include": [
+      "reasoning.encrypted_content"
+    ],
+    "history_phase": "final_answer",
+    "dynamic_tool_wire_kind": "flat function",
+    "client_metadata_outer_keys": 10,
+    "turn_metadata_arbitrary_extras_allowed": false,
+    "preserved": [
+      "input",
+      "instructions",
+      "tools",
+      "tool_choice",
+      "parallel_tool_calls",
+      "fixed reasoning.effort none",
+      "provider admission and completion",
+      "actual usage and cash envelope"
+    ],
+    "still_rejected": [
+      "unknown request fields",
+      "unknown metadata fields",
+      "service_tier",
+      "stream_options",
+      "namespace tools",
+      "extra public functions",
+      "reasoning input/output",
+      "unknown/missing/duplicate function call histories"
+    ]
+  },
+  "regression": {
+    "provenance": "source-derived fixtures; not captured native transcripts",
+    "red": {
+      "tests_run": 6,
+      "failures": 7,
+      "errors": 2,
+      "reason": "source-shaped requests rejected with unsupported_request_fields; immutable pre-record rejection receipts absent"
+    },
+    "green": {
+      "relay_tests": 22,
+      "controller_tests": 40,
+      "failures": 0,
+      "errors": 0
+    },
+    "local_http": true,
+    "independent_review_test_fixture_correction": "A client receiving the HTTP body can precede Handler lease release. The scope-rotation test now awaits an event after the real _release; production inflight rejection is unchanged.",
+    "upstream": "bounded in-memory fixture",
+    "rejection_evidence": [
+      "immutable fixed-code receipt",
+      "actual received full/prefix byte count and hash",
+      "header rejection zero bytes and null hash",
+      "scope/component/checkpoint/epoch binding",
+      "no request/header/key/metadata/exception text",
+      "zero API records and zero credentials on pre-record rejection"
+    ]
+  },
+  "actions": {
+    "model_calls": 0,
+    "provider_http_dispatches": 0,
+    "credential_contents_read": 0,
+    "mac_operations": 0,
+    "real_native_attempts_reserved": 0,
+    "canonical_ledger_mutations": 0
+  },
+  "limitations": [
+    "Offline source-shaped compatibility tests do not attest a real host turn or live provider response.",
+    "Original auth/profile/grant and runtime controller were not changed.",
+    "Real execution requires matching updated source bindings and pinned reader flags."
+  ]
+}

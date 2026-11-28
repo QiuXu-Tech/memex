@@ -8,6 +8,8 @@ import importlib.util
 import io
 import json
 from pathlib import Path
+import socket
+import stat
 import sys
 import tempfile
 import threading
@@ -63,6 +65,57 @@ def sse(*, usage=True, text="fixture answer", input_tokens=7, output_tokens=3):
         {"type": "response.output_text.delta", "sequence_number": 1, "delta": text},
         {"type": "response.completed", "sequence_number": 2, "response": response}]
     return "".join("event: " + v["type"] + "\ndata: " + json.dumps(v) + "\n\n" for v in values).encode()
+
+
+def codex_source_request(*, history=False, compaction=False):
+    """Source-derived shape, NOT a captured host turn or provider observation.
+
+    openai/codex 41e22fee981a63b3698df7ed36bad393cda24715:
+    core/src/{client,responses_metadata}.rs, protocol/src/models.rs,
+    tools/src/responses_api.rs, analytics/src/facts.rs.
+    """
+    names = ('read_file', 'write_file', 'list_files', 'run_current_tests', 'record_review')
+    turn = {'installation_id': 'fixture-installation', 'session_id': 'fixture-session',
+        'thread_id': 'fixture-thread', 'turn_id': 'fixture-turn', 'window_id': 'fixture-window',
+        'window_number': 0, 'context_window_id': '11111111-1111-4111-8111-111111111111',
+        'request_kind': 'compaction' if compaction else 'turn', 'thread_source': 'user',
+        'turn_trigger': 'user', 'sandbox': 'read-only', 'sandbox_mode': 'read-only',
+        'auto_review_enabled': False, 'node_repl_auto_review_required': False,
+        'node_repl_disabled': True, 'turn_started_at_unix_ms': 1795824000000,
+        'history_ingest_requested': False,
+        'workspaces': {'/fixture/public-workspace': {'associated_remote_urls': {
+            'origin': 'https://example.invalid/public.git'}, 'latest_git_commit_hash': 'a' * 40,
+            'has_changes': False}},
+        'tool_namespaces_info': {'functions': {'name': 'functions', 'functions': {
+            name: {'name': name, 'direct': True, 'code_mode_name': None, 'deferred': False,
+                   'source': {'kind': 'harness'}} for name in names}}}}
+    if compaction:
+        turn['compaction'] = {'trigger': 'manual', 'reason': 'user_requested',
+            'implementation': 'responses', 'phase': 'standalone_turn', 'strategy': 'memento'}
+    value = {'model': 'deepseek-flash', 'instructions': 'fixture public instructions',
+        'input': [{'type': 'message', 'role': 'developer', 'content': [
+            {'type': 'input_text', 'text': 'fixture public developer context'}]},
+            {'type': 'message', 'role': 'user', 'content': [
+                {'type': 'input_text', 'text': 'fixture public original request'}]}],
+        'tools': [{'type': 'function', 'name': name, 'description': 'fixture public tool',
+            'strict': False, 'parameters': {'type': 'object', 'properties': {}}} for name in names],
+        'tool_choice': 'auto', 'parallel_tool_calls': False, 'reasoning': {'effort': 'none'},
+        'store': False, 'stream': True, 'include': ['reasoning.encrypted_content'],
+        'prompt_cache_key': 'fixture-session', 'client_metadata': {
+            'x-codex-installation-id': 'fixture-installation', 'session_id': 'fixture-session',
+            'thread_id': 'fixture-thread', 'x-codex-window-id': 'fixture-window',
+            'turn_id': 'fixture-turn', 'x-codex-turn-metadata': json.dumps(turn)}}
+    if history:
+        value['input'].extend([
+            {'type': 'function_call', 'call_id': 'call_public_1', 'name': 'read_file',
+                'arguments': '{"path":"public.txt"}'},
+            {'type': 'function_call_output', 'call_id': 'call_public_1', 'output': [
+                {'type': 'input_text', 'text': 'fixture public tool result'}]},
+            {'type': 'message', 'role': 'assistant', 'phase': 'final_answer', 'content': [
+                {'type': 'output_text', 'text': 'fixture prior final answer'}]},
+            {'type': 'message', 'role': 'user', 'content': [
+                {'type': 'input_text', 'text': 'fixture public continuation'}]}])
+    return value
 
 
 class UpstreamResponse:
@@ -159,6 +212,166 @@ class NativeRelayTests(unittest.TestCase):
         self.assertNotIn("offline-provider-fixture-secret", public)
         self.assertNotIn("fixture public history", public)
         self.assertNotIn("fixture answer", public)
+
+    def test_pinned_codex_shapes_preserve_full_history_and_flat_tools(self):
+        self.start()
+        for history, compaction in ((False, False), (True, False), (True, True)):
+            with self.subTest(history=history, compaction=compaction):
+                request = codex_source_request(history=history, compaction=compaction)
+                status, response = self.post(request)
+                self.assertEqual(status, 200, response)
+                sent = self.calls[-1]['body']
+                for key in ('input', 'instructions', 'tools', 'tool_choice', 'parallel_tool_calls'):
+                    self.assertEqual(sent[key], request[key])
+                for key in ('prompt_cache_key', 'client_metadata', 'include'):
+                    self.assertNotIn(key, sent)
+                self.assertEqual(sent['reasoning'], {'effort': 'none'})
+                record = self.relay.records[-1]
+                self.assertEqual(record['wire_request_sha256'], hashlib.sha256(json.dumps(request).encode()).hexdigest())
+                self.assertEqual(record['request_sha256'], self.m.digest(sent))
+                self.assertEqual(self.admissions[-1]['intent']['request_sha256'], self.m.digest(sent))
+        audit = (Path(self.temp.name) / 'relay/relay-state.json').read_text()
+        self.assertNotIn('fixture-installation', audit)
+        self.assertNotIn('fixture-session', audit)
+        self.assertNotIn('/fixture/public-workspace', audit)
+        self.assertEqual(len(self.calls), 3)
+        self.assertEqual(len(self.completions), 3)
+
+    def test_client_metadata_must_match_bounded_typed_source_schema(self):
+        valid = codex_source_request()
+        cases = [
+            {'prompt_cache_key': 'bad\ncache-key'}, {'prompt_cache_key': 'x' * 257},
+            {'client_metadata': {'unrecognized': 'private-value'}},
+            {'client_metadata': {'session_id': {'not': 'a string'}}},
+            {'client_metadata': {'session_id': 'x' * 257}},
+            {'client_metadata': {'x-codex-turn-metadata': '[]'}},
+            {'client_metadata': {'x-codex-turn-metadata': '{"request_kind":"turn","request_kind":"turn"}'}},
+            {'client_metadata': {'x-codex-turn-metadata': json.dumps({'unexpected_extra': 'private'})}},
+            {'client_metadata': {'x-codex-turn-metadata': json.dumps({'window_number': True})}},
+            {'client_metadata': {'x-codex-turn-metadata': json.dumps({'workspaces': {'/fixture': {'unknown': True}}})}},
+            {'client_metadata': {'x-codex-turn-metadata': json.dumps({'tool_namespaces_info': {
+                'functions': {'name': 'functions', 'functions': {'read_file': {'name': 'read_file'}}}}})}},
+            {'client_metadata': {'x-codex-turn-metadata': json.dumps({'compaction': {
+                'trigger': 'manual', 'reason': 'user_requested', 'implementation': 'unknown',
+                'phase': 'standalone_turn', 'strategy': 'memento'}})}},
+            {'client_metadata': {'x-codex-turn-metadata': ' ' * 16385}},
+        ]
+        # Establish the source-shaped valid case before rejecting its mutations.
+        self.m.prepare_request(json.dumps(valid).encode(), profile(), 8192)
+        for change in cases:
+            with self.subTest(change=change):
+                with self.assertRaises(self.m.RelayError):
+                    self.m.prepare_request(json.dumps({**valid, **change}).encode(), profile(), 8192)
+
+    def test_metadata_compatibility_does_not_admit_tools_tiers_or_incomplete_history(self):
+        valid = codex_source_request(history=True)
+        self.m.prepare_request(json.dumps(valid).encode(), profile(), 8192)
+        cases = [
+            {**valid, 'service_tier': 'priority'}, {**valid, 'service_tier': 'default'},
+            {**valid, 'unknown_field': 'private-value'}, {**valid, 'stream_options': {'include_usage': True}},
+            {**valid, 'reasoning': {'effort': 'none', 'summary': 'auto'}},
+            {**valid, 'include': ['reasoning.encrypted_content', 'web_search_call.action.sources']},
+            {**valid, 'tools': [{'type': 'namespace', 'name': 'functions', 'tools': valid['tools']}]},
+            {**valid, 'tools': valid['tools'] + [{'type': 'function', 'name': 'request_user_input', 'parameters': {}}]},
+            {**valid, 'input': [item for item in valid['input'] if item['type'] != 'function_call_output']},
+            {**valid, 'input': valid['input'] + [valid['input'][2]]},
+            {**valid, 'input': valid['input'] + [valid['input'][3]]},
+            {**valid, 'input': [{**item, 'name': 'shell'} if item['type'] == 'function_call' else item for item in valid['input']]},
+            {**valid, 'input': [{**item, 'call_id': 'unknown_call'} if item['type'] == 'function_call_output' else item for item in valid['input']]},
+            {**valid, 'input': valid['input'] + [{'type': 'reasoning', 'encrypted_content': 'forbidden'}]},
+        ]
+        for candidate in cases:
+            with self.subTest(candidate=candidate):
+                with self.assertRaises(self.m.RelayError):
+                    self.m.prepare_request(json.dumps(candidate).encode(), profile(), 8192)
+
+    def test_prerecord_rejections_are_immutable_private_and_bound_to_each_lease(self):
+        self.start()
+        secret = 'private-rejected-payload-marker'
+        request = {'model': 'deepseek-flash', 'input': secret, 'stream': True, secret: secret}
+        wire = json.dumps(request).encode()
+        old_token = self.relay.local_token
+        released = threading.Event()
+        release = self.relay._release
+        def observe_release(lease):
+            release(lease)
+            released.set()
+        self.relay._release = observe_release
+        self.assertEqual(self.post(request)[0], 400)
+        self.assertTrue(released.wait(timeout=2), 'handler must release its real lease before activation')
+        self.relay.activate(scope_id='scope-2', component='compaction', checkpoint_sha256='c' * 64,
+            deadline=time.monotonic() + 30)
+        self.assertEqual(self.post(request, token=old_token)[0], 401)
+        self.assertEqual(self.post(request)[0], 400)
+        files = sorted((Path(self.temp.name) / 'relay/rejections').glob('*.json'))
+        self.assertEqual(len(files), 2)
+        rows = [json.loads(path.read_text()) for path in files]
+        self.assertEqual([(row['scope_id'], row['component'], row['checkpoint_sha256'], row['epoch'])
+            for row in rows], [('scope-1', 'reader', 'b' * 64, 1), ('scope-2', 'compaction', 'c' * 64, 2)])
+        for path, row in zip(files, rows):
+            self.assertEqual(stat.S_IMODE(path.stat().st_mode), 0o600)
+            self.assertEqual(row['error_code'], 'unsupported_request_fields')
+            self.assertEqual(row['request_bytes_received'], len(wire))
+            self.assertEqual(row['request_bytes_sha256'], hashlib.sha256(wire).hexdigest())
+            self.assertTrue(row['request_body_complete'])
+            self.assertIs(row['provider_dispatch_started'], False)
+            with self.assertRaises(FileExistsError):
+                self.relay._write_immutable(str(path.relative_to(self.relay.output)), {'overwrite': True})
+        audit = ''.join(path.read_text() for path in self.relay.output.rglob('*.json'))
+        for private in (secret, old_token, self.relay.local_token, 'offline-provider-fixture-secret'):
+            self.assertNotIn(private, audit)
+        self.assertEqual(self.relay.records, [])
+        self.assertEqual(self.credentials + self.admissions + self.calls + self.completions, [])
+        self.assertEqual(self.relay.scope_states['scope-1']['dispatches'], 0)
+
+    def test_header_and_partial_body_rejections_count_only_actually_read_bytes(self):
+        self.start()
+        target = urllib.parse.urlsplit(self.relay.base_url)
+        connection = http.client.HTTPConnection(target.hostname, target.port, timeout=5)
+        try:
+            connection.request('POST', '/responses', body=b'private-unread-body', headers={
+                'Authorization': 'Bearer ' + self.relay.local_token, 'Content-Type': 'text/plain'})
+            response = connection.getresponse()
+            self.assertEqual(response.status, 400)
+            response.read()
+        finally:
+            connection.close()
+        # Real truncated local HTTP body: Content-Length is a promise, not an observation.
+        partial = b'{"private":"partial'
+        with socket.create_connection((target.hostname, target.port), timeout=5) as connection:
+            header = ('POST /responses HTTP/1.1\r\nHost: localhost\r\nAuthorization: Bearer ' +
+                self.relay.local_token + '\r\nContent-Type: application/json\r\nContent-Length: 100\r\n\r\n').encode()
+            connection.sendall(header + partial)
+            connection.shutdown(socket.SHUT_WR)
+            while connection.recv(65536):
+                pass
+        rows = [json.loads(path.read_text()) for path in sorted((self.relay.output / 'rejections').glob('*.json'))]
+        self.assertEqual(len(rows), 2)
+        self.assertEqual(rows[0]['error_code'], 'json_request_required')
+        self.assertEqual(rows[0]['request_bytes_received'], 0)
+        self.assertIsNone(rows[0]['request_bytes_sha256'])
+        self.assertFalse(rows[0]['request_body_complete'])
+        self.assertEqual(rows[1]['error_code'], 'request_body_incomplete')
+        self.assertEqual(rows[1]['request_bytes_received'], len(partial))
+        self.assertEqual(rows[1]['request_bytes_sha256'], hashlib.sha256(partial).hexdigest())
+        self.assertFalse(rows[1]['request_body_complete'])
+        self.assertEqual(self.relay.records, [])
+        self.assertEqual(self.credentials + self.admissions + self.calls + self.completions, [])
+
+    def test_prerecord_callback_failure_has_fixed_code_and_no_exception_text(self):
+        self.start()
+        def broken_counter(text):
+            raise ValueError('private-callback-message')
+        self.relay.token_counter = broken_counter
+        status, body = self.post()
+        self.assertEqual(status, 400)
+        files = list((self.relay.output / 'rejections').glob('*.json'))
+        self.assertEqual(len(files), 1)
+        self.assertEqual(json.loads(files[0].read_text())['error_code'], 'reference_token_measurement_failed')
+        self.assertNotIn(b'private-callback-message', body)
+        self.assertNotIn('private-callback-message', files[0].read_text())
+        self.assertEqual(self.relay.records, [])
+        self.assertEqual(self.credentials + self.admissions + self.calls, [])
 
     def test_completion_receipt_mismatch_withholds_reviewed_body_and_blocks_scope(self):
         def wrong(message, *, scope_id):

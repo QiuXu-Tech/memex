@@ -84,8 +84,11 @@ def codex_flags(base_url, *, profile=None):
     flags = host['codex_overrides'](None, True)
     overrides = {
         'forced_login_method': 'api', 'model': profile['model'], 'model_provider': PROVIDER_ID,
-        'model_reasoning_effort': 'none', 'model_context_window': 1048576,
+        'model_reasoning_effort': 'none', 'model_reasoning_summary': 'none',
+        'model_context_window': 1048576,
         'model_auto_compact_token_limit': 200000,
+        'tools.experimental_request_user_input.enabled': False,
+        'tools.update_plan.enabled': False,
         'features.remote_models': False, 'features.responses_websockets': False,
         'features.responses_websockets_v2': False, 'features.unbounded_connection_retries': False,
         'model_providers.' + PROVIDER_ID + '.name': 'P1 scoped DeepSeek relay',
@@ -124,4 +127,9 @@ def host_environment(local_token, environ=None):
     allowed = ('PATH', 'HOME', 'LANG', 'LC_ALL', 'TZ', 'TMPDIR', 'SYSTEMROOT')
     result = {key: source[key] for key in allowed if key in source}
     result['MEMEX_P1_RELAY_TOKEN'] = local_token
+    # The pinned reqwest path reads macOS proxy endpoints but not the system
+    # exception list. Keep the local relay local without importing proxy URLs,
+    # user bypass lists, or changing Codex/system proxy policy.
+    result['NO_PROXY'] = '127.0.0.1,localhost'
+    result['no_proxy'] = '127.0.0.1,localhost'
     return result
