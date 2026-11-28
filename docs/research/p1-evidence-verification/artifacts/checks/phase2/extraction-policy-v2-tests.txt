@@ -1,0 +1,23 @@
+✔ automatic extraction sees only observable input and validates a grounded proposal (2.038903ms)
+✔ gold fields never reach the extractor, including innocuous-looking unknown keys (0.819924ms)
+✔ source IDs and hidden event positions cannot be returned as claim hints (0.782489ms)
+✔ hallucinated grounding, missing actor and malformed model output are counted failures (0.622003ms)
+✔ empty extraction does not assert that all hidden obligations were covered (0.541626ms)
+✔ a null model response is retained as an extraction failure (0.261064ms)
+✔ real execution, live binding, archive and unchanged reuse form one persistent broker session (498.231128ms)
+✔ the execution broker refuses source bytes outside the approved development program set (8.15393ms)
+✔ public tool dispatcher cannot invoke controller operations or accept arbitrary paths (8.976417ms)
+✔ unknown or empty model claims cannot silently become a successful verification packet (19.911871ms)
+✔ broker refuses used session state instead of restarting its sequence and budgets (113.577428ms)
+✔ current-only extraction rejects historical requests, altered inputs and consumed preparations (28.292272ms)
+✔ starting a new extraction invalidates the previous installed proposals (193.512341ms)
+✔ combined delivery budget is checked and does not silently truncate original evidence (159.22759ms)
+✔ simulated decisions are recorded as attempts without the broker declaring their correctness (6.234402ms)
+ℹ tests 15
+ℹ suites 0
+ℹ pass 15
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 1173.884561

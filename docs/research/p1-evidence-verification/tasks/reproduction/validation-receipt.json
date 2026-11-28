@@ -1,0 +1,120 @@
+{
+  "kind": "reproduction_artifact_consistency_only",
+  "checked_at": "2026-11-28T00:49:13.899428+00:00",
+  "passed": 28,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "pallets__flask-5014 base exited with real test failure",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 fixed exited zero",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 exact official f2p at base",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 official normalized labels covered",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 fixed blobs equal upstream",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 unchanged test patch between phases",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 no agent/gold annotation claim",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 no network isolation overclaim",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 base junit counts agree",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 base clears environment and no proxy",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 base stdout/stderr retained",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 fixed junit counts agree",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 fixed clears environment and no proxy",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 fixed stdout/stderr retained",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 base exited with real test failure",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 fixed exited zero",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 exact official f2p at base",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 official normalized labels covered",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 fixed blobs equal upstream",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 unchanged test patch between phases",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 no agent/gold annotation claim",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 no network isolation overclaim",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 base junit counts agree",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 base clears environment and no proxy",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 base stdout/stderr retained",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 fixed junit counts agree",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 fixed clears environment and no proxy",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 fixed stdout/stderr retained",
+      "passed": true
+    }
+  ]
+}

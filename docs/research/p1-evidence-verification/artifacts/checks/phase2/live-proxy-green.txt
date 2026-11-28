@@ -1,0 +1,13 @@
+test_current_decision_cannot_cite_a_passing_receipt_for_old_bytes (test_paper1_live_host.NativeIntegrationBoundaryTests.test_current_decision_cannot_cite_a_passing_receipt_for_old_bytes) ... ok
+test_earlier_wrong_attempt_is_not_erased_by_later_right_decision (test_paper1_live_host.NativeIntegrationBoundaryTests.test_earlier_wrong_attempt_is_not_erased_by_later_right_decision) ... ok
+test_expired_wall_deadline_stops_before_a_new_protocol_wait (test_paper1_live_host.NativeIntegrationBoundaryTests.test_expired_wall_deadline_stops_before_a_new_protocol_wait) ... ok
+test_requested_model_must_be_explicit_and_offered (test_paper1_live_host.NativeIntegrationBoundaryTests.test_requested_model_must_be_explicit_and_offered) ... ok
+test_controller_operations_are_not_exposed_as_model_tools (test_paper1_live_host.PublicProxyTests.test_controller_operations_are_not_exposed_as_model_tools) ... ok
+test_initialization_requires_no_broker_or_model_call (test_paper1_live_host.PublicProxyTests.test_initialization_requires_no_broker_or_model_call) ... ok
+test_public_calls_have_a_fixed_controller_operation (test_paper1_live_host.PublicProxyTests.test_public_calls_have_a_fixed_controller_operation) ... ok
+test_unknown_protocol_method_does_not_reach_broker (test_paper1_live_host.PublicProxyTests.test_unknown_protocol_method_does_not_reach_broker) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.000s
+
+OK

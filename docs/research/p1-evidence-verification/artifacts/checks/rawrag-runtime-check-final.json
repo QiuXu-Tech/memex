@@ -1,0 +1,81 @@
+{
+  "kind": "offline_dependency_runtime_check",
+  "status": "passed",
+  "checked_at_utc": "2026-11-27T17:33:08.488087+00:00",
+  "model_requests": 0,
+  "provider_billing": null,
+  "python": "3.12.14",
+  "environment_files_read": false,
+  "real_credentials_read": false,
+  "proxy_configuration_changed": false,
+  "provider_credential_variables_present": {
+    "embedding": false,
+    "reranker": false
+  },
+  "formal_baseline_executed": false,
+  "performance_pilot_completed": false,
+  "requirements_sha256": "9756c03efe4ea45289fc86a4a9b272873fbcd30a9443a8853ff39aaea73f577a",
+  "script_sha256": "cbbfa7cbe07e9a725077739efbf5096d7e7a7811378f600f543fcddc6349e582",
+  "upstream": {
+    "commit": "95639191e9547219b426710e50fe1a36235e26fc",
+    "source_files_verified": 9,
+    "tracked_worktree_clean": true
+  },
+  "config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+  "dependencies": {
+    "available": true,
+    "missing": [],
+    "python": "3.12.14",
+    "python_supported": true,
+    "modules": {
+      "openai": {
+        "available": true,
+        "version": "3.60.0"
+      },
+      "yaml": {
+        "available": true,
+        "version": "6.0.4"
+      },
+      "rich": {
+        "available": true,
+        "version": "15.0.0"
+      },
+      "tqdm": {
+        "available": true,
+        "version": "4.70.1"
+      },
+      "tiktoken": {
+        "available": true,
+        "version": "0.14.0"
+      }
+    }
+  },
+  "tokenizer": {
+    "encoding": "cl100k_base",
+    "data_url": "https://openaipublic.blob.core.windows.net/encodings/cl100k_base.tiktoken",
+    "cache_key": "9b5ad71b2ce5302211f9c61530b329a4922fc6a4",
+    "data_sha256": "223921b76ee99bde995b7ff738513eef100fb51d18c93597a113bcffe865b2a7",
+    "model": "gpt-4",
+    "n_vocab": 100277,
+    "known_fixture_ids": [
+      15339,
+      1917
+    ],
+    "word_fallback": false
+  },
+  "official_adapter_constructed": true,
+  "transport": {
+    "class": "openai._base_client.AsyncHttpxClientWrapper",
+    "request_hook_attached": true,
+    "response_hook_attached": true,
+    "rerank_wrapper_attached": true,
+    "sdk_max_retries": 0,
+    "follow_redirects": false,
+    "hooks_exercised_over_http": false
+  },
+  "client_endpoints": "loopback_only_unused",
+  "dispatch_observations": 0,
+  "network_attempts_blocked": 0,
+  "environment_file_accesses_blocked": 0,
+  "forbidden_method_calls": []
+}

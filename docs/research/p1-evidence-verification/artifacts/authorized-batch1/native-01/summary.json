@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "kind": "live_native_evidence_integration",
+  "split": "development",
+  "confirmatory": false,
+  "independent_workflows": 1,
+  "checkpoints": 2,
+  "requested_model": "gpt-5.6-sol",
+  "model_turns_started": 1,
+  "compactions_started": 0,
+  "compactions": [],
+  "turns": [
+    {
+      "phase": "prelude",
+      "category": "prelude",
+      "status": "started",
+      "thread_id": "01a22048-8832-7663-9138-56b37f0e020f",
+      "prompt_sha256": "0eeefef682d306aa6fe9765e2c1c034af7d4c8cd4ecd9e7991b136e9aab91b38",
+      "turn_id": "01a22048-88cf-7351-b07f-f37e89577d92"
+    }
+  ],
+  "extractions": [],
+  "host_traces": [
+    {
+      "label": "main-host",
+      "events": "main-host/events.jsonl",
+      "stderr": "main-host/host.stderr",
+      "usage_notifications": [],
+      "status": "closed"
+    }
+  ],
+  "status": "blocked_or_failed",
+  "actual_spend": null,
+  "standardized_cost": null,
+  "cost_completeness": "unmeasured_provider_billing_and_compaction_semantics",
+  "execution_producer": "p1_live_process_broker",
+  "execution_delivery": "native MCP tool result; not a native shell commandExecution",
+  "approval_mode": "prior_chat_authorization",
+  "approval_grant_reference": {
+    "authorization_sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+    "attempt_id": "native-01",
+    "reservation_sha256": "beeb9c00cfbbf71bd75e42f8396d0ce209513509a16412f9922110a98950d92a"
+  },
+  "source_sha256": {
+    "live-broker.mjs": "9585de000b1988606af0c2367679be3385750991cadb21df14eee09e81bcfb66",
+    "live-state.mjs": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a",
+    "live_mcp.py": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a",
+    "native_live.py": "03478e962bf5f7a9757762b17d42afbd7f4a92cad0c9477fb246eb4f7c80a544"
+  },
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "elapsed_seconds": 125.47339550000015,
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "model": "gpt-6-astra",
+      "displayName": "GPT-6-Astra",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    }
+  ],
+  "thread_id": "01a22048-8832-7663-9138-56b37f0e020f",
+  "error": {
+    "type": "TimeoutError",
+    "message": "host timeout during prelude"
+  },
+  "usage_notifications": {
+    "main": [],
+    "interpretation": "Raw notifications only; total/last/compaction billing has not been reconciled."
+  },
+  "metrics": {
+    "broker": {
+      "publicCalls": 0,
+      "testExecutions": 0,
+      "verifierCalls": 0,
+      "directModelDispatches": 0
+    },
+    "live": {
+      "captures": 0,
+      "filesRead": 0,
+      "bytesRead": 0,
+      "directoryReads": 0,
+      "viewReads": 0,
+      "bindingSearches": 0,
+      "bindingOpens": 0,
+      "bindingBytes": 0,
+      "delegatedSearches": 0,
+      "delegatedOpens": 0
+    }
+  }
+}

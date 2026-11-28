@@ -1,0 +1,16 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "test",
+    "-p",
+    "test_paper1_taskpack.py",
+    "-v"
+  ],
+  "returncode": 1,
+  "stage": "source qualification not yet bound to actual reproduced base/fix receipt"
+}

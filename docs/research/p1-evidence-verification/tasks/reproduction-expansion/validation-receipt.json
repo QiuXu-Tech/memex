@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "kind": "driver_contract_tests_not_research_results",
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "test/test_paper1_reproduce_sources.py",
+    "-v"
+  ],
+  "returncode": 0,
+  "tests_passed": 17,
+  "test_file_sha256": "7b61d790304f7c1ed216fa9e863590e2f4c0db7b305ba1f29d657df95a9893e8",
+  "driver_sha256": "cf135491d93240c7c246336c061b4fe3c106591103d04dec9a0ff70bfeb7cca8",
+  "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "stderr_sha256": "e05faefc0b8e640c2b31b7fe88e8658da5f2a7ed7848c87ea00a2670307be3e4",
+  "red_observations_before_corresponding_implementations": [
+    "Initial FileNotFoundError for absent driver implementation",
+    "Parser fixture constant FLAG raised NameError before module assignment AST was retained",
+    "Path traversal acceptance, missing bounded setup retry helper, and absent synthetic account file: 3 failures before fixes",
+    "Missing transition_checks helper: failed before FAILED/ERROR regression rule implementation"
+  ],
+  "red_observation_source": "Actual tool-run outputs during development; this list is an observation summary, not an invented raw test transcript.",
+  "model_requests": 0
+}

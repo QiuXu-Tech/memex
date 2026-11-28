@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "status": "DEVELOPMENT_RECORD_SYNC_NOT_READY",
+  "baseline_git_revision": "e34375853aa6581ba91b1ba65703555020946445",
+  "scope": [
+    "Section 5.3 ordinary approval protocol and bounded native attempt observations",
+    "Section 5.4 separate clean public-base test preparation",
+    "Appendix C provenance rows",
+    "Derived document build and QA records"
+  ],
+  "unchanged_checks": {
+    "abstract_unchanged": true,
+    "formal_results_unchanged": true,
+    "limitations_through_conclusion_unchanged": true,
+    "pending_56": true,
+    "references_16": true
+  },
+  "evidence_inputs": [
+    {
+      "path": "artifacts/authorized-batch1/observations.json",
+      "sha256": "6cb00444d1c103abfaf3a871e5ba61b544adf51a3aeff9fa976328db5ecb5187"
+    },
+    {
+      "path": "artifacts/authorized-batch1/native-01/summary.json",
+      "sha256": "90941e2be0259e44cc355019cb6b1ec28d9bbc99fb669a4c3a92eedb99cefee9"
+    },
+    {
+      "path": "artifacts/authorized-batch1/native-02/summary.json",
+      "sha256": "4f12c067699747763332728c911dc8a69a2023925115464d4573e50410d56698"
+    },
+    {
+      "path": "artifacts/authorized-batch1/native-02/usage-audit.json",
+      "sha256": "4329a5abbbe05127d5100ee9a611fecd9243f9e21c26182dac475bb3631c7d72"
+    },
+    {
+      "path": "artifacts/authorized-batch1/approval-protocol/manifest.json",
+      "sha256": "2a83538c89234a84091a4fd57a93e90de70895f93aaba8baca2d9a86e3b433d7"
+    },
+    {
+      "path": "artifacts/authorized-batch1/python-workflows/summary.json",
+      "sha256": "a925a03d5b187f06201852a066a0e39fb388bdf8a3a11aa79a79e77eb02e9b2c"
+    }
+  ],
+  "canonical_source_sha256": "d1b46b6e2f105664ed3294e6ac10eb5e6fd785b8cffc52e0f57faf1df1e6fc22",
+  "canonical_pdf_sha256": "0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95",
+  "review_pdf_sha256": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
+  "formal_effect_results_added": false,
+  "human_review_claimed": false,
+  "scientific_readiness": "NOT_READY",
+  "submission_action_performed": false,
+  "checked_at_utc": "2026-11-28T04:12:29.622309+00:00"
+}

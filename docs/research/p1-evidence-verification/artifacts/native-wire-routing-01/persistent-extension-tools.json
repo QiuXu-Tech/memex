@@ -1,0 +1,343 @@
+{
+  "schema_version": 1,
+  "kind": "p1-persistent-extension-tool-catalog-diagnosis",
+  "checked_date_utc": "2026-11-28",
+  "observed_facts_reported_by_canonical_controller": {
+    "source": "Root agent reports from the retained canonical w-101 replicate 2 execution and separate zero-thread, zero-turn configuration inspection.",
+    "task_id": "w-101",
+    "replicate": 2,
+    "relay_source_sha256": "9ba2c41ff0a6f9a1120dfc4a6d616f1200ca17c95864d1149fa296040adbe067",
+    "request_bytes_received": 39739,
+    "error_code": "server_or_unknown_tools_forbidden",
+    "rejection_stage": "before_api_record_creation",
+    "provider_dispatch_started": false,
+    "provider_dispatches": 0,
+    "method_units_reserved": 0,
+    "remaining_supplemental_native_grants": 2,
+    "canonical_journal_events": 12,
+    "held_cash_upper_bound_cny": "9.40",
+    "actual_added_cash_cny": null,
+    "request_body_retained": false,
+    "actual_rejected_tool_names_observed": false,
+    "config_inspection": {
+      "threads_started": 0,
+      "turns_started": 0,
+      "mcp_config_entries": 9,
+      "mcp_enabled_entries": 0,
+      "goals_effective_enabled": true,
+      "goals_raw_override_present": false,
+      "sleep_tool_effective_enabled": true,
+      "sleep_mode_raw": null,
+      "current_time_reminder_effective_enabled": false,
+      "token_budget_effective_enabled": false,
+      "request_permissions_tool_effective_enabled": false,
+      "shell_tool_effective_enabled": false,
+      "unified_exec_effective_enabled": true,
+      "apps_plugins_browser_code_mode_image_view_multi_agent_effective_enabled": false,
+      "caveat": "ToolsV2 config/read projection omits legacy plan and interactive flags; a null projection does not establish that the flags were ignored."
+    }
+  },
+  "source_inference": {
+    "fixed_codex_commit": "41e22fee981a63b3698df7ed36bad393cda24715",
+    "distinction": "The rejected wire body was intentionally not retained. The following catalog entries are derived from official source and reported effective configuration; they are not names observed in that discarded wire request.",
+    "goal_gate": "app-server extensions installs GoalExtension when state_db exists and maps Feature::Goals to enabled; goals defaults true.",
+    "persistent_thread_gate": "Goal tools require enabled and persistent_thread_state_available, and exclude only SubAgent Review. NativeBackend starts a persistent non-ephemeral root thread.",
+    "source_defined_extra_goal_functions": [
+      "get_goal",
+      "create_goal",
+      "update_goal"
+    ],
+    "conclusion": "The default-on persistent goal extension is a source-supported explanation for additional tools. The new explicit false closes it without permitting extra tools at the relay.",
+    "remaining_environment_condition": "Goal availability additionally requires the host's persistent state backend. The precise discarded request catalog cannot be reconstructed from its byte count or hash.",
+    "disabled_mcp_entries": "McpBinding.has_servers delegates to connections; connection_manager populates servers only from enabled entries. Disabled entries alone do not expose resource tools."
+  },
+  "extension_catalog_review": [
+    {
+      "extension": "goal",
+      "registration": "ToolContributor",
+      "gate": "Feature::Goals and persistent non-review thread",
+      "action": "Explicit features.goals=false."
+    },
+    {
+      "extension": "history-notes",
+      "registration": "ToolContributor",
+      "gate": "token_budget.use_history_notes_extension AND provider.is_openai AND Codex-backend auth",
+      "action": "Fixed custom provider excludes it; token_budget explicitly false."
+    },
+    {
+      "extension": "memories",
+      "registration": "ToolContributor",
+      "gate": "Feature::MemoryTool (key memories) AND memories.use_memories AND dedicated_tools",
+      "action": "Existing features.memories=false."
+    },
+    {
+      "extension": "hosted MCP",
+      "registration": "McpServerContributor",
+      "gate": "Feature::Apps",
+      "action": "Existing features.apps=false; root independently reported all nine configured MCP entries disabled."
+    },
+    {
+      "extension": "executor-plugin MCP",
+      "registration": "McpServerContributor",
+      "gate": "Ready selected capability roots",
+      "action": "Native host supplies no selected capability roots; orchestrator.mcp.enabled explicitly false."
+    },
+    {
+      "extension": "web-search",
+      "registration": "ToolContributor",
+      "gate": "Supported provider and web_search not disabled; core also checks provider capability",
+      "action": "Existing web_search=disabled and custom provider supports_standalone_web_search=false."
+    },
+    {
+      "extension": "image-generation",
+      "registration": "ToolContributor",
+      "gate": "OpenAI/auth-compatible provider then core image capability and feature checks",
+      "action": "Fixed custom provider and existing features.image_generation=false."
+    },
+    {
+      "extension": "skills",
+      "registration": "ToolContributor",
+      "gate": "Orchestrator provider AND eligible environment AND orchestrator.skills.enabled, OR selected executor roots",
+      "action": "Explicit orchestrator.skills.enabled=false; native host supplies no selected executor roots. skip_host_skill_discovery and skill_search are independent gates."
+    },
+    {
+      "extension": "queue",
+      "registration": "ThreadLifecycleContributor",
+      "gate": "Queue service",
+      "action": "No model ToolContributor registration."
+    },
+    {
+      "extension": "git-attribution",
+      "registration": "PromptContributor",
+      "gate": "Attribution policy",
+      "action": "No model ToolContributor registration."
+    },
+    {
+      "extension": "guardian-v2",
+      "registration": "Thread lifecycle, approval review, skill invocation and tool lifecycle contributors",
+      "gate": "Guardian policy",
+      "action": "No model ToolContributor registration."
+    }
+  ],
+  "core_catalog_review": {
+    "source": "codex-rs/core/src/tools/spec_plan.rs",
+    "shell": "Returns before registration when ShellTool is false, even if UnifiedExec is forced true.",
+    "plan_and_interactive": "Existing tools.update_plan.enabled=false and tools.experimental_request_user_input.enabled=false suppress their registration.",
+    "mcp_resources": "Only when enabled connection set is nonempty; reported zero enabled MCP entries excludes this route.",
+    "utility_new_explicit_false": [
+      "sleep_tool",
+      "deferred_executor",
+      "request_permissions_tool",
+      "token_budget",
+      "current_time_reminder"
+    ],
+    "code_mode_new_explicit_false": "code_mode_only is distinct from code_mode and from removed js_repl_tools_only.",
+    "model_gated": "Fallback model_info has no apply_patch_tool_type, no experimental_supported_tools, no supports_search_tool, no tool_mode and no multi_agent_version overrides.",
+    "collaboration": "Existing multi_agent/multi_agent_v2 and collab false gates retained.",
+    "dynamics": "The five explicitly supplied public functions remain flat and unchanged.",
+    "relay": "Exact five-tool whitelist and namespace rejection remain unchanged."
+  },
+  "changed_files": [
+    {
+      "path": "scripts/paper1/reader_profile.py",
+      "sha256": "0521caff5cb731f7918bc56b0c11148e1fa66f85c9d7b2ae4d7160e6480e54c5"
+    },
+    {
+      "path": "test/test_paper1_reader_profile.py",
+      "sha256": "e48b0ab553d8b0ed69ed6922305491d141a15fe18fa841b47b9d7e297f3376e9"
+    }
+  ],
+  "unchanged": {
+    "relay_source_sha256": "9ba2c41ff0a6f9a1120dfc4a6d616f1200ca17c95864d1149fa296040adbe067",
+    "profile_json": true,
+    "authorization": true,
+    "grant": true,
+    "price_evidence": true,
+    "original_budget": true,
+    "relay_whitelist": true,
+    "prior_wire_proof": true
+  },
+  "validation": {
+    "new_tests": 3,
+    "red": {
+      "tests": 3,
+      "subtest_failures": 10,
+      "errors": 0
+    },
+    "green": {
+      "reader_tests": 13,
+      "relay_tests": 22,
+      "failures": 0,
+      "errors": 0
+    },
+    "fixture_scope": "Reader flags and actual loopback relay with in-memory upstream only; no new Codex thread or provider call.",
+    "source_gated_configuration_is_not_live_wire_capture": true
+  },
+  "actions_by_this_subtask": {
+    "mac_operations": 0,
+    "native_threads_started": 0,
+    "model_turns": 0,
+    "provider_dispatches": 0,
+    "credential_contents_read": 0,
+    "canonical_ledger_calls": 0,
+    "reservations": 0
+  },
+  "sources": [
+    {
+      "path": "codex-rs/app-server/src/extensions.rs",
+      "git_blob": "929eab5392eabd6c06a3c723060232db7203f597",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/app-server/src/extensions.rs"
+    },
+    {
+      "path": "codex-rs/features/src/lib.rs",
+      "git_blob": "fdeae5c6f52a3223df6759af9a2d3b4e4e2364dc",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/features/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/core/src/config/mod.rs",
+      "git_blob": "dca329ab98ea218f7b96f1bd2d4cf25612a5fc1f",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/config/mod.rs"
+    },
+    {
+      "path": "codex-rs/config/src/config_toml.rs",
+      "git_blob": "5f0cc99a4740803805791250d7e87332673c6d85",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/config/src/config_toml.rs"
+    },
+    {
+      "path": "codex-rs/ext/goal/src/extension.rs",
+      "git_blob": "89848996fa8287503980d9ecd0d426861f803c44",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/goal/src/extension.rs"
+    },
+    {
+      "path": "codex-rs/ext/goal/src/runtime.rs",
+      "git_blob": "84fa4204ba41947d2d7ea638d94183b87b8d547d",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/goal/src/runtime.rs"
+    },
+    {
+      "path": "codex-rs/ext/goal/src/spec.rs",
+      "git_blob": "6b97a24e9cdbf6a59ff965d7d8473bf4e12b9048",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/goal/src/spec.rs"
+    },
+    {
+      "path": "codex-rs/core/src/tools/spec_plan.rs",
+      "git_blob": "908bb143afcbe3b8f0523ce5c3406c7b8c443603",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tools/spec_plan.rs"
+    },
+    {
+      "path": "codex-rs/core/src/tools/mod.rs",
+      "git_blob": "ff1b6d063d5a8431c40a9b9c1a2f89be200455a0",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tools/mod.rs"
+    },
+    {
+      "path": "codex-rs/ext/skills/src/extension.rs",
+      "git_blob": "e2400b9db4694cd6d13d177b485b530aa281e30d",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/skills/src/extension.rs"
+    },
+    {
+      "path": "codex-rs/ext/skills/src/tools/mod.rs",
+      "git_blob": "22bac2bce9ac89c4651b1c9461e29e3c6407822c",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/skills/src/tools/mod.rs"
+    },
+    {
+      "path": "codex-rs/codex-mcp/src/binding.rs",
+      "git_blob": "4fbe33a4334c2fb93c6d8112392eb5c84cad76e4",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/codex-mcp/src/binding.rs"
+    },
+    {
+      "path": "codex-rs/codex-mcp/src/connection_manager.rs",
+      "git_blob": "f6d0c7ec703d04317e94ca6a860121b11e8a595d",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/codex-mcp/src/connection_manager.rs"
+    },
+    {
+      "path": "codex-rs/ext/queue/src/lib.rs",
+      "git_blob": "47fa50459533bac84a4c17dd96fb10eb684655d5",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/queue/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/history-notes/src/lib.rs",
+      "git_blob": "06cc5ed8f000880db51aa4a6b1ceef2b0647f545",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/history-notes/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/history-notes/src/extension.rs",
+      "git_blob": "4d3e4e24f29e0cf5631d4e9fbad8848440dc7902",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/history-notes/src/extension.rs"
+    },
+    {
+      "path": "codex-rs/ext/memories/src/lib.rs",
+      "git_blob": "25120c7a3aeb1b8d10fe0b5c9727a65bbe0072fe",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/memories/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/memories/src/extension.rs",
+      "git_blob": "c383a7e65559a366f4f8dfb6168ba3367bcbd4ce",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/memories/src/extension.rs"
+    },
+    {
+      "path": "codex-rs/ext/mcp/src/lib.rs",
+      "git_blob": "2e9d011c83b7fccdf7bf61563fe2790e0c070f66",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/mcp/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/web-search/src/lib.rs",
+      "git_blob": "1b18039e4921c419a2c744efb5a121286542274e",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/web-search/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/web-search/src/extension.rs",
+      "git_blob": "a1a66471cfbf8b808d7f5bb952bf88cdf848ccf7",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/web-search/src/extension.rs"
+    },
+    {
+      "path": "codex-rs/ext/image-generation/src/lib.rs",
+      "git_blob": "fd9db419309e5b06acb944a553f5ef144c8a261d",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/image-generation/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/image-generation/src/extension.rs",
+      "git_blob": "551e14fd891d518f1d7662db96398d2a47a0719b",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/image-generation/src/extension.rs"
+    },
+    {
+      "path": "codex-rs/ext/skills/src/lib.rs",
+      "git_blob": "b3fdc291b9041c470c3e647a720e2e4d0e172f47",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/skills/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/mcp/src/executor_plugin.rs",
+      "git_blob": "daa655b05074cebe9ec95ac02ba903df62a1051d",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/mcp/src/executor_plugin.rs"
+    },
+    {
+      "path": "codex-rs/ext/git-attribution/src/lib.rs",
+      "git_blob": "a0a3e4dcbf46eb7c72477b35b720d9314af75c77",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/git-attribution/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/guardian-v2/src/lib.rs",
+      "git_blob": "66d661844a88bf2620130532543d233c9f9b4707",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/guardian-v2/src/lib.rs"
+    },
+    {
+      "path": "codex-rs/ext/guardian-v2/src/async_scorer/extension.rs",
+      "git_blob": "8558577f5d7bc78a75dfdace997184d3a38baea7",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/guardian-v2/src/async_scorer/extension.rs"
+    },
+    {
+      "path": "codex-rs/ext/guardian-v2/src/sync_reviewer/mod.rs",
+      "git_blob": "7618afaaac6c67a4bd874eb938d1992e15c67b79",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/guardian-v2/src/sync_reviewer/mod.rs"
+    },
+    {
+      "path": "codex-rs/ext/skills/src/state.rs",
+      "git_blob": "bb1361132067978f3a45fd5b59178ed72f2e560e",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/ext/skills/src/state.rs"
+    }
+  ],
+  "limitations": [
+    "No new native grant may be described as successful on the basis of these tests.",
+    "The original 39739-byte rejection remains a failed native preparation with zero provider dispatches.",
+    "No statement here identifies the exact tool names in the discarded wire body.",
+    "The new reader implementation must be deployed and its zero-turn effective configuration verified before a separately authorized execution."
+  ]
+}

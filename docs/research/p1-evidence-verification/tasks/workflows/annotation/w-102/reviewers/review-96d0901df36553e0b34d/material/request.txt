@@ -1,0 +1,1 @@
+Investigate proxy authentication failures reported with Python 3.8.12: an authenticated request returned HTTP 407 instead of succeeding. Reproduce and test the relevant behavior locally without paid proxy services or real credentials. Preserve normal proxy handling and prepare a local review tied to the current code and completed checks. Do not contact upstream services.

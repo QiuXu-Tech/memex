@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "implementation": "official-rawrag-retrieval-p1-adapter-v1",
+  "upstream": {
+    "repository": "https://github.com/Litmeb/RAW-RAG",
+    "commit": "95639191e9547219b426710e50fe1a36235e26fc"
+  },
+  "retrieval": {
+    "strategy": "token",
+    "chunk_size": 256,
+    "chunk_overlap": 32,
+    "tokenizer_model": "gpt-4",
+    "tokenizer_encoding": "cl100k_base",
+    "embedding_top_k": 128,
+    "rerank_top_k": 15,
+    "expand_turns_on_display": true,
+    "dedup_turns_on_display": false,
+    "sort_selected_chunks_by_time": false,
+    "dynamic_top_k": false,
+    "query_policy": "original_request"
+  },
+  "models": {
+    "embedding": {
+      "model": "text-embedding-3-small",
+      "base_url": "https://api.openai.com/v1",
+      "api_key_env": "VECTORIZE_API_KEY",
+      "batch_size": 128
+    },
+    "reranker": {
+      "model": "rerank-v3.5",
+      "base_url": "https://api.cohere.com",
+      "endpoint": "/v2/rerank",
+      "api_key_env": "RERANK_API_KEY"
+    }
+  },
+  "display": {
+    "default_mode": "faithful",
+    "budget_matched_tokens": 5000,
+    "policy": "expanded-token-prefix-with-marker-v1"
+  },
+  "limits": {
+    "max_sessions": 1,
+    "max_events": 1000,
+    "max_archive_bytes": 1048576,
+    "max_source_text_bytes": 240000,
+    "max_request_bytes": 16384,
+    "max_raw_input_tokens": 65000,
+    "max_processed_input_tokens": 300000,
+    "max_http_dispatches": 16,
+    "max_session_seconds": 180,
+    "max_output_tokens": 64000,
+    "max_response_bytes": 8388608
+  },
+  "runtime": {
+    "sdk_max_retries": 0,
+    "adapter_max_retries": 3,
+    "request_timeout_seconds": 30,
+    "sample_workers": 1
+  }
+}

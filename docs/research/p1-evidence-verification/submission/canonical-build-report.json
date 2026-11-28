@@ -1,0 +1,60 @@
+{
+  "status": "BUILT_WORKING_DRAFT",
+  "canonical_source_sha256": "d1b46b6e2f105664ed3294e6ac10eb5e6fd785b8cffc52e0f57faf1df1e6fc22",
+  "tex_sha256": "4e7e132b5fb2879e02386061b2098ab67e041f7804251322c40ee97fbf053ab0",
+  "pdf_sha256": "0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95",
+  "commands": [
+    [
+      "pandoc",
+      "manuscript.md",
+      "--standalone",
+      "--citeproc",
+      "--from=markdown+raw_tex+tex_math_single_backslash",
+      "--to=latex",
+      "--no-highlight",
+      "--output=manuscript.tex"
+    ],
+    [
+      "xetex",
+      "-ini",
+      "-etex",
+      "-no-shell-escape",
+      "-interaction=nonstopmode",
+      "-halt-on-error",
+      "-jobname=p1-xelatex",
+      "-output-directory=<BUILD_DIR>",
+      "xelatex.ini"
+    ],
+    [
+      "xelatex",
+      "-fmt=<BUILD_DIR>/p1-xelatex.fmt",
+      "-no-shell-escape",
+      "-interaction=nonstopmode",
+      "-halt-on-error",
+      "-file-line-error",
+      "-output-directory=<BUILD_DIR>",
+      "manuscript.tex"
+    ],
+    [
+      "xelatex",
+      "-fmt=<BUILD_DIR>/p1-xelatex.fmt",
+      "-no-shell-escape",
+      "-interaction=nonstopmode",
+      "-halt-on-error",
+      "-file-line-error",
+      "-output-directory=<BUILD_DIR>",
+      "manuscript.tex"
+    ]
+  ],
+  "checks": {
+    "undefined_citations": 0,
+    "missing_characters": 0,
+    "overfull_boxes": 0,
+    "underfull_boxes": 8,
+    "rerun_requests": 0
+  },
+  "log": "build-logs/canonical-final.txt",
+  "pages": 26,
+  "visual_review": "REQUIRED_SEPARATELY",
+  "scientific_readiness": "NOT_READY"
+}

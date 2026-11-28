@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "status": "REBUILT_DOCUMENT_SOURCE_ONLY_NOT_READY",
+  "archive_sha256": "c421382e189a0e0ab3333032998e26263e1d1644f5028223fa1d48b65764288b",
+  "extracted_members": 22,
+  "outside_project_directory": true,
+  "original_project_files_required": false,
+  "commands": [
+    [
+      "python3",
+      "build.py",
+      "--isolated-format",
+      "--texmf",
+      "{/usr/share/texlive/texmf-dist,/usr/share/texmf,/etc/texmf,/var/lib/texmf}",
+      "--font-map",
+      "/usr/share/texmf/fonts/map/dvips/lm/lm.map",
+      "--font-map",
+      "/usr/share/texlive/texmf-dist/fonts/map/dvips/amsfonts/cm.map",
+      "--font-map",
+      "/usr/share/texlive/texmf-dist/fonts/map/dvips/amsfonts/symbols.map",
+      "--keep-build"
+    ]
+  ],
+  "exit_code": 0,
+  "pages": 27,
+  "checks": {
+    "page_count_equal": true,
+    "page_text_equal": true,
+    "page_sizes_equal": true,
+    "all_page_pixels_equal": true
+  },
+  "original_pdf_sha256": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
+  "rebuilt_pdf_sha256": "e6729298cd70d2e08b5b183c35dc42c45abe7ef7f9f1ee9ee7380bdb5880835a",
+  "compiler_checks": {
+    "undefined_citations": 0,
+    "missing_characters": 0,
+    "overfull_boxes": 0,
+    "underfull_boxes": 0,
+    "rerun_requests": 0
+  },
+  "comparison_limit": "Same installed TeX environment; creation metadata may differ. This verifies document reproduction, not an empirical study.",
+  "submitted": false
+}

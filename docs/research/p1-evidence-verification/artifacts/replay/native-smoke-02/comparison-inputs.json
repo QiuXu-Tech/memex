@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "pairedExperiment": false,
+  "snapshots": [
+    {
+      "phase": "prelude",
+      "B_rawrag": {
+        "sourceArchive": "source-archive-prefix.json",
+        "archiveSha256": "9388d76bdd6fbb88531e6a6e379100706523c528a2ed3265bcc75d32738b116f",
+        "originalRequest": "requests/prelude.txt",
+        "requestSha256": "99d7c89dfafa67be59e618ab9ce99e769905cf894fe10a609109f4739d96283d",
+        "execution": "not_run"
+      },
+      "D_typed": {
+        "sourceArchive": "source-archive-prefix.json",
+        "archiveSha256": "9388d76bdd6fbb88531e6a6e379100706523c528a2ed3265bcc75d32738b116f",
+        "originalRequest": "requests/prelude.txt",
+        "requestSha256": "99d7c89dfafa67be59e618ab9ce99e769905cf894fe10a609109f4739d96283d",
+        "execution": "offline_manual_claim_replay_only"
+      }
+    },
+    {
+      "phase": "interleaved_update",
+      "B_rawrag": {
+        "sourceArchive": "source-archive-prefix.json",
+        "archiveSha256": "9388d76bdd6fbb88531e6a6e379100706523c528a2ed3265bcc75d32738b116f",
+        "originalRequest": "requests/interleaved_update.txt",
+        "requestSha256": "b51282e87b11c0b9d7ba984b42ae67bc7059fa012c6323b8558fc188edb14048",
+        "execution": "not_run"
+      },
+      "D_typed": {
+        "sourceArchive": "source-archive-prefix.json",
+        "archiveSha256": "9388d76bdd6fbb88531e6a6e379100706523c528a2ed3265bcc75d32738b116f",
+        "originalRequest": "requests/interleaved_update.txt",
+        "requestSha256": "b51282e87b11c0b9d7ba984b42ae67bc7059fa012c6323b8558fc188edb14048",
+        "execution": "offline_manual_claim_replay_only"
+      }
+    },
+    {
+      "phase": "continuation",
+      "B_rawrag": {
+        "sourceArchive": "source-archive.json",
+        "archiveSha256": "f60642624d0e6d6bf34b845d4000cdc121f12fc7fbb389d4f858910c9457effb",
+        "originalRequest": "requests/continuation.txt",
+        "requestSha256": "08c8eabf3155fc8d6647623a4e121d8dcb336f8b0133c5b1c0d3893019c85ec8",
+        "execution": "not_run"
+      },
+      "D_typed": {
+        "sourceArchive": "source-archive.json",
+        "archiveSha256": "f60642624d0e6d6bf34b845d4000cdc121f12fc7fbb389d4f858910c9457effb",
+        "originalRequest": "requests/continuation.txt",
+        "requestSha256": "08c8eabf3155fc8d6647623a4e121d8dcb336f8b0133c5b1c0d3893019c85ec8",
+        "execution": "offline_manual_claim_replay_only"
+      }
+    }
+  ]
+}

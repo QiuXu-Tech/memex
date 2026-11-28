@@ -1,0 +1,50 @@
+{
+  "binding": {
+    "config_sha256": "c9fa360380f7ba4deace2cb83c70dd0847fce9c5bf592c727c02ff346b0bcfbb",
+    "dependencies_sha256": "6f8cbb6235cf49ac3de828b9fb81c7793f7f0eba9cdbbf771874d2e8d39ca811",
+    "executable_sha256": "7455283df45ef13eaffae9ca3f0063aebf235b1e621e8c95b3609db2e3d7e493",
+    "kernel": "27.3.0",
+    "platform": "darwin",
+    "python_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc"
+  },
+  "checks": {
+    "allowed_read": true,
+    "allowed_write": true,
+    "loopback_connection_denied": true,
+    "private_read_denied": true,
+    "private_write_denied": true
+  },
+  "kind": "actual_os_sandbox_probe",
+  "launch_sha256": "5e135f3894a8047d13c5610e37bca8b0bde5b74e977c1b149a07fee662abf00b",
+  "model_requests": 0,
+  "private_sentinel_unchanged": true,
+  "probe_source_sha256": "344065ff28cf81eb73a1ded06ff8ccc83e135622c8ee637780016ef394cdfa4a",
+  "process": {
+    "elapsed_seconds": 0.049656499999400694,
+    "error": null,
+    "finished_at": "2026-11-28T17:15:59.109476+00:00",
+    "output_complete": true,
+    "output_limit_exceeded": false,
+    "returncode": 0,
+    "signal": null,
+    "spawned": true,
+    "started_at": "2026-11-28T17:15:59.059822+00:00",
+    "stderr": "stderr.raw",
+    "stdout": "stdout.raw",
+    "streams": {
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 198,
+        "sha256": "d0f8a948a447d1134708606b7b3ccb2dd9b1f0ef3deae0d6c6fd36cbc5f45669"
+      }
+    },
+    "timed_out": false
+  },
+  "provider_requests": 0,
+  "real_source_executions": 0,
+  "schema_version": 1,
+  "status": "passed"
+}

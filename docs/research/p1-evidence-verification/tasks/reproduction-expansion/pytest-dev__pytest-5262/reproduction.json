@@ -1,0 +1,450 @@
+{
+  "schema_version": 1,
+  "kind": "source_environment_qualification_only",
+  "candidate_id": "pytest-dev__pytest-5262",
+  "project_id": "pytest-dev/pytest",
+  "recorded_at": "2026-11-28T01:52:44.622972+00:00",
+  "formal_task": false,
+  "model_requests": 0,
+  "official_container_used": false,
+  "docker_equivalence_claimed": false,
+  "source_dataset": {
+    "id": "SWE-bench/SWE-bench_Verified",
+    "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+    "split": "test",
+    "row_index": 333,
+    "canonical_row_sha256": "73c12d33566d494f19f4e05aa671d12aecbc4a5c63f2e5449fbf75c781ea413d",
+    "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+    "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+  },
+  "upstream": {
+    "issue_url": "https://github.com/pytest-dev/pytest/issues/5257",
+    "issue_number": 5257,
+    "issue_title": "_pytest.capture.EncodedFile mode should not include `b` (binary)",
+    "pr_url": "https://github.com/pytest-dev/pytest/pull/5262",
+    "pr_number": 5262,
+    "pr_merged": true,
+    "base_commit": "58e6a09db49f34886ff13f3b7520dd0bcd7063cd",
+    "base_commit_url": "https://github.com/pytest-dev/pytest/commit/58e6a09db49f34886ff13f3b7520dd0bcd7063cd",
+    "fix_commit": "c8f7e50c47cc771142f2681aebf7dd9f86c83853",
+    "fix_commit_kind": "upstream_merge_or_squash_commit",
+    "fix_commit_url": "https://github.com/pytest-dev/pytest/commit/c8f7e50c47cc771142f2681aebf7dd9f86c83853",
+    "fix_parent_commits": [
+      "494ac28a320f9095d0a60d7d9a0158a04d1a09ed",
+      "4318698baeab38a413d8c3684248f95a2fed3979"
+    ],
+    "base_is_fix_first_parent": false,
+    "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+  },
+  "license": {
+    "code_spdx_at_base": "MIT",
+    "code_license_url": "https://raw.githubusercontent.com/pytest-dev/pytest/58e6a09db49f34886ff13f3b7520dd0bcd7063cd/LICENSE",
+    "code_license_file": "licenses/pytest-dev__pytest-4be38574daf0.txt",
+    "code_license_sha256": "4be38574daf05665b6194e4fd84c5ef6ce7c3a2810308a5222d5cdffc2d04d18",
+    "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+    "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+    "dataset_card_license_field": null,
+    "release_scope": "metadata, locators, hashes and unmodified license notices"
+  },
+  "changed_files": {
+    "upstream_pr": [
+      "changelog/5257.bugfix.rst",
+      "src/_pytest/capture.py",
+      "testing/test_capture.py"
+    ],
+    "benchmark_source_patch": [
+      "src/_pytest/capture.py"
+    ],
+    "benchmark_test_patch": [
+      "testing/test_capture.py"
+    ]
+  },
+  "patch_hashes": {
+    "patch": "2dbcd95f7a4bf52ae721d6289d1d4ee68dbb08ada5082e98784a7138fc126428",
+    "test_patch": "7d7d191cf84e7e37f084ce8f22ff5364de7bb44a76053451dd9990198136a939"
+  },
+  "raw_patch_or_label_copy_published": false,
+  "status": "setup_or_acquisition_failure",
+  "commands": [
+    {
+      "phase": "git-init",
+      "started_at": "2026-11-28T01:52:44.623163+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "init",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/repo"
+      ],
+      "timeout_seconds": 359.99999153800036,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.007651027999600046,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-init.stdout.txt",
+        "bytes": 136,
+        "sha256": "4b3ae31ca61a4e59bf240c5b53c8d6faff3c50f274f9e1848ddd61e0bd572e32"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-init.stderr.txt",
+        "bytes": 586,
+        "sha256": "3e70934f1909b0f5a846d62237fcc1509d733b9fb0321187024723dfc67176d3"
+      }
+    },
+    {
+      "phase": "git-origin",
+      "started_at": "2026-11-28T01:52:44.631214+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/repo",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/pytest-dev/pytest.git"
+      ],
+      "timeout_seconds": 359.9919409430004,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.003673550999337749,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-origin.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-origin.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "git-fetch",
+      "started_at": "2026-11-28T01:52:44.635202+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/repo",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "58e6a09db49f34886ff13f3b7520dd0bcd7063cd"
+      ],
+      "timeout_seconds": 359.9879526100003,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 5.078986849999637,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-fetch.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-fetch.stderr.txt",
+        "bytes": 118,
+        "sha256": "e62a27d0c6c9f3139294405eba6e29419a6fa9ed94fbb6b95323a6f3b3e0f2dc"
+      }
+    },
+    {
+      "phase": "git-checkout",
+      "started_at": "2026-11-28T01:52:49.714974+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/repo",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "timeout_seconds": 354.90818402200057,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.032110254999679455,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-checkout.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-checkout.stderr.txt",
+        "bytes": 98,
+        "sha256": "b5d2fad1062c4fd4d660b3a4b45801ccce238c8d19a89a1922ae3271a0f75d1c"
+      }
+    },
+    {
+      "phase": "git-head",
+      "started_at": "2026-11-28T01:52:49.747621+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/repo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "timeout_seconds": 354.875536388,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.003704236999510613,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-head.stdout.txt",
+        "bytes": 41,
+        "sha256": "924c2ee13d40e4b85d3b4e244a3e009f1c0ecedb6dc44edeebf086d5a765ad95"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/git-head.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "create-venv",
+      "started_at": "2026-11-28T01:52:49.751939+00:00",
+      "command": [
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/python/cpython-3.9.21-linux-x86_64-gnu/bin/python3.9",
+        "-m",
+        "venv",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/venv"
+      ],
+      "timeout_seconds": 354.8712159680008,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 2.422503964000498,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/create-venv.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/create-venv.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "install-dependencies",
+      "started_at": "2026-11-28T01:52:52.175168+00:00",
+      "command": [
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/venv/bin/python",
+        "-m",
+        "pip",
+        "--isolated",
+        "install",
+        "--disable-pip-version-check",
+        "--no-cache-dir",
+        "--only-binary=:all:",
+        "--cert",
+        "/etc/ssl/certs/ca-certificates.crt",
+        "setuptools==67.6.0",
+        "wheel==0.38.4",
+        "attrs==21.4.0",
+        "iniconfig==1.1.1",
+        "packaging==21.3",
+        "py==1.11.0",
+        "toml==0.10.2",
+        "pyparsing==3.0.9",
+        "pluggy==0.13.1",
+        "setuptools-scm==6.4.2",
+        "tomli==2.0.1",
+        "more-itertools==8.10.0",
+        "atomicwrites==1.4.1",
+        "wcwidth==0.2.5",
+        "six==1.16.0",
+        "hypothesis==5.43.3",
+        "sortedcontainers==2.4.0",
+        "mock==4.0.3",
+        "nose==1.3.7",
+        "argcomplete==1.12.3",
+        "requests==2.26.0",
+        "charset-normalizer==2.0.12",
+        "idna==3.3",
+        "urllib3==1.26.18",
+        "certifi==2021.10.8"
+      ],
+      "timeout_seconds": 352.4479903850006,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 1,
+      "launch_error": null,
+      "elapsed_seconds": 11.118235591000484,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/install-dependencies.stdout.txt",
+        "bytes": 1953,
+        "sha256": "03ac7116ad8be70dbb27ade476f3a366c5d20131513944e4bfcff988df3ba1f5"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pytest-dev__pytest-5262/logs/install-dependencies.stderr.txt",
+        "bytes": 1065,
+        "sha256": "31980cb24d8f5be62abd3b0019f91fe0513295337d98aebe0a67239459fe0478"
+      }
+    }
+  ],
+  "base_result": null,
+  "fixed_result": null,
+  "official_label_coverage": null,
+  "profile_sha256": "5d28e9e8352dae102b35b097f5838fc7a9a22dadf04579bcbf1ff4ca72c4ee80",
+  "python_executable_sha256": "a58e85041bf8c92f92ac013de62ada094dcb2764a92572d85037a74ed4c3deac",
+  "bounds": {
+    "setup_seconds": 360,
+    "test_seconds_per_phase": 180
+  },
+  "isolation": {
+    "tool": "bwrap",
+    "namespaces": [
+      "user",
+      "pid",
+      "ipc",
+      "uts"
+    ],
+    "network_namespace": "shared (existing network controls unchanged)",
+    "credentials_or_proxy_config_forwarded_to_tests": false,
+    "host_resolver_config_mounted": false,
+    "other_project_mounts": [],
+    "scope": "project installation and test commands; dependency download uses minimal transport environment"
+  },
+  "base_commit_verified": true,
+  "failure": "install-dependencies_failed",
+  "finished_at": "2026-11-28T01:53:03.295475+00:00",
+  "total_elapsed_seconds": 18.67233874899921
+}

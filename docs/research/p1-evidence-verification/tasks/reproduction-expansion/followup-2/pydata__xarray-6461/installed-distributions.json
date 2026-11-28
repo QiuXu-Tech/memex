@@ -1,0 +1,222 @@
+{
+  "archive_byte_hashes": "not inferred from installed metadata",
+  "distributions": [
+    {
+      "METADATA_sha256": "5b0811e0c7f1139e4fa461afdb550e10e12d5d9182ab07a47d7620f89800e476",
+      "RECORD_sha256": "487826693d30401956120401e1902093a58cd58d156e6033ba51afcf8e6a6f89",
+      "direct_url.json_sha256": null,
+      "name": "attrs",
+      "recorded_file_count": 57,
+      "version": "21.4.0"
+    },
+    {
+      "METADATA_sha256": "e564ffd13144f14eec34a60ff960dc010cc047a0188a49917687f6cc99a915b0",
+      "RECORD_sha256": "c0ac5bd2b22ceba165e31ffd76a9b810b58146c1a406ea5b5be5b4d3daeb6fd0",
+      "direct_url.json_sha256": null,
+      "name": "cloudpickle",
+      "recorded_file_count": 15,
+      "version": "2.0.0"
+    },
+    {
+      "METADATA_sha256": "7b1c3ee01a16c881742061eb7971d6de75331365f1b0315b5aa02309edca37ab",
+      "RECORD_sha256": "9f1999329c69b20830395ba6a88e69d1fa134b5a6c6e65aa82c52758dd925e75",
+      "direct_url.json_sha256": null,
+      "name": "dask",
+      "recorded_file_count": 483,
+      "version": "2022.5.0"
+    },
+    {
+      "METADATA_sha256": "48016323bfcfdaa8122fe02f1cf52c5b2ad82af6b9ca08e788122b0bdcb26671",
+      "RECORD_sha256": "6feaa64054553a084f29234dd629f95825a8428c9533111be8fb2a1176eeda2d",
+      "direct_url.json_sha256": null,
+      "name": "fsspec",
+      "recorded_file_count": 89,
+      "version": "2021.11.1"
+    },
+    {
+      "METADATA_sha256": "ff8fa814aa515ee66fe6bcdea527295d1c21aba0f3aac81b9c0e59a6031431cb",
+      "RECORD_sha256": "c49b9e2b537f539341796cefa8dfd0bc1c529ee7955d91c833f45f73fc101599",
+      "direct_url.json_sha256": null,
+      "name": "iniconfig",
+      "recorded_file_count": 11,
+      "version": "1.1.1"
+    },
+    {
+      "METADATA_sha256": "73b7c98e87f9a53be567f7f1ae367a52553f1d42d718447120709a51290d7b8b",
+      "RECORD_sha256": "654c9c8b2835142cb137474da999431f15b4760ae7c9c7ef7767a563e0605d37",
+      "direct_url.json_sha256": null,
+      "name": "locket",
+      "recorded_file_count": 9,
+      "version": "0.2.1"
+    },
+    {
+      "METADATA_sha256": "1dd9add64280d256885e58fc129daa201ea0cd362f7bd595ad1dc85af3be3788",
+      "RECORD_sha256": "dd1194add92c02b2367a6a468c946cb03ce325e877a9cfcf6b370f9462a1b067",
+      "direct_url.json_sha256": null,
+      "name": "numpy",
+      "recorded_file_count": 1344,
+      "version": "1.23.5"
+    },
+    {
+      "METADATA_sha256": "2ae288cbaa832cfdecbc8b7a7a309bc410e1bead7579b92050de7931ec8a1727",
+      "RECORD_sha256": "e2843615eade4b142d77cda38146b795c3bfe28c2e90eb95521bfc47f2f021ea",
+      "direct_url.json_sha256": null,
+      "name": "packaging",
+      "recorded_file_count": 32,
+      "version": "21.3"
+    },
+    {
+      "METADATA_sha256": "baec3252f07df1200c25a7cf4ed1e54fd841fb1e813ba9ecaa05ddfdeb51ebad",
+      "RECORD_sha256": "d411cfa846938551fef6de0dc43f8595ed5bf0ae27ba13028042025bb425eb27",
+      "direct_url.json_sha256": null,
+      "name": "pandas",
+      "recorded_file_count": 2824,
+      "version": "1.4.4"
+    },
+    {
+      "METADATA_sha256": "1aeefef115eda543ea8b721094655cbcf5e22d4f52a713ef9727b58d7261f9b7",
+      "RECORD_sha256": "5d73b9b743246c8b95faded3fc50c049e85c9155c58b1125cd348b5a34b20a42",
+      "direct_url.json_sha256": null,
+      "name": "partd",
+      "recorded_file_count": 37,
+      "version": "1.2.0"
+    },
+    {
+      "METADATA_sha256": "3ce87cf6eb73f87d5ed0afb10d8f422fd82cfb1d0c8c7f805b16e1246dda6951",
+      "RECORD_sha256": "c6b73d7ff9f9b3f2c8875a8ccf94dd19883153523060000fb04020c24a1e5277",
+      "direct_url.json_sha256": null,
+      "name": "pip",
+      "recorded_file_count": 1002,
+      "version": "23.0.1"
+    },
+    {
+      "METADATA_sha256": "4390fbb88db556b10e3dbe970f470ce2f635664a6dc9bda2388638dcc1dfc172",
+      "RECORD_sha256": "1dbf1a24d2d08bab2bae81656b5be92aeea8a8bdf9deca76d312f1931664adda",
+      "direct_url.json_sha256": null,
+      "name": "pluggy",
+      "recorded_file_count": 21,
+      "version": "1.0.0"
+    },
+    {
+      "METADATA_sha256": "8f502f2d91fb1ea4ced3a75825b6181b2a4fc6484ff486639533d2398f367a13",
+      "RECORD_sha256": "bd12c3ad73913f0087ed6309816976f4caf94c1318a8886aece2f90d3738424f",
+      "direct_url.json_sha256": null,
+      "name": "py",
+      "recorded_file_count": 102,
+      "version": "1.11.0"
+    },
+    {
+      "METADATA_sha256": "87f7e99bdaf0be066c13cbf960d178200a3e22968558239f5049b930c0722223",
+      "RECORD_sha256": "e0bf1d2ba0368effe4ae294b5a8a83f934494ad1638961e7ac4f6f35bc164d4a",
+      "direct_url.json_sha256": null,
+      "name": "pyparsing",
+      "recorded_file_count": 29,
+      "version": "3.0.9"
+    },
+    {
+      "METADATA_sha256": "f7d7dd913b95a5d1a72acd74503d57c3f85f8c9a3710c76c1470af8d1450e70a",
+      "RECORD_sha256": "c6d31ced60a14353439f278fa074276394801e7166671a1319d53c9cc80bf364",
+      "direct_url.json_sha256": null,
+      "name": "pytest",
+      "recorded_file_count": 140,
+      "version": "6.2.5"
+    },
+    {
+      "METADATA_sha256": "4431ed1a8ec19d8463998c68b7fc25bbf5b73760b2bcfb6f7216edc8894a28f0",
+      "RECORD_sha256": "fa495ef1cb308704b2988928092f28cc4cf9ace4fd2edf42eba416424c714206",
+      "direct_url.json_sha256": null,
+      "name": "python-dateutil",
+      "recorded_file_count": 45,
+      "version": "2.8.2"
+    },
+    {
+      "METADATA_sha256": "d5b4bb4ffd8935fdf1d486b013fc4768d953badc073fe639b16ce1ee5fdb05df",
+      "RECORD_sha256": "80bbc627a31280b624851da12ca3eda01013faf536b57f70d92ea90c3b7fdfe6",
+      "direct_url.json_sha256": null,
+      "name": "pytz",
+      "recorded_file_count": 620,
+      "version": "2021.3"
+    },
+    {
+      "METADATA_sha256": "4261f1f641a9ff4c9ecd009761a7ede1e105789e96e28c857d8c070cb3f591d8",
+      "RECORD_sha256": "2445b9625a0bb80d7523a1164f9dad952a55a6c78e4884145228a11fcf36d802",
+      "direct_url.json_sha256": null,
+      "name": "PyYAML",
+      "recorded_file_count": 44,
+      "version": "6.0"
+    },
+    {
+      "METADATA_sha256": "d7787486a1eda5d15043cb4a96274154e00459028925621ebcd36958e6b840aa",
+      "RECORD_sha256": "f6b82034c4d38f0dc993f50c0aaf8000ad63b9d6feefa68f625f0dfd2521c186",
+      "direct_url.json_sha256": null,
+      "name": "scipy",
+      "recorded_file_count": 2005,
+      "version": "1.9.3"
+    },
+    {
+      "METADATA_sha256": "aba465c453bdad46c5082775c32cd89e3c5015734c43284fdd5402dbaf1ef86a",
+      "RECORD_sha256": "ed0452704a7439785d67487e93af3836a4a13b850371b0b7ef9411f334eff917",
+      "direct_url.json_sha256": null,
+      "name": "setuptools",
+      "recorded_file_count": 452,
+      "version": "67.6.0"
+    },
+    {
+      "METADATA_sha256": "d5b27bb7c440df76923bac442d053eb92c96ef45a6e93a268fec8bc5541f581f",
+      "RECORD_sha256": "8032f4f9e7e450a97890965886773a9b69e7582d5a9ecb53125321271474f92a",
+      "direct_url.json_sha256": null,
+      "name": "setuptools-scm",
+      "recorded_file_count": 47,
+      "version": "6.4.2"
+    },
+    {
+      "METADATA_sha256": "5507062050801267d9725efb139ae23c2378bf64c8b1cfeab5a7278f12872682",
+      "RECORD_sha256": "0c7aa51781164ca9f655abb5b11fb1196b4461414dc657122df320d31b7d221d",
+      "direct_url.json_sha256": null,
+      "name": "six",
+      "recorded_file_count": 9,
+      "version": "1.16.0"
+    },
+    {
+      "METADATA_sha256": "9ff624b29bc48a177f4172c8659e74595485cf7ad9fe4ee340ff8e535594a566",
+      "RECORD_sha256": "b8e259e5280a139e243915d9473a14e6938fb71c98623ffd8950c2e5b590fa3f",
+      "direct_url.json_sha256": null,
+      "name": "toml",
+      "recorded_file_count": 17,
+      "version": "0.10.2"
+    },
+    {
+      "METADATA_sha256": "ccf0dc78a98fc0918b5ad67292b1e2c4bed65575a6246cd9d63c914f9942a0f2",
+      "RECORD_sha256": "bd24bfb57599abeeee50f4b0bb112209e08cd5021700d5b231a2b23ef080bf2e",
+      "direct_url.json_sha256": null,
+      "name": "tomli",
+      "recorded_file_count": 15,
+      "version": "2.0.1"
+    },
+    {
+      "METADATA_sha256": "a1ed91b47aab8700ea20807801c67065fafd28a13bf9e76c2bb334bab743f2a8",
+      "RECORD_sha256": "7c23384887844b6f69def6b0bc20998e97a59dafae05da425e0e78c359005fd2",
+      "direct_url.json_sha256": null,
+      "name": "toolz",
+      "recorded_file_count": 66,
+      "version": "0.11.2"
+    },
+    {
+      "METADATA_sha256": "de3e0a81564263b799c8eaf00ca6284ee01c7ebfe05c06f1c75c86851f43b2c0",
+      "RECORD_sha256": "ae4389046fd8ff8da0b756105e68a81296b3ef72c1267f8a2038690c6b603237",
+      "direct_url.json_sha256": null,
+      "name": "wheel",
+      "recorded_file_count": 43,
+      "version": "0.38.4"
+    },
+    {
+      "METADATA_sha256": "6a76c8cf7dfdf3f3086d938a5c88c051dc6c2bf2c6b41089b6c83597c29febb6",
+      "RECORD_sha256": "a157d9110695d7a7064cf0bf773b985dba8d723e50a086697421522ad6e85019",
+      "direct_url.json_sha256": "7e4abe5c84ebdfb09ac26b315eb1c5dc764e6df7e11e7cc80835a0c41fd999eb",
+      "name": "xarray",
+      "recorded_file_count": 11,
+      "version": "0.1.dev1+g851dade"
+    }
+  ],
+  "python_version": "3.9.21 (main, Mar 17 2025, 21:01:54) \n[Clang 20.1.0 ]"
+}

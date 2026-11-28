@@ -1,0 +1,102 @@
+{
+  "schema_version": 1,
+  "batch_id": "p1-20261128-approved-batch1",
+  "authorization_sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+  "permissions_recorded": true,
+  "host_approval_attested": false,
+  "scientific_ready": false,
+  "formal_runs": 0,
+  "native_attempts_reserved": 2,
+  "native_attempts_remaining": 0,
+  "method_units_reserved": 0,
+  "method_units_remaining": 16,
+  "diagnostic_attempts_reserved": 1,
+  "added_cash_currency": "CNY",
+  "added_cash_cap": "100.00",
+  "committed_cash_upper_bound": "3.00",
+  "remaining_cash_capacity": "97.00",
+  "actual_added_cash_total": null,
+  "attempts_with_unsettled_cost": [
+    "native-01",
+    "native-02",
+    "deepseek-diagnostic-b3dbaf09-2f3f-4967-8b0b-7b0675cfda6a"
+  ],
+  "budget_breach_observed": false,
+  "attempts": {
+    "native-01": {
+      "attempt_id": "native-01",
+      "billing_basis": {
+        "evidence": {
+          "ref": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/preflight-billing-scope.json",
+          "sha256": "1b8913c9a1029b1b8dabc23ea0bc2dde795c2bdef17dd6c631c72c175c9d2279"
+        },
+        "kind": "included_subscription"
+      },
+      "kind": "native",
+      "public_sha256": null,
+      "unit_key": null,
+      "upper_bound_fen": 0,
+      "wall_seconds": 600,
+      "state": "timeout",
+      "counters": {},
+      "operations": [],
+      "reserved_at_unix_ns": 1795837944297808347,
+      "actual_added_cost_fen": null
+    },
+    "native-02": {
+      "attempt_id": "native-02",
+      "billing_basis": {
+        "evidence": {
+          "ref": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/preflight-billing-scope.json",
+          "sha256": "1b8913c9a1029b1b8dabc23ea0bc2dde795c2bdef17dd6c631c72c175c9d2279"
+        },
+        "kind": "included_subscription"
+      },
+      "kind": "native",
+      "public_sha256": null,
+      "unit_key": null,
+      "upper_bound_fen": 0,
+      "wall_seconds": 600,
+      "state": "timeout",
+      "counters": {},
+      "operations": [],
+      "reserved_at_unix_ns": 1795838123825198403,
+      "actual_added_cost_fen": null
+    },
+    "deepseek-diagnostic-b3dbaf09-2f3f-4967-8b0b-7b0675cfda6a": {
+      "attempt_id": "deepseek-diagnostic-b3dbaf09-2f3f-4967-8b0b-7b0675cfda6a",
+      "billing_basis": {
+        "evidence": {
+          "ref": "scripts/paper1/deepseek-diagnostic-config.json",
+          "sha256": "7b361c3808dbb99b965818eb27fbea12f1aac2550e1e9537796769d0e430b0c0"
+        },
+        "kind": "priced_upper_bound"
+      },
+      "binding": {
+        "config_sha256": "07972c334de1202a859cc423e7ead9c94e37238d983aeccee69696779cc71545",
+        "dispatch_id": "5736b5e9-8fe6-4e26-a2ff-445423992f3c",
+        "endpoint": "https://api.deepseek.com/chat/completions",
+        "intent_sha256": "31689e445f461f266d1d82c3de5cbd40ac8c71f1b15c132707ffbf31189afd6a",
+        "model": "deepseek-flash",
+        "provider": "deepseek",
+        "request_sha256": "2ca3908fc8833698443717d966f22805bc1275b4afc9c05e317d9f5c2e4d44c8"
+      },
+      "kind": "diagnostic",
+      "public_sha256": null,
+      "unit_key": null,
+      "upper_bound_fen": 300,
+      "wall_seconds": 30,
+      "state": "completed",
+      "counters": {
+        "provider_request": 1
+      },
+      "operations": [
+        "5736b5e9-8fe6-4e26-a2ff-445423992f3c"
+      ],
+      "reserved_at_unix_ns": 1795860349240078000,
+      "actual_added_cost_fen": null
+    }
+  },
+  "journal_events": 7,
+  "journal_head_sha256": "1e13c9ccee1cc0ce56846ee9929c3d4a72b356aad5cf82c7f346ef7b5f9315f2"
+}

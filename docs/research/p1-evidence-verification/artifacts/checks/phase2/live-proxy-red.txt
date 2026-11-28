@@ -1,0 +1,23 @@
+E
+======================================================================
+ERROR: test_paper1_live_host (unittest.loader._FailedTest.test_paper1_live_host)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper1_live_host
+Traceback (most recent call last):
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 396, in _find_test_path
+    module = self._get_module_from_name(name)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/unittest/loader.py", line 339, in _get_module_from_name
+    __import__(name)
+  File "/workspace/scratch/d5292d3ebcac/memex-p1/test/test_paper1_live_host.py", line 8, in <module>
+    spec.loader.exec_module(proxy)
+  File "<frozen importlib._bootstrap_external>", line 995, in exec_module
+  File "<frozen importlib._bootstrap_external>", line 1132, in get_code
+  File "<frozen importlib._bootstrap_external>", line 1190, in get_data
+FileNotFoundError: [Errno 2] No such file or directory: '/workspace/scratch/d5292d3ebcac/memex-p1/scripts/paper1/live_mcp.py'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

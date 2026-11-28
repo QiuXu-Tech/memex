@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "implementation": "p1-deepseek-extraction-transport-v1",
+  "provider": "deepseek",
+  "origin": "https://api.deepseek.com",
+  "endpoint": "/chat/completions",
+  "model": "deepseek-flash",
+  "api_key_env": "DEEPSEEK_API_KEY",
+  "thinking": { "type": "disabled" },
+  "response_format": { "type": "json_object" },
+  "temperature": 0,
+  "stream": false,
+  "max_tokens": 8192,
+  "max_retries": 0,
+  "redirect": "error",
+  "limits": {
+    "max_request_bytes": 131072,
+    "max_response_bytes": 131072,
+    "timeout_ms": 30000
+  },
+  "documentation": {
+    "checked_date": "2026-11-28",
+    "model_alias_target": "DeepSeek-V4.1-Flash-1017",
+    "api_source": "https://api-docs.deepseek.com/api/create-chat-completion/",
+    "pricing_source": "https://api-docs.deepseek.com/quick_start/pricing/"
+  }
+}

@@ -1,0 +1,47 @@
+{
+  "elapsedMs": 0.024207999998907326,
+  "promptSha256": "ccfd19b1793c5cb143b8cc7685e5a41f117f16bffcd50f80bef378d3e0c8469d",
+  "extractionPolicy": "observable-obligations-v2",
+  "usage": null,
+  "coverageEstablished": false,
+  "ok": true,
+  "claims": [
+    {
+      "type": "test_result",
+      "scope": "native-smoke-02",
+      "entity": "node --test --test-reporter=tap sum.test.mjs",
+      "version": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec",
+      "basis": {
+        "field": "request",
+        "quote": "Recommend release only if the configured tests pass for that artifact; otherwise recommend hold."
+      },
+      "uncertainty": [
+        "No test result or receipt was supplied.",
+        "The artifact digest covers sum.mjs only, so whether the test suite and dependencies are included in the tested revision is unknown."
+      ],
+      "proposalId": "p1-f4efa0cb25ea"
+    },
+    {
+      "type": "current_version",
+      "scope": "native-smoke-02",
+      "entity": "sum.mjs",
+      "version": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec",
+      "basis": {
+        "field": "context",
+        "quote": "Recorded target artifact SHA-256: b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec"
+      },
+      "uncertainty": [
+        "This is a recorded snapshot artifact, not a live workspace observation.",
+        "The digest covers only the recorded sum.mjs file."
+      ],
+      "proposalId": "p2-12fa630286a5"
+    }
+  ],
+  "unresolved": [
+    "The configured test result for artifact SHA-256 b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec is missing, so the release-versus-hold condition cannot be resolved.",
+    "The original test receipt event ID requested for citation was not supplied.",
+    "The relationship between the recorded sum.mjs digest and the versions of sum.test.mjs, Node.js, and other test inputs is unspecified.",
+    "No operation is authorized; therefore no operation_authorization claim can be established."
+  ],
+  "rawOutput": "{\"claims\":[{\"type\":\"test_result\",\"scope\":\"native-smoke-02\",\"entity\":\"node --test --test-reporter=tap sum.test.mjs\",\"version\":\"b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\",\"basis\":{\"field\":\"request\",\"quote\":\"Recommend release only if the configured tests pass for that artifact; otherwise recommend hold.\"},\"uncertainty\":[\"No test result or receipt was supplied.\",\"The artifact digest covers sum.mjs only, so whether the test suite and dependencies are included in the tested revision is unknown.\"]},{\"type\":\"current_version\",\"scope\":\"native-smoke-02\",\"entity\":\"sum.mjs\",\"version\":\"b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\",\"basis\":{\"field\":\"context\",\"quote\":\"Recorded target artifact SHA-256: b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec\"},\"uncertainty\":[\"This is a recorded snapshot artifact, not a live workspace observation.\",\"The digest covers only the recorded sum.mjs file.\"]}],\"unresolved\":[\"The configured test result for artifact SHA-256 b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec is missing, so the release-versus-hold condition cannot be resolved.\",\"The original test receipt event ID requested for citation was not supplied.\",\"The relationship between the recorded sum.mjs digest and the versions of sum.test.mjs, Node.js, and other test inputs is unspecified.\",\"No operation is authorized; therefore no operation_authorization claim can be established.\"]}"
+}

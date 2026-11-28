@@ -1,0 +1,11 @@
+{
+  "kind": "derived_public_export_repair",
+  "new_capture_sha256": "dcaeda9141bc44605ee0757ee1360c57011c4393a837d7eb7ec2a5da5aa14e1e",
+  "previous_capture_sha256": "a5fa0508739236a507a913857d8f80a95d3f2c5cc3f8d10bdd1d3de8256e34ba",
+  "published_junit_sha256": "d579f79e027a063f99d741d1962da32cffde48a787cf5364699c2a4a6d8f5895",
+  "raw_controller_observation_unchanged": true,
+  "raw_junit_sha256": "268b2f52b8ba8a97480c82dd7cf03118597cfa18e70322c6879fa3a13e6af044",
+  "repair_function": "python_workflow.redact_xml",
+  "source_executions_added": 0,
+  "task_id": "w-102"
+}

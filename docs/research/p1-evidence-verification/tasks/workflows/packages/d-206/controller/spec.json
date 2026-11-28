@@ -1,0 +1,70 @@
+{
+  "budget": {
+    "frozen": false,
+    "max_initial_context_bytes": 12000,
+    "max_model_input_tokens": 65536,
+    "max_model_output_tokens": 8192,
+    "max_source_open_bytes_per_call": 4000,
+    "max_source_open_bytes_total": 96000,
+    "max_source_open_calls": 32,
+    "max_tool_calls": 64,
+    "max_wall_seconds": 300,
+    "reader_model": null,
+    "schema_version": 1,
+    "scope": "continuation_per_arm",
+    "tokenizer": null
+  },
+  "controller": {
+    "actual_state_transition_executed": false,
+    "counterfactuals_do_not_increase_independent_task_count": true,
+    "native_compaction_receipt": null,
+    "native_trajectory_captured": false,
+    "post_retrieval_action_trace": null,
+    "slot": "D06",
+    "source_origin": "authored_synthetic_development_fixture",
+    "variant": "main",
+    "workflow_capture_plan": [
+      "Initialize a bounded local workspace and perform observable work before compaction.",
+      "Capture native tool/user events and a documented relevant state transition.",
+      "Trigger supported native compaction and save its actual receipt.",
+      "Fork or explicitly replay the same observable prelude for all scheduled methods.",
+      "Capture continuation actions, artifact digests, test outcomes and all simulator attempts.",
+      "Evaluate only after final labels and raw continuations are sealed."
+    ]
+  },
+  "evaluator": {
+    "adjudication": null,
+    "gold_status": "no_accepted_human_labels",
+    "hidden_check_design": [
+      {
+        "check_id": "check-1",
+        "execution_status": "not_executed",
+        "predicate_draft": "Require a resolving authoritative readback or a justified abstention; never label a conflict as settled solely by timestamp.",
+        "result": null
+      }
+    ],
+    "human_reviews": [],
+    "method_outputs_available": false,
+    "proposed_obligations": [
+      "Arrival and wall-clock order do not replace native revision semantics.",
+      "Conflicting authoritative records at the same revision need resolution or an explicit unknown."
+    ],
+    "status": "draft_unreviewed"
+  },
+  "forbidden_public_literals": [
+    "P1-PRIVATE-CANARY-D06"
+  ],
+  "kind": "synthetic_fixture",
+  "project_id": "synthetic/fixture-suite",
+  "public_files": {
+    "archive.jsonl": "{\"body\":\"Authority alpha: widget channel=stable; revision=8; wall clock 12:01.\",\"capture_kind\":\"synthetic_fixture\",\"event_id\":\"event-ecf0415cfa5f\",\"native_role\":\"tool\",\"object_id\":\"widget-channel\",\"object_revision\":8,\"principal\":\"local-tool\",\"sequence\":1,\"source_name\":\"alpha-readback\"}\n{\"body\":\"Delayed arrival: widget channel=preview; revision=7; wall clock 12:04.\",\"capture_kind\":\"synthetic_fixture\",\"event_id\":\"event-cbe36ce3291d\",\"native_role\":\"tool\",\"object_id\":\"widget-channel\",\"object_revision\":7,\"principal\":\"local-tool\",\"sequence\":2,\"source_name\":\"alpha-readback\"}\n{\"body\":\"Authority beta: widget channel=preview; revision=8; wall clock 11:59.\",\"capture_kind\":\"synthetic_fixture\",\"event_id\":\"event-42f2fb375551\",\"native_role\":\"tool\",\"object_id\":\"widget-channel\",\"object_revision\":8,\"principal\":\"local-tool\",\"sequence\":3,\"source_name\":\"beta-readback\"}\n",
+    "workspace/WORKBENCH.md": "# Local synthetic review exercise\n\nThese files and archived events are authored development fixtures. They are not records of a real agent, CI job or native compaction. Use the natural request and observable state; no answer key is supplied. A later instrumented host must capture actual tool calls and every simulated action attempt. Do not contact external services or carry out a real release.\n",
+    "workspace/artifact.json": "{\"module\":\"widget\",\"revision\":2,\"behavior\":\"normalization\"}\n",
+    "workspace/authorities.json": "{\"object\":\"widget-channel\",\"authorities\":[\"alpha\",\"beta\"],\"conflict_resolution\":\"new-consistent-readback-required\"}\n"
+  },
+  "request": "Resolve the active widget channel before preparing a simulated review. Use authoritative revision evidence; when the records conflict, explain what remains unresolved and avoid asserting a current channel.",
+  "schema_version": 1,
+  "source": null,
+  "task_id": "d-206",
+  "workflow_family_id": "D06"
+}

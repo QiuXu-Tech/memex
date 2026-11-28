@@ -1,0 +1,148 @@
+✔ automatic extraction sees only observable input and validates a grounded proposal (1.954324ms)
+✔ gold fields never reach the extractor, including innocuous-looking unknown keys (0.762047ms)
+✔ source IDs and hidden event positions cannot be returned as claim hints (0.84845ms)
+✔ hallucinated grounding, missing actor and malformed model output are counted failures (0.723597ms)
+✔ empty extraction does not assert that all hidden obligations were covered (0.314991ms)
+✖ a null model response is retained as an extraction failure (0.554185ms)
+✔ an actual Node execution produces evidence without manually supplied status or entity (297.105036ms)
+✔ echoed TAP, assistant statements and shell chains do not become execution evidence (0.289395ms)
+✔ zero assertions, cancelled tests and missing completion footer cannot establish pass (0.392612ms)
+✔ artifact changes during a test and incomplete native events invalidate normalization (0.172624ms)
+✔ the native shell envelope can contain one standalone Node command (0.170433ms)
+✔ native failed-completion events can provide a genuine failing-test receipt (0.201238ms)
+✔ native TAP with an explicit test plan may omit the version header (0.258691ms)
+✖ script arguments, eval mode and an arbitrary binary named node cannot impersonate Node test mode (9.975084ms)
+✔ an unexpired cached grant cannot hide a later revocation (5.252143ms)
+✔ stable complete view allows reuse only after a fresh view read (0.943545ms)
+✔ unavailable or incomplete current view never falls back to a cached grant (0.946295ms)
+✔ a missed newer source cannot be certified by a matching older retrieval (0.571957ms)
+✔ opening only one of two same-head events cannot hide a conflict (1.41366ms)
+✔ a changed view during source opening leaves the result unverified (0.561999ms)
+✔ out-of-order delivery follows the source sequence rather than ingestion order (0.641216ms)
+✔ same-head contradiction and expired latest evidence cannot use an older grant (0.600717ms)
+✔ restart and tampered cache force opening rather than trusting the old receipt (1.50425ms)
+✔ wrong actor, wrong action and assistant summaries cannot prove authorization (0.7953ms)
+✔ always-verify uses the same source path even when reuse is possible (0.652753ms)
+✔ a supported historical grant never becomes an instruction to execute (0.345457ms)
+✔ serialized evidence is bounded and is not silently truncated (0.296323ms)
+✔ current-version discovery accepts an unknown candidate version (0.535685ms)
+✔ unresolved artifact binding abstains rather than taking a version from hidden labels (0.155386ms)
+✔ a future-effective decision is not active merely because it was already ingested (0.687483ms)
+✔ reuse rechecks the view after asynchronous evidence preparation (0.709965ms)
+✔ zero-test success and wrong-artifact receipts cannot certify a passing suite (0.565452ms)
+✖ rewriting a cache source and its own hash cannot forge an archive receipt (1.878143ms)
+✖ a half-written cache is a miss, not an uncaught verification exception (3.038945ms)
+✖ opened content must match the complete trusted head commitment (0.654571ms)
+ℹ tests 35
+ℹ suites 0
+ℹ pass 30
+ℹ fail 5
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 521.820383
+
+✖ failing tests:
+
+test at test/paper1-claims.mjs:55:1
+✖ a null model response is retained as an extraction failure (0.554185ms)
+  TypeError [Error]: Cannot read properties of null (reading 'usage')
+      at extractClaims (file://<REPO>/scripts/paper1/claims.mjs:37:42)
+      at async TestContext.<anonymous> (file://<REPO>/test/paper1-claims.mjs:56:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7)
+
+test at test/paper1-normalize.mjs:79:1
+✖ script arguments, eval mode and an arbitrary binary named node cannot impersonate Node test mode (9.975084ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + {
+  +   command: 'node fixture-printer.js --test',
+  +   complete: true,
+  +   completed: true,
+  +   entity: 'node fixture-printer.js --test',
+  +   eventId: 'item-public',
+  +   executed: true,
+  +   exitCode: 0,
+  +   kind: 'command_execution',
+  +   observedAt: '2026-11-28T10:00:00Z',
+  +   parserVersion: 'native-node-tap-v1',
+  +   role: 'tool',
+  +   scope: 'demo',
+  +   skippedCount: 0,
+  +   sourceId: 'thread-public:node-tests',
+  +   sourceSequence: 1,
+  +   status: 'passed',
+  +   testCount: 1,
+  +   text: 'TAP version 13\n1..1\n# tests 1\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n',
+  +   todoCount: 0,
+  +   type: 'test_result',
+  +   version: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+  + }
+  - null
+
+      at TestContext.<anonymous> (file://<REPO>/test/paper1-normalize.mjs:82:12)
+      at Test.runInAsyncScope (node:async_hooks:227:14)
+      at Test.run (node:internal/test_runner/test:1402:25)
+      at Test.processPendingSubtests (node:internal/test_runner/test:974:18)
+      at Test.postRun (node:internal/test_runner/test:1542:19)
+      at Test.run (node:internal/test_runner/test:1467:12)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: { eventId: 'item-public', sourceId: 'thread-public:node-tests', sourceSequence: 1, observedAt: '2026-11-28T10:00:00Z', type: 'test_result', scope: 'demo', entity: 'node fixture-printer.js --test', version: 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', role: 'tool', kind: 'command_execution', command: 'node fixture-printer.js --test', status: 'passed', complete: true, completed: true, executed: true, exitCode: 0, testCount: 1, skippedCount: 0, todoCount: 0, text: 'TAP version 13\n1..1\n# tests 1\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n', parserVersion: 'native-node-tap-v1' },
+    expected: null,
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/paper1-verification.mjs:177:1
+✖ rewriting a cache source and its own hash cannot forge an archive receipt (1.878143ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'revoked'
+  - 'granted'
+
+      at TestContext.<anonymous> (file://<REPO>/test/paper1-verification.mjs:183:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'revoked',
+    expected: 'granted',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }
+
+test at test/paper1-verification.mjs:187:1
+✖ a half-written cache is a miss, not an uncaught verification exception (3.038945ms)
+  TypeError [ERR_INVALID_ARG_TYPE]: The "data" argument must be of type string or an instance of Buffer, TypedArray, or DataView. Received undefined
+      at Hash.update (node:internal/crypto/hash:194:11)
+      at digest (file://<REPO>/scripts/paper1/verification.mjs:14:53)
+      at verifyEvidence (file://<REPO>/scripts/paper1/verification.mjs:121:10)
+      at async TestContext.<anonymous> (file://<REPO>/test/paper1-verification.mjs:190:18)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    code: 'ERR_INVALID_ARG_TYPE'
+  }
+
+test at test/paper1-verification.mjs:195:1
+✖ opened content must match the complete trusted head commitment (0.654571ms)
+  AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:
+  + actual - expected
+
+  + 'verified_current_ingested_view'
+  - 'head_commitment_mismatch'
+
+      at TestContext.<anonymous> (file://<REPO>/test/paper1-verification.mjs:199:10)
+      at async Test.run (node:internal/test_runner/test:1409:7)
+      at async Test.processPendingSubtests (node:internal/test_runner/test:974:7) {
+    generatedMessage: true,
+    code: 'ERR_ASSERTION',
+    actual: 'verified_current_ingested_view',
+    expected: 'head_commitment_mismatch',
+    operator: 'strictEqual',
+    diff: 'simple'
+  }

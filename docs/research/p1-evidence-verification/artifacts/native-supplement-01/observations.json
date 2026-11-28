@@ -1,0 +1,263 @@
+{
+  "accepted_tasks": 0,
+  "blocks": [
+    {
+      "arms": {
+        "A": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "B": {
+          "attempt_created": false,
+          "dependency_readiness_inspected": false,
+          "fixed_config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "model_requests": 0,
+          "reason": "fixed_B_dependencies_not_admitted_for_selected_execution",
+          "scope_reserved": false,
+          "score_status": "not_scored",
+          "status": "not_dispatched_dependency_blocked"
+        },
+        "C": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "D": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        }
+      },
+      "backend_closed": true,
+      "block": "w-101-r1",
+      "host_events_sha256": "4d2e9bb3a08deb83169c21be0142b25ab15f0c7c43a109737ff5b9a32f4ff2c4",
+      "local_rejections": [],
+      "preparation": {
+        "checkpoint_sha256": null,
+        "failure_reason": "runtime_backend_or_controller_error",
+        "scientific_ready": false,
+        "sealed_checkpoint_sha256": null,
+        "status": "capture_incomplete",
+        "trace_ref": "operations.jsonl"
+      },
+      "provider_completed": 0,
+      "provider_dispatch_started": 0,
+      "provider_records": 0,
+      "public_tool_calls": 0,
+      "public_tool_names": {},
+      "reference_input_tokens": 0,
+      "status": "selected_components_incomplete",
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "usage_complete": true
+    },
+    {
+      "arms": {
+        "A": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "B": {
+          "attempt_created": false,
+          "dependency_readiness_inspected": false,
+          "fixed_config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "model_requests": 0,
+          "reason": "fixed_B_dependencies_not_admitted_for_selected_execution",
+          "scope_reserved": false,
+          "score_status": "not_scored",
+          "status": "not_dispatched_dependency_blocked"
+        },
+        "C": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "D": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        }
+      },
+      "backend_closed": true,
+      "block": "w-101-r2",
+      "host_events_sha256": "ebdd47571386a431484814818d51a1c82dfedae4a59e75cb553cc8fb85f2a5cf",
+      "local_rejections": [
+        {
+          "error_code": "server_or_unknown_tools_forbidden",
+          "request_bytes_received": 39739,
+          "request_bytes_sha256": "9a08950b2d81c8fb6f3ad575ae488d9e5bd00a809c7fdc8b2dfb51a80ff6fa4f"
+        }
+      ],
+      "preparation": {
+        "checkpoint_sha256": null,
+        "failure_reason": "runtime_backend_or_controller_error",
+        "scientific_ready": false,
+        "sealed_checkpoint_sha256": null,
+        "status": "capture_incomplete",
+        "trace_ref": "operations.jsonl"
+      },
+      "provider_completed": 0,
+      "provider_dispatch_started": 0,
+      "provider_records": 0,
+      "public_tool_calls": 0,
+      "public_tool_names": {},
+      "reference_input_tokens": 0,
+      "status": "selected_components_incomplete",
+      "usage": {
+        "cached_input_tokens": 0,
+        "input_tokens": 0,
+        "output_tokens": 0
+      },
+      "usage_complete": true
+    },
+    {
+      "arms": {
+        "A": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "B": {
+          "attempt_created": false,
+          "dependency_readiness_inspected": false,
+          "fixed_config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "model_requests": 0,
+          "reason": "fixed_B_dependencies_not_admitted_for_selected_execution",
+          "scope_reserved": false,
+          "score_status": "not_scored",
+          "status": "not_dispatched_dependency_blocked"
+        },
+        "C": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "D": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        }
+      },
+      "backend_closed": true,
+      "block": "w-102-r1",
+      "host_events_sha256": "e71ca392969b1bb15e086f5fd2ca7f181b8783feccfb9d4b342714320c44be79",
+      "local_rejections": [
+        {
+          "error_code": "scope_reference_input_budget_exhausted",
+          "request_bytes_received": 47484,
+          "request_bytes_sha256": "d5e5083521dddf5c1dcb673afef998b08a62e1fb96e697bf6b33fa7979d95bc0"
+        }
+      ],
+      "preparation": {
+        "checkpoint_sha256": null,
+        "failure_reason": "runtime_backend_or_controller_error",
+        "scientific_ready": false,
+        "sealed_checkpoint_sha256": null,
+        "status": "capture_incomplete",
+        "trace_ref": "operations.jsonl"
+      },
+      "provider_completed": 5,
+      "provider_dispatch_started": 5,
+      "provider_records": 5,
+      "public_tool_calls": 7,
+      "public_tool_names": {
+        "list_files": 1,
+        "read_file": 6
+      },
+      "reference_input_tokens": 54139,
+      "status": "selected_components_incomplete",
+      "usage": {
+        "cached_input_tokens": 39424,
+        "input_tokens": 50875,
+        "output_tokens": 486
+      },
+      "usage_complete": true
+    },
+    {
+      "arms": {
+        "A": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "B": {
+          "attempt_created": false,
+          "dependency_readiness_inspected": false,
+          "fixed_config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "model_requests": 0,
+          "reason": "fixed_B_dependencies_not_admitted_for_selected_execution",
+          "scope_reserved": false,
+          "score_status": "not_scored",
+          "status": "not_dispatched_dependency_blocked"
+        },
+        "C": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        },
+        "D": {
+          "score_status": "not_scored",
+          "status": "not_dispatched_preparation_incomplete"
+        }
+      },
+      "backend_closed": true,
+      "block": "w-102-r2",
+      "host_events_sha256": "4d58886d24fcc14d946d602e4cbe155afe7e7f524469c0e9b9ef987641d5c9a8",
+      "local_rejections": [
+        {
+          "error_code": "scope_reference_input_budget_exhausted",
+          "request_bytes_received": 52630,
+          "request_bytes_sha256": "e88b35a0f8770372ddb239414394d07d4f67fdaae17892a05084f88fede7bde8"
+        }
+      ],
+      "preparation": {
+        "checkpoint_sha256": null,
+        "failure_reason": "runtime_backend_or_controller_error",
+        "scientific_ready": false,
+        "sealed_checkpoint_sha256": null,
+        "status": "capture_incomplete",
+        "trace_ref": "operations.jsonl"
+      },
+      "provider_completed": 5,
+      "provider_dispatch_started": 5,
+      "provider_records": 5,
+      "public_tool_calls": 7,
+      "public_tool_names": {
+        "list_files": 1,
+        "read_file": 6
+      },
+      "reference_input_tokens": 54467,
+      "status": "selected_components_incomplete",
+      "usage": {
+        "cached_input_tokens": 47744,
+        "input_tokens": 51166,
+        "output_tokens": 601
+      },
+      "usage_complete": true
+    }
+  ],
+  "controller_events_file_sha256": "79296060cb8c77ad73ba5dbcd0eab70a517f5f41f1fe273eb40d7548b48eeec7",
+  "controller_records": 50,
+  "controller_scopes_finished": [
+    "p1-native-d1dfd65e59313948a281cf83",
+    "p1-native-c530127ba16152d3bca675f0",
+    "p1-native-7380144d43442e142169a14b",
+    "p1-native-52aceb32c09929b315f57b3e"
+  ],
+  "formal_results": 0,
+  "historical_seven_event_prefix_sha256": "d675c9c1f868d6169615c877bb6ffc0d88f73813eab0ccf830669ef97f6e47fa",
+  "kind": "p1-four-supplemental-native-observations",
+  "ledger": {
+    "actual_added_cash_total": null,
+    "added_cash_cap": "100.00",
+    "committed_cash_upper_bound": "15.80",
+    "journal_events": 50,
+    "journal_head_sha256": "9daabc2b62eff8efd17bd5783decc619f25094c2748fd4e838f2735150a25ed0",
+    "method_units_remaining": 16,
+    "method_units_reserved": 0,
+    "native_original_attempts_remaining": 0,
+    "native_original_attempts_reserved": 2,
+    "native_supplemental_attempts_remaining": 0,
+    "native_supplemental_attempts_reserved": 4,
+    "remaining_cash_capacity": "84.20"
+  },
+  "ledger_events_file_sha256": "9665b7579605fdf04a1cccc7a886ed8650b2afeebd3f13c862d65b23b8219b41",
+  "ledger_head_file_sha256": "af6f37b95c79f9edad7c24e4e201355e1b7fa32eaa607fed3f4b711dc67b157d",
+  "quality_scored": false,
+  "schema_version": 1,
+  "status": "authorized_supplement_exhausted"
+}

@@ -1,0 +1,71 @@
+{
+  "date": "2026-11-28",
+  "timezone": "Asia/Shanghai",
+  "kind": "engineering_verification_not_research_result",
+  "test_command": "npm run test:paper1",
+  "exit_code": 0,
+  "node": {
+    "passed": 65,
+    "failed": 0,
+    "skipped": 0
+  },
+  "python": {
+    "passed": 119,
+    "failed": 0,
+    "skipped": 0
+  },
+  "total_passed": 184,
+  "source_sha256": {
+    "scripts/paper1/analyze.py": "0ff22e7b734e9cc8dd46894a11b14751774924207551229c0a2cd2396de4f0d2",
+    "scripts/paper1/archive.mjs": "866ed5fb075c25f06a704c7e28004f059904e45bce23fb7665f8467ee8249437",
+    "scripts/paper1/check_rawrag_runtime.py": "cbbfa7cbe07e9a725077739efbf5096d7e7a7811378f600f543fcddc6349e582",
+    "scripts/paper1/claims.mjs": "1ee88630009125bbd2c1d616a7cea7b38770a9219380e94dd69f9e28e7a7bde1",
+    "scripts/paper1/experiment.py": "548b4b57683c230a652b8fbf3a9b9ea2542d13984e47860d7ce1d26477cf5cbb",
+    "scripts/paper1/live-broker.mjs": "9585de000b1988606af0c2367679be3385750991cadb21df14eee09e81bcfb66",
+    "scripts/paper1/live-state.mjs": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a",
+    "scripts/paper1/live_mcp.py": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a",
+    "scripts/paper1/native_live.py": "8066f31ef5900bbeb4633911f2b6324c537ef77d26ce0e6a4ce9d5006e48f664",
+    "scripts/paper1/native_smoke.py": "b01e9e2b651594d17dfcec7c9f7e1e37b9569a06c3848db9e563edc61abeb56b",
+    "scripts/paper1/normalize-node.mjs": "a332da8d974690e007df7b48efe18413e3a11ac179c384382aa82c2edf87b6cf",
+    "scripts/paper1/rawrag_adapter.py": "950d3e078c4f31f0c08a515d4c5c5521a1d4027cd05effae6b53736301b48782",
+    "scripts/paper1/replay_native.mjs": "defa69d5c10e4fba2f83f947910824733a558f5451d5359aac5e213b87a7e74e",
+    "scripts/paper1/verification.mjs": "1bb0a530dea41824db656a52574679c9b321b338b59147542243b5487b8db82d",
+    "test/paper1-archive.mjs": "133d98f235ecdc7ef37b9672c719db54f2ce32077810b95993102f6a81f742b4",
+    "test/paper1-claims.mjs": "58bae7c13a64d1a3d03eec21916db76f5cbebeca1085dc23c7defa641c81aeb8",
+    "test/paper1-live-broker.mjs": "8cea2beae2f85a3e0bf93c3b19b1e6e852a5761546ddc605a0da3aa43685e253",
+    "test/paper1-live-state.mjs": "796c263c924731da7baffeb33e84e77f996ac239bcf3c6950dd0f9ea11f191a3",
+    "test/paper1-normalize.mjs": "96ae326ed7e0518965335d62a26ad426488119883cc318f8e793b9069c6897e3",
+    "test/paper1-replay.mjs": "a707a987cee2a6b8fb965f1f0963eaf5307deb5057a6b28e293daad8201327ad",
+    "test/paper1-verification.mjs": "abed1fb426a9efe3a43fbe906a4f94a00fa8984126fd3b167f878392e12c89ff",
+    "test/test_paper1_analysis.py": "490bc3edabc1e8361499a47f4ce6701cf87ceb514eba19de6036edd933c7cd6e",
+    "test/test_paper1_experiment.py": "1d9dab5dbd1b3bec24546dc4a0299cc897aaf725f6e24edc9f9d99a0eb9e9144",
+    "test/test_paper1_live_host.py": "74c747b108a090bcc6bda8028731f826cf41cc17931f72decdcc9ede649afe6e",
+    "test/test_paper1_native.py": "e4e84c80663b3c02d63b5b791ffb1b2b247bc8fd59df4a451ea40edc576dbcc1",
+    "test/test_paper1_rawrag.py": "92f56cd3c1854236315750024141a006f44c174f9b726ecb95afa14e393eed95",
+    "test/test_paper1_rawrag_runtime.py": "be2563d6b2a494111e62d130ea764ff218b9b3f1fd9d956b2c1accd94f27f21b"
+  },
+  "manuscript": {
+    "pages": 24,
+    "references": 16,
+    "pending_results": 56,
+    "pdf_sha256": "b49157afe45dee02aa9d1a4a469f205466ecace8442febb2a798e39a3134aa2e"
+  },
+  "native_batch": {
+    "generation_turn_starts": 3,
+    "broker_test_executions": 0,
+    "native_compactions": 0,
+    "decisions": 0,
+    "formal_tasks": 0,
+    "actual_spend": null,
+    "full_standardized_cost": null
+  },
+  "data": {
+    "source_candidates": 16,
+    "projects": 8,
+    "programs_reproduced": 2,
+    "accepted_frozen_p1_workflows": 0
+  },
+  "native_source_hash_checks": 12,
+  "native_source_hash_matches": true,
+  "local_link_issues": []
+}

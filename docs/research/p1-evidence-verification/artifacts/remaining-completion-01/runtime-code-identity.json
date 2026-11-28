@@ -1,0 +1,390 @@
+{
+  "schema_version": 1,
+  "kind": "p1-published-runtime-code-identity",
+  "source_commit": "b0af94569d3915d1dc3364b899b18881aa0e3afc",
+  "source_tree": "107a0b93b62678022ec26928535f69310f82b222",
+  "source_url": "https://github.com/QiuXu-Tech/memex/commit/b0af94569d3915d1dc3364b899b18881aa0e3afc",
+  "scope": "Implementation files bound by the paired launcher; documentation-only follow-up commits may have a different repository tree.",
+  "files": [
+    {
+      "path": "packages/memex-core/index.js",
+      "mode": "100644",
+      "git_blob_sha1": "1452febe3f47aadc37b916a2af45c1243d08a0df",
+      "sha256": "a6bd16eb73ece279c99fa99a0e28f65a6444658002e643648ac796bf78b0f447"
+    },
+    {
+      "path": "packages/memex-core/lib/context-encoder.js",
+      "mode": "100644",
+      "git_blob_sha1": "cd19a14c0b3a3a921f06f6dd6da1867da2ceaff4",
+      "sha256": "1a63cf12028f349cf226fcffc45a721fd0e8a46c761c459988f43fc3d549e76b"
+    },
+    {
+      "path": "packages/memex-core/lib/context-events.js",
+      "mode": "100644",
+      "git_blob_sha1": "50231466fa98e55211d2bbfa2ae2f202e88b4e11",
+      "sha256": "5d05852dabf1eadd1ece1834db82dec9d6c62b6ea63c74e876c6136c5880ef5d"
+    },
+    {
+      "path": "packages/memex-core/lib/context-kv-host.js",
+      "mode": "100644",
+      "git_blob_sha1": "310881c04357487577650236464828abb1bb975e",
+      "sha256": "7a8bba4de049ee680d42b6b6423faefccf02786c159d2668a251f3640d888bc2"
+    },
+    {
+      "path": "packages/memex-core/lib/context-kv.js",
+      "mode": "100644",
+      "git_blob_sha1": "963eca3ee694725458076eeacca0591171a00918",
+      "sha256": "7e8da759e9b6bc3ae43b395c63a99d2aeb73abc1289fa792c5ea9de14da266bf"
+    },
+    {
+      "path": "packages/memex-core/lib/context-materializer.js",
+      "mode": "100644",
+      "git_blob_sha1": "c9da482a13b7e27f4ef11e00607ba9b5407fcd69",
+      "sha256": "d4e31a28ddf5398a984f401207abcaf6f66b7166df4fce2151eb706304ddad3f"
+    },
+    {
+      "path": "packages/memex-core/lib/context-pager.js",
+      "mode": "100644",
+      "git_blob_sha1": "f02f6bb831ccc09fb07145bb3e1e53316566fa89",
+      "sha256": "948c49f9f81fcc4d508b2a9bc179229d16df4b496339beab9a692d6386d0ce0e"
+    },
+    {
+      "path": "packages/memex-core/lib/context-transformer.js",
+      "mode": "100644",
+      "git_blob_sha1": "36e05e38799449434d5fa15e07246e8f4fb8e408",
+      "sha256": "87c8c72dba74783ca4e29b771a4ae1898584930b091bbace5cc7b2dd2548bf0a"
+    },
+    {
+      "path": "packages/memex-core/lib/engine.js",
+      "mode": "100644",
+      "git_blob_sha1": "55d341c629ae6add703a03dd5f44791fc3538eb9",
+      "sha256": "e108a06fcf9b117a5cba91227d9c995a58d936d28bc44c0d617b2340dee92595"
+    },
+    {
+      "path": "packages/memex-core/lib/file-transactions.js",
+      "mode": "100644",
+      "git_blob_sha1": "f5a0f6ee22e93e204b8700743b0ef6875d430bda",
+      "sha256": "7e2d31be5cce17a36d1bb01057aa6f1c5c581af00182d9bdb8bad704de9af80c"
+    },
+    {
+      "path": "packages/memex-core/lib/lexical-reranker.json",
+      "mode": "100644",
+      "git_blob_sha1": "d0adef1ec1fcb1e498ab5c991999bf3d03f3675b",
+      "sha256": "57681cf6d6859aab17a7a51e1ce25f282ecac5df1b503c2a167e713622a2ca1a"
+    },
+    {
+      "path": "packages/memex-core/lib/manual.js",
+      "mode": "100644",
+      "git_blob_sha1": "c0bb5caf87b60f8fae612875c2eae02d6e33ff9c",
+      "sha256": "f5be6bf93207e50ee451a0bb00ec3618374f085b9bb88680c15345b7b8927f75"
+    },
+    {
+      "path": "packages/memex-core/lib/model-profiles.js",
+      "mode": "100644",
+      "git_blob_sha1": "9dbe9cc6cb59c91b821fc6b9fbc5de1008ff90d7",
+      "sha256": "be80caed6662098a7766c9b125b098e65d2f355672ac131e2c9fc806825f0b37"
+    },
+    {
+      "path": "packages/memex-core/lib/store-lease.js",
+      "mode": "100644",
+      "git_blob_sha1": "eeb54a035639fea8717c6342e3b1f8303854ce68",
+      "sha256": "c9d042eed1363ea5698867bfbb777f543f7b328fa79bde7baa959dbb0209ab54"
+    },
+    {
+      "path": "packages/memex-core/lib/store.js",
+      "mode": "100644",
+      "git_blob_sha1": "636752a8d374f78c9e109aa7382f70329bc24838",
+      "sha256": "c9b185f8bc4ecf953313f0684b255540dcde738ff966c2dafcae0d05c6941ec7"
+    },
+    {
+      "path": "packages/memex-core/lib/stream-deadline.js",
+      "mode": "100644",
+      "git_blob_sha1": "beee0547d10e90463aca22f38bed4aa0f2acfc84",
+      "sha256": "39500e84df9be29daeeb8e584f5c2319d095bbf60c336031d5e7eee87f9b6317"
+    },
+    {
+      "path": "packages/memex-core/package.json",
+      "mode": "100644",
+      "git_blob_sha1": "9cebeaf15e9b7ce8d9bc521dd85a06ffe362c3ce",
+      "sha256": "3505c27c100a37693f0cdc533d4309d83adfd14a5f7b9cc29f8e24a723f58eac"
+    },
+    {
+      "path": "scripts/codex-retention-host.py",
+      "mode": "100644",
+      "git_blob_sha1": "666a011a3d93d0e87e92975c2a279d3e102c2e6c",
+      "sha256": "663201794332653973754e4f3c27c5b6c63672341f580a8368a4316bbd7d46e9"
+    },
+    {
+      "path": "scripts/paper1/analyze.py",
+      "mode": "100644",
+      "git_blob_sha1": "70515dda946a71dcc86ba876352d93e9648c7a52",
+      "sha256": "0ff22e7b734e9cc8dd46894a11b14751774924207551229c0a2cd2396de4f0d2"
+    },
+    {
+      "path": "scripts/paper1/annotation.py",
+      "mode": "100644",
+      "git_blob_sha1": "2bfabd1102f28a00a24a43593fcedc6f30f4b6fc",
+      "sha256": "eef52ad66fd862022e6272e3b3d91e7d651bdf766d0b4d0d194e1c30eb80b016"
+    },
+    {
+      "path": "scripts/paper1/approvals.py",
+      "mode": "100644",
+      "git_blob_sha1": "9b20b7334b3f6a0c8ceeab0fc9fdb541ab00d705",
+      "sha256": "1f63d0aedd024172f91e455ef4c64326aa6602ab3e754bebc693fab1590706c6"
+    },
+    {
+      "path": "scripts/paper1/archive.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "98e771054402dbb7d78a65d0cf591b4672eeb4eb",
+      "sha256": "866ed5fb075c25f06a704c7e28004f059904e45bce23fb7665f8467ee8249437"
+    },
+    {
+      "path": "scripts/paper1/batch_limits.py",
+      "mode": "100644",
+      "git_blob_sha1": "5d1aa8f0119452a3acbc578b4c4ec90dbbe4e1e4",
+      "sha256": "2fe79875a50f462228c31059b6344593b4f6cae455f2c4466fbf124f94bbea45"
+    },
+    {
+      "path": "scripts/paper1/check_rawrag_runtime.py",
+      "mode": "100644",
+      "git_blob_sha1": "4dd8db1a2d538a9aa8fae26844dcf698ca9e9237",
+      "sha256": "cbbfa7cbe07e9a725077739efbf5096d7e7a7811378f600f543fcddc6349e582"
+    },
+    {
+      "path": "scripts/paper1/claims.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "9e787a63ed34aab0da6a41d612dec8026bd41f5e",
+      "sha256": "1ee88630009125bbd2c1d616a7cea7b38770a9219380e94dd69f9e28e7a7bde1"
+    },
+    {
+      "path": "scripts/paper1/deepseek-config.json",
+      "mode": "100644",
+      "git_blob_sha1": "595332edf4cc521558eadaec41a77d7eb7866c5b",
+      "sha256": "0d168db6ab3aa28d23fbb66acfc969c268748bde8ab76bc628f56091f00371ca"
+    },
+    {
+      "path": "scripts/paper1/deepseek-diagnostic-config.json",
+      "mode": "100644",
+      "git_blob_sha1": "507a19dcadd2f92637b9916a2ce49facf24e1940",
+      "sha256": "7b361c3808dbb99b965818eb27fbea12f1aac2550e1e9537796769d0e430b0c0"
+    },
+    {
+      "path": "scripts/paper1/deepseek-diagnostic.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "12ac3f99c9a3ec39286260d5645254751ca57343",
+      "sha256": "e3704eb6bdaf4114fe814c42cbf04e7d591ce021da841ea9dcadd12d81676fd6"
+    },
+    {
+      "path": "scripts/paper1/deepseek-reader-profile.json",
+      "mode": "100644",
+      "git_blob_sha1": "ba5d79a69828e77c691e4781437c106468b4d96c",
+      "sha256": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709"
+    },
+    {
+      "path": "scripts/paper1/deepseek.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "a7e93d1af0887b079ca9c3735e13d4b560415111",
+      "sha256": "80dc0688f2c43e689e9bd8d13a76e28880403326f4804d7079008e4ee750ca53"
+    },
+    {
+      "path": "scripts/paper1/deepseek_native_relay.py",
+      "mode": "100644",
+      "git_blob_sha1": "4f189bc7b6361aadc60cb059f3c4ddd2c4fb3181",
+      "sha256": "f91e2e209697c0fdab6c2d5ea97500bff00d1eaab801ac7422585efc58bde373"
+    },
+    {
+      "path": "scripts/paper1/design_analysis.py",
+      "mode": "100644",
+      "git_blob_sha1": "abedc6519dda9e3121f899db3d2595fb52be1b9e",
+      "sha256": "3d802750686da69ab69c2b9e366c1f9f921b18469693cc39c40bc02f845f6b2c"
+    },
+    {
+      "path": "scripts/paper1/experiment.py",
+      "mode": "100644",
+      "git_blob_sha1": "3db6028527d2df1c4e0e85ef0e18297d3b2a7f43",
+      "sha256": "6d046f6b53cd2b287d3a2d3c628bfb79dae3789121a9675c41a1a6ccaa1bc6ea"
+    },
+    {
+      "path": "scripts/paper1/live-broker.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "c102d31a1cbc64b38d0bd91c5ccd4fb47ede12f7",
+      "sha256": "9585de000b1988606af0c2367679be3385750991cadb21df14eee09e81bcfb66"
+    },
+    {
+      "path": "scripts/paper1/live-state.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "6458dd7d5f2c95ad3709af041d5753d2cee76c84",
+      "sha256": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a"
+    },
+    {
+      "path": "scripts/paper1/live_mcp.py",
+      "mode": "100644",
+      "git_blob_sha1": "a84bf4b7d1c2d2f65d60d812c90c6f4569ffdcdb",
+      "sha256": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a"
+    },
+    {
+      "path": "scripts/paper1/native_backend.py",
+      "mode": "100644",
+      "git_blob_sha1": "64816318e57b963ef0f237dda5f66daf3865bbc6",
+      "sha256": "9cc812ed3bcaa8b90ec09ff43fcaf46e30e1aac35b958eb024f345be8b6eefed"
+    },
+    {
+      "path": "scripts/paper1/native_driver.py",
+      "mode": "100644",
+      "git_blob_sha1": "b423cc8aa693500bd54bc370e5814e603853105a",
+      "sha256": "d98eb5999f635b30a27a9c815a24d75051a9e6a42e3cf611c5544dfbff35fed4"
+    },
+    {
+      "path": "scripts/paper1/native_live.py",
+      "mode": "100644",
+      "git_blob_sha1": "827f598f53d79975d70c0a8543daa7731bb06bb6",
+      "sha256": "03478e962bf5f7a9757762b17d42afbd7f4a92cad0c9477fb246eb4f7c80a544"
+    },
+    {
+      "path": "scripts/paper1/native_permit.py",
+      "mode": "100644",
+      "git_blob_sha1": "935175b0d79c16a99ae4adcb9e279227bfe2b2b2",
+      "sha256": "db8ef70fcabc9b34bec291cce97ade211cddb761342e1f7d57febe183631811c"
+    },
+    {
+      "path": "scripts/paper1/native_readonly.py",
+      "mode": "100644",
+      "git_blob_sha1": "61decc7643afb77c8e7dacfe1c6f58a62da77e64",
+      "sha256": "244de8991ba61ed3cdad031a126656d2f85fdbe6b9babefa6f8c1eb7347a4b7d"
+    },
+    {
+      "path": "scripts/paper1/native_smoke.py",
+      "mode": "100644",
+      "git_blob_sha1": "9750d97d06390cb99a1b074b683cc2bede61d8ac",
+      "sha256": "b01e9e2b651594d17dfcec7c9f7e1e37b9569a06c3848db9e563edc61abeb56b"
+    },
+    {
+      "path": "scripts/paper1/native_usage.py",
+      "mode": "100644",
+      "git_blob_sha1": "bd4ea90016058412d7ac76ffab350e3567c5198f",
+      "sha256": "3a5f5a1d83176e64b4e17afb0a6fa2ff94bb543804bc5a9965bed5aa26de1ae4"
+    },
+    {
+      "path": "scripts/paper1/normalize-node.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "19e4072ec97fc0270fd6e2f9a166ac46f05d1ddc",
+      "sha256": "a332da8d974690e007df7b48efe18413e3a11ac179c384382aa82c2edf87b6cf"
+    },
+    {
+      "path": "scripts/paper1/paired_dispatch.py",
+      "mode": "100644",
+      "git_blob_sha1": "deabcdc5257bacd739fe7b2551120a7b5c4149b8",
+      "sha256": "b6fa84f6f1896a8d0818bdb67d47d3df9d4f0d923800dd7f93375544d79c8364"
+    },
+    {
+      "path": "scripts/paper1/paired_evidence.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "e901e5ca4cdcc6c5d6957807ae59ccc1b560e1a8",
+      "sha256": "cde00b51dc9d2e0501419ef10d8d9e82789cef70dc79a1bc4353b80f3231e8a5"
+    },
+    {
+      "path": "scripts/paper1/paired_runner.py",
+      "mode": "100755",
+      "git_blob_sha1": "d443f82bab3003e09d15143d939f4ba257bb6dd5",
+      "sha256": "3e23f6cee365223753a48c8d7da2846413884daf19f67839ba06703149d611fd"
+    },
+    {
+      "path": "scripts/paper1/paired_runtime.py",
+      "mode": "100644",
+      "git_blob_sha1": "62958383b5fd102ff7e2460b44a81d66e7eeb503",
+      "sha256": "460384f1ecf3c36924ade5a52651eb5c8ae16a08a47c135510de2556071a391b"
+    },
+    {
+      "path": "scripts/paper1/public_workspace.py",
+      "mode": "100644",
+      "git_blob_sha1": "7feb3231bd84bcd55e6aaf4e5b7df754ba9cadcf",
+      "sha256": "9f65c8131d80b428e94cc3006c1d86cb66f703cd460c947fab23bb4319281807"
+    },
+    {
+      "path": "scripts/paper1/python_workflow.py",
+      "mode": "100644",
+      "git_blob_sha1": "fd5f8fb3cbcba65098eecc5c5b3162df5eb74f87",
+      "sha256": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b"
+    },
+    {
+      "path": "scripts/paper1/python_workflow_child.py",
+      "mode": "100644",
+      "git_blob_sha1": "b87583cc541ed222f0b9e65100aaa3decbfe33e0",
+      "sha256": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc"
+    },
+    {
+      "path": "scripts/paper1/rawrag-config.json",
+      "mode": "100644",
+      "git_blob_sha1": "23c834724343c17acf1eda28e1a32617747c6416",
+      "sha256": "008c4c92181141a1c8de42931c906aad23e959da4fd5db1e300c64ba2e664b27"
+    },
+    {
+      "path": "scripts/paper1/rawrag_adapter.py",
+      "mode": "100644",
+      "git_blob_sha1": "4b9b4f738ca999625d874dfc6b3d5fa2bfe38781",
+      "sha256": "cff65315547b43f84d834a931a24cc460a68c7e6110928b5b67d74db624cf242"
+    },
+    {
+      "path": "scripts/paper1/rawrag_controller.py",
+      "mode": "100644",
+      "git_blob_sha1": "b68007bae9b5bdf4189e2462461f23964cc65f42",
+      "sha256": "8b2df3b06b23ac77b7a1a2d9bf45c2d04257606ca7ccffe76af6b3c1a19819dc"
+    },
+    {
+      "path": "scripts/paper1/reader_profile.py",
+      "mode": "100644",
+      "git_blob_sha1": "c539fd1d7b4e73fd2dd981101d4f8233688a77c1",
+      "sha256": "88a0633c5a3ae9454e81c55a624345f5686c0e7c552423c515fca31ff4aec999"
+    },
+    {
+      "path": "scripts/paper1/readonly_replay.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "a7f29af5a1cebf5b92a91f1d94749183d0084d4e",
+      "sha256": "793bca6ed539700a319fe56fca53c64b8cbc0abd9dd6af1ad7f3a539730fe273"
+    },
+    {
+      "path": "scripts/paper1/replay_native.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "9075ac82f4726697fa4de7ca3e30a31c52293ecb",
+      "sha256": "defa69d5c10e4fba2f83f947910824733a558f5451d5359aac5e213b87a7e74e"
+    },
+    {
+      "path": "scripts/paper1/report.py",
+      "mode": "100644",
+      "git_blob_sha1": "e96e3b585c660094a1656d94113fc5fd164fb288",
+      "sha256": "3a8d9fc7cabe2aae51d3f978e326f5bb410b51d4c950905e7b1271e9dcd4de08"
+    },
+    {
+      "path": "scripts/paper1/reproduce_sources.py",
+      "mode": "100644",
+      "git_blob_sha1": "eb826d813f17de26ba1047990171fdf40c5ce99b",
+      "sha256": "f6d0f9e93ebac952d9d16852f3158f494793bbcc326736b1abd349e065e3ca00"
+    },
+    {
+      "path": "scripts/paper1/runtime_controller.py",
+      "mode": "100644",
+      "git_blob_sha1": "ef8105da2ea64133fb241ec8da276e71b0572de3",
+      "sha256": "1f89373b06b3dfb5dc39fe93e1f2024a9a643fa12e99fbb1f75a8691c60693e4"
+    },
+    {
+      "path": "scripts/paper1/score.py",
+      "mode": "100644",
+      "git_blob_sha1": "7d1c38130fd2c9cbfa9eb7d7adf08d15398ab5af",
+      "sha256": "bb6adb407e34df51f9dda8abf632975355cc2c36802fb425beb790786c68c9b0"
+    },
+    {
+      "path": "scripts/paper1/taskpack.py",
+      "mode": "100644",
+      "git_blob_sha1": "ba3b3f4900a254d128437c2201e8b4e2e3d5bbe0",
+      "sha256": "d44903d914a88f40a55d9f86623fa10a8fd07710e888ad842b0c2f1105208570"
+    },
+    {
+      "path": "scripts/paper1/verification.mjs",
+      "mode": "100644",
+      "git_blob_sha1": "5d6999f243e0d055b8610d50d67ebc46d8e879e8",
+      "sha256": "1bb0a530dea41824db656a52574679c9b321b338b59147542243b5487b8db82d"
+    }
+  ],
+  "scientific_ready": false,
+  "new_authorization": false
+}

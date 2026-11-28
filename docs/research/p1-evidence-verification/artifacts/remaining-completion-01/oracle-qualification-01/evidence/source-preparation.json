@@ -1,0 +1,45 @@
+{
+  "canonical_ledger_accessed": false,
+  "existing_taskpacks_modified": false,
+  "finished_at": "2026-11-28T17:13:29.009095+00:00",
+  "git_public_fetches": 2,
+  "kind": "independent_oracle_reference_source_preparation",
+  "licenses_or_accounts_accepted": false,
+  "method_units": 0,
+  "model_requests": 0,
+  "native_attempts": 0,
+  "prior_failure_reason": "historical_receipt_not_deployed_to_canonical_runtime",
+  "prior_failure_retained": "source-preparation-failure.json",
+  "provider_requests": 0,
+  "recovery": "copied_exact_preexisting_repository_receipts_to_private_qualification_directory",
+  "schema_version": 2,
+  "source_executions": 0,
+  "tasks": [
+    {
+      "base_commit": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+      "base_inventory_sha256": "8c1c3cf2c6cb459a0ff5ea0809b2844db6c122e67b189573e011fde445d85d62",
+      "base_source": "existing_verified_canonical_public_workspace",
+      "fixed_commit": "7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+      "fixed_export_sha256": "297db30bb01f7bb1a281a79168a7ef818a3ce34bbb2d2248cd088b3901734639",
+      "fixed_inventory_sha256": "013802166d26b846d3cac1eb9e61026665366e4cccf9b44be7c7e31c8a3b82a0",
+      "fixed_relevant_files_match_original_qualification": true,
+      "original_qualification_sha256": "6931332a398c894584adde938af80a3477908b5a2049792509565d8f247085cf",
+      "repository_url": "https://github.com/pallets/flask",
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "base_commit": "0192aac24123735b3eaf9b08df46429bb770c283",
+      "base_inventory_sha256": "0a26d524611cf4692427a73e0867f09a3d0922549b5c3a502d5994ebe4b602df",
+      "base_source": "existing_verified_canonical_public_workspace",
+      "fixed_commit": "8fa9724398c4f44090997ff430a1dd3e935a9057",
+      "fixed_export_sha256": "1f5f0f83ddb10f1f340d313ea1a38f1932ffb3346d45d1cb20f2095b6ab0e5ae",
+      "fixed_inventory_sha256": "dbfcfb51cfe8a49bacb74366f5a22ee24366e380f581a5bda23c39b566752735",
+      "fixed_relevant_files_match_original_qualification": true,
+      "original_qualification_sha256": "cd3e90837c2c4648b5340948f8262e103395114a93c9e164a4d5762eb3012a22",
+      "repository_url": "https://github.com/psf/requests",
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    }
+  ]
+}

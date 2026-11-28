@@ -1,0 +1,19 @@
+test_adjudicator_is_a_third_identity (test_paper1_annotation.AnnotationTests.test_adjudicator_is_a_third_identity) ... ok
+test_all_pairs_require_an_explicit_adjudication (test_paper1_annotation.AnnotationTests.test_all_pairs_require_an_explicit_adjudication) ... ok
+test_arm_score_fields_cannot_be_smuggled_into_a_blinded_review (test_paper1_annotation.AnnotationTests.test_arm_score_fields_cannot_be_smuggled_into_a_blinded_review) ... ok
+test_changed_review_requires_a_new_adjudication_binding (test_paper1_annotation.AnnotationTests.test_changed_review_requires_a_new_adjudication_binding) ... ok
+test_completed_review_is_bound_to_blinded_packet (test_paper1_annotation.AnnotationTests.test_completed_review_is_bound_to_blinded_packet) ... ok
+test_disagreement_cannot_be_silently_marked_agreement (test_paper1_annotation.AnnotationTests.test_disagreement_cannot_be_silently_marked_agreement) ... ok
+test_evidence_hash_mismatch_is_rejected (test_paper1_annotation.AnnotationTests.test_evidence_hash_mismatch_is_rejected) ... ok
+test_evidence_reference_cannot_escape_public_material (test_paper1_annotation.AnnotationTests.test_evidence_reference_cannot_escape_public_material) ... ok
+test_post_assignment_material_mutation_is_rejected (test_paper1_annotation.AnnotationTests.test_post_assignment_material_mutation_is_rejected) ... ok
+test_preparation_is_blank_and_contains_no_private_answers_or_arm_outputs (test_paper1_annotation.AnnotationTests.test_preparation_is_blank_and_contains_no_private_answers_or_arm_outputs) ... ok
+test_review_requires_positive_human_and_independence_attestations (test_paper1_annotation.AnnotationTests.test_review_requires_positive_human_and_independence_attestations) ... ok
+test_structurally_complete_reviews_never_self_certify_p1_acceptance (test_paper1_annotation.AnnotationTests.test_structurally_complete_reviews_never_self_certify_p1_acceptance) ... ok
+test_two_reviews_from_same_identity_cannot_satisfy_double_review (test_paper1_annotation.AnnotationTests.test_two_reviews_from_same_identity_cannot_satisfy_double_review) ... ok
+test_unfilled_templates_are_not_independent_human_reviews (test_paper1_annotation.AnnotationTests.test_unfilled_templates_are_not_independent_human_reviews) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.141s
+
+OK

@@ -1,0 +1,57 @@
+{
+  "A_supplemental_evidence_permitted": false,
+  "B_lexical_or_dummy_fallback_permitted": false,
+  "checkpoint_identity_fields": [
+    "task_id",
+    "replicate",
+    "public_sha256",
+    "workspace_snapshot_sha256",
+    "native_parent_thread_id",
+    "native_capture_sha256",
+    "native_compaction_item_id",
+    "source_archive_sha256",
+    "shared_reader_config_sha256"
+  ],
+  "controller_only_inputs": [
+    "authorization",
+    "schedule",
+    "source mappings",
+    "private evaluation",
+    "checkpoint admission receipts"
+  ],
+  "evaluator_supplied_claims_or_source_locations_permitted": false,
+  "host_or_OS_isolation_implemented_here": false,
+  "implementation_registered": false,
+  "implemented_controller_components": {
+    "python_fixed_test_capture": {
+      "clean_public_seed_only": true,
+      "current_source_and_dependency_hash_binding": true,
+      "entrypoint": "scripts/paper1/python_workflow.py",
+      "execution_mode": "controller-only",
+      "formal_method_runtime": false,
+      "native_parent_or_archive_created": false,
+      "os_isolation": false,
+      "real_exit_and_output_capture": true,
+      "structured_pytest_observer": true
+    }
+  },
+  "model_visible_inputs": [
+    "detached verified public tree",
+    "shared original request",
+    "actual compacted parent",
+    "arm-produced evidence"
+  ],
+  "required_runtime_operations": [
+    "capture_actual_task_prelude_and_state_transition",
+    "bind_actual_python_capture_to_task_prelude_and_native_checkpoint",
+    "admit_complete_original_archive_for_checkpoint",
+    "compact_actual_native_parent_and_retain_native_receipt",
+    "fork_same_unchanged_parent_for_all_four_arms",
+    "run_official_rawrag_with_original_request_for_B",
+    "extract_actual_proposals_without_evaluator_inputs_for_C_D",
+    "prime_and_verify_unchanged_receipts_for_D",
+    "deliver_full_method_packet_to_shared_reader_with_measured_budget",
+    "capture_actual_continuation_actions_and_usage_without_evaluator_access"
+  ],
+  "tokenizer_fallback_permitted": false
+}

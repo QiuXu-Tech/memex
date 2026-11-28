@@ -1,0 +1,755 @@
+{
+  "accepted_p1_task_count": 0,
+  "domain": "controller_only",
+  "experiment_spec_fragment": {
+    "arms": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "replicates": 2,
+    "tasks": [
+      {
+        "project_id": "pallets/flask",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public"
+        },
+        "task_id": "w-101"
+      },
+      {
+        "project_id": "psf/requests",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/w-102/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/w-102/public"
+        },
+        "task_id": "w-102"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-201/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-201/public"
+        },
+        "task_id": "d-201"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-202/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-202/public"
+        },
+        "task_id": "d-202"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-203/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-203/public"
+        },
+        "task_id": "d-203"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-204/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-204/public"
+        },
+        "task_id": "d-204"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-205/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-205/public"
+        },
+        "task_id": "d-205"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-206/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-206/public"
+        },
+        "task_id": "d-206"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-207/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-207/public"
+        },
+        "task_id": "d-207"
+      },
+      {
+        "project_id": "synthetic/fixture-suite",
+        "public_by_replicate": {
+          "1": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-208/public",
+          "2": "/workspace/scratch/d5292d3ebcac/memex-p1/docs/research/p1-evidence-verification/tasks/workflows/packages/d-208/public"
+        },
+        "task_id": "d-208"
+      }
+    ]
+  },
+  "frozen": false,
+  "material_family_count": 10,
+  "missing_before_experiment_freeze": [
+    "real_arm_runner",
+    "shared_reader_and_tokenizer",
+    "complete_frozen_measurement_declaration",
+    "native_prelude_and_branching_design",
+    "reviewed_hidden_behavior_checks",
+    "workflow_acceptance"
+  ],
+  "mode": "structural_dryrun_no_runner",
+  "model_requests": 0,
+  "planned_units": 80,
+  "real_source_family_count": 2,
+  "schema_version": "p1-draft-task-fragment-1",
+  "shared_budget_sha256": "79b8e96e3066118dbddafaefae19888e575e5fe996dd2ef94557f3bf1155ff7a",
+  "study_phase": "development",
+  "synthetic_family_count": 8,
+  "units": [
+    {
+      "arm": "A",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 1,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "B",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 1,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "C",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 1,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "D",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 1,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "A",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 2,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "B",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 2,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "C",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 2,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "D",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 2,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arm": "A",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 1,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "B",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 1,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "C",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 1,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "D",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 1,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "A",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 2,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "B",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 2,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "C",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 2,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "D",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 2,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 1,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 1,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 1,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 1,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 2,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 2,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 2,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "be18261191f8bdd2c41dfd6c0b891a14fbd5058664d388d696a8b335ae2e48ef",
+      "replicate": 2,
+      "task_id": "d-201",
+      "taskpack_public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 1,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 1,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 1,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 1,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 2,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 2,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 2,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "24e05cb4927533bc907a012499d37946eff3d2532e699a356d1191ed962afedb",
+      "replicate": 2,
+      "task_id": "d-202",
+      "taskpack_public_sha256": "ad9c5f15e8ff0830ede3b1f6732fab86353db7733e621f3dbd275b147e61e5ff"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 1,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 1,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 1,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 1,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 2,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 2,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 2,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "2deaf3721f87fa1a7272766da72f2db76a6f1f28bbd467d72bf615b70d2066ba",
+      "replicate": 2,
+      "task_id": "d-203",
+      "taskpack_public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 1,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 1,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 1,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 1,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 2,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 2,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 2,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "b9cdb83db211770f876da69247ed1f4805cd7a7ece98a2cf82a430fa481cd94c",
+      "replicate": 2,
+      "task_id": "d-204",
+      "taskpack_public_sha256": "24087ed48bbb95af5a6461254b097c50e0444802377aefff0026ba8e017dd152"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 1,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 1,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 1,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 1,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 2,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 2,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 2,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "04eaf97b0052ede44bc5dbd0f733cf872ad57ff1e868a48170382e4d5df96688",
+      "replicate": 2,
+      "task_id": "d-205",
+      "taskpack_public_sha256": "f1320116018216129cba7cf4fbffcf78f62ea1d01f9dc5ebc13cce19a7a8bcb3"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 1,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 1,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 1,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 1,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 2,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 2,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 2,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "9ca7eb30d772b7ad2a8202b009d55e3ec7ed6f68c95a7d458e4f6c04730d6855",
+      "replicate": 2,
+      "task_id": "d-206",
+      "taskpack_public_sha256": "e8f127f3bd34354d3565196a76c9efb5d1fdcd3dbc2e7a0ca768a3a3811409d8"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 1,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 1,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 1,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 1,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 2,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 2,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 2,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "6c1910a49790056c719e6c8178f1f01be41af7f1871e46f3d4cd4de0f13a2797",
+      "replicate": 2,
+      "task_id": "d-207",
+      "taskpack_public_sha256": "e01f22e581dd42ce359492efbf65dc44bad60bac7694781daaf75747f2022349"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 1,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 1,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 1,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 1,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    },
+    {
+      "arm": "A",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 2,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    },
+    {
+      "arm": "B",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 2,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    },
+    {
+      "arm": "C",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 2,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    },
+    {
+      "arm": "D",
+      "project_id": "synthetic/fixture-suite",
+      "public_sha256": "d0659ae9d504dd4de1049b5f45d3eaa508d1666242ecc1a47b1fab478f36240e",
+      "replicate": 2,
+      "task_id": "d-208",
+      "taskpack_public_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d"
+    }
+  ]
+}

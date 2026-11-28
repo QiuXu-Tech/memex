@@ -1,0 +1,83 @@
+[
+  {
+    "command": [
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/python/cpython-3.10.16-linux-x86_64-gnu/bin/python3.10",
+      "-m",
+      "venv",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/venv310"
+    ],
+    "returncode": 0,
+    "elapsed_s": 2.755175182999892
+  },
+  {
+    "command": [
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/venv310/bin/python",
+      "-m",
+      "pip",
+      "--isolated",
+      "install",
+      "--disable-pip-version-check",
+      "--no-cache-dir",
+      "--only-binary=:all:",
+      "--cert",
+      "/etc/ssl/certs/ca-certificates.crt",
+      "setuptools==67.6.0",
+      "wheel==0.38.4",
+      "pytest==6.2.5",
+      "attrs==21.4.0",
+      "iniconfig==1.1.1",
+      "packaging==21.3",
+      "py==1.11.0",
+      "pluggy==1.0.0",
+      "toml==0.10.2",
+      "pyparsing==3.0.9",
+      "charset-normalizer==2.0.12",
+      "idna==3.3",
+      "urllib3==1.26.18",
+      "certifi==2021.10.8",
+      "pytest-mock==2.0.0"
+    ],
+    "returncode": 0,
+    "elapsed_s": 13.11940787399999
+  },
+  {
+    "command": [
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/venv310/bin/python",
+      "-m",
+      "pip",
+      "--isolated",
+      "install",
+      "--disable-pip-version-check",
+      "--no-cache-dir",
+      "--no-build-isolation",
+      "--no-deps",
+      "-e",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/repo"
+    ],
+    "returncode": 0,
+    "elapsed_s": 0.625847345000011
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/repo",
+      "apply",
+      "--check",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/patches/test_patch.diff"
+    ],
+    "returncode": 0,
+    "elapsed_s": 0.0021855779998531943
+  },
+  {
+    "command": [
+      "git",
+      "-C",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/repo",
+      "apply",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/patches/test_patch.diff"
+    ],
+    "returncode": 0,
+    "elapsed_s": 0.0015846159999455267
+  }
+]

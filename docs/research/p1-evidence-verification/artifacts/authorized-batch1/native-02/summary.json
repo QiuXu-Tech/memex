@@ -1,0 +1,1730 @@
+{
+  "schema": 1,
+  "kind": "live_native_evidence_integration",
+  "split": "development",
+  "confirmatory": false,
+  "independent_workflows": 1,
+  "checkpoints": 2,
+  "requested_model": "gpt-5.6-sol",
+  "model_turns_started": 5,
+  "compactions_started": 2,
+  "compactions": [
+    {
+      "phase": "stable_compaction",
+      "turnId": "01a2204f-56ea-7af1-a445-34b3b79ec5ad",
+      "itemId": "01a2204f-5702-7dd1-b74d-28c6cd2869f6",
+      "elapsedSeconds": 13.009910541999943
+    },
+    {
+      "phase": "changed_compaction",
+      "turnId": "01a22052-214d-7ca1-80bf-c8d47acc3be8",
+      "itemId": "01a22052-2153-7b43-b0d2-07f9ffe908d7",
+      "elapsedSeconds": 17.55445941700009
+    }
+  ],
+  "turns": [
+    {
+      "phase": "prelude",
+      "category": "prelude",
+      "status": "completed",
+      "thread_id": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+      "prompt_sha256": "0eeefef682d306aa6fe9765e2c1c034af7d4c8cd4ecd9e7991b136e9aab91b38",
+      "turn_id": "01a2204b-363e-7862-9944-430966c0190d",
+      "seconds": 136.88024516699988,
+      "item_types": [
+        "userMessage",
+        "mcpToolCall",
+        "mcpToolCall",
+        "agentMessage"
+      ],
+      "final": "实际测试结果：**通过**\n\n- 测试数：1\n- 通过：1\n- 失败：0\n- 退出码：0\n- Receipt event ID：`broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa`\n\n未记录 decision。"
+    },
+    {
+      "phase": "stable_extraction",
+      "category": "claim_extraction",
+      "status": "completed",
+      "thread_id": "01a2204d-4d73-79f1-b150-fa9825c19c05",
+      "prompt_sha256": "1547a1eccb5ea8886d3552f821566b5f95a211a6c7d92e731f8524b78669ccb4",
+      "turn_id": "01a2204d-4dbc-7741-82fb-527e52836282",
+      "seconds": 133.3859188749998,
+      "item_types": [
+        "userMessage",
+        "agentMessage"
+      ],
+      "final": "{\"claims\":[{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"current workspace artifact\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"context\",\"quote\":\"Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\"},\"uncertainty\":[\"The digest is supplied by context and has not been independently read back from the workspace.\"]},{\"type\":\"test_result\",\"scope\":\"live-development\",\"entity\":\"node --test --test-reporter=tap checks.test.mjs\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"request\",\"quote\":\"It is releasable only if the configured test command passes for the current artifact.\"},\"uncertainty\":[\"This is a required decision prerequisite, not an assertion that the tests passed.\",\"No test result or receipt event ID was supplied.\",\"The result requires an independent source check.\"]},{\"type\":\"operation_authorization\",\"scope\":\"live-development\",\"entity\":\"release decision\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"actor\":null,\"action\":\"decide whether to release or hold\",\"basis\":{\"field\":\"request\",\"quote\":\"Decide whether to release or hold\"},\"uncertainty\":[\"The authorized actor is not identified.\",\"Any release outcome is conditional on verified test success for the current artifact.\",\"The observable text authorizes preparing a decision, not an external production release.\"]}],\"unresolved\":[\"No verified test outcome is supplied for node --test --test-reporter=tap checks.test.mjs against artifact 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9.\",\"No test receipt event ID is supplied, so the requested citation cannot yet be established.\",\"The actor authorized to decide or record the release decision is not identified.\",\"The current artifact digest has not been independently verified against the workspace.\",\"It is not established whether recording a simulated decision is required or whether only preparing the decision is requested.\"]}"
+    },
+    {
+      "phase": "stable_decision",
+      "category": "continuation",
+      "status": "completed",
+      "thread_id": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+      "prompt_sha256": "27c21139c33897e27ee27de9bab7a561b7f9b9b27a9788bb446781a3464a1406",
+      "turn_id": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+      "seconds": 35.698590875000264,
+      "item_types": [
+        "userMessage",
+        "mcpToolCall",
+        "mcpToolCall",
+        "agentMessage"
+      ],
+      "final": "**决定：Release**\n\n- 当前版本：`7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9`\n- 配置测试：通过（1 通过，0 失败，退出码 0）\n- 测试 receipt event ID：`broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa`\n- 已记录恰好一次模拟决定；attempt ID：`7394e309-beb3-4be2-9a0d-a6c96a5132d4`\n- 未修改源文件。"
+    },
+    {
+      "phase": "changed_extraction",
+      "category": "claim_extraction",
+      "status": "completed",
+      "thread_id": "01a22050-2949-79b3-82cc-d399e37cb931",
+      "prompt_sha256": "dddc2257115eb56b36e762ce52d6f1d17050495fb72bd31e08eba626d1787707",
+      "turn_id": "01a22050-29aa-7a63-9327-48ee38d6e8f3",
+      "seconds": 128.90423558300017,
+      "item_types": [
+        "userMessage",
+        "agentMessage"
+      ],
+      "final": "{\"claims\":[{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"current workspace artifact\",\"version\":\"0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\",\"basis\":{\"field\":\"context\",\"quote\":\"Current artifact digest: 0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\"},\"uncertainty\":[\"The digest is supplied in context but has not been independently read back.\"]},{\"type\":\"test_result\",\"scope\":\"live-development\",\"entity\":\"node --test --test-reporter=tap checks.test.mjs\",\"version\":\"0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\",\"basis\":{\"field\":\"request\",\"quote\":\"It is releasable only if the configured test command passes for the current artifact.\"},\"uncertainty\":[\"No test result or receipt was supplied.\",\"Independent source checks are required.\",\"The required receipt event ID is unknown.\"]},{\"type\":\"operation_authorization\",\"scope\":\"current workspace\",\"entity\":\"release decision\",\"version\":\"0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\",\"actor\":null,\"action\":\"decide whether to release or hold\",\"basis\":{\"field\":\"request\",\"quote\":\"Decide whether to release or hold and cite the test receipt event ID.\"},\"uncertainty\":[\"The authorized actor is not identified.\",\"The request authorizes a decision, but does not clearly authorize an actual external release.\",\"A release decision is conditional on verified test success for the current artifact.\"]}],\"unresolved\":[\"No configured-test execution result has been supplied for artifact digest 0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4.\",\"No test receipt event ID has been supplied, so the required citation cannot yet be established.\",\"The context explicitly requires independent source checks for any test results.\",\"The actor authorized to make or record the decision is not identified.\",\"It is ambiguous whether the requested action is only a simulated release/hold decision or authorization for an actual external release.\"]}"
+    },
+    {
+      "phase": "changed_decision",
+      "category": "continuation",
+      "status": "started",
+      "thread_id": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+      "prompt_sha256": "f8fe9a19e30000c227a7768602f93e2fb8277cef83b2d6a686073e0bf72fdc90",
+      "turn_id": "01a22052-65fc-7972-a73f-69dd857e7e4d"
+    }
+  ],
+  "extractions": [
+    {
+      "phase": "stable",
+      "input_sha256": "01fe84e98522632d7625ac38b79cfbf34f963152361c426582838bde7c9f2b08",
+      "accepted": true,
+      "claim_count": 3,
+      "test_claim_count": 1,
+      "coverage_established": false,
+      "trace_ref": "stable-extract-host/events.jsonl",
+      "usage_notifications": [
+        {
+          "threadId": "01a2204d-4d73-79f1-b150-fa9825c19c05",
+          "turnId": "01a2204d-4dbc-7741-82fb-527e52836282",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 15951,
+              "inputTokens": 15131,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 820,
+              "reasoningOutputTokens": 273
+            },
+            "last": {
+              "totalTokens": 15951,
+              "inputTokens": 15131,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 820,
+              "reasoningOutputTokens": 273
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "thread_id": "01a2204d-4d73-79f1-b150-fa9825c19c05"
+    },
+    {
+      "phase": "changed",
+      "input_sha256": "fc1a16b64ef3c97b9b073a53aac92ef96fb7ee1c94cc1c35f6f2e4d09a074d72",
+      "accepted": true,
+      "claim_count": 3,
+      "test_claim_count": 1,
+      "coverage_established": false,
+      "trace_ref": "changed-extract-host/events.jsonl",
+      "usage_notifications": [
+        {
+          "threadId": "01a22050-2949-79b3-82cc-d399e37cb931",
+          "turnId": "01a22050-29aa-7a63-9327-48ee38d6e8f3",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 15727,
+              "inputTokens": 15125,
+              "cachedInputTokens": 11264,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 602,
+              "reasoningOutputTokens": 99
+            },
+            "last": {
+              "totalTokens": 15727,
+              "inputTokens": 15125,
+              "cachedInputTokens": 11264,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 602,
+              "reasoningOutputTokens": 99
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "thread_id": "01a22050-2949-79b3-82cc-d399e37cb931"
+    }
+  ],
+  "host_traces": [
+    {
+      "label": "main-host",
+      "events": "main-host/events.jsonl",
+      "stderr": "main-host/host.stderr",
+      "usage_notifications": [
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 15484,
+              "inputTokens": 15426,
+              "cachedInputTokens": 12160,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 58,
+              "reasoningOutputTokens": 20
+            },
+            "last": {
+              "totalTokens": 15484,
+              "inputTokens": 15426,
+              "cachedInputTokens": 12160,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 58,
+              "reasoningOutputTokens": 20
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 31228,
+              "inputTokens": 31086,
+              "cachedInputTokens": 27520,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 142,
+              "reasoningOutputTokens": 34
+            },
+            "last": {
+              "totalTokens": 15744,
+              "inputTokens": 15660,
+              "cachedInputTokens": 15360,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 84,
+              "reasoningOutputTokens": 14
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 47251,
+              "inputTokens": 47041,
+              "cachedInputTokens": 43136,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 210,
+              "reasoningOutputTokens": 34
+            },
+            "last": {
+              "totalTokens": 16023,
+              "inputTokens": 15955,
+              "cachedInputTokens": 15616,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 68,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 64619,
+              "inputTokens": 64335,
+              "cachedInputTokens": 59008,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 284,
+              "reasoningOutputTokens": 34
+            },
+            "last": {
+              "totalTokens": 17368,
+              "inputTokens": 17294,
+              "cachedInputTokens": 15872,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 74,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204f-56ea-7af1-a445-34b3b79ec5ad",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 64619,
+              "inputTokens": 64335,
+              "cachedInputTokens": 59008,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 284,
+              "reasoningOutputTokens": 34
+            },
+            "last": {
+              "totalTokens": 1624,
+              "inputTokens": 0,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 0,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 81686,
+              "inputTokens": 81347,
+              "cachedInputTokens": 63232,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 339,
+              "reasoningOutputTokens": 48
+            },
+            "last": {
+              "totalTokens": 17067,
+              "inputTokens": 17012,
+              "cachedInputTokens": 4224,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 55,
+              "reasoningOutputTokens": 14
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 99109,
+              "inputTokens": 98693,
+              "cachedInputTokens": 80128,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 416,
+              "reasoningOutputTokens": 94
+            },
+            "last": {
+              "totalTokens": 17423,
+              "inputTokens": 17346,
+              "cachedInputTokens": 16896,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 77,
+              "reasoningOutputTokens": 46
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 116927,
+              "inputTokens": 116348,
+              "cachedInputTokens": 97408,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 579,
+              "reasoningOutputTokens": 106
+            },
+            "last": {
+              "totalTokens": 17818,
+              "inputTokens": 17655,
+              "cachedInputTokens": 17280,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 163,
+              "reasoningOutputTokens": 12
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 134991,
+              "inputTokens": 134256,
+              "cachedInputTokens": 115072,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 735,
+              "reasoningOutputTokens": 106
+            },
+            "last": {
+              "totalTokens": 18064,
+              "inputTokens": 17908,
+              "cachedInputTokens": 17664,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 156,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a22052-214d-7ca1-80bf-c8d47acc3be8",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 134991,
+              "inputTokens": 134256,
+              "cachedInputTokens": 115072,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 735,
+              "reasoningOutputTokens": 106
+            },
+            "last": {
+              "totalTokens": 3245,
+              "inputTokens": 0,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 0,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+          "turnId": "01a22052-65fc-7972-a73f-69dd857e7e4d",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 152608,
+              "inputTokens": 151812,
+              "cachedInputTokens": 119296,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 796,
+              "reasoningOutputTokens": 126
+            },
+            "last": {
+              "totalTokens": 17617,
+              "inputTokens": 17556,
+              "cachedInputTokens": 4224,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 61,
+              "reasoningOutputTokens": 20
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "status": "closed"
+    },
+    {
+      "label": "stable-extract-host",
+      "events": "stable-extract-host/events.jsonl",
+      "stderr": "stable-extract-host/host.stderr",
+      "usage_notifications": [
+        {
+          "threadId": "01a2204d-4d73-79f1-b150-fa9825c19c05",
+          "turnId": "01a2204d-4dbc-7741-82fb-527e52836282",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 15951,
+              "inputTokens": 15131,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 820,
+              "reasoningOutputTokens": 273
+            },
+            "last": {
+              "totalTokens": 15951,
+              "inputTokens": 15131,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 820,
+              "reasoningOutputTokens": 273
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "status": "closed"
+    },
+    {
+      "label": "changed-extract-host",
+      "events": "changed-extract-host/events.jsonl",
+      "stderr": "changed-extract-host/host.stderr",
+      "usage_notifications": [
+        {
+          "threadId": "01a22050-2949-79b3-82cc-d399e37cb931",
+          "turnId": "01a22050-29aa-7a63-9327-48ee38d6e8f3",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 15727,
+              "inputTokens": 15125,
+              "cachedInputTokens": 11264,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 602,
+              "reasoningOutputTokens": 99
+            },
+            "last": {
+              "totalTokens": 15727,
+              "inputTokens": 15125,
+              "cachedInputTokens": 11264,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 602,
+              "reasoningOutputTokens": 99
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "status": "closed"
+    }
+  ],
+  "status": "blocked_or_failed",
+  "actual_spend": null,
+  "standardized_cost": null,
+  "cost_completeness": "unmeasured_provider_billing_and_compaction_semantics",
+  "execution_producer": "p1_live_process_broker",
+  "execution_delivery": "native MCP tool result; not a native shell commandExecution",
+  "approval_mode": "prior_chat_authorization",
+  "approval_grant_reference": {
+    "authorization_sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+    "attempt_id": "native-02",
+    "reservation_sha256": "80fe1508bab91814b28e09e2def904df86ec1993f67f4586f2fdd7488f75cb90"
+  },
+  "source_sha256": {
+    "live-broker.mjs": "9585de000b1988606af0c2367679be3385750991cadb21df14eee09e81bcfb66",
+    "live-state.mjs": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a",
+    "live_mcp.py": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a",
+    "native_live.py": "03478e962bf5f7a9757762b17d42afbd7f4a92cad0c9477fb246eb4f7c80a544"
+  },
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "elapsed_seconds": 480.0372952919997,
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "model": "gpt-6-astra",
+      "displayName": "GPT-6-Astra",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    }
+  ],
+  "thread_id": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+  "original_version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+  "prime_verification": {
+    "mode": "selective",
+    "results": [
+      {
+        "outcome": "abstain",
+        "status": "unknown",
+        "reason": "unsupported_live_claim_type",
+        "source": null,
+        "authorizesExecution": false
+      },
+      {
+        "outcome": "supported",
+        "status": "passed",
+        "reason": "verified_current_ingested_view",
+        "source": {
+          "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+          "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+          "sourceSequence": 1,
+          "observedAt": "2026-11-28T03:57:41.072Z",
+          "type": "test_result",
+          "scope": "live-development",
+          "entity": "node --test --test-reporter=tap checks.test.mjs",
+          "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+          "role": "tool",
+          "kind": "command_execution",
+          "command": "node --test --test-reporter=tap checks.test.mjs",
+          "status": "passed",
+          "complete": true,
+          "completed": true,
+          "executed": true,
+          "exitCode": 0,
+          "testCount": 1,
+          "skippedCount": 0,
+          "todoCount": 0,
+          "text": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.476834\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 62.373291\n",
+          "parserVersion": "native-node-tap-v1",
+          "transport": {
+            "liveState": {
+              "schema": 1,
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "beforeVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "afterVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "beforeChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+              "afterChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+              "manifest": {
+                "schema": 1,
+                "policy": "p1-live-workspace-v1",
+                "environment": {
+                  "cwd": ".",
+                  "nodeVersion": "v25.9.0",
+                  "platform": "darwin",
+                  "arch": "arm64",
+                  "values": {
+                    "testCommand": "node --test --test-reporter=tap checks.test.mjs"
+                  }
+                },
+                "files": [
+                  {
+                    "path": "checks.test.mjs",
+                    "roles": [
+                      "artifact"
+                    ],
+                    "bytes": 154,
+                    "sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+                    "mode": 420
+                  },
+                  {
+                    "path": "sum.mjs",
+                    "roles": [
+                      "artifact"
+                    ],
+                    "bytes": 36,
+                    "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+                    "mode": 420
+                  }
+                ],
+                "directories": [
+                  {
+                    "path": ".",
+                    "entryCount": 2,
+                    "membershipDigest": "85965a417e4480a28a8a79bccf496fce198ffb0b222faaf04ad6db6deac1e841"
+                  }
+                ]
+              }
+            },
+            "producer": "p1_live_process_broker",
+            "nativeDelivery": "MCP tool result",
+            "scopeOfExecution": "allowlisted_benign_development_programs"
+          }
+        },
+        "receipt": {
+          "policyVersion": "p1-typed-head-v2",
+          "claimDigest": "42704c06fad07836704f546d8e6bf267798f67ef13cc71b9dcea7f61e6328074",
+          "view": {
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433"
+            }
+          },
+          "source": {
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "sourceSequence": 1,
+            "observedAt": "2026-11-28T03:57:41.072Z",
+            "type": "test_result",
+            "scope": "live-development",
+            "entity": "node --test --test-reporter=tap checks.test.mjs",
+            "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+            "role": "tool",
+            "kind": "command_execution",
+            "command": "node --test --test-reporter=tap checks.test.mjs",
+            "status": "passed",
+            "complete": true,
+            "completed": true,
+            "executed": true,
+            "exitCode": 0,
+            "testCount": 1,
+            "skippedCount": 0,
+            "todoCount": 0,
+            "text": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.476834\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 62.373291\n",
+            "parserVersion": "native-node-tap-v1",
+            "transport": {
+              "liveState": {
+                "schema": 1,
+                "policy": "p1-live-workspace-v1",
+                "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "beforeVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "afterVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+                "beforeChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "afterChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "manifest": {
+                  "schema": 1,
+                  "policy": "p1-live-workspace-v1",
+                  "environment": {
+                    "cwd": ".",
+                    "nodeVersion": "v25.9.0",
+                    "platform": "darwin",
+                    "arch": "arm64",
+                    "values": {
+                      "testCommand": "node --test --test-reporter=tap checks.test.mjs"
+                    }
+                  },
+                  "files": [
+                    {
+                      "path": "checks.test.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 154,
+                      "sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+                      "mode": 420
+                    },
+                    {
+                      "path": "sum.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 36,
+                      "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+                      "mode": 420
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "path": ".",
+                      "entryCount": 2,
+                      "membershipDigest": "85965a417e4480a28a8a79bccf496fce198ffb0b222faaf04ad6db6deac1e841"
+                    }
+                  ]
+                }
+              },
+              "producer": "p1_live_process_broker",
+              "nativeDelivery": "MCP tool result",
+              "scopeOfExecution": "allowlisted_benign_development_programs"
+            }
+          },
+          "sourceDigest": "ee8ce44b363bed8ddcddce8471ed36f7cd76aabd63caaa8e8715151a35d19fd8"
+        },
+        "reused": false,
+        "authorizesExecution": false,
+        "trace": [
+          {
+            "stage": "view",
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433"
+            }
+          },
+          {
+            "stage": "open",
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceSequence": 1
+          },
+          {
+            "stage": "view",
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433"
+            }
+          },
+          {
+            "stage": "view",
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433"
+            }
+          },
+          {
+            "stage": "verify",
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceSequence": 1
+          }
+        ],
+        "metrics": {
+          "viewReads": 3,
+          "searches": 1,
+          "opens": 1,
+          "openedBytes": 2192,
+          "deliveredBytes": 2192,
+          "referenceTokens": 2192
+        },
+        "policyVersion": "p1-typed-head-v2",
+        "tokenCountMethod": "utf8_bytes_upper_bound"
+      },
+      {
+        "outcome": "abstain",
+        "status": "unknown",
+        "reason": "unsupported_live_claim_type",
+        "source": null,
+        "authorizesExecution": false
+      }
+    ],
+    "packet": {
+      "schema": 1,
+      "kind": "current_workspace_evidence",
+      "verificationAvailable": true,
+      "coverageEstablished": false,
+      "currentVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "results": [
+        {
+          "outcome": "abstain",
+          "status": "unknown",
+          "reason": "unsupported_live_claim_type",
+          "source": null,
+          "authorizesExecution": false
+        },
+        {
+          "outcome": "supported",
+          "status": "passed",
+          "reason": "verified_current_ingested_view",
+          "source": {
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "sourceSequence": 1,
+            "observedAt": "2026-11-28T03:57:41.072Z",
+            "type": "test_result",
+            "scope": "live-development",
+            "entity": "node --test --test-reporter=tap checks.test.mjs",
+            "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+            "role": "tool",
+            "kind": "command_execution",
+            "command": "node --test --test-reporter=tap checks.test.mjs",
+            "status": "passed",
+            "complete": true,
+            "completed": true,
+            "executed": true,
+            "exitCode": 0,
+            "testCount": 1,
+            "skippedCount": 0,
+            "todoCount": 0,
+            "text": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.476834\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 62.373291\n",
+            "parserVersion": "native-node-tap-v1",
+            "transport": {
+              "liveState": {
+                "schema": 1,
+                "policy": "p1-live-workspace-v1",
+                "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "beforeVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "afterVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+                "beforeChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "afterChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "manifest": {
+                  "schema": 1,
+                  "policy": "p1-live-workspace-v1",
+                  "environment": {
+                    "cwd": ".",
+                    "nodeVersion": "v25.9.0",
+                    "platform": "darwin",
+                    "arch": "arm64",
+                    "values": {
+                      "testCommand": "node --test --test-reporter=tap checks.test.mjs"
+                    }
+                  },
+                  "files": [
+                    {
+                      "path": "checks.test.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 154,
+                      "sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+                      "mode": 420
+                    },
+                    {
+                      "path": "sum.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 36,
+                      "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+                      "mode": 420
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "path": ".",
+                      "entryCount": 2,
+                      "membershipDigest": "85965a417e4480a28a8a79bccf496fce198ffb0b222faaf04ad6db6deac1e841"
+                    }
+                  ]
+                }
+              },
+              "producer": "p1_live_process_broker",
+              "nativeDelivery": "MCP tool result",
+              "scopeOfExecution": "allowlisted_benign_development_programs"
+            }
+          },
+          "authorizesExecution": false
+        },
+        {
+          "outcome": "abstain",
+          "status": "unknown",
+          "reason": "unsupported_live_claim_type",
+          "source": null,
+          "authorizesExecution": false
+        }
+      ]
+    },
+    "deliveryBlocked": false,
+    "maxPacketBytes": 16000,
+    "deliveredBytes": 2759,
+    "blockedNoticeBytes": 0,
+    "tokenCountMethod": "development_byte_budget_not_formal_token_matching",
+    "brokerMetrics": {
+      "publicCalls": 2,
+      "testExecutions": 1,
+      "verifierCalls": 1,
+      "directModelDispatches": 0
+    },
+    "liveAdapterMetrics": {
+      "captures": 6,
+      "filesRead": 24,
+      "bytesRead": 2280,
+      "directoryReads": 24,
+      "viewReads": 3,
+      "bindingSearches": 1,
+      "bindingOpens": 1,
+      "bindingBytes": 2192,
+      "delegatedSearches": 1,
+      "delegatedOpens": 1
+    }
+  },
+  "stable_verification": {
+    "mode": "selective",
+    "results": [
+      {
+        "outcome": "abstain",
+        "status": "unknown",
+        "reason": "unsupported_live_claim_type",
+        "source": null,
+        "authorizesExecution": false
+      },
+      {
+        "outcome": "supported",
+        "status": "passed",
+        "reason": "verified_current_ingested_view",
+        "source": {
+          "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+          "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+          "sourceSequence": 1,
+          "observedAt": "2026-11-28T03:57:41.072Z",
+          "type": "test_result",
+          "scope": "live-development",
+          "entity": "node --test --test-reporter=tap checks.test.mjs",
+          "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+          "role": "tool",
+          "kind": "command_execution",
+          "command": "node --test --test-reporter=tap checks.test.mjs",
+          "status": "passed",
+          "complete": true,
+          "completed": true,
+          "executed": true,
+          "exitCode": 0,
+          "testCount": 1,
+          "skippedCount": 0,
+          "todoCount": 0,
+          "text": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.476834\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 62.373291\n",
+          "parserVersion": "native-node-tap-v1",
+          "transport": {
+            "liveState": {
+              "schema": 1,
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "beforeVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "afterVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "beforeChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+              "afterChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+              "manifest": {
+                "schema": 1,
+                "policy": "p1-live-workspace-v1",
+                "environment": {
+                  "cwd": ".",
+                  "nodeVersion": "v25.9.0",
+                  "platform": "darwin",
+                  "arch": "arm64",
+                  "values": {
+                    "testCommand": "node --test --test-reporter=tap checks.test.mjs"
+                  }
+                },
+                "files": [
+                  {
+                    "path": "checks.test.mjs",
+                    "roles": [
+                      "artifact"
+                    ],
+                    "bytes": 154,
+                    "sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+                    "mode": 420
+                  },
+                  {
+                    "path": "sum.mjs",
+                    "roles": [
+                      "artifact"
+                    ],
+                    "bytes": 36,
+                    "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+                    "mode": 420
+                  }
+                ],
+                "directories": [
+                  {
+                    "path": ".",
+                    "entryCount": 2,
+                    "membershipDigest": "85965a417e4480a28a8a79bccf496fce198ffb0b222faaf04ad6db6deac1e841"
+                  }
+                ]
+              }
+            },
+            "producer": "p1_live_process_broker",
+            "nativeDelivery": "MCP tool result",
+            "scopeOfExecution": "allowlisted_benign_development_programs"
+          }
+        },
+        "receipt": {
+          "policyVersion": "p1-typed-head-v2",
+          "claimDigest": "42704c06fad07836704f546d8e6bf267798f67ef13cc71b9dcea7f61e6328074",
+          "view": {
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433"
+            }
+          },
+          "source": {
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "sourceSequence": 1,
+            "observedAt": "2026-11-28T03:57:41.072Z",
+            "type": "test_result",
+            "scope": "live-development",
+            "entity": "node --test --test-reporter=tap checks.test.mjs",
+            "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+            "role": "tool",
+            "kind": "command_execution",
+            "command": "node --test --test-reporter=tap checks.test.mjs",
+            "status": "passed",
+            "complete": true,
+            "completed": true,
+            "executed": true,
+            "exitCode": 0,
+            "testCount": 1,
+            "skippedCount": 0,
+            "todoCount": 0,
+            "text": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.476834\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 62.373291\n",
+            "parserVersion": "native-node-tap-v1",
+            "transport": {
+              "liveState": {
+                "schema": 1,
+                "policy": "p1-live-workspace-v1",
+                "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "beforeVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "afterVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+                "beforeChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "afterChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "manifest": {
+                  "schema": 1,
+                  "policy": "p1-live-workspace-v1",
+                  "environment": {
+                    "cwd": ".",
+                    "nodeVersion": "v25.9.0",
+                    "platform": "darwin",
+                    "arch": "arm64",
+                    "values": {
+                      "testCommand": "node --test --test-reporter=tap checks.test.mjs"
+                    }
+                  },
+                  "files": [
+                    {
+                      "path": "checks.test.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 154,
+                      "sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+                      "mode": 420
+                    },
+                    {
+                      "path": "sum.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 36,
+                      "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+                      "mode": 420
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "path": ".",
+                      "entryCount": 2,
+                      "membershipDigest": "85965a417e4480a28a8a79bccf496fce198ffb0b222faaf04ad6db6deac1e841"
+                    }
+                  ]
+                }
+              },
+              "producer": "p1_live_process_broker",
+              "nativeDelivery": "MCP tool result",
+              "scopeOfExecution": "allowlisted_benign_development_programs"
+            }
+          },
+          "sourceDigest": "ee8ce44b363bed8ddcddce8471ed36f7cd76aabd63caaa8e8715151a35d19fd8"
+        },
+        "reused": true,
+        "authorizesExecution": false,
+        "trace": [
+          {
+            "stage": "view",
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433"
+            }
+          },
+          {
+            "stage": "view",
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433"
+            }
+          },
+          {
+            "stage": "reuse",
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceSequence": 1
+          }
+        ],
+        "metrics": {
+          "viewReads": 2,
+          "searches": 0,
+          "opens": 0,
+          "openedBytes": 0,
+          "deliveredBytes": 2192,
+          "referenceTokens": 2192
+        },
+        "policyVersion": "p1-typed-head-v2",
+        "tokenCountMethod": "utf8_bytes_upper_bound"
+      },
+      {
+        "outcome": "abstain",
+        "status": "unknown",
+        "reason": "unsupported_live_claim_type",
+        "source": null,
+        "authorizesExecution": false
+      }
+    ],
+    "packet": {
+      "schema": 1,
+      "kind": "current_workspace_evidence",
+      "verificationAvailable": true,
+      "coverageEstablished": false,
+      "currentVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "results": [
+        {
+          "outcome": "abstain",
+          "status": "unknown",
+          "reason": "unsupported_live_claim_type",
+          "source": null,
+          "authorizesExecution": false
+        },
+        {
+          "outcome": "supported",
+          "status": "passed",
+          "reason": "verified_current_ingested_view",
+          "source": {
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "sourceSequence": 1,
+            "observedAt": "2026-11-28T03:57:41.072Z",
+            "type": "test_result",
+            "scope": "live-development",
+            "entity": "node --test --test-reporter=tap checks.test.mjs",
+            "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+            "role": "tool",
+            "kind": "command_execution",
+            "command": "node --test --test-reporter=tap checks.test.mjs",
+            "status": "passed",
+            "complete": true,
+            "completed": true,
+            "executed": true,
+            "exitCode": 0,
+            "testCount": 1,
+            "skippedCount": 0,
+            "todoCount": 0,
+            "text": "TAP version 13\n# Subtest: sum\nok 1 - sum\n  ---\n  duration_ms: 0.476834\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 62.373291\n",
+            "parserVersion": "native-node-tap-v1",
+            "transport": {
+              "liveState": {
+                "schema": 1,
+                "policy": "p1-live-workspace-v1",
+                "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "beforeVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "afterVersion": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+                "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+                "beforeChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "afterChangeGuard": "79ae141777aca18ecba67c4cc53626da2c7966025d281f8b3ddfbd3454850433",
+                "manifest": {
+                  "schema": 1,
+                  "policy": "p1-live-workspace-v1",
+                  "environment": {
+                    "cwd": ".",
+                    "nodeVersion": "v25.9.0",
+                    "platform": "darwin",
+                    "arch": "arm64",
+                    "values": {
+                      "testCommand": "node --test --test-reporter=tap checks.test.mjs"
+                    }
+                  },
+                  "files": [
+                    {
+                      "path": "checks.test.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 154,
+                      "sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+                      "mode": 420
+                    },
+                    {
+                      "path": "sum.mjs",
+                      "roles": [
+                        "artifact"
+                      ],
+                      "bytes": 36,
+                      "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+                      "mode": 420
+                    }
+                  ],
+                  "directories": [
+                    {
+                      "path": ".",
+                      "entryCount": 2,
+                      "membershipDigest": "85965a417e4480a28a8a79bccf496fce198ffb0b222faaf04ad6db6deac1e841"
+                    }
+                  ]
+                }
+              },
+              "producer": "p1_live_process_broker",
+              "nativeDelivery": "MCP tool result",
+              "scopeOfExecution": "allowlisted_benign_development_programs"
+            }
+          },
+          "authorizesExecution": false
+        },
+        {
+          "outcome": "abstain",
+          "status": "unknown",
+          "reason": "unsupported_live_claim_type",
+          "source": null,
+          "authorizesExecution": false
+        }
+      ]
+    },
+    "deliveryBlocked": false,
+    "maxPacketBytes": 16000,
+    "deliveredBytes": 2759,
+    "blockedNoticeBytes": 0,
+    "tokenCountMethod": "development_byte_budget_not_formal_token_matching",
+    "brokerMetrics": {
+      "publicCalls": 2,
+      "testExecutions": 1,
+      "verifierCalls": 2,
+      "directModelDispatches": 0
+    },
+    "liveAdapterMetrics": {
+      "captures": 10,
+      "filesRead": 40,
+      "bytesRead": 3800,
+      "directoryReads": 40,
+      "viewReads": 5,
+      "bindingSearches": 1,
+      "bindingOpens": 1,
+      "bindingBytes": 2192,
+      "delegatedSearches": 1,
+      "delegatedOpens": 1
+    }
+  },
+  "mutation": {
+    "source": "controller",
+    "before_sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+    "after_sha256": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec"
+  },
+  "changed_verification": {
+    "mode": "selective",
+    "results": [
+      {
+        "outcome": "abstain",
+        "status": "unknown",
+        "reason": "unsupported_live_claim_type",
+        "source": null,
+        "authorizesExecution": false
+      },
+      {
+        "outcome": "abstain",
+        "status": "unknown",
+        "reason": "version_mismatch",
+        "source": null,
+        "receipt": null,
+        "reused": false,
+        "authorizesExecution": false,
+        "trace": [
+          {
+            "stage": "view",
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "80d6e8410abd0d613378fc37ab5df65d05dad5f821a8a2f000c9c19abc54734b"
+            }
+          },
+          {
+            "stage": "open",
+            "eventId": "broker-exec-8585eece-2a97-4901-9536-b872b7eb9ffa",
+            "sourceSequence": 1
+          },
+          {
+            "stage": "view",
+            "key": "[\"test_result\",\"live-development\",\"node --test --test-reporter=tap checks.test.mjs\"]",
+            "epoch": "180af1c7-1e8d-401b-a435-c47e7bf160c2",
+            "watermark": "72cb74f941bdb9a99f7614b0595989f85fcf99625a5aa1568dcf0f1bccfe1947",
+            "complete": true,
+            "headCommitment": "34dc2ae5b630bb7c1cb790934033c46f935fc135daef8ea6a708060f42871622",
+            "sourceId": "live-ba66667124e042e182b5d7734fd5fcc8:node-tests",
+            "headSequence": 1,
+            "headEventCount": 1,
+            "liveBinding": {
+              "policy": "p1-live-workspace-v1",
+              "version": "0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4",
+              "rootIdentity": "d909a69924d2bcee8b59c134cd008bfed1669639f42d8d1973c164a00ca8a84e",
+              "changeGuard": "80d6e8410abd0d613378fc37ab5df65d05dad5f821a8a2f000c9c19abc54734b"
+            }
+          }
+        ],
+        "metrics": {
+          "viewReads": 2,
+          "searches": 1,
+          "opens": 1,
+          "openedBytes": 2192,
+          "deliveredBytes": 0,
+          "referenceTokens": 0
+        },
+        "policyVersion": "p1-typed-head-v2"
+      },
+      {
+        "outcome": "abstain",
+        "status": "unknown",
+        "reason": "unsupported_live_claim_type",
+        "source": null,
+        "authorizesExecution": false
+      }
+    ],
+    "packet": {
+      "schema": 1,
+      "kind": "current_workspace_evidence",
+      "verificationAvailable": true,
+      "coverageEstablished": false,
+      "currentVersion": "0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4",
+      "results": [
+        {
+          "outcome": "abstain",
+          "status": "unknown",
+          "reason": "unsupported_live_claim_type",
+          "source": null,
+          "authorizesExecution": false
+        },
+        {
+          "outcome": "abstain",
+          "status": "unknown",
+          "reason": "version_mismatch",
+          "source": null,
+          "authorizesExecution": false
+        },
+        {
+          "outcome": "abstain",
+          "status": "unknown",
+          "reason": "unsupported_live_claim_type",
+          "source": null,
+          "authorizesExecution": false
+        }
+      ]
+    },
+    "deliveryBlocked": false,
+    "maxPacketBytes": 16000,
+    "deliveredBytes": 556,
+    "blockedNoticeBytes": 0,
+    "tokenCountMethod": "development_byte_budget_not_formal_token_matching",
+    "brokerMetrics": {
+      "publicCalls": 4,
+      "testExecutions": 1,
+      "verifierCalls": 3,
+      "directModelDispatches": 0
+    },
+    "liveAdapterMetrics": {
+      "captures": 14,
+      "filesRead": 56,
+      "bytesRead": 5352,
+      "directoryReads": 56,
+      "viewReads": 7,
+      "bindingSearches": 1,
+      "bindingOpens": 1,
+      "bindingBytes": 2192,
+      "delegatedSearches": 2,
+      "delegatedOpens": 2
+    }
+  },
+  "error": {
+    "type": "TimeoutError",
+    "message": "host timeout during changed_decision"
+  },
+  "usage_notifications": {
+    "main": [
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 15484,
+            "inputTokens": 15426,
+            "cachedInputTokens": 12160,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 58,
+            "reasoningOutputTokens": 20
+          },
+          "last": {
+            "totalTokens": 15484,
+            "inputTokens": 15426,
+            "cachedInputTokens": 12160,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 58,
+            "reasoningOutputTokens": 20
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 31228,
+            "inputTokens": 31086,
+            "cachedInputTokens": 27520,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 142,
+            "reasoningOutputTokens": 34
+          },
+          "last": {
+            "totalTokens": 15744,
+            "inputTokens": 15660,
+            "cachedInputTokens": 15360,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 84,
+            "reasoningOutputTokens": 14
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 47251,
+            "inputTokens": 47041,
+            "cachedInputTokens": 43136,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 210,
+            "reasoningOutputTokens": 34
+          },
+          "last": {
+            "totalTokens": 16023,
+            "inputTokens": 15955,
+            "cachedInputTokens": 15616,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 68,
+            "reasoningOutputTokens": 0
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204b-363e-7862-9944-430966c0190d",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 64619,
+            "inputTokens": 64335,
+            "cachedInputTokens": 59008,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 284,
+            "reasoningOutputTokens": 34
+          },
+          "last": {
+            "totalTokens": 17368,
+            "inputTokens": 17294,
+            "cachedInputTokens": 15872,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 74,
+            "reasoningOutputTokens": 0
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204f-56ea-7af1-a445-34b3b79ec5ad",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 64619,
+            "inputTokens": 64335,
+            "cachedInputTokens": 59008,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 284,
+            "reasoningOutputTokens": 34
+          },
+          "last": {
+            "totalTokens": 1624,
+            "inputTokens": 0,
+            "cachedInputTokens": 0,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 0,
+            "reasoningOutputTokens": 0
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 81686,
+            "inputTokens": 81347,
+            "cachedInputTokens": 63232,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 339,
+            "reasoningOutputTokens": 48
+          },
+          "last": {
+            "totalTokens": 17067,
+            "inputTokens": 17012,
+            "cachedInputTokens": 4224,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 55,
+            "reasoningOutputTokens": 14
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 99109,
+            "inputTokens": 98693,
+            "cachedInputTokens": 80128,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 416,
+            "reasoningOutputTokens": 94
+          },
+          "last": {
+            "totalTokens": 17423,
+            "inputTokens": 17346,
+            "cachedInputTokens": 16896,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 77,
+            "reasoningOutputTokens": 46
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 116927,
+            "inputTokens": 116348,
+            "cachedInputTokens": 97408,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 579,
+            "reasoningOutputTokens": 106
+          },
+          "last": {
+            "totalTokens": 17818,
+            "inputTokens": 17655,
+            "cachedInputTokens": 17280,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 163,
+            "reasoningOutputTokens": 12
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a2204f-89d5-7701-93de-bc31701bc8e2",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 134991,
+            "inputTokens": 134256,
+            "cachedInputTokens": 115072,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 735,
+            "reasoningOutputTokens": 106
+          },
+          "last": {
+            "totalTokens": 18064,
+            "inputTokens": 17908,
+            "cachedInputTokens": 17664,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 156,
+            "reasoningOutputTokens": 0
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a22052-214d-7ca1-80bf-c8d47acc3be8",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 134991,
+            "inputTokens": 134256,
+            "cachedInputTokens": 115072,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 735,
+            "reasoningOutputTokens": 106
+          },
+          "last": {
+            "totalTokens": 3245,
+            "inputTokens": 0,
+            "cachedInputTokens": 0,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 0,
+            "reasoningOutputTokens": 0
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a2204b-35ee-70c0-830e-8c84d7534a32",
+        "turnId": "01a22052-65fc-7972-a73f-69dd857e7e4d",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 152608,
+            "inputTokens": 151812,
+            "cachedInputTokens": 119296,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 796,
+            "reasoningOutputTokens": 126
+          },
+          "last": {
+            "totalTokens": 17617,
+            "inputTokens": 17556,
+            "cachedInputTokens": 4224,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 61,
+            "reasoningOutputTokens": 20
+          },
+          "modelContextWindow": 258400
+        }
+      }
+    ],
+    "interpretation": "Raw notifications only; total/last/compaction billing has not been reconciled."
+  },
+  "metrics": null
+}

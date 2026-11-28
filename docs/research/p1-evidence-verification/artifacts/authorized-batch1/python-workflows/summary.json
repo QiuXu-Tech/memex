@@ -1,0 +1,72 @@
+{
+  "accepted_p1_task_count": 0,
+  "execution_source_provenance": "provenance/execution-sources.json",
+  "focused_tests": {
+    "all_passed": true,
+    "paired_runner": 19,
+    "python_capture": 19,
+    "upstream_sources_executed_by_unit_tests": false
+  },
+  "frozen_repository_files_sha256": {
+    "docs/research/p1-evidence-verification/PAIRED_RUNNER.md": "9862c9be19aec69583d6d71f1d7a9909f03dfce5862fb8e6f33cb5e3a1eceb05",
+    "scripts/paper1/paired_runner.py": "3e23f6cee365223753a48c8d7da2846413884daf19f67839ba06703149d611fd",
+    "scripts/paper1/python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+    "scripts/paper1/python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc",
+    "test/test_paper1_paired_runner.py": "2f71d5e59ccccfb433d1313c08ca47ff22f0aa1ee25c706e709d58fa5a966b9b",
+    "test/test_paper1_python_workflow.py": "dc5bb96caed7ee06a4a58303d21b5b159fd6ad403c3a8312b6ed3ae62c5d0beb"
+  },
+  "kind": "two_public_python_source_development_captures",
+  "method_attempts_reserved": 0,
+  "method_runtime_ready": false,
+  "model_requests": 0,
+  "native_compactions": 0,
+  "os_isolation": false,
+  "provider_requests": 0,
+  "schema_version": 1,
+  "scientific_ready": false,
+  "scope": "Unmodified public-base fixed tests only. No accepted workflow, task repair, model comparison, native checkpoint or archive is claimed.",
+  "source_execution_attempts": 2,
+  "source_tasks": [
+    {
+      "current_workspace_bound": true,
+      "elapsed_seconds": 0.9459672709999722,
+      "executed_snapshot_bound": true,
+      "local_loopback_bind_probes": 0,
+      "network_attempts_blocked": 0,
+      "process_exit": 0,
+      "receipt": "w-101/attempt-001/capture.json",
+      "receipt_file_sha256": "4a59a790256d6ce9c3d2dfdbf537d41372be5d26fbe0be31a399de067cd07468",
+      "receipt_object_sha256": "177f7550fc86ddff70a9671098320c458bef91d70180df008262a3e4a739de92",
+      "runtime_bound": true,
+      "task_id": "w-101",
+      "test_counts": {
+        "collected": 59,
+        "errors": 0,
+        "failed": 0,
+        "passed": 59,
+        "skipped": 0
+      }
+    },
+    {
+      "current_workspace_bound": true,
+      "elapsed_seconds": 0.8723611969999183,
+      "executed_snapshot_bound": true,
+      "local_loopback_bind_probes": 1,
+      "network_attempts_blocked": 0,
+      "process_exit": 0,
+      "receipt": "w-102/attempt-001/capture.json",
+      "receipt_file_sha256": "e32cae203d89b073f563af86dbbf4c89a562cb5fa711ae705754707be7dcd8b0",
+      "receipt_object_sha256": "dcaeda9141bc44605ee0757ee1360c57011c4393a837d7eb7ec2a5da5aa14e1e",
+      "runtime_bound": true,
+      "task_id": "w-102",
+      "test_counts": {
+        "collected": 212,
+        "errors": 0,
+        "failed": 0,
+        "passed": 201,
+        "skipped": 11
+      }
+    }
+  ],
+  "source_tests_reexecuted_for_export_repair": false
+}

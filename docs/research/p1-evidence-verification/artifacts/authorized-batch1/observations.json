@@ -1,0 +1,129 @@
+{
+  "schema_version": 1,
+  "kind": "authorized_batch_observation_summary",
+  "batch_id": "p1-20261128-approved-batch1",
+  "phase": "development",
+  "formal_method_units_completed": 0,
+  "accepted_p1_tasks": 0,
+  "native_attempts": [
+    {
+      "attempt_id": "native-01",
+      "status": "blocked_or_failed",
+      "error": {
+        "type": "TimeoutError",
+        "message": "host timeout during prelude"
+      },
+      "elapsed_seconds": 125.47339550000015,
+      "generation_turns_dispatched": 1,
+      "generation_turns_completed": 0,
+      "native_compactions_started": 0,
+      "native_compactions_completed": 0,
+      "approval_responses": [],
+      "actual_test_receipts": 0,
+      "simulated_decisions": 0,
+      "actual_test_outcomes": [],
+      "decisions": [],
+      "complete_integration_passed": false,
+      "raw_final_checks": null,
+      "standardized_cost": null,
+      "actual_spend": null
+    },
+    {
+      "attempt_id": "native-02",
+      "status": "blocked_or_failed",
+      "error": {
+        "type": "TimeoutError",
+        "message": "host timeout during changed_decision"
+      },
+      "elapsed_seconds": 480.0372952919997,
+      "generation_turns_dispatched": 5,
+      "generation_turns_completed": 4,
+      "native_compactions_started": 2,
+      "native_compactions_completed": 2,
+      "approval_responses": [
+        {
+          "tool": "run_current_tests",
+          "action": "accept",
+          "origin": "prior_chat_authorization",
+          "identityAttested": false,
+          "persistent_grant": false
+        },
+        {
+          "tool": "record_decision",
+          "action": "accept",
+          "origin": "prior_chat_authorization",
+          "identityAttested": false,
+          "persistent_grant": false
+        }
+      ],
+      "actual_test_receipts": 1,
+      "simulated_decisions": 1,
+      "actual_test_outcomes": [
+        "passed"
+      ],
+      "decisions": [
+        "release"
+      ],
+      "complete_integration_passed": false,
+      "raw_final_checks": null,
+      "standardized_cost": null,
+      "actual_spend": null,
+      "unchanged_test_receipt_reused": true,
+      "changed_version_rejected_old_test_receipt": true,
+      "changed_decision_completed": false,
+      "later_failing_test_receipt_observed": false,
+      "unsupported_claims_remain_unknown": 2,
+      "model_extractions_accepted": 2,
+      "coverage_established": false
+    }
+  ],
+  "inputs": [
+    {
+      "ref": "native-01/main-host/events.jsonl",
+      "sha256": "fdaa4ce113399917b249b7dc6ff1b6cc01e725dd4ac324024e62b20fe218cbaa"
+    },
+    {
+      "ref": "native-01/summary.json",
+      "sha256": "90941e2be0259e44cc355019cb6b1ec28d9bbc99fb669a4c3a92eedb99cefee9"
+    },
+    {
+      "ref": "native-01/usage-audit.json",
+      "sha256": "e8c0efc62322cdeeed11e71fc05675a10eb28f23c7bbb120d4e1812e2368cbf0"
+    },
+    {
+      "ref": "native-01/export-manifest.json",
+      "sha256": "6e2aa4edecd65f00b006476f8cb5102371a4910e913b3da3ca5cf289ad2b83ec"
+    },
+    {
+      "ref": "native-02/changed-extract-host/events.jsonl",
+      "sha256": "26b67b1157c8f4c0f99033926e1a8780b67ae8e156481f4c177fcf80c7220590"
+    },
+    {
+      "ref": "native-02/main-host/events.jsonl",
+      "sha256": "a6e18d2d3b6da686da13d1b1a91bfda4b951081fbb057f022b824fbc847bd86e"
+    },
+    {
+      "ref": "native-02/stable-extract-host/events.jsonl",
+      "sha256": "5a20c9914d6c40159a655ee5d05933b525984233bf2450b2a2c790b97e301a45"
+    },
+    {
+      "ref": "native-02/summary.json",
+      "sha256": "4f12c067699747763332728c911dc8a69a2023925115464d4573e50410d56698"
+    },
+    {
+      "ref": "native-02/usage-audit.json",
+      "sha256": "4329a5abbbe05127d5100ee9a611fecd9243f9e21c26182dac475bb3631c7d72"
+    },
+    {
+      "ref": "native-02/export-manifest.json",
+      "sha256": "5c0fe4eb8933a32b260ec7b647f2a582ecd8e9fcd01983f03418dc683fd1b032"
+    }
+  ],
+  "generation_turns_dispatched_total": 6,
+  "limits": [
+    "Counts describe development dispatches and captured completion, not independent research tasks.",
+    "The native controller persisted per-action counters remotely; these observations are not retroactive central-ledger reservations.",
+    "The final decision after changed evidence did not complete; no hold decision or later failing execution is asserted.",
+    "Missing usage and billing are unknown, not zero."
+  ]
+}

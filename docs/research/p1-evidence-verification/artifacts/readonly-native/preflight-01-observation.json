@@ -1,0 +1,10 @@
+{
+  "kind": "controller_observed_terminal_failure",
+  "model_generation_starts": 0,
+  "native_compactions": 0,
+  "failure": "ValueError: /tmp runtime path was not in resolved /private/tmp repository subpath during source-manifest construction",
+  "source_sha256": "028f855884ca16f65e5609c227d62afae41c65c4f05aadf8fa1856832bd2e478",
+  "retained_original_source": "source-snapshots/preflight-initial-native_readonly.py",
+  "correction": "Resolve each source path before calculating its repository-relative name.",
+  "followup": "preflight-02 succeeded with zero generation calls; attempt-01 is the first generated trial."
+}

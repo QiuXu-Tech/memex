@@ -1,0 +1,92 @@
+{
+  "accepted_p1_task_count": 0,
+  "capability_change": "Python fixed-test observer and two clean-source captures now exist; task trajectory/native checkpoint and all-arm method runtime still absent. Per-preflight source_executions=0 counts only this read-only inspection.",
+  "current_output_sha256": {
+    "backend-contract.json": "79cb83bf53badd57ac088ac32c2153d63a6fc0ac0438db95a4504af4825474bf",
+    "runtime-readiness.json": "9da14236763eae777e29094cb6c9c181f1ec3ceb29277a8eb0c61add1d068d71"
+  },
+  "current_producer_sha256": "3e23f6cee365223753a48c8d7da2846413884daf19f67839ba06703149d611fd",
+  "current_runtime_source_sha256": {
+    "scripts/paper1/batch_limits.py": "5ff8013e8b41eaf9a14e8b3ec0fa5c8d68e79c6bdeb960311c120409f02c9771",
+    "scripts/paper1/experiment.py": "548b4b57683c230a652b8fbf3a9b9ea2542d13984e47860d7ce1d26477cf5cbb",
+    "scripts/paper1/paired_runner.py": "3e23f6cee365223753a48c8d7da2846413884daf19f67839ba06703149d611fd",
+    "scripts/paper1/python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+    "scripts/paper1/python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc",
+    "scripts/paper1/taskpack.py": "d44903d914a88f40a55d9f86623fa10a8fd07710e888ad842b0c2f1105208570"
+  },
+  "existing_python_capture_evidence": [
+    {
+      "fixed_source_tests_status": "tests_passed",
+      "native_task_prelude_or_checkpoint_claimed": false,
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "receipt_file_sha256": "4a59a790256d6ce9c3d2dfdbf537d41372be5d26fbe0be31a399de067cd07468",
+      "receipt_object_sha256": "177f7550fc86ddff70a9671098320c458bef91d70180df008262a3e4a739de92",
+      "receipt_relative_to_batch": "python-workflows/w-101/attempt-001/capture.json",
+      "source_execution_attempts": 1,
+      "task_id": "w-101",
+      "test_counts": {
+        "collected": 59,
+        "errors": 0,
+        "failed": 0,
+        "passed": 59,
+        "skipped": 0
+      }
+    },
+    {
+      "fixed_source_tests_status": "tests_passed",
+      "native_task_prelude_or_checkpoint_claimed": false,
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "receipt_file_sha256": "e32cae203d89b073f563af86dbbf4c89a562cb5fa711ae705754707be7dcd8b0",
+      "receipt_object_sha256": "dcaeda9141bc44605ee0757ee1360c57011c4393a837d7eb7ec2a5da5aa14e1e",
+      "receipt_relative_to_batch": "python-workflows/w-102/attempt-001/capture.json",
+      "source_execution_attempts": 1,
+      "task_id": "w-102",
+      "test_counts": {
+        "collected": 212,
+        "errors": 0,
+        "failed": 0,
+        "passed": 201,
+        "skipped": 11
+      }
+    }
+  ],
+  "historical_producer": {
+    "identity_basis": "Recorded producer SHA supplied by the creating controller; known subsequent local patch reversed and exact SHA matched. No replacement of historical artifacts.",
+    "saved_source": "provenance/paired_runner-v1.py",
+    "sha256": "d2a79410e84ddc0e3d41e4d48ec94f91140996242210e1528fb8f77ba83fb30b"
+  },
+  "kind": "read_only_metadata_refresh_over_unchanged_public_inputs",
+  "method_attempts_reserved_added": 0,
+  "model_requests_added": 0,
+  "native_compactions_added": 0,
+  "no_new_public_tree_copy": true,
+  "preserved_unit_count": 16,
+  "provider_requests_added": 0,
+  "public_inputs": [
+    {
+      "copied_again": false,
+      "existing_public_relative_to_batch": "paired-inputs/public/w-101",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "task_id": "w-101"
+    },
+    {
+      "copied_again": false,
+      "existing_public_relative_to_batch": "paired-inputs/public/w-102",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "task_id": "w-102"
+    }
+  ],
+  "retained_v1_controller_files_sha256": {
+    "paired-inputs/controller/backend-contract.json": "dc2b98d5d6e49812d8c1c87de1ed46c63ba03d88479d12d8d205885a0f6421ca",
+    "paired-inputs/controller/preparation.json": "133c577388bc9b0dc343993518723e5cc9d7c9e25598dc36d6e2e67e5a74cdac",
+    "paired-inputs/controller/runtime-readiness.json": "796888cd4ce91a92b77ad086dcbfc9996a9341a0c5d79c818a068032fca2a3bf",
+    "paired-inputs/controller/units.json": "c8d929f7edeedaa56c952e43056b7775bf271ba78aa53d8000e1fabf8903f3c0"
+  },
+  "runtime_ready": false,
+  "schema_version": "p1-paired-readiness-revision-1",
+  "scientific_ready": false,
+  "source_executions_added": 0,
+  "supersedes_only": "paired-inputs/controller/runtime-readiness.json and backend-contract.json as statements of current engineering capabilities",
+  "unit_status": "prepared_not_dispatched",
+  "v1_preparation_sha256": "0c28cfc29c32ea3a96e25d5aaebcdff77cbe91069bef6bcaf090fdbdf9f9a998"
+}

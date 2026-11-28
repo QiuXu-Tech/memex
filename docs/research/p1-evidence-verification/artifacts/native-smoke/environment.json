@@ -1,0 +1,12 @@
+{
+  "kind": "post_run_host_artifact_check",
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "python_version": "Python 3.14.3",
+  "script_sha256": {
+    "scripts/paper1/native_smoke.py": "b01e9e2b651594d17dfcec7c9f7e1e37b9569a06c3848db9e563edc61abeb56b",
+    "scripts/paper1/normalize-node.mjs": "a332da8d974690e007df7b48efe18413e3a11ac179c384382aa82c2edf87b6cf",
+    "scripts/codex-retention-host.py": "663201794332653973754e4f3c27c5b6c63672341f580a8368a4316bbd7d46e9"
+  },
+  "note": "Post-run hash check; not a measurement of the scripts used by earlier failed attempts."
+}

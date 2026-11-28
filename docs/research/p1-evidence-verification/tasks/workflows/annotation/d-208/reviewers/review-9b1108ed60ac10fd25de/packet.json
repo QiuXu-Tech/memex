@@ -1,0 +1,65 @@
+{
+  "evaluator_answers_provided": false,
+  "material_kind": "synthetic_fixture",
+  "material_sha256": "3d8f224040b1f4026e8baec488f938e8465ee332fb9c088cff4703abec173e1d",
+  "method_arm": null,
+  "method_outputs": null,
+  "packet_id": "review-9b1108ed60ac10fd25de",
+  "public_files": [
+    {
+      "bytes": 991,
+      "kind": "file",
+      "mode": 420,
+      "path": "archive.jsonl",
+      "sha256": "eadb2f39ab1f4f73077255d19d941b146e20e540539511fa0bde91c45ea00c2f"
+    },
+    {
+      "bytes": 397,
+      "kind": "file",
+      "mode": 420,
+      "path": "budget.json",
+      "sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2"
+    },
+    {
+      "bytes": 314,
+      "kind": "file",
+      "mode": 420,
+      "path": "request.txt",
+      "sha256": "73b752741c06538ae4ef585ed7cff01b687ab91d50fec212b5300b4c27e62141"
+    },
+    {
+      "bytes": 242,
+      "kind": "file",
+      "mode": 420,
+      "path": "task.json",
+      "sha256": "9671e604cb1eecc0c5b3461cda26c96594c62575e786fa48751c243dd8964fab"
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "path": "workspace"
+    },
+    {
+      "bytes": 397,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/WORKBENCH.md",
+      "sha256": "47cd540b10c2b74cc8c295ec8f3cc115803c76fb5db30a3b7f18070ab9004274"
+    },
+    {
+      "bytes": 60,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/artifact.json",
+      "sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e"
+    },
+    {
+      "bytes": 94,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/registry.json",
+      "sha256": "cf337b3ee2a7c2163842eb7d262c418ca0f163a4869b5cb5a364e2937a87acb1"
+    }
+  ],
+  "schema_version": "p1-review-packet-1"
+}

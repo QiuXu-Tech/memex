@@ -1,0 +1,225 @@
+{
+  "finished_at": "2026-11-28T10:54:50.147377+00:00",
+  "global_path_modified": false,
+  "interpreter_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc",
+  "kind": "p1_pinned_python_setup_continuation",
+  "method_units_reserved": 0,
+  "model_requests": 0,
+  "native_attempts_reserved": 0,
+  "prior_setup_receipt_sha256": "dc7cf51e13de1c4a21fd3397a0bc65d949b66baaa1c1903ac44800aec2ffd216",
+  "prior_setup_status": "failed",
+  "provider_requests": 0,
+  "python_version_observation": {
+    "executable": "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10",
+    "prefix": "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none",
+    "version": [
+      3,
+      10,
+      16
+    ]
+  },
+  "requirements": {
+    "w-101": "5817943cece5ddfb25e91eb00ca3c608502f9c029b970fd570a92b7aef96801a",
+    "w-102": "652d5312533e0ef8ab830f85811c20391d520b55624ae516de28d325d4578313"
+  },
+  "root": "<SETUP_ROOT>",
+  "schema_version": 1,
+  "sdist_builds_allowed": false,
+  "source_manifest": {
+    "experiment.py": "548b4b57683c230a652b8fbf3a9b9ea2542d13984e47860d7ce1d26477cf5cbb",
+    "public_workspace.py": "9f65c8131d80b428e94cc3006c1d86cb66f703cd460c947fab23bb4319281807",
+    "python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+    "python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc"
+  },
+  "started_at": "2026-11-28T10:54:48.293329+00:00",
+  "status": "incomplete",
+  "steps": [
+    {
+      "command": [
+        "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10",
+        "-I",
+        "-S",
+        "-B",
+        "-c",
+        "import json,sys;print(json.dumps({\"version\":list(sys.version_info[:3]),\"prefix\":sys.base_prefix,\"executable\":sys.executable}))"
+      ],
+      "elapsed_seconds": 1.5450851249988773,
+      "error": null,
+      "finished_at": "2026-11-28T10:54:49.839322+00:00",
+      "label": "02-python-version",
+      "model_requests": 0,
+      "returncode": 0,
+      "started_at": "2026-11-28T10:54:48.294084+00:00",
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr_preview": "",
+      "stdout": {
+        "bytes": 308,
+        "sha256": "96280ba0c65d32b8672ebc546b1ce82d4258dba933bac6623f0e2402a5c5c856"
+      },
+      "task_source_executions": 0
+    },
+    {
+      "command": [
+        "<HOME>/.local/bin/uv",
+        "venv",
+        "<SETUP_ROOT>/w-101",
+        "--python",
+        "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10",
+        "--no-python-downloads",
+        "--no-config",
+        "--no-progress",
+        "--cache-dir",
+        "<SETUP_ROOT>/cache"
+      ],
+      "elapsed_seconds": 0.18617362499935552,
+      "error": null,
+      "finished_at": "2026-11-28T10:54:50.063458+00:00",
+      "label": "3-w-101-venv",
+      "model_requests": 0,
+      "returncode": 0,
+      "started_at": "2026-11-28T10:54:49.877043+00:00",
+      "stderr": {
+        "bytes": 134,
+        "sha256": "c938273067a6bd16207230ef7eefd95e76a8bee97d09c6848a0837d3d6073796"
+      },
+      "stderr_preview": "Using CPython 3.10.16 interpreter at: python/cpython-3.10.16-macos-aarch64-none/bin/python3.10\nCreating virtual environment at: w-101\n",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "task_source_executions": 0
+    },
+    {
+      "command": [
+        "<HOME>/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "<SETUP_ROOT>/w-101/bin/python",
+        "--requirements",
+        "<SETUP_ROOT>/requirements/w-101.txt",
+        "--only-binary",
+        ":all:",
+        "--no-build",
+        "--no-deps",
+        "--link-mode",
+        "copy",
+        "--default-index",
+        "https://pypi.org/simple",
+        "--keyring-provider",
+        "disabled",
+        "--no-python-downloads",
+        "--no-config",
+        "--no-sources",
+        "--no-progress",
+        "--cache-dir",
+        "<SETUP_ROOT>/cache"
+      ],
+      "elapsed_seconds": 0.020515208001597784,
+      "error": null,
+      "finished_at": "2026-11-28T10:54:50.084706+00:00",
+      "label": "3-w-101-wheels",
+      "model_requests": 0,
+      "returncode": 2,
+      "started_at": "2026-11-28T10:54:50.064037+00:00",
+      "stderr": {
+        "bytes": 456,
+        "sha256": "81565d19d7edb7f2d49c6b9489d4535f4b4b1d942d122186fd5acd403444cf84"
+      },
+      "stderr_preview": "error: the argument '--only-binary <ONLY_BINARY>' cannot be used with '--no-build'\n\nUsage: uv pip install --python <PYTHON> --only-binary <ONLY_BINARY> --no-deps --link-mode <LINK_MODE> --default-index <DEFAULT_INDEX> --keyring-provider <KEYRING_PROVIDER> --no-python-downloads --no-config --no-sources --no-progress --cache-dir <CACHE_DIR> <PACKAGE|--requirements <REQUIREMENTS>|--editable <EDITABLE>|--group <GROUP>>\n\nFor more information, try '--help'.\n",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "task_source_executions": 0
+    },
+    {
+      "command": [
+        "<HOME>/.local/bin/uv",
+        "venv",
+        "<SETUP_ROOT>/w-102",
+        "--python",
+        "<SETUP_ROOT>/python/cpython-3.10.16-macos-aarch64-none/bin/python3.10",
+        "--no-python-downloads",
+        "--no-config",
+        "--no-progress",
+        "--cache-dir",
+        "<SETUP_ROOT>/cache"
+      ],
+      "elapsed_seconds": 0.04056237499753479,
+      "error": null,
+      "finished_at": "2026-11-28T10:54:50.125943+00:00",
+      "label": "4-w-102-venv",
+      "model_requests": 0,
+      "returncode": 0,
+      "started_at": "2026-11-28T10:54:50.085246+00:00",
+      "stderr": {
+        "bytes": 134,
+        "sha256": "5ec3c56cbe936b982a8ed7bc176d51be9da1c962f6761615f491db9557e4e4c4"
+      },
+      "stderr_preview": "Using CPython 3.10.16 interpreter at: python/cpython-3.10.16-macos-aarch64-none/bin/python3.10\nCreating virtual environment at: w-102\n",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "task_source_executions": 0
+    },
+    {
+      "command": [
+        "<HOME>/.local/bin/uv",
+        "pip",
+        "install",
+        "--python",
+        "<SETUP_ROOT>/w-102/bin/python",
+        "--requirements",
+        "<SETUP_ROOT>/requirements/w-102.txt",
+        "--only-binary",
+        ":all:",
+        "--no-build",
+        "--no-deps",
+        "--link-mode",
+        "copy",
+        "--default-index",
+        "https://pypi.org/simple",
+        "--keyring-provider",
+        "disabled",
+        "--no-python-downloads",
+        "--no-config",
+        "--no-sources",
+        "--no-progress",
+        "--cache-dir",
+        "<SETUP_ROOT>/cache"
+      ],
+      "elapsed_seconds": 0.020457874998101033,
+      "error": null,
+      "finished_at": "2026-11-28T10:54:50.146995+00:00",
+      "label": "4-w-102-wheels",
+      "model_requests": 0,
+      "returncode": 2,
+      "started_at": "2026-11-28T10:54:50.126415+00:00",
+      "stderr": {
+        "bytes": 456,
+        "sha256": "81565d19d7edb7f2d49c6b9489d4535f4b4b1d942d122186fd5acd403444cf84"
+      },
+      "stderr_preview": "error: the argument '--only-binary <ONLY_BINARY>' cannot be used with '--no-build'\n\nUsage: uv pip install --python <PYTHON> --only-binary <ONLY_BINARY> --no-deps --link-mode <LINK_MODE> --default-index <DEFAULT_INDEX> --keyring-provider <KEYRING_PROVIDER> --no-python-downloads --no-config --no-sources --no-progress --cache-dir <CACHE_DIR> <PACKAGE|--requirements <REQUIREMENTS>|--editable <EDITABLE>|--group <GROUP>>\n\nFor more information, try '--help'.\n",
+      "stdout": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "task_source_executions": 0
+    }
+  ],
+  "taskpacks_modified": false,
+  "tasks": {
+    "w-101": {
+      "status": "pinned_wheels_install_failed"
+    },
+    "w-102": {
+      "status": "pinned_wheels_install_failed"
+    }
+  },
+  "third_party_source_executions": 0
+}

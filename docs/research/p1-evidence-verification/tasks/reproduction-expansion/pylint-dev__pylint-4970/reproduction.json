@@ -1,0 +1,442 @@
+{
+  "schema_version": 1,
+  "kind": "source_environment_qualification_only",
+  "candidate_id": "pylint-dev__pylint-4970",
+  "project_id": "pylint-dev/pylint",
+  "recorded_at": "2026-11-28T01:53:38.482064+00:00",
+  "formal_task": false,
+  "model_requests": 0,
+  "official_container_used": false,
+  "docker_equivalence_claimed": false,
+  "source_dataset": {
+    "id": "SWE-bench/SWE-bench_Verified",
+    "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+    "split": "test",
+    "row_index": 323,
+    "canonical_row_sha256": "25fa23a5147c92d8ccca6f844062447d1b7181d0a64685617d34bbe3a38900c9",
+    "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+    "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+  },
+  "upstream": {
+    "issue_url": "https://github.com/pylint-dev/pylint/issues/4901",
+    "issue_number": 4901,
+    "issue_title": "Setting `min-similarity-lines` to `0` should stop pylint from checking duplicate code",
+    "pr_url": "https://github.com/pylint-dev/pylint/pull/4970",
+    "pr_number": 4970,
+    "pr_merged": true,
+    "base_commit": "40cc2ffd7887959157aaf469e09585ec2be7f528",
+    "base_commit_url": "https://github.com/pylint-dev/pylint/commit/40cc2ffd7887959157aaf469e09585ec2be7f528",
+    "fix_commit": "cf33d82635569da924d82538f806a5242481f06f",
+    "fix_commit_kind": "upstream_merge_or_squash_commit",
+    "fix_commit_url": "https://github.com/pylint-dev/pylint/commit/cf33d82635569da924d82538f806a5242481f06f",
+    "fix_parent_commits": [
+      "fab2de272b3fc36dc4480d89840b8bfe0fbfbd0c"
+    ],
+    "base_is_fix_first_parent": false,
+    "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+  },
+  "license": {
+    "code_spdx_at_base": "NOASSERTION",
+    "code_license_url": "https://raw.githubusercontent.com/pylint-dev/pylint/40cc2ffd7887959157aaf469e09585ec2be7f528/LICENSE",
+    "code_license_file": "licenses/pylint-dev__pylint-f97b14080de8.txt",
+    "code_license_sha256": "f97b14080de8b8490d60eb3d620ebc419943e0779466d1dd0d5d6f68fe195dcd",
+    "scope_note": "GPL v2 text and source header observed; do not infer only/or-later from this evidence. Full source redistribution requires separate license review.",
+    "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+    "dataset_card_license_field": null,
+    "release_scope": "metadata, locators, hashes and unmodified license notices"
+  },
+  "changed_files": {
+    "upstream_pr": [
+      "ChangeLog",
+      "doc/whatsnew/2.11.rst",
+      "pylint/checkers/similar.py",
+      "tests/checkers/unittest_similar.py"
+    ],
+    "benchmark_source_patch": [
+      "pylint/checkers/similar.py"
+    ],
+    "benchmark_test_patch": [
+      "tests/checkers/unittest_similar.py"
+    ]
+  },
+  "patch_hashes": {
+    "patch": "7eb3a09727133387bf81fa3a1596746a2dcca2c0c9eba95caaa69b65d619dccd",
+    "test_patch": "c3c6cf31d76aa8769731b35f87511ff007dddb47a2349f8d4e5da3355ff9cf7b"
+  },
+  "raw_patch_or_label_copy_published": false,
+  "status": "setup_or_acquisition_failure",
+  "commands": [
+    {
+      "phase": "git-init",
+      "started_at": "2026-11-28T01:53:38.482313+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "init",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/repo"
+      ],
+      "timeout_seconds": 359.9999894949997,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.0037559510001301533,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-init.stdout.txt",
+        "bytes": 136,
+        "sha256": "74ba42fc946467e3d6c7219f8044d485aa0ed67b64772c2049883233ba1734e5"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-init.stderr.txt",
+        "bytes": 586,
+        "sha256": "3e70934f1909b0f5a846d62237fcc1509d733b9fb0321187024723dfc67176d3"
+      }
+    },
+    {
+      "phase": "git-origin",
+      "started_at": "2026-11-28T01:53:38.486411+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/repo",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/pylint-dev/pylint.git"
+      ],
+      "timeout_seconds": 359.995864212,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.00354675899961876,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-origin.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-origin.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "git-fetch",
+      "started_at": "2026-11-28T01:53:38.490282+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/repo",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "40cc2ffd7887959157aaf469e09585ec2be7f528"
+      ],
+      "timeout_seconds": 359.99199355699966,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 5.037533835999966,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-fetch.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-fetch.stderr.txt",
+        "bytes": 118,
+        "sha256": "bf078a6ea244e61c414e8b8d81cd24b13d820a1d2da0950a3008bd1bf000d368"
+      }
+    },
+    {
+      "phase": "git-checkout",
+      "started_at": "2026-11-28T01:53:43.529170+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/repo",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "timeout_seconds": 354.95310766700004,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.06472571700032859,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-checkout.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-checkout.stderr.txt",
+        "bytes": 83,
+        "sha256": "1e57f550c935ccb972ace841c8328d1deefccec1d00a41ab13917a94fc7a0728"
+      }
+    },
+    {
+      "phase": "git-head",
+      "started_at": "2026-11-28T01:53:43.594576+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/repo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "timeout_seconds": 354.88770160199965,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.0037508030000026338,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-head.stdout.txt",
+        "bytes": 41,
+        "sha256": "7f4455dcb408d6e9153c1a7f7f1bdc6d049abba89bd63edaa2845aedbf169a58"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/git-head.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "create-venv",
+      "started_at": "2026-11-28T01:53:43.599012+00:00",
+      "command": [
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/python/cpython-3.9.21-linux-x86_64-gnu/bin/python3.9",
+        "-m",
+        "venv",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/venv"
+      ],
+      "timeout_seconds": 354.88326407099976,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 2.6258453099999315,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/create-venv.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/create-venv.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "install-dependencies",
+      "started_at": "2026-11-28T01:53:46.226734+00:00",
+      "command": [
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/venv/bin/python",
+        "-m",
+        "pip",
+        "--isolated",
+        "install",
+        "--disable-pip-version-check",
+        "--no-cache-dir",
+        "--only-binary=:all:",
+        "--cert",
+        "/etc/ssl/certs/ca-certificates.crt",
+        "setuptools==67.6.0",
+        "wheel==0.38.4",
+        "pytest==6.2.5",
+        "attrs==21.4.0",
+        "iniconfig==1.1.1",
+        "packaging==21.3",
+        "py==1.11.0",
+        "pluggy==1.0.0",
+        "toml==0.10.2",
+        "pyparsing==3.0.9",
+        "astroid==2.7.3",
+        "wrapt==1.12.1",
+        "lazy-object-proxy==1.6.0",
+        "platformdirs==2.4.0",
+        "isort==5.9.3",
+        "mccabe==0.6.1",
+        "typing-extensions==3.10.0.2"
+      ],
+      "timeout_seconds": 352.2555445199996,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 1,
+      "launch_error": null,
+      "elapsed_seconds": 11.363134989000173,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/install-dependencies.stdout.txt",
+        "bytes": 2009,
+        "sha256": "e9246098dc52d1938b9308f633899c0978cfdb4a3dc431a811d1c750edf3fc72"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/pylint-dev__pylint-4970/logs/install-dependencies.stderr.txt",
+        "bytes": 2362,
+        "sha256": "a95900ae866ca088fadbf0e3956980d36b2091bcacc4e17f7f526e9af50342d9"
+      }
+    }
+  ],
+  "base_result": null,
+  "fixed_result": null,
+  "official_label_coverage": null,
+  "profile_sha256": "5531309b4d5a6754e73f7478a8b0756cf781206898551fbf82b237c3fcb5e618",
+  "python_executable_sha256": "a58e85041bf8c92f92ac013de62ada094dcb2764a92572d85037a74ed4c3deac",
+  "bounds": {
+    "setup_seconds": 360,
+    "test_seconds_per_phase": 180
+  },
+  "isolation": {
+    "tool": "bwrap",
+    "namespaces": [
+      "user",
+      "pid",
+      "ipc",
+      "uts"
+    ],
+    "network_namespace": "shared (existing network controls unchanged)",
+    "credentials_or_proxy_config_forwarded_to_tests": false,
+    "host_resolver_config_mounted": false,
+    "other_project_mounts": [],
+    "scope": "project installation and test commands; dependency download uses minimal transport environment"
+  },
+  "base_commit_verified": true,
+  "failure": "install-dependencies_failed",
+  "finished_at": "2026-11-28T01:53:57.590704+00:00",
+  "total_elapsed_seconds": 19.108443922000333
+}

@@ -1,0 +1,74 @@
+{
+  "accepted": false,
+  "domain": "controller_evaluator_only",
+  "frozen": false,
+  "kind": "synthetic_fixture",
+  "private_files": [
+    {
+      "bytes": 4276,
+      "path": "controller/spec.json",
+      "sha256": "d48df5dbbec8233831fb3c2feba2f76d51f76d6de9a7ff5f607f2ea24ad1813d"
+    },
+    {
+      "bytes": 874,
+      "path": "evaluator/blueprint.json",
+      "sha256": "c8bfb30c8dbd1a1151a73c0d34b233cfbe4d3ead37a820c96f2e03c58185d187"
+    }
+  ],
+  "private_sha256": "392f0d20d9d62e0dcb667853aa9e3dd8dd3f1f4142b821a5c7b55fdb2f736255",
+  "project_id": "synthetic/fixture-suite",
+  "public_files": [
+    {
+      "bytes": 879,
+      "kind": "file",
+      "mode": 420,
+      "path": "archive.jsonl",
+      "sha256": "eb9c602633cdb845de1dc335e03d586974f500bd18e39d499e1293bf53c7c7e7"
+    },
+    {
+      "bytes": 397,
+      "kind": "file",
+      "mode": 420,
+      "path": "budget.json",
+      "sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2"
+    },
+    {
+      "bytes": 170,
+      "kind": "file",
+      "mode": 420,
+      "path": "request.txt",
+      "sha256": "fcb8bd5586aec0cde2c5990de492cb37099c55c1ff3efaec292900beb44ccd13"
+    },
+    {
+      "bytes": 242,
+      "kind": "file",
+      "mode": 420,
+      "path": "task.json",
+      "sha256": "fe84c87f1cadf3fd1ab8b5c492c85621da50c2dfb4f1e27cc5ca250ba90c7c7f"
+    },
+    {
+      "kind": "directory",
+      "mode": 493,
+      "path": "workspace"
+    },
+    {
+      "bytes": 397,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/WORKBENCH.md",
+      "sha256": "47cd540b10c2b74cc8c295ec8f3cc115803c76fb5db30a3b7f18070ab9004274"
+    },
+    {
+      "bytes": 60,
+      "kind": "file",
+      "mode": 420,
+      "path": "workspace/artifact.json",
+      "sha256": "6850af6ce53afe74e196d1dea4f546db894f0ddfe4ec241bef363df7fec4094e"
+    }
+  ],
+  "public_sha256": "b62be37a87939436e884ff5cf1b94029179172baa0bac8e19984a128ccefa83d",
+  "schema_version": "p1-taskpack-1",
+  "status": "prepared_unaccepted",
+  "task_id": "d-201",
+  "workflow_family_id": "D01"
+}

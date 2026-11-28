@@ -1,0 +1,213 @@
+{
+  "$defs": {
+    "evidence": {
+      "additionalProperties": false,
+      "properties": {
+        "end_byte": {
+          "minimum": 1,
+          "type": "integer"
+        },
+        "path": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "span_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "start_byte": {
+          "minimum": 0,
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "sha256",
+        "start_byte",
+        "end_byte",
+        "span_sha256"
+      ],
+      "type": "object"
+    },
+    "obligation": {
+      "additionalProperties": false,
+      "properties": {
+        "answerability": {
+          "enum": [
+            "answerable_from_material",
+            "requires_new_observation",
+            "conflicted",
+            "unknown"
+          ]
+        },
+        "description": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "evidence": {
+          "items": {
+            "$ref": "#/$defs/evidence"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "expected_behavior": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "test",
+            "version",
+            "authorization",
+            "artifact",
+            "other"
+          ]
+        },
+        "obligation_id": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        },
+        "oracle_ids": {
+          "items": {
+            "enum": [
+              "actual_native_workflow",
+              "authoritative_revision_conflict",
+              "complete_native_authorization_lifecycle",
+              "complete_paged_originals",
+              "completed_nonempty_target_tests",
+              "current_artifact_test_binding",
+              "current_registry_readback",
+              "exact_authority_object_action_scope",
+              "flask_empty_name_behavior",
+              "full_obligation_coverage",
+              "local_only_no_publication",
+              "regression_preservation",
+              "requests_proxy_auth_preservation",
+              "review_final_artifact_binding"
+            ]
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "obligation_id",
+        "kind",
+        "description",
+        "expected_behavior",
+        "answerability",
+        "evidence",
+        "oracle_ids"
+      ],
+      "type": "object"
+    },
+    "task": {
+      "additionalProperties": false,
+      "properties": {
+        "obligations": {
+          "items": {
+            "$ref": "#/$defs/obligation"
+          },
+          "minItems": 1,
+          "type": "array"
+        },
+        "public_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        "remaining_gaps": {
+          "items": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "task_id": {
+          "maxLength": 2000,
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "task_id",
+        "public_sha256",
+        "obligations",
+        "remaining_gaps"
+      ],
+      "type": "object"
+    }
+  },
+  "$id": "p1-assisted-task-review-2",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "additionalProperties": false,
+  "properties": {
+    "ai_reviewer": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "type": "string"
+    },
+    "exposure_disclosure": {
+      "maxLength": 2000,
+      "minLength": 1,
+      "type": "string"
+    },
+    "human_review_attestation": {
+      "const": false
+    },
+    "independent_human_review_count": {
+      "const": 0
+    },
+    "method_outputs_used": {
+      "const": false
+    },
+    "origin": {
+      "const": "ai_assisted"
+    },
+    "phase": {
+      "const": "development"
+    },
+    "prepared_at": {
+      "format": "date-time",
+      "type": "string"
+    },
+    "schema_version": {
+      "const": "p1-assisted-task-review-2"
+    },
+    "status": {
+      "const": "unfrozen_draft"
+    },
+    "tasks": {
+      "items": {
+        "$ref": "#/$defs/task"
+      },
+      "minItems": 1,
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "origin",
+    "phase",
+    "status",
+    "human_review_attestation",
+    "independent_human_review_count",
+    "method_outputs_used",
+    "ai_reviewer",
+    "prepared_at",
+    "exposure_disclosure",
+    "tasks"
+  ],
+  "title": "Explicit AI-assisted unfrozen development drafts",
+  "type": "object"
+}

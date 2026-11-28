@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "candidate_id": "pallets__flask-5014",
+  "kind": "program_regression_reproduction_not_agent_evaluation",
+  "recorded_at": "2026-11-28T00:45:26.380509+00:00",
+  "source_dataset": {
+    "id": "SWE-bench/SWE-bench_Verified",
+    "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+    "split": "test",
+    "row_index": 289,
+    "canonical_row_sha256": "36d5506b22ede57cf679dd50b44232dc640663dc9fa94f3dad5f9a06760a9c2e",
+    "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+    "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+  },
+  "upstream": {
+    "issue_url": "https://github.com/pallets/flask/issues/5010",
+    "issue_number": 5010,
+    "issue_title": "Require a non-empty name for Blueprints",
+    "pr_url": "https://github.com/pallets/flask/pull/5014",
+    "pr_number": 5014,
+    "pr_merged": true,
+    "base_commit": "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+    "base_commit_url": "https://github.com/pallets/flask/commit/7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+    "fix_commit": "7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+    "fix_commit_kind": "upstream_merge_or_squash_commit",
+    "fix_commit_url": "https://github.com/pallets/flask/commit/7ed89d3f9d2207c9a607f5dcdce106c0278e1332",
+    "fix_parent_commits": [
+      "7ee9ceb71e868944a46e1ff00b506772a53a4f1d",
+      "b8b410014d85f9861acc87c5f21c9a55a42d09c9"
+    ],
+    "base_is_fix_first_parent": true,
+    "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+  },
+  "patches": {
+    "hash_algorithm": "sha256",
+    "source": "fixed official dataset field UTF-8 bytes",
+    "hashes": {
+      "patch": "087d51d66413bfa35111ac0eca31f1db1636572702cfd967c428049b453f451d",
+      "test_patch": "e16f06b260b5169a49397e9d571b5af70317cd23792e1437232fabf718fe8871",
+      "eval_script": "a752d2d3520db71513c263dd476e8da457395a447a346f6b5c18782dc0faf034"
+    },
+    "public_patch_copy": false,
+    "private_source_row": "/workspace/scratch/d5292d3ebcac/p1-real-repros/evaluator-only/pallets__flask-5014.official-row.json",
+    "source_code_license": "BSD-3-Clause",
+    "license_evidence": "docs/research/p1-evidence-verification/tasks/acquisition/licenses/pallets__flask-489a8e110850.txt"
+  },
+  "environment": {
+    "python": {
+      "version": "3.10.16 (main, Mar 17 2025, 21:01:46) [Clang 20.1.0 ]",
+      "executable": "/workspace/scratch/d5292d3ebcac/p1-real-repros/pallets__flask-5014/venv310/bin/python",
+      "platform": "Linux-6.18.57-x86_64-with-glibc2.41"
+    },
+    "dependency_freeze": "dependencies-freeze.txt",
+    "requirements": "requirements-pinned.txt",
+    "python_executable_sha256": "510c9a7201c5c78c81774bc3bddaf434b8f037d6351714629a7177537253f704",
+    "official_container_used": false,
+    "docker_equivalence_claimed": false,
+    "dependency_version_policy": "explicit compatible versions; Flask pytest pins follow source requirements/tests.txt and Requests pytest follows source requirements-dev.txt cap; transitive versions frozen",
+    "installation_environment_keys": [
+      "PATH",
+      "LANG",
+      "PIP_CONFIG_FILE",
+      "PYTHONNOUSERSITE",
+      "GIT_CONFIG_NOSYSTEM",
+      "GIT_CONFIG_GLOBAL",
+      "HTTP_PROXY",
+      "HTTPS_PROXY",
+      "ALL_PROXY",
+      "NO_PROXY",
+      "http_proxy",
+      "https_proxy",
+      "all_proxy",
+      "no_proxy"
+    ],
+    "test_environment_keys": [
+      "PATH",
+      "LANG",
+      "PYTEST_DISABLE_PLUGIN_AUTOLOAD",
+      "PYTHONNOUSERSITE",
+      "PYTHONDONTWRITEBYTECODE"
+    ],
+    "pytest_plugins": "auto-loading disabled; pytest_mock explicitly enabled for Requests test utility fixture"
+  },
+  "isolation": {
+    "tool": "bubblewrap",
+    "filesystem_user_pid_ipc_uts_namespaces": true,
+    "network_namespace_isolated": false,
+    "full_network_unshare_failed": "NETLINK_ROUTE Operation not permitted; no escalation or permission bypass attempted",
+    "mounts": "own repository, own venv and log directory, fixed Python runtime, read-only system binaries/libraries, private /tmp and /proc",
+    "other_project_directories_mounted": false,
+    "user_home_mounted": false,
+    "user_env_or_api_keys_forwarded": false,
+    "upstream_clone_contains_future_git_history": "evaluator-only; must not be reused directly as agent-public workspace"
+  },
+  "base_result": {
+    "returncode": 1,
+    "counts": {
+      "tests": 60,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 59
+    },
+    "stdout": "base.stdout.txt",
+    "stderr": "base.stderr.txt",
+    "junit": "base.junit.xml",
+    "command_record": "base-command.json"
+  },
+  "fixed_result": {
+    "returncode": 0,
+    "counts": {
+      "tests": 60,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "passed": 60
+    },
+    "stdout": "fixed.stdout.txt",
+    "stderr": "fixed.stderr.txt",
+    "junit": "fixed.junit.xml",
+    "command_record": "fixed-command.json"
+  },
+  "fixed_file_checks": [
+    {
+      "path": "src/flask/blueprints.py",
+      "working_sha256": "d449d715d57276945d15de8d90baa199384a2a21b00bf10783d22805196d02df",
+      "working_git_blob_sha1": "1aa825622d5315668b76955d19d1b5d399791c4e",
+      "upstream_fix_commit_blob_sha1": "1aa825622d5315668b76955d19d1b5d399791c4e",
+      "matches_upstream_fix": true,
+      "source_url": "https://github.com/pallets/flask/blob/7ed89d3f9d2207c9a607f5dcdce106c0278e1332/src/flask/blueprints.py"
+    },
+    {
+      "path": "tests/test_blueprints.py",
+      "working_sha256": "0688a3074b50a1f63e889e22eea09949996bb014e89244e7f61ee8a7f8e36e26",
+      "working_git_blob_sha1": "76cee66003e63a1458527acdeae6c43b9df68579",
+      "upstream_fix_commit_blob_sha1": "76cee66003e63a1458527acdeae6c43b9df68579",
+      "matches_upstream_fix": true,
+      "source_url": "https://github.com/pallets/flask/blob/7ed89d3f9d2207c9a607f5dcdce106c0278e1332/tests/test_blueprints.py"
+    }
+  ],
+  "test_file_unchanged_between_base_and_fixed": true,
+  "environment_failure_ledger": [
+    "initial clone without required public proxy route failed DNS and is retained",
+    "initial bwrap missing dynamic-loader mounts failed and is retained",
+    "full namespace bwrap failed at NETLINK_ROUTE setup and is retained"
+  ],
+  "method_arm_results": null,
+  "native_compaction_run": false,
+  "human_annotators": [],
+  "p1_pilot_validated": false,
+  "limitations": [
+    "single local environment and one invocation per phase",
+    "no frozen P1 prelude or post-compaction agent action",
+    "not a full repository test suite",
+    "not a container reproducibility claim",
+    "network namespace shared although no resolver/proxy or user secrets were mounted"
+  ],
+  "literal_nodeid_coverage_before_official_normalization": {
+    "official_fail_to_pass_count": 1,
+    "official_pass_to_pass_count": 59,
+    "base_failed_matches_official_f2p": true,
+    "all_official_f2p_pass_after_fix": true,
+    "all_official_p2p_pass_at_base": true,
+    "all_official_p2p_pass_after_fix": true,
+    "missing_base_f2p": [],
+    "unexpected_base_failures": [],
+    "missing_base_p2p": [],
+    "missing_fixed_f2p": [],
+    "missing_fixed_p2p": []
+  },
+  "official_label_coverage": {
+    "parser_source_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/log_parsers/python.py",
+    "parser_source_sha256": "cd56156414f8327221e525665ace9b184f7d73e83b272d9eb3f545fb17c2d9bc",
+    "parser_function": "parse_log_pytest",
+    "constants_source_url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/constants/__init__.py",
+    "constants_sha256": "8895ab5313d874349c4b07bd223bb9eb00acaee377b432e67cc7ad840341e79b",
+    "execution": "Unmodified AST function bodies and TestStatus enum extracted from the pinned upstream source, with re and type-annotation placeholder only; no full harness or model used.",
+    "official_fail_to_pass_count": 1,
+    "official_pass_to_pass_count": 59,
+    "base_failed_matches_official_f2p": true,
+    "all_official_f2p_pass_after_fix": true,
+    "all_official_p2p_pass_at_base": true,
+    "all_official_p2p_pass_after_fix": true,
+    "missing_or_nonpassing": {
+      "base": [],
+      "fixed": []
+    },
+    "limitation": "Official parser truncates at whitespace; Requests additionally normalizes absolute-path parameter basenames. Normalized labels can collapse distinct actual tests. JUnit counts remain the primary executed-test count."
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:memex:paper1:run:1",
+  "title": "P1 research first-attempt run record",
+  "description": "One JSONL observation produced for the evaluator, never an agent input. This schema specifies well-formed records. Preserve malformed original rows and pass the full JSONL to analyze.py for audit; never filter schema failures out of the scheduled denominator. Decision quality and cost are independent fields.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["task_id", "project_id", "arm", "replicate", "status", "decision_success", "standardized_cost"],
+  "properties": {
+    "task_id": {"$ref": "#/$defs/label"},
+    "project_id": {"$ref": "#/$defs/label"},
+    "arm": {"$ref": "#/$defs/label"},
+    "replicate": {"type": "integer", "minimum": 1},
+    "run_id": {"$ref": "#/$defs/label"},
+    "attempt": {"type": "integer", "const": 1},
+    "retry_of": {"type": "null"},
+    "status": {
+      "enum": [
+        "completed", "failed", "host_error", "host_failed", "host_failure", "host_timeout",
+        "provider_error", "model_invalid_output", "budget_exhausted", "capture_incomplete",
+        "evaluator_error", "prelude_failed", "not_dispatched", "running"
+      ]
+    },
+    "decision_success": {
+      "type": ["boolean", "null"],
+      "description": "Evaluator-scored task endpoint. A completed run requires a boolean. A recognized noncompleted method run is an ITT failure; missing/invalid metadata is not evidence of a measured method failure."
+    },
+    "standardized_cost": {
+      "type": ["number", "null"],
+      "minimum": 0,
+      "description": "Full-pipeline reference cost for this scheduled first attempt under the frozen cost model. Null means unmeasured/incomplete. An invalid cost must never overwrite an otherwise valid decision_success."
+    },
+    "actual_spend": {"type": ["number", "null"], "minimum": 0},
+    "actual_spend_currency": {"type": ["string", "null"], "pattern": "^[A-Z]{3}$"},
+    "seed": {
+      "type": ["integer", "string", "null"],
+      "description": "Telemetry only. It does not enlarge N or change the four-field run key."
+    },
+    "tokens": {
+      "type": "object",
+      "additionalProperties": {"type": ["integer", "null"], "minimum": 0},
+      "description": "Optional named token counters; document overlapping totals and cache subsets in the usage ledger. The analysis entry point does not recompute cost from this object."
+    },
+    "elapsed_seconds": {"type": ["number", "null"], "minimum": 0},
+    "recorded_at": {"type": "string", "format": "date-time"},
+    "host_version": {"$ref": "#/$defs/label"},
+    "model_version": {"$ref": "#/$defs/label"},
+    "trace_ref": {"$ref": "#/$defs/label"},
+    "quality_review_ref": {"$ref": "#/$defs/label"},
+    "cost_ledger_ref": {"$ref": "#/$defs/label"},
+    "failure_ledger_ref": {"$ref": "#/$defs/label"},
+    "notes": {"type": "string"}
+  },
+  "allOf": [
+    {
+      "if": {"properties": {"status": {"const": "completed"}}, "required": ["status"]},
+      "then": {"properties": {"decision_success": {"type": "boolean"}}},
+      "else": {"properties": {"decision_success": {"enum": [false, null]}}}
+    },
+    {
+      "if": {"properties": {"actual_spend": {"type": "number"}}, "required": ["actual_spend"]},
+      "then": {
+        "required": ["actual_spend_currency"],
+        "properties": {"actual_spend_currency": {"type": "string", "pattern": "^[A-Z]{3}$"}}
+      }
+    }
+  ],
+  "$defs": {
+    "label": {"type": "string", "pattern": "^\\S(?:[\\s\\S]*\\S)?$"}
+  }
+}

@@ -1,0 +1,1 @@
+Inspect sum.mjs and sum.test.mjs. Run node --test --test-reporter=tap sum.test.mjs once as a standalone tool command. Separately run shasum -a 256 sum.mjs. Report the actual result and hash. Do not modify any file.

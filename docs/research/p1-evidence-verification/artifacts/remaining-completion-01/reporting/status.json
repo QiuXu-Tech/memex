@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "kind": "p1-current-zero-results-reporting-audit",
+  "status": "NOT_MEASURED",
+  "scientific_readiness": "NOT_READY",
+  "data_kind": "unverified",
+  "study_phase": "development",
+  "generated_at_utc": "2026-11-28T10:43:21.071201+00:00",
+  "scope": "Offline reporting of the absence of accepted/frozen P1 research tasks and formal method results at the referenced repository snapshot; not a new experiment, score, fixture, or simulated pilot.",
+  "accepted_p1_tasks": 0,
+  "frozen_pilot_tasks": 0,
+  "completed_independent_human_reviews": 0,
+  "completed_adjudications": 0,
+  "formal_method_runs": 0,
+  "observed_result_rows": 0,
+  "development_activity_excluded_from_research_denominator": {
+    "source_candidates": 16,
+    "qualified_source_environments": 12,
+    "unaccepted_material_packages": 11,
+    "prepared_blank_review_packets": 22,
+    "all_material_draft_units": 80,
+    "prepared_authorized_source_units": 16,
+    "source_units_dispatched": 0,
+    "native_attempts_consumed": 2,
+    "native_attempts_remaining": 0,
+    "separate_live_generation_diagnostics": 1
+  },
+  "reporting_commands_model_requests": 0,
+  "power_simulation_performed": false,
+  "formal_sample_size": null,
+  "scientific_effect_claims_allowed": false,
+  "actual_added_cash_total": null,
+  "full_standardized_study_cost": null,
+  "denominator_note": "No frozen study schedule exists. The empty development manifest represents zero accepted study tasks, not the cancellation or deletion of the separate 16-unit authorized development plan or 80-unit unfrozen structural draft. Both drafts remain unchanged. No source candidate, smoke, diagnostic, review packet, or fixture was promoted to a research task.",
+  "sources": {
+    "task_material_catalog": {
+      "ref": "docs/research/p1-evidence-verification/tasks/workflows/catalog.json",
+      "sha256": "0da0217e01754ff29c45c4adbf822e515db22fa0be0b7a7e9486a584cc4edae9"
+    },
+    "source_qualification": {
+      "ref": "docs/research/p1-evidence-verification/tasks/reproduction-expansion/summary.json",
+      "sha256": "0f1da4d2e326d676f87b110aa60a6212f8b8ba608e101def727d1bcfc57ff616"
+    },
+    "authorized_batch_observations": {
+      "ref": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/observations.json",
+      "sha256": "6cb00444d1c103abfaf3a871e5ba61b544adf51a3aeff9fa976328db5ecb5187"
+    },
+    "latest_published_ledger_status": {
+      "ref": "docs/research/p1-evidence-verification/artifacts/deepseek-live-01/ledger-status.json",
+      "sha256": "e835e2fb62c627ac4072a29ccf1fd83a199609ea6246e1557905474d632c2f73"
+    },
+    "latest_live_diagnostic": {
+      "ref": "docs/research/p1-evidence-verification/artifacts/deepseek-live-01/result-public.json",
+      "sha256": "57e86d5cebd379bf0ce1fe7bc77853734d9a156ac197efe7c84695598ad14fe0"
+    },
+    "prepared_development_units": {
+      "ref": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/paired-inputs/controller/units.json",
+      "sha256": "c8d929f7edeedaa56c952e43056b7775bf271ba78aa53d8000e1fabf8903f3c0"
+    },
+    "source_development_plan": {
+      "ref": "docs/research/p1-evidence-verification/tasks/workflows/source-draft-plan.json",
+      "sha256": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db"
+    },
+    "all_material_development_plan": {
+      "ref": "docs/research/p1-evidence-verification/tasks/workflows/draft-plan.json",
+      "sha256": "90545bc7d98c62b526ac2aafab33eda4adc1c6991ed544bff747d4e3d39a7924"
+    }
+  }
+}

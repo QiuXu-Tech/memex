@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "status": "PREPARATION_REQUIREMENTS_ONLY",
+  "policy_check_date": "2026-11-28",
+  "sources": [
+    {
+      "id": "author_guide",
+      "url": "https://jmlr.org/tmlr/author-guide.html",
+      "retrieved_at_utc": "2026-11-28T01:51:49.137812+00:00",
+      "http_status": 200,
+      "sha256": "117ed02f6791f8167c861560a36d6efe3f12811a55ed416b84c4bf4c483055f1",
+      "bytes": 9506,
+      "raw_body_retained": false
+    },
+    {
+      "id": "editorial_policy",
+      "url": "https://jmlr.org/tmlr/editorial-policies.html",
+      "retrieved_at_utc": "2026-11-28T01:51:53.771735+00:00",
+      "http_status": 200,
+      "sha256": "4b00d2432e0c56acd424302c4653300ed2d0d72aa61be10dcd54e1dcff450955",
+      "bytes": 32465,
+      "raw_body_retained": false
+    },
+    {
+      "id": "faq",
+      "url": "https://jmlr.org/tmlr/faq.html",
+      "retrieved_at_utc": "2026-11-28T01:51:57.899815+00:00",
+      "http_status": 200,
+      "sha256": "b7c5c0ee91ed3c4a2b8752481e37b6e40c2fd45fde3a60e2cfe017ac864821e0",
+      "bytes": 27398,
+      "raw_body_retained": false
+    },
+    {
+      "id": "submission_instructions",
+      "url": "https://jmlr.org/tmlr/submissions.html",
+      "retrieved_at_utc": "2026-11-28T01:52:02.407662+00:00",
+      "http_status": 200,
+      "sha256": "6dbc3f785bbcf30efcce0293bce6ba4d942a1927ba5d49e5a331ba95c02bd9f9",
+      "bytes": 6070,
+      "raw_body_retained": false
+    },
+    {
+      "id": "acceptance_criteria",
+      "url": "https://jmlr.org/tmlr/acceptance-criteria.html",
+      "retrieved_at_utc": "2026-11-28T01:52:07.385436+00:00",
+      "http_status": 200,
+      "sha256": "14acb90e1530e6f318164e6f6e1ac2d954a8fba7f65ac58a7dca125bbebf8be7",
+      "bytes": 8430,
+      "raw_body_retained": false
+    }
+  ],
+  "form_and_account_eligibility_checked": false,
+  "no_submission_performed": true
+}

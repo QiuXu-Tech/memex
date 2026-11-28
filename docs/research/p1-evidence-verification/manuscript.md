@@ -1,0 +1,609 @@
+---
+title: "When to Reopen the Source: Evidence Verification after Native Agent Compaction"
+subtitle: "Methods and protocol working draft"
+date: "28 November 2026"
+lang: en-GB
+documentclass: article
+fontsize: 11pt
+papersize: a4
+geometry:
+  - top=23mm
+  - bottom=23mm
+  - left=23mm
+  - right=23mm
+mainfont: "Latin Modern Roman"
+sansfont: "Latin Modern Sans"
+monofont: "DejaVu Sans Mono"
+monofontoptions:
+  - Scale=0.85
+indent: true
+colorlinks: true
+linkcolor: blue
+urlcolor: blue
+citecolor: black
+bibliography: references.bib
+link-citations: true
+header-includes:
+  - |
+    \usepackage{fancyhdr}
+    \usepackage{fvextra}
+    \usepackage{etoolbox}
+    \usepackage{microtype}
+    \usepackage{needspace}
+    \pagestyle{fancy}
+    \fancyhf{}
+    \fancyhead[L]{\small Evidence verification after compaction}
+    \fancyhead[R]{\small Working draft}
+    \fancyfoot[C]{\thepage}
+    \setlength{\headheight}{14pt}
+    \setlength{\emergencystretch}{2em}
+    \AtBeginEnvironment{longtable}{\small\setlength{\tabcolsep}{4pt}}
+    \AtBeginEnvironment{CSLReferences}{\small\raggedright}
+    \RecustomVerbatimEnvironment{verbatim}{Verbatim}{fontsize=\small,breaklines=true,breakanywhere=true}
+---
+
+**Status.** This expanded research draft specifies a proposed method and an evaluation protocol. It is not formatted as an eight-page conference submission. It is not a completed empirical paper, a preregistration, or a claim that the complete proposed system has already been implemented. Earlier synthetic development observations, the freshness counterexample, engineering checks, host-integration attempts, and source/environment qualification are distinguished from the proposed study. No confirmatory paired method-effect estimate or completed deployment is asserted; the single archived checkpoint in Section 5.5 is a development integration observation. Numerical result cells for the proposed study are deliberately unfilled. Human authors, affiliations, intellectual contributions, and final venue eligibility remain to be confirmed. A separate official-template review draft is a formatting artifact, not a submitted manuscript.
+
+# Abstract
+
+An agent continuing a task after native context compaction may retain a conclusion while losing the evidence needed to determine whether that conclusion still applies. Reopening raw history can recover missing information, but a relevant passage may describe an earlier code revision, an incomplete test run, or an authorization that was later withdrawn. This working draft studies whether explicit verification improves subsequent decisions beyond strong raw-history retrieval. We specify a selective verification layer that discovers candidate claims from observable task state, retrieves and opens original sources without evaluator-provided locations, and checks type-specific requirements for test status, current versions, and historical authorization. Reuse of previously verified evidence requires a certificate bound to a complete archive view, a current archive watermark, the relevant object state, and a valid time interval; a recent timestamp alone is insufficient. The proposed evaluation pairs native continuations under a shared model, archive, and evidence budget, comparing the method with Raw-RAG, always-on verification, and reproducible neighboring approaches. Its primary endpoint is task-level evidence-supported decision success. Cost claims require both quality noninferiority and lower total standardized processing cost. The draft makes no claim of empirical superiority: it provides the method specification, falsifiable hypotheses, and evidence required to determine when source verification is useful.
+
+\clearpage
+
+# 1. Introduction
+
+A coding agent runs tests, changes a file, receives an updated requirement, and continues after its host compacts the conversation. The remaining context says that the tests passed. That sentence leaves several decisions unresolved: which tests ran, whether they completed, which artifact was tested, and whether the artifact has since changed. Similar problems arise when a remembered version is no longer current or a remembered approval has been revoked. The practical question is whether the agent can make the next decision using evidence that remains applicable to the present task state.
+
+The general problem is already well established. Compaction-Friendly documents the loss of process constraints even when benchmark performance changes little; CompAct-Bench evaluates downstream continuation and identifies distorted task state after compaction [@salle2026compactionfriendly; @chen2026compactbench]. Work on the Compaction Cliff also studies retention policies that depend on information type [@zerhoudi2026compactioncliff]. Consequently, task success alone is not a sufficient novelty claim for another study of information loss, and another example of a forgotten constraint is not the proposed contribution here.
+
+Nor is retrieving original history a new solution. Raw-RAG demonstrates the strength of dense retrieval and reranking over untransformed histories [@bao2026rawrag]. TierMem already routes from summaries to original logs when summary evidence is insufficient [@zhu2026tiermem]. HELM governs memory using provenance, status, freshness, and consistency; GPM defines source-bound lifecycle and structured-release conditions at a verified ledger head [@liu2026helm; @xu2026gpm]. These results substantially narrow the research question: **under native host compaction, does explicit verification of executable, changing evidence improve an agent's actual subsequent decisions beyond strong retrieval and established sufficiency or governance policies?**
+
+We investigate this question through an auxiliary layer, provisionally called **Memex verification**. The layer does not require replacing the host's compactor. It observes the user request, exposed action plans or response drafts, current workspace state, and authorized source history. It discovers claims that matter to a pending decision, obtains original evidence, checks its qualifications, and supplies the result to the same host. The host remains responsible for generating the continuation. A verified evidence packet is therefore an intermediate artifact; whether the host uses it correctly is an empirical endpoint.
+
+Three distinctions guide the design. First, **relevance is different from qualification**: a test log can be highly relevant while describing the wrong code revision. Second, **local sufficiency is different from currentness**: an unexpired approval already present in context can be superseded by a later archive event. Third, **a valid packet is different from a correct continuation**: a model can ignore valid evidence, misstate it, or introduce a new unsupported assertion. Each distinction must be measured without giving the proposed method privileged labels or source locations.
+
+The intended contribution is a testable composition in a specific deployment setting, not a claim to have invented provenance, selective retrieval, typed memory, or version watermarks. The proposed study has three commitments:
+
+1. **An executable verification specification without evaluator privileges.** Claims and source locations must be discovered from deployment-visible inputs; type-specific checks cover tests, versions, and historical authorization.
+2. **A precisely bounded reuse condition.** A no-reopen decision requires a complete previously verified source view and proof that the relevant view and applicability conditions still hold. Missing freshness information produces an explicit inability to verify.
+3. **A paired estimate of incremental value.** Evaluation separates retrieval coverage, semantic qualification, selective acquisition, and model consumption, with a strong Raw-RAG comparison and complete resource accounting.
+
+None of these empirical commitments has yet been satisfied by the available project data. If strong retrieval accounts for the observed benefits, the appropriate outcome is a boundary or negative-result paper describing when additional verification is unnecessary. The method should not become more elaborate merely to preserve an anticipated positive conclusion.
+
+# 2. Related Work and the Remaining Empirical Question
+
+## 2.1. Raw history and selective evidence acquisition
+
+Raw-RAG leaves state interpretation to the reader and uses dense retrieval plus cross-encoder reranking over source history. Its evidence analysis emphasizes coverage and the relationships needed to derive answers [@bao2026rawrag]. Our main comparison must therefore preserve raw information, temporal metadata, retrieval strength, and the actual text delivered to the reader. A weak keyword baseline cannot establish the proposed increment.
+
+TierMem is a particularly close predecessor: it uses a provenance-linked summary tier, a runtime sufficiency router, escalation to immutable raw pages, and optional writeback. Its main benchmark configuration disables online writeback [@zhu2026tiermem]. We do not claim that asking when to reopen a source is new. The question here is whether a complete freshness condition and type-specific execution semantics improve native continuations beyond a sufficiency router. That difference must be demonstrated experimentally; the title is a research question, not a priority claim.
+
+MSS-Complement formulates state-conditioned recovery of a sufficient evidence set, while SERBench separates set recovery from candidate discovery [@feng2026missingcomplement]. We adopt the need to distinguish those stages. Our claimed increment cannot rest on selecting a small evidence set for a pending decision. It concerns whether the selected set is still eligible to support that decision under the current source view and object state.
+
+## 2.2. Governance, provenance, and changing state
+
+HELM combines hierarchical memory, auditable provenance, validity signals, and a memory-operation controller. Its paper includes tool-status and version checks, governance ablations, and a training-free variant [@liu2026helm]. This is direct overlap, not a background system that can be dismissed as merely a retriever. A faithful available configuration should be evaluated where feasible; an independently written approximation must be named as such.
+
+GPM specifies source admission, conflict handling, non-revival after retraction or deletion, and closure of structured outgoing claims over a fresh view at one stable verified head. It explicitly separates its deterministic service results from unrestricted language-model accuracy [@xu2026gpm]. Our watermark rule is a correctness precondition of this established kind. The proposed empirical question additionally includes noisy claim discovery, heterogeneous original logs, and a free-form host continuation; success at the structured service boundary does not settle that question. Conversely, the existence of that additional interface does not establish that our method is superior.
+
+MemIR separates evidence, retrieval cues, and truth-bearing claims through a typed representation [@jin2026memir]. Eywa similarly grounds extracted memories in source evidence and typed signals [@joshi2026eywa]. Agent Zero Memory includes an intent gate and a reading discipline that limits citations to evidence actually opened [@wu2026agentzero]. These precedents rule out claiming typed provenance, an opened-source requirement, or memory gating alone as new contributions.
+
+MemoRepair withdraws affected descendants before rebuilding and republishing validated successors [@zhao2026memorepair]. StateFuse makes contradictions visible and evaluates correction and abstention under matched policies [@volkov2026statefuse]. They motivate treating invalidation and unresolved conflicts as explicit states. We do not introduce a new distributed merge protocol or general descendant-repair algorithm. The authorization experiments also remain distinct from actual runtime permission: work on provenance laundering shows why remembered text must not acquire authority merely through consolidation [@xuj2026provenancelaundering].
+
+## 2.3. Recoverable context and native compaction
+
+Folio records linked notes, event manifests, and source records, then programmatically folds and recovers context through stable handles [@ruan2026folio]. Our target setting is a host whose native compaction is retained. This is an interface constraint, not evidence that auxiliary verification outperforms a recoverable context manager. A direct comparison would require a separately labeled scaffold-level experiment.
+
+Table 1 makes the intended difference explicit. Its final column states an unanswered question, not a feature absent from every prior system.
+
+\Needspace{10\baselineskip}
+
+**Table 1. Closest prior contributions and the evidence this study must add.**
+
+| Prior line | Already established design or question | Unanswered comparison targeted here |
+|---|---|---|
+| Raw-RAG | Strong retrieval over original history | Does verification improve decisions with the same sources, reader, and budget? |
+| TierMem / MSS-Complement | Sufficiency routing and decision-conditioned evidence acquisition | Does current source eligibility add value beyond sufficiency alone? |
+| HELM / MemIR / Eywa | Epistemic governance, typed provenance, and source grounding | Does the proposed lightweight integration retain value on natural native continuations? |
+| GPM / StateFuse / MemoRepair | Structured state, conflict and invalidation contracts | How much correctness survives extraction, source discovery, and free-form generation? |
+| Folio | Recoverable context folding and original-source handles | What can an auxiliary verifier achieve while retaining native compaction? |
+| Compaction-Friendly / CompAct-Bench / Compaction Cliff | Constraint loss, state distortion, and downstream compaction evaluation | Which verification mechanisms causally improve the next decision? |
+
+# 3. Problem Formulation and Scope
+
+## 3.1. Observable state and archive view
+
+At a decision boundary, let \(x_t\) contain the current request, observable host context, exposed proposed action or response draft, tool descriptions, and accessible workspace observations. The method cannot read hidden evaluator labels, private model reasoning, or undocumented host state. A native compaction boundary is established through the host's supported interface and observable completion receipt. A generated summary or a scripted prompt replacement is not interchangeable with this condition.
+
+The source archive contains immutable event revisions \(A_h\) through a verified ingestion head \(h\). Events preserve raw content, source role, object or session identity where available, original timestamps, ingestion order, tool execution metadata, and resolvable locations. The archive includes corrections and withdrawals as events rather than silently replacing their predecessors. Its guarantee is explicitly limited to the ingested, authorized view. An external change that has not been ingested is outside that guarantee.
+
+A trustworthy archive watermark is a runtime-generated commitment to that view, not an annotation of the expected answer. The conservative form contains an archive identity and epoch, a monotonically advancing sequence, a content commitment, and ingestion completeness information. It is generated over all admitted events. A watermark derived only from evaluator-labeled relevant records is prohibited. All comparison arms receive the same source and watermark information.
+
+## 3.2. Candidate claims and decision obligations
+
+A discovered candidate claim is a tuple
+
+\[
+c=(\text{type},\text{entity},\text{scope},\text{predicate},
+\text{candidate value},\text{as-of time},\text{dependent action}).
+\]
+
+Fields may be unresolved. The extractor may propose that a particular test passed; that proposal is neither evidence nor truth. A version mentioned by a user can identify a candidate to examine but cannot itself certify the current version. An ambiguous entity or scope remains ambiguous until resolved from visible material.
+
+Hidden **decision obligations** are defined independently by evaluators before continuations are generated. They identify the critical questions and actions required for task success. They are used only for scoring. This separation prevents an extractor from obtaining a perfect score by omitting difficult claims, and prevents a cautious answer from winning merely by saying nothing.
+
+## 3.3. Verification outcomes
+
+The verifier returns a resolved state when justified, together with original evidence and its applicability interval. For a proposed assertion it can report supported, contradicted, or unresolved. A contradicted candidate can still yield a useful known answer: an approval claim can be contradicted by a verified revocation. The host should not turn every contradiction into generic uncertainty.
+
+Unresolved results include a reason, such as missing source, ambiguous entity, incomplete event, unavailable current view, unresolved conflict, or exhausted verification budget. A source that explicitly reports `UNKNOWN` is different from a verifier that cannot inspect the source. Likewise, absence from search results is not proof that a test did not run. `NOT_RUN` requires an authoritative execution record or a complete execution view establishing non-execution under the task's semantics.
+
+The unit of practical interest is the resulting task continuation. We score whether the host selects and executes the required next action and accurately communicates the relevant state. Merely producing a structurally valid certificate is not task success.
+
+# 4. Proposed Method
+
+This section specifies the **full proposed deployment protocol**. Present-tense descriptions define its required behavior; they do not assert that the current prototype implements every step. Section 5.3 records the narrower implemented boundary, including live binding for explicitly current-workspace test claims. General object-state binding, lifecycle projection from natural logs, and independently evaluated native continuations remain requirements for further work.
+
+## 4.1. Discover claims without evaluator privileges
+
+The extractor consumes only \(x_t\) and public tool schemas. It identifies candidate claims from the current request, the exposed action plan, and any response draft. It returns the supporting request spans, unresolved fields, and the action whose preconditions depend on each claim. A frozen prompt or constrained parser may be used, but all extraction errors count in the end-to-end result.
+
+The production interface must not consume `case.claims`, correct source identifiers, correct event indices, hidden required-source lists, or gold normalized entities. Source locators may appear only after a real archive operation returns them, or when they were already genuinely visible to the host. A diagnostic oracle condition may supply correct claims and sources, but it is reported separately and is never called the deployable method.
+
+Arms C and D, and any claim-driven ablations, share the same extractor and visible metadata. The primary faithful Raw-RAG arm B retains the original user request as its query. Any optional claim-expanded Raw-RAG condition must be separately named, frozen, and budgeted as an adaptation; it is not an already implemented baseline or a replacement for B. The evaluator scores extraction recall against all frozen obligations, not just against the candidates the method emitted.
+
+## 4.2. Preserve original events and find sources
+
+The archive adapter ingests actual tool responses, user corrections, version observations, and authorized historical records. Derived summaries and model statements retain their source roles. They cannot silently become tool execution receipts or user decisions. Ingestion preserves content hashes and original event boundaries; it does not require every log to follow a synthetic receipt template.
+
+Retrieval starts from the discovered claim and exposed context. It may use dense retrieval, lexical retrieval, and reranking, but query construction cannot use a hidden correct location. Every hit returns a resolvable locator. The opening layer follows returned pagination and checks record identity, revision, offsets, content integrity, and completion. Event position is variable: there is no privileged `eventIndex = 1`. A clipped record is not complete evidence merely because its visible prefix contains a reassuring word.
+
+Parsing recognizes frozen families of natural stdout, structured tool responses, test reports, version readbacks, and user corrections. Unsupported formats remain unresolved. Parsers must derive field values from original content and trusted tool metadata; a search snippet or an assistant's paraphrase does not certify execution. Entity normalization and alias handling are part of the measured method, with their own failure labels.
+
+## 4.3. Separate positive support from lifecycle completeness
+
+Finding a positive passage answers whether some source supports a statement. It does not show that no later event invalidates that support. In particular, top-k retrieval can return an old grant while omitting a revocation already present at the same archive head. A stable head alone does not repair this omission.
+
+A current-state certificate therefore requires both original support and **coverage of the applicable lifecycle** through its stated head. This can be provided by a complete replay of the relevant source lineage from an independently constructed event index, or by enumerating the available archive and establishing the required scope. The index must be built from all admitted events, not from evaluator-provided relevance labels. Its source spans, parser version, coverage cursor, and completeness status must be auditable.
+
+Where exact lineage coverage cannot be guaranteed, the full protocol requires a scan of the permitted event sequence or an unresolved result. If a scan exceeds the fixed budget, the method records the budget failure; it must not promote a partial search into a completeness proof. The formal claim in Section 4.6 is conditional on correct normalization and complete coverage. Measuring how often those conditions can be obtained cheaply is part of the research question.
+
+## 4.4. Type-specific qualification
+
+The initial method covers three narrowly defined claim families. Table 2 specifies the required semantics. It does not assert a general natural-language entailment solver.
+
+\Needspace{10\baselineskip}
+
+**Table 2. Qualification requirements and representative rejection cases.**
+
+| Claim family | Required positive support | State and applicability checks | Insufficient evidence |
+|---|---|---|---|
+| Test status | A real execution event, command or suite identity, completion, and outcome | Match the tested artifact digest, relevant environment, command semantics, and decision scope; account for later changes or reruns | Assistant says “passed”; process only started; no exit record; ignored subprocess failure; result for an old artifact; partial output |
+| Current version | An authoritative readback for the named object or a complete ordered update lineage | Resolve source authority and object identity; respect effective time, supersession, and conflicts | Candidate version in the question; a similar filename; stale metadata; two unresolved authoritative values |
+| Historical authorization | An attributable decision with principal, target, scope, conditions, and effective interval | Replay grants, denials, revocations, expiration, and valid supersession in the ingested view | Different principal or target; expired grant; later revocation; ambiguous conditions; quoted text treated as live permission |
+
+For tests, a command's zero exit status only supports the scope warranted by that command and its wrapper. A shell that ignores a failing subprocess does not establish that all intended tests passed. A run against one commit does not certify a modified working tree. A deployment adapter must record how artifact and environment identifiers are measured; missing identifiers cannot be replaced by a guessed version label.
+
+For current versions, the method discovers the observed value rather than validating a value supplied as the answer. Conflicting observations are resolved only by frozen authority and lifecycle rules. A later wall-clock timestamp from a lower-authority source is not a universal override rule. Ingestion order and event effective time are recorded separately so late-arriving corrections can be handled without pretending they arrived earlier.
+
+For authorization, the output is a fact about a specified historical or simulated state. A legitimate statement that a grant existed at an earlier time can coexist with a current revocation. All action consequences in the study are simulated. Neither an archived user message nor a verification certificate grants permission to execute a real external action; runtime authorization remains with the host's current instruction and permission system.
+
+## 4.5. Decide whether to reopen a source
+
+A cached certificate binds the normalized claim, original support locators and hashes, lifecycle coverage, archive head, object state, parser and policy versions, and the interval over which its result remains applicable. It also records whether the support was actually opened. A fragment copied into compacted context without its verifiable certificate is not eligible for the fast path.
+
+Before reusing a certificate, the full protocol requires a current trusted archive watermark and an independent observation of the applicable current object state. A version supplied in a candidate claim or a past capture does not, by itself, establish the live object state. Reuse requires all of the following:
+
+1. The archive identity, epoch, and committed view match the certificate, or a complete validated delta has re-established its result.
+2. The original support and lifecycle coverage remain intact and resolvable.
+3. The relevant artifact, environment, identity mapping, parser, and policy versions still match.
+4. The query scope is unchanged and the decision time lies inside the certified applicability interval.
+5. No unresolved conflict, invalidation, ingestion gap, or inaccessible update prevents qualification.
+
+The applicability interval must end at the next known relevant temporal transition, not merely at a grant's expiration. A future-dated revocation that is already in the archive can become effective without another append. The fast path therefore rechecks temporal applicability even when the watermark is unchanged.
+
+The proposed conservative deployment policy uses a global archive head. Any appended event invalidates the no-reopen shortcut until its effect has been checked. Per-entity watermarks may reduce unnecessary revalidation, but require a proven complete mapping from every event to its affected entities and policies. They are an optional optimization, not a hidden assumption. Epoch and content commitments prevent a reset or rollback from masquerading as an unchanged sequence number.
+
+This is **selective source reopening**, not zero-I/O verification. Watermark reads, object observations, delta scans, certificate validation, and failed attempts all count toward cost. A TTL can impose an additional refresh policy; it cannot substitute for update detection.
+
+The following pseudocode summarizes the target protocol. The current prototype implements a bounded form of live observation for current-workspace test claims; it does not implement this entire protocol for arbitrary objects and claim families.
+
+```text
+Input: observable task state x, original-source archive A, certificate cache K
+C := extract candidate claims from x using the frozen deployment-visible interface
+for each candidate c in C:
+    read a trusted current archive head h_before and applicable object state
+    if a certificate in K has complete coverage and passes all reuse conditions:
+        construct a snapshot-bound verification packet from that certificate
+    else:
+        retrieve candidate sources without gold locations
+        open original records and validate their identity, integrity, and completion
+        establish complete applicable lifecycle coverage through h_before
+        apply the frozen type-specific qualification rules
+        construct a supported, contradicted, or unresolved verification packet
+    read the archive head again
+    if the relevant view changed or completeness cannot be established:
+        retry only within the frozen budget; otherwise return unresolved
+    record the packet, its evidence, its head, and every incurred operation
+deliver packets through the host's supported continuation interface
+observe the host's next actions and final claims; revalidate at any current-state commit boundary
+```
+
+New critical claims introduced by a later exposed draft trigger the same bounded process. If no draft interception is supported, the system cannot claim complete online control over the host's free-form output. Such a host may still be evaluated for decision support, with final claim checking performed by the evaluator and this limitation stated explicitly.
+
+## 4.6. Conditional reuse property
+
+Let \(R(c,A_h,z,t;p)\) be the deterministic qualification result for a normalized claim \(c\), complete archive view \(A_h\), applicable object state \(z\), decision time \(t\), and parser/policy version \(p\). Suppose a certificate was correctly constructed from the complete applicable lifecycle at \((h,z,p)\), and it binds an interval \(I\) on which the result does not change. If a trusted read establishes the same archive view, \(z\) and \(p\) are unchanged, support integrity holds, and \(t\in I\), the certified result equals recomputation of \(R\) for that view. The argument follows directly because all inputs that can change the specified result are unchanged.
+
+This is a conditional consistency property, not a new general theorem about memory or a proof of implementation correctness. It assumes faithful ingestion, correct claim normalization, complete lifecycle coverage, correct type semantics, and reliable version observations. It does not prove that a source tells the truth, that unobserved external state is unchanged, or that the model's final answer follows the certificate. GPM already makes a closely related stable-head release discipline explicit [@xu2026gpm].
+
+A packet states the archive head and as-of interval it certifies. If the intended action requires current state at commitment, the layer must revalidate immediately at that supported boundary. Otherwise the claim is only about the recorded snapshot. An update after a successful head check is not retroactively covered by that check. This distinction prevents a packet verified before a long model continuation from being presented as an indefinite authorization or freshness guarantee.
+
+## 4.7. Deliver evidence and audit consumption
+
+Packets include the candidate claim, resolved state or reason for uncertainty, original excerpts, source locators, applicability information, completeness status, and the certified head. They preserve contrary evidence when a conflict remains. The host receives these packets through its supported context or tool interface; the harness records the delivered payload hash and the host receipt.
+
+We audit five distinct stages: obligation discovery, source discovery, qualified original opening, actual delivery, and the host's decision or claim. We do not infer original-source use solely from a correct answer. Conversely, unavailable internal model telemetry is labeled unobserved rather than automatically scored as an incorrect decision. The primary endpoint uses observable actions, final output, and independently checkable source support.
+
+# 5. Available Development Evidence
+
+## 5.1. Earlier synthetic native-host study
+
+The versioned project report describes 24 synthetic development fixtures, each run under a native condition and two archive-assisted conditions, for 72 runs and 456 native compactions. On its scored supported conclusions, the reported counts are 24/120 for the native condition and 120/120 for each archive-assisted condition. Behavioral code checks pass on all 24 tasks in every condition, and all three conditions have zero unsupported high-impact assertions in the report's 184 scored opportunities [@memex2026pilot].
+
+These numbers are motivating development observations only. The archive intervention occurred after code implementation, during a read-only handoff. They therefore do not demonstrate improved coding success or reduced harmful-assertion rates. The 120 conclusions and 456 boundaries are nested observations, not independent sample sizes. The fixtures and their receipt structures cannot be reused as the proposed confirmatory population.
+
+The inspected driver consumes predefined `case["claims"]`, constructs a structured source filter, and opens a fixed event position. It does perform real archive operations; describing it as completely fabricated retrieval would be inaccurate. Its limitation is that claim discovery, natural-log parsing, and unrestricted source localization are not evaluated. The present method removes these conveniences as deployment inputs. The old study's forced-verification condition must not be relabeled as Raw-RAG.
+
+## 5.2. Recorded freshness counterexample
+
+A recorded local probe presents an already opened, unexpired `granted` event to the old selective gate. Its prepared archive callbacks expose a later `revoked` event for the same scope and object. The recorded gate result is `supported` with status `granted`, `triggered = false`, and zero search calls. The source commit and exact probe record are identified in Appendix C.
+
+This is a deterministic development counterexample, not a prevalence estimate or a new end-to-end result. It demonstrates a missing precondition for that gate's no-search branch when the caller has not independently guaranteed freshness. It does not invalidate the earlier cohort's reported scores, whose sufficient-evidence controls did not include that later superseding event. The counterexample must become a regression test before formal experiments begin.
+
+## 5.3. Current implementation boundary
+
+A separate working verifier is being developed for the P1 study while preserving the legacy experiment. Its local regression checks establish bounded implementation behavior, not model-based results or support for H1/H2. The engineering checks described here are outside the study denominators and the result tables in Section 7.
+
+The current archive adapter rereads its trusted catalog and computes a session-wide watermark over all admitted catalog entries, including entries unrelated to the queried entity. For the relevant normalized snapshot head, it also returns the sequence, event count, and a commitment over sorted event-identifier and source-digest pairs. The verifier checks the full set of opened head events against that count and commitment and rechecks the view before delivery. Reuse binds the cached source to the trusted catalog commitment; a cached payload and its own matching self-reported hash are insufficient. These checks depend on the trust and completeness of the admitted catalog.
+
+The normalized-source API currently assumes **complete state snapshots**, with source sequences ordering those snapshots. It does not construct a general lifecycle projection from arbitrary natural-language events. Opening all events in a latest append batch would not establish full history unless that batch satisfies the complete-snapshot contract. The narrow Node/TAP adapter parses supported native command events, execution completion, exit status, and a nonzero executed-test count, and checks equal artifact hashes captured before and after execution. The capture metadata must come from a trusted host observer.
+
+A live-state component now observes an explicit bounded list of public artifact files and lockfiles, the observing Node runtime, a declared relative execution directory, and declared public environment values. It hashes file contents and observed directory membership, rejects noncanonical paths and observed symlinks, and records identity and metadata change guards. An execution source is admitted as live-bound only when successful before/after observations agree and the normalized source already carries that observed version. The claim-binding interface explicitly requires a current-workspace target, retains the model-proposed version, and rejects explicit historical queries rather than silently changing their time scope.
+
+The live wrapper observes the workspace before and after every archive view read and includes its binding summary in the view. It validates a new committed head through real, bounded original-source search and opening before permitting cached delivery. Consequently, an observed file change invalidates old cached support even if the archive catalog has not changed; rebinding a claim to the new version does not make an old test receipt applicable. Fifteen local tests pass for this component, covering content changes with restored mtime, directory-member additions and deletions, lockfile changes, unavailable files, path checks, observed races, execution binding, and cached-delivery invalidation through actual L2 storage. These are finite engineering checks. Repeated observations are not an atomic snapshot or a substitute for operating-system isolation, and the host must align the actual execution runtime and directory with the observer.
+
+An observable-input boundary and output validation for claim extraction are implemented, but they do not establish a model's extraction accuracy on the proposed natural tasks. A separate controller implements a local content freeze, bounded dispatch, retained first-attempt records, an evaluator-only join, and component-level usage ledgers for later analysis. Its contract checks use temporary synthetic fixtures and controlled runner boundaries and have been revised following review. A local freeze is not preregistration, a declared runner boundary is not filesystem isolation, and a ledger is not proof that telemetry or independent labels are complete. No controller test count or measured arm effect is used as a study result here.
+
+**Online integration status.** One earlier macOS native-host development attempt started a generation turn and successfully called the real MCP workspace-inspection tool. Its test-tool call was rejected because approval was required but the unattended runner used a policy that could not grant it. That attempt executed no test command and reached no compaction, claim extraction, or verification decision. The blocked attempt is retained; it is not a completed method-arm run or evidence of end-to-end integration. Earlier native-host smoke receipts are separate records and cannot fill these missing stages.
+
+A separate extraction-only component attempt ran one real model generation without an MCP server, test execution, compaction, or verification decision. Its output passed JSON and schema validation but omitted the required test-result candidate, listing that obligation only as unresolved. It emitted an authorization candidate and two version candidates and failed the component's test-obligation check. A general prompt revision then clarified that decision preconditions are candidates requiring verification even when no result is available, and that the command identifies the test entity rather than the artifact version. One retest on the same synthetic development input emitted one candidate from each of the three claim families, including the required test candidate with its command entity and proposed artifact digest. It passed the narrow component check while explicitly leaving coverage unestablished. Both attempts are retained; the retest does not replace the initial semantic failure or provide a natural-task accuracy estimate.
+
+Across these historical host-integration and extraction-only attempts, three model generation turns started, with zero test executions, native compactions, verification decisions, and formal-study tasks. Their provider charges and standardized cost remain unmeasured (`null`), not zero. Later clients bind ordinary MCP approvals to observed native items and exact arguments. The batch client records `prior_chat_authorization` and `identityAttested=false`, returns only a one-call response, and stops on unknown or explicit human/device checks; a separate terminal mode remains available. Protocol tests do not establish live host acceptance. General semantic normalization, lifecycle completeness, other object-state bindings, and independently evaluated native continuations remain acceptance requirements. Appendix C identifies the retained attempt and component records. The separate read-only continuation check in Section 5.5 has its own scope and denominator.
+
+A later authorized batch issued two bounded native development attempts from one central ledger. The first stopped at 125.47 seconds after one generation start, a provider-stream interruption and a prelude timeout, with no tool execution or compaction. The second started five generation turns, completed four, and completed two actual native compactions. Its two ordinary MCP approvals accepted the test and decision invocations without a persistence grant. One real broker test produced a passing receipt; the stable continuation recorded one simulated release decision. Both auxiliary extractions passed schema validation and proposed one test claim each, while coverage remained unestablished and the unsupported version and authorization claims remained unknown. The verifier reused the stable receipt without reopening it, then reopened and rejected that receipt with `version_mismatch` after a controlled file change. The changed-workspace continuation started but did not finish before the 480-second overall deadline. Final whole-run checks and metrics were unavailable. These records establish the observed approval and execution stages, not a complete mutable-workflow pass or a paired method effect.
+
+For the second attempt, eleven reconciled generation-usage notifications account for 182,068 input and 2,218 output tokens. Notifications are not generation-turn counts. Both compactions remain unmetered, and the first attempt supplied no reconciled usage; missing telemetry is not zero. Actual spend and full standardized cost remain `null`. The two attempts exhaust that batch's native-attempt allowance and remain development records outside Section 7.
+
+## 5.4. Source acquisition and environment qualification
+
+The source-acquisition record contains 16 distinct issue/PR candidates from eight projects in a fixed revision of SWE-bench Verified. It records upstream identities, base and fix commits, patch-field digests, license evidence, and official image-manifest digests. It currently contains **zero accepted or frozen P1 workflows** and no independent P1 double annotation. These are convenience-sampled sources for workflow construction, not 16 completed pilot tasks. Dataset curation does not supply the study's temporal obligations, evidence-equivalence rules, or post-compaction hidden behavior. Appendix C identifies the acquisition and reproduction records.
+
+The initial two candidates completed local program reproduction using the fixed dataset's official test and production patches. For Flask PR 5014, the base with the test patch produced 1 failed and 59 passed tests; applying the production patch produced 60 passed. For Requests PR 6028, the corresponding counts were 2 failed, 201 passed, and 11 skipped, followed by 203 passed and 11 skipped. These are four pytest invocations across two repository instances, restricted to the respective target test files. The counts were recomputed from retained JUnit reports, and the same test-file contents were used before and after the production patch. Skips are not passes. The records also preserve patch checks, dependency versions, phase hashes, command arguments, exit codes, and environment-preparation failures.
+
+A bounded expansion attempted all 14 remaining candidates and qualified 10 additional cases, for **12 qualified sources out of 16 candidates across the eight projects**. Qualification required both the pinned official expected transitions and a successful fixed target-module run; a repaired target alone was insufficient. The expansion retained 29 numbered acquisition/environment attempts and 34 actual top-level test-phase invocations: 30 pytest calls, including six exits before collection at a version guard, and four calls to SymPy's native test runner. Nested pytester subprocess counts were not instrumented. Environment follow-ups retained earlier failures and shared cumulative per-candidate budgets. These are source/environment qualifications with zero model requests, formal task runs, or formal sample exclusions.
+
+Four candidates retain bounded limitations. Requests 5414 fixes the target regression but still has network-dependent failures under the unchanged isolated environment. Pylint 4970 is blocked at setup by an unavailable compatible binary dependency under the chosen historical wheel-only profile. SymPy 19637 satisfies the official listed transitions but retains two module-level Python/AST compatibility exceptions and a nonzero fixed exit. Sphinx 9367 produces a passing fixed module, but 15 official pass-to-pass identifiers do not align with the pinned parser and observed pytest names. A separate read-only rule revision recognizes SymPy's recorded ERROR-to-PASS regression without rewriting the original attempt receipt or rerunning the tests; its final classification is bound to the original log hashes. These limitations are not claims that the official containers cannot run or grounds for silently removing future formal failures.
+
+This exercise qualifies sources and a documented local Python environment. It ran no language model, native compaction, retrieval arm, or P1 hidden-behavior evaluation, and it supplies no arm success rate, pilot estimate, or cost endpoint. The local environments are not asserted to be bitwise-equivalent to official containers. Filesystem and selected process namespaces were isolated, but the final runs shared the host network namespace after a full network-isolation attempt was refused. The evaluator clones have encountered gold tests and contain future history; they must not become agent-visible workspaces without a separate audited public export.
+
+Source reconstruction also has material pitfalls. In 11 of the 16 candidates, the dataset base is not the upstream fix's first parent. A full base-to-merge diff could therefore add unrelated intervening changes; reconstruction must use the pinned dataset patches and verify their application. Official test labels also require inspection: one pytest candidate's pass-to-pass list contains a progress-display token, while the Requests parser truncates whitespace-bearing identifiers and normalizes absolute-path parameters to basenames. Multiple actual parameterized tests can map to one official label. The reproduction preserves the initial literal-identifier mismatches and the subsequent application of the pinned official parser, and reports actual JUnit or native-runner test counts rather than label counts. Neither unit-test counts nor repeated phases increase the study's independent task sample size.
+
+Task materialization now provides 11 inspectable but unaccepted development packages: two fixed-base real-source seeds and nine scenario branches spanning eight synthetic development families. The two branches of the unchanged/changed counterfactual family are not independent tasks. The public exporter excludes Git history, future fixes, official test patches and evaluator data, records source/license identities, and checks the resulting manifest. One upstream `.env` test fixture was explicitly excluded and logged, so the exported tree is not represented as the complete upstream test environment. Each package has two unfilled independent-review packets, for 22 review packets and zero completed human reviews. Separate review and adjudication validators check material bindings and provenance but cannot establish human identity, actual independence, or operating-system isolation. All 11 acceptance receipts remain false, with missing native workflow, behavior, annotation, shared reader/tokenizer and runner gates recorded. A draft shared budget is not a study freeze.
+
+Separate controller-only preparation captured fixed tests from the two clean public bases without official test patches: Flask collected and passed 59 tests; Requests collected 212, with 201 passed and 11 skipped. Both processes exited zero with unchanged source and dependency hashes. These two captures used no model generation or provider API, ran no method arm or native compaction, and accepted no workflow. The Python audit guard is not operating-system isolation. Their counts differ from the earlier patched-regression reproduction by construction; they are not executions of the sixteen planned method units.
+
+## 5.5. Read-only native continuation over recorded evidence
+
+A subsequent development check connected actual model extraction, real Memex L2 verification, one native compaction, and native continuation without invoking execution tools. It used the two original TAP receipts from the earlier synthetic native smoke workflow, with their recorded artifact digests and offline controller mapping. This is an archived, single-checkpoint recommendation task. It does not re-execute those tests, observe a current workspace, complete the mutable-tool workflow, or accept an independent real P1 task.
+
+The configuration and source hashes were saved before generation. The fixed budget allowed five generation starts: one auxiliary extraction, one history prelude, and one continuation each for A, C, and D. The original event stream was supplied to the shared parent, which underwent an actual native compaction. All three continuations forked that same unchanged parent through the native fork API, in frozen order D, A, C. A received no additional verifier packet. C and D used the same actual extraction; their full delivered packets were identical, including original source text. D's receipt cache was primed through actual L2 opening before compaction. The compacted representation itself was not exposed for inspection; prefix equality is supported by the native fork relationship and the retained parent/compaction identities.
+
+The real extractor proposed two claims. Its test-result proposal matched the observable command, scope, and recorded artifact digest. Its separate current-version proposal had no matching source and remained unknown; it was not silently removed or converted into support. Extraction coverage remained unestablished. All three continuations recommended hold and cited the actual later failed receipt for the target digest. This is a successful component check with equal recommendations in one convenient archived scenario, not evidence of an arm effect or a non-inferiority result. No strong Raw-RAG B run occurred.
+
+The test claim required two original opens under C and zero under D's stable-view reuse. Both still delivered the full original test output, and each full packet contained 3,447 UTF-8 bytes. Native input usage was 15,350 tokens for both C and D. Their reported cached-input subsets differed: 14,080 for C and 3,456 for D, with 116 and 117 output tokens respectively. Those single observations do not establish a cost ordering; the unequal cache state also cautions against treating source-I/O savings as model-token savings. The cache-priming work and auxiliary extraction remain incurred operations rather than free setup.
+
+A counter audit reconciled five generation notifications totaling 71,077 input and 937 output tokens; 24,448 cached-input tokens are a subset of that input, and 160 reasoning-output tokens are a subset of that output. These are partial native usage observations, not invoice-verified billing. The compaction notification repeated the cumulative total while reporting a last total of 2,656 with zero input and output fields. The audit therefore retained it as unmetered compaction, rather than summing it as a model request or declaring its cost zero. Actual spend and full standardized cost remain null. The source snapshot, first attempt, initial zero-generation path-resolution failure, full prompts, raw output, verifier traces, and usage audit are retained separately in Appendix C.
+
+# 6. Planned Evaluation
+
+## 6.1. Tasks and native continuations
+
+Tasks will be assembled from licensed, independent repository workflows. A representative workflow includes an observed failure, a modification, an evidence or requirement change, native compaction interleaved with real tool use, and a subsequent decision that depends on prior evidence. Examples include deciding whether to rerun tests after a code change, selecting the correct artifact version, or satisfying a simulated approval condition after a correction. Source forms, event locations, tool names, and distractor fields will vary.
+
+At least one genuine state change is required in the main task design. Repeating compaction after all implementation work is complete is a stress test, not a substitute for an evolving workflow. We will report natural boundary timing separately from prescribed 3-, 6-, and 10-compaction stress strata. All authorization consequences remain isolated simulations.
+
+Tasks are split by repository, source event, and workflow family. Renaming variables in one template does not create independent tasks. The old 24 fixtures are development-only. The plan starts with 8 implementation tasks and 16 new pilot tasks; the confirmatory sample size is determined from pilot-based design analysis and frozen before unsealing outcomes. A separate 40-task external-validation set is planned, subject to demonstrated independence and available resources.
+
+Each paired continuation begins from the same observable prefix and environment snapshot where the host provides a supported branch or restore mechanism. No private host state is modified to manufacture equivalence. If exact branching is unavailable, a documented replay interface may establish frozen-trajectory continuations, which are labeled accordingly and supplemented with natural runs from the beginning. A host for which comparable starting states cannot be established is excluded from the main causal contrast.
+
+## 6.2. Comparison arms
+
+\Needspace{10\baselineskip}
+
+**Table 3. Planned comparison arms. No arm has a new empirical score in this draft.**
+
+| Arm | Configuration | Role |
+|---|---|---|
+| A | Native host with its ordinary compaction | Contextual reference for default behavior |
+| B | Strong Raw-RAG over the same original archive, with a frozen evidence-budget adaptation | Primary comparative baseline |
+| C | All discovered claims use the same source-acquisition and typed-verification pipeline | Always-verify quality and cost control |
+| D | Full method, including certified selective reuse | Proposed deployable method |
+| E | Ordinary archive search and open | Small mechanistic control for archive access |
+| F | Shared candidate/source packets with typed state qualification removed | Isolate the incremental effect of qualification |
+| G | Correct claims and required originals supplied together | Combined diagnostic oracle, never included in deployable results |
+| H | Faithfully reproduced available governance configuration | Close-method comparison; otherwise explicitly a self-implemented contract-inspired control |
+| T | Faithful TierMem-style sufficiency route, if reproducible; otherwise a clearly named independent sufficiency-only control | Added neighboring comparison motivated by the literature review |
+
+Arms C and D share extraction, parsers, retrieval, source budget, and qualification rules. D differs in whether a valid certificate permits reuse. F uses the same fixed candidate material as its paired qualified condition, so different evidence content cannot be mistaken for a rule benefit. All relevant baselines can see the same ordinary source metadata, time information, and archive head; none receives evaluator truth.
+
+The Raw-RAG reference pipeline uses 256-token windows with 32-token overlap, dense top-128 retrieval, and cross-encoder selection of 15 windows. Its selected windows may expand to full turns, so 15 selected windows must not be described as a fixed 3,840-token reader input [@bao2026rawrag]. We freeze the official code revision, tokenizer, encoders, reranker, query construction, effective configuration, expansion and ordering behavior, prompt, and retry policy. Original event timestamps and provenance are preserved; the adapter may not invent historical timestamps for undated records.
+
+The primary B configuration uses a prespecified assembly policy after source expansion to match the study's evidence budget. A separate faithful official presentation configuration is run if it differs materially from B. If these configurations are byte-identical under the same prompts and sources, their runs may be reused; otherwise they require distinct runs and resource entries. Tuning occurs only on development data.
+
+H requires an artifact and a conformance record. GPM's inspected v2 paper states that its complete reproducibility artifact had not yet been publicly uploaded, so a faithful GPM reproduction cannot be promised on that basis [@xu2026gpm]. A conservative implementation of its stated ideas is not named “GPM” in results. HELM's available training-free or governance-only configuration is a candidate for reproducibility assessment, not a baseline already reproduced here.
+
+Arm T is an addition to the initial planning document. Its exact implementation, subset or full-set coverage, and extra cost must be frozen before evaluation. It may not be added only after observing a favorable result. If a close method cannot be run, the paper must retain the comparison limitation instead of presenting Raw-RAG as the only relevant predecessor.
+
+## 6.3. Primary endpoint
+
+For task \(i\), arm \(a\), and stochastic repetition \(r\), let \(Y_{iar}=1\) when the continuation satisfies all frozen critical decision obligations, passes the relevant hidden behavioral checks, makes no incorrect high-impact affirmative assertion, and supports its critical affirmative claims with evidence applicable to the current object and state. Otherwise \(Y_{iar}=0\).
+
+An unnecessary abstention on an answerable obligation is a failure. When an obligation is genuinely unanswerable from the permitted view, an appropriately explained abstention may satisfy it. Missing a required decision is a failure even if every sentence the model does emit is technically true. Citations may use any equivalent resolvable locator; a particular receipt spelling is not required. A correct unsupported guess does not satisfy an evidence-support obligation.
+
+This composite endpoint is named **evidence-supported decision success**. Its components are also reported separately, because the same aggregate failure can arise from behavioral failure, omitted obligations, wrong values, unsuitable sources, or over-abstention. Scoring rules distinguish correct state resolution from whether a source was actually retrieved and delivered.
+
+## 6.4. Hypotheses and estimands
+
+**H1: incremental effectiveness.** The full method improves mean task-level evidence-supported decision success over B. The primary estimand is
+
+\[
+\Delta_{DB}=\frac{1}{N}\sum_{i=1}^{N}
+\left(\overline{Y}_{iD}-\overline{Y}_{iB}\right),
+\qquad
+\overline{Y}_{ia}=\frac{1}{R}\sum_{r=1}^{R}Y_{iar}.
+\]
+
+The planned design uses two randomized repetitions per task and arm, but the independent unit remains the task. Repetitions, claims, and compaction boundaries do not increase \(N\). We report the paired effect and its 95% confidence interval and use a prespecified two-sided \(\alpha=0.05\) test.
+
+**H2: selective cost reduction with quality noninferiority.** Following support for H1, compare D with C. The proposed absolute noninferiority margin is three percentage points, which requires a substantive justification and a frozen value before the pilot informs the confirmatory design. The quality condition requires the lower endpoint of the two-sided 95% interval for \(\Delta_{DC}\) to be strictly greater than \(-0.03\). The cost condition requires the upper endpoint of the 95% interval for mean paired standardized total processing cost \(C_D-C_C\) to be strictly below zero. Both conditions must hold. Noninferiority is not equality.
+
+**H3: external validity.** Estimate effect sizes on independent workflows under a different model and a different host configuration. These are separately reported external-validity analyses; changing both host and model is not a pure model intervention. Small favorable subgroups do not replace the primary comparison.
+
+Repository or source-event clustering is retained. The primary interval procedure resamples repositories and then tasks, preserving paired arm outcomes and repetitions within each task. A task-paired sensitivity analysis is also reported. When the number of repositories is too small for stable cluster inference, that limitation must be disclosed and the design expanded or the claim narrowed before confirmation.
+
+## 6.5. Cost, latency, and reliability
+
+H2 has one primary cost endpoint: mean standardized total processing cost per scheduled task. Before confirmatory execution, the protocol freezes reference rates for uncached input, cache reads and writes, output generation, extraction, embeddings, reranking, local compute, and storage. One-time indexing and shared prefix costs follow a preregistered deployment-based amortization rule. Physical research expenditure is recorded separately to avoid double-counting a shared prefix that ran once in the study.
+
+Watermark reads and lifecycle scans belong in this cost. So do failed calls, retained infrastructure failures, and allowed reruns. Reducing search calls does not by itself establish lower cost or latency. We report token components, model and tool calls, source bytes read, compute time, p50/p95 end-to-end latency, and actual charges where available. If credible reference rates cannot be frozen, H2 cost is descriptive; a different primary cost metric is not selected after results are known.
+
+All arms have frozen token, call, and wall-clock limits. Format errors and ordinary model failures count as failures. Infrastructure interruptions, timeouts, and transmission errors remain in the record under the preregistered intention-to-treat rule, with a separate valid-run sensitivity analysis. Permitted reruns are governed by a fixed infrastructure-error policy; unfavorable model outcomes cannot be rerun selectively. A detected model-service version change suspends the affected block and creates a separately documented stratum.
+
+## 6.6. Mechanistic analyses
+
+The following analyses are specified before confirmation:
+
+- **Fixed evidence.** Give the same original content and metadata to an unqualified reader and the typed verifier. Include correct values with wrong sources, stale versions, incomplete tests, and support accompanied by counterevidence. Measure value accuracy, source entailment, state eligibility, and decision success separately.
+- **Freshness interventions.** Hold the current context fixed while adding no change, revocation, supersession, conflict, dropped notification, out-of-order arrival, and restart scenarios. Compare the old local gate, TTL-only refresh, always-verify, and the certified method. Include a revocation already inside the stable head but missing from top-k results, and a future-effective event that activates without an append.
+- **Discovery and delivery.** Score candidate recall against frozen obligations and report source-search, opening, completeness, delivery, and model-use failures with explicit denominators. The combined oracle G provides a diagnostic ceiling when both discovery and source acquisition are corrected.
+- **Compaction and change controls.** On 16 prespecified tasks, compare B and D under one variant that retains state changes without compaction and another that retains compaction without subsequent changes. These are two single-factor variants, not a complete factorial experiment; no general interaction estimate is claimed.
+
+The main mechanism subset is planned to contain 24 prespecified confirmatory tasks. It is nested within the primary sample and does not add independent tasks. Every later exploratory analysis is labeled and kept separate from prespecified tests.
+
+## 6.7. Sample size and freezing
+
+The 16-task pilot estimates paired discordance, task and repository variance, completion rates, and resource distributions. Design simulations examine H1 effects of 5, 8, and 12 percentage points. A separate simulation evaluates the joint H2 criterion using the three-point quality margin and the observed quality-cost dependence. The confirmatory sample must be adequate for the intended claims, or H2 must be declared estimation-only before unsealing formal outcomes.
+
+An illustrative \(N=120\) is a resource example, not a power result. Additional neighboring baselines and official Raw-RAG configurations increase the run count; they do not increase independent \(N\). If resources are insufficient, the study narrows its claims or waits for a sufficiently powered design. It does not lower the quality threshold after seeing results.
+
+Before confirmation, freeze task definitions, source snapshots, deployment-visible fields, labels, arms, code, prompts, model and host versions, configuration, randomization, budgets, exclusion and retry rules, score computation, and statistical scripts. Record hashes and have an independent evaluation role hold the labels. Critical states receive independent double annotation; all between-arm disagreements and a random 20% of agreements are reviewed. Model judges may assist triage but do not replace executable behavior checks or source qualification.
+
+# 7. Results  -  Reserved for Future Measurements
+
+**No confirmatory or paired method-effect results are available. `PENDING` means not measured; it does not mean zero, failure, or a missing value that can be inferred from the earlier pilot.** The tables below are analysis templates, not reported findings.
+
+\Needspace{10\baselineskip}
+
+**Table 4a. Main paired decision and behavior outcomes.**
+
+| Arm | Independent tasks | Evidence-supported decision success | Behavior success | Incorrect high-impact affirmatives |
+|---|---:|---|---|---|
+| A Native | PENDING | PENDING | PENDING | PENDING |
+| B Raw-RAG | PENDING | PENDING | PENDING | PENDING |
+| C Always-verify | PENDING | PENDING | PENDING | PENDING |
+| D Selective verification | PENDING | PENDING | PENDING | PENDING |
+| H Governance comparison | PENDING | PENDING | PENDING | PENDING |
+| T Sufficiency comparison | PENDING | PENDING | PENDING | PENDING |
+
+\Needspace{10\baselineskip}
+
+**Table 4b. Abstention and total-resource outcomes for the same scheduled tasks.**
+
+| Arm | Unnecessary abstention | Mean total standardized cost | p95 latency |
+|---|---|---|---|
+| A Native | PENDING | PENDING | PENDING |
+| B Raw-RAG | PENDING | PENDING | PENDING |
+| C Always-verify | PENDING | PENDING | PENDING |
+| D Selective verification | PENDING | PENDING | PENDING |
+| H Governance comparison | PENDING | PENDING | PENDING |
+| T Sufficiency comparison | PENDING | PENDING | PENDING |
+
+\Needspace{10\baselineskip}
+
+**Table 5. Prespecified inferential decisions.**
+
+| Claim | Estimate and 95% interval | Required interpretation |
+|---|---|---|
+| H1: D minus B success | PENDING | State the effect and uncertainty; do not substitute D minus A |
+| H2 quality: D minus C | PENDING | Noninferiority only if the lower endpoint exceeds the frozen margin |
+| H2 cost: D minus C | PENDING | Cost reduction only if the upper endpoint is below zero |
+| H2 joint statement | PENDING | Assert only if both conditions hold under the frozen hierarchy |
+| External host/model effects | PENDING | Report every planned configuration and its limitations |
+
+\Needspace{10\baselineskip}
+
+**Table 6. Mechanisms and failure stages.**
+
+| Mechanism or stage | Required denominator | Measurement |
+|---|---|---|
+| Missed candidate claims | All independently annotated obligations | PENDING |
+| Incorrect candidate claims | All emitted candidates, with independent adjudication | PENDING |
+| Source discovery failure | Obligations requiring archive evidence | PENDING |
+| Incomplete lifecycle qualification | Cases requiring current-state closure | PENDING |
+| Incorrect certified reuse | All reuse decisions; additionally all update opportunities | PENDING |
+| Failure to deliver evidence | Packets intended for host delivery | PENDING |
+| Incorrect model use | Obligations with qualified evidence actually delivered | PENDING |
+| Fixed-evidence rule effect | Paired tasks in the frozen mechanism subset | PENDING |
+
+The analysis order is fixed: primary D/B effect, selective D/C quality and cost, mechanisms, and external validity. Descriptive legacy fixture results remain in Section 5 rather than being mixed into Table 4. If the native arm again has no unsupported high-impact assertions, the paper will report that observation and will not claim a relative reduction in that rate.
+
+# 8. Discussion: What Different Outcomes Would Mean
+
+A positive H1 result would support the usefulness of this particular verifier under the measured tasks, sources, reader, and budgets. The fixed-evidence comparison must then determine whether the increment comes from qualification itself or from an improved evidence set. If the apparent gain disappears when sources and metadata are identical, the main result is an acquisition effect and must be described accordingly.
+
+A positive joint H2 result would show that certified reuse reduces the frozen total cost measure within the declared quality margin. It would not imply lower cost for every workload, every provider tariff, or frequent-update archives. A global watermark may be inexpensive to read yet cause near-universal revalidation when unrelated events arrive. A more selective watermark can improve efficiency only if its dependency coverage is independently justified.
+
+If D and B perform similarly with a narrow interval, the study can identify regimes where capable readers already reconstruct the required state from strong raw evidence. If the interval is wide, the result remains uncertain rather than demonstrating equivalence. If D is worse, the analysis should examine extraction omissions, overly strict qualification, inaccessible metadata, unnecessary abstention, and the burden of evidence packets on the reader.
+
+Even a correct verifier may have limited task value when evidence is delivered too late or the host cannot intercept the relevant action. The distinction between packet correctness and model behavior is therefore central. Conversely, a favorable model answer does not repair a verifier that certifies an old grant despite an ingested revocation. Average benchmark improvement cannot excuse a known violation of the stated reuse precondition.
+
+This study also does not absorb the broader research agendas of a cross-system diagnostic benchmark or a text/KV consistency system. Its diagnostic measurements exist to test the proposed intervention. Persistent cache design, distributed update consistency, GPU performance, and general cross-host rankings require their own independently scoped evidence.
+
+# 9. Limitations
+
+\begin{sloppypar}
+
+The present document contains a method specification and a planned study, not completed empirical support. Its model-based development evidence remains small, synthetic, and structurally convenient. Live-state regression checks, recorded real-repository program reproductions, and the single archived native continuation establish bounded engineering and environment properties only. The source pool has no accepted frozen P1 workflow or completed independent pilot. These records provide no estimate of the proposed method's generalization, incremental performance over Raw-RAG, or total cost advantage.
+
+\end{sloppypar}
+
+The proposed semantics cover three claim families and depend on correct identification of objects, source roles, time, and execution boundaries. Natural logs can be ambiguous, and source statements can be false. Integrity and provenance show what was recorded; they do not establish world truth. Complete lineage may be expensive or impossible to obtain under real access restrictions.
+
+Freshness is relative to a clearly identified ingested view. A source outside that view may have changed. Clock error, missing ingestion events, ambiguous supersession, unsupported formats, parser mistakes, and incorrect entity resolution can invalidate the preconditions. The conditional reuse argument is not an assurance that these engineering components are correct.
+
+The implemented live binding covers explicitly declared public files and current-workspace test claims. It does not infer all dependencies, observe arbitrary external services, or retarget historical queries. Two matching observations do not prove that no intervening change occurred, and standard-library path checks do not establish a hostile-filesystem sandbox. The trusted controller must bind actual execution to the observed runtime and directory. Retrieval can also fail before qualification: a development probe with a full executable path in the command entity returned no full-query hits even though shorter queries found the source. Both the wrapped and unwrapped verifiers abstained. This is an unresolved retrieval boundary, not evidence that the missing source is false or absent.
+
+The candidate pool comes from an existing public benchmark, with unknown pretraining exposure and project-level dependence. Source and license records do not establish redistribution rights for every issue body or dependency. Upstream patch ancestry and parser-label quirks require explicit reconstruction checks; benchmark labels cannot be imported as P1 truth. Any candidate used to tune extraction, triggering, or budgets must be assigned to development and replaced in an independent pilot.
+
+Native hosts differ in observable compaction, branching, output interception, and telemetry. A fixed-trajectory continuation may not represent an agent's entire natural trajectory. A host with only post-hoc output inspection cannot support claims of enforced free-form release correctness. Model and service versions may also change during data collection.
+
+Matching an evidence budget does not make every resource equal. Preprocessing, verification scans, embeddings, and the cost of repeated context can dominate. The paper must show actual resource components and must not turn a smaller number of search calls into an unmeasured efficiency claim. A three-point noninferiority margin is a proposed design choice that still requires a defensible rationale and adequate sample size.
+
+Finally, related work already covers many components of the proposal. A combination of those components is not automatically a publishable contribution. The study earns its methodological claim only through a clear interface, independently checkable correctness conditions, and persuasive evidence of a useful difference or a well-characterized boundary.
+
+# 10. Reproducibility and Research Practice
+
+The planned artifact contains source and dependency locks, task and license manifests, event snapshots, normalization rules, exact prompts, native-host receipts, arm configurations, randomization, complete per-task records, failure logs, scoring code, and statistical scripts. It should support result recomputation without model calls and distinguish that from full model-based reproduction. Artifact identifiers, source hashes, original offsets, and delivered-payload hashes connect reported outcomes to their evidence.
+
+Data collection records usage and redistribution permissions for repository code, issues, documents, and logs separately. Public readability is not treated as a blanket redistribution license. Private materials require research authorization. Release preparation removes credentials, personal identifiers, and machine-private paths while retaining an auditable mapping from redacted records to checksums where appropriate.
+
+Author contributions and AI assistance must reflect the actual workflow. This draft was prepared with AI assistance in literature inspection, method articulation, and English drafting. It is not accurate to describe that assistance as language polishing alone. Human authors must independently verify references, implementation, data provenance, analyses, and final claims, and approve any submission. No author identities or institutional affiliations have been fabricated here.
+
+# 11. Conclusion
+
+This working draft asks whether source verification can improve native agent continuations after compaction when strong raw-history retrieval is already available. The proposed layer discovers claims from visible task state, checks type-specific execution evidence, and permits reuse only under an explicit complete-view freshness condition. The open empirical question is whether those checks improve decisions enough to justify their own errors and cost. The current development records establish neither superiority nor efficiency. The next necessary evidence is independently validated host integration and source qualification, accepted workflows with separated public inputs and hidden labels, and the paired evaluation specified above.
+
+\clearpage
+
+# References {#references}
+
+::: {#refs}
+:::
+
+\clearpage
+
+# Appendices
+
+The following appendices are part of the expanded working draft and are separate from its main argument.
+
+# Appendix A. Acceptance Conditions
+
+These conditions are acceptance requirements, not statements that the implementation passes.
+
+| Area | Minimum evidence required before confirmation |
+|---|---|
+| Input separation | A trace shows the deployment process receives no `case.claims`, hidden answer values, gold source IDs, fixed correct event index, or evaluator-derived lineage |
+| Claim discovery | An independently labeled set measures omissions and false candidates from natural requests and exposed drafts |
+| Source opening | Randomized event positions and paginated natural logs are opened through real tools; clipped and mismatched records are rejected |
+| Typed semantics | Tests cover execution/completion, artifact binding, current-version authority, historical-time scope, revocation, conflict, and unknown states |
+| Archive completeness | Certificates identify their view and replay coverage; candidate top-k results alone cannot certify absence of invalidation |
+| Freshness | Old unexpired grant followed by revocation is rejected; same-head missed revocation, scheduled transition, dropped notification, out-of-order arrival, restart, and head races are exercised |
+| Reuse | A no-reopen path records current head/object checks and does not silently fall back to TTL |
+| Host delivery | Payload hash and a supported host receipt demonstrate actual delivery after the relevant compaction boundary |
+| Final decisions | The evaluator separately verifies action behavior, obligatory claims, source eligibility, abstention, and model consumption |
+| Baseline fidelity | Raw-RAG configuration and delivered text are auditable; close-method reproductions and approximations are clearly distinguished |
+| Resource accounting | All extraction, verification, acquisition, metadata, preprocessing, model, and failure costs are retained |
+
+# Appendix B. Required Evidence for a Submission-Ready Paper
+
+The following gaps remain material:
+
+1. **A deployed-interface implementation.** Eliminate the old structured-claim and fixed-location dependencies, implement complete lifecycle qualification and head validation, and provide an auditable boundary between public runtime data and hidden labels.
+2. **Independent freshness validation.** Demonstrate that the known counterexample and the additional failure modes in Section 6.6 are addressed. Record finite test scope rather than claiming universal correctness.
+3. **Strong and close comparisons.** Run B under a frozen faithful adaptation, assess a governance implementation, and freeze the TierMem or sufficiency-only comparison. A self-written approximation is not evidence of reproducing another paper.
+4. **Natural, independent tasks.** Collect licensed workflows in which post-compaction decisions matter, with repository and event-family separation. Retire the old 24 fixtures from formal estimation.
+5. **A justified sample size.** Complete the pilot, power and precision analyses, and a substantive justification for the H2 margin. Freeze the hierarchy before outcome access.
+6. **Paired confirmatory continuations.** Execute the frozen design, retain failures, verify actual evidence delivery, and obtain independent behavioral and source-based scores.
+7. **Incremental mechanism evidence.** Show what qualification changes when candidate evidence is identical, and what certified reuse changes when the acquisition pipeline is identical.
+8. **Total-cost evidence.** Estimate the joint quality and cost criterion with all relevant overhead. If the criterion is not met, report the limits without replacing the endpoint.
+9. **External validity and failure analysis.** Report every planned host/model configuration, including adverse or uncertain results, and distinguish continuation replay from full natural runs.
+10. **An independently reviewable manuscript and artifact.** Recompute each table from released or access-controlled records, verify every citation and license, resolve authorship and AI disclosure, and obtain human approval of the final claims.
+
+Meeting these conditions makes the empirical claim reviewable; it does not guarantee a positive result or acceptance by a venue. If the principal increment is absent, a revised paper should state that finding and its uncertainty rather than retaining an unsupported methods claim.
+
+# Appendix C. Provenance of the Existing Project Observations
+
+The draft's development statements refer to the following inspected materials. The legacy source revision is `49e772bbf60532682771874b7ec96958f4a179e3`.
+
+| Material | Identifier | What it supports |
+|---|---|---|
+| Legacy results | Versioned November 26 results report at the pinned legacy commit | Reported synthetic-fixture counts, timing of intervention, and limitations |
+| Legacy driver | Native evidence-recovery driver at the pinned legacy commit | Predefined claim list, structured source filter, fixed event opening, and read-only continuation |
+| Legacy gate | Evidence-check gate at the pinned legacy commit | Local-evidence shortcut, type/status checks, and absence of a required current archive head |
+| Local diagnostic record | `counterfactual-freshness.json` from the prior local audit, inspected 28 November 2026 | Recorded old-grant/later-revocation inputs and the observed no-search output |
+| P1 planning document | P1 evidence-verification research plan, an internal working document | Proposed primary endpoint, statistical hierarchy, task plan, and resource assumptions |
+| Live-state engineering | `LIVE_STATE.md` and the corresponding implementation and regression suite | Bounded current-workspace observations, execution and claim binding, finite test coverage, and explicit concurrency limits |
+| Experiment controller | `EXPERIMENT.md` and its controller contract tests | Local freeze, first-attempt dispatch, evaluator join, component ledgers, and remaining review boundaries |
+| Earlier online development | `artifacts/live-native/` manifest, attempt summary, and both extraction records | One approval-blocked integration attempt, one semantic extraction miss, one same-family prompt retest, and unmeasured costs |
+| Authorized native development | \path{artifacts/authorized-batch1/} observations, attempt summaries, native events and protocol evidence | Two bounded attempts, two observed approvals, one test and simulated decision, two compactions, unfinished changed continuation, and unresolved full costs |
+| Public-base test preparation | \path{artifacts/authorized-batch1/python-workflows/} summary and capture receipts | Two controller-only test captures from unpatched public bases; no model, method-arm execution or workflow acceptance |
+| Read-only continuation | `artifacts/readonly-native/` source snapshot, frozen configuration, first attempt and usage audit | Five generation starts, one actual compaction, three native forks, equal recorded recommendations, different source I/O, and unresolved full costs |
+| Candidate acquisition | `tasks/acquisition/` manifests and source records | Sixteen source candidates, eight projects, fixed provenance, ancestry and label cautions, and unfilled P1 acceptance fields |
+| Initial program reproduction | `tasks/reproduction/` commands, phase hashes, stdout, and JUnit reports | Two initial source/environment checks, four actual pytest invocations, fixed patches, observed outcomes, and retained failures |
+| Qualification expansion | \path{tasks/reproduction-expansion/} summary, numbered receipts and rule revision | All 14 remaining candidates attempted, 10 additionally qualified, four bounded limitations, 29 retained attempts and 34 top-level test-phase calls |
+| Task and review material | `TASKPACKS.md`, `ANNOTATION.md` and `tasks/workflows/` | Eleven unaccepted packages, eight synthetic development families, 22 unfilled review packets, and explicit unresolved acceptance gates |
+
+The local diagnostic is not presented as a publicly archived dataset or a peer-reviewed source. Before submission it must be included in a reproducible, appropriately anonymized artifact with its own stable identifier. Statements about the legacy study are attributed to its report and inspected code; the entire legacy model experiment was not rerun for this draft.
+
+# Appendix D. Verified Primary Sources and Comparison Notes
+
+Checked on 28 November 2026. This is a focused overlap review, not an exhaustive systematic review. Full-text sections were inspected for the principal five requested works and for TierMem, MSS-Complement, and CompAct-Bench. Additional records below were checked at their primary abstract/metadata pages; their detailed implementation behavior should not be inferred beyond that inspected material.
+
+| Reference | Primary source and inspected version | Relevant distinction for this draft |
+|---|---|---|
+| Raw-RAG | [Raw-RAG, v1](https://arxiv.org/html/2610.30755v1) | Strong raw-history retrieval is the primary challenge; full-turn expansion matters for budgets |
+| GPM | [GPM, v2 record](https://arxiv.org/abs/2608.12476v2); [full paper](https://arxiv.org/pdf/2608.12476) | Source-bound stable-head release already exists; current claims must distinguish free-form continuation from deterministic service output |
+| HELM | [ACL record](https://aclanthology.org/2026.emnlp-main.721/); [full paper](https://aclanthology.org/2026.emnlp-main.721.pdf) | Governance, tool status, versions, provenance, and memory-operation control directly overlap |
+| Compaction-Friendly | [Compaction-Friendly, v2](https://arxiv.org/html/2610.31778v2) | Constraint loss despite task performance is established motivation |
+| Folio | [Folio, v1](https://arxiv.org/html/2611.16627v1) | Stable handles, multiresolution retention, and recoverable original events are established |
+| TierMem | [TierMem, v1](https://arxiv.org/html/2602.17913v1) | Selective escalation from summaries to raw logs is a close prior method |
+| MSS-Complement | [MSS-Complement / SERBench, v3](https://arxiv.org/html/2609.20050v3) | State-conditioned sufficient evidence and separation of discovery from assembly are already explicit |
+| CompAct-Bench | [CompAct-Bench, v1](https://arxiv.org/html/2611.25673v1) | Controlled continuation and downstream compaction effects are established evaluation designs |
+| Agent Zero Memory | [Agent Zero Memory, v1](https://arxiv.org/abs/2608.29606v1) | Intent gating and citations restricted to opened evidence overlap |
+| MemIR | [MemIR, v1](https://arxiv.org/abs/2605.25869v1) | Typed separation of evidence, cues, and claims overlaps |
+| MemoRepair | [MemoRepair, v1](https://arxiv.org/abs/2605.07242v1) | Invalidation and validated republication are established |
+| StateFuse | [StateFuse, v1](https://arxiv.org/abs/2607.05844v1) | Visible conflicts and auditable correction are established |
+| Compaction Cliff | [Compaction Cliff, v1](https://arxiv.org/abs/2608.22752v1) | Type-dependent retention and repeated compaction are prior topics |
+| Provenance laundering | [Provenance laundering, v1](https://arxiv.org/abs/2607.29167v1) | Preserving source authority is distinct from verifying historical authorization facts |
+| Eywa | [Eywa, v1](https://arxiv.org/abs/2605.30771v1) | Immutable source evidence, typed support, and separation of retrieval from answer policy overlap |

@@ -1,0 +1,11 @@
+{
+  "requirements": [
+    "setuptools==67.6.0",
+    "wheel==0.38.4",
+    "mpmath==1.2.1"
+  ],
+  "test_runner": "sympy",
+  "plugins": [],
+  "policy": "Pinned local compatibility environment; no claim of official Docker equivalence. Exact resolved freeze is retained.",
+  "rationale": "Use upstream native bin/test -C --verbose against modified test module; source setup.py only requires mpmath. Actual JUnit counts unavailable for this runner and remain null."
+}

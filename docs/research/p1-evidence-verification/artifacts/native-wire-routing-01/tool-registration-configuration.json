@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "kind": "p1-pinned-builtin-tool-registration-configuration",
+  "analysis_id": "native-wire-routing-01-tools",
+  "checked_at_utc": "2026-11-28T17:07:34Z",
+  "scientific_ready": false,
+  "research_result": false,
+  "provider_requests_during_this_change": 0,
+  "actual_codex_turns_started_by_this_agent": 0,
+  "canonical_ledger_writes_by_this_agent": 0,
+  "mac_operations_by_this_agent": 0,
+  "host_version": "0.153.0",
+  "host_commit": "41e22fee981a63b3698df7ed36bad393cda24715",
+  "sources": [
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/core/src/config/mod.rs",
+      "git_blob_sha": "dca329ab98ea218f7b96f1bd2d4cf25612a5fc1f",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/config/mod.rs",
+      "finding": "Absent request_user_input configuration defaults to enabled; update_plan is enabled only by an explicit true setting."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/core/src/tools/spec_plan.rs",
+      "git_blob_sha": "908bb143afcbe3b8f0523ce5c3406c7b8c443603",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/tools/spec_plan.rs",
+      "finding": "The two configuration booleans directly gate RequestUserInputHandler and PlanHandler registration. The default-mode request_user_input feature only affects the handler mode set."
+    }
+  ],
+  "change": {
+    "file": "scripts/paper1/reader_profile.py",
+    "sha256": "7b7ea6c8498be4aa7b948facc894572987ffb2c53367fe9af6339ccabddae963",
+    "function": "codex_flags",
+    "added_overrides": {
+      "tools.experimental_request_user_input.enabled": false,
+      "tools.update_plan.enabled": false
+    },
+    "request_user_input_reason": "Suppress the pinned-host default registration, beyond the existing feature flag that only limits modes.",
+    "update_plan_reason": "Keep the tool absent even when inherited user configuration explicitly enables it.",
+    "relay_allowed_tools_broadened": false,
+    "user_configuration_modified": false,
+    "managed_policy_modified": false,
+    "profile_json_modified": false,
+    "profile_json_raw_sha256": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709",
+    "grant_modified": false,
+    "failed_attempt_replayed": false
+  },
+  "validation": {
+    "command": "python -B -m unittest discover -s test -p test_paper1_reader_profile.py -v",
+    "test_file": "test/test_paper1_reader_profile.py",
+    "test_file_sha256": "9da5498177b4714d3605d95c05cdccccc74d153790bc0053bfb9788ebead894e",
+    "before_tool_flags": {
+      "tests": 10,
+      "failed_subtests": 2,
+      "exit_code": 1,
+      "failing_test": "test_builtin_plan_and_interactive_tools_are_explicitly_disabled"
+    },
+    "after_tool_flags": {
+      "tests": 10,
+      "failures": 0,
+      "exit_code": 0,
+      "test_file_sha256": "9da5498177b4714d3605d95c05cdccccc74d153790bc0053bfb9788ebead894e"
+    },
+    "actual_pinned_wire_request_captured_by_this_agent": false
+  },
+  "remaining_boundary": "Pinned request payload compatibility and an isolated no-provider transport check are separate gates; no native preparation grant was consumed by these local tests."
+}

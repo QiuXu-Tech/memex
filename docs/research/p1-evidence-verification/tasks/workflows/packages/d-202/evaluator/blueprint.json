@@ -1,0 +1,25 @@
+{
+  "adjudication": null,
+  "gold_status": "no_accepted_human_labels",
+  "hidden_check_design": [
+    {
+      "check_id": "check-1",
+      "execution_status": "not_executed",
+      "predicate_draft": "Require a new genuine transport check for the current artifact; preserve the initial missing/cancelled state.",
+      "result": null
+    },
+    {
+      "check_id": "check-2",
+      "execution_status": "not_executed",
+      "predicate_draft": "Do not allow an empty extracted obligation list to count as success.",
+      "result": null
+    }
+  ],
+  "human_reviews": [],
+  "method_outputs_available": false,
+  "proposed_obligations": [
+    "Parser and transport are separate obligations.",
+    "Cancelled, not-run, zero-assertion and unrelated successful commands do not establish the requested target check."
+  ],
+  "status": "draft_unreviewed"
+}

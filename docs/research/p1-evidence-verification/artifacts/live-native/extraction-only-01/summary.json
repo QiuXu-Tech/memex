@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "kind": "live_claim_extraction_component",
+  "split": "development",
+  "confirmatory": false,
+  "independent_workflows": 1,
+  "checkpoints": 0,
+  "requested_model": "gpt-5.6-sol",
+  "model_turns_started": 1,
+  "compactions_started": 0,
+  "compactions": [],
+  "turns": [
+    {
+      "phase": "read-only_extraction",
+      "category": "claim_extraction",
+      "status": "completed",
+      "thread_id": "01a21fa4-d227-7b63-b09d-63968032702e",
+      "prompt_sha256": "ed5b4675ba17fe5c4b76f6f2bb7ba6eb7cb91ee9898fa26b32fe2746c9e111de",
+      "turn_id": "01a21fa4-d2a8-79a2-9f77-9bc27d9e7c11",
+      "seconds": 16.832307874923572,
+      "item_types": [
+        "userMessage",
+        "agentMessage"
+      ],
+      "final": "{\"claims\":[{\"type\":\"operation_authorization\",\"scope\":\"current workspace\",\"entity\":\"release decision\",\"version\":null,\"actor\":null,\"action\":\"decide whether to release or hold\",\"basis\":{\"field\":\"request\",\"quote\":\"Prepare a release decision for the current workspace.\"},\"uncertainty\":[\"The authorized actor is not identified.\",\"This requests a decision but does not explicitly authorize an external release.\"]},{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"current artifact\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"context\",\"quote\":\"Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\"},\"uncertainty\":[\"The digest is supplied as context and has not been independently verified.\"]},{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"configured test command\",\"version\":\"node --test --test-reporter=tap checks.test.mjs\",\"basis\":{\"field\":\"context\",\"quote\":\"Supported test command entity: node --test --test-reporter=tap checks.test.mjs\"},\"uncertainty\":[\"The text calls this the supported test command entity; it does not independently prove the command is configured or was executed.\"]}],\"unresolved\":[\"No test result or test receipt event ID is present in the observable input.\",\"Whether the configured test command passes for the current artifact remains unknown and requires an independent source check.\",\"The actor authorized to prepare or record the release decision is not identified.\",\"The request does not explicitly authorize an external release; the described record_decision operation records only a simulated attempt.\"]}"
+    }
+  ],
+  "extractions": [
+    {
+      "phase": "read-only",
+      "input_sha256": "01fe84e98522632d7625ac38b79cfbf34f963152361c426582838bde7c9f2b08",
+      "accepted": true,
+      "claim_count": 3,
+      "test_claim_count": 0,
+      "coverage_established": false,
+      "trace_ref": "read-only-extract-host/events.jsonl",
+      "usage_notifications": [
+        {
+          "threadId": "01a21fa4-d227-7b63-b09d-63968032702e",
+          "turnId": "01a21fa4-d2a8-79a2-9f77-9bc27d9e7c11",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 13063,
+              "inputTokens": 12572,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 491,
+              "reasoningOutputTokens": 106
+            },
+            "last": {
+              "totalTokens": 13063,
+              "inputTokens": 12572,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 491,
+              "reasoningOutputTokens": 106
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "thread_id": "01a21fa4-d227-7b63-b09d-63968032702e"
+    }
+  ],
+  "host_traces": [
+    {
+      "label": "main-host",
+      "events": "main-host/events.jsonl",
+      "stderr": "main-host/host.stderr",
+      "usage_notifications": [],
+      "status": "closed"
+    },
+    {
+      "label": "read-only-extract-host",
+      "events": "read-only-extract-host/events.jsonl",
+      "stderr": "read-only-extract-host/host.stderr",
+      "usage_notifications": [
+        {
+          "threadId": "01a21fa4-d227-7b63-b09d-63968032702e",
+          "turnId": "01a21fa4-d2a8-79a2-9f77-9bc27d9e7c11",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 13063,
+              "inputTokens": 12572,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 491,
+              "reasoningOutputTokens": 106
+            },
+            "last": {
+              "totalTokens": 13063,
+              "inputTokens": 12572,
+              "cachedInputTokens": 3456,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 491,
+              "reasoningOutputTokens": 106
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "status": "closed"
+    }
+  ],
+  "status": "blocked_or_failed",
+  "actual_spend": null,
+  "standardized_cost": null,
+  "cost_completeness": "unmeasured_provider_billing_and_compaction_semantics",
+  "execution_producer": "p1_live_process_broker",
+  "execution_delivery": "native MCP tool result; not a native shell commandExecution",
+  "source_sha256": {
+    "live-broker.mjs": "9585de000b1988606af0c2367679be3385750991cadb21df14eee09e81bcfb66",
+    "live-state.mjs": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a",
+    "live_mcp.py": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a",
+    "native_live.py": "8066f31ef5900bbeb4633911f2b6324c537ef77d26ce0e6a4ce9d5006e48f664"
+  },
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "elapsed_seconds": 22.389259541989304,
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "model": "gpt-6-astra",
+      "displayName": "GPT-6-Astra",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    }
+  ],
+  "error": {
+    "type": "RuntimeError",
+    "message": "real model did not produce a valid supported test claim"
+  },
+  "usage_notifications": {
+    "main": [],
+    "interpretation": "Raw notifications only; total/last/compaction billing has not been reconciled."
+  },
+  "metrics": {
+    "broker": {
+      "publicCalls": 0,
+      "testExecutions": 0,
+      "verifierCalls": 0,
+      "directModelDispatches": 0
+    },
+    "live": {
+      "captures": 0,
+      "filesRead": 0,
+      "bytesRead": 0,
+      "directoryReads": 0,
+      "viewReads": 0,
+      "bindingSearches": 0,
+      "bindingOpens": 0,
+      "bindingBytes": 0,
+      "delegatedSearches": 0,
+      "delegatedOpens": 0
+    }
+  }
+}

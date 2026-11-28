@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "kind": "live_native_evidence_integration",
+  "split": "development",
+  "confirmatory": false,
+  "independent_workflows": 1,
+  "checkpoints": 2,
+  "requested_model": null,
+  "model_turns_started": 0,
+  "compactions_started": 0,
+  "compactions": [],
+  "turns": [],
+  "extractions": [],
+  "host_traces": [
+    {
+      "label": "main-host",
+      "events": "main-host/events.jsonl",
+      "stderr": "main-host/host.stderr",
+      "usage_notifications": [],
+      "status": "closed"
+    }
+  ],
+  "status": "preflight_complete",
+  "actual_spend": null,
+  "standardized_cost": null,
+  "cost_completeness": "unmeasured_provider_billing_and_compaction_semantics",
+  "execution_producer": "p1_live_process_broker",
+  "execution_delivery": "native MCP tool result; not a native shell commandExecution",
+  "source_sha256": {
+    "live-broker.mjs": "ec6f03275c89a72e1da6c13bbbf7dc56eac15be1ad8f978418570d589dfc7ed5",
+    "live-state.mjs": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a",
+    "live_mcp.py": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a",
+    "native_live.py": "a95b67347cae3c56bfc19fbf48b11b4b0ad136df996c428a53934c8601d198b5"
+  },
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "elapsed_seconds": 4.819860792020336,
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "model": "gpt-6-astra",
+      "displayName": "GPT-6-Astra",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    }
+  ],
+  "usage_notifications": {
+    "main": [],
+    "interpretation": "Raw notifications only; total/last/compaction billing has not been reconciled."
+  },
+  "metrics": {
+    "broker": {
+      "publicCalls": 0,
+      "testExecutions": 0,
+      "verifierCalls": 0,
+      "directModelDispatches": 0
+    },
+    "live": {
+      "captures": 0,
+      "filesRead": 0,
+      "bytesRead": 0,
+      "directoryReads": 0,
+      "viewReads": 0,
+      "bindingSearches": 0,
+      "bindingOpens": 0,
+      "bindingBytes": 0,
+      "delegatedSearches": 0,
+      "delegatedOpens": 0
+    }
+  }
+}

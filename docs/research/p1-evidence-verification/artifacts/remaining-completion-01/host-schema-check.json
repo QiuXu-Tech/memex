@@ -1,0 +1,179 @@
+{
+  "schema_version": 1,
+  "kind": "actual_installed_codex_protocol_schema_export",
+  "host_version": "codex-cli 0.153.0",
+  "checked_at_utc": "2026-11-28T10:50:50.832113+00:00",
+  "command": [
+    "codex",
+    "app-server",
+    "generate-json-schema",
+    "--experimental",
+    "--out",
+    "<temporary-schema-output>"
+  ],
+  "model_requests": 0,
+  "provider_requests": 0,
+  "native_attempts_created": 0,
+  "native_checkpoint_created": false,
+  "scientific_ready": false,
+  "schemas": {
+    "ThreadStartParams": {
+      "sha256": "25f490368ec6df52a2a3b82a5469d2413307eb93439121b309f415b5648eee7a",
+      "required": [],
+      "properties": [
+        "allowProviderModelFallback",
+        "approvalPolicy",
+        "approvalsReviewer",
+        "baseInstructions",
+        "config",
+        "cwd",
+        "developerInstructions",
+        "dynamicTools",
+        "environments",
+        "ephemeral",
+        "experimentalRawEvents",
+        "historyMode",
+        "mockExperimentalField",
+        "model",
+        "modelProvider",
+        "multiAgentMode",
+        "permissions",
+        "personality",
+        "projectId",
+        "runtimeWorkspaceRoots",
+        "sandbox",
+        "selectedCapabilityRoots",
+        "serviceName",
+        "serviceTier",
+        "sessionStartSource",
+        "threadSource"
+      ]
+    },
+    "ThreadResumeParams": {
+      "sha256": "324e96004c49de35935cade3386958431c93a4fd3997a839f9796772ea4c8072",
+      "required": [
+        "threadId"
+      ],
+      "properties": [
+        "approvalPolicy",
+        "approvalsReviewer",
+        "baseInstructions",
+        "config",
+        "cwd",
+        "developerInstructions",
+        "excludeTurns",
+        "history",
+        "initialTurnsPage",
+        "model",
+        "modelProvider",
+        "path",
+        "permissions",
+        "personality",
+        "runtimeWorkspaceRoots",
+        "sandbox",
+        "serviceTier",
+        "threadId"
+      ]
+    },
+    "ThreadForkParams": {
+      "sha256": "674134467796c011068b9dd5efc912de4560fa31f65c0fb2163f14e352be7a61",
+      "required": [
+        "threadId"
+      ],
+      "properties": [
+        "approvalPolicy",
+        "approvalsReviewer",
+        "baseInstructions",
+        "beforeTurnId",
+        "config",
+        "cwd",
+        "deferGoalContinuation",
+        "developerInstructions",
+        "ephemeral",
+        "excludeTurns",
+        "lastTurnId",
+        "model",
+        "modelProvider",
+        "path",
+        "permissions",
+        "runtimeWorkspaceRoots",
+        "sandbox",
+        "serviceTier",
+        "threadId",
+        "threadSource"
+      ]
+    },
+    "ThreadReadParams": {
+      "sha256": "dfe040c6ac71d30795b8be3f3ff232e66f362a37f883b491e5d1ea367f470db4",
+      "required": [
+        "threadId"
+      ],
+      "properties": [
+        "includeTurns",
+        "threadId"
+      ]
+    },
+    "TurnStartParams": {
+      "sha256": "b36fb37326b1cf69f75c8b306f1f886d53a57c4b1b985e08e298e2407ea2ad02",
+      "required": [
+        "input",
+        "threadId"
+      ],
+      "properties": [
+        "additionalContext",
+        "approvalPolicy",
+        "approvalsReviewer",
+        "clientUserMessageId",
+        "collaborationMode",
+        "cwd",
+        "cyberAccessProgram",
+        "effort",
+        "environments",
+        "input",
+        "model",
+        "multiAgentMode",
+        "outputSchema",
+        "permissions",
+        "personality",
+        "responsesapiClientMetadata",
+        "runtimeWorkspaceRoots",
+        "sandboxPolicy",
+        "serviceTier",
+        "serviceTierForTurn",
+        "summary",
+        "threadId",
+        "toolOutput",
+        "turnTrigger"
+      ]
+    },
+    "DynamicToolCallParams": {
+      "sha256": "401bba20cfbd95762bef0467d840430c46be53369093ad9f26425ba757e34efc",
+      "required": [
+        "arguments",
+        "callId",
+        "threadId",
+        "tool",
+        "turnId"
+      ],
+      "properties": [
+        "arguments",
+        "callId",
+        "namespace",
+        "threadId",
+        "tool",
+        "turnId"
+      ]
+    },
+    "DynamicToolCallResponse": {
+      "sha256": "abb082cad67f11fcc98ba75f2eff75d7d1723af0c657655329b83ff160451a02",
+      "required": [
+        "contentItems",
+        "success"
+      ],
+      "properties": [
+        "contentItems",
+        "success"
+      ]
+    }
+  }
+}

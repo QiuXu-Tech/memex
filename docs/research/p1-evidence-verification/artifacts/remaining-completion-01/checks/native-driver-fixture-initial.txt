@@ -1,0 +1,25 @@
+test_pinned_serial_scope_envelope_passes_through_without_legacy_repricing (test_paper1_native_driver.NativeDriverScopeTests.test_pinned_serial_scope_envelope_passes_through_without_legacy_repricing) ... ERROR
+
+======================================================================
+ERROR: test_pinned_serial_scope_envelope_passes_through_without_legacy_repricing (test_paper1_native_driver.NativeDriverScopeTests.test_pinned_serial_scope_envelope_passes_through_without_legacy_repricing)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "<repo>/test/test_paper1_native_driver.py", line 333, in test_pinned_serial_scope_envelope_passes_through_without_legacy_repricing
+    checked = self.check(specs)
+              ^^^^^^^^^^^^^^^^^
+  File "<repo>/test/test_paper1_native_driver.py", line 281, in check
+    return self.mod._check_scopes(specs, self.required, self.task, 1, self.fixture.ledger.status())
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>/scripts/paper1/native_driver.py", line 138, in _check_scopes
+    controller = controller_api.CanonicalPairedController(specs, repo_root=ROOT, run=False)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "<repo>/scripts/paper1/runtime_controller.py", line 241, in __init__
+    self._validate_spec(name, spec)
+  File "<repo>/scripts/paper1/runtime_controller.py", line 302, in _validate_spec
+    raise ControllerError('deepseek_scope_price_basis_mismatch')
+runtime_controller.ControllerError: deepseek_scope_price_basis_mismatch
+
+----------------------------------------------------------------------
+Ran 1 test in 0.009s
+
+FAILED (errors=1)

@@ -1,0 +1,10 @@
+{
+  "scope": "auxiliary source lookup, not a candidate reproduction attempt",
+  "observed_failures": [
+    {
+      "url": "https://raw.githubusercontent.com/SWE-bench/SWE-bench/02e7a74ffd0b707aab73d203fe87bdc7c76afc8e/swebench/harness/constants/python.py",
+      "error": "HTTP 404",
+      "resolution": "Use exact pinned constants/__init__.py and log_parsers/python.py with their previously verified SHA-256 values."
+    }
+  ]
+}

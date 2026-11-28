@@ -1,0 +1,126 @@
+{
+  "schema": 1,
+  "kind": "native_host_integration_smoke",
+  "confirmatory": false,
+  "host_version": "codex-cli 0.153.0",
+  "requested_model": "gpt-5.6-sol",
+  "model_turns": 2,
+  "compactions": [
+    {
+      "turnId": "01a21dfb-c718-77d0-85e0-25c84a622003",
+      "itemId": "01a21dfb-c722-7e53-a150-0670cca81560",
+      "elapsedSeconds": 13.87373650004156
+    }
+  ],
+  "turns": [
+    {
+      "phase": "prelude",
+      "turn_id": "01a21dfb-387e-7ec1-96e8-131ccc640229",
+      "commands": [
+        {
+          "id": "exec-1759ed71-0b97-46d0-b87b-f0b07ec34d58",
+          "command": "/bin/zsh -lc 'cat sum.mjs'",
+          "exitCode": 0,
+          "aggregatedOutput": "export const sum = (a, b) => a + b;\n",
+          "status": "completed"
+        },
+        {
+          "id": "exec-3c656d35-5b15-4739-b76a-cc8ef0579f89",
+          "command": "/bin/zsh -lc 'cat sum.test.mjs'",
+          "exitCode": 0,
+          "aggregatedOutput": "import test from 'node:test';\nimport assert from 'node:assert/strict';\nimport { sum } from './sum.mjs';\ntest('sums', () => assert.equal(sum(20, 22), 42));\n",
+          "status": "completed"
+        },
+        {
+          "id": "exec-85443c13-0b93-41a3-8422-2c823399185d",
+          "command": "/bin/zsh -lc 'node --test --test-reporter=tap sum.test.mjs'",
+          "exitCode": 0,
+          "aggregatedOutput": "# Subtest: sums\nok 1 - sums\n  ---\n  duration_ms: 0.472708\n  type: 'test'\n  ...\n1..1\n# tests 1\n# suites 0\n# pass 1\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 63.122209\n",
+          "status": "completed"
+        },
+        {
+          "id": "exec-449abb04-458d-4509-88be-55fe53c373c2",
+          "command": "/bin/zsh -lc 'shasum -a 256 sum.mjs'",
+          "exitCode": 0,
+          "aggregatedOutput": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709  sum.mjs\n",
+          "status": "completed"
+        }
+      ],
+      "final": "- Inspected `sum.mjs` and `sum.test.mjs`; no files modified.\n- Test result: **passed** — 1 test, 0 failures, exit code 0.\n- SHA-256 (`sum.mjs`): `c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709`",
+      "seconds": 25.994837749982253
+    },
+    {
+      "phase": "interleaved_update",
+      "turn_id": "01a21dfb-9e05-7623-9880-33a4674a6265",
+      "commands": [
+        {
+          "id": "exec-b237d446-dda0-4bad-b106-201c780d6d07",
+          "command": "/bin/zsh -lc 'cat sum.mjs'",
+          "exitCode": 0,
+          "aggregatedOutput": "export const sum = (a, b) => a + b + 1;\n",
+          "status": "completed"
+        },
+        {
+          "id": "exec-5acfb1e3-3de9-4bbf-b524-1c6a9ec6cfb3",
+          "command": "/bin/zsh -lc 'shasum -a 256 sum.mjs'",
+          "exitCode": 0,
+          "aggregatedOutput": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec  sum.mjs\n",
+          "status": "completed"
+        }
+      ],
+      "final": "Current `sum.mjs`:\n\n```js\nexport const sum = (a, b) => a + b + 1;\n```\n\nSHA-256: `b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec`\n\nThe previous passing test is stale. The changed behavior now requires validation against `sum.test.mjs`; no tests were run. No files changed.",
+      "seconds": 10.514375167083926
+    }
+  ],
+  "actual_spend": null,
+  "source_versions": [
+    {
+      "stage": "original",
+      "sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709"
+    },
+    {
+      "stage": "changed",
+      "sha256": "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec"
+    }
+  ],
+  "status": "blocked_or_failed",
+  "models": [
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.5",
+      "model": "gpt-5.5",
+      "displayName": "GPT-5.5",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.2",
+      "model": "gpt-5.2",
+      "displayName": "GPT-5.2",
+      "isDefault": false
+    }
+  ],
+  "resolved_model": "gpt-5.6-sol",
+  "thread_id": "01a21dfb-37dc-7bf2-ac93-361b53c5c285",
+  "error": {
+    "type": "RuntimeError",
+    "message": "foreign thread notification"
+  },
+  "elapsed_seconds": 60.86366925004404
+}

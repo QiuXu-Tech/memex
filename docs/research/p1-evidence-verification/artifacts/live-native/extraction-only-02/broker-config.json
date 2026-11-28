@@ -1,0 +1,21 @@
+{
+  "workspace": "/private<ROOT>/extraction-only-02/workspace",
+  "files": [
+    "sum.mjs",
+    "checks.test.mjs"
+  ],
+  "testFile": "checks.test.mjs",
+  "scope": "live-development",
+  "sessionId": "live-49dd4959762e4585a805109504120e82",
+  "archiveRoot": "/private<ROOT>/extraction-only-02/archive",
+  "outputRoot": "/private<ROOT>/extraction-only-02/broker",
+  "allowedContentHashes": {
+    "sum.mjs": [
+      "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+      "b80a36de74bb7c3f2fad39ead1e40fcd648f39898957c63e1e487d8582b6b2ec"
+    ],
+    "checks.test.mjs": [
+      "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e"
+    ]
+  }
+}

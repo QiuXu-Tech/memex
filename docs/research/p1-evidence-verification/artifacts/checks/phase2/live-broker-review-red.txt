@@ -1,0 +1,25 @@
+file:///workspace/scratch/d5292d3ebcac/memex-p1/test/paper1-live-broker.mjs:7
+import { LiveBroker, CURRENT_REQUEST } from '../scripts/paper1/live-broker.mjs'
+                     ^^^^^^^^^^^^^^^
+SyntaxError: The requested module '../scripts/paper1/live-broker.mjs' does not provide an export named 'CURRENT_REQUEST'
+    at #asyncInstantiate (node:internal/modules/esm/module_job:455:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:553:5)
+    at async node:internal/modules/esm/loader:647:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.22.3
+✖ test/paper1-live-broker.mjs (124.494064ms)
+ℹ tests 1
+ℹ suites 0
+ℹ pass 0
+ℹ fail 1
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 132.547178
+
+✖ failing tests:
+
+test at test/paper1-live-broker.mjs:1:1
+✖ test/paper1-live-broker.mjs (124.494064ms)
+  'test failed'

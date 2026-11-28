@@ -1,0 +1,196 @@
+{
+  "schema_version": 1,
+  "kind": "p1-loopback-proxy-routing-analysis",
+  "analysis_id": "native-wire-routing-01",
+  "checked_at_utc": "2026-11-28T16:59:13Z",
+  "status": "source_supported_routing_cause_with_minimal_environment_fix",
+  "scientific_ready": false,
+  "research_result": false,
+  "formal_runs_added": 0,
+  "provider_requests_during_this_analysis": 0,
+  "mac_operations_by_this_agent": 0,
+  "canonical_ledger_writes_by_this_agent": 0,
+  "host": {
+    "version": "0.153.0",
+    "tag": "rust-v0.153.0",
+    "tag_object_sha": "6bc50f104dcc0192e696cdeae721dfc19b507391",
+    "commit": "41e22fee981a63b3698df7ed36bad393cda24715"
+  },
+  "failure_evidence": [
+    {
+      "path": "../native-supplement-01/w-101-r1/host-events.jsonl",
+      "sha256": "4d2e9bb3a08deb83169c21be0142b25ab15f0c7c43a109737ff5b9a32f4ff2c4"
+    },
+    {
+      "path": "../native-supplement-01/w-101-r1/provider-audit.json",
+      "sha256": "ad0afb4caab5669e76c9717a0c7f099da52c00257c9f67cf9f46c51d3669e5f0"
+    },
+    {
+      "path": "../native-supplement-01/w-101-r1/relay-state.json",
+      "sha256": "7fb6026c6b2c3c86720faa562bbeb6430c2ebaa2d85a0c9a92442aafba205806"
+    }
+  ],
+  "local_artifact_observation": {
+    "relay_records": 0,
+    "relay_closed": true,
+    "scope_dispatches": 0,
+    "scope_input_tokens": 0,
+    "scope_output_tokens": 0,
+    "scope_blocked": false,
+    "scope_block_reason": null
+  },
+  "mac_observation_reported_by_root": {
+    "directly_repeated_by_this_agent": false,
+    "http_proxy_enabled": true,
+    "https_proxy_enabled": true,
+    "socks_proxy_enabled": true,
+    "pac_enabled": false,
+    "system_exceptions_include": [
+      "localhost",
+      "127.0.0.1",
+      "*.local"
+    ],
+    "proxy_environment_variables_present": [],
+    "effective_respect_system_proxy": false,
+    "effective_feature_probe_exit_code": 0,
+    "feature_probe_started_turns": 0,
+    "private_proxy_addresses_or_values_recorded": false
+  },
+  "inference": {
+    "cause": "The default pinned HTTP client can send loopback model-provider requests through macOS system HTTP proxy settings while ignoring the OS exception list.",
+    "basis": "The retained no-dispatch state cannot generate the observed 502 in the current relay Handler; the reported effective feature branch and pinned dependency implementation identify a matching proxy-routing path.",
+    "packet_route_directly_captured": false,
+    "wire_payload_compatibility_established": false
+  },
+  "sources": [
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/Cargo.lock",
+      "git_blob_sha": "e217b702497e6ff02969a51046f7ba887024f487",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/Cargo.lock",
+      "finding": "The lockfile includes reqwest 0.12.28 and hyper-util 0.1.20."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/Cargo.toml",
+      "git_blob_sha": "ff6a534b1aaa838976c541a56d3af6214f8bb46f",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/Cargo.toml",
+      "finding": "The workspace reqwest dependency uses version 0.12 and retains default features."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/http-client/Cargo.toml",
+      "git_blob_sha": "2d54ca7158900eda362091c71e8d1bd742459d4c",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/http-client/Cargo.toml",
+      "finding": "The Codex HTTP transport uses the workspace reqwest dependency."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/features/src/lib.rs",
+      "git_blob_sha": "fdeae5c6f52a3223df6759af9a2d3b4e4e2364dc",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/features/src/lib.rs",
+      "finding": "respect_system_proxy defaults to false in the pinned host."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/core/src/client.rs",
+      "git_blob_sha": "9f03c939e09c87824aabb6108c051786908d6204",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/client.rs",
+      "finding": "Responses uses the route-aware API HTTP transport; zstd request compression requires the OpenAI Codex backend, so it is not selected for this custom provider."
+    },
+    {
+      "repository": "openai/codex",
+      "ref": "41e22fee981a63b3698df7ed36bad393cda24715",
+      "path": "codex-rs/http-client/src/outbound_proxy.rs",
+      "git_blob_sha": "27d1a80587d2a018d6774e0c8f7aa4e59dcb7556",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/http-client/src/outbound_proxy.rs",
+      "finding": "ReqwestDefault preserves transport proxy behavior. RespectSystemProxy is a separate policy; an explicit system-proxy decision in that policy is not overridden by NO_PROXY."
+    },
+    {
+      "repository": "seanmonstar/reqwest",
+      "ref": "v0.12.28",
+      "path": "Cargo.toml",
+      "git_blob_sha": "181cc4f559656a9dad43c10b73953e3ebd79a616",
+      "url": "https://github.com/seanmonstar/reqwest/blob/v0.12.28/Cargo.toml",
+      "finding": "reqwest default features include system-proxy, which enables hyper-util/client-proxy-system."
+    },
+    {
+      "repository": "seanmonstar/reqwest",
+      "ref": "v0.12.28",
+      "path": "src/async_impl/client.rs",
+      "git_blob_sha": "d6dc03ad346c5f78a532f07f73ad99867f848145",
+      "url": "https://github.com/seanmonstar/reqwest/blob/v0.12.28/src/async_impl/client.rs",
+      "finding": "The default client enables automatic system proxy matching."
+    },
+    {
+      "repository": "seanmonstar/reqwest",
+      "ref": "v0.12.28",
+      "path": "src/proxy.rs",
+      "git_blob_sha": "93a2459ae57b744382cf559311c0a33539b8df58",
+      "url": "https://github.com/seanmonstar/reqwest/blob/v0.12.28/src/proxy.rs",
+      "finding": "The system matcher delegates to hyper-util Matcher::from_system."
+    },
+    {
+      "repository": "hyperium/hyper-util",
+      "ref": "v0.1.20",
+      "path": "src/client/proxy/matcher.rs",
+      "git_blob_sha": "bc488e10d7b75452bab64e8ca4e9041bcba1d09e",
+      "url": "https://github.com/hyperium/hyper-util/blob/v0.1.20/src/client/proxy/matcher.rs",
+      "finding": "Environment NO_PROXY/no_proxy supplies the exception list. The macOS loader adds only HTTP/HTTPS proxy enable, address and port settings; it does not copy the OS ExceptionsList. Destination exceptions are checked before proxy selection."
+    }
+  ],
+  "change": {
+    "file": "scripts/paper1/reader_profile.py",
+    "sha256": "7b7ea6c8498be4aa7b948facc894572987ffb2c53367fe9af6339ccabddae963",
+    "proxy_only_stage_sha256": "34d9ab7091bb9ef07d3de31cc8d9cdb518ad11c31b35085ce6e1aeb8346ce001",
+    "additional_change_in_same_file": "See summary-configuration.json for the separately authorized reasoning-summary configuration correction.",
+    "function": "host_environment",
+    "added_child_environment": {
+      "NO_PROXY": "127.0.0.1,localhost",
+      "no_proxy": "127.0.0.1,localhost"
+    },
+    "parent_environment_mutated": false,
+    "user_proxy_urls_or_exception_lists_read": false,
+    "respect_system_proxy_overridden": false,
+    "system_or_managed_proxy_policy_modified": false,
+    "external_provider_domain_added_to_exceptions": false,
+    "relay_modified": false,
+    "relay_source_sha256": "f91e2e209697c0fdab6c2d5ea97500bff00d1eaab801ac7422585efc58bde373",
+    "additional_changes_in_same_file": "See the adjacent summary-configuration.json and tool-registration-configuration.json for separately authorized pinned-host configuration corrections."
+  },
+  "validation": {
+    "command": "python -m unittest discover -s test -p test_paper1_reader_profile.py -v",
+    "test_file": "test/test_paper1_reader_profile.py",
+    "test_file_sha256": "07169c13a26394c85385002c2cac441dfe9424c6815d51048da2860580dd80f1",
+    "before_fix": {
+      "tests": 8,
+      "failures": 3,
+      "exit_code": 1
+    },
+    "after_fix": {
+      "tests": 8,
+      "failures": 0,
+      "exit_code": 0
+    },
+    "checks": [
+      "exact two local exception values",
+      "no inherited wildcard or external-domain exceptions",
+      "no proxy URL or provider credential value reads",
+      "parent mapping remains unchanged",
+      "no respect_system_proxy feature override"
+    ],
+    "actual_macos_transport_canary_executed_by_this_agent": false,
+    "final_combined_regression": {
+      "tests": 10,
+      "failures": 0,
+      "exit_code": 0,
+      "test_file_sha256": "9da5498177b4714d3605d95c05cdccccc74d153790bc0053bfb9788ebead894e"
+    }
+  },
+  "next_boundary": "Validate the actual pinned wire schema with an isolated no-provider test before consuming another native preparation grant. The failed first grant remains consumed."
+}

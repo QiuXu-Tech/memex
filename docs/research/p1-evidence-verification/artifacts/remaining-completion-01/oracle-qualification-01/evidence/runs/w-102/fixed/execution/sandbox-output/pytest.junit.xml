@@ -1,0 +1,18 @@
+<?xml version='1.0' encoding='utf-8'?>
+<testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="6" time="0.028" timestamp="2026-11-28T17:16:00.721280" hostname="qualification-host"><testcase classname="_p1_oracles.test_request_contract" name="test_proxy_credentials_survive_normalization_and_header_generation[reviewer:fixture-password@proxy.example.invalid:3128-http]" time="0.000"><failure message="AssertionError: assert ('', '') == ('reviewer', ...ure-password')&#10;  At index 0 diff: '' != 'reviewer'&#10;  Full diff:&#10;  - ('reviewer', 'fixture-password')&#10;  + ('', '')">proxy = 'reviewer:fixture-password@proxy.example.invalid:3128', scheme = 'http'
+
+    @pytest.mark.parametrize("proxy,scheme", [
+        ("reviewer:fixture-password@proxy.example.invalid:3128", "http"),
+        ("http://reviewer:fixture-password@proxy.example.invalid:3128", "http"),
+        ("https://reviewer:fixture-password@proxy.example.invalid:3128", "http"),
+    ])
+    def test_proxy_credentials_survive_normalization_and_header_generation(proxy, scheme):
+        normalized = prepend_scheme_if_needed(proxy, scheme)
+&gt;       assert get_auth_from_url(normalized) == ("reviewer", "fixture-password")
+E       AssertionError: assert ('', '') == ('reviewer', ...ure-password')
+E         At index 0 diff: '' != 'reviewer'
+E         Full diff:
+E         - ('reviewer', 'fixture-password')
+E         + ('', '')
+
+_p1_oracles/test_request_contract.py:22: AssertionError</failure></testcase><testcase classname="_p1_oracles.test_request_contract" name="test_proxy_credentials_survive_normalization_and_header_generation[http://reviewer:fixture-password@proxy.example.invalid:3128-http]" time="0.000" /><testcase classname="_p1_oracles.test_request_contract" name="test_proxy_credentials_survive_normalization_and_header_generation[https://reviewer:fixture-password@proxy.example.invalid:3128-http]" time="0.000" /><testcase classname="_p1_oracles.test_request_contract" name="test_encoded_authentication_preserves_decoded_credentials" time="0.000" /><testcase classname="_p1_oracles.test_request_contract" name="test_proxy_without_credentials_does_not_gain_authentication[proxy.example.invalid:3128]" time="0.000" /><testcase classname="_p1_oracles.test_request_contract" name="test_proxy_without_credentials_does_not_gain_authentication[http://proxy.example.invalid:3128]" time="0.000" /></testsuite></testsuites>

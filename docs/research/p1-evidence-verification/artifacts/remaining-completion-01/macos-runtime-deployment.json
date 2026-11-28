@@ -1,0 +1,400 @@
+{
+  "actual_added_cash_cny": null,
+  "canary_reexecuted": false,
+  "canonical_ledger": {
+    "HEAD_file_sha256": "2054e97ffabdd8db167c9f5928b5dcc59b696182a9bf43664e140b0344f871d7",
+    "counters": {
+      "diagnostic_attempts_reserved": 1,
+      "journal_events": 7,
+      "method_units_remaining": 16,
+      "method_units_reserved": 0,
+      "native_attempts_remaining": 0,
+      "native_attempts_reserved": 2
+    },
+    "events_bytes": 4241,
+    "events_sha256": "d675c9c1f868d6169615c877bb6ffc0d88f73813eab0ccf830669ef97f6e47fa",
+    "historical_ledger_copies_created": 0,
+    "journal_head_sha256": "1e13c9ccee1cc0ce56846ee9929c3d4a72b356aad5cf82c7f346ef7b5f9315f2",
+    "new_ledger_directories_created": 0,
+    "original_seven_event_prefix_unchanged": true,
+    "scope_reservations_created": 0,
+    "writes": 0
+  },
+  "canonical_runtime": "<P1_PRIVATE_ROOT>/runtime",
+  "credential_environment_values_reported": false,
+  "credential_file_contents_read": false,
+  "default_preflight": {
+    "blockers": [
+      "native_attempt_budget_exhausted",
+      "embedding_environment_unavailable",
+      "reranker_environment_unavailable",
+      "scope_specs_required"
+    ],
+    "completed_default_inspections": 2,
+    "dispatch_ready": false,
+    "execution_output_paths_created": false,
+    "guard": {
+      "credential_file_attempts": 0,
+      "network_attempts": 0,
+      "subprocess_attempts": 0
+    },
+    "guard_receipt_sha256": "10175f71b79e27544a7c5143fab37cf63171ea3a6a428d6e76ac043782fc2c7f",
+    "inspection_environment": {
+      "platform": "darwin",
+      "python_version": "3.12.13",
+      "remote_device_queried": false,
+      "scope_specs_provided": false,
+      "settings_provided": true
+    },
+    "mode": "check",
+    "no_run_argument": true,
+    "no_scope_specs_argument": true,
+    "rawrag_git_commit_and_cleanliness_checked": false,
+    "rawrag_source_bytes_verified": true,
+    "rawrag_transport_hooks_exercised": false,
+    "relocation": {
+      "method_attempts_reserved": 0,
+      "native_attempts_created": 0,
+      "original_plan_modified": false,
+      "planned_development_units": 16,
+      "receipt_sha256": "eb1c5c50f4d9de7bb8cde15f91f4a9623daf668354ab9241737bee1e7051d17f",
+      "status": "verified"
+    },
+    "report_sha256": "b9299548ee7192281b5af80cf0f79d74c3777917103a97c47a517bb922a0449f",
+    "returncode": 0,
+    "status": "blocked",
+    "task_dependency_status": {
+      "w-101": "pins_inspected",
+      "w-102": "pins_inspected"
+    },
+    "tokenizer": {
+      "identity": {
+        "add_special_tokens": false,
+        "provider_billable_input_exact": false,
+        "runtime_version": "0.22.2",
+        "tokenizer_json_sha256": "89085f12ef79460ac5f66d1119325ddfc694b4ab209d80bbd81d35f081dc9614",
+        "vocab_size": 129280
+      },
+      "provider_billable_input_exact": false,
+      "verified": true
+    }
+  },
+  "deployment": {
+    "additional_required_static_inputs": [
+      "docs/research/p1-evidence-verification/tasks/reproduction/pallets__flask-5014/requirements-pinned.txt",
+      "docs/research/p1-evidence-verification/tasks/reproduction/psf__requests-6028/requirements-pinned.txt"
+    ],
+    "critical_source_files": {
+      "scripts/codex-retention-host.py": {
+        "mode": 420,
+        "sha256": "663201794332653973754e4f3c27c5b6c63672341f580a8368a4316bbd7d46e9"
+      },
+      "scripts/paper1/deepseek-reader-profile.json": {
+        "mode": 420,
+        "sha256": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709"
+      },
+      "scripts/paper1/deepseek_native_relay.py": {
+        "mode": 420,
+        "sha256": "f91e2e209697c0fdab6c2d5ea97500bff00d1eaab801ac7422585efc58bde373"
+      },
+      "scripts/paper1/native_backend.py": {
+        "mode": 420,
+        "sha256": "9cc812ed3bcaa8b90ec09ff43fcaf46e30e1aac35b958eb024f345be8b6eefed"
+      },
+      "scripts/paper1/native_driver.py": {
+        "mode": 420,
+        "sha256": "d98eb5999f635b30a27a9c815a24d75051a9e6a42e3cf611c5544dfbff35fed4"
+      },
+      "scripts/paper1/paired_evidence.mjs": {
+        "mode": 420,
+        "sha256": "cde00b51dc9d2e0501419ef10d8d9e82789cef70dc79a1bc4353b80f3231e8a5"
+      },
+      "scripts/paper1/paired_runtime.py": {
+        "mode": 420,
+        "sha256": "460384f1ecf3c36924ade5a52651eb5c8ae16a08a47c135510de2556071a391b"
+      },
+      "scripts/paper1/public_workspace.py": {
+        "mode": 420,
+        "sha256": "9f65c8131d80b428e94cc3006c1d86cb66f703cd460c947fab23bb4319281807"
+      },
+      "scripts/paper1/rawrag_adapter.py": {
+        "mode": 420,
+        "sha256": "cff65315547b43f84d834a931a24cc460a68c7e6110928b5b67d74db624cf242"
+      },
+      "scripts/paper1/rawrag_controller.py": {
+        "mode": 420,
+        "sha256": "8b2df3b06b23ac77b7a1a2d9bf45c2d04257606ca7ccffe76af6b3c1a19819dc"
+      },
+      "scripts/paper1/reader_profile.py": {
+        "mode": 420,
+        "sha256": "88a0633c5a3ae9454e81c55a624345f5686c0e7c552423c515fca31ff4aec999"
+      },
+      "scripts/paper1/runtime_controller.py": {
+        "mode": 420,
+        "sha256": "1f89373b06b3dfb5dc39fe93e1f2024a9a643fa12e99fbb1f75a8691c60693e4"
+      }
+    },
+    "deployed_file_manifest_sha256": "86d510d70a07d891cf466baac9c72c5ee9d6e4c310ab56e6348af986e5313b77",
+    "deployment_plan_sha256": "894fd155e6bc2d053a3604c12559a19371722ff89cfb8a0cdac284ea49584a49",
+    "entire_task_packages_installed": [
+      "w-101",
+      "w-102"
+    ],
+    "existing_code_content_replacements": 0,
+    "existing_code_mode_normalizations": 8,
+    "existing_protected_plan_and_budget_files_preserved": 2,
+    "new_static_files": 761,
+    "old_installation_record_preserved": true,
+    "old_static_code_backups": [
+      {
+        "original_mode": 384,
+        "path": "package.json",
+        "sha256": "2a3d88cfb946c6cd8109affbf6d1cb1b57826533c5e932f7a517972602389af3"
+      },
+      {
+        "original_mode": 384,
+        "path": "scripts/paper1/batch_limits.py",
+        "sha256": "2fe79875a50f462228c31059b6344593b4f6cae455f2c4466fbf124f94bbea45"
+      },
+      {
+        "original_mode": 384,
+        "path": "scripts/paper1/claims.mjs",
+        "sha256": "1ee88630009125bbd2c1d616a7cea7b38770a9219380e94dd69f9e28e7a7bde1"
+      },
+      {
+        "original_mode": 384,
+        "path": "scripts/paper1/deepseek-config.json",
+        "sha256": "0d168db6ab3aa28d23fbb66acfc969c268748bde8ab76bc628f56091f00371ca"
+      },
+      {
+        "original_mode": 384,
+        "path": "scripts/paper1/deepseek-diagnostic-config.json",
+        "sha256": "7b361c3808dbb99b965818eb27fbea12f1aac2550e1e9537796769d0e430b0c0"
+      },
+      {
+        "original_mode": 384,
+        "path": "scripts/paper1/deepseek-diagnostic.mjs",
+        "sha256": "e3704eb6bdaf4114fe814c42cbf04e7d591ce021da841ea9dcadd12d81676fd6"
+      },
+      {
+        "original_mode": 384,
+        "path": "scripts/paper1/deepseek.mjs",
+        "sha256": "80dc0688f2c43e689e9bd8d13a76e28880403326f4804d7079008e4ee750ca53"
+      },
+      {
+        "original_mode": 384,
+        "path": "scripts/paper1/verification.mjs",
+        "sha256": "1bb0a530dea41824db656a52574679c9b321b338b59147542243b5487b8db82d"
+      }
+    ],
+    "public_digests": {
+      "docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "docs/research/p1-evidence-verification/tasks/workflows/packages/w-102/public": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb"
+    },
+    "public_directories_mode": 493,
+    "selected_files": 771,
+    "source_file_modes": "644 or 755 from published Git mode; protected existing auth/plan/budget/ledger modes unchanged"
+  },
+  "evaluator_content_passed_to_model": false,
+  "finished_at": "2026-11-28T11:39:15.643339+00:00",
+  "kind": "p1_macos_canonical_runtime_deployment_receipt",
+  "method_units_reserved": 0,
+  "model_requests": 0,
+  "native_attempts_created": 0,
+  "new_authorization_created": false,
+  "old_existing_source_verified": {
+    "all_eight_existing_code_files_matched": true,
+    "published_commit": "c782ddce73b227628791a1eb0471b9a658f3fdbc",
+    "tree": "aa6adff1b405e5d66bf43c629ef95cbe5baaef5d",
+    "unknown_changes_found": false,
+    "verified_local_tree_equivalent_commit": "b69b624289b9c6df02a1660a264f4ebb103af286"
+  },
+  "postcheck_correction": {
+    "actual_counters_confirmed_readonly": {
+      "diagnostic_attempts_reserved": 1,
+      "journal_events": 7,
+      "method_units_remaining": 16,
+      "method_units_reserved": 0,
+      "native_attempts_remaining": 0,
+      "native_attempts_reserved": 2
+    },
+    "cause": "The deployment wrapper incorrectly expected native_attempts_remaining=2; the original 7/2/0 tuple meant journal_events/native_attempts_reserved/method_units_reserved.",
+    "kind": "p1_readonly_preflight_postcheck_correction",
+    "ledger_writes": 0,
+    "model_requests": 0,
+    "prior_driver_report_retained": false,
+    "prior_driver_returncode": 0,
+    "prior_guard_checks_passed": true,
+    "prior_postcheck_error": "canonical_counters_changed",
+    "prior_protected_hash_checks_passed": true,
+    "repeat_scope": "Repeat only default no-run inspection to retain its report; no redeployment, task source execution, provider request, reservation or ledger mutation.",
+    "schema_version": 1
+  },
+  "postcheck_correction_sha256": "95e06329a7ebabf645e8fd6a9e230b604bb779f298615ad97c033006bd55d217",
+  "protected_files": {
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/authorization.json": {
+      "after": {
+        "bytes": 9693,
+        "exists": true,
+        "mode": 384,
+        "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887"
+      },
+      "before": {
+        "bytes": 9693,
+        "exists": true,
+        "mode": 384,
+        "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887"
+      },
+      "unchanged": true
+    },
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/ledger/HEAD.json": {
+      "after": {
+        "bytes": 176,
+        "exists": true,
+        "mode": 384,
+        "sha256": "2054e97ffabdd8db167c9f5928b5dcc59b696182a9bf43664e140b0344f871d7"
+      },
+      "before": {
+        "bytes": 176,
+        "exists": true,
+        "mode": 384,
+        "sha256": "2054e97ffabdd8db167c9f5928b5dcc59b696182a9bf43664e140b0344f871d7"
+      },
+      "unchanged": true
+    },
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/ledger/events.jsonl": {
+      "after": {
+        "bytes": 4241,
+        "exists": true,
+        "mode": 384,
+        "sha256": "d675c9c1f868d6169615c877bb6ffc0d88f73813eab0ccf830669ef97f6e47fa"
+      },
+      "before": {
+        "bytes": 4241,
+        "exists": true,
+        "mode": 384,
+        "sha256": "d675c9c1f868d6169615c877bb6ffc0d88f73813eab0ccf830669ef97f6e47fa"
+      },
+      "unchanged": true
+    },
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1/ledger/ledger.lock": {
+      "after": {
+        "bytes": 0,
+        "exists": true,
+        "mode": 384,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "before": {
+        "bytes": 0,
+        "exists": true,
+        "mode": 384,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "unchanged": true
+    },
+    "docs/research/p1-evidence-verification/tasks/workflows/shared-budget.json": {
+      "after": {
+        "bytes": 397,
+        "exists": true,
+        "mode": 384,
+        "sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2"
+      },
+      "before": {
+        "bytes": 397,
+        "exists": true,
+        "mode": 384,
+        "sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2"
+      },
+      "unchanged": true
+    },
+    "docs/research/p1-evidence-verification/tasks/workflows/source-draft-plan.json": {
+      "after": {
+        "bytes": 6539,
+        "exists": true,
+        "mode": 384,
+        "sha256": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db"
+      },
+      "before": {
+        "bytes": 6539,
+        "exists": true,
+        "mode": 384,
+        "sha256": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db"
+      },
+      "unchanged": true
+    }
+  },
+  "provider_prices_invented": false,
+  "provider_requests": 0,
+  "published_source": {
+    "archive_bytes": 17086622,
+    "archive_sha256": "1ebc30b65798eebe8163d61ebce36f89ba08e4e7bc13c7e83cb174e2dd4d2ca7",
+    "commit": "b0af94569d3915d1dc3364b899b18881aa0e3afc",
+    "repository": "QiuXu-Tech/memex",
+    "selected_git_objects": [
+      [
+        "scripts",
+        "tree",
+        "681a0878461297830d27329f6f674d4a3f7379a8"
+      ],
+      [
+        "packages/memex-core",
+        "tree",
+        "839838d72098c858ef190240bc62f0a6ab4d875f"
+      ],
+      [
+        "package.json",
+        "blob",
+        "1c3b981c2d3c7446fce18eaa9d458347338754c3"
+      ],
+      [
+        "docs/research/p1-evidence-verification/tasks/workflows/packages/w-101",
+        "tree",
+        "ae7540e59a35c3cc8fb7071ef3acfed822e63730"
+      ],
+      [
+        "docs/research/p1-evidence-verification/tasks/workflows/packages/w-102",
+        "tree",
+        "ffab16860dc5deb82385b13ad25a487d36dbe0f9"
+      ],
+      [
+        "docs/research/p1-evidence-verification/tasks/workflows/source-draft-plan.json",
+        "blob",
+        "719df8883f469f86033d186d3e68b3ece18a82cc"
+      ],
+      [
+        "docs/research/p1-evidence-verification/tasks/workflows/shared-budget.json",
+        "blob",
+        "21cf7442943611f6d6aee40a1f6c44a03d9ed3cd"
+      ],
+      [
+        "docs/research/p1-evidence-verification/tasks/reproduction/pallets__flask-5014/requirements-pinned.txt",
+        "blob",
+        "1a31ab5492f53a2ef835d91a2bd4b03e699b65e6"
+      ],
+      [
+        "docs/research/p1-evidence-verification/tasks/reproduction/psf__requests-6028/requirements-pinned.txt",
+        "blob",
+        "2ef095550465ec936b3201b9a007add905d489e5"
+      ]
+    ],
+    "source_url": "https://codeload.github.com/QiuXu-Tech/memex/tar.gz/b0af94569d3915d1dc3364b899b18881aa0e3afc",
+    "tree": "107a0b93b62678022ec26928535f69310f82b222",
+    "verification": "Selected Git subtree/blob objects recomputed from archive bytes and executable modes, matched against the local commit whose tree equals the published tree.",
+    "verified_local_tree_equivalent_commit": "23deaf7365b8e28bd3d7b7572a1fedb4917f44d0"
+  },
+  "real_B_live_readiness": false,
+  "remaining_constraints": [
+    "original_native_attempt_quota_exhausted",
+    "embedding_and_reranker_environment_absent",
+    "checked_scope_specification_missing",
+    "Raw-RAG source asset is not a verified clean Git checkout; system Git remains blocked by unaccepted Xcode license",
+    "provider authentication, account billing and actual native host/provider behavior remain unverified"
+  ],
+  "schema_version": 1,
+  "scientific_ready": false,
+  "scope_specs_created": false,
+  "sourceplan_or_sharedbudget_changed": false,
+  "status": "deployed_and_readonly_preflight_completed_dispatch_blocked",
+  "task_source_executions": 0,
+  "task_tests_executed": 0
+}

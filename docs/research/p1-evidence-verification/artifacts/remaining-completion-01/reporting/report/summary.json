@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "data_kind": "unverified",
+  "study_phase": "development",
+  "measurement_status": "unmeasured",
+  "counts": {
+    "planned_runs": 0,
+    "received_runs": 0,
+    "tasks": 0,
+    "projects": 0,
+    "missing_runs": 0,
+    "malformed_runs": 0,
+    "invalid_cost_runs": 0,
+    "successful_runs": 0,
+    "statuses": {},
+    "measured_quality_runs": 0
+  },
+  "arms": [],
+  "comparisons": {
+    "D-B": {
+      "n_tasks": 0,
+      "n_projects": 0,
+      "unpaired_tasks": [],
+      "quality": {
+        "estimate": null,
+        "hierarchical_ci": null,
+        "task_ci": null,
+        "status": "unmeasured_or_incomplete_collection"
+      },
+      "cost": {
+        "estimate": null,
+        "hierarchical_ci": null,
+        "task_ci": null,
+        "status": "unmeasured_or_incomplete_collection"
+      }
+    },
+    "D-C": {
+      "n_tasks": 0,
+      "n_projects": 0,
+      "unpaired_tasks": [],
+      "quality": {
+        "estimate": null,
+        "hierarchical_ci": null,
+        "task_ci": null,
+        "status": "unmeasured_or_incomplete_collection"
+      },
+      "cost": {
+        "estimate": null,
+        "hierarchical_ci": null,
+        "task_ci": null,
+        "status": "unmeasured_or_incomplete_collection"
+      }
+    }
+  },
+  "scientific_effect_claims_allowed": false,
+  "statistical_gate_results": null,
+  "human_provenance_or_task_acceptance_verified": false,
+  "mechanism_metrics": {
+    "status": "not_measured_by_this_contract",
+    "values": null
+  },
+  "limitations": [
+    "No execution, human identity, label semantics, task acceptance or preregistration is certified by this report.",
+    "Incomplete scheduled quality observations suppress empirical table cells; analysis.json retains the complete ITT audit.",
+    "Costs are the independently supplied experiment.py join totals; this tool does not invent missing meters or rates.",
+    "Latency is the observed duration of attempts, including timeouts, with explicit missing counts.",
+    "Behavior and assertion components require a bound score artifact; absent components remain unmeasured.",
+    "Fixture and unverified inputs cannot create scientific-effect claims or pilot sample-size evidence."
+  ],
+  "score_artifact": null
+}

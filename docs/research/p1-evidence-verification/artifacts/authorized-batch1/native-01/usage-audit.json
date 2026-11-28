@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "kind": "native_usage_observation_audit",
+  "reconciled_generation_notifications": 0,
+  "duplicate_notifications": 0,
+  "unmetered_compaction_notifications": 0,
+  "observed_generation_totals": null,
+  "phase_totals": {},
+  "reconciled": [],
+  "unreconciled": [],
+  "unmetered_compactions": [],
+  "generation_turns_without_reconciled_usage": [],
+  "issues": [],
+  "full_cost_available": false,
+  "standardized_cost": null,
+  "actual_spend": null,
+  "limits": [
+    "Native counters are observations, not provider invoice IDs.",
+    "Totals cover reconciled generation notifications only; missing telemetry is not zero.",
+    "Compaction usage and provider pricing are not established.",
+    "Cached input is a subset of input; reasoning output is a subset of output.",
+    "This audit is not a ready-to-join experiment cost ledger."
+  ],
+  "inputs": [
+    {
+      "path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/native-01/main-host/events.jsonl",
+      "sha256": "fdaa4ce113399917b249b7dc6ff1b6cc01e725dd4ac324024e62b20fe218cbaa",
+      "rows": 10
+    }
+  ]
+}

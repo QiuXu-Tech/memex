@@ -1,0 +1,22 @@
+test_all_dependency_requirements_must_be_pinned (__main__.ReproductionBoundaryTests.test_all_dependency_requirements_must_be_pinned) ... ok
+test_attempt_reservation_prevents_automatic_retry (__main__.ReproductionBoundaryTests.test_attempt_reservation_prevents_automatic_retry) ... ok
+test_candidate_directory_cannot_escape_root (__main__.ReproductionBoundaryTests.test_candidate_directory_cannot_escape_root) ... ok
+test_candidate_identity_and_official_origin_required (__main__.ReproductionBoundaryTests.test_candidate_identity_and_official_origin_required) ... ok
+test_command_timeout_is_preserved_as_failure (__main__.ReproductionBoundaryTests.test_command_timeout_is_preserved_as_failure) ... ok
+test_dry_run_creates_nothing_and_launches_nothing (__main__.ReproductionBoundaryTests.test_dry_run_creates_nothing_and_launches_nothing) ... ok
+test_junit_counts_actual_testcases_without_nested_double_count (__main__.ReproductionBoundaryTests.test_junit_counts_actual_testcases_without_nested_double_count) ... ok
+test_minimal_environment_never_forwards_model_keys_or_home (__main__.ReproductionBoundaryTests.test_minimal_environment_never_forwards_model_keys_or_home) ... ok
+test_missing_junit_is_unknown_not_zero (__main__.ReproductionBoundaryTests.test_missing_junit_is_unknown_not_zero) ... ok
+test_official_error_is_a_reproduced_regression_but_skip_is_not (__main__.ReproductionBoundaryTests.test_official_error_is_a_reproduced_regression_but_skip_is_not) ... ok
+test_one_explicit_setup_followup_preserves_cumulative_budget (__main__.ReproductionBoundaryTests.test_one_explicit_setup_followup_preserves_cumulative_budget) ... ok
+test_patch_cannot_target_other_files_or_escape (__main__.ReproductionBoundaryTests.test_patch_cannot_target_other_files_or_escape) ... ok
+test_pinned_parser_retains_its_module_constants (__main__.ReproductionBoundaryTests.test_pinned_parser_retains_its_module_constants) ... ok
+test_public_receipt_has_no_raw_official_values (__main__.ReproductionBoundaryTests.test_public_receipt_has_no_raw_official_values) ... ok
+test_row_requires_exact_content_pin (__main__.ReproductionBoundaryTests.test_row_requires_exact_content_pin) ... ok
+test_sandbox_account_file_is_generated_without_host_identity_or_resolver (__main__.ReproductionBoundaryTests.test_sandbox_account_file_is_generated_without_host_identity_or_resolver) ... ok
+test_setup_budget_is_total_remaining_not_reset_for_each_command (__main__.ReproductionBoundaryTests.test_setup_budget_is_total_remaining_not_reset_for_each_command) ... ok
+
+----------------------------------------------------------------------
+Ran 17 tests in 0.056s
+
+OK

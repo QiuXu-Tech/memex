@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "kind": "development_readonly_component_check",
+  "confirmatory": false,
+  "freeze_sha256": "aa74004bbc53169ad8e0540b20b69ccdb9299ac36ad994598b15bbbcc93d4afb",
+  "status": "preflight_completed_zero_generation",
+  "model_turns_started": 0,
+  "compactions_started": 0,
+  "forks_started": 0,
+  "turns": [],
+  "arms": [],
+  "host_traces": [
+    {
+      "label": "main-host",
+      "status": "closed",
+      "usage_notifications": []
+    }
+  ],
+  "actual_spend": null,
+  "standardized_cost": null,
+  "cost_completeness": "raw_native_usage_only_no_billing_or_compaction_reconciliation",
+  "live_execution_count": 0,
+  "live_workspace_binding": false,
+  "claim_extraction_coverage_established": false,
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "models": [
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.5",
+      "model": "gpt-5.5",
+      "displayName": "GPT-5.5",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.2",
+      "model": "gpt-5.2",
+      "displayName": "GPT-5.2",
+      "isDefault": false
+    }
+  ],
+  "elapsed_seconds": 5.53225837496575
+}

@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "archive_filename": "p1-private-source-qualification-20261128.tar.gz",
+  "archive_sha256": "53479817071ecd04bc633be9802242979cd6dbde75be4e84adefa7ef7c7323b4",
+  "archive_bytes": 1417624,
+  "archive_entries": 1242,
+  "public_attempt_receipts": 29,
+  "selected_official_rows": 14,
+  "raw_stdout_stderr_references_verified": 598,
+  "junit_files_verified": 24,
+  "all_archive_manifest_hashes_verified_after_write": true,
+  "storage": "outside repository; evaluator-only private recoverable evidence",
+  "model_input_permitted": false,
+  "public_git_permitted": false,
+  "source_clones_venvs_caches_and_full_dataset_excluded": true
+}

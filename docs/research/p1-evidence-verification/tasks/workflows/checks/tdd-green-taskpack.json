@@ -1,0 +1,18 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "test",
+    "-p",
+    "test_paper1_taskpack.py",
+    "-v"
+  ],
+  "returncode": 0,
+  "test_count": 25,
+  "stage": "after implementation and boundary corrections",
+  "kind": "offline_integrity_tests_not_study_results"
+}

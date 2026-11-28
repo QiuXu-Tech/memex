@@ -1,0 +1,296 @@
+{
+  "schema": 1,
+  "kind": "live_native_evidence_integration",
+  "split": "development",
+  "confirmatory": false,
+  "independent_workflows": 1,
+  "checkpoints": 2,
+  "requested_model": "gpt-5.6-sol",
+  "model_turns_started": 1,
+  "compactions_started": 0,
+  "compactions": [],
+  "turns": [
+    {
+      "phase": "prelude",
+      "category": "prelude",
+      "status": "completed",
+      "thread_id": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+      "prompt_sha256": "0eeefef682d306aa6fe9765e2c1c034af7d4c8cd4ecd9e7991b136e9aab91b38",
+      "turn_id": "01a21fa2-0733-7f51-947c-597db9e9d712",
+      "seconds": 15.80850974994246,
+      "item_types": [
+        "userMessage",
+        "mcpToolCall",
+        "mcpToolCall",
+        "agentMessage"
+      ],
+      "final": "- **实际测试结果：** 未运行；`run_current_tests` 调用因需要审批、但当前审批策略为 `never` 而失败。\n- **Receipt event ID：** 未生成。\n- **决策记录：** 未记录。"
+    }
+  ],
+  "extractions": [],
+  "host_traces": [
+    {
+      "label": "main-host",
+      "events": "main-host/events.jsonl",
+      "stderr": "main-host/host.stderr",
+      "usage_notifications": [
+        {
+          "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+          "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 13027,
+              "inputTokens": 12963,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 64,
+              "reasoningOutputTokens": 26
+            },
+            "last": {
+              "totalTokens": 13027,
+              "inputTokens": 12963,
+              "cachedInputTokens": 0,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 64,
+              "reasoningOutputTokens": 26
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+          "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 26274,
+              "inputTokens": 26166,
+              "cachedInputTokens": 12800,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 108,
+              "reasoningOutputTokens": 38
+            },
+            "last": {
+              "totalTokens": 13247,
+              "inputTokens": 13203,
+              "cachedInputTokens": 12800,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 44,
+              "reasoningOutputTokens": 12
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+          "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 39783,
+              "inputTokens": 39645,
+              "cachedInputTokens": 25856,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 138,
+              "reasoningOutputTokens": 38
+            },
+            "last": {
+              "totalTokens": 13509,
+              "inputTokens": 13479,
+              "cachedInputTokens": 13056,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 30,
+              "reasoningOutputTokens": 0
+            },
+            "modelContextWindow": 258400
+          }
+        },
+        {
+          "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+          "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+          "tokenUsage": {
+            "total": {
+              "totalTokens": 53423,
+              "inputTokens": 53206,
+              "cachedInputTokens": 39168,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 217,
+              "reasoningOutputTokens": 58
+            },
+            "last": {
+              "totalTokens": 13640,
+              "inputTokens": 13561,
+              "cachedInputTokens": 13312,
+              "cacheWriteInputTokens": 0,
+              "outputTokens": 79,
+              "reasoningOutputTokens": 20
+            },
+            "modelContextWindow": 258400
+          }
+        }
+      ],
+      "status": "closed"
+    }
+  ],
+  "status": "blocked_or_failed",
+  "actual_spend": null,
+  "standardized_cost": null,
+  "cost_completeness": "unmeasured_provider_billing_and_compaction_semantics",
+  "execution_producer": "p1_live_process_broker",
+  "execution_delivery": "native MCP tool result; not a native shell commandExecution",
+  "source_sha256": {
+    "live-broker.mjs": "ec6f03275c89a72e1da6c13bbbf7dc56eac15be1ad8f978418570d589dfc7ed5",
+    "live-state.mjs": "682de2e1b15f2a4831db238768b7ede3fabf0da21b05e0c8e27a7575e9c7a51a",
+    "live_mcp.py": "506495a05a5dc4107f8461c23bdaac2f5df5256bb62a83067028e81f66cfa22a",
+    "native_live.py": "a95b67347cae3c56bfc19fbf48b11b4b0ad136df996c428a53934c8601d198b5"
+  },
+  "host_version": "codex-cli 0.153.0",
+  "node_version": "v25.9.0",
+  "elapsed_seconds": 16.291392000042833,
+  "models": [
+    {
+      "id": "gpt-6-astra",
+      "model": "gpt-6-astra",
+      "displayName": "GPT-6-Astra",
+      "isDefault": true
+    },
+    {
+      "id": "gpt-5.6-sol",
+      "model": "gpt-5.6-sol",
+      "displayName": "GPT-5.6-Sol",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-terra",
+      "model": "gpt-5.6-terra",
+      "displayName": "GPT-5.6-Terra",
+      "isDefault": false
+    },
+    {
+      "id": "gpt-5.6-luna",
+      "model": "gpt-5.6-luna",
+      "displayName": "GPT-5.6-Luna",
+      "isDefault": false
+    }
+  ],
+  "thread_id": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+  "error": {
+    "type": "RuntimeError",
+    "message": "prelude did not deliver one observed passing test execution"
+  },
+  "usage_notifications": {
+    "main": [
+      {
+        "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+        "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 13027,
+            "inputTokens": 12963,
+            "cachedInputTokens": 0,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 64,
+            "reasoningOutputTokens": 26
+          },
+          "last": {
+            "totalTokens": 13027,
+            "inputTokens": 12963,
+            "cachedInputTokens": 0,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 64,
+            "reasoningOutputTokens": 26
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+        "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 26274,
+            "inputTokens": 26166,
+            "cachedInputTokens": 12800,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 108,
+            "reasoningOutputTokens": 38
+          },
+          "last": {
+            "totalTokens": 13247,
+            "inputTokens": 13203,
+            "cachedInputTokens": 12800,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 44,
+            "reasoningOutputTokens": 12
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+        "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 39783,
+            "inputTokens": 39645,
+            "cachedInputTokens": 25856,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 138,
+            "reasoningOutputTokens": 38
+          },
+          "last": {
+            "totalTokens": 13509,
+            "inputTokens": 13479,
+            "cachedInputTokens": 13056,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 30,
+            "reasoningOutputTokens": 0
+          },
+          "modelContextWindow": 258400
+        }
+      },
+      {
+        "threadId": "01a21fa2-0693-7f50-bfff-121a858b83aa",
+        "turnId": "01a21fa2-0733-7f51-947c-597db9e9d712",
+        "tokenUsage": {
+          "total": {
+            "totalTokens": 53423,
+            "inputTokens": 53206,
+            "cachedInputTokens": 39168,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 217,
+            "reasoningOutputTokens": 58
+          },
+          "last": {
+            "totalTokens": 13640,
+            "inputTokens": 13561,
+            "cachedInputTokens": 13312,
+            "cacheWriteInputTokens": 0,
+            "outputTokens": 79,
+            "reasoningOutputTokens": 20
+          },
+          "modelContextWindow": 258400
+        }
+      }
+    ],
+    "interpretation": "Raw notifications only; total/last/compaction billing has not been reconciled."
+  },
+  "metrics": {
+    "broker": {
+      "publicCalls": 1,
+      "testExecutions": 0,
+      "verifierCalls": 0,
+      "directModelDispatches": 0
+    },
+    "live": {
+      "captures": 0,
+      "filesRead": 0,
+      "bytesRead": 0,
+      "directoryReads": 0,
+      "viewReads": 0,
+      "bindingSearches": 0,
+      "bindingOpens": 0,
+      "bindingBytes": 0,
+      "delegatedSearches": 0,
+      "delegatedOpens": 0
+    }
+  }
+}

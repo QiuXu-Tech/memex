@@ -1,0 +1,56 @@
+{
+  "kind": "engineering_verification_not_research_effect",
+  "checked_date": "2026-11-28",
+  "display_timezone": "Asia/Shanghai",
+  "base_commit": "49e772bbf60532682771874b7ec96958f4a179e3",
+  "commands": [
+    {
+      "command": "npm run test:paper1",
+      "exit_code": 0,
+      "node_passes": 41,
+      "python_passes": 74,
+      "failures": 0,
+      "skipped": 0,
+      "log": "paper1-suite.txt"
+    },
+    {
+      "command": "npm test",
+      "exit_code": 0,
+      "total_cases": 197,
+      "executed_passes": 193,
+      "failures": 0,
+      "skipped": 4,
+      "skip_reason": "generated bundle not built",
+      "log": "baseline-suite.txt"
+    }
+  ],
+  "environment": {
+    "node": "v24.22.3",
+    "python": "3.12.14",
+    "numpy": "2.3.5"
+  },
+  "source_sha256": {
+    "package.json": "2a3d88cfb946c6cd8109affbf6d1cb1b57826533c5e932f7a517972602389af3",
+    "scripts/paper1/analyze.py": "0ff22e7b734e9cc8dd46894a11b14751774924207551229c0a2cd2396de4f0d2",
+    "scripts/paper1/archive.mjs": "866ed5fb075c25f06a704c7e28004f059904e45bce23fb7665f8467ee8249437",
+    "scripts/paper1/check_rawrag_runtime.py": "cbbfa7cbe07e9a725077739efbf5096d7e7a7811378f600f543fcddc6349e582",
+    "scripts/paper1/claims.mjs": "23e8b23a89844dba66b60fc9327deba237a0fc2e0949f8d6c8b26fd65bbea27f",
+    "scripts/paper1/native_smoke.py": "b01e9e2b651594d17dfcec7c9f7e1e37b9569a06c3848db9e563edc61abeb56b",
+    "scripts/paper1/normalize-node.mjs": "a332da8d974690e007df7b48efe18413e3a11ac179c384382aa82c2edf87b6cf",
+    "scripts/paper1/rawrag-config.json": "008c4c92181141a1c8de42931c906aad23e959da4fd5db1e300c64ba2e664b27",
+    "scripts/paper1/rawrag_adapter.py": "950d3e078c4f31f0c08a515d4c5c5521a1d4027cd05effae6b53736301b48782",
+    "scripts/paper1/replay_native.mjs": "defa69d5c10e4fba2f83f947910824733a558f5451d5359aac5e213b87a7e74e",
+    "scripts/paper1/requirements-analysis.txt": "7bd6b8946940b79948c548c8048e545684b91c8edc9444d8dfc0c8f76a97c0a7",
+    "scripts/paper1/verification.mjs": "1bb0a530dea41824db656a52574679c9b321b338b59147542243b5487b8db82d",
+    "test/paper1-archive.mjs": "133d98f235ecdc7ef37b9672c719db54f2ce32077810b95993102f6a81f742b4",
+    "test/paper1-claims.mjs": "58bae7c13a64d1a3d03eec21916db76f5cbebeca1085dc23c7defa641c81aeb8",
+    "test/paper1-normalize.mjs": "96ae326ed7e0518965335d62a26ad426488119883cc318f8e793b9069c6897e3",
+    "test/paper1-replay.mjs": "a707a987cee2a6b8fb965f1f0963eaf5307deb5057a6b28e293daad8201327ad",
+    "test/paper1-verification.mjs": "abed1fb426a9efe3a43fbe906a4f94a00fa8984126fd3b167f878392e12c89ff",
+    "test/test_paper1_analysis.py": "490bc3edabc1e8361499a47f4ce6701cf87ceb514eba19de6036edd933c7cd6e",
+    "test/test_paper1_native.py": "e4e84c80663b3c02d63b5b791ffb1b2b247bc8fd59df4a451ea40edc576dbcc1",
+    "test/test_paper1_rawrag.py": "92f56cd3c1854236315750024141a006f44c174f9b726ecb95afa14e393eed95",
+    "test/test_paper1_rawrag_runtime.py": "be2563d6b2a494111e62d130ea764ff218b9b3f1fd9d956b2c1accd94f27f21b"
+  },
+  "report_scope": "Source hashes identify tested local code. Unit cases, model turns and compactions are not independent research tasks."
+}

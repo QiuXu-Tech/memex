@@ -1,0 +1,16 @@
+{
+  "source": "ServerRequest.json",
+  "source_sha256": "31f580ad468fbd18766eb7adb12744be4e3790e3357b58bd4413c0108c4f65d0",
+  "methods": [
+    "item/commandExecution/requestApproval",
+    "item/fileChange/requestApproval",
+    "item/tool/requestUserInput",
+    "mcpServer/elicitation/request",
+    "item/permissions/requestApproval",
+    "item/tool/call",
+    "account/chatgptAuthTokens/refresh",
+    "attestation/generate",
+    "applyPatchApproval",
+    "execCommandApproval"
+  ]
+}

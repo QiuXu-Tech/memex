@@ -1,0 +1,25 @@
+{
+  "original_component_ends": [
+    {
+      "component": "prelude",
+      "coverage": "incomplete",
+      "event": "component_end",
+      "evidence_ref": "operations/01-capture_parent/provider-operation-audit.json",
+      "reason": "bounded_actual_provider_dispatch_inventory",
+      "usage_ids": [
+        "ds-209f6466470780ac7ca8e64cb0e816a0",
+        "ds-d686d30ccc7283a5c26aff254308798e",
+        "ds-84c93eb3721ab72f9164b598be3dd727",
+        "ds-fb39fe1a294a183eb1782a0f1306a3fb",
+        "ds-7651ddac8b3912cdbc1b9018b2d5325a"
+      ]
+    }
+  ],
+  "usage_ids": [
+    "ds-209f6466470780ac7ca8e64cb0e816a0",
+    "ds-d686d30ccc7283a5c26aff254308798e",
+    "ds-84c93eb3721ab72f9164b598be3dd727",
+    "ds-fb39fe1a294a183eb1782a0f1306a3fb",
+    "ds-7651ddac8b3912cdbc1b9018b2d5325a"
+  ]
+}

@@ -1,0 +1,260 @@
+{
+  "kind": "static_acquisition_consistency_only",
+  "checked_at": "2026-11-28T00:49:13.899742+00:00",
+  "passed": 61,
+  "failed": 0,
+  "checks": [
+    {
+      "check": "16 distinct source candidate ids",
+      "passed": true
+    },
+    {
+      "check": "8 project clusters",
+      "passed": true
+    },
+    {
+      "check": "16 distinct issue urls",
+      "passed": true
+    },
+    {
+      "check": "16 distinct PR urls",
+      "passed": true
+    },
+    {
+      "check": "all PRs merged",
+      "passed": true
+    },
+    {
+      "check": "all fixed 40 hex base/fix/env commits",
+      "passed": true
+    },
+    {
+      "check": "all benchmark patch paths present in upstream PR files",
+      "passed": true
+    },
+    {
+      "check": "all original dataset rows and GitHub projections present",
+      "passed": true
+    },
+    {
+      "check": "all native dataset base equals PR base",
+      "passed": true
+    },
+    {
+      "check": "all observed fix SHAs equal merge SHAs",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-5414 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-5414 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-5414 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "psf__requests-6028 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pallets__flask-5014 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-5262 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-5262 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-5262 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-7982 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-7982 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-7982 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-7432 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-7432 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pytest-dev__pytest-7432 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pylint-dev__pylint-4970 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pylint-dev__pylint-4970 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pylint-dev__pylint-4970 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pylint-dev__pylint-7080 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pylint-dev__pylint-7080 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pylint-dev__pylint-7080 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "sphinx-doc__sphinx-9367 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "sphinx-doc__sphinx-9367 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "sphinx-doc__sphinx-9367 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "sphinx-doc__sphinx-8721 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "sphinx-doc__sphinx-8721 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "sphinx-doc__sphinx-8721 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "sympy__sympy-14711 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "sympy__sympy-14711 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "sympy__sympy-14711 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "sympy__sympy-19637 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "sympy__sympy-19637 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "sympy__sympy-19637 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pydata__xarray-4629 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pydata__xarray-4629 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pydata__xarray-4629 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "pydata__xarray-6461 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "pydata__xarray-6461 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "pydata__xarray-6461 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "mwaskom__seaborn-3069 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "mwaskom__seaborn-3069 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "mwaskom__seaborn-3069 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "mwaskom__seaborn-3187 license byte hash",
+      "passed": true
+    },
+    {
+      "check": "mwaskom__seaborn-3187 OCI manifest byte hash",
+      "passed": true
+    },
+    {
+      "check": "mwaskom__seaborn-3187 no false pilot acceptance",
+      "passed": true
+    },
+    {
+      "check": "source metadata projections omit literal gold/text fields",
+      "passed": true
+    },
+    {
+      "check": "readme fenced code balanced",
+      "passed": true
+    },
+    {
+      "check": "known official P2P progress artifact flagged rather than accepted as gold",
+      "passed": true
+    }
+  ],
+  "not_checked": [
+    "local tests",
+    "gold annotation correctness",
+    "image layer content",
+    "P1 workflow authenticity",
+    "pilot outcomes",
+    "statistical inference"
+  ]
+}

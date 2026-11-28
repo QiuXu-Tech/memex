@@ -1,0 +1,12 @@
+{
+  "execution_source_sha256": {
+    "scripts/paper1/python_workflow.py": "6d811733f5e6a8b404e041208b5638606a7d2f0a61c0428d78007681d7d1740e",
+    "scripts/paper1/python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc"
+  },
+  "kind": "source_controller_execution_provenance",
+  "method_attempts_reserved": 0,
+  "model_requests": 0,
+  "note": "Exact unchanged controller/observer bytes used for the two attempts. A subsequent XML export escaping repair will be separately recorded and will not re-execute source tests.",
+  "observed_after_both_attempts_before_exporter_fix": true,
+  "source_executions": 2
+}

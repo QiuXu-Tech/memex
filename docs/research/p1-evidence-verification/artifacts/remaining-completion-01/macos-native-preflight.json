@@ -1,0 +1,429 @@
+{
+  "blockers": [
+    "native_attempt_budget_exhausted",
+    "embedding_environment_unavailable",
+    "reranker_environment_unavailable",
+    "scope_specs_required"
+  ],
+  "checks": {
+    "authorization": {
+      "batch_id": "p1-20261128-approved-batch1",
+      "new_authorization_created": false,
+      "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+      "status": "verified"
+    },
+    "executables": {
+      "codex": {
+        "file_executable": true,
+        "version_process_executed": false,
+        "version_verified": false
+      },
+      "node": {
+        "file_executable": true,
+        "version_process_executed": false,
+        "version_verified": false
+      }
+    },
+    "ledger": {
+      "actual_added_cash_total": null,
+      "added_cash_cap": "100.00",
+      "budget_breach_observed": false,
+      "committed_cash_upper_bound": "3.00",
+      "diagnostic_attempts_reserved": 1,
+      "journal_events": 7,
+      "journal_head_sha256": "1e13c9ccee1cc0ce56846ee9929c3d4a72b356aad5cf82c7f346ef7b5f9315f2",
+      "method_units_remaining": 16,
+      "method_units_reserved": 0,
+      "native_attempts_remaining": 0,
+      "native_attempts_reserved": 2,
+      "remaining_cash_capacity": "97.00"
+    },
+    "output_paths": {
+      "created": false,
+      "disjoint": true,
+      "fresh": true
+    },
+    "python_workflows": {
+      "w-101": {
+        "inspection": {
+          "environment": {
+            "dependency_tree_sha256": "2c1851f900d622538952ea3df56262886df007182b865d553484d6d74a819d16",
+            "interpreter_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc",
+            "mismatched_dependencies": [],
+            "observed_versions": {
+              "asgiref": "3.6.0",
+              "attrs": "22.2.0",
+              "blinker": "1.5",
+              "click": "8.1.3",
+              "exceptiongroup": "1.1.0",
+              "iniconfig": "2.0.0",
+              "itsdangerous": "2.1.2",
+              "jinja2": "3.1.2",
+              "markupsafe": "2.1.2",
+              "packaging": "23.0",
+              "pluggy": "1.0.0",
+              "pytest": "7.2.2",
+              "python-dotenv": "1.0.0",
+              "setuptools": "67.6.0",
+              "tomli": "2.0.1",
+              "werkzeug": "2.2.3",
+              "wheel": "0.38.4"
+            },
+            "os_isolation": false,
+            "pth_processing": "disabled_by_python_-I_-S",
+            "python_version_not_yet_executed": true,
+            "required_versions": {
+              "asgiref": "3.6.0",
+              "attrs": "22.2.0",
+              "blinker": "1.5",
+              "click": "8.1.3",
+              "exceptiongroup": "1.1.0",
+              "iniconfig": "2.0.0",
+              "itsdangerous": "2.1.2",
+              "jinja2": "3.1.2",
+              "markupsafe": "2.1.2",
+              "packaging": "23.0",
+              "pluggy": "1.0.0",
+              "pytest": "7.2.2",
+              "python-dotenv": "1.0.0",
+              "setuptools": "67.6.0",
+              "tomli": "2.0.1",
+              "werkzeug": "2.2.3",
+              "wheel": "0.38.4"
+            },
+            "requirements_match": true,
+            "runtime_ready_for_formal_method": false
+          },
+          "explicit_plugins": [],
+          "fixed_tests": [
+            "tests/test_blueprints.py"
+          ],
+          "kind": "zero_execution_python_capture_preflight",
+          "method_attempts_reserved": 0,
+          "method_runtime_ready": false,
+          "model_requests": 0,
+          "observer_implemented": true,
+          "provider_requests": 0,
+          "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+          "required_dependencies": {
+            "asgiref": "3.6.0",
+            "attrs": "22.2.0",
+            "blinker": "1.5",
+            "click": "8.1.3",
+            "exceptiongroup": "1.1.0",
+            "iniconfig": "2.0.0",
+            "itsdangerous": "2.1.2",
+            "jinja2": "3.1.2",
+            "markupsafe": "2.1.2",
+            "packaging": "23.0",
+            "pluggy": "1.0.0",
+            "pytest": "7.2.2",
+            "python-dotenv": "1.0.0",
+            "setuptools": "67.6.0",
+            "tomli": "2.0.1",
+            "werkzeug": "2.2.3",
+            "wheel": "0.38.4"
+          },
+          "required_python_version": [
+            3,
+            10,
+            16
+          ],
+          "schema_version": "p1-python-workflow-capture-1",
+          "scientific_ready": false,
+          "source_executions": 0,
+          "source_tests_do_not_establish_requested_behavior": true,
+          "task_id": "w-101"
+        },
+        "python_version_executed": false,
+        "sandbox_configuration_checked": true,
+        "sandbox_instance_verified": false,
+        "sandbox_probe_executed": false,
+        "status": "pins_inspected"
+      },
+      "w-102": {
+        "inspection": {
+          "environment": {
+            "dependency_tree_sha256": "0e60a828ccb8ff8f659ee3c17f176c8ae859e7e20c5279336070e3d6d244eae7",
+            "interpreter_sha256": "f96bcd63e75ec9780fc29047a9be24911abaf5b3ce260650b1a030cde50252cc",
+            "mismatched_dependencies": [],
+            "observed_versions": {
+              "attrs": "21.4.0",
+              "certifi": "2021.10.8",
+              "charset-normalizer": "2.0.12",
+              "idna": "3.3",
+              "iniconfig": "1.1.1",
+              "packaging": "21.3",
+              "pluggy": "1.0.0",
+              "py": "1.11.0",
+              "pyparsing": "3.0.9",
+              "pytest": "6.2.5",
+              "pytest-mock": "2.0.0",
+              "setuptools": "67.6.0",
+              "toml": "0.10.2",
+              "urllib3": "1.26.18",
+              "wheel": "0.38.4"
+            },
+            "os_isolation": false,
+            "pth_processing": "disabled_by_python_-I_-S",
+            "python_version_not_yet_executed": true,
+            "required_versions": {
+              "attrs": "21.4.0",
+              "certifi": "2021.10.8",
+              "charset-normalizer": "2.0.12",
+              "idna": "3.3",
+              "iniconfig": "1.1.1",
+              "packaging": "21.3",
+              "pluggy": "1.0.0",
+              "py": "1.11.0",
+              "pyparsing": "3.0.9",
+              "pytest": "6.2.5",
+              "pytest-mock": "2.0.0",
+              "setuptools": "67.6.0",
+              "toml": "0.10.2",
+              "urllib3": "1.26.18",
+              "wheel": "0.38.4"
+            },
+            "requirements_match": true,
+            "runtime_ready_for_formal_method": false
+          },
+          "explicit_plugins": [
+            "pytest_mock"
+          ],
+          "fixed_tests": [
+            "tests/test_utils.py"
+          ],
+          "kind": "zero_execution_python_capture_preflight",
+          "method_attempts_reserved": 0,
+          "method_runtime_ready": false,
+          "model_requests": 0,
+          "observer_implemented": true,
+          "provider_requests": 0,
+          "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+          "required_dependencies": {
+            "attrs": "21.4.0",
+            "certifi": "2021.10.8",
+            "charset-normalizer": "2.0.12",
+            "idna": "3.3",
+            "iniconfig": "1.1.1",
+            "packaging": "21.3",
+            "pluggy": "1.0.0",
+            "py": "1.11.0",
+            "pyparsing": "3.0.9",
+            "pytest": "6.2.5",
+            "pytest-mock": "2.0.0",
+            "setuptools": "67.6.0",
+            "toml": "0.10.2",
+            "urllib3": "1.26.18",
+            "wheel": "0.38.4"
+          },
+          "required_python_version": [
+            3,
+            10,
+            16
+          ],
+          "schema_version": "p1-python-workflow-capture-1",
+          "scientific_ready": false,
+          "source_executions": 0,
+          "source_tests_do_not_establish_requested_behavior": true,
+          "task_id": "w-102"
+        },
+        "python_version_executed": false,
+        "sandbox_configuration_checked": true,
+        "sandbox_instance_verified": false,
+        "sandbox_probe_executed": false,
+        "status": "pins_inspected"
+      }
+    },
+    "rawrag": {
+      "config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+      "dependencies": {
+        "available": true,
+        "missing": [],
+        "modules": {
+          "openai": {
+            "available": true,
+            "version": "3.60.0"
+          },
+          "rich": {
+            "available": true,
+            "version": "15.0.0"
+          },
+          "tiktoken": {
+            "available": true,
+            "version": "0.14.0"
+          },
+          "tqdm": {
+            "available": true,
+            "version": "4.70.1"
+          },
+          "yaml": {
+            "available": true,
+            "version": "6.0.4"
+          }
+        },
+        "python": "3.12.13",
+        "python_supported": true
+      },
+      "git_commit_and_cleanliness_checked": false,
+      "pinned_source_bytes_verified": true,
+      "transport_hooks_exercised": false
+    },
+    "reader": {
+      "formal_study_frozen": false,
+      "host_runtime_executed": false,
+      "profile_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+      "status": "configuration_verified"
+    },
+    "relocation": {
+      "method_attempts_reserved": 0,
+      "native_attempts_created": 0,
+      "original_plan_modified": false,
+      "planned_development_units": 16,
+      "receipt_sha256": "eb1c5c50f4d9de7bb8cde15f91f4a9623daf668354ab9241737bee1e7051d17f",
+      "status": "verified"
+    },
+    "services": {
+      "credential_file_contents_read": false,
+      "deepseek_file_metadata_acceptable": true,
+      "embedding_environment_present": false,
+      "provider_authentication_checked": false,
+      "provider_billing_checked": false,
+      "reranker_environment_present": false
+    },
+    "tokenizer": {
+      "identity": {
+        "add_special_tokens": false,
+        "provider_billable_input_exact": false,
+        "runtime_version": "0.22.2",
+        "tokenizer_json_sha256": "89085f12ef79460ac5f66d1119325ddfc694b4ab209d80bbd81d35f081dc9614",
+        "vocab_size": 129280
+      },
+      "provider_billable_input_exact": false,
+      "verified": true
+    }
+  },
+  "credential_file_contents_read": false,
+  "dispatch_ready": false,
+  "environment_credential_values_reported": false,
+  "input_file_sha256": [
+    {
+      "filename": "authorization.json",
+      "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887"
+    },
+    {
+      "filename": "source-draft-plan.json",
+      "sha256": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db"
+    },
+    {
+      "filename": "deepseek-reader-profile.json",
+      "sha256": "125a5d9b010a06274a58c6993e1063255dba41b9cc3e96114cb4231bc4bff709"
+    },
+    {
+      "filename": "native-settings.json",
+      "sha256": "9cdfa70f57f03e9746fbda59f7efe0695f0562fd25abdbdf4d17e1f376c81487"
+    }
+  ],
+  "inspection_environment": {
+    "platform": "darwin",
+    "python_version": "3.12.13",
+    "remote_device_queried": false,
+    "scope_specs_provided": false,
+    "settings_provided": true
+  },
+  "kind": "p1-native-driver-preflight",
+  "ledger_writes": 0,
+  "limits": [
+    "Local eligibility is not service authentication, a price audit, native-host validation, or scientific readiness.",
+    "Actual host version, Python version, OS isolation and HTTP behavior remain checked during an explicit run.",
+    "Every real scope and provider request still requires the original canonical controller admission.",
+    "This block entry is not the experiment.py single-unit executable ABI."
+  ],
+  "mode": "check",
+  "model_requests": 0,
+  "network_requests": 0,
+  "required_scope_bindings": {
+    "p1-method-0a4ac8608dc62813a6369634": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": "<CANONICAL_RUNTIME>/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:D:1"
+    },
+    "p1-method-10334da5dd7b279b553a4153": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": "<CANONICAL_RUNTIME>/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:A:1"
+    },
+    "p1-method-683e6706ada5618a043e26aa": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        },
+        {
+          "config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "endpoint": "https://api.openai.com/v1/embeddings",
+          "model": "text-embedding-3-small",
+          "provider": "openai"
+        },
+        {
+          "config_sha256": "cbf1833f148e0dad86a6acdceb6b296d8bfae9bf0c41064eb8e71bc9ec60cf83",
+          "endpoint": "https://api.cohere.com/v2/rerank",
+          "model": "rerank-v3.5",
+          "provider": "cohere"
+        }
+      ],
+      "public_path": "<CANONICAL_RUNTIME>/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:B:1"
+    },
+    "p1-method-b7e8808e8e14759cd394366c": {
+      "kind": "method",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": "<CANONICAL_RUNTIME>/docs/research/p1-evidence-verification/tasks/workflows/packages/w-101/public",
+      "unit": "w-101:C:1"
+    },
+    "p1-native-d1dfd65e59313948a281cf83": {
+      "kind": "native",
+      "providers": [
+        {
+          "config_sha256": "f02dbfb40ebf4725e43d391fe1b07cb318801f8f9ec45029194c0faf1933c647",
+          "endpoint": "https://api.deepseek.com/responses",
+          "model": "deepseek-flash",
+          "provider": "deepseek"
+        }
+      ],
+      "public_path": null,
+      "unit": null
+    }
+  },
+  "schema_version": 1,
+  "scientific_ready": false,
+  "source_executions": 0,
+  "status": "blocked",
+  "subprocesses_started": 0
+}

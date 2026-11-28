@@ -1,0 +1,52 @@
+{
+  "schema": 1,
+  "attempts": [
+    {
+      "attempt": "initial-pdflatex",
+      "outcome": "failed",
+      "cause": "Container lacks generated pdftex.map/psfonts.map; official style could not embed installed Latin Modern font.",
+      "log": "build-logs/initial-fontmap-failure.txt",
+      "fix_scope": "Temporary build-directory font-map assembly; no official style/font-size/layout edits.",
+      "canonical_source_sha256": "e472ca2d2883d6c177c84398efbb694754d5d5e11991aa83e288d47855a99ca6"
+    },
+    {
+      "attempt": "temporary-font-maps",
+      "outcome": "passed",
+      "canonical_source_sha256": "e472ca2d2883d6c177c84398efbb694754d5d5e11991aa83e288d47855a99ca6",
+      "pdf_sha256": "6b7cc3cf90c6148a5470e92a3b9f4a1d90978af9a2f58007766ad3e0a6e94167",
+      "pages": 25,
+      "official_style_unchanged": true,
+      "compiler_checks": {
+        "undefined_citations": 0,
+        "missing_characters": 0,
+        "overfull_boxes": 0,
+        "underfull_boxes": 4,
+        "rerun_requests": 0
+      }
+    },
+    {
+      "attempt": "expanded-scientific-record-first-build",
+      "outcome": "compiled_layout_correction_needed",
+      "pdf_sha256": "87cd36d163e25935c4a045f2c49de27a50edaf06f9939e09dce521b7060f8aa5",
+      "pages": 26,
+      "overfull_boxes": 1,
+      "fix_scope": "Legal line breaking for an appendix path; no scientific words, font, margin, or official style edits."
+    },
+    {
+      "attempt": "expanded-record-final-format-correction",
+      "outcome": "passed",
+      "canonical_source_sha256": "8694bf0573e05a6737eb4206f03599af9a5a1f2f48bf8467fb9f3f3ebae799ae",
+      "pdf_sha256": "7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607",
+      "pages": 26,
+      "official_style_unchanged": true,
+      "compiler_checks": {
+        "undefined_citations": 0,
+        "missing_characters": 0,
+        "overfull_boxes": 0,
+        "underfull_boxes": 1,
+        "rerun_requests": 0
+      },
+      "log": "build-logs/tmlr-final.txt"
+    }
+  ]
+}

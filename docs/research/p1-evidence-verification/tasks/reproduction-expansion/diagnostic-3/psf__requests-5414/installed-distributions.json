@@ -1,0 +1,278 @@
+{
+  "archive_byte_hashes": "not inferred from installed metadata",
+  "distributions": [
+    {
+      "METADATA_sha256": "5b0811e0c7f1139e4fa461afdb550e10e12d5d9182ab07a47d7620f89800e476",
+      "RECORD_sha256": "487826693d30401956120401e1902093a58cd58d156e6033ba51afcf8e6a6f89",
+      "direct_url.json_sha256": null,
+      "name": "attrs",
+      "recorded_file_count": 57,
+      "version": "21.4.0"
+    },
+    {
+      "METADATA_sha256": "b8846233cc238db1e40ad6c2c93bdcb54dfb200664d2411ee64c4095dd5dbf30",
+      "RECORD_sha256": "8c17d55be68081397c5d36327f04555b1d2601fa1c66f75f2e114f686758e707",
+      "direct_url.json_sha256": null,
+      "name": "blinker",
+      "recorded_file_count": 12,
+      "version": "1.9.0"
+    },
+    {
+      "METADATA_sha256": "c265ef0b5d6bbff3c781bd9129b5e67a97c93cb7ddd63902b7ca43a8e0f2aff7",
+      "RECORD_sha256": "54d23053f0fea001ab9a8c663399d1cb41bcd7e22b6734cd3189b11c767a06cf",
+      "direct_url.json_sha256": null,
+      "name": "brotlipy",
+      "recorded_file_count": 14,
+      "version": "0.7.0"
+    },
+    {
+      "METADATA_sha256": "881ff36d3d6e5fff3f342ee21afd18101fbd6f789d850c07ac54d2abc475903f",
+      "RECORD_sha256": "d5236f17d95dc85ff80b4f84ac154e0eb521e896760c7f7b531aba40ce4f41f4",
+      "direct_url.json_sha256": null,
+      "name": "certifi",
+      "recorded_file_count": 14,
+      "version": "2021.10.8"
+    },
+    {
+      "METADATA_sha256": "28fe06dd699abd18031b00f66fc63f783b0cd58795e9c91c1ba025cf7f83f156",
+      "RECORD_sha256": "71ede013548d13757e5b4480b53274390c11b342314643d3f7e4d84a0649b6b8",
+      "direct_url.json_sha256": null,
+      "name": "cffi",
+      "recorded_file_count": 45,
+      "version": "1.15.1"
+    },
+    {
+      "METADATA_sha256": "797f94decee76fac1cbd7645c8cd667417f5cb3e08d26b1506036f2c4b1c01ba",
+      "RECORD_sha256": "9d747432d91fe8d722eea1ae097012a5f05ca241773d28be6ed25c6dab49c267",
+      "direct_url.json_sha256": null,
+      "name": "charset-normalizer",
+      "recorded_file_count": 34,
+      "version": "2.0.12"
+    },
+    {
+      "METADATA_sha256": "2eb4606a464a57b620dea26a5ffa65bb65a1156f353333f712a4266611c83bc3",
+      "RECORD_sha256": "01cb5e1b855e3716668bc5fabaf474ce1552fbe09e25dfc997981d83de20b1a2",
+      "direct_url.json_sha256": null,
+      "name": "click",
+      "recorded_file_count": 41,
+      "version": "7.1.2"
+    },
+    {
+      "METADATA_sha256": "8780b670bf6c6d1ece6c5ea30fb8544fbc4e7d2bf3641962e80997faf9e072d0",
+      "RECORD_sha256": "622fe621b52e66b59a723fa12543d39bd49fca2741dff2efe1d166ad7f1da107",
+      "direct_url.json_sha256": null,
+      "name": "cryptography",
+      "recorded_file_count": 173,
+      "version": "41.0.7"
+    },
+    {
+      "METADATA_sha256": "5c0af6cdb6294710a470f6ec9a0d686a24b979aee6853abe8fec1bd178ee561a",
+      "RECORD_sha256": "b674184bd8f3fff8f3e7e88c14e4720e6ee9f3133127cdc89d98a3df00d21ed0",
+      "direct_url.json_sha256": null,
+      "name": "decorator",
+      "recorded_file_count": 10,
+      "version": "5.1.1"
+    },
+    {
+      "METADATA_sha256": "a3ba9f599dd66756bfb98613aab52fd3abc96c5ed9c99a0ef3945b148ff9c5a9",
+      "RECORD_sha256": "8690acace37eb15ba02df5f5dc677e90f6f6477a3c1917844badf50b93517c6f",
+      "direct_url.json_sha256": null,
+      "name": "Flask",
+      "recorded_file_count": 49,
+      "version": "1.1.4"
+    },
+    {
+      "METADATA_sha256": "990df910e7e930f7d5cc71d241708545d2e1fad89fe61245c6b7b43b05db9d55",
+      "RECORD_sha256": "0ee78d407483a015750aaff13e66640356276b92a3a1eea1848cae7e0064d2bf",
+      "direct_url.json_sha256": null,
+      "name": "httpbin",
+      "recorded_file_count": 29,
+      "version": "0.7.0"
+    },
+    {
+      "METADATA_sha256": "05daa201ff28bb8c759f3207a76fec0df5d68e5ec1ad2506a4e795cdb60742e4",
+      "RECORD_sha256": "bbd6776d814fde83392e25cc3a5ac7d813a63b1cab8fb051bd42e902c39fe7f5",
+      "direct_url.json_sha256": null,
+      "name": "idna",
+      "recorded_file_count": 24,
+      "version": "3.3"
+    },
+    {
+      "METADATA_sha256": "ff8fa814aa515ee66fe6bcdea527295d1c21aba0f3aac81b9c0e59a6031431cb",
+      "RECORD_sha256": "c49b9e2b537f539341796cefa8dfd0bc1c529ee7955d91c833f45f73fc101599",
+      "direct_url.json_sha256": null,
+      "name": "iniconfig",
+      "recorded_file_count": 11,
+      "version": "1.1.1"
+    },
+    {
+      "METADATA_sha256": "cb22a32f658e83f5b26c7d98b7eecd22f1a957707ddc8b0c7361db4e859ced29",
+      "RECORD_sha256": "1b7005a78cd451ae508ab849f64153c09e3d6183c3138e24755262c673d50c20",
+      "direct_url.json_sha256": null,
+      "name": "itsdangerous",
+      "recorded_file_count": 27,
+      "version": "1.1.0"
+    },
+    {
+      "METADATA_sha256": "3ec7292750b7452a7cc5c8d5ddf02e4f3d77aca6c6c66cc95e7310147f962a1b",
+      "RECORD_sha256": "68e7008199563e310bcda28ce8496619c1079537d7f22475bf5991a06eb7cdde",
+      "direct_url.json_sha256": null,
+      "name": "Jinja2",
+      "recorded_file_count": 62,
+      "version": "2.11.3"
+    },
+    {
+      "METADATA_sha256": "9649de96df953c759a8b910972f66901318a55b5e483be21ec242e3f00d2ef55",
+      "RECORD_sha256": "81a67a02b1490f0804e9a31777c8ebad9064075a17e232804f051f625fd2388b",
+      "direct_url.json_sha256": null,
+      "name": "MarkupSafe",
+      "recorded_file_count": 15,
+      "version": "2.0.1"
+    },
+    {
+      "METADATA_sha256": "2ae288cbaa832cfdecbc8b7a7a309bc410e1bead7579b92050de7931ec8a1727",
+      "RECORD_sha256": "e2843615eade4b142d77cda38146b795c3bfe28c2e90eb95521bfc47f2f021ea",
+      "direct_url.json_sha256": null,
+      "name": "packaging",
+      "recorded_file_count": 32,
+      "version": "21.3"
+    },
+    {
+      "METADATA_sha256": "3ce87cf6eb73f87d5ed0afb10d8f422fd82cfb1d0c8c7f805b16e1246dda6951",
+      "RECORD_sha256": "e90383e3ccb605a8295d93774b75cf3955ed0d4af179128beff3af832831d6e1",
+      "direct_url.json_sha256": null,
+      "name": "pip",
+      "recorded_file_count": 1002,
+      "version": "23.0.1"
+    },
+    {
+      "METADATA_sha256": "4390fbb88db556b10e3dbe970f470ce2f635664a6dc9bda2388638dcc1dfc172",
+      "RECORD_sha256": "1dbf1a24d2d08bab2bae81656b5be92aeea8a8bdf9deca76d312f1931664adda",
+      "direct_url.json_sha256": null,
+      "name": "pluggy",
+      "recorded_file_count": 21,
+      "version": "1.0.0"
+    },
+    {
+      "METADATA_sha256": "8f502f2d91fb1ea4ced3a75825b6181b2a4fc6484ff486639533d2398f367a13",
+      "RECORD_sha256": "bd12c3ad73913f0087ed6309816976f4caf94c1318a8886aece2f90d3738424f",
+      "direct_url.json_sha256": null,
+      "name": "py",
+      "recorded_file_count": 102,
+      "version": "1.11.0"
+    },
+    {
+      "METADATA_sha256": "1af4c4400f722a3d27bcfe269277e81a932f8da2570908d000d7101eb46b0317",
+      "RECORD_sha256": "c12688dea8a05ccabe2c3ad34e2d1179052c4540ef9b7c1af0bb518f9f7fb89f",
+      "direct_url.json_sha256": null,
+      "name": "pycparser",
+      "recorded_file_count": 42,
+      "version": "2.21"
+    },
+    {
+      "METADATA_sha256": "87f7e99bdaf0be066c13cbf960d178200a3e22968558239f5049b930c0722223",
+      "RECORD_sha256": "e0bf1d2ba0368effe4ae294b5a8a83f934494ad1638961e7ac4f6f35bc164d4a",
+      "direct_url.json_sha256": null,
+      "name": "pyparsing",
+      "recorded_file_count": 29,
+      "version": "3.0.9"
+    },
+    {
+      "METADATA_sha256": "f7d7dd913b95a5d1a72acd74503d57c3f85f8c9a3710c76c1470af8d1450e70a",
+      "RECORD_sha256": "b410f7fa30a798725e08bb9c50190c3852a6508f66fe3395aefe7452f087491c",
+      "direct_url.json_sha256": null,
+      "name": "pytest",
+      "recorded_file_count": 140,
+      "version": "6.2.5"
+    },
+    {
+      "METADATA_sha256": "19d2eac3808f0d36ffc0baf6b1e6f737a1d13577769eab8a2ff6ffc98e52d4ab",
+      "RECORD_sha256": "9eb245fbe805804779cb0017ba43e8b393adc927fe067ae2021c437184df9a84",
+      "direct_url.json_sha256": null,
+      "name": "pytest-httpbin",
+      "recorded_file_count": 20,
+      "version": "1.0.0"
+    },
+    {
+      "METADATA_sha256": "79430b5a948c9d0746fcf8c10cb1a5e01873eee6f52d12b44f0d15abb5170980",
+      "RECORD_sha256": "1e4668ea86952f03c328040cac2218b190896fe1a82ad50e010bc94c318e82af",
+      "direct_url.json_sha256": null,
+      "name": "pytest-mock",
+      "recorded_file_count": 14,
+      "version": "2.0.0"
+    },
+    {
+      "METADATA_sha256": "63acb3a3c41537c0ac2f7da42905e7d80fae9bf8abdb2cc9e27940fdd6906b23",
+      "RECORD_sha256": "b2de5c1d468363fa89684862110ba238c98744dd6759b7b5fb6c35449b6f2d94",
+      "direct_url.json_sha256": null,
+      "name": "raven",
+      "recorded_file_count": 197,
+      "version": "6.10.0"
+    },
+    {
+      "METADATA_sha256": null,
+      "RECORD_sha256": null,
+      "direct_url.json_sha256": null,
+      "name": "requests",
+      "recorded_file_count": 47,
+      "version": "2.26.0"
+    },
+    {
+      "METADATA_sha256": "aba465c453bdad46c5082775c32cd89e3c5015734c43284fdd5402dbaf1ef86a",
+      "RECORD_sha256": "ed0452704a7439785d67487e93af3836a4a13b850371b0b7ef9411f334eff917",
+      "direct_url.json_sha256": null,
+      "name": "setuptools",
+      "recorded_file_count": 452,
+      "version": "67.6.0"
+    },
+    {
+      "METADATA_sha256": "5507062050801267d9725efb139ae23c2378bf64c8b1cfeab5a7278f12872682",
+      "RECORD_sha256": "0c7aa51781164ca9f655abb5b11fb1196b4461414dc657122df320d31b7d221d",
+      "direct_url.json_sha256": null,
+      "name": "six",
+      "recorded_file_count": 9,
+      "version": "1.16.0"
+    },
+    {
+      "METADATA_sha256": "9ff624b29bc48a177f4172c8659e74595485cf7ad9fe4ee340ff8e535594a566",
+      "RECORD_sha256": "b8e259e5280a139e243915d9473a14e6938fb71c98623ffd8950c2e5b590fa3f",
+      "direct_url.json_sha256": null,
+      "name": "toml",
+      "recorded_file_count": 17,
+      "version": "0.10.2"
+    },
+    {
+      "METADATA_sha256": "883c1f7bc6d8f445efc8f0ccacea70799691b8016c2d161427145ae327e50a07",
+      "RECORD_sha256": "a33bd9b19e9ad1c717563f38ee92d2ec06e2e0bf53af46f8063d86b69811e97b",
+      "direct_url.json_sha256": null,
+      "name": "trustme",
+      "recorded_file_count": 18,
+      "version": "1.0.0"
+    },
+    {
+      "METADATA_sha256": "d3e9ab8e02c7cea6a6f2a738349790d6465a2585886a505469d8a6cf2cd974e5",
+      "RECORD_sha256": "55ffb7570c0287b7f5cea4108d9f7a3a5dcc89c88a37b83f1b2d65d3cf044da1",
+      "direct_url.json_sha256": null,
+      "name": "urllib3",
+      "recorded_file_count": 85,
+      "version": "1.26.18"
+    },
+    {
+      "METADATA_sha256": "774ce654d6b8502dbe9c0a3603cffcd688b2d76dc3e894c6452b98fd89a0cade",
+      "RECORD_sha256": "bcbc18cbf81cae4ab0c10ae78646b531d2fec729d1606c0b2bc9ec37b6ba9f28",
+      "direct_url.json_sha256": null,
+      "name": "Werkzeug",
+      "recorded_file_count": 102,
+      "version": "1.0.1"
+    },
+    {
+      "METADATA_sha256": "de3e0a81564263b799c8eaf00ca6284ee01c7ebfe05c06f1c75c86851f43b2c0",
+      "RECORD_sha256": "67a85553e781ac17e479ac5c81c586a0d222222ba76ed95e6acf7b845ba371bd",
+      "direct_url.json_sha256": null,
+      "name": "wheel",
+      "recorded_file_count": 43,
+      "version": "0.38.4"
+    }
+  ],
+  "python_version": "3.9.21 (main, Mar 17 2025, 21:01:54) \n[Clang 20.1.0 ]"
+}

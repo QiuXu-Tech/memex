@@ -1,0 +1,45 @@
+Collecting setuptools==67.6.0
+  Downloading setuptools-67.6.0-py3-none-any.whl (1.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 1.1/1.1 MB 15.4 MB/s eta 0:00:00
+Collecting wheel==0.38.4
+  Downloading wheel-0.38.4-py3-none-any.whl (36 kB)
+Collecting pytest==6.2.5
+  Downloading pytest-6.2.5-py3-none-any.whl (280 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 280.7/280.7 kB 45.3 MB/s eta 0:00:00
+Collecting attrs==21.4.0
+  Downloading attrs-21.4.0-py2.py3-none-any.whl (60 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 60.6/60.6 kB 358.6 MB/s eta 0:00:00
+Collecting iniconfig==1.1.1
+  Downloading iniconfig-1.1.1-py2.py3-none-any.whl (5.0 kB)
+Collecting packaging==21.3
+  Downloading packaging-21.3-py3-none-any.whl (40 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.8/40.8 kB 319.2 MB/s eta 0:00:00
+Collecting py==1.11.0
+  Downloading py-1.11.0-py2.py3-none-any.whl (98 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.7/98.7 kB 2.2 MB/s eta 0:00:00
+Collecting pluggy==1.0.0
+  Downloading pluggy-1.0.0-py2.py3-none-any.whl (13 kB)
+Collecting toml==0.10.2
+  Downloading toml-0.10.2-py2.py3-none-any.whl (16 kB)
+Collecting pyparsing==3.0.9
+  Downloading pyparsing-3.0.9-py3-none-any.whl (98 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 98.3/98.3 kB 154.3 MB/s eta 0:00:00
+Collecting charset-normalizer==2.0.12
+  Downloading charset_normalizer-2.0.12-py3-none-any.whl (39 kB)
+Collecting idna==3.3
+  Downloading idna-3.3-py3-none-any.whl (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.2/61.2 kB 321.8 MB/s eta 0:00:00
+Collecting urllib3==1.26.18
+  Downloading urllib3-1.26.18-py2.py3-none-any.whl (143 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 143.8/143.8 kB 48.2 MB/s eta 0:00:00
+Collecting certifi==2021.10.8
+  Downloading certifi-2021.10.8-py2.py3-none-any.whl (149 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 149.2/149.2 kB 412.7 MB/s eta 0:00:00
+Collecting pytest-mock==2.0.0
+  Downloading pytest_mock-2.0.0-py2.py3-none-any.whl (10 kB)
+Installing collected packages: iniconfig, certifi, wheel, urllib3, toml, setuptools, pyparsing, py, pluggy, idna, charset-normalizer, attrs, packaging, pytest, pytest-mock
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 65.5.0
+    Uninstalling setuptools-65.5.0:
+      Successfully uninstalled setuptools-65.5.0
+Successfully installed attrs-21.4.0 certifi-2021.10.8 charset-normalizer-2.0.12 idna-3.3 iniconfig-1.1.1 packaging-21.3 pluggy-1.0.0 py-1.11.0 pyparsing-3.0.9 pytest-6.2.5 pytest-mock-2.0.0 setuptools-67.6.0 toml-0.10.2 urllib3-1.26.18 wheel-0.38.4

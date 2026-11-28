@@ -1,0 +1,33 @@
+{
+  "acceptance": {
+    "accepted": false,
+    "blocking_gates": [
+      "actual_native_prelude_missing",
+      "native_compaction_receipt_missing",
+      "post_retrieval_behavior_trace_missing",
+      "independent_double_review_missing",
+      "adjudication_missing",
+      "hidden_p1_behavior_check_not_executed",
+      "shared_reader_and_tokenizer_unfrozen",
+      "arm_runner_not_integrated",
+      "study_budget_and_assignment_unfrozen",
+      "synthetic_fixture_is_not_real_pilot_source"
+    ],
+    "eligible_for_pilot": false,
+    "frozen": false,
+    "independent_human_reviews": 0,
+    "stage": "ready_for_acceptance_review"
+  },
+  "budget_sha256": "79b8e96e3066118dbddafaefae19888e575e5fe996dd2ef94557f3bf1155ff7a",
+  "isolation_enforced_by_packager": false,
+  "kind": "synthetic_fixture",
+  "model_requests": 0,
+  "project_id": "synthetic/fixture-suite",
+  "public_bytes": 1931,
+  "public_file_count": 7,
+  "public_sha256": "0091ac4e91624de0cb6c8ecfd4befcb148c63dadcc563b02940dbeed0b179bdf",
+  "schema_version": 1,
+  "task_id": "d-203",
+  "validation": "pass",
+  "workflow_family_id": "D03"
+}

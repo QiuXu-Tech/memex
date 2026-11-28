@@ -1,0 +1,107 @@
+{
+  "actual_method_outcomes": null,
+  "drafts_sha256": "cce2b65bfe2cf6f739e5c3f0eae8195f823d0f5d8a7d51f6f8e01c45555f135e",
+  "executable_request_test_files": {
+    "test_flask_request_contract.py": "20e543d7c63ee7d07b527c0c90f3e662427207fb69b875944ae6c597dd4444ac",
+    "test_requests_request_contract.py": "fe45e346f5b7e3f50f86764f6a070edf2d2a69136ad2e55d4d60c6f7bf74e255"
+  },
+  "externally_attested_preregistration": false,
+  "frozen": false,
+  "human_reviews_completed": 0,
+  "operators": [
+    {
+      "implementation": "paired_runtime.load_checkpoint + independent workflow review",
+      "oracle_id": "actual_native_workflow",
+      "scope": "An authenticated task checkpoint is necessary evidence but does not prove a relevant evidence-dependent state transition or research acceptance.",
+      "status": "not_inferred_by_this_tool"
+    },
+    {
+      "implementation": "taskpack_review.material_facts",
+      "oracle_id": "authoritative_revision_conflict",
+      "scope": "Uses structured native revision and all matching fixture readbacks, never wall-clock recency.",
+      "status": "fixture_material_grammar_only"
+    },
+    {
+      "implementation": "taskpack_review._fixture_authorization",
+      "oracle_id": "complete_native_authorization_lifecycle",
+      "scope": "Only explicitly declared synthetic owner grant/revoke grammar; no real-world permission.",
+      "status": "fixture_material_grammar_only"
+    },
+    {
+      "implementation": "taskpack_review.material_facts",
+      "oracle_id": "complete_paged_originals",
+      "scope": "Computes exact fixture body lengths/completion; actual source-open page coverage remains unmeasured.",
+      "status": "material_fact_only"
+    },
+    {
+      "implementation": "development_oracle.recheck_test_observer -> python_workflow.summarize",
+      "oracle_id": "completed_nonempty_target_tests",
+      "scope": "Recompute collected test phases/exit/nonce/source; public selected suite only.",
+      "status": "typed_component_implemented"
+    },
+    {
+      "implementation": "development_oracle.trace_components + recheck_test_observer",
+      "oracle_id": "current_artifact_test_binding",
+      "scope": "Requires experiment-sealed actual per-arm tool events, observer sidecars, and final workspace; no hidden behavior inference.",
+      "status": "typed_component_implemented"
+    },
+    {
+      "implementation": "taskpack_review.material_facts",
+      "oracle_id": "current_registry_readback",
+      "scope": "Reads exact existing registry JSON; actual method read/adoption unmeasured.",
+      "status": "material_fact_only"
+    },
+    {
+      "implementation": "taskpack_review._fixture_authorization",
+      "oracle_id": "exact_authority_object_action_scope",
+      "scope": "Checks native role/principal and exact simulated action/object; unknown owner language remains unknown.",
+      "status": "fixture_material_grammar_only"
+    },
+    {
+      "implementation": "oracle-drafts/test_flask_request_contract.py",
+      "oracle_id": "flask_empty_name_behavior",
+      "scope": "Request behavior tests; must be isolated and import-bound to sealed method artifact before use.",
+      "status": "executable_not_executed"
+    },
+    {
+      "implementation": "taskpack_review.validate_drafts",
+      "oracle_id": "full_obligation_coverage",
+      "scope": "Checks complete task set and nonempty request-bound obligations. Semantic completeness is not automatically established.",
+      "status": "draft_coverage_structure_only"
+    },
+    {
+      "implementation": "development_oracle.trace_components",
+      "oracle_id": "local_only_no_publication",
+      "scope": "Checks recorded local-review published=false; external action/confinement completeness not inferred.",
+      "status": "partial_receipt_check_only"
+    },
+    {
+      "implementation": "python_workflow.summarize + request contract tests",
+      "oracle_id": "regression_preservation",
+      "scope": "Existing source reproduction is rechecked; method final-artifact regression outcomes remain unknown.",
+      "status": "requires_actual_observations"
+    },
+    {
+      "implementation": "oracle-drafts/test_requests_request_contract.py",
+      "oracle_id": "requests_proxy_auth_preservation",
+      "scope": "No-network partial proxy-auth behavior tests; not a full HTTP407 or Python3.8.12 reproduction.",
+      "status": "executable_not_executed"
+    },
+    {
+      "implementation": "development_oracle.trace_components",
+      "oracle_id": "review_final_artifact_binding",
+      "scope": "Requires recorded local review to reference previously observed current passing tests; does not judge the review prose.",
+      "status": "typed_component_implemented"
+    }
+  ],
+  "origin": "programmatic_with_ai_assisted_design",
+  "overall_decision_success": null,
+  "phase": "development",
+  "research_task_accepted": false,
+  "rule_snapshot_before_this_reviewer_sees_new_method_outputs": true,
+  "schema_version": "p1-development-oracle-plan-2",
+  "source_program_executions": 0,
+  "target_source_test_execution_status": "not_executed",
+  "truth_source": "Natural request and original public state/source; method answers and extracted candidate lists do not define truth.",
+  "validation": "Owned unit fixtures test code contracts; AST parse only for request test draft syntax, not target behavior validation."
+}

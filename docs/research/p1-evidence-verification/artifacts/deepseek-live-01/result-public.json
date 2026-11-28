@@ -1,0 +1,103 @@
+{
+  "schema_version": 1,
+  "kind": "p1-deepseek-setup-diagnostic",
+  "attempt_id": "deepseek-diagnostic-b3dbaf09-2f3f-4967-8b0b-7b0675cfda6a",
+  "observed_at": "2026-11-28T10:05:49.021Z",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "diagnostic_config_sha256": "7b361c3808dbb99b965818eb27fbea12f1aac2550e1e9537796769d0e430b0c0",
+  "transport_config_sha256": "07972c334de1202a859cc423e7ead9c94e37238d983aeccee69696779cc71545",
+  "input_sha256": "e5de79c8e7e2ddf9c55d1e1bfe43b172ecd86c901fdf738a0dec473578961ebb",
+  "status": "completed",
+  "error_code": null,
+  "read_only_requests_started": 1,
+  "generation_requests_started": 1,
+  "reservation_attempted": true,
+  "reservation_confirmed": true,
+  "operation_confirmed": true,
+  "ledger_finish": "confirmed",
+  "reserved_upper_bound_cny": "3.00",
+  "actual_added_cost_cny": null,
+  "standardized_peak_cost_estimate_cny": "0.00254800",
+  "scientific_ready": false,
+  "all_arm_runtime_ready": false,
+  "native_host": false,
+  "native_compaction": false,
+  "research_sample": false,
+  "automatic_retries": 0,
+  "extraction": {
+    "ok": true,
+    "claim_count": 1,
+    "coverage_established": false,
+    "claims": [
+      {
+        "type": "operation_authorization",
+        "scope": "publishing release c1 in project demo",
+        "entity": "release c1",
+        "version": "c1",
+        "actor": "maintainer",
+        "action": "publish",
+        "basis": {
+          "field": "draft",
+          "quote": "The maintainer approved publishing release c1 in project demo."
+        },
+        "uncertainty": [
+          "Draft is unverified and may be false, revoked, obsolete, or unsupported.",
+          "Context states no publication or other operation should be executed, so authorization is not actionable.",
+          "Actor identity is only a role label ('maintainer'), not a named actor."
+        ],
+        "proposalId": "p1-69120cde54ff"
+      }
+    ],
+    "unresolved": [
+      "No test_result evidence is supplied; verification of any test outcome remains unresolved.",
+      "The actor is identified only as 'maintainer' with no specific identity, so authorization actor cannot be fully verified.",
+      "The context explicitly forbids executing publication, so the proposed operation authorization cannot be acted upon.",
+      "No artifact revision or digest is provided beyond the release label 'c1'."
+    ],
+    "output_sha256": "8492f42e5090be9f6aa5399665141db84d4db70bd2fc6109147a7b5604c613f3"
+  },
+  "controller_records": [
+    {
+      "schema_version": 1,
+      "kind": "p1-deepseek-controller-record",
+      "provider": "deepseek",
+      "requested_model": "deepseek-flash",
+      "reported_model": "deepseek-flash",
+      "dispatch_id": "5736b5e9-8fe6-4e26-a2ff-445423992f3c",
+      "request_sha256": "2ca3908fc8833698443717d966f22805bc1275b4afc9c05e317d9f5c2e4d44c8",
+      "intent_sha256": "31689e445f461f266d1d82c3de5cbd40ac8c71f1b15c132707ffbf31189afd6a",
+      "config_sha256": "07972c334de1202a859cc423e7ead9c94e37238d983aeccee69696779cc71545",
+      "admission_id": "ledger-3645c313bb6c65349de602b39dedc8559a8e45412476680531da821bed7e4d57",
+      "fetch_started": true,
+      "http_status": 200,
+      "provider_request_id": null,
+      "usage": {
+        "input_tokens": 434,
+        "cached_input_tokens": 0,
+        "output_tokens": 210
+      },
+      "provider_usage": {
+        "prompt_tokens": 434,
+        "completion_tokens": 210,
+        "total_tokens": 644,
+        "prompt_cache_hit_tokens": 0,
+        "prompt_cache_miss_tokens": 434
+      },
+      "usage_complete": true,
+      "actual_cost": null,
+      "canonical_cash_ledger_integrated": false,
+      "native_host": false,
+      "native_compaction": false,
+      "status": "returned_for_claim_validation",
+      "error_code": null,
+      "elapsed_ms": 1388,
+      "provider_completion_id_sha256": "3dacae9d1e169a9b73a08088522ae0c9419ba08aefa8a2b6e51767125c341af1"
+    }
+  ],
+  "redaction": {
+    "account_availability_and_balance_removed": true,
+    "provider_completion_id_replaced_by_sha256": true,
+    "private_credential_or_device_paths_included": false
+  }
+}

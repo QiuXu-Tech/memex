@@ -1,0 +1,96 @@
+{
+  "status": "DOCUMENT_QA_COMPLETE_NOT_READY",
+  "pdf_sha256": "0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95",
+  "pages": 26,
+  "previous_pages": 25,
+  "changed_pages": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26
+  ],
+  "references": 16,
+  "pending": 56,
+  "checks": {
+    "references_complete": true,
+    "pending_preserved": true,
+    "no_raw_pandoc_citations": true,
+    "no_replacement_characters": true,
+    "no_text_outside_page": true,
+    "working_draft_visible": true,
+    "all_a4": true
+  },
+  "reference_start_pages": [
+    22
+  ],
+  "appendix_start_pages": [
+    23
+  ],
+  "outside_page_words": [],
+  "render": {
+    "tool": "pdftoppm",
+    "dpi": 110,
+    "pages_rendered": 26
+  },
+  "visual_review": {
+    "status": "INSPECTED",
+    "reviewer": "AI assistant visual inspection; not an independent human review",
+    "checked_at_utc": "2026-11-28T04:12:29.622309+00:00",
+    "pages_inspected": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26
+    ],
+    "full_page_images_inspected": [
+      1,
+      11,
+      13,
+      25,
+      26
+    ],
+    "method": "Rendered every page at 110 dpi and visually inspected all pages in three contact sheets, then full-page images for the first page, new development observations, public-base capture paragraph, and appendix tables.",
+    "observations": "No clipped text, overlap, missing glyphs or broken formulas observed. New provenance paths wrap within their table cells."
+  },
+  "scientific_readiness": "NOT_READY",
+  "reference_verification": {
+    "citeproc_bibitems": 16,
+    "unique_reference_page_links": 16
+  },
+  "machine_check_refinement": "Matched current citeproc bibitem syntax and case-insensitive first-page working-draft text; initial checker assumed a different anchor syntax and capitalization."
+}

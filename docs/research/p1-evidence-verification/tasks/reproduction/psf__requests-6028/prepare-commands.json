@@ -1,0 +1,15 @@
+[
+  {
+    "command": [
+      "git",
+      "-c",
+      "core.hooksPath=/dev/null",
+      "clone",
+      "--filter=blob:none",
+      "--no-checkout",
+      "https://github.com/psf/requests.git",
+      "/workspace/scratch/d5292d3ebcac/p1-real-repros/psf__requests-6028/repo"
+    ],
+    "returncode": 128
+  }
+]

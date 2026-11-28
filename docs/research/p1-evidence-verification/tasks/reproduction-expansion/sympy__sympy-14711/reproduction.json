@@ -1,0 +1,523 @@
+{
+  "schema_version": 1,
+  "kind": "source_environment_qualification_only",
+  "candidate_id": "sympy__sympy-14711",
+  "project_id": "sympy/sympy",
+  "recorded_at": "2026-11-28T01:52:18.679977+00:00",
+  "formal_task": false,
+  "model_requests": 0,
+  "official_container_used": false,
+  "docker_equivalence_claimed": false,
+  "source_dataset": {
+    "id": "SWE-bench/SWE-bench_Verified",
+    "revision": "78f471bf655a3137b2e8a75af1501690ec009ec3",
+    "split": "test",
+    "row_index": 445,
+    "canonical_row_sha256": "0c684674d5b2ae54bae709a4140479f3eb1b4c907edd64464bacc19626fd8dec",
+    "parquet_url": "https://huggingface.co/datasets/SWE-bench/SWE-bench_Verified/resolve/78f471bf655a3137b2e8a75af1501690ec009ec3/data/test-00000-of-00001.parquet",
+    "parquet_sha256": "030cfd7f2a704c4c0226e7f104c725a3b41230b1d3517f9c915ad7ea5be3fa25"
+  },
+  "upstream": {
+    "issue_url": "https://github.com/sympy/sympy/issues/14710",
+    "issue_number": 14710,
+    "issue_title": "vector add 0 error",
+    "pr_url": "https://github.com/sympy/sympy/pull/14711",
+    "pr_number": 14711,
+    "pr_merged": true,
+    "base_commit": "c6753448b5c34f95e250105d76709fe4d349ca1f",
+    "base_commit_url": "https://github.com/sympy/sympy/commit/c6753448b5c34f95e250105d76709fe4d349ca1f",
+    "fix_commit": "fb0d290816dcaefc1bc874dd7380e4ceba8af1d4",
+    "fix_commit_kind": "upstream_merge_or_squash_commit",
+    "fix_commit_url": "https://github.com/sympy/sympy/commit/fb0d290816dcaefc1bc874dd7380e4ceba8af1d4",
+    "fix_parent_commits": [
+      "c6753448b5c34f95e250105d76709fe4d349ca1f",
+      "09f1dd2e7da0a1a189b00323130b8cbc6161f164"
+    ],
+    "base_is_fix_first_parent": true,
+    "warning": "Benchmark patch is a curated PR patch; do not replace it with the full base-to-merge diff."
+  },
+  "license": {
+    "code_spdx_at_base": "BSD-3-Clause",
+    "code_license_url": "https://raw.githubusercontent.com/sympy/sympy/c6753448b5c34f95e250105d76709fe4d349ca1f/LICENSE",
+    "code_license_file": "licenses/sympy__sympy-3c98bbadf4c3.txt",
+    "code_license_sha256": "3c98bbadf4c3f229dcd4565ba5ac9de649a9db689770e5ad759f9eaeecbe6cd9",
+    "scope_note": "Repository-level notice observed at the exact base. Incorporated dependencies and subcomponents may carry additional notices.",
+    "issue_and_pr_body_redistribution": "not_assumed; full bodies omitted",
+    "dataset_card_license_field": null,
+    "release_scope": "metadata, locators, hashes and unmodified license notices"
+  },
+  "changed_files": {
+    "upstream_pr": [
+      "sympy/physics/vector/tests/test_vector.py",
+      "sympy/physics/vector/vector.py"
+    ],
+    "benchmark_source_patch": [
+      "sympy/physics/vector/vector.py"
+    ],
+    "benchmark_test_patch": [
+      "sympy/physics/vector/tests/test_vector.py"
+    ]
+  },
+  "patch_hashes": {
+    "patch": "603fc55c24e66a70d67dac2cb8661fdb9be0c08333133151cfd7a72fbe9881eb",
+    "test_patch": "955dfb3e264f06cbee6285bcf20d1346b33d3826fc901ddd51a21e823b44bb3d"
+  },
+  "raw_patch_or_label_copy_published": false,
+  "status": "setup_or_acquisition_failure",
+  "commands": [
+    {
+      "phase": "git-init",
+      "started_at": "2026-11-28T01:52:18.680268+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "init",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo"
+      ],
+      "timeout_seconds": 359.99998728100036,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.007915797999885399,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-init.stdout.txt",
+        "bytes": 131,
+        "sha256": "00871f4cb47979466f6c9a89b610a9345f1ee6b3e84c5b1e760cce8eb1aa4c95"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-init.stderr.txt",
+        "bytes": 586,
+        "sha256": "3e70934f1909b0f5a846d62237fcc1509d733b9fb0321187024723dfc67176d3"
+      }
+    },
+    {
+      "phase": "git-origin",
+      "started_at": "2026-11-28T01:52:18.688639+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo",
+        "remote",
+        "add",
+        "origin",
+        "https://github.com/sympy/sympy.git"
+      ],
+      "timeout_seconds": 359.9916165049999,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.00353407700004027,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-origin.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-origin.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "git-fetch",
+      "started_at": "2026-11-28T01:52:18.692810+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo",
+        "fetch",
+        "--depth=1",
+        "origin",
+        "c6753448b5c34f95e250105d76709fe4d349ca1f"
+      ],
+      "timeout_seconds": 359.9874450520001,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 8.489296798000396,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-fetch.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-fetch.stderr.txt",
+        "bytes": 112,
+        "sha256": "aade1a9f4377865f095598534838ce94b28e1c46b3adcd0ea93a68ce5939fa1c"
+      }
+    },
+    {
+      "phase": "git-checkout",
+      "started_at": "2026-11-28T01:52:27.182776+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo",
+        "checkout",
+        "--detach",
+        "FETCH_HEAD"
+      ],
+      "timeout_seconds": 351.49748266699953,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.21430669900018984,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-checkout.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-checkout.stderr.txt",
+        "bytes": 75,
+        "sha256": "fe549f05abac231a07a5e9721f7add99d2e0c60e1dcfef28962e105166100b75"
+      }
+    },
+    {
+      "phase": "git-head",
+      "started_at": "2026-11-28T01:52:27.397849+00:00",
+      "command": [
+        "git",
+        "-c",
+        "core.hooksPath=/dev/null",
+        "-c",
+        "credential.helper=",
+        "-C",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo",
+        "rev-parse",
+        "HEAD"
+      ],
+      "timeout_seconds": 351.2824086419996,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 0.0036701170001833816,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-head.stdout.txt",
+        "bytes": 41,
+        "sha256": "56389e21d07b2fb43dbc1d923ab1283231694adf35cdc7354179b17e58d43e03"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/git-head.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "create-venv",
+      "started_at": "2026-11-28T01:52:27.402035+00:00",
+      "command": [
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/python/cpython-3.9.21-linux-x86_64-gnu/bin/python3.9",
+        "-m",
+        "venv",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/venv"
+      ],
+      "timeout_seconds": 351.2782207649998,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 2.3199383840001246,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/create-venv.stdout.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/create-venv.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "install-dependencies",
+      "started_at": "2026-11-28T01:52:29.722705+00:00",
+      "command": [
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/venv/bin/python",
+        "-m",
+        "pip",
+        "--isolated",
+        "install",
+        "--disable-pip-version-check",
+        "--no-cache-dir",
+        "--only-binary=:all:",
+        "--cert",
+        "/etc/ssl/certs/ca-certificates.crt",
+        "setuptools==67.6.0",
+        "wheel==0.38.4",
+        "mpmath==1.2.1"
+      ],
+      "timeout_seconds": 348.9575536319999,
+      "environment_keys": [
+        "ALL_PROXY",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_TERMINAL_PROMPT",
+        "HTTPS_PROXY",
+        "HTTP_PROXY",
+        "LANG",
+        "NO_PROXY",
+        "PATH",
+        "PIP_CONFIG_FILE",
+        "PYTHONNOUSERSITE",
+        "all_proxy",
+        "http_proxy",
+        "https_proxy",
+        "no_proxy"
+      ],
+      "timed_out": false,
+      "returncode": 0,
+      "launch_error": null,
+      "elapsed_seconds": 8.850535784000385,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/install-dependencies.stdout.txt",
+        "bytes": 855,
+        "sha256": "2f4c15be1988ae0933bc19b07cd20465571f285aba6e424b8daf17e91e5fa115"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/install-dependencies.stderr.txt",
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    },
+    {
+      "phase": "install-project",
+      "started_at": "2026-11-28T01:52:38.574123+00:00",
+      "command": [
+        "bwrap",
+        "--unshare-user",
+        "--unshare-pid",
+        "--unshare-ipc",
+        "--unshare-uts",
+        "--die-with-parent",
+        "--ro-bind",
+        "/usr",
+        "/usr",
+        "--ro-bind",
+        "/lib",
+        "/lib",
+        "--ro-bind",
+        "/lib64",
+        "/lib64",
+        "--symlink",
+        "usr/bin",
+        "/bin",
+        "--proc",
+        "/proc",
+        "--dev",
+        "/dev",
+        "--tmpfs",
+        "/tmp",
+        "--ro-bind",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/python/cpython-3.9.21-linux-x86_64-gnu",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/python/cpython-3.9.21-linux-x86_64-gnu",
+        "--bind",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/venv",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/venv",
+        "--bind",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo",
+        "--bind",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs",
+        "--chdir",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo",
+        "--clearenv",
+        "--setenv",
+        "PATH",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/venv/bin:/usr/bin:/bin",
+        "--setenv",
+        "LANG",
+        "C.UTF-8",
+        "--setenv",
+        "PYTHONNOUSERSITE",
+        "1",
+        "--setenv",
+        "PYTHONDONTWRITEBYTECODE",
+        "1",
+        "--setenv",
+        "PYTEST_DISABLE_PLUGIN_AUTOLOAD",
+        "1",
+        "--setenv",
+        "MPLBACKEND",
+        "Agg",
+        "--setenv",
+        "MPLCONFIGDIR",
+        "/tmp/matplotlib",
+        "--setenv",
+        "PYTHONHASHSEED",
+        "0",
+        "--",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/venv/bin/python",
+        "-m",
+        "pip",
+        "--isolated",
+        "install",
+        "--disable-pip-version-check",
+        "--no-deps",
+        "--no-build-isolation",
+        "-e",
+        "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/repo"
+      ],
+      "timeout_seconds": 340.1061333509997,
+      "environment_keys": [],
+      "timed_out": false,
+      "returncode": 1,
+      "launch_error": null,
+      "elapsed_seconds": 0.5157098770005177,
+      "stdout": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/install-project.stdout.txt",
+        "bytes": 209,
+        "sha256": "af2b2eaac2cc3658dd953148e2e5e6940404ecae80be00ff1a3033e10ecb78f1"
+      },
+      "stderr": {
+        "private_file": "/workspace/scratch/d5292d3ebcac/p1-real-repros/expansion-private/sympy__sympy-14711/logs/install-project.stderr.txt",
+        "bytes": 3517,
+        "sha256": "092e11b09ab364abfc7e3d7cf834ef2d01177eba4b598af66564f21516a13d58"
+      }
+    }
+  ],
+  "base_result": null,
+  "fixed_result": null,
+  "official_label_coverage": null,
+  "profile_sha256": "3227dc96ff7759f7971265c756bf681631f689d1f5afd9d410ced448e6056ab7",
+  "python_executable_sha256": "a58e85041bf8c92f92ac013de62ada094dcb2764a92572d85037a74ed4c3deac",
+  "bounds": {
+    "setup_seconds": 360,
+    "test_seconds_per_phase": 180
+  },
+  "isolation": {
+    "tool": "bwrap",
+    "namespaces": [
+      "user",
+      "pid",
+      "ipc",
+      "uts"
+    ],
+    "network_namespace": "shared (existing network controls unchanged)",
+    "credentials_or_proxy_config_forwarded_to_tests": false,
+    "host_resolver_config_mounted": false,
+    "other_project_mounts": [],
+    "scope": "project installation and test commands; dependency download uses minimal transport environment"
+  },
+  "base_commit_verified": true,
+  "failure": "install-project_failed",
+  "finished_at": "2026-11-28T01:52:39.090694+00:00",
+  "total_elapsed_seconds": 20.41047381200042
+}

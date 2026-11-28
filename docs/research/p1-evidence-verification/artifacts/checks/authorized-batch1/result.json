@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "kind": "local_research_regression_suite",
+  "command": [
+    "npm",
+    "run",
+    "test:paper1"
+  ],
+  "started_at": "2026-11-28T12:08:33.598503+08:00",
+  "elapsed_seconds": 15.201364312000806,
+  "exit_code": 0,
+  "log_sha256": "fd9d6b27e684aaa3ebe6e4a158f5a8febabbb04c7e74e71d2eaee8ac96def6be",
+  "native_model_calls": 0,
+  "provider_api_requests": 0,
+  "node_passed": 70,
+  "python_passed": 296,
+  "total_passed": 366,
+  "failed": 0,
+  "skipped": 0
+}

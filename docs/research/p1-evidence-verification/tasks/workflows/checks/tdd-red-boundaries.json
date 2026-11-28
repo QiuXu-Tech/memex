@@ -1,0 +1,17 @@
+{
+  "command": [
+    "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/bin/python",
+    "-B",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "test",
+    "-p",
+    "test_paper1_taskpack.py",
+    "-v"
+  ],
+  "returncode": 1,
+  "expected_new_failures": 3,
+  "stage": "before fixing nested gold JSON, implicit future-fix guard and experiment digest compatibility"
+}

@@ -1,0 +1,141 @@
+{
+  "schema_version": 1,
+  "kind": "p1-deepseek-diagnostic-integration-validation",
+  "observed_at": "2026-11-28T17:58:39+08:00",
+  "public_base_commit": "b8bdc0fb8cc6adfff5dfe4edd4427e3f4183b8b0",
+  "node_verification": {
+    "command": "node --test test/paper1-*.mjs",
+    "runtime": "v24.22.3",
+    "tests": 112,
+    "pass": 112,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "new_diagnostic_cases": 15,
+    "log": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/node-tests.txt"
+  },
+  "python_verification": {
+    "tests": 72,
+    "pass": 72,
+    "fail": 0,
+    "new_diagnostic_cases": 10,
+    "suites": {
+      "batch_limits": 23,
+      "diagnostic_limits": 10,
+      "native_permit": 20,
+      "paired_runner": 19
+    },
+    "log": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/python-tests.txt",
+    "initial_relocated_checkout_failures": {
+      "tests": 19,
+      "pass": 11,
+      "fail": 3,
+      "errors": 5,
+      "cause": "Existing source plan embeds the original checkout absolute pathname; regenerated plan differed only in four public_by_replicate path strings, before ledger loading.",
+      "resolution": "Preserved frozen plan/auth/package bytes and reran with the new batch_limits.py at the original pathname. All 19 passed. No contract relaxation.",
+      "log": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/python-tests-initial-relocated-path.txt",
+      "rerun_log": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/paired-runner-frozen-path-tests.txt"
+    },
+    "entire_python_research_suite_rerun": false
+  },
+  "live_access_observation": {
+    "authenticated_model_list_verified": true,
+    "configured_model_listed": true,
+    "read_only_metadata_requests_this_turn": 3,
+    "generation_requests_this_turn": 0,
+    "automatic_retries": 0,
+    "explicit_diagnostic_invocations": 1,
+    "stopped_before_cash_reservation": true,
+    "raw_account_receipt_published": false,
+    "account_status_and_amounts_published": false,
+    "credentials_published": false
+  },
+  "private_runtime_deployment": {
+    "files": 15,
+    "node": "v25.9.0",
+    "python": "3.14.3",
+    "ledger_restored_from_exact_public_four_event_prefix": true,
+    "ledger_mutations_this_change": 0,
+    "canonical_execution_copy": "one user-device diagnostic runtime; test and publication copies are not dispatchers",
+    "cross_clone_distributed_lock_claimed": false
+  },
+  "canonical_ledger_read_only": {
+    "authorization_sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+    "native_attempts_reserved": 2,
+    "native_attempts_remaining": 0,
+    "method_units_reserved": 0,
+    "method_units_remaining": 16,
+    "diagnostic_attempts_reserved": 0,
+    "added_cash_cap": "100.00",
+    "committed_cash_upper_bound": "0.00",
+    "actual_added_cash_total": null,
+    "journal_events": 4,
+    "journal_head_sha256": "ba44d65c01051f9ebefb95c46b7aa765073a886821c2cee7b03a1cf9e2e9255d"
+  },
+  "protected_tracked_roots_unchanged": [
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1",
+    "docs/research/p1-evidence-verification/tasks",
+    "docs/research/p1-evidence-verification/submission",
+    "docs/research/p1-evidence-verification/manuscript.pdf",
+    "scripts/paper1/rawrag-config.json",
+    "scripts/paper1/claims.mjs",
+    "scripts/paper1/deepseek.mjs",
+    "scripts/paper1/paired_runner.py"
+  ],
+  "artifact_hashes": [
+    {
+      "path": "scripts/paper1/batch_limits.py",
+      "sha256": "2fe79875a50f462228c31059b6344593b4f6cae455f2c4466fbf124f94bbea45"
+    },
+    {
+      "path": "scripts/paper1/deepseek-diagnostic.mjs",
+      "sha256": "e3704eb6bdaf4114fe814c42cbf04e7d591ce021da841ea9dcadd12d81676fd6"
+    },
+    {
+      "path": "scripts/paper1/deepseek-diagnostic-config.json",
+      "sha256": "7b361c3808dbb99b965818eb27fbea12f1aac2550e1e9537796769d0e430b0c0"
+    },
+    {
+      "path": "test/paper1-deepseek-diagnostic.mjs",
+      "sha256": "9fb24ece559943e95848aa20d562e05718c556a97c0486f2c88d1b42b928900a"
+    },
+    {
+      "path": "test/test_paper1_diagnostic_limits.py",
+      "sha256": "22c0eb2e14d46c9d682c0d0bd576a562a30a1cf91db7335fe8d75ad5fcdc150a"
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/node-tests.txt",
+      "sha256": "3e43481c2e596b8d3ef50a9d8491724a4d7133abfcd27c69aeaa946d2ed1eb84"
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/python-tests.txt",
+      "sha256": "5d2a268b16fa9c34469cc0d7c0872102276495a665973334e5c1a774c1494d6c"
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/python-tests-initial-relocated-path.txt",
+      "sha256": "8390fb3a7b0e472a9871f94091185dacb92601b61f314bfe2c28410a20a593d7"
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-diagnostic/paired-runner-frozen-path-tests.txt",
+      "sha256": "388194edf84141288fe60a8b9330401cf49fd2cc2dd93cfdb3ffed035eff7b80"
+    }
+  ],
+  "review": {
+    "unresolved_blocking_findings": 0,
+    "fixed_findings": [
+      "Only a confirmed reservation belonging to this attempt may be finished.",
+      "Only verified CNY billing can use this CNY price basis.",
+      "Late admission continuations cannot change a returned report or start a provider operation."
+    ]
+  },
+  "limitations": [
+    "Real generation and claim extraction remain unverified; successful metadata authentication is not a model-generation result.",
+    "New diagnostic support does not supply native checkpoint, shared reader/tokenizer, four-arm execution, official B services or human research labels.",
+    "The existing paired source plan is location-bound; moving a checkout alone does not constitute an approved rebase.",
+    "CNY3 is a conservative future reservation, not observed spending; prior unsettled actual costs remain null.",
+    "Account readiness and pricing must be checked again before any future generation."
+  ],
+  "scientific_ready": false,
+  "all_arm_runtime_ready": false,
+  "submission_ready": false
+}

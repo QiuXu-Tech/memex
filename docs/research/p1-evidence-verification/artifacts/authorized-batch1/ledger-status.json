@@ -1,0 +1,67 @@
+{
+  "schema_version": 1,
+  "batch_id": "p1-20261128-approved-batch1",
+  "authorization_sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+  "permissions_recorded": true,
+  "host_approval_attested": false,
+  "scientific_ready": false,
+  "formal_runs": 0,
+  "native_attempts_reserved": 2,
+  "native_attempts_remaining": 0,
+  "method_units_reserved": 0,
+  "method_units_remaining": 16,
+  "added_cash_currency": "CNY",
+  "added_cash_cap": "100.00",
+  "committed_cash_upper_bound": "0.00",
+  "remaining_cash_capacity": "100.00",
+  "actual_added_cash_total": null,
+  "attempts_with_unsettled_cost": [
+    "native-01",
+    "native-02"
+  ],
+  "budget_breach_observed": false,
+  "attempts": {
+    "native-01": {
+      "attempt_id": "native-01",
+      "billing_basis": {
+        "evidence": {
+          "ref": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/preflight-billing-scope.json",
+          "sha256": "1b8913c9a1029b1b8dabc23ea0bc2dde795c2bdef17dd6c631c72c175c9d2279"
+        },
+        "kind": "included_subscription"
+      },
+      "kind": "native",
+      "public_sha256": null,
+      "unit_key": null,
+      "upper_bound_fen": 0,
+      "wall_seconds": 600,
+      "state": "timeout",
+      "counters": {},
+      "operations": [],
+      "reserved_at_unix_ns": 1795837944297808347,
+      "actual_added_cost_fen": null
+    },
+    "native-02": {
+      "attempt_id": "native-02",
+      "billing_basis": {
+        "evidence": {
+          "ref": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/preflight-billing-scope.json",
+          "sha256": "1b8913c9a1029b1b8dabc23ea0bc2dde795c2bdef17dd6c631c72c175c9d2279"
+        },
+        "kind": "included_subscription"
+      },
+      "kind": "native",
+      "public_sha256": null,
+      "unit_key": null,
+      "upper_bound_fen": 0,
+      "wall_seconds": 600,
+      "state": "timeout",
+      "counters": {},
+      "operations": [],
+      "reserved_at_unix_ns": 1795838123825198403,
+      "actual_added_cost_fen": null
+    }
+  },
+  "journal_events": 4,
+  "journal_head_sha256": "ba44d65c01051f9ebefb95c46b7aa765073a886821c2cee7b03a1cf9e2e9255d"
+}

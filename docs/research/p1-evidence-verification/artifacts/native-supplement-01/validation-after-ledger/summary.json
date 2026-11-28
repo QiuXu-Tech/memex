@@ -1,0 +1,24 @@
+{
+  "canonical_events": 50,
+  "canonical_head_sha256": "9daabc2b62eff8efd17bd5783decc619f25094c2748fd4e838f2735150a25ed0",
+  "canonical_runtime_writes": 0,
+  "failed": 0,
+  "historical_seven_events_byte_prefix_preserved": true,
+  "kind": "p1-post-canonical-mirror-validation",
+  "logs": {
+    "initial-invocation-error.txt": "fd1cfc0022660fb3ff83613b1996a15eaad0b73a3af51458aa4e9e87f71cafaa",
+    "tests.txt": "e8f99fd8813c9e896cd153cce453f8bd6b59e1ae7b44b3d0c00b74af49dcdd53"
+  },
+  "model_calls": 0,
+  "note": "Initial command used test/... names and collided with the installed Python test package; zero target tests loaded. Corrected module discovery from the repository test directory; no source/test changes required. This 85-test subset overlaps the full 569-test suite and is not additional independent coverage.",
+  "scope": [
+    "batch_limits",
+    "diagnostic_limits",
+    "native_supplement",
+    "native_driver",
+    "development_driver"
+  ],
+  "skipped": 0,
+  "status": "passed",
+  "tests": 85
+}

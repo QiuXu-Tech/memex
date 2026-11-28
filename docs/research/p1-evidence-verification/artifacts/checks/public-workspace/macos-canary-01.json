@@ -1,0 +1,70 @@
+{
+  "receipt": {
+    "kind": "p1_actual_own_code_os_sandbox_canary",
+    "method_units_reserved": 0,
+    "model_requests": 0,
+    "native_attempts_reserved": 0,
+    "provider_requests": 0,
+    "python_version": "3.14.3",
+    "receipt": {
+      "binding": {
+        "config_sha256": "0055f8d9a2e57a849e30a3d6b43e1be8918efb0fa061f131a7de69b54fc7b819",
+        "dependencies_sha256": "043b8d1b64b018d5039efa1184feb986ea97e1c6670834db52208e260b947a01",
+        "executable_sha256": "7455283df45ef13eaffae9ca3f0063aebf235b1e621e8c95b3609db2e3d7e493",
+        "kernel": "27.3.0",
+        "platform": "darwin",
+        "python_sha256": "cbf84109626aa1013bbe408fbb9590bd0f1c1548f038b2221c6b8b87de26ca43"
+      },
+      "checks": null,
+      "kind": "actual_os_sandbox_probe",
+      "launch_sha256": "2d3e854d71efe393dd81d7c1debc241ac3f1bdbffc061f873c4c9c4ff5970fa0",
+      "model_requests": 0,
+      "private_sentinel_unchanged": true,
+      "probe_source_sha256": "344065ff28cf81eb73a1ded06ff8ccc83e135622c8ee637780016ef394cdfa4a",
+      "process": {
+        "elapsed_seconds": 0.011941834000026574,
+        "error": null,
+        "finished_at": "2026-11-28T10:39:41.748394+00:00",
+        "output_complete": true,
+        "output_limit_exceeded": false,
+        "returncode": -6,
+        "signal": 6,
+        "spawned": true,
+        "started_at": "2026-11-28T10:39:41.736370+00:00",
+        "stderr": "stderr.raw",
+        "stdout": "stdout.raw",
+        "streams": {
+          "stderr": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          },
+          "stdout": {
+            "bytes": 0,
+            "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        },
+        "timed_out": false
+      },
+      "provider_requests": 0,
+      "real_source_executions": 0,
+      "schema_version": 1,
+      "status": "failed"
+    },
+    "runner_verified": false,
+    "source_manifest": {
+      "experiment.py": "548b4b57683c230a652b8fbf3a9b9ea2542d13984e47860d7ce1d26477cf5cbb",
+      "public_workspace.py": "86abfc0bbad0a800c2c4c24edb6aadb5133e7727dac57ddca9e48858c63a29ca",
+      "python_workflow.py": "c6126c050fad8a8023b9bdefb9e36f4f5a9b3307fb17dc9f5f6f41bf54c4152b",
+      "python_workflow_child.py": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc"
+    },
+    "status": "failed",
+    "stderr_preview": "",
+    "stdout_preview": "",
+    "third_party_source_executions": 0
+  },
+  "runtime_tools": {
+    "pyenv": null,
+    "python3.10": null,
+    "uv": "<HOME>/.local/bin/uv"
+  }
+}

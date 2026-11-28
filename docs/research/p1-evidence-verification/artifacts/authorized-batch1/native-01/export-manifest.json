@@ -1,0 +1,116 @@
+{
+  "kind": "public_native_attempt_export",
+  "attempt_id": "native-01",
+  "redactions": [
+    "remote temporary root",
+    "home pathname if present"
+  ],
+  "account_probe_exported": false,
+  "reasoning_content_exported": false,
+  "files": [
+    {
+      "path": "archive/index.db",
+      "raw_bytes": 118784,
+      "raw_sha256": "4673baf02ebae2d14c1f40fcf95c43078d9805277078f5052cfea808e4f01f2f",
+      "published": false,
+      "reason": "binary store retained on original host; selected textual event capture exported"
+    },
+    {
+      "path": "archive/p1-catalog-0474f37d3e1e526ed3935f3a.json",
+      "raw_bytes": 46,
+      "raw_sha256": "f797a01d174e113717674cebdea593744782d90bb41ec84dfb951984a346a407",
+      "published": true,
+      "public_bytes": 46,
+      "public_sha256": "f797a01d174e113717674cebdea593744782d90bb41ec84dfb951984a346a407",
+      "transformed": false
+    },
+    {
+      "path": "archive.store-lease.sqlite",
+      "raw_bytes": 8192,
+      "raw_sha256": "0f3db0e9795099212ff20923adec4bdd5a92abacbed9108d2cc5e00925a17a7c",
+      "published": false,
+      "reason": "binary store retained on original host; selected textual event capture exported"
+    },
+    {
+      "path": "broker/session-started.json",
+      "raw_bytes": 124,
+      "raw_sha256": "e61be485e1a55bade1a94da2fd241e35ca7d9faba9c0ccbd96d5a360415fc661",
+      "published": true,
+      "public_bytes": 124,
+      "public_sha256": "e61be485e1a55bade1a94da2fd241e35ca7d9faba9c0ccbd96d5a360415fc661",
+      "transformed": false
+    },
+    {
+      "path": "broker-config.json",
+      "raw_bytes": 871,
+      "raw_sha256": "e54d8d90e6b710e9bbee01817b719f29973edd06424c76beecbc70a899e45e29",
+      "published": true,
+      "public_bytes": 667,
+      "public_sha256": "1a43412aa8ce353a393790333639a73bd090d6cf8a7605c22fd0e38220997139",
+      "transformed": true
+    },
+    {
+      "path": "broker.stderr",
+      "raw_bytes": 21,
+      "raw_sha256": "9b2aa56a3293023cdad440611b187df8385b33771d83f55ec3c10d8a0f6f354b",
+      "published": true,
+      "public_bytes": 21,
+      "public_sha256": "9b2aa56a3293023cdad440611b187df8385b33771d83f55ec3c10d8a0f6f354b",
+      "transformed": false
+    },
+    {
+      "path": "main-host/events.jsonl",
+      "raw_bytes": 3564,
+      "raw_sha256": "fdaa4ce113399917b249b7dc6ff1b6cc01e725dd4ac324024e62b20fe218cbaa",
+      "published": true,
+      "public_bytes": 3564,
+      "public_sha256": "fdaa4ce113399917b249b7dc6ff1b6cc01e725dd4ac324024e62b20fe218cbaa",
+      "transformed": false
+    },
+    {
+      "path": "main-host/host.stderr",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": true,
+      "public_bytes": 0,
+      "public_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "transformed": false
+    },
+    {
+      "path": "summary.json",
+      "raw_bytes": 3188,
+      "raw_sha256": "90941e2be0259e44cc355019cb6b1ec28d9bbc99fb669a4c3a92eedb99cefee9",
+      "published": true,
+      "public_bytes": 3188,
+      "public_sha256": "90941e2be0259e44cc355019cb6b1ec28d9bbc99fb669a4c3a92eedb99cefee9",
+      "transformed": false
+    },
+    {
+      "path": "workspace/checks.test.mjs",
+      "raw_bytes": 154,
+      "raw_sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+      "published": true,
+      "public_bytes": 154,
+      "public_sha256": "55ed48ac559c00814666b89030320681b5446eefcbf97cd5ab7df23c8605b83e",
+      "transformed": false
+    },
+    {
+      "path": "workspace/sum.mjs",
+      "raw_bytes": 36,
+      "raw_sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+      "published": true,
+      "public_bytes": 36,
+      "public_sha256": "c01a4dda8409c0ac1b53b9223b8700f9be4a9024245cf8ec125ceebf4f7f5709",
+      "transformed": false
+    },
+    {
+      "path": "permit-consumed.json",
+      "raw_bytes": 665,
+      "raw_sha256": "b9fc8fe32d58e1900f198d63f1aa2a9be2d0e03f44389ce41be28733c4906f7f",
+      "published": true,
+      "public_bytes": 597,
+      "public_sha256": "c1d83ba9d7bf86013ce784cf1f1b5b480380abd6630977ea4735742c021ac0ca",
+      "transformed": true
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "schema_version": 1,
+  "revisions": [
+    {
+      "candidate_id": "sympy__sympy-14711",
+      "revision_kind": "read_only_interpretation_no_test_rerun",
+      "prior_receipt": "followup-2/sympy__sympy-14711/reproduction.json",
+      "prior_receipt_sha256": "db9679acc366733de318830ae0bf495e4c879fe6b609b80eceed180f8491cf23",
+      "original_receipt_unchanged": true,
+      "phase_log_sha256": {
+        "base.stdout": "fab49a538b7c4034691b1b7396ae2559efb6d59fd4dd3ca2c3cf52715e88985e",
+        "base.stderr": "e29c07bc33b332a104d8b9040f4f8cb9493fce27d1a33ed7aea6c0e99f625f90",
+        "fixed.stdout": "d483e74a8b19ab04b14fa665a3c02aeb7f5b665df93d9ee14c497793afe7e0b9",
+        "fixed.stderr": "e29c07bc33b332a104d8b9040f4f8cb9493fce27d1a33ed7aea6c0e99f625f90"
+      },
+      "official_parser_sha256": "cd56156414f8327221e525665ace9b184f7d73e83b272d9eb3f545fb17c2d9bc",
+      "prior_rule": "base status must equal FAILED",
+      "corrected_rule": "base status must be FAILED or ERROR; missing, PASSED and SKIPPED do not qualify. Fixed must be PASSED; full module must exit zero for complete qualification.",
+      "old_label_coverage": {
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 2,
+        "parser": "parse_log_sympy",
+        "parser_sha256": "cd56156414f8327221e525665ace9b184f7d73e83b272d9eb3f545fb17c2d9bc",
+        "base_failed_matches_official_f2p": false,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "all_expected_transitions_verified": false
+      },
+      "corrected_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 2,
+        "all_expected_transitions_verified": true
+      },
+      "qualified_after_revision": true,
+      "actual_native_counts": {
+        "base": {
+          "tests": 4,
+          "passed": 3,
+          "failures": 0,
+          "errors": 1,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_passes": 0
+        },
+        "fixed": {
+          "tests": 4,
+          "passed": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0,
+          "expected_failures": 0,
+          "unexpected_passes": 0
+        }
+      },
+      "rule_implementation_sha256": "cf135491d93240c7c246336c061b4fe3c106591103d04dec9a0ff70bfeb7cca8"
+    },
+    {
+      "candidate_id": "sympy__sympy-19637",
+      "revision_kind": "read_only_interpretation_no_test_rerun",
+      "prior_receipt": "followup-2/sympy__sympy-19637/reproduction.json",
+      "prior_receipt_sha256": "f01540a31263d864e39429e95dd35ca9a8f7e8b6b680c78ee96971247c67b5df",
+      "original_receipt_unchanged": true,
+      "phase_log_sha256": {
+        "base.stdout": "e38683d08e877e3d36355a9ddeaa868c101f10128ace26cd246d07b7821c3a2f",
+        "base.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "fixed.stdout": "aa351b32bf2afed542c1dca84ca59162ab93ff521848465502bc0b8657e775ec",
+        "fixed.stderr": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "official_parser_sha256": "cd56156414f8327221e525665ace9b184f7d73e83b272d9eb3f545fb17c2d9bc",
+      "prior_rule": "base status must equal FAILED",
+      "corrected_rule": "base status must be FAILED or ERROR; missing, PASSED and SKIPPED do not qualify. Fixed must be PASSED; full module must exit zero for complete qualification.",
+      "old_label_coverage": {
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 40,
+        "parser": "parse_log_sympy",
+        "parser_sha256": "cd56156414f8327221e525665ace9b184f7d73e83b272d9eb3f545fb17c2d9bc",
+        "base_failed_matches_official_f2p": false,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "all_expected_transitions_verified": false
+      },
+      "corrected_label_coverage": {
+        "base_failed_matches_official_f2p": true,
+        "all_official_f2p_pass_after_fix": true,
+        "all_official_p2p_pass_at_base": true,
+        "all_official_p2p_pass_after_fix": true,
+        "official_fail_to_pass_count": 1,
+        "official_pass_to_pass_count": 40,
+        "all_expected_transitions_verified": true
+      },
+      "qualified_after_revision": false,
+      "actual_native_counts": {
+        "base": {
+          "tests": 50,
+          "passed": 40,
+          "failures": 0,
+          "errors": 3,
+          "skipped": 5,
+          "expected_failures": 2,
+          "unexpected_passes": 0
+        },
+        "fixed": {
+          "tests": 50,
+          "passed": 41,
+          "failures": 0,
+          "errors": 2,
+          "skipped": 5,
+          "expected_failures": 2,
+          "unexpected_passes": 0
+        }
+      },
+      "rule_implementation_sha256": "cf135491d93240c7c246336c061b4fe3c106591103d04dec9a0ff70bfeb7cca8"
+    }
+  ]
+}
