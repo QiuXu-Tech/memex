@@ -1,0 +1,76 @@
+{
+  "schema_version": 1,
+  "scope": "zero_generation_schema_export_and_static_source_analysis",
+  "files": [
+    {
+      "path": "LICENSE.upstream",
+      "sha256": "d17f227e4df5da1600391338865ce0f3055211760a36688f816941d58232d8dc",
+      "bytes": 10926
+    },
+    {
+      "path": "README.md",
+      "sha256": "ecd70d49b34d130e27d60953c004a88d6ce7f0bee7d9568733ac925a60ace530",
+      "bytes": 9803
+    },
+    {
+      "path": "provenance.json",
+      "sha256": "7fd7dc726555144e0c42b13bb74c412eeedf2d450298397ce398046a0541dbaf",
+      "bytes": 3196
+    },
+    {
+      "path": "schema/McpServerElicitationRequestParams.json",
+      "sha256": "5cbeb6bc702d2efa076da4c1dfb00672c970c1bad747031eb880b9ab907815c0",
+      "bytes": 13636
+    },
+    {
+      "path": "schema/McpServerElicitationRequestResponse.json",
+      "sha256": "792a012fdfe53ac211575a6c37ffbd492be848d15cb313d1bb4b534ade1f54ac",
+      "bytes": 741
+    },
+    {
+      "path": "schema/ToolRequestUserInputParams.json",
+      "sha256": "fda15b62e7446105b59c8ed85c908abed2a47db70653e57c92c47a2f204fa77a",
+      "bytes": 2143
+    },
+    {
+      "path": "schema/ToolRequestUserInputResponse.json",
+      "sha256": "5073b245f741fa8ce62ec52e4dd1809b7831f9c4284c279a78abc9b171f8e3f2",
+      "bytes": 793
+    },
+    {
+      "path": "schema/account-request-variants.json",
+      "sha256": "38f67b2a63b45b8a39848d2882374703c032907993dd12dd6a886032cec4c9dc",
+      "bytes": 1101
+    },
+    {
+      "path": "schema/server-request-methods.json",
+      "sha256": "3dd726002aa2ee8c7e1f6b52ff1ae6f11acd00503ae02fa7d32565598398f899",
+      "bytes": 482
+    },
+    {
+      "path": "schema/tag-provenance.json",
+      "sha256": "5235caf242fa3398c7742e7f263e6f94d69229d67029599c3b7f73ba958e001d",
+      "bytes": 760
+    },
+    {
+      "path": "schema/v2/GetAccountParams.json",
+      "sha256": "30b545275f60975b55bd6fbaafd70f15505801d14168ee82d3931b6e93c78aab",
+      "bytes": 485
+    },
+    {
+      "path": "schema/v2/GetAccountRateLimitsResponse.json",
+      "sha256": "a28d4d0e9181a498c58d4ae3b6b49aaa6ee7a33c0c9f81c1ad0bff223bfbbe3b",
+      "bytes": 7670
+    },
+    {
+      "path": "schema/v2/GetAccountResponse.json",
+      "sha256": "08a7dd8c570c905b0bb6998d43ed133e72e2445f08125f86dfc96887e288701a",
+      "bytes": 2399
+    },
+    {
+      "path": "source-excerpts.json",
+      "sha256": "68792bf3f3109b9cd6c891aa7c84e2525ce576e392c82d6c8ecc5b7cc8448bd5",
+      "bytes": 23356
+    }
+  ]
+}

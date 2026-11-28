@@ -1,0 +1,17 @@
+{
+  "schema_version": 1,
+  "kind": "native_subscription_added_cash_scope",
+  "scope": "Only the approved existing ChatGPT subscription native-host development attempt; not embedding/rerank or API usage.",
+  "observed_account_type": "chatgpt",
+  "forced_login_method": "chatgpt",
+  "paid_credits_available": false,
+  "api_credential_variables_present": false,
+  "new_purchases_or_auto_recharge_permitted": false,
+  "added_cash_upper_bound_cny": "0.00",
+  "full_standardized_cost": null,
+  "subscription_quota_consumption": "Counted by the native host; not claimed free.",
+  "exhaustion_policy": "Stop on quota exhaustion; no purchase, key fallback, other provider, or altered permission policy.",
+  "evidence_ref": "account-preflight.json",
+  "evidence_sha256": "338897aa49e9b20ad0669b9f49042b688b808173c38fe7a01814bfb145620a3b",
+  "limit": "This bounds new cash actions in this run, not the economic value of previously purchased subscription usage."
+}

@@ -1,8 +1,8 @@
 {
   "status": "BUILT_WORKING_DRAFT",
-  "canonical_source_sha256": "8694bf0573e05a6737eb4206f03599af9a5a1f2f48bf8467fb9f3f3ebae799ae",
-  "tex_sha256": "0a78b1c4c9285d52166132c5f4bcd8b8867a8fdccfda2abc94b6e29b988b598f",
-  "pdf_sha256": "ff21ec2c9b72ab26df0719416483b42e4e8cafe87f560416efea24a6f849331b",
+  "canonical_source_sha256": "d1b46b6e2f105664ed3294e6ac10eb5e6fd785b8cffc52e0f57faf1df1e6fc22",
+  "tex_sha256": "4e7e132b5fb2879e02386061b2098ab67e041f7804251322c40ee97fbf053ab0",
+  "pdf_sha256": "0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95",
   "commands": [
     [
       "pandoc",
@@ -17,16 +17,18 @@
     [
       "xetex",
       "-ini",
+      "-etex",
+      "-no-shell-escape",
       "-interaction=nonstopmode",
       "-halt-on-error",
       "-jobname=p1-xelatex",
-      "-etex",
       "-output-directory=<BUILD_DIR>",
       "xelatex.ini"
     ],
     [
       "xelatex",
       "-fmt=<BUILD_DIR>/p1-xelatex.fmt",
+      "-no-shell-escape",
       "-interaction=nonstopmode",
       "-halt-on-error",
       "-file-line-error",
@@ -36,6 +38,7 @@
     [
       "xelatex",
       "-fmt=<BUILD_DIR>/p1-xelatex.fmt",
+      "-no-shell-escape",
       "-interaction=nonstopmode",
       "-halt-on-error",
       "-file-line-error",
@@ -50,36 +53,8 @@
     "underfull_boxes": 8,
     "rerun_requests": 0
   },
-  "final_commands": [
-    [
-      "pandoc",
-      "manuscript.md",
-      "--standalone",
-      "--citeproc",
-      "--from=markdown+raw_tex+tex_math_single_backslash",
-      "--to=latex",
-      "--no-highlight",
-      "--output=manuscript.tex"
-    ],
-    [
-      "xelatex",
-      "-fmt=<BUILD_DIR>/p1-xelatex.fmt",
-      "-interaction=nonstopmode",
-      "-halt-on-error",
-      "-file-line-error",
-      "-output-directory=<BUILD_DIR>",
-      "manuscript.tex"
-    ],
-    [
-      "xelatex",
-      "-fmt=<BUILD_DIR>/p1-xelatex.fmt",
-      "-interaction=nonstopmode",
-      "-halt-on-error",
-      "-file-line-error",
-      "-output-directory=<BUILD_DIR>",
-      "manuscript.tex"
-    ]
-  ],
   "log": "build-logs/canonical-final.txt",
-  "pages": 25
+  "pages": 26,
+  "visual_review": "REQUIRED_SEPARATELY",
+  "scientific_readiness": "NOT_READY"
 }

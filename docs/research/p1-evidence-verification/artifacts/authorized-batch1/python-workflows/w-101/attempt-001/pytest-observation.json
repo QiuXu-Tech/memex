@@ -1,0 +1,1535 @@
+{
+  "collected": [
+    "tests/test_blueprints.py::test_blueprint_specific_error_handling",
+    "tests/test_blueprints.py::test_blueprint_specific_user_error_handling",
+    "tests/test_blueprints.py::test_blueprint_app_error_handling",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[-/-/]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/--/]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/-/-/]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo--/foo]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/--/foo/]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[-/bar-/bar]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-/bar-/foo/bar]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-bar-/foo/bar]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo-/bar-/foo/bar]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-//bar-/foo/bar]",
+    "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo//-/bar-/foo/bar]",
+    "tests/test_blueprints.py::test_blueprint_url_defaults",
+    "tests/test_blueprints.py::test_blueprint_url_processors",
+    "tests/test_blueprints.py::test_templates_and_static",
+    "tests/test_blueprints.py::test_default_static_max_age",
+    "tests/test_blueprints.py::test_templates_list",
+    "tests/test_blueprints.py::test_dotted_name_not_allowed",
+    "tests/test_blueprints.py::test_dotted_names_from_app",
+    "tests/test_blueprints.py::test_empty_url_defaults",
+    "tests/test_blueprints.py::test_route_decorator_custom_endpoint",
+    "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+    "tests/test_blueprints.py::test_endpoint_decorator",
+    "tests/test_blueprints.py::test_template_filter",
+    "tests/test_blueprints.py::test_add_template_filter",
+    "tests/test_blueprints.py::test_template_filter_with_name",
+    "tests/test_blueprints.py::test_add_template_filter_with_name",
+    "tests/test_blueprints.py::test_template_filter_with_template",
+    "tests/test_blueprints.py::test_template_filter_after_route_with_template",
+    "tests/test_blueprints.py::test_add_template_filter_with_template",
+    "tests/test_blueprints.py::test_template_filter_with_name_and_template",
+    "tests/test_blueprints.py::test_add_template_filter_with_name_and_template",
+    "tests/test_blueprints.py::test_template_test",
+    "tests/test_blueprints.py::test_add_template_test",
+    "tests/test_blueprints.py::test_template_test_with_name",
+    "tests/test_blueprints.py::test_add_template_test_with_name",
+    "tests/test_blueprints.py::test_template_test_with_template",
+    "tests/test_blueprints.py::test_template_test_after_route_with_template",
+    "tests/test_blueprints.py::test_add_template_test_with_template",
+    "tests/test_blueprints.py::test_template_test_with_name_and_template",
+    "tests/test_blueprints.py::test_add_template_test_with_name_and_template",
+    "tests/test_blueprints.py::test_context_processing",
+    "tests/test_blueprints.py::test_template_global",
+    "tests/test_blueprints.py::test_request_processing",
+    "tests/test_blueprints.py::test_app_request_processing",
+    "tests/test_blueprints.py::test_app_url_processors",
+    "tests/test_blueprints.py::test_nested_blueprint",
+    "tests/test_blueprints.py::test_nested_callback_order",
+    "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-/child-None-None]",
+    "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-None-None-/child]",
+    "tests/test_blueprints.py::test_nesting_url_prefixes[None-None-/parent-/child]",
+    "tests/test_blueprints.py::test_nesting_url_prefixes[/other-/something-/parent-/child]",
+    "tests/test_blueprints.py::test_nesting_subdomains",
+    "tests/test_blueprints.py::test_child_and_parent_subdomain",
+    "tests/test_blueprints.py::test_unique_blueprint_names",
+    "tests/test_blueprints.py::test_self_registration",
+    "tests/test_blueprints.py::test_blueprint_renaming"
+  ],
+  "collection_errors": [],
+  "collection_skips": [],
+  "dependency_versions": {
+    "asgiref": "3.6.0",
+    "attrs": "22.2.0",
+    "blinker": "1.5",
+    "click": "8.1.3",
+    "exceptiongroup": "1.1.0",
+    "iniconfig": "2.0.0",
+    "itsdangerous": "2.1.2",
+    "jinja2": "3.1.2",
+    "markupsafe": "2.1.2",
+    "packaging": "23.0",
+    "pluggy": "1.0.0",
+    "pytest": "7.2.2",
+    "python-dotenv": "1.0.0",
+    "setuptools": "67.6.0",
+    "tomli": "2.0.1",
+    "werkzeug": "2.2.3",
+    "wheel": "0.38.4"
+  },
+  "error": null,
+  "finished_at_unix_ns": 1795838566023954591,
+  "isolated_python_mode": true,
+  "kind": "actual_pytest_observation",
+  "local_loopback_bind_probes": 0,
+  "network_attempts_blocked": 0,
+  "nonce": "ba7876a674f143878b88e7ee61bd1791",
+  "process_exit_requested": 0,
+  "project_origins_after": {
+    "flask": {
+      "path": "src/flask/__init__.py",
+      "scope": "workspace",
+      "sha256": "cb74621666b9ca1383af7591214a0e48917428a8b808d8d04cdbb8591bcc89a7"
+    },
+    "flask.app": {
+      "path": "src/flask/app.py",
+      "scope": "workspace",
+      "sha256": "d439102c7658f90f896556c557df89501f2c98ad498d6317453f10ef58508710"
+    },
+    "flask.blueprints": {
+      "path": "src/flask/blueprints.py",
+      "scope": "workspace",
+      "sha256": "9d296c3a0dffffbafd59ef15290a6d4c2061a470f3ad2b00709388d35d1dddc0"
+    },
+    "flask.cli": {
+      "path": "src/flask/cli.py",
+      "scope": "workspace",
+      "sha256": "a4b9a758e6defc6e3f640150761ee4830a8f3314579b8a1485a51206924c7aae"
+    },
+    "flask.config": {
+      "path": "src/flask/config.py",
+      "scope": "workspace",
+      "sha256": "584fd038985cd82c1ab2e6e7d9934cbbf99d0b9e25086ef15177567a3040188e"
+    },
+    "flask.ctx": {
+      "path": "src/flask/ctx.py",
+      "scope": "workspace",
+      "sha256": "6c611042e176fdc1ea67764d31e31e106f0738b2640e52fcf2ed810710ab45aa"
+    },
+    "flask.globals": {
+      "path": "src/flask/globals.py",
+      "scope": "workspace",
+      "sha256": "33342ac58f569f596c2c47eab863b37af7d3203134135a11aed845bdf28d3f3d"
+    },
+    "flask.helpers": {
+      "path": "src/flask/helpers.py",
+      "scope": "workspace",
+      "sha256": "efa15481302a200fabae2498f5e6ff9ae002906bd0ad9550b91a32269d4a4c1e"
+    },
+    "flask.json": {
+      "path": "src/flask/json/__init__.py",
+      "scope": "workspace",
+      "sha256": "a5db69a0ad9bd1bd6eed2c5bc777de33b55686c236d25d72180bdb616c5ac6f7"
+    },
+    "flask.json.provider": {
+      "path": "src/flask/json/provider.py",
+      "scope": "workspace",
+      "sha256": "43324b473bce7096def0847139f97a4f53f763326983a58f5a91f56cc83b04ea"
+    },
+    "flask.json.tag": {
+      "path": "src/flask/json/tag.py",
+      "scope": "workspace",
+      "sha256": "7f2b371c12ecb161ee300209b9371fd8ad1b0ada2c78f04a5c85804991048e75"
+    },
+    "flask.logging": {
+      "path": "src/flask/logging.py",
+      "scope": "workspace",
+      "sha256": "5989e0d1b2d3452fc226ba1c19c08b26989b1dfd65ca01c4fe983e2a8508438c"
+    },
+    "flask.scaffold": {
+      "path": "src/flask/scaffold.py",
+      "scope": "workspace",
+      "sha256": "12d4caff83fd4f57d51c2d29ec0a873508ac035f596a100d1729edccd18d04ac"
+    },
+    "flask.sessions": {
+      "path": "src/flask/sessions.py",
+      "scope": "workspace",
+      "sha256": "ebaa06944faff6269cf9e6f9e2d14ddc82c08c9d4579eb871d6c3df1455aa317"
+    },
+    "flask.signals": {
+      "path": "src/flask/signals.py",
+      "scope": "workspace",
+      "sha256": "1fb4300dc88af9db41c629e32a97b1a6094fd04ea4d0c2482e21564c8b5f9aa5"
+    },
+    "flask.templating": {
+      "path": "src/flask/templating.py",
+      "scope": "workspace",
+      "sha256": "3591a3224d577b651e48697ef9ae9a8fff57c8f2f52dfcdf31bbaf055e04bc75"
+    },
+    "flask.testing": {
+      "path": "src/flask/testing.py",
+      "scope": "workspace",
+      "sha256": "af8e2e80145fdf669988c666bbdb1e617713cc1cb538899ca636835c76d36177"
+    },
+    "flask.typing": {
+      "path": "src/flask/typing.py",
+      "scope": "workspace",
+      "sha256": "2a0c5e81317dbfd5afba89e0785f0ba2822fa593dabb31ababd6577f78019587"
+    },
+    "flask.wrappers": {
+      "path": "src/flask/wrappers.py",
+      "scope": "workspace",
+      "sha256": "7a5ded9f52e049457478d1a060c8ca2024f923ba862606e9221bdc8b89ebc10f"
+    }
+  },
+  "project_origins_before": {
+    "flask": {
+      "path": "src/flask/__init__.py",
+      "scope": "workspace",
+      "sha256": "cb74621666b9ca1383af7591214a0e48917428a8b808d8d04cdbb8591bcc89a7"
+    },
+    "flask.app": {
+      "path": "src/flask/app.py",
+      "scope": "workspace",
+      "sha256": "d439102c7658f90f896556c557df89501f2c98ad498d6317453f10ef58508710"
+    },
+    "flask.blueprints": {
+      "path": "src/flask/blueprints.py",
+      "scope": "workspace",
+      "sha256": "9d296c3a0dffffbafd59ef15290a6d4c2061a470f3ad2b00709388d35d1dddc0"
+    },
+    "flask.cli": {
+      "path": "src/flask/cli.py",
+      "scope": "workspace",
+      "sha256": "a4b9a758e6defc6e3f640150761ee4830a8f3314579b8a1485a51206924c7aae"
+    },
+    "flask.config": {
+      "path": "src/flask/config.py",
+      "scope": "workspace",
+      "sha256": "584fd038985cd82c1ab2e6e7d9934cbbf99d0b9e25086ef15177567a3040188e"
+    },
+    "flask.ctx": {
+      "path": "src/flask/ctx.py",
+      "scope": "workspace",
+      "sha256": "6c611042e176fdc1ea67764d31e31e106f0738b2640e52fcf2ed810710ab45aa"
+    },
+    "flask.globals": {
+      "path": "src/flask/globals.py",
+      "scope": "workspace",
+      "sha256": "33342ac58f569f596c2c47eab863b37af7d3203134135a11aed845bdf28d3f3d"
+    },
+    "flask.helpers": {
+      "path": "src/flask/helpers.py",
+      "scope": "workspace",
+      "sha256": "efa15481302a200fabae2498f5e6ff9ae002906bd0ad9550b91a32269d4a4c1e"
+    },
+    "flask.json": {
+      "path": "src/flask/json/__init__.py",
+      "scope": "workspace",
+      "sha256": "a5db69a0ad9bd1bd6eed2c5bc777de33b55686c236d25d72180bdb616c5ac6f7"
+    },
+    "flask.json.provider": {
+      "path": "src/flask/json/provider.py",
+      "scope": "workspace",
+      "sha256": "43324b473bce7096def0847139f97a4f53f763326983a58f5a91f56cc83b04ea"
+    },
+    "flask.json.tag": {
+      "path": "src/flask/json/tag.py",
+      "scope": "workspace",
+      "sha256": "7f2b371c12ecb161ee300209b9371fd8ad1b0ada2c78f04a5c85804991048e75"
+    },
+    "flask.logging": {
+      "path": "src/flask/logging.py",
+      "scope": "workspace",
+      "sha256": "5989e0d1b2d3452fc226ba1c19c08b26989b1dfd65ca01c4fe983e2a8508438c"
+    },
+    "flask.scaffold": {
+      "path": "src/flask/scaffold.py",
+      "scope": "workspace",
+      "sha256": "12d4caff83fd4f57d51c2d29ec0a873508ac035f596a100d1729edccd18d04ac"
+    },
+    "flask.sessions": {
+      "path": "src/flask/sessions.py",
+      "scope": "workspace",
+      "sha256": "ebaa06944faff6269cf9e6f9e2d14ddc82c08c9d4579eb871d6c3df1455aa317"
+    },
+    "flask.signals": {
+      "path": "src/flask/signals.py",
+      "scope": "workspace",
+      "sha256": "1fb4300dc88af9db41c629e32a97b1a6094fd04ea4d0c2482e21564c8b5f9aa5"
+    },
+    "flask.templating": {
+      "path": "src/flask/templating.py",
+      "scope": "workspace",
+      "sha256": "3591a3224d577b651e48697ef9ae9a8fff57c8f2f52dfcdf31bbaf055e04bc75"
+    },
+    "flask.typing": {
+      "path": "src/flask/typing.py",
+      "scope": "workspace",
+      "sha256": "2a0c5e81317dbfd5afba89e0785f0ba2822fa593dabb31ababd6577f78019587"
+    },
+    "flask.wrappers": {
+      "path": "src/flask/wrappers.py",
+      "scope": "workspace",
+      "sha256": "7a5ded9f52e049457478d1a060c8ca2024f923ba862606e9221bdc8b89ebc10f"
+    }
+  },
+  "pth_processing_disabled": true,
+  "pytest_exit_code": 0,
+  "pytest_finished": true,
+  "pytest_started": true,
+  "python_version": [
+    3,
+    10,
+    16
+  ],
+  "reports": [
+    {
+      "duration_seconds": 0.00352451300022949,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_specific_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.003885213000103249,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_specific_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00018848699983209372,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_specific_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0011834269989776658,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_specific_user_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0015236369999911403,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_specific_user_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012503300058597233,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_specific_user_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.001114595999752055,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_app_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0014723410004080506,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_app_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012495299961301498,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_app_error_handling",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.001039365999531583,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[-/-/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0007490589996450581,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[-/-/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00018163599997933488,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[-/-/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010369620013079839,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/--/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.001479912001741468,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/--/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001826780007831985,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/--/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0012731290007650387,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/-/-/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0009407510005985387,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/-/-/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00015193299987004139,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/-/-/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010885070005315356,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo--/foo]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0007705520001763944,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo--/foo]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013630000103148632,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo--/foo]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.001061288001437788,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/--/foo/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0009669089995441027,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/--/foo/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00014085600014368538,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/--/foo/]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.000995361000605044,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[-/bar-/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0011032599995814962,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[-/bar-/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013932500041846652,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[-/bar-/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0011365280006430112,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0009124799998971866,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00018438100050843786,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010313330003555166,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0007862540005589835,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00016891800078155939,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.001118350999604445,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0009727579999889713,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00017067000044335146,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010276680004608352,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-//bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0010014700001192978,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-//bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013624999883177225,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo/-//bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009592080004949821,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo//-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0008317399988300167,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo//-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001386439998896094,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_prefix_slash[/foo//-/bar-/foo/bar]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009352430006401846,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_url_defaults",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.002393943999777548,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_url_defaults",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001259950004168786,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_url_defaults",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010283989995514276,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_url_processors",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.001980766999622574,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_url_processors",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00026925500060315244,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_url_processors",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.00027022600079362746,
+      "nodeid": "tests/test_blueprints.py::test_templates_and_static",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.013893732999349595,
+      "nodeid": "tests/test_blueprints.py::test_templates_and_static",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00018708400057221297,
+      "nodeid": "tests/test_blueprints.py::test_templates_and_static",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.002344040000025416,
+      "nodeid": "tests/test_blueprints.py::test_default_static_max_age",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00175380399923597,
+      "nodeid": "tests/test_blueprints.py::test_default_static_max_age",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0004934640001010848,
+      "nodeid": "tests/test_blueprints.py::test_default_static_max_age",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0003594370009523118,
+      "nodeid": "tests/test_blueprints.py::test_templates_list",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0030696249996253755,
+      "nodeid": "tests/test_blueprints.py::test_templates_list",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.000232651998885558,
+      "nodeid": "tests/test_blueprints.py::test_templates_list",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0013125670011504553,
+      "nodeid": "tests/test_blueprints.py::test_dotted_name_not_allowed",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00011862400060635991,
+      "nodeid": "tests/test_blueprints.py::test_dotted_name_not_allowed",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001718419989629183,
+      "nodeid": "tests/test_blueprints.py::test_dotted_name_not_allowed",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.001244346998646506,
+      "nodeid": "tests/test_blueprints.py::test_dotted_names_from_app",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0013510429998859763,
+      "nodeid": "tests/test_blueprints.py::test_dotted_names_from_app",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013110200052324217,
+      "nodeid": "tests/test_blueprints.py::test_dotted_names_from_app",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0011270340000919532,
+      "nodeid": "tests/test_blueprints.py::test_empty_url_defaults",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.001688598998953239,
+      "nodeid": "tests/test_blueprints.py::test_empty_url_defaults",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013046200001554098,
+      "nodeid": "tests/test_blueprints.py::test_empty_url_defaults",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009598990000085905,
+      "nodeid": "tests/test_blueprints.py::test_route_decorator_custom_endpoint",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.004601894999723299,
+      "nodeid": "tests/test_blueprints.py::test_route_decorator_custom_endpoint",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013272500109451357,
+      "nodeid": "tests/test_blueprints.py::test_route_decorator_custom_endpoint",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.000963294000030146,
+      "nodeid": "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00015736099885543808,
+      "nodeid": "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001146889990195632,
+      "nodeid": "tests/test_blueprints.py::test_route_decorator_custom_endpoint_with_dots",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009111479994317051,
+      "nodeid": "tests/test_blueprints.py::test_endpoint_decorator",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0013965699999971548,
+      "nodeid": "tests/test_blueprints.py::test_endpoint_decorator",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00016476199925818946,
+      "nodeid": "tests/test_blueprints.py::test_endpoint_decorator",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0008349550007551443,
+      "nodeid": "tests/test_blueprints.py::test_template_filter",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00015069099936226849,
+      "nodeid": "tests/test_blueprints.py::test_template_filter",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001056849996530218,
+      "nodeid": "tests/test_blueprints.py::test_template_filter",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010105430010298733,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0001314429991907673,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012619500012078788,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009213320008711889,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00013681100062967744,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00010689699956856202,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.000809268000011798,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00012823799988836981,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00010940999891317915,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0008927609997044783,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0016880570001376327,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001258750016859267,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0008980680013337405,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_after_route_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0015829730000405107,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_after_route_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00022368800091498997,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_after_route_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.000889265000296291,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0012586480006575584,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012755799980368465,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.001060827000401332,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0014399530009541195,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012786799925379455,
+      "nodeid": "tests/test_blueprints.py::test_template_filter_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0012425940003595315,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0014930319994164165,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001300510011787992,
+      "nodeid": "tests/test_blueprints.py::test_add_template_filter_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.000878629998624092,
+      "nodeid": "tests/test_blueprints.py::test_template_test",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00013398700139077846,
+      "nodeid": "tests/test_blueprints.py::test_template_test",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00010857900088012684,
+      "nodeid": "tests/test_blueprints.py::test_template_test",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009508559996902477,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0001333660002273973,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00010534400098549668,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.00098933300068893,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00021663799998350441,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001133759997173911,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009891209992929362,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0001336860004812479,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00018249800086778123,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_name",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.001047808000294026,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0014251519987737993,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013084199963486753,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009310259993071668,
+      "nodeid": "tests/test_blueprints.py::test_template_test_after_route_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0016035230000852607,
+      "nodeid": "tests/test_blueprints.py::test_template_test_after_route_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012992099982511718,
+      "nodeid": "tests/test_blueprints.py::test_template_test_after_route_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0008761859990045195,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0013738270008616382,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0001353289990220219,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010567919998720754,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0014837779999652412,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012453300041670445,
+      "nodeid": "tests/test_blueprints.py::test_template_test_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010541070005274378,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0015216039992083097,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013766200027021114,
+      "nodeid": "tests/test_blueprints.py::test_add_template_test_with_name_and_template",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010925940005108714,
+      "nodeid": "tests/test_blueprints.py::test_context_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.002851656001439551,
+      "nodeid": "tests/test_blueprints.py::test_context_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00016385999879275914,
+      "nodeid": "tests/test_blueprints.py::test_context_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0008677940004417906,
+      "nodeid": "tests/test_blueprints.py::test_template_global",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0005704580016754335,
+      "nodeid": "tests/test_blueprints.py::test_template_global",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00011021200043614954,
+      "nodeid": "tests/test_blueprints.py::test_template_global",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009002719998534303,
+      "nodeid": "tests/test_blueprints.py::test_request_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0010144589996343711,
+      "nodeid": "tests/test_blueprints.py::test_request_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012436200086085591,
+      "nodeid": "tests/test_blueprints.py::test_request_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009061809996637749,
+      "nodeid": "tests/test_blueprints.py::test_app_request_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0011048520009353524,
+      "nodeid": "tests/test_blueprints.py::test_app_request_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012649599921132904,
+      "nodeid": "tests/test_blueprints.py::test_app_request_processing",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009014730003400473,
+      "nodeid": "tests/test_blueprints.py::test_app_url_processors",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0019524750005075475,
+      "nodeid": "tests/test_blueprints.py::test_app_url_processors",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012644500020542182,
+      "nodeid": "tests/test_blueprints.py::test_app_url_processors",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009119990008912282,
+      "nodeid": "tests/test_blueprints.py::test_nested_blueprint",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.004267583999535418,
+      "nodeid": "tests/test_blueprints.py::test_nested_blueprint",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00013858400052413344,
+      "nodeid": "tests/test_blueprints.py::test_nested_blueprint",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010518439994484652,
+      "nodeid": "tests/test_blueprints.py::test_nested_callback_order",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0023100809994502924,
+      "nodeid": "tests/test_blueprints.py::test_nested_callback_order",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00014433199976338074,
+      "nodeid": "tests/test_blueprints.py::test_nested_callback_order",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0012373059998935787,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-/child-None-None]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0011349859996698797,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-/child-None-None]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.0002174989986087894,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-/child-None-None]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.005025927001042874,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-None-None-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0010241740001220023,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-None-None-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00015707999955338892,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/parent-None-None-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010361910008214181,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[None-None-/parent-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.000846692999402876,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[None-None-/parent-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00016916800086619332,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[None-None-/parent-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0010088510007335572,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/other-/something-/parent-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.001091521999114775,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/other-/something-/parent-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00027533399952517357,
+      "nodeid": "tests/test_blueprints.py::test_nesting_url_prefixes[/other-/something-/parent-/child]",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0009216829985234654,
+      "nodeid": "tests/test_blueprints.py::test_nesting_subdomains",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0011048619999201037,
+      "nodeid": "tests/test_blueprints.py::test_nesting_subdomains",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012191899986646604,
+      "nodeid": "tests/test_blueprints.py::test_nesting_subdomains",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0011504089998197742,
+      "nodeid": "tests/test_blueprints.py::test_child_and_parent_subdomain",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0014384210007847287,
+      "nodeid": "tests/test_blueprints.py::test_child_and_parent_subdomain",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00012527400031103753,
+      "nodeid": "tests/test_blueprints.py::test_child_and_parent_subdomain",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.00115643800018006,
+      "nodeid": "tests/test_blueprints.py::test_unique_blueprint_names",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00017257299987250008,
+      "nodeid": "tests/test_blueprints.py::test_unique_blueprint_names",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00011559000085981097,
+      "nodeid": "tests/test_blueprints.py::test_unique_blueprint_names",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0011594209991017124,
+      "nodeid": "tests/test_blueprints.py::test_self_registration",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.00014949900105420966,
+      "nodeid": "tests/test_blueprints.py::test_self_registration",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.00011478799933684058,
+      "nodeid": "tests/test_blueprints.py::test_self_registration",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    },
+    {
+      "duration_seconds": 0.0015528100011579227,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_renaming",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "setup"
+    },
+    {
+      "duration_seconds": 0.0037534599996433826,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_renaming",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "call"
+    },
+    {
+      "duration_seconds": 0.001091731999622425,
+      "nodeid": "tests/test_blueprints.py::test_blueprint_renaming",
+      "outcome": "passed",
+      "was_xfail": false,
+      "when": "teardown"
+    }
+  ],
+  "schema_version": "p1-python-child-1",
+  "selected_tests": [
+    "tests/test_blueprints.py"
+  ]
+}

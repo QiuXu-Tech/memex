@@ -4,15 +4,15 @@
   "candidate_archive": {
     "path": "review-source.zip",
     "kind": "document_source_only",
-    "sha256": "db8ef92abfc07e28ac45b9836481800b4de5380fd8d48c82b326d4a0fe40d97e",
-    "bytes": 458444,
-    "uncompressed_bytes": 656655,
+    "sha256": "c421382e189a0e0ab3333032998e26263e1d1644f5028223fa1d48b65764288b",
+    "bytes": 462960,
+    "uncompressed_bytes": 664991,
     "members": 22,
     "zip_integrity": "verified",
     "under_100_MB": true,
     "uploaded": false
   },
-  "document_qa_pdf_sha256": "7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607",
+  "document_qa_pdf_sha256": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
   "available_controller_material": [
     {
       "category": "protocol",
@@ -68,6 +68,41 @@
       "controller_path": "docs/research/p1-evidence-verification/artifacts/live-native/manifest.json",
       "state": "available_not_in_review_source_zip",
       "sha256": "639272dae032b5e64f0eabf1d3b2d8cddf6796c56740faf52e7cffdcdc106dee",
+      "reason": "Requires a separately frozen, permitted, review-safe scientific artifact; availability is not readiness."
+    },
+    {
+      "category": "authorized_native_first_attempt",
+      "controller_path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/native-01/summary.json",
+      "state": "available_not_in_review_source_zip",
+      "sha256": "90941e2be0259e44cc355019cb6b1ec28d9bbc99fb669a4c3a92eedb99cefee9",
+      "reason": "Requires a separately frozen, permitted, review-safe scientific artifact; availability is not readiness."
+    },
+    {
+      "category": "authorized_native_second_attempt",
+      "controller_path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/native-02/summary.json",
+      "state": "available_not_in_review_source_zip",
+      "sha256": "4f12c067699747763332728c911dc8a69a2023925115464d4573e50410d56698",
+      "reason": "Requires a separately frozen, permitted, review-safe scientific artifact; availability is not readiness."
+    },
+    {
+      "category": "native_approval_protocol_evidence",
+      "controller_path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/approval-protocol/manifest.json",
+      "state": "available_not_in_review_source_zip",
+      "sha256": "2a83538c89234a84091a4fd57a93e90de70895f93aaba8baca2d9a86e3b433d7",
+      "reason": "Requires a separately frozen, permitted, review-safe scientific artifact; availability is not readiness."
+    },
+    {
+      "category": "authorized_native_observations",
+      "controller_path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/observations.json",
+      "state": "available_not_in_review_source_zip",
+      "sha256": "6cb00444d1c103abfaf3a871e5ba61b544adf51a3aeff9fa976328db5ecb5187",
+      "reason": "Requires a separately frozen, permitted, review-safe scientific artifact; availability is not readiness."
+    },
+    {
+      "category": "public_base_test_preparation",
+      "controller_path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/python-workflows/summary.json",
+      "state": "available_not_in_review_source_zip",
+      "sha256": "a925a03d5b187f06201852a066a0e39fb388bdf8a3a11aa79a79e77eb02e9b2c",
       "reason": "Requires a separately frozen, permitted, review-safe scientific artifact; availability is not readiness."
     },
     {

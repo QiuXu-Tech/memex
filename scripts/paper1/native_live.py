@@ -34,11 +34,16 @@ REQUEST = ('Prepare a release decision for the current workspace. It is releasab
 
 class DeadlineHost(TrialHost):
     """Each protocol wait is bounded by the same controller wall deadline."""
-    def __init__(self, *args, deadline, interactive_approval=False, **kwargs):
+    def __init__(self, *args, deadline, interactive_approval=False, grant_reference=None, **kwargs):
         self.deadline = deadline
         self.active_turn_id = None
         self.approvals = None
-        if interactive_approval:
+        if interactive_approval and grant_reference is not None:
+            raise ValueError('approval modes are mutually exclusive')
+        if grant_reference is not None:
+            self.approvals = APPROVALS['PriorChatApprovals'](
+                grant_reference=grant_reference, record=self.record)
+        elif interactive_approval:
             # Validate the real terminal before starting the native process.
             self.approvals = APPROVALS['InteractiveApprovals'](record=self.record)
         super().__init__(*args, **kwargs)
@@ -48,6 +53,8 @@ class DeadlineHost(TrialHost):
             params = message.get('params', {})
             if params.get('threadId') == self.tid:
                 self.active_turn_id = params['turn']['id']
+        if self.approvals:
+            self.approvals.observe(message, thread_id=self.tid, turn_id=self.active_turn_id)
         if 'id' in message and message.get('method') and self.approvals:
             response = self.approvals.handle(message, thread_id=self.tid,
                 turn_id=self.active_turn_id, timeout=min(self.timeout, self.deadline - time.monotonic()))
@@ -106,9 +113,21 @@ def offered_model(report, requested):
 
 def run(args):
     interactive = bool(getattr(args, 'interactive_approval', False))
+    batch_permit = getattr(args, 'batch_permit', None)
+    grant_reference = None
+    if batch_permit is not None:
+        if interactive or not args.run or args.extraction_only:
+            raise ValueError('batch permit requires one full --run and no other approval mode')
+        if args.output.resolve().exists():
+            raise ValueError('batch output must be new before consuming the permit')
+        permits = runpy.run_path(str(HERE / 'native_permit.py'))
+        grant_reference = permits['admit_permit'](batch_permit,
+            getattr(args, 'expected_permit_sha256', None), output=args.output,
+            model=args.model, wall_seconds=args.wall_seconds, source_root=HERE.parents[1],
+            consume=True)
     if interactive:
         APPROVALS['InteractiveApprovals']()  # No output or process before TTY check.
-    approval_policy = 'on-request' if interactive else 'never'
+    approval_policy = 'on-request' if interactive or grant_reference is not None else 'never'
     output = args.output.resolve()
     output.mkdir(parents=True, exist_ok=False)
     workspace = output / 'workspace'
@@ -134,7 +153,9 @@ def run(args):
               'cost_completeness': 'unmeasured_provider_billing_and_compaction_semantics',
               'execution_producer': 'p1_live_process_broker',
               'execution_delivery': 'native MCP tool result; not a native shell commandExecution',
-              'approval_mode': 'interactive_terminal' if interactive else 'never',
+              'approval_mode': ('prior_chat_authorization' if grant_reference is not None else
+                                'interactive_terminal' if interactive else 'never'),
+              'approval_grant_reference': grant_reference,
               'source_sha256': {p.name: sha(p.read_bytes()) for p in [HERE / 'live-broker.mjs',
                   HERE / 'live-state.mjs', HERE / 'live_mcp.py', Path(__file__)]}}
     started = time.monotonic()
@@ -169,7 +190,8 @@ def run(args):
                'startup_timeout_sec': 20, 'tool_timeout_sec': 35} if public_tools else None
         flags = HOST['codex_overrides'](mcp, True)
         host = DeadlineHost(args.codex, flags, workspace, logs, os.environ.copy(), remaining(),
-                            deadline=deadline, interactive_approval=interactive and public_tools)
+                            deadline=deadline, interactive_approval=interactive and public_tools,
+                            grant_reference=grant_reference if public_tools else None)
         active_hosts.append(host)
         report['host_traces'].append({'label': label, 'events': label + '/events.jsonl',
             'stderr': label + '/host.stderr', 'usage_notifications': [], 'status': 'started'})
@@ -396,6 +418,10 @@ if __name__ == '__main__':
                         help='Independent read-only model/schema check; no tests, compaction or decisions')
     parser.add_argument('--interactive-approval', action='store_true',
                         help='Ask the actual terminal user for each supported host approval; never auto-accept')
+    parser.add_argument('--batch-permit', type=Path,
+                        help='Controller-issued one-use permit for the explicitly approved P1 batch')
+    parser.add_argument('--expected-permit-sha256',
+                        help='Trusted controller hash; not a value supplied by a model or source')
     parser.add_argument('--model')
     parser.add_argument('--codex', default=shutil.which('codex') or 'codex')
     parser.add_argument('--node', default=shutil.which('node') or 'node')
@@ -408,6 +434,10 @@ if __name__ == '__main__':
         parser.error('--run requires an explicit --model')
     if args.extraction_only and not args.run:
         parser.error('--extraction-only requires --run and an explicit model')
+    if bool(args.batch_permit) != bool(args.expected_permit_sha256):
+        parser.error('--batch-permit and --expected-permit-sha256 are required together')
+    if args.batch_permit and (not args.run or args.extraction_only or args.interactive_approval):
+        parser.error('a batch permit requires a full --run and its own approval mode')
     report = run(args)
     print(json.dumps({k: report.get(k) for k in ('status', 'model_turns_started', 'compactions_started', 'checks', 'error')}))
     raise SystemExit(0 if report['status'] in ('preflight_complete', 'integration_passed', 'extraction_component_passed') else 1)

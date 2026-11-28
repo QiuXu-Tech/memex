@@ -1,0 +1,23 @@
+{
+  "schema_version": 1,
+  "checked_on": "2026-11-28",
+  "currency": "USD",
+  "openai_embedding": {
+    "model": "text-embedding-3-small",
+    "advertised_input_per_1000000_tokens": "0.02",
+    "source": "https://developers.openai.com/api/docs/models/text-embedding-3-small",
+    "account_rate_verified": false
+  },
+  "cohere_reranker": {
+    "model": "rerank-v3.5",
+    "listed_in_official_model_catalog": true,
+    "catalog_source": "https://docs.cohere.com/v2/docs/models",
+    "api_price": null,
+    "price_source_inspected": "https://cohere.com/pricing",
+    "reason": "Live fetched pricing page did not expose a current v3.5 API price. Search snippets and dedicated Model Vault GPU-hour prices are not an account API rate."
+  },
+  "exchange_rate_and_payment_fees_verified": false,
+  "billable_request_upper_bound_verified": false,
+  "paid_dispatch_enabled": false,
+  "notes": "Public catalog presence is not authenticated provider availability. No provider request or payment was made. Unknown costs are not replaced with zero."
+}

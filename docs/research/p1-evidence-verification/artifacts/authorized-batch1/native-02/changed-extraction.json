@@ -1,0 +1,66 @@
+{
+  "elapsedMs": 0.011500000022351742,
+  "promptSha256": "7028d00ee163e0aa005e3d30b65b61a6456967af264792a5021147392afed3e9",
+  "extractionPolicy": "observable-obligations-v2",
+  "usage": null,
+  "coverageEstablished": false,
+  "ok": true,
+  "claims": [
+    {
+      "type": "current_version",
+      "scope": "live-development",
+      "entity": "current workspace artifact",
+      "version": "0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4",
+      "basis": {
+        "field": "context",
+        "quote": "Current artifact digest: 0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4"
+      },
+      "uncertainty": [
+        "The digest is supplied in context but has not been independently read back."
+      ],
+      "proposalId": "p1-c141d2745192"
+    },
+    {
+      "type": "test_result",
+      "scope": "live-development",
+      "entity": "node --test --test-reporter=tap checks.test.mjs",
+      "version": "0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4",
+      "basis": {
+        "field": "request",
+        "quote": "It is releasable only if the configured test command passes for the current artifact."
+      },
+      "uncertainty": [
+        "No test result or receipt was supplied.",
+        "Independent source checks are required.",
+        "The required receipt event ID is unknown."
+      ],
+      "proposalId": "p2-94c568716780"
+    },
+    {
+      "type": "operation_authorization",
+      "scope": "current workspace",
+      "entity": "release decision",
+      "version": "0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4",
+      "actor": null,
+      "action": "decide whether to release or hold",
+      "basis": {
+        "field": "request",
+        "quote": "Decide whether to release or hold and cite the test receipt event ID."
+      },
+      "uncertainty": [
+        "The authorized actor is not identified.",
+        "The request authorizes a decision, but does not clearly authorize an actual external release.",
+        "A release decision is conditional on verified test success for the current artifact."
+      ],
+      "proposalId": "p3-2ac638d8ba9e"
+    }
+  ],
+  "unresolved": [
+    "No configured-test execution result has been supplied for artifact digest 0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4.",
+    "No test receipt event ID has been supplied, so the required citation cannot yet be established.",
+    "The context explicitly requires independent source checks for any test results.",
+    "The actor authorized to make or record the decision is not identified.",
+    "It is ambiguous whether the requested action is only a simulated release/hold decision or authorization for an actual external release."
+  ],
+  "rawOutput": "{\"claims\":[{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"current workspace artifact\",\"version\":\"0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\",\"basis\":{\"field\":\"context\",\"quote\":\"Current artifact digest: 0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\"},\"uncertainty\":[\"The digest is supplied in context but has not been independently read back.\"]},{\"type\":\"test_result\",\"scope\":\"live-development\",\"entity\":\"node --test --test-reporter=tap checks.test.mjs\",\"version\":\"0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\",\"basis\":{\"field\":\"request\",\"quote\":\"It is releasable only if the configured test command passes for the current artifact.\"},\"uncertainty\":[\"No test result or receipt was supplied.\",\"Independent source checks are required.\",\"The required receipt event ID is unknown.\"]},{\"type\":\"operation_authorization\",\"scope\":\"current workspace\",\"entity\":\"release decision\",\"version\":\"0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4\",\"actor\":null,\"action\":\"decide whether to release or hold\",\"basis\":{\"field\":\"request\",\"quote\":\"Decide whether to release or hold and cite the test receipt event ID.\"},\"uncertainty\":[\"The authorized actor is not identified.\",\"The request authorizes a decision, but does not clearly authorize an actual external release.\",\"A release decision is conditional on verified test success for the current artifact.\"]}],\"unresolved\":[\"No configured-test execution result has been supplied for artifact digest 0eefaf784f0f57afb88360515698ac9a4bd8dd4235f0930883b4b249283324b4.\",\"No test receipt event ID has been supplied, so the required citation cannot yet be established.\",\"The context explicitly requires independent source checks for any test results.\",\"The actor authorized to make or record the decision is not identified.\",\"It is ambiguous whether the requested action is only a simulated release/hold decision or authorization for an actual external release.\"]}"
+}

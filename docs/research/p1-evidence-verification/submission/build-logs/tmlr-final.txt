@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=tmlr-format 2026.11.28)  28 NOV 2026 10:05
+This is pdfTeX, Version 3.141592653-2.6-1.40.26 (TeX Live 2025/dev/Debian) (preloaded format=tmlr-format 2026.11.28)  28 NOV 2026 12:07
 entering extended mode
  file:line:error style messages enabled.
  %&-line parsing enabled.
@@ -477,7 +477,7 @@ File: l3backend-pdftex.def 2024-05-08 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count332
 \l__pdf_internal_box=\box68
 )
-(/tmp/tmlr-review-build-jekr18nt/main.aux)
+(/tmp/tmlr-review-build-csdhk95c/main.aux)
 \openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 19.
@@ -514,8 +514,8 @@ LaTeX Font Info:    ... okay on input line 19.
 \everyMPtoPDFconversion=\toks27
 )
 Package hyperref Info: Link coloring OFF on input line 19.
- (/tmp/tmlr-review-build-jekr18nt/main.out)
-(/tmp/tmlr-review-build-jekr18nt/main.out)
+ (/tmp/tmlr-review-build-csdhk95c/main.out)
+(/tmp/tmlr-review-build-csdhk95c/main.out)
 \@outlinefile=\write4
 \openout4 = `main.out'.
 
@@ -574,7 +574,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  (./abstract.tex)
 (./status.tex) (./body.tex
 
-[1{/tmp/tmlr-review-build-jekr18nt/pdftex.map}{/usr/share/texmf/fonts/enc/dvips
+[1{/tmp/tmlr-review-build-csdhk95c/pdftex.map}{/usr/share/texmf/fonts/enc/dvips
 /lm/lm-ec.enc}
 
 ]
@@ -606,19 +606,18 @@ vips/lm/lm-mathsy.enc}]
 [9]
 
 [10]
-Underfull \vbox (badness 10000) has occurred while \output is active []
-
-
 
 [11]
 
-[12] [13]
+[12]
+
+[13]
 
 [14]
 
 [15{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathex.enc}]
 LaTeX Font Info:    Trying to load font information for TS1+lmr on input line 1
-169.
+208.
 
 (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -626,7 +625,7 @@ File: ts1lmr.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 
 [16]
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
-(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1234.
+(Font)              Font shape `T1/lmtt/b/n' tried instead on input line 1273.
 
 
 [17]
@@ -635,7 +634,7 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 
 [19])
 
-[20] (/tmp/tmlr-review-build-jekr18nt/main.bbl
+[20] (/tmp/tmlr-review-build-csdhk95c/main.bbl
 
 [21
 
@@ -647,9 +646,9 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <10> not available
 
 ] [24]
 
-[25])
+[25] [26])
 
-[26] (/tmp/tmlr-review-build-jekr18nt/main.aux)
+[27] (/tmp/tmlr-review-build-csdhk95c/main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -658,9 +657,9 @@ Package rerunfilecheck Info: File `main.out' has not changed.
 (rerunfilecheck)             Checksum: 1F0737655C8BCFA82C8B748687CAADE0;8977.
  ) 
 Here is how much of TeX's memory you used:
- 13006 strings out of 475191
- 202001 string characters out of 5766792
- 617498 words of memory out of 5000000
+ 13007 strings out of 475191
+ 202008 string characters out of 5766792
+ 616498 words of memory out of 5000000
  35661 multiletter control sequences out of 15000+600000
  624338 words of font info for 83 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
@@ -675,11 +674,11 @@ s/type1/public/lm/lmri10.pfb></usr/share/texmf/fonts/type1/public/lm/lmssbx10.p
 fb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fonts/t
 ype1/public/lm/lmsy5.pfb></usr/share/texmf/fonts/type1/public/lm/lmtk10.pfb></u
 sr/share/texmf/fonts/type1/public/lm/lmtt10.pfb>
-Output written on /tmp/tmlr-review-build-jekr18nt/main.pdf (26 pages, 365384 by
+Output written on /tmp/tmlr-review-build-csdhk95c/main.pdf (27 pages, 367831 by
 tes).
 PDF statistics:
- 533 PDF objects out of 1000 (max. 8388607)
- 466 compressed objects within 5 object streams
- 114 named destinations out of 1000 (max. 500000)
+ 538 PDF objects out of 1000 (max. 8388607)
+ 470 compressed objects within 5 object streams
+ 115 named destinations out of 1000 (max. 500000)
  321 words of extra memory for PDF output out of 10000 (max. 10000000)
 

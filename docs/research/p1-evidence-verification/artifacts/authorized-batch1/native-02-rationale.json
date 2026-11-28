@@ -1,0 +1,10 @@
+{
+  "kind": "bounded_native_retry_rationale",
+  "previous_attempt": "native-01",
+  "next_attempt": "native-02",
+  "observed_failure": "responseStreamDisconnected / request timed out, repeated native reconnect notices; reasoning item only arrived immediately before the 120-second wait expired",
+  "change": "Increase per-protocol-wait timeout from 120 to 180 seconds within unchanged 480-second controller wall limit",
+  "new_model_or_permission": false,
+  "additional_attempts_after_native_02": 0,
+  "billing_or_quota_exhaustion_observed": false
+}

@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "status": "REBUILT_DOCUMENT_SOURCE_ONLY_NOT_READY",
-  "archive_sha256": "db8ef92abfc07e28ac45b9836481800b4de5380fd8d48c82b326d4a0fe40d97e",
+  "archive_sha256": "c421382e189a0e0ab3333032998e26263e1d1644f5028223fa1d48b65764288b",
   "extracted_members": 22,
   "outside_project_directory": true,
   "original_project_files_required": false,
@@ -22,20 +22,20 @@
     ]
   ],
   "exit_code": 0,
-  "pages": 26,
+  "pages": 27,
   "checks": {
     "page_count_equal": true,
     "page_text_equal": true,
     "page_sizes_equal": true,
     "all_page_pixels_equal": true
   },
-  "original_pdf_sha256": "7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607",
-  "rebuilt_pdf_sha256": "f9bc20b9c76df4e596c8968ed0dfb22346f7a9000a482b7699d553f7cd83fea1",
+  "original_pdf_sha256": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
+  "rebuilt_pdf_sha256": "e6729298cd70d2e08b5b183c35dc42c45abe7ef7f9f1ee9ee7380bdb5880835a",
   "compiler_checks": {
     "undefined_citations": 0,
     "missing_characters": 0,
     "overfull_boxes": 0,
-    "underfull_boxes": 1,
+    "underfull_boxes": 0,
     "rerun_requests": 0
   },
   "comparison_limit": "Same installed TeX environment; creation metadata may differ. This verifies document reproduction, not an empirical study.",

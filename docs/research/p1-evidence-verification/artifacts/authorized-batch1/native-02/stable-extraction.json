@@ -1,0 +1,66 @@
+{
+  "elapsedMs": 0.06416700000409037,
+  "promptSha256": "a3afe92dfc8dd484489f214ab9d8055c5ddb690e1cb3b65d069f20bd13e6b9c1",
+  "extractionPolicy": "observable-obligations-v2",
+  "usage": null,
+  "coverageEstablished": false,
+  "ok": true,
+  "claims": [
+    {
+      "type": "current_version",
+      "scope": "live-development",
+      "entity": "current workspace artifact",
+      "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "basis": {
+        "field": "context",
+        "quote": "Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9"
+      },
+      "uncertainty": [
+        "The digest is supplied by context and has not been independently read back from the workspace."
+      ],
+      "proposalId": "p1-fa550fe9301f"
+    },
+    {
+      "type": "test_result",
+      "scope": "live-development",
+      "entity": "node --test --test-reporter=tap checks.test.mjs",
+      "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "basis": {
+        "field": "request",
+        "quote": "It is releasable only if the configured test command passes for the current artifact."
+      },
+      "uncertainty": [
+        "This is a required decision prerequisite, not an assertion that the tests passed.",
+        "No test result or receipt event ID was supplied.",
+        "The result requires an independent source check."
+      ],
+      "proposalId": "p2-80ca6ada56fe"
+    },
+    {
+      "type": "operation_authorization",
+      "scope": "live-development",
+      "entity": "release decision",
+      "version": "7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9",
+      "actor": null,
+      "action": "decide whether to release or hold",
+      "basis": {
+        "field": "request",
+        "quote": "Decide whether to release or hold"
+      },
+      "uncertainty": [
+        "The authorized actor is not identified.",
+        "Any release outcome is conditional on verified test success for the current artifact.",
+        "The observable text authorizes preparing a decision, not an external production release."
+      ],
+      "proposalId": "p3-3fade1908508"
+    }
+  ],
+  "unresolved": [
+    "No verified test outcome is supplied for node --test --test-reporter=tap checks.test.mjs against artifact 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9.",
+    "No test receipt event ID is supplied, so the requested citation cannot yet be established.",
+    "The actor authorized to decide or record the release decision is not identified.",
+    "The current artifact digest has not been independently verified against the workspace.",
+    "It is not established whether recording a simulated decision is required or whether only preparing the decision is requested."
+  ],
+  "rawOutput": "{\"claims\":[{\"type\":\"current_version\",\"scope\":\"live-development\",\"entity\":\"current workspace artifact\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"context\",\"quote\":\"Current artifact digest: 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\"},\"uncertainty\":[\"The digest is supplied by context and has not been independently read back from the workspace.\"]},{\"type\":\"test_result\",\"scope\":\"live-development\",\"entity\":\"node --test --test-reporter=tap checks.test.mjs\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"basis\":{\"field\":\"request\",\"quote\":\"It is releasable only if the configured test command passes for the current artifact.\"},\"uncertainty\":[\"This is a required decision prerequisite, not an assertion that the tests passed.\",\"No test result or receipt event ID was supplied.\",\"The result requires an independent source check.\"]},{\"type\":\"operation_authorization\",\"scope\":\"live-development\",\"entity\":\"release decision\",\"version\":\"7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9\",\"actor\":null,\"action\":\"decide whether to release or hold\",\"basis\":{\"field\":\"request\",\"quote\":\"Decide whether to release or hold\"},\"uncertainty\":[\"The authorized actor is not identified.\",\"Any release outcome is conditional on verified test success for the current artifact.\",\"The observable text authorizes preparing a decision, not an external production release.\"]}],\"unresolved\":[\"No verified test outcome is supplied for node --test --test-reporter=tap checks.test.mjs against artifact 7c5dedbd9a3a17d9709c4e91fdf76e251db60708d1cf157dfa1916a4f79c63a9.\",\"No test receipt event ID is supplied, so the requested citation cannot yet be established.\",\"The actor authorized to decide or record the release decision is not identified.\",\"The current artifact digest has not been independently verified against the workspace.\",\"It is not established whether recording a simulated decision is required or whether only preparing the decision is requested.\"]}"
+}

@@ -1,0 +1,104 @@
+{
+  "schema_version": 1,
+  "scope": "zero_generation_schema_export_and_static_source_analysis",
+  "installed_version": "codex-cli 0.153.0",
+  "upstream_tag": "rust-v0.153.0",
+  "upstream_tag_object": "6bc50f104dcc0192e696cdeae721dfc19b507391",
+  "upstream_commit": "41e22fee981a63b3698df7ed36bad393cda24715",
+  "schema_export_command": "codex app-server generate-json-schema --out <temporary-directory>",
+  "sources": [
+    {
+      "path": "codex-rs/core/src/mcp_tool_call.rs",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/mcp_tool_call.rs",
+      "sha256": "05accfcf9bf7855df31bd81fbe65f8beba53b86154cda0dc398bbf4c1cba0396",
+      "bytes": 84008,
+      "retained_line_ranges": [
+        [
+          256,
+          285
+        ],
+        [
+          1363,
+          1373
+        ],
+        [
+          1506,
+          1629
+        ],
+        [
+          1770,
+          1966
+        ],
+        [
+          1986,
+          2022
+        ],
+        [
+          2052,
+          2101
+        ],
+        [
+          2113,
+          2138
+        ]
+      ]
+    },
+    {
+      "path": "codex-rs/protocol/src/mcp_approval_meta.rs",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/protocol/src/mcp_approval_meta.rs",
+      "sha256": "d868ebe3dec2a355282b4333b90e7b611bf7c18b2644758fbb0338a104587a6a",
+      "bytes": 1534,
+      "retained_line_ranges": [
+        [
+          1,
+          26
+        ]
+      ]
+    },
+    {
+      "path": "codex-rs/core/src/mcp_tool_approval_templates.rs",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/core/src/mcp_tool_approval_templates.rs",
+      "sha256": "6a8991ede95404104850db6bb6e25be11f168b6a12a871244048a4d654641406",
+      "bytes": 12383,
+      "retained_line_ranges": [
+        [
+          21,
+          33
+        ]
+      ]
+    },
+    {
+      "path": "codex-rs/app-server/README.md",
+      "url": "https://github.com/openai/codex/blob/41e22fee981a63b3698df7ed36bad393cda24715/codex-rs/app-server/README.md",
+      "sha256": "1142bff07746d3b54dccf39fd84b58798ae609cd73fa26c82fa07743abc0395a",
+      "bytes": 207211,
+      "retained_line_ranges": [
+        [
+          1987,
+          2018
+        ]
+      ]
+    }
+  ],
+  "validation": {
+    "command": "python3 -B -m unittest discover -s test -p 'test_paper1_approvals.py'",
+    "exit_code": 0,
+    "tests_run": 32,
+    "tests_failed": 0,
+    "tests_errored": 0,
+    "diff_check_exit_code": 0,
+    "code_sha256": "1f63d0aedd024172f91e455ef4c64326aa6602ab3e754bebc693fab1590706c6",
+    "tests_sha256": "4be562b0831ebed396dc3dacfa76aa0373e196966fb68aa53bef69eab848ba70"
+  },
+  "model_generations_started_by_evidence_collection": 0,
+  "native_trials_started_by_evidence_collection": 0,
+  "live_host_approval_observed_by_evidence_collection": false,
+  "paper_experimental_outcome": false,
+  "controller_authorization_and_reservation_validation_required": true,
+  "approval_origins": [
+    "interactive_terminal",
+    "prior_chat_authorization"
+  ],
+  "identity_attested": false,
+  "native_item_started_precedes_approval_in_pinned_source": true
+}

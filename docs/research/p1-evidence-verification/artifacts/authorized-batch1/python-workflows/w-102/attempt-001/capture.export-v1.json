@@ -1,0 +1,149 @@
+{
+  "accepted_p1_task_count": 0,
+  "archive_created": false,
+  "attempt_id": "w-102-capture-001",
+  "elapsed_seconds": 0.8723611969999183,
+  "environment": {
+    "dependency_tree_sha256": "f73de1907acc42e112201ba02a43e3338536ebe0329c64797ef28ee61f27a2bf",
+    "interpreter_sha256": "510c9a7201c5c78c81774bc3bddaf434b8f037d6351714629a7177537253f704",
+    "mismatched_dependencies": [],
+    "observed_python_version": [
+      3,
+      10,
+      16
+    ],
+    "observed_versions": {
+      "attrs": "21.4.0",
+      "certifi": "2021.10.8",
+      "charset-normalizer": "2.0.12",
+      "idna": "3.3",
+      "iniconfig": "1.1.1",
+      "packaging": "21.3",
+      "pluggy": "1.0.0",
+      "py": "1.11.0",
+      "pyparsing": "3.0.9",
+      "pytest": "6.2.5",
+      "pytest-mock": "2.0.0",
+      "setuptools": "67.6.0",
+      "toml": "0.10.2",
+      "urllib3": "1.26.18",
+      "wheel": "0.38.4"
+    },
+    "os_isolation": false,
+    "pth_processing": "disabled_by_python_-I_-S",
+    "python_version_not_yet_executed": false,
+    "required_versions": {
+      "attrs": "21.4.0",
+      "certifi": "2021.10.8",
+      "charset-normalizer": "2.0.12",
+      "idna": "3.3",
+      "iniconfig": "1.1.1",
+      "packaging": "21.3",
+      "pluggy": "1.0.0",
+      "py": "1.11.0",
+      "pyparsing": "3.0.9",
+      "pytest": "6.2.5",
+      "pytest-mock": "2.0.0",
+      "setuptools": "67.6.0",
+      "toml": "0.10.2",
+      "urllib3": "1.26.18",
+      "wheel": "0.38.4"
+    },
+    "requirements_match": true,
+    "runtime_ready_for_formal_method": false
+  },
+  "evaluation": {
+    "current_workspace_bound": true,
+    "executed_snapshot_bound": true,
+    "reason": null,
+    "runtime_bound": true,
+    "status": "tests_passed",
+    "test_counts": {
+      "collected": 212,
+      "errors": 0,
+      "failed": 0,
+      "passed": 201,
+      "skipped": 11
+    }
+  },
+  "event_id": "w-102-capture-001-269bf0cf1e8b42d5b608d334af955d67",
+  "executed_snapshot_after_sha256": "7f36d34b2c1b1ee7b072a6bb7283cd4767f36fbf33196563dc1cc0a8af5581b8",
+  "execution_mode": "controller-only",
+  "external_network_permitted": false,
+  "fixed_tests": [
+    "tests/test_utils.py"
+  ],
+  "isolation_note": "Reviewed clean public source, empty inherited environment, explicit imports; not an OS security boundary.",
+  "kind": "controller_python_test_execution",
+  "method_attempts_reserved": 0,
+  "method_runtime_ready": false,
+  "model_requests": 0,
+  "model_visible_controller_files": false,
+  "native_compactions": 0,
+  "native_event_claimed": false,
+  "network_guard": "Python audit hook denies connections/DNS/sends; permits loopback port-zero bind probes; not an OS sandbox",
+  "observer_sha256": "d172977aa63a5e79f3a97e84b775189e2f3ffeaf9d8b875b109c8ce73639e8cc",
+  "os_isolation": false,
+  "plugins": [
+    "pytest_mock"
+  ],
+  "process": {
+    "elapsed_seconds": 0.6176725310015172,
+    "error": null,
+    "finished_at": "2026-11-28T04:02:47.187131+00:00",
+    "output_complete": true,
+    "output_limit_exceeded": false,
+    "returncode": 0,
+    "signal": null,
+    "spawned": true,
+    "started_at": "2026-11-28T04:02:46.569527+00:00",
+    "streams": {
+      "stderr": {
+        "bytes": 0,
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      },
+      "stdout": {
+        "bytes": 378,
+        "sha256": "a3d28dc9c148bea1a399426bfc773b0be9082f15a348c0776347ecc7cbf81208"
+      }
+    },
+    "timed_out": false
+  },
+  "provider_requests": 0,
+  "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+  "raw_streams_retained_in_controller_attempt": true,
+  "schema_version": "p1-python-workflow-capture-1",
+  "scientific_ready": false,
+  "scope_note": "Only the selected public tests are observed; a pass does not establish the requested fix or accepted P1 workflow.",
+  "sha256": "a5fa0508739236a507a913857d8f80a95d3f2c5cc3f8d10bdd1d3de8256e34ba",
+  "source_executions": 1,
+  "streams": {
+    "junit": {
+      "path": "pytest.junit.xml",
+      "published_sha256": "8599500efce1ac9de19f51682bd3ff917fb80809bdec3309b159d62fcfe7ec5a",
+      "raw_sha256": "268b2f52b8ba8a97480c82dd7cf03118597cfa18e70322c6879fa3a13e6af044",
+      "verbatim": false
+    },
+    "stderr": {
+      "path": "stderr.txt",
+      "published_bytes": 0,
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "raw_bytes": 0,
+      "raw_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "redaction": "known_controller_runtime_paths_and_host_name",
+      "verbatim": true
+    },
+    "stdout": {
+      "path": "stdout.txt",
+      "published_bytes": 358,
+      "published_sha256": "c19c34a398bec3847a589035541d84fb595e961f84235f35bbd850897c1e19dc",
+      "raw_bytes": 378,
+      "raw_sha256": "a3d28dc9c148bea1a399426bfc773b0be9082f15a348c0776347ecc7cbf81208",
+      "redaction": "known_controller_runtime_paths_and_host_name",
+      "verbatim": false
+    }
+  },
+  "task_id": "w-102",
+  "workspace_after_sha256": "7f36d34b2c1b1ee7b072a6bb7283cd4767f36fbf33196563dc1cc0a8af5581b8",
+  "workspace_before_sha256": "7f36d34b2c1b1ee7b072a6bb7283cd4767f36fbf33196563dc1cc0a8af5581b8"
+}

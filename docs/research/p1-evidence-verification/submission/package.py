@@ -84,6 +84,11 @@ def main() -> None:
         ("expanded_source_environment_qualification", "docs/research/p1-evidence-verification/tasks/reproduction-expansion/summary.json"),
         ("unaccepted_workflow_drafts", "docs/research/p1-evidence-verification/tasks/workflows/catalog.json"),
         ("blocked_live_components", "docs/research/p1-evidence-verification/artifacts/live-native/manifest.json"),
+        ("authorized_native_first_attempt", "docs/research/p1-evidence-verification/artifacts/authorized-batch1/native-01/summary.json"),
+        ("authorized_native_second_attempt", "docs/research/p1-evidence-verification/artifacts/authorized-batch1/native-02/summary.json"),
+        ("native_approval_protocol_evidence", "docs/research/p1-evidence-verification/artifacts/authorized-batch1/approval-protocol/manifest.json"),
+        ("authorized_native_observations", "docs/research/p1-evidence-verification/artifacts/authorized-batch1/observations.json"),
+        ("public_base_test_preparation", "docs/research/p1-evidence-verification/artifacts/authorized-batch1/python-workflows/summary.json"),
         ("readonly_native_development", "docs/research/p1-evidence-verification/artifacts/readonly-native/attempt-01/summary.json"),
         ("readonly_native_usage_audit", "docs/research/p1-evidence-verification/artifacts/readonly-native/usage-audit.json"),
     ]

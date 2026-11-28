@@ -1,10 +1,10 @@
 {
   "status": "DOCUMENT_QA_COMPLETE_NOT_READY",
-  "pdf_sha256": "ff21ec2c9b72ab26df0719416483b42e4e8cafe87f560416efea24a6f849331b",
-  "pages": 25,
-  "previous_pages": 24,
+  "pdf_sha256": "0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95",
+  "pages": 26,
+  "previous_pages": 25,
   "changed_pages": [
-    1,
+    10,
     11,
     12,
     13,
@@ -19,7 +19,8 @@
     22,
     23,
     24,
-    25
+    25,
+    26
   ],
   "references": 16,
   "pending": 56,
@@ -33,22 +34,32 @@
     "all_a4": true
   },
   "reference_start_pages": [
-    21
+    22
   ],
   "appendix_start_pages": [
-    22
+    23
   ],
   "outside_page_words": [],
   "render": {
+    "tool": "pdftoppm",
     "dpi": 110,
-    "pages_rendered": 25
+    "pages_rendered": 26
   },
   "visual_review": {
     "status": "INSPECTED",
     "reviewer": "AI assistant visual inspection; not an independent human review",
-    "checked_at_utc": "2026-11-28T02:06:49.253810+00:00",
+    "checked_at_utc": "2026-11-28T04:12:29.622309+00:00",
     "pages_inspected": [
       1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
       11,
       12,
       13,
@@ -63,10 +74,23 @@
       22,
       23,
       24,
-      25
+      25,
+      26
     ],
-    "method": "All 25 pages rendered. Compared text with the previously inspected 24-page draft; inspected all changed pages in contact sheets and the corrected limitation paragraph at full page.",
-    "observations": "No clipped text, overlap, missing glyphs, or broken mathematical notation observed."
+    "full_page_images_inspected": [
+      1,
+      11,
+      13,
+      25,
+      26
+    ],
+    "method": "Rendered every page at 110 dpi and visually inspected all pages in three contact sheets, then full-page images for the first page, new development observations, public-base capture paragraph, and appendix tables.",
+    "observations": "No clipped text, overlap, missing glyphs or broken formulas observed. New provenance paths wrap within their table cells."
   },
-  "scientific_readiness": "NOT_READY"
+  "scientific_readiness": "NOT_READY",
+  "reference_verification": {
+    "citeproc_bibitems": 16,
+    "unique_reference_page_links": 16
+  },
+  "machine_check_refinement": "Matched current citeproc bibitem syntax and case-insensitive first-page working-draft text; initial checker assumed a different anchor syntax and capitalization."
 }

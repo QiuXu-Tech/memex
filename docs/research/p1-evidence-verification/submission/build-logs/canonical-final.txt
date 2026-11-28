@@ -1,6 +1,5 @@
-This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2025/dev/Debian) (preloaded format=p1-xelatex 2026.11.28)  28 NOV 2026 10:05
+This is XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2025/dev/Debian) (preloaded format=p1-xelatex 2026.11.28)  28 NOV 2026 12:07
 entering extended mode
- restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
 **manuscript.tex
@@ -1016,7 +1015,8 @@ Package: xurl 2022/01/09 v 0.10 modify URL breaks
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 125.
 
-(/tmp/p1-final-canonical-e4pfdbgb/manuscript.aux
+(/workspace/scratch/d5292d3ebcac/tmp/pdfs/p1-batch1-docs-4fqe53dr/canonical-bui
+ld/manuscript.aux
 LaTeX Font Info:    Font shape `TU/LatinModernSans(0)/m/n' will be
 (Font)              scaled to size 10.62935pt on input line 3.
 LaTeX Font Info:    Font shape `TU/DejaVuSansMono(0)/m/n' will be
@@ -1500,7 +1500,9 @@ LaTeX Font Info:    Font shape `TU/LatinModernRoman(2)/m/n' will be
 [9]
 
 [10]
-Underfull \hbox (badness 1168) in paragraph at lines 971--984
+
+[11]
+Underfull \hbox (badness 1168) in paragraph at lines 1000--1013
 \TU/LatinModernRoman(2)/m/n/10.95 cases, for \TU/LatinModernRoman(2)/b/n/10.95 
 12 qualified sources out of 16 candidates across the eight projects\TU/LatinMod
 ernRoman(2)/m/n/10.95 .
@@ -1508,75 +1510,76 @@ ernRoman(2)/m/n/10.95 .
 
 
 
-[11]
-
 [12]
 
-[13]
-
-[14]
+[13] [14]
 
 [15]
-Underfull \hbox (badness 1762) in paragraph at lines 1346--1352
+
+[16]
+Underfull \hbox (badness 1762) in paragraph at lines 1385--1391
 \TU/LatinModernRoman(2)/m/n/10.95 source-search, opening, completeness, deliver
 y, and model-use failures with explicit
  []
 
-
-
-[16]
 LaTeX Font Info:    Font shape `TU/DejaVuSansMono(0)/b/n' will be
-(Font)              scaled to size 9.30756pt on input line 1396.
- [17]
+(Font)              scaled to size 9.30756pt on input line 1435.
 
-[18]
-Underfull \hbox (badness 1147) in paragraph at lines 1587--1588
+
+[17] [18]
+Underfull \hbox (badness 1147) in paragraph at lines 1626--1627
 \TU/LatinModernRoman(2)/m/n/10.95 empirical support. Its model-based developmen
 t evidence remains small, synthetic, and
  []
 
 
-Underfull \hbox (badness 3049) in paragraph at lines 1587--1588
+Underfull \hbox (badness 3049) in paragraph at lines 1626--1627
 \TU/LatinModernRoman(2)/m/n/10.95 structurally convenient. Live-state regressio
 n checks, recorded real-repository program
  []
 
 
-Underfull \hbox (badness 1540) in paragraph at lines 1651--1659
+
+[19]
+Underfull \hbox (badness 1540) in paragraph at lines 1690--1698
 \TU/LatinModernRoman(2)/m/n/10.95 The planned artifact contains source and depe
 ndency locks, task and license manifests,
  []
 
 
 
-[19]
-
 [20]
+
+[21]
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 10.0pt on input line 1700.
+(Font)              scaled to size 10.0pt on input line 1739.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.0pt on input line 1700.
+(Font)              scaled to size 7.0pt on input line 1739.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 1700.
+(Font)              scaled to size 10.00092pt on input line 1739.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 1700.
+(Font)              scaled to size 7.00064pt on input line 1739.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 1700.
+(Font)              scaled to size 9.99893pt on input line 1739.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 1700.
+(Font)              scaled to size 6.99925pt on input line 1739.
 LaTeX Font Info:    Font shape `TU/LatinModernRoman(2)/m/it' will be
-(Font)              scaled to size 10.0pt on input line 1727.
+(Font)              scaled to size 10.0pt on input line 1766.
 
-
-[21
-
-]
 
 [22
 
-] [23] [24]
+]
 
-[25] (/tmp/p1-final-canonical-e4pfdbgb/manuscript.aux)
+[23
+
+] [24]
+
+[25]
+
+[26]
+(/workspace/scratch/d5292d3ebcac/tmp/pdfs/p1-batch1-docs-4fqe53dr/canonical-bui
+ld/manuscript.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
@@ -1584,11 +1587,12 @@ L3 programming layer <2025-01-18>
  ) 
 Here is how much of TeX's memory you used:
  22480 strings out of 475865
- 420197 string characters out of 5775718
+ 420485 string characters out of 5775574
  1045416 words of memory out of 5000000
  45047 multiletter control sequences out of 15000+600000
  569533 words of font info for 161 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  90i,13n,122p,1007b,623s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on /tmp/p1-final-canonical-e4pfdbgb/manuscript.pdf (25 pages).
+Output written on /workspace/scratch/d5292d3ebcac/tmp/pdfs/p1-batch1-docs-4fqe5
+3dr/canonical-build/manuscript.pdf (26 pages).

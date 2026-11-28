@@ -17,6 +17,7 @@ The canonical research document remains [manuscript.md](manuscript.md). The new 
 | `submission/review-source.zip` | Frozen document-source archive with a manifest and retained licenses. | Candidate supplement; NOT READY, not uploaded. |
 | `submission/supplementary-manifest.json` | Included files plus explicitly excluded or unfinished study-material categories. | Does not claim a complete supplementary research package. |
 | `submission/qa-report.json` | PDF dimensions, citations/placeholders, metadata/link screening, rendering, and visual-review record. | Document QA, not venue acceptance. |
+| `submission/batch1-manuscript-sync.json` | Binds the added development observations to retained records and verifies unchanged formal sections. | Development provenance; no new paired effect result. |
 | `submission/zip-rebuild-report.json` | Actual extraction and recompilation outside the project directory, with page/text/pixel comparison. | Document reproduction only; no research outcome reproduced. |
 | `submission/policy-provenance.json` | Five official policy-page retrieval records with dates and hashes. | Rules were checked; account/form eligibility was not. |
 | `submission/COVER_LETTER.md` | Substantive cover-letter draft with honest missing-evidence fields. | NOT SENT; whether a letter field is required remains unverified. |
@@ -111,21 +112,23 @@ The canonical manuscript is retained as the expanded research record. This offic
 
 | Check | Observed result |
 |---|---|
-| Canonical expanded working PDF | 25 A4 pages; references page 21; appendices pages 22–25. |
-| Official default-review PDF | 26 US Letter pages; references pages 21–22; appendices pages 23–26. |
+| Canonical expanded working PDF | 26 A4 pages; references page 22; appendices pages 23–26. |
+| Official default-review PDF | 27 US Letter pages; references pages 21–22; appendices pages 23–27. |
 | References and result placeholders | Both PDFs retain 16 references and all 56 `PENDING` markers. |
-| Compiler diagnostics | Both have zero undefined citations, missing characters, overfull boxes, or unresolved rerun requests. Nonfatal underfull warnings: canonical 8, official 1. |
-| Rendering | All pages rendered at 110 dpi; all changed canonical pages and all official layouts inspected. The final path-wrap change affected only official page 25, which was inspected again. |
+| Compiler diagnostics | Both have zero undefined citations, missing characters, overfull boxes, or unresolved rerun requests. Nonfatal underfull warnings: canonical 8, official 0. |
+| Rendering | All 53 pages rendered at 110 dpi and inspected in contact sheets, with full-page checks of new observations, source tables, first-page status, formulas and code. The official final page has one complete table row and its repeated header; the white space is recorded in QA. |
 | Official assets | All six copied official/template-notice files match the pinned SHA-256 records; their inherited whitespace is preserved. |
 | Anonymous-source screening | Known direct project-owner identifiers, private path prefixes, and the legacy commit were absent from the review PDF text/metadata/links and included text source members. Human anonymity review remains unrecorded. |
-| Frozen document-source ZIP | 22 members; 458,444 compressed bytes and 656,655 uncompressed bytes; member bytes and ZIP integrity verified. |
-| Independent extracted build | Succeeded outside the project directory using only the ZIP and installed TeX dependencies; all 26 page texts, dimensions, and rendered pixels matched. |
+| Frozen document-source ZIP | 22 members; 462,960 compressed bytes and 664,991 uncompressed bytes; member bytes and ZIP integrity verified. |
+| Independent extracted build | Succeeded outside the project directory using only the ZIP and installed TeX dependencies; all 27 page texts, dimensions, and rendered pixels matched. |
+
+The current update adds bounded native retry observations and separate clean public-base test captures to the development record. It retains the earlier approval rejection as a historical event, records the later observed one-call approvals truthfully, and does not promote the timed-out changed continuation to a whole-run pass. The abstract, formal result section, limitations and conclusion remain unchanged. Newly inventoried native summaries, protocol evidence and public-base capture summary remain controller-side material outside the document-source ZIP.
 
 PDF byte identity is not asserted: the separately compiled PDF has different creation metadata. This is reproducibility in the same installed TeX environment, not a cross-platform typography guarantee. The full record is in `submission/zip-rebuild-report.json`; the original missing-font-map attempt and final compiler logs are retained in `submission/build-logs/`.
 
-Official PDF SHA-256: `7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607`.
+Official PDF SHA-256: `1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8`.
 
-Document-source ZIP SHA-256: `db8ef92abfc07e28ac45b9836481800b4de5380fd8d48c82b326d4a0fe40d97e`.
+Document-source ZIP SHA-256: `c421382e189a0e0ab3333032998e26263e1d1644f5028223fa1d48b65764288b`.
 
 ## 6. Exact remaining blockers
 

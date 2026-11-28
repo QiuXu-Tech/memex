@@ -1,0 +1,271 @@
+{
+  "accepted_p1_task_count": 0,
+  "authorization_evidence": {
+    "added_cash_cap": "100.00",
+    "added_cash_currency": "CNY",
+    "approved_method_units": 16,
+    "approved_native_attempts": 2,
+    "authorization_file_sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+    "batch_id": "p1-20261128-approved-batch1",
+    "host_approval_attested": false,
+    "human_identity_attested": false
+  },
+  "backend_contract": {
+    "A_supplemental_evidence_permitted": false,
+    "B_lexical_or_dummy_fallback_permitted": false,
+    "checkpoint_identity_fields": [
+      "task_id",
+      "replicate",
+      "public_sha256",
+      "workspace_snapshot_sha256",
+      "native_parent_thread_id",
+      "native_capture_sha256",
+      "native_compaction_item_id",
+      "source_archive_sha256",
+      "shared_reader_config_sha256"
+    ],
+    "controller_only_inputs": [
+      "authorization",
+      "schedule",
+      "source mappings",
+      "private evaluation",
+      "checkpoint admission receipts"
+    ],
+    "evaluator_supplied_claims_or_source_locations_permitted": false,
+    "host_or_OS_isolation_implemented_here": false,
+    "implementation_registered": false,
+    "model_visible_inputs": [
+      "detached verified public tree",
+      "shared original request",
+      "actual compacted parent",
+      "arm-produced evidence"
+    ],
+    "required_runtime_operations": [
+      "capture_actual_task_prelude_and_state_transition",
+      "normalize_python_executions_with_before_after_workspace_binding",
+      "admit_complete_original_archive_for_checkpoint",
+      "compact_actual_native_parent_and_retain_native_receipt",
+      "fork_same_unchanged_parent_for_all_four_arms",
+      "run_official_rawrag_with_original_request_for_B",
+      "extract_actual_proposals_without_evaluator_inputs_for_C_D",
+      "prime_and_verify_unchanged_receipts_for_D",
+      "deliver_full_method_packet_to_shared_reader_with_measured_budget",
+      "capture_actual_continuation_actions_and_usage_without_evaluator_access"
+    ],
+    "tokenizer_fallback_permitted": false
+  },
+  "cost": {
+    "actual_spend": null,
+    "note": "This preflight makes no provider calls; no cost is imputed for future work.",
+    "standardized_cost": null
+  },
+  "credential_access_verified": false,
+  "credentials_present": {
+    "RERANK_API_KEY": false,
+    "VECTORIZE_API_KEY": false
+  },
+  "kind": "zero_call_preflight",
+  "method_attempts_reserved": 0,
+  "model_requests": 0,
+  "native_compactions": 0,
+  "permission_note": "Recorded conversation scope is not native-host or human-identity attestation.",
+  "permissions_granted": true,
+  "plan_file_sha256": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db",
+  "plan_sha256": "57e0f84acf0e07558a249d2efd0a9cb2e0e05beaaec2451b47f5d8eb178b989b",
+  "planned_development_units": 16,
+  "prepared_source_count": 2,
+  "provider_requests": 0,
+  "runtime_ready": false,
+  "schema_version": "p1-paired-source-preparation-1",
+  "scientific_ready": false,
+  "shared_budget": {
+    "frozen": false,
+    "max_initial_context_bytes": 12000,
+    "max_model_input_tokens": 65536,
+    "max_model_output_tokens": 8192,
+    "max_source_open_bytes_per_call": 4000,
+    "max_source_open_bytes_total": 96000,
+    "max_source_open_calls": 32,
+    "max_tool_calls": 64,
+    "max_wall_seconds": 300,
+    "reader_model": null,
+    "schema_version": 1,
+    "scope": "continuation_per_arm",
+    "tokenizer": null
+  },
+  "source_executions": 0,
+  "sources": [
+    {
+      "arms": {
+        "A": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated"
+          ],
+          "runtime_ready": false
+        },
+        "B": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated",
+            "faithful_rawrag_provider_access_unverified",
+            "rawrag_output_not_bound_to_this_checkpoint",
+            "missing_VECTORIZE_API_KEY",
+            "missing_RERANK_API_KEY"
+          ],
+          "runtime_ready": false
+        },
+        "C": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated",
+            "actual_claim_extraction_not_captured_for_this_checkpoint"
+          ],
+          "runtime_ready": false
+        },
+        "D": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated",
+            "actual_claim_extraction_not_captured_for_this_checkpoint",
+            "priming_and_reuse_receipts_not_bound_to_this_checkpoint"
+          ],
+          "runtime_ready": false
+        }
+      },
+      "initial_payload_bytes": 882,
+      "initial_payload_sha256": "7069d020ebc8d2d47c9a7ecc96c53dd1929f3f600b301c5983ef096bf3ae2013",
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "scientific_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "relevant_workflow_state_change_not_captured"
+      ],
+      "source_archive_present": false,
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "arms": {
+        "A": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated"
+          ],
+          "runtime_ready": false
+        },
+        "B": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated",
+            "faithful_rawrag_provider_access_unverified",
+            "rawrag_output_not_bound_to_this_checkpoint",
+            "missing_VECTORIZE_API_KEY",
+            "missing_RERANK_API_KEY"
+          ],
+          "runtime_ready": false
+        },
+        "C": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated",
+            "actual_claim_extraction_not_captured_for_this_checkpoint"
+          ],
+          "runtime_ready": false
+        },
+        "D": {
+          "blocking_gates": [
+            "no_task_bound_native_prelude",
+            "no_task_bound_native_compaction_checkpoint",
+            "no_complete_current_original_archive",
+            "python_execution_observer_not_implemented",
+            "all_arm_runtime_not_integrated",
+            "runtime_isolation_not_enforced",
+            "shared_reader_and_tokenizer_not_frozen",
+            "reader_token_limits_not_enforced",
+            "full_usage_and_cost_capture_not_integrated",
+            "actual_claim_extraction_not_captured_for_this_checkpoint",
+            "priming_and_reuse_receipts_not_bound_to_this_checkpoint"
+          ],
+          "runtime_ready": false
+        }
+      },
+      "initial_payload_bytes": 950,
+      "initial_payload_sha256": "e2f9bb5ab13aa27640bdbb0295a98ccf9b7c127fe955b81ee1751f0da48c5a59",
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "scientific_gates": [
+        "actual_native_prelude_missing",
+        "native_compaction_receipt_missing",
+        "post_retrieval_behavior_trace_missing",
+        "independent_double_review_missing",
+        "adjudication_missing",
+        "hidden_p1_behavior_check_not_executed",
+        "shared_reader_and_tokenizer_unfrozen",
+        "arm_runner_not_integrated",
+        "study_budget_and_assignment_unfrozen",
+        "relevant_workflow_state_change_not_captured"
+      ],
+      "source_archive_present": false,
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    }
+  ]
+}

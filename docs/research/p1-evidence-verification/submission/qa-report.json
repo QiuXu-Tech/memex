@@ -2,8 +2,8 @@
   "schema": 1,
   "status": "DOCUMENT_QA_COMPLETE_NOT_READY",
   "pdf": "tmlr-review/main.pdf",
-  "pdf_sha256": "7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607",
-  "pages": 26,
+  "pdf_sha256": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
+  "pages": 27,
   "page_size_points": [
     612,
     792
@@ -34,17 +34,17 @@
   "source_member_identifier_matches": [],
   "source_member_sha256": {
     "README.md": "21134b8a0c211c56b1d50cb5fc284c31bfa25276ab208f11acbb532d743dca0f",
-    "main.pdf": "7bec41d451becd5d3616b183c1c71ede7548c5d93109e0296cd444141c252607",
+    "main.pdf": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
     "main.tex": "b12fbbaa6db1c31ac1e20cc511d2d7cbc7371e23b09624e09051ec85d99ce93c",
     "main.bbl": "4b789fd29c62377434b02a4e20f26a7258299f50b68f995c09d7e11ce14e41f0",
     "abstract.tex": "810e53418fcc19c74cab16d93baa75609e8d65f29a6bab0c94b6dd9c9caa490c",
     "status.tex": "d5c4b2369f96d003b5316471c4136ad97c2b251e42057a3ec1f480f965a13987",
-    "body.tex": "7988f0ed4e0cf634d2c5c61b01160f2d701d28b7f183df1395f8ec1487c7eaff",
-    "appendices.tex": "c9879d20b657f50a10efd1a28f5e708b3e3084c3852b04ce777c35bf2091b96d",
+    "body.tex": "06b9dc90d1e06ce4151d3438a3d5f79a11e0b5cbd949b3cfa2a43bf46368e48c",
+    "appendices.tex": "6ebfc638209a2470f914ca1e5d8c98ce70887bab6f81d9273ebc4b4fda3d24c3",
     "abstract.md": "a1697c38ae3b9a84bc9fcd7c16e105e76bb60caa6259211602b39b35525cbda8",
     "status.md": "a3ff86ab516e77f5b02b0b071d3aa40a03e07fe74bb7c7500cd325f7d799e7a8",
-    "body.md": "3c82246f43524351353b4401d33800641dd789755ffe56a07fa16e4efd8c4a21",
-    "appendices.md": "e54a44d3a70314b00da98c76a004accd5bebc67012889c230475a33180b86f86",
+    "body.md": "a5b476f680b061d089fb8432540993b11051e6f861e93b480e62c0c0b7fccc70",
+    "appendices.md": "f771467155e1839ebc1dc4c2a4cf5beb4b97e6f4ef7136e2cf8c4412ab070f0e",
     "references.bib": "7349e23f911508ff113f095eefc7586ac479178985fc2177cd7d470109b14d0f",
     "build.py": "0896c900d48ddf714d226bfc7589f308b0ac07cea6907c078ed936eca9f57139",
     "tmlr.sty": "816214ff5919aa457b6b443bee52b15d9561421417b7f8a50cc84651519f0002",
@@ -63,8 +63,8 @@
     "keywords": "",
     "creator": "LaTeX with hyperref",
     "producer": "pdfTeX-1.40.26",
-    "creationDate": "D:20261128100509+08'00'",
-    "modDate": "D:20261128100509+08'00'",
+    "creationDate": "D:20261128120711+08'00'",
+    "modDate": "D:20261128120711+08'00'",
     "trapped": "",
     "encryption": null
   },
@@ -78,12 +78,12 @@
   "render": {
     "tool": "pdftoppm",
     "dpi": 110,
-    "pages_rendered": 26
+    "pages_rendered": 27
   },
   "visual_review": {
     "status": "INSPECTED",
     "reviewer": "AI assistant visual inspection; not an independent human review",
-    "checked_at_utc": "2026-11-28T02:06:49.253810+00:00",
+    "checked_at_utc": "2026-11-28T04:12:29.622309+00:00",
     "pages_inspected": [
       1,
       2,
@@ -110,13 +110,42 @@
       23,
       24,
       25,
-      26
+      26,
+      27
     ],
-    "method": "Rendered all pages at 110 dpi; inspected all layouts in page contact sheets and full-page checks. The final correction changed only page 25 by pixel comparison; that page was inspected again. Full-page checks included pages 1, 12, 25, and 26.",
-    "observations": "No clipped text, content overlap, missing glyphs, broken formulas, or isolated bottom-of-page headings observed. First-page disclosure and unresolved condition are legible."
+    "full_page_images_inspected": [
+      1,
+      5,
+      8,
+      11,
+      12,
+      15,
+      25,
+      26,
+      27
+    ],
+    "method": "A separate AI assistant inspected all three 9-page contact sheets and the listed full-page images, including first-page disclosure, formulas, code, new development paragraphs, and appendix table continuation.",
+    "observations": "No clipped text, overlap, missing glyphs, wrong page numbers or lost table content observed. Page 27 contains the complete final Eywa row with a repeated table header and substantial white space; this valid continuation was retained without shortening scientific qualifications or changing official typography."
   },
   "anonymity_limit": "A direct-string and metadata scan is not a human anonymity review.",
   "scientific_readiness": "NOT_READY",
   "human_origin": "UNRESOLVED",
-  "submitted": false
+  "submitted": false,
+  "previous_pages": 26,
+  "changed_pages": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    25,
+    26,
+    27
+  ]
 }
