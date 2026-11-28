@@ -115,12 +115,12 @@ def _fresh_paths(state_root, output, protected):
     return state_root, output
 
 
-def _required_scopes(task, replicate, profile_hash):
+def _required_scopes(task, replicate, profile_hash, *, arms=paired.ARMS):
     deepseek = {'provider': 'deepseek', 'model': 'deepseek-flash',
         'endpoint': 'https://api.deepseek.com/responses', 'config_sha256': profile_hash}
     native = paired.native_scope_id(task, replicate)
     result = {native: {'kind': 'native', 'unit': None, 'public_path': None, 'providers': [deepseek]}}
-    for arm in paired.ARMS:
+    for arm in arms:
         name = 'p1-method-' + paired.digest({'task': task, 'replicate': replicate, 'arm': arm})[:24]
         providers = [deepseek]
         if arm == 'B':
@@ -159,14 +159,17 @@ def _check_scopes(specs, required, task, replicate, status):
         # checkpoint hash, fake receipt, reservation or fresh ledger is created.
         controller.ledger.reserve(kind=spec['kind'], attempt_id=name,
             upper_bound_cny=spec['upper_bound_cny'], billing_basis=spec['billing_basis'],
-            unit=spec['unit'], public_path=spec['public_path'], run=False)
+            unit=spec['unit'], public_path=spec['public_path'],
+            native_binding=controller.native_binding(task_id=task['task_id'], project_id=task['project_id'],
+                                                     replicate=replicate) if spec['kind'] == 'native' else None,
+            run=False)
     return {'status': 'checked', 'selected_scope_count': len(required),
         'selected_total_upper_bound_cny': controller_api.BATCH['money'](total),
         'evidence_hashes_verified': True, 'pricing_truth_independently_verified': False,
         'reservation_performed': False}
 
 
-def _device(settings, tasks, profile, report):
+def _device(settings, tasks, profile, report, *, arms=paired.ARMS):
     checks = report['checks']
     checks['executables'] = {}
     for name in ('codex', 'node'):
@@ -204,6 +207,12 @@ def _device(settings, tasks, profile, report):
                 'error_code': _code(error, 'python_workflow_preflight_failed'),
                 'source_executions': 0, 'sandbox_probe_executed': False, 'python_version_executed': False}
             report['blockers'].append(task_id + '_runtime_unavailable')
+    if 'B' not in arms:
+        checks['rawrag'] = {'status': 'not_required_for_selected_development_arms',
+            'config_sha256': controller_api.RAWRAG_CONFIG_SHA256,
+            'pinned_source_bytes_verified': False, 'git_commit_and_cleanliness_checked': False,
+            'transport_hooks_exercised': False}
+        return
     dependency = rawrag.dependency_report()
     checks['rawrag'] = {'config_sha256': controller_api.RAWRAG_CONFIG_SHA256,
         'dependencies': dependency, 'pinned_source_bytes_verified': False,
@@ -218,7 +227,8 @@ def _device(settings, tasks, profile, report):
 
 
 def _inspect(*, settings_path=None, scope_specs_path=None, state_root=None, output=None,
-             task_id='w-101', replicate=1, order=paired.ARMS, profile_path=reader.PROFILE):
+             task_id='w-101', replicate=1, order=paired.ARMS, profile_path=reader.PROFILE,
+             development_selection=None):
     report = {'schema_version': 1, 'kind': 'p1-native-driver-preflight', 'mode': 'check',
         'status': 'blocked', 'dispatch_ready': False, 'scientific_ready': False,
         'model_requests': 0, 'network_requests': 0, 'source_executions': 0,
@@ -238,7 +248,18 @@ def _inspect(*, settings_path=None, scope_specs_path=None, state_root=None, outp
     ledger, status, relocation, task, profile = None, None, None, None, None
     if task_id not in paired.PROJECTS or type(replicate) is not int or replicate not in (1, 2):
         report['blockers'].append('unapproved_task_or_replicate')
-    if (not isinstance(order, (tuple, list)) or len(order) != 4
+    arms = paired.ARMS
+    if development_selection is not None:
+        # This internal seam is used only by development_driver. The full
+        # native CLI and the frozen four-arm orchestration retain their gates.
+        if (not isinstance(development_selection, (tuple, list))
+                or tuple(development_selection) != ('A', 'C', 'D')):
+            report['blockers'].append('exact_development_selection_required')
+        else:
+            arms = ('A', 'C', 'D')
+        if not isinstance(order, (tuple, list)) or tuple(order) != arms:
+            report['blockers'].append('exact_development_arm_order_required')
+    elif (not isinstance(order, (tuple, list)) or len(order) != 4
             or not all(isinstance(arm, str) for arm in order) or set(order) != set(paired.ARMS)):
         report['blockers'].append('exact_four_arm_order_required')
     try:
@@ -251,7 +272,10 @@ def _inspect(*, settings_path=None, scope_specs_path=None, state_root=None, outp
         fields = ('native_attempts_reserved', 'native_attempts_remaining', 'method_units_reserved',
             'method_units_remaining', 'diagnostic_attempts_reserved', 'added_cash_cap',
             'committed_cash_upper_bound', 'remaining_cash_capacity', 'actual_added_cash_total',
-            'budget_breach_observed', 'journal_events', 'journal_head_sha256')
+            'budget_breach_observed', 'journal_events', 'journal_head_sha256',
+            'native_original_attempts_reserved', 'native_original_attempts_remaining',
+            'native_supplemental_attempts_reserved', 'native_supplemental_attempts_remaining',
+            'native_supplement_active', 'native_supplement_id', 'native_supplement_sha256', 'native_available_grants')
         checks['ledger'] = {key: status[key] for key in fields}
         if status['native_attempts_remaining'] < 1:
             report['blockers'].append('native_attempt_budget_exhausted')
@@ -279,7 +303,7 @@ def _inspect(*, settings_path=None, scope_specs_path=None, state_root=None, outp
         task = {key: source[key] for key in ('task_id', 'project_id', 'public_path', 'public_sha256', 'taskpack_public_sha256')}
         task.update(original_request_sha256=paired.file_sha(Path(source['public_path']) / 'request.txt'),
                     shared_reader_config_sha256=paired.digest(profile))
-        report['required_scope_bindings'] = _required_scopes(task, replicate, paired.digest(profile))
+        report['required_scope_bindings'] = _required_scopes(task, replicate, paired.digest(profile), arms=arms)
     settings = _load_local(settings_path, 'settings', report, inputs)
     if settings is not None:
         try:
@@ -288,13 +312,15 @@ def _inspect(*, settings_path=None, scope_specs_path=None, state_root=None, outp
             report['blockers'].append(_code(error, 'settings_invalid'))
             settings = None
     checks['services'] = _services(settings)
-    for key, code in (('deepseek_file_metadata_acceptable', 'deepseek_credential_file_metadata_unavailable'),
-                      ('embedding_environment_present', 'embedding_environment_unavailable'),
-                      ('reranker_environment_present', 'reranker_environment_unavailable')):
+    required_services = [('deepseek_file_metadata_acceptable', 'deepseek_credential_file_metadata_unavailable')]
+    if 'B' in arms:
+        required_services += [('embedding_environment_present', 'embedding_environment_unavailable'),
+                              ('reranker_environment_present', 'reranker_environment_unavailable')]
+    for key, code in required_services:
         if not checks['services'][key]:
             report['blockers'].append(code)
     if settings:
-        _device(settings, {row['task_id']: row for row in relocation['tasks']} if relocation else {}, profile, report)
+        _device(settings, {row['task_id']: row for row in relocation['tasks']} if relocation else {}, profile, report, arms=arms)
     specs = _load_local(scope_specs_path, 'scope_specs', report, inputs)
     if specs is not None and task and status:
         try:

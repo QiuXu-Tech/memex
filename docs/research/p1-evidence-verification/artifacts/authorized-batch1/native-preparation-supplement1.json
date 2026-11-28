@@ -1,0 +1,79 @@
+{
+  "additional_native_attempts": 4,
+  "approval": {
+    "date": "2026-11-29",
+    "timezone": "Asia/Shanghai",
+    "user_quote": "确认追加\n真人如无必要尽可能由你代劳"
+  },
+  "authorization": {
+    "relative_path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/authorization.json",
+    "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887"
+  },
+  "batch_id": "p1-20261128-approved-batch1",
+  "grants": [
+    {
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 1,
+      "scope_id": "p1-native-d1dfd65e59313948a281cf83",
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "project_id": "pallets/flask",
+      "public_sha256": "5d6c40acd8895373970af9a306fa88bb1c234603b6923d97d4732cda6dce7313",
+      "replicate": 2,
+      "scope_id": "p1-native-c530127ba16152d3bca675f0",
+      "task_id": "w-101",
+      "taskpack_public_sha256": "5db5a999f5c77fac1ff2c4932c229f86eab25d83d2c47cfaeeb118fa9b956cb5"
+    },
+    {
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 1,
+      "scope_id": "p1-native-7380144d43442e142169a14b",
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    },
+    {
+      "project_id": "psf/requests",
+      "public_sha256": "3ad1f3e28265f6da8b060d087db8ea0b8a0a11b4c44534f1ffc3f601c2403adb",
+      "replicate": 2,
+      "scope_id": "p1-native-52aceb32c09929b315f57b3e",
+      "task_id": "w-102",
+      "taskpack_public_sha256": "c618e97133fb33e1e6411525f755363931f1a93efa0e44bd0c3b2f12628eced2"
+    }
+  ],
+  "kind": "p1-native-preparation-supplement",
+  "ledger_relative_path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/ledger",
+  "native_scope_limits": {
+    "compaction_start": 2,
+    "generation_start": 5,
+    "public_tool_call": 20,
+    "test_execution": 6,
+    "wall_seconds": 600
+  },
+  "prior_journal": {
+    "events": 7,
+    "head_sha256": "1e13c9ccee1cc0ce56846ee9929c3d4a72b356aad5cf82c7f346ef7b5f9315f2",
+    "sha256": "d675c9c1f868d6169615c877bb6ffc0d88f73813eab0ccf830669ef97f6e47fa"
+  },
+  "schema_version": 1,
+  "source_plan": {
+    "relative_path": "docs/research/p1-evidence-verification/tasks/workflows/source-draft-plan.json",
+    "sha256": "a5b80c4a409874114a2c3014af3befddb56e4b7c9635b07a3a9dd41eccd183db",
+    "shared_budget_relative_path": "docs/research/p1-evidence-verification/tasks/workflows/shared-budget.json",
+    "shared_budget_sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2"
+  },
+  "supplement_id": "p1-20261129-native-preparation-supplement1",
+  "unchanged_limits": {
+    "added_cash_currency": "CNY",
+    "added_cash_total": "100.00",
+    "method_units": 16,
+    "method_wall_seconds_per_unit": 300,
+    "native_attempts": 2,
+    "native_compactions_per_attempt": 2,
+    "native_generation_starts_per_attempt": 5,
+    "native_wall_seconds_per_attempt": 600
+  }
+}

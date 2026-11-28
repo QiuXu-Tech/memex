@@ -597,12 +597,23 @@ class CanonicalPairedController:
             raise ControllerError('scope_deadline_exhausted')
         return record, spec, attempt, attempt['wall_seconds'] - elapsed
 
+    def native_binding(self, *, task_id, project_id, replicate):
+        """Bind a named native grant to the unchanged, present public source."""
+        if (task_id not in BATCH['PROJECTS'] or project_id != BATCH['PROJECTS'][task_id]
+                or type(replicate) is not int or replicate not in (1, 2)):
+            raise ControllerError('unapproved_task_binding')
+        public_sha256 = self.ledger._public_binding(f'{task_id}:A:{replicate}')
+        return BATCH['validate_native_binding']({'task_id': task_id, 'project_id': project_id,
+            'replicate': replicate, 'public_sha256': public_sha256}, self.ledger.auth)
+
     def inspect_scope(self, intent):
         intent = _intent(intent)
         spec = self._spec(intent)
         return self.ledger.reserve(kind=spec['kind'], attempt_id=intent['scope_id'],
             upper_bound_cny=spec['upper_bound_cny'], billing_basis=spec['billing_basis'],
-            unit=spec['unit'], public_path=spec['public_path'], run=False)
+            unit=spec['unit'], public_path=spec['public_path'],
+            native_binding=self.native_binding(**{key: intent[key] for key in ('task_id', 'project_id', 'replicate')})
+                           if spec['kind'] == 'native' else None, run=False)
 
     def admit_scope(self, intent):
         intent = _intent(intent)
@@ -614,7 +625,9 @@ class CanonicalPairedController:
                 raise ControllerError('scope_already_seen_no_replay')
             result = self.ledger.reserve(kind=spec['kind'], attempt_id=intent['scope_id'],
                 upper_bound_cny=spec['upper_bound_cny'], billing_basis=spec['billing_basis'],
-                unit=spec['unit'], public_path=spec['public_path'], run=True)
+                unit=spec['unit'], public_path=spec['public_path'],
+                native_binding=self.native_binding(**{key: intent[key] for key in ('task_id', 'project_id', 'replicate')})
+                               if spec['kind'] == 'native' else None, run=True)
             admission = self._append(journal, {'event': 'scope_admitted', 'scope_id': intent['scope_id'],
                 'intent': intent, 'spec_sha256': digest(spec),
                 'batch_reservation_sha256': result['reservation']['sha256']})

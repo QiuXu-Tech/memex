@@ -6,6 +6,7 @@ import io
 import json
 import os
 from pathlib import Path
+import shutil
 import socket
 import subprocess
 import tempfile
@@ -39,7 +40,34 @@ class NativeDriverTests(unittest.TestCase):
         self.directory = Path(self.temp.name)
         self.state = self.directory / 'new-backend'
         self.output = self.directory / 'new-output'
-        base = ROOT / 'docs/research/p1-evidence-verification'
+        # Exercise the original exhausted two-attempt state in a disposable
+        # historical fixture. A later explicitly activated supplement in the
+        # real canonical ledger must not alter or be written by these tests.
+        self.fixture_root = self.directory / 'historical-repo-fixture'
+        base_relative = Path('docs/research/p1-evidence-verification')
+        for relative in (implementation().controller_api.BATCH['AUTH_RELATIVE'],
+                         str(base_relative / 'tasks/workflows/shared-budget.json'),
+                         str(base_relative / 'tasks/workflows/source-draft-plan.json')):
+            target = self.fixture_root / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            target.write_bytes((ROOT / relative).read_bytes())
+        for task in ('w-101', 'w-102'):
+            relative = base_relative / 'tasks/workflows/packages' / task
+            shutil.copytree(ROOT / relative, self.fixture_root / relative)
+        ledger_relative = implementation().controller_api.BATCH['LEDGER_RELATIVE']
+        history = b''.join((ROOT / ledger_relative / 'events.jsonl').read_bytes().splitlines(keepends=True)[:7])
+        rows = [json.loads(line) for line in history.splitlines()]
+        self.assertEqual(len(rows), 7)
+        self.assertEqual(sum(row['event'] == 'reserved' and row['data']['kind'] == 'native' for row in rows), 2)
+        ledger = self.fixture_root / ledger_relative
+        ledger.mkdir(parents=True)
+        (ledger / 'events.jsonl').write_bytes(history)
+        (ledger / 'HEAD.json').write_text(json.dumps({'authorization_sha256': rows[-1]['authorization_sha256'],
+            'seq': 7, 'sha256': rows[-1]['sha256']}) + '\n')
+        (ledger / 'ledger.lock').touch(mode=0o600)
+        root_patch = patch.object(implementation(), 'ROOT', self.fixture_root)
+        root_patch.start(); self.addCleanup(root_patch.stop)
+        base = self.fixture_root / base_relative
         self.protected = [base / 'artifacts/authorized-batch1/authorization.json',
             base / 'tasks/workflows/shared-budget.json', base / 'tasks/workflows/source-draft-plan.json']
         self.protected += list((base / 'artifacts/authorized-batch1/ledger').glob('*'))

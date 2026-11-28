@@ -1,0 +1,31 @@
+{
+  "checked_at_utc": "2026-11-28T16:46:13.546995+00:00",
+  "checked_local_date": "2026-11-29",
+  "implementation_sha256": {
+    "scripts/paper1/batch_limits.py": "f490512ae18a388a45e7aef54d3a021d714374936e86888861ea7ce0c3987871",
+    "scripts/paper1/development_driver.py": "6a90ba6ab6da3db7a3686b88380ea27211a1d0a766fc305f190f2b8d9d0cd491",
+    "scripts/paper1/native_driver.py": "8b25d6270c62ffebf6c1c6a4470583256c10cf69efdf3d59959817346c939171",
+    "scripts/paper1/runtime_controller.py": "652cbafb4071968992623155935a5f44b139ad68900bcafaf8b11911f5bb035d"
+  },
+  "independent_ai_review": {
+    "completed": true,
+    "finding": "No additional gate bypass found in the explicitly selected A/C/D development path.",
+    "human_review": false
+  },
+  "kind": "p1-native-supplement-runtime-validation",
+  "ledger_activated_by_tests": false,
+  "log_sha256": "75867ac935c930ab720311689b7a2fc9a26e0a4fe42f86a87aa9ec8f2720850b",
+  "model_requests": 0,
+  "native_host_execution": false,
+  "research_tests": {
+    "coverage": "Batch limits, diagnostic limits, controller, reader profile, native relay/backend, full and selected drivers, supplementary grants, paired runtime/dispatch and RawRAG controller.",
+    "errors": 0,
+    "executed": 211,
+    "failed": 0,
+    "passed": 211,
+    "skipped": 0
+  },
+  "schema_version": 1,
+  "scientific_results": 0,
+  "timezone": "Asia/Shanghai"
+}

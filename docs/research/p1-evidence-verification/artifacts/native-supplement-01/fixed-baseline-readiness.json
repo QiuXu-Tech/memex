@@ -1,0 +1,48 @@
+{
+  "B_first_attempt_reserved": false,
+  "B_quality_result": null,
+  "B_run_unit_called": false,
+  "actual_added_cash_cny": null,
+  "admission_status": "blocked",
+  "blocking_missing_evidence": [
+    "designated_embedding_credential",
+    "designated_reranker_credential",
+    "verified_fixed_model_account_billing_and_CNY_request_bound",
+    "usable_git_and_verified_clean_pinned_upstream_checkout"
+  ],
+  "checked_local_date": "2026-11-29",
+  "credential_values_read_or_reported": false,
+  "fixed_configuration_unchanged": true,
+  "kind": "p1-fixed-baseline-readiness-recheck",
+  "model_requests": 0,
+  "observed_mac_environment_names": {
+    "RERANK_API_KEY": false,
+    "VECTORIZE_API_KEY": false
+  },
+  "proposed_cny_0_50_request_ceiling_is_verified_quote": false,
+  "provider_authentication_checked": false,
+  "public_sources": [
+    {
+      "account_specific_billing_verified": false,
+      "observed_model": "text-embedding-3-small",
+      "retrieval_ref": "turn997097473view2",
+      "url": "https://developers.openai.com/api/docs/models/text-embedding-3-small",
+      "usd_per_million_input_tokens": "0.02"
+    },
+    {
+      "fixed_rerank_v3_5_per_search_rate_verified": false,
+      "note": "The retrieved current public pricing page does not establish a per-search price for the fixed rerank-v3.5 account/endpoint. Rates for newer models are not substituted.",
+      "retrieval_ref": "turn997097473view0",
+      "url": "https://cohere.com/pricing"
+    },
+    {
+      "fixed_model_listed": "rerank-v3.5",
+      "live_account_availability_verified": false,
+      "retrieval_ref": "turn997097473view1",
+      "url": "https://docs.cohere.com/docs/models"
+    }
+  ],
+  "schema_version": 1,
+  "scope": "Readiness facts only; no model call, account creation, billing acceptance, model substitution or new authorization.",
+  "timezone": "Asia/Shanghai"
+}
