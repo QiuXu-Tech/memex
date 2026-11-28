@@ -1,0 +1,163 @@
+{
+  "schema_version": 1,
+  "kind": "p1-deepseek-offline-preparation-validation",
+  "observed_at": "2026-11-28T13:44:44+08:00",
+  "local_base_commit": "56b7fe8a367395882c9ac39b81c43f7c251c833e",
+  "public_base_commit": "441509cc6a58cfcf1f919f09c75055153010d7b6",
+  "base_tree": "380a14065c0a487f0b58705aec7e29510d9b2222",
+  "provider_requests_this_change": 0,
+  "live_access_verified": false,
+  "native_attempts_started_this_change": 0,
+  "method_units_started_this_change": 0,
+  "formal_runs_started_this_change": 0,
+  "scientific_ready": false,
+  "submission_ready": false,
+  "verification": {
+    "command": "node --test test/paper1-*.mjs",
+    "runtime": "v24.22.3",
+    "exit_code": 0,
+    "tests": 97,
+    "pass": 97,
+    "fail": 0,
+    "cancelled": 0,
+    "skipped": 0,
+    "new_deepseek_tests": 27,
+    "existing_node_regressions": 70,
+    "log": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-preparation/node-tests.txt",
+    "python_research_suite_rerun": false,
+    "transport": "injected offline fixtures; no provider request"
+  },
+  "zero_call_preflight": {
+    "schema_version": 1,
+    "kind": "zero_call_deepseek_preflight",
+    "provider": "deepseek",
+    "model": "deepseek-flash",
+    "endpoint": "https://api.deepseek.com/chat/completions",
+    "config_sha256": "ab85c627f4cfaacd50121635f46e23b9df22885963cf17a8ae14caa2d89e59b4",
+    "credential_present": false,
+    "credential_access_verified": false,
+    "environment_files_read": false,
+    "provider_requests": 0,
+    "live_dispatch_ready": false,
+    "native_host": false,
+    "canonical_cash_ledger_integrated": false,
+    "blocking_gates": [
+      "cash_controller_not_integrated",
+      "native_checkpoint_missing",
+      "shared_reader_and_tokenizer_not_frozen",
+      "all_arm_runtime_not_integrated",
+      "deepseek_credential_missing"
+    ],
+    "tokenizer_note": "Byte limits are not exact model-token measurements.",
+    "actual_cost": null
+  },
+  "canonical_ledger_read_only": {
+    "batch_id": "p1-20261128-approved-batch1",
+    "authorization_sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+    "scientific_ready": false,
+    "formal_runs": 0,
+    "native_attempts_reserved": 2,
+    "native_attempts_remaining": 0,
+    "method_units_reserved": 0,
+    "method_units_remaining": 16,
+    "added_cash_currency": "CNY",
+    "added_cash_cap": "100.00",
+    "committed_cash_upper_bound": "0.00",
+    "remaining_cash_capacity": "100.00",
+    "actual_added_cash_total": null,
+    "attempts_with_unsettled_cost": [
+      "native-01",
+      "native-02"
+    ],
+    "journal_events": 4,
+    "journal_head_sha256": "ba44d65c01051f9ebefb95c46b7aa765073a886821c2cee7b03a1cf9e2e9255d"
+  },
+  "unchanged_tracked_roots": [
+    "docs/research/p1-evidence-verification/artifacts/authorized-batch1",
+    "docs/research/p1-evidence-verification/tasks",
+    "docs/research/p1-evidence-verification/submission",
+    "docs/research/p1-evidence-verification/manuscript.pdf",
+    "scripts/paper1/claims.mjs",
+    "scripts/paper1/rawrag-config.json",
+    "scripts/paper1/rawrag_adapter.py",
+    "scripts/paper1/paired_runner.py",
+    "scripts/paper1/batch_limits.py",
+    "scripts/codex-retention-host.py"
+  ],
+  "protected_files": [
+    {
+      "path": "docs/research/p1-evidence-verification/artifacts/authorized-batch1/authorization.json",
+      "sha256": "0d4719b1b125bce022ded9487aeb2a04b2c693c0b5dbb6625f0a88fec306c887",
+      "equals_base_commit": true
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/tasks/workflows/shared-budget.json",
+      "sha256": "64e80f7015daa54fe6788d0fc085d10323c6965e0237529dd2afebc5a11b4bd2",
+      "equals_base_commit": true
+    },
+    {
+      "path": "scripts/paper1/rawrag-config.json",
+      "sha256": "008c4c92181141a1c8de42931c906aad23e959da4fd5db1e300c64ba2e664b27",
+      "equals_base_commit": true
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/manuscript.pdf",
+      "sha256": "0f9a5b0807f50939025a9b2e73c9e4ba4f4c6ec629ef4aa272e0e82efd1e2c95",
+      "equals_base_commit": true
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/submission/tmlr-review/main.pdf",
+      "sha256": "1cedfed3e276e8993ef46745c1af03626610c04ac5fa95a717b80e63f3084db8",
+      "equals_base_commit": true
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/submission/review-source.zip",
+      "sha256": "c421382e189a0e0ab3333032998e26263e1d1644f5028223fa1d48b65764288b",
+      "equals_base_commit": true
+    }
+  ],
+  "artifact_hashes": [
+    {
+      "path": "scripts/paper1/deepseek.mjs",
+      "sha256": "80dc0688f2c43e689e9bd8d13a76e28880403326f4804d7079008e4ee750ca53"
+    },
+    {
+      "path": "scripts/paper1/deepseek-config.json",
+      "sha256": "0d168db6ab3aa28d23fbb66acfc969c268748bde8ab76bc628f56091f00371ca"
+    },
+    {
+      "path": "test/paper1-deepseek.mjs",
+      "sha256": "a1b5eb46feffe54c88ad81c21f21d82174ff40fad23789f653fc458990636eeb"
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/DEEPSEEK.md",
+      "sha256": "266c6d5f200ce818efb8f0f541903aa652aad38b9b9dc353292eaa8fb80a57ac"
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/COMPLETION.md",
+      "sha256": "4b204937970ee318ca361ada7a311d8fd440ebac26bf108d4526ac2fe53b672b"
+    },
+    {
+      "path": "docs/research/p1-evidence-verification/artifacts/checks/deepseek-preparation/node-tests.txt",
+      "sha256": "90bb68f9efd0dcabf9b443f881e119200f44372a4512172aa2ed6cd2b6ca8a3a"
+    }
+  ],
+  "review": {
+    "unresolved_blocking_findings": 0,
+    "fixed_findings": [
+      "absolute deadline after synchronous admission and parsing",
+      "nested Unicode credential reflection including duplicate JSON keys",
+      "cancel oversized declared response",
+      "reject server tool markers at all response levels"
+    ],
+    "scope": "offline source and fixture review; not live API certification"
+  },
+  "limitations": [
+    "Admission callback is a trusted controller integration seam, not the canonical cash ledger.",
+    "Synchronous JavaScript cannot be preempted; elapsed work is rejected before new dispatch or terminal success.",
+    "Credential presence is not credential validity; inspected execution environment has no DeepSeek key.",
+    "No native checkpoint, frozen shared reader/tokenizer, all-arm runtime or official B retrieval service is supplied by this adapter.",
+    "Prior unsettled cash usage remains unknown; this report does not declare prior calls free.",
+    "Fixtures do not constitute paper experiments or research samples."
+  ]
+}
