@@ -89,6 +89,9 @@ def codex_flags(base_url, *, profile=None):
         'model_auto_compact_token_limit': 200000,
         'tools.experimental_request_user_input.enabled': False,
         'tools.update_plan.enabled': False,
+        # Pinned 0.153 has separate default-on orchestrator capability gates;
+        # skipping host skill discovery does not close these extension tools.
+        'orchestrator.skills.enabled': False, 'orchestrator.mcp.enabled': False,
         'features.remote_models': False, 'features.responses_websockets': False,
         'features.responses_websockets_v2': False, 'features.unbounded_connection_retries': False,
         'model_providers.' + PROVIDER_ID + '.name': 'P1 scoped DeepSeek relay',
@@ -104,8 +107,13 @@ def codex_flags(base_url, *, profile=None):
     }
     # Dynamic public tools are the only executable surface in this protocol.
     # The relay independently rejects every other declared tool before dispatch.
+    # Goals independently adds get/create/update to persistent threads. The
+    # remaining gates below register utility tools or the code-mode executor;
+    # explicit overrides also prevent inherited user feature settings doing so.
     for feature in ('apply_patch_freeform', 'unified_exec', 'experimental_use_unified_exec_tool',
-                    'js_repl', 'js_repl_tools_only', 'code_mode', 'code_mode_host',
+                    'js_repl', 'js_repl_tools_only', 'code_mode', 'code_mode_host', 'code_mode_only',
+                    'goals', 'sleep_tool', 'deferred_executor', 'request_permissions_tool',
+                    'token_budget', 'current_time_reminder',
                     'browser_use', 'computer_use', 'image_generation', 'view_image',
                     'connectors', 'collab', 'collaboration_modes', 'enable_fanout',
                     'memory_tool', 'search_tool', 'tool_search', 'tool_suggest',

@@ -5,6 +5,7 @@ from pathlib import Path
 import sys
 import tempfile
 import unittest
+from unittest import mock
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts/paper1'))
@@ -97,6 +98,42 @@ class ReaderProfileTest(unittest.TestCase):
         for name in ('tools.experimental_request_user_input.enabled', 'tools.update_plan.enabled'):
             with self.subTest(setting=name):
                 self.assertIs(json.loads(values.get(name, 'null')), False)
+
+    def test_persistent_host_goal_extension_is_explicitly_disabled(self):
+        # Pinned app-server extensions.rs wires Feature::Goals to the goal
+        # extension; its persistent root-thread catalog adds get/create/update
+        # even when the shell, apps, plugins and dynamic tools are restricted.
+        flags = reader.codex_flags('http://127.0.0.1:4321')
+        values = dict(flags[i + 1].split('=', 1) for i in range(0, len(flags), 2))
+        self.assertIs(json.loads(values.get('features.goals', 'null')), False)
+
+    def test_other_source_gated_tools_cannot_inherit_enabled_host_settings(self):
+        source_gates = ('goals', 'sleep_tool', 'deferred_executor', 'request_permissions_tool',
+                        'token_budget', 'current_time_reminder', 'code_mode_only')
+        inherited = [part for name in source_gates for part in ('-c', 'features.' + name + '=true')]
+        host = {'codex_overrides': lambda mcp, single: inherited}
+        with mock.patch.object(reader.runpy, 'run_path', return_value=host):
+            flags = reader.codex_flags('http://127.0.0.1:4321')
+        entries = [flags[i + 1] for i in range(0, len(flags), 2)]
+        values = dict(entry.split('=', 1) for entry in entries)
+        self.assertEqual(len(values), len(entries))
+        for name in source_gates:
+            with self.subTest(feature=name):
+                self.assertIs(json.loads(values['features.' + name]), False)
+        self.assertEqual(json.loads(values['model_provider']), reader.PROVIDER_ID)
+        self.assertEqual(json.loads(values['model_providers.' + reader.PROVIDER_ID + '.base_url']),
+                         'http://127.0.0.1:4321')
+
+    def test_orchestrator_tools_are_disabled_independently_of_host_skill_discovery(self):
+        # Config's orchestrator defaults are true. skill_search and skipping
+        # local skill discovery do not control its list/read namespace or MCP.
+        flags = reader.codex_flags('http://127.0.0.1:4321')
+        values = dict(flags[i + 1].split('=', 1) for i in range(0, len(flags), 2))
+        for name in ('orchestrator.skills.enabled', 'orchestrator.mcp.enabled'):
+            with self.subTest(setting=name):
+                self.assertIs(json.loads(values.get(name, 'null')), False)
+        self.assertIs(json.loads(values['features.skip_host_skill_discovery']), True)
+        self.assertIs(json.loads(values['features.skill_search']), False)
 
     def test_tokenizer_digest_precedes_any_runtime_import_or_fallback(self):
         with tempfile.TemporaryDirectory() as folder:
