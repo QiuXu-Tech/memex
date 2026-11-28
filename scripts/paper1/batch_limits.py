@@ -34,7 +34,8 @@ LABEL = re.compile(r'[A-Za-z0-9][A-Za-z0-9_.:-]{0,127}\Z')
 TERMINAL = {'completed', 'failed', 'host_blocked', 'provider_blocked', 'timeout', 'capture_incomplete'}
 EVENT_LIMITS = {'native': {'generation_start': 5, 'compaction_start': 2,
                            'test_execution': 6, 'public_tool_call': 20},
-                'method': {'public_tool_call': 64, 'source_open': 32}}
+                'method': {'public_tool_call': 64, 'source_open': 32},
+                'diagnostic': {'provider_request': 1}}
 
 
 class LimitError(ValueError):
@@ -115,6 +116,25 @@ def money(value):
 
 def unit_key(unit):
     return ':'.join(str(unit[k]) for k in ('task_id', 'arm', 'replicate'))
+
+
+def validate_diagnostic_binding(value):
+    """Only the selected provider's one-request extraction diagnostic.
+
+    This is a controller binding, not a native attempt or a scientific unit.
+    The caller enforces the diagnostic prompt, service access and token limits.
+    """
+    fields(value, {'provider', 'model', 'endpoint', 'dispatch_id',
+                   'intent_sha256', 'request_sha256', 'config_sha256'})
+    if (value['provider'] != 'deepseek' or value['model'] != 'deepseek-flash'
+            or value['endpoint'] != 'https://api.deepseek.com/chat/completions'
+            or not isinstance(value['dispatch_id'], str)
+            or not LABEL.fullmatch(value['dispatch_id']) or value['dispatch_id'].startswith('sk-')
+            or any(not isinstance(value[k], str) or not HEX.fullmatch(value[k])
+                   for k in ('intent_sha256', 'request_sha256', 'config_sha256'))):
+        raise LimitError('invalid_diagnostic_binding')
+    # Own the scalar-only snapshot; later caller mutation cannot alter admission.
+    return dict(value)
 
 
 def public_digest(path):
@@ -317,12 +337,24 @@ class BatchLedger:
         return item
 
     def _state(self, events):
-        attempts, used_units = {}, set()
+        attempts, used_units, diagnostic_dispatches = {}, set(), set()
         for event in events:
             d = event['data']
             if event['event'] == 'reserved':
-                if d['attempt_id'] in attempts or d['kind'] not in ('native', 'method'):
+                if d['attempt_id'] in attempts or d['kind'] not in ('native', 'method', 'diagnostic'):
                     raise LimitError('invalid_reservation_history')
+                if d['kind'] == 'diagnostic':
+                    fields(d, {'attempt_id', 'kind', 'unit_key', 'public_sha256',
+                               'upper_bound_fen', 'billing_basis', 'wall_seconds', 'binding'})
+                    binding = validate_diagnostic_binding(d['binding'])
+                    fields(d['billing_basis'], {'kind', 'evidence'})
+                    if (d['unit_key'] is not None or d['public_sha256'] is not None
+                            or type(d['wall_seconds']) is not int or d['wall_seconds'] != 30
+                            or type(d['upper_bound_fen']) is not int or not 0 < d['upper_bound_fen'] <= 10000
+                            or d['billing_basis']['kind'] != 'priced_upper_bound'
+                            or binding['dispatch_id'] in diagnostic_dispatches):
+                        raise LimitError('invalid_diagnostic_reservation_history')
+                    diagnostic_dispatches.add(binding['dispatch_id'])
                 if d['unit_key'] is not None:
                     if d['unit_key'] in used_units:
                         raise LimitError('duplicate_unit_history')
@@ -334,6 +366,9 @@ class BatchLedger:
                 a = attempts.get(d['attempt_id'])
                 if not a or a['state'] != 'reserved' or d['operation_id'] in a['operations']:
                     raise LimitError('invalid_operation_history')
+                if a['kind'] == 'diagnostic' and (d['kind'] != 'provider_request'
+                        or d['operation_id'] != a['binding']['dispatch_id'] or a['operations']):
+                    raise LimitError('invalid_diagnostic_operation_history')
                 a['operations'].append(d['operation_id'])
                 a['counters'][d['kind']] = a['counters'].get(d['kind'], 0) + 1
             elif event['event'] in ('finished', 'cost_settled'):
@@ -364,6 +399,7 @@ class BatchLedger:
                 'scientific_ready': False, 'formal_runs': 0,
                 'native_attempts_reserved': native, 'native_attempts_remaining': max(0, 2 - native),
                 'method_units_reserved': len(units), 'method_units_remaining': max(0, 16 - len(units)),
+                'diagnostic_attempts_reserved': sum(a['kind'] == 'diagnostic' for a in attempts.values()),
                 'added_cash_currency': 'CNY', 'added_cash_cap': '100.00',
                 'committed_cash_upper_bound': money(held), 'remaining_cash_capacity': money(max(0, 10000 - held)),
                 'actual_added_cash_total': None if unknown else money(held),
@@ -444,6 +480,49 @@ class BatchLedger:
             return {'dry_run': False, 'dispatch_allowed': True, 'reservation': event,
                     'status': self._status(events)}
 
+    def reserve_diagnostic(self, *, attempt_id, binding, upper_bound_cny, billing_basis, run=False):
+        """Reserve independent setup cash in the SAME approved batch journal.
+
+        Does not allocate a native attempt or a method unit. A separate, bound
+        provider_request event must be admitted immediately before dispatch.
+        The existing approval includes setup diagnostics; its file is unchanged.
+        """
+        if type(run) is not bool:
+            raise LimitError('run_must_be_boolean')
+        if (not isinstance(attempt_id, str) or not LABEL.fullmatch(attempt_id)
+                or attempt_id.startswith('sk-')):
+            raise LimitError('invalid_attempt_identity')
+        binding = validate_diagnostic_binding(binding)
+        upper = fen(upper_bound_cny)
+        if upper > 10000:
+            raise LimitError('added_cash_budget_exhausted')
+        fields(billing_basis, {'kind', 'evidence'})
+        if billing_basis['kind'] != 'priced_upper_bound' or upper <= 0:
+            raise LimitError('diagnostic_priced_upper_bound_required')
+        self._evidence(billing_basis['evidence'])
+        basis = strict_json(canonical(billing_basis))
+        with self._lock(write=run):
+            events = self._read()
+            attempts, _, held, breach = self._state(events)
+            if breach:
+                raise LimitError('previous_budget_breach_blocks_dispatch')
+            if attempt_id in attempts:
+                raise LimitError('attempt_already_reserved_do_not_redispatch')
+            if any(a['kind'] == 'diagnostic' and a['binding']['dispatch_id'] == binding['dispatch_id']
+                   for a in attempts.values()):
+                raise LimitError('diagnostic_dispatch_already_reserved_do_not_redispatch')
+            if upper + held > 10000:
+                raise LimitError('added_cash_budget_exhausted')
+            record = {'attempt_id': attempt_id, 'kind': 'diagnostic', 'unit_key': None,
+                      'public_sha256': None, 'upper_bound_fen': upper, 'billing_basis': basis,
+                      'wall_seconds': 30, 'binding': binding}
+            if not run:
+                return {'dry_run': True, 'dispatch_allowed': False, 'reservation_would_fit': True,
+                        'proposed': record, 'status': self._status(events)}
+            event = self._append(events, 'reserved', record)
+            return {'dry_run': False, 'dispatch_allowed': True, 'reservation': event,
+                    'status': self._status(events)}
+
     def record_event(self, attempt_id, kind, operation_id):
         """Reserve an observable operation before invoking it; duplicate IDs fail closed."""
         if not self.state_dir.exists():
@@ -466,6 +545,8 @@ class BatchLedger:
             limits = EVENT_LIMITS[a['kind']]
             if kind not in limits:
                 raise LimitError('unsupported_counted_operation')
+            if a['kind'] == 'diagnostic' and operation_id != a['binding']['dispatch_id']:
+                raise LimitError('diagnostic_operation_binding_mismatch')
             if a['counters'].get(kind, 0) >= limits[kind]:
                 raise LimitError('operation_budget_exhausted')
             event = self._append(events, 'operation_reserved', {'attempt_id': attempt_id,
@@ -523,6 +604,12 @@ def main():
     reserve.add_argument('--unit')
     reserve.add_argument('--public-path', type=Path)
     reserve.add_argument('--run', action='store_true')
+    diagnostic = sub.add_parser('reserve-diagnostic')
+    diagnostic.add_argument('--attempt-id', required=True)
+    diagnostic.add_argument('--binding', type=Path, required=True, help='Exact provider/request binding JSON; no secrets')
+    diagnostic.add_argument('--upper-bound-cny', required=True)
+    diagnostic.add_argument('--billing-basis', type=Path, required=True, help='Priced upper bound with hashed evidence reference')
+    diagnostic.add_argument('--run', action='store_true')
     event = sub.add_parser('event')
     event.add_argument('--attempt-id', required=True)
     event.add_argument('--kind', required=True)
@@ -546,6 +633,10 @@ def main():
                                     upper_bound_cny=args.upper_bound_cny,
                                     billing_basis=read_json(args.billing_basis), unit=args.unit,
                                     public_path=args.public_path, run=args.run)
+        elif args.command == 'reserve-diagnostic':
+            result = ledger.reserve_diagnostic(attempt_id=args.attempt_id, binding=read_json(args.binding),
+                                               upper_bound_cny=args.upper_bound_cny,
+                                               billing_basis=read_json(args.billing_basis), run=args.run)
         elif args.command == 'event':
             result = ledger.record_event(args.attempt_id, args.kind, args.operation_id)
         elif args.command == 'finish':

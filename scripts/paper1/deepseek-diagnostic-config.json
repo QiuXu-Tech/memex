@@ -1,0 +1,34 @@
+{
+  "schema_version": 1,
+  "kind": "p1-deepseek-setup-diagnostic-v1",
+  "provider": "deepseek",
+  "model": "deepseek-flash",
+  "pricing": {
+    "checked_date": "2026-11-28",
+    "timezone": "Asia/Shanghai",
+    "validity": "same_local_calendar_day",
+    "source": "https://api-docs.deepseek.com/zh-cn/quick_start/pricing/",
+    "context_source": "https://api-docs.deepseek.com/api/list-models/",
+    "maximum_input_tokens_for_reservation": 1048576,
+    "peak_input_cny_per_million": "2.00",
+    "peak_cached_input_cny_per_million": "0.04",
+    "peak_output_cny_per_million": "8.00",
+    "calculated_maximum_cny": "2.105344",
+    "reserved_upper_bound_cny": "3.00",
+    "basis": "Entire documented context window at peak uncached input rates, plus the requested output limit; no byte-to-token equivalence is assumed."
+  },
+  "limits": {
+    "max_tokens": 1024,
+    "timeout_ms": 30000,
+    "max_request_bytes": 16384,
+    "max_response_bytes": 65536,
+    "generation_requests": 1,
+    "automatic_retries": 0
+  },
+  "input": {
+    "request": "Identify the claim requiring verification in this public diagnostic example.",
+    "draft": "The maintainer approved publishing release c1 in project demo.",
+    "context": "This is a synthetic API compatibility diagnostic. No publication or other operation should be executed.",
+    "toolDescriptions": []
+  }
+}

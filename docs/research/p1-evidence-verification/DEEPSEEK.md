@@ -2,7 +2,7 @@
 
 更新：2026-11-28（Asia/Shanghai）。用户本轮明确选择：**“用deepseek的api”**。后续生成服务按此选择准备；此前未提交的 OpenAI 密钥创建流程停止。
 
-**当前状态：DeepSeek 候选抽取组件已完成离线验证，尚未发生真实 DeepSeek 请求。** 这项选择不等于四臂实验已接通，也不增加原生尝试额度。原始批准记录、来源包、公共输入、原生证据和论文结果均保持原来的身份。
+**当前状态：DeepSeek 候选抽取组件已完成离线验证；随后完成了官方接口的只读鉴权检查，尚未发起真实模型生成请求。** 这项选择不等于四臂实验已接通，也不增加原生尝试额度。原始批准记录、来源包、公共输入、原生证据和论文结果均保持原来的身份。
 
 ## 服务角色
 
@@ -26,13 +26,13 @@
 
 `deepseek-flash` 是服务方可更新的模型名。请求名、响应中的模型名、配置摘要和执行时间可记录；这不构成对服务端实际权重版本的独立认证。正式研究冻结还需要记录当时的服务说明、运行窗口与版本限制。
 
-本轮凭据检查只观察进程环境和 P1 项目配置的存在情况，不输出值。在已检查的本地执行环境和 Mac P1 运行目录中，尚未发现 `DEEPSEEK_API_KEY`。这不是对整台机器、其他应用或用户账户的全盘检查，也不代表账户没有密钥。
+初次准备时，已检查的执行环境没有配置 `DEEPSEEK_API_KEY`。随后用户明确提供本机剪贴板中的密钥，凭据已直接保存至用户设备的 P1 专用私有文件，未经过聊天、Git 或模型输入。对官方 `/models` 的实际读取确认鉴权成功且包含 `deepseek-flash`。账户可用性只在本地检查；账户资料和余额状态不作为公开研究材料。
 
 ## 无付费调用的组件接口
 
 新增 `scripts/paper1/deepseek.mjs` 和 `deepseek-config.json`。组件的 completion 结果为 `{text, usage, controllerMetadata}`；既有抽取器仍独立验证实际模型文本。controller metadata 由调用侧建立，不能从模型输出采信 provider、request identity 或费用声明。
 
-`createDeepSeekCompletion(...)` 必须接收 controller 提供的 `authorizeDispatch(intent)`。该调用在网络发送前发生；缺失、拒绝或与本次请求摘要不匹配的入场记录必须阻断发送。回调是可信 controller 的集成接口，**不是已经完成的中央现金预算实现，也不是防御 controller 自身篡改的安全边界**。当前没有可以直接启动付费调用的命令行入口。
+`createDeepSeekCompletion(...)` 必须接收 controller 提供的 `authorizeDispatch(intent)`。该调用在网络发送前发生；缺失、拒绝或与本次请求摘要不匹配的入场记录必须阻断发送。回调自身只是可信 controller 的集成接口。下文新增的独立诊断入口将它接至同一批次现金台账；其他调用方仍须自行完成真实的 controller 集成，不能仅凭一个 receipt 对象声称预算已受控。
 
 只读检查入口不发起请求、不执行来源、不预留尝试：
 
@@ -40,7 +40,31 @@
 node --input-type=module -e "import { inspectDeepSeek } from './scripts/paper1/deepseek.mjs'; console.log(JSON.stringify(inspectDeepSeek(), null, 2))"
 ```
 
-即使检测到密钥，预检仍应报告 `live_dispatch_ready=false`。全局现金准入、任务原生 checkpoint、共享 reader/tokenizer 和运行隔离尚未接通；有密钥不能把这些状态改为完成。
+即使检测到密钥，通用组件预检仍报告 `live_dispatch_ready=false`。独立接入诊断只实现下述有限现金路径；任务原生 checkpoint、共享 reader/tokenizer、运行隔离和四臂统一预算集成仍未完成。
+
+## 独立接入诊断
+
+`scripts/paper1/deepseek-diagnostic.mjs` 使用固定、公开的合成小样例，经原有 `extractClaims()` 检查实际返回的 JSON、类型与原文依据。它不是 `w-101/w-102` 方法单元，不产生 native compaction 证据，也不增加论文样本量。
+
+默认入口只读配置，不读取凭据、不访问服务、不修改台账：
+
+```bash
+node scripts/paper1/deepseek-diagnostic.mjs
+```
+
+在指定的唯一执行副本中，显式 `--run` 才允许做一次接入诊断：
+
+```bash
+node scripts/paper1/deepseek-diagnostic.mjs --run
+```
+
+执行入口优先读取进程变量 `DEEPSEEK_API_KEY`；未配置时，读取用户主目录下的 `.config/memex/p1/credentials/deepseek_api_key`。私有文件必须属于当前用户、权限为 `0600`，且路径不得经过符号链接。凭据不进入 Python 子进程参数、环境、stdout 或结果文件。运行时结果保留在本机，公开前只选择不含账户状态的验证摘要。
+
+入口先请求官方 `/user/balance`。账户不可用、响应未知或检查失败时，停止于现金预留之前；当前人民币预算路径还要求可验证的 CNY 计费信息，其他币种须另行核对费率与换算，不能套用人民币价格。条件满足时，`BatchLedger.reserve_diagnostic()` 在原来的 canonical ledger 中预留现金，随后记录唯一且绑定本次 dispatch 的 `provider_request` 事件；两者持久化完成后才返回发送准入。诊断有独立计数，不消耗 native 或 method 名额，不产生新的现金总额度。
+
+固定配置为单次生成、最多 1,024 输出 tokens、30 秒、零自动重试；请求和响应分别限制为 16,384 / 65,536 字节。预留 CNY 3.00 是预算上界，并非实际消费估计：按当天核对的高峰费率，对完整 1,048,576-token 上下文及 1,024 输出 tokens 保守计算，得到 CNY 2.105344，再向上预留至 3.00。此计算不把字节数当作 token 数。价格证据仅在核查的北京时间当日有效，过期后须重新核对并更新配置身份。
+
+已确认的本次预留才可由启动器结束；未确认的写入或已有 ID 冲突须保留状态等待核对。失败、超时或实际费用未知时保留预留上界。返回的 token 用量可形成明确标注的费用估计，不能代替可归属的账单证据进行现金核销。
 
 ## 用量、预算和历史记录
 
@@ -48,7 +72,7 @@ node --input-type=module -e "import { inspectDeepSeek } from './scripts/paper1/d
 
 官方中文价格在本次核查时列出 Flash 每百万 tokens 的高峰价格：缓存未命中输入 2 元、命中输入 0.04 元、输出 8 元；非峰价格减半。这些是日期明确的参考费率，**不是本项目已支付账单，也不是永久价格**。未来调度需在发送前重新核对费率、保守预留现金，并记录实际供应商回执；不能只凭 SDK 返回的 token 数宣布实际现金支出已核销。
 
-原第 1 批的两次原生尝试已使用，16 个方法单元尚未使用，总新增现金上限继续为 CNY 100，包含配置诊断、失败和重试。切换服务方不退还已用尝试、不创建第三次原生许可、不把诊断伪装成方法单元。中央台账和历史授权文件不在本轮改写。
+原第 1 批的两次原生尝试已使用，16 个方法单元尚未使用，总新增现金上限继续为 CNY 100，包含配置诊断、失败和重试。切换服务方不退还已用尝试、不创建第三次原生许可、不把诊断伪装成方法单元。新增的是台账对独立诊断的支持；历史授权和已有事件字节保持不变。
 
 原生结果使用原来的模型、宿主和记录解释。今后的 DeepSeek 结果须有新的配置身份；如果同时改变宿主，须作为单独的外部有效性研究，不能与历史结果混合后宣称是纯模型差异或方法提升。
 
@@ -56,16 +80,21 @@ node --input-type=module -e "import { inspectDeepSeek } from './scripts/paper1/d
 
 组件测试只使用自有夹具和可计数的替身 transport，不调用公网服务、不读取真实凭据、不执行论文任务。它们验证接口、失败处理、用量与凭据保护，不能增加研究样本量。
 
-2026-11-28 在 Node v24.22.3 上执行 `node --test test/paper1-*.mjs`：**97 项通过，0 失败、0 取消、0 跳过**，其中 DeepSeek 新增 27 项，原有 Node 回归 70 项。完整结果见 [node-tests.txt](artifacts/checks/deepseek-preparation/node-tests.txt)，本次组件、只读预检与受保护输入的校验记录见 [validation.json](artifacts/checks/deepseek-preparation/validation.json)。没有重新执行与本次改动无关的 Python 研究套件。
+第一轮 transport 准备于 2026-11-28 在 Node v24.22.3 上执行 `node --test test/paper1-*.mjs`：**97 项通过，0 失败、0 取消、0 跳过**，其中 DeepSeek 新增 27 项，原有 Node 回归 70 项。完整结果见 [node-tests.txt](artifacts/checks/deepseek-preparation/node-tests.txt)，当时组件、只读预检与受保护输入的校验记录见 [validation.json](artifacts/checks/deepseek-preparation/validation.json)。这些历史记录不被后续接入检查覆盖。
 
 独立审查发现的同步准入回调越过截止时间后仍发送请求、同步解析超时仍返回成功、内层 JSON Unicode 转义反射凭据、声明响应过大时取消读取，以及响应其他层级的工具标记检查，均已修复并纳入离线回归。截止时间检查能拒绝过期后的发送与成功结果，但不能宣称抢占或中断任意同步 JavaScript。
 
-实际调用前仍需完成：定位可用凭据并安全接入、将发送前准入绑定中央现金台账、冻结并实施 tokenizer/token/工具上限、取得任务对应的真实压缩 checkpoint、接通四臂共同 reader，并单独解决 B 的固定检索服务。本文不声明已完成这些步骤。
+第二轮诊断集成验证为 **112 项 Node 测试与 72 项相关 Python 测试通过**，新增诊断测试分别为 15 / 10 项。Python 选择了现金台账、独立诊断、原生许可与配对准备四组，未重跑整套研究套件。新 checkout 的配对准备测试最初因原计划绑定绝对路径而出现 8 个失败；在原冻结路径运行同一新台账代码后，19 项全部通过，未修改计划、授权或来源包。原失败与后续验证均保留在 [诊断验证记录](artifacts/checks/deepseek-diagnostic/validation.json) 中。
+
+本机部署保留了已公开的四条台账事件及同一授权摘要；只有指定的设备执行副本用于后续真实诊断，其他 checkout 用于测试和发布。代码不声称提供跨设备、跨克隆的分布式互斥。实际入口检查停止于现金预留之前：本轮累计三次只读元数据请求、零生成请求、零新增预算预留，原台账字节未变。账户状态回执保留在设备私有运行目录，未发布。
+
+独立生成诊断仍须通过当次账户检查和现金准入，并取得真实模型结果。正式研究还需冻结并实施共同 tokenizer/token/工具上限、取得任务对应的真实压缩 checkpoint、接通四臂共同 reader 和完整费用采集，并单独解决 B 的固定检索服务。接入诊断不替代这些步骤。
 
 ## 核查依据
 
 - [DeepSeek 官方模型与价格](https://api-docs.deepseek.com/zh-cn/quick_start/pricing/)（2026-11-28 核查）。
 - [DeepSeek Chat Completions API](https://api-docs.deepseek.com/api/create-chat-completion/)：JSON、生成限制、完成状态与用量字段。
+- [DeepSeek 模型列表](https://api-docs.deepseek.com/api/list-models/)与[账户可用余额查询](https://api-docs.deepseek.com/api/get-user-balance/)：只读服务发现及账户可用性字段。
 - [DeepSeek Responses 兼容性说明](https://api-docs.deepseek.com/guides/responses_api/)：客户端须发送完整历史；`previous_response_id`、服务端 conversation 与存储并不支持。
 - [DeepSeek Codex 集成说明](https://api-docs.deepseek.com/quick_start/agent_integrations/codex/)：这是后续宿主兼容性验证的参考；本轮未运行安装脚本，也未覆盖用户全局配置。
 - 仓库合同：`scripts/paper1/claims.mjs`、`rawrag-config.json`、`rawrag_adapter.py`、`paired_runner.py`、`batch_limits.py` 和 `scripts/codex-retention-host.py`。
